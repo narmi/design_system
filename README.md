@@ -42,6 +42,30 @@ A `dist/index.js` file will also be built on each change for the external apps t
 - The entry point to `design_system` is `dist/index.js`, so this is important.
 
 
+### In Banking
+
+- Global Styles: make sure global CSS styles (colors, etc.) are set by placing a `<GlobalStyles />` component on each page of your application.
+  - See sky/src/App.js for example
+  - Could also be placed in base_consumer.html
+  - CSSvars are namespaced with `--nds-` to not collide
+  - Classnames are scoped locally to the component via styled-components, so will not collide with existing classes
+- Theming: make sure theme colors are set by wrapping the GlobalStyles in a ThemeProvider:
+  - theme attrs can be loaded from API (see sky/App.js for example)
+  - no other components should need access to `props.theme`
+  - all other components should read theme vars from the CSS (via `color: var(--nds-primary-color)`)
+  - this is to allow server-side apps/non-SPAs to use DS without wrapping their entire app in a theme provider
+
+```
+# App.js or base_consumer.html
+<ThemeProvider
+  theme={{...this.state.theme}}
+>
+  <GlobalStyles />
+</ThemeProvider>
+
+...rest of app...
+```
+
 ### Storybook
 
 [Storybook](https://storybook.js.org/tutorials/intro-to-storybook/react/en/get-started/) is used as a live environment to develop and test components faster.

@@ -21,25 +21,26 @@ You will need an accepted SSH key or valid Github access token with access to th
 
 ## Developing
 
-- from above `banking`:
-- `git clone git@github.com:narmi/design_system.git`
-- `npm install`
-- `npm run storybook` to run Storybook
-- `npm run watch` to regenerate the dist file for committing/consumption into other apps (Sky Azul etc)
+From `banking`:
+
+```
+cd ..
+git clone git@github.com:narmi/design_system.git
+cd banking    (or banking/sky, or wherever you want to consume DS)
+npm link ../design_system
+cd ../design_system
+npm install
+npm run storybook
+npm run watch
+```
 
 Storybook will now run on :6006.
 
+Your local `design_system` will be [symlinked](https://docs.npmjs.com/cli/v7/commands/npm-link) into banking/design_system for local dev.
+
 A `dist/index.js` file will also be built on each change for the external apps to consume.
+- The entry point to `design_system` is `dist/index.js`, so this is important.
 
-### Import to Banking
-
-Use `npm link` to get {Azul,Sky,...} to use your local DS in place of the static GH version:
-
-- clone DS adjacent to banking: `git clone git@github.com:narmi/design_system.git`
-- from {banking/,banking/sky,wherever}, run `npm link ../design_system`
-- this will link your local `design_system` in the place of the standard NPM path
-
-More on NPM Link: https://docs.npmjs.com/cli/v7/commands/npm-link
 
 ### Storybook
 

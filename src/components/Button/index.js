@@ -1,0 +1,89 @@
+import React from "react";
+import PropTypes from "prop-types";
+import styled, { css } from "styled-components";
+
+
+const disabledStyles = css`
+  cursor: default;
+  background-color: var(--nds-grey-disabled);
+  border-color: var(--nds-grey-disabled);
+  color: var(--nds-white);
+
+  &:hover {
+    /* explicitly remains same */
+    background-color: var(--nds-grey-disabled);
+    border-color: var(--nds-grey-disabled);
+    color: var(--nds-white);
+  }
+`;
+
+const secondaryStyles = css`
+  background-color: var(--nds-white);
+  color: var(--nds-primary-color);
+
+  &:hover {
+    background-color: var(--nds-primary-color-lightest);
+    color: var(--nds-primary-color);
+  }
+`;
+
+const secondaryDisabledStyles = css`
+  background-color: var(--nds-white);
+  color: var(--nds-grey-disabled);
+
+  &:hover {
+    /* explicitly remains same */
+    background-color: var(--nds-white);
+    color: var(--nds-grey-disabled);
+  }
+`;
+
+const Styled = styled.a`
+  cursor: pointer;
+  font-family: var(--nds-font-family);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0px;
+  line-height: 16px;
+  text-align: center;
+  vertical-align: top;
+
+  background-color: var(--nds-primary-color);
+  border-color: var(--nds-primary-color);
+  border-width: 1px;
+  border-style: solid;
+  color: var(--nds-white);
+  border-radius: 28px;
+  padding: 12px 32px;
+
+  &:hover {
+    background-color: var(--nds-primary-color-dark);
+    color: var(--nds-white);
+  }
+
+  ${(props) => (props.secondary ? secondaryStyles : null)}
+  ${(props) => (props.disabled ? disabledStyles : null)}
+
+  /* style combos go after for ordering dep reasons*/
+  ${(props) =>
+    props.secondary && props.disabled ? secondaryDisabledStyles : null}
+`;
+
+const Button = (props) => {
+  return <Styled {...props}>{props.label || props.children}</Styled>;
+};
+
+Button.propTypes = {
+  label: PropTypes.string,
+  disabled: PropTypes.bool,
+  secondary: PropTypes.bool,
+  // either label or children are required
+  children: PropTypes.node, // numbers, string, DOM elements, arrays, fragments, ...
+};
+
+Button.defaultProps = {
+  disabled: false,
+  secondary: false,
+};
+
+export default Button;

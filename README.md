@@ -1,7 +1,125 @@
 # Narmi Design System (NDS)
 
-Suggested repo name: Ocean (blue)
 An Ocean of components :)
+
+## Installing
+
+- currently: install from Github, as in:
+
+```
+# package.json
+# see banking/package.json for an example
+...
+  "design_system": "git+ssh://git@github.com:narmi/design_system.git"
+...
+```
+
+You will need an accepted SSH key or valid Github access token with access to the Narmi repos to do this.
+
+- via NPM: TBD (pending 1st publishable release)
+
+
+## Developing
+
+- from above `banking`:
+- `git clone git@github.com:narmi/design_system.git`
+- `npm install`
+- `npm run storybook` to run Storybook
+- `npm run watch` to regenerate the dist file for committing/consumption into other apps (Sky Azul etc)
+
+Storybook will now run on :6006.
+
+A `dist/index.js` file will also be built on each change for the external apps to consume.
+
+### Import to Banking
+
+Use `npm link` to get {Azul,Sky,...} to use your local DS in place of the static GH version:
+
+- clone DS adjacent to banking: `git clone git@github.com:narmi/design_system.git`
+- from {banking/,banking/sky,wherever}, run `npm link ../design_system`
+- this will link your local `design_system` in the place of the standard NPM path
+
+More on NPM Link: https://docs.npmjs.com/cli/v7/commands/npm-link
+
+### Storybook
+
+[Storybook](https://storybook.js.org/tutorials/intro-to-storybook/react/en/get-started/) is used as a live environment to develop and test components faster.
+
+We typically add a `Story` for each view or distinct state of each component.
+
+These distinct views or states are controlled by Storybook `args` (similar to props).
+
+You can view and add components using the steps below.
+
+
+### Dependencies
+
+Please install any new packages required for Stories.js files (ie, in-context examples) as devDependenies as well as peerDeps
+
+- eg: React, Styled-Components, react-feather Icons
+- these will be expected to be installed by the consumer
+- but DesignSystem will not package them up itself
+- this thins package size but most imptly helps avoid https://reactjs.org/warnings/invalid-hook-call-warning.html by decoupling dependency versions.
+  - let the consumer use whichever compatible version of React/xyz they like
+
+### Theming
+
+Styled-components exposes a ThemeProvider context if you wish to grab the styled-components Theme in a Big Component: https://styled-components.com/docs/advanced#getting-the-theme-without-styled-components
+
+### Live Editing
+
+(ie, adding custom HTML to a component to see how renders) This plugin may be useful: https://storybook.js.org/addons/storybook-addon-react-live-edit
+
+
+## Contributing
+
+We accept PRs! We've striven to make the NDS as minimal and composable as possible, so please try and adhere to these guidelines when making PRs. We will comment on any PRs to uphold these guidelines:
+
+### Maintain the HTML interface
+
+We've attempted to keep the component interface as close to the native HTML as possible to allow the user a familiar development experience while maximizing customization. This means:
+
+For instance, when faced with the decision to add a custom onClick handler, or pass `props.onClick` through to the underlying HTML, prefer passing through the native handler.
+
+Almost all of our components pass `...props` all the way through to their children.
+
+This allows us to keep the power of HTML, while minimizing complexity on our end.
+
+### Allow for props.children over custom subcomponents
+
+We want to allow the maximum flexibility to our users, so we've preferred allowing the user to pass their own `children` in, vs specifying specific child props in our components.
+
+For instance, if faced with the decision to provide a `headerIcon` prop, or simply allow passing an full <span>...</span> as the `header`, prefer allowing the user to pass HTML through.
+
+This allows for both increased customization by the user, while decreasing complexity on our end.
+- your header can now be spaced any way you want it to, and include Images as well as Icons if desired;
+- our component doesn't have to know or manage this - spacing and sizing is left up to the user to get Just Right.
+
+This way, we allow the user maximum customization, while keeping our components thin and manageable.
+
+### Use native CSS solutions
+
+CSS has become quite powerful, and styled-components lets us modify CSS based on our `props`. 
+
+The combination of these two tools means we can often accomplish in only CSS what we used to need Javascript to do.
+
+For example:
+- prefer changing `flex-direction: row` to `flex-direction: row-reverse` via CSS, rather than using a `reversed` React prop
+- let the user pass through `props.style` rather than providing `padding` props
+- prefer CSS transforms and animations to JS/jQuery manipulations
+- ...
+
+
+### In short
+
+- Keep components as small as possible
+- Ask, "Can this prop be removed?"
+- Prefer CSS to JS
+
+Feel free to ask us for CSS suggestions - we're happy to help!
+
+---------------------------------------------------------------------------------
+
 
 ## Design Philosophy
 
@@ -40,15 +158,6 @@ Ex.:
 
 Some assembly is required.
 
-## Dev Guide
-
-### Theming
-
-Styled-components exposes a ThemeProvider context if you wish to grab the styled-components Theme in a Big Component: https://styled-components.com/docs/advanced#getting-the-theme-without-styled-components
-
-### Live Editing
-
-(ie, adding custom HTML to a component to see how renders) This plugin may be useful: https://storybook.js.org/addons/storybook-addon-react-live-edit
 
 ## Roadmap
 
@@ -145,18 +254,3 @@ Support Center/Messages:
 Minimum version supported by the following:
 
 - https://caniuse.com/?search=focus-within
-
-### Developing
-
-- `npm run storybook` to run Storybook
-- `npm run watch` to regenerate the dist file for committing/consumption into other apps (Sky Azul etc)
-
-Storybook will run on :6006
-dist will be built on each change for the external apps to consume
-Install any new packages required for Stories.js files (ie, in-context examples) as devDependenies as well as peerDeps
-
-- eg: React, Styled-Components, react-feather Icons
-- these will be expected to be installed by the consumer
-- but DesignSystem will not package them up itself
-- this thins package size but most imptly helps avoid https://reactjs.org/warnings/invalid-hook-call-warning.html by decoupling dependency versions.
-  - let the consumer use whichever compatible version of React/xyz they like

@@ -279,3 +279,7 @@ Support Center/Messages:
 Minimum version supported by the following:
 
 - https://caniuse.com/?search=focus-within
+
+## License
+
+Source code is under a custom license based on MIT. The license restricts design_system usage to applications that integrate or interoperate with Narmi software or services, with additional restrictions for external, stand-alone applications.

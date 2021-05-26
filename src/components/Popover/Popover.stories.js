@@ -43,9 +43,9 @@ const NavMenu = ({ divided, horizontal }) => {
   };
 
   const els = Object.keys(items).map((header) => (
-    <StyledList divided={divided} horizontal={horizontal}>
+    <StyledList divided={divided} horizontal={horizontal} style={{"font-size": "12px"}}>
       <li>
-        <StyledHeader>{header}</StyledHeader>
+        <StyledHeader style={{"font-size": "12px"}}>{header}</StyledHeader>
       </li>
       {items[header].map((c) => (
         <li key={c}>{c}</li>
@@ -117,4 +117,41 @@ OnHoverLabel.args = {
   shiftX: "-40%",
   style: { padding: "8px" },
   children: <NavMenu divided horizontal />,
+};
+
+
+const StyledDiv = styled.div`
+  display: flex; 
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  flex-direction: column;
+`;
+
+const AccountPopover = () => {
+  return (
+      <div>Account 
+          <Popover 
+            hoverable={false}
+            label={null}
+            shiftX={"-40%"}
+            children={<NavMenu />}
+          />
+      </div>
+  );
+};
+
+const NavBar = (props) => {
+  return (
+    <div>
+      <StyledDiv>
+         {props.options.map((option) => option)}
+      </StyledDiv>
+    </div>
+  );
+};
+
+export const MobileNavBar = () => {
+  let options = [<AccountPopover />, <p>Documents</p>, <p>Support</p>, <p>Tools</p>]
+  return <NavBar options={options} />
 };

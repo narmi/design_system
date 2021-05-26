@@ -2,17 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { ChevronUp, ChevronDown } from "react-feather";
+import { deviceBreakpoints } from "../../globalStyles";
 
 const StyledPopover = styled.div`
-  position: absolute;
-  top: 30px;
-  left: -0px;
-  background-color: var(--nds-white);
-  transform: translate(${(p) => p.shiftX}, ${(p) => p.shiftY});
-
-  border-radius: 4px;
-  box-shadow: var(--nds-dropshadow-dark);
-  box-sizing: border-box;
+  @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
+    position: absolute;
+    background-color: var(--nds-white);
+    // background-color: red;
+    border-radius: 4px;
+    box-shadow: var(--nds-dropshadow-dark);
+    box-sizing: border-box;
+    top: 30px;
+    left: -0px;
+    transform: translate(${(p) => p.shiftX}, ${(p) => p.shiftY});
+  }
 
   font-family: var(--nds-font-family);
 

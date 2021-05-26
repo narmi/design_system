@@ -8,7 +8,6 @@ const StyledPopover = styled.div`
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
     position: absolute;
     background-color: var(--nds-white);
-    // background-color: red;
     border-radius: 4px;
     box-shadow: var(--nds-dropshadow-dark);
     box-sizing: border-box;

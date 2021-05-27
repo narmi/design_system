@@ -21,6 +21,7 @@ const StyledHeader = styled.span`
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     font-size: 12px;
   }
+}
 `;
 const StyledList = styled.ul`
   list-style-type: none;
@@ -62,9 +63,9 @@ export const NavMenu = ({ divided, horizontal }) => {
   };
 
   const els = Object.keys(items).map((header) => (
-    <StyledList divided={divided} horizontal={horizontal} style={{"font-size": "12px"}}>
+    <StyledList divided={divided} horizontal={horizontal} >
       <li>
-        <StyledHeader style={{"font-size": "12px"}}>{header}</StyledHeader>
+        <StyledHeader >{header}</StyledHeader>
       </li>
       {items[header].map((c) => (
         <li key={c}>{c}</li>

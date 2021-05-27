@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Popover from "components/Popover";
 import { Centered } from "../../decorators";
+import { deviceBreakpoints } from "../../globalStyles";
 
 export default {
   title: "Components/Popover",
@@ -16,6 +17,9 @@ const StyledHeader = styled.span`
   font-family: var(--nds-font-family);
   font-size: 16px;
   line-height: 20px;
+  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
+    font-size: 12px;
+}
 `;
 const StyledList = styled.ul`
   list-style-type: none;
@@ -24,6 +28,11 @@ const StyledList = styled.ul`
   white-space: nowrap;
   padding: 12px 16px;
   margin: 0;
+  
+  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
+      font-size: 12px;
+  }
+
   border-right: ${(p) =>
     p.divided && p.horizontal ? "1px solid var(--nds-grey-disabled)" : null};
   border-bottom: ${(p) =>
@@ -43,9 +52,9 @@ const NavMenu = ({ divided, horizontal }) => {
   };
 
   const els = Object.keys(items).map((header) => (
-    <StyledList divided={divided} horizontal={horizontal}>
+    <StyledList divided={divided} horizontal={horizontal} >
       <li>
-        <StyledHeader>{header}</StyledHeader>
+        <StyledHeader >{header}</StyledHeader>
       </li>
       {items[header].map((c) => (
         <li key={c}>{c}</li>
@@ -117,4 +126,37 @@ OnHoverLabel.args = {
   shiftX: "-40%",
   style: { padding: "8px" },
   children: <NavMenu divided horizontal />,
+};
+
+
+const StyledOptionsList = styled.div`
+  display: flex; 
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  flex-direction: column;
+`;
+
+const AccountPopover = () => {
+  return (
+      <div>Account 
+          <Popover 
+            hoverable={false}
+            label={null}
+            shiftX={"-40%"}
+            children={<NavMenu />}
+          />
+      </div>
+  );
+};
+
+export const InNavbar = () => {
+  let options = [<AccountPopover />, <p>Documents</p>, <p>Support</p>, <p>Tools</p>];
+  return (    
+      <div>
+        <StyledOptionsList>
+          {options}
+        </StyledOptionsList>
+      </div>
+  );
 };

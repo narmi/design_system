@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Popover from "components/Popover";
 import { Centered } from "../../decorators";
+import { deviceBreakpoints } from "../../globalStyles";
 
 export default {
   title: "Components/Popover",
@@ -16,6 +17,9 @@ const StyledHeader = styled.span`
   font-family: var(--nds-font-family);
   font-size: 16px;
   line-height: 20px;
+  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
+    font-size: 12px;
+}
 `;
 const StyledList = styled.ul`
   list-style-type: none;
@@ -24,6 +28,11 @@ const StyledList = styled.ul`
   white-space: nowrap;
   padding: 12px 16px;
   margin: 0;
+  
+  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
+      font-size: 12px;
+  }
+
   border-right: ${(p) =>
     p.divided && p.horizontal ? "1px solid var(--nds-grey-disabled)" : null};
   border-bottom: ${(p) =>
@@ -43,9 +52,9 @@ const NavMenu = ({ divided, horizontal }) => {
   };
 
   const els = Object.keys(items).map((header) => (
-    <StyledList divided={divided} horizontal={horizontal} style={{"font-size": "12px"}}>
+    <StyledList divided={divided} horizontal={horizontal} >
       <li>
-        <StyledHeader style={{"font-size": "12px"}}>{header}</StyledHeader>
+        <StyledHeader >{header}</StyledHeader>
       </li>
       {items[header].map((c) => (
         <li key={c}>{c}</li>
@@ -120,7 +129,7 @@ OnHoverLabel.args = {
 };
 
 
-const StyledDiv = styled.div`
+const StyledOptionsList = styled.div`
   display: flex; 
   position: absolute;
   top: 20%;
@@ -141,17 +150,13 @@ const AccountPopover = () => {
   );
 };
 
-const NavBar = (props) => {
-  return (
-    <div>
-      <StyledDiv>
-         {props.options.map((option) => option)}
-      </StyledDiv>
-    </div>
+export const InNavbar = () => {
+  let options = [<AccountPopover />, <p>Documents</p>, <p>Support</p>, <p>Tools</p>];
+  return (    
+      <div>
+        <StyledOptionsList>
+          {options}
+        </StyledOptionsList>
+      </div>
   );
-};
-
-export const MobileNavBar = () => {
-  let options = [<AccountPopover />, <p>Documents</p>, <p>Support</p>, <p>Tools</p>]
-  return <NavBar options={options} />
 };

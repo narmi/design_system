@@ -1,10 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { deviceBreakpoints } from "../../globalStyles";
 
 const StyledListWrapper = styled.div`
   display: flex;
-  flex-flow: ${(props) => props.horizontal ? "row nowrap": "column nowrap"};
+  flex-flow: ${(props) => (props.horizontal ? "row nowrap" : "column nowrap")};
+  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
+    flex-flow: column nowrap;
+  }
 `;
 
 const StyledHeader = styled.span`
@@ -22,10 +26,18 @@ const StyledList = styled.ul`
   white-space: nowrap;
   padding: 12px 16px;
   margin: 0;
-  border-right: ${(p) =>
-    p.divided && p.horizontal ? "1px solid var(--nds-grey-disabled)" : null};
+  @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
+    border-right: ${(p) =>
+      p.divided && p.horizontal ? "1px solid var(--nds-grey-disabled)" : null};
+  }
+
   border-bottom: ${(p) =>
     p.divided && !p.horizontal ? "1px solid var(--nds-grey-disabled)" : null};
+
+  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
+    border-bottom: ${(p) =>
+      p.divided ? "1px solid var(--nds-grey-disabled)" : null};
+  }
 
   &:last-child {
     border-right: none;
@@ -33,7 +45,6 @@ const StyledList = styled.ul`
 `;
 
 const List = (props) => {
-  // one way to organize Popover content, it's up to the consumer really! Popover just renders it.
   let divided = props.divided;
   let horizontal = props.horizontal;
   let items = props.items;
@@ -49,11 +60,7 @@ const List = (props) => {
     </StyledList>
   ));
 
-  return (
-    <StyledListWrapper {...props}>
-      {els}
-    </StyledListWrapper>
-  );
+  return <StyledListWrapper {...props}>{els}</StyledListWrapper>;
 };
 
 List.propTypes = {

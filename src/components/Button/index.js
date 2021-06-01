@@ -39,6 +39,7 @@ const secondaryDisabledStyles = css`
 `;
 
 const Styled = styled.a`
+  display: inline-block;
   cursor: pointer;
   font-family: var(--nds-font-family);
   font-weight: 600;

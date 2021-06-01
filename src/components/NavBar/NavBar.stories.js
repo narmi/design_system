@@ -1,7 +1,6 @@
 import React from "react";
 import NavBar from "components/NavBar";
 import { Centered } from "../../decorators";
-import Button from "components/Button";
 import styled from "styled-components";
 import Popover from "components/Popover";
 import { Briefcase } from "react-feather";
@@ -18,12 +17,6 @@ const DefaultArgs = {
   rightChildren : []
 };
 
-const StyledButton = styled(Button)`
-  font-size: 8px;  
-  width: 10px;
-  height: 10px;
-`;
-
 const Typography = styled.p`
   /* P1/Regular: 16px */
 
@@ -37,7 +30,7 @@ const Typography = styled.p`
   left: 2.79%;
   color: #4C4C4C;
   font-weight: 600;
-  ::selection {
+  :hover {
     color: var(--nds-primary-color);
   }
 `;
@@ -49,16 +42,6 @@ const PopoverButton = styled.div`
   :hover {
     color: var(--nds-primary-color);
   }
-`;
-
-const StyledA = styled.a`
-  color:#000;   
-  :active
-   color: blue;
-  [tabindex]:focus {
-   color:blue;
-   outline: none;
-}
 `;
 
 const AccountPopover = () => {
@@ -86,35 +69,12 @@ const UserPopover = () => {
 }
 
 
-const leftChildren = [<Briefcase size={30} style={{"position":"relative"}}/>, <Typography >Dashboard</Typography>, <AccountPopover />, 
-<Typography>Documents </Typography>, <Typography>Support</Typography>,
- <ToolsPopover />];
-
- const rightChildren = [<UserPopover />];
-
 export const NavBarMenu = Template.bind({});
 NavBarMenu.args = {
   ...DefaultArgs,
   icon : <Briefcase size={30} />,
-  leftChildren : [<Briefcase size={30} style={{"position":"relative"}}/>, <Typography >Dashboard</Typography>, <AccountPopover />, 
+  leftChildren : [<Typography >Dashboard</Typography>, <AccountPopover />, 
                   <Typography onClick={()=>{console.log("doc")}}>Documents </Typography>, <Typography>Support</Typography>,
                    <ToolsPopover />],
   rightChildren : [<UserPopover />]
 };
-
-export const HoverNavBarMenu = Template.bind({});
-NavBarMenu.args = {
-  ...DefaultArgs,
-  leftChildren : [<Briefcase size={30} style={{"position":"relative"}}/>, <Typography >Dashboard</Typography>, <AccountPopover />, 
-                  <Typography>Documents </Typography>, <Typography>Support</Typography>,
-                   <ToolsPopover />],
-  rightChildren : [<UserPopover />]
-};
-
-// export const NavBarMenuWrapper = () => {
-//   return (
-//           <div style={{"display":"flex", "position":"absolute", "top":"200px"}}>
-//             <NavBarMenu leftChildren={leftChildren} rightChildren={rightChildren}/>
-//           </div>
-//           );
-// }

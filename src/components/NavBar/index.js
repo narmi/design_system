@@ -48,19 +48,25 @@ const StyledRightDiv = styled.span`
   }
 `;
 
+
+const StyledDivTab = styled.span`
+    @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
+      visibility: ${(props) => (props.icon ? "hidden" : "visible")};
+    }
+    @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
+      padding-right: 40px; 
+    }
+`;
+
 const NavBar = (props) => {
-// <span style={{"width":"40px"}}></span>
-  let hover = props.hover;
-  let select = props.select;  
-
-
   return (
     <StyledHeader {...props}>
        <StyledLeftDiv >
-        {props.leftChildren.map((x)=> <div style={{"padding-right":"40px"}}>{x}</div>)}
+        <StyledDivTab icon={true}>{props.icon} </StyledDivTab>
+        {props.leftChildren.map((option)=> <StyledDivTab >{option}</StyledDivTab>)}
        </StyledLeftDiv>
        <StyledRightDiv >
-        {props.rightChildren.map((x)=> <div style={{"padding-right":"40px"}}>{x}</div>)}
+        {props.rightChildren.map((option)=> <StyledDivTab >{option}</StyledDivTab>)}
        </StyledRightDiv>
     </StyledHeader>
   );
@@ -68,8 +74,8 @@ const NavBar = (props) => {
 
 NavBar.propTypes = {
   icon: PropTypes.icon,
-  leftChildren: PropTypes.node, // numbers, string, DOM elements, arrays, fragments, ...
-  rightChildren: PropTypes.node, // numbers, string, DOM elements, arrays, fragments, ...
+  leftChildren: PropTypes.node, 
+  rightChildren: PropTypes.node,
   hover: PropTypes.bool,
   select: PropTypes.bool,
 };

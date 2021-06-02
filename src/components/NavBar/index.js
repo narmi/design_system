@@ -18,7 +18,7 @@ const StyledHeader = styled.span`
 
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
     display: flex;
-
+    justify-content: space-between;
     position: absolute;
     height: 82px;
     left: 0%;
@@ -42,7 +42,6 @@ const StyledNavLeft = styled.span`
 
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
     position: relative;
-    width: 50%;
     align-items: center;
     display: flex;
   }
@@ -65,7 +64,6 @@ const StyledNavRight = styled.span`
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
     display: flex;
     position: relative;
-    width: 50%;
     flex-direction: row-reverse;
     align-items: center;
   }

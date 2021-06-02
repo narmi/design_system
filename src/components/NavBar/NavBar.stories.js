@@ -27,7 +27,7 @@ const PopoverButton = styled.div`
 const AccountPopover = () => {
   return (
     <PopoverButton>
-      <Typography hover={true} >Account</Typography> <Popover />
+      <Typography ><StyledA>Account</StyledA></Typography> <Popover />
     </PopoverButton>
   );
 };
@@ -35,7 +35,7 @@ const AccountPopover = () => {
 const ToolsPopover = () => {
   return (
     <PopoverButton>
-      <Typography hover={true} >Tools</Typography> <Popover />
+      <Typography ><StyledA>Tools</StyledA></Typography> <Popover />
     </PopoverButton>
   );
 };
@@ -43,20 +43,26 @@ const ToolsPopover = () => {
 const UserPopover = () => {
   return (
     <PopoverButton>
-      <Typography hover={true} >User name</Typography> <Popover />
+      <Typography ><StyledA>User name</StyledA></Typography> <Popover />
     </PopoverButton>
   );
 };
+
+const StyledA = styled.a`
+  :hover {
+    color: var(--nds-primary-color);
+  }
+`;
 
 export const NavBarMenu = Template.bind({});
 NavBarMenu.args = {
   ...DefaultArgs,
   icon: <Briefcase size={30} />,
   leftChildren: [
-    <Typography hover={true} >Dashboard</Typography>,
+    <Typography><StyledA>Dashboard</StyledA></Typography>,
     <AccountPopover />,
-    <Typography hover={true} >Documents</Typography>,
-    <Typography hover={true} >Support</Typography>,
+    <Typography><StyledA>Documents</StyledA></Typography>,
+    <Typography><StyledA>Support</StyledA></Typography>,
     <ToolsPopover />,
   ],
   rightChildren: [<UserPopover />],

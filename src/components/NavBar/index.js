@@ -8,6 +8,8 @@ const StyledHeader = styled.span`
 
   box-shadow: var(--nds-dropshadow-dark);
 
+  position: absolute;
+
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     margin-top: 16px;
     display: flex;
@@ -18,14 +20,12 @@ const StyledHeader = styled.span`
     display: flex;
 
     position: absolute;
-    left: 0%;
-    right: 0%;
-    top: 0px;
     height: 82px;
+    width: 1280px;
   }
 `;
 
-const StyledLeftDiv = styled.span`
+const StyledNavLeft = styled.span`
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
     position: relative;
     width: 50%;
@@ -35,7 +35,7 @@ const StyledLeftDiv = styled.span`
   }
 `;
 
-const StyledRightDiv = styled.span`
+const StyledNavRight = styled.span`
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
     display: flex;
     position: relative;
@@ -45,10 +45,21 @@ const StyledRightDiv = styled.span`
   }
 `;
 
-const StyledDivTab = styled.span`
+const StyledMenuItem = styled.span`
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
-    visibility: ${(props) => (props.icon ? "hidden" : "visible")};
-    position: ${(props) => (props.icon ? "absolute" : "relative")};
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
+    padding-right: 40px;
+  }
+`;
+
+const StyledMenuIcon = styled.span`
+  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
+    visibility: hidden;
+    position: absolute;
     display: flex;
     flex-direction: column;
     margin-top: 20px;
@@ -61,17 +72,17 @@ const StyledDivTab = styled.span`
 const NavBar = (props) => {
   return (
     <StyledHeader {...props}>
-      <StyledLeftDiv>
-        <StyledDivTab icon={true}>{props.icon} </StyledDivTab>
+      <StyledNavLeft>
+        <StyledMenuIcon>{props.icon} </StyledMenuIcon>
         {props.leftChildren.map((option) => (
-          <StyledDivTab>{option}</StyledDivTab>
+          <StyledMenuItem>{option}</StyledMenuItem>
         ))}
-      </StyledLeftDiv>
-      <StyledRightDiv>
+      </StyledNavLeft>
+      <StyledNavRight>
         {props.rightChildren.map((option) => (
-          <StyledDivTab>{option}</StyledDivTab>
+          <StyledMenuItem>{option}</StyledMenuItem>
         ))}
-      </StyledRightDiv>
+      </StyledNavRight>
     </StyledHeader>
   );
 };
@@ -80,8 +91,6 @@ NavBar.propTypes = {
   icon: PropTypes.icon,
   leftChildren: PropTypes.node,
   rightChildren: PropTypes.node,
-  hover: PropTypes.bool,
-  select: PropTypes.bool,
 };
 
 NavBar.defaultProps = {

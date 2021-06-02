@@ -13,12 +13,10 @@ const Typography = (props) => {
 };
 
 Typography.propTypes = {
-  hover: PropTypes.bool,
   children: PropTypes.node,
 };
 
 Typography.defaultProps = {
-  hover: false,
   children: [],
 };
 

@@ -66,7 +66,26 @@ const StyledA = styled.a`
 export const NavBarMenu = Template.bind({});
 NavBarMenu.args = {
   ...DefaultArgs,
-  icon: <Briefcase size={30} />,
+  logo: <Briefcase size={30} />,
+  leftChildren: [
+    <Typography>
+      <StyledA>Dashboard</StyledA>
+    </Typography>,
+    <AccountPopover />,
+    <Typography>
+      <StyledA>Documents</StyledA>
+    </Typography>,
+    <Typography>
+      <StyledA>Support</StyledA>
+    </Typography>,
+    <ToolsPopover />,
+  ],
+  rightChildren: [<UserPopover />],
+};
+
+export const NavBarMenuNo = Template.bind({});
+NavBarMenuNo.args = {
+  ...DefaultArgs,
   leftChildren: [
     <Typography>
       <StyledA>Dashboard</StyledA>

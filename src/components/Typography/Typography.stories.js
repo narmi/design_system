@@ -10,8 +10,6 @@ export default {
 
 const Template = (args) => <Typography {...args} />;
 const DefaultArgs = {
-  text: "",
-  hover: false,
   children: ["test"],
 };
 

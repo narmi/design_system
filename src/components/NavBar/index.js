@@ -80,7 +80,7 @@ const StyledMenuItem = styled.span`
   }
 `;
 
-const StyledMenuIcon = styled.span`
+const StyledMenuLogo = styled.span`
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     visibility: hidden;
     position: absolute;
@@ -97,7 +97,7 @@ const NavBar = (props) => {
   return (
     <StyledHeader {...props}>
       <StyledNavLeft>
-        <StyledMenuIcon>{props.icon} </StyledMenuIcon>
+        {props.logo ? <StyledMenuLogo>{props.logo}</StyledMenuLogo> : null}
         {props.leftChildren.map((option) => (
           <StyledMenuItem>{option}</StyledMenuItem>
         ))}
@@ -112,7 +112,7 @@ const NavBar = (props) => {
 };
 
 NavBar.propTypes = {
-  icon: PropTypes.icon,
+  logo: PropTypes.icon,
   leftChildren: PropTypes.node,
   rightChildren: PropTypes.node,
 };

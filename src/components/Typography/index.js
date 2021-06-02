@@ -3,17 +3,14 @@ import PropTypes, { bool } from "prop-types";
 import styled, { css } from "styled-components";
 
 const TypographyStyle = styled.span`
-  font-family: var(--nds-font-family) 
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
   line-height: 22px;
   align-items: center;
   position: relative;
-  color: #4C4C4C;
-  font-weight: 600;
+  color: #4c4c4c;
+  font-weight: 400;
+  font-family: var(--nds-font-family);
   :hover {
-    color: ${(props) => (props.hover ? "var(--nds-primary-color)" : "none")}; 
+    color: ${(props) => (props.hover ? "var(--nds-primary-color)" : "none")};
   }
 `;
 

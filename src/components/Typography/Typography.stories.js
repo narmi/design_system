@@ -10,8 +10,8 @@ export default {
 
 const Template = (args) => <Typography {...args} />;
 const DefaultArgs = {
-    text: "",
-    hover: false,
+  text: "",
+  hover: false,
 };
 
 export const TypographySpan = Template.bind({});

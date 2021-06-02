@@ -18,20 +18,17 @@ const TypographyStyle = styled.span`
 `;
 
 const Typography = (props) => {
-    return (
-      <TypographyStyle {...props}> {props.text} </TypographyStyle>
-    );
-  };
-
+  return <TypographyStyle {...props}> {props.text} </TypographyStyle>;
+};
 
 Typography.propTypes = {
-    text: PropTypes.string,
-    hover: PropTypes.bool, 
-  };
-  
-  Typography.defaultProps = {
-    text : "",
-    hover: false,
-  };
-  
-  export default Typography;
+  text: PropTypes.string,
+  hover: PropTypes.bool,
+};
+
+Typography.defaultProps = {
+  text: "",
+  hover: false,
+};
+
+export default Typography;

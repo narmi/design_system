@@ -59,7 +59,7 @@ const Popover = ({ label, hoverable, shiftX, shiftY, children, ...rest }) => {
   return (
     <StyledWrapper hoverable={hoverable}>
       <span onClick={toggleOpen}>
-        {label}
+        {label ? `${label} ` : null}
         {chevron()}
       </span>
       {open || hoverable ? (
@@ -82,7 +82,7 @@ const Popover = ({ label, hoverable, shiftX, shiftY, children, ...rest }) => {
 
 Popover.propTypes = {
   hoverable: PropTypes.bool,
-  label: PropTypes.node,
+  label: PropTypes.string,
   // popover position; eg "50%" or "-10px"
   shiftX: PropTypes.string,
   shiftY: PropTypes.string,

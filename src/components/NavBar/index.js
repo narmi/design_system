@@ -16,7 +16,7 @@ const StyledHeader = styled.span`
     flex-direction: column;
   }
 
-  @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
+  @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
     display: flex;
     justify-content: space-between;
     position: absolute;
@@ -40,10 +40,13 @@ const StyledNavLeft = styled.span`
     left: 70px;
   }
 
-  @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
+  @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
     position: relative;
     align-items: center;
     display: flex;
+  }
+  & ${StyledMenuItem}:first-child {
+    padding-left: 0px;
   }
 `;
 
@@ -61,7 +64,7 @@ const StyledNavRight = styled.span`
     right: 70px;
   }
 
-  @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
+  @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
     display: flex;
     position: relative;
     flex-direction: row-reverse;
@@ -75,7 +78,7 @@ const StyledMenuItem = styled.span`
     flex-direction: column;
     margin-top: 20px;
   }
-  @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
+  @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
     padding-left: 40px;
   }
 `;
@@ -87,9 +90,6 @@ const StyledMenuLogo = styled.span`
     display: flex;
     flex-direction: column;
     margin-top: 20px;
-  }
-  @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
-    padding-right: 40px;
   }
 `;
 

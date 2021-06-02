@@ -12,11 +12,11 @@ const Template = (args) => <Typography {...args} />;
 const DefaultArgs = {
   text: "",
   hover: false,
-  children: ["test"]
+  children: ["test"],
 };
 
 export const TypographySpan = Template.bind({});
 TypographySpan.args = {
   ...DefaultArgs,
-  children: ["test"]
+  children: ["test"],
 };

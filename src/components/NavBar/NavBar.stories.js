@@ -27,7 +27,10 @@ const PopoverButton = styled.div`
 const AccountPopover = () => {
   return (
     <PopoverButton>
-      <Typography ><StyledA>Account</StyledA></Typography> <Popover />
+      <Typography>
+        <StyledA>Account</StyledA>
+      </Typography>{" "}
+      <Popover />
     </PopoverButton>
   );
 };
@@ -35,7 +38,10 @@ const AccountPopover = () => {
 const ToolsPopover = () => {
   return (
     <PopoverButton>
-      <Typography ><StyledA>Tools</StyledA></Typography> <Popover />
+      <Typography>
+        <StyledA>Tools</StyledA>
+      </Typography>{" "}
+      <Popover />
     </PopoverButton>
   );
 };
@@ -43,7 +49,10 @@ const ToolsPopover = () => {
 const UserPopover = () => {
   return (
     <PopoverButton>
-      <Typography ><StyledA>User name</StyledA></Typography> <Popover />
+      <Typography>
+        <StyledA>User name</StyledA>
+      </Typography>{" "}
+      <Popover />
     </PopoverButton>
   );
 };
@@ -59,10 +68,16 @@ NavBarMenu.args = {
   ...DefaultArgs,
   icon: <Briefcase size={30} />,
   leftChildren: [
-    <Typography><StyledA>Dashboard</StyledA></Typography>,
+    <Typography>
+      <StyledA>Dashboard</StyledA>
+    </Typography>,
     <AccountPopover />,
-    <Typography><StyledA>Documents</StyledA></Typography>,
-    <Typography><StyledA>Support</StyledA></Typography>,
+    <Typography>
+      <StyledA>Documents</StyledA>
+    </Typography>,
+    <Typography>
+      <StyledA>Support</StyledA>
+    </Typography>,
     <ToolsPopover />,
   ],
   rightChildren: [<UserPopover />],

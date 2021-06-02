@@ -83,8 +83,8 @@ NavBarMenu.args = {
   rightChildren: [<UserPopover />],
 };
 
-export const NavBarMenuNo = Template.bind({});
-NavBarMenuNo.args = {
+export const NavBarMenuNoLogo = Template.bind({});
+NavBarMenuNoLogo.args = {
   ...DefaultArgs,
   leftChildren: [
     <Typography>

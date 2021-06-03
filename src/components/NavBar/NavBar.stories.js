@@ -4,7 +4,7 @@ import { Centered } from "../../decorators";
 import styled from "styled-components";
 import Popover from "components/Popover";
 import Typography from "components/Typography";
-import { Briefcase } from "react-feather";
+import { Briefcase, Menu } from "react-feather";
 
 export default {
   title: "Components/NavBar",
@@ -66,6 +66,7 @@ const StyledA = styled.a`
 export const NavBarMenu = Template.bind({});
 NavBarMenu.args = {
   ...DefaultArgs,
+  mobileMenuIcon: <Menu />,
   logo: <Briefcase size={30} />,
   leftChildren: [
     <Typography>
@@ -86,6 +87,7 @@ NavBarMenu.args = {
 export const NavBarMenuNoLogo = Template.bind({});
 NavBarMenuNoLogo.args = {
   ...DefaultArgs,
+  mobileMenuIcon: <Menu />,
   leftChildren: [
     <Typography>
       <StyledA>Dashboard</StyledA>

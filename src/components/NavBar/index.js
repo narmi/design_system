@@ -13,7 +13,7 @@ const StyledHeader = styled.span`
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     margin-top: 16px;
     display: flex;
-    flex-direction: column;
+    position: absolute;
   }
 
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
@@ -21,9 +21,9 @@ const StyledHeader = styled.span`
     justify-content: space-between;
     position: absolute;
     height: 82px;
-    left: 0%;
-    right: 0%;
   }
+  left: 0%;
+  right: 0%;
 `;
 
 const StyledNavLeft = styled.span`
@@ -74,45 +74,57 @@ const StyledNavRight = styled.span`
 
 const StyledMenuItem = styled.span`
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
-    display: flex;
-    flex-direction: column;
+    display: none;
     margin-top: 20px;
+    visible:hidden
   }
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
     padding-left: 40px;
   }
 `;
-
-const StyledMenuLogo = styled.span`
+// mobileMenuIcon
+const StyledMobileMenuContainer = styled.span`
+  @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
+    padding-left: 40px;
+    float: right;
+    display: none;
+  }
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
-    visibility: hidden;
     position: absolute;
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
+    right: 0;
+    width: 75%;
   }
 `;
 
+const MobilePopover = (props) => {
+  return <div {...props}>{props.mobileMenuIcon}</div>;
+};
+
 const NavBar = (props) => {
   return (
-    <StyledHeader {...props}>
-      <StyledNavLeft>
-        {props.logo ? <StyledMenuLogo>{props.logo}</StyledMenuLogo> : null}
-        {props.leftChildren.map((option) => (
-          <StyledMenuItem>{option}</StyledMenuItem>
-        ))}
-      </StyledNavLeft>
-      <StyledNavRight>
-        {props.rightChildren.map((option) => (
-          <StyledMenuItem>{option}</StyledMenuItem>
-        ))}
-      </StyledNavRight>
-    </StyledHeader>
+    <>
+      <MobilePopover {...props} />
+      <StyledHeader {...props}>
+        <StyledNavLeft>
+          {props.logo ? <div>{props.logo}</div> : null}
+          {props.leftChildren.map((option) => (
+            <StyledMenuItem>{option}</StyledMenuItem>
+          ))}
+        </StyledNavLeft>
+        <StyledNavRight>
+          {props.rightChildren.map((option) => (
+            <StyledMenuItem>{option}</StyledMenuItem>
+          ))}
+        </StyledNavRight>
+        <StyledMobileMenuContainer {...props}>{props.mobileMenuIcon}</StyledMobileMenuContainer>
+      </StyledHeader>
+    </>
   );
 };
 
 NavBar.propTypes = {
-  logo: PropTypes.icon,
+  logo: PropTypes.node,
+  mobileMenuIcon: PropTypes.node,
   leftChildren: PropTypes.node,
   rightChildren: PropTypes.node,
 };

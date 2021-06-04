@@ -5,24 +5,20 @@ import { deviceBreakpoints } from "../../globalStyles";
 
 const StyledHeader = styled.span`
   background: var(--nds-white);
-
   box-shadow: var(--nds-dropshadow-dark);
-
   position: absolute;
+  left: 0%;
+  right: 0%;
 
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     display: flex;
-    position: absolute;
   }
 
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
     display: flex;
     justify-content: space-between;
-    position: absolute;
     height: 82px;
   }
-  left: 0%;
-  right: 0%;
 `;
 
 const StyledNavLeft = styled.span`

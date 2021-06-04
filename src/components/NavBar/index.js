@@ -90,24 +90,20 @@ const StyledMobileMenuContainer = styled.span`
     display: none;
   }
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
-    position: absolute;
-    right: 0;
-    width: 75%;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
   }
 `;
 
 const StyledSpaceDiv = styled.div`
-  color: red;
-  width: 0px;
-  position: absolute;
-  padding-left: -100px;
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
     position: absolute;
     display: none;
     width: 0px;
-    visible:hidden;
+    visible: hidden;
   };
-  display:none;
 `;
 
 const NavBar = (props) => {
@@ -115,7 +111,7 @@ const NavBar = (props) => {
     <>
       <StyledHeader {...props}>
         <StyledNavLeft>
-          {props.logo ? <div>{props.logo}</div> : <StyledSpaceDiv><p>yo</p></StyledSpaceDiv>}
+          {props.logo ? <div>{props.logo}</div> : null}
           {props.leftChildren.map((option) => (
             <StyledMenuItem>{option}</StyledMenuItem>
           ))}

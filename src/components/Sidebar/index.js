@@ -18,12 +18,16 @@ const StyledSideBar2 = styled.div`
 `;
 
 const StyledSideBar = styled.div`
-    position: relative;
+    position: fixed;
     top: 0;
-    right: 0;
+    left: ${(p) => p.slideFromRight ? null : 0}; 
+    right: ${(p) => p.slideFromRight ? 0 : null};
     height: 100vh;
+    float: right;
     width: 75%;
-    background-color: var(--nds-white);
+    z-index: 100;
+    min-width: 200px;
+    background-color: grey;
     border-radius: 4px;
     box-shadow: var(--nds-dropshadow-dark);
     float: ${(p) => p.slideFromRight ? "right" : "left"};
@@ -31,7 +35,6 @@ const StyledSideBar = styled.div`
 
 const StyledIcon = styled.div`
     position: relative;
-    display: ${(props) => props.open ? "none" : "inline"};
     float: ${(props) => props.slideFromRight ? "right" : "left"};
 `;
 
@@ -39,7 +42,7 @@ const Sidebar = (props) => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div >
+    <>
         <StyledIcon open={open} {...props} onClick={()=>{setOpen(true)}}>
           {props.icon}
         </StyledIcon>
@@ -51,7 +54,7 @@ const Sidebar = (props) => {
           ))}
         </StyledSideBar>
       ) : null}
-    </div>
+    </>
   );
 };
 

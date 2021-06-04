@@ -9,7 +9,6 @@ import styled, { css } from "styled-components";
 export default {
   title: "Components/Sidebar",
   component: Sidebar,
-  decorators: [Centered],
 };
 
 const Template = (args) => <Sidebar {...args} />;

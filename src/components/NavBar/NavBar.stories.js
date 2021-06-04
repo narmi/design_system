@@ -11,7 +11,6 @@ import { deviceBreakpoints } from "../../globalStyles";
 export default {
   title: "Components/NavBar",
   component: NavBar,
-  decorators: [Centered],
 };
 
 const Template = (args) => <NavBar {...args} />;

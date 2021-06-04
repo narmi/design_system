@@ -16,34 +16,18 @@ const Template = (args) => <Sidebar {...args} />;
 const DefaultArgs = {
 };
 
-export const SidebarMenu = Template.bind({});
-SidebarMenu.args = {
-  ...DefaultArgs,
-  icon:<Menu />,
-  menuItems: [
-              <Typography> 
-                Dashboard
-              </Typography>,
-              <Typography>
-                Documents
-              </Typography>,
-              <Typography>
-                Suppor
-              </Typography>,
-            ]
-};
-
 const StyledWrapper = styled.span`
   // position: relative + position: absolute allows absolutely positioning child relative to parent
   position: relative;
   box-shadow: var(--nds-dropshadow-dark);
   box-sizing: border-box;
   width: 300px;
-  height: 300px;
+  height: 100%;
+  bottom: 0;
   font-family: var(--nds-font-family);
 `;
 
-export const SidebarContained = () => {
+export const SidebarContainedLeft = () => {
   return (    
         <StyledWrapper>
           <Sidebar icon={<Menu />} menuItems={[
@@ -54,7 +38,7 @@ export const SidebarContained = () => {
                 Documents
               </Typography>,
               <Typography>
-                Suppor
+                Support
               </Typography>,
             ]}/>
         </StyledWrapper>
@@ -72,7 +56,7 @@ export const SidebarContainedRight = () => {
                 Documents
               </Typography>,
               <Typography>
-                Suppor
+                Support
               </Typography>,
             ]}/>
         </StyledWrapper>

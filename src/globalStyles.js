@@ -40,6 +40,7 @@ const GlobalStyles = createGlobalStyle`
     --nds-grey-disabled-fill: #f3f3f3;
     --nds-grey-placeholder: #8c8c8c;
     --nds-grey-text: #4c4c4c;
+    --nds-grey-scrim-light: ${(p) => lighten(0.3, "rgba(80, 80, 80, 0.7)")};
     --nds-white: ${ndsWhite};
     --nds-black: #333;
     --nds-red-error: ${errorRed};

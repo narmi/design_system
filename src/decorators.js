@@ -13,3 +13,20 @@ export const Centered = (Story) => (
     <Story />
   </div>
 );
+
+export const Top = (Story) => (
+  <div
+    style={{
+      display: "flex",
+      position: "absolute",
+      justifyContent: "top",
+      alignItems: "top",
+      width: "100%",
+      top: "0",
+      left: "0",
+      height: "100%",
+    }}
+  >
+    <Story />
+  </div>
+);

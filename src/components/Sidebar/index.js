@@ -11,7 +11,6 @@ const StyledSideBar = styled.div`
   left: ${(p) => (p.slideFromRight ? null : 0)};
   right: ${(p) => (p.slideFromRight ? 0 : null)};
   height: 100vh;
-  float: right;
   width: 75%;
   z-index: 100;
   min-width: 200px;
@@ -19,13 +18,13 @@ const StyledSideBar = styled.div`
   border-radius: 4px;
   box-shadow: var(--nds-dropshadow-dark);
   visibility: ${(props) => (props.open ? "visible" : "hidden")};
-  transition: visibility 5s linear;
+  transition: visibility 0.2s linear;
   float: ${(p) => (p.slideFromRight ? "right" : "left")};
 `;
 
 const StyledIcon = styled.div`
   position: relative;
-  float: ${(props) => (props.slideFromRight ? "right" : "left")};
+  float: right;
 `;
 
 const StyledMobileMenuScrim = styled.span`
@@ -39,35 +38,29 @@ const StyledMobileMenuScrim = styled.span`
   z-index: 100;
   visibility: ${(props) => (props.open ? "visible" : "hidden")};
   background: var(--nds-grey-scrim-light);
-  transition: visibility 5s linear;
+  transition: visibility 0.2s linear;
 `;
 
 const CloseIcon = styled.span`
-  float: ${(props) => (props.slideFromRight ? "right" : "left")};
+  float: right;
 `;
 
 const Sidebar = (props) => {
   const [open, setOpen] = React.useState(false);
+  const openSidebar = () => {
+    setOpen(true);
+  };
 
+  const closeSidebar = () => {
+    setOpen(false);
+  };
   return (
     <>
-      <StyledIcon
-        open={open}
-        {...props}
-        onClick={() => {
-          setOpen(true);
-        }}
-      >
-        {props.icon}
-      </StyledIcon>
+      <StyledIcon onClick={openSidebar}>{props.icon}</StyledIcon>
       <StyledMobileMenuScrim open={open} />
       <StyledSideBar open={open} {...props}>
         <CloseIcon slideFromRight={props.slideFromRight}>
-          <X
-            onClick={() => {
-              setOpen(false);
-            }}
-          />
+          <X onClick={closeSidebar} />
         </CloseIcon>
         {props.menuItems.map((option) => (
           <div>{option}</div>

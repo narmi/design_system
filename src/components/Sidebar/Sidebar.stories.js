@@ -1,6 +1,5 @@
 import React from "react";
 import Sidebar from "components/Sidebar";
-import { Centered } from "../../decorators";
 import Typography from "components/Typography";
 import { Menu } from "react-feather";
 import styled, { css } from "styled-components";
@@ -23,33 +22,12 @@ const StyledWrapper = styled.span`
   font-family: var(--nds-font-family);
 `;
 
-export const SidebarContainedLeft = () => {
-  return (
-    <StyledWrapper>
-      <Sidebar
-        icon={<Menu />}
-        menuItems={[
-          <Typography>Dashboard</Typography>,
-          <Typography>Documents</Typography>,
-          <Typography>Support</Typography>,
-        ]}
-      />
-    </StyledWrapper>
-  );
-};
-
-export const SidebarContainedRight = () => {
-  return (
-    <StyledWrapper>
-      <Sidebar
-        slideFromRight={true}
-        icon={<Menu />}
-        menuItems={[
-          <Typography>Dashboard</Typography>,
-          <Typography>Documents</Typography>,
-          <Typography>Support</Typography>,
-        ]}
-      />
-    </StyledWrapper>
-  );
+export const SidebarMenu = Template.bind({});
+SidebarMenu.args = {
+  icon: <Menu />,
+  menuItems: [
+    <Typography>Dashboard</Typography>,
+    <Typography>Documents</Typography>,
+    <Typography>Support</Typography>,
+  ],
 };

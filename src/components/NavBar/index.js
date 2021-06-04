@@ -82,7 +82,7 @@ const StyledMenuItem = styled.span`
     padding-left: 40px;
   }
 `;
-// mobileMenuIcon
+
 const StyledMobileMenuContainer = styled.span`
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
     padding-left: 40px;
@@ -96,17 +96,26 @@ const StyledMobileMenuContainer = styled.span`
   }
 `;
 
-const MobilePopover = (props) => {
-  return <div {...props}>{props.mobileMenuIcon}</div>;
-};
+const StyledSpaceDiv = styled.div`
+  color: red;
+  width: 0px;
+  position: absolute;
+  padding-left: -100px;
+  @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
+    position: absolute;
+    display: none;
+    width: 0px;
+    visible:hidden;
+  };
+  display:none;
+`;
 
 const NavBar = (props) => {
   return (
     <>
-      <MobilePopover {...props} />
       <StyledHeader {...props}>
         <StyledNavLeft>
-          {props.logo ? <div>{props.logo}</div> : null}
+          {props.logo ? <div>{props.logo}</div> : <StyledSpaceDiv><p>yo</p></StyledSpaceDiv>}
           {props.leftChildren.map((option) => (
             <StyledMenuItem>{option}</StyledMenuItem>
           ))}

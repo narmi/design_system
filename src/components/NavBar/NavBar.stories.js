@@ -187,7 +187,7 @@ const NavMenu = ({ divided, horizontal }) => {
   );
 };
 
-export const InNavbar = () => {
+const InNavbar = () => {
   let options = [<AccountPopoverMobile />, <p>Documents</p>, <p>Support</p>, <p>Tools</p>];
   return (    
       <div>

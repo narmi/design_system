@@ -74,8 +74,6 @@ const StyledNavRight = styled.span`
 const StyledMenuItem = styled.span`
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     display: none;
-    margin-top: 20px;
-    visible: hidden;
   }
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
     padding-left: 40px;
@@ -84,8 +82,6 @@ const StyledMenuItem = styled.span`
 
 const StyledMobileMenuContainer = styled.span`
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
-    padding-left: 40px;
-    float: right;
     display: none;
   }
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
@@ -98,7 +94,6 @@ const StyledMobileMenuContainer = styled.span`
 
 const NavBar = (props) => {
   return (
-    <>
       <StyledHeader {...props}>
         <StyledNavLeft>
           {props.logo ? <div>{props.logo}</div> : null}
@@ -115,7 +110,6 @@ const NavBar = (props) => {
           {props.mobileMenuIcon}
         </StyledMobileMenuContainer>
       </StyledHeader>
-    </>
   );
 };
 

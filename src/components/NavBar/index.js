@@ -13,8 +13,6 @@ const StyledHeader = styled.span`
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     display: flex;
     position: absolute;
-    // background: rgba(80, 80, 80, 0.7);
-    // filter: blur(2px);
   }
 
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {

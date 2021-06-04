@@ -11,9 +11,8 @@ const StyledHeader = styled.span`
   position: absolute;
 
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
-    margin-top: 16px;
     display: flex;
-    flex-direction: column;
+    position: absolute;
   }
 
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
@@ -21,9 +20,9 @@ const StyledHeader = styled.span`
     justify-content: space-between;
     position: absolute;
     height: 82px;
-    left: 0%;
-    right: 0%;
   }
+  left: 0%;
+  right: 0%;
 `;
 
 const StyledNavLeft = styled.span`
@@ -74,22 +73,22 @@ const StyledNavRight = styled.span`
 
 const StyledMenuItem = styled.span`
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
+    display: none;
   }
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
     padding-left: 40px;
   }
 `;
 
-const StyledMenuLogo = styled.span`
+const StyledMobileMenuContainer = styled.span`
+  @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
+    display: none;
+  }
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
-    visibility: hidden;
-    position: absolute;
+    position: relative;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    margin-top: 20px;
+    justify-content: flex-end;
   }
 `;
 
@@ -97,7 +96,7 @@ const NavBar = (props) => {
   return (
     <StyledHeader {...props}>
       <StyledNavLeft>
-        {props.logo ? <StyledMenuLogo>{props.logo}</StyledMenuLogo> : null}
+        {props.logo ? <div>{props.logo}</div> : null}
         {props.leftChildren.map((option) => (
           <StyledMenuItem>{option}</StyledMenuItem>
         ))}
@@ -107,12 +106,16 @@ const NavBar = (props) => {
           <StyledMenuItem>{option}</StyledMenuItem>
         ))}
       </StyledNavRight>
+      <StyledMobileMenuContainer {...props}>
+        {props.mobileMenuIcon}
+      </StyledMobileMenuContainer>
     </StyledHeader>
   );
 };
 
 NavBar.propTypes = {
-  logo: PropTypes.icon,
+  logo: PropTypes.node,
+  mobileMenuIcon: PropTypes.node,
   leftChildren: PropTypes.node,
   rightChildren: PropTypes.node,
 };

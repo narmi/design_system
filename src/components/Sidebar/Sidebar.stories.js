@@ -5,15 +5,12 @@ import Typography from "components/Typography";
 import { Menu } from "react-feather";
 import styled, { css } from "styled-components";
 
-
 export default {
   title: "Components/Sidebar",
   component: Sidebar,
 };
 
 const Template = (args) => <Sidebar {...args} />;
-const DefaultArgs = {
-};
 
 const StyledWrapper = styled.span`
   // position: relative + position: absolute allows absolutely positioning child relative to parent
@@ -27,38 +24,32 @@ const StyledWrapper = styled.span`
 `;
 
 export const SidebarContainedLeft = () => {
-  return (    
-        <StyledWrapper>
-          <Sidebar icon={<Menu />} menuItems={[
-              <Typography> 
-                Dashboard
-              </Typography>,
-              <Typography>
-                Documents
-              </Typography>,
-              <Typography>
-                Support
-              </Typography>,
-            ]}/>
-        </StyledWrapper>
+  return (
+    <StyledWrapper>
+      <Sidebar
+        icon={<Menu />}
+        menuItems={[
+          <Typography>Dashboard</Typography>,
+          <Typography>Documents</Typography>,
+          <Typography>Support</Typography>,
+        ]}
+      />
+    </StyledWrapper>
   );
 };
 
 export const SidebarContainedRight = () => {
-  return (    
-        <StyledWrapper>
-          <Sidebar slideFromRight={true} icon={<Menu />} menuItems={[
-              <Typography> 
-                Dashboard
-              </Typography>,
-              <Typography>
-                Documents
-              </Typography>,
-              <Typography>
-                Support
-              </Typography>,
-            ]}/>
-        </StyledWrapper>
+  return (
+    <StyledWrapper>
+      <Sidebar
+        slideFromRight={true}
+        icon={<Menu />}
+        menuItems={[
+          <Typography>Dashboard</Typography>,
+          <Typography>Documents</Typography>,
+          <Typography>Support</Typography>,
+        ]}
+      />
+    </StyledWrapper>
   );
 };
-

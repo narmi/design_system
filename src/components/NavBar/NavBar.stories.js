@@ -1,6 +1,6 @@
 import React from "react";
 import NavBar from "components/NavBar";
-import { Centered } from "../../decorators";
+import { Top } from "../../decorators";
 import styled from "styled-components";
 import Popover from "components/Popover";
 import Sidebar from "components/Sidebar";
@@ -11,6 +11,7 @@ import { deviceBreakpoints } from "../../globalStyles";
 export default {
   title: "Components/NavBar",
   component: NavBar,
+  decorators: [Top],
 };
 
 const Template = (args) => <NavBar {...args} />;
@@ -64,57 +65,63 @@ const StyledA = styled.a`
   }
 `;
 
-
 const overlay = (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "250px" }}>
-      Insert dropdowns, menus, checklists, text, links, images, icons, or
-      whatever else you like in here.
-      <br />
-      <br />
-      Higher-level components (like PopoverInput) can be built on top of
-      Popover.
-    </div>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      width: "250px",
+    }}
+  >
+    Insert dropdowns, menus, checklists, text, links, images, icons, or whatever
+    else you like in here.
+    <br />
+    <br />
+    Higher-level components (like PopoverInput) can be built on top of Popover.
+  </div>
 );
-
 
 const HamburgerMenu = () => {
   let shiftX = "0%";
 
-  return(<Sidebar shiftX={shiftX} icon={<Menu />}> {overlay} </Sidebar>);
+  return (
+    <Sidebar shiftX={shiftX} icon={<Menu />}>
+      {" "}
+      {overlay}{" "}
+    </Sidebar>
+  );
 };
 
 const HamburgerMenuSide = () => {
   let icon = <Menu />;
   let menuItems = [
-              <Typography> 
-                Dashboard
-              </Typography>,
-              <Typography>
-                Documents
-              </Typography>,
-              <Typography>
-                Suppor
-              </Typography>,
-            ];
+    <Typography>Dashboard</Typography>,
+    <Typography>Documents</Typography>,
+    <Typography>Suppor</Typography>,
+  ];
   menuItems = [InNavbar()];
-  return(<Sidebar icon={icon} slideFromRight={true} menuItems={menuItems}></Sidebar>) 
-}
+  return (
+    <Sidebar icon={icon} slideFromRight={true} menuItems={menuItems}></Sidebar>
+  );
+};
 
 const AccountPopoverMobile = () => {
   return (
-      <div>Account 
-          <Popover 
-            hoverable={false}
-            label={null}
-            shiftX={"-40%"}
-            children={<NavMenu />}
-          />
-      </div>
+    <div>
+      Account
+      <Popover
+        hoverable={false}
+        label={null}
+        shiftX={"-40%"}
+        children={<NavMenu />}
+      />
+    </div>
   );
 };
 
 const StyledOptionsList = styled.div`
-  display: flex; 
+  display: flex;
   position: absolute;
   top: 20%;
   left: 30%;
@@ -129,7 +136,7 @@ const StyledHeader = styled.span`
   line-height: 20px;
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     font-size: 12px;
-}
+  }
 `;
 
 const StyledList = styled.ul`
@@ -139,9 +146,9 @@ const StyledList = styled.ul`
   white-space: nowrap;
   padding: 12px 16px;
   margin: 0;
-  
+
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
-      font-size: 12px;
+    font-size: 12px;
   }
 
   border-right: ${(p) =>
@@ -164,9 +171,9 @@ const NavMenu = ({ divided, horizontal }) => {
   };
 
   const els = Object.keys(items).map((header) => (
-    <StyledList divided={divided} horizontal={horizontal} >
+    <StyledList divided={divided} horizontal={horizontal}>
       <li>
-        <StyledHeader >{header}</StyledHeader>
+        <StyledHeader>{header}</StyledHeader>
       </li>
       {items[header].map((c) => (
         <li key={c}>{c}</li>
@@ -187,16 +194,18 @@ const NavMenu = ({ divided, horizontal }) => {
 };
 
 const InNavbar = () => {
-  let options = [<AccountPopoverMobile />, <p>Documents</p>, <p>Support</p>, <p>Tools</p>];
-  return (    
-      <div>
-        <StyledOptionsList>
-          {options}
-        </StyledOptionsList>
-      </div>
+  let options = [
+    <AccountPopoverMobile />,
+    <p>Documents</p>,
+    <p>Support</p>,
+    <p>Tools</p>,
+  ];
+  return (
+    <div>
+      <StyledOptionsList>{options}</StyledOptionsList>
+    </div>
   );
 };
-
 
 export const NavBarMenu = Template.bind({});
 NavBarMenu.args = {
@@ -218,7 +227,6 @@ NavBarMenu.args = {
   ],
   rightChildren: [<UserPopover />],
 };
-
 
 export const NavBarMenuNoLogo = Template.bind({});
 NavBarMenuNoLogo.args = {

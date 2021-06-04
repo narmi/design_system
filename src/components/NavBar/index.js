@@ -11,9 +11,10 @@ const StyledHeader = styled.span`
   position: absolute;
 
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
-    margin-top: 16px;
     display: flex;
     position: absolute;
+    // background: rgba(80, 80, 80, 0.7);
+    // filter: blur(2px);
   }
 
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
@@ -76,7 +77,7 @@ const StyledMenuItem = styled.span`
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     display: none;
     margin-top: 20px;
-    visible:hidden
+    visible: hidden;
   }
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
     padding-left: 40px;
@@ -97,15 +98,6 @@ const StyledMobileMenuContainer = styled.span`
   }
 `;
 
-const StyledSpaceDiv = styled.div`
-  @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
-    position: absolute;
-    display: none;
-    width: 0px;
-    visible: hidden;
-  };
-`;
-
 const NavBar = (props) => {
   return (
     <>
@@ -121,7 +113,9 @@ const NavBar = (props) => {
             <StyledMenuItem>{option}</StyledMenuItem>
           ))}
         </StyledNavRight>
-        <StyledMobileMenuContainer {...props}>{props.mobileMenuIcon}</StyledMobileMenuContainer>
+        <StyledMobileMenuContainer {...props}>
+          {props.mobileMenuIcon}
+        </StyledMobileMenuContainer>
       </StyledHeader>
     </>
   );

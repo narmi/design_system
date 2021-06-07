@@ -45,7 +45,7 @@ const StyledListItem = styled.li`
   }
 `;
 
-const Categories = (props) => {
+const List = (props) => {
   let divided = props.divided;
   let horizontal = props.horizontal;
 
@@ -60,18 +60,18 @@ const Categories = (props) => {
   return <StyledListWrapper {...props}>{els}</StyledListWrapper>;
 };
 
-Categories.propTypes = {
+List.propTypes = {
   horizontal: PropTypes.bool,
   divided: PropTypes.bool,
   hover: PropTypes.bool,
   items: PropTypes.object,
 };
 
-Categories.defaultProps = {
+List.defaultProps = {
   horizontal: false,
   divided: false,
   hover: true,
   items: {},
 };
 
-export default Categories;
+export default List;

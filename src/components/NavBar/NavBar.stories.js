@@ -9,6 +9,7 @@ import Icon from "components/Icon";
 import Narmi from "../../assets/narmi-logo.svg";
 import List from "components/List";
 import Categories from "components/Categories";
+import Popover from "components/Popover";
 import { PopoverNavBar, OnHoverLabel } from "../Popover/Popover.stories.js";
 
 export default {
@@ -123,8 +124,7 @@ NavBarMenu.args = {
     />,
   ],
   rightChildren: [
-    // <UserPopover />
-    <OnHoverLabel
+    <Popover
       hoverable={true}
       label={"User Name"}
       shiftX={"-30%"}
@@ -161,8 +161,7 @@ NavBarMenuNoLogo.args = {
     />,
   ],
   rightChildren: [
-    // <UserPopover />
-    <OnHoverLabel
+    <Popover
       hoverable={true}
       label={"User Name"}
       shiftX={"-30%"}

@@ -2,13 +2,14 @@ import React from "react";
 import NavBar from "components/NavBar";
 import { Top } from "../../decorators";
 import styled from "styled-components";
-import Popover from "components/Popover";
 import Sidebar from "components/Sidebar";
 import Typography from "components/Typography";
 import { Menu } from "react-feather";
 import Icon from "components/Icon";
 import Narmi from "../../assets/narmi-logo.svg";
-import { PopoverNavBar } from "../Popover/Popover.stories.js";
+import List from "components/List";
+import Categories from "components/Categories";
+import { PopoverNavBar, OnHoverLabel } from "../Popover/Popover.stories.js";
 
 export default {
   title: "Components/NavBar",
@@ -34,51 +35,64 @@ const DefaultArgs = {
   rightChildren: [],
 };
 
-const AccountPopover = () => {
-  return (
-    <PopoverButton>
-      <Typography>
-        <StyledA>Account</StyledA>
-      </Typography>{" "}
-      <Popover />
-    </PopoverButton>
-  );
-};
-
-const ToolsPopover = () => {
-  return (
-    <PopoverButton>
-      <Typography>
-        <StyledA>Tools</StyledA>
-      </Typography>{" "}
-      <Popover />
-    </PopoverButton>
-  );
-};
-
-const UserPopover = () => {
-  return (
-    <PopoverButton>
-      <Typography>
-        <StyledA>User name</StyledA>
-      </Typography>{" "}
-      <Popover />
-    </PopoverButton>
-  );
-};
-
 const HamburgerMenuSidebar = () => {
   let icon = <Menu />;
-  let menuItems = [
-    <Typography>Dashboard</Typography>,
-    <Typography>Documents</Typography>,
-    <Typography>Suppor</Typography>,
-  ];
-  menuItems = [PopoverNavBar()];
+  let menuItems = [PopoverNavBar()];
   return (
     <Sidebar icon={icon} slideFromRight={true} menuItems={menuItems}></Sidebar>
   );
 };
+
+const CheckingList = (
+  <List
+    children={[<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>]}
+  ></List>
+);
+const SavingsList = (
+  <List
+    children={[<a>Primary Savings-2000</a>, <a>Car Savings-4232</a>]}
+  ></List>
+);
+const LoansList = (
+  <List children={[<a>Mortgage-3242</a>, <a>Auto Loan-8493</a>]}></List>
+);
+const CDsList = <List children={[<a>3 Year-8222</a>]}></List>;
+
+// UserItems
+const AccountsItems = (
+  <Categories
+    divided={true}
+    horizontal={true}
+    items={{
+      Checking: CheckingList,
+      Savings: SavingsList,
+      Loans: LoansList,
+      CDs: CDsList,
+    }}
+  />
+);
+
+const UserItems = (
+  <List
+    children={[
+      <span>Link a new profile</span>,
+      <span>Settings</span>,
+      <span>Log out</span>,
+      <span>Forget this device</span>,
+    ]}
+  />
+);
+
+const ToolItems = (
+  <List
+    children={[
+      <span>Free Credit Score Check</span>,
+      <span>Open a new account</span>,
+      <span>Pay a Mortgage</span>,
+      <span>Book a Travel</span>,
+    ]}
+  />
+);
 
 export const NavBarMenu = Template.bind({});
 NavBarMenu.args = {
@@ -89,16 +103,34 @@ NavBarMenu.args = {
     <Typography>
       <StyledA>Dashboard</StyledA>
     </Typography>,
-    <AccountPopover />,
+    <OnHoverLabel
+      hoverable={true}
+      label={"Accounts"}
+      shiftX={"-10%"}
+      children={AccountsItems}
+    />,
     <Typography>
       <StyledA>Documents</StyledA>
     </Typography>,
     <Typography>
       <StyledA>Support</StyledA>
     </Typography>,
-    <ToolsPopover />,
+    <OnHoverLabel
+      hoverable={true}
+      label={"Tools"}
+      shiftX={"-10%"}
+      children={ToolItems}
+    />,
   ],
-  rightChildren: [<UserPopover />],
+  rightChildren: [
+    // <UserPopover />
+    <OnHoverLabel
+      hoverable={true}
+      label={"User Name"}
+      shiftX={"-30%"}
+      children={UserItems}
+    />,
+  ],
 };
 
 export const NavBarMenuNoLogo = Template.bind({});
@@ -109,14 +141,32 @@ NavBarMenuNoLogo.args = {
     <Typography>
       <StyledA>Dashboard</StyledA>
     </Typography>,
-    <AccountPopover />,
+    <OnHoverLabel
+      hoverable={true}
+      label={"Accounts"}
+      shiftX={"-10%"}
+      children={AccountsItems}
+    />,
     <Typography>
       <StyledA>Documents</StyledA>
     </Typography>,
     <Typography>
       <StyledA>Support</StyledA>
     </Typography>,
-    <ToolsPopover />,
+    <OnHoverLabel
+      hoverable={true}
+      label={"Tools"}
+      shiftX={"-10%"}
+      children={ToolItems}
+    />,
   ],
-  rightChildren: [<UserPopover />],
+  rightChildren: [
+    // <UserPopover />
+    <OnHoverLabel
+      hoverable={true}
+      label={"User Name"}
+      shiftX={"-30%"}
+      children={UserItems}
+    />,
+  ],
 };

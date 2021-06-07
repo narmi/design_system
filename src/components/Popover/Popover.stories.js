@@ -42,6 +42,23 @@ const StyledList = styled.ul`
     border-right: none;
   }
 `;
+
+const StyledSpan = styled.span`
+  font-family: var(--nds-font-family);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  padding-bottom: 15px;
+`;
+
+export const StyledOptionsList = styled.div`
+  display: flex;
+  position: absolute;
+  top: 30px;
+  left: 35px;
+  flex-direction: column;
+`;
+
 export const NavMenu = ({ divided, horizontal }) => {
   // one way to organize Popover content, it's up to the consumer really! Popover just renders it.
   const items = {
@@ -128,18 +145,10 @@ OnHoverLabel.args = {
   children: <NavMenu divided horizontal />,
 };
 
-export const StyledOptionsList = styled.div`
-  display: flex;
-  position: absolute;
-  top: 20%;
-  left: 30%;
-  flex-direction: column;
-`;
-
 const AccountPopover = () => {
   return (
-    <div>
-      Account
+    <div style={{ "padding-bottom": "15px" }}>
+      <StyledSpan>Account</StyledSpan>
       <Popover
         hoverable={false}
         label={null}
@@ -152,10 +161,11 @@ const AccountPopover = () => {
 
 export const PopoverNavBar = () => {
   let options = [
+    <StyledSpan>Dashboard</StyledSpan>,
     <AccountPopover />,
-    <p>Documents</p>,
-    <p>Support</p>,
-    <p>Tools</p>,
+    <StyledSpan>Documents</StyledSpan>,
+    <StyledSpan>Support</StyledSpan>,
+    <StyledSpan>Tools</StyledSpan>,
   ];
   return (
     <div>

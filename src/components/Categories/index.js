@@ -11,14 +11,21 @@ const StyledListWrapper = styled.div`
   }
 `;
 
-const StyledList = styled.ul`
+const StyledHeader = styled.span`
+  color: var(--nds-black);
+  font-weight: 600;
+  font-family: var(--nds-font-family);
+  font-size: 16px;
+  line-height: 20px;
+`;
+
+const StyledList = styled.div`
   list-style-type: none;
   padding-inline-start: 0;
   margin-block-start: 0;
   white-space: nowrap;
   padding: 12px 16px;
   margin: 0;
-  color: black;
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
     border-right: ${(p) =>
       p.divided && p.horizontal ? "1px solid var(--nds-grey-disabled)" : null};
@@ -31,29 +38,24 @@ const StyledList = styled.ul`
     border-bottom: ${(p) =>
       p.divided ? "1px solid var(--nds-grey-disabled)" : null};
   }
+
   &:last-child {
     border-right: none;
-    border-bottom: none;
   }
   left: 20%;
-`;
-
-const StyledListItem = styled.li`
-  :hover {
-    background-color: ${(props) =>
-      props.hover ? "rgba(42,68,148,0.05)" : null};
-  }
 `;
 
 const Categories = (props) => {
   let divided = props.divided;
   let horizontal = props.horizontal;
+  let items = props.items;
 
-  const els = props.children.map((c) => (
+  const els = Object.keys(items).map((header) => (
     <StyledList divided={divided} horizontal={horizontal} hover={props.hover}>
-      <StyledListItem hover={props.hover} key={c}>
-        {c}
-      </StyledListItem>
+      <li>
+        <StyledHeader>{header}</StyledHeader>
+      </li>
+      {items[header]}
     </StyledList>
   ));
 

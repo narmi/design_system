@@ -24,6 +24,7 @@ const StyledHeader = styled.span`
 const StyledNavLeft = styled.span`
   @media ${`(max-width: ${deviceBreakpoints.mobile})`} {
     left: 20px;
+    padding-left: 20px;
   }
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
     left: 31px;
@@ -74,6 +75,9 @@ const StyledMenuItem = styled.span`
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
     padding-left: 40px;
   }
+  :hover {
+    color: var(--nds-primary-color);
+  }
 `;
 
 const StyledMobileMenuContainer = styled.span`
@@ -85,6 +89,8 @@ const StyledMobileMenuContainer = styled.span`
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    right: 20px;
   }
 `;
 

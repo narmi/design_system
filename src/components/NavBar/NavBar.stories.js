@@ -81,7 +81,7 @@ const HamburgerMenuSidebar = () => {
 };
 
 const AccountsItems = (
-  <ul style={{ backgroundColor: "white", listStyle: "none", color: "black"}}>
+  <ul style={{ backgroundColor: "white", listStyle: "none", color: "black" }}>
     <li>test1</li>
     <li>test2</li>
     <li>test3</li>
@@ -115,32 +115,23 @@ NavBarMenu.args = {
     <Typography>
       <StyledA>Dashboard</StyledA>
     </Typography>,
-    <Popover
-      hoverable={true}
-      label={"Accounts"}
-      shiftX={"10%"}
-      children={AccountsItems}
-    />,
+    <Popover hoverable={true} label={"Accounts"} shiftX={"10%"}>
+      {AccountsItems}{" "}
+    </Popover>,
     <Typography>
       <StyledA>Documents</StyledA>
     </Typography>,
     <Typography>
       <StyledA>Support</StyledA>
     </Typography>,
-    <Popover
-      hoverable={true}
-      label={"Tools"}
-      shiftX={"10%"}
-      children={ToolItems}
-    />,
+    <Popover hoverable={true} label={"Tools"} shiftX={"10%"}>
+      {ToolItems}
+    </Popover>,
   ],
   rightChildren: [
-    <Popover
-      hoverable={true}
-      label={"User Name"}
-      shiftX={"20%"}
-      children={UserItems}
-    />,
+    <Popover hoverable={true} label={"User Name"} shiftX={"20%"}>
+      {UserItems}
+    </Popover>,
   ],
 };
 

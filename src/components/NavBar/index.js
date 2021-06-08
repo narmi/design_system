@@ -75,9 +75,6 @@ const StyledMenuItem = styled.span`
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
     padding-left: 40px;
   }
-  :hover {
-    color: var(--nds-primary-color);
-  }
 `;
 
 const StyledMobileMenuContainer = styled.span`

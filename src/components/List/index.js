@@ -57,7 +57,7 @@ const List = (props) => {
   let items = props.items;
   let isArray = Array.isArray(props.items);
 
-  const els = Object.keys(items).map((index) => // change later
+  const els = Object.keys(items).map((index) =>
     isArray ? (
       <StyledList divided={divided} horizontal={horizontal} hover={props.hover}>
         <StyledListItem hover={props.hover} key={index}>

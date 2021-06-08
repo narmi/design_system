@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Popover from "components/Popover";
+import Typography from "components/Typography";
 import { Centered } from "../../decorators";
 import { deviceBreakpoints } from "../../globalStyles";
 
@@ -42,6 +43,15 @@ const StyledList = styled.ul`
     border-right: none;
   }
 `;
+
+export const StyledOptionsList = styled.div`
+  display: flex;
+  position: absolute;
+  top: 30px;
+  left: 35px;
+  flex-direction: column;
+`;
+
 export const NavMenu = ({ divided, horizontal }) => {
   // one way to organize Popover content, it's up to the consumer really! Popover just renders it.
   const items = {
@@ -128,18 +138,10 @@ OnHoverLabel.args = {
   children: <NavMenu divided horizontal />,
 };
 
-export const StyledOptionsList = styled.div`
-  display: flex;
-  position: absolute;
-  top: 20%;
-  left: 30%;
-  flex-direction: column;
-`;
-
 const AccountPopover = () => {
   return (
-    <div>
-      Account
+    <div style={{ paddingBottom: "15px" }}>
+      <Typography style={{fontSize:"20px", fontWeight: "500"}}>Account</Typography>
       <Popover
         hoverable={false}
         label={null}
@@ -152,10 +154,11 @@ const AccountPopover = () => {
 
 export const PopoverNavBar = () => {
   let options = [
+    <Typography style={{fontSize:"20px", fontWeight: "500", paddingBottom: "15px"}}>Dashboard</Typography>,
     <AccountPopover />,
-    <p>Documents</p>,
-    <p>Support</p>,
-    <p>Tools</p>,
+    <Typography style={{fontSize:"20px", fontWeight: "500", paddingBottom: "15px"}}>Documents</Typography>,
+    <Typography style={{fontSize:"20px", fontWeight: "500", paddingBottom: "15px"}}>Support</Typography>,
+    <Typography style={{fontSize:"20px", fontWeight: "500", paddingBottom: "15px"}}>Tools</Typography>,
   ];
   return (
     <div>

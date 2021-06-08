@@ -42,7 +42,7 @@ const StyledMobileMenuScrim = styled.span`
 
 const CloseIcon = styled.span`
   float: right;
-  padding-right: 5%;
+  padding-right: 15px;
   padding-top: 4%;
 `;
 

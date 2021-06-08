@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Popover from "components/Popover";
+import Typography from "components/Typography";
 import { Centered } from "../../decorators";
 import { deviceBreakpoints } from "../../globalStyles";
 
@@ -147,8 +148,8 @@ OnHoverLabel.args = {
 
 const AccountPopover = () => {
   return (
-    <div style={{ "padding-bottom": "15px" }}>
-      <StyledSpan>Account</StyledSpan>
+    <div style={{ paddingBottom: "15px" }}>
+      <Typography style={{fontSize:"20px", fontWeight: "500"}}>Account</Typography>
       <Popover
         hoverable={false}
         label={null}
@@ -161,11 +162,11 @@ const AccountPopover = () => {
 
 export const PopoverNavBar = () => {
   let options = [
-    <StyledSpan>Dashboard</StyledSpan>,
+    <Typography style={{fontSize:"20px", fontWeight: "500", paddingBottom: "15px"}}>Dashboard</Typography>,
     <AccountPopover />,
-    <StyledSpan>Documents</StyledSpan>,
-    <StyledSpan>Support</StyledSpan>,
-    <StyledSpan>Tools</StyledSpan>,
+    <Typography style={{fontSize:"20px", fontWeight: "500", paddingBottom: "15px"}}>Documents</Typography>,
+    <Typography style={{fontSize:"20px", fontWeight: "500", paddingBottom: "15px"}}>Support</Typography>,
+    <Typography style={{fontSize:"20px", fontWeight: "500", paddingBottom: "15px"}}>Tools</Typography>,
   ];
   return (
     <div>

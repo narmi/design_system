@@ -44,6 +44,14 @@ const StyledList = styled.ul`
   }
 `;
 
+const StyledListItem = styled.li`
+  :hover {
+    background-color: ${(props) =>
+      props.hover ? "rgba(42,68,148,0.05)" : null};
+  }
+`;
+
+
 const List = (props) => {
   let divided = props.divided;
   let horizontal = props.horizontal;
@@ -53,8 +61,10 @@ const List = (props) => {
   const els = Object.keys(items).map((header) => (
 
     isArray ? 
-      <StyledList>
-      {items}
+      <StyledList divided={divided} horizontal={horizontal} hover={props.hover}>
+        <StyledListItem hover={props.hover} key={header}>
+          {items[header]}
+        </StyledListItem>
       </StyledList>
       :
       <StyledList divided={divided} horizontal={horizontal}>

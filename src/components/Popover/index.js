@@ -36,6 +36,16 @@ const StyledWrapper = styled.span`
   }
 `;
 
+const StyledLabel = styled.span`
+  :hover {
+    color: ${(props) => props.hoverable ? "var(--nds-primary-color)" : null};
+  };
+  color: ${(props) => props.open ? "var(--nds-primary-color)" : null};
+  ${StyledPopover} ~ & {
+    color: var(--nds-primary-color);
+  }
+`;
+
 const Popover = ({ label, hoverable, shiftX, shiftY, children, ...rest }) => {
   const [open, setOpen] = React.useState(false);
 
@@ -58,10 +68,10 @@ const Popover = ({ label, hoverable, shiftX, shiftY, children, ...rest }) => {
 
   return (
     <StyledWrapper hoverable={hoverable}>
-      <span onClick={toggleOpen}>
+      <StyledLabel open={open} hoverable={hoverable} onClick={toggleOpen}>
         {label}
         {chevron()}
-      </span>
+      </StyledLabel>
       {open || hoverable ? (
         <StyledPopover
           shiftX={shiftX}

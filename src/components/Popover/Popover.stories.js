@@ -138,6 +138,14 @@ OnHoverLabel.args = {
   children: <NavMenu divided horizontal />,
 };
 
+const StyledOptionsList = styled.div`
+  display: flex;
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  flex-direction: column;
+`;
+
 const AccountPopover = () => {
   return (
     <div style={{ paddingBottom: "15px" }}>

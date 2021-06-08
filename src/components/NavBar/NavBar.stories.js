@@ -80,6 +80,32 @@ const HamburgerMenuSidebar = () => {
   );
 };
 
+const AccountsItems = (
+  <ul style={{ backgroundColor: "white", listStyle: "none", color: "black" }}>
+    <li>test1</li>
+    <li>test2</li>
+    <li>test3</li>
+  </ul>
+);
+
+const ToolItems = (
+  <ul style={{ backgroundColor: "white", listStyle: "none" }}>
+    <li>test1</li>
+    <li>test2</li>
+    <li>test3</li>
+  </ul>
+);
+
+const UserItems = (
+  <ul
+    style={{ backgroundColor: "white", listStyle: "none", padding: "initial" }}
+  >
+    <li>test1</li>
+    <li>test2</li>
+    <li>test3</li>
+  </ul>
+);
+
 export const NavBarMenu = Template.bind({});
 NavBarMenu.args = {
   ...DefaultArgs,
@@ -89,16 +115,24 @@ NavBarMenu.args = {
     <Typography>
       <StyledA>Dashboard</StyledA>
     </Typography>,
-    <AccountPopover />,
+    <Popover hoverable={true} label={"Accounts"} shiftX={"10%"}>
+      {AccountsItems}{" "}
+    </Popover>,
     <Typography>
       <StyledA>Documents</StyledA>
     </Typography>,
     <Typography>
       <StyledA>Support</StyledA>
     </Typography>,
-    <ToolsPopover />,
+    <Popover hoverable={true} label={"Tools"} shiftX={"10%"}>
+      {ToolItems}
+    </Popover>,
   ],
-  rightChildren: [<UserPopover />],
+  rightChildren: [
+    <Popover hoverable={true} label={"User Name"} shiftX={"20%"}>
+      {UserItems}
+    </Popover>,
+  ],
 };
 
 export const NavBarMenuNoLogo = Template.bind({});

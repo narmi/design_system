@@ -8,7 +8,7 @@ import Typography from "components/Typography";
 import { Menu } from "react-feather";
 import Icon from "components/Icon";
 import Narmi from "../../assets/narmi-logo.svg";
-import { PopoverNavBar, OnHoverLabel } from "../Popover/Popover.stories.js";
+import { PopoverNavBar } from "../Popover/Popover.stories.js";
 
 export default {
   title: "Components/NavBar",
@@ -81,7 +81,7 @@ const HamburgerMenuSidebar = () => {
 };
 
 const AccountsItems = (
-  <ul style={{ backgroundColor: "white", listStyle: "none" }}>
+  <ul style={{ backgroundColor: "white", listStyle: "none", color: "black"}}>
     <li>test1</li>
     <li>test2</li>
     <li>test3</li>
@@ -115,7 +115,7 @@ NavBarMenu.args = {
     <Typography>
       <StyledA>Dashboard</StyledA>
     </Typography>,
-    <OnHoverLabel
+    <Popover
       hoverable={true}
       label={"Accounts"}
       shiftX={"10%"}
@@ -127,7 +127,7 @@ NavBarMenu.args = {
     <Typography>
       <StyledA>Support</StyledA>
     </Typography>,
-    <OnHoverLabel
+    <Popover
       hoverable={true}
       label={"Tools"}
       shiftX={"10%"}
@@ -135,7 +135,7 @@ NavBarMenu.args = {
     />,
   ],
   rightChildren: [
-    <OnHoverLabel
+    <Popover
       hoverable={true}
       label={"User Name"}
       shiftX={"20%"}

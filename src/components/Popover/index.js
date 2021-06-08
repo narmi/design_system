@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { ChevronUp, ChevronDown } from "react-feather";
@@ -36,10 +36,6 @@ const StyledWrapper = styled.span`
   }
 `;
 
-// :hover ~ ${StyledPopover} { 
-//   color: ...
-// } 
-
 const StyledLabel = styled.span`
   :hover {
     color: ${(props) => props.hoverable ? "var(--nds-primary-color)" : null};
@@ -52,10 +48,6 @@ const StyledLabel = styled.span`
 
 const Popover = ({ label, hoverable, shiftX, shiftY, children, ...rest }) => {
   const [open, setOpen] = React.useState(false);
-
-  // useEffect(() => {
-  //   // setOpen(true);
-  // }, [hoverable]);
 
   const toggleOpen = () => {
     if (hoverable) return;

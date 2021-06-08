@@ -51,32 +51,30 @@ const StyledListItem = styled.li`
   }
 `;
 
-
 const List = (props) => {
   let divided = props.divided;
   let horizontal = props.horizontal;
   let items = props.items;
   let isArray = Array.isArray(props.items);
 
-  const els = Object.keys(items).map((header) => (
-
-    isArray ? 
+  const els = Object.keys(items).map((index) => // change later
+    isArray ? (
       <StyledList divided={divided} horizontal={horizontal} hover={props.hover}>
-        <StyledListItem hover={props.hover} key={header}>
-          {items[header]}
+        <StyledListItem hover={props.hover} key={index}>
+          {items[index]}
         </StyledListItem>
       </StyledList>
-      :
+    ) : (
       <StyledList divided={divided} horizontal={horizontal}>
         <li>
-          <StyledHeader>{header}</StyledHeader>
+          <StyledHeader>{index}</StyledHeader>
         </li>
-        {console.log(header, items[header])}
-        {items[header].map((c) => (
+        {items[index].map((c) => (
           <li key={c}>{c}</li>
         ))}
       </StyledList>
-  ));
+    )
+  );
 
   return <StyledListWrapper {...props}>{els}</StyledListWrapper>;
 };

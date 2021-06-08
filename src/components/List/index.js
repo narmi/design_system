@@ -48,16 +48,24 @@ const List = (props) => {
   let divided = props.divided;
   let horizontal = props.horizontal;
   let items = props.items;
+  let isArray = Array.isArray(props.items);
 
   const els = Object.keys(items).map((header) => (
-    <StyledList divided={divided} horizontal={horizontal}>
-      <li>
-        <StyledHeader>{header}</StyledHeader>
-      </li>
-      {items[header].map((c) => (
-        <li key={c}>{c}</li>
-      ))}
-    </StyledList>
+
+    isArray ? 
+      <StyledList>
+      {items}
+      </StyledList>
+      :
+      <StyledList divided={divided} horizontal={horizontal}>
+        <li>
+          <StyledHeader>{header}</StyledHeader>
+        </li>
+        {console.log(header, items[header])}
+        {items[header].map((c) => (
+          <li key={c}>{c}</li>
+        ))}
+      </StyledList>
   ));
 
   return <StyledListWrapper {...props}>{els}</StyledListWrapper>;

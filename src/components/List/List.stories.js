@@ -23,10 +23,16 @@ const DefaultArgs = {
 export const Vertical = Template.bind({});
 Vertical.args = {
   ...DefaultArgs,
+  items: {
+    Checking: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
+    Savings: [<a>Primary Savings-2000</a>, <a>Car Savings-4232</a>],
+    Loans: [<a>Mortgage-3242</a>, <a>Auto Loan-8493</a>],
+  },
 };
 
 export const Horizontal = Template.bind({});
 Horizontal.args = {
   ...DefaultArgs,
   horizontal: true,
-};
+  items: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
+  };

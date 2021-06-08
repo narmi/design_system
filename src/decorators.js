@@ -30,3 +30,19 @@ export const Top = (Story) => (
     <Story />
   </div>
 );
+
+export const Right = (Story) => (
+  <div
+    style={{
+      display: "flex",
+      position: "absolute",
+      justifyContent: "flex-end",
+      alignItems: "top",
+      width: "100%",
+      top: "0",
+      right: "0",
+    }}
+  >
+    <Story />
+  </div>
+);

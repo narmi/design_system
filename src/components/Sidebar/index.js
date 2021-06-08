@@ -23,7 +23,8 @@ const StyledSideBar = styled.div`
 
 const StyledIcon = styled.div`
   position: relative;
-  float: right;
+  display: flex;
+  align-items: center;
 `;
 
 const StyledMobileMenuScrim = styled.span`
@@ -31,7 +32,7 @@ const StyledMobileMenuScrim = styled.span`
     display: none;
   }
   display: block;
-  height: 200vh;
+  height: 100vh;
   width: 100%;
   position: fixed;
   z-index: 100;
@@ -43,7 +44,7 @@ const StyledMobileMenuScrim = styled.span`
 const CloseIcon = styled.span`
   float: right;
   padding-right: 15px;
-  padding-top: 4%;
+  padding-top: 15px;
 `;
 
 const Sidebar = (props) => {

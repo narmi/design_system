@@ -89,7 +89,6 @@ const StyledMobileMenuContainer = styled.span`
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
     right: 20px;
   }
 `;

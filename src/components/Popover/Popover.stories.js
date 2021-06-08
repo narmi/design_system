@@ -44,14 +44,6 @@ const StyledList = styled.ul`
   }
 `;
 
-const StyledSpan = styled.span`
-  font-family: var(--nds-font-family);
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  padding-bottom: 15px;
-`;
-
 export const StyledOptionsList = styled.div`
   display: flex;
   position: absolute;

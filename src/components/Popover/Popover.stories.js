@@ -44,7 +44,7 @@ const StyledList = styled.ul`
   }
 `;
 
-export const StyledOptionsList = styled.div`
+const StyledOptionsList = styled.div`
   display: flex;
   position: absolute;
   top: 30px;
@@ -137,14 +137,6 @@ OnHoverLabel.args = {
   style: { padding: "8px" },
   children: <NavMenu divided horizontal />,
 };
-
-const StyledOptionsList = styled.div`
-  display: flex;
-  position: absolute;
-  top: 20%;
-  left: 30%;
-  flex-direction: column;
-`;
 
 const AccountPopover = () => {
   return (

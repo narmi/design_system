@@ -8,7 +8,7 @@ import Typography from "components/Typography";
 import { Menu } from "react-feather";
 import Icon from "components/Icon";
 import Narmi from "../../assets/narmi-logo.svg";
-import { PopoverNavBar } from "../Popover/Popover.stories.js";
+import { PopoverNavBar, OnHoverLabel } from "../Popover/Popover.stories.js";
 
 export default {
   title: "Components/NavBar",
@@ -80,6 +80,32 @@ const HamburgerMenuSidebar = () => {
   );
 };
 
+const AccountsItems = (
+  <ul style={{ backgroundColor: "white", listStyle: "none" }}>
+    <li>test1</li>
+    <li>test2</li>
+    <li>test3</li>
+  </ul>
+);
+
+const ToolItems = (
+  <ul style={{ backgroundColor: "white", listStyle: "none" }}>
+    <li>test1</li>
+    <li>test2</li>
+    <li>test3</li>
+  </ul>
+);
+
+const UserItems = (
+  <ul
+    style={{ backgroundColor: "white", listStyle: "none", padding: "initial" }}
+  >
+    <li>test1</li>
+    <li>test2</li>
+    <li>test3</li>
+  </ul>
+);
+
 export const NavBarMenu = Template.bind({});
 NavBarMenu.args = {
   ...DefaultArgs,
@@ -89,16 +115,33 @@ NavBarMenu.args = {
     <Typography>
       <StyledA>Dashboard</StyledA>
     </Typography>,
-    <AccountPopover />,
+    <OnHoverLabel
+      hoverable={true}
+      label={"Accounts"}
+      shiftX={"10%"}
+      children={AccountsItems}
+    />,
     <Typography>
       <StyledA>Documents</StyledA>
     </Typography>,
     <Typography>
       <StyledA>Support</StyledA>
     </Typography>,
-    <ToolsPopover />,
+    <OnHoverLabel
+      hoverable={true}
+      label={"Tools"}
+      shiftX={"10%"}
+      children={ToolItems}
+    />,
   ],
-  rightChildren: [<UserPopover />],
+  rightChildren: [
+    <OnHoverLabel
+      hoverable={true}
+      label={"User Name"}
+      shiftX={"20%"}
+      children={UserItems}
+    />,
+  ],
 };
 
 export const NavBarMenuNoLogo = Template.bind({});

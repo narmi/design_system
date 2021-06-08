@@ -70,7 +70,7 @@ const List = (props) => {
           <StyledHeader>{index}</StyledHeader>
         </li>
         {items[index].map((c) => (
-          <li key={c}>{c}</li>
+          <StyledListItem hover={props.hover} key={c}>{c}</StyledListItem>
         ))}
       </StyledList>
     )
@@ -82,12 +82,14 @@ const List = (props) => {
 List.propTypes = {
   horizontal: PropTypes.bool,
   divided: PropTypes.bool,
+  hover: PropTypes.bool,
   items: PropTypes.object,
 };
 
 List.defaultProps = {
   horizontal: false,
   divided: false,
+  hover: true,
   items: {},
 };
 

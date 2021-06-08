@@ -70,7 +70,9 @@ const List = (props) => {
           <StyledHeader>{index}</StyledHeader>
         </li>
         {items[index].map((c) => (
-          <StyledListItem hover={props.hover} key={c}>{c}</StyledListItem>
+          <StyledListItem hover={props.hover} key={c}>
+            {c}
+          </StyledListItem>
         ))}
       </StyledList>
     )

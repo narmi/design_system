@@ -12,21 +12,29 @@ const Template = (args) => <List {...args} />;
 const DefaultArgs = {
   divided: false,
   horizontal: false,
-  items: {
-    Checking: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
-    Savings: [<a>Primary Savings-2000</a>, <a>Car Savings-4232</a>],
-    Loans: [<a>Mortgage-3242</a>, <a>Auto Loan-8493</a>],
-    CDs: [<a>3 Year-8222</a>],
-  },
+  children: [],
 };
 
 export const Vertical = Template.bind({});
 Vertical.args = {
   ...DefaultArgs,
+  horizontal: false,
+  children: [
+    <p>Link a new profile</p>,
+    <p>Settings</p>,
+    <p>Log out</p>,
+    <p>Forget this device</p>,
+  ],
 };
 
 export const Horizontal = Template.bind({});
 Horizontal.args = {
   ...DefaultArgs,
   horizontal: true,
+  children: [
+    <p>Link a new profile</p>,
+    <p>Settings</p>,
+    <p>Log out</p>,
+    <p>Forget this device</p>,
+  ],
 };

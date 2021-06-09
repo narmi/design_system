@@ -56,6 +56,7 @@ const GlobalStyles = createGlobalStyle`
     --nds-secondary-color: ${(p) => Theme.secondaryColor(p)};
 
     --nds-dropshadow-dark: 0 2px 12px rgba(80, 80, 80, 0.2);
+    --nds-grey-hover: rgba(42,68,148,0.05);
   }
   body {
     margin: 0;

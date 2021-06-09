@@ -8,6 +8,7 @@ const StyledHeader = styled.span`
   box-shadow: var(--nds-dropshadow-dark);
   position: absolute;
   left: 0%;
+  top: 0%;
   right: 0%;
 
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {

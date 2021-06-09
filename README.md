@@ -116,7 +116,7 @@ npm run watch
 
 Results:
 - Storybook will now run on :6006.
-_ Your local `design_system` will be [symlinked](https://docs.npmjs.com/cli/v7/commands/npm-link) into banking/design_system for local dev.
+- Your local `design_system` will be [symlinked](https://docs.npmjs.com/cli/v7/commands/npm-link) into banking/design_system for local dev.
 - On each change to files in design_system, the `dist/index.js` file will be rebuilt
   - This allows local changes to design_system to be reflected in your consumer (eg Azul)
 

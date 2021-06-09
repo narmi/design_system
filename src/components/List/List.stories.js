@@ -18,14 +18,14 @@ export const List = Template.bind({});
 List.args = {
   ...DefaultArgs,
   horizontal: true,
-  hozerable: true,
+  hoverable: true,
   items: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
 };
 
 export const CategoryList = Template.bind({});
 CategoryList.args = {
   ...DefaultArgs,
-  hozerable: true,
+  hoverable: true,
   items: {
     Checking: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
     Savings: [<a>Primary Savings-2000</a>, <a>Car Savings-4232</a>],

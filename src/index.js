@@ -6,6 +6,7 @@ const Popover = require("./components/Popover").default;
 const NavBar = require("./components/NavBar").default;
 const List = require("./components/List").default;
 const Icon = require("./components/Icon/").default;
+const Typography = require("./components/Typography/").default;
 const GlobalStyles = require("./globalStyles").default;
 
 module.exports = {
@@ -16,6 +17,7 @@ module.exports = {
   Popover,
   NavBar,
   List,
+  Typography,
   Icon,
   GlobalStyles,
 };

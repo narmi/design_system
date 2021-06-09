@@ -13,6 +13,7 @@ const StyledPopover = styled.div`
     box-sizing: border-box;
     top: 30px;
     left: -0px;
+    z-index: 100;
     transform: translate(${(p) => p.shiftX}, ${(p) => p.shiftY});
   }
 
@@ -38,9 +39,9 @@ const StyledWrapper = styled.span`
 
 const StyledLabel = styled.span`
   :hover {
-    color: ${(props) => props.hoverable ? "var(--nds-primary-color)" : null};
-  };
-  color: ${(props) => props.open ? "var(--nds-primary-color)" : null};
+    color: ${(props) => (props.hoverable ? "var(--nds-primary-color)" : null)};
+  }
+  color: ${(props) => (props.open ? "var(--nds-primary-color)" : null)};
   ${StyledPopover} ~ & {
     color: var(--nds-primary-color);
   }

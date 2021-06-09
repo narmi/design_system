@@ -5056,6 +5056,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var core
 
 /***/ }),
 
+/***/ "./src/components/Typography/index.js":
+/*!********************************************!*\
+  !*** ./src/components/Typography/index.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ \"./node_modules/prop-types/index.js\");\n/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ \"styled-components\");\n/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\nvar StyledContainer = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.span.withConfig({\n  displayName: \"Typography__StyledContainer\",\n  componentId: \"dsjcf3-0\"\n})([\"color:#4c4c4c;font-weight:400;font-family:var(--nds-font-family);\"]);\n\nvar Typography = function Typography(props) {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(StyledContainer, props, \" \", props.children, \" \");\n};\n\nTypography.propTypes = {\n  children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node\n};\nTypography.defaultProps = {\n  children: []\n};\n/* harmony default export */ __webpack_exports__[\"default\"] = (Typography);\n\n//# sourceURL=webpack:///./src/components/Typography/index.js?");
+
+/***/ }),
+
 /***/ "./src/globalStyles.js":
 /*!*****************************!*\
   !*** ./src/globalStyles.js ***!
@@ -5075,7 +5087,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var Button = __webpack_require__(/*! ./components/Button */ \"./src/components/Button/index.js\").default;\n\nvar ButtonGroup = __webpack_require__(/*! ./components/ButtonGroup */ \"./src/components/ButtonGroup/index.js\").default;\n\nvar Input = __webpack_require__(/*! ./components/Input */ \"./src/components/Input/index.js\").default;\n\nvar PlainButton = __webpack_require__(/*! ./components/PlainButton */ \"./src/components/PlainButton/index.js\").default;\n\nvar Popover = __webpack_require__(/*! ./components/Popover */ \"./src/components/Popover/index.js\").default;\n\nvar NavBar = __webpack_require__(/*! ./components/NavBar */ \"./src/components/NavBar/index.js\").default;\n\nvar List = __webpack_require__(/*! ./components/List */ \"./src/components/List/index.js\").default;\n\nvar Icon = __webpack_require__(/*! ./components/Icon/ */ \"./src/components/Icon/index.js\").default;\n\nvar GlobalStyles = __webpack_require__(/*! ./globalStyles */ \"./src/globalStyles.js\").default;\n\nmodule.exports = {\n  Button: Button,\n  ButtonGroup: ButtonGroup,\n  Input: Input,\n  PlainButton: PlainButton,\n  Popover: Popover,\n  NavBar: NavBar,\n  List: List,\n  Icon: Icon,\n  GlobalStyles: GlobalStyles\n};\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("var Button = __webpack_require__(/*! ./components/Button */ \"./src/components/Button/index.js\").default;\n\nvar ButtonGroup = __webpack_require__(/*! ./components/ButtonGroup */ \"./src/components/ButtonGroup/index.js\").default;\n\nvar Input = __webpack_require__(/*! ./components/Input */ \"./src/components/Input/index.js\").default;\n\nvar PlainButton = __webpack_require__(/*! ./components/PlainButton */ \"./src/components/PlainButton/index.js\").default;\n\nvar Popover = __webpack_require__(/*! ./components/Popover */ \"./src/components/Popover/index.js\").default;\n\nvar NavBar = __webpack_require__(/*! ./components/NavBar */ \"./src/components/NavBar/index.js\").default;\n\nvar List = __webpack_require__(/*! ./components/List */ \"./src/components/List/index.js\").default;\n\nvar Icon = __webpack_require__(/*! ./components/Icon/ */ \"./src/components/Icon/index.js\").default;\n\nvar Typography = __webpack_require__(/*! ./components/Typography/ */ \"./src/components/Typography/index.js\").default;\n\nvar GlobalStyles = __webpack_require__(/*! ./globalStyles */ \"./src/globalStyles.js\").default;\n\nmodule.exports = {\n  Button: Button,\n  ButtonGroup: ButtonGroup,\n  Input: Input,\n  PlainButton: PlainButton,\n  Popover: Popover,\n  NavBar: NavBar,\n  List: List,\n  Typography: Typography,\n  Icon: Icon,\n  GlobalStyles: GlobalStyles\n};\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 

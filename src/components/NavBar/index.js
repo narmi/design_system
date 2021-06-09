@@ -42,11 +42,11 @@ const StyledNavLeft = styled.span`
     display: flex;
   }
   & ${StyledMenuItem}:first-child {
-    padding-left: ${(props) => props.logo ? null : "0px"};
+    padding-left: ${(props) => (props.logo ? null : "0px")};
   }
 `;
 
-    // padding-left: ${(props) => props.logo ? "0px" : null};
+// padding-left: ${(props) => props.logo ? "0px" : null};
 
 const StyledNavRight = styled.span`
   @media ${`(max-width: ${deviceBreakpoints.mobile})`} {

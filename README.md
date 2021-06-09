@@ -1,10 +1,17 @@
 # Narmi Design System (NDS)
 
-An Ocean of components :)
+⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥
 
-## Installing
+Please follow the below steps to install, consume, or contribute to the NDS.
 
-- currently: install from Github, as in:
+
+## Consuming Design System
+
+Please follow all steps below to set up your copy of design_system.
+
+### Install DesignSystem
+
+Install from Github, as in:
 
 ```
 # package.json
@@ -16,10 +23,83 @@ An Ocean of components :)
 
 You will need an accepted SSH key or valid Github access token with access to the Narmi repos to do this.
 
-- via NPM: TBD (pending 1st publishable release)
+Installation via NPM: TBD (pending 1st publishable release)
+
+### Install PeerDependencies
+
+design_system doesn't package 2 key dependencies, because we want to let users configure their own versions of these deps, and avoid [forcing multiple copies](https://reactjs.org/warnings/invalid-hook-call-warning.html).
+
+You will need to install in your repo:
+- React (>=16.9, supports Hooks)
+- styled-components (>=5)
+
+```
+# in the repo where you are consuming design_system
+npm install react@16.9 styled-components@5 -S
+```
+
+These are included as peerDependencies in package.json.
+
+### Configure Your Theme
+
+Set up a `<GlobalStyles />` and a `<ThemeProvider />` component at each of your application's entry points to provide the necessary CSS variables to NDS components:
+
+```
+# In your top-level App.js or HTML page file
+import {ThemeProvider} from "styled-components"
+import {GlobalStyles} from "design_system"
+
+<ThemeProvider
+  theme={{
+    primaryColor: "your-primary-color",
+    secondaryColor: "your-secondary-color",
+    tertiaryColor: "your-tertiary-color",
+  }}
+>
+  <GlobalStyles />
+</ThemeProvider>
+
+...the rest of your app...
+# no other NDS components should need access to `theme`
+```
+
+This will write a `<style>` tag to your page that contains the CSS variables the design system components depend on. Without this, you may see empty or colorless Buttons and pages.
+
+All CSS variables are prefixed with --nds (e.g. `--nds-my-variable`), to avoid collision with any existing CSS variables that may be contained in your app.
+
+### View Available Components
+
+```
+# from design_system/
+npm run storybook
+```
+
+You can use [Storybook](https://storybook.js.org/tutorials/intro-to-storybook/react/en/get-started/) to see what components are available.
+
+We typically add a `Story` for each view or distinct state of each component.
+
+These distinct views or states are controlled by Storybook `args` (similar to props).
+
+If contributing a change, please test your components out in Storybook before making a PR.
+
+### Consuming NDS Themes in Your App
+
+`styled-components` exposes a [ThemeProvider context](https://styled-components.com/docs/advanced#getting-the-theme-without-styled-components) if you wish to grab the NDS Theme for use in your own components or Pages.
+
+### Live Editing
+
+(ie, adding custom HTML to a component to see how renders) This plugin may be useful: https://storybook.js.org/addons/storybook-addon-react-live-edit
+
+## Browser Support Notes
+
+Please check the following chart to see the minimum browser versions supported by NDS:
+
+- https://caniuse.com/?search=focus-within
 
 
 ## Developing
+
+We need to set up your copy of `design_system` for local development.
 
 From `banking`:
 
@@ -34,73 +114,20 @@ npm run storybook
 npm run watch
 ```
 
-Storybook will now run on :6006.
-
-Your local `design_system` will be [symlinked](https://docs.npmjs.com/cli/v7/commands/npm-link) into banking/design_system for local dev.
-
-A `dist/index.js` file will also be built on each change for the external apps to consume.
-- The entry point to `design_system` is `dist/index.js`, so this is important.
-
-
-### In Banking
-
-- Global Styles: make sure global CSS styles (colors, etc.) are set by placing a `<GlobalStyles />` component on each page of your application.
-  - See sky/src/App.js for example
-  - Could also be placed in base_consumer.html
-  - CSSvars are namespaced with `--nds-` to not collide
-  - Classnames are scoped locally to the component via styled-components, so will not collide with existing classes
-- Theming: make sure theme colors are set by wrapping the GlobalStyles in a ThemeProvider:
-  - theme attrs can be loaded from API (see sky/App.js for example)
-  - no other components should need access to `props.theme`
-  - all other components should read theme vars from the CSS (via `color: var(--nds-primary-color)`)
-  - this is to allow server-side apps/non-SPAs to use DS without wrapping their entire app in a theme provider
-
-```
-# App.js or base_consumer.html
-<ThemeProvider
-  theme={{...this.state.theme}}
->
-  <GlobalStyles />
-</ThemeProvider>
-
-...rest of app...
-```
-
-### Storybook
-
-[Storybook](https://storybook.js.org/tutorials/intro-to-storybook/react/en/get-started/) is used as a live environment to develop and test components faster.
-
-We typically add a `Story` for each view or distinct state of each component.
-
-These distinct views or states are controlled by Storybook `args` (similar to props).
-
-You can view and add components using the steps below.
-
-
-### Dependencies
-
-Please install any new packages required for Stories.js files (ie, in-context examples) as devDependenies as well as peerDeps
-
-- eg: React, Styled-Components, react-feather Icons
-- these will be expected to be installed by the consumer
-- but DesignSystem will not package them up itself
-- this thins package size but most imptly helps avoid https://reactjs.org/warnings/invalid-hook-call-warning.html by decoupling dependency versions.
-  - let the consumer use whichever compatible version of React/xyz they like
-
-### Theming
-
-Styled-components exposes a ThemeProvider context if you wish to grab the styled-components Theme in a Big Component: https://styled-components.com/docs/advanced#getting-the-theme-without-styled-components
-
-### Live Editing
-
-(ie, adding custom HTML to a component to see how renders) This plugin may be useful: https://storybook.js.org/addons/storybook-addon-react-live-edit
+Results:
+- Storybook will now run on :6006.
+_ Your local `design_system` will be [symlinked](https://docs.npmjs.com/cli/v7/commands/npm-link) into banking/design_system for local dev.
+- On each change to files in design_system, the `dist/index.js` file will be rebuilt
+  - This allows local changes to design_system to be reflected in your consumer (eg Azul)
 
 
 ## Contributing
 
 We accept PRs! We've striven to make the NDS as minimal and composable as possible, so please try and adhere to these guidelines when making PRs. We will comment on any PRs to uphold these guidelines:
 
-### Maintain the HTML interface
+### Design Guidelines
+
+#### Maintain the HTML interface
 
 We've attempted to keep the component interface as close to the native HTML as possible to allow the user a familiar development experience while maximizing customization. This means:
 
@@ -110,7 +137,7 @@ Almost all of our components pass `...props` all the way through to their childr
 
 This allows us to keep the power of HTML, while minimizing complexity on our end.
 
-### Allow for props.children over custom subcomponents
+#### Allow for props.children over custom subcomponents
 
 We want to allow the maximum flexibility to our users, so we've preferred allowing the user to pass their own `children` in, vs specifying specific child props in our components.
 
@@ -122,7 +149,7 @@ This allows for both increased customization by the user, while decreasing compl
 
 This way, we allow the user maximum customization, while keeping our components thin and manageable.
 
-### Use native CSS solutions
+#### Use native CSS solutions
 
 CSS has become quite powerful, and styled-components lets us modify CSS based on our `props`. 
 
@@ -135,7 +162,7 @@ For example:
 - ...
 
 
-### In short
+#### In Short
 
 - Keep components as small as possible
 - Ask, "Can this prop be removed?"
@@ -183,102 +210,6 @@ Ex.:
 
 Some assembly is required.
 
-
-## Roadmap
-
-The following components have been identified by Design as necessary for the Design System. This list may add or change over time. Items with a (?) are questionable at this time:
-
-- [ ] Buttons
-- [ ] ButtonGroups (vertical and horizontal)A
-- [ ] Text
-- [ ] Headers
-- [ ] FormFields + Labels
-- [ ] Dropdowns + Labels
-- [ ] Dropdown with more than 10 items + Labels
-- [ ] Checkbox
-- [ ] CheckboxGroup
-- [ ] RadioGroup
-- [ ] Tags
-- [ ] Toasts
-- [ ] PaginationLinks
-- [ ] Links
-- [ ] Tabs
-- [ ] Cards - title + content, adornments (icons/buttons)
-- [ ] Modals - header, buttons, closeBtn, overlays, backgrounds
-- [ ] Lists - header + subheader, items
-- [ ] Forms - clearAll (?)
-- [ ] Dropshadows
-- [ ] Tooltips - small, multiline, up/down/l/r
-- [ ] Popovers - w icon, w selected text, w list, w checkbox
-- [ ] NavigationBar - logo, Lmenu, Rmenu
-- [ ] DropdownMenus - single item, list of items, multiple horizontally separated lists of items, '...' "more" option
-- [ ] Loading states - Skeleton, Skeleton multiple rows, Skeleton w header, spinner/3dots
-- [ ] Tables - Title, colHeaders, rowTitle, rowSubtitle, support for Tabs of tables, clickable/selectable Rows, Icons/Actions within Rows
-- [ ] Spacers
-- [ ] Spaced page layouts
-- [ ] Grids (?)
-- [ ] Colors (black/grey/ignore/warning/success/error/...)
-- [ ] Color Modifications (--color-primary--Accessible)
-- [ ] Global base styles (fontFamily, letterSpacing, --color-primary)
-- [ ] Graph?
-- [ ] Statistic?
-- [ ] Map?
-- [ ] Datepicker/Calendar
-- [ ] Banner? (section with background color)
-- [ ] Card - toggleable (default visible section, "view more" section)
-- [ ] Icon? we can provide these and make the src configurable? or just have users provide their own. Would say it depends on if we reuse a certain icon often
-- [ ] Accordion (visible/hidden)
-
-Each of these will need add'l work for phone/tablet/laptop/desktop sizes
-
-### By redesigned page:
-
-Accounts + transfers:
-
-- Button, ButtonGroup (horizontal, vertical)
-- Header
-- Tabs
-- Table, TabbedTable, Table with Actions, row hover
-- Card, ToggleableCard
-- List, listitem w Icon, selected listitem (checkbox icon)
-- Link, Links
-- Pagination
-- Modal, Modal w List, Modal Small, Modal w Overlay/BG
-- FormFields + Labels
-- Loading (spinner)
-- Textarea
-- Tags
-- Map?
-- Colors
-- Font, FontWeight, Globals
-- Dropdown
-- Text
-- Toasts - Success Warning Error
-- Form - submit, clearall?
-- Datepicker
-- TopNav, NavigationMenu?
-- Banner?
-- Icon?
-
-Support Center/Messages:
-
-- Banner
-- Card, Card w Icon, Card w List
-- Links, w Label
-- Accordion
-- Search, Menu + searchbar (can be unstyled, style by consumer), search cancel (clear) btn, selected hovered item
-- Button - square
-- MessageList? - this is probably not an NDS-supported component
-- Toasts
-- Icon (paperclip, paperplane, dollarbill, gears, ...)
-- Dropdown
-- Dropdown - search
-
-### Browser Support Notes
-
-Minimum version supported by the following:
-
-- https://caniuse.com/?search=focus-within
 
 ## License
 

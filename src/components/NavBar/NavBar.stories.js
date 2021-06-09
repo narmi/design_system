@@ -3,6 +3,7 @@ import NavBar from "components/NavBar";
 import { Top } from "../../decorators";
 import styled from "styled-components";
 import Popover from "components/Popover";
+import List from "components/List";
 import Sidebar from "components/Sidebar";
 import Typography from "components/Typography";
 import { Menu } from "react-feather";
@@ -39,7 +40,7 @@ const AccountPopover = () => {
     <PopoverButton>
       <Typography>
         <StyledA>Account</StyledA>
-      </Typography>{" "}
+      </Typography>
       <Popover />
     </PopoverButton>
   );
@@ -50,7 +51,7 @@ const ToolsPopover = () => {
     <PopoverButton>
       <Typography>
         <StyledA>Tools</StyledA>
-      </Typography>{" "}
+      </Typography>
       <Popover />
     </PopoverButton>
   );
@@ -61,7 +62,7 @@ const UserPopover = () => {
     <PopoverButton>
       <Typography>
         <StyledA>User name</StyledA>
-      </Typography>{" "}
+      </Typography>
       <Popover />
     </PopoverButton>
   );
@@ -80,30 +81,39 @@ const HamburgerMenuSidebar = () => {
   );
 };
 
-const AccountsItems = (
-  <ul style={{ backgroundColor: "white", listStyle: "none", color: "black" }}>
-    <li>test1</li>
-    <li>test2</li>
-    <li>test3</li>
-  </ul>
+const AccountsList = (
+  <List
+    horizontal={true}
+    divided={true}
+    style={{ padding: "20px" }}
+    items={{
+      Checking: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
+      Savings: [<a>Primary Savings-2000</a>, <a>Car Savings-4232</a>],
+      Loans: [<a>Mortgage-3242</a>, <a>Auto Loan-8493</a>],
+    }}
+  />
 );
 
-const ToolItems = (
-  <ul style={{ backgroundColor: "white", listStyle: "none" }}>
-    <li>test1</li>
-    <li>test2</li>
-    <li>test3</li>
-  </ul>
+export const UserList = (
+  <List
+    items={[
+      <span>Link a new profile</span>,
+      <span>Settings</span>,
+      <span>Log out</span>,
+      <span>Forget this device</span>,
+    ]}
+  />
 );
 
-const UserItems = (
-  <ul
-    style={{ backgroundColor: "white", listStyle: "none", padding: "initial" }}
-  >
-    <li>test1</li>
-    <li>test2</li>
-    <li>test3</li>
-  </ul>
+export const ToolsList = (
+  <List
+    items={[
+      <span>Free Credit Score Check</span>,
+      <span>Open a new account</span>,
+      <span>Pay a Mortgage</span>,
+      <span>Book a Travel</span>,
+    ]}
+  />
 );
 
 export const NavBarMenu = Template.bind({});
@@ -115,8 +125,8 @@ NavBarMenu.args = {
     <Typography>
       <StyledA>Dashboard</StyledA>
     </Typography>,
-    <Popover hoverable={true} label={"Accounts"} shiftX={"10%"}>
-      {AccountsItems}{" "}
+    <Popover hoverable={true} label={"Accounts"} shiftX={"-10%"}>
+      {AccountsList}
     </Popover>,
     <Typography>
       <StyledA>Documents</StyledA>
@@ -124,13 +134,13 @@ NavBarMenu.args = {
     <Typography>
       <StyledA>Support</StyledA>
     </Typography>,
-    <Popover hoverable={true} label={"Tools"} shiftX={"10%"}>
-      {ToolItems}
+    <Popover hoverable={true} label={"Tools"} shiftX={"-30%"}>
+      {ToolsList}
     </Popover>,
   ],
   rightChildren: [
-    <Popover hoverable={true} label={"User Name"} shiftX={"20%"}>
-      {UserItems}
+    <Popover hoverable={true} label={"User Name"} shiftX={"-30%"}>
+      {UserList}
     </Popover>,
   ],
 };

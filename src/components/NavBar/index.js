@@ -42,9 +42,11 @@ const StyledNavLeft = styled.span`
     display: flex;
   }
   & ${StyledMenuItem}:first-child {
-    padding-left: 0px;
+    padding-left: ${(props) => props.logo ? null : "0px"};
   }
 `;
+
+    // padding-left: ${(props) => props.logo ? "0px" : null};
 
 const StyledNavRight = styled.span`
   @media ${`(max-width: ${deviceBreakpoints.mobile})`} {
@@ -93,7 +95,7 @@ const StyledMobileMenuContainer = styled.span`
 const NavBar = (props) => {
   return (
     <StyledHeader {...props}>
-      <StyledNavLeft>
+      <StyledNavLeft {...props}>
         {props.logo ? <div>{props.logo}</div> : null}
         {props.leftChildren.map((option) => (
           <StyledMenuItem>{option}</StyledMenuItem>

@@ -46,7 +46,6 @@ const StyledNavLeft = styled.span`
   }
 `;
 
-// padding-left: ${(props) => props.logo ? "0px" : null};
 
 const StyledNavRight = styled.span`
   @media ${`(max-width: ${deviceBreakpoints.mobile})`} {

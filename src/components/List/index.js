@@ -47,7 +47,7 @@ const StyledList = styled.ul`
 const StyledListItem = styled.li`
   :hover {
     background-color: ${(props) =>
-      props.hover ? "rgba(42,68,148,0.05)" : null};
+      props.hoverable ? "var(--nds-grey-hover)" : null};
   }
 `;
 
@@ -56,42 +56,40 @@ const List = (props) => {
   let horizontal = props.horizontal;
   let items = props.items;
   let isArray = Array.isArray(props.items);
-
-  const els = Object.keys(items).map((index) =>
-    isArray ? (
-      <StyledList divided={divided} horizontal={horizontal} hover={props.hover}>
-        <StyledListItem hover={props.hover} key={index}>
-          {items[index]}
-        </StyledListItem>
-      </StyledList>
-    ) : (
-      <StyledList divided={divided} horizontal={horizontal}>
-        <li>
-          <StyledHeader>{index}</StyledHeader>
-        </li>
-        {items[index].map((c) => (
-          <StyledListItem hover={props.hover} key={c}>
-            {c}
+  let els = isArray
+    ? items.map((item) => (
+        <StyledList divided={divided} horizontal={horizontal}>
+          <StyledListItem hoverable={props.hoverable} key={item}>
+            {item}
           </StyledListItem>
-        ))}
-      </StyledList>
-    )
-  );
-
+        </StyledList>
+      ))
+    : Object.keys(items).map((index) => (
+        <StyledList divided={divided} horizontal={horizontal}>
+          <li>
+            <StyledHeader>{index}</StyledHeader>
+          </li>
+          {items[index].map((c) => (
+            <StyledListItem hoverable={props.hoverable} key={c}>
+              {c}
+            </StyledListItem>
+          ))}
+        </StyledList>
+      ));
   return <StyledListWrapper {...props}>{els}</StyledListWrapper>;
 };
 
 List.propTypes = {
   horizontal: PropTypes.bool,
   divided: PropTypes.bool,
-  hover: PropTypes.bool,
+  hoverable: PropTypes.bool,
   items: PropTypes.object,
 };
 
 List.defaultProps = {
   horizontal: false,
   divided: false,
-  hover: true,
+  hoverable: true,
   items: {},
 };
 

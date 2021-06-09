@@ -57,9 +57,9 @@ const List = (props) => {
   let items = props.items;
   let isArray = Array.isArray(props.items);
   let els = isArray
-    ? items.map((item) => (
+    ? items.map((item, idx) => (
         <StyledList divided={divided} horizontal={horizontal}>
-          <StyledListItem hoverable={props.hoverable} key={item}>
+          <StyledListItem hoverable={props.hoverable} key={item + idx}>
             {item}
           </StyledListItem>
         </StyledList>

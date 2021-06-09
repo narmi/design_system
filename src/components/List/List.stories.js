@@ -1,5 +1,5 @@
 import React from "react";
-import List from "components/List";
+import { default as ListComponent } from "components/List";
 import { Centered } from "../../decorators";
 
 export default {
@@ -8,14 +8,14 @@ export default {
   decorators: [Centered],
 };
 
-const Template = (args) => <List {...args} />;
+const Template = (args) => <ListComponent {...args} />;
 const DefaultArgs = {
   divided: false,
   horizontal: false,
 };
 
-export const NormalList = Template.bind({});
-NormalList.args = {
+export const List = Template.bind({});
+List.args = {
   ...DefaultArgs,
   horizontal: true,
   hozerable: true,

@@ -14,6 +14,11 @@
     "prepare": "husky install",
     "pretty-quick": "pretty-quick --staged"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
   "peerDependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

@@ -58,20 +58,20 @@ const List = (props) => {
   let isArray = Array.isArray(props.items);
   let els = isArray
     ? items.map((item, idx) => (
-        <StyledList divided={divided} horizontal={horizontal}>
-          <StyledListItem hoverable={props.hoverable} key={item + idx}>
-            {item}
+        <StyledList divided={divided} horizontal={horizontal} key={"List" + idx}>
+          <StyledListItem hoverable={props.hoverable} key={idx}>
+            <span key={idx}> {item} </span>
           </StyledListItem>
         </StyledList>
       ))
     : Object.keys(items).map((index) => (
-        <StyledList divided={divided} horizontal={horizontal}>
-          <li>
-            <StyledHeader>{index}</StyledHeader>
+        <StyledList divided={divided} horizontal={horizontal} key={"List" + index}>
+          <li key={index}>
+            <StyledHeader key={"header" + index}>{index}</StyledHeader>
           </li>
-          {items[index].map((c) => (
-            <StyledListItem hoverable={props.hoverable} key={c}>
-              {c}
+          {items[index].map((c, idx) => (
+            <StyledListItem hoverable={props.hoverable} key={"ListItem" + idx}>
+              <span key={idx}> {c} </span>
             </StyledListItem>
           ))}
         </StyledList>

@@ -97,13 +97,13 @@ const NavBar = (props) => {
     <StyledHeader {...props}>
       <StyledNavLeft logo={props.logo}>
         {props.logo ? <div>{props.logo}</div> : null}
-        {props.leftChildren.map((option) => (
-          <StyledMenuItem>{option}</StyledMenuItem>
+        {props.leftChildren.map((option, idx) => (
+          <StyledMenuItem key={idx}>{option}</StyledMenuItem>
         ))}
       </StyledNavLeft>
       <StyledNavRight>
-        {props.rightChildren.map((option) => (
-          <StyledMenuItem>{option}</StyledMenuItem>
+        {props.rightChildren.map((option, idx) => (
+          <StyledMenuItem key={idx}>{option}</StyledMenuItem>
         ))}
       </StyledNavRight>
       <StyledMobileMenuContainer {...props}>

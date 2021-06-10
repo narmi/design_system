@@ -47,7 +47,6 @@ const StyledNavLeft = styled.span`
   }
 `;
 
-
 const StyledNavRight = styled.span`
   @media ${`(max-width: ${deviceBreakpoints.mobile})`} {
     right: 20px;

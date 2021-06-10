@@ -8,6 +8,7 @@ const StyledHeader = styled.span`
   box-shadow: var(--nds-dropshadow-dark);
   position: absolute;
   left: 0%;
+  top: 0%;
   right: 0%;
 
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
@@ -42,9 +43,10 @@ const StyledNavLeft = styled.span`
     display: flex;
   }
   & ${StyledMenuItem}:first-child {
-    padding-left: 0px;
+    padding-left: ${(props) => (props.logo ? null : "0px")};
   }
 `;
+
 
 const StyledNavRight = styled.span`
   @media ${`(max-width: ${deviceBreakpoints.mobile})`} {
@@ -93,7 +95,7 @@ const StyledMobileMenuContainer = styled.span`
 const NavBar = (props) => {
   return (
     <StyledHeader {...props}>
-      <StyledNavLeft>
+      <StyledNavLeft logo={props.logo}>
         {props.logo ? <div>{props.logo}</div> : null}
         {props.leftChildren.map((option) => (
           <StyledMenuItem>{option}</StyledMenuItem>

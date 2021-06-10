@@ -63,9 +63,7 @@ const List = (props) => {
           horizontal={horizontal}
           key={"List" + idx}
         >
-          <StyledListItem hoverable={props.hoverable} key={idx}>
-            <span key={idx}> {item} </span>
-          </StyledListItem>
+          <StyledListItem hoverable={props.hoverable}>{item}</StyledListItem>
         </StyledList>
       ))
     : Object.keys(items).map((index) => (
@@ -74,12 +72,12 @@ const List = (props) => {
           horizontal={horizontal}
           key={"List" + index}
         >
-          <li key={index}>
-            <StyledHeader key={"header" + index}>{index}</StyledHeader>
+          <li>
+            <StyledHeader>{index}</StyledHeader>
           </li>
           {items[index].map((c, idx) => (
             <StyledListItem hoverable={props.hoverable} key={"ListItem" + idx}>
-              <span key={idx}> {c} </span>
+              <span> {c} </span>
             </StyledListItem>
           ))}
         </StyledList>

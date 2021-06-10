@@ -95,7 +95,7 @@ const StyledMobileMenuContainer = styled.span`
 const NavBar = (props) => {
   return (
     <StyledHeader {...props}>
-      <StyledNavLeft {...props}>
+      <StyledNavLeft logo={props.logo}>
         {props.logo ? <div>{props.logo}</div> : null}
         {props.leftChildren.map((option) => (
           <StyledMenuItem>{option}</StyledMenuItem>

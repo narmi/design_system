@@ -10,9 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "publish-storybook": "npx chromatic --project-token $CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes",
-    "prepare": "husky install",
-    "pretty-quick": "pretty-quick --staged"
+    "publish-storybook": "npx chromatic --project-token $CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes"
   },
   "husky": {
     "hooks": {

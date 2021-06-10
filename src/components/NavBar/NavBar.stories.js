@@ -23,49 +23,10 @@ const StyledA = styled.a`
   }
 `;
 
-const PopoverButton = styled.div`
-  display: flex;
-  align-items: center;
-  position: relative;
-`;
-
 const Template = (args) => <NavBar {...args} />;
 const DefaultArgs = {
   leftChildren: [],
   rightChildren: [],
-};
-
-const AccountPopover = () => {
-  return (
-    <PopoverButton>
-      <Typography>
-        <StyledA>Account</StyledA>
-      </Typography>
-      <Popover />
-    </PopoverButton>
-  );
-};
-
-const ToolsPopover = () => {
-  return (
-    <PopoverButton>
-      <Typography>
-        <StyledA>Tools</StyledA>
-      </Typography>
-      <Popover />
-    </PopoverButton>
-  );
-};
-
-const UserPopover = () => {
-  return (
-    <PopoverButton>
-      <Typography>
-        <StyledA>User name</StyledA>
-      </Typography>
-      <Popover />
-    </PopoverButton>
-  );
 };
 
 const HamburgerMenuSidebar = () => {
@@ -153,14 +114,22 @@ NavBarMenuNoLogo.args = {
     <Typography>
       <StyledA>Dashboard</StyledA>
     </Typography>,
-    <AccountPopover />,
+    <Popover hoverable={true} label={"Accounts"} shiftX={"-10%"}>
+      {AccountsList}
+    </Popover>,
     <Typography>
       <StyledA>Documents</StyledA>
     </Typography>,
     <Typography>
       <StyledA>Support</StyledA>
     </Typography>,
-    <ToolsPopover />,
+    <Popover hoverable={true} label={"Tools"} shiftX={"-30%"}>
+      {ToolsList}
+    </Popover>,
   ],
-  rightChildren: [<UserPopover />],
+  rightChildren: [
+    <Popover hoverable={true} label={"User Name"} shiftX={"-30%"}>
+      {UserList}
+    </Popover>,
+  ],
 };

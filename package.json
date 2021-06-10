@@ -44,7 +44,7 @@
     "html-webpack-plugin": "^5.3.1",
     "husky": "^6.0.0",
     "polished": "^4.1.1",
-    "prettier": "^2.0.5",
+    "prettier": "^2.3.1",
     "pretty-quick": "^3.1.0",
     "prop-types": "^15.7.2",
     "react": "16.12.0",

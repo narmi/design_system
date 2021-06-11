@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
@@ -90,8 +90,16 @@ const StyledIcon = styled.span`
   right: 16px;
 `;
 
-const Modal = ({ title, titleUnderline, large, open, children, ...rest }) => {
+const Modal = ({ title, titleUnderline, large, open, onClose, children, ...rest }) => {
   const [isOpen, setOpen] = useState(open)
+  const wasOpen = useRef()
+
+  useEffect(() => {
+    if (!isOpen && wasOpen.current && onClose) {
+      onClose()
+    }
+    wasOpen.current = isOpen
+  }, [isOpen, onClose])
 
   const closeModal = () => setOpen(false)
 
@@ -120,6 +128,7 @@ Modal.propTypes = {
   titleUnderline: PropTypes.bool,
   large: PropTypes.bool,
   open: PropTypes.bool,  // optional override for forcing open
+  onClose: PropTypes.func,
   children: PropTypes.node, // numbers, string, DOM elements, arrays, fragments, ...
 };
 
@@ -128,6 +137,7 @@ Modal.defaultProps = {
   titleUnderline: false,
   large: false,
   open: false,
+  onClose: null,
 };
 
 export default Modal;

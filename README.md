@@ -4,7 +4,6 @@
 
 Please follow the below steps to install, consume, or contribute to the NDS.
 
-
 ## Consuming Design System
 
 Please follow all steps below to set up your copy of design_system.
@@ -30,6 +29,7 @@ Installation via NPM: TBD (pending 1st publishable release)
 design_system doesn't package 2 key dependencies, because we want to let users configure their own versions of these deps, and avoid [forcing multiple copies](https://reactjs.org/warnings/invalid-hook-call-warning.html).
 
 You will need to install in your repo:
+
 - React (>=16.9, supports Hooks)
 - styled-components (>=5)
 
@@ -96,7 +96,6 @@ Please check the following chart to see the minimum browser versions supported b
 
 - https://caniuse.com/?search=focus-within
 
-
 ## Developing
 
 We need to set up your copy of `design_system` for local development.
@@ -115,11 +114,11 @@ npm run watch
 ```
 
 Results:
+
 - Storybook will now run on :6006.
 - Your local `design_system` will be [symlinked](https://docs.npmjs.com/cli/v7/commands/npm-link) into banking/design_system for local dev.
 - On each change to files in design_system, the `dist/index.js` file will be rebuilt
   - This allows local changes to design_system to be reflected in your consumer (eg Azul)
-
 
 ## Contributing
 
@@ -144,6 +143,7 @@ We want to allow the maximum flexibility to our users, so we've preferred allowi
 For instance, if faced with the decision to provide a `headerIcon` prop, or simply allow passing an full <span>...</span> as the `header`, prefer allowing the user to pass HTML through.
 
 This allows for both increased customization by the user, while decreasing complexity on our end.
+
 - your header can now be spaced any way you want it to, and include Images as well as Icons if desired;
 - our component doesn't have to know or manage this - spacing and sizing is left up to the user to get Just Right.
 
@@ -151,16 +151,16 @@ This way, we allow the user maximum customization, while keeping our components 
 
 #### Use native CSS solutions
 
-CSS has become quite powerful, and styled-components lets us modify CSS based on our `props`. 
+CSS has become quite powerful, and styled-components lets us modify CSS based on our `props`.
 
 The combination of these two tools means we can often accomplish in only CSS what we used to need Javascript to do.
 
 For example:
+
 - prefer changing `flex-direction: row` to `flex-direction: row-reverse` via CSS, rather than using a `reversed` React prop
 - let the user pass through `props.style` rather than providing `padding` props
 - prefer CSS transforms and animations to JS/jQuery manipulations
 - ...
-
 
 #### In Short
 
@@ -170,8 +170,7 @@ For example:
 
 Feel free to ask us for CSS suggestions - we're happy to help!
 
----------------------------------------------------------------------------------
-
+---
 
 ## Design Philosophy
 
@@ -209,7 +208,6 @@ Ex.:
 | provide a \<List /\> component to provide guidance on how groups of items should be laid out | specify what can go in a List, or exclude items from being in a List |
 
 Some assembly is required.
-
 
 ## License
 

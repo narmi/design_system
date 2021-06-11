@@ -6,7 +6,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "index.js",
     libraryTarget: "umd",
-    globalObject: 'typeof self !== \'undefined\' ? self : this',
+    globalObject: "typeof self !== 'undefined' ? self : this",
   },
   resolve: {
     modules: [path.join(__dirname, "src"), "node_modules"],
@@ -56,6 +56,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-  ],
+  plugins: [],
 };

@@ -141,7 +141,9 @@ OnHoverLabel.args = {
 const AccountPopover = () => {
   return (
     <div style={{ paddingBottom: "15px" }}>
-      <Typography style={{fontSize:"20px", fontWeight: "500"}}>Account</Typography>
+      <Typography style={{ fontSize: "20px", fontWeight: "500" }}>
+        Account
+      </Typography>
       <Popover
         hoverable={false}
         label={null}
@@ -154,11 +156,27 @@ const AccountPopover = () => {
 
 export const PopoverNavBar = () => {
   let options = [
-    <Typography style={{fontSize:"20px", fontWeight: "500", paddingBottom: "15px"}}>Dashboard</Typography>,
+    <Typography
+      style={{ fontSize: "20px", fontWeight: "500", paddingBottom: "15px" }}
+    >
+      Dashboard
+    </Typography>,
     <AccountPopover />,
-    <Typography style={{fontSize:"20px", fontWeight: "500", paddingBottom: "15px"}}>Documents</Typography>,
-    <Typography style={{fontSize:"20px", fontWeight: "500", paddingBottom: "15px"}}>Support</Typography>,
-    <Typography style={{fontSize:"20px", fontWeight: "500", paddingBottom: "15px"}}>Tools</Typography>,
+    <Typography
+      style={{ fontSize: "20px", fontWeight: "500", paddingBottom: "15px" }}
+    >
+      Documents
+    </Typography>,
+    <Typography
+      style={{ fontSize: "20px", fontWeight: "500", paddingBottom: "15px" }}
+    >
+      Support
+    </Typography>,
+    <Typography
+      style={{ fontSize: "20px", fontWeight: "500", paddingBottom: "15px" }}
+    >
+      Tools
+    </Typography>,
   ];
   return (
     <div>

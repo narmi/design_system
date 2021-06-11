@@ -26,11 +26,7 @@ const StyledDiv = styled.div`
 `;
 
 function Button1(props) {
-  return (
-    <StyledButton {...props}>
-      {props.text}
-    </StyledButton>
-  );
+  return <StyledButton {...props}>{props.text}</StyledButton>;
 }
 
 function Button2(props) {
@@ -42,11 +38,7 @@ function Button2(props) {
 }
 
 const ButtonGroup = (props) => {
-  return (
-    <StyledDiv>
-      {children}
-    </StyledDiv>
-  );
+  return <StyledDiv>{children}</StyledDiv>;
 };
 
 ButtonGroup.propTypes = {

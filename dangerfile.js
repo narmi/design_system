@@ -30,10 +30,12 @@ This is a HIGH RISK PR
  - [ ] 2 people must approve this PR`);
 }
 
-const narmiGithubPattern = /https?:\/\/github.com\/narmi\/[^\\\n]+\/(issues|pull)\/[0-9]+/;
+const narmiGithubPattern =
+  /https?:\/\/github.com\/narmi\/[^\\\n]+\/(issues|pull)\/[0-9]+/;
 // https://sentry.io/organizations/narmi/issues/996270778
 // https://sentry.io/narmi/banking-production/issues/608585037
-const narmiSentryPattern = /https?:\/\/sentry.io(\/organizations)?\/narmi(\/[^\\\n]+)?\/issues\/[0-9]+/;
+const narmiSentryPattern =
+  /https?:\/\/sentry.io(\/organizations)?\/narmi(\/[^\\\n]+)?\/issues\/[0-9]+/;
 const noIssueLinks =
   !bodyAndTitle.match(/#[0-9]+/) &&
   !bodyAndTitle.match(narmiGithubPattern) &&
@@ -43,16 +45,15 @@ if (noIssueLinks && lineChanges > 25) {
 }
 
 // Check dist was compiled if src/ is changed
-const srcChanged = danger.git.modified_files.filter((f) =>
-  f.match(/^src\//)
-)
+const srcChanged = danger.git.modified_files.filter((f) => f.match(/^src\//));
 const distChanged = danger.git.modified_files.filter((f) =>
   f.match("dist/index.js")
-)
+);
 if (srcChanged.length > 0 && distChanged.length === 0) {
-  fail("Looks like files in src/ changed! Please rebuild the dist via 'npm run build'.")
+  fail(
+    "Looks like files in src/ changed! Please rebuild the dist via 'npm run build'."
+  );
 }
-
 
 // Lint rules for modified JS templates
 const templateFilesChanged = danger.git.modified_files.filter((f) =>

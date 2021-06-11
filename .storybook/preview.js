@@ -6,7 +6,7 @@
  */
 
 import React from "react";
-import {ThemeProvider} from "styled-components";
+import { ThemeProvider } from "styled-components";
 import GlobalStyles from "../src/globalStyles";
 
 /* default empty theme - can be overridden in Storybook or per-component:
@@ -17,7 +17,7 @@ const defaultTheme = {
   primaryColor: null,
   secondaryColor: null,
   tertiaryColor: null,
-}
+};
 
 export const decorators = [
   (Story) => (
@@ -35,4 +35,3 @@ export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   addons: ["storybook-addon-styled-component-theme/dist/preset"],
 };
-

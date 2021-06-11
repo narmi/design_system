@@ -35,6 +35,5 @@ export const WithNestedChildren = Template.bind({});
 WithNestedChildren.args = {
   ...Primary.args,
   label: null,
-  children: [
-  <div>This is a div inside a Button</div>],
+  children: [<div>This is a div inside a Button</div>],
 };

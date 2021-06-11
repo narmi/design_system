@@ -12,24 +12,12 @@ export default {
 
 const ControlledModal = (props) => {
   const {openModal, closeModal, ModalComponent} = useModal({defaultOpen: true})
-  return (
-    <>
-      <div style={{display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "100vh"}}>
-        <Button onClick={openModal}>Open modal</Button>
-      </div>
-      <ModalComponent {...props} />
-    </>
-  )
-}
-
-const ControlledModalWithCallbacks = (props) => {
-  const {openModal, closeModal, ModalComponent} = useModal({defaultOpen: true})
   const onSuccess = () => {
-    alert("Modal success callback!")
+    props.onSuccess && props.onSuccess()
     closeModal()
   }
   const onCancel = () => {
-    alert("Modal cancel callback!")
+    props.onCancel && props.onCancel()
     closeModal()
   }
 
@@ -38,13 +26,12 @@ const ControlledModalWithCallbacks = (props) => {
       <div style={{display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "100vh"}}>
         <Button onClick={openModal}>Open modal</Button>
       </div>
-      <ModalComponent onSuccess={onSuccess} onCancel={onCancel} {...props} />
+      <ModalComponent {...props} onSuccess={onSuccess} onCancel={onCancel} />
     </>
   )
 }
 
 const Template = (args) => <ControlledModal {...args} />;
-const TemplateWithCallbacks = args => <ControlledModalWithCallbacks {...args} />;
 
 export const Small = Template.bind({});
 Small.args = {
@@ -70,24 +57,26 @@ Large.args = {
     </div>
   ],
 };
-export const WithTitleAdornment = Template.bind({});
-WithTitleAdornment.args = {
-  ...Small.args,
-  title: (
-    <span style={{ display: "flex", alignItems: "center" }}>
-      Title <Info size={14} style={{ marginLeft: "6px", marginTop: "1px" }} />
-    </span>
-  ),
-};
 export const WithTitleUnderline = Template.bind({});
 WithTitleUnderline.args = {
   ...Small.args,
   titleUnderline: true,
 };
+export const WithTitleAdornment = Template.bind({});
+WithTitleAdornment.args = {
+  ...Small.args,
+  title: (
+    <span style={{ display: "flex", alignItems: "center" }}>
+      Title <Info size={14} onClick={() => alert("Clicked info!")} style={{ marginLeft: "6px", marginTop: "1px", cursor: "pointer" }} />
+    </span>
+  ),
+};
 
-export const ActionCallbacks = TemplateWithCallbacks.bind({});
+export const ActionCallbacks = Template.bind({});
 ActionCallbacks.args = {
   ...Small.args,
   successLabel: "Submit",
   cancelLabel: "Cancel",
+  onSuccess: () => alert("Modal success callback!"),
+  onCancel: () => alert("Modal cancel callback!"),
 };

@@ -75,8 +75,28 @@ WithTitleAdornment.args = {
 export const ActionCallbacks = Template.bind({});
 ActionCallbacks.args = {
   ...Small.args,
-  successLabel: "Submit",
   cancelLabel: "Cancel",
+  successLabel: "Submit",
   onSuccess: () => alert("Modal success callback!"),
   onCancel: () => alert("Modal cancel callback!"),
+};
+
+export const AdditionalActions = Template.bind({});
+AdditionalActions.args = {
+  ...Small.args,
+  titleUnderline: true,
+  leftActions: [
+    {action: () => alert("Action callback!"), title: "Callback"},
+    {action: () => alert("Action callback 2!"), title: "Callback 2"}
+  ]
+};
+
+export const MixedActions = Template.bind({});
+MixedActions.args = {
+  ...Small.args,
+  successLabel: "Submit",
+  onSuccess: () => alert("Modal success callback!"),
+  leftActions: [
+    {action: () => alert("Action callback!"), title: "Callback"},
+  ]
 };

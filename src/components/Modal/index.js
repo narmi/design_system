@@ -6,6 +6,7 @@ import styled, { css } from "styled-components";
 import { X } from "react-feather";
 
 import Button from "components/Button";
+import PlainButton from "components/PlainButton";
 
 const StyledOverlay = styled.div`
   height: 100vh;
@@ -76,7 +77,15 @@ const StyledHeader = styled.div`
 `;
 
 const StyledActionBar = styled.div`
+  width: 100%;
   margin-bottom: 4px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const StyledActionBarRight = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;
@@ -86,6 +95,21 @@ const StyledActionBar = styled.div`
 
   > * {
     margin-left: 16px;
+  }
+`;
+
+const StyledActionBarLeft = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+
+  > *:not(:last-child) {
+    padding-right: 20px;
+    border-right: 1px solid var(--nds-grey-disabled);
+    margin-right: 20px;
   }
 `;
 
@@ -148,6 +172,7 @@ const Modal = ({
   cancelLabel,
   onSuccess,
   onCancel,
+  leftActions,
   children,
   ...rest
 }) => {
@@ -172,12 +197,20 @@ const Modal = ({
             <StyledHeader titleUnderline={titleUnderline}>{title}</StyledHeader>
             <StyledBody>{children}</StyledBody>
             <StyledActionBar>
-              {cancelLabel ? (
-                <Button secondary transparent onClick={onCancel} label={cancelLabel} />
-              ) : null}
-              {successLabel ? (
-                <Button primary onClick={onSuccess} label={successLabel} />
-              ) : null}
+              <StyledActionBarLeft>
+                {leftActions.map((action, idx) => (
+                  <PlainButton small key={idx} onClick={action.action}>{action.title}</PlainButton>
+                ))
+                }
+              </StyledActionBarLeft>
+              <StyledActionBarRight>
+                {cancelLabel ? (
+                  <Button secondary transparent onClick={onCancel} label={cancelLabel} />
+                ) : null}
+                {successLabel ? (
+                  <Button primary onClick={onSuccess} label={successLabel} />
+                ) : null}
+              </StyledActionBarRight>
             </StyledActionBar>
           </StyledCard>
         </>,
@@ -192,6 +225,7 @@ Modal.propTypes = {
   large: PropTypes.bool,
   title: PropTypes.node,
   titleUnderline: PropTypes.bool,
+  leftActions: PropTypes.array,  // list of {action: () => (), title: 'Title'} actions
   successLabel: PropTypes.node,
   cancelLabel: PropTypes.node,
   onCancel: PropTypes.func,
@@ -205,6 +239,7 @@ Modal.defaultProps = {
   large: false,
   title: "",
   titleUnderline: false,
+  leftActions: [],
   successLabel: null,
   cancelLabel: null,
   onSuccess: null,

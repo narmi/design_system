@@ -28,7 +28,8 @@ const StyledCard = styled.div`
 
   background-color: var(--nds-white);
 
-  width: ${(props) => (props.large ? "500px" : "375px")};
+  width: 100%;
+  max-width: ${(props) => (props.large ? "500px" : "385px")};
   max-height: 600px;
   overflow-y: scroll;
 
@@ -71,7 +72,7 @@ const StyledHeader = styled.div`
   // border and extra bottom padding if titleUnderline provided
   border-bottom: ${(props) =>
     props.titleUnderline ? "2px solid var(--nds-primary-color)" : null};
-  margin-bottom: ${(props) => (props.titleUnderline ? "20px" : null)};
+  margin-bottom: ${(props) => (props.titleUnderline ? "8px" : null)};
 `;
 
 const StyledActionBar = styled.div`
@@ -162,6 +163,7 @@ const Modal = ({
             aria-hidden
             tabIndex={-1}
             role="dialog"
+            large={large}
             {...rest}
           >
             <StyledIcon>

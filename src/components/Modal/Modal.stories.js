@@ -22,7 +22,29 @@ const ControlledModal = (props) => {
   )
 }
 
+const ControlledModalWithCallbacks = (props) => {
+  const {openModal, closeModal, ModalComponent} = useModal({defaultOpen: true})
+  const onSuccess = () => {
+    alert("Modal success callback!")
+    closeModal()
+  }
+  const onCancel = () => {
+    alert("Modal cancel callback!")
+    closeModal()
+  }
+
+  return (
+    <>
+      <div style={{display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "100vh"}}>
+        <Button onClick={openModal}>Open modal</Button>
+      </div>
+      <ModalComponent onSuccess={onSuccess} onCancel={onCancel} {...props} />
+    </>
+  )
+}
+
 const Template = (args) => <ControlledModal {...args} />;
+const TemplateWithCallbacks = args => <ControlledModalWithCallbacks {...args} />;
 
 export const Small = Template.bind({});
 Small.args = {
@@ -39,6 +61,14 @@ export const Large = Template.bind({});
 Large.args = {
   ...Small.args,
   large: true,
+  children: [
+    <div>
+      Some text. Some text. Some text. Some text. Some text. Some text. Some
+      text. Some text. Some text. Some text. Some text. Some text. Some text.
+      Some text. Some text. Some text. Some text. Some text. Some text.
+      Some text. Some text. Some text. Some text. Some text.
+    </div>
+  ],
 };
 export const WithTitleAdornment = Template.bind({});
 WithTitleAdornment.args = {
@@ -54,11 +84,10 @@ WithTitleUnderline.args = {
   ...Small.args,
   titleUnderline: true,
 };
-export const OnCancel = Template.bind({});
-OnCancel.args = {
+
+export const ActionCallbacks = TemplateWithCallbacks.bind({});
+ActionCallbacks.args = {
   ...Small.args,
   successLabel: "Submit",
   cancelLabel: "Cancel",
-  onSuccess: () => alert("Modal success callback!"),
-  onCancel: () => alert("Modal cancel callback!"),
 };

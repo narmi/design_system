@@ -82,6 +82,10 @@ const StyledActionBar = styled.div`
   align-items: center;
 
   width: 100%;
+
+  > * {
+    margin-left: 16px;
+  }
 `;
 
 const StyledIcon = styled.span`
@@ -167,7 +171,7 @@ const Modal = ({
             <StyledBody>{children}</StyledBody>
             <StyledActionBar>
               {cancelLabel ? (
-                <Button secondary onClick={onCancel} label={cancelLabel} />
+                <Button secondary transparent onClick={onCancel} label={cancelLabel} />
               ) : null}
               {successLabel ? (
                 <Button primary onClick={onSuccess} label={successLabel} />

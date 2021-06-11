@@ -37,6 +37,18 @@ const secondaryDisabledStyles = css`
   }
 `;
 
+const transparentStyles = css`
+  background-color: transparent;
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+
+  &:hover {
+    background-color: transparent;
+    border: none;
+  }
+`;
+
 const Styled = styled.a`
   display: inline-block;
   cursor: pointer;
@@ -63,6 +75,7 @@ const Styled = styled.a`
 
   ${(props) => (props.secondary ? secondaryStyles : null)}
   ${(props) => (props.disabled ? disabledStyles : null)}
+  ${(props) => (props.transparent ? transparentStyles : null)}
 
   /* style combos go after for ordering dep reasons*/
   ${(props) =>
@@ -77,6 +90,7 @@ Button.propTypes = {
   label: PropTypes.string,
   disabled: PropTypes.bool,
   secondary: PropTypes.bool,
+  transparent: PropTypes.bool,
   // either label or children are required
   children: PropTypes.node, // numbers, string, DOM elements, arrays, fragments, ...
 };

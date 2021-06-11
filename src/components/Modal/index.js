@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
@@ -87,12 +87,23 @@ const StyledIcon = styled.span`
   right: 16px;
 `;
 
-const Modal = ({ title, titleUnderline, children, ...rest }) => {
-  return (
-    <StyledOverlay>
+const Modal = ({ title, titleUnderline, large, open, children, ...rest }) => {
+  const [isOpen, setOpen] = useState(open)
+  useEffect((open) => {
+    setOpen(open)
+    console.log("set open to: ", open)
+  }, [open])
+
+  const closeModal = () => setOpen(false)
+
+  console.log("is open?", isOpen, "open?", open)
+
+  return isOpen
+    ? (
+    <StyledOverlay onClick={closeModal}>
       <StyledCard {...rest}>
         <StyledIcon>
-          <X size={12} />
+          <X size={12} onClick={closeModal} />
         </StyledIcon>
         <StyledHeader titleUnderline={titleUnderline}>{title}</StyledHeader>
         <StyledBody>{children}</StyledBody>
@@ -101,13 +112,15 @@ const Modal = ({ title, titleUnderline, children, ...rest }) => {
         </StyledActionBar>
       </StyledCard>
     </StyledOverlay>
-  );
+    )
+    : <span>{isOpen}</span>;
 };
 
 Modal.propTypes = {
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   titleUnderline: PropTypes.bool,
   large: PropTypes.bool,
+  open: PropTypes.bool,  // optional override for forcing open
   children: PropTypes.node, // numbers, string, DOM elements, arrays, fragments, ...
 };
 
@@ -115,6 +128,7 @@ Modal.defaultProps = {
   title: "",
   titleUnderline: false,
   large: false,
+  open: false,
 };
 
 export default Modal;

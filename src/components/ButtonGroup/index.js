@@ -18,27 +18,19 @@ const StyledButton = styled(Button)`
   border: none;
 `;
 
-const StyledDiv = styled.div`
+const StyledButtonGroup = styled.div`
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
     display: flex;
     flex-direction: row-reverse; // sets elements in a reversed column
   }
 `;
 
-function Button1(props) {
-  return <StyledButton {...props}>{props.text}</StyledButton>;
-}
-
-function Button2(props) {
+const ButtonGroup = ({children, ...rest}) => {
   return (
-    <StyledButton {...props} secondary={true}>
-      {props.text}
-    </StyledButton>
+    <StyledButtonGroup {...rest}>
+      {children}
+    </StyledButtonGroup>
   );
-}
-
-const ButtonGroup = (props) => {
-  return <StyledDiv>{children}</StyledDiv>;
 };
 
 ButtonGroup.propTypes = {

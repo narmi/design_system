@@ -1,25 +1,45 @@
-import React from "react";
+import React, {useState} from "react";
 import Modal from "components/Modal";
+import Button from "components/Button";
 import { Centered } from "../../decorators";
 import { Info } from "react-feather";
 
 export default {
   title: "Components/Modal",
   component: Modal,
-  decorators: [Centered],
+  decorators: [],
 };
 
-const Template = (args) => <Modal {...args} />;
+const SceneWithButton = ({open, ...rest}) => {
+  const [isOpen, setOpen] = useState(open)
+  const openModal = () => setOpen(true)
+
+  return (
+    <div style={{width: "100%", height: "100vh"}}>
+      <Modal open={isOpen} {...rest} />
+      <span style={{width: "100%", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
+        <Button onClick={openModal}>Open Modal</Button>
+        {isOpen.toString()}
+      </span>
+    </div>
+  )
+}
+
+const Template = (args) => (
+  <SceneWithButton {...args} />
+);
+
 export const Small = Template.bind({});
 Small.args = {
+  open: true,
   large: false,
   title: "Title text",
-  children: (
+  children: [
     <div>
       Some text. Some text. Some text. Some text. Some text. Some text. Some
       text. Some text. Some text. Some text. Some text. Some text.
     </div>
-  ),
+  ],
 };
 export const Large = Template.bind({});
 Large.args = {

@@ -63,9 +63,9 @@ export const NavMenu = ({ divided, horizontal }) => {
   };
 
   const els = Object.keys(items).map((header) => (
-    <StyledList divided={divided} horizontal={horizontal} >
+    <StyledList divided={divided} horizontal={horizontal}>
       <li>
-        <StyledHeader >{header}</StyledHeader>
+        <StyledHeader>{header}</StyledHeader>
       </li>
       {items[header].map((c) => (
         <li key={c}>{c}</li>

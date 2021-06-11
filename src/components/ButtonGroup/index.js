@@ -25,12 +25,8 @@ const StyledButtonGroup = styled.div`
   }
 `;
 
-const ButtonGroup = ({children, ...rest}) => {
-  return (
-    <StyledButtonGroup {...rest}>
-      {children}
-    </StyledButtonGroup>
-  );
+const ButtonGroup = ({ children, ...rest }) => {
+  return <StyledButtonGroup {...rest}>{children}</StyledButtonGroup>;
 };
 
 ButtonGroup.propTypes = {

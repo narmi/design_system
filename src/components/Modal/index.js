@@ -1,10 +1,11 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
+import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
 import { X } from "react-feather";
 
-import ButtonGroup from "components/ButtonGroup";
+import Button from "components/Button";
 
 const StyledOverlay = styled.div`
   height: 100vh;
@@ -90,59 +91,117 @@ const StyledIcon = styled.span`
   right: 16px;
 `;
 
-const Modal = ({ title, titleUnderline, large, open, onCancel, actionButtons, children, ...rest }) => {
-  const [isOpen, setIsOpen] = useState(open)
-  const prevOpen = useRef()
+export const useModal = ({ defaultOpen, onOpen, onCancel, ...rest }) => {
+  /*
+   * export a ModalComponent that can be rendered, and the handlers to open/close it
+   *
+   * Usage:
+   * [openModal, closeModal, ModalComponent] = useModal()
+   *
+   * <Button onClick={openModal}>Open</Button>
+   * <ModalComponent>Modal content</ModalComponent>
+   */
+  const [isOpen, setIsOpen] = useState(defaultOpen);
 
-  // update state.isOpen when props.open changes
-  useEffect(() => {
-    setIsOpen(open)
-  }, [open])
-
-  // when modal is closed, call onCancel if modal was previously open
-  useEffect(() => {
-    if (!isOpen && prevOpen.current && onCancel) {
-      onCancel()
+  const openModal = () => {
+    setIsOpen(true);
+    if (onOpen) {
+      onOpen();
     }
-    prevOpen.current = isOpen
-  }, [isOpen])
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+    if (onCancel) {
+      onCancel();
+    }
+  };
 
-  const closeModal = () => setIsOpen(false)
+  const ModalComponent = (modalProps) => (
+    <Modal open={isOpen} onOpen={onOpen} onCancel={closeModal} {...rest} {...modalProps} />
+  );
 
-  return isOpen
-    ? (
-      <>
-        <StyledOverlay onClick={closeModal}>
-        </StyledOverlay>
-        <StyledCard {...rest} aria-modal aria-hidden tabIndex={-1} role="dialog">
-          <StyledIcon>
-            <X size={12} onClick={closeModal} />
-          </StyledIcon>
-          <StyledHeader titleUnderline={titleUnderline}>{title}</StyledHeader>
-          <StyledBody>{children}</StyledBody>
-          <StyledActionBar>
-            <ButtonGroup />
-          </StyledActionBar>
-        </StyledCard>
-      </>
-    )
+  return {
+    openModal,
+    closeModal,
+    ModalComponent,
+  };
+};
+
+useModal.propTypes = {
+  defaultOpen: PropTypes.bool,
+  onOpen: PropTypes.func,
+  onCancel: PropTypes.func,
+};
+
+const Modal = ({
+  modalElement,
+  open,
+  large,
+  title,
+  titleUnderline,
+  successLabel,
+  cancelLabel,
+  onSuccess,
+  onCancel,
+  children,
+  ...rest
+}) => {
+  /*
+   * render a Modal element inside a Portal, if open={true}
+   */
+  return open
+    ? ReactDOM.createPortal(
+        <>
+          <StyledOverlay onClick={onCancel}></StyledOverlay>
+          <StyledCard
+            aria-modal
+            aria-hidden
+            tabIndex={-1}
+            role="dialog"
+            {...rest}
+          >
+            <StyledIcon>
+              <X size={12} onClick={onCancel} />
+            </StyledIcon>
+            <StyledHeader titleUnderline={titleUnderline}>{title}</StyledHeader>
+            <StyledBody>{children}</StyledBody>
+            <StyledActionBar>
+              {cancelLabel ? (
+                <Button secondary onClick={onCancel} label={cancelLabel} />
+              ) : null}
+              {successLabel ? (
+                <Button primary onClick={onSuccess} label={successLabel} />
+              ) : null}
+            </StyledActionBar>
+          </StyledCard>
+        </>,
+        modalElement
+      )
     : null;
 };
 
 Modal.propTypes = {
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  titleUnderline: PropTypes.bool,
+  modalElement: PropTypes.node,
+  open: PropTypes.bool, // optional override for forcing open
   large: PropTypes.bool,
-  open: PropTypes.bool,  // optional override for forcing open
+  title: PropTypes.node,
+  titleUnderline: PropTypes.bool,
+  successLabel: PropTypes.node,
+  cancelLabel: PropTypes.node,
+  onCancel: PropTypes.func,
   onCancel: PropTypes.func,
   children: PropTypes.node, // numbers, string, DOM elements, arrays, fragments, ...
 };
 
 Modal.defaultProps = {
+  modalElement: document.body, // mount modal Portal on body if no element provided
+  open: false,
+  large: false,
   title: "",
   titleUnderline: false,
-  large: false,
-  open: false,
+  successLabel: null,
+  cancelLabel: null,
+  onSuccess: null,
   onCancel: null,
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Modal from "components/Modal";
+import Modal, {useModal} from "components/Modal";
 import Button from "components/Button";
 import { Centered } from "../../decorators";
 import { Info } from "react-feather";
@@ -10,11 +10,22 @@ export default {
   decorators: [],
 };
 
-const Template = (args) => <Modal {...args} />;
+const ControlledModal = (props) => {
+  const {openModal, closeModal, ModalComponent} = useModal({defaultOpen: true})
+  return (
+    <>
+      <div style={{display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "100vh"}}>
+        <Button onClick={openModal}>Open modal</Button>
+      </div>
+      <ModalComponent {...props} />
+    </>
+  )
+}
+
+const Template = (args) => <ControlledModal {...args} />;
 
 export const Small = Template.bind({});
 Small.args = {
-  open: true,
   large: false,
   title: "Title text",
   children: [
@@ -46,5 +57,8 @@ WithTitleUnderline.args = {
 export const OnCancel = Template.bind({});
 OnCancel.args = {
   ...Small.args,
-  onCancel: () => alert("Modal cancel callback!")
+  successLabel: "Submit",
+  cancelLabel: "Cancel",
+  onSuccess: () => alert("Modal success callback!"),
+  onCancel: () => alert("Modal cancel callback!"),
 };

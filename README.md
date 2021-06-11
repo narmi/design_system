@@ -188,7 +188,6 @@ You will need an accepted SSH key or valid Github access token with access to th
 
 - via NPM: TBD (pending 1st publishable release)
 
-
 ## Developing
 
 From `banking`:
@@ -209,8 +208,8 @@ Storybook will now run on :6006.
 Your local `design_system` will be [symlinked](https://docs.npmjs.com/cli/v7/commands/npm-link) into banking/design_system for local dev.
 
 A `dist/index.js` file will also be built on each change for the external apps to consume.
-- The entry point to `design_system` is `dist/index.js`, so this is important.
 
+- The entry point to `design_system` is `dist/index.js`, so this is important.
 
 ### In Banking
 
@@ -246,7 +245,6 @@ These distinct views or states are controlled by Storybook `args` (similar to pr
 
 You can view and add components using the steps below.
 
-
 ### Dependencies
 
 Please install any new packages required for Stories.js files (ie, in-context examples) as devDependenies as well as peerDeps
@@ -264,7 +262,6 @@ Styled-components exposes a ThemeProvider context if you wish to grab the styled
 ### Live Editing
 
 (ie, adding custom HTML to a component to see how renders) This plugin may be useful: https://storybook.js.org/addons/storybook-addon-react-live-edit
-
 
 ## Contributing
 
@@ -287,6 +284,7 @@ We want to allow the maximum flexibility to our users, so we've preferred allowi
 For instance, if faced with the decision to provide a `headerIcon` prop, or simply allow passing an full <span>...</span> as the `header`, prefer allowing the user to pass HTML through.
 
 This allows for both increased customization by the user, while decreasing complexity on our end.
+
 - your header can now be spaced any way you want it to, and include Images as well as Icons if desired;
 - our component doesn't have to know or manage this - spacing and sizing is left up to the user to get Just Right.
 
@@ -294,16 +292,16 @@ This way, we allow the user maximum customization, while keeping our components 
 
 ### Use native CSS solutions
 
-CSS has become quite powerful, and styled-components lets us modify CSS based on our `props`. 
+CSS has become quite powerful, and styled-components lets us modify CSS based on our `props`.
 
 The combination of these two tools means we can often accomplish in only CSS what we used to need Javascript to do.
 
 For example:
+
 - prefer changing `flex-direction: row` to `flex-direction: row-reverse` via CSS, rather than using a `reversed` React prop
 - let the user pass through `props.style` rather than providing `padding` props
 - prefer CSS transforms and animations to JS/jQuery manipulations
 - ...
-
 
 ### In short
 
@@ -313,8 +311,7 @@ For example:
 
 Feel free to ask us for CSS suggestions - we're happy to help!
 
----------------------------------------------------------------------------------
-
+---
 
 ## Design Philosophy
 
@@ -352,4 +349,3 @@ Ex.:
 | provide a \<List /\> component to provide guidance on how groups of items should be laid out | specify what can go in a List, or exclude items from being in a List |
 
 Some assembly is required.
-

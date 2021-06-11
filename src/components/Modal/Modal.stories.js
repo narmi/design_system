@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import Modal from "components/Modal";
 import Button from "components/Button";
 import { Centered } from "../../decorators";
@@ -10,24 +10,7 @@ export default {
   decorators: [],
 };
 
-const SceneWithButton = ({open, ...rest}) => {
-  const [isOpen, setOpen] = useState(open)
-  const openModal = () => setOpen(true)
-
-  return (
-    <div style={{width: "100%", height: "100vh"}}>
-      <Modal open={isOpen} {...rest} />
-      <span style={{width: "100%", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
-        <Button onClick={openModal}>Open Modal</Button>
-        {isOpen.toString()}
-      </span>
-    </div>
-  )
-}
-
-const Template = (args) => (
-  <SceneWithButton {...args} />
-);
+const Template = (args) => <Modal {...args} />;
 
 export const Small = Template.bind({});
 Small.args = {

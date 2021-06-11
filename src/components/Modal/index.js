@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
@@ -14,6 +14,8 @@ const StyledOverlay = styled.div`
   left: 0;
   background-color: var(--nds-grey-scrim-light);
   z-index: 999;
+
+  cursor: pointer;
 `;
 
 const StyledCard = styled.div`
@@ -82,6 +84,7 @@ const StyledActionBar = styled.div`
 `;
 
 const StyledIcon = styled.span`
+  cursor: pointer;
   position: fixed;
   top: 16px;
   right: 16px;
@@ -89,31 +92,27 @@ const StyledIcon = styled.span`
 
 const Modal = ({ title, titleUnderline, large, open, children, ...rest }) => {
   const [isOpen, setOpen] = useState(open)
-  useEffect((open) => {
-    setOpen(open)
-    console.log("set open to: ", open)
-  }, [open])
 
   const closeModal = () => setOpen(false)
 
-  console.log("is open?", isOpen, "open?", open)
-
   return isOpen
     ? (
-    <StyledOverlay onClick={closeModal}>
-      <StyledCard {...rest}>
-        <StyledIcon>
-          <X size={12} onClick={closeModal} />
-        </StyledIcon>
-        <StyledHeader titleUnderline={titleUnderline}>{title}</StyledHeader>
-        <StyledBody>{children}</StyledBody>
-        <StyledActionBar>
-          <ButtonGroup />
-        </StyledActionBar>
-      </StyledCard>
-    </StyledOverlay>
+      <>
+        <StyledOverlay onClick={closeModal}>
+        </StyledOverlay>
+        <StyledCard {...rest}>
+          <StyledIcon>
+            <X size={12} onClick={closeModal} />
+          </StyledIcon>
+          <StyledHeader titleUnderline={titleUnderline}>{title}</StyledHeader>
+          <StyledBody>{children}</StyledBody>
+          <StyledActionBar>
+            <ButtonGroup />
+          </StyledActionBar>
+        </StyledCard>
+      </>
     )
-    : <span>{isOpen}</span>;
+    : null;
 };
 
 Modal.propTypes = {

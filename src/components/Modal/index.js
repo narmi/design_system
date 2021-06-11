@@ -146,7 +146,13 @@ export const useModal = ({ defaultOpen, onOpen, onCancel, ...rest }) => {
   };
 
   const ModalComponent = (modalProps) => (
-    <Modal open={isOpen} onOpen={onOpen} onCancel={closeModal} {...rest} {...modalProps} />
+    <Modal
+      open={isOpen}
+      onOpen={onOpen}
+      onCancel={closeModal}
+      {...rest}
+      {...modalProps}
+    />
   );
 
   return {
@@ -199,13 +205,19 @@ const Modal = ({
             <StyledActionBar>
               <StyledActionBarLeft>
                 {leftActions.map((action, idx) => (
-                  <PlainButton small key={idx} onClick={action.action}>{action.title}</PlainButton>
-                ))
-                }
+                  <PlainButton small key={idx} onClick={action.action}>
+                    {action.title}
+                  </PlainButton>
+                ))}
               </StyledActionBarLeft>
               <StyledActionBarRight>
                 {cancelLabel ? (
-                  <Button secondary transparent onClick={onCancel} label={cancelLabel} />
+                  <Button
+                    secondary
+                    transparent
+                    onClick={onCancel}
+                    label={cancelLabel}
+                  />
                 ) : null}
                 {successLabel ? (
                   <Button primary onClick={onSuccess} label={successLabel} />
@@ -225,7 +237,7 @@ Modal.propTypes = {
   large: PropTypes.bool,
   title: PropTypes.node,
   titleUnderline: PropTypes.bool,
-  leftActions: PropTypes.array,  // list of {action: () => (), title: 'Title'} actions
+  leftActions: PropTypes.array, // list of {action: () => (), title: 'Title'} actions
   successLabel: PropTypes.node,
   cancelLabel: PropTypes.node,
   onCancel: PropTypes.func,

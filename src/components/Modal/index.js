@@ -90,25 +90,31 @@ const StyledIcon = styled.span`
   right: 16px;
 `;
 
-const Modal = ({ title, titleUnderline, large, open, onClose, children, ...rest }) => {
-  const [isOpen, setOpen] = useState(open)
-  const wasOpen = useRef()
+const Modal = ({ title, titleUnderline, large, open, onCancel, actionButtons, children, ...rest }) => {
+  const [isOpen, setIsOpen] = useState(open)
+  const prevOpen = useRef()
 
+  // update state.isOpen when props.open changes
   useEffect(() => {
-    if (!isOpen && wasOpen.current && onClose) {
-      onClose()
-    }
-    wasOpen.current = isOpen
-  }, [isOpen, onClose])
+    setIsOpen(open)
+  }, [open])
 
-  const closeModal = () => setOpen(false)
+  // when modal is closed, call onCancel if modal was previously open
+  useEffect(() => {
+    if (!isOpen && prevOpen.current && onCancel) {
+      onCancel()
+    }
+    prevOpen.current = isOpen
+  }, [isOpen])
+
+  const closeModal = () => setIsOpen(false)
 
   return isOpen
     ? (
       <>
         <StyledOverlay onClick={closeModal}>
         </StyledOverlay>
-        <StyledCard {...rest}>
+        <StyledCard {...rest} aria-modal aria-hidden tabIndex={-1} role="dialog">
           <StyledIcon>
             <X size={12} onClick={closeModal} />
           </StyledIcon>
@@ -128,7 +134,7 @@ Modal.propTypes = {
   titleUnderline: PropTypes.bool,
   large: PropTypes.bool,
   open: PropTypes.bool,  // optional override for forcing open
-  onClose: PropTypes.func,
+  onCancel: PropTypes.func,
   children: PropTypes.node, // numbers, string, DOM elements, arrays, fragments, ...
 };
 
@@ -137,7 +143,7 @@ Modal.defaultProps = {
   titleUnderline: false,
   large: false,
   open: false,
-  onClose: null,
+  onCancel: null,
 };
 
 export default Modal;

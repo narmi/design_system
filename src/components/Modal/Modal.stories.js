@@ -43,8 +43,8 @@ WithTitleUnderline.args = {
   ...Small.args,
   titleUnderline: true,
 };
-export const OnClose = Template.bind({});
-OnClose.args = {
+export const OnCancel = Template.bind({});
+OnCancel.args = {
   ...Small.args,
-  onClose: () => alert("Modal close callback!")
+  onCancel: () => alert("Modal cancel callback!")
 };

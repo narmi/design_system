@@ -26,11 +26,7 @@ const StyledDiv = styled.div`
 `;
 
 function Button1(props) {
-  return (
-    <StyledButton {...props}>
-      {props.text}
-    </StyledButton>
-  );
+  return <StyledButton {...props}>{props.text}</StyledButton>;
 }
 
 function Button2(props) {
@@ -47,7 +43,7 @@ const ButtonGroup = (props) => {
   return (
     <StyledDiv>
       <Button1 {...primaryProps} />
-      <Button2 {...secondaryProps}/>
+      <Button2 {...secondaryProps} />
     </StyledDiv>
   );
 };
@@ -61,19 +57,19 @@ ButtonGroup.propTypes = {
     text: PropTypes.string,
     onClick: PropTypes.func,
   }),
-  
+
   children: PropTypes.node, // numbers, string, DOM elements, arrays, fragments, ...
 };
 
 ButtonGroup.defaultProps = {
-  primaryButton:{
+  primaryButton: {
     text: "Button",
     onClick: () => console.log("Button"),
   },
-  secondaryButton:{
+  secondaryButton: {
     text: "Cancel",
     onClick: () => console.log("Cancel"),
-  }
+  },
 };
 
 export default ButtonGroup;

@@ -41,6 +41,7 @@ const GlobalStyles = createGlobalStyle`
     --nds-grey-placeholder: #8c8c8c;
     --nds-grey-text: #4c4c4c;
     --nds-grey-scrim-light: ${(p) => lighten(0.3, "rgba(80, 80, 80, 0.7)")};
+    --nds-grey-hover: rgba(42,68,148,0.05);
     --nds-white: ${ndsWhite};
     --nds-black: #333;
     --nds-red-error: ${errorRed};
@@ -56,7 +57,6 @@ const GlobalStyles = createGlobalStyle`
     --nds-secondary-color: ${(p) => Theme.secondaryColor(p)};
 
     --nds-dropshadow-dark: 0 2px 12px rgba(80, 80, 80, 0.2);
-    --nds-grey-hover: rgba(42,68,148,0.05);
   }
   body {
     margin: 0;

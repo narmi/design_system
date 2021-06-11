@@ -21,6 +21,7 @@ const StyledHeader = styled.span`
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     font-size: 12px;
   }
+}
 `;
 const StyledList = styled.ul`
   list-style-type: none;

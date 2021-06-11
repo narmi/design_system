@@ -16,16 +16,16 @@ const DefaultArgs = {
     onClick: () => console.log("Button"),
   },
   secondaryButton: {
-    text: "Cancel",
+    text: "Cancel", 
     onClick: () => console.log("Cancel"),
-  },
+  }
 };
 
 export const ButtonGroupTest = Template.bind({});
 ButtonGroupTest.args = {
   ...DefaultArgs,
   primaryButton: {
-    text: "Save",
+    text: "Save", 
     onClick: () => console.log("Save"),
-  },
+  }
 };

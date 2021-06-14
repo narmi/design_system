@@ -54,8 +54,8 @@ const StyledListItem = styled.li`
 const List = (props) => {
   let divided = props.divided;
   let horizontal = props.horizontal;
-  let items = props.items;
-  let isArray = Array.isArray(props.items);
+  let items = props.children;
+  let isArray = Array.isArray(props.children);
   let els = isArray
     ? items.map((item, idx) => (
         <StyledList
@@ -89,14 +89,18 @@ List.propTypes = {
   horizontal: PropTypes.bool,
   divided: PropTypes.bool,
   hoverable: PropTypes.bool,
-  items: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  children: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.node,
+  ]),
 };
 
 List.defaultProps = {
   horizontal: false,
   divided: false,
   hoverable: true,
-  items: {},
+  children: {},
 };
 
 export default List;

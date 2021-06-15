@@ -7,6 +7,7 @@ const disabledStyles = css`
   background-color: var(--nds-grey-disabled);
   border-color: var(--nds-grey-disabled);
   color: var(--nds-white);
+  pointer-events: none;  
 
   &:hover {
     /* explicitly remains same */

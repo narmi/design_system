@@ -17,6 +17,7 @@ const StyledGroup = styled.div`
   box-sizing: border-box;
   border: 1px solid var(--nds-grey-disabled);
   border-radius: 4px;
+  background: --nds-white;
   position: relative;
   padding: 19px 12px 5px;
   display: flex;
@@ -83,6 +84,7 @@ const StyledLabel = styled.label`
   font-size: 16px;
   font-family: var(--nds-font-family);
   font-weight: 400;
+  pointer-events: none;
 
   ${StyledInput}:focus ~ & {
     color: var(--nds-primary-color);

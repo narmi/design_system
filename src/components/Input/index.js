@@ -17,6 +17,7 @@ const StyledGroup = styled.div`
   box-sizing: border-box;
   border: 1px solid var(--nds-grey-disabled);
   border-radius: 4px;
+  background: var(--nds-white);
   position: relative;
   padding: 19px 12px 5px;
   display: flex;

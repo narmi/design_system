@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Typography from "components/Typography";
 import { deviceBreakpoints } from "../../globalStyles";
 
 const StyledListWrapper = styled.div`
@@ -54,19 +55,20 @@ const StyledListItem = styled.li`
 const List = (props) => {
   let divided = props.divided;
   let horizontal = props.horizontal;
-  let items = props.children;
-  let isArray = Array.isArray(props.children);
+  let isArray = Array.isArray(props.items);
   let els = isArray
-    ? items.map((item, idx) => (
+    ? props.items.map((item, idx) => (
         <StyledList
           divided={divided}
           horizontal={horizontal}
           key={"List" + idx}
         >
-          <StyledListItem hoverable={props.hoverable}>{item}</StyledListItem>
+          <StyledListItem hoverable={props.hoverable}>
+            {props.renderItem(item)}
+          </StyledListItem>
         </StyledList>
       ))
-    : Object.keys(items).map((index) => (
+    : Object.keys(props.items).map((index) => (
         <StyledList
           divided={divided}
           horizontal={horizontal}
@@ -75,9 +77,9 @@ const List = (props) => {
           <li>
             <StyledHeader>{index}</StyledHeader>
           </li>
-          {items[index].map((c, idx) => (
+          {props.items[index].map((c, idx) => (
             <StyledListItem hoverable={props.hoverable} key={"ListItem" + idx}>
-              <span> {c} </span>
+              {props.renderItem(c)}
             </StyledListItem>
           ))}
         </StyledList>
@@ -85,11 +87,16 @@ const List = (props) => {
   return <StyledListWrapper {...props}>{els}</StyledListWrapper>;
 };
 
+const renderDefaultItem = (item) => {
+  return <Typography>{item}</Typography>;
+};
+
 List.propTypes = {
   horizontal: PropTypes.bool,
   divided: PropTypes.bool,
   hoverable: PropTypes.bool,
-  children: PropTypes.oneOfType([
+  renderItem: PropTypes.func,
+  items: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
     PropTypes.node,
@@ -100,7 +107,8 @@ List.defaultProps = {
   horizontal: false,
   divided: false,
   hoverable: true,
-  children: {},
+  renderItem: renderDefaultItem,
+  items: [],
 };
 
 export default List;

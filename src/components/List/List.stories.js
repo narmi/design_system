@@ -1,5 +1,6 @@
 import React from "react";
 import { default as ListComponent } from "components/List";
+import Typography from "components/Typography";
 import { Centered } from "../../decorators";
 
 export default {
@@ -19,39 +20,44 @@ List.args = {
   ...DefaultArgs,
   horizontal: true,
   hoverable: true,
-  children: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
+  items: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
 };
 
 export const CategoryList = Template.bind({});
 CategoryList.args = {
   ...DefaultArgs,
   hoverable: true,
-  children: {
+  items: {
     Checking: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
     Savings: [<a>Primary Savings-2000</a>, <a>Car Savings-4232</a>],
     Loans: [<a>Mortgage-3242</a>, <a>Auto Loan-8493</a>],
   },
 };
 
-export const ListChildren = () => {
-  const children = [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>];
+const renderItemMenu = (item) => {
   return (
-    <List horizontal={false} hoverable={true}>
-      {children}
-    </List>
+    <a href={item} key={item}>
+      <Typography>{item}</Typography>
+    </a>
   );
 };
 
-export const CategoryListChildren = () => {
-  const children = {
+export const ListCustomItemRender = Template.bind({});
+ListCustomItemRender.args = {
+  ...DefaultArgs,
+  hoverable: true,
+  renderItem: renderItemMenu,
+  items: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
+};
+
+export const CategoryListCustomItemRender = Template.bind({});
+CategoryListCustomItemRender.args = {
+  ...DefaultArgs,
+  hoverable: true,
+  renderItem: renderItemMenu,
+  items: {
     Checking: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
     Savings: [<a>Primary Savings-2000</a>, <a>Car Savings-4232</a>],
     Loans: [<a>Mortgage-3242</a>, <a>Auto Loan-8493</a>],
-  };
-
-  return (
-    <List horizontal={false} hoverable={true}>
-      {children}
-    </List>
-  );
+  },
 };

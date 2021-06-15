@@ -43,38 +43,31 @@ const HamburgerMenuSidebar = () => {
 };
 
 const AccountsList = (
-  <List
-    horizontal={true}
-    divided={true}
-    style={{ padding: "20px" }}
-    items={{
+  <List horizontal={true} divided={true} style={{ padding: "20px" }}>
+    {{
       Checking: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
       Savings: [<a>Primary Savings-2000</a>, <a>Car Savings-4232</a>],
       Loans: [<a>Mortgage-3242</a>, <a>Auto Loan-8493</a>],
     }}
-  />
+  </List>
 );
 
 export const UserList = (
-  <List
-    items={[
-      <span>Link a new profile</span>,
-      <span>Settings</span>,
-      <span>Log out</span>,
-      <span>Forget this device</span>,
-    ]}
-  />
+  <List>
+    <span>Link a new profile</span>
+    <span>Settings</span>
+    <span>Log out</span>
+    <span>Forget this device</span>
+  </List>
 );
 
 export const ToolsList = (
-  <List
-    items={[
-      <span>Free Credit Score Check</span>,
-      <span>Open a new account</span>,
-      <span>Pay a Mortgage</span>,
-      <span>Book a Travel</span>,
-    ]}
-  />
+  <List>
+    <span>Free Credit Score Check</span>
+    <span>Open a new account</span>
+    <span>Pay a Mortgage</span>
+    <span>Book a Travel</span>
+  </List>
 );
 
 export const NavBarMenu = Template.bind({});

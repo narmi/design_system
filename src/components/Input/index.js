@@ -84,7 +84,6 @@ const StyledLabel = styled.label`
   font-size: 16px;
   font-family: var(--nds-font-family);
   font-weight: 400;
-  pointer-events: none;
 
   ${StyledInput}:focus ~ & {
     color: var(--nds-primary-color);

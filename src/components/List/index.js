@@ -101,7 +101,6 @@ List.propTypes = {
     PropTypes.object,
     PropTypes.node,
   ]),
-  children: PropTypes.node,
 };
 
 List.defaultProps = {
@@ -109,8 +108,7 @@ List.defaultProps = {
   divided: false,
   hoverable: true,
   renderItem: renderDefaultItem,
-  items: {},
-  children: null,
+  items: [],
 };
 
 export default List;

@@ -34,10 +34,10 @@ CategoryList.args = {
   },
 };
 
-const renderItemMenu = (obj) => {
+const renderItemMenu = (item) => {
   return (
-    <a href={obj.url} key={obj}>
-      <Typography style={{ color: "red" }}>{obj}</Typography>
+    <a href={item} key={item}>
+      <Typography>{item}</Typography>
     </a>
   );
 };

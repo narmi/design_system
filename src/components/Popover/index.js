@@ -35,6 +35,9 @@ const StyledWrapper = styled.span`
   &:hover ${StyledPopover} {
     visibility: visible;
   }
+  :hover ${StyledLabel} {
+    color: ${(props) => (props.hoverable ? "var(--nds-primary-color)" : null)};
+  }
 `;
 
 const StyledLabel = styled.span`

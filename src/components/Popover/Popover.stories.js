@@ -29,7 +29,6 @@ const StyledList = styled.ul`
   margin-block-start: 0;
   white-space: nowrap;
   padding: 12px 16px;
-  color: var(--nds-grey-text);
   margin: 0;
 
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
@@ -69,7 +68,9 @@ export const NavMenu = ({ divided, horizontal }) => {
         <StyledHeader>{header}</StyledHeader>
       </li>
       {items[header].map((c) => (
-        <li key={c}>{c}</li>
+        <Typography>
+          <li key={c}>{c}</li>
+        </Typography>
       ))}
     </StyledList>
   ));

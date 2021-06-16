@@ -29,7 +29,7 @@ const StyledList = styled.ul`
   margin-block-start: 0;
   white-space: nowrap;
   padding: 12px 16px;
-  color: #4c4c4c;
+  color: var(--nds-grey-text);
   margin: 0;
 
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {

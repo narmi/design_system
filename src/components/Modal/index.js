@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 import { X } from "react-feather";
 
@@ -240,7 +240,6 @@ Modal.propTypes = {
   leftActions: PropTypes.array, // list of {action: () => (), title: 'Title'} actions
   successLabel: PropTypes.node,
   cancelLabel: PropTypes.node,
-  onCancel: PropTypes.func,
   onCancel: PropTypes.func,
   children: PropTypes.node, // numbers, string, DOM elements, arrays, fragments, ...
 };

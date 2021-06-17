@@ -55,7 +55,7 @@ const AccountsList = (
   />
 );
 
-export const UserList = (
+const UserList = (
   <List
     items={[
       <span>Link a new profile</span>,
@@ -66,7 +66,7 @@ export const UserList = (
   />
 );
 
-export const ToolsList = (
+const ToolsList = (
   <List
     items={[
       <span>Free Credit Score Check</span>,

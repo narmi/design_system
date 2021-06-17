@@ -15,9 +15,13 @@ const Template = (args) => <Sidebar {...args} />;
 export const SidebarMenu = Template.bind({});
 SidebarMenu.args = {
   icon: <Menu />,
-  menuItems: [
-    <Typography>Dashboard</Typography>,
-    <Typography>Documents</Typography>,
-    <Typography>Support</Typography>,
-  ],
+  menuItems: (
+    <div
+      style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}
+    >
+      <Typography>Dashboard</Typography>
+      <Typography>Documents</Typography>
+      <Typography>Support</Typography>
+    </div>
+  ),
 };

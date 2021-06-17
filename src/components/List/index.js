@@ -60,10 +60,6 @@ const StyledListItem = styled.li`
       props.hoverable ? "var(--nds-grey-hover)" : null};
   }
 `;
-// const StyledCategory = styled.li`:not(:last-of-type)
-//   padding-right: 5px;
-//   padding-left: 15px;
-// `;
 
 const List = (props) => {
   let divided = props.divided;

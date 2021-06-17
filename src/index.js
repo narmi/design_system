@@ -8,7 +8,8 @@ const List = require("./components/List").default;
 const Icon = require("./components/Icon/").default;
 const Typography = require("./components/Typography/").default;
 const Modal = require("./components/Modal").default;
-const {useModal} = require("./components/Modal");
+const { useModal } = require("./components/Modal");
+const Sidebar = require("./components/Sidebar").default;
 const GlobalStyles = require("./globalStyles").default;
 
 module.exports = {
@@ -23,5 +24,6 @@ module.exports = {
   Icon,
   Modal,
   useModal,
+  Sidebar,
   GlobalStyles,
 };

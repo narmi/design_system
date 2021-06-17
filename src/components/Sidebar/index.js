@@ -64,9 +64,7 @@ const Sidebar = (props) => {
         <CloseIcon slideFromRight={props.slideFromRight}>
           <X onClick={closeSidebar} />
         </CloseIcon>
-        {props.menuItems.map((option) => (
-          <div>{option}</div>
-        ))}
+        {props.menuItems}
       </StyledSideBar>
     </>
   );

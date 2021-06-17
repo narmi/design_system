@@ -23,9 +23,7 @@ export const SidebarMenu = Template.bind({});
 SidebarMenu.args = {
   icon: <Menu />,
   menuItems: (
-    <StyledSidebarMenu
-      style={{ display: "flex", flexDirection: "column", marginTop: "10px" }}
-    >
+    <StyledSidebarMenu>
       <Typography>Dashboard</Typography>
       <Typography>Documents</Typography>
       <Typography>Support</Typography>

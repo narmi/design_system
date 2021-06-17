@@ -25,7 +25,6 @@ const StyledList = styled.ul`
   padding-inline-start: 0;
   margin-block-start: 0;
   white-space: nowrap;
-  padding: 12px 16px;
   margin: 0;
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
     border-right: ${(p) =>
@@ -46,6 +45,7 @@ const StyledList = styled.ul`
 `;
 
 const StyledListItem = styled.li`
+  padding: 12px 16px;
   :hover {
     background-color: ${(props) =>
       props.hoverable ? "var(--nds-grey-hover)" : null};

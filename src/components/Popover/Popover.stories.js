@@ -68,7 +68,9 @@ export const NavMenu = ({ divided, horizontal }) => {
         <StyledHeader>{header}</StyledHeader>
       </li>
       {items[header].map((c) => (
-        <li key={c}>{c}</li>
+        <Typography>
+          <li key={c}>{c}</li>
+        </Typography>
       ))}
     </StyledList>
   ));

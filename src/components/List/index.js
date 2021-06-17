@@ -39,18 +39,27 @@ const StyledList = styled.ul`
       p.divided ? "1px solid var(--nds-grey-disabled)" : null};
   }
 
+  not:first-child {
+    padding-right: 25px;
+    padding-left: 55px;
+  }
+
   &:last-child {
     border-right: none;
   }
 `;
 
 const StyledListItem = styled.li`
-  padding: 12px 16px;
+  padding: ${(props) => (props.isArray ? "12px 16px" : "")};
   :hover {
     background-color: ${(props) =>
       props.hoverable ? "var(--nds-grey-hover)" : null};
   }
 `;
+// const StyledCategory = styled.li`:not(:last-of-type)
+//   padding-right: 5px;
+//   padding-left: 15px;
+// `;
 
 const List = (props) => {
   let divided = props.divided;
@@ -63,7 +72,7 @@ const List = (props) => {
           horizontal={horizontal}
           key={"List" + idx}
         >
-          <StyledListItem hoverable={props.hoverable}>
+          <StyledListItem isArray={true} hoverable={props.hoverable}>
             {props.renderItem(item)}
           </StyledListItem>
         </StyledList>
@@ -78,7 +87,11 @@ const List = (props) => {
             <StyledHeader>{index}</StyledHeader>
           </li>
           {props.items[index].map((c, idx) => (
-            <StyledListItem hoverable={props.hoverable} key={"ListItem" + idx}>
+            <StyledListItem
+              isArray={false}
+              hoverable={props.hoverable}
+              key={"ListItem" + idx}
+            >
               {props.renderItem(c)}
             </StyledListItem>
           ))}

@@ -39,9 +39,13 @@ const StyledList = styled.ul`
       p.divided ? "1px solid var(--nds-grey-disabled)" : null};
   }
 
-  not:first-child {
-    padding-right: 25px;
-    padding-left: 55px;
+  :first-child {
+    padding-right: ${(p) => (p.isArray ? "" : "15px")};
+  }
+
+  :nth-child(n + 2) {
+    padding-right: ${(p) => (p.isArray ? "" : "25px")};
+    padding-left: ${(p) => (p.isArray ? "" : "15px")};
   }
 
   &:last-child {
@@ -70,9 +74,10 @@ const List = (props) => {
         <StyledList
           divided={divided}
           horizontal={horizontal}
+          isArray={isArray}
           key={"List" + idx}
         >
-          <StyledListItem isArray={true} hoverable={props.hoverable}>
+          <StyledListItem isArray={isArray} hoverable={props.hoverable}>
             {props.renderItem(item)}
           </StyledListItem>
         </StyledList>
@@ -81,6 +86,7 @@ const List = (props) => {
         <StyledList
           divided={divided}
           horizontal={horizontal}
+          isArray={isArray}
           key={"List" + index}
         >
           <li>
@@ -88,7 +94,7 @@ const List = (props) => {
           </li>
           {props.items[index].map((c, idx) => (
             <StyledListItem
-              isArray={false}
+              isArray={isArray}
               hoverable={props.hoverable}
               key={"ListItem" + idx}
             >

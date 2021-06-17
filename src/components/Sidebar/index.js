@@ -47,11 +47,6 @@ const CloseIcon = styled.span`
   padding-top: 15px;
 `;
 
-const SideBarItems = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 const Sidebar = (props) => {
   const [open, setOpen] = React.useState(false);
   const openSidebar = () => {
@@ -69,7 +64,7 @@ const Sidebar = (props) => {
         <CloseIcon slideFromRight={props.slideFromRight}>
           <X onClick={closeSidebar} />
         </CloseIcon>
-        <SideBarItems>{props.menuItems}</SideBarItems>
+        {props.menuItems}
       </StyledSideBar>
     </>
   );

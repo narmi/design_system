@@ -39,15 +39,6 @@ const StyledList = styled.ul`
       p.divided ? "1px solid var(--nds-grey-disabled)" : null};
   }
 
-  :first-child {
-    padding-right: ${(p) => (p.isArray ? "" : "15px")};
-  }
-
-  :nth-child(n + 2) {
-    padding-right: ${(p) => (p.isArray ? "" : "25px")};
-    padding-left: ${(p) => (p.isArray ? "" : "15px")};
-  }
-
   &:last-child {
     border-right: none;
   }
@@ -55,6 +46,9 @@ const StyledList = styled.ul`
 
 const StyledListItem = styled.li`
   padding: ${(props) => (props.isArray ? "12px 16px" : "")};
+  padding: 10px;
+  // padding-top: 10px;
+  // padding-bottom: 10px;
   :hover {
     background-color: ${(props) =>
       props.hoverable ? "var(--nds-grey-hover)" : null};
@@ -85,7 +79,13 @@ const List = (props) => {
           isArray={isArray}
           key={"List" + index}
         >
-          <li>
+          <li
+            style={{
+              paddingLeft: "15px",
+              paddingBottom: "5px",
+              paddingTop: "5px",
+            }}
+          >
             <StyledHeader>{index}</StyledHeader>
           </li>
           {props.items[index].map((c, idx) => (

@@ -12,10 +12,6 @@ const StyledCard = styled.div`
 `;
 
 const StyledDiv = styled.div`
-  box-shadow: var(--nds-dropshadow-dark);
-  background-color: grey;
-  border-radius: 4px;
-  shadow: Blur 12 px;
   margin-top: 20px;
 `;
 

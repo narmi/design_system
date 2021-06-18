@@ -38,29 +38,19 @@ const HamburgerMenuSidebar = () => {
   );
 };
 
-const StyledSubMenuItem = styled.a`
-  padding-left: 3px;
-  padding-right: 3px;
-`;
-
 const AccountsList = (
   <List
     horizontal={true}
     divided={true}
+    style={{ padding: "20px 0px 20px 0px" }}
     items={{
-      Checking: [
-        <StyledSubMenuItem>Primary Checking-1111</StyledSubMenuItem>,
-        <StyledSubMenuItem>Joint Checking-2314</StyledSubMenuItem>,
-      ],
+      Checking: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
       Savings: [
-        <StyledSubMenuItem>Primary Savings-2000</StyledSubMenuItem>,
-        <StyledSubMenuItem>Car Savings-4232</StyledSubMenuItem>,
-        <StyledSubMenuItem>Helicopter Savings-4232</StyledSubMenuItem>,
+        <a>Primary Savings-2000</a>,
+        <a>Car Savings-4232</a>,
+        <a>Helicopter Savings-4232</a>,
       ],
-      Loans: [
-        <StyledSubMenuItem>Mortgage-3242</StyledSubMenuItem>,
-        <StyledSubMenuItem>Auto Loan-8493</StyledSubMenuItem>,
-      ],
+      Loans: [<a>Mortgage-3242</a>, <a>Auto Loan-8493</a>],
     }}
   />
 );

@@ -17,7 +17,9 @@ const StyledHeader = styled.div`
   font-weight: 600;
   font-family: var(--nds-font-family);
   font-size: 16px;
-  padding-top: 0;
+  padding-top: 8px;
+  padding-left: 16px;
+  padding-bottom: 8px;
   width: 100%;
 `;
 
@@ -46,7 +48,7 @@ const StyledList = styled.ul`
 `;
 
 const StyledListItem = styled.li`
-  padding: 10px;
+  padding: 12px 16px;
   :hover {
     background-color: ${(props) =>
       props.hoverable ? "var(--nds-grey-hover)" : null};
@@ -74,13 +76,7 @@ function renderCategoryList(props, index) {
       horizontal={props.horizontal}
       key={"List" + index}
     >
-      <li
-        style={{
-          paddingLeft: "15px",
-          paddingBottom: "5px",
-          paddingTop: "5px",
-        }}
-      >
+      <li>
         <StyledHeader>{index}</StyledHeader>
       </li>
       {props.items[index].map((c, idx) => (

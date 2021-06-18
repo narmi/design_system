@@ -42,10 +42,14 @@ const AccountsList = (
   <List
     horizontal={true}
     divided={true}
-    style={{ padding: "20px" }}
+    style={{ padding: "20px 0px 20px 0px" }}
     items={{
       Checking: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
-      Savings: [<a>Primary Savings-2000</a>, <a>Car Savings-4232</a>],
+      Savings: [
+        <a>Primary Savings-2000</a>,
+        <a>Car Savings-4232</a>,
+        <a>Helicopter Savings-4232</a>,
+      ],
       Loans: [<a>Mortgage-3242</a>, <a>Auto Loan-8493</a>],
     }}
   />

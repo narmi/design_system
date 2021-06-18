@@ -28,22 +28,19 @@ const StyledNavLeft = styled.span`
     padding-left: 20px;
   }
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
-    left: 31px;
+    left: ${(props) => (props.logo ? "31px" : "0px")};
   }
   @media ${`(min-width: ${deviceBreakpoints.laptop})`} {
-    left: 62px;
+    left: ${(props) => (props.logo ? "62px" : "0px")};
   }
   @media ${`(min-width: ${deviceBreakpoints.desktop})`} {
-    left: 70px;
+    left: ${(props) => (props.logo ? "70px" : "0px")};
   }
 
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
     position: relative;
     align-items: center;
     display: flex;
-  }
-  & ${StyledMenuItem}:first-child {
-    padding-left: ${(props) => (props.logo ? null : "0px")};
   }
 `;
 

@@ -7,7 +7,7 @@ import { X } from "react-feather";
 
 import Button from "components/Button";
 import PlainButton from "components/PlainButton";
-import {deviceBreakpoints} from "../../globalStyles";
+import { deviceBreakpoints } from "../../globalStyles";
 
 const StyledOverlay = styled.div`
   height: 100vh;
@@ -102,7 +102,7 @@ const StyledActionBar = styled.div`
 
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     // Large modals on mobile have a vertical ActionBar
-    flex-flow: ${p => p.large ? "column-reverse nowrap" : null};
+    flex-flow: ${(p) => (p.large ? "column-reverse nowrap" : null)};
   }
 `;
 
@@ -120,11 +120,11 @@ const StyledActionBarRight = styled.div`
 
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     // Large modals on mobile display centered Actions
-    justify-content: ${p => p.large ? "center" : null};
+    justify-content: ${(p) => (p.large ? "center" : null)};
 
     > * {
-      margin-left: ${p => p.large ? "unset" : null};
-      margin-bottom: ${p => p.large ? "16px" : null};
+      margin-left: ${(p) => (p.large ? "unset" : null)};
+      margin-bottom: ${(p) => (p.large ? "16px" : null)};
     }
   }
 `;
@@ -145,8 +145,8 @@ const StyledActionBarLeft = styled.div`
 
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     // Large modals on mobile display centered Actions
-    padding-right: ${p => p.large ? 0 : null};
-    justify-content: ${p => p.large ? "center" : null};
+    padding-right: ${(p) => (p.large ? 0 : null)};
+    justify-content: ${(p) => (p.large ? "center" : null)};
   }
 `;
 
@@ -159,7 +159,7 @@ const StyledIcon = styled.span`
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     top: 20px;
     right: 20px;
-    visibility: ${(props) => props.large ? "visible" : "hidden"};
+    visibility: ${(props) => (props.large ? "visible" : "hidden")};
   }
 `;
 

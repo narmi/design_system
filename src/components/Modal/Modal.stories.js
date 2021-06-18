@@ -67,6 +67,27 @@ Large.args = {
     </div>,
   ],
 };
+export const OverflowingText = Template.bind({});
+OverflowingText.args = {
+  ...Small.args,
+  large: true,
+  children: [
+    <div>
+      {[...Array(10).keys()].map((k) => (
+        <p>
+          Some text. Some text. Some text. Some text. Some text. Some text. Some
+          text. Some text. Some text. Some text. Some text. Some text. Some
+          text. Some text. Some text. Some text. Some text. Some text. Some
+          text. Some text. Some text. Some text. Some text. Some text.
+        </p>
+      ))}
+    </div>,
+  ],
+  cancelLabel: "Cancel",
+  successLabel: "Submit",
+  onSuccess: () => alert("Modal success callback!"),
+  onCancel: () => alert("Modal cancel callback!"),
+};
 export const WithTitleUnderline = Template.bind({});
 WithTitleUnderline.args = {
   ...Small.args,

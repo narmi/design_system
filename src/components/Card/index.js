@@ -6,8 +6,6 @@ const StyledCard = styled.div`
   box-shadow: var(--nds-dropshadow-dark);
   border-radius: 4px;
   shadow: Blur 12 px;
-  width: 400px;
-  height: 200px;
   padding: 20px;
 `;
 
@@ -17,7 +15,7 @@ const StyledDiv = styled.div`
 
 const Card = (props) => {
   return (
-    <StyledCard>
+    <StyledCard {...props}>
       <div>{props.title}</div>
       <StyledDiv>{props.children}</StyledDiv>
     </StyledCard>

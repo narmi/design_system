@@ -8,7 +8,6 @@ import { Centered } from "../../decorators";
 export default {
   title: "Components/Card",
   component: Card,
-  decorators: [Centered],
 };
 
 const Template = (args) => <Card {...args} />;
@@ -106,4 +105,95 @@ MuliButtons.args = {
       </Button>
     </div>
   ),
+};
+
+const SampleTitle = () => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        "align-items": "center",
+        "justify-content": "space-between",
+        "padding-right": "20px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          "align-items": "center",
+        }}
+      >
+        <Typography style={{ fontWeight: "600", color: "#2A4494" }}>
+          TITLE
+        </Typography>
+        <div
+          style={{
+            color: "#2A4494",
+            height: "30px",
+            display: "flex",
+            "flex-direction": "column",
+          }}
+        >
+          <ArrowRight /> <ArrowLeft style={{ marginTop: "-3px" }} />
+        </div>
+      </div>
+      <Button
+        transparent={true}
+        secondary={true}
+        style={{ fontSize: "10px", width: "5px", color: "grey" }}
+      >
+        Press
+      </Button>
+    </div>
+  );
+};
+
+const SampleCard = () => {
+  return (
+    <Card
+      style={{ marginRight: "40px", width: "600px" }}
+      title={<SampleTitle />}
+    >
+      <div
+        style={{
+          display: "flex",
+          "flex-direction": "column",
+          left: "0",
+          width: "75px",
+        }}
+      >
+        <Button
+          style={{ color: "var(--nds-secondary-color)" }}
+          transparent={true}
+          secondary={true}
+        >
+          Button 1
+        </Button>
+        <Button
+          style={{ color: "var(--nds-secondary-color)" }}
+          transparent={true}
+          secondary={true}
+        >
+          Button 2
+        </Button>
+        <Button
+          style={{ color: "var(--nds-secondary-color)" }}
+          transparent={true}
+          secondary={true}
+        >
+          Button 3
+        </Button>
+      </div>
+    </Card>
+  );
+};
+
+export const MultipleCards = () => {
+  return (
+    <div style={{ display: "flex", "flex-direction": "row", width: "1000px" }}>
+      <SampleCard style={{ marginRight: "40px" }} />
+      <SampleCard style={{ marginRight: "40px" }} />
+      <SampleCard style={{ marginRight: "40px" }} />
+    </div>
+  );
 };

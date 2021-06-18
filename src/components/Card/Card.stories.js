@@ -48,6 +48,29 @@ LineItemCard.args = {
   children: <div>This is a piece of text that explains something.</div>,
 };
 
+export const OneButtonCard = Template.bind({});
+OneButtonCard.args = {
+  ...DefaultArgs,
+  title: (
+    <div
+      style={{
+        display: "flex",
+        "justify-content": "space-between",
+        "align-items": "center",
+      }}
+    >
+      <Typography>TITLE</Typography>
+      <Button
+        style={{ color: "var(--nds-secondary-color)" }}
+        transparent={true}
+        secondary={true}
+      >
+        Button
+      </Button>
+    </div>
+  ),
+};
+
 export const MuliButtons = Template.bind({});
 MuliButtons.args = {
   ...DefaultArgs,

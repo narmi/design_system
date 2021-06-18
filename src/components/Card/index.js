@@ -17,7 +17,7 @@ const Card = (props) => {
   return (
     <StyledCard {...props}>
       <div>{props.title}</div>
-      <StyledDiv>{props.children}</StyledDiv>
+      {props.children ? <StyledDiv>{props.children}</StyledDiv> : ""}
     </StyledCard>
   );
 };

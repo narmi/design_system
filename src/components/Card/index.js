@@ -2,34 +2,34 @@ import React from "react";
 import PropTypes, { bool } from "prop-types";
 import styled, { css } from "styled-components";
 
-
 const StyledCard = styled.div`
-  background-color: black;
+  box-shadow: var(--nds-dropshadow-dark);
   border-radius: 4px;
   shadow: Blur 12 px;
+  width: 400px;
+  height: 200px;
+  padding: 20px;
 `;
 
 const StyledDiv = styled.div`
-  box-shadow: 0px 2px 12px 0px #5050500D;
-  background-color: white;
+  box-shadow: var(--nds-dropshadow-dark);
+  background-color: grey;
   border-radius: 4px;
   shadow: Blur 12 px;
+  margin-top: 20px;
 `;
 
 const Card = (props) => {
   return (
     <StyledCard>
-      <StyledDiv>
-          <p>yoyoyy</p>
-      </StyledDiv>
+      <div>{props.title}</div>
+      <StyledDiv>{props.children}</StyledDiv>
     </StyledCard>
   );
 };
 
 Card.propTypes = {
-  primaryLabel: PropTypes.string,
-  secondaryLabel: PropTypes.string,
-  // either label or children are required
+  title: PropTypes.node,
   children: PropTypes.node, // numbers, string, DOM elements, arrays, fragments, ...
 };
 

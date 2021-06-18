@@ -17,6 +17,7 @@ const StyledHeader = styled.div`
   font-weight: 600;
   font-family: var(--nds-font-family);
   font-size: 16px;
+  line-height: 20px;
   padding-top: 8px;
   padding-left: 16px;
   padding-bottom: 8px;

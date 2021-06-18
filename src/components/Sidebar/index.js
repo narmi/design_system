@@ -64,7 +64,7 @@ const Sidebar = (props) => {
         <CloseIcon slideFromRight={props.slideFromRight}>
           <X onClick={closeSidebar} />
         </CloseIcon>
-        {props.menuItems}
+        {props.children}
       </StyledSideBar>
     </>
   );
@@ -72,7 +72,6 @@ const Sidebar = (props) => {
 
 Sidebar.propTypes = {
   icon: PropTypes.node,
-  menuItems: PropTypes.node,
   slideFromRight: PropTypes.bool,
   children: PropTypes.node, // numbers, string, DOM elements, arrays, fragments, ...
 };

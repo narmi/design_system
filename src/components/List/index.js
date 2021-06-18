@@ -12,12 +12,13 @@ const StyledListWrapper = styled.div`
   }
 `;
 
-const StyledHeader = styled.span`
+const StyledHeader = styled.div`
   color: var(--nds-black);
   font-weight: 600;
   font-family: var(--nds-font-family);
   font-size: 16px;
-  line-height: 20px;
+  padding-top: 0;
+  width: 100%;
 `;
 
 const StyledList = styled.ul`
@@ -45,10 +46,7 @@ const StyledList = styled.ul`
 `;
 
 const StyledListItem = styled.li`
-  padding: ${(props) => (props.isArray ? "12px 16px" : "")};
   padding: 10px;
-  // padding-top: 10px;
-  // padding-bottom: 10px;
   :hover {
     background-color: ${(props) =>
       props.hoverable ? "var(--nds-grey-hover)" : null};
@@ -64,10 +62,9 @@ const List = (props) => {
         <StyledList
           divided={divided}
           horizontal={horizontal}
-          isArray={isArray}
           key={"List" + idx}
         >
-          <StyledListItem isArray={isArray} hoverable={props.hoverable}>
+          <StyledListItem hoverable={props.hoverable}>
             {props.renderItem(item)}
           </StyledListItem>
         </StyledList>
@@ -76,7 +73,6 @@ const List = (props) => {
         <StyledList
           divided={divided}
           horizontal={horizontal}
-          isArray={isArray}
           key={"List" + index}
         >
           <li
@@ -89,11 +85,7 @@ const List = (props) => {
             <StyledHeader>{index}</StyledHeader>
           </li>
           {props.items[index].map((c, idx) => (
-            <StyledListItem
-              isArray={isArray}
-              hoverable={props.hoverable}
-              key={"ListItem" + idx}
-            >
+            <StyledListItem hoverable={props.hoverable} key={"ListItem" + idx}>
               {props.renderItem(c)}
             </StyledListItem>
           ))}

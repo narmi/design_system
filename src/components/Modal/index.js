@@ -82,7 +82,8 @@ const StyledHeader = styled.div`
   color: var(--nds-black);
   width: 100%;
 
-  padding-bottom: ${(props) => (props.titleUnderline ? "6px" : "8px")};
+  padding-bottom: ${(props) => (props.titleUnderline ? "4px" : "8px")};
+  margin-bottom: ${(props) => (props.titleUnderline ? "20px" : null)};
   box-sizing: content-box;
 
   // border and extra bottom padding if titleUnderline provided

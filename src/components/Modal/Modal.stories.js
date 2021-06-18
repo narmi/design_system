@@ -47,6 +47,7 @@ export const Small = Template.bind({});
 Small.args = {
   large: false,
   title: "Title text",
+  titleUnderline: false,
   children: [
     <div>
       Some text. Some text. Some text. Some text. Some text. Some text. Some

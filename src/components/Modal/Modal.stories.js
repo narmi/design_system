@@ -133,5 +133,6 @@ MixedActions.args = {
   ...Small.args,
   successLabel: "Submit",
   onSuccess: () => alert("Modal success callback!"),
+  onCancel: () => alert("Modal cancel callback!"),
   leftActions: [{ action: () => alert("Action callback!"), title: "Callback" }],
 };

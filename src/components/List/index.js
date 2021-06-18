@@ -53,44 +53,49 @@ const StyledListItem = styled.li`
   }
 `;
 
+function renderItemList(props, item, idx) {
+  return (
+    <StyledList
+      divided={props.divided}
+      horizontal={props.horizontal}
+      key={"List" + idx}
+    >
+      <StyledListItem hoverable={props.hoverable}>
+        {props.renderItem(item)}
+      </StyledListItem>
+    </StyledList>
+  );
+}
+
+function renderCategoryList(props, index) {
+  return (
+    <StyledList
+      divided={props.divided}
+      horizontal={props.horizontal}
+      key={"List" + index}
+    >
+      <li
+        style={{
+          paddingLeft: "15px",
+          paddingBottom: "5px",
+          paddingTop: "5px",
+        }}
+      >
+        <StyledHeader>{index}</StyledHeader>
+      </li>
+      {props.items[index].map((c, idx) => (
+        <StyledListItem hoverable={props.hoverable} key={"ListItem" + idx}>
+          {props.renderItem(c)}
+        </StyledListItem>
+      ))}
+    </StyledList>
+  );
+}
+
 const List = (props) => {
-  let divided = props.divided;
-  let horizontal = props.horizontal;
-  let isArray = Array.isArray(props.items);
-  let els = isArray
-    ? props.items.map((item, idx) => (
-        <StyledList
-          divided={divided}
-          horizontal={horizontal}
-          key={"List" + idx}
-        >
-          <StyledListItem hoverable={props.hoverable}>
-            {props.renderItem(item)}
-          </StyledListItem>
-        </StyledList>
-      ))
-    : Object.keys(props.items).map((index) => (
-        <StyledList
-          divided={divided}
-          horizontal={horizontal}
-          key={"List" + index}
-        >
-          <li
-            style={{
-              paddingLeft: "15px",
-              paddingBottom: "5px",
-              paddingTop: "5px",
-            }}
-          >
-            <StyledHeader>{index}</StyledHeader>
-          </li>
-          {props.items[index].map((c, idx) => (
-            <StyledListItem hoverable={props.hoverable} key={"ListItem" + idx}>
-              {props.renderItem(c)}
-            </StyledListItem>
-          ))}
-        </StyledList>
-      ));
+  let els = Array.isArray(props.items)
+    ? props.items.map((item, idx) => renderItemList(props, item, idx))
+    : Object.keys(props.items).map((index) => renderCategoryList(props, index));
   return <StyledListWrapper {...props}>{els}</StyledListWrapper>;
 };
 

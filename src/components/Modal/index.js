@@ -37,9 +37,6 @@ const StyledCard = styled.div`
   padding: 40px;
   box-sizing: content-box;
 
-  // scrolls on overflow
-  // TODO: is max-height right? Hillary
-
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;

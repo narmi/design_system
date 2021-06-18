@@ -22,7 +22,7 @@ const StyledSidebarMenu = styled.div`
 export const SidebarMenu = Template.bind({});
 SidebarMenu.args = {
   icon: <Menu />,
-  menuItems: (
+  children: (
     <StyledSidebarMenu>
       <Typography>Dashboard</Typography>
       <Typography>Documents</Typography>

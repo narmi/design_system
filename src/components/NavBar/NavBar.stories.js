@@ -31,14 +31,10 @@ const DefaultArgs = {
 
 const HamburgerMenuSidebar = () => {
   let icon = <Menu />;
-  let menuItems = [
-    <Typography>Dashboard</Typography>,
-    <Typography>Documents</Typography>,
-    <Typography>Suppor</Typography>,
-  ];
-  menuItems = [PopoverNavBar()];
   return (
-    <Sidebar icon={icon} slideFromRight={true} menuItems={menuItems}></Sidebar>
+    <Sidebar icon={icon} slideFromRight={true}>
+      <PopoverNavBar />
+    </Sidebar>
   );
 };
 

@@ -28,13 +28,13 @@ const StyledNavLeft = styled.span`
     padding-left: 20px;
   }
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
-    left: 31px;
+    left: ${(props) => (props.logo ? "31px" : "0px")};
   }
   @media ${`(min-width: ${deviceBreakpoints.laptop})`} {
-    left: 62px;
+    left: ${(props) => (props.logo ? "62px" : "0px")};
   }
   @media ${`(min-width: ${deviceBreakpoints.desktop})`} {
-    left: 70px;
+    left: ${(props) => (props.logo ? "70px" : "0px")};
   }
 
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
@@ -91,10 +91,7 @@ const StyledMobileMenuContainer = styled.span`
 const NavBar = (props) => {
   return (
     <StyledHeader {...props}>
-      <StyledNavLeft
-        style={{ left: props.logo ? "" : "-10px" }}
-        logo={props.logo}
-      >
+      <StyledNavLeft logo={props.logo}>
         {props.logo ? <div>{props.logo}</div> : null}
         {props.leftChildren.map((option, idx) => (
           <StyledMenuItem key={idx}>{option}</StyledMenuItem>

@@ -41,6 +41,7 @@ const StyledWrapper = styled.span`
 `;
 
 const StyledChevronDown = styled(ChevronDown)`
+  margin-top: 3px;
   &:hover ${StyledChevronDown} {
     stroke-width: 3;
   }
@@ -48,6 +49,9 @@ const StyledChevronDown = styled(ChevronDown)`
 
 const StyledLabel = styled.span`
   color: var(--nds-grey-text);
+  font-weight: 400;
+  display: flex;
+  align-items: center;
   :hover {
     color: ${(props) => (props.hoverable ? "var(--nds-primary-color)" : null)};
   }

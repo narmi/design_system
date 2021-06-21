@@ -18,6 +18,7 @@ export default {
 };
 
 const StyledA = styled.a`
+  font-weight: 400;
   :hover {
     color: var(--nds-primary-color);
   }
@@ -86,7 +87,7 @@ NavBarMenu.args = {
     <Typography>
       <StyledA>Dashboard</StyledA>
     </Typography>,
-    <Popover hoverable={true} label={"Accounts"} shiftX={"-10%"}>
+    <Popover hoverable={true} label={"Accounts"} shiftX={"-0.5%"}>
       {AccountsList}
     </Popover>,
     <Typography>
@@ -95,12 +96,12 @@ NavBarMenu.args = {
     <Typography>
       <StyledA>Support</StyledA>
     </Typography>,
-    <Popover hoverable={true} label={"Tools"} shiftX={"-30%"}>
+    <Popover hoverable={true} label={"Tools"} shiftX={"-0.5%"}>
       {ToolsList}
     </Popover>,
   ],
   rightChildren: [
-    <Popover hoverable={true} label={"User Name"} shiftX={"-30%"}>
+    <Popover hoverable={true} label={"User Name"} shiftX={"-38%"}>
       {UserList}
     </Popover>,
   ],

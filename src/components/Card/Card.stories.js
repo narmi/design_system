@@ -213,7 +213,7 @@ const SampleCard = () => {
 
 export const MultipleCards = () => {
   return (
-    <div style={{ display: "flex", "flex-direction": "row", width: "1000px" }}>
+    <div style={{ display: "flex", "flex-direction": "row", width: "100%" }}>
       <SampleCard style={{ marginRight: "40px" }} />
       <SampleCard style={{ marginRight: "40px" }} />
       <SampleCard style={{ marginRight: "40px" }} />

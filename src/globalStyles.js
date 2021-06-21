@@ -53,6 +53,9 @@ const GlobalStyles = createGlobalStyle`
     --nds-primary-color-lighter: ${(p) => lighten(0.3, Theme.primaryColor(p))};
     --nds-primary-color-lightest: ${(p) =>
       lighten(0.55, Theme.primaryColor(p))};
+    
+    --nds-primary-color-lightest-2: ${(p) =>
+      lighten(0.61, Theme.primaryColor(p))};
 
     --nds-secondary-color: ${(p) => Theme.secondaryColor(p)};
 

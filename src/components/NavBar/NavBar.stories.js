@@ -20,7 +20,16 @@ export default {
 const StyledA = styled.a`
   font-weight: 400;
   :hover {
+    font-weight: 600;
     color: var(--nds-primary-color);
+  }
+  ::before {
+    display: block;
+    content: attr(data-text);
+    font-weight: 600;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
   }
 `;
 
@@ -85,16 +94,26 @@ NavBarMenu.args = {
   logo: <Icon image={Narmi} />,
   leftChildren: [
     <Typography>
-      <StyledA>Dashboard</StyledA>
+      <StyledA data-text={"Dashboard"}>Dashboard</StyledA>
     </Typography>,
-    <Popover hoverable={true} label={"Accounts"} shiftX={"-0.5%"}>
-      {AccountsList}
-    </Popover>,
+    <div style={{ position: "relative" }}>
+      <Popover
+        style={{ left: 0, position: "absolute" }}
+        hoverable={true}
+        label={"Accounts"}
+        shiftX={"-0.5%"}
+      >
+        {AccountsList}
+      </Popover>
+      {/* <span style={{"left":0, hight:"0px", top:"0", "font-weight":"600", visibility: "hidden"}} hoverable={true} label={"Accounts"} shiftX={"-0.5%"}>
+      Accountsasdl
+    </span> */}
+    </div>,
     <Typography>
-      <StyledA>Documents</StyledA>
+      <StyledA data-text={"Documents"}>Documents</StyledA>
     </Typography>,
     <Typography>
-      <StyledA>Support</StyledA>
+      <StyledA data-text={"Support"}>Support</StyledA>
     </Typography>,
     <Popover hoverable={true} label={"Tools"} shiftX={"-0.5%"}>
       {ToolsList}
@@ -119,10 +138,10 @@ NavBarMenuNoLogo.args = {
       {AccountsList}
     </Popover>,
     <Typography>
-      <StyledA>Documents</StyledA>
+      <StyledA data-text={"Documents"}>Documents</StyledA>
     </Typography>,
     <Typography>
-      <StyledA>Support</StyledA>
+      <StyledA data-text={"Support"}>Support</StyledA>
     </Typography>,
     <Popover hoverable={true} label={"Tools"} shiftX={"-30%"}>
       {ToolsList}

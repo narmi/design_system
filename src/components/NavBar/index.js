@@ -71,6 +71,7 @@ const StyledMenuItem = styled.span`
     display: none;
   }
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
+    // padding-left: 40px;
     padding-left: 40px;
   }
 `;

@@ -35,32 +35,45 @@ const StyledWrapper = styled.span`
   &:hover ${StyledPopover} {
     visibility: visible;
   }
-  :hover ${StyledLabel} {
-    color: ${(props) => (props.hoverable ? "var(--nds-primary-color)" : null)};
-  }
 `;
 
 const StyledChevronDown = styled(ChevronDown)`
   margin-top: 3px;
   &:hover ${StyledChevronDown} {
     stroke-width: 3;
+    color: ${(props) => (props.hoverable ? "var(--nds-primary-color)" : null)};
   }
 `;
 
-const StyledLabel = styled.span`
+const StyledLabel = styled.a`
   color: var(--nds-grey-text);
   font-weight: 400;
-  display: flex;
+  display: inline-block;
   align-items: center;
   :hover {
     color: ${(props) => (props.hoverable ? "var(--nds-primary-color)" : null)};
+    font-weight: 600;
   }
   color: ${(props) => (props.open ? "var(--nds-primary-color)" : null)};
   ${StyledPopover} ~ & {
     color: var(--nds-primary-color);
   }
+  ::before {
+    display: block;
+    content: attr(data-text);
+    font-weight: 600;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
+`;
+
+const StyledDiv = styled.div`
+  display: flex;
+  align-items: center;
   &:hover ${StyledChevronDown} {
     stroke-width: 3;
+    color: var(--nds-primary-color);
   }
 `;
 
@@ -86,10 +99,17 @@ const Popover = ({ label, hoverable, shiftX, shiftY, children, ...rest }) => {
 
   return (
     <StyledWrapper hoverable={hoverable}>
-      <StyledLabel open={open} hoverable={hoverable} onClick={toggleOpen}>
-        {label}
+      <StyledDiv>
+        <StyledLabel
+          data-text={label}
+          open={open}
+          hoverable={hoverable}
+          onClick={toggleOpen}
+        >
+          {label}
+        </StyledLabel>
         {chevron()}
-      </StyledLabel>
+      </StyledDiv>
       {open || hoverable ? (
         <StyledPopover
           shiftX={shiftX}

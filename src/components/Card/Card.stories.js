@@ -2,8 +2,8 @@ import React from "react";
 import Card from "components/Card";
 import Typography from "components/Typography";
 import Button from "components/Button";
+import styled from "styled-components";
 import { ArrowLeft, ArrowRight } from "react-feather";
-import { Centered } from "../../decorators";
 
 export default {
   title: "Components/Card",
@@ -11,16 +11,23 @@ export default {
 };
 
 const Template = (args) => <Card {...args} />;
-const DefaultArgs = {};
-
-export const CardTest = Template.bind({});
-CardTest.args = {
-  ...DefaultArgs,
+const DefaultArgs = {
   title: (
     <div style={{ display: "flex" }}>
       <Typography>TITLE</Typography>
     </div>
   ),
+};
+
+const StyledTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const BasicCard = Template.bind({});
+BasicCard.args = {
+  ...DefaultArgs,
   children: <div>This is a piece of text that explains something.</div>,
 };
 
@@ -28,13 +35,7 @@ export const LineItemCard = Template.bind({});
 LineItemCard.args = {
   ...DefaultArgs,
   title: (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
+    <StyledTitle>
       <Typography>TITLE</Typography>
       <Button
         style={{ padding: "0px", color: "var(--nds-secondary-color)" }}
@@ -43,7 +44,7 @@ LineItemCard.args = {
       >
         Button
       </Button>
-    </div>
+    </StyledTitle>
   ),
   children: <div>This is a piece of text that explains something.</div>,
 };
@@ -52,13 +53,7 @@ export const OneButtonCard = Template.bind({});
 OneButtonCard.args = {
   ...DefaultArgs,
   title: (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
+    <StyledTitle>
       <Typography>TITLE</Typography>
       <Button
         style={{ padding: "0px", color: "var(--nds-secondary-color)" }}
@@ -67,8 +62,23 @@ OneButtonCard.args = {
       >
         Button
       </Button>
-    </div>
+    </StyledTitle>
   ),
+};
+
+const ArrowsIcon = () => {
+  return (
+    <div
+      style={{
+        color: "var(--nds-narmi-purple)",
+        height: "30px",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <ArrowRight /> <ArrowLeft style={{ marginTop: "-3px" }} />
+    </div>
+  );
 };
 
 export const MultipleButtons = Template.bind({});
@@ -81,19 +91,12 @@ MultipleButtons.args = {
         alignItems: "center",
       }}
     >
-      <Typography style={{ fontWeight: "600", color: "#2A4494" }}>
+      <Typography
+        style={{ fontWeight: "600", color: "var(--nds-narmi-purple)" }}
+      >
         TITLE
       </Typography>
-      <div
-        style={{
-          color: "#2A4494",
-          height: "30px",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <ArrowRight /> <ArrowLeft style={{ marginTop: "-3px" }} />
-      </div>
+      <ArrowsIcon />
     </div>
   ),
   children: (
@@ -146,19 +149,12 @@ const SampleTitle = () => {
           alignItems: "center",
         }}
       >
-        <Typography style={{ fontWeight: "600", color: "#2A4494" }}>
+        <Typography
+          style={{ fontWeight: "600", color: "var(--nds-narmi-purple)" }}
+        >
           TITLE
         </Typography>
-        <div
-          style={{
-            color: "#2A4494",
-            height: "30px",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <ArrowRight /> <ArrowLeft style={{ marginTop: "-3px" }} />
-        </div>
+        <ArrowsIcon />
       </div>
       <Button
         transparent={true}
@@ -218,9 +214,9 @@ export const MultipleCards = () => {
     <div
       style={{
         display: "flex",
-        "flex-direction": "row",
+        flexDirection: "row",
         width: "100%",
-        "justify-content": "space-around",
+        justifyContent: "space-around",
       }}
     >
       <SampleCard />

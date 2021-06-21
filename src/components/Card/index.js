@@ -28,7 +28,7 @@ const Card = (props) => {
 
 Card.propTypes = {
   title: PropTypes.node,
-  children: PropTypes.node, // numbers, string, DOM elements, arrays, fragments, ...
+  children: PropTypes.node,
 };
 
 export default Card;

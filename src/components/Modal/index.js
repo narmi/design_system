@@ -7,6 +7,7 @@ import { X } from "react-feather";
 
 import Button from "components/Button";
 import PlainButton from "components/PlainButton";
+import { deviceBreakpoints } from "../../globalStyles";
 
 const StyledOverlay = styled.div`
   height: 100vh;
@@ -41,6 +42,19 @@ const StyledCard = styled.div`
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: flex-start;
+
+  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
+    width: auto;
+    max-height: 100%;
+    min-height: 366px;
+    height: ${(props) => (props.large ? "90vh" : "50vh")};
+
+    border-radius: 8px;
+    bottom: 0;
+    left: 0;
+    top: unset;
+    transform: unset;
+  }
 `;
 
 const StyledBody = styled.div`
@@ -53,6 +67,10 @@ const StyledBody = styled.div`
   font-weight: 400;
 
   margin-bottom: 40px;
+
+  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
+    max-height: unset;
+  }
 `;
 
 const StyledHeader = styled.div`
@@ -64,7 +82,8 @@ const StyledHeader = styled.div`
   color: var(--nds-black);
   width: 100%;
 
-  padding-bottom: ${(props) => (props.titleUnderline ? "6px" : "8px")};
+  padding-bottom: ${(props) => (props.titleUnderline ? "4px" : "8px")};
+  margin-bottom: ${(props) => (props.titleUnderline ? "20px" : null)};
   box-sizing: content-box;
 
   // border and extra bottom padding if titleUnderline provided
@@ -80,6 +99,11 @@ const StyledActionBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
+    // Large modals on mobile have a vertical ActionBar
+    flex-flow: ${(p) => (p.large ? "column-reverse nowrap" : null)};
+  }
 `;
 
 const StyledActionBarRight = styled.div`
@@ -92,6 +116,16 @@ const StyledActionBarRight = styled.div`
 
   > * {
     margin-left: 16px;
+  }
+
+  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
+    // Large modals on mobile display centered Actions
+    justify-content: ${(p) => (p.large ? "center" : null)};
+
+    > * {
+      margin-left: ${(p) => (p.large ? "unset" : null)};
+      margin-bottom: ${(p) => (p.large ? "16px" : null)};
+    }
   }
 `;
 
@@ -108,6 +142,12 @@ const StyledActionBarLeft = styled.div`
     border-right: 1px solid var(--nds-grey-disabled);
     margin-right: 20px;
   }
+
+  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
+    // Large modals on mobile display centered Actions
+    padding-right: ${(p) => (p.large ? 0 : null)};
+    justify-content: ${(p) => (p.large ? "center" : null)};
+  }
 `;
 
 const StyledIcon = styled.span`
@@ -115,6 +155,12 @@ const StyledIcon = styled.span`
   position: fixed;
   top: 16px;
   right: 16px;
+
+  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
+    top: 20px;
+    right: 20px;
+    visibility: ${(props) => (props.large ? "visible" : "hidden")};
+  }
 `;
 
 export const useModal = ({ defaultOpen, onOpen, onCancel, ...rest }) => {
@@ -194,20 +240,20 @@ const Modal = ({
             large={large}
             {...rest}
           >
-            <StyledIcon>
+            <StyledIcon large={large}>
               <X size={12} onClick={onCancel} />
             </StyledIcon>
             <StyledHeader titleUnderline={titleUnderline}>{title}</StyledHeader>
             <StyledBody>{children}</StyledBody>
-            <StyledActionBar>
-              <StyledActionBarLeft>
+            <StyledActionBar large={large}>
+              <StyledActionBarLeft large={large}>
                 {leftActions.map((action, idx) => (
                   <PlainButton small key={idx} onClick={action.action}>
                     {action.title}
                   </PlainButton>
                 ))}
               </StyledActionBarLeft>
-              <StyledActionBarRight>
+              <StyledActionBarRight large={large}>
                 {cancelLabel ? (
                   <Button
                     secondary

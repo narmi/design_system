@@ -47,6 +47,7 @@ export const Small = Template.bind({});
 Small.args = {
   large: false,
   title: "Title text",
+  titleUnderline: false,
   children: [
     <div>
       Some text. Some text. Some text. Some text. Some text. Some text. Some
@@ -132,5 +133,6 @@ MixedActions.args = {
   ...Small.args,
   successLabel: "Submit",
   onSuccess: () => alert("Modal success callback!"),
+  onCancel: () => alert("Modal cancel callback!"),
   leftActions: [{ action: () => alert("Action callback!"), title: "Callback" }],
 };

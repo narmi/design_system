@@ -40,6 +40,12 @@ const StyledWrapper = styled.span`
   }
 `;
 
+const StyledChevronDown = styled(ChevronDown)`
+  &:hover ${StyledChevronDown} {
+    stroke-width: 3;
+  }
+`;
+
 const StyledLabel = styled.span`
   color: var(--nds-grey-text);
   :hover {
@@ -48,6 +54,9 @@ const StyledLabel = styled.span`
   color: ${(props) => (props.open ? "var(--nds-primary-color)" : null)};
   ${StyledPopover} ~ & {
     color: var(--nds-primary-color);
+  }
+  &:hover ${StyledChevronDown} {
+    stroke-width: 3;
   }
 `;
 
@@ -61,7 +70,7 @@ const Popover = ({ label, hoverable, shiftX, shiftY, children, ...rest }) => {
 
   const chevron = () => {
     if (hoverable) {
-      return <ChevronDown size={18} />;
+      return <StyledChevronDown size={18} />;
     }
     if (open) {
       return <ChevronUp size={18} />;

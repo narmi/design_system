@@ -7,6 +7,10 @@ const StyledCard = styled.div`
   border-radius: 4px;
   shadow: Blur 12 px;
   padding: 20px;
+  margin-right 20px;
+  :last-child {
+    margin-right: 0px;
+  }
 `;
 
 const StyledDiv = styled.div`

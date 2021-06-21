@@ -17,7 +17,7 @@ export const CardTest = Template.bind({});
 CardTest.args = {
   ...DefaultArgs,
   title: (
-    <div style={{ display: "flex", paddingTop: "11px" }}>
+    <div style={{ display: "flex" }}>
       <Typography>TITLE</Typography>
     </div>
   ),
@@ -31,13 +31,13 @@ LineItemCard.args = {
     <div
       style={{
         display: "flex",
-        "justify-content": "space-between",
-        "align-items": "center",
+        justifyContent: "space-between",
+        alignItems: "center",
       }}
     >
       <Typography>TITLE</Typography>
       <Button
-        style={{ color: "var(--nds-secondary-color)" }}
+        style={{ padding: "0px", color: "var(--nds-secondary-color)" }}
         transparent={true}
         secondary={true}
       >
@@ -55,13 +55,13 @@ OneButtonCard.args = {
     <div
       style={{
         display: "flex",
-        "justify-content": "space-between",
-        "align-items": "center",
+        justifyContent: "space-between",
+        alignItems: "center",
       }}
     >
       <Typography>TITLE</Typography>
       <Button
-        style={{ color: "var(--nds-secondary-color)" }}
+        style={{ padding: "0px", color: "var(--nds-secondary-color)" }}
         transparent={true}
         secondary={true}
       >
@@ -71,14 +71,14 @@ OneButtonCard.args = {
   ),
 };
 
-export const MuliButtons = Template.bind({});
-MuliButtons.args = {
+export const MultipleButtons = Template.bind({});
+MultipleButtons.args = {
   ...DefaultArgs,
   title: (
     <div
       style={{
         display: "flex",
-        "align-items": "center",
+        alignItems: "center",
       }}
     >
       <Typography style={{ fontWeight: "600", color: "#2A4494" }}>
@@ -89,7 +89,7 @@ MuliButtons.args = {
           color: "#2A4494",
           height: "30px",
           display: "flex",
-          "flex-direction": "column",
+          flexDirection: "column",
         }}
       >
         <ArrowRight /> <ArrowLeft style={{ marginTop: "-3px" }} />
@@ -100,7 +100,7 @@ MuliButtons.args = {
     <div
       style={{
         display: "flex",
-        "flex-direction": "column",
+        flexDirection: "column",
         left: "0",
         width: "70px",
       }}
@@ -135,15 +135,15 @@ const SampleTitle = () => {
     <div
       style={{
         display: "flex",
-        "align-items": "center",
-        "justify-content": "space-between",
-        "padding-right": "20px",
+        alignItems: "center",
+        justifyContent: "space-between",
+        paddingRight: "20px",
       }}
     >
       <div
         style={{
           display: "flex",
-          "align-items": "center",
+          alignItems: "center",
         }}
       >
         <Typography style={{ fontWeight: "600", color: "#2A4494" }}>
@@ -154,7 +154,7 @@ const SampleTitle = () => {
             color: "#2A4494",
             height: "30px",
             display: "flex",
-            "flex-direction": "column",
+            flexDirection: "column",
           }}
         >
           <ArrowRight /> <ArrowLeft style={{ marginTop: "-3px" }} />
@@ -163,7 +163,12 @@ const SampleTitle = () => {
       <Button
         transparent={true}
         secondary={true}
-        style={{ fontSize: "10px", width: "5px", color: "grey" }}
+        style={{
+          fontSize: "10px",
+          width: "5px",
+          color: "grey",
+          padding: "0px",
+        }}
       >
         Press
       </Button>
@@ -173,14 +178,11 @@ const SampleTitle = () => {
 
 const SampleCard = () => {
   return (
-    <Card
-      style={{ marginRight: "40px", width: "600px" }}
-      title={<SampleTitle />}
-    >
+    <Card style={{ width: "600px" }} title={<SampleTitle />}>
       <div
         style={{
           display: "flex",
-          "flex-direction": "column",
+          flexDirection: "column",
           left: "0",
           width: "75px",
         }}
@@ -213,10 +215,40 @@ const SampleCard = () => {
 
 export const MultipleCards = () => {
   return (
-    <div style={{ display: "flex", "flex-direction": "row", width: "100%" }}>
-      <SampleCard style={{ marginRight: "40px" }} />
-      <SampleCard style={{ marginRight: "40px" }} />
-      <SampleCard style={{ marginRight: "40px" }} />
+    <div
+      style={{
+        display: "flex",
+        "flex-direction": "row",
+        width: "100%",
+        "justify-content": "space-around",
+      }}
+    >
+      <SampleCard />
+      <SampleCard />
+      <SampleCard />
     </div>
   );
+};
+
+export const HoverCard = Template.bind({});
+HoverCard.args = {
+  title: (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}
+    >
+      <Typography>TITLE</Typography>
+      <Button
+        style={{ color: "var(--nds-secondary-color)", padding: "0px" }}
+        transparent={true}
+        secondary={true}
+      >
+        Button
+      </Button>
+    </div>
+  ),
+  style: { border: "1px solid var(--nds-primary-color)" },
 };

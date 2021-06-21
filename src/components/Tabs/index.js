@@ -17,13 +17,6 @@ const Tabs = (props) => {
   const StyledTabButton = styled.button`
     border: none;
     border-bottom: ${(props) =>
-      console.log(
-        "selectedTab",
-        props.selected,
-        selectedTab,
-        props.key === selectTab
-      )};
-    border-bottom: ${(props) =>
       props.selected === selectedTab ? "1px solid blue" : "none"};
     color: ${(props) => (props.selected === selectedTab ? "blue" : "none")};
     background-color: white;

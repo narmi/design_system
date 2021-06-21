@@ -41,6 +41,7 @@ const StyledWrapper = styled.span`
 `;
 
 const StyledLabel = styled.span`
+  color: var(--nds-grey-text);
   :hover {
     color: ${(props) => (props.hoverable ? "var(--nds-primary-color)" : null)};
   }

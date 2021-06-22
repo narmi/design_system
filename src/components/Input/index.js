@@ -16,10 +16,9 @@ const StyledColumn = styled.div`
 const StyledGroup = styled.div`
   box-sizing: border-box;
   border: 1px solid var(--nds-grey-disabled);
-  border-radius: 4px;
   background: var(--nds-white);
   position: relative;
-  padding: 19px 12px 5px;
+  padding: 5px 12px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -28,6 +27,13 @@ const StyledGroup = styled.div`
 
   &:focus-within {
     border: 1px solid var(--nds-primary-color);
+  }
+
+  &.nds-label {
+    padding: 19px 12px 5px;
+  }
+  &:not(.nds-icon) {
+    border-radius: 4px;
   }
 
   &.nds-disabled,
@@ -83,7 +89,6 @@ const StyledLabel = styled.label`
   color: var(--nds-grey-placeholder);
   font-size: 16px;
   font-family: var(--nds-font-family);
-  font-weight: 400;
 
   ${StyledInput}:focus ~ & {
     color: var(--nds-primary-color);
@@ -106,12 +111,7 @@ const StyledLabel = styled.label`
   }
 `;
 const StyledDecorationWrapper = styled.div`
-  position: relative;
   width: 24px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  top: -5px;
 `;
 const StyledError = styled.div`
   height: 18px;
@@ -135,6 +135,7 @@ const StyledError = styled.div`
 const Input = ({
   id,
   label,
+  icon,
   disabled,
   onChange,
   decoration,
@@ -144,20 +145,27 @@ const Input = ({
   ...rest
 }) => {
   // floating labels without forcing a controlled component: https://css-tricks.com/float-labels-css/#the-trick-3-of-3-the-valid-state
+  const inputRef = React.useRef(null);
   return (
-    <StyledColumn>
+    <StyledColumn
+      onClick={() => {inputRef.current.focus()}}
+    >
       <StyledGroup
         className={[
+          label ? "nds-label" : null,
+          icon ? "nds-icon" : null,
           disabled ? "nds-disabled" : null,
           error ? "nds-error" : null,
         ]}
       >
+        {icon ? icon : null}
         <StyledInput
           id={id}
           onChange={onChange}
           disabled={disabled}
           type={type}
           placeholder={placeholder}
+          ref={inputRef}
           {...rest}
           required
         />

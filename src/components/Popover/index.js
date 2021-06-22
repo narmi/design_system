@@ -28,16 +28,6 @@ const StyledOverlay = styled.div`
   ${(props) => (props.hoverable ? hoverableStyles : null)};
 `;
 
-const StyledWrapper = styled.span`
-  // position: relative + position: absolute allows absolutely positioning child relative to parent
-  position: relative;
-  font-family: var(--nds-font-family);
-
-  &:hover ${StyledOverlay} {
-    visibility: visible;
-  }
-`;
-
 const StyledChevronDown = styled(ChevronDown)`
   margin-top: 3px;
 `;
@@ -65,9 +55,15 @@ const StyledLabel = styled.a`
   }
 `;
 
-const StyledTrigger = styled.div`
-  display: flex;
-  align-items: center;
+const StyledWrapper = styled.span`
+  // position: relative + position: absolute allows absolutely positioning child relative to parent
+  position: relative;
+  font-family: var(--nds-font-family);
+
+  &:hover ${StyledOverlay} {
+    visibility: visible;
+  }
+
   &:hover ${StyledChevronDown} {
     stroke-width: 3;
     color: var(--nds-primary-color);
@@ -76,6 +72,11 @@ const StyledTrigger = styled.div`
     color: var(--nds-primary-color);
     font-weight: 600;
   }
+`;
+
+const StyledTrigger = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const Popover = ({ label, hoverable, shiftX, shiftY, children, ...rest }) => {

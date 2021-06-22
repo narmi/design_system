@@ -78,17 +78,17 @@ NavBarMenu.args = {
   logo: <Icon image={Narmi} />,
   leftChildren: [
     "Dashboard",
-    <Popover hoverable={true} label={"Accounts"} shiftX={"-0.5%"}>
+    <Popover hoverable={true} label={"Accounts"}>
       {AccountsList}
     </Popover>,
     "Documents",
     "Support",
-    <Popover hoverable={true} label={"Tools"} shiftX={"-0.5%"}>
+    <Popover hoverable={true} label={"Tools"}>
       {ToolsList}
     </Popover>,
   ],
   rightChildren: [
-    <Popover hoverable={true} label={"User Name"} shiftX={"-38%"}>
+    <Popover hoverable={true} label={"User Name"} alignRight={true}>
       {UserList}
     </Popover>,
   ],
@@ -110,7 +110,7 @@ NavBarMenuNoLogo.args = {
     </Popover>,
   ],
   rightChildren: [
-    <Popover hoverable={true} label={"User Name"} shiftX={"-30%"}>
+    <Popover hoverable={true} label={"User Name"} alignRight={true}>
       {UserList}
     </Popover>,
   ],

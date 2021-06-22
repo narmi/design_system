@@ -17,9 +17,11 @@ const StyledOverlay = styled.div`
     box-shadow: var(--nds-dropshadow-dark);
     box-sizing: border-box;
     top: 30px;
-    left: -0px;
+    left: ${(props) => (props.alignRight ? null : "0px")};
     z-index: 100;
     transform: translate(${(p) => p.shiftX}, ${(p) => p.shiftY});
+    right: ${(props) =>
+      props.alignRight ? "7px" : null}; // 7px to account for chevron
   }
 
   font-family: var(--nds-font-family);
@@ -59,7 +61,8 @@ const StyledWrapper = styled.span`
   // position: relative + position: absolute allows absolutely positioning child relative to parent
   position: relative;
   font-family: var(--nds-font-family);
-
+  padding-top: 5px;
+  padding-bottom: 5px;
   &:hover ${StyledOverlay} {
     visibility: visible;
   }
@@ -80,7 +83,15 @@ const StyledTrigger = styled.div`
   align-items: center;
 `;
 
-const Popover = ({ label, hoverable, shiftX, shiftY, children, ...rest }) => {
+const Popover = ({
+  label,
+  hoverable,
+  shiftX,
+  shiftY,
+  alignRight,
+  children,
+  ...rest
+}) => {
   const [open, setOpen] = React.useState(false);
 
   const toggleOpen = () => {
@@ -113,6 +124,7 @@ const Popover = ({ label, hoverable, shiftX, shiftY, children, ...rest }) => {
           shiftX={shiftX}
           shiftY={shiftY}
           hoverable={hoverable}
+          alignRight={alignRight}
           {...rest}
         >
           {children}
@@ -134,12 +146,14 @@ Popover.propTypes = {
   shiftY: PropTypes.string,
   // accept either a list of nodes or object categories:[nodes]
   // or accept children directly
+  alignRight: PropTypes.bool,
   children: PropTypes.node,
 };
 
 Popover.defaultProps = {
   hoverable: false,
   label: null,
+  alignRight: false,
   shiftX: "0%",
   shiftY: "0%",
 };

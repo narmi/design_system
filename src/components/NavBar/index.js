@@ -68,6 +68,7 @@ const StyledNavRight = styled.span`
 `;
 
 const StyledMenuItem = styled.span`
+  display: flex;
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     display: none;
   }
@@ -98,6 +99,8 @@ const StyledA = styled.div`
     font-weight: 600;
     color: var(--nds-primary-color);
   }
+
+  // invisible bolded element to account for space to prevent nvabar items from shifting
   ::before {
     display: block;
     content: attr(data-text);

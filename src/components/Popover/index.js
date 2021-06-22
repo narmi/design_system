@@ -45,10 +45,11 @@ const StyledChevronDown = styled(ChevronDown)`
 const StyledLabel = styled.a`
   color: var(--nds-grey-text);
   font-weight: 400;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   color: ${(props) => (props.open ? "var(--nds-primary-color)" : null)};
-  ${StyledPopover} ~ & {
+  ${StyledTrigger} ~ & {
     color: var(--nds-primary-color);
   }
   ::before {
@@ -64,7 +65,7 @@ const StyledLabel = styled.a`
   }
 `;
 
-const StyledPopover = styled.div`
+const StyledTrigger = styled.div`
   display: flex;
   align-items: center;
   &:hover ${StyledChevronDown} {
@@ -99,12 +100,12 @@ const Popover = ({ label, hoverable, shiftX, shiftY, children, ...rest }) => {
 
   return (
     <StyledWrapper hoverable={hoverable}>
-      <StyledPopover onClick={toggleOpen}>
+      <StyledTrigger onClick={toggleOpen}>
         <StyledLabel data-text={label} open={open} hoverable={hoverable}>
           {label}
         </StyledLabel>
         {chevron()}
-      </StyledPopover>
+      </StyledTrigger>
       {open || hoverable ? (
         <StyledOverlay
           shiftX={shiftX}

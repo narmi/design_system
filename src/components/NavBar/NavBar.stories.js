@@ -19,6 +19,9 @@ export default {
 
 const StyledA = styled.a`
   font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   :hover {
     font-weight: 600;
     color: var(--nds-primary-color);

@@ -57,6 +57,10 @@ const StyledLabel = styled.a`
     height: 0;
     overflow: hidden;
     visibility: hidden;
+    @media ${`(max-width: ${deviceBreakpoints.tablet})`} {
+      background-color: red;
+      display: None;
+    }
   }
 `;
 
@@ -95,13 +99,8 @@ const Popover = ({ label, hoverable, shiftX, shiftY, children, ...rest }) => {
 
   return (
     <StyledWrapper hoverable={hoverable}>
-      <StyledDiv>
-        <StyledLabel
-          data-text={label}
-          open={open}
-          hoverable={hoverable}
-          onClick={toggleOpen}
-        >
+      <StyledDiv onClick={toggleOpen}>
+        <StyledLabel data-text={label} open={open} hoverable={hoverable}>
           {label}
         </StyledLabel>
         {chevron()}

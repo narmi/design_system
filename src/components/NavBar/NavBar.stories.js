@@ -122,7 +122,7 @@ NavBarMenuNoLogo.args = {
   mobileMenuIcon: <HamburgerMenuSidebar />,
   leftChildren: [
     <Typography>
-      <StyledA>Dashboard</StyledA>
+      <StyledA data-text={"Dashboard"}>Dashboard</StyledA>
     </Typography>,
     <Popover hoverable={true} label={"Accounts"} shiftX={"-10%"}>
       {AccountsList}

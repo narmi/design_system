@@ -54,7 +54,7 @@ const StyledListItem = styled.li`
   padding-right: 16px;
   :hover {
     background-color: ${(props) =>
-      props.hoverable ? "var(--nds-primary-color-lightest-2)" : null};
+      props.hoverable ? "var(--nds-primary-color-lightest)" : null};
   }
 `;
 

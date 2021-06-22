@@ -1,11 +1,11 @@
 import React from "react";
-import PropTypes, { bool } from "prop-types";
-import styled, { css } from "styled-components";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import Typography from "components/Typography";
 
 const StyledCard = styled.div`
   box-shadow: var(--nds-dropshadow-dark);
   border-radius: 4px;
-  shadow: Blur 12 px;
   padding: 20px;
   margin-right 20px;
   :last-child {
@@ -13,15 +13,15 @@ const StyledCard = styled.div`
   }
 `;
 
-const StyledDiv = styled.div`
+const StyledCardBody = styled.div`
   margin-top: 20px;
 `;
 
 const Card = (props) => {
   return (
     <StyledCard {...props}>
-      <div>{props.title}</div>
-      {props.children ? <StyledDiv>{props.children}</StyledDiv> : ""}
+      {props.title}
+      {props.children ? <StyledCardBody>{props.children}</StyledCardBody> : ""}
     </StyledCard>
   );
 };

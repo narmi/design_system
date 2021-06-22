@@ -4,7 +4,12 @@ import styled, { css } from "styled-components";
 import { ChevronUp, ChevronDown } from "react-feather";
 import { deviceBreakpoints } from "../../globalStyles";
 
-const StyledPopover = styled.div`
+const hoverableStyles = css`
+  visibility: hidden;
+  transition: visibility 0.5s ease-in;
+`;
+
+const StyledOverlay = styled.div`
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
     position: absolute;
     background-color: var(--nds-white);
@@ -22,17 +27,13 @@ const StyledPopover = styled.div`
   // start out invisible on hover
   ${(props) => (props.hoverable ? hoverableStyles : null)};
 `;
-const hoverableStyles = css`
-  visibility: hidden;
-  transition: visibility 0.5s ease-in;
-`;
 
 const StyledWrapper = styled.span`
   // position: relative + position: absolute allows absolutely positioning child relative to parent
   position: relative;
   font-family: var(--nds-font-family);
 
-  &:hover ${StyledPopover} {
+  &:hover ${StyledOverlay} {
     visibility: visible;
   }
 `;
@@ -63,7 +64,7 @@ const StyledLabel = styled.a`
   }
 `;
 
-const StyledDiv = styled.div`
+const StyledPopover = styled.div`
   display: flex;
   align-items: center;
   &:hover ${StyledChevronDown} {
@@ -98,21 +99,21 @@ const Popover = ({ label, hoverable, shiftX, shiftY, children, ...rest }) => {
 
   return (
     <StyledWrapper hoverable={hoverable}>
-      <StyledDiv onClick={toggleOpen}>
+      <StyledPopover onClick={toggleOpen}>
         <StyledLabel data-text={label} open={open} hoverable={hoverable}>
           {label}
         </StyledLabel>
         {chevron()}
-      </StyledDiv>
+      </StyledPopover>
       {open || hoverable ? (
-        <StyledPopover
+        <StyledOverlay
           shiftX={shiftX}
           shiftY={shiftY}
           hoverable={hoverable}
           {...rest}
         >
           {children}
-        </StyledPopover>
+        </StyledOverlay>
       ) : null}
     </StyledWrapper>
   );

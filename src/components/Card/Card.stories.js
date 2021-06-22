@@ -54,7 +54,7 @@ const ArrowsIcon = () => {
   return (
     <div
       style={{
-        color: "var(--nds-narmi-purple)",
+        color: "var(--nds-primary-color)",
         height: "30px",
         display: "flex",
         flexDirection: "column",
@@ -75,7 +75,7 @@ MultipleButtons.args = {
         alignItems: "center",
       }}
     >
-      <span style={{ fontWeight: "600", color: "var(--nds-narmi-purple)" }}>
+      <span style={{ fontWeight: "600", color: "var(--nds-primary-color)" }}>
         TITLE
       </span>
       <ArrowsIcon />
@@ -108,13 +108,7 @@ HoverCard.args = {
       }}
     >
       <span>TITLE</span>
-      <Button
-        style={{ color: "var(--nds-secondary-color)", padding: "0px" }}
-        transparent={true}
-        secondary={true}
-      >
-        Button
-      </Button>
+      <PlainButton small>Button</PlainButton>
     </div>
   ),
   style: { border: "1px solid var(--nds-primary-color)" },

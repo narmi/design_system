@@ -68,6 +68,7 @@ const StyledNavRight = styled.span`
 `;
 
 const StyledMenuItem = styled.span`
+  display: flex;
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     display: none;
   }

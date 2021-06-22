@@ -39,10 +39,6 @@ const StyledWrapper = styled.span`
 
 const StyledChevronDown = styled(ChevronDown)`
   margin-top: 3px;
-  &:hover ${StyledChevronDown} {
-    stroke-width: 3;
-    color: ${(props) => (props.hoverable ? "var(--nds-primary-color)" : null)};
-  }
 `;
 
 const StyledLabel = styled.a`
@@ -50,10 +46,6 @@ const StyledLabel = styled.a`
   font-weight: 400;
   display: inline-block;
   align-items: center;
-  :hover {
-    color: ${(props) => (props.hoverable ? "var(--nds-primary-color)" : null)};
-    font-weight: 600;
-  }
   color: ${(props) => (props.open ? "var(--nds-primary-color)" : null)};
   ${StyledPopover} ~ & {
     color: var(--nds-primary-color);

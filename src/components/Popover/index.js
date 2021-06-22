@@ -4,7 +4,12 @@ import styled, { css } from "styled-components";
 import { ChevronUp, ChevronDown } from "react-feather";
 import { deviceBreakpoints } from "../../globalStyles";
 
-const StyledPopover = styled.div`
+const hoverableStyles = css`
+  visibility: hidden;
+  transition: visibility 0.5s ease-in;
+`;
+
+const StyledOverlay = styled.div`
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
     position: absolute;
     background-color: var(--nds-white);
@@ -22,9 +27,32 @@ const StyledPopover = styled.div`
   // start out invisible on hover
   ${(props) => (props.hoverable ? hoverableStyles : null)};
 `;
-const hoverableStyles = css`
-  visibility: hidden;
-  transition: visibility 0.5s ease-in;
+
+const StyledChevronDown = styled(ChevronDown)`
+  margin-top: 3px;
+`;
+
+const StyledLabel = styled.a`
+  color: var(--nds-grey-text);
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: ${(props) => (props.open ? "var(--nds-primary-color)" : null)};
+  ${StyledTrigger} ~ & {
+    color: var(--nds-primary-color);
+  }
+  ::before {
+    display: block;
+    content: attr(data-text);
+    font-weight: 600;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    @media ${`(max-width: ${deviceBreakpoints.tablet})`} {
+      display: None;
+    }
+  }
 `;
 
 const StyledWrapper = styled.span`
@@ -32,22 +60,24 @@ const StyledWrapper = styled.span`
   position: relative;
   font-family: var(--nds-font-family);
 
-  &:hover ${StyledPopover} {
+  &:hover ${StyledOverlay} {
     visibility: visible;
   }
-  :hover ${StyledLabel} {
-    color: ${(props) => (props.hoverable ? "var(--nds-primary-color)" : null)};
+
+  // hover to keep chevron and label bolded and highlighted when hovering the overlay
+  &:hover ${StyledChevronDown} {
+    stroke-width: 3;
+    color: var(--nds-primary-color);
+  }
+  &:hover ${StyledLabel} {
+    color: var(--nds-primary-color);
+    font-weight: 600;
   }
 `;
 
-const StyledLabel = styled.span`
-  :hover {
-    color: ${(props) => (props.hoverable ? "var(--nds-primary-color)" : null)};
-  }
-  color: ${(props) => (props.open ? "var(--nds-primary-color)" : null)};
-  ${StyledPopover} ~ & {
-    color: var(--nds-primary-color);
-  }
+const StyledTrigger = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const Popover = ({ label, hoverable, shiftX, shiftY, children, ...rest }) => {
@@ -60,7 +90,7 @@ const Popover = ({ label, hoverable, shiftX, shiftY, children, ...rest }) => {
 
   const chevron = () => {
     if (hoverable) {
-      return <ChevronDown size={18} />;
+      return <StyledChevronDown size={18} />;
     }
     if (open) {
       return <ChevronUp size={18} />;
@@ -72,19 +102,21 @@ const Popover = ({ label, hoverable, shiftX, shiftY, children, ...rest }) => {
 
   return (
     <StyledWrapper hoverable={hoverable}>
-      <StyledLabel open={open} hoverable={hoverable} onClick={toggleOpen}>
-        {label}
+      <StyledTrigger onClick={toggleOpen}>
+        <StyledLabel data-text={label} open={open} hoverable={hoverable}>
+          {label}
+        </StyledLabel>
         {chevron()}
-      </StyledLabel>
+      </StyledTrigger>
       {open || hoverable ? (
-        <StyledPopover
+        <StyledOverlay
           shiftX={shiftX}
           shiftY={shiftY}
           hoverable={hoverable}
           {...rest}
         >
           {children}
-        </StyledPopover>
+        </StyledOverlay>
       ) : null}
     </StyledWrapper>
   );

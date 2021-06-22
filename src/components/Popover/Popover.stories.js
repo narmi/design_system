@@ -144,13 +144,16 @@ OnHoverLabel.args = {
 const AccountPopover = () => {
   return (
     <div style={{ paddingBottom: "15px" }}>
-      <Typography style={{ fontSize: "20px", fontWeight: "500" }}>
-        Account
-      </Typography>
       <Popover
         hoverable={false}
-        label={null}
-        shiftX={"-40%"}
+        label={
+          <Typography
+            style={{ fontSize: "20px", fontWeight: "500", padding: "0px" }}
+          >
+            Account
+          </Typography>
+        }
+        shiftX={"0%"}
         children={<NavMenu />}
       />
     </div>

@@ -18,8 +18,21 @@ export default {
 };
 
 const StyledA = styled.a`
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   :hover {
+    font-weight: 600;
     color: var(--nds-primary-color);
+  }
+  ::before {
+    display: block;
+    content: attr(data-text);
+    font-weight: 600;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
   }
 `;
 
@@ -84,23 +97,23 @@ NavBarMenu.args = {
   logo: <Icon image={Narmi} />,
   leftChildren: [
     <Typography>
-      <StyledA>Dashboard</StyledA>
+      <StyledA data-text={"Dashboard"}>Dashboard</StyledA>
     </Typography>,
-    <Popover hoverable={true} label={"Accounts"} shiftX={"-10%"}>
+    <Popover hoverable={true} label={"Accounts"} shiftX={"-0.5%"}>
       {AccountsList}
     </Popover>,
     <Typography>
-      <StyledA>Documents</StyledA>
+      <StyledA data-text={"Documents"}>Documents</StyledA>
     </Typography>,
     <Typography>
-      <StyledA>Support</StyledA>
+      <StyledA data-text={"Support"}>Support</StyledA>
     </Typography>,
-    <Popover hoverable={true} label={"Tools"} shiftX={"-30%"}>
+    <Popover hoverable={true} label={"Tools"} shiftX={"-0.5%"}>
       {ToolsList}
     </Popover>,
   ],
   rightChildren: [
-    <Popover hoverable={true} label={"User Name"} shiftX={"-30%"}>
+    <Popover hoverable={true} label={"User Name"} shiftX={"-38%"}>
       {UserList}
     </Popover>,
   ],
@@ -112,16 +125,16 @@ NavBarMenuNoLogo.args = {
   mobileMenuIcon: <HamburgerMenuSidebar />,
   leftChildren: [
     <Typography>
-      <StyledA>Dashboard</StyledA>
+      <StyledA data-text={"Dashboard"}>Dashboard</StyledA>
     </Typography>,
     <Popover hoverable={true} label={"Accounts"} shiftX={"-10%"}>
       {AccountsList}
     </Popover>,
     <Typography>
-      <StyledA>Documents</StyledA>
+      <StyledA data-text={"Documents"}>Documents</StyledA>
     </Typography>,
     <Typography>
-      <StyledA>Support</StyledA>
+      <StyledA data-text={"Support"}>Support</StyledA>
     </Typography>,
     <Popover hoverable={true} label={"Tools"} shiftX={"-30%"}>
       {ToolsList}

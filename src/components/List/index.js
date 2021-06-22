@@ -18,9 +18,8 @@ const StyledHeader = styled.div`
   font-family: var(--nds-font-family);
   font-size: 16px;
   line-height: 20px;
-  padding-top: 8px;
   padding-left: 16px;
-  padding-bottom: 8px;
+  padding-bottom: 4px;
   width: 100%;
 `;
 
@@ -49,10 +48,13 @@ const StyledList = styled.ul`
 `;
 
 const StyledListItem = styled.li`
-  padding: 12px 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
   :hover {
     background-color: ${(props) =>
-      props.hoverable ? "var(--nds-grey-hover)" : null};
+      props.hoverable ? "var(--nds-primary-color-lightest)" : null};
   }
 `;
 

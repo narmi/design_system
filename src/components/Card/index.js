@@ -20,7 +20,7 @@ const StyledCardBody = styled.div`
 const Card = (props) => {
   return (
     <StyledCard {...props}>
-      {props.title}
+      <Typography>{props.title}</Typography>
       {props.children ? <StyledCardBody>{props.children}</StyledCardBody> : ""}
     </StyledCard>
   );

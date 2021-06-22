@@ -1,6 +1,5 @@
 import React from "react";
 import Card from "components/Card";
-import Typography from "components/Typography";
 import Button from "components/Button";
 import PlainButton from "components/PlainButton";
 import styled from "styled-components";
@@ -19,11 +18,7 @@ const StyledTitle = styled.div`
 
 const Template = (args) => <Card {...args} />;
 const DefaultArgs = {
-  title: (
-    <div style={{ display: "flex" }}>
-      <Typography>TITLE</Typography>
-    </div>
-  ),
+  title: "TITLE",
 };
 
 export const BasicCard = Template.bind({});
@@ -37,7 +32,7 @@ LineItemCard.args = {
   ...DefaultArgs,
   title: (
     <StyledTitle>
-      <Typography>TITLE</Typography>
+      <span>TITLE</span>
       <PlainButton small>Button</PlainButton>
     </StyledTitle>
   ),
@@ -49,7 +44,7 @@ OneButtonCard.args = {
   ...DefaultArgs,
   title: (
     <StyledTitle>
-      <Typography>TITLE</Typography>
+      <span>TITLE</span>
       <PlainButton small>Button</PlainButton>
     </StyledTitle>
   ),
@@ -80,11 +75,9 @@ MultipleButtons.args = {
         alignItems: "center",
       }}
     >
-      <Typography
-        style={{ fontWeight: "600", color: "var(--nds-narmi-purple)" }}
-      >
+      <span style={{ fontWeight: "600", color: "var(--nds-narmi-purple)" }}>
         TITLE
-      </Typography>
+      </span>
       <ArrowsIcon />
     </div>
   ),
@@ -114,7 +107,7 @@ HoverCard.args = {
         alignItems: "center",
       }}
     >
-      <Typography>TITLE</Typography>
+      <span>TITLE</span>
       <Button
         style={{ color: "var(--nds-secondary-color)", padding: "0px" }}
         transparent={true}

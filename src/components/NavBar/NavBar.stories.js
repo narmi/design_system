@@ -77,12 +77,12 @@ NavBarMenu.args = {
   mobileMenuIcon: <HamburgerMenuSidebar />,
   logo: <Icon image={Narmi} />,
   leftChildren: [
-    <span>Dashboard</span>,
+    "Dashboard",
     <Popover hoverable={true} label={"Accounts"} shiftX={"-0.5%"}>
       {AccountsList}
     </Popover>,
-    <span>Documents</span>,
-    <span>Support</span>,
+    "Documents",
+    "Support",
     <Popover hoverable={true} label={"Tools"} shiftX={"-0.5%"}>
       {ToolsList}
     </Popover>,
@@ -99,12 +99,12 @@ NavBarMenuNoLogo.args = {
   ...DefaultArgs,
   mobileMenuIcon: <HamburgerMenuSidebar />,
   leftChildren: [
-    <span>Dashboard</span>,
+    "Dashboard",
     <Popover hoverable={true} label={"Accounts"} shiftX={"-10%"}>
       {AccountsList}
     </Popover>,
-    <span>Documents</span>,
-    <span>Support</span>,
+    "Documents",
+    "Support",
     <Popover hoverable={true} label={"Tools"} shiftX={"-30%"}>
       {ToolsList}
     </Popover>,

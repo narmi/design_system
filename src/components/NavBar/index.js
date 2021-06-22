@@ -116,13 +116,7 @@ const NavBar = (props) => {
         {props.leftChildren.map((option, idx) => (
           <StyledMenuItem key={idx}>
             <Typography>
-              <StyledA
-                data-text={
-                  typeof option.props.children === "string"
-                    ? option.props.children
-                    : null
-                }
-              >
+              <StyledA data-text={typeof option === "string" ? option : null}>
                 {option}
               </StyledA>
             </Typography>

@@ -58,7 +58,6 @@ const StyledLabel = styled.a`
     overflow: hidden;
     visibility: hidden;
     @media ${`(max-width: ${deviceBreakpoints.tablet})`} {
-      background-color: red;
       display: None;
     }
   }

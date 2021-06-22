@@ -96,19 +96,9 @@ NavBarMenu.args = {
     <Typography>
       <StyledA data-text={"Dashboard"}>Dashboard</StyledA>
     </Typography>,
-    <div style={{ position: "relative" }}>
-      <Popover
-        style={{ left: 0, position: "absolute" }}
-        hoverable={true}
-        label={"Accounts"}
-        shiftX={"-0.5%"}
-      >
-        {AccountsList}
-      </Popover>
-      {/* <span style={{"left":0, hight:"0px", top:"0", "font-weight":"600", visibility: "hidden"}} hoverable={true} label={"Accounts"} shiftX={"-0.5%"}>
-      Accountsasdl
-    </span> */}
-    </div>,
+    <Popover hoverable={true} label={"Accounts"} shiftX={"-0.5%"}>
+      {AccountsList}
+    </Popover>,
     <Typography>
       <StyledA data-text={"Documents"}>Documents</StyledA>
     </Typography>,

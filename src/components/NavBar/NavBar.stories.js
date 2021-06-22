@@ -17,25 +17,6 @@ export default {
   decorators: [Top],
 };
 
-const StyledA = styled.a`
-  font-weight: 400;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  :hover {
-    font-weight: 600;
-    color: var(--nds-primary-color);
-  }
-  ::before {
-    display: block;
-    content: attr(data-text);
-    font-weight: 600;
-    height: 0;
-    overflow: hidden;
-    visibility: hidden;
-  }
-`;
-
 const Template = (args) => <NavBar {...args} />;
 const DefaultArgs = {
   leftChildren: [],
@@ -96,18 +77,12 @@ NavBarMenu.args = {
   mobileMenuIcon: <HamburgerMenuSidebar />,
   logo: <Icon image={Narmi} />,
   leftChildren: [
-    <Typography>
-      <StyledA data-text={"Dashboard"}>Dashboard</StyledA>
-    </Typography>,
+    <span>Dashboard</span>,
     <Popover hoverable={true} label={"Accounts"} shiftX={"-0.5%"}>
       {AccountsList}
     </Popover>,
-    <Typography>
-      <StyledA data-text={"Documents"}>Documents</StyledA>
-    </Typography>,
-    <Typography>
-      <StyledA data-text={"Support"}>Support</StyledA>
-    </Typography>,
+    <span>Documents</span>,
+    <span>Support</span>,
     <Popover hoverable={true} label={"Tools"} shiftX={"-0.5%"}>
       {ToolsList}
     </Popover>,
@@ -124,18 +99,12 @@ NavBarMenuNoLogo.args = {
   ...DefaultArgs,
   mobileMenuIcon: <HamburgerMenuSidebar />,
   leftChildren: [
-    <Typography>
-      <StyledA data-text={"Dashboard"}>Dashboard</StyledA>
-    </Typography>,
+    <span>Dashboard</span>,
     <Popover hoverable={true} label={"Accounts"} shiftX={"-10%"}>
       {AccountsList}
     </Popover>,
-    <Typography>
-      <StyledA data-text={"Documents"}>Documents</StyledA>
-    </Typography>,
-    <Typography>
-      <StyledA data-text={"Support"}>Support</StyledA>
-    </Typography>,
+    <span>Documents</span>,
+    <span>Support</span>,
     <Popover hoverable={true} label={"Tools"} shiftX={"-30%"}>
       {ToolsList}
     </Popover>,

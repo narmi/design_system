@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes, { bool } from "prop-types";
 import styled, { css } from "styled-components";
 import { deviceBreakpoints } from "../../globalStyles";
+import Typography from "../Typography";
 
 const StyledHeader = styled.span`
   background: var(--nds-white);
@@ -88,13 +89,36 @@ const StyledMobileMenuContainer = styled.span`
   }
 `;
 
+const StyledA = styled.div`
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  :hover {
+    font-weight: 600;
+    color: var(--nds-primary-color);
+  }
+  ::before {
+    display: block;
+    content: attr(data-text);
+    font-weight: 600;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
+`;
+
 const NavBar = (props) => {
   return (
     <StyledHeader {...props}>
       <StyledNavLeft logo={props.logo}>
         {props.logo ? <div>{props.logo}</div> : null}
         {props.leftChildren.map((option, idx) => (
-          <StyledMenuItem key={idx}>{option}</StyledMenuItem>
+          <StyledMenuItem key={idx}>
+            <Typography>
+              <StyledA data-text={option.props.children}>{option}</StyledA>
+            </Typography>
+          </StyledMenuItem>
         ))}
       </StyledNavLeft>
       <StyledNavRight>

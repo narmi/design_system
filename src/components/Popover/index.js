@@ -17,7 +17,7 @@ const StyledOverlay = styled.div`
     box-shadow: var(--nds-dropshadow-dark);
     box-sizing: border-box;
     top: 30px;
-    left: ${(props) => (props.alignRight ? null : "-0px")};
+    left: ${(props) => (props.alignRight ? null : "0px")};
     z-index: 100;
     transform: translate(${(p) => p.shiftX}, ${(p) => p.shiftY});
     right: ${(props) =>

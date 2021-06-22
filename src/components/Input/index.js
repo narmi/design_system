@@ -18,7 +18,6 @@ const StyledGroup = styled.div`
   border: 1px solid var(--nds-grey-disabled);
   background: var(--nds-white);
   position: relative;
-  padding: 5px 12px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -29,12 +28,10 @@ const StyledGroup = styled.div`
     border: 1px solid var(--nds-primary-color);
   }
 
-  &.nds-label {
-    padding: 19px 12px 5px;
-  }
-  &:not(.nds-icon) {
-    border-radius: 4px;
-  }
+  padding: ${(props) =>
+    props.label ? "19px 12px 5px" : "5px 12px"};
+  border-radius: ${(props) =>
+    props.icon ? "0" : "4px"};
 
   &.nds-disabled,
   &.nds-disabled:focus-within {
@@ -151,9 +148,9 @@ const Input = ({
       onClick={() => {inputRef.current.focus()}}
     >
       <StyledGroup
+        label={label}
+        icon={icon}
         className={[
-          label ? "nds-label" : null,
-          icon ? "nds-icon" : null,
           disabled ? "nds-disabled" : null,
           error ? "nds-error" : null,
         ]}

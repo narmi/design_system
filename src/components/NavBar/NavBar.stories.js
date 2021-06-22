@@ -99,13 +99,13 @@ NavBarMenuNoLogo.args = {
   ...DefaultArgs,
   mobileMenuIcon: <HamburgerMenuSidebar />,
   leftChildren: [
-    "Dashboard",
-    <Popover hoverable={true} label={"Accounts"} shiftX={"-10%"}>
+    <span>Dashboard</span>,
+    <Popover hoverable={true} label={"Accounts"}>
       {AccountsList}
     </Popover>,
-    "Documents",
-    "Support",
-    <Popover hoverable={true} label={"Tools"} shiftX={"-30%"}>
+    <span>Documents</span>,
+    <span>Support</span>,
+    <Popover hoverable={true} label={"Tools"}>
       {ToolsList}
     </Popover>,
   ],

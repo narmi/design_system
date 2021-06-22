@@ -75,6 +75,10 @@ const StyledDiv = styled.div`
     stroke-width: 3;
     color: var(--nds-primary-color);
   }
+  &:hover ${StyledLabel} {
+    color: var(--nds-primary-color);
+    font-weight: 600;
+  }
 `;
 
 const Popover = ({ label, hoverable, shiftX, shiftY, children, ...rest }) => {

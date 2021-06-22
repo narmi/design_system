@@ -64,6 +64,7 @@ const StyledWrapper = styled.span`
     visibility: visible;
   }
 
+  // hover to keep chevron and label bolded and highlighted when hovering the overlay
   &:hover ${StyledChevronDown} {
     stroke-width: 3;
     color: var(--nds-primary-color);

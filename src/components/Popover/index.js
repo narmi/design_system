@@ -6,7 +6,6 @@ import { deviceBreakpoints } from "../../globalStyles";
 
 const hoverableStyles = css`
   visibility: hidden;
-  transition: visibility 0.5s ease-in;
 `;
 
 const StyledOverlay = styled.div`

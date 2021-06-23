@@ -71,7 +71,17 @@ Chevron.propTypes = {
 };
 
 export default function Dropdown(props) {
-  /* Dropdown that allows search query to filter account results */
+  /*
+   * Dropdown menu
+   * usage:
+   *   <Dropdown
+   *     triggerLabel={props.label}
+   *     triggerValue={props.value}
+   *     {...props}
+   *   >
+   *     <ContentToShowOnExpand />
+   *   </Dropdown>
+   */
   const [open, setOpen] = useState(props.defaultOpen);
 
   const openDropdown = () => {
@@ -119,7 +129,7 @@ export default function Dropdown(props) {
               React.cloneElement(child, {
                 closeDropdown,
                 key: child,
-              })
+              }) // mutate our children to have these extra props
             )}
           </div>
         </DropdownMenu>
@@ -132,7 +142,6 @@ Dropdown.defaultProps = {
   defaultOpen: false,
 };
 Dropdown.propTypes = {
-  accounts: PropTypes.array,
   children: PropTypes.any,
   defaultOpen: PropTypes.bool,
   triggerLabel: PropTypes.string,

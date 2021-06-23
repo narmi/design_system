@@ -37,16 +37,16 @@ const StyledTableRow = styled.tr`
 `;
 
 const renderHeader = (props) => {
-  var nameArray = props.gridData.map(function (el) {
-    return el.map(function (e) {
-      return e.column;
+  var gridColumns = props.gridData.map(function (row) {
+    return row.map(function (cell) {
+      return cell.column;
     });
   });
-  const columns = [].concat.apply([], nameArray);
-  const uniq = [...new Set(columns)];
+  const columns = [].concat.apply([], gridColumns);
+  const uniqueColumns = [...new Set(columns)];
   return (
     <StyledTableRow {...props}>
-      {uniq.map((heading, idx) => (
+      {uniqueColumns.map((heading) => (
         <StyledTableHeader>
           <Typography style={{ "font-size": "12px", "font-weight": "600" }}>
             {heading}
@@ -58,25 +58,18 @@ const renderHeader = (props) => {
 };
 
 const renderRow = (row) => {
-  row.map((cell, jdx) => console.log(cell.column));
-  // data-text={cell.column}
-  return row.map((cell, jdx) => (
-    <StyledTableCell>{cell.content}</StyledTableCell>
-  ));
+  return row.map((cell) => <StyledTableCell>{cell.content}</StyledTableCell>);
 };
 
 const Table = (props) => {
-  // iterate through rows and assign row key
-
   const renderColumns = ([col, colData]) => {
     return <StyledTableRow {...props}>{renderRow(colData)}</StyledTableRow>;
   };
 
   let gridData = {};
   props.gridData.map((row, idx) => {
-    let rowId = idx;
-    row.map((cell, jdx) => {
-      cell.rowId = rowId;
+    row.map((cell) => {
+      cell.rowId = idx;
       if (cell.column in gridData) {
         gridData[cell.column].push(cell);
       } else {
@@ -84,9 +77,6 @@ const Table = (props) => {
       }
     });
   });
-  // Object.keys(gridData).map((heading, idx)=> {console.log(heading)} );
-  // group cells with same column and creat div
-  console.log(gridData);
 
   return (
     <div {...props}>

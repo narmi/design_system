@@ -2,12 +2,10 @@ import React from "react";
 import Table from "components/Table";
 import Typography from "components/Typography";
 import PlainButton from "components/PlainButton";
-// import { Centered } from "../../decorators";
 
 export default {
   title: "Components/Table",
   component: Table,
-  // decorators: [Centered],
 };
 
 const DescriptionDiv = (props) => {

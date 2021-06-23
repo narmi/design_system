@@ -14,7 +14,9 @@ const DescriptionDiv = (props) => {
       style={{ display: "flex", "flex-direction": "column", width: "220px" }}
     >
       <Typography style={{ "font-size": "16px" }}>{props.transfer}</Typography>
-      <Typography style={{ "font-size": "14px", color: "#8C8C8C" }}>
+      <Typography
+        style={{ "font-size": "14px", color: "var(--nds-grey-placeholder)" }}
+      >
         {props.date}
       </Typography>
     </div>
@@ -24,11 +26,11 @@ const DescriptionDiv = (props) => {
 const Template = (args) => <Table {...args} />;
 const DefaultArgs = {
   title: "Scheduled transactions",
-  hover: true,
+  hoverable: true,
   gridData: [
     [
       {
-        column: "DESCRPITION",
+        column: "DESCRIPTION",
         content: (
           <DescriptionDiv
             transfer={"Transfer to Noble Bank-3432"}
@@ -39,7 +41,7 @@ const DefaultArgs = {
       },
       {
         column: "AMOUNT",
-        content: <Typography>-$1000</Typography>,
+        content: "-$1000",
         key: "url-item",
       },
       {
@@ -49,7 +51,7 @@ const DefaultArgs = {
     ],
     [
       {
-        column: "DESCRPITION",
+        column: "DESCRIPTION",
         content: (
           <DescriptionDiv
             transfer={"Bill to Waterworks-4534"}
@@ -60,7 +62,7 @@ const DefaultArgs = {
       },
       {
         column: "AMOUNT",
-        content: <Typography>-$123.45</Typography>,
+        content: "-$123.45",
         key: "url-item",
       },
       {
@@ -70,7 +72,7 @@ const DefaultArgs = {
     ],
     [
       {
-        column: "DESCRPITION",
+        column: "DESCRIPTION",
         content: (
           <DescriptionDiv
             transfer={"Transfer to Melanie Abrazado"}
@@ -81,7 +83,7 @@ const DefaultArgs = {
       },
       {
         column: "AMOUNT",
-        content: <Typography>-$80</Typography>,
+        content: "-$80",
         key: "url-item",
       },
       {

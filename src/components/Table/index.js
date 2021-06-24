@@ -47,7 +47,7 @@ const renderHeader = (props) => {
     <StyledTableRow>
       {uniqueColumns.map((heading) => (
         <StyledTableHeader>
-          <Typography subheader>
+          <Typography subheader onClick={()=>{console.log("sort",heading, "column")}}>
             {heading}
           </Typography>
         </StyledTableHeader>

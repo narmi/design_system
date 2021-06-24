@@ -6,6 +6,7 @@ const StyledContainer = styled.span`
   color: #4c4c4c;
   font-weight: 400;
   font-family: var(--nds-font-family);
+  line-height: 20px;
 `;
 
 const Typography = (props) => {
@@ -13,10 +14,12 @@ const Typography = (props) => {
 };
 
 Typography.propTypes = {
+  P1: PropTypes.bool,
   children: PropTypes.node,
 };
 
 Typography.defaultProps = {
+  P1: true,
   children: [],
 };
 

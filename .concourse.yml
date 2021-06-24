@@ -15,6 +15,22 @@ resource_types:
       repository: phillbaker/s3-resource-simple
       tag: params
 
+resources:
+  - name: designsystem-pr
+    type: pull-request
+    source:
+      access_token: {{github_access_token}}
+      private_key: {{github_banking_private_key}}
+      repo: narmi/design_system
+      uri: git@github.com:narmi/design_system.git
+  - name: banking-master-image
+    type: docker-image
+    source:
+      repository: 848180528913.dkr.ecr.us-east-1.amazonaws.com:443/banking
+      aws_access_key_id: {{aws_access_key}}
+      aws_secret_access_key: {{aws_secret_key}}
+      max_concurrent_downloads: 3
+
 groups:
   - name: pr-flow
     jobs:
@@ -66,7 +82,7 @@ jobs:
     max_in_flight: 5
     build_logs_to_retain: 1000
     plan:
-      - get: banking-pr
+      - get: designsystem-pr
         params:
           depth: 1
         trigger: true
@@ -79,14 +95,14 @@ jobs:
         config:
           platform: linux
           params:
-            AWS_ACCESS_KEY_ID: { { aws_access_key_narmicom_docs } }
-            AWS_SECRET_ACCESS_KEY: { { aws_secret_key_narmicom_docs } }
+            AWS_ACCESS_KEY_ID: {{aws_access_key_narmicom_docs}}
+            AWS_SECRET_ACCESS_KEY: {{aws_secret_key_narmicom_docs}}
             AWS_DEFAULT_REGION: us-east-1
-            CHROMATIC_PROJECT_TOKEN: { { storybook_chromatic_project_token } }
+            CHROMATIC_PROJECT_TOKEN: {{storybook_chromatic_project_token}}
             PR: true
-            GITHUB_ACCESS_TOKEN: { { github_access_token } }
+            GITHUB_ACCESS_TOKEN: {{github_access_token}}
           inputs:
-            - name: banking-pr
+            - name: designsystem-pr
               path: banking
             - name: banking-master-image
           run: *task_publish_storybook
@@ -108,10 +124,10 @@ jobs:
         config:
           platform: linux
           params:
-            AWS_ACCESS_KEY_ID: { { aws_access_key_narmicom_docs } }
-            AWS_SECRET_ACCESS_KEY: { { aws_secret_key_narmicom_docs } }
+            AWS_ACCESS_KEY_ID: {{aws_access_key_narmicom_docs}}
+            AWS_SECRET_ACCESS_KEY: {{aws_secret_key_narmicom_docs}}
             AWS_DEFAULT_REGION: us-east-1
-            CHROMATIC_PROJECT_TOKEN: { { storybook_chromatic_project_token } }
+            CHROMATIC_PROJECT_TOKEN: {{storybook_chromatic_project_token}}
           inputs:
             - name: banking-master
               path: banking

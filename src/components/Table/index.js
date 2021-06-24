@@ -47,7 +47,7 @@ const renderHeader = (props) => {
     <StyledTableRow>
       {uniqueColumns.map((heading) => (
         <StyledTableHeader>
-          <Typography style={{ "font-size": "12px", "font-weight": "600" }}>
+          <Typography subheader>
             {heading}
           </Typography>
         </StyledTableHeader>
@@ -72,7 +72,7 @@ const Table = (props) => {
   return (
     <div {...props}>
       <StyledTableTitleDiv>
-        <Typography style={{ "font-weight": "600", "font-size": "20px" }}>
+        <Typography h3>
           {props.title}
         </Typography>
       </StyledTableTitleDiv>

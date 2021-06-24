@@ -1,0 +1,123 @@
+resource_types:
+  - name: pull-request
+    type: registry-image
+    source:
+      repository: jtarchie/pr
+  - name: slack-notification
+    type: registry-image
+    source:
+      repository: cfcommunity/slack-notification-resource
+      tag: latest
+  - name: s3-sync
+    type: registry-image
+    source:
+      # Use a form of 18fgsa/s3-resource-simple that provides additional features
+      repository: phillbaker/s3-resource-simple
+      tag: params
+
+groups:
+  - name: pr-flow
+    jobs:
+      - pr-storybook
+  - name: after-merge
+    jobs:
+      - publish-storybook-master
+
+task_publish_storybook: &task_publish_storybook
+  path: bash
+  args:
+    - -xc
+    - |
+      cd banking
+
+      # must live in in design_system/ folder
+      # only commits on HEAD of master
+      RELEVANT_FILES=`git show --pretty='format:' --name-only | sort | uniq | grep -v -e '^$' | grep -E 'design_system/'`
+      if [ -z "$RELEVANT_FILES" ]; then
+        echo "\n*******************************************************"
+        echo "No Storybook updates found! Exiting 0"
+        echo "\n*******************************************************"
+        exit 0
+      fi
+
+      set -e # set exit on error after short circuit check above
+      cd design_system
+      # publish to Chromatic, depends on CHROMATIC_PROJECT_TOKEN being set in task
+      npm ci --loglevel=warn
+      echo '{"body": "' > request
+      echo "Storybook published for your PR! For design QA:\n\n" >> request
+      npm run publish-storybook > published
+      cat published | grep -i "View build details at" | grep "→" | sed 's/   //g' | sed 's/build details at/changed components here/' >> request
+      echo "\n" >> request
+      cat published | grep -i "View complete Storybook at" | sed 's/   //g' >> request
+      echo "\n" >> request
+      echo '"}' >> request
+      cat request
+      # comment the Storybook URL on the PR
+      if [ "${PR}" == "true" ]; then
+        PR_ID=$(git config --get pullrequest.id)
+        curl -s -H "Authorization: token ${GITHUB_ACCESS_TOKEN}" \
+          -X POST -d @request \
+          "https://api.github.com/repos/narmi/banking/issues/${PR_ID}/comments"
+      fi
+
+jobs:
+  - name: pr-storybook
+    max_in_flight: 5
+    build_logs_to_retain: 1000
+    plan:
+      - get: banking-pr
+        params:
+          depth: 1
+        trigger: true
+      - get: banking-master-image
+        params:
+          save: true
+      - task: publish-storybook
+        timeout: 30m
+        image: banking-master-image
+        params:
+          <<: *django_environment
+        config:
+          platform: linux
+          params:
+            AWS_ACCESS_KEY_ID: {{aws_access_key_narmicom_docs}}
+            AWS_SECRET_ACCESS_KEY: {{aws_secret_key_narmicom_docs}}
+            AWS_DEFAULT_REGION: us-east-1
+            CHROMATIC_PROJECT_TOKEN: {{storybook_chromatic_project_token}}
+            PR: true
+            GITHUB_ACCESS_TOKEN: {{github_access_token}}
+          inputs:
+            - name: banking-pr
+              path: banking
+            - name: banking-master-image
+          run: *task_publish_storybook
+          
+  - name: publish-storybook-master
+    max_in_flight: 1
+    build_logs_to_retain: 1000
+    plan:
+      - get: banking-master
+        params:
+          depth: 2
+        trigger: true
+      - get: banking-master-image
+        params:
+          save: true
+      - task: publish-storybook
+        timeout: 30m
+        image: banking-master-image
+        params:
+          <<: *django_environment
+        config:
+          platform: linux
+          params:
+            AWS_ACCESS_KEY_ID: {{aws_access_key_narmicom_docs}}
+            AWS_SECRET_ACCESS_KEY: {{aws_secret_key_narmicom_docs}}
+            AWS_DEFAULT_REGION: us-east-1
+            CHROMATIC_PROJECT_TOKEN: {{storybook_chromatic_project_token}}
+          inputs:
+            - name: banking-master
+              path: banking
+            - name: banking-master-image
+          run: *task_publish_storybook

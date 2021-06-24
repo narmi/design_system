@@ -207,6 +207,7 @@ Input.propTypes = {
   // native input props
   id: PropTypes.string,
   type: PropTypes.string,
+  value: PropTypes.string,
 };
 
 Input.defaultProps = {
@@ -216,7 +217,6 @@ Input.defaultProps = {
   showNativeDatepicker: false,
   // native input props
   className: "",
-  defaultValue: null,
   type: "text",
 };
 

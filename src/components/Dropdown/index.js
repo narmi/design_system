@@ -144,6 +144,6 @@ Dropdown.defaultProps = {
 Dropdown.propTypes = {
   children: PropTypes.any,
   defaultOpen: PropTypes.bool,
-  triggerLabel: PropTypes.string,
+  triggerLabel: PropTypes.string.isRequired,
   triggerValue: PropTypes.string,
 };

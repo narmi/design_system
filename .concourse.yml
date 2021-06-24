@@ -44,7 +44,6 @@ task_publish_storybook: &task_publish_storybook
   args:
     - -xc
     - |
-      cd banking
 
       # must live in in design_system/ folder
       # only commits on HEAD of master

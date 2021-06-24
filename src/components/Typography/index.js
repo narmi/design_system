@@ -4,59 +4,43 @@ import styled from "styled-components";
 
 const StyledContainer = styled.span`
   color: ${(props) => props.color};
-  font-weight: ${(props) => (props.SemiBold ? "600" : props.fontWeight)};
+  font-weight: ${(props) => (props.semibold ? "600" : props.fontWeight)};
   font-family: var(--nds-font-family);
   line-height: ${(props) => props.lineHeight};
   font-size: ${(props) => props.fontSize};
-  text-transform: ${(props) => (props.Subheader ? "uppercase" : null)};
-
-  :hover {
-    text-decoration: ${(props) =>
-      props.Link || props.SmallLink ? "underline" : null};
-    text-decoration-color: ${(props) =>
-      props.Link || props.SmallLink ? props.color : null};
-  }
+  text-transform: ${(props) => (props.subheader ? "uppercase" : null)};
 `;
 
 const Typography = (props) => {
   let fontWeight = "400";
   let fontSize = "16px";
   let lineHeight = "20px";
-  let color = "#4c4c4c";
-  if (props.H1) {
+  let color = "var(--nds-grey-text)";
+  if (props.h1) {
     fontWeight = "600";
     lineHeight = "50px";
     fontSize = "36px";
-  } else if (props.H2) {
+  } else if (props.h2) {
     fontWeight = "600";
     lineHeight = "35px";
     fontSize = "28px";
-  } else if (props.H3) {
+  } else if (props.h3) {
     fontWeight = "600";
     lineHeight = "28px";
     fontSize = "20px";
-  } else if (props.Subheader) {
+  } else if (props.subheader) {
     fontWeight = "600";
     lineHeight = "15px";
     fontSize = "12px";
-  } else if (props.P3) {
+  } else if (props.p3) {
     lineHeight = "15px";
     fontSize = "12px";
-  } else if (props.P2) {
+  } else if (props.p2) {
     lineHeight = "18px";
     fontSize = "14px";
-  } else if (props.P1) {
+  } else if (props.p1) {
     lineHeight = "20px";
     fontSize = "16px";
-  }
-  if (props.Link) {
-    fontSize = "20px";
-    fontWeight = "600";
-    color = "var(--nds-secondary-color)";
-  } else if (props.SmallLink) {
-    fontSize = "16px";
-    fontWeight = "600";
-    color = "var(--nds-secondary-color)";
   }
   return (
     <StyledContainer
@@ -66,31 +50,27 @@ const Typography = (props) => {
       lineHeight={lineHeight}
       {...props}
     >
-      {" "}
-      {props.children}{" "}
+      {props.children}
     </StyledContainer>
   );
 };
 
 Typography.propTypes = {
-  H1: PropTypes.bool,
-  H2: PropTypes.bool,
-  H3: PropTypes.bool,
-  Subheader: PropTypes.bool,
+  h1: PropTypes.bool,
+  h2: PropTypes.bool,
+  h3: PropTypes.bool,
+  subheader: PropTypes.bool,
 
-  P1: PropTypes.bool,
-  P2: PropTypes.bool,
-  P3: PropTypes.bool,
+  p1: PropTypes.bool,
+  p2: PropTypes.bool,
+  p3: PropTypes.bool,
 
-  SemiBold: PropTypes.bool,
-
-  Link: PropTypes.bool,
-  SmallLink: PropTypes.bool,
+  semibold: PropTypes.bool,
   children: PropTypes.node,
 };
 
 Typography.defaultProps = {
-  P1: true,
+  p1: true,
   children: [],
 };
 

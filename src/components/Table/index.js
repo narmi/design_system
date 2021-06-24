@@ -3,21 +3,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Typography from "components/Typography";
 
-/*
-props.gridData takes an array of arrays, the content of which are objects of the format
-
-      {
-        column: "DESCRIPTION", // column name type string. This is optional for cells with no column name. Cells with no column name will placed at the end of a row
-        content:  // cell content of type node
-      },
-
-For instance, a sample gridData with {3} columns could look like:
-[
-  [ { column: column1  content: <p>cell1</p>}, { column: column2  content: <p>cell2</p>}, { column: column3  content: <p>cell3</p>}],
-  [ { column: column1  content: <p>cell4</p>}, { column: column2  content: <p>cell5</p>}, { column: column3  content: <p>cell6</p>}],
-]
-*/
-
 const StyledTableTitleDiv = styled.div`
   font-size: 20px;
 `;
@@ -111,5 +96,21 @@ Table.defaultProps = {
   hoverable: true,
   gridData: [[]],
 };
+
+/*
+props.gridData takes an array of arrays, the content of which are objects of the format
+
+      {
+        column: "DESCRIPTION", // column name type string. This is optional for cells with no column name. 
+                                                    // Cells with no column name will placed at the end of a row
+        content:  // cell content of type node
+      },
+
+For instance, a sample gridData with {3} columns could look like:
+[
+  [ { column: column1,  content: <p>cell1</p>}, { column: column2,  content: <p>cell2</p>}, { column: column3,  content: <p>cell3</p>}],
+  [ { column: column1,  content: <p>cell4</p>}, { column: column2,  content: <p>cell5</p>}, { column: column3,  content: <p>cell6</p>}],
+]
+*/
 
 export default Table;

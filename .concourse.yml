@@ -76,8 +76,6 @@ jobs:
       - task: publish-storybook
         timeout: 30m
         image: banking-master-image
-        params:
-          <<: *django_environment
         config:
           platform: linux
           params:
@@ -92,7 +90,7 @@ jobs:
               path: banking
             - name: banking-master-image
           run: *task_publish_storybook
-          
+
   - name: publish-storybook-master
     max_in_flight: 1
     build_logs_to_retain: 1000

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const StyledContainer = styled.span`
   color: #4c4c4c;
-  font-weight: 400;
+  font-weight: 500;
   font-family: var(--nds-font-family);
 `;
 

@@ -20,9 +20,17 @@ resources:
     type: pull-request
     source:
       access_token: {{github_access_token}}
-      private_key: {{github_banking_private_key}}
+      private_key: {{github_designsystem_private_key}}
       repo: narmi/design_system
       uri: git@github.com:narmi/design_system.git
+  - name: designsystem-master
+    type: git
+    source:
+      uri: git@github.com:narmi/design_system.git
+      branch: master
+      access_token: {{github_access_token}}
+      private_key: {{github_designsystem_private_key}}
+
   - name: banking-master-image
     type: docker-image
     source:
@@ -30,14 +38,6 @@ resources:
       aws_access_key_id: {{aws_access_key}}
       aws_secret_access_key: {{aws_secret_key}}
       max_concurrent_downloads: 3
-
-groups:
-  - name: pr-flow
-    jobs:
-      - pr-storybook
-  - name: after-merge
-    jobs:
-      - publish-storybook-master
 
 task_publish_storybook: &task_publish_storybook
   path: bash
@@ -111,7 +111,7 @@ jobs:
     max_in_flight: 1
     build_logs_to_retain: 1000
     plan:
-      - get: banking-master
+      - get: designsystem-master
         params:
           depth: 2
         trigger: true

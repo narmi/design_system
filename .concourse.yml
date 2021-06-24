@@ -79,12 +79,12 @@ jobs:
         config:
           platform: linux
           params:
-            AWS_ACCESS_KEY_ID: {{aws_access_key_narmicom_docs}}
-            AWS_SECRET_ACCESS_KEY: {{aws_secret_key_narmicom_docs}}
+            AWS_ACCESS_KEY_ID: { { aws_access_key_narmicom_docs } }
+            AWS_SECRET_ACCESS_KEY: { { aws_secret_key_narmicom_docs } }
             AWS_DEFAULT_REGION: us-east-1
-            CHROMATIC_PROJECT_TOKEN: {{storybook_chromatic_project_token}}
+            CHROMATIC_PROJECT_TOKEN: { { storybook_chromatic_project_token } }
             PR: true
-            GITHUB_ACCESS_TOKEN: {{github_access_token}}
+            GITHUB_ACCESS_TOKEN: { { github_access_token } }
           inputs:
             - name: banking-pr
               path: banking
@@ -105,15 +105,13 @@ jobs:
       - task: publish-storybook
         timeout: 30m
         image: banking-master-image
-        params:
-          <<: *django_environment
         config:
           platform: linux
           params:
-            AWS_ACCESS_KEY_ID: {{aws_access_key_narmicom_docs}}
-            AWS_SECRET_ACCESS_KEY: {{aws_secret_key_narmicom_docs}}
+            AWS_ACCESS_KEY_ID: { { aws_access_key_narmicom_docs } }
+            AWS_SECRET_ACCESS_KEY: { { aws_secret_key_narmicom_docs } }
             AWS_DEFAULT_REGION: us-east-1
-            CHROMATIC_PROJECT_TOKEN: {{storybook_chromatic_project_token}}
+            CHROMATIC_PROJECT_TOKEN: { { storybook_chromatic_project_token } }
           inputs:
             - name: banking-master
               path: banking

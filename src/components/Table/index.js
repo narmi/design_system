@@ -35,7 +35,7 @@ const StyledTableRow = styled.tr`
   }
 `;
 
-const renderRow = (row) => {
+const renderCells = (row) => {
   return row.map((cell) => (
     <StyledTableCell>
       <Typography>{cell.content}</Typography>
@@ -45,30 +45,31 @@ const renderRow = (row) => {
 
 const Table = (props) => {
   const [grid, setGrid] = useState([[]]);
-  const [colOrder, setColOrder] = useState();
+  const [activeSortColumns, setActiveSortColumns] = useState();
 
-  const renderColumns = ([col, colData]) => {
-    return <StyledTableRow {...props}>{renderRow(colData)}</StyledTableRow>;
+  const renderRow = ([col, colData]) => {
+    return <StyledTableRow {...props}>{renderCells(colData)}</StyledTableRow>;
   };
 
-  const getUniqueColumns = (props) => {
-    var gridColumns = props.gridData.map(function (row) {
+  const getUniqueColumns = (gridData) => {
+    var gridColumns = gridData.map(function (row) {
       return row.map(function (cell) {
         return cell.column;
       });
     });
     const columns = [].concat.apply([], gridColumns);
-    const uniqueColumns = [...new Set(columns)];
-
-    return uniqueColumns;
+    return [...new Set(columns)];
   };
 
   useEffect(() => {
-    setGrid(Object.entries(props.gridData).map(renderColumns));
-    let uniqueColumns = getUniqueColumns(props);
+    setGrid(Object.entries(props.gridData).map(renderRow));
+    let uniqueColumns = getUniqueColumns(props.gridData);
     let colOrderObject = {};
-    uniqueColumns.map((col) => (col ? (colOrderObject[col] = false) : null));
-    setColOrder(colOrderObject);
+    uniqueColumns.reduce((result, col) => {
+      result[col] = false;
+      return result;
+    }, {});
+    setActiveSortColumns(colOrderObject);
   }, []);
 
   function sortByKey(array, key, order) {
@@ -95,22 +96,28 @@ const Table = (props) => {
   }
 
   const sortGrid = (heading) => {
-    colOrder[heading] = !colOrder[heading];
-    let newGrid = sortByKey(props.gridData, heading, colOrder[heading]);
-    setGrid(Object.entries(newGrid).map(renderColumns));
+    Object.keys(activeSortColumns).map((x) =>
+      x != heading ? (activeSortColumns[x] = false) : null
+    );
+
+    activeSortColumns[heading] = !activeSortColumns[heading];
+    let newGrid = sortByKey(
+      props.gridData,
+      heading,
+      activeSortColumns[heading]
+    );
+    setGrid(Object.entries(newGrid).map(renderRow));
   };
 
   const renderHeader = (props) => {
-    const uniqueColumns = getUniqueColumns(props);
+    const uniqueColumns = getUniqueColumns(props.gridData);
     return (
       <StyledTableRow>
         {uniqueColumns.map((heading) => (
           <StyledTableHeader>
             <Typography
               subheader
-              onClick={() => {
-                props.sortByHeader ? sortGrid(heading) : null;
-              }}
+              onClick={props.sortByHeader ? () => sortGrid(heading) : null}
             >
               {heading}
             </Typography>

@@ -42,7 +42,7 @@ const DefaultArgs = {
       {
         column: "AMOUNT",
         content: "-$1000",
-        key: "url-item",
+        sortKey: -1000,
       },
       {
         content: <PlainButton small>Delete</PlainButton>,
@@ -63,7 +63,7 @@ const DefaultArgs = {
       {
         column: "AMOUNT",
         content: "-$123.45",
-        key: "url-item",
+        sortKey: -123.45,
       },
       {
         content: <PlainButton small>Delete</PlainButton>,
@@ -84,7 +84,7 @@ const DefaultArgs = {
       {
         column: "AMOUNT",
         content: "-$80",
-        key: "url-item",
+        sortKey: -80,
       },
       {
         content: <PlainButton small>Delete</PlainButton>,

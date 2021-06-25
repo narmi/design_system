@@ -45,21 +45,39 @@ const renderRow = (row) => {
 
 const Table = (props) => {
   const [grid, setGrid] = useState([[]]);
+  const [colOrder, setColOrder] = useState();
+  
   const renderColumns = ([col, colData]) => {
     return <StyledTableRow {...props}>{renderRow(colData)}</StyledTableRow>;
   };
+
+  const getUniqueColumns = (props) => {
+    var gridColumns = props.gridData.map(function (row) {
+      return row.map(function (cell) {
+        return cell.column;
+      });
+    });
+    const columns = [].concat.apply([], gridColumns);
+    const uniqueColumns = [...new Set(columns)];
+
+    return uniqueColumns;
+  }
 
 
   useEffect(
     () => {
       setGrid(Object.entries(props.gridData).map(renderColumns));
+      let uniqueColumns = getUniqueColumns(props);
+      let colOrderObject = {}
+      uniqueColumns.map(col => col ? colOrderObject[col] = false : null);
+      setColOrder(colOrderObject);
     },
     [],
   );
 
-  function sortByKey(array, key) {
+  function sortByKey(array, key, order) {
     return array.sort(function(a, b) {
-        console.log("yo", a, b);
+        // console.log("yo", a, b);
         var result = a.filter(obj => {
           return obj.column === key;
         });
@@ -68,33 +86,31 @@ const Table = (props) => {
           return obj.column === key;
         });
 
-        console.log("r", result, result2);
+        // console.log("r", result, result2);
         var x = result[0].content; var y = result2[0].content;
 
-        var currency2 = Number(x.replace(/[^0-9.-]+/g,""));;
-        var currency = Number(y.replace(/[^0-9.-]+/g,""));;
-        console.log("currency", currency, currency2, currency < currency2);
+        var currency = Number(x.replace(/[^0-9.-]+/g,""));;
+        var currency2 = Number(y.replace(/[^0-9.-]+/g,""));;
+        if (order){
+          var currency2 = Number(x.replace(/[^0-9.-]+/g,""));;
+          var currency = Number(y.replace(/[^0-9.-]+/g,""));;
+        }
         return ((currency < currency2) ? -1 : ((currency > currency2) ? 1 : 0));
     });
 }
 
   const sortGrid = (heading) => {
-    console.log("sort", heading, "column");
-    let newGrid = sortByKey(props.gridData, heading);
-    console.log("old grid", props.gridData);
-    console.log("new grid", newGrid);
+    console.log("sorting", heading, "column");
+    colOrder[heading] = !colOrder[heading];
+    let newGrid = sortByKey(props.gridData, heading, colOrder[heading]);
+    console.log("colOrder2", colOrder);
+    // console.log("old grid", props.gridData);
+    // console.log("new grid", newGrid);
     setGrid(Object.entries(newGrid).map(renderColumns));
   }
-  console.log(props.gridData);
 
   const renderHeader = (props) => {
-    var gridColumns = props.gridData.map(function (row) {
-      return row.map(function (cell) {
-        return cell.column;
-      });
-    });
-    const columns = [].concat.apply([], gridColumns);
-    const uniqueColumns = [...new Set(columns)];
+    const uniqueColumns = getUniqueColumns(props);
     return (
       <StyledTableRow>
         {uniqueColumns.map((heading) => (

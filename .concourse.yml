@@ -46,6 +46,7 @@ task_publish_storybook: &task_publish_storybook
     - |
       cd design_system
       node --version
+      npm --version
       # must live in in design_system/ folder
       # only commits on HEAD of master
       RELEVANT_FILES=`git show --pretty='format:' --name-only | sort | uniq`

@@ -82,14 +82,14 @@ const Table = (props) => {
       });
 
       if (attrMatch1.length && attrMatch2.length) {
-        let x = attrMatch1[0].sortKey;
-        let y = attrMatch2[0].sortKey;
+        let sortKey1 = attrMatch1[0].sortKey;
+        let sortKey2 = attrMatch2[0].sortKey;
 
         if (order) {
-          x = attrMatch1[0].sortKey;
-          y = attrMatch2[0].sortKey;
+          sortKey1 = attrMatch2[0].sortKey;
+          sortKey2 = attrMatch1[0].sortKey;
         }
-        return x < y ? -1 : x > y ? 1 : 0;
+        return sortKey1 < sortKey2 ? -1 : sortKey1 > sortKey2 ? 1 : 0;
       }
     });
   }

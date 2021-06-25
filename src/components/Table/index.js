@@ -65,51 +65,52 @@ const Table = (props) => {
     setGrid(Object.entries(props.gridData).map(renderRow));
     let uniqueColumns = getUniqueColumns(props.gridData);
     let colOrderObject = {};
-    uniqueColumns.reduce((result, col) => {
-      result[col] = false;
+    colOrderObject = uniqueColumns.reduce((result, col, idx) => {
+      if (col !== undefined) {
+        result[col] = { active: false, idx: idx };
+      }
       return result;
     }, {});
     setActiveSortColumns(colOrderObject);
   }, []);
 
   function sortByKey(array, key, order) {
-    return array.sort(function (cellArray1, cellArray2) {
-      var attrMatch1 = cellArray1.filter((obj) => {
-        return obj.column === key;
-      });
+    return array.sort(function (row1, row2) {
+      let idx = activeSortColumns[key]["idx"];
+      var cell1 = row1[idx];
+      var cell2 = row2[idx];
 
-      var attrMatch2 = cellArray2.filter((obj) => {
-        return obj.column === key;
-      });
+      let sortKey1 = cell1.sortKey;
+      let sortKey2 = cell2.sortKey;
 
-      if (attrMatch1.length && attrMatch2.length) {
-        let sortKey1 = attrMatch1[0].sortKey;
-        let sortKey2 = attrMatch2[0].sortKey;
-
-        if (order) {
-          sortKey1 = attrMatch2[0].sortKey;
-          sortKey2 = attrMatch1[0].sortKey;
-        }
-        return sortKey1 < sortKey2 ? -1 : sortKey1 > sortKey2 ? 1 : 0;
+      if (order) {
+        sortKey1 = cell2.sortKey;
+        sortKey2 = cell1.sortKey;
       }
+      return sortKey1 < sortKey2 ? -1 : sortKey1 > sortKey2 ? 1 : 0;
     });
   }
 
-  const sortGrid = (heading) => {
+  const resetNonActiveHeadings = (heading) => {
     Object.keys(activeSortColumns).map((x) =>
-      x != heading ? (activeSortColumns[x] = false) : null
+      x != heading ? (activeSortColumns[x]["active"] = false) : null
     );
+  };
 
-    activeSortColumns[heading] = !activeSortColumns[heading];
+  const sortGrid = (heading) => {
+    resetNonActiveHeadings(heading);
+
+    activeSortColumns[heading]["active"] =
+      !activeSortColumns[heading]["active"];
     let newGrid = sortByKey(
       props.gridData,
       heading,
-      activeSortColumns[heading]
+      activeSortColumns[heading]["active"]
     );
     setGrid(Object.entries(newGrid).map(renderRow));
   };
 
-  const renderHeader = (props) => {
+  const renderHeader = () => {
     const uniqueColumns = getUniqueColumns(props.gridData);
     return (
       <StyledTableRow>
@@ -150,7 +151,7 @@ Table.propTypes = {
 
 Table.defaultProps = {
   title: "",
-  sortByHeader: false,
+  sortByHeader: true,
   hoverable: true,
   gridData: [[]],
 };

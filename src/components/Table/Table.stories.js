@@ -46,7 +46,6 @@ const DefaultArgs = {
       },
       {
         content: <PlainButton small>Delete</PlainButton>,
-        key: "url-item",
       },
     ],
     [
@@ -67,7 +66,6 @@ const DefaultArgs = {
       },
       {
         content: <PlainButton small>Delete</PlainButton>,
-        key: "url-item",
       },
     ],
     [
@@ -88,7 +86,6 @@ const DefaultArgs = {
       },
       {
         content: <PlainButton small>Delete</PlainButton>,
-        key: "url-item",
       },
     ],
     [
@@ -109,7 +106,6 @@ const DefaultArgs = {
       },
       {
         content: <PlainButton small>Delete</PlainButton>,
-        key: "url-item",
       },
     ],
   ],

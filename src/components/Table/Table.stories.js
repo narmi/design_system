@@ -37,16 +37,15 @@ const DefaultArgs = {
             date={"October 30, 2020"}
           />
         ),
-        key: "url-item",
+        sortKey: "Transfer to Noble Bank-3432",
       },
       {
         column: "AMOUNT",
         content: "-$1000",
-        key: "url-item",
+        sortKey: -1000,
       },
       {
         content: <PlainButton small>Delete</PlainButton>,
-        key: "url-item",
       },
     ],
     [
@@ -58,16 +57,15 @@ const DefaultArgs = {
             date={"October 23, 2020"}
           />
         ),
-        key: "url-item",
+        sortKey: "Bill to Waterworks-4534",
       },
       {
         column: "AMOUNT",
         content: "-$123.45",
-        key: "url-item",
+        sortKey: -123.45,
       },
       {
         content: <PlainButton small>Delete</PlainButton>,
-        key: "url-item",
       },
     ],
     [
@@ -79,16 +77,35 @@ const DefaultArgs = {
             date={"October 20, 2020"}
           />
         ),
-        key: "url-item",
+        sortKey: "Transfer to Melanie Abrazado",
       },
       {
         column: "AMOUNT",
         content: "-$80",
-        key: "url-item",
+        sortKey: -80,
       },
       {
         content: <PlainButton small>Delete</PlainButton>,
-        key: "url-item",
+      },
+    ],
+    [
+      {
+        column: "DESCRIPTION",
+        content: (
+          <DescriptionDiv
+            transfer={"Transfer to Melanie Abrazado"}
+            date={"October 21, 2020"}
+          />
+        ),
+        sortKey: "Transfer to Melanie Abrazado",
+      },
+      {
+        column: "AMOUNT",
+        content: "-$130",
+        sortKey: -130,
+      },
+      {
+        content: <PlainButton small>Delete</PlainButton>,
       },
     ],
   ],

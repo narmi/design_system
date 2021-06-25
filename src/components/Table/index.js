@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Typography from "components/Typography";
@@ -35,27 +35,6 @@ const StyledTableRow = styled.tr`
   }
 `;
 
-const renderHeader = (props) => {
-  var gridColumns = props.gridData.map(function (row) {
-    return row.map(function (cell) {
-      return cell.column;
-    });
-  });
-  const columns = [].concat.apply([], gridColumns);
-  const uniqueColumns = [...new Set(columns)];
-  return (
-    <StyledTableRow>
-      {uniqueColumns.map((heading) => (
-        <StyledTableHeader>
-          <Typography subheader onClick={()=>{console.log("sort",heading, "column")}}>
-            {heading}
-          </Typography>
-        </StyledTableHeader>
-      ))}
-    </StyledTableRow>
-  );
-};
-
 const renderRow = (row) => {
   return row.map((cell) => (
     <StyledTableCell>
@@ -65,9 +44,46 @@ const renderRow = (row) => {
 };
 
 const Table = (props) => {
+  const [grid, setGrid] = useState([[]]);
   const renderColumns = ([col, colData]) => {
     return <StyledTableRow {...props}>{renderRow(colData)}</StyledTableRow>;
   };
+
+
+  useEffect(
+    () => {
+      setGrid(Object.entries(props.gridData).map(renderColumns));
+    },
+    [],
+  );
+
+  const sortGrid = (heading) => {
+    console.log("sort",heading, "column");
+    setGrid(<div>{heading}</div>);
+  }
+
+  const renderHeader = (props) => {
+    var gridColumns = props.gridData.map(function (row) {
+      return row.map(function (cell) {
+        return cell.column;
+      });
+    });
+    const columns = [].concat.apply([], gridColumns);
+    const uniqueColumns = [...new Set(columns)];
+    return (
+      <StyledTableRow>
+        {uniqueColumns.map((heading) => (
+          <StyledTableHeader>
+            <Typography subheader onClick={()=>{sortGrid(heading)}}>
+              {heading}
+            </Typography>
+          </StyledTableHeader>
+        ))}
+      </StyledTableRow>
+    );
+  };
+
+
 
   return (
     <div {...props}>
@@ -79,7 +95,7 @@ const Table = (props) => {
       <br />
       <StyledTable>
         {renderHeader(props)}
-        {Object.entries(props.gridData).map(renderColumns)}
+        {grid}
       </StyledTable>
     </div>
   );

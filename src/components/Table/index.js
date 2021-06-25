@@ -57,10 +57,35 @@ const Table = (props) => {
     [],
   );
 
+  function sortByKey(array, key) {
+    return array.sort(function(a, b) {
+        console.log("yo", a, b);
+        var result = a.filter(obj => {
+          return obj.column === key;
+        });
+
+        var result2 = b.filter(obj => {
+          return obj.column === key;
+        });
+
+        console.log("r", result, result2);
+        var x = result[0].content; var y = result2[0].content;
+
+        var currency2 = Number(x.replace(/[^0-9.-]+/g,""));;
+        var currency = Number(y.replace(/[^0-9.-]+/g,""));;
+        console.log("currency", currency, currency2, currency < currency2);
+        return ((currency < currency2) ? -1 : ((currency > currency2) ? 1 : 0));
+    });
+}
+
   const sortGrid = (heading) => {
-    console.log("sort",heading, "column");
-    setGrid(<div>{heading}</div>);
+    console.log("sort", heading, "column");
+    let newGrid = sortByKey(props.gridData, heading);
+    console.log("old grid", props.gridData);
+    console.log("new grid", newGrid);
+    setGrid(Object.entries(newGrid).map(renderColumns));
   }
+  console.log(props.gridData);
 
   const renderHeader = (props) => {
     var gridColumns = props.gridData.map(function (row) {

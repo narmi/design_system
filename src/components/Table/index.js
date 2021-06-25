@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Typography from "components/Typography";
@@ -46,7 +46,7 @@ const renderRow = (row) => {
 const Table = (props) => {
   const [grid, setGrid] = useState([[]]);
   const [colOrder, setColOrder] = useState();
-  
+
   const renderColumns = ([col, colData]) => {
     return <StyledTableRow {...props}>{renderRow(colData)}</StyledTableRow>;
   };
@@ -61,53 +61,44 @@ const Table = (props) => {
     const uniqueColumns = [...new Set(columns)];
 
     return uniqueColumns;
-  }
+  };
 
-
-  useEffect(
-    () => {
-      setGrid(Object.entries(props.gridData).map(renderColumns));
-      let uniqueColumns = getUniqueColumns(props);
-      let colOrderObject = {}
-      uniqueColumns.map(col => col ? colOrderObject[col] = false : null);
-      setColOrder(colOrderObject);
-    },
-    [],
-  );
+  useEffect(() => {
+    setGrid(Object.entries(props.gridData).map(renderColumns));
+    let uniqueColumns = getUniqueColumns(props);
+    let colOrderObject = {};
+    uniqueColumns.map((col) => (col ? (colOrderObject[col] = false) : null));
+    setColOrder(colOrderObject);
+  }, []);
 
   function sortByKey(array, key, order) {
-    return array.sort(function(a, b) {
-        // console.log("yo", a, b);
-        var result = a.filter(obj => {
-          return obj.column === key;
-        });
+    return array.sort(function (cellArray1, cellArray2) {
+      var attrMatch1 = cellArray1.filter((obj) => {
+        return obj.column === key;
+      });
 
-        var result2 = b.filter(obj => {
-          return obj.column === key;
-        });
+      var attrMatch2 = cellArray2.filter((obj) => {
+        return obj.column === key;
+      });
 
-        // console.log("r", result, result2);
-        var x = result[0].content; var y = result2[0].content;
+      if (attrMatch1.length && attrMatch2.length) {
+        let x = attrMatch1[0].sortKey;
+        let y = attrMatch2[0].sortKey;
 
-        var currency = Number(x.replace(/[^0-9.-]+/g,""));;
-        var currency2 = Number(y.replace(/[^0-9.-]+/g,""));;
-        if (order){
-          var currency2 = Number(x.replace(/[^0-9.-]+/g,""));;
-          var currency = Number(y.replace(/[^0-9.-]+/g,""));;
+        if (order) {
+          x = attrMatch1[0].sortKey;
+          y = attrMatch2[0].sortKey;
         }
-        return ((currency < currency2) ? -1 : ((currency > currency2) ? 1 : 0));
+        return x < y ? -1 : x > y ? 1 : 0;
+      }
     });
-}
+  }
 
   const sortGrid = (heading) => {
-    console.log("sorting", heading, "column");
     colOrder[heading] = !colOrder[heading];
     let newGrid = sortByKey(props.gridData, heading, colOrder[heading]);
-    console.log("colOrder2", colOrder);
-    // console.log("old grid", props.gridData);
-    // console.log("new grid", newGrid);
     setGrid(Object.entries(newGrid).map(renderColumns));
-  }
+  };
 
   const renderHeader = (props) => {
     const uniqueColumns = getUniqueColumns(props);
@@ -115,7 +106,12 @@ const Table = (props) => {
       <StyledTableRow>
         {uniqueColumns.map((heading) => (
           <StyledTableHeader>
-            <Typography subheader onClick={()=>{sortGrid(heading)}}>
+            <Typography
+              subheader
+              onClick={() => {
+                props.sortByHeader ? sortGrid(heading) : null;
+              }}
+            >
               {heading}
             </Typography>
           </StyledTableHeader>
@@ -124,14 +120,10 @@ const Table = (props) => {
     );
   };
 
-
-
   return (
     <div {...props}>
       <StyledTableTitleDiv>
-        <Typography h3>
-          {props.title}
-        </Typography>
+        <Typography h3>{props.title}</Typography>
       </StyledTableTitleDiv>
       <br />
       <StyledTable>
@@ -145,11 +137,13 @@ const Table = (props) => {
 Table.propTypes = {
   title: PropTypes.node,
   hoverable: PropTypes.bool,
+  sortByHeader: PropTypes.bool,
   gridData: PropTypes.array,
 };
 
 Table.defaultProps = {
   title: "",
+  sortByHeader: false,
   hoverable: true,
   gridData: [[]],
 };
@@ -161,6 +155,7 @@ props.gridData takes an array of arrays, the content of which are objects of the
         column: "DESCRIPTION", // column name type string. This is optional for cells with no column name. 
                                                     // Cells with no column name will placed at the end of a row
         content:  // cell content of type node
+        sortKey: // value to sort column if sortable
       },
 
 For instance, a sample gridData with {3} columns could look like:

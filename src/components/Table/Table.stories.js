@@ -10,12 +10,10 @@ export default {
 
 const DescriptionDiv = (props) => {
   return (
-    <div
-      style={{ display: "flex", "flex-direction": "column", width: "220px" }}
-    >
-      <Typography style={{ "font-size": "16px" }}>{props.transfer}</Typography>
+    <div style={{ display: "flex", flexDirection: "column", width: "220px" }}>
+      <Typography style={{ fontSize: "16px" }}>{props.transfer}</Typography>
       <Typography
-        style={{ "font-size": "14px", color: "var(--nds-grey-placeholder)" }}
+        style={{ fontSize: "14px", color: "var(--nds-grey-placeholder)" }}
       >
         {props.date}
       </Typography>

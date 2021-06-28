@@ -36,8 +36,8 @@ const StyledTableRow = styled.tr`
 `;
 
 const renderCells = (row) => {
-  return row.map((cell) => (
-    <StyledTableCell>
+  return row.map((cell, idx) => (
+    <StyledTableCell key={idx} data-testid={"col" + idx}>
       <Typography>{cell.content}</Typography>
     </StyledTableCell>
   ));
@@ -135,8 +135,8 @@ const Table = (props) => {
       </StyledTableTitleDiv>
       <br />
       <StyledTable>
-        {renderHeader(props)}
-        {grid}
+        <thead>{renderHeader(props)}</thead>
+        <tbody>{grid}</tbody>
       </StyledTable>
     </div>
   );

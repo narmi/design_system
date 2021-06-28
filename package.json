@@ -7,7 +7,7 @@
     "watch": "watch 'npm run build' src",
     "build": "webpack --mode=development",
     "prepublish": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "publish-storybook": "chromatic --project-token $CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes"

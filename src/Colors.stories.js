@@ -14,7 +14,8 @@ const Square = styled.div`
   width: 120px;
   height: 120px;
   background-color: ${props => props.color ? `var(${props.color})` : "var(--nds-narmi-purple)"};
-  border-radius: 20px;
+  border-radius: 4px;
+  border: 1px solid var(--nds-grey-disabled);
 `;
 
 const Squares = (props) => {
@@ -53,6 +54,9 @@ const DefaultArgs = {
     {css: "--nds-messaging-yellow-light", title: "Light Yellow", category: "Messaging"},
     {css: "--nds-messaging-red", title: "Red", category: "Messaging"},
     {css: "--nds-messaging-red-light", title: "Light Red", category: "Messaging"},
+    {css: "--nds-background-bluegrey", title: "Blue Grey", category: "Backgrounds"},
+    {css: "--nds-background-neutralgrey", title: "Neutral Grey", category: "Backgrounds"},
+    {css: "--nds-background-smokegrey", title: "Smoke Grey", category: "Backgrounds"},
     {css: "--nds-grey-text", title: "Grey", category: "Elements"},
     {css: "--nds-grey-placeholder", title: "Light Grey", category: "Elements"},
     {css: "--nds-grey-disabled", title: "Lightest Grey", category: "Elements"},

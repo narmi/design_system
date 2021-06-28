@@ -46,18 +46,18 @@ const GlobalStyles = createGlobalStyle`
     --nds-black: #333;
     --nds-red-error: ${messagingRed};
 
-    --nds-messaging-green: "#37b374";
-    --nds-messaging-green-light: "#e3fae7";
-    --nds-messaging-yellow: "#eac348";
-    --nds-messaging-yellow-light: "#fef8e3";
+    --nds-messaging-green: #37b374;
+    --nds-messaging-green-light: #e3fae7;
+    --nds-messaging-yellow: #eac348;
+    --nds-messaging-yellow-light: #fef8e3;
     --nds-messaging-red: ${messagingRed};
-    --nds-messaging-red-light: "#fdf1f1";
+    --nds-messaging-red-light: #fdf1f1;
 
-    --nds-background-bluegrey: "#f4f6fa";          // Tables, rows
-    --nds-background-neutralgrey: "#f9f9f9";       // Used as the background color for most pages
-    --nds-background-smokegrey: "#f3f3f3";         // Hover color for dropdown, table, etcA
-    --nds-background-legacy-cloudgrey: "#e9e9e9";  // legacy: do not use
-    --nds-background-legacy-snowgrey: "#fbfbfb";   // legacy: do not use
+    --nds-background-bluegrey: #f4f6fa;          // Tables, rows
+    --nds-background-neutralgrey: #f9f9f9;       // Used as the background color for most pages
+    --nds-background-smokegrey: #f3f3f3;         // Hover color for dropdown, table, etcA
+    --nds-background-legacy-cloudgrey: #e9e9e9;  // legacy: do not use
+    --nds-background-legacy-snowgrey: #fbfbfb;   // legacy: do not use
 
     --nds-font-family: 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     --nds-primary-color: ${(p) => Theme.primaryColor(p)};

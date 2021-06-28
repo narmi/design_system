@@ -97,7 +97,7 @@ const Table = (props) => {
     );
   };
 
-  const sortGrid = (heading) => {
+  function sortGrid(heading){
     resetNonActiveHeadings(heading);
 
     activeSortColumns[heading]["active"] =

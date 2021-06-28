@@ -100,5 +100,8 @@ describe('Table Sorting', () => {
     amountHeader.click(); // trigger sort
     amountColumnValues = amountColumn.map(cell => cell.textContent);
     expect(amountColumnValues).toEqual([ '-$80', '-$123.45', '-$130', '-$1000' ]);
+    amountHeader.click(); // trigger sort
+    amountColumnValues = amountColumn.map(cell => cell.textContent);
+    expect(amountColumnValues).toEqual([ '-$1000', '-$130', '-$123.45', '-$80' ]);
   })
 });

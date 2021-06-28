@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { XCircle } from "react-feather";
 
-import { ndsWhite, errorRed } from "../../globalStyles";
+import { ndsWhite, messagingRed } from "../../globalStyles";
 
 const StyledColumn = styled.div`
   display: flex;
@@ -40,7 +40,7 @@ const StyledGroup = styled.div`
   }
 
   &.nds-error {
-    border: 1px solid var(--nds-red-error);
+    border: 1px solid var(--nds-messaging-red);
   }
 `;
 
@@ -95,7 +95,7 @@ const StyledLabel = styled.label`
     color: var(--nds-grey-placeholder);
   }
   ${StyledInput} ~ &.nds-error {
-    color: var(--nds-red-error);
+    color: var(--nds-messaging-red);
   }
 
   ${StyledInput}:focus ~ &,
@@ -116,7 +116,7 @@ const StyledError = styled.div`
   font-family: var(--nds-font-family);
   font-weight: 400;
   line-height: 22px;
-  color: var(--nds-red-error);
+  color: var(--nds-messaging-red);
 
   width: 100%;
   display: flex;
@@ -189,7 +189,7 @@ const Input = ({
             <XCircle
               size={12}
               color={ndsWhite}
-              style={{ marginRight: "4px", fill: errorRed }}
+              style={{ marginRight: "4px", fill: messagingRed }}
             />{" "}
             {error}
           </StyledError>

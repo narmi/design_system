@@ -36,8 +36,8 @@ const StyledTableRow = styled.tr`
 `;
 
 const renderCells = (row) => {
-  return row.map((cell) => (
-    <StyledTableCell>
+  return row.map((cell, idx) => (
+    <StyledTableCell key={idx} data-testid={"col" + idx}>
       <Typography>{cell.content}</Typography>
     </StyledTableCell>
   ));
@@ -48,7 +48,7 @@ const Table = (props) => {
   const [activeSortColumns, setActiveSortColumns] = useState();
 
   const renderRow = ([col, colData]) => {
-    return <StyledTableRow {...props}>{renderCells(colData)}</StyledTableRow>;
+    return <StyledTableRow {...props} data-testid={"col"}>{renderCells(colData)}</StyledTableRow>;
   };
 
   const getUniqueColumns = (gridData) => {
@@ -113,7 +113,7 @@ const Table = (props) => {
   const renderHeader = () => {
     const uniqueColumns = getUniqueColumns(props.gridData);
     return (
-      <StyledTableRow>
+      <StyledTableRow key={"header"}>
         {uniqueColumns.map((heading) => (
           <StyledTableHeader>
             <Typography
@@ -135,8 +135,10 @@ const Table = (props) => {
       </StyledTableTitleDiv>
       <br />
       <StyledTable>
+      <tbody>
         {renderHeader(props)}
         {grid}
+      </tbody>
       </StyledTable>
     </div>
   );

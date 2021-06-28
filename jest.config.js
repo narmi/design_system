@@ -4,5 +4,6 @@ module.exports = {
         "node_modules",
         "src"
     ],
+    testEnvironment: 'jest-environment-jsdom-fifteen',
   };
   

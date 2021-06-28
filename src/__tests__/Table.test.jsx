@@ -1,5 +1,10 @@
-import React from "react";
-import Table from "components/Table";
+/**
+ * @jest-environment jsdom
+ */
+
+import React from 'react';
+import { render, screen, getByRole } from '@testing-library/react';
+import Table from 'components/Table';
 import PlainButton from "components/PlainButton";
 
 const sampleGridData = [
@@ -85,12 +90,15 @@ const sampleGridData = [
   ],
 ];
 
-const sampleTable = new Table({title:"test", gridData:sampleGridData});
-
-test('adds 1 + 2 to equal 3', () => {
-  sampleTable.sortGrid("AMOUNT")
-});
-
-test('adds 1 + 2 to equal 3', () => {
-  expect(1 + 2).toBe(3);
+describe('Table Sorting', () => {
+  it('By Amount', () => {
+    const {getByText, queryAllByTestId} = render(<Table title={"test"} gridData={sampleGridData}/>);
+    const amountHeader = getByText('AMOUNT');
+    let amountColumn = queryAllByTestId("col1");
+    let amountColumnValues = amountColumn.map(cell => cell.textContent);
+    expect(amountColumnValues).toEqual([ '-$1000', '-$123.45', '-$80', '-$130' ]);
+    amountHeader.click(); // trigger sort
+    amountColumnValues = amountColumn.map(cell => cell.textContent);
+    expect(amountColumnValues).toEqual([ '-$80', '-$123.45', '-$130', '-$1000' ]);
+  })
 });

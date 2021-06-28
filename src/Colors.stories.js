@@ -16,6 +16,23 @@ const Square = styled.div`
   background-color: ${props => props.color ? `var(${props.color})` : "var(--nds-narmi-purple)"};
   border-radius: 4px;
   border: 1px solid var(--nds-grey-disabled);
+
+  margin-bottom: 8px;
+`;
+
+const StyledRow = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  margin-bottom: 24px;
+`;
+
+const StyledColorWrapper = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  width: 120px;
+  margin-right: 20px;
 `;
 
 const Squares = (props) => {
@@ -26,16 +43,15 @@ const Squares = (props) => {
   }, {})
 
   return Object.entries(byCategory).map(([cat, colors]) => (
-    <div style={{display: "flex", flexFlow: "row wrap", width: "100%", marginBottom: "24px"}}>
+    <StyledRow>
       <Typography h1 style={{marginBottom: "8px"}}>{cat}</Typography>
-      <div style={{display: "flex", width: "100%"}}>
-        {colors.map(c => <div style={{display: "flex", flexFlow: "column wrap",
-          alignItems: "center", width: "120px", marginRight: "20px"}}>
+      <StyledRow>
+        {colors.map(c => <StyledColorWrapper>
           <Square color={c.css} title={c.title} style={{marginBottom: "8px"}} />
           <Typography style={{textAlign: "center"}}>{c.title}</Typography>
-        </div>)}
-      </div>
-    </div>
+        </StyledColorWrapper>)}
+      </StyledRow>
+    </StyledRow>
   ))
 }
 

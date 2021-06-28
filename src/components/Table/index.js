@@ -48,7 +48,7 @@ const Table = (props) => {
   const [activeSortColumns, setActiveSortColumns] = useState();
 
   const renderRow = ([col, colData]) => {
-    return <StyledTableRow {...props} data-testid={"col"}>{renderCells(colData)}</StyledTableRow>;
+    return <StyledTableRow {...props}>{renderCells(colData)}</StyledTableRow>;
   };
 
   const getUniqueColumns = (gridData) => {
@@ -97,7 +97,7 @@ const Table = (props) => {
     );
   };
 
-  function sortGrid(heading){
+  const sortGrid = (heading) => {
     resetNonActiveHeadings(heading);
 
     activeSortColumns[heading]["active"] =
@@ -113,7 +113,7 @@ const Table = (props) => {
   const renderHeader = () => {
     const uniqueColumns = getUniqueColumns(props.gridData);
     return (
-      <StyledTableRow key={"header"}>
+      <StyledTableRow>
         {uniqueColumns.map((heading) => (
           <StyledTableHeader>
             <Typography
@@ -135,10 +135,8 @@ const Table = (props) => {
       </StyledTableTitleDiv>
       <br />
       <StyledTable>
-      <tbody>
-        {renderHeader(props)}
-        {grid}
-      </tbody>
+        <thead>{renderHeader(props)}</thead>
+        <tbody>{grid}</tbody>
       </StyledTable>
     </div>
   );

@@ -10,10 +10,23 @@ import Typography from "components/Typography";
 import {Centered} from "../../decorators";
 
 
+const InGrid = (Story) => (
+  <div style={{display: "grid", gridTemplateColumns: "2fr 1fr", width: "95%", margin: "24px auto"}}>
+    <Story />
+    <Story />
+  </div>
+);
+
+const MaxWidth = (Story) => (
+  <div style={{maxWidth: "372px", margin: "auto", display: "flex", alignItems: "center", height: "90vh"}}>
+    <Story />
+  </div>
+);
+
 export default {
   title: "Components/Card",
   component: Card,
-  decorators: [Centered],
+  decorators: [],
 };
 
 const StyledTitle = styled.div`
@@ -46,6 +59,7 @@ WithTitleButton.args = {
   ...DefaultArgs,
   title: <TitleWithButton />,
 };
+WithTitleButton.decorators = [MaxWidth];
 
 export const WithBody = Template.bind({});
 WithBody.args = {
@@ -53,6 +67,7 @@ WithBody.args = {
   title: <TitleWithButton />,
   children: <div>This is a piece of text that explains something.</div>,
 };
+WithBody.decorators = [MaxWidth];
 
 export const WithList = Template.bind({});
 WithList.args = {
@@ -67,6 +82,7 @@ WithList.args = {
     <TextContent />,
   ]} />,
 };
+WithList.decorators = [MaxWidth];
 
 const ArrowsIcon = () => {
   return (
@@ -115,3 +131,10 @@ WithActions.args = {
     </div>
   ),
 };
+WithActions.decorators = [MaxWidth];
+
+export const WithinGrid = Template.bind({});
+WithinGrid.args = {
+  ...WithList.args,
+};
+WithinGrid.decorators = [InGrid];

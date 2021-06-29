@@ -6,7 +6,6 @@ import {deviceBreakpoints} from "../../globalStyles";
 
 const StyledCard = styled.div`
   width: 100%;
-  max-width: 372px;
   min-height: 68px;
 
   box-shadow: var(--nds-dropshadow-light);

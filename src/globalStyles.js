@@ -73,6 +73,7 @@ const GlobalStyles = createGlobalStyle`
       transparentize(0.95, Theme.primaryColor(p))};
 
     --nds-dropshadow-dark: 0 2px 12px rgba(80, 80, 80, 0.2);
+    --nds-dropshadow-light: 0 2px 12px rgba(80, 80, 80, 0.05);
   }
   body {
     margin: 0;

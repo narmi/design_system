@@ -58,8 +58,7 @@ export const LineItemCard = Template.bind({});
 LineItemCard.args = {
   ...DefaultArgs,
   title: <TitleWithButton />,
-  children: <List divided items={[
-    <ListItem />,
+  children: <List divided hoverable={false} items={[
     <ListItem />,
     <ListItem />,
   ]} />,

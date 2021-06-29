@@ -51,8 +51,10 @@ const StyledList = styled.ul`
 const StyledListItem = styled.li`
   padding-top: 8px;
   padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-left: 0px;
+  padding-right: 0px;
+  box-sizing: border-box;
+
   :hover {
     background-color: ${(props) =>
       props.hoverable ? "var(--nds-primary-color-lightest)" : null};

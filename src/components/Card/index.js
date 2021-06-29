@@ -5,13 +5,13 @@ import Typography from "components/Typography";
 import {deviceBreakpoints} from "../../globalStyles";
 
 const StyledCard = styled.div`
-  box-shadow: var(--nds-dropshadow-dark);
-  border-radius: 4px;
-  padding: 20px;
-  margin-right 20px;
   width: 100%;
   max-width: 372px;
   min-height: 68px;
+
+  box-shadow: var(--nds-dropshadow-light);
+  border-radius: 4px;
+  padding: 20px;
   box-sizing: border-box;
 
   :last-child {

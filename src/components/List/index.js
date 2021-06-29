@@ -44,6 +44,7 @@ const StyledList = styled.ul`
 
   &:last-child {
     border-right: none;
+    border-bottom: none;
   }
 `;
 

@@ -49,8 +49,8 @@ const StyledList = styled.ul`
 `;
 
 const StyledListItem = styled.li`
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 0px;
+  padding-bottom: 0px;
   padding-left: 0px;
   padding-right: 0px;
   box-sizing: border-box;

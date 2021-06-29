@@ -29,11 +29,11 @@ const TitleWithButton = () => (
   </StyledTitle>
 )
 
-const ListItem = () => (
-  <div style={{display: "flex", justifyContent: "space-between"}}>
+const TextContent = () => (
+  <React.Fragment>
     <span>Text</span>
     <span>Text</span>
-  </div>
+  </React.Fragment>
 )
 
 const Template = (args) => <Card {...args} />;
@@ -58,9 +58,13 @@ export const LineItemCard = Template.bind({});
 LineItemCard.args = {
   ...DefaultArgs,
   title: <TitleWithButton />,
-  children: <List divided hoverable={false} items={[
-    <ListItem />,
-    <ListItem />,
+  children: <List
+  divided
+  hoverable={false}
+  renderItem={(item) => <span style={{display: "flex", justifyContent: "space-between", padding: "8px 0px"}}>{item}</span>}
+  items={[
+    <TextContent />,
+    <TextContent />,
   ]} />,
 };
 

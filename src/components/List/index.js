@@ -69,7 +69,7 @@ function renderItemList(props, item, idx) {
       key={"List" + idx}
     >
       <StyledListItem hoverable={props.hoverable}>
-        {props.renderItem(item)}
+        <Typography>{props.renderItem(item)}</Typography>
       </StyledListItem>
     </StyledList>
   );
@@ -87,7 +87,7 @@ function renderCategoryList(props, index) {
       </li>
       {props.items[index].map((c, idx) => (
         <StyledListItem hoverable={props.hoverable} key={"ListItem" + idx}>
-          {props.renderItem(c)}
+          <Typography>{props.renderItem(c)}</Typography>
         </StyledListItem>
       ))}
     </StyledList>
@@ -102,7 +102,7 @@ const List = (props) => {
 };
 
 const renderDefaultItem = (item) => {
-  return <Typography>{item}</Typography>;
+  return <React.Fragment>{item}</React.Fragment>;
 };
 
 List.propTypes = {

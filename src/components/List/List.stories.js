@@ -36,9 +36,7 @@ CategoryList.args = {
 
 const renderItemMenu = (item) => {
   return (
-    <a href={item} key={item}>
-      <Typography>{item}</Typography>
-    </a>
+    <a href={item} key={item}>{item}</a>
   );
 };
 

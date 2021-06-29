@@ -40,12 +40,8 @@ const StyledMobileTableCell = styled.td`
   padding: 12px 0px 12px 20px;
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
     display: none;
-    width: 0px;
-    padding: 0px;
   }
   :last-child {
-    width: 0px;
-    padding-right: 0px;
     text-align: right;
   }
 `;

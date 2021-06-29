@@ -40,24 +40,7 @@ const StyledMobileTableCell = styled.td`
   text-align: left;
   padding: 12px 0px 12px 20px;
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
-<<<<<<< HEAD
-<<<<<<< HEAD
     display: none;
-=======
-   display: none;
-   width: 0px;
-   padding: 0px;
-=======
-    display: none;
-    width: 0px;
-    padding: 0px;
->>>>>>> collapse table cells mobile view
-  }
-  :last-child {
-    width: 0px;
-    padding-right: 0px;
-    text-align: right;
->>>>>>> collapse cells mobile view
   }
 `;
 
@@ -73,19 +56,11 @@ const StyledStackedCell = styled.div`
   display: flex;
   flex-direction: column;
   padding-right: 20px;
-<<<<<<< HEAD
-<<<<<<< HEAD
   text-align: right;
 
   ${StyledPlainButton} {
     font-size: 14px;
   }
-=======
-  text-Align: right;
->>>>>>> collapse cells mobile view
-=======
-  text-align: right;
->>>>>>> collapse table cells mobile view
 `;
 
 const renderCells = (row) => {
@@ -95,8 +70,6 @@ const renderCells = (row) => {
     </StyledTableCell>
   ));
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   let mobileCells = [
     <StyledMobileTableCell key={row[0].sortKey} data-testid={"MobileCol0"}>
       <Typography>{row[0].content}</Typography>
@@ -116,35 +89,6 @@ const renderCells = (row) => {
   );
   mobileCells = mobileCells.concat(stackedMobileCell);
 
-=======
-  // render first cell, slide all columns under second cell
-  // checks for length
-=======
->>>>>>> collapse table cells mobile view
-  let mobileCells = [
-    <StyledMobileTableCell key={0} data-testid={"MobileCol0"}>
-      <Typography>{row[0].content}</Typography>
-    </StyledMobileTableCell>,
-  ];
-
-  const collapsedCells = (
-    <StyledStackedCell>
-      {row.slice(1).map((cell, idx) => cell.content)}
-    </StyledStackedCell>
-  );
-
-  let stackedMobileCell = (
-    <StyledMobileTableCell key={1} data-testid={"MobileCol1"}>
-      <Typography>{collapsedCells}</Typography>
-    </StyledMobileTableCell>
-  );
-  mobileCells = mobileCells.concat(stackedMobileCell);
-
-<<<<<<< HEAD
-  console.log("mobileCells", typeof mobileCells[0]);
->>>>>>> collapse cells mobile view
-=======
->>>>>>> collapse table cells mobile view
   return mobileCells.concat(desktopCells);
 };
 

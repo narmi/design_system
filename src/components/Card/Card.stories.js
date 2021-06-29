@@ -55,12 +55,14 @@ const ArrowsIcon = () => {
     <div
       style={{
         color: "var(--nds-primary-color)",
-        height: "30px",
+        height: "20px",
         display: "flex",
         flexDirection: "column",
+        cursor: "pointer",
       }}
+      onClick={() => alert("Clicked icon!")}
     >
-      <ArrowRight /> <ArrowLeft style={{ marginTop: "-3px" }} />
+      <ArrowRight viewBox="0 0 16 20" /> <ArrowLeft viewBox="0 0 24 20" style={{ marginTop: "-3px", }} />
     </div>
   );
 };

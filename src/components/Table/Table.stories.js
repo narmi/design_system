@@ -44,7 +44,7 @@ const DefaultArgs = {
       },
       {
         content: (
-          <PlainButton style={{ textAlign: "right", fontSize: "14px" }} small>
+          <PlainButton style={{ textAlign: "right" }} small>
             Delete
           </PlainButton>
         ),
@@ -68,7 +68,7 @@ const DefaultArgs = {
       },
       {
         content: (
-          <PlainButton style={{ textAlign: "right", fontSize: "14px" }} small>
+          <PlainButton style={{ textAlign: "right" }} small>
             Delete
           </PlainButton>
         ),
@@ -92,7 +92,7 @@ const DefaultArgs = {
       },
       {
         content: (
-          <PlainButton style={{ textAlign: "right", fontSize: "14px" }} small>
+          <PlainButton style={{ textAlign: "right" }} small>
             Delete
           </PlainButton>
         ),
@@ -116,7 +116,7 @@ const DefaultArgs = {
       },
       {
         content: (
-          <PlainButton style={{ textAlign: "right", fontSize: "14px" }} small>
+          <PlainButton style={{ textAlign: "right" }} small>
             Delete
           </PlainButton>
         ),

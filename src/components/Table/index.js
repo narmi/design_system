@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { deviceBreakpoints } from "../../globalStyles";
 import Typography from "components/Typography";
+import PlainButton from "components/PlainButton";
 
 const StyledTableTitleDiv = styled.div`
   font-size: 20px;
@@ -34,9 +35,11 @@ const StyledTableCell = styled.td`
   }
 `;
 
-const StyledMobileTableCell = styled.td`
+const StyledCollapsedTableCell = styled.td`
   text-align: left;
   padding: 12px 0px 12px 20px;
+
+  
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
     display: none;
   }
@@ -58,6 +61,10 @@ const StyledStackedCell = styled.div`
   flex-direction: column;
   padding-right: 20px;
   text-align: right;
+  font-size: 14px;
+  ${PlainButton} {
+    font-size: 14px;
+  }
 `;
 
 const renderCells = (row) => {
@@ -68,9 +75,9 @@ const renderCells = (row) => {
   ));
 
   let mobileCells = [
-    <StyledMobileTableCell key={0} data-testid={"MobileCol0"}>
+    <StyledCollapsedTableCell key={row[0].sortedKey} data-testid={"MobileCol0"}>
       <Typography>{row[0].content}</Typography>
-    </StyledMobileTableCell>,
+    </StyledCollapsedTableCell>,
   ];
 
   const collapsedCells = (
@@ -80,9 +87,9 @@ const renderCells = (row) => {
   );
 
   let stackedMobileCell = (
-    <StyledMobileTableCell key={1} data-testid={"MobileCol1"}>
+    <StyledCollapsedTableCell key={1} data-testid={"MobileCol1"}>
       <Typography>{collapsedCells}</Typography>
-    </StyledMobileTableCell>
+    </StyledCollapsedTableCell>
   );
   mobileCells = mobileCells.concat(stackedMobileCell);
 

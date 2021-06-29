@@ -98,20 +98,3 @@ MultipleButtons.args = {
     </div>
   ),
 };
-
-export const HoverCard = Template.bind({});
-HoverCard.args = {
-  title: (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
-      <span>TITLE</span>
-      <PlainButton small>Button</PlainButton>
-    </div>
-  ),
-  style: { border: "1px solid var(--nds-primary-color)" },
-};

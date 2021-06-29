@@ -43,7 +43,11 @@ const DefaultArgs = {
         sortKey: -1000,
       },
       {
-        content: <PlainButton style={{textAlign:"right"}} small>Delete</PlainButton>,
+        content: (
+          <PlainButton style={{ textAlign: "right", fontSize: "14px" }} small>
+            Delete
+          </PlainButton>
+        ),
       },
     ],
     [
@@ -63,7 +67,11 @@ const DefaultArgs = {
         sortKey: -123.45,
       },
       {
-        content: <PlainButton style={{textAlign:"right"}} small>Delete</PlainButton>,
+        content: (
+          <PlainButton style={{ textAlign: "right", fontSize: "14px" }} small>
+            Delete
+          </PlainButton>
+        ),
       },
     ],
     [
@@ -83,7 +91,11 @@ const DefaultArgs = {
         sortKey: -80,
       },
       {
-        content: <PlainButton style={{textAlign:"right"}} small>Delete</PlainButton>,
+        content: (
+          <PlainButton style={{ textAlign: "right", fontSize: "14px" }} small>
+            Delete
+          </PlainButton>
+        ),
       },
     ],
     [
@@ -103,7 +115,11 @@ const DefaultArgs = {
         sortKey: -130,
       },
       {
-        content: <PlainButton style={{textAlign:"right"}} small>Delete</PlainButton>,
+        content: (
+          <PlainButton style={{ textAlign: "right", fontSize: "14px" }} small>
+            Delete
+          </PlainButton>
+        ),
       },
     ],
   ],

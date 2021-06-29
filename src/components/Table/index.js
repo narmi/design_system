@@ -39,9 +39,9 @@ const StyledMobileTableCell = styled.td`
   text-align: left;
   padding: 12px 0px 12px 20px;
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
-   display: none;
-   width: 0px;
-   padding: 0px;
+    display: none;
+    width: 0px;
+    padding: 0px;
   }
   :last-child {
     width: 0px;
@@ -62,7 +62,7 @@ const StyledStackedCell = styled.div`
   display: flex;
   flex-direction: column;
   padding-right: 20px;
-  text-Align: right;
+  text-align: right;
 `;
 
 const renderCells = (row) => {
@@ -72,25 +72,25 @@ const renderCells = (row) => {
     </StyledTableCell>
   ));
 
-  // render first cell, slide all columns under second cell
-  // checks for length
   let mobileCells = [
-    <StyledMobileTableCell key={0} data-testid={"col" + "0"}>
-    <Typography>{row[0].content}</Typography>
-  </StyledMobileTableCell>
+    <StyledMobileTableCell key={0} data-testid={"MobileCol0"}>
+      <Typography>{row[0].content}</Typography>
+    </StyledMobileTableCell>,
   ];
 
-  const squashedCells = <StyledStackedCell style={{display:"flex", flexDirection:"column", paddingRight:"20px", textAlign:"right"}}>{row.slice(1).map((cell, idx) => cell.content)}</StyledStackedCell>
+  const collapsedCells = (
+    <StyledStackedCell>
+      {row.slice(1).map((cell, idx) => cell.content)}
+    </StyledStackedCell>
+  );
 
-  let stackedCell = 
-    <StyledMobileTableCell key={1} data-testid={"col1"}>
-      <Typography>{squashedCells}</Typography>
+  let stackedMobileCell = (
+    <StyledMobileTableCell key={1} data-testid={"MobileCol1"}>
+      <Typography>{collapsedCells}</Typography>
     </StyledMobileTableCell>
-  ;
+  );
+  mobileCells = mobileCells.concat(stackedMobileCell);
 
-  mobileCells = mobileCells.concat(stackedCell);
-
-  console.log("mobileCells", typeof mobileCells[0]);
   return mobileCells.concat(desktopCells);
 };
 

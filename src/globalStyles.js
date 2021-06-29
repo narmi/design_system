@@ -7,7 +7,7 @@
  */
 
 import { createGlobalStyle, css } from "styled-components";
-import { darken, lighten } from "polished";
+import { darken, lighten, transparentize, opacify } from "polished";
 
 // TBD: themes can take input from institutionSettings/vars via <ThemeProvider />
 // you can lighten() cssVars downstream once they're mounted to a component,
@@ -23,7 +23,7 @@ const Theme = {
 };
 
 export const ndsWhite = "#fff";
-export const errorRed = "#d93b3b";
+export const messagingRed = "#d93b3b";
 
 export const deviceBreakpoints = {
   mobile: "375px",
@@ -44,17 +44,31 @@ const GlobalStyles = createGlobalStyle`
     --nds-grey-hover: rgba(42,68,148,0.05);
     --nds-white: ${ndsWhite};
     --nds-black: #333;
-    --nds-red-error: ${errorRed};
+    --nds-red-error: ${messagingRed};
+
+    --nds-messaging-green: #37b374;
+    --nds-messaging-green-light: #e3fae7;
+    --nds-messaging-yellow: #eac348;
+    --nds-messaging-yellow-light: #fef8e3;
+    --nds-messaging-red: ${messagingRed};
+    --nds-messaging-red-light: #fdf1f1;
+
+    --nds-background-bluegrey: #f4f6fa;          // Tables, rows
+    --nds-background-neutralgrey: #f9f9f9;       // Used as the background color for most pages
+    --nds-background-smokegrey: #f3f3f3;         // Hover color for dropdown, table, etcA
+    --nds-background-legacy-cloudgrey: #e9e9e9;  // legacy: do not use
+    --nds-background-legacy-snowgrey: #fbfbfb;   // legacy: do not use
 
     --nds-font-family: 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     --nds-primary-color: ${(p) => Theme.primaryColor(p)};
-    --nds-primary-color-dark: ${(p) => darken(0.1, Theme.primaryColor(p))};
-    --nds-primary-color-light: ${(p) => lighten(0.1, Theme.primaryColor(p))};
-    --nds-primary-color-lighter: ${(p) => lighten(0.3, Theme.primaryColor(p))};
-    --nds-primary-color-lightest: ${(p) =>
-      lighten(0.55, Theme.primaryColor(p))};
-
     --nds-secondary-color: ${(p) => Theme.secondaryColor(p)};
+    --nds-tertiary-color: ${(p) => Theme.tertiaryColor(p)};
+
+    --nds-primary-color-dark: ${(p) => darken(0.1, Theme.primaryColor(p))};
+    --nds-primary-color-light: ${(p) => transparentize(0.8, Theme.primaryColor(p))};
+    --nds-primary-color-lighter: ${(p) => transparentize(0.9, Theme.primaryColor(p))};
+    --nds-primary-color-lightest: ${(p) =>
+      transparentize(0.95, Theme.primaryColor(p))};
 
     --nds-dropshadow-dark: 0 2px 12px rgba(80, 80, 80, 0.2);
   }

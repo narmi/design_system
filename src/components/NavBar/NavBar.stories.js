@@ -39,10 +39,20 @@ const PaddedListItem = styled.div`
   padding-right: 16px;
 `;
 
+const PaddedCategory = styled.span`
+  padding: 0px 16px 4px;
+  display: flex;
+`;
+
 const renderPaddedItem = (item) => (
   <PaddedListItem>
     {item}
   </PaddedListItem>
+);
+const renderPaddedCategory = (cat) => (
+  <PaddedCategory>
+    {cat}
+  </PaddedCategory>
 );
 
 const AccountsList = (
@@ -51,6 +61,7 @@ const AccountsList = (
     divided={true}
     style={{ padding: "20px 0px 20px 0px" }}
     renderItem={renderPaddedItem}
+    renderCategory={renderPaddedCategory}
     items={{
       Checking: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
       Savings: [

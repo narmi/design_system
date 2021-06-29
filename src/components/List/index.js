@@ -12,21 +12,10 @@ const StyledListWrapper = styled.div`
   }
 `;
 
-const StyledHeader = styled.div`
-  color: var(--nds-black);
-  font-weight: 600;
-  font-family: var(--nds-font-family);
-  font-size: 16px;
-  line-height: 20px;
-  padding-left: 16px;
-  padding-bottom: 4px;
-  width: 100%;
-`;
+const StyledList = styled.div`
+  display: flex;
+  flex-direction: column;
 
-const StyledList = styled.ul`
-  list-style-type: none;
-  padding-inline-start: 0;
-  margin-block-start: 0;
   white-space: nowrap;
   margin: 0;
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
@@ -48,11 +37,7 @@ const StyledList = styled.ul`
   }
 `;
 
-const StyledListItem = styled.li`
-  padding-top: 0px;
-  padding-bottom: 0px;
-  padding-left: 0px;
-  padding-right: 0px;
+const StyledListItem = styled.div`
   box-sizing: border-box;
 
   :hover {
@@ -61,43 +46,41 @@ const StyledListItem = styled.li`
   }
 `;
 
-function renderItemList(props, item, idx) {
+function renderItem(props, item, idx) {
   return (
-    <StyledList
-      divided={props.divided}
-      horizontal={props.horizontal}
-      key={"List" + idx}
-    >
-      <StyledListItem hoverable={props.hoverable}>
-        <Typography>{props.renderItem(item)}</Typography>
-      </StyledListItem>
-    </StyledList>
+    <StyledListItem key={"ListItem"+idx} hoverable={props.hoverable}>
+      <Typography>{props.renderItem(item)}</Typography>
+    </StyledListItem>
   );
 }
 
-function renderCategoryList(props, index) {
+function renderCategoryList(props, category, categoryIdx) {
   return (
     <StyledList
       divided={props.divided}
       horizontal={props.horizontal}
-      key={"List" + index}
+      key={"List" + category + categoryIdx}
     >
-      <li>
-        <StyledHeader>{index}</StyledHeader>
-      </li>
-      {props.items[index].map((c, idx) => (
-        <StyledListItem hoverable={props.hoverable} key={"ListItem" + idx}>
-          <Typography>{props.renderItem(c)}</Typography>
-        </StyledListItem>
-      ))}
+      <Typography semibold>{props.renderCategory(category)}</Typography>
+      {props.items[category].map((item, idx) => renderItem(props, item, idx))}
     </StyledList>
   );
 }
 
 const List = (props) => {
   let els = Array.isArray(props.items)
-    ? props.items.map((item, idx) => renderItemList(props, item, idx))
-    : Object.keys(props.items).map((index) => renderCategoryList(props, index));
+    ? <StyledList
+        divided={props.divided}
+        horizontal={props.horizontal}
+      >
+        {props.items.map((item, idx) => renderItem(props, item, idx))}
+      </StyledList>
+    :
+    Object.keys(props.items).map((category, categoryIdx) => renderCategoryList(props, category, categoryIdx));
+
+  if (props.renderListWrapper) {
+    return props.renderListWrapper(els);
+  }
   return <StyledListWrapper {...props}>{els}</StyledListWrapper>;
 };
 
@@ -105,16 +88,22 @@ const renderDefaultItem = (item) => {
   return <React.Fragment>{item}</React.Fragment>;
 };
 
+const renderDefaultContainer = (list) => {
+  return <React.Fragment>{list}</React.Fragment>;
+};
+
 List.propTypes = {
   horizontal: PropTypes.bool,
   divided: PropTypes.bool,
   hoverable: PropTypes.bool,
   renderItem: PropTypes.func,
+  renderCategory: PropTypes.func,
   items: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
     PropTypes.node,
   ]),
+  renderListWrapper: PropTypes.func,
 };
 
 List.defaultProps = {
@@ -122,7 +111,9 @@ List.defaultProps = {
   divided: false,
   hoverable: true,
   renderItem: renderDefaultItem,
+  renderCategory: renderDefaultItem,
   items: [],
+  renderListWrapper: null,
 };
 
 export default List;

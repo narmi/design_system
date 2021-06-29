@@ -29,7 +29,6 @@ const StyledTableCell = styled.td`
     display: none;
   }
   :last-child {
-    width: 0px;
     padding-right: 20px;
     text-align: right;
   }

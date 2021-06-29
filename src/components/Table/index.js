@@ -42,9 +42,6 @@ const StyledMobileTableCell = styled.td`
   @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
     display: none;
   }
-  :last-child {
-    text-align: right;
-  }
 `;
 
 const StyledTableRow = styled.tr`
@@ -60,9 +57,9 @@ const StyledStackedCell = styled.div`
   flex-direction: column;
   padding-right: 20px;
   text-align: right;
+
   ${StyledPlainButton} {
     font-size: 14px;
-    text-align: right;
   }
 `;
 

@@ -32,15 +32,15 @@ const Typography = (props) => {
     fontWeight = "600";
     lineHeight = "15px";
     fontSize = "12px";
-  } else if (props.p3) {
-    lineHeight = "15px";
-    fontSize = "12px";
-  } else if (props.p2) {
-    lineHeight = "18px";
-    fontSize = "14px";
   } else if (props.p1) {
     lineHeight = "20px";
     fontSize = "16px";
+  } else if (props.p2) {
+    lineHeight = "18px";
+    fontSize = "14px";
+  } else if (props.p3) {
+    lineHeight = "15px";
+    fontSize = "12px";
   }
   return (
     <StyledContainer

@@ -107,6 +107,7 @@ const StyledLabel = styled.label`
 `;
 const StyledDecorationWrapper = styled.div`
   width: 24px;
+  margin-top: -9px;
 `;
 const StyledError = styled.div`
   height: 18px;

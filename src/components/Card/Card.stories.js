@@ -1,13 +1,19 @@
 import React from "react";
-import Card from "components/Card";
-import Button from "components/Button";
-import PlainButton from "components/PlainButton";
 import styled from "styled-components";
 import { ArrowLeft, ArrowRight } from "react-feather";
+
+import Card from "components/Card";
+import Button from "components/Button";
+import List from "components/List";
+import PlainButton from "components/PlainButton";
+import Typography from "components/Typography";
+import {Centered} from "../../decorators";
+
 
 export default {
   title: "Components/Card",
   component: Card,
+  decorators: [Centered],
 };
 
 const StyledTitle = styled.div`
@@ -16,38 +22,47 @@ const StyledTitle = styled.div`
   align-items: center;
 `;
 
+const TitleWithButton = () => (
+  <StyledTitle>
+    <span>Title</span>
+    <PlainButton small>Button</PlainButton>
+  </StyledTitle>
+)
+
+const ListItem = () => (
+  <div style={{display: "flex", justifyContent: "space-between"}}>
+    <span>Text</span>
+    <span>Text</span>
+  </div>
+)
+
 const Template = (args) => <Card {...args} />;
 const DefaultArgs = {
-  title: "TITLE",
+  title: "Title",
 };
 
-export const BasicCard = Template.bind({});
-BasicCard.args = {
+export const WithTitleButton = Template.bind({});
+WithTitleButton.args = {
   ...DefaultArgs,
+  title: <TitleWithButton />,
+};
+
+export const WithBody = Template.bind({});
+WithBody.args = {
+  ...DefaultArgs,
+  title: <TitleWithButton />,
   children: <div>This is a piece of text that explains something.</div>,
 };
 
 export const LineItemCard = Template.bind({});
 LineItemCard.args = {
   ...DefaultArgs,
-  title: (
-    <StyledTitle>
-      <span>TITLE</span>
-      <PlainButton small>Button</PlainButton>
-    </StyledTitle>
-  ),
-  children: <div>This is a piece of text that explains something.</div>,
-};
-
-export const OneButtonCard = Template.bind({});
-OneButtonCard.args = {
-  ...DefaultArgs,
-  title: (
-    <StyledTitle>
-      <span>TITLE</span>
-      <PlainButton small>Button</PlainButton>
-    </StyledTitle>
-  ),
+  title: <TitleWithButton />,
+  children: <List divided items={[
+    <ListItem />,
+    <ListItem />,
+    <ListItem />,
+  ]} />,
 };
 
 const ArrowsIcon = () => {
@@ -75,11 +90,10 @@ MultipleButtons.args = {
       style={{
         display: "flex",
         alignItems: "center",
+        color: "var(--nds-primary-color)",
       }}
     >
-      <span style={{ fontWeight: "600", color: "var(--nds-primary-color)" }}>
-        TITLE
-      </span>
+      <span>Title</span>
       <ArrowsIcon />
     </div>
   ),

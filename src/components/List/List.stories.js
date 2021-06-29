@@ -30,7 +30,9 @@ const Template = (args) => <ListComponent {...args} />;
 const DefaultArgs = {
   divided: false,
   horizontal: false,
-  renderListWrapper: (list) => <StyledListContainer>{list}</StyledListContainer>,
+  renderListWrapper: (list) => (
+    <StyledListContainer>{list}</StyledListContainer>
+  ),
   renderItem: (item) => <StyledListItem>{item}</StyledListItem>,
   renderCategory: (cat) => <StyledCategory>{cat}</StyledCategory>,
 };
@@ -51,5 +53,7 @@ CategoryList.args = {
     Savings: [<a>Primary Savings-2000</a>, <a>Car Savings-4232</a>],
     Loans: [<a>Mortgage-3242</a>, <a>Auto Loan-8493</a>],
   },
-  renderListWrapper: (list) => <StyledListContainer category>{list}</StyledListContainer>,
+  renderListWrapper: (list) => (
+    <StyledListContainer category>{list}</StyledListContainer>
+  ),
 };

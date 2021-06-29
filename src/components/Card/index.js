@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Typography from "components/Typography";
-import {deviceBreakpoints} from "../../globalStyles";
+import { deviceBreakpoints } from "../../globalStyles";
 
 const StyledCard = styled.div`
   width: 100%;
@@ -35,7 +35,13 @@ const Card = (props) => {
   return (
     <StyledCard {...props}>
       <Typography h3>{props.title}</Typography>
-      {props.children ? <StyledCardBody><Typography>{props.children}</Typography></StyledCardBody> : ""}
+      {props.children ? (
+        <StyledCardBody>
+          <Typography>{props.children}</Typography>
+        </StyledCardBody>
+      ) : (
+        ""
+      )}
     </StyledCard>
   );
 };

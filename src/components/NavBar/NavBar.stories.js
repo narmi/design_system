@@ -44,16 +44,8 @@ const PaddedCategory = styled.span`
   display: flex;
 `;
 
-const renderPaddedItem = (item) => (
-  <PaddedListItem>
-    {item}
-  </PaddedListItem>
-);
-const renderPaddedCategory = (cat) => (
-  <PaddedCategory>
-    {cat}
-  </PaddedCategory>
-);
+const renderPaddedItem = (item) => <PaddedListItem>{item}</PaddedListItem>;
+const renderPaddedCategory = (cat) => <PaddedCategory>{cat}</PaddedCategory>;
 
 const AccountsList = (
   <List

@@ -7,18 +7,32 @@ import Button from "components/Button";
 import List from "components/List";
 import PlainButton from "components/PlainButton";
 import Typography from "components/Typography";
-import {Centered} from "../../decorators";
-
+import { Centered } from "../../decorators";
 
 const InGrid = (Story) => (
-  <div style={{display: "grid", gridTemplateColumns: "2fr 1fr", width: "95%", margin: "24px auto"}}>
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "2fr 1fr",
+      width: "95%",
+      margin: "24px auto",
+    }}
+  >
     <Story />
     <Story />
   </div>
 );
 
 const MaxWidth = (Story) => (
-  <div style={{maxWidth: "372px", margin: "auto", display: "flex", alignItems: "center", height: "90vh"}}>
+  <div
+    style={{
+      maxWidth: "372px",
+      margin: "auto",
+      display: "flex",
+      alignItems: "center",
+      height: "90vh",
+    }}
+  >
     <Story />
   </div>
 );
@@ -40,14 +54,14 @@ const TitleWithButton = () => (
     <span>Title</span>
     <PlainButton small>Button</PlainButton>
   </StyledTitle>
-)
+);
 
 const TextContent = () => (
   <React.Fragment>
     <span>Text</span>
     <span>Text</span>
   </React.Fragment>
-)
+);
 
 const Template = (args) => <Card {...args} />;
 const DefaultArgs = {
@@ -73,14 +87,24 @@ export const WithList = Template.bind({});
 WithList.args = {
   ...DefaultArgs,
   title: <TitleWithButton />,
-  children: <List
-  divided
-  hoverable={false}
-  renderItem={(item) => <span style={{display: "flex", justifyContent: "space-between", padding: "8px 0px"}}>{item}</span>}
-  items={[
-    <TextContent />,
-    <TextContent />,
-  ]} />,
+  children: (
+    <List
+      divided
+      hoverable={false}
+      renderItem={(item) => (
+        <span
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "8px 0px",
+          }}
+        >
+          {item}
+        </span>
+      )}
+      items={[<TextContent />, <TextContent />]}
+    />
+  ),
 };
 WithList.decorators = [MaxWidth];
 
@@ -96,7 +120,8 @@ const ArrowsIcon = () => {
       }}
       onClick={() => alert("Clicked icon!")}
     >
-      <ArrowRight viewBox="0 0 16 20" /> <ArrowLeft viewBox="0 0 24 20" style={{ marginTop: "-3px", }} />
+      <ArrowRight viewBox="0 0 16 20" />{" "}
+      <ArrowLeft viewBox="0 0 24 20" style={{ marginTop: "-3px" }} />
     </div>
   );
 };

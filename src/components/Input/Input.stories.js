@@ -41,7 +41,7 @@ export const WithDecoration = Template.bind({});
 WithDecoration.args = {
   ...Initial.args,
   decoration: (
-    <div style={{cursor: "pointer"}} onClick={() => alert("Clicked info!")}>
+    <div style={{ cursor: "pointer" }} onClick={() => alert("Clicked info!")}>
       <Info size={12} color="#8c8c8c" />
     </div>
   ),

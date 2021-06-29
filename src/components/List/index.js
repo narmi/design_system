@@ -48,7 +48,7 @@ const StyledListItem = styled.div`
 
 function renderItem(props, item, idx) {
   return (
-    <StyledListItem key={"ListItem"+idx} hoverable={props.hoverable}>
+    <StyledListItem key={"ListItem" + idx} hoverable={props.hoverable}>
       <Typography>{props.renderItem(item)}</Typography>
     </StyledListItem>
   );
@@ -68,15 +68,15 @@ function renderCategoryList(props, category, categoryIdx) {
 }
 
 const List = (props) => {
-  let els = Array.isArray(props.items)
-    ? <StyledList
-        divided={props.divided}
-        horizontal={props.horizontal}
-      >
-        {props.items.map((item, idx) => renderItem(props, item, idx))}
-      </StyledList>
-    :
-    Object.keys(props.items).map((category, categoryIdx) => renderCategoryList(props, category, categoryIdx));
+  let els = Array.isArray(props.items) ? (
+    <StyledList divided={props.divided} horizontal={props.horizontal}>
+      {props.items.map((item, idx) => renderItem(props, item, idx))}
+    </StyledList>
+  ) : (
+    Object.keys(props.items).map((category, categoryIdx) =>
+      renderCategoryList(props, category, categoryIdx)
+    )
+  );
 
   if (props.renderListWrapper) {
     return props.renderListWrapper(els);

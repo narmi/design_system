@@ -39,7 +39,11 @@ export const StyledPlainButton = styled.a`
 `;
 
 const PlainButton = (props) => {
-  return <StyledPlainButton {...props}>{props.label || props.children}</StyledPlainButton>;
+  return (
+    <StyledPlainButton {...props}>
+      {props.label || props.children}
+    </StyledPlainButton>
+  );
 };
 
 PlainButton.propTypes = {

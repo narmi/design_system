@@ -98,8 +98,8 @@ const ToolsList = (
   />
 );
 
-export const NavBarMenu = Template.bind({});
-NavBarMenu.args = {
+export const WithCategoryMenu = Template.bind({});
+WithCategoryMenu.args = {
   ...DefaultArgs,
   mobileMenuIcon: <HamburgerMenuSidebar />,
   logo: <Icon image={Narmi} />,
@@ -121,8 +121,8 @@ NavBarMenu.args = {
   ],
 };
 
-export const NavBarMenuNoLogo = Template.bind({});
-NavBarMenuNoLogo.args = {
+export const WithoutLogo = Template.bind({});
+WithoutLogo.args = {
   ...DefaultArgs,
   mobileMenuIcon: <HamburgerMenuSidebar />,
   leftChildren: [

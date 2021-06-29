@@ -53,7 +53,7 @@ const StyledOptionsList = styled.div`
   flex-direction: column;
 `;
 
-export const NavMenu = ({ divided, horizontal }) => {
+const NavMenu = ({ divided, horizontal }) => {
   // one way to organize Popover content, it's up to the consumer really! Popover just renders it.
   const items = {
     Checking: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
@@ -88,30 +88,10 @@ export const NavMenu = ({ divided, horizontal }) => {
 };
 
 const Template = (args) => <Popover {...args} />;
+
 export const OnClick = Template.bind({});
 OnClick.args = {
-  label: "Click me!",
-  shiftX: "0%",
-  children: (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "250px",
-      }}
-    >
-      Insert dropdowns, menus, checklists, text, links, images, icons, or
-      whatever else you like in here.
-      <br />
-      <br />
-      Higher-level components (like PopoverInput) can be built on top of
-      Popover.
-    </div>
-  ),
-};
-export const OnClickWithContent = Template.bind({});
-OnClickWithContent.args = {
+  hoverable: false,
   label: "Accounts",
   shiftX: "-40%",
   style: { padding: "8px" },
@@ -119,21 +99,6 @@ OnClickWithContent.args = {
 };
 export const OnHover = Template.bind({});
 OnHover.args = {
-  hoverable: true,
-  label: null,
-  shiftX: "-40%",
-  style: { padding: "8px" },
-  children: <NavMenu divided horizontal />,
-};
-OnHover.decorators = [
-  (Story) => (
-    <div style={{ display: "flex", alignItems: "center", padding: "12px" }}>
-      Accounts <Story />
-    </div>
-  ),
-];
-export const OnHoverLabel = Template.bind({});
-OnHoverLabel.args = {
   hoverable: true,
   label: "Accounts",
   shiftX: "-40%",
@@ -160,7 +125,7 @@ const AccountPopover = () => {
   );
 };
 
-export const PopoverNavBar = () => {
+const PopoverNavBar = () => {
   let options = [
     <Typography
       style={{ fontSize: "20px", fontWeight: "500", paddingBottom: "15px" }}

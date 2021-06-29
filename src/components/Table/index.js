@@ -6,6 +6,7 @@ import Typography from "components/Typography";
 
 const StyledTableTitleDiv = styled.div`
   font-size: 20px;
+  padding-left: 20px;
 `;
 
 const StyledTable = styled.table`
@@ -58,6 +59,10 @@ const StyledStackedCell = styled.div`
   flex-direction: column;
   padding-right: 20px;
   text-align: right;
+  a {
+    font-size: 14px;
+    text-align: right;
+  }
 `;
 
 const renderCells = (row) => {

@@ -54,8 +54,8 @@ WithBody.args = {
   children: <div>This is a piece of text that explains something.</div>,
 };
 
-export const LineItemCard = Template.bind({});
-LineItemCard.args = {
+export const WithList = Template.bind({});
+WithList.args = {
   ...DefaultArgs,
   title: <TitleWithButton />,
   children: <List
@@ -85,8 +85,8 @@ const ArrowsIcon = () => {
   );
 };
 
-export const MultipleButtons = Template.bind({});
-MultipleButtons.args = {
+export const WithActions = Template.bind({});
+WithActions.args = {
   ...DefaultArgs,
   title: (
     <div

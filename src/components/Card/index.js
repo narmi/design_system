@@ -11,11 +11,16 @@ const StyledCard = styled.div`
 
   box-shadow: var(--nds-dropshadow-light);
   border-radius: 4px;
-  padding: 20px;
+  padding: 22px;
   box-sizing: border-box;
 
   :last-child {
     margin-right: 0px;
+  }
+
+  &:hover {
+    border: 2px solid var(--nds-primary-color);
+    padding: 20px;
   }
 
   @media (max-width: ${deviceBreakpoints.mobileMax}) {

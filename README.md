@@ -1,10 +1,10 @@
-# Narmi Design System (NDS)
+# Narmi Design System (design_system)
 
 ⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥
 
 This design system is intended to provide primitive "building blocks" for custom experiences. It aims to adhere as closely to the HTML spec as possible, while providing simple interfaces for complex components.
 
-Please follow the below steps to install, consume, or contribute to the NDS.
+Please follow the below steps to install, consume, or contribute to the design_system.
 
 ## Consuming Design System
 
@@ -16,7 +16,6 @@ Install from Github, as in:
 
 ```
 # package.json
-# see banking/package.json for an example
 ...
   "design_system": "git+ssh://git@github.com:narmi/design_system.git"
 ...
@@ -44,7 +43,7 @@ These are included as peerDependencies in package.json.
 
 ### 3. Configure Your Theme
 
-Set up a `<GlobalStyles />` and a `<ThemeProvider />` component at each of your application's entry points to provide the necessary CSS variables to NDS components:
+Set up a `<GlobalStyles />` and a `<ThemeProvider />` component at each of your application's entry points to provide the necessary CSS variables to design_system components:
 
 ```
 # In your top-level App.js or HTML page file
@@ -62,7 +61,7 @@ import {GlobalStyles} from "design_system"
 </ThemeProvider>
 
 ...the rest of your app...
-# no other NDS components should need access to `theme`
+# no other design_system components should need access to `theme`
 ```
 
 This will write a `<style>` tag to your page that contains the CSS variables the design system components depend on. Without this, you may see empty or colorless Buttons and pages.
@@ -84,18 +83,18 @@ These distinct views or states are controlled by Storybook `args` (similar to pr
 
 If contributing a change, please test your components out in Storybook before making a PR.
 
-### 5. Using NDS
+### 5. Using design_system
 
 Additional config and tips.
 
-#### Consuming NDS Themes in Your App
+#### Consuming design_system Themes in Your App
 
-`styled-components` exposes a [ThemeProvider context](https://styled-components.com/docs/advanced#getting-the-theme-without-styled-components) if you wish to grab the NDS Theme for use in your own components or Pages.
+`styled-components` exposes a [ThemeProvider context](https://styled-components.com/docs/advanced#getting-the-theme-without-styled-components) if you wish to grab the design_system Theme for use in your own components or Pages.
 
 
 ## Browser Support Notes
 
-Please check the following chart to see the minimum browser versions supported by NDS:
+Please check the following chart to see the minimum browser versions supported by design_system:
 
 - https://caniuse.com/?search=focus-within
 
@@ -103,14 +102,14 @@ Please check the following chart to see the minimum browser versions supported b
 
 We need to set up your copy of `design_system` for local development. 
 
-The following command will install NDS as a local dependency and start your Storybook.
+The following command will install design_system as a local dependency and start your Storybook.
 
-From `banking`:
+From `<your-repo>`:
 
 ```
 cd ..
 git clone git@github.com:narmi/design_system.git
-cd <your-consuming_repo>
+cd <your-repo>
 npm link ../design_system
 cd ../design_system
 npm install
@@ -121,7 +120,7 @@ npm run watch
 Results:
 
 - Storybook will now run on :6006.
-- Your local `design_system` will be [symlinked](https://docs.npmjs.com/cli/v7/commands/npm-link) into banking/design_system for local dev.
+- Your local `design_system` will be [symlinked](https://docs.npmjs.com/cli/v7/commands/npm-link) into <your-repo>/design_system for local dev.
 - On each change to files in design_system, the `dist/index.js` file will be rebuilt - 
   - This allows local changes to design_system to be live-updated in your consuming repo.
 
@@ -134,7 +133,7 @@ If you'd like to live-edit HTML in your components (i.e., passing custom `props.
 
 ## Contributing
 
-We accept PRs! We strive to make the NDS simple as well as powerful, which usually means being [open for extension](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle#:~:text=In%20object%2Doriented%20programming%2C%20the,without%20modifying%20its%20source%20code.), [but closed for modification](https://blog.cleancoder.com/uncle-bob/2014/05/12/TheOpenClosedPrinciple.html). 
+We accept PRs! We strive to make the design_system simple as well as powerful, which usually means being [open for extension](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle#:~:text=In%20object%2Doriented%20programming%2C%20the,without%20modifying%20its%20source%20code.), [but closed for modification](https://blog.cleancoder.com/uncle-bob/2014/05/12/TheOpenClosedPrinciple.html). 
 
 We try to uphold these principles in our code review. Below please find some helpful guidelines for getting your PRs accepted:
 
@@ -142,39 +141,131 @@ We try to uphold these principles in our code review. Below please find some hel
 
 #### 1. Maintain the HTML interface
 
-We've attempted to keep the component interface as close to the native HTML as possible to allow the user a familiar development experience while maximizing customization. This means:
+Native HTML provides most of the attributes we want to customize in the design_system. For this reason, we've allowed passing `{...props}` through to almost any component. 
 
-For instance, when faced with the decision to add a custom onClick handler, or pass `props.onClick` through to the underlying HTML, prefer passing through the native handler.
+This allows you, the user, to achieve any desired behavior, by simply treating the design_system component as if it was native HTML.
 
-Almost all of our components pass `...props` all the way through to their children.
+This allows for the design_system to be opinionated about behavior specific to the component, while allowing unlimited customization.
 
-This allows us to keep the power of HTML, while minimizing complexity on our end.
+##### Example - Button:
+```
+# Say you want to customize the border of your <Button> - 
+# simply pass a `style` into the button as you would in HTML:
 
-#### 2. Allow for props.children over custom subcomponents
+<Button style={{borderRadius: "8px"}}>
+  Click here
+</Button>
 
-We want to allow the maximum flexibility to our users, so we've preferred allowing the user to pass their own `children` in, vs specifying specific child props in our components.
+=> <a style="borderRadius: 8px">Click here</a>
+```
 
-For instance, if faced with the decision to provide a `headerIcon` prop, or simply allow passing an full <span>...</span> as the `header`, prefer allowing the user to pass HTML through.
+##### Example - Input:
+```
+# Say you want to pass an `id` or `onChange` prop to an <Input> -
+# simply pass these native props, and they will be passed through to the underlying HTML:
 
-This allows for both increased customization by the user, while decreasing complexity on our end.
+<Input id="my-id" onChange={myFunc} />
 
-- your header can now be spaced any way you want it to, and include Images as well as Icons if desired;
-- our component doesn't have to know or manage this - spacing and sizing is left up to the user to get Just Right.
+=> <input id="my-id" onchange="myFunc" />
+```
 
-This way, we allow the user maximum customization, while keeping our components thin and manageable.
+Even if an attribute is not listed in the `propTypes` for the component, you can assume it will be passed through to the underlying via `{...props}`. This goes for `data-*` attributes and other native HTML functionality as well!
 
-#### 3. Use native CSS solutions
 
-CSS has become quite powerful, and styled-components lets us modify CSS based on our `props`.
+#### 2. Prefer props.children over custom subcomponents
 
-The combination of these two tools means we can often accomplish in only CSS what we used to need Javascript to do.
+Because we want to provide components that provide visual style while remaining flexible to your use case, we avoid specifying a specific interface for most child components.
 
-For example:
+We do this by allowing `props.children` to pass through in most of our components. This allows you to  have full control over your component's content, while still letting the design_system do most of the heavy lifting.
 
-- prefer changing `flex-direction: row` to `flex-direction: row-reverse` via CSS, rather than using a `reversed` React prop
-- let the user pass through `props.style` rather than providing `padding` props
-- prefer CSS transforms and animations to JS/jQuery manipulations
-- etc.
+For example, our `<Modal>` provides a background scrim and a `<ModalHead>` and `<ModalBody>`, but you can insert any `children` you like into that Head and Body:
+
+##### Example - Modal:
+```
+# We accept customizable HTML in both the title and body of the Modal.
+
+<Modal
+  title={<div style={titleStyles}>My Title <MyCustomIcon /></div>}
+  style={myModalStyles}
+>
+  <MyCustomContent />
+</Modal>
+
+=> # This content passes through to the appropriate location in the Modal:
+<div style={myModalStyles}>
+  <div style={titleStyles}>My Title <MyCustomIcon /></div>
+  <div style={myModalStyles}>
+    <MyCustomContent />
+  </div>
+</div>
+```
+
+This gives the user full control over the appearance of the Modal, while still allowing the Modal to behave as expected out-of-box.
+
+
+#### 3. Prefer native CSS over custom Javascript props
+
+Using CSS to solve problems allows us to provide control back to you, the user. 
+
+For instance, when designing a `<Card>` component, one might be tempted to add a `padding` prop. 
+
+Instead, we prefer the already-existing `style` prop, since this allows the user full control over the style.
+
+Instead of attempting to anticipate all the user's needs, we simply expose the native interface, and allow the user to customize it.
+
+##### Example - Reversing
+```
+# One could add a `reversed` prop to a <Row> component:
+if (props.reversed) return children.reverse()
+
+# Instead, allow the user to reverse them when s/he specifies:
+return props.children		// assume the user will reverse the children when s/he wants to
+```
+
+##### Example - Padding
+```
+# One could add a `padding` prop to allow the user to customize a `<Card>`
+<Card padding={8}>...</Card>
+
+# Instead, rely on the native `style` prop. 
+# This lets us keep the interface small, while allowing maximum control to the user.
+<Card style={{padding: "8px"}}...</Card>
+```
+
+##### Example - Transforms
+```
+# One could be tempted to animate a component via jQuery - and this is still possible with design_system:
+$('.myComponent').animate({ opacity: 0.25 }, 3000)
+
+# When designing a component, we can simply rely on CSS animations:
+<MyComponent
+  style={{transition: "opacity 3s linear"}}
+/>
+```
+
+`styled-components` allows us to support [`keyframes`](https://styled-components.com/docs/basics#animations) as well.
+
+##### Example - Custom Styles
+
+We can also [wrap components using `styled-components`](https://styled-components.com/docs/basics#extending-styles) to add our own custom styles:
+
+```
+const MyCustomButton = styled(Button)`
+  backgroundColor: var(--my-background-color);
+  
+  &:hover {
+    backgroundColor: var(--my-custom-hover-color);
+  }
+`;
+```
+
+We default to using CSS to solve problems where some might reach for Javascript. 
+
+Other useful links:
+
+- [Adapting based on props](https://styled-components.com/docs/basics#adapting-based-on-props)
+- [Styling nested components via styled-components](https://styled-components.com/docs/advanced#referring-to-other-components)
+
 
 #### 4. In Short:
 

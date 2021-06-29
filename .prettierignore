@@ -1,0 +1,5 @@
+**/*.md
+**/*.yml
+
+# ignore diff on generated dist
+dist/index.js

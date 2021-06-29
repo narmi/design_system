@@ -28,10 +28,8 @@ const StyledGroup = styled.div`
     border: 1px solid var(--nds-primary-color);
   }
 
-  padding: ${(props) =>
-    props.label ? "19px 12px 5px" : "5px 12px"};
-  border-radius: ${(props) =>
-    props.icon ? "0" : "4px"};
+  padding: ${(props) => (props.label ? "19px 12px 5px" : "5px 12px")};
+  border-radius: ${(props) => (props.icon ? "0" : "4px")};
 
   &.nds-disabled,
   &.nds-disabled:focus-within {
@@ -145,7 +143,9 @@ const Input = ({
   const inputRef = React.useRef(null);
   return (
     <StyledColumn
-      onClick={() => {inputRef.current.focus()}}
+      onClick={() => {
+        inputRef.current.focus();
+      }}
     >
       <StyledGroup
         label={label}

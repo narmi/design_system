@@ -65,8 +65,10 @@ const GlobalStyles = createGlobalStyle`
     --nds-tertiary-color: ${(p) => Theme.tertiaryColor(p)};
 
     --nds-primary-color-dark: ${(p) => darken(0.1, Theme.primaryColor(p))};
-    --nds-primary-color-light: ${(p) => transparentize(0.8, Theme.primaryColor(p))};
-    --nds-primary-color-lighter: ${(p) => transparentize(0.9, Theme.primaryColor(p))};
+    --nds-primary-color-light: ${(p) =>
+      transparentize(0.8, Theme.primaryColor(p))};
+    --nds-primary-color-lighter: ${(p) =>
+      transparentize(0.9, Theme.primaryColor(p))};
     --nds-primary-color-lightest: ${(p) =>
       transparentize(0.95, Theme.primaryColor(p))};
 

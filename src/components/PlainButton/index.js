@@ -6,7 +6,7 @@ const smallStyles = css`
   font-size: 16px;
 `;
 
-const Styled = styled.a`
+export const StyledPlainButton = styled.a`
   font-family: var(--nds-font-family);
   font-weight: 600;
   font-size: 20px;
@@ -37,7 +37,7 @@ const Styled = styled.a`
 `;
 
 const PlainButton = (props) => {
-  return <Styled {...props}>{props.label || props.children}</Styled>;
+  return <StyledPlainButton {...props}>{props.label || props.children}</StyledPlainButton>;
 };
 
 PlainButton.propTypes = {

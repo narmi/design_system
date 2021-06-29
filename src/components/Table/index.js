@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { deviceBreakpoints } from "../../globalStyles";
 import Typography from "components/Typography";
+import PlainButton, { StyledPlainButton } from "components/PlainButton";
 
 const StyledTableTitleDiv = styled.div`
   font-size: 20px;
+  padding-left: 20px;
 `;
 
 const StyledTable = styled.table`
@@ -16,14 +19,28 @@ const StyledTable = styled.table`
 const StyledTableHeader = styled.th`
   text-align: left;
   padding: 12px 0px 12px 20px;
+  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
+    display: none;
+  }
 `;
 
 const StyledTableCell = styled.td`
   text-align: left;
   padding: 12px 0px 12px 20px;
+  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
+    display: none;
+  }
   :last-child {
-    width: 0px;
     padding-right: 20px;
+    text-align: right;
+  }
+`;
+
+const StyledMobileTableCell = styled.td`
+  text-align: left;
+  padding: 12px 0px 12px 20px;
+  @media ${`(min-width: ${deviceBreakpoints.mobileMax})`} {
+    display: none;
   }
 `;
 
@@ -35,12 +52,44 @@ const StyledTableRow = styled.tr`
   }
 `;
 
+const StyledStackedCell = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+  text-align: right;
+
+  ${StyledPlainButton} {
+    font-size: 14px;
+  }
+`;
+
 const renderCells = (row) => {
-  return row.map((cell, idx) => (
+  const desktopCells = row.map((cell, idx) => (
     <StyledTableCell key={idx} data-testid={"col" + idx}>
       <Typography>{cell.content}</Typography>
     </StyledTableCell>
   ));
+
+  let mobileCells = [
+    <StyledMobileTableCell key={row[0].sortKey} data-testid={"MobileCol0"}>
+      <Typography>{row[0].content}</Typography>
+    </StyledMobileTableCell>,
+  ];
+
+  const collapsedCells = (
+    <StyledStackedCell>
+      {row.slice(1).map((cell, idx) => <Typography>{cell.content}</Typography>)}
+    </StyledStackedCell>
+  );
+
+  let stackedMobileCell = (
+    <StyledMobileTableCell key={row[1].sortKey} data-testid={"MobileCol1"}>
+      <Typography>{collapsedCells}</Typography>
+    </StyledMobileTableCell>
+  );
+  mobileCells = mobileCells.concat(stackedMobileCell);
+
+  return mobileCells.concat(desktopCells);
 };
 
 const Table = (props) => {

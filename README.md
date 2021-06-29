@@ -2,13 +2,15 @@
 
 ⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥
 
+This design system is intended to provide primitive "building blocks" for custom experiences. It aims to adhere as closely to the HTML spec as possible, while providing simple interfaces for complex components.
+
 Please follow the below steps to install, consume, or contribute to the NDS.
 
 ## Consuming Design System
 
 Please follow all steps below to set up your copy of design_system.
 
-### Install DesignSystem
+### 1. Install DesignSystem
 
 Install from Github, as in:
 
@@ -24,7 +26,7 @@ You will need an accepted SSH key or valid Github access token with access to th
 
 Installation via NPM: TBD (pending 1st publishable release)
 
-### Install PeerDependencies
+### 2. Install PeerDependencies
 
 design_system doesn't package 2 key dependencies, because we want to let users configure their own versions of these deps, and avoid [forcing multiple copies](https://reactjs.org/warnings/invalid-hook-call-warning.html).
 
@@ -40,7 +42,7 @@ npm install react@16.9 styled-components@5 -S
 
 These are included as peerDependencies in package.json.
 
-### Configure Your Theme
+### 3. Configure Your Theme
 
 Set up a `<GlobalStyles />` and a `<ThemeProvider />` component at each of your application's entry points to provide the necessary CSS variables to NDS components:
 
@@ -67,7 +69,7 @@ This will write a `<style>` tag to your page that contains the CSS variables the
 
 All CSS variables are prefixed with --nds (e.g. `--nds-my-variable`), to avoid collision with any existing CSS variables that may be contained in your app.
 
-### View Available Components
+### 4. View Available Components
 
 ```
 # from design_system/
@@ -82,13 +84,14 @@ These distinct views or states are controlled by Storybook `args` (similar to pr
 
 If contributing a change, please test your components out in Storybook before making a PR.
 
-### Consuming NDS Themes in Your App
+### 5. Using NDS
+
+Additional config and tips.
+
+#### Consuming NDS Themes in Your App
 
 `styled-components` exposes a [ThemeProvider context](https://styled-components.com/docs/advanced#getting-the-theme-without-styled-components) if you wish to grab the NDS Theme for use in your own components or Pages.
 
-### Live Editing
-
-(ie, adding custom HTML to a component to see how renders) This plugin may be useful: https://storybook.js.org/addons/storybook-addon-react-live-edit
 
 ## Browser Support Notes
 
@@ -98,14 +101,16 @@ Please check the following chart to see the minimum browser versions supported b
 
 ## Developing
 
-We need to set up your copy of `design_system` for local development.
+We need to set up your copy of `design_system` for local development. 
+
+The following command will install NDS as a local dependency and start your Storybook.
 
 From `banking`:
 
 ```
 cd ..
 git clone git@github.com:narmi/design_system.git
-cd banking    (or banking/sky, or wherever you want to consume DS)
+cd <your-consuming_repo>
 npm link ../design_system
 cd ../design_system
 npm install
@@ -117,16 +122,25 @@ Results:
 
 - Storybook will now run on :6006.
 - Your local `design_system` will be [symlinked](https://docs.npmjs.com/cli/v7/commands/npm-link) into banking/design_system for local dev.
-- On each change to files in design_system, the `dist/index.js` file will be rebuilt
-  - This allows local changes to design_system to be reflected in your consumer (eg Azul)
+- On each change to files in design_system, the `dist/index.js` file will be rebuilt - 
+  - This allows local changes to design_system to be live-updated in your consuming repo.
+
+### Ergonomics
+
+#### Live Editing
+
+If you'd like to live-edit HTML in your components (i.e., passing custom `props.children`), this plugin may be useful: https://storybook.js.org/addons/storybook-addon-react-live-edit.
+
 
 ## Contributing
 
-We accept PRs! We've striven to make the NDS as minimal and composable as possible, so please try and adhere to these guidelines when making PRs. We will comment on any PRs to uphold these guidelines:
+We accept PRs! We strive to make the NDS simple as well as powerful, which usually means being [open for extension](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle#:~:text=In%20object%2Doriented%20programming%2C%20the,without%20modifying%20its%20source%20code.), [but closed for modification](https://blog.cleancoder.com/uncle-bob/2014/05/12/TheOpenClosedPrinciple.html). 
+
+We try to uphold these principles in our code review. Below please find some helpful guidelines for getting your PRs accepted:
 
 ### Design Guidelines
 
-#### Maintain the HTML interface
+#### 1. Maintain the HTML interface
 
 We've attempted to keep the component interface as close to the native HTML as possible to allow the user a familiar development experience while maximizing customization. This means:
 
@@ -136,7 +150,7 @@ Almost all of our components pass `...props` all the way through to their childr
 
 This allows us to keep the power of HTML, while minimizing complexity on our end.
 
-#### Allow for props.children over custom subcomponents
+#### 2. Allow for props.children over custom subcomponents
 
 We want to allow the maximum flexibility to our users, so we've preferred allowing the user to pass their own `children` in, vs specifying specific child props in our components.
 
@@ -149,7 +163,7 @@ This allows for both increased customization by the user, while decreasing compl
 
 This way, we allow the user maximum customization, while keeping our components thin and manageable.
 
-#### Use native CSS solutions
+#### 3. Use native CSS solutions
 
 CSS has become quite powerful, and styled-components lets us modify CSS based on our `props`.
 
@@ -160,55 +174,18 @@ For example:
 - prefer changing `flex-direction: row` to `flex-direction: row-reverse` via CSS, rather than using a `reversed` React prop
 - let the user pass through `props.style` rather than providing `padding` props
 - prefer CSS transforms and animations to JS/jQuery manipulations
-- ...
+- etc.
 
-#### In Short
+#### 4. In Short:
 
 - Keep components as small as possible
 - Ask, "Can this prop be removed?"
 - Prefer CSS to JS
 
-Feel free to ask us for CSS suggestions - we're happy to help!
+We'd love for this library to be as usable as possible for all our partners. 
 
----
-
-## Design Philosophy
-
-NDS is:
-
-1. Independent of any project
-1. A dependency of all projects
-
-> You can think of a design system as another component library, but instead of servicing one app, it serves an entire organization. A design system focuses on UI primitives while project-specific component libraries can contain anything from composite components to screens.
->
-> As such, our design system must be **independent of any project** and also **a dependency of all projects**. Changes propagate throughout the organization via a versioned package distributed by a package manager. Projects can reuse design system components and further customize if needed. These constraints give us the blueprint for organizing our frontend projects.
->
-> \- via [Storybook Design](https://storybook.js.org/tutorials/design-systems-for-developers/react/en/architecture/)
-
-Our design system must be specific enough to be consumed by all projects, but not so specific that it becomes coupled to a particular implementation.
-
-What does this mean in practice?
-
-```
-We aim to provide composable components that expose extendable hooks, that can be subclassed or customized to achieve a more specific desired functionality.
-```
-
-## Goals and Anti-Goals
-
-The design system does provide a consistent visual style and look-and-feel and extensible interface to interact with a component.
-
-The design system does _not_ provide implementation details for every possible use case out-of-the-box.
-
-Ex.:
-
-| Does                                                                                         | Does Not                                                             |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| provide the `onClick` handler for \<Button /\>                                               | specify what that `onClick` handler does                             |
-| provide a consistent look and feel for Button                                                | specify what color buttons have to be                                |
-| provide a \<List /\> component to provide guidance on how groups of items should be laid out | specify what can go in a List, or exclude items from being in a List |
-
-Some assembly is required.
+Feel free to ask us for suggestions or feedback - we're happy to help!
 
 ## License
 
-Source code is under a custom license based on MIT. The license restricts design_system usage to applications that integrate or interoperate with Narmi software or services, with additional restrictions for external, stand-alone applications.
+Source code is under a custom license based on MIT. The license restricts design_system usage to applications that integrate or interoperate with Narmi software or services, with additional restrictions for external, stand-alone applications. Please see LICENSE.md for full details.

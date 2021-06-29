@@ -35,7 +35,7 @@ export const transfersGridData = [
       },
       {
         content: (
-          <PlainButton style={{ textAlign: "right", fontSize: "14px" }} small>
+          <PlainButton small>
             Delete
           </PlainButton>
         ),
@@ -59,7 +59,7 @@ export const transfersGridData = [
       },
       {
         content: (
-          <PlainButton style={{ textAlign: "right", fontSize: "14px" }} small>
+          <PlainButton small>
             Delete
           </PlainButton>
         ),
@@ -83,7 +83,7 @@ export const transfersGridData = [
       },
       {
         content: (
-          <PlainButton style={{ textAlign: "right", fontSize: "14px" }} small>
+          <PlainButton small>
             Delete
           </PlainButton>
         ),
@@ -107,7 +107,7 @@ export const transfersGridData = [
       },
       {
         content: (
-          <PlainButton style={{ textAlign: "right", fontSize: "14px" }} small>
+          <PlainButton small>
             Delete
           </PlainButton>
         ),

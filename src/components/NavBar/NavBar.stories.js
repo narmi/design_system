@@ -32,11 +32,23 @@ const HamburgerMenuSidebar = () => {
   );
 };
 
+const PaddedListItem = styled.div`
+  padding-left: 16px;
+  padding-right: 16px;
+`;
+
+const renderPaddedItem = (item) => (
+  <PaddedListItem>
+    {item}
+  </PaddedListItem>
+);
+
 const AccountsList = (
   <List
     horizontal={true}
     divided={true}
     style={{ padding: "20px 0px 20px 0px" }}
+    renderItem={renderPaddedItem}
     items={{
       Checking: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
       Savings: [
@@ -51,6 +63,7 @@ const AccountsList = (
 
 const UserList = (
   <List
+    renderItem={renderPaddedItem}
     items={[
       <span>Link a new profile</span>,
       <span>Settings</span>,
@@ -62,6 +75,7 @@ const UserList = (
 
 const ToolsList = (
   <List
+    renderItem={renderPaddedItem}
     items={[
       <span>Free Credit Score Check</span>,
       <span>Open a new account</span>,

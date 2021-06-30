@@ -62,6 +62,7 @@ const StyledWrapper = styled.span`
   font-family: var(--nds-font-family);
   padding-top: 5px;
   padding-bottom: 5px;
+  cursor: pointer;
   &:hover ${StyledOverlay} {
     visibility: visible;
   }

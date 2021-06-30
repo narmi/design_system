@@ -15,6 +15,8 @@ export const StyledPlainButton = styled.a`
   text-align: left;
   vertical-align: middle;
 
+  cursor: pointer;
+
   color: var(--nds-secondary-color);
   border-color: var(--nds-secondary-color);
   border-width: 0;

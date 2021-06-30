@@ -10,16 +10,17 @@ const StyledCard = styled.div`
 
   box-shadow: var(--nds-dropshadow-light);
   border-radius: 4px;
-  padding: 22px;
+  padding: 20px;
   box-sizing: border-box;
+  background-color: var(--nds-white);
 
   :last-child {
     margin-right: 0px;
   }
 
   &:hover {
-    border: 2px solid var(--nds-primary-color);
-    padding: 20px;
+    border: ${props=> props.hoverable ? "2px solid var(--nds-primary-color)" : null};
+    padding: ${props=> props.hoverable ? "18px" : "20px" };
   }
 
   @media (max-width: ${deviceBreakpoints.mobileMax}) {
@@ -28,7 +29,7 @@ const StyledCard = styled.div`
 `;
 
 const StyledCardBody = styled.div`
-  margin-top: 20px;
+  margin-top: 12px;
 `;
 
 const Card = (props) => {
@@ -49,6 +50,11 @@ const Card = (props) => {
 Card.propTypes = {
   title: PropTypes.node,
   children: PropTypes.node,
+  hoverable: PropTypes.bool,
+};
+
+Card.defaultProps = {
+  hoverable: false,
 };
 
 export default Card;

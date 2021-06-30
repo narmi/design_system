@@ -126,8 +126,58 @@ const ArrowsIcon = () => {
   );
 };
 
+const StyledListItem = styled.div`
+  // margin-bottom: 8px;
+`;
+
+const StyledListContainer = styled.div`
+margin-bottom: 8px;  
+& > ${StyledListItem}:last-child {
+    margin-bottom: unset;
+    background-color: red;
+  }
+`;
+
+function renderItem(item){
+  return(<StyledListItem>{item}</StyledListItem>);
+}
+
 export const WithActions = Template.bind({});
 WithActions.args = {
+  ...DefaultArgs,
+  title: <span>Title</span>,
+  children: (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "flex-start",
+      }}
+    >
+      <List
+      items={[
+      <PlainButton small>Button 1 </PlainButton>,
+      <PlainButton small>Button 2 </PlainButton>,
+      <PlainButton small>Button 3 </PlainButton>,
+      ]}
+      renderListWrapper={(list) => <StyledListContainer>{list}</StyledListContainer>}
+      renderItem={renderItem}
+      >
+      </List>
+    </div>
+  ),
+};
+WithActions.decorators = [MaxWidth];
+
+export const WithinGrid = Template.bind({});
+WithinGrid.args = {
+  ...WithList.args,
+};
+WithinGrid.decorators = [InGrid];
+
+export const TitleCard = Template.bind({});
+TitleCard.args = {
   ...DefaultArgs,
   title: (
     <div
@@ -141,25 +191,7 @@ WithActions.args = {
       <ArrowsIcon />
     </div>
   ),
-  children: (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "flex-start",
-      }}
-    >
-      <PlainButton small>Button 1 </PlainButton>
-      <PlainButton small>Button 2 </PlainButton>
-      <PlainButton small>Button 3 </PlainButton>
-    </div>
-  ),
+  hoverable: true,
+  children: <div>This is a piece of text that explains something.</div>,
 };
-WithActions.decorators = [MaxWidth];
-
-export const WithinGrid = Template.bind({});
-WithinGrid.args = {
-  ...WithList.args,
-};
-WithinGrid.decorators = [InGrid];
+TitleCard.decorators = [MaxWidth];

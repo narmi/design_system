@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
 const smallStyles = css`
-  font-size: 16px;
+  font-size: 14px;
 `;
 
 export const StyledPlainButton = styled.a`
   font-family: var(--nds-font-family);
   font-weight: 600;
-  font-size: 20px;
+  font-size: 16px;
   letter-spacing: 0px;
   line-height: 22px;
   text-align: left;

@@ -80,8 +80,8 @@ const StyledWrapper = styled.span`
 
   // hover to keep chevron and label bolded and highlighted when hovering the overlay
   &:hover ${StyledChevronDown} {
-    stroke-width: ${props => props.hoverable ? "2" : null};
-    color: ${props => props.hoverable ? "var(--nds-primary-color)" : null};
+    stroke-width: ${(props) => (props.hoverable ? "2" : null)};
+    color: ${(props) => (props.hoverable ? "var(--nds-primary-color)" : null)};
   }
   &:hover ${StyledLabel} {
     color: ${(p) => (p.hoverable ? "var(--nds-primary-color)" : null)};

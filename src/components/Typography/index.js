@@ -21,25 +21,22 @@ const Typography = (props) => {
     fontWeight = "600";
     lineHeight = "50px";
     color = "var(--nds-black)";
-
   } else if (props.h2) {
     fontSize = "28px";
     fontWeight = "600";
     lineHeight = "35px";
     color = "var(--nds-black)";
-
   } else if (props.h3) {
     // mobile native only - DO NOT USE
     fontSize = "24px";
     fontWeight = "500";
     lineHeight = "30px";
     color = "var(--nds-black)";
-  } else if (props.h4){
+  } else if (props.h4) {
     fontSize = "20px";
     fontWeight = "600";
     lineHeight = "25px";
     color = "var(--nds-black)";
-    
   } else if (props.subheader) {
     fontSize = "12px";
     fontWeight = "600";

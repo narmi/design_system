@@ -116,15 +116,15 @@ const StyledListItem = styled.div`
 `;
 
 const StyledListContainer = styled.div`
-margin-bottom: 8px;  
-& > ${StyledListItem}:last-child {
+  margin-bottom: 8px;
+  & > ${StyledListItem}:last-child {
     margin-bottom: unset;
     background-color: red;
   }
 `;
 
-function renderItem(item){
-  return(<StyledListItem>{item}</StyledListItem>);
+function renderItem(item) {
+  return <StyledListItem>{item}</StyledListItem>;
 }
 
 export const WithActions = Template.bind({});
@@ -141,15 +141,16 @@ WithActions.args = {
       }}
     >
       <List
-      items={[
-      <PlainButton small>Button 1 </PlainButton>,
-      <PlainButton small>Button 2 </PlainButton>,
-      <PlainButton small>Button 3 </PlainButton>,
-      ]}
-      renderListWrapper={(list) => <StyledListContainer>{list}</StyledListContainer>}
-      renderItem={renderItem}
-      >
-      </List>
+        items={[
+          <PlainButton small>Button 1 </PlainButton>,
+          <PlainButton small>Button 2 </PlainButton>,
+          <PlainButton small>Button 3 </PlainButton>,
+        ]}
+        renderListWrapper={(list) => (
+          <StyledListContainer>{list}</StyledListContainer>
+        )}
+        renderItem={renderItem}
+      ></List>
     </div>
   ),
 };
@@ -172,8 +173,13 @@ TitleCard.args = {
         color: "var(--nds-primary-color)",
       }}
     >
-      <Typography style={{paddingRight: "4px", color: "var(--nds-primary-color)"}} h4>Title</Typography>
-      <Icon image={Star}/>
+      <Typography
+        style={{ paddingRight: "4px", color: "var(--nds-primary-color)" }}
+        h4
+      >
+        Title
+      </Typography>
+      <Icon image={Star} />
     </div>
   ),
   hoverable: true,

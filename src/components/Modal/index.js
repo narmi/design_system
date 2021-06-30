@@ -247,33 +247,32 @@ const Modal = ({
             </StyledIcon>
             <StyledHeader titleUnderline={titleUnderline}>{title}</StyledHeader>
             <StyledBody>{children}</StyledBody>
-            {(leftActions && leftActions.length > 0) || successLabel || cancelLabel
-              ?
-                <StyledActionBar large={large}>
-                  <StyledActionBarLeft large={large}>
-                    {leftActions.map((action, idx) => (
-                      <PlainButton small key={idx} onClick={action.action}>
-                        {action.title}
-                      </PlainButton>
-                    ))}
-                  </StyledActionBarLeft>
-                  <StyledActionBarRight large={large}>
-                    {cancelLabel ? (
-                      <Button
-                        secondary
-                        transparent
-                        onClick={onCancel}
-                        label={cancelLabel}
-                      />
-                    ) : null}
-                    {successLabel ? (
-                      <Button primary onClick={onSuccess} label={successLabel} />
-                    ) : null}
-                  </StyledActionBarRight>
-                </StyledActionBar>
-                :
-                null
-                  }
+            {(leftActions && leftActions.length > 0) ||
+            successLabel ||
+            cancelLabel ? (
+              <StyledActionBar large={large}>
+                <StyledActionBarLeft large={large}>
+                  {leftActions.map((action, idx) => (
+                    <PlainButton small key={idx} onClick={action.action}>
+                      {action.title}
+                    </PlainButton>
+                  ))}
+                </StyledActionBarLeft>
+                <StyledActionBarRight large={large}>
+                  {cancelLabel ? (
+                    <Button
+                      secondary
+                      transparent
+                      onClick={onCancel}
+                      label={cancelLabel}
+                    />
+                  ) : null}
+                  {successLabel ? (
+                    <Button primary onClick={onSuccess} label={successLabel} />
+                  ) : null}
+                </StyledActionBarRight>
+              </StyledActionBar>
+            ) : null}
           </StyledCard>
         </>,
         modalElement

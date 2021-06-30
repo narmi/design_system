@@ -29,7 +29,16 @@ const StyledOverlay = styled.div`
   ${(props) => (props.hoverable ? hoverableStyles : null)};
 `;
 
-const StyledChevronDown = styled(ChevronDown)``;
+const StyledChevronDown = styled(ChevronDown)`
+  margin-top: 3px;
+  stroke-width: 1;
+  color: var(--nds-grey-text);
+`;
+
+const StyledChevronUp = styled(ChevronUp)`
+  stroke-width: 2;
+  color: var(--nds-primary-color);
+`;
 
 const StyledLabel = styled.a`
   color: var(--nds-grey-text);
@@ -71,8 +80,8 @@ const StyledWrapper = styled.span`
 
   // hover to keep chevron and label bolded and highlighted when hovering the overlay
   &:hover ${StyledChevronDown} {
-    stroke-width: 3;
-    color: var(--nds-primary-color);
+    stroke-width: ${props => props.hoverable ? "2" : null};
+    color: ${props => props.hoverable ? "var(--nds-primary-color)" : null};
   }
   &:hover ${StyledLabel} {
     color: ${(p) => (p.hoverable ? "var(--nds-primary-color)" : null)};
@@ -106,11 +115,11 @@ const Popover = ({
       return <StyledChevronDown size={18} />;
     }
     if (open) {
-      return <ChevronUp size={18} />;
+      return <StyledChevronUp size={18} />;
     }
 
     // default closed
-    return <ChevronDown size={18} />;
+    return <StyledChevronDown size={18} />;
   };
 
   return (

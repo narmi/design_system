@@ -22,6 +22,10 @@ const StyledTableHeader = styled.th`
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     display: none;
   }
+  :last-child {
+    padding-right: 20px;
+    text-align: right;
+  }
 `;
 
 const StyledTableCell = styled.td`

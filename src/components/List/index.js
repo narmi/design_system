@@ -23,11 +23,15 @@ const StyledList = styled.div`
   // - vertical: border-bottom
   // - horizontal: border-right
   border-bottom: ${(p) =>
-    p.divideCategories && !p.horizontal ? "1px solid var(--nds-grey-disabled)" : null};
+    p.divideCategories && !p.horizontal
+      ? "1px solid var(--nds-grey-disabled)"
+      : null};
 
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
     border-right: ${(p) =>
-      p.divideCategories && p.horizontal ? "1px solid var(--nds-grey-disabled)" : null};
+      p.divideCategories && p.horizontal
+        ? "1px solid var(--nds-grey-disabled)"
+        : null};
   }
 
   &:last-child {
@@ -39,7 +43,8 @@ const StyledList = styled.div`
 const StyledListItem = styled.div`
   box-sizing: border-box;
 
-  border-bottom: ${p => p.divideItems ? "1px solid var(--nds-grey-disabled)" : null};
+  border-bottom: ${(p) =>
+    p.divideItems ? "1px solid var(--nds-grey-disabled)" : null};
 
   :hover {
     background-color: ${(props) =>
@@ -53,7 +58,11 @@ const StyledListItem = styled.div`
 
 function renderItem(props, item, idx) {
   return (
-    <StyledListItem key={"ListItem" + idx} hoverable={props.hoverable} divideItems={props.divideItems}>
+    <StyledListItem
+      key={"ListItem" + idx}
+      hoverable={props.hoverable}
+      divideItems={props.divideItems}
+    >
       <Typography>{props.renderItem(item)}</Typography>
     </StyledListItem>
   );
@@ -74,7 +83,10 @@ function renderCategoryList(props, category, categoryIdx) {
 
 const List = (props) => {
   let els = Array.isArray(props.items) ? (
-    <StyledList divideCategories={props.divideCategories} horizontal={props.horizontal}>
+    <StyledList
+      divideCategories={props.divideCategories}
+      horizontal={props.horizontal}
+    >
       {props.items.map((item, idx) => renderItem(props, item, idx))}
     </StyledList>
   ) : (
@@ -87,7 +99,7 @@ const List = (props) => {
   if (props.renderListWrapper) {
     return props.renderListWrapper(flexList);
   }
-  return flexList
+  return flexList;
 };
 
 const renderDefaultItem = (item) => {

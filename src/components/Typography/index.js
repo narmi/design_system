@@ -32,7 +32,7 @@ const Typography = (props) => {
     fontWeight = "600";
     lineHeight = "15px";
 
-  // <p> tags
+    // <p> tags
   } else if (props.p1) {
     fontSize = "16px";
     let fontWeight = "400";
@@ -46,7 +46,7 @@ const Typography = (props) => {
     let fontWeight = "400";
     lineHeight = "15px";
 
-  // base case
+    // base case
   } else {
     fontSize = "16px";
     let fontWeight = "400";

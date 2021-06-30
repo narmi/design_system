@@ -12,36 +12,47 @@ const StyledContainer = styled.span`
 `;
 
 const Typography = (props) => {
-  let fontWeight = "400";
-  let fontSize = "16px";
-  let lineHeight = "20px";
   let color = "var(--nds-grey-text)";
+
+  // <h*> tags
   if (props.h1) {
+    fontSize = "36px";
     fontWeight = "600";
     lineHeight = "50px";
-    fontSize = "36px";
   } else if (props.h2) {
+    fontSize = "28px";
     fontWeight = "600";
     lineHeight = "35px";
-    fontSize = "28px";
   } else if (props.h3) {
+    fontSize = "20px";
     fontWeight = "600";
     lineHeight = "28px";
-    fontSize = "20px";
   } else if (props.subheader) {
+    fontSize = "12px";
     fontWeight = "600";
     lineHeight = "15px";
-    fontSize = "12px";
+
+  // <p> tags
   } else if (props.p1) {
-    lineHeight = "20px";
     fontSize = "16px";
+    let fontWeight = "400";
+    lineHeight = "20px";
   } else if (props.p2) {
-    lineHeight = "18px";
     fontSize = "14px";
+    let fontWeight = "400";
+    lineHeight = "18px";
   } else if (props.p3) {
-    lineHeight = "15px";
     fontSize = "12px";
+    let fontWeight = "400";
+    lineHeight = "15px";
+
+  // base case
+  } else {
+    fontSize = "16px";
+    let fontWeight = "400";
+    lineHeight = "20px";
   }
+
   return (
     <StyledContainer
       color={color}
@@ -70,7 +81,6 @@ Typography.propTypes = {
 };
 
 Typography.defaultProps = {
-  p1: true,
   children: [],
 };
 

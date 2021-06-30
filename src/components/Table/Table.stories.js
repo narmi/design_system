@@ -1,8 +1,6 @@
 import React from "react";
 import Table from "components/Table";
-import Typography from "components/Typography";
-import { transfersGridData, adminGridData } from "../../helpers/sampleData.js";
-import PlainButton from "components/PlainButton";
+import { transfersGridData } from "../../helpers/storyHelpers";
 
 export default {
   title: "Components/Table",
@@ -19,10 +17,4 @@ const DefaultArgs = {
 export const BasicTable = Template.bind({});
 BasicTable.args = {
   ...DefaultArgs,
-};
-
-export const AdminTable = Template.bind({});
-AdminTable.args = {
-  ...DefaultArgs,
-  gridData: adminGridData,
 };

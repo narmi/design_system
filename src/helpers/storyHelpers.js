@@ -34,6 +34,7 @@ export const transfersGridData = [
         sortKey: -1000,
       },
       {
+        column: "name",
         content: (
           <PlainButton small>
             Delete
@@ -58,6 +59,7 @@ export const transfersGridData = [
         sortKey: -123.45,
       },
       {
+        column: "name",
         content: (
           <PlainButton small>
             Delete
@@ -82,6 +84,7 @@ export const transfersGridData = [
         sortKey: -80,
       },
       {
+        column: "name",
         content: (
           <PlainButton small>
             Delete
@@ -106,6 +109,7 @@ export const transfersGridData = [
         sortKey: -130,
       },
       {
+        column: "name",
         content: (
           <PlainButton small>
             Delete

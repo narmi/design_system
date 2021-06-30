@@ -1,15 +1,16 @@
 import React from "react";
-import NavBar from "components/NavBar";
-import { Top } from "../../decorators";
 import styled from "styled-components";
+import { Menu } from "react-feather";
+
+import NavBar from "components/NavBar";
+import Icon from "components/Icon";
 import Popover from "components/Popover";
 import List from "components/List";
 import Sidebar from "components/Sidebar";
 import Typography from "components/Typography";
-import { Menu } from "react-feather";
-import Icon from "components/Icon";
+import { PopoverNavBar } from "components/Popover/storyHelpers";
+import { Top } from "../../decorators";
 import Narmi from "../../assets/narmi-logo.svg";
-import { PopoverNavBar } from "../Popover/Popover.stories.js";
 
 export default {
   title: "Components/NavBar",

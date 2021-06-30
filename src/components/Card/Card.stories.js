@@ -8,6 +8,8 @@ import List from "components/List";
 import PlainButton from "components/PlainButton";
 import Typography from "components/Typography";
 import { Centered } from "../../decorators";
+import Icon from "components/Icon";
+import Star from "../../assets/star.svg";
 
 const InGrid = (Story) => (
   <div
@@ -15,11 +17,12 @@ const InGrid = (Story) => (
       display: "grid",
       gridTemplateColumns: "2fr 1fr",
       width: "95%",
+      height: "100%",
       margin: "24px auto",
     }}
   >
     <Story />
-    <Story />
+    <div />
   </div>
 );
 
@@ -187,8 +190,8 @@ TitleCard.args = {
         color: "var(--nds-primary-color)",
       }}
     >
-      <span>Title</span>
-      <ArrowsIcon />
+      <Typography style={{paddingRight: "4px", color: "var(--nds-primary-color)"}} h4>Title</Typography>
+      <Icon image={Star}/>
     </div>
   ),
   hoverable: true,

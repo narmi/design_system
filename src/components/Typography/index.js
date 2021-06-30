@@ -25,9 +25,14 @@ const Typography = (props) => {
     fontWeight = "600";
     lineHeight = "35px";
   } else if (props.h3) {
+    // mobile native only - DO NOT USE
+    fontSize = "24px";
+    fontWeight = "500";
+    lineHeight = "30px";
+  } else if (props.h4){
     fontSize = "20px";
     fontWeight = "600";
-    lineHeight = "28px";
+    lineHeight = "25px";
   } else if (props.subheader) {
     fontSize = "12px";
     fontWeight = "600";
@@ -71,6 +76,7 @@ Typography.propTypes = {
   h1: PropTypes.bool,
   h2: PropTypes.bool,
   h3: PropTypes.bool,
+  h4: PropTypes.bool,
   subheader: PropTypes.bool,
 
   p1: PropTypes.bool,

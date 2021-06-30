@@ -8,7 +8,7 @@ const StyledCard = styled.div`
   width: 100%;
   min-height: 68px;
 
-  box-shadow: var(--nds-dropshadow-light);
+  box-shadow: ${props=> props.hoverable ? null : "var(--nds-dropshadow-light)"};
   border-radius: 4px;
   padding: 20px;
   box-sizing: border-box;
@@ -18,9 +18,11 @@ const StyledCard = styled.div`
     margin-right: 0px;
   }
 
+  border: ${props=> props.hoverable ? "1px solid var(--nds-grey-disabled)" : null};
+
   &:hover {
     border: ${props=> props.hoverable ? "2px solid var(--nds-primary-color)" : null};
-    padding: ${props=> props.hoverable ? "18px" : "20px" };
+    padding: ${props=> props.hoverable ? "19px" : "20px" };
   }
 
   @media (max-width: ${deviceBreakpoints.mobileMax}) {
@@ -29,15 +31,15 @@ const StyledCard = styled.div`
 `;
 
 const StyledCardBody = styled.div`
-  margin-top: 12px;
+  margin-top: ${props=> props.hoverable ? "8px" : "12px"};
 `;
 
 const Card = (props) => {
   return (
     <StyledCard {...props}>
-      <Typography h3>{props.title}</Typography>
+      <Typography h4>{props.title}</Typography>
       {props.children ? (
-        <StyledCardBody>
+        <StyledCardBody hoverable={props.hoverable}>
           <Typography>{props.children}</Typography>
         </StyledCardBody>
       ) : (

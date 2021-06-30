@@ -12,6 +12,7 @@ const StyledContainer = styled.span`
 `;
 
 const Typography = (props) => {
+  let fontSize, fontWeight, lineHeight;
   let color = "var(--nds-grey-text)";
 
   // <h*> tags
@@ -35,21 +36,21 @@ const Typography = (props) => {
     // <p> tags
   } else if (props.p1) {
     fontSize = "16px";
-    let fontWeight = "400";
+    fontWeight = "400";
     lineHeight = "20px";
   } else if (props.p2) {
     fontSize = "14px";
-    let fontWeight = "400";
+    fontWeight = "400";
     lineHeight = "18px";
   } else if (props.p3) {
     fontSize = "12px";
-    let fontWeight = "400";
+    fontWeight = "400";
     lineHeight = "15px";
 
     // base case
   } else {
     fontSize = "16px";
-    let fontWeight = "400";
+    fontWeight = "400";
     lineHeight = "20px";
   }
 

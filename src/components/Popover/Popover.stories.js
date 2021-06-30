@@ -20,12 +20,12 @@ OnClick.args = {
   hoverable: false,
   label: "Accounts",
   shiftX: "-40%",
-  children: <NavMenuList divided horizontal />,
+  children: <NavMenuList divideCategories horizontal />,
 };
 export const OnHover = Template.bind({});
 OnHover.args = {
   hoverable: true,
   label: "Accounts",
   shiftX: "-40%",
-  children: <NavMenuList divided horizontal />,
+  children: <NavMenuList divideCategories horizontal />,
 };

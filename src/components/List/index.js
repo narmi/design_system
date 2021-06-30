@@ -18,17 +18,16 @@ const StyledList = styled.div`
 
   white-space: nowrap;
   margin: 0;
+
+  // divide categorized lists
+  // - vertical: border-bottom
+  // - horizontal: border-right
+  border-bottom: ${(p) =>
+    p.divideCategories && !p.horizontal ? "1px solid var(--nds-grey-disabled)" : null};
+
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
     border-right: ${(p) =>
-      p.divided && p.horizontal ? "1px solid var(--nds-grey-disabled)" : null};
-  }
-
-  border-bottom: ${(p) =>
-    p.divided && !p.horizontal ? "1px solid var(--nds-grey-disabled)" : null};
-
-  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
-    border-bottom: ${(p) =>
-      p.divided ? "1px solid var(--nds-grey-disabled)" : null};
+      p.divideCategories && p.horizontal ? "1px solid var(--nds-grey-disabled)" : null};
   }
 
   &:last-child {
@@ -40,15 +39,21 @@ const StyledList = styled.div`
 const StyledListItem = styled.div`
   box-sizing: border-box;
 
+  border-bottom: ${p => p.divideItems ? "1px solid var(--nds-grey-disabled)" : null};
+
   :hover {
     background-color: ${(props) =>
       props.hoverable ? "var(--nds-primary-color-lightest)" : null};
+  }
+
+  &:last-child {
+    border-bottom: none;
   }
 `;
 
 function renderItem(props, item, idx) {
   return (
-    <StyledListItem key={"ListItem" + idx} hoverable={props.hoverable}>
+    <StyledListItem key={"ListItem" + idx} hoverable={props.hoverable} divideItems={props.divideItems}>
       <Typography>{props.renderItem(item)}</Typography>
     </StyledListItem>
   );
@@ -57,7 +62,7 @@ function renderItem(props, item, idx) {
 function renderCategoryList(props, category, categoryIdx) {
   return (
     <StyledList
-      divided={props.divided}
+      divideCategories={props.divideCategories}
       horizontal={props.horizontal}
       key={"List" + category + categoryIdx}
     >
@@ -69,7 +74,7 @@ function renderCategoryList(props, category, categoryIdx) {
 
 const List = (props) => {
   let els = Array.isArray(props.items) ? (
-    <StyledList divided={props.divided} horizontal={props.horizontal}>
+    <StyledList divideCategories={props.divideCategories} horizontal={props.horizontal}>
       {props.items.map((item, idx) => renderItem(props, item, idx))}
     </StyledList>
   ) : (
@@ -78,10 +83,11 @@ const List = (props) => {
     )
   );
 
+  const flexList = <StyledListWrapper {...props}>{els}</StyledListWrapper>;
   if (props.renderListWrapper) {
-    return props.renderListWrapper(els);
+    return props.renderListWrapper(flexList);
   }
-  return <StyledListWrapper {...props}>{els}</StyledListWrapper>;
+  return flexList
 };
 
 const renderDefaultItem = (item) => {
@@ -94,8 +100,9 @@ const renderDefaultContainer = (list) => {
 
 List.propTypes = {
   horizontal: PropTypes.bool,
-  divided: PropTypes.bool,
   hoverable: PropTypes.bool,
+  divideItems: PropTypes.bool,
+  divideCategories: PropTypes.bool,
   renderItem: PropTypes.func,
   renderCategory: PropTypes.func,
   items: PropTypes.oneOfType([
@@ -108,8 +115,9 @@ List.propTypes = {
 
 List.defaultProps = {
   horizontal: false,
-  divided: false,
   hoverable: true,
+  divideItems: false,
+  divideCategories: false,
   renderItem: renderDefaultItem,
   renderCategory: renderDefaultItem,
   items: [],

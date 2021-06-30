@@ -8,40 +8,6 @@ import { deviceBreakpoints } from "../../globalStyles";
 import { StyledListItem, StyledCategory } from "components/List/storyHelpers";
 
 /* Example components for Menu */
-const StyledHeader = styled.span`
-  color: var(--nds-black);
-  font-weight: 600;
-  font-family: var(--nds-font-family);
-  font-size: 16px;
-  line-height: 20px;
-  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
-    font-size: 12px;
-  }
-}
-`;
-
-const StyledList = styled.ul`
-  list-style-type: none;
-  padding-inline-start: 0;
-  margin-block-start: 0;
-  white-space: nowrap;
-  padding: 12px 16px;
-  margin: 0;
-
-  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
-    font-size: 12px;
-  }
-
-  border-right: ${(p) =>
-    p.divided && p.horizontal ? "1px solid var(--nds-grey-disabled)" : null};
-  border-bottom: ${(p) =>
-    p.divided && !p.horizontal ? "1px solid var(--nds-grey-disabled)" : null};
-
-  &:last-child {
-    border-right: none;
-  }
-`;
-
 const StyledOptionsList = styled.div`
   display: flex;
   position: absolute;
@@ -101,7 +67,7 @@ export const PopoverNavBar = () => {
   );
 };
 
-export const NavMenuList = ({ divided, horizontal }) => {
+export const NavMenuList = ({ divideItems, divideCategories, horizontal }) => {
   const items = {
     Checking: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
     Savings: [<a>Primary Savings-2000</a>, <a>Car Savings-4232</a>],
@@ -114,7 +80,8 @@ export const NavMenuList = ({ divided, horizontal }) => {
 
   return (
     <List
-      divided={divided}
+      divideItems={divideItems}
+      divideCategories={divideCategories}
       horizontal={horizontal}
       items={items}
       renderItem={renderItem}

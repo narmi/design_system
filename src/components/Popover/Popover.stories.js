@@ -5,7 +5,7 @@ import Typography from "components/Typography";
 
 import { Centered } from "../../decorators";
 import { deviceBreakpoints } from "../../globalStyles";
-import { NavMenu } from "./storyHelpers";
+import { NavMenuList } from "./storyHelpers";
 
 export default {
   title: "Components/Popover",
@@ -20,14 +20,12 @@ OnClick.args = {
   hoverable: false,
   label: "Accounts",
   shiftX: "-40%",
-  style: { padding: "8px" },
-  children: <NavMenu divided horizontal />,
+  children: <NavMenuList divided horizontal />,
 };
 export const OnHover = Template.bind({});
 OnHover.args = {
   hoverable: true,
   label: "Accounts",
   shiftX: "-40%",
-  style: { padding: "8px" },
-  children: <NavMenu divided horizontal />,
+  children: <NavMenuList divided horizontal />,
 };

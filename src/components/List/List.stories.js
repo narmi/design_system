@@ -4,27 +4,17 @@ import styled from "styled-components";
 import { default as ListComponent } from "components/List";
 import Typography from "components/Typography";
 import { Centered } from "../../decorators";
+import {
+  StyledListItem,
+  StyledCategory,
+  StyledListContainer,
+} from "./storyHelpers";
 
 export default {
   title: "Components/List",
   component: List,
   decorators: [Centered],
 };
-
-const StyledListContainer = styled.div`
-  box-shadow: var(--nds-dropshadow-dark);
-  border-radius: 4px;
-`;
-
-const StyledListItem = styled.span`
-  padding: 12px 16px;
-  display: flex;
-`;
-
-const StyledCategory = styled.span`
-  padding: 12px 16px 4px;
-  display: flex;
-`;
 
 const Template = (args) => <ListComponent {...args} />;
 const DefaultArgs = {

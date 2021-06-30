@@ -2,9 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 import Typography from "components/Typography";
+import List from "components/List";
 import Popover from "components/Popover";
-import {deviceBreakpoints} from "../../globalStyles";
-
+import { deviceBreakpoints } from "../../globalStyles";
+import { StyledListItem, StyledCategory } from "components/List/storyHelpers";
 
 /* Example components for Menu */
 const StyledHeader = styled.span`
@@ -62,7 +63,7 @@ const AccountPopover = () => {
           </Typography>
         }
         shiftX={"0%"}
-        children={<NavMenu />}
+        children={<NavMenuList />}
       />
     </div>
   );
@@ -100,7 +101,7 @@ export const PopoverNavBar = () => {
   );
 };
 
-export const NavMenu = ({ divided, horizontal }) => {
+export const NavMenuList = ({ divided, horizontal }) => {
   const items = {
     Checking: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
     Savings: [<a>Primary Savings-2000</a>, <a>Car Savings-4232</a>],
@@ -108,28 +109,17 @@ export const NavMenu = ({ divided, horizontal }) => {
     CDs: [<a>3 Year-8222</a>],
   };
 
-  const els = Object.keys(items).map((header) => (
-    <StyledList divided={divided} horizontal={horizontal}>
-      <li>
-        <StyledHeader>{header}</StyledHeader>
-      </li>
-      {items[header].map((c) => (
-        <Typography>
-          <li key={c}>{c}</li>
-        </Typography>
-      ))}
-    </StyledList>
-  ));
+  const renderItem = (item) => <StyledListItem>{item}</StyledListItem>;
+  const renderCategory = (cat) => <StyledCategory>{cat}</StyledCategory>;
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexFlow: horizontal ? "row nowrap" : "column nowrap",
-      }}
-    >
-      {els}
-    </div>
+    <List
+      divided={divided}
+      horizontal={horizontal}
+      items={items}
+      renderItem={renderItem}
+      renderCategory={renderCategory}
+      style={{ padding: "16px 0" }}
+    />
   );
 };
-

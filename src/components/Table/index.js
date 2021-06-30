@@ -186,7 +186,7 @@ const Table = (props) => {
   return (
     <div {...props}>
       <StyledTableTitleDiv>
-        <Typography h3>{props.title}</Typography>
+        <Typography h4>{props.title}</Typography>
       </StyledTableTitleDiv>
       <br />
       <StyledTable>

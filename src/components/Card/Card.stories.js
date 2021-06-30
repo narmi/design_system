@@ -111,24 +111,6 @@ WithList.args = {
 };
 WithList.decorators = [MaxWidth];
 
-const ArrowsIcon = () => {
-  return (
-    <div
-      style={{
-        color: "var(--nds-primary-color)",
-        height: "20px",
-        display: "flex",
-        flexDirection: "column",
-        cursor: "pointer",
-      }}
-      onClick={() => alert("Clicked icon!")}
-    >
-      <ArrowRight viewBox="0 0 16 20" />{" "}
-      <ArrowLeft viewBox="0 0 24 20" style={{ marginTop: "-3px" }} />
-    </div>
-  );
-};
-
 const StyledListItem = styled.div`
   // margin-bottom: 8px;
 `;

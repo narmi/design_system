@@ -10,7 +10,11 @@ const StyledCard = styled.div`
 
   box-shadow: ${props=> props.hoverable ? null : "var(--nds-dropshadow-light)"};
   border-radius: 4px;
+  #{yo}
   padding: 20px;
+  @media (max-width: ${deviceBreakpoints.mobileMax}) {
+    padding: 0px;
+  }
   box-sizing: border-box;
   background-color: var(--nds-white);
 

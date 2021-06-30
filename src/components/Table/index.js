@@ -22,6 +22,10 @@ const StyledTableHeader = styled.th`
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     display: none;
   }
+  :last-child {
+    padding-right: 20px;
+    text-align: right;
+  }
 `;
 
 const StyledTableCell = styled.td`
@@ -78,7 +82,9 @@ const renderCells = (row) => {
 
   const collapsedCells = (
     <StyledStackedCell>
-      {row.slice(1).map((cell, idx) => <Typography>{cell.content}</Typography>)}
+      {row.slice(1).map((cell, idx) => (
+        <Typography>{cell.content}</Typography>
+      ))}
     </StyledStackedCell>
   );
 

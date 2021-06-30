@@ -11,7 +11,6 @@ export default {
 const InGrid = (Story) => (
   <Card large>
     <Story />
-    <div />
   </Card>
 );
 
@@ -22,9 +21,8 @@ const DefaultArgs = {
   gridData: transfersGridData,
 };
 
-export const BasicTable = Template.bind({});
-BasicTable.args = {
+export const Basic = Template.bind({});
+Basic.args = {
   ...DefaultArgs,
 };
-
-BasicTable.decorators = [InGrid];
+Basic.decorators = [InGrid];

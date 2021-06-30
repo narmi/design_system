@@ -67,7 +67,11 @@ export const PopoverNavBar = () => {
   );
 };
 
-export const NavMenuList = ({ divideItems, divideCategories, horizontal }) => {
+export const NavMenuList = ({
+  divideItems,
+  divideCategories,
+  categoriesHorizontal,
+}) => {
   const items = {
     Checking: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
     Savings: [<a>Primary Savings-2000</a>, <a>Car Savings-4232</a>],
@@ -82,7 +86,7 @@ export const NavMenuList = ({ divideItems, divideCategories, horizontal }) => {
     <List
       divideItems={divideItems}
       divideCategories={divideCategories}
-      horizontal={horizontal}
+      categoriesHorizontal={categoriesHorizontal}
       items={items}
       renderItem={renderItem}
       renderCategory={renderCategory}

@@ -50,7 +50,7 @@ const renderPaddedCategory = (cat) => <PaddedCategory>{cat}</PaddedCategory>;
 
 const AccountsList = (
   <List
-    horizontal={true}
+    categoriesHorizontal={true}
     divideItems={false}
     divideCategories={true}
     style={{ padding: "20px 0px 20px 0px" }}

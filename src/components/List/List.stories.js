@@ -19,9 +19,9 @@ export default {
 const Template = (args) => <ListComponent {...args} />;
 const DefaultArgs = {
   hoverable: true,
-  horizontal: false,
   divideItems: false,
   divideCategories: false,
+  categoriesHorizontal: false,
   renderListWrapper: (list) => (
     <StyledListContainer>{list}</StyledListContainer>
   ),

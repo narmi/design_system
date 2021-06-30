@@ -6,7 +6,8 @@ import { deviceBreakpoints } from "../../globalStyles";
 
 const StyledListWrapper = styled.div`
   display: flex;
-  flex-flow: ${(props) => (props.horizontal ? "row nowrap" : "column nowrap")};
+  flex-flow: ${(props) =>
+    props.categoriesHorizontal ? "row nowrap" : "column nowrap"};
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     flex-flow: column nowrap;
   }
@@ -23,13 +24,13 @@ const StyledList = styled.div`
   // - vertical: border-bottom
   // - horizontal: border-right
   border-bottom: ${(p) =>
-    p.divideCategories && !p.horizontal
+    p.divideCategories && !p.categoriesHorizontal
       ? "1px solid var(--nds-grey-disabled)"
       : null};
 
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
     border-right: ${(p) =>
-      p.divideCategories && p.horizontal
+      p.divideCategories && p.categoriesHorizontal
         ? "1px solid var(--nds-grey-disabled)"
         : null};
   }
@@ -72,7 +73,7 @@ function renderCategoryList(props, category, categoryIdx) {
   return (
     <StyledList
       divideCategories={props.divideCategories}
-      horizontal={props.horizontal}
+      categoriesHorizontal={props.categoriesHorizontal}
       key={"List" + category + categoryIdx}
     >
       <Typography semibold>{props.renderCategory(category)}</Typography>
@@ -85,7 +86,7 @@ const List = (props) => {
   let els = Array.isArray(props.items) ? (
     <StyledList
       divideCategories={props.divideCategories}
-      horizontal={props.horizontal}
+      categoriesHorizontal={props.categoriesHorizontal}
     >
       {props.items.map((item, idx) => renderItem(props, item, idx))}
     </StyledList>
@@ -111,10 +112,10 @@ const renderDefaultContainer = (list) => {
 };
 
 List.propTypes = {
-  horizontal: PropTypes.bool,
   hoverable: PropTypes.bool,
   divideItems: PropTypes.bool,
   divideCategories: PropTypes.bool,
+  categoriesHorizontal: PropTypes.bool,
   renderItem: PropTypes.func,
   renderCategory: PropTypes.func,
   items: PropTypes.oneOfType([
@@ -126,10 +127,10 @@ List.propTypes = {
 };
 
 List.defaultProps = {
-  horizontal: false,
   hoverable: true,
   divideItems: false,
   divideCategories: false,
+  categoriesHorizontal: false,
   renderItem: renderDefaultItem,
   renderCategory: renderDefaultItem,
   items: [],

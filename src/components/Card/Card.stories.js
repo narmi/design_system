@@ -89,7 +89,7 @@ WithList.args = {
   title: <TitleWithButton />,
   children: (
     <List
-      divided
+      divideItems
       hoverable={false}
       renderItem={(item) => (
         <span

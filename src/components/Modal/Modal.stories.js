@@ -47,7 +47,7 @@ export const Small = Template.bind({});
 Small.args = {
   large: false,
   title: "Title text",
-  titleUnderline: false,
+  titleUnderline: true,
   children: [
     <div>
       Some text. Some text. Some text. Some text. Some text. Some text. Some
@@ -92,26 +92,17 @@ OverflowingText.args = {
 export const WithTitleUnderline = Template.bind({});
 WithTitleUnderline.args = {
   ...Small.args,
+  large: true,
   titleUnderline: true,
-};
-export const WithTitleAdornment = Template.bind({});
-WithTitleAdornment.args = {
-  ...Small.args,
-  title: (
-    <span style={{ display: "flex", alignItems: "center" }}>
-      Title{" "}
-      <Info
-        size={14}
-        onClick={() => alert("Clicked info!")}
-        style={{ marginLeft: "6px", marginTop: "1px", cursor: "pointer" }}
-      />
-    </span>
-  ),
+  cancelLabel: "Cancel",
+  successLabel: "Submit",
 };
 
 export const ActionCallbacks = Template.bind({});
 ActionCallbacks.args = {
   ...Small.args,
+  large: true,
+  titleUnderline: true,
   cancelLabel: "Cancel",
   successLabel: "Submit",
   onSuccess: () => alert("Modal success callback!"),
@@ -121,6 +112,7 @@ ActionCallbacks.args = {
 export const AdditionalActions = Template.bind({});
 AdditionalActions.args = {
   ...Small.args,
+  large: true,
   titleUnderline: true,
   leftActions: [
     { action: () => alert("Action callback!"), title: "Callback" },
@@ -131,6 +123,8 @@ AdditionalActions.args = {
 export const MixedActions = Template.bind({});
 MixedActions.args = {
   ...Small.args,
+  large: true,
+  titleUnderline: true,
   successLabel: "Submit",
   onSuccess: () => alert("Modal success callback!"),
   onCancel: () => alert("Modal cancel callback!"),

@@ -36,7 +36,8 @@ const StyledCard = styled.div`
   overflow-y: scroll;
 
   padding: 40px;
-  box-sizing: content-box;
+  box-sizing: border-box;
+  border-radius: 4px;
 
   display: flex;
   flex-flow: column nowrap;
@@ -66,7 +67,7 @@ const StyledBody = styled.div`
   font-size: 16px;
   font-weight: 400;
 
-  margin-bottom: 40px;
+  color: var(--nds-grey-text);
 
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     max-height: unset;
@@ -82,7 +83,7 @@ const StyledHeader = styled.div`
   color: var(--nds-black);
   width: 100%;
 
-  padding-bottom: ${(props) => (props.titleUnderline ? "4px" : "8px")};
+  padding-bottom: 8px;
   margin-bottom: ${(props) => (props.titleUnderline ? "20px" : null)};
   box-sizing: content-box;
 
@@ -95,6 +96,7 @@ const StyledHeader = styled.div`
 const StyledActionBar = styled.div`
   width: 100%;
   margin-bottom: 4px;
+  margin-top: 40px;
 
   display: flex;
   justify-content: space-between;
@@ -138,9 +140,9 @@ const StyledActionBarLeft = styled.div`
   width: 100%;
 
   > *:not(:last-child) {
-    padding-right: 20px;
+    padding-right: 12px;
     border-right: 1px solid var(--nds-grey-disabled);
-    margin-right: 20px;
+    margin-right: 12px;
   }
 
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
@@ -153,8 +155,8 @@ const StyledActionBarLeft = styled.div`
 const StyledIcon = styled.span`
   cursor: pointer;
   position: fixed;
-  top: 16px;
-  right: 16px;
+  top: 12px;
+  right: 12px;
 
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     top: 20px;
@@ -241,32 +243,37 @@ const Modal = ({
             {...rest}
           >
             <StyledIcon large={large}>
-              <X size={12} onClick={onCancel} />
+              <X size={20} onClick={onCancel} />
             </StyledIcon>
             <StyledHeader titleUnderline={titleUnderline}>{title}</StyledHeader>
             <StyledBody>{children}</StyledBody>
-            <StyledActionBar large={large}>
-              <StyledActionBarLeft large={large}>
-                {leftActions.map((action, idx) => (
-                  <PlainButton small key={idx} onClick={action.action}>
-                    {action.title}
-                  </PlainButton>
-                ))}
-              </StyledActionBarLeft>
-              <StyledActionBarRight large={large}>
-                {cancelLabel ? (
-                  <Button
-                    secondary
-                    transparent
-                    onClick={onCancel}
-                    label={cancelLabel}
-                  />
-                ) : null}
-                {successLabel ? (
-                  <Button primary onClick={onSuccess} label={successLabel} />
-                ) : null}
-              </StyledActionBarRight>
-            </StyledActionBar>
+            {(leftActions && leftActions.length > 0) || successLabel || cancelLabel
+              ?
+                <StyledActionBar large={large}>
+                  <StyledActionBarLeft large={large}>
+                    {leftActions.map((action, idx) => (
+                      <PlainButton small key={idx} onClick={action.action}>
+                        {action.title}
+                      </PlainButton>
+                    ))}
+                  </StyledActionBarLeft>
+                  <StyledActionBarRight large={large}>
+                    {cancelLabel ? (
+                      <Button
+                        secondary
+                        transparent
+                        onClick={onCancel}
+                        label={cancelLabel}
+                      />
+                    ) : null}
+                    {successLabel ? (
+                      <Button primary onClick={onSuccess} label={successLabel} />
+                    ) : null}
+                  </StyledActionBarRight>
+                </StyledActionBar>
+                :
+                null
+                  }
           </StyledCard>
         </>,
         modalElement

@@ -16,22 +16,32 @@ Initial.args = {
   label: "Label",
   id: "testInput",
 };
-export const WithText = Template.bind({});
-WithText.args = {
-  ...Initial.args,
-  defaultValue: "Some text",
-};
 export const Disabled = Template.bind({});
 Disabled.args = {
   ...Initial.args,
   disabled: true,
-  defaultValue: "Some text",
+  value: "This input is disabled",
+};
+export const FullyControlled = Template.bind({});
+FullyControlled.args = {
+  ...Initial.args,
+  value: "This value can be set",
+};
+export const WithPlaceholder = Template.bind({});
+WithPlaceholder.args = {
+  ...Initial.args,
+  placeholder: "Your placeholder text",
+};
+export const WithDefaultValue = Template.bind({});
+WithDefaultValue.args = {
+  ...Initial.args,
+  defaultValue: "Your text here",
 };
 export const WithDecoration = Template.bind({});
 WithDecoration.args = {
   ...Initial.args,
   decoration: (
-    <div onClick={() => alert("Clicked info!")}>
+    <div style={{ cursor: "pointer" }} onClick={() => alert("Clicked info!")}>
       <Info size={12} color="#8c8c8c" />
     </div>
   ),

@@ -29,20 +29,22 @@ const StyledOverlay = styled.div`
   ${(props) => (props.hoverable ? hoverableStyles : null)};
 `;
 
-const StyledChevronDown = styled(ChevronDown)`
-  margin-top: 3px;
-`;
+const StyledChevronDown = styled(ChevronDown)``;
 
 const StyledLabel = styled.a`
   color: var(--nds-grey-text);
-  font-weight: 400;
+  color: ${(props) =>
+    props.open ? "var(--nds-primary-color)" : "var(--nds-grey-text)"};
+  font-weight: ${(props) => (props.open ? 600 : 400)};
+  line-height: 22px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: ${(props) => (props.open ? "var(--nds-primary-color)" : null)};
   ${StyledTrigger} ~ & {
     color: var(--nds-primary-color);
   }
+
   ::before {
     display: block;
     content: attr(data-text);
@@ -73,8 +75,8 @@ const StyledWrapper = styled.span`
     color: var(--nds-primary-color);
   }
   &:hover ${StyledLabel} {
-    color: var(--nds-primary-color);
-    font-weight: 600;
+    color: ${(p) => (p.hoverable ? "var(--nds-primary-color)" : null)};
+    font-weight: ${(p) => (p.hoverable ? "600" : null)};
   }
 `;
 

@@ -1,15 +1,16 @@
 import React from "react";
-import NavBar from "components/NavBar";
-import { Top } from "../../decorators";
 import styled from "styled-components";
+import { Menu } from "react-feather";
+
+import NavBar from "components/NavBar";
+import Icon from "components/Icon";
 import Popover from "components/Popover";
 import List from "components/List";
 import Sidebar from "components/Sidebar";
 import Typography from "components/Typography";
-import { Menu } from "react-feather";
-import Icon from "components/Icon";
+import { PopoverNavBar } from "components/Popover/storyHelpers";
+import { Top } from "../../decorators";
 import Narmi from "../../assets/narmi-logo.svg";
-import { PopoverNavBar } from "../Popover/Popover.stories.js";
 
 export default {
   title: "Components/NavBar",
@@ -32,11 +33,29 @@ const HamburgerMenuSidebar = () => {
   );
 };
 
+const PaddedListItem = styled.div`
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+`;
+
+const PaddedCategory = styled.span`
+  padding: 0px 16px 4px;
+  display: flex;
+`;
+
+const renderPaddedItem = (item) => <PaddedListItem>{item}</PaddedListItem>;
+const renderPaddedCategory = (cat) => <PaddedCategory>{cat}</PaddedCategory>;
+
 const AccountsList = (
   <List
-    horizontal={true}
-    divided={true}
+    categoriesHorizontal={true}
+    divideItems={false}
+    divideCategories={true}
     style={{ padding: "20px 0px 20px 0px" }}
+    renderItem={renderPaddedItem}
+    renderCategory={renderPaddedCategory}
     items={{
       Checking: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],
       Savings: [
@@ -51,6 +70,7 @@ const AccountsList = (
 
 const UserList = (
   <List
+    renderItem={renderPaddedItem}
     items={[
       <span>Link a new profile</span>,
       <span>Settings</span>,
@@ -62,6 +82,7 @@ const UserList = (
 
 const ToolsList = (
   <List
+    renderItem={renderPaddedItem}
     items={[
       <span>Free Credit Score Check</span>,
       <span>Open a new account</span>,
@@ -71,8 +92,8 @@ const ToolsList = (
   />
 );
 
-export const NavBarMenu = Template.bind({});
-NavBarMenu.args = {
+export const WithCategoryMenu = Template.bind({});
+WithCategoryMenu.args = {
   ...DefaultArgs,
   mobileMenuIcon: <HamburgerMenuSidebar />,
   logo: <Icon image={Narmi} />,
@@ -94,8 +115,8 @@ NavBarMenu.args = {
   ],
 };
 
-export const NavBarMenuNoLogo = Template.bind({});
-NavBarMenuNoLogo.args = {
+export const WithoutLogo = Template.bind({});
+WithoutLogo.args = {
   ...DefaultArgs,
   mobileMenuIcon: <HamburgerMenuSidebar />,
   leftChildren: [

@@ -6,120 +6,135 @@ import { deviceBreakpoints } from "../../globalStyles";
 
 const StyledListWrapper = styled.div`
   display: flex;
-  flex-flow: ${(props) => (props.horizontal ? "row nowrap" : "column nowrap")};
+  flex-flow: ${(props) =>
+    props.categoriesHorizontal ? "row nowrap" : "column nowrap"};
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     flex-flow: column nowrap;
   }
 `;
 
-const StyledHeader = styled.div`
-  color: var(--nds-black);
-  font-weight: 600;
-  font-family: var(--nds-font-family);
-  font-size: 16px;
-  line-height: 20px;
-  padding-left: 16px;
-  padding-bottom: 4px;
-  width: 100%;
-`;
+const StyledList = styled.div`
+  display: flex;
+  flex-direction: column;
 
-const StyledList = styled.ul`
-  list-style-type: none;
-  padding-inline-start: 0;
-  margin-block-start: 0;
   white-space: nowrap;
   margin: 0;
+
+  // divide categorized lists
+  // - vertical: border-bottom
+  // - horizontal: border-right
+  border-bottom: ${(p) =>
+    p.divideCategories && !p.categoriesHorizontal
+      ? "1px solid var(--nds-grey-disabled)"
+      : null};
+
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
     border-right: ${(p) =>
-      p.divided && p.horizontal ? "1px solid var(--nds-grey-disabled)" : null};
-  }
-
-  border-bottom: ${(p) =>
-    p.divided && !p.horizontal ? "1px solid var(--nds-grey-disabled)" : null};
-
-  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
-    border-bottom: ${(p) =>
-      p.divided ? "1px solid var(--nds-grey-disabled)" : null};
+      p.divideCategories && p.categoriesHorizontal
+        ? "1px solid var(--nds-grey-disabled)"
+        : null};
   }
 
   &:last-child {
     border-right: none;
+    border-bottom: none;
   }
 `;
 
-const StyledListItem = styled.li`
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
+const StyledListItem = styled.div`
+  box-sizing: border-box;
+
+  border-bottom: ${(p) =>
+    p.divideItems ? "1px solid var(--nds-grey-disabled)" : null};
+
   :hover {
     background-color: ${(props) =>
       props.hoverable ? "var(--nds-primary-color-lightest)" : null};
   }
+
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
-function renderItemList(props, item, idx) {
+function renderItem(props, item, idx) {
   return (
-    <StyledList
-      divided={props.divided}
-      horizontal={props.horizontal}
-      key={"List" + idx}
+    <StyledListItem
+      key={"ListItem" + idx}
+      hoverable={props.hoverable}
+      divideItems={props.divideItems}
     >
-      <StyledListItem hoverable={props.hoverable}>
-        {props.renderItem(item)}
-      </StyledListItem>
-    </StyledList>
+      <Typography>{props.renderItem(item)}</Typography>
+    </StyledListItem>
   );
 }
 
-function renderCategoryList(props, index) {
+function renderCategoryList(props, category, categoryIdx) {
   return (
     <StyledList
-      divided={props.divided}
-      horizontal={props.horizontal}
-      key={"List" + index}
+      divideCategories={props.divideCategories}
+      categoriesHorizontal={props.categoriesHorizontal}
+      key={"List" + category + categoryIdx}
     >
-      <li>
-        <StyledHeader>{index}</StyledHeader>
-      </li>
-      {props.items[index].map((c, idx) => (
-        <StyledListItem hoverable={props.hoverable} key={"ListItem" + idx}>
-          {props.renderItem(c)}
-        </StyledListItem>
-      ))}
+      <Typography semibold>{props.renderCategory(category)}</Typography>
+      {props.items[category].map((item, idx) => renderItem(props, item, idx))}
     </StyledList>
   );
 }
 
 const List = (props) => {
-  let els = Array.isArray(props.items)
-    ? props.items.map((item, idx) => renderItemList(props, item, idx))
-    : Object.keys(props.items).map((index) => renderCategoryList(props, index));
-  return <StyledListWrapper {...props}>{els}</StyledListWrapper>;
+  let els = Array.isArray(props.items) ? (
+    <StyledList
+      divideCategories={props.divideCategories}
+      categoriesHorizontal={props.categoriesHorizontal}
+    >
+      {props.items.map((item, idx) => renderItem(props, item, idx))}
+    </StyledList>
+  ) : (
+    Object.keys(props.items).map((category, categoryIdx) =>
+      renderCategoryList(props, category, categoryIdx)
+    )
+  );
+
+  const flexList = <StyledListWrapper {...props}>{els}</StyledListWrapper>;
+  if (props.renderListWrapper) {
+    return props.renderListWrapper(flexList);
+  }
+  return flexList;
 };
 
 const renderDefaultItem = (item) => {
-  return <Typography>{item}</Typography>;
+  return <React.Fragment>{item}</React.Fragment>;
+};
+
+const renderDefaultContainer = (list) => {
+  return <React.Fragment>{list}</React.Fragment>;
 };
 
 List.propTypes = {
-  horizontal: PropTypes.bool,
-  divided: PropTypes.bool,
   hoverable: PropTypes.bool,
+  divideItems: PropTypes.bool,
+  divideCategories: PropTypes.bool,
+  categoriesHorizontal: PropTypes.bool,
   renderItem: PropTypes.func,
+  renderCategory: PropTypes.func,
   items: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
     PropTypes.node,
   ]),
+  renderListWrapper: PropTypes.func,
 };
 
 List.defaultProps = {
-  horizontal: false,
-  divided: false,
   hoverable: true,
+  divideItems: false,
+  divideCategories: false,
+  categoriesHorizontal: false,
   renderItem: renderDefaultItem,
+  renderCategory: renderDefaultItem,
   items: [],
+  renderListWrapper: null,
 };
 
 export default List;

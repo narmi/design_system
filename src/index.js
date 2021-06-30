@@ -1,27 +1,32 @@
 const Button = require("./components/Button").default;
+const Card = require("./components/Card").default;
+const Icon = require("./components/Icon/").default;
 const Input = require("./components/Input").default;
+const List = require("./components/List").default;
+const Modal = require("./components/Modal").default;
 const PlainButton = require("./components/PlainButton").default;
 const Popover = require("./components/Popover").default;
-const NavBar = require("./components/NavBar").default;
-const List = require("./components/List").default;
-const Icon = require("./components/Icon/").default;
-const Typography = require("./components/Typography/").default;
-const Modal = require("./components/Modal").default;
-const { useModal } = require("./components/Modal");
 const Sidebar = require("./components/Sidebar").default;
+const NavBar = require("./components/NavBar").default;
+const Table = require("./components/Table").default;
+const Typography = require("./components/Typography/").default;
 const GlobalStyles = require("./globalStyles").default;
+
+const { useModal } = require("./components/Modal");
 
 module.exports = {
   Button,
+  Card,
+  Icon,
   Input,
+  List,
+  Modal,
   PlainButton,
   Popover,
-  NavBar,
-  List,
-  Typography,
-  Icon,
-  Modal,
-  useModal,
   Sidebar,
+  NavBar,
+  Table,
+  Typography,
   GlobalStyles,
+  useModal,
 };

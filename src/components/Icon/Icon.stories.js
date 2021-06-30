@@ -10,8 +10,8 @@ export default {
 };
 
 const Template = (args) => <Icon {...args} />;
-export const NarmiIcon = Template.bind({});
-NarmiIcon.args = {
+export const Logo = Template.bind({});
+Logo.args = {
   image: Narmi,
   children: [],
 };

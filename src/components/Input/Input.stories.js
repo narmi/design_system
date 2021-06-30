@@ -27,11 +27,6 @@ FullyControlled.args = {
   ...Initial.args,
   value: "This value can be set",
 };
-export const WithPlaceholder = Template.bind({});
-WithPlaceholder.args = {
-  ...Initial.args,
-  placeholder: "Your placeholder text",
-};
 export const WithDefaultValue = Template.bind({});
 WithDefaultValue.args = {
   ...Initial.args,
@@ -61,7 +56,7 @@ Date.args = {
 export const Phone = Template.bind({});
 Phone.args = {
   ...Initial.args,
-  label: "Phone Number",
+  label: "Phone number",
   type: "tel",
   placeholder: "(xxx) xxx-xxxx",
   pattern: "([0-9]{3}) [0-9]{3}-[0-9]{4}",

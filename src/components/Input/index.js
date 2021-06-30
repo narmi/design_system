@@ -80,7 +80,7 @@ const StyledLabel = styled.label`
   top: 14px;
   left: 12px;
   background: transparent;
-  transition: 300ms;
+  transition: 0ms;
   color: var(--nds-grey-placeholder);
   font-size: 16px;
   font-family: var(--nds-font-family);
@@ -106,10 +106,10 @@ const StyledLabel = styled.label`
   }
 `;
 const StyledDecorationWrapper = styled.div`
-  width: 24px;
-  margin-top: -9px;
+  margin-top: -10px;
 `;
 const StyledError = styled.div`
+  margin-top: 4px;
   height: 18px;
   font-size: 12px;
   font-family: var(--nds-font-family);
@@ -188,9 +188,9 @@ const Input = ({
         error && error.length > 0 ? (
           <StyledError>
             <XCircle
-              size={12}
+              size={14}
               color={ndsWhite}
-              style={{ marginRight: "4px", fill: messagingRed }}
+              style={{ marginRight: "2px", fill: messagingRed }}
             />{" "}
             {error}
           </StyledError>

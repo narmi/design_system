@@ -103,17 +103,22 @@ WithCategoryMenu.args = {
   logo: <Icon image={Narmi} />,
   leftChildren: [
     "Dashboard",
-    <Popover hoverable={true} label={"Accounts"}>
+    <Popover highlight={true} hoverable={true} label={"Accounts"}>
       {AccountsList}
     </Popover>,
     "Documents",
     "Support",
-    <Popover hoverable={true} label={"Tools"}>
+    <Popover highlight={true} hoverable={true} label={"Tools"}>
       {ToolsList}
     </Popover>,
   ],
   rightChildren: [
-    <Popover hoverable={true} label={"User Name"} alignRight={true}>
+    <Popover
+      highlight={true}
+      hoverable={true}
+      label={"User Name"}
+      alignRight={true}
+    >
       {UserList}
     </Popover>,
   ],
@@ -125,17 +130,22 @@ WithoutLogo.args = {
   mobileMenuIcon: <HamburgerMenuSidebar />,
   leftChildren: [
     <span>Dashboard</span>,
-    <Popover hoverable={true} label={"Accounts"}>
+    <Popover highlight={true} hoverable={true} label={"Accounts"}>
       {AccountsList}
     </Popover>,
     <span>Documents</span>,
     <span>Support</span>,
-    <Popover hoverable={true} label={"Tools"}>
+    <Popover highlight={true} hoverable={true} label={"Tools"}>
       {ToolsList}
     </Popover>,
   ],
   rightChildren: [
-    <Popover hoverable={true} label={"User Name"} alignRight={true}>
+    <Popover
+      highlight={true}
+      hoverable={true}
+      label={"User Name"}
+      alignRight={true}
+    >
       {UserList}
     </Popover>,
   ],

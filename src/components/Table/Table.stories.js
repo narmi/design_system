@@ -24,7 +24,7 @@ const DefaultArgs = {
 export const Basic = Template.bind({});
 Basic.args = {
   ...DefaultArgs,
-  sortableHeaders: ["DESCRIPTION", "AMOUNT"]
+  sortableHeaders: ["DESCRIPTION", "AMOUNT"],
 };
 Basic.decorators = [InGrid];
 
@@ -33,6 +33,6 @@ adminTable.args = {
   ...DefaultArgs,
   title: "User Roles",
   gridData: adminGridData,
-  sortableHeaders: ["Name", "Last Login"]
+  sortableHeaders: ["Name", "Last Login"],
 };
 adminTable.decorators = [InGrid];

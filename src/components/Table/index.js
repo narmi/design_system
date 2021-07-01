@@ -5,7 +5,11 @@ import { deviceBreakpoints } from "../../globalStyles";
 import Typography from "components/Typography";
 import PlainButton, { StyledPlainButton } from "components/PlainButton";
 import List from "components/List";
-import Popover, {StyledLabel, StyledTrigger, StyledChevronDown, StyledWrapper, StyledOverlay} from "components/Popover";
+import Popover, {
+  StyledLabel,
+  StyledTrigger,
+  StyledOverlay,
+} from "components/Popover";
 
 const StyledTableTitleDiv = styled.div`
   font-size: 20px;
@@ -20,7 +24,7 @@ const StyledTable = styled.table`
 
 const StyledTableHeader = styled.th`
   text-align: left;
-  padding: ${props => props.popover ? null : "12px 0px 12px 20px"};
+  padding: ${(props) => (props.popover ? null : "12px 0px 12px 20px")};
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     display: none;
   }
@@ -32,46 +36,20 @@ const StyledTableHeader = styled.th`
     }
   }
 
-  align-items: ${props => props.popover ? "unset" : null};
-  // float: ${props => props.popover ? "left": null};
+  align-items: ${(props) => (props.popover ? "unset" : null)};
   :last-child {
-    float: ${props => props.popover ? "right" : null};
-    padding-right: ${props => props.popover ? "12px" : "20px"};
+    float: ${(props) => (props.popover ? "right" : null)};
+    padding-right: ${(props) => (props.popover ? "12px" : "20px")};
   }
   ${StyledLabel} {
     align-items: unset;
-    // text-align: ${props => props.popover ? "right" : null};
     padding-right: 5px;
-    ::before{
-      width: 0px;
-    }
   }
 
-  ${StyledChevronDown}{
-    :hover {
-      color: var(--nds-grey);
-      stroke-width: 1;
-    }
-  }
-  ${StyledTrigger}{
+  ${StyledTrigger} {
     padding: 12px 0px 12px 20px;
-    :hover ${StyledChevronDown}{
-      stroke-width: ${(props) => (props.hoverable ? "1" : null)};
-      color: ${(props) => (props.hoverable ? "green" : null)};
-      stroke-width: 1;
-      color: var(--nds-grey);
-    }
-  }
-  ${StyledWrapper}{
-    :hover ${StyledChevronDown}{
-      stroke-width: ${(props) => (props.hoverable ? "1" : null)};
-      color: ${(props) => (props.hoverable ? "green" : null)};
-      stroke-width: 1;
-      color: var(--nds-grey);
-    }
   }
 `;
-
 
 const StyledTableCell = styled.td`
   text-align: left;
@@ -183,7 +161,7 @@ const Table = (props) => {
       let sortKey1 = cell1.sortKey;
       let sortKey2 = cell2.sortKey;
       let orderCheck = typeof sortKey1 === "string" ? order : !order; // reverse logic if not a string i.e. integers etc ...
-      
+
       if (orderCheck) {
         sortKey1 = cell2.sortKey;
         sortKey2 = cell1.sortKey;
@@ -217,24 +195,37 @@ const Table = (props) => {
     const uniqueColumns = getUniqueColumns(props.gridData);
     return (
       <StyledTableRow>
-        {uniqueColumns.map((heading) => (
-          props.sortableHeaders.includes(heading) ? 
-          <StyledTableHeader popover={true}>
-            <Popover hoverable
-                     label={<Typography subheader>{heading}</Typography>}>
-              <List renderItem={(item) => <Typography onClick={() => sortGrid(heading, item.key)}>{item.text}</Typography>} items={[{key: 0, text:"Sort A to Z"},{key: 1, text: "Sort Z to A"}]}></List>
+        {uniqueColumns.map((heading) =>
+          props.sortableHeaders.includes(heading) ? (
+            <StyledTableHeader popover={true}>
+              <Popover
+                hoverable
+                label={<Typography subheader>{heading}</Typography>}
+              >
+                <List
+                  renderItem={(item) => (
+                    <Typography onClick={() => sortGrid(heading, item.key)}>
+                      {item.text}
+                    </Typography>
+                  )}
+                  items={[
+                    { key: 0, text: "Sort A to Z" },
+                    { key: 1, text: "Sort Z to A" },
+                  ]}
+                ></List>
               </Popover>
-          </StyledTableHeader>
-          :
-          <StyledTableHeader>
-            <Typography
-              subheader
-              onClick={props.sortByHeader ? () => sortGrid(heading) : null}
-            >
-              {heading}
-            </Typography>
-          </StyledTableHeader>
-        ))}
+            </StyledTableHeader>
+          ) : (
+            <StyledTableHeader>
+              <Typography
+                subheader
+                onClick={props.sortByHeader ? () => sortGrid(heading) : null}
+              >
+                {heading}
+              </Typography>
+            </StyledTableHeader>
+          )
+        )}
       </StyledTableRow>
     );
   };

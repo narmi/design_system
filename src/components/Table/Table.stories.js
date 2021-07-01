@@ -33,6 +33,6 @@ adminTable.args = {
   ...DefaultArgs,
   title: "User Roles",
   gridData: adminGridData,
-  sortableHeaders: ["Name", "Last Login"],
+  sortableHeaders: ["Name", "Last Login!"],
 };
 adminTable.decorators = [InGrid];

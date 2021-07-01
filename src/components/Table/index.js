@@ -27,6 +27,7 @@ const StyledTableHeader = styled.th`
 
   :last-child {
     float: right;
+    padding-right: 20px;
   }
 `;
 

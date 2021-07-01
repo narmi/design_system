@@ -4,6 +4,9 @@ import styled, { css } from "styled-components";
 
 const smallStyles = css`
   font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  letter-spacing: 0px;
 `;
 
 export const StyledPlainButton = styled.a`

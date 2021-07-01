@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
+import { deviceBreakpoints } from "../../globalStyles";
 
 const disabledStyles = css`
   cursor: default;
@@ -81,6 +82,11 @@ const Styled = styled.a`
   /* style combos go after for ordering dep reasons*/
   ${(props) =>
     props.secondary && props.disabled ? secondaryDisabledStyles : null}
+
+  // mobile buttons have slightly different padding
+  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
+    padding: 16px 32px;
+  }
 `;
 
 const Button = (props) => {

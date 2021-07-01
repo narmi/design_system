@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "components/Typography";
 import PlainButton from "components/PlainButton";
 
-const DescriptionDiv = (props) => {
+const DescriptionCol = (props) => {
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "220px" }}>
       <Typography style={{ fontSize: "16px" }}>{props.transfer}</Typography>
@@ -20,7 +20,7 @@ export const transfersGridData = [
     {
       column: "DESCRIPTION",
       content: (
-        <DescriptionDiv
+        <DescriptionCol
           transfer={"Transfer to Noble Bank-3432"}
           date={"October 30, 2020"}
         />
@@ -40,7 +40,7 @@ export const transfersGridData = [
     {
       column: "DESCRIPTION",
       content: (
-        <DescriptionDiv
+        <DescriptionCol
           transfer={"Bill to Waterworks-4534"}
           date={"October 23, 2020"}
         />
@@ -60,7 +60,7 @@ export const transfersGridData = [
     {
       column: "DESCRIPTION",
       content: (
-        <DescriptionDiv
+        <DescriptionCol
           transfer={"Transfer to Melanie Abrazado"}
           date={"October 20, 2020"}
         />
@@ -80,7 +80,7 @@ export const transfersGridData = [
     {
       column: "DESCRIPTION",
       content: (
-        <DescriptionDiv
+        <DescriptionCol
           transfer={"Transfer to Melanie Abrazado"}
           date={"October 21, 2020"}
         />

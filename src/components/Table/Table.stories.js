@@ -1,7 +1,7 @@
 import React from "react";
 import Table from "components/Table";
 import Card from "components/Card";
-import { transfersGridData } from "../../helpers/storyHelpers";
+import { transfersGridData } from "./storyHelpers";
 
 export default {
   title: "Components/Table",

@@ -41,7 +41,7 @@ const StyledList = styled.div`
   }
 `;
 
-const StyledListItem = styled.div`
+export const StyledListItem = styled.div`
   box-sizing: border-box;
 
   border-bottom: ${(p) =>

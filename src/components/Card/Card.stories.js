@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight } from "react-feather";
 
 import Card from "components/Card";
 import Button from "components/Button";
-import List from "components/List";
+import List, { StyledListItem } from "components/List";
 import PlainButton from "components/PlainButton";
 import Typography from "components/Typography";
 import { Centered } from "../../decorators";
@@ -111,20 +111,19 @@ WithList.args = {
 };
 WithList.decorators = [MaxWidth];
 
-const StyledListItem = styled.div`
-  // margin-bottom: 8px;
-`;
+const SpacedActionButton = styled.div``;
 
-const StyledListContainer = styled.div`
-  margin-bottom: 8px;
-  & > ${StyledListItem}:last-child {
-    margin-bottom: unset;
-    background-color: red;
+const ActionListContainer = styled.div`
+  ${StyledListItem} {
+    margin-bottom: 8px;
+  }
+  ${StyledListItem}:last-child {
+    margin-bottom: 0px;
   }
 `;
 
-function renderItem(item) {
-  return <StyledListItem>{item}</StyledListItem>;
+function renderActionButton(item) {
+  return <SpacedActionButton>{item}</SpacedActionButton>;
 }
 
 export const WithActions = Template.bind({});
@@ -141,15 +140,16 @@ WithActions.args = {
       }}
     >
       <List
-        items={[
-          <PlainButton small>Button 1 </PlainButton>,
-          <PlainButton small>Button 2 </PlainButton>,
-          <PlainButton small>Button 3 </PlainButton>,
-        ]}
+        hoverable={false}
         renderListWrapper={(list) => (
-          <StyledListContainer>{list}</StyledListContainer>
+          <ActionListContainer>{list}</ActionListContainer>
         )}
-        renderItem={renderItem}
+        renderItem={renderActionButton}
+        items={[
+          <PlainButton small>Button 1</PlainButton>,
+          <PlainButton small>Button 2</PlainButton>,
+          <PlainButton small>Button 3</PlainButton>,
+        ]}
       ></List>
     </div>
   ),
@@ -158,7 +158,26 @@ WithActions.decorators = [MaxWidth];
 
 export const WithinGrid = Template.bind({});
 WithinGrid.args = {
-  ...WithList.args,
+  ...DefaultArgs,
+  title: <TitleWithButton />,
+  children: (
+    <List
+      divideItems
+      hoverable={false}
+      renderItem={(item) => (
+        <span
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "8px 0px",
+          }}
+        >
+          {item}
+        </span>
+      )}
+      items={[<TextContent />, <TextContent />]}
+    />
+  ),
 };
 WithinGrid.decorators = [InGrid];
 

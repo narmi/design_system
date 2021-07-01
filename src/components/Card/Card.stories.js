@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight } from "react-feather";
 
 import Card from "components/Card";
 import Button from "components/Button";
-import List, {StyledListItem} from "components/List";
+import List, { StyledListItem } from "components/List";
 import PlainButton from "components/PlainButton";
 import Typography from "components/Typography";
 import { Centered } from "../../decorators";
@@ -111,8 +111,7 @@ WithList.args = {
 };
 WithList.decorators = [MaxWidth];
 
-const SpacedActionButton = styled.div`
-`;
+const SpacedActionButton = styled.div``;
 
 const ActionListContainer = styled.div`
   ${StyledListItem} {

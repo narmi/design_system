@@ -7,7 +7,6 @@ import Popover from "components/Popover";
 import { deviceBreakpoints } from "../../globalStyles";
 import { StyledListItem, StyledCategory } from "components/List/storyHelpers";
 
-
 export const NavMenuList = ({
   divideItems,
   divideCategories,

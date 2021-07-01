@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Typography from "components/Typography";
 import List from "components/List";
 import Popover from "components/Popover";
-import {NavMenuList} from "components/Popover/storyHelpers";
+import { NavMenuList } from "components/Popover/storyHelpers";
 import { deviceBreakpoints } from "../../globalStyles";
 import { StyledListItem, StyledCategory } from "components/List/storyHelpers";
 

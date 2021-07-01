@@ -146,7 +146,7 @@ const Table = (props) => {
         sortKey1 = cell2.sortKey;
         sortKey2 = cell1.sortKey;
       }
-      return sortKey1 < sortKey2 ? -1 : sortKey1 > sortKey2 ? 1 : 0;
+      return sortKey1 > sortKey2 ? -1 : sortKey1 < sortKey2 ? 1 : 0;
     });
   }
 
@@ -158,8 +158,7 @@ const Table = (props) => {
 
   const sortGrid = (heading, direction) => {
     resetNonActiveHeadings(heading);
-    let reverse = direction !== 0;
-    activeSortColumns[heading]["active"] = reverse;
+    activeSortColumns[heading]["active"] = direction;
 
     let newGrid = sortByKey(
       props.gridData,
@@ -170,10 +169,11 @@ const Table = (props) => {
   };
 
   const renderSortableHeader = (item, heading) => {
+    let id = item.ordered ? "0" : "1";
     return (
       <Typography
-        data-testid={heading + item.key}
-        onClick={() => sortGrid(heading, item.key)}
+        data-testid={heading + id}
+        onClick={() => sortGrid(heading, item.ordered)}
       >
         {item.text}
       </Typography>
@@ -194,17 +194,15 @@ const Table = (props) => {
                 <List
                   renderItem={(item) => renderSortableHeader(item, heading)}
                   items={[
-                    { key: 0, text: "Sort A to Z" },
-                    { key: 1, text: "Sort Z to A" },
+                    { ordered: true, text: "Sort A to Z" },
+                    { ordered: false, text: "Sort Z to A" },
                   ]}
                 ></List>
               </Popover>
             </StyledTableHeader>
           ) : (
             <StyledTableHeader>
-              <Typography subheader onClick={() => sortGrid(heading)}>
-                {heading}
-              </Typography>
+              <Typography subheader>{heading}</Typography>
             </StyledTableHeader>
           )
         )}

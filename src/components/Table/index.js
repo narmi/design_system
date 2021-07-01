@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { deviceBreakpoints } from "../../globalStyles";
 import Typography from "components/Typography";
 import PlainButton, { StyledPlainButton } from "components/PlainButton";
+import List from "components/List";
+import Popover, {StyledLabel, StyledTrigger, StyledChevronDown, StyledWrapper, StyledOverlay} from "components/Popover";
 
 const StyledTableTitleDiv = styled.div`
   font-size: 20px;
@@ -18,15 +20,58 @@ const StyledTable = styled.table`
 
 const StyledTableHeader = styled.th`
   text-align: left;
-  padding: 12px 0px 12px 20px;
+  padding: ${props => props.popover ? null : "12px 0px 12px 20px"};
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     display: none;
   }
   :last-child {
     padding-right: 20px;
     text-align: right;
+    ${StyledOverlay} {
+      left: -90px;
+    }
+  }
+
+  align-items: ${props => props.popover ? "unset" : null};
+  // float: ${props => props.popover ? "left": null};
+  :last-child {
+    float: ${props => props.popover ? "right" : null};
+    padding-right: ${props => props.popover ? "12px" : "20px"};
+  }
+  ${StyledLabel} {
+    align-items: unset;
+    // text-align: ${props => props.popover ? "right" : null};
+    padding-right: 5px;
+    ::before{
+      width: 0px;
+    }
+  }
+
+  ${StyledChevronDown}{
+    :hover {
+      color: var(--nds-grey);
+      stroke-width: 1;
+    }
+  }
+  ${StyledTrigger}{
+    padding: 12px 0px 12px 20px;
+    :hover ${StyledChevronDown}{
+      stroke-width: ${(props) => (props.hoverable ? "1" : null)};
+      color: ${(props) => (props.hoverable ? "green" : null)};
+      stroke-width: 1;
+      color: var(--nds-grey);
+    }
+  }
+  ${StyledWrapper}{
+    :hover ${StyledChevronDown}{
+      stroke-width: ${(props) => (props.hoverable ? "1" : null)};
+      color: ${(props) => (props.hoverable ? "green" : null)};
+      stroke-width: 1;
+      color: var(--nds-grey);
+    }
   }
 `;
+
 
 const StyledTableCell = styled.td`
   text-align: left;
@@ -152,11 +197,11 @@ const Table = (props) => {
     );
   };
 
-  const sortGrid = (heading) => {
+  const sortGrid = (heading, direction) => {
     resetNonActiveHeadings(heading);
-
-    activeSortColumns[heading]["active"] =
-      !activeSortColumns[heading]["active"];
+    let reverse = direction !== 0;
+    activeSortColumns[heading]["active"] = reverse;
+    //   !activeSortColumns[heading]["active"];
     let newGrid = sortByKey(
       props.gridData,
       heading,
@@ -165,11 +210,21 @@ const Table = (props) => {
     setGrid(Object.entries(newGrid).map(renderRow));
   };
 
+  // ()=>console.log(heading, item)
+
   const renderHeader = () => {
     const uniqueColumns = getUniqueColumns(props.gridData);
     return (
       <StyledTableRow>
         {uniqueColumns.map((heading) => (
+          props.sortableHeaders.includes(heading) ? 
+          <StyledTableHeader popover={true}>
+            <Popover hoverable
+                     label={<Typography subheader>{heading}</Typography>}>
+              <List renderItem={(item) => <Typography onClick={() => sortGrid(heading, item.key)}>{item.text}</Typography>} items={[{key: 0, text:"Sort A to Z"},{key: 1, text: "Sort Z to A"}]}></List>
+              </Popover>
+          </StyledTableHeader>
+          :
           <StyledTableHeader>
             <Typography
               subheader
@@ -201,6 +256,7 @@ Table.propTypes = {
   title: PropTypes.node,
   hoverable: PropTypes.bool,
   sortByHeader: PropTypes.bool,
+  sortableHeaders: PropTypes.array,
   gridData: PropTypes.array,
 };
 
@@ -208,6 +264,7 @@ Table.defaultProps = {
   title: "",
   sortByHeader: true,
   hoverable: true,
+  sortableHeaders: [],
   gridData: [[]],
 };
 

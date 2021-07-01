@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "components/Typography";
 import PlainButton from "components/PlainButton";
 
-const DescriptionCol = (props) => {
+const DescriptionDiv = (props) => {
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "220px" }}>
       <Typography style={{ fontSize: "16px" }}>{props.transfer}</Typography>
@@ -20,7 +20,7 @@ export const transfersGridData = [
     {
       column: "DESCRIPTION",
       content: (
-        <DescriptionCol
+        <DescriptionDiv
           transfer={"Transfer to Noble Bank-3432"}
           date={"October 30, 2020"}
         />
@@ -40,7 +40,7 @@ export const transfersGridData = [
     {
       column: "DESCRIPTION",
       content: (
-        <DescriptionCol
+        <DescriptionDiv
           transfer={"Bill to Waterworks-4534"}
           date={"October 23, 2020"}
         />
@@ -60,7 +60,7 @@ export const transfersGridData = [
     {
       column: "DESCRIPTION",
       content: (
-        <DescriptionCol
+        <DescriptionDiv
           transfer={"Transfer to Melanie Abrazado"}
           date={"October 20, 2020"}
         />
@@ -80,7 +80,7 @@ export const transfersGridData = [
     {
       column: "DESCRIPTION",
       content: (
-        <DescriptionCol
+        <DescriptionDiv
           transfer={"Transfer to Melanie Abrazado"}
           date={"October 21, 2020"}
         />
@@ -96,4 +96,127 @@ export const transfersGridData = [
       content: <PlainButton small>Delete</PlainButton>,
     },
   ],
+];
+
+export const adminGridData = [
+  [
+    {
+      column: "Name",
+      content: <Typography>Maria Borges</Typography>,
+      sortKey: "Maria Borges",
+    },
+    {
+      column: "email",
+      content: <Typography>mariajoseluisborges@narmitech.com</Typography>,
+    },
+    {
+      column: "role",
+      content: <Typography>Collaborator</Typography>,
+    },
+    {
+      column: "status",
+      content: <Typography>Active</Typography>,
+    },
+    {
+      column: "Last Login",
+      content: <Typography>07/01/20</Typography>,
+      sortKey: "07/04/20",
+    },
+  ],
+  [
+      {
+          column: "Name",
+          content: <Typography>Angela Davis</Typography>,
+          sortKey: "Angela Davis",
+        },
+        {
+          column: "email",
+          content: <Typography>angeladavis@narmitech.com</Typography>,
+        },
+        {
+          column: "role",
+          content: <Typography>Admin</Typography>,
+        },
+        {
+          column: "status",
+          content: <Typography>Active</Typography>,
+        },
+        {
+          column: "Last Login",
+          content: <Typography>07/04/20</Typography>,
+          sortKey: "07/04/20",
+        },
+  ],
+  [
+      {
+          column: "Name",
+          content: <Typography>Junot Diaz</Typography>,
+          sortKey: "Junot Diaz",
+        },
+        {
+          column: "email",
+          content: <Typography>junotdiaz@narmitech.com</Typography>,
+        },
+        {
+          column: "role",
+          content: <Typography>Viewer</Typography>,
+        },
+        {
+          column: "status",
+          content: <Typography>Active</Typography>,
+        },
+        {
+          column: "Last Login",
+          content: <Typography>07/12/20</Typography>,
+          sortKey: "07/12/20",
+        },
+  ],
+  [
+      {
+          column: "Name",
+          content: <Typography>Aminatou Sow</Typography>,
+          sortKey: "Aminatou Sow",
+        },
+        {
+          column: "email",
+          content: <Typography>aminatousow@narmitech.com</Typography>,
+        },
+        {
+          column: "role",
+          content: <Typography>Collaborator</Typography>,
+        },
+        {
+          column: "status",
+          content: <Typography>Active</Typography>,
+        },
+        {
+          column: "Last Login",
+          content: <Typography>10/24/19</Typography>,
+          sortKey: "10/24/19",
+        },
+  ],
+  [
+      {
+          column: "Name",
+          content: <Typography>Zadie Smith</Typography>,
+          sortKey: "Zadie Smith",
+        },
+        {
+          column: "email",
+          content: <Typography>zadiesmith@narmitech.com</Typography>,
+        },
+        {
+          column: "role",
+          content: <Typography>Collaborator</Typography>,
+        },
+        {
+          column: "status",
+          content: <Typography>Active</Typography>,
+        },
+        {
+          column: "Last Login",
+          content: <Typography>04/29/20</Typography>,
+          sortKey: "04/29/20",
+        },
+  ]
 ];

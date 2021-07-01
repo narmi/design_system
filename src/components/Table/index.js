@@ -182,8 +182,9 @@ const Table = (props) => {
 
       let sortKey1 = cell1.sortKey;
       let sortKey2 = cell2.sortKey;
-
-      if (order) {
+      let orderCheck = typeof sortKey1 === "string" ? order : !order; // reverse logic if not a string i.e. integers etc ...
+      
+      if (orderCheck) {
         sortKey1 = cell2.sortKey;
         sortKey2 = cell1.sortKey;
       }

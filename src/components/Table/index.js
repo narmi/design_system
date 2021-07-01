@@ -5,11 +5,7 @@ import { deviceBreakpoints } from "../../globalStyles";
 import Typography from "components/Typography";
 import PlainButton, { StyledPlainButton } from "components/PlainButton";
 import List from "components/List";
-import Popover, {
-  StyledLabel,
-  StyledTrigger,
-  StyledOverlay,
-} from "components/Popover";
+import Popover from "components/Popover";
 
 const StyledTableTitleDiv = styled.div`
   font-size: 20px;
@@ -24,30 +20,13 @@ const StyledTable = styled.table`
 
 const StyledTableHeader = styled.th`
   text-align: left;
-  padding: ${(props) => (props.popover ? null : "12px 0px 12px 20px")};
+  padding: 12px 0px 12px 20px;
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     display: none;
   }
-  :last-child {
-    padding-right: 20px;
-    text-align: right;
-    ${StyledOverlay} {
-      left: -90px;
-    }
-  }
 
-  align-items: ${(props) => (props.popover ? "unset" : null)};
   :last-child {
-    float: ${(props) => (props.popover ? "right" : null)};
-    padding-right: ${(props) => (props.popover ? "12px" : "20px")};
-  }
-  ${StyledLabel} {
-    align-items: unset;
-    padding-right: 5px;
-  }
-
-  ${StyledTrigger} {
-    padding: 12px 0px 12px 20px;
+    float: right;
   }
 `;
 
@@ -180,7 +159,7 @@ const Table = (props) => {
     resetNonActiveHeadings(heading);
     let reverse = direction !== 0;
     activeSortColumns[heading]["active"] = reverse;
-    //   !activeSortColumns[heading]["active"];
+
     let newGrid = sortByKey(
       props.gridData,
       heading,
@@ -189,7 +168,16 @@ const Table = (props) => {
     setGrid(Object.entries(newGrid).map(renderRow));
   };
 
-  // ()=>console.log(heading, item)
+  const renderSortableHeader = (item, heading) => {
+    return (
+      <Typography
+        data-testid={heading + item.key}
+        onClick={() => sortGrid(heading, item.key)}
+      >
+        {item.text}
+      </Typography>
+    );
+  };
 
   const renderHeader = () => {
     const uniqueColumns = getUniqueColumns(props.gridData);
@@ -197,20 +185,13 @@ const Table = (props) => {
       <StyledTableRow>
         {uniqueColumns.map((heading) =>
           props.sortableHeaders.includes(heading) ? (
-            <StyledTableHeader popover={true}>
+            <StyledTableHeader style={{ padding: "12px 0px 12px 20px" }}>
               <Popover
                 hoverable
-                label={<Typography subheader>{heading}!</Typography>}
+                label={<Typography subheader>{heading}</Typography>}
               >
                 <List
-                  renderItem={(item) => (
-                    <Typography
-                      data-testid={heading + item.key}
-                      onClick={() => sortGrid(heading, item.key)}
-                    >
-                      {item.text}
-                    </Typography>
-                  )}
+                  renderItem={(item) => renderSortableHeader(item, heading)}
                   items={[
                     { key: 0, text: "Sort A to Z" },
                     { key: 1, text: "Sort Z to A" },
@@ -220,10 +201,7 @@ const Table = (props) => {
             </StyledTableHeader>
           ) : (
             <StyledTableHeader>
-              <Typography
-                subheader
-                onClick={props.sortByHeader ? () => sortGrid(heading) : null}
-              >
+              <Typography subheader onClick={() => sortGrid(heading)}>
                 {heading}
               </Typography>
             </StyledTableHeader>
@@ -250,14 +228,12 @@ const Table = (props) => {
 Table.propTypes = {
   title: PropTypes.node,
   hoverable: PropTypes.bool,
-  sortByHeader: PropTypes.bool,
   sortableHeaders: PropTypes.array,
   gridData: PropTypes.array,
 };
 
 Table.defaultProps = {
   title: "",
-  sortByHeader: true,
   hoverable: true,
   sortableHeaders: [],
   gridData: [[]],

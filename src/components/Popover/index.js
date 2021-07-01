@@ -8,7 +8,7 @@ const hoverableStyles = css`
   visibility: hidden;
 `;
 
-export const StyledOverlay = styled.div`
+const StyledOverlay = styled.div`
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
     position: absolute;
     background-color: var(--nds-white);
@@ -22,31 +22,33 @@ export const StyledOverlay = styled.div`
     right: ${(props) =>
       props.alignRight ? "7px" : null}; // 7px to account for chevron
   }
-
+  transition: visibility 100ms linear;
   font-family: var(--nds-font-family);
 
   // start out invisible on hover
   ${(props) => (props.hoverable ? hoverableStyles : null)};
 `;
 
-export const StyledChevronDown = styled(ChevronDown)`
+const StyledChevronDown = styled(ChevronDown)`
   margin-top: 3px;
   stroke-width: 1;
   color: var(--nds-grey-text);
 `;
 
-export const StyledChevronUp = styled(ChevronUp)`
-  stroke-width: ${(props) => (props.highlight ? "2" : "1")};
+const StyledChevronUp = styled(ChevronUp)`
+  stroke-width: ${(props) => (props.highlightOnOpen ? "2" : "1")};
   color: ${(props) =>
-    props.highlight ? "var(--nds-primary-color)" : "var(--nds-grey-text)"};
-`;
-
-export const StyledLabel = styled.a`
-  color: ${(props) =>
-    props.open && props.highlight
+    props.highlightOnOpen
       ? "var(--nds-primary-color)"
       : "var(--nds-grey-text)"};
-  font-weight: ${(props) => (props.open && props.highlight ? 600 : 400)};
+`;
+
+const StyledLabel = styled.a`
+  color: ${(props) =>
+    props.open && props.highlightOnOpen
+      ? "var(--nds-primary-color)"
+      : "var(--nds-grey-text)"};
+  font-weight: ${(props) => (props.open && props.highlightOnOpen ? 600 : 400)};
   line-height: 22px;
 
   display: flex;
@@ -57,7 +59,7 @@ export const StyledLabel = styled.a`
   }
 
   ::before {
-    display: ${(props) => (props.highlight ? "block" : "none")};
+    display: ${(props) => (props.highlightOnOpen ? "block" : "none")};
     content: attr(data-text);
     font-weight: 600;
     height: 0;
@@ -69,7 +71,7 @@ export const StyledLabel = styled.a`
   }
 `;
 
-export const StyledWrapper = styled.span`
+const StyledWrapper = styled.span`
   // position: relative + position: absolute allows absolutely positioning child relative to parent
   position: relative;
   font-family: var(--nds-font-family);
@@ -83,18 +85,20 @@ export const StyledWrapper = styled.span`
   // hover to keep chevron and label bolded and highlighted when hovering the overlay
   &:hover ${StyledChevronDown} {
     stroke-width: ${(props) =>
-      props.hoverable && props.highlight ? "2" : null};
+      props.hoverable && props.highlightOnOpen ? "2" : null};
     color: ${(props) =>
-      props.hoverable && props.highlight ? "var(--nds-primary-color)" : null};
+      props.hoverable && props.highlightOnOpen
+        ? "var(--nds-primary-color)"
+        : null};
   }
   &:hover ${StyledLabel} {
     color: ${(p) =>
-      p.hoverable && p.highlight ? "var(--nds-primary-color)" : null};
-    font-weight: ${(p) => (p.hoverable && p.highlight ? "600" : null)};
+      p.hoverable && p.highlightOnOpen ? "var(--nds-primary-color)" : null};
+    font-weight: ${(p) => (p.hoverable && p.highlightOnOpen ? "600" : null)};
   }
 `;
 
-export const StyledTrigger = styled.div`
+const StyledTrigger = styled.div`
   display: flex;
   align-items: center;
 `;
@@ -105,7 +109,7 @@ const Popover = ({
   shiftX,
   shiftY,
   alignRight,
-  highlight,
+  highlightOnOpen,
   children,
   ...rest
 }) => {
@@ -121,7 +125,7 @@ const Popover = ({
       return <StyledChevronDown size={18} />;
     }
     if (open) {
-      return <StyledChevronUp highlight={highlight} size={18} />;
+      return <StyledChevronUp highlightOnOpen={highlightOnOpen} size={18} />;
     }
 
     // default closed
@@ -129,13 +133,13 @@ const Popover = ({
   };
 
   return (
-    <StyledWrapper hoverable={hoverable} highlight={highlight}>
+    <StyledWrapper hoverable={hoverable} highlightOnOpen={highlightOnOpen}>
       <StyledTrigger onClick={toggleOpen}>
         <StyledLabel
           data-text={label}
           open={open}
           hoverable={hoverable}
-          highlight={highlight}
+          highlightOnOpen={highlightOnOpen}
         >
           {label}
         </StyledLabel>
@@ -168,14 +172,14 @@ Popover.propTypes = {
   shiftY: PropTypes.string,
   // accept either a list of nodes or object categories:[nodes]
   // or accept children directly
-  highlight: PropTypes.bool,
+  highlightOnOpen: PropTypes.bool,
   alignRight: PropTypes.bool,
   children: PropTypes.node,
 };
 
 Popover.defaultProps = {
   hoverable: false,
-  highlight: false,
+  highlightOnOpen: false,
   label: null,
   alignRight: false,
   shiftX: "0%",

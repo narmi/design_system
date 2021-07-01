@@ -102,18 +102,18 @@ describe("Table Sorting", () => {
 
     // test initial table render
     let amountColumn = queryAllByTestId("col1");
-    let amountHeader = queryByTestId("AMOUNT0");
+    let amountSortOption = queryByTestId("AMOUNT0");
     let amountColumnValues = amountColumn.map((cell) => cell.textContent);
     expect(amountColumnValues).toEqual(["-$1000", "-$123.45", "-$80", "-$130"]);
 
     // sort ascending
-    amountHeader.click();
+    amountSortOption.click();
     amountColumnValues = amountColumn.map((cell) => cell.textContent);
     expect(amountColumnValues).toEqual(["-$80", "-$123.45", "-$130", "-$1000"]);
 
-    // // reverse sort / sort descending
-    amountHeader = queryByTestId("AMOUNT1");
-    amountHeader.click();
+    // reverse sort / sort descending
+    amountSortOption = queryByTestId("AMOUNT1");
+    amountSortOption.click();
     amountColumnValues = amountColumn.map((cell) => cell.textContent);
     expect(amountColumnValues).toEqual(["-$1000", "-$130", "-$123.45", "-$80"]);
   });

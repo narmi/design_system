@@ -8,7 +8,7 @@ import Popover from "components/Popover";
 import List from "components/List";
 import Sidebar from "components/Sidebar";
 import Typography from "components/Typography";
-import { PopoverNavBar } from "components/Popover/storyHelpers";
+import { PopoverNavBar } from "./storyHelpers";
 import { Top } from "../../decorators";
 import Narmi from "../../assets/narmi-logo.svg";
 

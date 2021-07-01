@@ -8,7 +8,7 @@ const hoverableStyles = css`
   visibility: hidden;
 `;
 
-const StyledOverlay = styled.div`
+export const StyledOverlay = styled.div`
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
     position: absolute;
     background-color: var(--nds-white);
@@ -29,18 +29,18 @@ const StyledOverlay = styled.div`
   ${(props) => (props.hoverable ? hoverableStyles : null)};
 `;
 
-const StyledChevronDown = styled(ChevronDown)`
+export const StyledChevronDown = styled(ChevronDown)`
   margin-top: 3px;
   stroke-width: 1;
   color: var(--nds-grey-text);
 `;
 
-const StyledChevronUp = styled(ChevronUp)`
+export const StyledChevronUp = styled(ChevronUp)`
   stroke-width: 2;
   color: var(--nds-primary-color);
 `;
 
-const StyledLabel = styled.a`
+export const StyledLabel = styled.a`
   color: var(--nds-grey-text);
   color: ${(props) =>
     props.open ? "var(--nds-primary-color)" : "var(--nds-grey-text)"};
@@ -67,7 +67,7 @@ const StyledLabel = styled.a`
   }
 `;
 
-const StyledWrapper = styled.span`
+export const StyledWrapper = styled.span`
   // position: relative + position: absolute allows absolutely positioning child relative to parent
   position: relative;
   font-family: var(--nds-font-family);
@@ -89,7 +89,7 @@ const StyledWrapper = styled.span`
   }
 `;
 
-const StyledTrigger = styled.div`
+export const StyledTrigger = styled.div`
   display: flex;
   align-items: center;
 `;

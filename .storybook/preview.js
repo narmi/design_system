@@ -21,12 +21,12 @@ const defaultTheme = {
 
 export const decorators = [
   (Story) => (
-    <>
+    <div style={{ backgroundColor: "var(--nds-background-neutralgrey)" }}>
       <ThemeProvider theme={defaultTheme}>
         <GlobalStyles />
         <Story />
       </ThemeProvider>
-    </>
+    </div>
   ),
 ];
 

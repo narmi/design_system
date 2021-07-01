@@ -8,6 +8,8 @@ import List from "components/List";
 import PlainButton from "components/PlainButton";
 import Typography from "components/Typography";
 import { Centered } from "../../decorators";
+import Icon from "components/Icon";
+import Star from "../../assets/star.svg";
 
 const InGrid = (Story) => (
   <div
@@ -15,11 +17,12 @@ const InGrid = (Story) => (
       display: "grid",
       gridTemplateColumns: "2fr 1fr",
       width: "95%",
+      height: "100%",
       margin: "24px auto",
     }}
   >
     <Story />
-    <Story />
+    <div />
   </div>
 );
 
@@ -108,39 +111,26 @@ WithList.args = {
 };
 WithList.decorators = [MaxWidth];
 
-const ArrowsIcon = () => {
-  return (
-    <div
-      style={{
-        color: "var(--nds-primary-color)",
-        height: "20px",
-        display: "flex",
-        flexDirection: "column",
-        cursor: "pointer",
-      }}
-      onClick={() => alert("Clicked icon!")}
-    >
-      <ArrowRight viewBox="0 0 16 20" />{" "}
-      <ArrowLeft viewBox="0 0 24 20" style={{ marginTop: "-3px" }} />
-    </div>
-  );
-};
+const StyledListItem = styled.div`
+  // margin-bottom: 8px;
+`;
+
+const StyledListContainer = styled.div`
+  margin-bottom: 8px;
+  & > ${StyledListItem}:last-child {
+    margin-bottom: unset;
+    background-color: red;
+  }
+`;
+
+function renderItem(item) {
+  return <StyledListItem>{item}</StyledListItem>;
+}
 
 export const WithActions = Template.bind({});
 WithActions.args = {
   ...DefaultArgs,
-  title: (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        color: "var(--nds-primary-color)",
-      }}
-    >
-      <span>Title</span>
-      <ArrowsIcon />
-    </div>
-  ),
+  title: <span>Title</span>,
   children: (
     <div
       style={{
@@ -150,9 +140,17 @@ WithActions.args = {
         alignItems: "flex-start",
       }}
     >
-      <PlainButton small>Button 1 </PlainButton>
-      <PlainButton small>Button 2 </PlainButton>
-      <PlainButton small>Button 3 </PlainButton>
+      <List
+        items={[
+          <PlainButton small>Button 1 </PlainButton>,
+          <PlainButton small>Button 2 </PlainButton>,
+          <PlainButton small>Button 3 </PlainButton>,
+        ]}
+        renderListWrapper={(list) => (
+          <StyledListContainer>{list}</StyledListContainer>
+        )}
+        renderItem={renderItem}
+      ></List>
     </div>
   ),
 };
@@ -163,3 +161,28 @@ WithinGrid.args = {
   ...WithList.args,
 };
 WithinGrid.decorators = [InGrid];
+
+export const TitleCard = Template.bind({});
+TitleCard.args = {
+  ...DefaultArgs,
+  title: (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        color: "var(--nds-primary-color)",
+      }}
+    >
+      <Typography
+        style={{ paddingRight: "4px", color: "var(--nds-primary-color)" }}
+        h4
+      >
+        Title
+      </Typography>
+      <Icon image={Star} />
+    </div>
+  ),
+  hoverable: true,
+  children: <div>This is a piece of text that explains something.</div>,
+};
+TitleCard.decorators = [MaxWidth];

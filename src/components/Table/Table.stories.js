@@ -1,11 +1,18 @@
 import React from "react";
 import Table from "components/Table";
+import Card from "components/Card";
 import { transfersGridData } from "../../helpers/storyHelpers";
 
 export default {
   title: "Components/Table",
   component: Table,
 };
+
+const InGrid = (Story) => (
+  <Card large>
+    <Story />
+  </Card>
+);
 
 const Template = (args) => <Table {...args} />;
 const DefaultArgs = {
@@ -14,7 +21,8 @@ const DefaultArgs = {
   gridData: transfersGridData,
 };
 
-export const BasicTable = Template.bind({});
-BasicTable.args = {
+export const Basic = Template.bind({});
+Basic.args = {
   ...DefaultArgs,
 };
+Basic.decorators = [InGrid];

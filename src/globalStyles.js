@@ -59,7 +59,7 @@ const GlobalStyles = createGlobalStyle`
     --nds-background-legacy-cloudgrey: #e9e9e9;  // legacy: do not use
     --nds-background-legacy-snowgrey: #fbfbfb;   // legacy: do not use
 
-    --nds-font-family: 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    --nds-font-family: 'Mulish', 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     --nds-primary-color: ${(p) => Theme.primaryColor(p)};
     --nds-secondary-color: ${(p) => Theme.secondaryColor(p)};
     --nds-tertiary-color: ${(p) => Theme.tertiaryColor(p)};

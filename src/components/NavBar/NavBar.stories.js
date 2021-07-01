@@ -33,18 +33,22 @@ const HamburgerMenuSidebar = () => {
   );
 };
 
+const PaddedCategoryItem = styled.div`
+  padding: 12px 20px;
+`;
+
 const PaddedListItem = styled.div`
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding: 12px;
 `;
 
 const PaddedCategory = styled.span`
-  padding: 0px 16px 4px;
+  padding: 0px 20px 4px;
   display: flex;
 `;
 
+const renderPaddedCategoryItem = (item) => (
+  <PaddedCategoryItem>{item}</PaddedCategoryItem>
+);
 const renderPaddedItem = (item) => <PaddedListItem>{item}</PaddedListItem>;
 const renderPaddedCategory = (cat) => <PaddedCategory>{cat}</PaddedCategory>;
 
@@ -54,7 +58,7 @@ const AccountsList = (
     divideItems={false}
     divideCategories={true}
     style={{ padding: "20px 0px 20px 0px" }}
-    renderItem={renderPaddedItem}
+    renderItem={renderPaddedCategoryItem}
     renderCategory={renderPaddedCategory}
     items={{
       Checking: [<a>Primary Checking-1111</a>, <a>Joint Checking-2314</a>],

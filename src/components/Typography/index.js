@@ -20,18 +20,28 @@ const Typography = (props) => {
     fontSize = "36px";
     fontWeight = "600";
     lineHeight = "50px";
+    color = "var(--nds-black)";
   } else if (props.h2) {
     fontSize = "28px";
     fontWeight = "600";
     lineHeight = "35px";
+    color = "var(--nds-black)";
   } else if (props.h3) {
+    // mobile native only - DO NOT USE
+    fontSize = "24px";
+    fontWeight = "500";
+    lineHeight = "30px";
+    color = "var(--nds-black)";
+  } else if (props.h4) {
     fontSize = "20px";
     fontWeight = "600";
-    lineHeight = "28px";
+    lineHeight = "25px";
+    color = "var(--nds-black)";
   } else if (props.subheader) {
     fontSize = "12px";
     fontWeight = "600";
     lineHeight = "15px";
+    color = "var(--nds-black)";
 
     // <p> tags
   } else if (props.p1) {
@@ -71,6 +81,7 @@ Typography.propTypes = {
   h1: PropTypes.bool,
   h2: PropTypes.bool,
   h3: PropTypes.bool,
+  h4: PropTypes.bool,
   subheader: PropTypes.bool,
 
   p1: PropTypes.bool,

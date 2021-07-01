@@ -76,7 +76,10 @@ function renderCategoryList(props, category, categoryIdx) {
       categoriesHorizontal={props.categoriesHorizontal}
       key={"List" + category + categoryIdx}
     >
-      <Typography semibold>{props.renderCategory(category)}</Typography>
+      {/* always black */}
+      <Typography semibold style={{ color: "var(--nds-black)" }}>
+        {props.renderCategory(category)}
+      </Typography>
       {props.items[category].map((item, idx) => renderItem(props, item, idx))}
     </StyledList>
   );

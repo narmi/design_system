@@ -200,11 +200,14 @@ const Table = (props) => {
             <StyledTableHeader popover={true}>
               <Popover
                 hoverable
-                label={<Typography subheader>{heading}</Typography>}
+                label={<Typography subheader>{heading}!</Typography>}
               >
                 <List
                   renderItem={(item) => (
-                    <Typography onClick={() => sortGrid(heading, item.key)}>
+                    <Typography
+                      data-testid={heading + item.key}
+                      onClick={() => sortGrid(heading, item.key)}
+                    >
                       {item.text}
                     </Typography>
                   )}

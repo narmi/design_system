@@ -3,7 +3,7 @@
  */
 
 import React from "react";
-import { render, screen, getByRole } from "@testing-library/react";
+import { render, screen, getByRole, getByTestId } from "@testing-library/react";
 import Table from "components/Table";
 import PlainButton from "components/PlainButton";
 
@@ -92,13 +92,17 @@ const sampleGridData = [
 
 describe("Table Sorting", () => {
   it("By Amount", () => {
-    const { getByText, queryAllByTestId } = render(
-      <Table title={"test"} gridData={sampleGridData} />
+    const { getByText, queryAllByTestId, queryByTestId } = render(
+      <Table
+        title={"test"}
+        gridData={sampleGridData}
+        sortableHeaders={["DESCRIPTION", "AMOUNT"]}
+      />
     );
 
     // test initial table render
-    const amountHeader = getByText("AMOUNT");
     let amountColumn = queryAllByTestId("col1");
+    let amountHeader = queryByTestId("AMOUNT0");
     let amountColumnValues = amountColumn.map((cell) => cell.textContent);
     expect(amountColumnValues).toEqual(["-$1000", "-$123.45", "-$80", "-$130"]);
 
@@ -107,7 +111,8 @@ describe("Table Sorting", () => {
     amountColumnValues = amountColumn.map((cell) => cell.textContent);
     expect(amountColumnValues).toEqual(["-$80", "-$123.45", "-$130", "-$1000"]);
 
-    // reverse sort / sort descending
+    // // reverse sort / sort descending
+    amountHeader = queryByTestId("AMOUNT1");
     amountHeader.click();
     amountColumnValues = amountColumn.map((cell) => cell.textContent);
     expect(amountColumnValues).toEqual(["-$1000", "-$130", "-$123.45", "-$80"]);

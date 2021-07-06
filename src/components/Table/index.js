@@ -214,7 +214,6 @@ const Table = (props) => {
           // if clicked but already active and ascedning matches
           if (activeSortColumns[heading]["active"] && ascending) {
             activeSortColumns[heading]["active"] = false;
-            console.log("grid", props.gridData);
             initGrid();
           } else {
             activeSortColumns[heading]["active"] = true;

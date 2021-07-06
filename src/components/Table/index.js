@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { deviceBreakpoints } from "../../globalStyles";
 import Typography from "components/Typography";
-import PlainButton, { StyledPlainButton } from "components/PlainButton";
+import { StyledPlainButton } from "components/PlainButton";
 import List from "components/List";
 import Popover from "components/Popover";
 import { Check } from "react-feather";
@@ -147,12 +147,11 @@ const Table = (props) => {
       return result;
     }, {});
     setActiveSortColumns(colOrderObject);
-  }
+  };
 
   useEffect(() => {
     initGrid();
   }, []);
-
 
   function sortByKey(array, key, order) {
     return array.sort(function (row1, row2) {
@@ -200,8 +199,8 @@ const Table = (props) => {
   const renderSortableHeader = (item, heading) => {
     let id = item.ordered ? "0" : "1";
     let ascending = false;
-    if( activeSortColumns && activeSortColumns[heading]){
-      if (item.ordered){
+    if (activeSortColumns && activeSortColumns[heading]) {
+      if (item.ordered) {
         ascending = activeSortColumns[heading]["ascending"] === true;
       } else {
         ascending = activeSortColumns[heading]["ascending"] === false;
@@ -211,21 +210,33 @@ const Table = (props) => {
       <Typography
         data-testid={heading + id}
         onClick={() => {
-                        sortGrid(heading, item.ordered); 
-                        // if clicked but already active and ascedning matches
-                        if(activeSortColumns[heading]["active"] && ascending){
-                          activeSortColumns[heading]["active"] = false;
-                          console.log("grid", props.gridData);
-                          initGrid();
-                        } else {
-                          activeSortColumns[heading]["active"] = true;
-                        }
-                        resetNonActiveHeadings(heading);
-                      }}
+          sortGrid(heading, item.ordered);
+          // if clicked but already active and ascedning matches
+          if (activeSortColumns[heading]["active"] && ascending) {
+            activeSortColumns[heading]["active"] = false;
+            console.log("grid", props.gridData);
+            initGrid();
+          } else {
+            activeSortColumns[heading]["active"] = true;
+          }
+          resetNonActiveHeadings(heading);
+        }}
       >
-        <div style={{display:"flex", alignItems: "center"}}>
-        <Check size={18} style={{padding: "0px 8px 0px 8px", color: "var(--nds-primary-color)",visibility: activeSortColumns && activeSortColumns[heading] ? activeSortColumns[heading]["active"] && ascending ? "inherit" : "hidden" : "hidden"}}/>
-        <span style={{paddingRight: "8px" }}>{item.text}</span>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Check
+            size={18}
+            style={{
+              padding: "0px 8px 0px 8px",
+              color: "var(--nds-primary-color)",
+              visibility:
+                activeSortColumns && activeSortColumns[heading]
+                  ? activeSortColumns[heading]["active"] && ascending
+                    ? "inherit"
+                    : "hidden"
+                  : "hidden",
+            }}
+          />
+          <span style={{ paddingRight: "8px" }}>{item.text}</span>
         </div>
       </Typography>
     );

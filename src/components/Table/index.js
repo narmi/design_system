@@ -71,6 +71,22 @@ const StyledStackedCell = styled.div`
   }
 `;
 
+const StyledOverlayItem = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const StyledCheck = styled(Check)`
+  size: 18;
+  padding: 0px 8px 0px 8px;
+  color: var(--nds-primary-color);
+  visibility: ${(props) => (props.visibility ? "inherit" : "hidden")};
+`;
+
+const StyledOverlayItemSpan = styled.span`
+  padding-right: 8px;
+`;
+
 const renderCells = (row) => {
   const desktopCells = row.map((cell, idx) => (
     <StyledTableCell key={idx} data-testid={"col" + idx}>
@@ -221,22 +237,16 @@ const Table = (props) => {
           resetNonActiveHeadings(heading);
         }}
       >
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <Check
-            size={18}
-            style={{
-              padding: "0px 8px 0px 8px",
-              color: "var(--nds-primary-color)",
-              visibility:
-                activeSortColumns && activeSortColumns[heading]
-                  ? activeSortColumns[heading]["active"] && ascending
-                    ? "inherit"
-                    : "hidden"
-                  : "hidden",
-            }}
+        <StyledOverlayItem>
+          <StyledCheck
+            visibility={
+              activeSortColumns && activeSortColumns[heading]
+                ? activeSortColumns[heading]["active"] && ascending
+                : false
+            }
           />
-          <span style={{ paddingRight: "8px" }}>{item.text}</span>
-        </div>
+          <StyledOverlayItemSpan>{item.text}</StyledOverlayItemSpan>
+        </StyledOverlayItem>
       </Typography>
     );
   };

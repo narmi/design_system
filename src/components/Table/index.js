@@ -148,10 +148,6 @@ const Table = (props) => {
     return [...new Set(columns)];
   };
 
-  useEffect(() => {
-    initGrid();
-  }, []);
-
   const initGrid = () => {
     setGrid(Object.entries(props.gridData).map(renderRow));
     let uniqueColumns = getUniqueColumns(props.gridData);
@@ -201,7 +197,7 @@ const Table = (props) => {
 
   const sortGrid = (heading, direction) => {
     resetNonActiveHeadings(heading);
-    activeSortColumns[heading]["ascending"] = direction;
+    activeSortColumns[heading]["ascending"] = direction === "asc";
 
     let newGrid = props.gridData.slice(0);
     newGrid = sortByKey(
@@ -213,16 +209,16 @@ const Table = (props) => {
   };
 
   const renderSortableHeader = (item, heading) => {
-    let id = item.ordered ? "0" : "1";
+    let id = item.ordered === "asc" ? "0" : "1";
+    let selected = false;
     let activeAndSelected = false;
     if (activeSortColumns && activeSortColumns[heading]) {
-      if (item.ordered) {
-        activeAndSelected = activeSortColumns[heading]["ascending"] === true;
+      if (item.ordered === "asc") {
+        selected = activeSortColumns[heading]["ascending"] === true;
       } else {
-        activeAndSelected = activeSortColumns[heading]["ascending"] === false;
+        selected = activeSortColumns[heading]["ascending"] === false;
       }
-      activeAndSelected =
-        activeAndSelected && activeSortColumns[heading]["active"];
+      activeAndSelected = selected && activeSortColumns[heading]["active"];
     }
     return (
       <Typography
@@ -260,8 +256,8 @@ const Table = (props) => {
           <List
             renderItem={(item) => renderSortableHeader(item, heading)}
             items={[
-              { ordered: true, text: "Sort A to Z" },
-              { ordered: false, text: "Sort Z to A" },
+              { ordered: "asc", text: "Sort A to Z" },
+              { ordered: "desc", text: "Sort Z to A" },
             ]}
           ></List>
         </Popover>

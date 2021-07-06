@@ -154,7 +154,7 @@ const Table = (props) => {
     let colOrderObject = {};
     colOrderObject = uniqueColumns.reduce((result, col, idx) => {
       if (col !== undefined) {
-        result[col] = { active: false, ascending: false, idx: idx }; // active means col is sorted asc or desc, asc
+        result[col] = { ascending: null, idx: idx }; // active means col is sorted asc or desc, asc
       }
       return result;
     }, {});
@@ -191,7 +191,7 @@ const Table = (props) => {
 
   const resetNonActiveHeadings = (heading) => {
     Object.keys(activeSortColumns).map((x) =>
-      x != heading ? (activeSortColumns[x]["active"] = false) : null
+      x != heading ? (activeSortColumns[x]["ascending"] = null) : null
     );
   };
 
@@ -211,25 +211,21 @@ const Table = (props) => {
   const renderSortableHeader = (headerOption, heading) => {
     let id = headerOption.sortOrder === "asc" ? "0" : "1";
     let selected = false;
-    let activeAndSelected = false;
-    if (activeSortColumns && activeSortColumns[heading]) {
-      if (headerOption.sortOrder === "asc") {
-        selected = activeSortColumns[heading]["ascending"] === true;
-      } else {
-        selected = activeSortColumns[heading]["ascending"] === false;
-      }
-      activeAndSelected = selected && activeSortColumns[heading]["active"];
+    if (activeSortColumns) {
+      selected =
+        activeSortColumns[heading]["ascending"] ===
+        (headerOption.sortOrder === "asc");
     }
     return (
       <Typography
         data-testid={heading + id}
         onClick={() => {
           // if clicked but already active and ascedning matches
-          if (activeAndSelected) {
-            activeSortColumns[heading]["active"] = false;
+          if (selected) {
+            activeSortColumns[heading]["ascending"] = false;
             resetGrid();
           } else {
-            activeSortColumns[heading]["active"] = true;
+            activeSortColumns[heading]["ascending"] = true;
             sortGrid(heading, headerOption.sortOrder);
           }
           resetNonActiveHeadings(heading);
@@ -238,9 +234,7 @@ const Table = (props) => {
         <StyledOverlayItem>
           <StyledCheck
             visibility={
-              activeSortColumns && activeSortColumns[heading]
-                ? activeAndSelected
-                : false
+              activeSortColumns && activeSortColumns[heading] ? selected : false
             }
           />
           <StyledOverlayItemSpan>{headerOption.text}</StyledOverlayItemSpan>

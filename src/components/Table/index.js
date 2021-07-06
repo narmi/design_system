@@ -105,6 +105,18 @@ const Table = (props) => {
   const [grid, setGrid] = useState([[]]);
   const [activeSortColumns, setActiveSortColumns] = useState();
 
+  const getSortOrder = (sortKey, order) => {
+    // reverse logic if not a string i.e. integers etc ...
+    switch (typeof sortKey) {
+      case "string":
+        return order;
+      case "number":
+        return !order;
+      default:
+        return order;
+    }
+  };
+
   const renderRow = ([col, colData]) => {
     return <StyledTableRow {...props}>{renderCells(colData)}</StyledTableRow>;
   };
@@ -140,7 +152,7 @@ const Table = (props) => {
 
       let sortKey1 = cell1.sortKey;
       let sortKey2 = cell2.sortKey;
-      let orderCheck = typeof sortKey1 === "string" ? order : !order; // reverse logic if not a string i.e. integers etc ...
+      let orderCheck = getSortOrder(sortKey1, order);
 
       if (orderCheck) {
         sortKey1 = cell2.sortKey;

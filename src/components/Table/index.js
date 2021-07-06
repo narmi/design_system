@@ -180,27 +180,32 @@ const Table = (props) => {
     );
   };
 
+  const renderPopoverHeader = (heading) => {
+    return (
+      <StyledTableHeader style={{ padding: "12px 0px 12px 20px" }}>
+        <Popover hoverable label={<Typography subheader>{heading}</Typography>}>
+          <List
+            renderItem={(item) => renderSortableHeader(item, heading)}
+            items={[
+              { ordered: true, text: "Sort A to Z" },
+              { ordered: false, text: "Sort Z to A" },
+            ]}
+          ></List>
+        </Popover>
+      </StyledTableHeader>
+    );
+  };
+
   const renderHeader = () => {
     const uniqueColumns = getUniqueColumns(props.gridData);
-    let capsHeaders = props.sortableHeaders.map(h => h ? h.toUpperCase() : h);
+    let capsHeaders = props.sortableHeaders.map((h) =>
+      h ? h.toUpperCase() : h
+    );
     return (
       <StyledTableRow>
         {uniqueColumns.map((heading) =>
           heading && capsHeaders.includes(heading.toUpperCase()) ? (
-            <StyledTableHeader style={{ padding: "12px 0px 12px 20px" }}>
-              <Popover
-                hoverable
-                label={<Typography subheader>{heading}</Typography>}
-              >
-                <List
-                  renderItem={(item) => renderSortableHeader(item, heading)}
-                  items={[
-                    { ordered: true, text: "Sort A to Z" },
-                    { ordered: false, text: "Sort Z to A" },
-                  ]}
-                ></List>
-              </Popover>
-            </StyledTableHeader>
+            renderPopoverHeader(heading)
           ) : (
             <StyledTableHeader>
               <Typography subheader>{heading}</Typography>

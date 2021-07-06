@@ -214,25 +214,27 @@ const Table = (props) => {
 
   const renderSortableHeader = (item, heading) => {
     let id = item.ordered ? "0" : "1";
-    let ascending = false;
+    let activeAndSelected = false;
     if (activeSortColumns && activeSortColumns[heading]) {
       if (item.ordered) {
-        ascending = activeSortColumns[heading]["ascending"] === true;
+        activeAndSelected = activeSortColumns[heading]["ascending"] === true;
       } else {
-        ascending = activeSortColumns[heading]["ascending"] === false;
+        activeAndSelected = activeSortColumns[heading]["ascending"] === false;
       }
+      activeAndSelected =
+        activeAndSelected && activeSortColumns[heading]["active"];
     }
     return (
       <Typography
         data-testid={heading + id}
         onClick={() => {
-          sortGrid(heading, item.ordered);
           // if clicked but already active and ascedning matches
-          if (activeSortColumns[heading]["active"] && ascending) {
+          if (activeAndSelected) {
             activeSortColumns[heading]["active"] = false;
             initGrid();
           } else {
             activeSortColumns[heading]["active"] = true;
+            sortGrid(heading, item.ordered);
           }
           resetNonActiveHeadings(heading);
         }}
@@ -241,7 +243,7 @@ const Table = (props) => {
           <StyledCheck
             visibility={
               activeSortColumns && activeSortColumns[heading]
-                ? activeSortColumns[heading]["active"] && ascending
+                ? activeAndSelected
                 : false
             }
           />

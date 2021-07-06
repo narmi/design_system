@@ -212,7 +212,6 @@ const Table = (props) => {
         data-testid={heading + id}
         onClick={() => {
                         sortGrid(heading, item.ordered); 
-                        item.test(item.ordered, item.selected);
                         // if clicked but already active and ascedning matches
                         if(activeSortColumns[heading]["active"] && ascending){
                           activeSortColumns[heading]["active"] = false;

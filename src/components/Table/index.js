@@ -158,7 +158,13 @@ const Table = (props) => {
         sortKey1 = cell2.sortKey;
         sortKey2 = cell1.sortKey;
       }
-      return sortKey1 > sortKey2 ? -1 : sortKey1 < sortKey2 ? 1 : 0;
+      if (sortKey1 > sortKey2) {
+        return -1;
+      } else if (sortKey1 < sortKey2) {
+        return 1;
+      } else {
+        return 0;
+      }
     });
   }
 

@@ -148,7 +148,7 @@ const Table = (props) => {
     return [...new Set(columns)];
   };
 
-  const initGrid = () => {
+  const resetGrid = () => {
     setGrid(Object.entries(props.gridData).map(renderRow));
     let uniqueColumns = getUniqueColumns(props.gridData);
     let colOrderObject = {};
@@ -162,7 +162,7 @@ const Table = (props) => {
   };
 
   useEffect(() => {
-    initGrid();
+    resetGrid();
   }, []);
 
   function sortByKey(array, key, order) {
@@ -208,12 +208,12 @@ const Table = (props) => {
     setGrid(Object.entries(newGrid).map(renderRow));
   };
 
-  const renderSortableHeader = (item, heading) => {
-    let id = item.ordered === "asc" ? "0" : "1";
+  const renderSortableHeader = (headerOption, heading) => {
+    let id = headerOption.sortOrder === "asc" ? "0" : "1";
     let selected = false;
     let activeAndSelected = false;
     if (activeSortColumns && activeSortColumns[heading]) {
-      if (item.ordered === "asc") {
+      if (headerOption.sortOrder === "asc") {
         selected = activeSortColumns[heading]["ascending"] === true;
       } else {
         selected = activeSortColumns[heading]["ascending"] === false;
@@ -227,10 +227,10 @@ const Table = (props) => {
           // if clicked but already active and ascedning matches
           if (activeAndSelected) {
             activeSortColumns[heading]["active"] = false;
-            initGrid();
+            resetGrid();
           } else {
             activeSortColumns[heading]["active"] = true;
-            sortGrid(heading, item.ordered);
+            sortGrid(heading, headerOption.sortOrder);
           }
           resetNonActiveHeadings(heading);
         }}
@@ -243,7 +243,7 @@ const Table = (props) => {
                 : false
             }
           />
-          <StyledOverlayItemSpan>{item.text}</StyledOverlayItemSpan>
+          <StyledOverlayItemSpan>{headerOption.text}</StyledOverlayItemSpan>
         </StyledOverlayItem>
       </Typography>
     );
@@ -256,8 +256,8 @@ const Table = (props) => {
           <List
             renderItem={(item) => renderSortableHeader(item, heading)}
             items={[
-              { ordered: "asc", text: "Sort A to Z" },
-              { ordered: "desc", text: "Sort Z to A" },
+              { sortOrder: "asc", text: "Sort A to Z" },
+              { sortOrder: "desc", text: "Sort Z to A" },
             ]}
           ></List>
         </Popover>

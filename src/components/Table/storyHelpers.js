@@ -88,7 +88,7 @@ export const transfersGridData = [
       sortKey: "Transfer to Melanie Abrazado",
     },
     {
-      column: "AMOUNT",
+      column: "Amount",
       content: "-$130",
       sortKey: -130,
     },

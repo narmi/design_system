@@ -112,7 +112,7 @@ const Table = (props) => {
   const getUniqueColumns = (gridData) => {
     var gridColumns = gridData.map(function (row) {
       return row.map(function (cell) {
-        return cell.column;
+        return cell.column ? cell.column.toUpperCase() : undefined;
       });
     });
     const columns = [].concat.apply([], gridColumns);
@@ -182,10 +182,11 @@ const Table = (props) => {
 
   const renderHeader = () => {
     const uniqueColumns = getUniqueColumns(props.gridData);
+    let capsHeaders = props.sortableHeaders.map(h => h ? h.toUpperCase() : h);
     return (
       <StyledTableRow>
         {uniqueColumns.map((heading) =>
-          props.sortableHeaders.includes(heading) ? (
+          heading && capsHeaders.includes(heading.toUpperCase()) ? (
             <StyledTableHeader style={{ padding: "12px 0px 12px 20px" }}>
               <Popover
                 hoverable

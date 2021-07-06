@@ -22,7 +22,7 @@ const StyledOverlay = styled.div`
     right: ${(props) =>
       props.alignRight ? "7px" : null}; // 7px to account for chevron
   }
-
+  transition: visibility 100ms linear;
   font-family: var(--nds-font-family);
 
   // start out invisible on hover
@@ -36,15 +36,19 @@ const StyledChevronDown = styled(ChevronDown)`
 `;
 
 const StyledChevronUp = styled(ChevronUp)`
-  stroke-width: 2;
-  color: var(--nds-primary-color);
+  stroke-width: ${(props) => (props.highlightOnOpen ? "2" : "1")};
+  color: ${(props) =>
+    props.highlightOnOpen
+      ? "var(--nds-primary-color)"
+      : "var(--nds-grey-text)"};
 `;
 
 const StyledLabel = styled.a`
-  color: var(--nds-grey-text);
   color: ${(props) =>
-    props.open ? "var(--nds-primary-color)" : "var(--nds-grey-text)"};
-  font-weight: ${(props) => (props.open ? 600 : 400)};
+    props.open && props.highlightOnOpen
+      ? "var(--nds-primary-color)"
+      : "var(--nds-grey-text)"};
+  font-weight: ${(props) => (props.open && props.highlightOnOpen ? 600 : 400)};
   line-height: 22px;
 
   display: flex;
@@ -55,7 +59,7 @@ const StyledLabel = styled.a`
   }
 
   ::before {
-    display: block;
+    display: ${(props) => (props.highlightOnOpen ? "block" : "none")};
     content: attr(data-text);
     font-weight: 600;
     height: 0;
@@ -80,12 +84,17 @@ const StyledWrapper = styled.span`
 
   // hover to keep chevron and label bolded and highlighted when hovering the overlay
   &:hover ${StyledChevronDown} {
-    stroke-width: ${(props) => (props.hoverable ? "2" : null)};
-    color: ${(props) => (props.hoverable ? "var(--nds-primary-color)" : null)};
+    stroke-width: ${(props) =>
+      props.hoverable && props.highlightOnOpen ? "2" : null};
+    color: ${(props) =>
+      props.hoverable && props.highlightOnOpen
+        ? "var(--nds-primary-color)"
+        : null};
   }
   &:hover ${StyledLabel} {
-    color: ${(p) => (p.hoverable ? "var(--nds-primary-color)" : null)};
-    font-weight: ${(p) => (p.hoverable ? "600" : null)};
+    color: ${(p) =>
+      p.hoverable && p.highlightOnOpen ? "var(--nds-primary-color)" : null};
+    font-weight: ${(p) => (p.hoverable && p.highlightOnOpen ? "600" : null)};
   }
 `;
 
@@ -100,6 +109,7 @@ const Popover = ({
   shiftX,
   shiftY,
   alignRight,
+  highlightOnOpen,
   children,
   ...rest
 }) => {
@@ -115,7 +125,7 @@ const Popover = ({
       return <StyledChevronDown size={18} />;
     }
     if (open) {
-      return <StyledChevronUp size={18} />;
+      return <StyledChevronUp highlightOnOpen={highlightOnOpen} size={18} />;
     }
 
     // default closed
@@ -123,9 +133,14 @@ const Popover = ({
   };
 
   return (
-    <StyledWrapper hoverable={hoverable}>
+    <StyledWrapper hoverable={hoverable} highlightOnOpen={highlightOnOpen}>
       <StyledTrigger onClick={toggleOpen}>
-        <StyledLabel data-text={label} open={open} hoverable={hoverable}>
+        <StyledLabel
+          data-text={label}
+          open={open}
+          hoverable={hoverable}
+          highlightOnOpen={highlightOnOpen}
+        >
           {label}
         </StyledLabel>
         {chevron()}
@@ -157,12 +172,14 @@ Popover.propTypes = {
   shiftY: PropTypes.string,
   // accept either a list of nodes or object categories:[nodes]
   // or accept children directly
+  highlightOnOpen: PropTypes.bool,
   alignRight: PropTypes.bool,
   children: PropTypes.node,
 };
 
 Popover.defaultProps = {
   hoverable: false,
+  highlightOnOpen: false,
   label: null,
   alignRight: false,
   shiftX: "0%",

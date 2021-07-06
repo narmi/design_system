@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { deviceBreakpoints } from "../../globalStyles";
 import Typography from "components/Typography";
 import PlainButton, { StyledPlainButton } from "components/PlainButton";
+import List from "components/List";
+import Popover from "components/Popover";
 
 const StyledTableTitleDiv = styled.div`
   font-size: 20px;
@@ -22,9 +24,10 @@ const StyledTableHeader = styled.th`
   @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
     display: none;
   }
+
   :last-child {
+    float: right;
     padding-right: 20px;
-    text-align: right;
   }
 `;
 
@@ -102,6 +105,18 @@ const Table = (props) => {
   const [grid, setGrid] = useState([[]]);
   const [activeSortColumns, setActiveSortColumns] = useState();
 
+  const getSortOrder = (sortKey, order) => {
+    // reverse logic if not a string i.e. integers etc ...
+    switch (typeof sortKey) {
+      case "string":
+        return order;
+      case "number":
+        return !order;
+      default:
+        return order;
+    }
+  };
+
   const renderRow = ([col, colData]) => {
     return <StyledTableRow {...props}>{renderCells(colData)}</StyledTableRow>;
   };
@@ -137,12 +152,19 @@ const Table = (props) => {
 
       let sortKey1 = cell1.sortKey;
       let sortKey2 = cell2.sortKey;
+      let orderCheck = getSortOrder(sortKey1, order);
 
-      if (order) {
+      if (orderCheck) {
         sortKey1 = cell2.sortKey;
         sortKey2 = cell1.sortKey;
       }
-      return sortKey1 < sortKey2 ? -1 : sortKey1 > sortKey2 ? 1 : 0;
+      if (sortKey1 > sortKey2) {
+        return -1;
+      } else if (sortKey1 < sortKey2) {
+        return 1;
+      } else {
+        return 0;
+      }
     });
   }
 
@@ -152,11 +174,10 @@ const Table = (props) => {
     );
   };
 
-  const sortGrid = (heading) => {
+  const sortGrid = (heading, direction) => {
     resetNonActiveHeadings(heading);
+    activeSortColumns[heading]["active"] = direction;
 
-    activeSortColumns[heading]["active"] =
-      !activeSortColumns[heading]["active"];
     let newGrid = sortByKey(
       props.gridData,
       heading,
@@ -165,20 +186,47 @@ const Table = (props) => {
     setGrid(Object.entries(newGrid).map(renderRow));
   };
 
+  const renderSortableHeader = (item, heading) => {
+    let id = item.ordered ? "0" : "1";
+    return (
+      <Typography
+        data-testid={heading + id}
+        onClick={() => sortGrid(heading, item.ordered)}
+      >
+        {item.text}
+      </Typography>
+    );
+  };
+
+  const renderPopoverHeader = (heading) => {
+    return (
+      <StyledTableHeader style={{ padding: "12px 0px 12px 20px" }}>
+        <Popover hoverable label={<Typography subheader>{heading}</Typography>}>
+          <List
+            renderItem={(item) => renderSortableHeader(item, heading)}
+            items={[
+              { ordered: true, text: "Sort A to Z" },
+              { ordered: false, text: "Sort Z to A" },
+            ]}
+          ></List>
+        </Popover>
+      </StyledTableHeader>
+    );
+  };
+
   const renderHeader = () => {
     const uniqueColumns = getUniqueColumns(props.gridData);
     return (
       <StyledTableRow>
-        {uniqueColumns.map((heading) => (
-          <StyledTableHeader>
-            <Typography
-              subheader
-              onClick={props.sortByHeader ? () => sortGrid(heading) : null}
-            >
-              {heading}
-            </Typography>
-          </StyledTableHeader>
-        ))}
+        {uniqueColumns.map((heading) =>
+          heading && props.sortableHeaders.includes(heading) ? (
+            renderPopoverHeader(heading)
+          ) : (
+            <StyledTableHeader>
+              <Typography subheader>{heading}</Typography>
+            </StyledTableHeader>
+          )
+        )}
       </StyledTableRow>
     );
   };
@@ -200,14 +248,14 @@ const Table = (props) => {
 Table.propTypes = {
   title: PropTypes.node,
   hoverable: PropTypes.bool,
-  sortByHeader: PropTypes.bool,
+  sortableHeaders: PropTypes.array,
   gridData: PropTypes.array,
 };
 
 Table.defaultProps = {
   title: "",
-  sortByHeader: true,
   hoverable: true,
+  sortableHeaders: [],
   gridData: [[]],
 };
 

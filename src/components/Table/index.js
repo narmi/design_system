@@ -128,7 +128,7 @@ const Table = (props) => {
       case "string":
         return order === "asc";
       case "number":
-        return !(order === "asc");
+        return order !== "asc";
       default:
         return order === "asc";
     }
@@ -162,6 +162,7 @@ const Table = (props) => {
   };
 
   useEffect(() => {
+    // set initial grid on load
     resetGrid();
   }, []);
 
@@ -190,9 +191,9 @@ const Table = (props) => {
   }
 
   const resetNonActiveHeadings = (heading) => {
-    Object.keys(activeSortColumns).map((x) =>
-      x != heading ? (activeSortColumns[x]["sortOrder"] = null) : null
-    );
+    Object.keys(activeSortColumns).forEach((x) => {
+      if (x !== heading) activeSortColumns[x]["sortOrder"] = null;
+    });
   };
 
   const sortGrid = (heading, direction) => {
@@ -209,10 +210,9 @@ const Table = (props) => {
   };
 
   const renderSortableHeader = (headerOption, heading) => {
-    let id = headerOption.sortOrder === "asc" ? "0" : "1";
     return (
       <Typography
-        data-testid={heading + id}
+        data-testid={heading + "_" + headerOption.sortOrder.toUpperCase()}
         onClick={() => {
           if (
             activeSortColumns[heading]["sortOrder"] === headerOption.sortOrder

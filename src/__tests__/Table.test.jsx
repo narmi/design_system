@@ -99,10 +99,10 @@ describe("Table Sorting Amount Tests", () => {
         sortableHeaders={["DESCRIPTION", "AMOUNT"]}
       />
     );
-
-    // table should initially render in user-specified order
     let selectedColumn = queryAllByTestId("col1");
     let columnValues = selectedColumn.map((cell) => cell.textContent);
+
+     // table should initially render in user-specified order
     expect(columnValues).toEqual(["-$1000", "-$123.45", "-$80", "-$130"]);
   });
 
@@ -155,10 +155,10 @@ describe("Test Table Sorting states", () => {
         sortableHeaders={["DESCRIPTION", "AMOUNT"]}
       />
     );
-
-    // table should initially render in user-specified order
     let selectedColumn = queryAllByTestId("col0");
     let columnValues = selectedColumn.map((cell) => cell.textContent);
+
+    // table should initially render in user-specified order
     expect(columnValues).toEqual([
       "Transfer to Noble Bank-34232 October 30, 2020", 
       "Bill to Waterworks-4534 October 23, 2020", 
@@ -175,13 +175,13 @@ describe("Test Table Sorting states", () => {
         sortableHeaders={["DESCRIPTION", "AMOUNT"]}
       />
     );
-
-    // clicking the Description Ascending order option should render the grid 
-    // in alphabetical order by Description
     let sortOption = queryByTestId("DESCRIPTION_ASC");
     let selectedColumn = queryAllByTestId("col0");
     sortOption.click();
     let columnValues = selectedColumn.map((cell) => cell.textContent);
+
+    // clicking the Description Ascending order option should render the grid 
+    // in alphabetical order by Description
     expect(columnValues).toEqual([
       "Bill to Waterworks-4534 October 23, 2020",
       "Transfer to Melanie Abrazado October 20, 2020",

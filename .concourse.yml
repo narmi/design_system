@@ -93,6 +93,7 @@ check_latest_dist: &check_latest_dist
         echo "PR does not contain latest dist!"
         exit 1
       fi
+      echo "MD5sums match, exiting success"
 
 jobs:
   - name: pr-storybook

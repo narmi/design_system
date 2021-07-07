@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { deviceBreakpoints } from "../../globalStyles";
 import Typography from "components/Typography";
-import PlainButton, { StyledPlainButton } from "components/PlainButton";
+import { StyledPlainButton } from "components/PlainButton";
 import List from "components/List";
 import Popover from "components/Popover";
+import { Check } from "react-feather";
 
 const StyledTableTitleDiv = styled.div`
   font-size: 20px;
@@ -70,6 +71,22 @@ const StyledStackedCell = styled.div`
   }
 `;
 
+const StyledOverlayItem = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const StyledCheck = styled(Check)`
+  size: 18;
+  padding: 0px 8px 0px 8px;
+  color: var(--nds-primary-color);
+  visibility: ${(props) => (props.visibility ? "inherit" : "hidden")};
+`;
+
+const StyledOverlayItemSpan = styled.span`
+  padding-right: 8px;
+`;
+
 const renderCells = (row) => {
   const desktopCells = row.map((cell, idx) => (
     <StyledTableCell key={idx} data-testid={"col" + idx}>
@@ -109,11 +126,11 @@ const Table = (props) => {
     // reverse logic if not a string i.e. integers etc ...
     switch (typeof sortKey) {
       case "string":
-        return order;
+        return order === "asc";
       case "number":
-        return !order;
+        return order !== "asc";
       default:
-        return order;
+        return order === "asc";
     }
   };
 
@@ -131,17 +148,22 @@ const Table = (props) => {
     return [...new Set(columns)];
   };
 
-  useEffect(() => {
+  const resetGrid = () => {
     setGrid(Object.entries(props.gridData).map(renderRow));
     let uniqueColumns = getUniqueColumns(props.gridData);
     let colOrderObject = {};
     colOrderObject = uniqueColumns.reduce((result, col, idx) => {
       if (col !== undefined) {
-        result[col] = { active: false, idx: idx };
+        result[col] = { sortOrder: null, idx: idx };
       }
       return result;
     }, {});
     setActiveSortColumns(colOrderObject);
+  };
+
+  useEffect(() => {
+    // set initial grid on load
+    resetGrid();
   }, []);
 
   function sortByKey(array, key, order) {
@@ -169,31 +191,49 @@ const Table = (props) => {
   }
 
   const resetNonActiveHeadings = (heading) => {
-    Object.keys(activeSortColumns).map((x) =>
-      x != heading ? (activeSortColumns[x]["active"] = false) : null
-    );
+    Object.keys(activeSortColumns).forEach((x) => {
+      if (x !== heading) activeSortColumns[x]["sortOrder"] = null;
+    });
   };
 
   const sortGrid = (heading, direction) => {
     resetNonActiveHeadings(heading);
-    activeSortColumns[heading]["active"] = direction;
+    activeSortColumns[heading]["sortOrder"] = direction;
 
-    let newGrid = sortByKey(
-      props.gridData,
+    let newGrid = props.gridData.slice(0);
+    newGrid = sortByKey(
+      newGrid,
       heading,
-      activeSortColumns[heading]["active"]
+      activeSortColumns[heading]["sortOrder"]
     );
     setGrid(Object.entries(newGrid).map(renderRow));
   };
 
-  const renderSortableHeader = (item, heading) => {
-    let id = item.ordered ? "0" : "1";
+  const renderSortableHeader = (headerOption, heading) => {
     return (
       <Typography
-        data-testid={heading + id}
-        onClick={() => sortGrid(heading, item.ordered)}
+        data-testid={heading + "_" + headerOption.sortOrder.toUpperCase()}
+        onClick={() => {
+          if (
+            activeSortColumns[heading]["sortOrder"] === headerOption.sortOrder
+          ) {
+            resetGrid();
+          } else {
+            sortGrid(heading, headerOption.sortOrder);
+          }
+        }}
       >
-        {item.text}
+        <StyledOverlayItem>
+          <StyledCheck
+            visibility={
+              activeSortColumns
+                ? activeSortColumns[heading]["sortOrder"] ===
+                  headerOption.sortOrder
+                : false
+            }
+          />
+          <StyledOverlayItemSpan>{headerOption.text}</StyledOverlayItemSpan>
+        </StyledOverlayItem>
       </Typography>
     );
   };
@@ -205,8 +245,8 @@ const Table = (props) => {
           <List
             renderItem={(item) => renderSortableHeader(item, heading)}
             items={[
-              { ordered: true, text: "Sort A to Z" },
-              { ordered: false, text: "Sort Z to A" },
+              { sortOrder: "asc", text: "Sort A to Z" },
+              { sortOrder: "desc", text: "Sort Z to A" },
             ]}
           ></List>
         </Popover>

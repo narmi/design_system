@@ -79,14 +79,14 @@ const StyledOverlayItem = styled.div`
 `;
 
 const StyledCheck = styled(Check)`
-  size: 18;
+  width: 20px;
+  height: 20px;
   padding: 0px 8px 0px 0px;
   color: var(--nds-primary-color);
-  visibility: inherit;
 `;
 
 const StyledPopoverContainer = styled.div`
-display: inherit;
+  display: inherit;
 `;
 
 const renderCells = (row) => {

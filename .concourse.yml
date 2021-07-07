@@ -23,13 +23,6 @@ resources:
       private_key: {{github_designsystem_private_key}}
       repo: narmi/design_system
       uri: git@github.com:narmi/design_system.git
-  - name: designsystem-master
-    type: git
-    source:
-      uri: git@github.com:narmi/design_system.git
-      branch: master
-      access_token: {{github_access_token}}
-      private_key: {{github_designsystem_private_key}}
 
   - name: banking-master-image
     type: docker-image
@@ -77,6 +70,15 @@ task_publish_storybook: &task_publish_storybook
           "https://api.github.com/repos/narmi/design_system/issues/${PR_ID}/comments"
       fi
 
+test_design_system: &test_design_system
+  path: bash
+  args:
+    - -xce
+    - |
+      cd design_system
+      npm ci --loglevel=warn
+      npm run test
+
 jobs:
   - name: pr-storybook
     max_in_flight: 5
@@ -107,29 +109,42 @@ jobs:
             - name: banking-master-image
           run: *task_publish_storybook
 
-  - name: publish-storybook-master
-    max_in_flight: 1
+  - name: pr-run-tests
+    max_in_flight: 5
     build_logs_to_retain: 1000
     plan:
-      - get: designsystem-master
+      - aggregate:
+        - get: designsystem-pr
+          params:
+            depth: 1
+          trigger: true
+          version: every
+        - get: banking-master-image
+      - put: designsystem-pr
         params:
-          depth: 2
-        trigger: true
-      - get: banking-master-image
-        params:
-          save: true
-      - task: publish-storybook
-        timeout: 30m
+          path: designsystem-pr
+          status: pending
+          context: design-system-tests
+      - task: test
+        timeout: 20m
         image: banking-master-image
         config:
           platform: linux
-          params:
-            AWS_ACCESS_KEY_ID: {{aws_access_key_narmicom_docs}}
-            AWS_SECRET_ACCESS_KEY: {{aws_secret_key_narmicom_docs}}
-            AWS_DEFAULT_REGION: us-east-1
-            CHROMATIC_PROJECT_TOKEN: {{storybook_chromatic_project_token}}
+          caches:
+            - path: "$HOME/.npm"
           inputs:
-            - name: banking-master
-              path: banking
-            - name: banking-master-image
-          run: *task_publish_storybook
+            - name: designsystem-pr
+              path: design_system
+          run: *test_design_system
+        on_success:
+          put: designsystem-pr
+          params:
+            path: designsystem-pr
+            status: success
+            context: design-system-tests
+        on_failure:
+          put: designsystem-pr
+          params:
+            path: designsystem-pr
+            status: failure
+            context: design-system-tests

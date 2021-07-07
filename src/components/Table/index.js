@@ -74,17 +74,19 @@ const StyledStackedCell = styled.div`
 const StyledOverlayItem = styled.div`
   display: flex;
   align-items: center;
+  padding: 8px 12px 8px 12px;
+  float: right;
 `;
 
 const StyledCheck = styled(Check)`
-  size: 18;
-  padding: 0px 8px 0px 8px;
+  width: 20px;
+  height: 20px;
+  padding: 0px 8px 0px 0px;
   color: var(--nds-primary-color);
-  visibility: ${(props) => (props.visibility ? "inherit" : "hidden")};
 `;
 
-const StyledOverlayItemSpan = styled.span`
-  padding-right: 8px;
+const StyledPopoverContainer = styled.div`
+  display: inherit;
 `;
 
 const renderCells = (row) => {
@@ -224,15 +226,13 @@ const Table = (props) => {
         }}
       >
         <StyledOverlayItem>
-          <StyledCheck
-            visibility={
-              activeSortColumns
-                ? activeSortColumns[heading]["sortOrder"] ===
-                  headerOption.sortOrder
-                : false
-            }
-          />
-          <StyledOverlayItemSpan>{headerOption.text}</StyledOverlayItemSpan>
+          {activeSortColumns &&
+          activeSortColumns[heading]["sortOrder"] === headerOption.sortOrder ? (
+            <StyledCheck />
+          ) : (
+            ""
+          )}
+          <span>{headerOption.text}</span>
         </StyledOverlayItem>
       </Typography>
     );
@@ -241,6 +241,7 @@ const Table = (props) => {
   const renderPopoverHeader = (heading) => {
     return (
       <StyledTableHeader style={{ padding: "12px 0px 12px 20px" }}>
+        <StyledPopoverContainer>
         <Popover hoverable label={<Typography subheader>{heading}</Typography>}>
           <List
             renderItem={(item) => renderSortableHeader(item, heading)}
@@ -250,6 +251,7 @@ const Table = (props) => {
             ]}
           ></List>
         </Popover>
+        </StyledPopoverContainer>
       </StyledTableHeader>
     );
   };

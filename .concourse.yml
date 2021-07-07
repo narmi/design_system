@@ -79,6 +79,22 @@ test_design_system: &test_design_system
       npm ci --loglevel=warn
       npm run test
 
+check_latest_dist: &check_latest_dist
+  path: bash
+  args:
+    - -xce
+    - |
+      cd design_system
+      npm ci --loglevel=warn
+      BEFORE=`md5sum dist/index.js`
+      npm run build
+      AFTER=`md5sum dist/index.js`
+      if [[ $BEFORE != $AFTER ]]; then
+        echo "PR does not contain latest dist!"
+        exit 1
+      fi
+      echo "MD5sums match, exiting success"
+
 jobs:
   - name: pr-storybook
     max_in_flight: 5
@@ -148,3 +164,43 @@ jobs:
             path: designsystem-pr
             status: failure
             context: design-system-tests
+
+  - name: pr-latest-dist
+    max_in_flight: 5
+    build_logs_to_retain: 1000
+    plan:
+      - aggregate:
+        - get: designsystem-pr
+          params:
+            depth: 1
+          trigger: true
+          version: every
+        - get: banking-master-image
+      - put: designsystem-pr
+        params:
+          path: designsystem-pr
+          status: pending
+          context: latest-dist
+      - task: check-md5
+        timeout: 20m
+        image: banking-master-image
+        config:
+          platform: linux
+          caches:
+            - path: "$HOME/.npm"
+          inputs:
+            - name: designsystem-pr
+              path: design_system
+          run: *check_latest_dist
+        on_success:
+          put: designsystem-pr
+          params:
+            path: designsystem-pr
+            status: success
+            context: latest-dist
+        on_failure:
+          put: designsystem-pr
+          params:
+            path: designsystem-pr
+            status: failure
+            context: latest-dist

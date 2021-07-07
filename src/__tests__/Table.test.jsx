@@ -92,7 +92,7 @@ const sampleGridData = [
 
 describe("Table Sorting", () => {
   it("By Amount", () => {
-    const { getByText, queryAllByTestId, queryByTestId } = render(
+    const { queryAllByTestId, queryByTestId } = render(
       <Table
         title={"test"}
         gridData={sampleGridData}
@@ -121,7 +121,7 @@ describe("Table Sorting", () => {
 
 describe("Active descending sort followed by reset", () => {
   it("Name then by Amount", () => {
-    const { getByText, queryAllByTestId, queryByTestId } = render(
+    const { queryAllByTestId, queryByTestId } = render(
       <Table
         title={"test"}
         gridData={sampleGridData}

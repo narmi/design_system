@@ -126,11 +126,11 @@ const Table = (props) => {
     // reverse logic if not a string i.e. integers etc ...
     switch (typeof sortKey) {
       case "string":
-        return order;
+        return order === "asc";
       case "number":
-        return !order;
+        return !(order === "asc");
       default:
-        return order;
+        return order === "asc";
     }
   };
 
@@ -154,7 +154,7 @@ const Table = (props) => {
     let colOrderObject = {};
     colOrderObject = uniqueColumns.reduce((result, col, idx) => {
       if (col !== undefined) {
-        result[col] = { ascending: null, idx: idx }; // active means col is sorted asc or desc, asc
+        result[col] = { sortOrder: null, idx: idx };
       }
       return result;
     }, {});
@@ -191,50 +191,45 @@ const Table = (props) => {
 
   const resetNonActiveHeadings = (heading) => {
     Object.keys(activeSortColumns).map((x) =>
-      x != heading ? (activeSortColumns[x]["ascending"] = null) : null
+      x != heading ? (activeSortColumns[x]["sortOrder"] = null) : null
     );
   };
 
   const sortGrid = (heading, direction) => {
     resetNonActiveHeadings(heading);
-    activeSortColumns[heading]["ascending"] = direction === "asc";
+    activeSortColumns[heading]["sortOrder"] = direction;
 
     let newGrid = props.gridData.slice(0);
     newGrid = sortByKey(
       newGrid,
       heading,
-      activeSortColumns[heading]["ascending"]
+      activeSortColumns[heading]["sortOrder"]
     );
     setGrid(Object.entries(newGrid).map(renderRow));
   };
 
   const renderSortableHeader = (headerOption, heading) => {
     let id = headerOption.sortOrder === "asc" ? "0" : "1";
-    let selected = false;
-    if (activeSortColumns) {
-      selected =
-        activeSortColumns[heading]["ascending"] ===
-        (headerOption.sortOrder === "asc");
-    }
     return (
       <Typography
         data-testid={heading + id}
         onClick={() => {
-          // if clicked but already active and ascedning matches
-          if (selected) {
-            activeSortColumns[heading]["ascending"] = false;
+          if (
+            activeSortColumns[heading]["sortOrder"] === headerOption.sortOrder
+          ) {
             resetGrid();
           } else {
-            activeSortColumns[heading]["ascending"] = true;
             sortGrid(heading, headerOption.sortOrder);
           }
-          resetNonActiveHeadings(heading);
         }}
       >
         <StyledOverlayItem>
           <StyledCheck
             visibility={
-              activeSortColumns && activeSortColumns[heading] ? selected : false
+              activeSortColumns
+                ? activeSortColumns[heading]["sortOrder"] ===
+                  headerOption.sortOrder
+                : false
             }
           />
           <StyledOverlayItemSpan>{headerOption.text}</StyledOverlayItemSpan>

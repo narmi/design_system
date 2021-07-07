@@ -149,6 +149,7 @@ describe("Active descending sort followed by reset", () => {
       "Transfer to Melanie Abrazado October 21, 2020",
       "Transfer to Noble Bank-34232 October 30, 2020"
     ]);
+    
     // reset order
     amountSortOption.click();
     amountColumnValues = amountColumn.map((cell) => cell.textContent);

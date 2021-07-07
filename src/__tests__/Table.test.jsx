@@ -3,7 +3,7 @@
  */
 
 import React from "react";
-import { render, screen, getByRole, getByTestId } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import Table from "components/Table";
 import PlainButton from "components/PlainButton";
 

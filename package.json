@@ -1,8 +1,9 @@
 {
-  "name": "design_system",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@narmi/design_system",
+  "version": "0.1.0",
+  "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
+  "files": ["dist/*.js"],
   "scripts": {
     "watch": "watch 'npm run build' src",
     "build": "webpack --mode=development",
@@ -59,6 +60,15 @@
     "webpack-dev-server": "^3.11.2"
   },
   "keywords": [],
-  "author": "",
-  "license": "SEE LICENSE IN LICENSE.md"
+  "author": "@fkotsian, @reshav-abraham",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/narmi/design_system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/narmi/design_system/issues"
+  },
+  "homepage": "https://github.com/narmi/design_system#readme"
 }

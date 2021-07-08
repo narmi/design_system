@@ -2,28 +2,24 @@
 
 ⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥
 
+Build your own experiences on top of the Narmi platform!
+
 This design system is intended to provide primitive "building blocks" for custom experiences. It aims to adhere as closely to the HTML spec as possible, while providing simple interfaces for complex components.
 
 Please follow the below steps to install, consume, or contribute to the design_system.
 
-## Consuming Design System
+## Consuming design_system
 
 Please follow all steps below to set up your copy of design_system.
 
-### 1. Install DesignSystem
+### 1. Install design_system
 
-Install from Github, as in:
+Install the latest version of design_system from NPM:
 
 ```
-# package.json
-...
-  "design_system": "git+ssh://git@github.com:narmi/design_system.git"
-...
+npm add @narmi/design_system --save
 ```
 
-You will need an accepted SSH key or valid Github access token with access to the Narmi repos to do this.
-
-Installation via NPM: TBD (pending 1st publishable release)
 
 ### 2. Install PeerDependencies
 
@@ -83,9 +79,7 @@ These distinct views or states are controlled by Storybook `args` (similar to pr
 
 If contributing a change, please test your components out in Storybook before making a PR.
 
-### 5. Using design_system
-
-Additional config and tips.
+### 5. Additional Config and Tips
 
 #### Consuming design_system Themes in Your App
 

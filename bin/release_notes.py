@@ -9,6 +9,7 @@ GIT_LOG_STRING = "git log {}..{} --pretty=oneline".format(LATEST_COMMIT_TO_EXCLU
 
 def create_commit_list():
     commit_messages_string = subprocess.check_output(GIT_LOG_STRING.split()).decode('utf-8')
+    print(commit_messages_string)
     commit_messages_array = commit_messages_string.split("\n")
     commit_messages_cleaned = []
     for commit_message in commit_messages_array:

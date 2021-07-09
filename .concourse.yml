@@ -100,7 +100,10 @@ task_create_release_notes: &task_create_release_notes
   args:
     - -xce
     - |
-      ./bin/release_notes.py > release.txt
+      cd design_system
+      ls bin
+      python bin/release_notes.py > release.txt
+      cat release.txt
 
 jobs:
   - name: pr-storybook

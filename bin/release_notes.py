@@ -4,12 +4,11 @@ import sys
 
 LATEST_COMMIT_TO_EXCLUDE = subprocess.check_output(["git", "rev-parse", "master"]).strip()
 LATEST_COMMIT_TO_INCLUDE = "HEAD"
-GIT_LOG_STRING = "git log {}..{} --pretty=oneline".format(LATEST_COMMIT_TO_EXCLUDE, LATEST_COMMIT_TO_INCLUDE)
+GIT_LOG_STRING = "git log {}..{} --pretty=oneline".format(LATEST_COMMIT_TO_EXCLUDE.decode('utf-8'), LATEST_COMMIT_TO_INCLUDE)
 
 
 def create_commit_list():
-    proc = subprocess.Popen(GIT_LOG_STRING, shell=True, stdout=subprocess.PIPE,)
-    commit_messages_string = proc.communicate()[0]
+    commit_messages_string = subprocess.check_output(GIT_LOG_STRING.split()).decode('utf-8')
     commit_messages_array = commit_messages_string.split("\n")
     commit_messages_cleaned = []
     for commit_message in commit_messages_array:

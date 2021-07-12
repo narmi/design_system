@@ -95,6 +95,16 @@ check_latest_dist: &check_latest_dist
       fi
       echo "MD5sums match, exiting success"
 
+task_create_release_notes: &task_create_release_notes
+  path: bash
+  args:
+    - -xce
+    - |
+      cd design_system
+      ls bin
+      python bin/release_notes.py > release.txt
+      cat release.txt
+
 jobs:
   - name: pr-storybook
     max_in_flight: 5
@@ -204,3 +214,32 @@ jobs:
             path: designsystem-pr
             status: failure
             context: latest-dist
+
+  - name: release-notes
+    max_in_flight: 5
+    build_logs_to_retain: 1000
+    plan:
+      - get: designsystem-pr
+        params:
+          depth: 1
+        trigger: true
+      - get: banking-master-image
+        params:
+          save: true
+      - task: create-release-notes
+        timeout: 30m
+        image: banking-master-image
+        config:
+          platform: linux
+          params:
+            AWS_ACCESS_KEY_ID: {{aws_access_key_narmicom_docs}}
+            AWS_SECRET_ACCESS_KEY: {{aws_secret_key_narmicom_docs}}
+            AWS_DEFAULT_REGION: us-east-1
+            CHROMATIC_PROJECT_TOKEN: {{storybook_chromatic_project_token}}
+            PR: true
+            GITHUB_ACCESS_TOKEN: {{github_access_token}}
+          inputs:
+            - name: designsystem-pr
+              path: design_system
+            - name: banking-master-image
+          run: *task_create_release_notes

@@ -3,7 +3,10 @@ import subprocess  # nosec
 import sys
 import re
 
-LATEST_COMMIT_TO_EXCLUDE = subprocess.check_output(["git", "rev-parse", "master"]).strip()
+LATEST_TAG = subprocess.check_output(["git", "tag", "--sort=-creatordate"]).split("\n")[0].strip()
+
+LATEST_COMMIT_TO_EXCLUDE = subprocess.check_output(["git", "rev-parse", "master", "-n", "1", LATEST_TAG]).strip()
+
 LATEST_COMMIT_TO_INCLUDE = "HEAD"
 GIT_LOG_STRING = "git log {}..{} --pretty=oneline".format(LATEST_COMMIT_TO_EXCLUDE.decode('utf-8'), LATEST_COMMIT_TO_INCLUDE)
 COMPONENTS = ["Button", "Card", "Icon", "Input", "List", "Modal", "NavBar", "PlainButton", "Popover", "Sidebar", "Table", "Typography",]

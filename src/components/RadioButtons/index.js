@@ -82,6 +82,12 @@ const StyledInput = styled.input`
 const StyledLabel = styled.label`
   cursor: pointer;
   margin-left: 28px;
+  
+  &:hover ${StyledFill} {
+    &::before {
+      opacity: 1;
+    }
+  }
 `;
 
 const RadioButtons = (props) => {

@@ -23,3 +23,5 @@ ManyOptions.args = {
   ...DefaultArgs,
   options: ["test1", "test2", "test3", "test4"],
 };
+
+export const Test = () => {return(<RadioButtons options={["True", "False"]} currentValue={"true"}></RadioButtons>)};

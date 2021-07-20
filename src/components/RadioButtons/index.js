@@ -91,6 +91,11 @@ const StyledLabel = styled.label`
   }
 `;
 
+
+const boolCheck = (item) => {
+  return item === "True" ? "true" : item === "False" ? "false": item;
+}
+
 const RadioButtons = (props) => {
   return (
     <StyledRadioGroup>
@@ -99,10 +104,12 @@ const RadioButtons = (props) => {
           <StyledLabel key={i + "_label"}>
             <Typography key={i + "_typ"}>{item}</Typography>
             <StyledInput
+              {...props}
               type="radio"
               name="setting_value"
-              value={item}
+              value={item==="True" ? "true" : item === "False" ? "false": item}
               key={i + "_input"}
+              defaultChecked={props.currentValue === boolCheck(item)}
             />
             <StyledFill key={i + "_fill"} />
           </StyledLabel>

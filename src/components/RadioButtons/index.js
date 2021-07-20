@@ -28,7 +28,7 @@ const StyledRadio = styled.div`
 `;
 
 const StyledFill = styled.div`
-  background: var(--nds-primary-color);
+  background: var(--nds-narmi-purple);
   width: 0;
   height: 0;
   border-radius: 100%;
@@ -49,7 +49,7 @@ const StyledFill = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 2px solid var(--nds-primary-color);
+    border: 2px solid var(--nds-narmi-purple);
     border-radius: 100%;
   }
 `;

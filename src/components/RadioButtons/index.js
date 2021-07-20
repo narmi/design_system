@@ -38,6 +38,7 @@ const StyledFill = styled.div`
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 1;
+  box-sizing: content-box;
 
   &::before {
     content: "";
@@ -74,6 +75,7 @@ const StyledInput = styled.input`
 
       &::before {
         opacity: 1;
+        box-sizing: content-box;
       }
     }
   }
@@ -85,6 +87,7 @@ const StyledLabel = styled.label`
   
   &:hover ${StyledFill}::before {
     opacity: 1;
+    box-sizing: content-box;
   }
 `;
 

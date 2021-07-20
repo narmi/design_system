@@ -84,34 +84,28 @@ const StyledInput = styled.input`
 const StyledLabel = styled.label`
   cursor: pointer;
   margin-left: 28px;
-  
+
   &:hover ${StyledFill}::before {
     opacity: 1;
     box-sizing: content-box;
   }
 `;
 
-
-const boolCheck = (item) => {
-  return item === "True" ? "true" : item === "False" ? "false": item;
-}
-
 const RadioButtons = (props) => {
   return (
     <StyledRadioGroup>
       {props.options.map((item, i) => (
-        <StyledRadio key={i + "_radio"}>
-          <StyledLabel key={i + "_label"}>
-            <Typography key={i + "_typ"}>{item}</Typography>
+        <StyledRadio key={item}>
+          <StyledLabel>
+            <Typography>{item.label}</Typography>
             <StyledInput
               {...props}
               type="radio"
-              name="setting_value"
-              value={item==="True" ? "true" : item === "False" ? "false": item}
-              key={i + "_input"}
-              defaultChecked={props.currentValue === boolCheck(item)}
+              name={props.inputType}
+              value={item.value}
+              defaultChecked={props.currentValue === item.value}
             />
-            <StyledFill key={i + "_fill"} />
+            <StyledFill />
           </StyledLabel>
         </StyledRadio>
       ))}
@@ -121,10 +115,12 @@ const RadioButtons = (props) => {
 
 RadioButtons.propTypes = {
   options: PropTypes.array,
+  inputType: PropTypes.string,
 };
 
 RadioButtons.defaultProps = {
   options: [],
+  inputType: "setting_value",
 };
 
 export default RadioButtons;

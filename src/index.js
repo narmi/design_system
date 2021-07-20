@@ -10,6 +10,7 @@ const Sidebar = require("./components/Sidebar").default;
 const NavBar = require("./components/NavBar").default;
 const Table = require("./components/Table").default;
 const Typography = require("./components/Typography/").default;
+const RadioButtons = require("./components/RadioButtons").default;
 const GlobalStyles = require("./globalStyles").default;
 
 const { useModal } = require("./components/Modal");
@@ -26,6 +27,7 @@ module.exports = {
   Sidebar,
   NavBar,
   Table,
+  RadioButtons,
   Typography,
   GlobalStyles,
   useModal,

@@ -83,10 +83,8 @@ const StyledLabel = styled.label`
   cursor: pointer;
   margin-left: 28px;
   
-  &:hover ${StyledFill} {
-    &::before {
-      opacity: 1;
-    }
+  &:hover ${StyledFill}::before {
+    opacity: 1;
   }
 `;
 

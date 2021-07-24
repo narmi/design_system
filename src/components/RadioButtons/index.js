@@ -95,9 +95,9 @@ const RadioButtons = (props) => {
   return (
     <StyledRadioGroup>
       {props.options.map((item, i) => (
-        <StyledRadio key={i + "_radio"}>
-          <StyledLabel key={i + "_label"}>
-            <Typography key={i + "_typ"}>{item}</Typography>
+        <StyledRadio key={item}>
+          <StyledLabel >
+            <Typography >{item}</Typography>
             <StyledInput
               type="radio"
               name="setting_value"
@@ -113,7 +113,7 @@ const RadioButtons = (props) => {
 };
 
 RadioButtons.propTypes = {
-  options: PropTypes.array,
+  options: PropTypes.arrayOf(PropTypes.string),
 };
 
 RadioButtons.defaultProps = {

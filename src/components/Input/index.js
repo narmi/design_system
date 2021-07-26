@@ -28,7 +28,7 @@ const StyledGroup = styled.div`
     border: 1px solid var(--nds-primary-color);
   }
 
-  padding: ${(props) => (!props.multiline && props.label ? "19px 12px 5px" : "5px 12px")};
+  padding: ${(props) => ((!props.multiline && props.label) ? "19px 12px 5px" : "5px 12px")};
   border-radius: ${(props) => (!props.multiline && props.icon ? "0" : "4px")};
 
   &.nds-disabled,
@@ -70,13 +70,11 @@ const StyledTextArea = styled.textarea`
   resize: none;
   outline: 0;
   overflow: hidden;
-  font-size: 16px;
-  line-height: 22px;
-  letter-spacing: 0px;
+  line-height: 1.2;
   vertical-align: middle;
   color: var(--nds-grey-text);
   font-family: var(--nds-font-family);
-  // padding: 0.5rem,
+  padding: 0.2em 0 0;
 
   &:disabled {
     background: var(--nds-grey-disabled-fill);
@@ -154,7 +152,7 @@ const StyledError = styled.div`
 
 function handleKeyDown(e) {
   e.target.style.height = "inherit";
-  e.target.style.height = `${e.target.scrollHeight - 15}px`;
+  e.target.style.height = `${e.target.scrollHeight}px`;
 }
 
 const Input = ({

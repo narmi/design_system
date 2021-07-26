@@ -28,7 +28,8 @@ const StyledGroup = styled.div`
     border: 1px solid var(--nds-primary-color);
   }
 
-  padding: ${(props) => ((!props.multiline && props.label) ? "19px 12px 5px" : "5px 12px")};
+  padding: ${(props) =>
+    !props.multiline && props.label ? "19px 12px 5px" : "5px 12px"};
   border-radius: ${(props) => (!props.multiline && props.icon ? "0" : "4px")};
 
   &.nds-disabled,
@@ -187,28 +188,28 @@ const Input = ({
         {icon ? icon : null}
         {!multiline ? (
           <>
-          <StyledInput
-            id={id}
-            onChange={onChange}
-            disabled={disabled}
-            type={type}
-            placeholder={placeholder}
-            ref={inputRef}
-            {...rest}
-            required
-          />
-          <StyledLabel
-          htmlFor={id}
-          className={[
-            disabled ? "nds-disabled" : null,
-            error ? "nds-error" : null,
-            type === "date" ? "nds-floated" : null,
-            placeholder ? "nds-floated" : null,
-          ]}
-        >
-          {label}
-        </StyledLabel>
-        </>
+            <StyledInput
+              id={id}
+              onChange={onChange}
+              disabled={disabled}
+              type={type}
+              placeholder={placeholder}
+              ref={inputRef}
+              {...rest}
+              required
+            />
+            <StyledLabel
+              htmlFor={id}
+              className={[
+                disabled ? "nds-disabled" : null,
+                error ? "nds-error" : null,
+                type === "date" ? "nds-floated" : null,
+                placeholder ? "nds-floated" : null,
+              ]}
+            >
+              {label}
+            </StyledLabel>
+          </>
         ) : (
           <StyledTextArea
             id={id}

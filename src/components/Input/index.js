@@ -22,14 +22,14 @@ const StyledGroup = styled.div`
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: ${(props) => (!props.multiline ? "100%" : "none")};
 
   &:focus-within {
     border: 1px solid var(--nds-primary-color);
   }
 
-  padding: ${(props) => (props.label ? "19px 12px 5px" : "5px 12px")};
-  border-radius: ${(props) => (props.icon ? "0" : "4px")};
+  padding: ${(props) => (!props.multiline && props.label ? "19px 12px 5px" : "5px 12px")};
+  border-radius: ${(props) => (!props.multiline && props.icon ? "0" : "4px")};
 
   &.nds-disabled,
   &.nds-disabled:focus-within {
@@ -52,6 +52,31 @@ const StyledInput = styled.input`
   color: var(--nds-grey-text);
   font-family: var(--nds-font-family);
   padding: 0;
+  width: 100%;
+
+  &:disabled {
+    background: var(--nds-grey-disabled-fill);
+    color: var(--nds-grey-placeholder);
+  }
+
+  &::-webkit-calendar-picker-indicator {
+    visibility: hidden;
+  }
+  ${(props) => (props.showNativeDatepicker ? nativeDatepickerStyles : null)}
+`;
+
+const StyledTextArea = styled.textarea`
+  border: none;
+  resize: none;
+  outline: 0;
+  overflow: hidden;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0px;
+  vertical-align: middle;
+  color: var(--nds-grey-text);
+  font-family: var(--nds-font-family);
+  // padding: 0.5rem,
   width: 100%;
 
   &:disabled {
@@ -128,6 +153,11 @@ const StyledError = styled.div`
   transition: 300ms;
 `;
 
+function handleKeyDown(e) {
+  e.target.style.height = "inherit";
+  e.target.style.height = `${e.target.scrollHeight - 15}px`;
+}
+
 const Input = ({
   id,
   label,
@@ -138,6 +168,7 @@ const Input = ({
   error,
   type,
   placeholder,
+  multiline,
   ...rest
 }) => {
   // floating labels without forcing a controlled component: https://css-tricks.com/float-labels-css/#the-trick-3-of-3-the-valid-state
@@ -149,25 +180,29 @@ const Input = ({
       }}
     >
       <StyledGroup
+        multiline={multiline}
         label={label}
         icon={icon}
+        style={{"width": "500px"}}
         className={[
           disabled ? "nds-disabled" : null,
           error ? "nds-error" : null,
         ]}
       >
         {icon ? icon : null}
-        <StyledInput
-          id={id}
-          onChange={onChange}
-          disabled={disabled}
-          type={type}
-          placeholder={placeholder}
-          ref={inputRef}
-          {...rest}
-          required
-        />
-        <StyledLabel
+        {!multiline ? (
+          <>
+          <StyledInput
+            id={id}
+            onChange={onChange}
+            disabled={disabled}
+            type={type}
+            placeholder={placeholder}
+            ref={inputRef}
+            {...rest}
+            required
+          />
+          <StyledLabel
           htmlFor={id}
           className={[
             disabled ? "nds-disabled" : null,
@@ -178,6 +213,20 @@ const Input = ({
         >
           {label}
         </StyledLabel>
+        </>
+        ) : (
+          <StyledTextArea
+            id={id}
+            onChange={onChange}
+            disabled={disabled}
+            type={type}
+            placeholder={placeholder}
+            ref={inputRef}
+            {...rest}
+            required
+            onChange={handleKeyDown}
+          />
+        )}
         {decoration ? (
           <StyledDecorationWrapper>{decoration}</StyledDecorationWrapper>
         ) : null}

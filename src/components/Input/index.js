@@ -66,15 +66,16 @@ const StyledInput = styled.input`
 `;
 
 const StyledTextArea = styled.textarea`
-  border: none;
   resize: none;
-  outline: 0;
+  height: auto;
   overflow: hidden;
   line-height: 1.2;
   vertical-align: middle;
   color: var(--nds-grey-text);
   font-family: var(--nds-font-family);
-  padding: 0.2em 0 0;
+  border: none;
+  outline: 0;
+  padding: 0;
 
   &:disabled {
     background: var(--nds-grey-disabled-fill);
@@ -145,14 +146,12 @@ const StyledError = styled.div`
   justify-content: flex-start;
   align-items: center;
 
-  // transition
   background: transparent;
   transition: 300ms;
 `;
 
-function handleKeyDown(e) {
-  e.target.style.height = "inherit";
-  e.target.style.height = `${e.target.scrollHeight}px`;
+function handleKeyUp(e) {
+  e.target.style.minHeight = `${e.target.scrollHeight}px`;
 }
 
 const Input = ({
@@ -220,7 +219,9 @@ const Input = ({
             ref={inputRef}
             {...rest}
             required
-            onChange={handleKeyDown}
+            onKeyUp={handleKeyUp}
+            minRows="1"
+            rows="1"
           />
         )}
         {decoration ? (

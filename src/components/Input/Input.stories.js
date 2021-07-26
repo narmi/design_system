@@ -61,3 +61,12 @@ Phone.args = {
   placeholder: "(xxx) xxx-xxxx",
   pattern: "([0-9]{3}) [0-9]{3}-[0-9]{4}",
 };
+
+export const Multiline = Template.bind({});
+Multiline.args = {
+  multiline: true,
+};
+
+export const Test = () => {
+  return(<Input multiline style={{width:"500px"}}/>);
+}

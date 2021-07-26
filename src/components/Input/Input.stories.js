@@ -66,3 +66,7 @@ export const Multiline = Template.bind({});
 Multiline.args = {
   multiline: true,
 };
+
+export const Test = () => {
+  return(<Input multiline style={{width:"500px"}}/>);
+}

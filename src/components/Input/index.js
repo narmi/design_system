@@ -77,7 +77,6 @@ const StyledTextArea = styled.textarea`
   color: var(--nds-grey-text);
   font-family: var(--nds-font-family);
   // padding: 0.5rem,
-  width: 100%;
 
   &:disabled {
     background: var(--nds-grey-disabled-fill);
@@ -183,7 +182,6 @@ const Input = ({
         multiline={multiline}
         label={label}
         icon={icon}
-        style={{"width": "500px"}}
         className={[
           disabled ? "nds-disabled" : null,
           error ? "nds-error" : null,

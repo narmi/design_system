@@ -84,7 +84,7 @@ const StyledInput = styled.input`
 const StyledLabel = styled.label`
   cursor: pointer;
   margin-left: 28px;
-  
+
   &:hover ${StyledFill}::before {
     opacity: 1;
     box-sizing: content-box;
@@ -94,13 +94,15 @@ const StyledLabel = styled.label`
 const RadioButtons = (props) => {
   const [radioOptions, setRadioOptions] = useState([]);
 
-  useEffect(() => {setRadioOptions(props.options)},[]);
+  useEffect(() => {
+    setRadioOptions(props.options);
+  }, []);
   return (
     <StyledRadioGroup>
       {radioOptions.map((item, i) => (
         <StyledRadio key={item}>
-          <StyledLabel >
-            <Typography >{item}</Typography>
+          <StyledLabel>
+            <Typography>{item}</Typography>
             <StyledInput
               type="radio"
               name="setting_value"

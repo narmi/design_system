@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { XCircle } from "react-feather";
@@ -22,14 +22,13 @@ const StyledGroup = styled.div`
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  width: ${(props) => (!props.multiline ? "100%" : "none")};
+  width: 100%;
 
   &:focus-within {
     border: 1px solid var(--nds-primary-color);
   }
 
-  padding: ${(props) =>
-    !props.multiline && props.label ? "19px 12px 5px" : "5px 12px"};
+  padding: ${(props) => (props.label ? "19px 12px 5px" : "5px 12px")};
   border-radius: ${(props) => (!props.multiline && props.icon ? "0" : "4px")};
 
   &.nds-disabled,
@@ -68,8 +67,6 @@ const StyledInput = styled.input`
 
 const StyledTextArea = styled.textarea`
   resize: none;
-  height: auto;
-  overflow: hidden;
   line-height: 1.2;
   vertical-align: middle;
   color: var(--nds-grey-text);
@@ -77,6 +74,8 @@ const StyledTextArea = styled.textarea`
   border: none;
   outline: 0;
   padding: 0;
+  overflow: visible;
+  width: 100%;
 
   &:disabled {
     background: var(--nds-grey-disabled-fill);
@@ -101,21 +100,27 @@ const nativeDatepickerStyles = css`
 
 const StyledLabel = styled.label`
   position: absolute;
-  top: 14px;
+  top: 50%;
+  transform: translateY(-50%);
   left: 12px;
   background: transparent;
+  pointer-events: none;
   transition: 0ms;
   color: var(--nds-grey-placeholder);
   font-size: 16px;
   font-family: var(--nds-font-family);
 
-  ${StyledInput}:focus ~ & {
+  ${StyledInput}:focus ~ &,
+  ${StyledTextArea}:focus ~ & {
     color: var(--nds-primary-color);
   }
 
-  ${StyledInput} ~ &.nds-disabled {
+  ${StyledInput} ~ &.nds-disabled,
+  ${StyledTextArea} ~ &.nds-disabled {
     color: var(--nds-grey-placeholder);
   }
+  
+  ${StyledTextArea} ~ &.nds-error,
   ${StyledInput} ~ &.nds-error {
     color: var(--nds-messaging-red);
   }
@@ -123,10 +128,15 @@ const StyledLabel = styled.label`
   ${StyledInput}:focus ~ &,
   ${StyledInput}:valid ~ &,
   ${StyledInput}:disabled ~ &,
-  ${StyledInput} ~ &.nds-floated {
-    transform: translate(0%, -9px);
+  ${StyledInput} ~ &.nds-floated,
+  ${StyledTextArea}:focus ~ &,
+  ${StyledTextArea}:valid ~ &,
+  ${StyledTextArea}:disabled ~ &,
+  ${StyledTextArea} ~ &.nds-floated {
     font-size: 12px;
     line-height: 16px;
+    top: 0;
+    transform: translateY(25%);
   }
 `;
 const StyledDecorationWrapper = styled.div`
@@ -152,7 +162,8 @@ const StyledError = styled.div`
 `;
 
 function handleKeyUp(e) {
-  e.target.style.minHeight = `${e.target.scrollHeight}px`;
+  e.target.style.height = "inherit";
+  e.target.style.height = `${e.target.scrollHeight}px`;
 }
 
 const Input = ({
@@ -166,10 +177,18 @@ const Input = ({
   type,
   placeholder,
   multiline,
+  required,
   ...rest
 }) => {
   // floating labels without forcing a controlled component: https://css-tricks.com/float-labels-css/#the-trick-3-of-3-the-valid-state
   const inputRef = React.useRef(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
+    }
+  }, [inputRef]);
+
   return (
     <StyledColumn
       onClick={() => {
@@ -187,44 +206,42 @@ const Input = ({
       >
         {icon ? icon : null}
         {!multiline ? (
-          <>
-            <StyledInput
-              id={id}
-              onChange={onChange}
-              disabled={disabled}
-              type={type}
-              placeholder={placeholder}
-              ref={inputRef}
-              {...rest}
-              required
-            />
-            <StyledLabel
-              htmlFor={id}
-              className={[
-                disabled ? "nds-disabled" : null,
-                error ? "nds-error" : null,
-                type === "date" ? "nds-floated" : null,
-                placeholder ? "nds-floated" : null,
-              ]}
-            >
-              {label}
-            </StyledLabel>
-          </>
-        ) : (
-          <StyledTextArea
+          <StyledInput
             id={id}
             onChange={onChange}
             disabled={disabled}
             type={type}
             placeholder={placeholder}
             ref={inputRef}
+            required={required}
             {...rest}
-            required
+          />
+        ) : (
+          <StyledTextArea
+            wrap="hard"
+            ref={inputRef}
+            onChange={onChange}
+            disabled={disabled}
+            type={type}
+            placeholder={placeholder}
+            required={required}
+            {...rest}
             onKeyUp={handleKeyUp}
             minRows="1"
             rows="1"
           />
         )}
+        <StyledLabel
+          htmlFor={id}
+          className={[
+            disabled ? "nds-disabled" : null,
+            error ? "nds-error" : null,
+            type === "date" ? "nds-floated" : null,
+            placeholder ? "nds-floated" : null,
+          ]}
+        >
+          {label}
+        </StyledLabel>
         {decoration ? (
           <StyledDecorationWrapper>{decoration}</StyledDecorationWrapper>
         ) : null}
@@ -255,12 +272,14 @@ Input.propTypes = {
   // native input props
   id: PropTypes.string,
   type: PropTypes.string,
+  required: PropTypes.bool,
 };
 
 Input.defaultProps = {
   label: null,
   decoration: null,
   error: null,
+  required: true,
   showNativeDatepicker: false,
   // native input props
   className: "",

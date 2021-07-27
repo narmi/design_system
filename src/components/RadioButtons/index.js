@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Typography from "../Typography";
 import styled from "styled-components";
@@ -92,9 +92,12 @@ const StyledLabel = styled.label`
 `;
 
 const RadioButtons = (props) => {
+  const [radioOptions, setRadioOptions] = useState([]);
+
+  useEffect(() => {setRadioOptions(props.options)},[]);
   return (
     <StyledRadioGroup>
-      {props.options.map((item, i) => (
+      {radioOptions.map((item, i) => (
         <StyledRadio key={item}>
           <StyledLabel >
             <Typography >{item}</Typography>

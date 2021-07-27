@@ -187,6 +187,7 @@ const Input = ({
   type,
   placeholder,
   multiline,
+  required,
   ...rest
 }) => {
   // floating labels without forcing a controlled component: https://css-tricks.com/float-labels-css/#the-trick-3-of-3-the-valid-state
@@ -215,57 +216,42 @@ const Input = ({
       >
         {icon ? icon : null}
         {!multiline ? (
-          <>
-            <StyledInput
-              id={id}
-              onChange={onChange}
-              disabled={disabled}
-              type={type}
-              placeholder={placeholder}
-              ref={inputRef}
-              {...rest}
-              required
-            />
-            <StyledLabel
-              htmlFor={id}
-              className={[
-                disabled ? "nds-disabled" : null,
-                error ? "nds-error" : null,
-                type === "date" ? "nds-floated" : null,
-                placeholder ? "nds-floated" : null,
-              ]}
-            >
-              {label}
-            </StyledLabel>
-          </>
+          <StyledInput
+            id={id}
+            onChange={onChange}
+            disabled={disabled}
+            type={type}
+            placeholder={placeholder}
+            ref={inputRef}
+            required={required}
+            {...rest}
+          />
         ) : (
-          <>
-            <StyledTextArea
-              wrap="hard"
-              ref={inputRef}
-              onChange={onChange}
-              disabled={disabled}
-              type={type}
-              placeholder={placeholder}
-              {...rest}
-              required
-              onKeyUp={handleKeyUp}
-              minRows="1"
-              rows="1"
-            />
-            <StyledLabel
-              htmlFor={id}
-              className={[
-                disabled ? "nds-disabled" : null,
-                error ? "nds-error" : null,
-                type === "date" ? "nds-floated" : null,
-                placeholder ? "nds-floated" : null,
-              ]}
-            >
-              {label}
-            </StyledLabel>
-          </>
+          <StyledTextArea
+            wrap="hard"
+            ref={inputRef}
+            onChange={onChange}
+            disabled={disabled}
+            type={type}
+            placeholder={placeholder}
+            required={required}
+            {...rest}
+            onKeyUp={handleKeyUp}
+            minRows="1"
+            rows="1"
+          />
         )}
+        <StyledLabel
+          htmlFor={id}
+          className={[
+            disabled ? "nds-disabled" : null,
+            error ? "nds-error" : null,
+            type === "date" ? "nds-floated" : null,
+            placeholder ? "nds-floated" : null,
+          ]}
+        >
+          {label}
+        </StyledLabel>
         {decoration ? (
           <StyledDecorationWrapper>{decoration}</StyledDecorationWrapper>
         ) : null}
@@ -296,12 +282,14 @@ Input.propTypes = {
   // native input props
   id: PropTypes.string,
   type: PropTypes.string,
+  required: PropTypes.bool,
 };
 
 Input.defaultProps = {
   label: null,
   decoration: null,
   error: null,
+  required: true,
   showNativeDatepicker: false,
   // native input props
   className: "",

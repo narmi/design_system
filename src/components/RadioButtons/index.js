@@ -101,7 +101,7 @@ const RadioButtons = (props) => {
   return (
     <StyledRadioGroup>
       {radioOptions.map((item, i) => (
-        <StyledRadio key={item}>
+        <StyledRadio key={item.value}>
           <StyledLabel>
             <Typography>{item.label}</Typography>
             <StyledInput

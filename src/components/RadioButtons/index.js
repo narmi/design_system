@@ -97,19 +97,21 @@ const RadioButtons = (props) => {
   useEffect(() => {
     setRadioOptions(props.options);
   }, []);
+
   return (
     <StyledRadioGroup>
       {radioOptions.map((item, i) => (
         <StyledRadio key={item}>
           <StyledLabel>
-            <Typography>{item}</Typography>
+            <Typography>{item.label}</Typography>
             <StyledInput
+              {...props}
               type="radio"
-              name="setting_value"
-              value={item}
-              key={i + "_input"}
+              name={props.inputType}
+              value={item.value}
+              defaultChecked={props.initialValue === item.value}
             />
-            <StyledFill key={i + "_fill"} />
+            <StyledFill />
           </StyledLabel>
         </StyledRadio>
       ))}
@@ -118,11 +120,18 @@ const RadioButtons = (props) => {
 };
 
 RadioButtons.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string),
+  options: PropTypes.array,
+  inputType: PropTypes.string,
+  initialValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+  ]),
 };
 
 RadioButtons.defaultProps = {
   options: [],
+  inputType: "setting_value",
 };
 
 export default RadioButtons;

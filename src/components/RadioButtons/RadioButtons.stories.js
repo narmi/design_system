@@ -10,16 +10,29 @@ export default {
 };
 
 const Template = (args) => <RadioButtons {...args} />;
-const DefaultArgs = {};
+const DefaultArgs = {
+  inputType: "setting_value",
+};
 
 export const Boolean = Template.bind({});
 Boolean.args = {
   ...DefaultArgs,
-  options: ["True", "False"],
+  initialValue: true,
+  options: [
+    { label: "True", value: true },
+    { label: "False", value: false },
+  ],
 };
 
 export const ManyOptions = Template.bind({});
 ManyOptions.args = {
   ...DefaultArgs,
-  options: ["test1", "test2", "test3", "test4"],
+  options: [
+    { label: "test1", value: "test1" },
+    { label: "test2", value: "test2" },
+    { label: "test3", value: "test3" },
+    { label: "test4", value: "test3" },
+  ],
 };
+
+

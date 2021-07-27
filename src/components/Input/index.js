@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { XCircle } from "react-feather";
@@ -22,14 +22,13 @@ const StyledGroup = styled.div`
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  width: ${(props) => (!props.multiline ? "100%" : "none")};
+  width: 100%;
 
   &:focus-within {
     border: 1px solid var(--nds-primary-color);
   }
 
-  padding: ${(props) =>
-    !props.multiline && props.label ? "19px 12px 5px" : "5px 12px"};
+  padding: ${(props) => (props.label ? "19px 12px 5px" : "5px 12px")};
   border-radius: ${(props) => (!props.multiline && props.icon ? "0" : "4px")};
 
   &.nds-disabled,
@@ -68,8 +67,6 @@ const StyledInput = styled.input`
 
 const StyledTextArea = styled.textarea`
   resize: none;
-  height: auto;
-  overflow: hidden;
   line-height: 1.2;
   vertical-align: middle;
   color: var(--nds-grey-text);
@@ -77,6 +74,8 @@ const StyledTextArea = styled.textarea`
   border: none;
   outline: 0;
   padding: 0;
+  overflow: visible;
+  width: 100%;
 
   &:disabled {
     background: var(--nds-grey-disabled-fill);
@@ -104,6 +103,7 @@ const StyledLabel = styled.label`
   top: 14px;
   left: 12px;
   background: transparent;
+  pointer-events: none;
   transition: 0ms;
   color: var(--nds-grey-placeholder);
   font-size: 16px;
@@ -124,6 +124,26 @@ const StyledLabel = styled.label`
   ${StyledInput}:valid ~ &,
   ${StyledInput}:disabled ~ &,
   ${StyledInput} ~ &.nds-floated {
+    transform: translate(0%, -9px);
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  ${StyledTextArea}:focus ~ & {
+    color: var(--nds-primary-color);
+  }
+
+  ${StyledTextArea} ~ &.nds-disabled {
+    color: var(--nds-grey-placeholder);
+  }
+  ${StyledTextArea} ~ &.nds-error {
+    color: var(--nds-messaging-red);
+  }
+
+  ${StyledTextArea}:focus ~ &,
+  ${StyledTextArea}:valid ~ &,
+  ${StyledTextArea}:disabled ~ &,
+  ${StyledTextArea} ~ &.nds-floated {
     transform: translate(0%, -9px);
     font-size: 12px;
     line-height: 16px;
@@ -152,7 +172,8 @@ const StyledError = styled.div`
 `;
 
 function handleKeyUp(e) {
-  e.target.style.minHeight = `${e.target.scrollHeight}px`;
+  e.target.style.height = "inherit";
+  e.target.style.height = `${e.target.scrollHeight}px`;
 }
 
 const Input = ({
@@ -170,6 +191,13 @@ const Input = ({
 }) => {
   // floating labels without forcing a controlled component: https://css-tricks.com/float-labels-css/#the-trick-3-of-3-the-valid-state
   const inputRef = React.useRef(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
+    }
+  }, [inputRef]);
+
   return (
     <StyledColumn
       onClick={() => {
@@ -211,19 +239,32 @@ const Input = ({
             </StyledLabel>
           </>
         ) : (
-          <StyledTextArea
-            id={id}
-            onChange={onChange}
-            disabled={disabled}
-            type={type}
-            placeholder={placeholder}
-            ref={inputRef}
-            {...rest}
-            required
-            onKeyUp={handleKeyUp}
-            minRows="1"
-            rows="1"
-          />
+          <>
+            <StyledTextArea
+              wrap="hard"
+              ref={inputRef}
+              onChange={onChange}
+              disabled={disabled}
+              type={type}
+              placeholder={placeholder}
+              {...rest}
+              required
+              onKeyUp={handleKeyUp}
+              minRows="1"
+              rows="1"
+            />
+            <StyledLabel
+              htmlFor={id}
+              className={[
+                disabled ? "nds-disabled" : null,
+                error ? "nds-error" : null,
+                type === "date" ? "nds-floated" : null,
+                placeholder ? "nds-floated" : null,
+              ]}
+            >
+              {label}
+            </StyledLabel>
+          </>
         )}
         {decoration ? (
           <StyledDecorationWrapper>{decoration}</StyledDecorationWrapper>

@@ -64,9 +64,13 @@ Phone.args = {
 
 export const Multiline = Template.bind({});
 Multiline.args = {
+  label: "Label",
   multiline: true,
 };
 
-export const Test = () => {
-  return(<Input multiline style={{width:"500px"}}/>);
-}
+export const Multiline2 = Template.bind({});
+Multiline2.args = {
+  defaultValue:
+    "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very long string",
+  multiline: true,
+};

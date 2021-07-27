@@ -100,7 +100,8 @@ const nativeDatepickerStyles = css`
 
 const StyledLabel = styled.label`
   position: absolute;
-  top: 14px;
+  top: 50%;
+  transform: translateY(-50%);
   left: 12px;
   background: transparent;
   pointer-events: none;
@@ -109,13 +110,17 @@ const StyledLabel = styled.label`
   font-size: 16px;
   font-family: var(--nds-font-family);
 
-  ${StyledInput}:focus ~ & {
+  ${StyledInput}:focus ~ &,
+  ${StyledTextArea}:focus ~ & {
     color: var(--nds-primary-color);
   }
 
-  ${StyledInput} ~ &.nds-disabled {
+  ${StyledInput} ~ &.nds-disabled,
+  ${StyledTextArea} ~ &.nds-disabled {
     color: var(--nds-grey-placeholder);
   }
+  
+  ${StyledTextArea} ~ &.nds-error,
   ${StyledInput} ~ &.nds-error {
     color: var(--nds-messaging-red);
   }
@@ -123,30 +128,15 @@ const StyledLabel = styled.label`
   ${StyledInput}:focus ~ &,
   ${StyledInput}:valid ~ &,
   ${StyledInput}:disabled ~ &,
-  ${StyledInput} ~ &.nds-floated {
-    transform: translate(0%, -9px);
-    font-size: 12px;
-    line-height: 16px;
-  }
-
-  ${StyledTextArea}:focus ~ & {
-    color: var(--nds-primary-color);
-  }
-
-  ${StyledTextArea} ~ &.nds-disabled {
-    color: var(--nds-grey-placeholder);
-  }
-  ${StyledTextArea} ~ &.nds-error {
-    color: var(--nds-messaging-red);
-  }
-
+  ${StyledInput} ~ &.nds-floated,
   ${StyledTextArea}:focus ~ &,
   ${StyledTextArea}:valid ~ &,
   ${StyledTextArea}:disabled ~ &,
   ${StyledTextArea} ~ &.nds-floated {
-    transform: translate(0%, -9px);
     font-size: 12px;
     line-height: 16px;
+    top: 0;
+    transform: translateY(25%);
   }
 `;
 const StyledDecorationWrapper = styled.div`

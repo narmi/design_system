@@ -28,11 +28,6 @@ module.exports = {
       commonjs: "react-dom",
       amd: "react-dom",
     },
-    "styled-components": {
-      commonjs: "styled-components",
-      commonjs2: "styled-components",
-      amd: "styled-components",
-    },
   },
   module: {
     rules: [

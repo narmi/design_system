@@ -1,15 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-
-const StyledContainer = styled.span`
-  color: ${(props) => props.color};
-  font-weight: ${(props) => (props.semibold ? "600" : props.fontWeight)};
-  font-family: var(--nds-font-family);
-  line-height: ${(props) => props.lineHeight};
-  font-size: ${(props) => props.fontSize};
-  text-transform: ${(props) => (props.subheader ? "uppercase" : null)};
-`;
 
 const Typography = (props) => {
   let fontSize, fontWeight, lineHeight;
@@ -63,17 +53,24 @@ const Typography = (props) => {
     fontWeight = "400";
     lineHeight = "20px";
   }
+  const textTransform = props.subheader ? "uppercase" : null
 
   return (
-    <StyledContainer
-      color={color}
-      fontWeight={fontWeight}
-      fontSize={fontSize}
-      lineHeight={lineHeight}
+    <span
+      className="nds-typography"
+      style={{
+        color,
+        fontWeight,
+        fontFamily: "var(--nds-font-family)",
+        fontSize,
+        lineHeight,
+        textTransform,
+        ...props.style,
+      }}
       {...props}
     >
       {props.children}
-    </StyledContainer>
+    </span>
   );
 };
 

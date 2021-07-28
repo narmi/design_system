@@ -3,15 +3,14 @@
   "version": "0.1.0",
   "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
-  "files": ["dist/*.js"],
+  "files": [
+    "dist/*.js"
+  ],
   "scripts": {
     "watch": "watch 'npm run build' src",
     "build": "webpack --mode=development",
     "prepublish": "npm run build",
-    "test": "jest",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "publish-storybook": "chromatic --project-token $CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes"
+    "test": "jest --passWithNoTests"
   },
   "husky": {
     "hooks": {
@@ -21,8 +20,7 @@
   "peerDependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-feather": "^2.0.9",
-    "styled-components": ">= 5"
+    "react-feather": "^2.0.9"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
@@ -38,8 +36,8 @@
     "@testing-library/react": "^12.0.0",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
-    "babel-plugin-styled-components": "^1.12.0",
     "chromatic": "^5.7.1",
+    "core-js": "^3.15.2",
     "css-loader": "^1.0.1",
     "html-webpack-plugin": "^5.3.1",
     "husky": "^6.0.0",
@@ -51,9 +49,7 @@
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-feather": "^2.0.9",
-    "storybook-addon-styled-component-theme": "^2.0.0",
     "style-loader": "^0.23.1",
-    "styled-components": "5.2.3",
     "watch": "^1.0.2",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12",

@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { XCircle } from "react-feather";
 
-import { ndsWhite, messagingRed } from "../../globalStyles";
 
 const StyledColumn = styled.div`
   display: flex;
@@ -253,8 +252,6 @@ const Input = ({
           <StyledError>
             <XCircle
               size={14}
-              color={ndsWhite}
-              style={{ marginRight: "2px", fill: messagingRed }}
             />{" "}
             {error}
           </StyledError>

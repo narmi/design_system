@@ -1,32 +1,42 @@
-const Button = require("./components/Button").default;
-const Card = require("./components/Card").default;
-const Icon = require("./components/Icon/").default;
-const Input = require("./components/Input").default;
-const List = require("./components/List").default;
-const Modal = require("./components/Modal").default;
-const PlainButton = require("./components/PlainButton").default;
-const Popover = require("./components/Popover").default;
-const Sidebar = require("./components/Sidebar").default;
-const NavBar = require("./components/NavBar").default;
-const Table = require("./components/Table").default;
-const Typography = require("./components/Typography/").default;
-const GlobalStyles = require("./globalStyles").default;
+const React = require("react");
 
-const { useModal } = require("./components/Modal");
-
-module.exports = {
+const Button = require("Button").default;
+const PlainButton = require("PlainButton").default;
+const ButtonBar = require("ButtonBar").default;
+const NavBar = require("NavBar").default;
+const Modal = require("Modal").default;
+const Details = require("Details").default;
+const Typography = require("Typography").default;
+const components = {
   Button,
-  Card,
-  Icon,
-  Input,
-  List,
-  Modal,
-  PlainButton,
-  Popover,
-  Sidebar,
+  ButtonBar,
   NavBar,
-  Table,
+  Modal,
+  Details,
   Typography,
-  GlobalStyles,
-  useModal,
 };
+
+let styleString = require("global").styles;
+Object.values(components).forEach((component) => {
+  if (component.styles) {
+    styleString += component.styles;
+  }
+});
+const GlobalStyles = () => (
+  React.createElement("style", {
+    dangerouslySetInnerHTML: {
+      __html: styleString,
+    }
+  })
+);
+
+export {
+  Button,
+  PlainButton,
+  ButtonBar,
+  NavBar,
+  Modal,
+  Details,
+  GlobalStyles,
+};
+

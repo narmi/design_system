@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { deviceBreakpoints } from "../../globalStyles";
-import Typography from "components/Typography";
-import { StyledPlainButton } from "components/PlainButton";
-import List from "components/List";
-import Popover from "components/Popover";
 import { Check } from "react-feather";
+import { deviceBreakpoints } from "globalStyles";
+import Typography from "Typography";
+import { StyledPlainButton } from "PlainButton";
+import List from "List";
+import Popover from "Popover";
 
 const StyledTableTitleDiv = styled.div`
   font-size: 20px;

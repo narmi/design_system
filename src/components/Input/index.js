@@ -107,6 +107,8 @@ const StyledLabel = styled.label`
   pointer-events: none;
   transition: 0ms;
   color: var(--nds-grey-placeholder);
+  font-weight: 400;
+  user-select: none;
   font-size: 16px;
   font-family: var(--nds-font-family);
 

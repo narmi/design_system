@@ -10,6 +10,7 @@ export const styles = `
     --nds-disabled: 217, 217, 217;
     --nds-text-header: 51, 51, 51;
     --nds-text: 76, 76, 76;
+    --nds-error: 217, 59, 59;
   }
 `;
 

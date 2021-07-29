@@ -1,5 +1,7 @@
 const React = require("react");
 
+const Input = require("Input").default;
+const TextInput = require("TextInput").default;
 const Button = require("Button").default;
 const PlainButton = require("PlainButton").default;
 const ButtonBar = require("ButtonBar").default;
@@ -8,6 +10,8 @@ const Modal = require("Modal").default;
 const Details = require("Details").default;
 const Typography = require("Typography").default;
 const components = {
+  Input,
+  TextInput,
   Button,
   ButtonBar,
   NavBar,
@@ -31,6 +35,8 @@ const GlobalStyles = () => (
 );
 
 export {
+  Input,
+  TextInput,
   Button,
   PlainButton,
   ButtonBar,

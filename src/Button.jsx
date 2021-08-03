@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Typography from "Typography";
 import { deviceBreakpoints } from "global";
 
 const Button = (props) => {
   const className = `nds-button ${props.type}${props.disabled?" disabled":""}`;
   return <a className={className} {...props}>
     <div className="nds-button-content">
-      {props.children}
+      <Typography>{props.children}</Typography>
     </div>
   </a>;
 };
@@ -31,6 +32,9 @@ Button.styles = `
     line-height: 16px;
     text-align: center;
     padding: 16px 32px;
+    color: #fff;
+  }
+  .nds-button:hover{
     color: #fff;
   }
   .nds-button::before {

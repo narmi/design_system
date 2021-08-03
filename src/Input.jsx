@@ -4,11 +4,12 @@ import { XCircle } from "react-feather";
 
 const Error = ({ error }) => {
   if (!error) return null;
-  return (
-    <div className="nds-input-error">
-      <XCircle size={14} /> {error}
-    </div>
-  );
+  return <div className="nds-input-error">
+    <XCircle
+      size={14}
+    />{" "}
+    {error}
+  </div>;
 };
 
 const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
@@ -35,7 +36,6 @@ const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
         <label htmlFor={id}>{label}</label>
         {decoration}
       </div>{" "}
-      {/* .nds-input-box */}
       <Error error={error} />
     </div>
   );
@@ -99,6 +99,8 @@ Input.styles = `
     background: transparent;
     pointer-events: none;
     font-size: 16px;
+    font-family: var(--nds-font-family);
+    font-weight: 400;
   }
   .nds-input *:focus + label, .nds-input *:valid + label {
     font-size: 12px;

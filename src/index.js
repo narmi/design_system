@@ -46,7 +46,6 @@ export {
   NavBar,
   Modal,
   Details,
-  Typography,
   GlobalStyles,
 };
 

@@ -3,12 +3,19 @@ import PropTypes from "prop-types";
 import { deviceBreakpoints } from "global";
 
 const Button = (props) => {
-  const className = `nds-button ${props.type}${props.disabled?" disabled":""}`;
-  return <a className={className} {...props}>
-    <div className="nds-button-content">
-      {props.children}
-    </div>
-  </a>;
+  const [disabled, setDisabled] = React.useState(false);
+  if (props.onMount !== undefined) {
+    React.useEffect(() => {
+      props.onMount([disabled, setDisabled]);
+    }, [props.onMount, disabled]);
+  }
+
+  const className = `nds-button ${props.type}${disabled ? " disabled" : ""}`;
+  return (
+    <a className={className} {...props}>
+      <div className="nds-button-content">{props.children}</div>
+    </a>
+  );
 };
 
 Button.propTypes = {

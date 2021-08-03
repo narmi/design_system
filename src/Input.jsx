@@ -4,47 +4,38 @@ import { XCircle } from "react-feather";
 
 const Error = ({ error }) => {
   if (!error) return null;
-  return <div className="nds-input-error">
-    <XCircle
-      size={14}
-    />{" "}
-    {error}
-  </div>;
-}
+  return (
+    <div className="nds-input-error">
+      <XCircle size={14} /> {error}
+    </div>
+  );
+};
 
-const Input = ({
-  id,
-  label,
-  icon,
-  disabled,
-  decoration,
-  error,
-  ...props
-}) => {
-  const inputRef = props.React.createRef();
+const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
+  const inputRef = React.createRef();
+
+  React.useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
+    }
+  }, [inputRef]);
 
   return (
     <div
-      className={`nds-input${disabled?" disabled":""}${error?" error":""}`}
+      className={`nds-input${disabled ? " disabled" : ""}${
+        error ? " error" : ""
+      }`}
       onClick={() => {
         inputRef.current.focus();
       }}
     >
-      <div
-        className="nds-input-box"
-      >
+      <div className="nds-input-box">
         {icon}
-        <props.field
-          ref={inputRef}
-          {...props}
-        />
-        <label
-          htmlFor={id}
-        >
-          {label}
-        </label>
+        <props.field ref={inputRef} {...props} />
+        <label htmlFor={id}>{label}</label>
         {decoration}
-      </div> {/* .nds-input-box */}
+      </div>{" "}
+      {/* .nds-input-box */}
       <Error error={error} />
     </div>
   );
@@ -61,7 +52,6 @@ Input.defaultProps = {
   icon: null,
   decoration: null,
   error: null,
-  React,
 };
 
 const verticalPadding = "5px";
@@ -89,6 +79,9 @@ Input.styles = `
   }
   .nds-input .nds-input-box:focus-within {
     border: 1px solid rgb(var(--nds-primary-color));
+  }
+  .nds-input .nds-input-box:focus-within > label {
+    color: rgb(var(--nds-primary-color));
   }
   .nds-input.disabled .nds-input-box {
     pointer-events: none;

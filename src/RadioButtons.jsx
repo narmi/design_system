@@ -1,12 +1,17 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Typography from "Typography";
 
-
 /*
-The Narmi RadioButtons component expects a Prop 'options', which is an object where the keys are the labels
-to be displayed and the values are of any desired type to be comparet
-{"label1":"value1", "label2":"value2", ...} 
+The Narmi RadioButtons component expects an "options" Prop, which is an object where the keys are the radiobutton
+labels and the values are the radiobutton values. An "initialvalue" Prop can be passed to set a default checked
+radiobutton.
+
+i.e.
+    <RadioButtons
+      initialvalue={"true"}
+      options={{ "True": "true", "False": "false" }}
+    />
 */
 
 const RadioButtons = (props) => {
@@ -18,14 +23,19 @@ const RadioButtons = (props) => {
 
   return (
     <div className="nds-radiobutton-group" {...props}>
-     {Object.entries(radioOptions).map(([label, value]) => (
-      <div className="nds-radiobutton-container" key={value}>
-        <label className="nds-label" key={label}>
-          <Typography>{label}</Typography>
-          <input type="radio" defaultChecked={props.initialvalue === value} value={value} name={props.name}/>
-          <div className="nds-checkmark"></div>
-        </label>
-      </div>
+      {Object.entries(radioOptions).map(([label, value]) => (
+        <div className="nds-radiobutton-container" key={value}>
+          <label className="nds-label" key={label}>
+            <Typography>{label}</Typography>
+            <input
+              type="radio"
+              defaultChecked={props.initialvalue === value}
+              value={value}
+              name={props.name}
+            />
+            <div className="nds-checkmark"></div>
+          </label>
+        </div>
       ))}
     </div>
   );

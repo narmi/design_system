@@ -3,6 +3,13 @@ import PropTypes from "prop-types";
 import Typography from "Typography";
 import { deviceBreakpoints } from "global";
 
+
+/*
+The Narmi RadioButtons component expects a Prop 'options', which is an object where the keys are the labels
+to be displayed and the values are of any desired type to be comparet
+{"label1":"value1", "label2":"value2", ...} 
+*/
+
 const RadioButtons = (props) => {
   const [radioOptions, setRadioOptions] = useState([]);
 
@@ -12,11 +19,11 @@ const RadioButtons = (props) => {
 
   return (
     <div className="nds-radiobutton-group" {...props}>
-     {radioOptions.map((item, i) => (
-      <div className="nds-radiobutton-container" key={item.value}>
-        <label className="nds-label" key={item.value}>
-          <Typography>{item.label}</Typography>
-          <input type="radio" defaultChecked={props.initialValue === item.value} value={item.value} name={props.inputStyle}/>
+     {Object.entries(radioOptions).map(([label, value]) => (
+      <div className="nds-radiobutton-container" key={value}>
+        <label className="nds-label" key={label}>
+          <Typography>{label}</Typography>
+          <input type="radio" defaultChecked={props.initialvalue === value} value={value} name={props.name}/>
           <div className="nds-checkmark"></div>
         </label>
       </div>
@@ -26,14 +33,14 @@ const RadioButtons = (props) => {
 };
 
 RadioButtons.propTypes = {
+  options: PropTypes.object,
   disabled: PropTypes.bool,
-  inputStyle: PropTypes.string,
+  name: PropTypes.string,
 };
 
 RadioButtons.defaultProps = {
   disabled: false,
-  initialValue: false,
-  inputStyle: "setting_value",
+  initialvalue: false,
 };
 
 RadioButtons.styles = `

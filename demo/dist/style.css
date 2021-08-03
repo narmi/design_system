@@ -1,0 +1,19 @@
+body {
+  margin: 20px;
+}
+.app-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.app-header-image {
+  width: 250px;
+  height: auto;
+}
+.app-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*# sourceMappingURL=style.css.map*/

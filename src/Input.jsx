@@ -34,8 +34,7 @@ const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
         <props.field ref={inputRef} {...props} />
         <label htmlFor={id}>{label}</label>
         {decoration}
-      </div>{" "}
-      {/* .nds-input-box */}
+      </div>
       <Error error={error} />
     </div>
   );
@@ -93,18 +92,21 @@ Input.styles = `
 
   .nds-input label {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
     left: 12px;
     background: transparent;
     pointer-events: none;
-    font-size: 16px;
-  }
-  .nds-input *:focus + label, .nds-input *:valid + label {
+    font-family: var(--nds-font-family);
+    font-weight: 400;
+
     font-size: 12px;
     line-height: 16px;
     top: ${verticalPadding};
     transform: none;
+  }
+  .nds-input *:empty + label {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
   }
 
   .nds-input .nds-input-error {

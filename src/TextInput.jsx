@@ -16,12 +16,11 @@ const TextInput = (props) => {
           rows="1"
           key={"nds-text"}
           ref={ref}
-          required
           {...props}
         />
       ))
     : React.forwardRef((props, ref) => (
-        <input key={"nds-text"} ref={ref} type="text" required {...props} />
+        <input key={"nds-text"} ref={ref} type="text" {...props} />
       ));
   return <Input field={field} {...props} />;
 };

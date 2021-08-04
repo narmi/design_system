@@ -13,9 +13,9 @@ const Error = ({ error }) => {
 };
 
 const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
-  const inputRef = React.createRef();
+  const inputRef = props.React.createRef();
 
-  React.useEffect(() => {
+  props.React.useEffect(() => {
     if (inputRef.current) {
       inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
     }
@@ -52,6 +52,7 @@ Input.defaultProps = {
   icon: null,
   decoration: null,
   error: null,
+  React,
 };
 
 const verticalPadding = "5px";

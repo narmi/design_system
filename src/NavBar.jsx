@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes, { bool } from "prop-types";
 import { Menu } from "react-feather";
 import { deviceBreakpoints } from "global";
+import Details from "Details";
 import Button from "Button";
 import ButtonBar from "ButtonBar";
 import Modal from "Modal";
@@ -17,9 +18,10 @@ const NavBar = (props) => {
             {props.children}
           </ButtonBar> {/* .nds-navbar-mainmenu */}
           <ButtonBar className="nds-navbar-usermenu">
-            <div>{props.user.email}</div>
-            <Button type="menu" href="/settings">Settings</Button>
-            <Button type="menu" href="/logout">Logout</Button>
+            <Details summary={<Button type="menu">{props.user.email||"User"}</Button>} key={name} React={props.React}>
+              <Button type="menu" href="/settings">Settings</Button>
+              <Button type="menu" href="/logout">Logout</Button>
+            </Details>
           </ButtonBar> {/* .nds-navbar-usermenu */}
         </div> {/* .nds-navbar-container */}
       </Modal>
@@ -63,6 +65,7 @@ NavBar.styles = `
     display: flex;
     flex-direction: column;
     height: 100%;
+    overflow-y: auto;
   }
   .nds-navbar .nds-navbar-container .nds-navbar-mainmenu {
     flex-grow: 1;
@@ -80,11 +83,18 @@ NavBar.styles = `
     .nds-navbar .nds-navbar-hamburger {
       display: none;
     }
-    .nds-navbar .nds-modal .nds-modal-container {
+    .nds-navbar > .nds-modal {
+      flex-grow: 1;
     }
-    .nds-navbar .nds-modal .nds-modal-container {
+    .nds-navbar > .nds-modal > .nds-modal-container {
       display: block;
       position: static;
+    }
+    .nds-navbar > .nds-modal.open > .nds-modal-overlay {
+      display: none;
+    }
+    .nds-navbar .nds-details {
+      padding-right: 30px;
     }
   }
 `;

@@ -30,10 +30,10 @@ const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
         inputRef.current.focus();
       }}
     >
-      <div className="nds-input-box">
+      <div className="nds-input-box" style={{paddingTop: props.multiline ? "12px" : ""}}>
         {icon}
         <props.field ref={inputRef} {...props} />
-        <label htmlFor={id}>{label}</label>
+        {!props.multiline ? <label htmlFor={id}>{label}</label> : "" }
         {decoration}
       </div>{" "}
       <Error error={error} />

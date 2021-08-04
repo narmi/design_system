@@ -50,6 +50,7 @@ Button.styles = `
     display: flex;
     justify-content: space-between;
     align-items: center;
+    white-space: nowrap;
   }
 
   .nds-button:not(.menu):hover::before {
@@ -91,6 +92,10 @@ Button.styles = `
   @media ${`(min-width: ${deviceBreakpoints.mobile})`} {
     .nds-button {
       padding: 12px 32px;
+    }
+
+    .nds-button.menu {
+      margin: 0 12px;
     }
   }
 `;

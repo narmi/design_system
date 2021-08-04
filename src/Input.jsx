@@ -10,41 +10,32 @@ const Error = ({ error }) => {
     />{" "}
     {error}
   </div>;
-}
+};
 
-const Input = ({
-  id,
-  label,
-  icon,
-  disabled,
-  decoration,
-  error,
-  ...props
-}) => {
+const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
   const inputRef = props.React.createRef();
+
+  props.React.useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
+    }
+  }, [inputRef]);
 
   return (
     <div
-      className={`nds-input${disabled?" disabled":""}${error?" error":""}`}
+      className={`nds-input${disabled ? " disabled" : ""}${
+        error ? " error" : ""
+      }`}
       onClick={() => {
         inputRef.current.focus();
       }}
     >
-      <div
-        className="nds-input-box"
-      >
+      <div className="nds-input-box" style={{paddingTop: props.multiline ? "12px" : ""}}>
         {icon}
-        <props.field
-          ref={inputRef}
-          {...props}
-        />
-        <label
-          htmlFor={id}
-        >
-          {label}
-        </label>
+        <props.field ref={inputRef} {...props} />
+        {!props.multiline ? <label htmlFor={id}>{label}</label> : "" }
         {decoration}
-      </div> {/* .nds-input-box */}
+      </div>
       <Error error={error} />
     </div>
   );
@@ -90,6 +81,9 @@ Input.styles = `
   .nds-input .nds-input-box:focus-within {
     border: 1px solid rgb(var(--nds-primary-color));
   }
+  .nds-input .nds-input-box:focus-within > label {
+    color: rgb(var(--nds-primary-color));
+  }
   .nds-input.disabled .nds-input-box {
     pointer-events: none;
     border: 1px solid rgb(var(--nds-disabled));
@@ -106,6 +100,8 @@ Input.styles = `
     background: transparent;
     pointer-events: none;
     font-size: 16px;
+    font-family: var(--nds-font-family);
+    font-weight: 400;
   }
   .nds-input *:focus + label, .nds-input *:valid + label {
     font-size: 12px;

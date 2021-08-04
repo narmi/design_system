@@ -60,7 +60,7 @@ RadioButtons.styles = `
 .nds-label {
   display: block;
   position: relative;
-  padding-left: 28px;
+  padding-left: 26px;
   margin-bottom: 12px;
   cursor: pointer;
   font-size: 16px;
@@ -107,8 +107,8 @@ RadioButtons.styles = `
 .nds-label .nds-checkmark:after {
   top: 50%;
   left: 50%;
-  width: 13px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background: rgb(var(--nds-primary-color));

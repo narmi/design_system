@@ -35,7 +35,7 @@ const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
         <props.field ref={inputRef} {...props} />
         {!props.multiline ? <label htmlFor={id}>{label}</label> : "" }
         {decoration}
-      </div>{" "}
+      </div>
       <Error error={error} />
     </div>
   );

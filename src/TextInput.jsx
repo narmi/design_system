@@ -8,7 +8,7 @@ const TextInput = (props) => {
   }
 
   const field = props.multiline
-    ? React.forwardRef((props, ref) => (
+    ? props.React.forwardRef((props, ref) => (
         <textarea
           wrap="hard"
           onKeyUp={handleKeyUp}
@@ -20,7 +20,7 @@ const TextInput = (props) => {
           {...props}
         />
       ))
-    : React.forwardRef((props, ref) => (
+    : props.React.forwardRef((props, ref) => (
         <input key={"nds-text"} ref={ref} type="text" required {...props} />
       ));
   return <Input field={field} {...props} />;

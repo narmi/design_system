@@ -26,7 +26,9 @@ const TextInput = (props) => {
   return <Input field={field} {...props} />;
 };
 
-TextInput.defaultProps = {};
+TextInput.defaultProps = {
+  React,
+};
 
 TextInput.styles = `
   .nds-input input[type="text"] {

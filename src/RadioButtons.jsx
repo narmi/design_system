@@ -81,7 +81,7 @@ RadioButtons.styles = `
   height: 20px;
   width: 20px;
   background-color: transparent;
-  border: 1px solid rgb(var(--nds-grey));
+  border: 1px solid rgb(var(--nds-disabled));
   border-radius: 50%;
 }
 

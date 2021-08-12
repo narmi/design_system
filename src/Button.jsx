@@ -4,6 +4,7 @@ import { deviceBreakpoints } from "global";
 
 const Button = (props) => {
   const [disabled, setDisabled] = React.useState(false);
+  const { onMount, ...newProps } = props;
   if (props.onMount !== undefined) {
     React.useEffect(() => {
       props.onMount([disabled, setDisabled]);
@@ -12,7 +13,7 @@ const Button = (props) => {
 
   const className = `nds-button ${props.type}${disabled ? " disabled" : ""}`;
   return (
-    <a className={className} {...props}>
+    <a className={className} {...newProps}>
       <div className="nds-button-content">{props.children}</div>
     </a>
   );

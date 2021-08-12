@@ -8,6 +8,8 @@ const TextInput = (props) => {
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
 
+  const { multiline, React, ...newProps } = props;
+
   const field = props.multiline
     ? props.React.forwardRef((props, ref) => (
         <textarea
@@ -17,8 +19,7 @@ const TextInput = (props) => {
           key={"nds-text"}
           ref={ref}
           required
-          {...props}
-          multiline={props.multiline ? "multiline" : ""}
+          {...newProps}
         />
       ))
     : props.React.forwardRef((props, ref) => (

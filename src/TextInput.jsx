@@ -10,8 +10,24 @@ const TextInput = (props) => {
 
   const { multiline, React, ...newProps } = props;
 
-  const field = props.multiline
-    ? props.React.forwardRef((props, ref) => (
+  // const field = props.multiline
+  //   ? props.React.forwardRef((props, ref) => (
+  //       <textarea
+  //         wrap="hard"
+  //         onKeyUp={handleKeyUp}
+  //         rows="1"
+  //         key={"nds-text"}
+  //         ref={ref}
+  //         required
+  //         {...newProps}
+  //       />
+  //     ))
+  //   : props.React.forwardRef((props, ref) => (
+  //       <input key={"nds-text"} ref={ref} type="text" required {...props} />
+  //     ));
+  const ref = props.React.useRef();
+  return <Input onClick={()=>{ref.current?.focus(); console.log("click", ref.current)}} {...props} >{props.multiline
+?
         <textarea
           wrap="hard"
           onKeyUp={handleKeyUp}
@@ -21,11 +37,12 @@ const TextInput = (props) => {
           required
           {...newProps}
         />
-      ))
-    : props.React.forwardRef((props, ref) => (
-        <input key={"nds-text"} ref={ref} type="text" required {...props} />
-      ));
-  return <Input field={field} {...props} />;
+      
+    : 
+        <input key={"nds-text"} 
+        ref={ref}
+        type="text" required {...props} />
+    }</Input>;
 };
 TextInput.propTypes = {
   multiline: PropTypes.bool,

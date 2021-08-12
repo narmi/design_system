@@ -44,6 +44,7 @@ const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
 Input.propTypes = {
   label: PropTypes.string,
   decoration: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
+  multiline: PropTypes.bool,
   error: PropTypes.string,
 };
 

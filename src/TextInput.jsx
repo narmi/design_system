@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Input from "Input";
 
 const TextInput = (props) => {
@@ -12,12 +13,12 @@ const TextInput = (props) => {
         <textarea
           wrap="hard"
           onKeyUp={handleKeyUp}
-          minRows="1"
           rows="1"
           key={"nds-text"}
           ref={ref}
           required
           {...props}
+          multiline={props.multiline ? "multiline" : ""}
         />
       ))
     : props.React.forwardRef((props, ref) => (
@@ -25,6 +26,10 @@ const TextInput = (props) => {
       ));
   return <Input field={field} {...props} />;
 };
+TextInput.propTypes = {
+  multiline: PropTypes.bool,
+};
+
 
 TextInput.defaultProps = {
   React,

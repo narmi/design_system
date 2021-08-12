@@ -20,7 +20,8 @@ const Button = (props) => {
 
 Button.propTypes = {
   disabled: PropTypes.bool,
-  type: PropTypes.bool,
+  type: PropTypes.string,
+  onMount: PropTypes.func,
 };
 
 Button.defaultProps = {

@@ -11,7 +11,7 @@ const TextInput = (props) => {
   const { multiline, React, ...newProps } = props;
 
   const ref = props.React.useRef();
-  return <Input onClick={()=>{ref.current?.focus(); console.log("click", ref.current)}} {...props} >{props.multiline
+  return <Input onClick={()=>{ref.current?.focus();}} {...props} >{props.multiline
 ?
         <textarea
           wrap="hard"

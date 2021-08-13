@@ -46,7 +46,7 @@ Input.propTypes = {
 
 Input.defaultProps = {
   label: null,
-  placeholder: null,
+  placeholder: "",
   icon: null,
   decoration: null,
   error: null,

@@ -13,27 +13,24 @@ const Error = ({ error }) => {
 };
 
 const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
-  const inputRef = props.React.createRef();
-
-  props.React.useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
-    }
-  }, [inputRef]);
-
   return (
     <div
       className={`nds-input${disabled ? " disabled" : ""}${
         error ? " error" : ""
       }`}
-      onClick={() => {
-        inputRef.current.focus();
-      }}
+      onClick={props.onClick}
+      style={props.style}
     >
-      <div className="nds-input-box" style={{paddingTop: props.multiline ? "12px" : ""}}>
-        {icon}
-        <props.field ref={inputRef} {...props} />
-        {!props.multiline ? <label htmlFor={id}>{label}</label> : "" }
+      <div
+        className="nds-input-box"
+        style={{
+          paddingTop: props.multiline ? "12px" : "",
+          padding: props.label ? "" : "9px",
+        }}
+      >
+        {icon ? <div className="nds-input-icon">{icon}</div> : ""}
+        {props.children}
+        {!props.multiline ? <label htmlFor={id}>{label}</label> : ""}
         {decoration}
       </div>
       <Error error={error} />
@@ -43,6 +40,8 @@ const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
 
 Input.propTypes = {
   label: PropTypes.string,
+  placeholder: PropTypes.string,
+  icon: PropTypes.node,
   decoration: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
   multiline: PropTypes.bool,
   error: PropTypes.string,
@@ -50,6 +49,7 @@ Input.propTypes = {
 
 Input.defaultProps = {
   label: null,
+  placeholder: "",
   icon: null,
   decoration: null,
   error: null,
@@ -91,6 +91,12 @@ Input.styles = `
   }
   .nds-input.error .nds-input-box {
     border: 1px solid rgb(var(--nds-error));
+  }
+
+  .nds-input .nds-input-icon {
+    display: flex;
+    margin-right: 12px;
+    margin-left: 12px;
   }
 
   .nds-input label {

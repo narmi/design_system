@@ -11,8 +11,14 @@ const TextInput = (props) => {
   const { multiline, React, ...newProps } = props;
 
   const ref = props.React.useRef();
-  return <Input onClick={()=>{ref.current?.focus();}} {...props} >{props.multiline
-?
+  return (
+    <Input
+      onClick={() => {
+        ref.current?.focus();
+      }}
+      {...props}
+    >
+      {props.multiline ? (
         <textarea
           wrap="hard"
           onKeyUp={handleKeyUp}
@@ -22,17 +28,15 @@ const TextInput = (props) => {
           required
           {...newProps}
         />
-      
-    : 
-        <input key={"nds-text"} 
-        ref={ref}
-        type="text" required {...props} />
-    }</Input>;
+      ) : (
+        <input key={"nds-text"} ref={ref} type="text" required {...props} />
+      )}
+    </Input>
+  );
 };
 TextInput.propTypes = {
   multiline: PropTypes.bool,
 };
-
 
 TextInput.defaultProps = {
   React,

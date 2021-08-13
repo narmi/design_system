@@ -4,16 +4,14 @@ import { XCircle } from "react-feather";
 
 const Error = ({ error }) => {
   if (!error) return null;
-  return <div className="nds-input-error">
-    <XCircle
-      size={14}
-    />{" "}
-    {error}
-  </div>;
+  return (
+    <div className="nds-input-error">
+      <XCircle size={14} /> {error}
+    </div>
+  );
 };
 
 const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
-
   return (
     <div
       className={`nds-input${disabled ? " disabled" : ""}${
@@ -22,12 +20,16 @@ const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
       onClick={props.onClick}
       style={props.style}
     >
-      <div className="nds-input-box" style={{paddingTop: props.multiline ? "12px" : "", padding: props.label ? "" : "9px"}}>
-        { icon ? <div className="nds-input-icon" >
-          {icon}
-        </div> : ""}
+      <div
+        className="nds-input-box"
+        style={{
+          paddingTop: props.multiline ? "12px" : "",
+          padding: props.label ? "" : "9px",
+        }}
+      >
+        {icon ? <div className="nds-input-icon">{icon}</div> : ""}
         {props.children}
-        {!props.multiline ? <label htmlFor={id}>{label}</label> : "" }
+        {!props.multiline ? <label htmlFor={id}>{label}</label> : ""}
         {decoration}
       </div>
       <Error error={error} />

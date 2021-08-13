@@ -23,9 +23,9 @@ const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
       style={props.style}
     >
       <div className="nds-input-box" style={{paddingTop: props.multiline ? "12px" : "", padding: props.label ? "" : "9px"}}>
-        <div style={{marginRight: "12px", marginLeft: "12px", display: icon ? "flex": "none"}}>
-        {icon}
-        </div>
+        { icon ? <div className="nds-input-icon" >
+          {icon}
+        </div> : ""}
         {props.children}
         {!props.multiline ? <label htmlFor={id}>{label}</label> : "" }
         {decoration}
@@ -88,6 +88,12 @@ Input.styles = `
   }
   .nds-input.error .nds-input-box {
     border: 1px solid rgb(var(--nds-error));
+  }
+
+  .nds-input .nds-input-icon {
+    display: flex;
+    margin-right: 12px;
+    margin-left: 12px;
   }
 
   .nds-input label {

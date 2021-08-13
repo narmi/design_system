@@ -4,11 +4,12 @@ import { XCircle } from "react-feather";
 
 const Error = ({ error }) => {
   if (!error) return null;
-  return (
-    <div className="nds-input-error">
-      <XCircle size={14} /> {error}
-    </div>
-  );
+  return <div className="nds-input-error">
+    <XCircle
+      size={14}
+    />{" "}
+    {error}
+  </div>;
 };
 
 const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {

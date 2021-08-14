@@ -8,8 +8,7 @@ const TextInput = (props) => {
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
 
-  const { multiline, React, ...newProps } = props;
-
+  const { multiline, React, ...nativeElementProps } = props;
   const ref = props.React.useRef();
   return (
     <Input
@@ -18,7 +17,7 @@ const TextInput = (props) => {
       }}
       {...props}
     >
-      {props.multiline ? (
+      {multiline ? (
         <textarea
           wrap="hard"
           onKeyUp={handleKeyUp}
@@ -26,20 +25,22 @@ const TextInput = (props) => {
           key={"nds-text"}
           ref={ref}
           required
-          {...newProps}
+          {...nativeElementProps}
         />
       ) : (
-        <input key={"nds-text"} ref={ref} type="text" required {...props} />
+        <input key={"nds-text"} ref={ref} type="text" required {...nativeElementProps} />
       )}
     </Input>
   );
 };
 TextInput.propTypes = {
+  React: PropTypes.object,
   multiline: PropTypes.bool,
 };
 
 TextInput.defaultProps = {
   React,
+  multiline: false,
 };
 
 TextInput.styles = `

@@ -53,6 +53,10 @@ const Typography = (props) => {
     fontWeight = "400";
     lineHeight = "20px";
   }
+
+  if (props.semibold) {
+    fontWeight = "600";
+  }
   const textTransform = props.subheader ? "uppercase" : null
 
   return (

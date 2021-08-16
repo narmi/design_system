@@ -25,7 +25,7 @@ const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
         className="nds-input-box"
         style={{
           paddingTop: props.multiline ? "12px" : "",
-          padding: props.label ? "" : "9px",
+          padding: label ? "19px 12px 5px" : "9px",
         }}
       >
         {icon ? <div className="nds-input-icon">{icon}</div> : ""}

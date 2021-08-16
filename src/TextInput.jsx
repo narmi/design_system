@@ -10,6 +10,14 @@ const TextInput = (props) => {
 
   const { multiline, React, ...nativeElementProps } = props;
   const ref = props.React.useRef();
+  const inputRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
+    }
+  }, [inputRef]);
+
   return (
     <Input
       onClick={() => {
@@ -23,7 +31,7 @@ const TextInput = (props) => {
           onKeyUp={handleKeyUp}
           rows="1"
           key={"nds-text"}
-          ref={ref}
+          ref={inputRef}
           required
           {...nativeElementProps}
         />

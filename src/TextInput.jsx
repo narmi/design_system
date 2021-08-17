@@ -6,6 +6,7 @@ const TextInput = (props) => {
   function handleKeyUp(e) {
     e.target.style.height = "inherit";
     e.target.style.height = `${e.target.scrollHeight}px`;
+    console.log("value", inputRef.current.value);
   }
 
   const { multiline, React, ...nativeElementProps } = props;

@@ -5,7 +5,7 @@ import { deviceBreakpoints } from "global";
 const Button = ({disabled, type, ...props}) => {
   const className = `nds-button ${type}${disabled ? " disabled" : ""}`;
   return (
-    <a className={className}>
+    <a className={className} style={props.style} {...props}>
       <div className="nds-button-content">{props.children}</div>
     </a>
   );
@@ -71,7 +71,9 @@ Button.styles = `
 
   /* plain button styles */
   .nds-button.plain {
-    color: rgb(var(--nds-text-header));
+    color: rgb(var(--nds-secondary-color));
+    font-family: 'Mulish';
+    font-weight: 600;
   }
   .nds-button.plain::before {
     display: none;

@@ -42,8 +42,8 @@ const StyledCardBody = styled.div`
 
 const Card = (props) => {
   return (
-    <StyledCard {...props}>
-      <h4 className="nds-typography">{props.title}</h4>
+    <StyledCard className="nds-typography" {...props}>
+      <h4>{props.title}</h4>
       {props.children ? (
         <StyledCardBody hoverable={props.hoverable}>
           {props.children}

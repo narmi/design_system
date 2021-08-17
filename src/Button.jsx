@@ -6,7 +6,7 @@ import { deviceBreakpoints } from "global";
 const Button = ({disabled, type, ...props}) => {
   const className = `nds-button nds-typography ${type}${disabled ? " disabled" : ""}`;
   return (
-    <a className={className}>
+    <a className={className} style={props.style}>
       <div className="nds-button-content">{props.children}</div>
     </a>
   );

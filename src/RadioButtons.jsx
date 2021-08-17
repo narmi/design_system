@@ -14,9 +14,6 @@ i.e.
 */
 
 const RadioButtons = (props) => {
-  /*
-    RadioButtons accepts an `options` property consisting of an array of { label: "", value: "" } objects
-   */
   const [radioOptions, setRadioOptions] = useState([]);
 
   useEffect(() => {

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 const Typography = (props) => {
   let fontSize, fontWeight, lineHeight;
   let color = "var(--nds-grey-text)";
+  let fontFamily = "var(--nds-font-family)";
 
   // <h*> tags
   if (props.h1) {
@@ -11,11 +12,15 @@ const Typography = (props) => {
     fontWeight = "600";
     lineHeight = "50px";
     color = "var(--nds-black)";
+    fontFamily = "serif";
+
   } else if (props.h2) {
     fontSize = "28px";
     fontWeight = "600";
     lineHeight = "35px";
     color = "var(--nds-black)";
+    fontFamily = "serif";
+    
   } else if (props.h3) {
     // mobile native only - DO NOT USE
     fontSize = "24px";
@@ -65,7 +70,7 @@ const Typography = (props) => {
       style={{
         color,
         fontWeight,
-        fontFamily: "var(--nds-font-family)",
+        fontFamily: fontFamily,
         fontSize,
         lineHeight,
         textTransform,

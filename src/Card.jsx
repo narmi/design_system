@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Typography from "Typography";
 import { deviceBreakpoints } from "globalStyles";
 
 const StyledCard = styled.div`
@@ -43,11 +42,11 @@ const StyledCardBody = styled.div`
 
 const Card = (props) => {
   return (
-    <StyledCard {...props}>
-      <Typography h4>{props.title}</Typography>
+    <StyledCard className="nds-typography" {...props}>
+      <h4>{props.title}</h4>
       {props.children ? (
         <StyledCardBody hoverable={props.hoverable}>
-          <Typography>{props.children}</Typography>
+          {props.children}
         </StyledCardBody>
       ) : (
         ""

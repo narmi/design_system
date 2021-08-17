@@ -1,4 +1,5 @@
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -14,6 +15,7 @@ module.exports = {
       components: path.join(__dirname, "src", "components"),
     },
     extensions: [".js", ".jsx"],
+    preferRelative: true
   },
   externals: {
     react: {
@@ -29,27 +31,31 @@ module.exports = {
       amd: "react-dom",
     },
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "style.css",
+    }),
+  ],
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: [/node_modules/, /stories.js/],
+        exclude: [/node_modules/],
         use: {
           loader: "babel-loader",
         },
       },
       {
-        test: /\.css$/,
+        test: /\.(sa|sc|c)ss$/,
         use: [
-          {
-            loader: "style-loader",
-          },
-          {
-            loader: "css-loader",
-          },
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "sass-loader",
         ],
-      },
+      }
     ],
   },
-  plugins: [],
+  devtool: "source-map"
 };
+

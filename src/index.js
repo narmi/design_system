@@ -1,5 +1,7 @@
 const React = require("react");
 
+require("./scss/index.scss")
+
 const Input = require("Input").default;
 const TextInput = require("TextInput").default;
 const Button = require("Button").default;
@@ -8,7 +10,6 @@ const ButtonBar = require("ButtonBar").default;
 const NavBar = require("NavBar").default;
 const Modal = require("Modal").default;
 const Details = require("Details").default;
-const Typography = require("Typography").default;
 const RadioButtons = require("RadioButtons").default;
 const components = {
   Input,
@@ -54,7 +55,6 @@ export {
   NavBar,
   Modal,
   Details,
-  Typography,
   GlobalStyles,
 };
 

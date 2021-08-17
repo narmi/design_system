@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Check } from "react-feather";
 import { deviceBreakpoints } from "globalStyles";
-import Typography from "Typography";
 import { StyledPlainButton } from "PlainButton";
 import List from "List";
 import Popover from "Popover";
@@ -92,27 +91,27 @@ const StyledPopoverContainer = styled.div`
 const renderCells = (row) => {
   const desktopCells = row.map((cell, idx) => (
     <StyledTableCell key={idx} data-testid={"col" + idx}>
-      <Typography>{cell.content}</Typography>
+      <span>{cell.content}</span>
     </StyledTableCell>
   ));
 
   let mobileCells = [
     <StyledMobileTableCell key={row[0].sortKey} data-testid={"MobileCol0"}>
-      <Typography>{row[0].content}</Typography>
+      <span>{row[0].content}</span>
     </StyledMobileTableCell>,
   ];
 
   const collapsedCells = (
     <StyledStackedCell>
       {row.slice(1).map((cell, idx) => (
-        <Typography>{cell.content}</Typography>
+        <span>{cell.content}</span>
       ))}
     </StyledStackedCell>
   );
 
   let stackedMobileCell = (
     <StyledMobileTableCell key={row[1].sortKey} data-testid={"MobileCol1"}>
-      <Typography>{collapsedCells}</Typography>
+      <span>{collapsedCells}</span>
     </StyledMobileTableCell>
   );
   mobileCells = mobileCells.concat(stackedMobileCell);
@@ -213,7 +212,7 @@ const Table = (props) => {
 
   const renderSortableHeader = (headerOption, heading) => {
     return (
-      <Typography
+      <span
         data-testid={heading + "_" + headerOption.sortOrder.toUpperCase()}
         onClick={() => {
           if (
@@ -234,15 +233,15 @@ const Table = (props) => {
           )}
           <span>{headerOption.text}</span>
         </StyledOverlayItem>
-      </Typography>
+      </span>
     );
   };
 
   const renderPopoverHeader = (heading) => {
     return (
-      <StyledTableHeader style={{ padding: "12px 0px 12px 20px" }}>
+      <StyledTableHeader style={{ padding: "12px 0px 12px 20px" }} className="nds-typography">
         <StyledPopoverContainer>
-        <Popover hoverable label={<Typography subheader>{heading}</Typography>}>
+        <Popover hoverable label={<h5>{heading}</h5>}>
           <List
             renderItem={(item) => renderSortableHeader(item, heading)}
             items={[
@@ -265,7 +264,7 @@ const Table = (props) => {
             renderPopoverHeader(heading)
           ) : (
             <StyledTableHeader>
-              <Typography subheader>{heading}</Typography>
+              <h5>{heading}</h5>
             </StyledTableHeader>
           )
         )}
@@ -276,7 +275,7 @@ const Table = (props) => {
   return (
     <div {...props}>
       <StyledTableTitleDiv>
-        <Typography h4>{props.title}</Typography>
+        <h4>{props.title}</h4>
       </StyledTableTitleDiv>
       <br />
       <StyledTable>

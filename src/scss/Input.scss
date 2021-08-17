@@ -1,0 +1,94 @@
+.nds-input {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 280px;
+  margin: 1em 0;
+
+  .nds-input-box {
+    box-sizing: border-box;
+    border: 1px solid RGB(var(--nds-disabled));
+    background: RGB(var(--nds-background));
+    position: relative;
+    width: 100%;
+    padding: 0.4em 0.8em;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column-reverse;
+
+    &:focus-within {
+      border: 1px solid RGB(var(--nds-primary-color));
+
+      > label {
+        color: RGB(var(--nds-primary-color));
+      }
+    }
+  }
+
+  &.disabled .nds-input-box {
+    pointer-events: none;
+    border: 1px solid RGB(var(--nds-disabled));
+  }
+
+  &.error .nds-input-box {
+    border: 1px solid RGB(var(--nds-error));
+  }
+
+  .nds-input-icon {
+    display: flex;
+    margin-right: 12px;
+    margin-left: 12px;
+  }
+
+  label {
+    background: transparent;
+    pointer-events: none;
+    font-family: var(--nds-font-family);
+    font-weight: 400;
+  }
+
+  .nds-input-error {
+    margin-top: 4px;
+    height: 18px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 22px;
+    color: RGB(var(--nds-error));
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  textarea {
+    line-height: 1.2;
+    vertical-align: middle;
+    color: var(--nds-grey-text);
+    font-family: var(--nds-font-family);
+    border: none;
+    outline: 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    resize: none;
+  }
+
+  input[type="text"] {
+    border: none;
+    outline: 0;
+    letter-spacing: 0;
+    vertical-align: middle;
+    font-family: var(--nds-font-family);
+    padding: 0;
+    width: 100%;
+
+    &:placeholder-shown {
+      padding: 0.6em 0;
+
+      ~ label {
+        display: none;
+      }
+    }
+  }
+}

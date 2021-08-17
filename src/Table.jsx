@@ -241,7 +241,7 @@ const Table = (props) => {
     return (
       <StyledTableHeader style={{ padding: "12px 0px 12px 20px" }} className="nds-typography">
         <StyledPopoverContainer>
-        <Popover hoverable label={<h5 subheader>{heading}</h5>}>
+        <Popover hoverable label={<h5>{heading}</h5>}>
           <List
             renderItem={(item) => renderSortableHeader(item, heading)}
             items={[

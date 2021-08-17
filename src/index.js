@@ -19,7 +19,6 @@ const components = {
   NavBar,
   Modal,
   Details,
-  Typography,
   RadioButtons,
 };
 

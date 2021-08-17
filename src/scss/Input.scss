@@ -46,6 +46,10 @@
     pointer-events: none;
     font-family: var(--nds-font-family);
     font-weight: 400;
+    font-size: .865em;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   .nds-input-error {

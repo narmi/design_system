@@ -86,15 +86,22 @@ NavBar.styles = `
     .nds-navbar > .nds-modal {
       flex-grow: 1;
     }
-    .nds-navbar > .nds-modal > .nds-modal-container {
+    .nds-navbar > .nds-modal.right > .nds-modal-container {
       display: block;
       position: static;
+      padding: 16px 25px;
     }
     .nds-navbar > .nds-modal.open > .nds-modal-overlay {
       display: none;
     }
     .nds-navbar .nds-details {
       padding-right: 30px;
+    }
+    .nds-navbar .nds-navbar-container .nds-navbar-mainmenu > *, .nds-navbar .nds-navbar-container .nds-navbar-usermenu > * {
+      border-bottom: 3px solid transparent;
+    }
+    .nds-navbar .nds-navbar-container .nds-navbar-mainmenu > *:hover, .nds-navbar .nds-navbar-container .nds-navbar-usermenu > *:hover {
+      border-bottom: 3px solid rgb(var(--nds-primary-color));
     }
   }
 `;

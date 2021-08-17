@@ -28,12 +28,20 @@ Object.values(components).forEach((component) => {
     styleString += component.styles;
   }
 });
+const styleComponent = React.createElement("style", {
+  dangerouslySetInnerHTML: {
+    __html: styleString,
+  }
+});
+const fontComponent = React.createElement("link", {
+  href: "https://fonts.googleapis.com/css?family=Mulish",
+  rel: "stylesheet",
+});
 const GlobalStyles = () => (
-  React.createElement("style", {
-    dangerouslySetInnerHTML: {
-      __html: styleString,
-    }
-  })
+  React.createElement(React.Fragment, {}, [
+    styleComponent,
+    fontComponent,
+  ])
 );
 
 export {

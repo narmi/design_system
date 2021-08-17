@@ -113,6 +113,10 @@ RadioButtons.styles = `
   border-radius: 50%;
   background: rgb(var(--nds-primary-color));
 }
+
+.nds-radiobutton-group .nds-radiobutton-container:last-child .nds-label {
+  margin-bottom: 0px;
+}
 `;
 
 export default RadioButtons;

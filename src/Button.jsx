@@ -96,6 +96,8 @@ Button.styles = `
 
     .nds-button.menu {
       margin: 0 12px;
+      font-family: 'Mulish';
+      font-weight: 600;
     }
   }
 `;

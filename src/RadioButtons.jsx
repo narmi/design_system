@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import Typography from "Typography";
 
 /*
 The Narmi RadioButtons component expects an "options" Prop, which is an object where the keys are the radiobutton
@@ -15,6 +14,9 @@ i.e.
 */
 
 const RadioButtons = (props) => {
+  /*
+    RadioButtons accepts an `options` property consisting of an array of { label: "", value: "" } objects
+   */
   const [radioOptions, setRadioOptions] = useState([]);
 
   useEffect(() => {
@@ -22,11 +24,11 @@ const RadioButtons = (props) => {
   }, []);
 
   return (
-    <div className="nds-radiobutton-group" {...props}>
+    <div className="nds-radiobutton-group nds-typography" {...props}>
       {Object.entries(radioOptions).map(([label, value]) => (
         <div className="nds-radiobutton-container" key={value}>
           <label className="nds-label" key={label}>
-            <Typography>{label}</Typography>
+            {label}
             <input
               type="radio"
               defaultChecked={props.initialvalue === value}

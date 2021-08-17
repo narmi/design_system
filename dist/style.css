@@ -1,0 +1,36 @@
+/*!*****************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/index.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/index.scss ***!
+  \*****************************************************************************************************************************************************/
+.nds-typography h1, .nds-typography h2, .nds-typography h3, .nds-typography h4, .nds-typography h5, .nds-typographyh1, .nds-typographyh2, .nds-typographyh3, .nds-typographyh4, .nds-typographyh5 {
+  color: var(--nds-black); }
+
+.nds-typography h1, .nds-typographyh1 {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 50px; }
+
+.nds-typography h2, .nds-typographyh2 {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 35px; }
+
+.nds-typography h3, .nds-typographyh3 {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 30px; }
+
+.nds-typography h4, .nds-typographyh4 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 25px; }
+
+.nds-typography h5, .nds-typographyh5 {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15px; }
+
+.nds-typography p, .nds-typographyp {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px; }
+

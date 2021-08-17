@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Typography from "Typography";
 import { deviceBreakpoints } from "globalStyles";
 
 const StyledListWrapper = styled.div`
@@ -63,8 +62,9 @@ function renderItem(props, item, idx) {
       key={"ListItem" + idx}
       hoverable={props.hoverable}
       divideItems={props.divideItems}
+      className="nds-typography"
     >
-      <Typography>{props.renderItem(item)}</Typography>
+      {props.renderItem(item)}Typography>
     </StyledListItem>
   );
 }
@@ -75,11 +75,10 @@ function renderCategoryList(props, category, categoryIdx) {
       divideCategories={props.divideCategories}
       categoriesHorizontal={props.categoriesHorizontal}
       key={"List" + category + categoryIdx}
+      className="nds-typography"
     >
       {/* always black */}
-      <Typography semibold style={{ color: "var(--nds-black)" }}>
-        {props.renderCategory(category)}
-      </Typography>
+      {props.renderCategory(category)}
       {props.items[category].map((item, idx) => renderItem(props, item, idx))}
     </StyledList>
   );

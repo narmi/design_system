@@ -64,7 +64,7 @@ function renderItem(props, item, idx) {
       divideItems={props.divideItems}
       className="nds-typography"
     >
-      {props.renderItem(item)}Typography>
+      {props.renderItem(item)}
     </StyledListItem>
   );
 }

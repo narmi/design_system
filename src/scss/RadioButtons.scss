@@ -20,7 +20,7 @@
     &:checked {
       ~ .nds-checkmark {
         background-color: transparent;
-        border: 2px solid var(--nds-primary-color);
+        border: 2px solid RGB(var(--nds-primary-color));
 
         &:after {
           display: block;
@@ -30,7 +30,7 @@
   }
 
   &:hover input ~ .nds-checkmark{
-    border: 2px solid var(--nds-primary-color);
+    border: 2px solid RGB(var(--nds-primary-color));
   }
 
   .nds-checkmark {
@@ -40,7 +40,7 @@
     height: 20px;
     width: 20px;
     background-color: transparent;
-    border: 1px solid var(--nds-disabled);
+    border: 1px solid RGB(var(--nds-disabled));
     border-radius: 50%;
 
     &:after {
@@ -53,7 +53,7 @@
       height: 12px;
       transform: translate(-50%, -50%);
       border-radius: 50%;
-      background: var(--nds-primary-color);
+      background: RGB(var(--nds-primary-color));
     }
   }
 }

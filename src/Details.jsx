@@ -4,6 +4,8 @@ import { ChevronUp, ChevronDown } from "react-feather";
 import { deviceBreakpoints } from "global";
 import Modal, { modalZIndex } from "Modal";
 
+const PADDING_X = "40px";
+
 const Chevron = ({ open, setOpen }) => {
   const style = { position: "absolute", top: "6px", right: "13px" };
   if (!open) {
@@ -66,8 +68,19 @@ Details.styles = `
   }
 
   @media ${`(min-width: ${deviceBreakpoints.desktop})`} {
+    .nds-details > .nds-modal.open > .nds-modal-overlay {
+      display: block;
+      opacity: 0;
+    }
+    .nds-details > .nds-modal > .nds-modal-container {
+      position: absolute;
+      transform: translate(-${PADDING_X}, 5px);
+    }
     .nds-details-container {
       margin: 0;
+      padding: 20px ${PADDING_X};
+      box-shadow: 0px 2px 12px rgba(80, 80, 80, 0.05);
+      border-radius: 0px 0px 4px 4px;
     }
   }
 `;

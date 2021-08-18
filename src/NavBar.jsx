@@ -79,6 +79,7 @@ NavBar.styles = `
     }
     .nds-navbar .nds-navbar-container {
       flex-direction: row;
+      overflow-y: initial;
     }
     .nds-navbar .nds-navbar-hamburger {
       display: none;
@@ -91,16 +92,19 @@ NavBar.styles = `
       position: static;
       padding: 16px 25px;
     }
+    .nds-navbar > .nds-modal.right > .nds-modal-container > .nds-modal-dismiss {
+      display: none;
+    }
     .nds-navbar > .nds-modal.open > .nds-modal-overlay {
       display: none;
     }
     .nds-navbar .nds-details {
       padding-right: 30px;
     }
-    .nds-navbar .nds-navbar-container .nds-navbar-mainmenu > *, .nds-navbar .nds-navbar-container .nds-navbar-usermenu > * {
+    .nds-navbar .nds-navbar-container .nds-navbar-mainmenu > *, .nds-navbar .nds-navbar-container .nds-navbar-usermenu > *, .nds-navbar .nds-navbar-container .nds-details-container > * {
       border-bottom: 3px solid transparent;
     }
-    .nds-navbar .nds-navbar-container .nds-navbar-mainmenu > *:hover, .nds-navbar .nds-navbar-container .nds-navbar-usermenu > *:hover {
+    .nds-navbar .nds-navbar-container .nds-navbar-mainmenu > *:hover, .nds-navbar .nds-navbar-container .nds-navbar-usermenu > *:hover, .nds-navbar .nds-navbar-container .nds-details-container > *:hover {
       border-bottom: 3px solid rgb(var(--nds-primary-color));
     }
   }

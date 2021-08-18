@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { deviceBreakpoints } from "global";
 
 
-const Button = ({disabled, type, ...props}) => {
+const Button = ({disabled, type, href, ...props}) => {
   const className = `nds-button nds-typography ${type}${disabled ? " disabled" : ""}`;
   return (
     <a className={className} {...props}>
@@ -65,6 +65,7 @@ Button.styles = `
     text-align: left;
     color: rgb(var(--nds-text-header));
     padding: 10px 0;
+    font-size: 20px;
   }
   .nds-button.menu::before {
     display: none;
@@ -89,8 +90,7 @@ Button.styles = `
     background-color: rgb(var(--nds-disabled));
   }
 
-  /* mobile buttons have slightly different padding? */
-  @media ${`(min-width: ${deviceBreakpoints.mobile})`} {
+  @media ${`(min-width: ${deviceBreakpoints.desktop})`} {
     .nds-button {
       padding: 12px 32px;
     }
@@ -99,6 +99,7 @@ Button.styles = `
       margin: 0 12px;
       font-family: 'Mulish';
       font-weight: 600;
+      font-size: 16px;
     }
   }
 `;

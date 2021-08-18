@@ -89,13 +89,6 @@ Modal.styles = `
     position: static;
   }
   @media ${`(min-width: ${deviceBreakpoints.desktop})`} {
-    .nds-modal.details.open .nds-modal-overlay {
-      display: block;
-      opacity: 0;
-    }
-    .nds-modal.details > .nds-modal-container {
-      position: fixed;
-    }
   }
 `;
 

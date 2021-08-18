@@ -31,11 +31,13 @@ Object.values(components).forEach((component) => {
 const styleComponent = React.createElement("style", {
   dangerouslySetInnerHTML: {
     __html: styleString,
-  }
+  },
+  key: "style-component"
 });
 const fontComponent = React.createElement("link", {
   href: "https://fonts.googleapis.com/css?family=Mulish",
   rel: "stylesheet",
+  key: "font-component"
 });
 const GlobalStyles = () => (
   React.createElement(React.Fragment, {}, [

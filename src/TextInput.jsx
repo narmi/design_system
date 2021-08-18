@@ -1,15 +1,16 @@
-import React from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import Input from "Input";
 
 const TextInput = (props) => {
+  const { multiline, React, ...nativeElementProps } = props;
+  const ref = props.React.useRef();
+
   function handleKeyUp(e) {
     e.target.style.height = "inherit";
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
-
-  const { multiline, React, ...nativeElementProps } = props;
-  const ref = props.React.useRef();
+  useEffect(() => multiline ? handleKeyUp({target: ref.current}) : undefined, []);
   return (
     <Input
       onClick={() => {
@@ -19,16 +20,15 @@ const TextInput = (props) => {
     >
       {multiline ? (
         <textarea
-          wrap="hard"
           onKeyUp={handleKeyUp}
-          rows="1"
           key={"nds-text"}
+          wrap="hard"
           ref={ref}
           required
           {...nativeElementProps}
         />
       ) : (
-        <input key={"nds-text"} ref={ref} type="text" required {...nativeElementProps} />
+        <input key={"nds-text"} ref={ref} type="text" required placeholder={props.label} {...nativeElementProps} />
       )}
     </Input>
   );
@@ -42,32 +42,5 @@ TextInput.defaultProps = {
   React,
   multiline: false,
 };
-
-TextInput.styles = `
-  .nds-input input[type="text"] {
-    border: none;
-    outline: 0;
-    font-size: 16px;
-    line-height: 22px;
-    letter-spacing: 0px;
-    vertical-align: middle;
-    font-family: var(--nds-font-family);
-    padding: 0;
-    width: 100%;
-  }
-
-  .nds-input textarea {
-    line-height: 1.2;
-    vertical-align: middle;
-    color: var(--nds-grey-text);
-    font-family: var(--nds-font-family);
-    border: none;
-    outline: 0;
-    padding: 0;
-    width: 100%;
-    overflow: hidden;
-    resize: none;
-  }
-`;
 
 export default TextInput;

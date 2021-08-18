@@ -1,0 +1,108 @@
+.nds-input {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 1em 0;
+
+  .nds-input-box {
+    box-sizing: border-box;
+    border: 1px solid RGB(var(--nds-disabled));
+    background: RGB(var(--nds-background));
+    position: relative;
+    width: 100%;
+    padding: 0.4em 0.8em;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+
+    &:focus-within {
+      border: 1px solid RGB(var(--nds-primary-color));
+
+      > label {
+        color: RGB(var(--nds-primary-color));
+      }
+    }
+  }
+
+  .nds-input-column {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-grow: 1;
+  }
+
+  &.disabled .nds-input-box {
+    pointer-events: none;
+    border: 1px solid RGB(var(--nds-disabled));
+  }
+
+  &.error .nds-input-box {
+    border: 1px solid RGB(var(--nds-error));
+  }
+
+  .nds-input-icon {
+    display: flex;
+    font-size: 2em;
+    padding: 0 0.3em 0 0;
+    opacity: 0.5;
+  }
+
+  label {
+    background: transparent;
+    pointer-events: none;
+    font-family: var(--nds-font-family);
+    font-weight: 400;
+    font-size: .865em;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .nds-input-error {
+    font-weight: 400;
+    color: RGB(var(--nds-error));
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    margin: 0.8em 0 0;
+
+    svg {
+      margin: -0.1em 0.2em 0;
+      height: 1.2em;
+      width: 1.2em;
+    }
+  }
+
+  textarea {
+    line-height: 1.2;
+    vertical-align: middle;
+    color: var(--nds-grey-text);
+    font-family: var(--nds-font-family);
+    border: none;
+    outline: 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    resize: none;
+  }
+
+  input[type="text"] {
+    border: none;
+    outline: 0;
+    letter-spacing: 0;
+    vertical-align: middle;
+    font-family: var(--nds-font-family);
+    padding: 0;
+    width: 100%;
+  }
+
+
+  input[type="text"]:placeholder-shown, .no-label input[type="text"] {
+    padding: 0.6em 0;
+
+    ~ label {
+      display: none;
+    }
+  }
+}

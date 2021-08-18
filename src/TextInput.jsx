@@ -1,15 +1,16 @@
-import React from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import Input from "Input";
 
 const TextInput = (props) => {
+  const { multiline, React, ...nativeElementProps } = props;
+  const ref = props.React.useRef();
+
   function handleKeyUp(e) {
     e.target.style.height = "inherit";
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
-
-  const { multiline, React, ...nativeElementProps } = props;
-  const ref = props.React.useRef();
+  useEffect(() => multiline ? handleKeyUp({target: ref.current}) : undefined, []);
   return (
     <Input
       onClick={() => {
@@ -19,10 +20,9 @@ const TextInput = (props) => {
     >
       {multiline ? (
         <textarea
-          wrap="hard"
           onKeyUp={handleKeyUp}
-          rows="1"
           key={"nds-text"}
+          wrap="hard"
           ref={ref}
           required
           {...nativeElementProps}

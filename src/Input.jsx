@@ -2,6 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import { XCircle } from "react-feather";
 
+/*
+The Narmi TextInput component is designed for text-based form fields.
+
+If `multiline` is true, it creates a <textarea>; otherwise, it creates an <input type="text">.
+If `icon` is provided, the value of the icon property must match an available icon class.
+By default, if neither `multiline` nor `icon` are provided, an overhanging label will be shown in the input.
+
+*/
+
 const Error = ({ error }) => {
   if (!error) return null;
   return <div className="nds-input-error">
@@ -28,10 +37,12 @@ const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
       style={props.style}
     >
       <div className="nds-input-box">
-        {icon ? <div className="nds-input-icon">{icon}</div> : ""}
-        {props.children}
-        {decoration}
-        {!props.multiline ? <label htmlFor={id}>{label}</label> : ""}
+        {icon ? <div className={`nds-input-icon ${icon}`}></div> : ""}
+        <div className={`nds-input-column ${icon && !props.multiline ? "no-label" : ""}`}>
+          {props.children}
+          {decoration}
+          {!props.multiline ? <label htmlFor={id}>{label}</label> : ""}
+        </div>
       </div>
       <Error error={error} />
     </div>

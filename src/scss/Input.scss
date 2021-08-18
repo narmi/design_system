@@ -3,7 +3,6 @@
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
-  min-width: 280px;
   margin: 1em 0;
 
   .nds-input-box {
@@ -15,7 +14,7 @@
     padding: 0.4em 0.8em;
     border-radius: 4px;
     display: flex;
-    flex-direction: column-reverse;
+    align-items: center;
 
     &:focus-within {
       border: 1px solid RGB(var(--nds-primary-color));
@@ -24,6 +23,12 @@
         color: RGB(var(--nds-primary-color));
       }
     }
+  }
+
+  .nds-input-column {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-grow: 1;
   }
 
   &.disabled .nds-input-box {
@@ -37,8 +42,9 @@
 
   .nds-input-icon {
     display: flex;
-    margin-right: 12px;
-    margin-left: 12px;
+    font-size: 2em;
+    padding: 0 0.3em 0 0;
+    opacity: 0.5;
   }
 
   label {
@@ -53,16 +59,19 @@
   }
 
   .nds-input-error {
-    margin-top: 4px;
-    height: 18px;
-    font-size: 12px;
     font-weight: 400;
-    line-height: 22px;
     color: RGB(var(--nds-error));
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
+    margin: 0.8em 0 0;
+
+    svg {
+      margin: -0.1em 0.2em 0;
+      height: 1.2em;
+      width: 1.2em;
+    }
   }
 
   textarea {
@@ -86,13 +95,14 @@
     font-family: var(--nds-font-family);
     padding: 0;
     width: 100%;
+  }
 
-    &:placeholder-shown {
-      padding: 0.6em 0;
 
-      ~ label {
-        display: none;
-      }
+  input[type="text"]:placeholder-shown, .no-label input[type="text"] {
+    padding: 0.6em 0;
+
+    ~ label {
+      display: none;
     }
   }
 }

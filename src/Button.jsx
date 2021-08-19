@@ -7,7 +7,7 @@ const Button = ({disabled, type, ...props}) => {
   const className = `nds-button nds-typography ${type}${disabled ? " disabled" : ""}`;
   return (
     <a className={className} {...props}>
-      <div className="nds-button-content nds-typography">{props.children}!!</div>
+      <div className="nds-button-content">{props.children}</div>
     </a>
   );
 };

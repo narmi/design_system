@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { deviceBreakpoints } from "global";
 
 
 const Button = ({disabled, type, ...props}) => {

@@ -8,8 +8,13 @@
     text-align: center;
     padding: 16px 32px;
     color: #fff;
+
+    /* mobile buttons have slightly different padding? */
+    @media (max-width: $mobile_size) {
+      padding: 12px 32px;
+    }
     
-    &:before {
+    &::before {
       content: "";
       position: absolute;
       top: 0;
@@ -39,15 +44,23 @@
       text-align: left;
       color: RGB(var(--nds-text-header));
       padding: 10px 0;
-    }
-    &.menu::before {
-      display: none;
+
+      &::before {
+        display: none;
+      }
+
+      /* mobile buttons have slightly different padding? */
+      @media (max-width: $mobile_size) {
+          margin: 0 12px;
+          font-weight: 600;
+      }
     }
 
     /* put disabled styles below type styles */
     &.disabled {
       pointer-events: none;
-      &:before {
+
+      &::before {
         background-color: RGB(var(--nds-disabled));
       }
     }
@@ -55,23 +68,13 @@
     /* plain button styles */
     &.plain {
       color: RGB(var(--nds-text-header));
-      &:before {
+
+      &::before {
         display: none;
       }
-      :hover {
+
+      &:hover {
         text-decoration: underline;
       }
-    }
-  }
-
-  /* mobile buttons have slightly different padding? */
-  @media (max-width: $mobile_size) {
-    .nds-button {
-      padding: 12px 32px;
-    }
-
-    .nds-button.menu {
-      margin: 0 12px;
-      font-weight: 600;
     }
   }

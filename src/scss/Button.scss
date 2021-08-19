@@ -1,0 +1,80 @@
+.nds-button {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+    padding: 16px 32px;
+    color: #fff;
+
+    /* mobile buttons have slightly different padding? */
+    @media (max-width: $mobile_size) {
+      padding: 12px 32px;
+    }
+    
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: RGB(var(--nds-primary-color));
+      border-radius: 20px;
+    }
+    .nds-button-content {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    &:not(.menu):hover::before {
+      filter: brightness(80%);
+    }
+
+
+    /* menu button styles */
+    &.menu {
+      text-align: left;
+      color: RGB(var(--nds-text-header));
+      padding: 10px 0;
+
+      &::before {
+        display: none;
+      }
+
+      /* mobile buttons have slightly different padding? */
+      @media (max-width: $mobile_size) {
+          margin: 0 12px;
+          font-weight: 600;
+      }
+    }
+
+    /* put disabled styles below type styles */
+    &.disabled {
+      pointer-events: none;
+
+      &::before {
+        background-color: RGB(var(--nds-disabled));
+      }
+    }
+
+    /* plain button styles */
+    &.plain {
+      color: RGB(var(--nds-text-header));
+
+      &::before {
+        display: none;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }

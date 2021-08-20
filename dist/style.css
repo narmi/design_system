@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url(icons/be510cc14fb8865c713b.eot?nast5s);
-  src:  url(icons/be510cc14fb8865c713b.eot?nast5s#iefix) format('embedded-opentype'),
-    url(icons/c68daefc69d76a6690ba.ttf?nast5s) format('truetype'),
-    url(icons/865f00b4cd79fe9b7572.woff?nast5s) format('woff'),
-    url(icons/ec466f0db49f68efa64f.svg?nast5s#icomoon) format('svg');
+  src:  url(icons/d8cf8ffaae424a4169bb.eot?y5iil7);
+  src:  url(icons/d8cf8ffaae424a4169bb.eot?y5iil7#iefix) format('embedded-opentype'),
+    url(icons/bb33d09fba77a270c018.ttf?y5iil7) format('truetype'),
+    url(icons/f676668b98ce94db222c.woff?y5iil7) format('woff'),
+    url(icons/941ce382dadbf82c76ca.svg?y5iil7#icomoon) format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -154,7 +154,7 @@
 .narmi-icon-cast:before {
   content: "\E93A";
 }
-.narmi-icon-check1:before {
+.narmi-icon-check:before {
   content: "\E93B";
 }
 .narmi-icon-check-circle:before {
@@ -889,7 +889,7 @@
 .narmi-icon-p2p:before {
   content: "\E908";
 }
-.narmi-icon-check:before {
+.narmi-icon-check-front:before {
   content: "\E906";
 }
 .narmi-icon-check-endorsed:before {

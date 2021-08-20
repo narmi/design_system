@@ -1,6 +1,7 @@
 $mobile_size: 375px;
-$ablet: 768px;
-$desktop: 1280px;
+$tablet: 768px;
+$desktop-small: 1280px;
+$desktop-big: 1440px;
 :root {
     --nds-background: 256, 256, 256;
     --nds-disabled: 217, 217, 217;
@@ -16,3 +17,4 @@ $desktop: 1280px;
 @import "RadioButtons";
 @import "Input";
 @import "Button";
+@import "Grid";

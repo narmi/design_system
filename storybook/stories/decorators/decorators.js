@@ -4,7 +4,7 @@ export const NdsStyles = (Story) => (
 <div style={{ margin: '3em' }}>
         <style>{`
           :root {
-            --nds-primary-color: red;
+            --nds-primary-color: 26, 67, 56;
             --nds-font-family: 'Mulish';
             --nds-primary-color: 17, 59, 94;
             --nds-secondary-color: 223, 52, 22;

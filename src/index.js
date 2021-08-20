@@ -10,6 +10,7 @@ const ButtonBar = require("ButtonBar").default;
 const NavBar = require("NavBar").default;
 const Modal = require("Modal").default;
 const Details = require("Details").default;
+const Card = require("Card").default;
 const RadioButtons = require("RadioButtons").default;
 const components = {
   Input,
@@ -20,6 +21,7 @@ const components = {
   Modal,
   Details,
   RadioButtons,
+  Card,
 };
 
 let styleString = require("global").styles;
@@ -52,6 +54,7 @@ export {
   NavBar,
   Modal,
   Details,
+  Card,
   GlobalStyles,
 };
 

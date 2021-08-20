@@ -1,0 +1,27 @@
+.nds-card {
+  width: 100%;
+  min-height: 68px;
+
+  box-shadow: "var(--nds-dropshadow-light)";
+  border-radius: 4px;
+
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: var(--nds-white);
+
+  :last-child {
+    margin-right: 0px;
+  }
+  background: #FFFFFF;
+
+  border: 1px solid #D9D9D9;
+  &:hover {
+    border: 2px solid RGB(var(--nds-secondary-color));
+    padding: 19px;
+  }
+  box-shadow: 0px 2px 12px rgba(80, 80, 80, 0.05)
+}
+
+.nds-card:hover{
+  border: 2px solid RGB(var(--nds-primary-color));
+}

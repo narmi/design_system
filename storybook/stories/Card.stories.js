@@ -9,7 +9,7 @@ export default {
 };
 
 const TransferCard = () => {
-return(<Card className="nds-typography" title={"Bill Pay"} style={{"margin-right":"20px"}}>
+return(<Card className="nds-typography" title={"Bill Pay"} style={{"margin-right":"20px"}} icon={<span className="narmi-icon-check-front"></span>}>
 <p>This is a p tag</p>
 </Card>);
 }

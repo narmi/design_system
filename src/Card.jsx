@@ -41,7 +41,7 @@ import PropTypes from "prop-types";
 const Card = (props) => {
   return (
     <div className="nds-card nds-typography" style={props.style}>
-        <h4>{props.title}</h4>
+        <div style={{"display": "flex", alignItems:"center"}}><h4 style={{paddingRight: "9px"}}>{props.title}</h4>{props.icon}</div>
         {props.children ? (
           <div hoverable={props.hoverable}>
             {props.children}

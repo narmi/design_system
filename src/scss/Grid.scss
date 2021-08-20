@@ -1,0 +1,88 @@
+$column_count: 12;
+
+.nds-container {
+  display: block;
+  margin: 0 auto;
+  max-width: $desktop-big;
+  padding: 0 20px;
+
+  @media (max-width: $desktop-small) {
+    max-width: $desktop-small
+  }
+
+  @media (max-width: $tablet) {
+    max-width: $tablet
+  }
+
+  @media (max-width: $mobile_size) {
+    max-width: $mobile_size
+  }
+}
+
+.nds-grid {
+  display: grid;
+  grid-template-columns: repeat($column_count, 1fr [col]);
+  column-gap: 20px;
+
+  @media (max-width: $tablet) {
+    grid-template-columns: repeat(6, 1fr [col]);
+  }
+
+  @media (max-width: $mobile_size) {
+    grid-template-columns: repeat(2, 1fr [col]);
+  }
+}
+
+@for $i from 1 through $column_count {
+  .nds-span-#{$i} {
+    grid-column-end: span $i;
+  }
+}
+
+@for $i from 1 through $column_count - 1 {
+  .nds-offset-#{$i} {
+    grid-column-start: col $i;
+  }
+}
+
+@media (max-width: $desktop-small) {
+  @for $i from 1 through $column_count {
+    .nds-span-small-desktop-#{$i} {
+      grid-column-end: span $i;
+    }
+  }
+
+  @for $i from 1 through $column_count - 1 {
+    .nds-offset-small-desktop-#{$i} {
+      grid-column-start: col $i;
+    }
+  }
+}
+
+@media (max-width: $tablet) {
+  @for $i from 1 through $column_count {
+    .nds-span-tablet-#{$i} {
+      grid-column-end: span $i;
+    }
+  }
+
+  @for $i from 1 through $column_count - 1 {
+    .nds-offset-tablet-#{$i} {
+      grid-column-start: col $i;
+    }
+  }
+}
+
+@media (max-width: $mobile_size) {
+  @for $i from 1 through $column_count {
+    .nds-span-mobile-#{$i} {
+      grid-column-end: span $i;
+    }
+  }
+
+  @for $i from 1 through $column_count - 1 {
+    .nds-offset-mobile-#{$i} {
+      grid-column-start: col $i;
+    }
+  }
+}

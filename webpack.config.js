@@ -53,7 +53,12 @@ module.exports = {
           "postcss-loader",
           "sass-loader",
         ],
-      }
+      },
+      {
+        test: /icomoon.*\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        type: 'asset/resource',
+        generator: { filename: 'icons/[hash][ext][query]' }
+      },
     ],
   },
   devtool: "source-map"

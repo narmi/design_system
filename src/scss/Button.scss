@@ -64,18 +64,12 @@
         background-color: RGB(var(--nds-disabled));
       }
     }
-
-    /* plain button styles */
-    &.plain {
-      color: RGB(var(--nds-secondary-color));
-      padding: 0;
-
-      &::before {
-        display: none;
-      }
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
   }
+
+.nds-plain-button {
+  color: RGB(var(--nds-secondary-color));
+}
+.nds-plain-button:hover {
+  text-decoration: underline;
+  color: RGB(var(--nds-secondary-color));
+}

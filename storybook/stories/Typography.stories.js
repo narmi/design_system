@@ -10,22 +10,22 @@ export default {
 export const Styles = () => {
   return <div className="nds-typography">
     <dl className="storybook-example-list">
-      <dt>H1</dt>
+      <dt>h1</dt>
       <dd><h1>This is 32px/(40)</h1></dd>
 
-      <dt>H2</dt>
+      <dt>h2</dt>
       <dd><h2>This is 28px/(35)</h2></dd>
 
-      <dt>H3.nds-sans</dt>
+      <dt>h3.nds-sans</dt>
       <dd><h3 className={"nds-sans"}>This is 24px/(30)</h3></dd>
 
-      <dt>H3</dt>
+      <dt>h3</dt>
       <dd><h3>This is 24px/(30)</h3></dd>
 
-      <dt>H4.nds-sans</dt>
+      <dt>h4.nds-sans</dt>
       <dd><h4 className={"nds-sans"}>This is 20px/(25)</h4></dd>
 
-      <dt>H4</dt>
+      <dt>h4</dt>
       <dd><h4>This is 20px/(25)</h4></dd>
 
       <dt>span.nds-subheader</dt>

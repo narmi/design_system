@@ -34,15 +34,11 @@ const styleComponent = React.createElement("style", {
   },
   key: "style-component"
 });
-const fontComponent = React.createElement("link", {
-  href: "https://fonts.googleapis.com/css?family=Mulish:400,600,700,400italic,700italic&subset=latin",
-  rel: "stylesheet",
-  key: "font-component"
-});
+
 const GlobalStyles = () => (
   React.createElement(React.Fragment, {}, [
     styleComponent,
-    fontComponent,
+
   ])
 );
 

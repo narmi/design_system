@@ -3,7 +3,6 @@
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
-  margin: 1em 0;
 
   .nds-input-box {
     box-sizing: border-box;
@@ -52,7 +51,7 @@
     pointer-events: none;
     font-family: var(--nds-font-family);
     font-weight: 400;
-    font-size: .865em;
+    font-size: 12px;
     line-height: 1.4;
     white-space: nowrap;
     overflow: hidden;

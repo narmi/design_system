@@ -6,6 +6,10 @@ export const NdsStyles = (Story) => (
           :root {
             --nds-primary-color: red;
             --nds-font-family: 'Mulish';
+            --nds-primary-color: 17, 59, 94;
+            --nds-secondary-color: 223, 52, 22;
+            --nds-text-header: 51, 51, 51;
+            --nds-disabled: 140, 140, 140;
             };
           `}
         </style>

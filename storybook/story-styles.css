@@ -2,13 +2,21 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@600&display=swap&subset=latin');
 
+
+
 .storybook-example-list {
     display: grid;
     grid-template-columns: [description] 12rem [example] auto;
     align-items: center;
+    gap: 16px;
 }
 
 .storybook-example-list.storybook-3col {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: start;
+}
+
+.storybook-example-list.storybook-4col {
     grid-template-columns: repeat(3, 1fr);
     align-items: start;
 }

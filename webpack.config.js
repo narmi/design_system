@@ -59,6 +59,11 @@ module.exports = {
         type: 'asset/resource',
         generator: { filename: 'icons/[hash][ext][query]' }
       },
+      {
+        test: /narmi-matiere.*\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        type: 'asset/resource',
+        generator: { filename: 'fonts/[hash][ext][query]' }
+      },
     ],
   },
   devtool: "source-map"

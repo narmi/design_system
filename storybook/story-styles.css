@@ -1,0 +1,31 @@
+/* Contains styles used purely for stories, e.g. subtitles for components */
+
+@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@600&display=swap&subset=latin');
+
+.storybook-example-list {
+    display: grid;
+    grid-template-columns: [description] 12rem [example] auto;
+    align-items: center;
+}
+
+.storybook-example-list.storybook-3col {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: start;
+}
+
+.storybook-example-list.storybook-3col div {
+    display: grid;
+    grid-template-columns: [description] 12rem [example] auto;
+}
+
+.storybook-example-list dt {
+    font-family: 'Hind Madurai', sans-serif;
+    font-weight: 600;
+    size: 18px;
+    line-height: 50px;
+    color: #8C8C8C;
+}
+
+.storybook-example-list dd {
+    margin-inline-start: 0;
+}

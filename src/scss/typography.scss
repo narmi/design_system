@@ -6,33 +6,85 @@
     font-family: var(--nds-header-font);
   }
   h1 {
-    font-size: 36px;
-    font-weight: 600;
-    line-height: 50px;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
   }
   h2 {
+    font-weight: 700;
     font-size: 28px;
-    font-weight: 600;
     line-height: 35px;
   }
   h3 {
+    font-weight: 700;
     font-size: 24px;
-    font-weight: 500;
     line-height: 30px;
+
+    &.nds-sans {
+      font-family: var(--nds-font-family);
+    }
   }
   h4 {
+    font-weight: 700;
     font-size: 20px;
-    font-weight: 600;
     line-height: 25px;
+
+    &.nds-sans {
+      font-family: var(--nds-font-family);
+    }
   }
   h5 {
     font-size: 12px;
     font-weight: 600;
     line-height: 15px;
   }
+
+  .nds-subheader {
+    font-family: var(--nds-font-family);
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    text-transform: uppercase;
+  }
+
   p {
+    font-family: var(--nds-font-family);
+    font-weight: 700;
     font-size: 16px;
-    font-weight: 400;
     line-height: 20px;
+
+    &.nds-p1 {
+      /* Equal to the default */
+      font-size: 16px;
+      line-height: 20px;
+
+      &.nds-light {
+        font-weight: 600
+      }
+
+      &.nds-lighter {
+        font-weight: 400
+      }
+    }
+
+    &.nds-p2 {
+      font-size: 14px;
+      line-height: 16px;
+      font-weight: 600;
+
+      &.nds-light {
+        font-weight: 400
+      }
+    }
+
+    &.nds-p3 {
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 600;
+
+      &.nds-light {
+        font-weight: 400
+      }
+    }
   }
 }

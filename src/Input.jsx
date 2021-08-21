@@ -26,7 +26,6 @@ const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
     "nds-input",
     disabled ? "disabled" : "",
     props.multiline ? "multiline" : "",
-    props.label ? "labeled" : "",
     error ? "error" : ""
   ].join(" ")
 
@@ -38,7 +37,7 @@ const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
     >
       <div className="nds-input-box">
         {icon ? <div className={`nds-input-icon ${icon}`}></div> : ""}
-        <div className={`nds-input-column ${icon && !props.multiline ? "no-label" : ""}`}>
+        <div className={`nds-input-column ${!label || (icon && !props.multiline) ? "no-label" : ""}`}>
           {props.children}
           {decoration}
           {!props.multiline ? <label htmlFor={id}>{label}</label> : ""}

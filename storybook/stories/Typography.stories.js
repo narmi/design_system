@@ -3,7 +3,7 @@ import '../../dist/style.css';
 import { NdsStyles } from './decorators/decorators';
 
 export default {
-  title: 'Example/Typography',
+  title: 'Style/Typography',
   decorators: [NdsStyles],
 };
 

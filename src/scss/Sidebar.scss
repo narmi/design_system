@@ -1,0 +1,53 @@
+.nds-sidebar {
+  .nds-sidebar-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: auto;
+    height: 100vh;
+    width: 335px;
+    z-index: 100;
+    min-width: 200px;
+    background-color: var(--nds-white);
+    border-radius: 4px;
+    box-shadow: var(--nds-dropshadow-dark);
+    visibility: hidden;
+    transition: visibility 0.2s linear;
+    float: left;
+
+    &[slidefromright] {
+      float: right;
+      left: auto;
+      right: 0;
+    }
+
+    &[open] {
+      visibility: visible;
+    }
+
+    .nds-sidebar-close {
+      float: right;
+      padding-right: 15px;
+      padding-top: 15px;
+    }
+  }
+
+  .nds-sidebar-mobile-scrim {
+    display: none;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    visibility: hidden;
+    background: var(--nds-grey-scrim-light);
+    transition: visibility 0.2s linear;
+
+    &[open] {
+      visibility: visible;
+    }
+
+    @media (max-width: $mobile_size) {
+      display: block;
+    }
+  }
+}

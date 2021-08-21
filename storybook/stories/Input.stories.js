@@ -2,6 +2,7 @@ import React from 'react';
 import '../../dist/style.css';
 import { NdsStyles } from './decorators/decorators';
 import { TextInput } from 'design_system'
+
 export default {
   title: 'Components/Inputs',
   decorators: [NdsStyles],

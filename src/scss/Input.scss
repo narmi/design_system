@@ -3,7 +3,7 @@
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
-  margin: 1em 0;
+  font-size: 16px;
 
   .nds-input-box {
     box-sizing: border-box;
@@ -34,10 +34,21 @@
   &.disabled .nds-input-box {
     pointer-events: none;
     border: 1px solid RGB(var(--nds-disabled));
+    background-color: RGB(var(--nds-disabled-background));
+
+    input {
+      color: RGB(var(--nds-disabled));
+    }
   }
 
-  &.error .nds-input-box {
-    border: 1px solid RGB(var(--nds-error));
+  &.error {
+    .nds-input-box {
+      border: 1px solid RGB(var(--nds-error));
+    }
+
+    label {
+      color: RGB(var(--nds-error));
+    }
   }
 
   .nds-input-icon {
@@ -52,23 +63,25 @@
     pointer-events: none;
     font-family: var(--nds-font-family);
     font-weight: 400;
-    font-size: .865em;
+    font-size: 12px;
+    color: RGB(var(--nds-disabled));
     line-height: 1.4;
     white-space: nowrap;
     overflow: hidden;
   }
 
   .nds-input-error {
+    font-size: 12px;
     font-weight: 400;
     color: RGB(var(--nds-error));
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    margin: 0.8em 0 0;
+    margin: .33em 0 0;
 
     svg {
-      margin: -0.1em 0.2em 0;
+      margin: -0.1em 0.4em 0 0.2em;
       height: 1.2em;
       width: 1.2em;
     }
@@ -87,7 +100,12 @@
     resize: none;
   }
 
-  input[type="text"] {
+  input[type="text"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="email"],
+  input[type="date"],
+  input[type="search"] {
     border: none;
     outline: 0;
     letter-spacing: 0;
@@ -97,12 +115,31 @@
     width: 100%;
   }
 
-
-  input[type="text"]:placeholder-shown, .no-label input[type="text"] {
+  input[type="text"]:placeholder-shown,
+  input[type="tel"]:placeholder-shown,
+  input[type="number"]:placeholder-shown,
+  input[type="email"]:placeholder-shown,
+  input[type="search"]:placeholder-shown,
+  .no-label input[type="text"],
+  .no-label input[type="tel"],
+  .no-label input[type="number"],
+  .no-label input[type="email"],
+  .no-label input[type="date"],
+  .no-label input[type="search"] {
     padding: 0.6em 0;
 
     ~ label {
       display: none;
     }
   }
+
+  input[type="date"] {
+    margin-top: -0.3em;
+
+    label {
+      margin-top: -0.1em;
+      margin-bottom: 0.1em;
+    }
+  }
+
 }

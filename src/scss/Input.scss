@@ -15,13 +15,13 @@
     border-radius: 4px;
     display: flex;
     align-items: center;
-  }
 
-  .nds-input-box:focus-within {
-    border: 1px solid RGB(var(--nds-primary-color));
+    &:focus-within {
+      border: 1px solid RGB(var(--nds-primary-color));
 
-    > label {
-      color: RGB(var(--nds-primary-color));
+      > label {
+        color: RGB(var(--nds-primary-color));
+      }
     }
   }
 

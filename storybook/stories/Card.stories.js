@@ -9,7 +9,7 @@ export default {
 };
 
 export const ThreeTransferChoices = () => {
-  return <div>
+  return <div className="nds-typography">
     <h1 style={{textAlign: "center", marginBottom: "1em"}}>How do you want to send money?</h1>
     <div className="nds-grid">
       <Card classes="nds-span-4 nds-span-tablet-6"
@@ -29,7 +29,7 @@ export const ThreeTransferChoices = () => {
 }
 
 export const FourTransferChoices = () => {
-  return <div>
+  return <div className="nds-typography">
     <h1 style={{textAlign: "center", marginBottom: "1em"}}>How do you want to send money?</h1>
     <div className="nds-grid" style={{maxWidth: "35em", margin: "0 auto"}}>
       <Card classes="nds-span-6" title="Transfer" icon="repeat" hoverable="true">
@@ -50,7 +50,7 @@ export const FourTransferChoices = () => {
 
 export const Selection = () => {
   const [selected, setSelected] = useState("nothing");
-  return <div>
+  return <div className="nds-typography">
     <h1 style={{textAlign: "center", marginBottom: "1em"}}>You've selected: {selected}</h1>
     <div className="nds-grid" style={{maxWidth: "35em", margin: "0 auto"}}>
       <Card classes="nds-span-6"
@@ -73,7 +73,7 @@ export const Form = () => {
   const [selected, setSelected] = useState("admin");
   const hiddenInput = useRef(null);
 
-  return <div className={"nds-typography"} style={{maxWidth: "50em"}}>
+  return <div className="nds-typography" style={{maxWidth: "50em"}}>
     <h4 className="nds-sans" style={{marginBottom: "0"}}>Access Level</h4>
     <hr style={{marginBottom: "1em"}} />
     <input type="hidden" value={selected} ref={hiddenInput} />

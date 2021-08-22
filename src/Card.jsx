@@ -9,7 +9,10 @@ const Card = (props) => {
          data-selected={props.selected.toString()}
          {...props}
     >
-        <h4 className="nds-sans nds-card-title">{props.title}&nbsp;{icon}</h4>
+        <div className="nds-card-heading">
+          <h4 className="nds-sans nds-card-title">{props.title}&nbsp;{icon}</h4>
+          {props.button ? props.button : "" }
+        </div>
         {props.children ? (
           <div className="nds-card-content">
             {props.children}

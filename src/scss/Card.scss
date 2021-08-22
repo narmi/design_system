@@ -1,7 +1,6 @@
 .nds-card {
   width: 100%;
   height: 100%;
-  min-height: 68px;
   box-shadow: RGB(var(--nds-dropshadow-light));
   border-radius: 4px;
 
@@ -10,8 +9,7 @@
   background-color: RGB(var(--nds-white));
   border: 1px solid RGB(var(--nds-grey-border));
 
-  &[data-hoverable=true],
-  &[data-selected=true] {
+  &[data-hoverable=true] {
     box-shadow: none;
     cursor: pointer;
   }
@@ -27,17 +25,27 @@
     padding: 0;
   }
 
-  .nds-card-title {
-    color: RGB(var(--nds-primary-color));
-    margin: 0;
+  .nds-card-heading {
+    align-items: baseline;
+    justify-content: space-between;
+    display: flex;
 
-    [class^="narmi-icon-"], [class*=" narmi-icon-"] {
-      margin-left: 4px;
+    .nds-card-title {
+      color: RGB(var(--nds-primary-color));
+      margin: 0;
+
+      [class^="narmi-icon-"], [class*=" narmi-icon-"] {
+        margin-left: 4px;
+      }
     }
   }
 
-  .nds-card-content p {
-    margin-top: 0.25em;
-    margin-bottom: 0;
+  .nds-card-content {
+    margin-top: 1em;
+
+    > p:first-child {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
   }
 }

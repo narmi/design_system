@@ -16,6 +16,7 @@ const components = {
   Input,
   TextInput,
   Button,
+  PlainButton,
   ButtonBar,
   NavBar,
   Modal,

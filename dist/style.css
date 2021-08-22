@@ -48,11 +48,11 @@
 }
 @font-face {
   font-family: 'icomoon';
-  src:  url(icons/d8cf8ffaae424a4169bb.eot?y5iil7);
-  src:  url(icons/d8cf8ffaae424a4169bb.eot?y5iil7#iefix) format('embedded-opentype'),
-    url(icons/bb33d09fba77a270c018.ttf?y5iil7) format('truetype'),
-    url(icons/f676668b98ce94db222c.woff?y5iil7) format('woff'),
-    url(icons/941ce382dadbf82c76ca.svg?y5iil7#icomoon) format('svg');
+  src:  url(icons/1547f3f13fbbe1b04042.eot?t9mv7e);
+  src:  url(icons/1547f3f13fbbe1b04042.eot?t9mv7e#iefix) format('embedded-opentype'),
+    url(icons/e7877ce789ed80130922.ttf?t9mv7e) format('truetype'),
+    url(icons/aabe723a1343cb907a9f.woff?t9mv7e) format('woff'),
+    url(icons/884611957f7adc358aa4.svg?t9mv7e#icomoon) format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -73,6 +73,27 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.narmi-icon-GroupOutlined:before {
+  content: "\EA2B";
+}
+.narmi-icon-LocalAtm:before {
+  content: "\EA2C";
+}
+.narmi-icon-MonetizationOnOutlined:before {
+  content: "\EA2D";
+}
+.narmi-icon-SyncAlt:before {
+  content: "\EA2E";
+}
+.narmi-icon-p2p:before {
+  content: "\E908";
+}
+.narmi-icon-check-front:before {
+  content: "\E906";
+}
+.narmi-icon-check-endorsed:before {
+  content: "\E902";
+}
 .narmi-icon-activity:before {
   content: "\E90D";
 }
@@ -933,15 +954,6 @@
 }
 .narmi-icon-settings-gear:before {
   content: "\E907";
-}
-.narmi-icon-p2p:before {
-  content: "\E908";
-}
-.narmi-icon-check-front:before {
-  content: "\E906";
-}
-.narmi-icon-check-endorsed:before {
-  content: "\E902";
 }
 .narmi-icon-piggy-bank:before {
   content: "\E905";

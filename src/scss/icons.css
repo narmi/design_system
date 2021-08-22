@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?y5iil7');
-  src:  url('fonts/icomoon.eot?y5iil7#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?y5iil7') format('truetype'),
-    url('fonts/icomoon.woff?y5iil7') format('woff'),
-    url('fonts/icomoon.svg?y5iil7#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?t9mv7e');
+  src:  url('fonts/icomoon.eot?t9mv7e#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?t9mv7e') format('truetype'),
+    url('fonts/icomoon.woff?t9mv7e') format('woff'),
+    url('fonts/icomoon.svg?t9mv7e#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,27 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.narmi-icon-GroupOutlined:before {
+  content: "\ea2b";
+}
+.narmi-icon-LocalAtm:before {
+  content: "\ea2c";
+}
+.narmi-icon-MonetizationOnOutlined:before {
+  content: "\ea2d";
+}
+.narmi-icon-SyncAlt:before {
+  content: "\ea2e";
+}
+.narmi-icon-p2p:before {
+  content: "\e908";
+}
+.narmi-icon-check-front:before {
+  content: "\e906";
+}
+.narmi-icon-check-endorsed:before {
+  content: "\e902";
+}
 .narmi-icon-activity:before {
   content: "\e90d";
 }
@@ -885,15 +906,6 @@
 }
 .narmi-icon-settings-gear:before {
   content: "\e907";
-}
-.narmi-icon-p2p:before {
-  content: "\e908";
-}
-.narmi-icon-check-front:before {
-  content: "\e906";
-}
-.narmi-icon-check-endorsed:before {
-  content: "\e902";
 }
 .narmi-icon-piggy-bank:before {
   content: "\e905";

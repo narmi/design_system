@@ -35,9 +35,6 @@
     &.nds-sans {
       font-family: var(--nds-font-family);
     }
-
-    color: var(--nds-black);
-    font-family: var(--nds-font-family);
   }
   h5 {
     font-size: 12px;
@@ -54,13 +51,14 @@
   }
 
   p {
+    /* Default is equivalent to `.nds-p1.nds-lighter` */
     font-family: var(--nds-font-family);
-    font-weight: 700;
+    font-weight: 400;
     font-size: 16px;
     line-height: 20px;
 
     &.nds-p1 {
-      /* Equal to the default */
+      font-weight: 700;
       font-size: 16px;
       line-height: 20px;
 

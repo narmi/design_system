@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Card = (props) => {
-  const icon = props.icon ? <span className={`narmi-icon-$icon}`}>&nbsp;</span> : "";
+  const icon = props.icon ? <span className={`narmi-icon-${props.icon}`}>&nbsp;</span> : "";
   return (
     <div className="nds-card nds-typography"
          data-hoverable={props.hoverable.toString()}

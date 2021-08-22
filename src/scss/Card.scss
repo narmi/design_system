@@ -1,0 +1,51 @@
+.nds-card {
+  width: 100%;
+  height: 100%;
+  box-shadow: RGB(var(--nds-dropshadow-light));
+  border-radius: 4px;
+
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: RGB(var(--nds-white));
+  border: 1px solid RGB(var(--nds-grey-border));
+
+  &[data-hoverable=true] {
+    box-shadow: none;
+    cursor: pointer;
+  }
+
+  &[data-hoverable=true]:hover,
+  &[data-selected=true] {
+    background-color: RGB(var(--nds-disabled-background));
+    border: 2px solid RGB(var(--nds-primary-color));
+    padding: 19px;
+  }
+
+  @media (max-width: $mobile_size) {
+    padding: 0;
+  }
+
+  .nds-card-heading {
+    align-items: baseline;
+    justify-content: space-between;
+    display: flex;
+
+    .nds-card-title {
+      color: RGB(var(--nds-primary-color));
+      margin: 0;
+
+      [class^="narmi-icon-"], [class*=" narmi-icon-"] {
+        margin-left: 4px;
+      }
+    }
+  }
+
+  .nds-card-content {
+    margin-top: 1em;
+
+    > p:first-child {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}

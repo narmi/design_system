@@ -1,9 +1,11 @@
 .nds-typography {
   font-family: var(--nds-font-family);
 
-  h1,h2,h3,h4,h5 {
+  h1,h2,h3 {
     color: var(--nds-black);
     font-family: var(--nds-header-font);
+    margin-top: 0;
+    margin-bottom: 0;
   }
   h1 {
     font-weight: 700;
@@ -14,11 +16,13 @@
     font-weight: 700;
     font-size: 28px;
     line-height: 35px;
+    font-family: var(--nds-header-font);
   }
   h3 {
     font-weight: 700;
     font-size: 24px;
     line-height: 30px;
+    font-family: var(--nds-header-font);
 
     &.nds-sans {
       font-family: var(--nds-font-family);
@@ -28,6 +32,7 @@
     font-weight: 700;
     font-size: 20px;
     line-height: 25px;
+    font-family: var(--nds-header-font);
 
     &.nds-sans {
       font-family: var(--nds-font-family);
@@ -48,13 +53,14 @@
   }
 
   p {
+    /* Default is equivalent to `.nds-p1.nds-lighter` */
     font-family: var(--nds-font-family);
-    font-weight: 700;
+    font-weight: 400;
     font-size: 16px;
     line-height: 20px;
 
     &.nds-p1 {
-      /* Equal to the default */
+      font-weight: 700;
       font-size: 16px;
       line-height: 20px;
 

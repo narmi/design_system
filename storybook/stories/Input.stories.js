@@ -9,15 +9,15 @@ export default {
 
 export const Inputs = () => {
   return <div className={"nds-typography"}>
-    <h1>Text Inputs</h1>
-    <div className="storybook-example-list storybook-4col nds-typography">
+    <h1 style={{marginBottom: "1em"}}>Text Inputs</h1>
+    <div className="storybook-4col">
       <TextInput label={"Label"} />
       <TextInput />
-      <TextInput label={"Label"} value={"Text"} />
-      <TextInput label={"Label"} value={"Text"} error={"Error message"} />
-      <TextInput label={"Label"} value={"Disabled"} disabled />
-      <TextInput label={"Phone number"} value={"(555) 867-5309"} type={"tel"} />
-      <TextInput label={"Date"} value={"1989-01-10"} type={"date"} />
+      <TextInput label={"Label"} defaultValue={"Text"} />
+      <TextInput label={"Label"} defaultValue={"Text"} error={"Error message"} />
+      <TextInput label={"Label"} defaultValue={"Disabled"} disabled />
+      <TextInput label={"Phone number"} defaultValue={"(555) 867-5309"} type={"tel"} />
+      <TextInput label={"Date"} defaultValue={"1989-01-10"} type={"date"} />
     </div>
   </div>
 }

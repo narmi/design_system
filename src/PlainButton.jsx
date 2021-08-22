@@ -1,10 +1,11 @@
 import React from "react";
-import Button from "Button";
 
 
 const PlainButton = (props) => {
   return (
-    <Button type="plain" {...props}/>
+    <a className="nds-plain-button" {...props}>
+      {props.children ? props.children : ""}
+    </a>
   );
 };
 

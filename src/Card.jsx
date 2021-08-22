@@ -1,68 +1,43 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-import { deviceBreakpoints } from "globalStyles";
-
-const StyledCard = styled.div`
-  width: 100%;
-  min-height: 68px;
-
-  box-shadow: ${(props) =>
-    props.hoverable ? null : "var(--nds-dropshadow-light)"};
-  border-radius: 4px;
-  #{yo}
-  padding: 20px;
-  @media (max-width: ${deviceBreakpoints.mobileMax}) {
-    padding: 0px;
-  }
-  box-sizing: border-box;
-  background-color: var(--nds-white);
-
-  :last-child {
-    margin-right: 0px;
-  }
-
-  border: ${(props) =>
-    props.hoverable ? "1px solid var(--nds-grey-disabled)" : null};
-
-  &:hover {
-    border: ${(props) =>
-      props.hoverable ? "2px solid var(--nds-primary-color)" : null};
-    padding: ${(props) => (props.hoverable ? "19px" : "20px")};
-  }
-
-  @media (max-width: ${deviceBreakpoints.mobileMax}) {
-    max-width: auto;
-  }
-`;
-
-const StyledCardBody = styled.div`
-  margin-top: ${(props) => (props.hoverable ? "8px" : "12px")};
-`;
 
 const Card = (props) => {
+  const icon = props.icon ? <span className={`narmi-icon-${props.icon}`}>&nbsp;</span> : "";
   return (
-    <StyledCard className="nds-typography" {...props}>
-      <h4>{props.title}</h4>
-      {props.children ? (
-        <StyledCardBody hoverable={props.hoverable}>
-          {props.children}
-        </StyledCardBody>
-      ) : (
-        ""
-      )}
-    </StyledCard>
+    <div className={`nds-card nds-typography ${props.classes}`}
+         data-hoverable={props.hoverable.toString()}
+         data-selected={props.selected.toString()}
+         {...props}
+    >
+        <div className="nds-card-heading">
+          <h4 className="nds-sans nds-card-title">{props.title}&nbsp;{icon}</h4>
+          {props.button ? props.button : "" }
+        </div>
+        {props.children ? (
+          <div className="nds-card-content">
+            {props.children}
+          </div>
+        ) : (
+          ""
+        )}
+    </div>
   );
 };
 
 Card.propTypes = {
   title: PropTypes.node,
   children: PropTypes.node,
+  icon: PropTypes.string,
   hoverable: PropTypes.bool,
+  selected: PropTypes.bool,
+  classes: PropTypes.string
 };
 
 Card.defaultProps = {
   hoverable: false,
+  selected: false,
+  icon: "",
+  classes: ""
 };
 
 export default Card;

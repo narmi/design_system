@@ -67,9 +67,11 @@
   }
 
 .nds-plain-button {
+  cursor: pointer;
   color: RGB(var(--nds-secondary-color));
-}
-.nds-plain-button:hover {
-  text-decoration: underline;
-  color: RGB(var(--nds-secondary-color));
+
+  &:hover {
+    text-decoration: underline;
+    color: RGB(var(--nds-secondary-color));
+  }
 }

@@ -22,7 +22,7 @@ $column_count: 12;
 .nds-grid {
   display: grid;
   grid-template-columns: repeat($column_count, 1fr [col]);
-  column-gap: 20px;
+  gap: 20px;
 
   @media (max-width: $tablet) {
     grid-template-columns: repeat(6, 1fr [col]);

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const Card = (props) => {
   const icon = props.icon ? <span className={`narmi-icon-${props.icon}`}>&nbsp;</span> : "";
   return (
-    <div className="nds-card nds-typography" hoverable={props.hoverable}>
+    <div className="nds-card nds-typography" {...props}>
         <h4 className="nds-sans nds-card-title">{props.title}&nbsp;{icon}</h4>
         {props.children ? (
           <div className="nds-card-content">
@@ -20,11 +20,11 @@ const Card = (props) => {
 Card.propTypes = {
   title: PropTypes.node,
   children: PropTypes.node,
-  hoverable: PropTypes.strin,
+  hoverable: PropTypes.string,
 };
 
 Card.defaultProps = {
-  hoverable: false,
+  hoverable: "false",
 };
 
 export default Card;

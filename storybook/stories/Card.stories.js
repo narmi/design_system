@@ -66,7 +66,7 @@ export const Form = () => {
   const [selected, setSelected] = useState("admin");
   const hiddenInput = useRef(null);
 
-  return <div className={"nds-typography"}>
+  return <div className={"nds-typography"} style={{maxWidth: "50em"}}>
     <h4 className="nds-sans" style={{marginBottom: "0"}}>Access Level</h4>
     <hr style={{marginBottom: "1em"}} />
     <input type="hidden" value={selected} ref={hiddenInput} />

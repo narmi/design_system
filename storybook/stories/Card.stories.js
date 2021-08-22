@@ -11,14 +11,17 @@ export default {
 export const ThreeTransferChoices = () => {
   return <div>
     <h1 style={{textAlign: "center", marginBottom: "1em"}}>How do you want to send money?</h1>
-    <div className="storybook-3col">
-      <Card title="Transfer" icon="repeat" hoverable="true">
+    <div className="nds-grid">
+      <Card classes="nds-span-4 nds-span-tablet-6"
+            title="Transfer" icon="repeat" hoverable="true">
         <p>Transfer funds to an internal or external account</p>
       </Card>
-      <Card title="Bill pay" icon="bill" hoverable="true">
+      <Card classes="nds-span-4 nds-span-tablet-6"
+            title="Bill pay" icon="bill" hoverable="true">
         <p>Pay a bill online or set up future payments</p>
       </Card>
-      <Card title="Member to member" icon="group" hoverable="true">
+      <Card classes="nds-span-4 nds-span-tablet-6"
+            title="Member to member" icon="group" hoverable="true">
         <p>Send money directly to another bank member</p>
       </Card>
     </div>
@@ -28,17 +31,17 @@ export const ThreeTransferChoices = () => {
 export const FourTransferChoices = () => {
   return <div>
     <h1 style={{textAlign: "center", marginBottom: "1em"}}>How do you want to send money?</h1>
-    <div className="storybook-2col" style={{maxWidth: "35em", margin: "0 auto"}}>
-      <Card title="Transfer" icon="repeat" hoverable="true">
+    <div className="nds-grid" style={{maxWidth: "35em", margin: "0 auto"}}>
+      <Card classes="nds-span-6" title="Transfer" icon="repeat" hoverable="true">
         <p>Transfer funds to an internal or external account</p>
       </Card>
-      <Card title="Bill pay" icon="bill" hoverable="true">
+      <Card classes="nds-span-6" title="Bill pay" icon="bill" hoverable="true">
         <p>Pay a bill online or set up future payments</p>
       </Card>
-      <Card title="Member to member" icon="group" hoverable="true">
+      <Card classes="nds-span-6" title="Member to member" icon="group" hoverable="true">
         <p>Send money directly to another bank member</p>
       </Card>
-      <Card title="Wire" icon="credit-card" hoverable="true">
+      <Card classes="nds-span-6" title="Wire" icon="credit-card" hoverable="true">
         <p>Send money to anyone, for a fee</p>
       </Card>
     </div>
@@ -49,11 +52,15 @@ export const Selection = () => {
   const [selected, setSelected] = useState("nothing");
   return <div>
     <h1 style={{textAlign: "center", marginBottom: "1em"}}>You've selected: {selected}</h1>
-    <div className="storybook-2col" style={{maxWidth: "35em", margin: "0 auto"}}>
-      <Card title="Transfer" icon="repeat" hoverable="true" onClick={() => setSelected("Transfer")}>
+    <div className="nds-grid" style={{maxWidth: "35em", margin: "0 auto"}}>
+      <Card classes="nds-span-4 nds-span-tablet-3"
+            title="Transfer" icon="repeat" hoverable="true"
+            onClick={() => setSelected("Transfer")}>
         <p>Transfer funds to an internal or external account</p>
       </Card>
-      <Card title="Bill pay" icon="bill" hoverable="true" onClick={() => setSelected("Bill pay")}>
+      <Card classes="nds-span-4 nds-span-tablet-3"
+            title="Bill pay" icon="bill" hoverable="true"
+            onClick={() => setSelected("Bill pay")}>
         <p>Pay a bill online or set up future payments</p>
       </Card>
     </div>
@@ -70,18 +77,21 @@ export const Form = () => {
     <h4 className="nds-sans" style={{marginBottom: "0"}}>Access Level</h4>
     <hr style={{marginBottom: "1em"}} />
     <input type="hidden" value={selected} ref={hiddenInput} />
-    <div className="storybook-3col" style={{margin: "0 auto"}}>
-      <Card title="Admin" icon="user" hoverable="true"
+    <div className="nds-grid" style={{margin: "0 auto"}}>
+      <Card classes="nds-span-4 nds-span-tablet-6"
+            title="Admin" icon="user" hoverable="true"
             selected={selected === "admin"}
             onClick={() => setSelected("admin")}>
         <p>Full access including adding new users</p>
       </Card>
-      <Card title="Collaborator" icon="group" hoverable="true"
+      <Card classes="nds-span-4 nds-span-tablet-6"
+            title="Collaborator" icon="group" hoverable="true"
             selected={selected === "collaborator"}
             onClick={() => setSelected("collaborator")}>
         <p>Customize your teammate's access</p>
       </Card>
-      <Card title="Viewer" icon="eye" hoverable="true"
+      <Card classes="nds-span-4 nds-span-tablet-6"
+            title="Viewer" icon="eye" hoverable="true"
             selected={selected === "viewer"}
             onClick={() => setSelected("viewer")}>
         <p>View information on selected accounts</p>

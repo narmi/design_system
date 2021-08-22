@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const Card = (props) => {
   const icon = props.icon ? <span className={`narmi-icon-${props.icon}`}>&nbsp;</span> : "";
   return (
-    <div className="nds-card nds-typography"
+    <div className={`nds-card nds-typography ${props.classes}`}
          data-hoverable={props.hoverable.toString()}
          data-selected={props.selected.toString()}
          {...props}
@@ -27,12 +27,14 @@ Card.propTypes = {
   icon: PropTypes.string,
   hoverable: PropTypes.bool,
   selected: PropTypes.bool,
+  classes: PropTypes.string
 };
 
 Card.defaultProps = {
   hoverable: false,
   selected: false,
   icon: "",
+  classes: ""
 };
 
 export default Card;

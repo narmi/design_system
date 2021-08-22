@@ -1,0 +1,10 @@
+.nds-buttonbar {
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: $desktop-small) {
+    .nds-buttonbar {
+      flex-direction: row;
+    }
+  }
+}

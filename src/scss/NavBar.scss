@@ -1,0 +1,70 @@
+.nds-navbar {
+  z-index: 1;
+  background: RGB(var(--nds-background));
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+
+  .nds-navbar-hamburger {
+    cursor: pointer;
+  }
+
+  .nds-navbar-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+
+    .nds-navbar-mainmenu {
+      flex-grow: 1;
+    }
+  }
+
+  @media (max-width: $desktop-small) {
+    position: static;
+    padding: 0;
+    justify-content: normal;
+
+    .nds-navbar-container {
+      flex-direction: row;
+    }
+
+    .nds-navbar-hamburger {
+      display: none;
+    }
+
+    > .nds-modal {
+      flex-grow: 1;
+
+      &.right > .nds-modal-container {
+        display: block;
+        position: static;
+        padding: 16px 25px;
+      }
+
+      &.open > .nds-modal-overlay {
+        display: none;
+      }
+    }
+
+    .nds-details {
+      padding-right: 30px;
+    }
+
+    .nds-navbar-container {
+      .nds-navbar-mainmenu > *,
+      .nds-navbar-usermenu > * {
+        border-bottom: 3px solid transparent;
+
+        &:hover {
+          border-bottom: 3px solid RGB(var(--nds-primary-color));
+        }
+      }
+    }
+  }
+}

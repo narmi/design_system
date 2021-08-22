@@ -17,7 +17,7 @@ const Sidebar = (props) => {
       <span className="nds-sidebar-mobile-scrim" open={open}> </span>
       <div className={"nds-sidebar-content"} open={open} {...props} slidefromright={props.slideFromRight}>
         <span className="nds-sidebar-close" slidefromright={props.slideFromRight}>
-          <X onClick={closeSidebar} />
+          <span className={"narmi-icon-x"} onClick={closeSidebar}> </span>
         </span>
         {props.children}
       </div>

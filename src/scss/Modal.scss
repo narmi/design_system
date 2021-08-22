@@ -1,0 +1,73 @@
+.nds-modal {
+  .nds-modal-overlay {
+    display: none;
+    z-index: 100;
+    background: #000;
+    opacity: 70%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  &.open {
+    > .nds-modal-overlay {
+      display: block;
+    }
+
+    > .nds-modal-container {
+      display: block;
+
+      > .nds-modal-dismiss {
+        display: block;
+      }
+    }
+  }
+  .nds-modal-dismiss {
+    display: none;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+  }
+
+  > .nds-modal-container {
+    display: none;
+    z-index: 100;
+    position: fixed;
+    background: RGB(var(--nds-background));
+  }
+
+  &.right > .nds-modal-container {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    min-width: 335px;
+    padding: 40px 25px 40px 20px;
+  }
+
+  &.details {
+    &.open {
+      .nds-modal-overlay {
+        display: none;
+
+        @media (max-width: $desktop-small) {
+          display: block;
+          opacity: 0;
+        }
+      }
+
+      > .nds-modal-container {
+        position: static;
+
+        > .nds-modal-dismiss {
+          display: none;
+        }
+
+        @media (max-width: $desktop-small) {
+          position: fixed;
+        }
+      }
+    }
+  }
+}

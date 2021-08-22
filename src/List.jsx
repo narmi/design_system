@@ -1,123 +1,61 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-import { deviceBreakpoints } from "globalStyles";
-
-const StyledListWrapper = styled.div`
-  display: flex;
-  flex-flow: ${(props) =>
-    props.categoriesHorizontal ? "row nowrap" : "column nowrap"};
-  @media ${`(max-width: ${deviceBreakpoints.mobileMax})`} {
-    flex-flow: column nowrap;
-  }
-`;
-
-const StyledList = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  white-space: nowrap;
-  margin: 0;
-
-  // divide categorized lists
-  // - vertical: border-bottom
-  // - horizontal: border-right
-  border-bottom: ${(p) =>
-    p.divideCategories && !p.categoriesHorizontal
-      ? "1px solid var(--nds-grey-disabled)"
-      : null};
-
-  @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
-    border-right: ${(p) =>
-      p.divideCategories && p.categoriesHorizontal
-        ? "1px solid var(--nds-grey-disabled)"
-        : null};
-  }
-
-  &:last-child {
-    border-right: none;
-    border-bottom: none;
-  }
-`;
-
-export const StyledListItem = styled.div`
-  box-sizing: border-box;
-
-  border-bottom: ${(p) =>
-    p.divideItems ? "1px solid var(--nds-grey-disabled)" : null};
-
-  :hover {
-    background-color: ${(props) =>
-      props.hoverable ? "var(--nds-primary-color-lightest)" : null};
-  }
-
-  &:last-child {
-    border-bottom: none;
-  }
-`;
 
 function renderItem(props, item, idx) {
   return (
-    <StyledListItem
+    <div className={"nds-list-item"}
       key={"ListItem" + idx}
       hoverable={props.hoverable}
-      divideItems={props.divideItems}
-      className="nds-typography"
+      divided={props.divideItems}
     >
       {props.renderItem(item)}
-    </StyledListItem>
+    </div>
   );
 }
 
 function renderCategoryList(props, category, categoryIdx) {
   return (
-    <StyledList
-      divideCategories={props.divideCategories}
-      categoriesHorizontal={props.categoriesHorizontal}
+    <div className={"nds-list"}
+      divided={props.divideCategories}
+      horizontal={props.categoriesHorizontal}
       key={"List" + category + categoryIdx}
-      className="nds-typography"
     >
-      {/* always black */}
       {props.renderCategory(category)}
       {props.items[category].map((item, idx) => renderItem(props, item, idx))}
-    </StyledList>
+    </div>
   );
 }
 
-const List = (props) => {
+const List = ({
+                hoverable,
+                divided,
+                horizontal,
+                ...rest
+              }) => {
   let els = Array.isArray(props.items) ? (
-    <StyledList
-      divideCategories={props.divideCategories}
-      categoriesHorizontal={props.categoriesHorizontal}
+    <div className={"nds-list"}
+      divided={props.divideCategories}
+      horizontal={props.categoriesHorizontal}
     >
       {props.items.map((item, idx) => renderItem(props, item, idx))}
-    </StyledList>
+    </div>
   ) : (
     Object.keys(props.items).map((category, categoryIdx) =>
       renderCategoryList(props, category, categoryIdx)
     )
   );
 
-  const flexList = <StyledListWrapper {...props}>{els}</StyledListWrapper>;
-  if (props.renderListWrapper) {
-    return props.renderListWrapper(flexList);
-  }
-  return flexList;
+  return <div className={"nds-list-container"} horizontal={horizontal}>{els}</div>;
 };
 
 const renderDefaultItem = (item) => {
   return <React.Fragment>{item}</React.Fragment>;
 };
 
-const renderDefaultContainer = (list) => {
-  return <React.Fragment>{list}</React.Fragment>;
-};
-
 List.propTypes = {
   hoverable: PropTypes.bool,
-  divideItems: PropTypes.bool,
-  divideCategories: PropTypes.bool,
-  categoriesHorizontal: PropTypes.bool,
+  divided: PropTypes.bool,
+  horizontal: PropTypes.bool,
   renderItem: PropTypes.func,
   renderCategory: PropTypes.func,
   items: PropTypes.oneOfType([
@@ -130,9 +68,8 @@ List.propTypes = {
 
 List.defaultProps = {
   hoverable: true,
-  divideItems: false,
-  divideCategories: false,
-  categoriesHorizontal: false,
+  divided: false,
+  horizontal: false,
   renderItem: renderDefaultItem,
   renderCategory: renderDefaultItem,
   items: [],

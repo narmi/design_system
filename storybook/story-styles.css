@@ -46,3 +46,21 @@
 .storybook-example-list dd {
     margin-inline-start: 0;
 }
+
+.icon-demo {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.icon-demo-box {
+    width: 8em;
+    height: 5em;
+    text-align: center;
+    word-break: break-word;
+    margin-bottom: 1em;
+}
+
+.icon-demo-icon {
+    font-size: 2em;
+    display: block;
+}

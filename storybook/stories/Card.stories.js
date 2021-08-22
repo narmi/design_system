@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Card } from 'design_system';
 import '../../dist/style.css';
 import { NdsStyles } from './decorators/decorators';
@@ -42,5 +42,21 @@ export const FourTransferChoices = () => {
         <p>Send money to anyone, for a fee</p>
       </Card>
     </div>
+  </div>
+}
+
+export const Selection = () => {
+  const [selected, setSelected] = useState("nothing");
+  return <div>
+    <h1 style={{textAlign: "center", marginBottom: "1em"}}>You've selected: {selected}</h1>
+    <div className="storybook-2col" style={{maxWidth: "35em", margin: "0 auto"}}>
+      <Card title="Transfer" icon="repeat" hoverable="true" onClick={() => setSelected("Transfer")}>
+        <p>Transfer funds to an internal or external account</p>
+      </Card>
+      <Card title="Bill pay" icon="bill" hoverable="true" onClick={() => setSelected("Bill pay")}>
+        <p>Pay a bill online or set up future payments</p>
+      </Card>
+    </div>
+    <h5 style={{textAlign: "center", marginTop: "1em"}}>(Try clicking these cards!)</h5>
   </div>
 }

@@ -10,14 +10,17 @@
   background-color: RGB(var(--nds-white));
   border: 1px solid RGB(var(--nds-grey-border));
 
-  &[hoverable] {
+  &[data-hoverable=true],
+  &[data-selected=true] {
     box-shadow: none;
     cursor: pointer;
-    &:hover {
-      background-color: RGB(var(--nds-disabled-background));
-      border: 2px solid RGB(var(--nds-primary-color));
-      padding: 19px;
-    }
+  }
+
+  &[data-hoverable=true]:hover,
+  &[data-selected=true] {
+    background-color: RGB(var(--nds-disabled-background));
+    border: 2px solid RGB(var(--nds-primary-color));
+    padding: 19px;
   }
 
   @media (max-width: $mobile_size) {

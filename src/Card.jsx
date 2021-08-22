@@ -2,9 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Card = (props) => {
-  const icon = props.icon ? <span className={`narmi-icon-${props.icon}`}>&nbsp;</span> : "";
+  const icon = props.icon ? <span className={`narmi-icon-$icon}`}>&nbsp;</span> : "";
   return (
-    <div className="nds-card nds-typography" {...props}>
+    <div className="nds-card nds-typography"
+         data-hoverable={props.hoverable.toString()}
+         data-selected={props.selected.toString()}
+         {...props}
+    >
         <h4 className="nds-sans nds-card-title">{props.title}&nbsp;{icon}</h4>
         {props.children ? (
           <div className="nds-card-content">
@@ -20,11 +24,15 @@ const Card = (props) => {
 Card.propTypes = {
   title: PropTypes.node,
   children: PropTypes.node,
-  hoverable: PropTypes.string,
+  icon: PropTypes.string,
+  hoverable: PropTypes.bool,
+  selected: PropTypes.bool,
 };
 
 Card.defaultProps = {
-  hoverable: "false",
+  hoverable: false,
+  selected: false,
+  icon: "",
 };
 
 export default Card;

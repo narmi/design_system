@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { Card } from 'design_system';
+import React, {useRef, useState} from 'react';
+import { Button, Card, PlainButton } from 'design_system';
 import '../../dist/style.css';
 import { NdsStyles } from './decorators/decorators';
 
@@ -60,3 +60,38 @@ export const Selection = () => {
     <h5 style={{textAlign: "center", marginTop: "1em"}}>(Try clicking these cards!)</h5>
   </div>
 }
+
+
+export const Form = () => {
+  const [selected, setSelected] = useState("admin");
+  const hiddenInput = useRef(null);
+
+  return <div className={"nds-typography"}>
+    <h4 className="nds-sans" style={{marginBottom: "0"}}>Access Level</h4>
+    <hr style={{marginBottom: "1em"}} />
+    <input type="hidden" value={selected} ref={hiddenInput} />
+    <div className="storybook-3col" style={{margin: "0 auto"}}>
+      <Card title="Admin" icon="user" hoverable="true"
+            selected={selected === "admin"}
+            onClick={() => setSelected("admin")}>
+        <p>Full access including adding new users</p>
+      </Card>
+      <Card title="Collaborator" icon="group" hoverable="true"
+            selected={selected === "collaborator"}
+            onClick={() => setSelected("collaborator")}>
+        <p>Customize your teammate's access</p>
+      </Card>
+      <Card title="Viewer" icon="eye" hoverable="true"
+            selected={selected === "viewer"}
+            onClick={() => setSelected("viewer")}>
+        <p>View information on selected accounts</p>
+      </Card>
+    </div>
+    <div style={{textAlign: "right", marginTop: "1em"}}>
+      <a className={"nds-plain-button"} style={{marginRight: "1em"}}>Cancel</a>
+      &nbsp;
+      <Button onClick={() => alert(`The current value of the form input is ${hiddenInput.current.value}`)}>Submit</Button>
+    </div>
+  </div>
+}
+

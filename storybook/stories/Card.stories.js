@@ -53,12 +53,12 @@ export const Selection = () => {
   return <div>
     <h1 style={{textAlign: "center", marginBottom: "1em"}}>You've selected: {selected}</h1>
     <div className="nds-grid" style={{maxWidth: "35em", margin: "0 auto"}}>
-      <Card classes="nds-span-4 nds-span-tablet-3"
+      <Card classes="nds-span-6"
             title="Transfer" icon="repeat" hoverable="true"
             onClick={() => setSelected("Transfer")}>
         <p>Transfer funds to an internal or external account</p>
       </Card>
-      <Card classes="nds-span-4 nds-span-tablet-3"
+      <Card classes="nds-span-6"
             title="Bill pay" icon="bill" hoverable="true"
             onClick={() => setSelected("Bill pay")}>
         <p>Pay a bill online or set up future payments</p>

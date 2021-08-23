@@ -20,13 +20,10 @@ export const SampleModal = () => {
             // onCancel={handleCancel}
             // onSuccess={handleCancel}
         >
-            <div style={{width: "500px", padding: "40px"}}>
+            <div style={{width: "500px"}}>
                 <h4>Title</h4>
                 <p>
-                    By clicking &quot;Continue,&quot; you acknowledge that you&apos;re
-                    leaving Aqua's online banking platform.{" "}
-                    Aqua assumes no liability for the products, services,
-                    content, policies, or security of third party sites.
+                    This is an example of body text that a user could pass
                 </p>
             </div>
     </Modal> 

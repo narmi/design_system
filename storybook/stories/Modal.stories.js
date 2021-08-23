@@ -14,8 +14,6 @@ export const SampleModal = () => {
         <Button onClick={()=>{setOpen(true)}}>Open Modal</Button>
         <Modal
             open={open}
-            cancelLabel={"Cancel"}
-            successLabel={"Continue"}
             setOpen={setOpen}
         >
             <div style={{width: "500px"}}>

@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { X } from "react-feather";
 
 export const modalZIndex = 100;
 
@@ -12,7 +11,7 @@ const Modal = ({ open, setOpen, children, type }) => {
     />
     <div className="nds-modal-container">
       <div className="nds-modal-dismiss" onClick={() => {setOpen(false)}}>
-        <X/>
+        <span className={"narmi-icon-x"} style={{color: "#333333"}}/>
       </div>
       {children}
     </div>

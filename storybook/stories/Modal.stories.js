@@ -17,8 +17,6 @@ export const SampleModal = () => {
             cancelLabel={"Cancel"}
             successLabel={"Continue"}
             setOpen={setOpen}
-            // onCancel={handleCancel}
-            // onSuccess={handleCancel}
         >
             <div style={{width: "500px"}}>
                 <h4>Title</h4>

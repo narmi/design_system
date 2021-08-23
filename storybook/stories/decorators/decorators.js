@@ -6,8 +6,7 @@ export const NdsStyles = (Story) => (
           :root {
             --nds-primary-color: 26, 67, 56;
             --nds-font-family: 'Mulish';
-            --nds-primary-color: 17, 59, 94;
-            --nds-secondary-color: 223, 52, 22;
+            --nds-secondary-color: 0, 101, 83;
             --nds-text-header: 51, 51, 51;
             --nds-disabled-background: 243, 243, 243;
             --nds-grey-border: 219, 219, 219;

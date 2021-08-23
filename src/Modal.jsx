@@ -1,35 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { X } from "react-feather";
 
-export const modalZIndex = 100;
-
-const Modal = ({ open, setOpen, children, type }) => {
-  return <div className={`nds-modal${open?" open":""} ${type}`}>
+const Modal = ({ open, handleClose, children, classes, header, actions }) => {
+  return (
     <div
-      className="nds-modal-overlay"
-      onClick={() => {setOpen(false)}}
-    />
-    <div className="nds-modal-container">
-      <div className="nds-modal-dismiss" onClick={() => {setOpen(false)}}>
-        <span className={"narmi-icon-x"} style={{color: "#333333"}}/>
+      className={`nds-modal ${classes}`}
+      data-open={open.toString()}
+      style={{borderRadius:"8px"}}
+    >
+      <div
+        className="nds-modal-overlay"
+      ></div>
+      <div className="nds-modal-container">
+        <div
+          className="nds-modal-dismiss"
+          onClick={handleClose}
+        >
+          <span className={"narmi-icon-x"} style={{ fontSize:"20px", color: "rgb(var(--nds-text-header))" }} />
+        </div>
+        {header ? <><h3 className="nds-sans">{header}</h3> <hr className="nds-hr"/> </>: ""}
+        {children}
+        <div
+          className="nds-modal-action-row"
+        >
+          {actions}
+        </div>
       </div>
-      {children}
     </div>
-  </div>;
+  );
 };
 
 Modal.propTypes = {
   open: PropTypes.bool,
   setOpen: PropTypes.func,
   children: PropTypes.node,
-  type: PropTypes.str,
+  classes: PropTypes.string,
 };
 
 Modal.defaultProps = {
   open: false,
   setOpen: () => {},
-  type: "center",
+  classes: "center",
 };
 
 export default Modal;

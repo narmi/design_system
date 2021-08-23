@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../dist/style.css';
 import { NdsStyles } from './decorators/decorators';
 
 export default {

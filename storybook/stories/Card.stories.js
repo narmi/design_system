@@ -1,6 +1,5 @@
 import React, {useRef, useState} from 'react';
 import { Button, Card, PlainButton } from 'design_system';
-import '../../dist/style.css';
 import { NdsStyles } from './decorators/decorators';
 
 export default {

@@ -1,7 +1,7 @@
 .nds-modal { 
     .nds-modal-overlay {
         display: none;
-        z-index: 1; // ${modalZIndex};
+        z-index: 1;
         background: #000;
         opacity: 70%;
         position: fixed;
@@ -17,19 +17,21 @@
         transform: translate(-50%, -50%);
     }
 
-    &.open > .nds-modal-overlay {
-        display: block;
-    }
-    &.open > .nds-modal-container > .nds-modal-dismiss {
-        display: block;
-    }
-    &.open > .nds-modal-container {
-        display: block;
+    &.open {
+        > .nds-modal-overlay {
+            display: block;
+        }
+        > .nds-modal-container {
+            display: block;
+            > .nds-modal-dismiss {
+                display: block;
+            }
+        }
     }
 
     & > .nds-modal-container {
         display: none;
-        z-index: 1; // ${modalZIndex};
+        z-index: 1;
         position: fixed;
         background: RGB(var(--nds-background));
       }
@@ -42,12 +44,3 @@
         cursor: pointer;
     }
 }
-  @media (min-width: $desktop-small) {
-    .nds-modal.details.open .nds-modal-overlay {
-      display: block;
-      opacity: 0;
-    }
-    .nds-modal.details > .nds-modal-container {
-      position: fixed;
-    }
-  }

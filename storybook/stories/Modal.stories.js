@@ -1,5 +1,5 @@
-import React, {useRef, useState} from 'react';
-import { Modal, Button, Card, PlainButton } from 'design_system';
+import React, { useState } from 'react';
+import { Modal, Button } from 'design_system';
 import { NdsStyles } from './decorators/decorators';
 
 export default {

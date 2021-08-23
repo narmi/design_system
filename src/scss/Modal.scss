@@ -1,0 +1,47 @@
+.nds-modal { 
+    .nds-modal-overlay {
+        display: none;
+        z-index: 100;
+        background: #000;
+        opacity: 70%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+    .nds-modal-container {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        padding: 40px;
+    }
+
+    &.open {
+        > .nds-modal-overlay {
+            display: block;
+        }
+        > .nds-modal-container {
+            display: block;
+            > .nds-modal-dismiss {
+                display: block;
+            }
+        }
+    }
+
+    & > .nds-modal-container {
+        display: none;
+        z-index: 100;
+        position: fixed;
+        background: RGB(var(--nds-background));
+      }
+
+    .nds-modal-dismiss {
+        display: none;
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        cursor: pointer;
+    }
+}

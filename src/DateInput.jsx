@@ -17,7 +17,9 @@ const DateInput = (props) => {
     dateFormat: "m/d/Y"
   }
 
-  useEffect(() => flatpickr(input.current, flatpickrOptions));
+  useEffect(() => {
+    flatpickr(input.current, flatpickrOptions)
+  });
 
   return (
     <Input {...props}>

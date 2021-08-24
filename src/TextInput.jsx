@@ -3,13 +3,18 @@ import PropTypes from "prop-types";
 import Input from "Input";
 
 const TextInput = (props) => {
-  const { multiline, ...nativeElementProps } = props;
+  const { format, multiline, value, ...nativeElementProps } = props;
   const ref = useRef();
 
   function handleKeyUp(e) {
     e.target.style.height = "inherit";
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
+
+  const newValue = format
+      ? format(value)
+      : value || "";
+
   useEffect(() => multiline ? handleKeyUp({target: ref.current}) : undefined, []);
   return (
     <Input
@@ -28,7 +33,7 @@ const TextInput = (props) => {
           {...nativeElementProps}
         />
       ) : (
-        <input key={"nds-text"} ref={ref} type="text" required placeholder={props.label} {...nativeElementProps} />
+        <input key={"nds-text"} ref={ref} type="text" required placeholder={props.label} value={newValue} {...nativeElementProps} />
       )}
     </Input>
   );

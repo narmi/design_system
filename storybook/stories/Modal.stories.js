@@ -7,30 +7,6 @@ export default {
   decorators: [NdsStyles],
 };
 
-export const SimpleModal = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="nds-typography">
-      <Button
-        onClick={() => {
-          setOpen(true);
-        }}
-      >
-        Open Modal
-      </Button>
-      <Modal 
-        open={open}
-        handleClose={()=>{setOpen(false)}}
-        header={"Title"}
-      >
-        <div style={{ width: "500px" }}>
-          <p>This is an example of body text that a user could pass</p>
-        </div>
-      </Modal>
-    </div>
-  );
-};
-
 export const AccountModal = () => {
   const [open, setOpen] = useState(true);
   const [deleteTransaction, setDeleteTransaction] = useState(false);
@@ -83,7 +59,6 @@ export const AccountModal = () => {
 
 export const TransactionModal = () => {
     const [open, setOpen] = useState(true);
-    const [deleteTransaction, setDeleteTransaction] = useState(false);
     const actions = (
       <>
         <PlainButton
@@ -95,7 +70,7 @@ export const TransactionModal = () => {
         >
           Cancel
         </PlainButton>
-        <Button disabled={deleteTransaction === false}>Yes, Delete</Button>
+        <Button >Yes, Delete</Button>
       </>
     );
     return (
@@ -116,6 +91,47 @@ export const TransactionModal = () => {
           <div style={{ width: "500px" }}>
                 <TextInput style={{marginTop:"20px", marginBottom: "20px"}} label={"Check Number"}></TextInput>
                 <TextInput style={{ marginBottom: "20px"}} label={"Amount"}></TextInput>
+          </div>
+        </Modal>
+      </div>
+    );
+  };
+
+  export const DeactivateUser = () => {
+    const [open, setOpen] = useState(true);
+    const actions = (
+      <>
+        <PlainButton
+          onClick={() => {
+            setOpen(false);
+          }}
+          style={{ paddingRight: "16px", color: "rgb(var(--nds-primary-color))" }}
+          type="plain"
+        >
+          Cancel
+        </PlainButton>
+        <Button >Yes, Delete</Button>
+      </>
+    );
+    return (
+      <div className="nds-typography">
+        <Button
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
+          Open Modal
+        </Button>
+        <Modal
+          open={open}
+          actions={actions}
+          handleClose={()=>{setOpen(false)}}
+          header={"Deactivate User"}
+        >
+          <div style={{ width: "500px" }}>
+              <p>
+                  Are you sure you want to deactivate this user? They will no longer be able to access their account.
+              </p>
           </div>
         </Modal>
       </div>

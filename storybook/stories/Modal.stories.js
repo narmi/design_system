@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, PlainButton, RadioButtons, TextInput } from "design_system";
 import { NdsStyles } from "./decorators/decorators";
-import './modal.stories.css';
 
 export default {
   title: "Components/Modal",

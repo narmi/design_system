@@ -26,9 +26,11 @@ const TextInput = (props) => {
           ref={ref}
           required
           name={props.name}
+          defaultValue={props.defaultValue}
+          onChange={props.onChange}
         />
       ) : (
-        <input key={"nds-text"} ref={ref} type="text" required placeholder={props.label} name={props.name} />
+        <input key={"nds-text"} ref={ref} type="text" required placeholder={props.label} name={props.name} onChange={props.onChange} defaultValue={props.defaultValue}/>
       )}
     </Input>
   );

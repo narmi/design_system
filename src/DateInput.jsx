@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import Input from "Input";
 import { english } from "flatpickr/dist/l10n/default";
 import flatpickr from "flatpickr";
+import moment from "moment";
 import "flatpickr/dist/themes/airbnb.css";
 
-const DateInput = (props) => {
+const DateInput = ({ multiline, ...props }) => {
   const input = useRef();
 
   // Shorten "Sun" to "Su", "Mon" to "Mo", etc.
@@ -14,7 +15,8 @@ const DateInput = (props) => {
     monthSelectorType: "static",
     locale: english,
     allowInput: true,
-    dateFormat: "m/d/Y"
+    dateFormat: "Y-m-d",
+    onChange: (flatpickrVal) => props.onChange(moment(flatpickrVal[0]).format("YYYY-MM-DD"))
   }
 
   useEffect(() => {
@@ -22,8 +24,8 @@ const DateInput = (props) => {
   });
 
   return (
-    <Input {...props}>
-      <input key={"nds-text"} ref={input} type="date" required placeholder={props.label} {...props} />
+    <Input multiline={multiline} {...props}>
+      <input key={"nds-text"} ref={input} type="date" required placeholder={props.label} {...props}/>
     </Input>
   );
 };

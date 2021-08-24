@@ -3,11 +3,12 @@ import PropTypes from "prop-types";
 
 const Card = (props) => {
   const icon = props.icon ? <span className={`narmi-icon-${props.icon}`}>&nbsp;</span> : "";
+  const { hoverable, ...nativeElementProps } = props;
   return (
     <div className={`nds-card nds-typography ${props.classes}`}
          data-hoverable={props.hoverable.toString()}
          data-selected={props.selected.toString()}
-         {...props}
+         {...nativeElementProps}
     >
         <div className="nds-card-heading">
           <h4 className="nds-sans nds-card-title">{props.title}&nbsp;{icon}</h4>

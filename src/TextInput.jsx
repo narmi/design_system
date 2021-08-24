@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import Input from "Input";
 
@@ -10,7 +10,10 @@ const TextInput = (props) => {
     e.target.style.height = "inherit";
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
-  useEffect(() => multiline ? handleKeyUp({target: ref.current}) : undefined, []);
+  useEffect(
+    () => (multiline ? handleKeyUp({ target: ref.current }) : undefined),
+    []
+  );
   return (
     <Input
       onClick={() => {
@@ -25,10 +28,21 @@ const TextInput = (props) => {
           wrap="hard"
           ref={ref}
           required
-          {...nativeElementProps}
+          name={props.name}
+          defaultValue={props.defaultValue}
+          onChange={props.onChange}
         />
       ) : (
-        <input key={"nds-text"} ref={ref} type="text" required placeholder={props.label} {...nativeElementProps} />
+        <input
+          key={"nds-text"}
+          ref={ref}
+          type="text"
+          required
+          placeholder={props.label}
+          name={props.name}
+          defaultValue={props.defaultValue}
+          onChange={props.onChange}
+        />
       )}
     </Input>
   );

@@ -58,7 +58,9 @@
   "keywords": [],
   "author": "@fkotsian, @reshav-abraham",
   "license": "SEE LICENSE IN LICENSE.md",
-  "dependencies": {},
+  "dependencies": {
+    "flatpickr": "^4.6.9"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/narmi/design_system.git"

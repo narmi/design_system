@@ -20,6 +20,13 @@ body {
     border-bottom-color: #e9e9e9;
   }
 
+  .flatpickr-months * {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
   .flatpickr-month {
     font-family: var(--nds-font-family);
   }

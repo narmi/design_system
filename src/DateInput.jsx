@@ -2,6 +2,7 @@ import React, {useEffect, useRef} from "react";
 import PropTypes from "prop-types";
 import Input from "Input";
 import { english } from "flatpickr/dist/l10n/default";
+import flatpickr from "flatpickr";
 import "flatpickr/dist/themes/airbnb.css";
 
 const DateInput = (props) => {

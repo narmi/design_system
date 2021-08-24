@@ -1,7 +1,7 @@
 .nds-modal { 
     .nds-modal-overlay {
         display: none;
-        z-index: 100;
+        z-index: 1;
         background: #000;
         opacity: 70%;
         position: fixed;
@@ -16,9 +16,10 @@
         top: 50%;
         transform: translate(-50%, -50%);
         padding: 40px;
+        border-radius: 8px;
     }
 
-    &.open {
+    &[data-open="true"] {
         > .nds-modal-overlay {
             display: block;
         }
@@ -32,7 +33,7 @@
 
     & > .nds-modal-container {
         display: none;
-        z-index: 100;
+        z-index: 1;
         position: fixed;
         background: RGB(var(--nds-background));
       }
@@ -44,4 +45,14 @@
         right: 18px;
         cursor: pointer;
     }
+    .nds-modal-action-row{
+        display: flex;
+        flex-direction: row;
+        float: right;
+        align-items: center;
+    }
+}
+
+hr.nds-hr {
+    border: 2px solid #1A4338;
 }

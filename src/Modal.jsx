@@ -18,7 +18,7 @@ const Modal = ({ open, handleClose, children, classes, header, actions }) => {
         </div>
         {header ? (
           <>
-            <h3 className="nds-sans">{header}</h3> <hr className="nds-hr" />{" "}
+            <h3 className="nds-sans">{header}</h3> <hr className="nds-hr" />
           </>
         ) : (
           ""

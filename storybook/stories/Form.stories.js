@@ -43,7 +43,7 @@ const UserInfoSection = () => {
   );
 };
 
-export const AccessLevelSection = () => {
+const AccessLevelSection = () => {
   return (
     <div>
       <h4 className={"nds-form-h"}>Access Level</h4>
@@ -51,24 +51,24 @@ export const AccessLevelSection = () => {
       <div className="nds-grid" style={{ paddingTop: "20px" }}>
         <Card
           classes="nds-span-4 nds-span-tablet-6"
-          title="Transfer"
-          icon="repeat"
+          title="Admin"
+          icon="user-plus"
           hoverable
         >
           <p>Transfer funds to an internal or external account</p>
         </Card>
         <Card
           classes="nds-span-4 nds-span-tablet-6"
-          title="Bill pay"
-          icon="bill"
+          title="Collaborator"
+          icon="GroupOutlined"
           hoverable
         >
           <p>Pay a bill online or set up future payments</p>
         </Card>
         <Card
           classes="nds-span-4 nds-span-tablet-6"
-          title="Member to member"
-          icon="group"
+          title="Viewer"
+          icon="eye"
           hoverable
         >
           <p>Send money directly to another bank member</p>
@@ -78,7 +78,7 @@ export const AccessLevelSection = () => {
   );
 };
 
-export const ActionBar = () => {
+const ActionBar = () => {
   return (
     <div className={"nds-action-bar"}>
       <PlainButton

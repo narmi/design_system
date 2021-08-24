@@ -6,25 +6,25 @@ const Modal = ({ open, handleClose, children, classes, header, actions }) => {
     <div
       className={`nds-modal ${classes}`}
       data-open={open.toString()}
-      style={{borderRadius:"8px"}}
+      style={{ borderRadius: "8px" }}
     >
-      <div
-        className="nds-modal-overlay"
-      ></div>
+      <div className="nds-modal-overlay"></div>
       <div className="nds-modal-container">
-        <div
-          className="nds-modal-dismiss"
-          onClick={handleClose}
-        >
-          <span className={"narmi-icon-x"} style={{ fontSize:"20px", color: "rgb(var(--nds-text-header))" }} />
+        <div className="nds-modal-dismiss" onClick={handleClose}>
+          <span
+            className={"narmi-icon-x"}
+            style={{ fontSize: "20px", color: "rgb(var(--nds-text-header))" }}
+          />
         </div>
-        {header ? <><h3 className="nds-sans">{header}</h3> <hr className="nds-hr"/> </>: ""}
+        {header ? (
+          <>
+            <h3 className="nds-sans">{header}</h3> <hr className="nds-hr" />{" "}
+          </>
+        ) : (
+          ""
+        )}
         {children}
-        <div
-          className="nds-modal-action-row"
-        >
-          {actions}
-        </div>
+        <div className="nds-modal-action-row">{actions}</div>
       </div>
     </div>
   );

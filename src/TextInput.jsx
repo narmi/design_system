@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import Input from "Input";
 
 const TextInput = (props) => {
-  const { multiline, React, ...nativeElementProps } = props;
-  const ref = props.React.useRef();
+  const { multiline, ...nativeElementProps } = props;
+  const ref = useRef();
 
   function handleKeyUp(e) {
     e.target.style.height = "inherit";
@@ -28,6 +28,11 @@ const TextInput = (props) => {
           wrap="hard"
           ref={ref}
           required
+          onKeyUp={handleKeyUp}
+          key={"nds-text"}
+          wrap="hard"
+          ref={ref}
+          required
           name={props.name}
           defaultValue={props.defaultValue}
           onChange={props.onChange}
@@ -39,21 +44,24 @@ const TextInput = (props) => {
           type="text"
           required
           placeholder={props.label}
+          onKeyUp={handleKeyUp}
+          key={"nds-text"}
+          wrap="hard"
+          ref={ref}
+          required
           name={props.name}
-          onChange={props.onChange}
           defaultValue={props.defaultValue}
+          onChange={props.onChange}
         />
       )}
     </Input>
   );
 };
 TextInput.propTypes = {
-  React: PropTypes.object,
   multiline: PropTypes.bool,
 };
 
 TextInput.defaultProps = {
-  React,
   multiline: false,
 };
 

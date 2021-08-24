@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Modal, Button, PlainButton, RadioButtons } from "design_system";
+import { Modal, Button, PlainButton, RadioButtons, TextInput } from "design_system";
 import { NdsStyles } from "./decorators/decorators";
+import './modal.stories.css';
 
 export default {
   title: "Components/Modal",
@@ -80,3 +81,44 @@ export const AccountModal = () => {
     </div>
   );
 };
+
+export const TransactionModal = () => {
+    const [open, setOpen] = useState(true);
+    const [deleteTransaction, setDeleteTransaction] = useState(false);
+    const actions = (
+      <>
+        <PlainButton
+          onClick={() => {
+            setOpen(false);
+          }}
+          style={{ paddingRight: "16px", color: "rgb(var(--nds-primary-color))" }}
+          type="plain"
+        >
+          Cancel
+        </PlainButton>
+        <Button disabled={deleteTransaction === false}>Yes, Delete</Button>
+      </>
+    );
+    return (
+      <div className="nds-typography">
+        <Button
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
+          Open Modal
+        </Button>
+        <Modal
+          open={open}
+          actions={actions}
+          handleClose={()=>{setOpen(false)}}
+          header={"Stop Payment on a Check"}
+        >
+          <div style={{ width: "500px" }}>
+                <TextInput style={{marginTop:"20px", marginBottom: "20px"}} label={"Check Number"}></TextInput>
+                <TextInput style={{ marginBottom: "20px"}} label={"Amount"}></TextInput>
+          </div>
+        </Modal>
+      </div>
+    );
+  };

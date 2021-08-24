@@ -25,10 +25,10 @@ const TextInput = (props) => {
           wrap="hard"
           ref={ref}
           required
-          {...nativeElementProps}
+          name={props.name}
         />
       ) : (
-        <input key={"nds-text"} ref={ref} type="text" required placeholder={props.label} {...nativeElementProps} />
+        <input key={"nds-text"} ref={ref} type="text" required placeholder={props.label} name={props.name} />
       )}
     </Input>
   );

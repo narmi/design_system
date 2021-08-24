@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useRef} from "react";
 import PropTypes from "prop-types";
+import flatpickr from "flatpickr";
 import { XCircle } from "react-feather";
 
 /*
@@ -28,12 +29,14 @@ const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
     props.multiline ? "multiline" : "",
     error ? "error" : ""
   ].join(" ")
+  const input = useRef()
 
   return (
     <div
       className={className}
       onClick={props.onClick}
       style={props.style}
+      ref={input}
     >
       <div className="nds-input-box">
         {icon ? <div className={`nds-input-icon ${icon}`}></div> : ""}

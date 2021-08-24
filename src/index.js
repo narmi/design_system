@@ -3,6 +3,7 @@ const React = require("react");
 require("./scss/index.scss")
 
 const Input = require("Input").default;
+const DateInput = require("DateInput").default;
 const TextInput = require("TextInput").default;
 const Button = require("Button").default;
 const PlainButton = require("PlainButton").default;
@@ -14,6 +15,7 @@ const Card = require("Card").default;
 const RadioButtons = require("RadioButtons").default;
 const components = {
   Input,
+  DateInput,
   TextInput,
   Button,
   PlainButton,
@@ -47,6 +49,7 @@ const GlobalStyles = () => (
 
 export {
   Input,
+  DateInput,
   TextInput,
   Button,
   RadioButtons,

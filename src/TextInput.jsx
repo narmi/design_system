@@ -1,10 +1,10 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import PropTypes from "prop-types";
 import Input from "Input";
 
 const TextInput = (props) => {
-  const { multiline, React, ...nativeElementProps } = props;
-  const ref = props.React.useRef();
+  const { multiline, ...nativeElementProps } = props;
+  const ref = useRef();
 
   function handleKeyUp(e) {
     e.target.style.height = "inherit";
@@ -34,12 +34,10 @@ const TextInput = (props) => {
   );
 };
 TextInput.propTypes = {
-  React: PropTypes.object,
   multiline: PropTypes.bool,
 };
 
 TextInput.defaultProps = {
-  React,
   multiline: false,
 };
 

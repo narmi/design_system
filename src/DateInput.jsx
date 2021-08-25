@@ -25,7 +25,7 @@ const DateInput = (props) => {
 
   return (
     <Input {...props}>
-      <input key={"nds-text"} ref={input} type="date" required placeholder={props.label} {...props}/>
+      <input key={"nds-text"} ref={input} type="date" required placeholder={props.label} {...props} />
     </Input>
   );
 };

@@ -28,7 +28,7 @@ const DropdownMenu = ({ open, onClose, children, ...rest }) => {
    * Expand and display the dropdown options, if open=true
    */
   return open ? (
-    <>
+    <div className="nds-dropdown-menu">
       <div className="nds-dropdown-overlay" onClick={onClose}></div>
       <div
         className="nds-dropdown-menu-items"
@@ -40,7 +40,7 @@ const DropdownMenu = ({ open, onClose, children, ...rest }) => {
       >
         {children}
       </div>
-    </>
+    </div>
   ) : null;
 };
 
@@ -80,11 +80,6 @@ const Dropdown = (props) => {
       <DropdownMenu
         open={open}
         onClose={closeDropdown}
-        style={{
-          position: "absolute",
-          top: "0px",
-          left: "0px", // because of border
-        }}
       >
         <div
           className="nds-dropdown-children nds-typography"

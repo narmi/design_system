@@ -12,6 +12,7 @@ const NavBar = require("NavBar").default;
 const Modal = require("Modal").default;
 const Details = require("Details").default;
 const Card = require("Card").default;
+const Dropdown = require("Dropdown").default;
 const RadioButtons = require("RadioButtons").default;
 const CheckBox = require("CheckBox").default;
 const components = {
@@ -49,5 +50,6 @@ export {
   Details,
   Card,
   CheckBox,
+  Dropdown,
 };
 

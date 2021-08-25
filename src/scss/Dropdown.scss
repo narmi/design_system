@@ -1,0 +1,37 @@
+.nds-dropdown-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: transparent;
+    z-index: 999;
+    cursor: pointer;
+}
+.nds-dropdown-menu {
+    z-index: 1000;
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    min-height: 100%;
+    box-sizing: content-box;
+    display: flex;
+    flex-flow: column nowrap;
+    border: 1px solid #1a4338;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.nds-menu-item {
+    padding-top: 5px;
+    padding-left: 12px;
+    padding-bottom: 5px; 
+    width: 100%;
+    display: flex;
+    &:hover {
+        background: rgba(26, 67, 56, 0.05);
+    }
+}
+.nds-plain-button:hover {
+    text-decoration: none;
+}

@@ -63,6 +63,7 @@ Input.defaultProps = {
   icon: null,
   decoration: null,
   error: null,
+  multiline: false,
   React,
 };
 

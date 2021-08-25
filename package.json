@@ -59,7 +59,8 @@
   "author": "@fkotsian, @reshav-abraham",
   "license": "SEE LICENSE IN LICENSE.md",
   "dependencies": {
-    "flatpickr": "^4.6.9"
+    "flatpickr": "^4.6.9",
+    "moment": "^2.29.1"
   },
   "repository": {
     "type": "git",

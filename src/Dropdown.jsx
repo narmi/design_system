@@ -61,9 +61,9 @@ const Dropdown = (props) => {
       setOpen(false);
     };
   
-    // const childrenList = Array.isArray(props.children)
-    //   ? props.children
-    //   : [props.children];
+    const childrenList = Array.isArray(props.children)
+      ? props.children
+      : [props.children];
   
     return (
         <div
@@ -75,8 +75,8 @@ const Dropdown = (props) => {
           <TextInput
             onChange={() => null}
             onFocus={openDropdown}
-            label={"props.triggerLabel"}
-            value={"props.triggerValue"}
+            label={props.triggerLabel}
+            value={props.triggerValue}
           />
           <DropdownMenu
             open={open}
@@ -93,14 +93,14 @@ const Dropdown = (props) => {
                 border: "1px solid var(--nds-primary-color)",
               }}
             >
-              {/* {childrenList.map(
+              {childrenList.map(
                 (child, i) =>
                   React.cloneElement(child, {
                     closeDropdown,
                     key: i,
                   }) 
                   // mutate our children to have these extra props
-              )} */}
+              )}
             </div>
           </DropdownMenu>
           <Chevron open={open} setOpen={setOpen} />

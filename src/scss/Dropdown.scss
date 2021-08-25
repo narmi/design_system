@@ -1,3 +1,8 @@
+.nds-dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
 .nds-dropdown-overlay {
     position: fixed;
     top: 0;
@@ -8,7 +13,14 @@
     z-index: 999;
     cursor: pointer;
 }
+
 .nds-dropdown-menu {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.nds-dropdown-menu-items {
     z-index: 1000;
     position: absolute;
     background-color: white;
@@ -34,4 +46,11 @@
 }
 .nds-plain-button:hover {
     text-decoration: none;
+}
+
+.nds-dropdown-chevron {
+    position: absolute;
+    top: 12px;
+    right: 13px;
+    z-index: 1000;
 }

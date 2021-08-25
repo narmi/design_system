@@ -12,16 +12,16 @@ export const BasicDropdown = () => {
   return (
     <div>
       <Dropdown triggerLabel={"Accounts"} closeDropDown={modalOpen}>
-          <div>Rowena Wick</div>
-          <div>Daya Zakim</div>
-          <PlainButton
-            onClick={() => {
-              setModalOpen(true);
-            }}
-            style={{ color: "rgb(var(--nds-primary-color))" }}
-          >
-            Link a new payee!
-          </PlainButton>
+        <div>Rowena Wick</div>
+        <div>Daya Zakim</div>
+        <PlainButton
+          onClick={() => {
+            setModalOpen(true);
+          }}
+          style={{ color: "rgb(var(--nds-primary-color))" }}
+        >
+          Link a new payee!
+        </PlainButton>
       </Dropdown>
       <Modal open={modalOpen} setOpen={setModalOpen}>
         <div style={{ width: "500px" }}>

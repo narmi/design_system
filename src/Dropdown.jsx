@@ -31,9 +31,41 @@ const DropdownMenu = ({ open, onClose, children, ...rest }) => {
      */
     return open ? (
       <>
-        <div onClick={onClose}></div>
-        <div aria-modal aria-hidden tabIndex={-1} role="dialog" {...rest}>
-          <div>{children}</div>
+        <style>
+            {`
+                .nds-overlay123 {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    right: 0;
+                    background-color: transparent;
+                    z-index: 999;
+                    cursor: pointer;
+                }
+                .nds-card123 {
+                    z-index: 1000;
+                    position: absolute;
+                    background-color: white;
+                    width: 100%;
+                    min-height: 100%;
+                    box-sizing: content-box;
+                    display: flex;
+                    flex-flow: column nowrap;
+                    border: 1px solid #1a4338;
+                    border-radius: 4px;
+                    overflow: hidden;
+                }
+                .nds-body123 {
+                    overflow-y: auto;
+                    max-height: 100%;
+                    width: 100%;
+                }
+            `}
+        </style>
+        <div className="nds-overlay123" onClick={onClose}></div>
+        <div className="nds-card123" aria-modal aria-hidden tabIndex={-1} role="dialog" {...rest}>
+          <div className="nds-body123">{children}</div>
         </div>
       </>
     ) : null;
@@ -63,7 +95,7 @@ const Dropdown = (props) => {
   
     const childrenList = Array.isArray(props.children)
       ? props.children
-      : [props.children];
+      : [props.children, "test"];
   
     return (
         <div
@@ -72,6 +104,22 @@ const Dropdown = (props) => {
             if (["Tab", "Escape"].includes(event.key)) closeDropdown();
           }}
         >
+          <style>
+              {`
+                .nds-menu-item {
+                padding-top: 5px;
+                padding-left: 12px;
+                padding-bottom: 5px; 
+                width: 100%;
+                }
+                .nds-menu-item:hover {
+                    background: rgba(26, 67, 56, 0.05);
+                }
+                .nds-plain-button:hover {
+                    text-decoration: none;
+                }
+              `}
+          </style>
           <TextInput
             onChange={() => null}
             onFocus={openDropdown}
@@ -83,8 +131,8 @@ const Dropdown = (props) => {
             onClose={closeDropdown}
             style={{
               position: "absolute",
-              top: 0,
-              left: 0,
+              top: "9px",
+              left: "-2px", // because of border
             }}
           >
             <div
@@ -92,13 +140,17 @@ const Dropdown = (props) => {
                 borderRadius: "4px",
                 border: "1px solid var(--nds-primary-color)",
               }}
+              className="nds-typography"
             >
               {childrenList.map(
                 (child, i) =>
-                  React.cloneElement(child, {
-                    closeDropdown,
-                    key: i,
-                  }) 
+                  <div key={i} className="nds-menu-item">
+                    {
+                        React.cloneElement(child, {
+                            closeDropdown,
+                        })
+                    }
+                  </div>
                   // mutate our children to have these extra props
               )}
             </div>
@@ -114,6 +166,7 @@ const Dropdown = (props) => {
   Dropdown.propTypes = {
     children: PropTypes.any,
     defaultOpen: PropTypes.bool,
+    closeDropDown: PropTypes.func,
     triggerLabel: PropTypes.string.isRequired,
     triggerValue: PropTypes.string,
   };

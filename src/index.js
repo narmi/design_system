@@ -12,6 +12,7 @@ const NavBar = require("NavBar").default;
 const Modal = require("Modal").default;
 const Details = require("Details").default;
 const Card = require("Card").default;
+const Dropdown = require("Dropdown").default;
 const RadioButtons = require("RadioButtons").default;
 const components = {
   Input,
@@ -59,6 +60,7 @@ export {
   Modal,
   Details,
   Card,
+  Dropdown,
   GlobalStyles,
 };
 

@@ -6,7 +6,7 @@ import flatpickr from "flatpickr";
 import moment from "moment";
 import "flatpickr/dist/themes/airbnb.css";
 
-const DateInput = ({ multiline, ...props }) => {
+const DateInput = (props) => {
   const input = useRef();
 
   // Shorten "Sun" to "Su", "Mon" to "Mo", etc.
@@ -24,17 +24,17 @@ const DateInput = ({ multiline, ...props }) => {
   });
 
   return (
-    <Input multiline={multiline} {...props}>
+    <Input {...props}>
       <input key={"nds-text"} ref={input} type="date" required placeholder={props.label} {...props}/>
     </Input>
   );
 };
 DateInput.propTypes = {
-  multiline: PropTypes.bool,
+  onChange: PropTypes.func,
+  label: PropTypes.string,
 };
-
 DateInput.defaultProps = {
-  multiline: false,
+  onChange: () => {}
 };
 
 export default DateInput;

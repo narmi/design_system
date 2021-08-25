@@ -16,17 +16,16 @@ accounts={accounts.map((a) => Account.deserialize(a))}
 }
 
 export const BasicDropdown = () => {
-  const [open, setOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   return (
     <div>
-      <Dropdown triggerLabel={"Accounts"} closeDropDown={closeDropDown}>
+      <Dropdown triggerLabel={"Accounts"} closeDropDown={modalOpen}>
         {[
           <div>Rowena Wick</div>,
           <div>Daya Zakim</div>,
           <PlainButton
             onClick={() => {
-              closeDropDown();
-              setOpen(true);
+              setModalOpen(true);
             }}
             style={{ color: "rgb(var(--nds-primary-color))" }}
           >
@@ -34,7 +33,7 @@ export const BasicDropdown = () => {
           </PlainButton>,
         ]}
       </Dropdown>
-      <Modal open={open} setOpen={setOpen}>
+      <Modal open={modalOpen} setOpen={setModalOpen}>
         <div style={{ width: "500px" }}>
           <h4>Title</h4>
           <p>This is an example of body text that a user could pass</p>

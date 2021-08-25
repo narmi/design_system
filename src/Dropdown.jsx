@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextInput  from "./TextInput";
 import PropTypes from "prop-types";
 
@@ -85,6 +85,12 @@ const Dropdown = (props) => {
      *   </Dropdown>
      */
     const [open, setOpen] = useState(props.defaultOpen);
+    const [value, setValue] = useState("");
+    useEffect(()=>{
+        if(props.closeDropDown===true){
+            closeDropdown();
+        }
+    },[props.closeDropDown]);
   
     const openDropdown = () => {
       setOpen(true);
@@ -92,7 +98,7 @@ const Dropdown = (props) => {
     const closeDropdown = () => {
       setOpen(false);
     };
-  
+    
     const childrenList = Array.isArray(props.children)
       ? props.children
       : [props.children, "test"];
@@ -111,6 +117,7 @@ const Dropdown = (props) => {
                 padding-left: 12px;
                 padding-bottom: 5px; 
                 width: 100%;
+                display: flex;
                 }
                 .nds-menu-item:hover {
                     background: rgba(26, 67, 56, 0.05);
@@ -124,15 +131,15 @@ const Dropdown = (props) => {
             onChange={() => null}
             onFocus={openDropdown}
             label={props.triggerLabel}
-            value={props.triggerValue}
+            value={value}
           />
           <DropdownMenu
             open={open}
             onClose={closeDropdown}
             style={{
               position: "absolute",
-              top: "9px",
-              left: "-2px", // because of border
+              top: "0px",
+              left: "0px", // because of border
             }}
           >
             <div
@@ -144,14 +151,11 @@ const Dropdown = (props) => {
             >
               {childrenList.map(
                 (child, i) =>
-                  <div key={i} className="nds-menu-item">
-                    {
-                        React.cloneElement(child, {
-                            closeDropdown,
-                        })
-                    }
-                  </div>
-                  // mutate our children to have these extra props
+                    React.cloneElement(child, {
+                        closeDropdown,
+                        className: "nds-menu-item",
+                        onClick: child.props.onClick ? child.props.onClick : ()=>{setValue(child.props.children); closeDropdown();},
+                    })
               )}
             </div>
           </DropdownMenu>

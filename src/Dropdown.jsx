@@ -87,15 +87,11 @@ const Dropdown = (props) => {
         }}
       >
         <div
-          style={{
-            borderRadius: "4px",
-            border: "1px solid var(--nds-primary-color)",
-          }}
-          className="nds-typography"
+          className="nds-dropdown-children nds-typography"
         >
           {childrenList.map((child, i) =>
             React.cloneElement(child, {
-              className: "nds-menu-item",
+              className: "nds-dropdown-item",
               onClick: child.props.onClick
                 ? child.props.onClick
                 : () => {

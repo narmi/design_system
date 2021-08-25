@@ -14,10 +14,9 @@
     cursor: pointer;
 }
 
-.nds-dropdown-menu {
-    position: absolute;
-    top: 0px;
-    left: 0px;
+.nds-dropdown-children {
+    border-radius: 4px;
+    border: 1px solid var(--nds-primary-color);
 }
 
 .nds-dropdown-menu-items {
@@ -34,7 +33,7 @@
     overflow: hidden;
 }
 
-.nds-menu-item {
+.nds-dropdown-item {
     padding-top: 5px;
     padding-left: 12px;
     padding-bottom: 5px; 

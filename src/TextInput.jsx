@@ -1,21 +1,31 @@
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import PropTypes from "prop-types";
 import Input from "Input";
 
 const TextInput = (props) => {
-  const { format, multiline, value, ...nativeElementProps } = props;
-  const ref = useRef();
+  const { format, multiline, defaultValue, onChange, ...nativeElementProps } = props;
+  const ref = useRef(null);
+
+  const initialState = format ? format(defaultValue) : defaultValue;
+  const [value, setValue] = useState(initialState || "")
 
   function handleKeyUp(e) {
     e.target.style.height = "inherit";
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
 
-  const newValue = format
-      ? format(value)
-      : value || "";
+  useEffect(() => {
+    multiline ? handleKeyUp({target: ref.current}) : undefined;
+    format ? setValue(format(ref.current.value)) : undefined;
+  }, [ref]);
 
-  useEffect(() => multiline ? handleKeyUp({target: ref.current}) : undefined, []);
+  function updateValue(e) {
+    const newValue = format ? format(ref.current.value) : ref.current.value
+    setValue(newValue)
+    e.target.value = newValue // Patch the event to reflect the new value
+    onChange ? onChange(e): undefined;
+  }
+
   return (
     <Input
       onClick={() => {
@@ -30,11 +40,19 @@ const TextInput = (props) => {
           wrap="hard"
           ref={ref}
           required
-          value={newValue}
+          value={value}
+          onChange={updateValue}
           {...nativeElementProps}
         />
       ) : (
-        <input key={"nds-text"} ref={ref} type="text" required placeholder={props.label} value={newValue} {...nativeElementProps} />
+        <input key={"nds-text"}
+               ref={ref}
+               type="text"
+               required
+               placeholder={props.label}
+               value={value}
+               onChange={updateValue}
+               {...nativeElementProps} />
       )}
     </Input>
   );

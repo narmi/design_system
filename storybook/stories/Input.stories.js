@@ -39,7 +39,6 @@ export const FormattedInputValues = () => {
   };
 
   const [value, setValue] = useState(textFormatter("narmi"))
-  const textInput = useRef(null)
 
   return <div className={"nds-typography"}>
     <h1 style={{marginBottom: "1em"}}>Text Inputs</h1>

@@ -30,6 +30,7 @@ const TextInput = (props) => {
           wrap="hard"
           ref={ref}
           required
+          value={newValue}
           {...nativeElementProps}
         />
       ) : (

@@ -8,6 +8,15 @@ export default {
 };
 
 export const Inputs = () => {
+  const [singleLine, setSingle] = React.useState("narmi");
+  const [multiLine, setMulti] = React.useState("puppies are really cute and so are kittens and baby penguins");
+
+  const textFormatter = (text) => {
+    return text
+      ? text.toUpperCase()
+      : ""
+  };
+
   return <div className={"nds-typography"}>
     <h1 style={{marginBottom: "1em"}}>Text Inputs</h1>
     <div className="storybook-4col">
@@ -18,6 +27,8 @@ export const Inputs = () => {
       <TextInput label={"Label"} defaultValue={"Disabled"} disabled />
       <TextInput label={"Phone number"} defaultValue={"(555) 867-5309"} type={"tel"} />
       <TextInput label={"Date"} defaultValue={"1989-01-10"} type={"date"} />
+      <TextInput label={"CAPS-LOCK TEXT"} onChange={e => setSingle(e.target.value)} format={textFormatter} value={singleLine}/>
+      <TextInput name="multiLine" multiline={true} format={textFormatter} onChange={e => setMulti(e.target.value)} value={multiLine}/>
     </div>
   </div>
 }

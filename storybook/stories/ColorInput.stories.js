@@ -7,7 +7,7 @@ export default {
   decorators: [NdsStyles],
 };
 
-export const Inputs = () => {
+export const ColorInput = () => {
   const [color, setColor] = useState("#915F6D")
   return <div className={"nds-typography"}>
     <h1 style={{marginBottom: "1em"}}>Edit Primary Accessible Color</h1>

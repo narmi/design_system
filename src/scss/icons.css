@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?876s7n');
-  src:  url('fonts/icomoon.eot?876s7n#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?876s7n') format('truetype'),
-    url('fonts/icomoon.woff?876s7n') format('woff'),
-    url('fonts/icomoon.svg?876s7n#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?wew3p2');
+  src:  url('fonts/icomoon.eot?wew3p2#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?wew3p2') format('truetype'),
+    url('fonts/icomoon.woff?wew3p2') format('woff'),
+    url('fonts/icomoon.svg?wew3p2#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.narmi-icon-greenblob:before {
+  content: "\ea30";
+  color: #1a4338;
+}
+.narmi-icon-solid-circle:before {
+  content: "\ea2f";
+}
 .narmi-icon-GroupOutlined:before {
   content: "\ea2b";
 }

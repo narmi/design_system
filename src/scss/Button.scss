@@ -9,8 +9,8 @@
     padding: 16px 32px;
     color: #fff;
 
-    /* mobile buttons have slightly different padding? */
-    @media (max-width: $mobile_size) {
+    /* mobile buttons have slightly taller padding for ease of tapping */
+    @media (min-width: $mobile_size) {
       padding: 12px 32px;
     }
     

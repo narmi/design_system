@@ -6,12 +6,12 @@
     font-size: 16px;
     line-height: 16px;
     text-align: center;
-    padding: 16px 32px;
+    padding: 12px 32px;
     color: #fff;
 
-    /* mobile buttons have slightly different padding? */
+    /* mobile buttons have slightly taller padding for ease of tapping */
     @media (max-width: $mobile_size) {
-      padding: 12px 32px;
+      padding: 16px 32px;
     }
     
     &::before {

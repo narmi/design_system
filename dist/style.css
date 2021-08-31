@@ -73,9 +73,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.narmi-icon-greenblob:before {
+.narmi-icon-blob:before {
   content: "\EA30";
-  color: #1a4338;
 }
 .narmi-icon-solid-circle:before {
   content: "\EA2F";

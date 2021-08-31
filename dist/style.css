@@ -48,11 +48,11 @@
 }
 @font-face {
   font-family: 'icomoon';
-  src:  url(icons/49a6c369b22662375338.eot?876s7n);
-  src:  url(icons/49a6c369b22662375338.eot?876s7n#iefix) format('embedded-opentype'),
-    url(icons/17115826a9e48cd0084c.ttf?876s7n) format('truetype'),
-    url(icons/fed6308b860c6a968e13.woff?876s7n) format('woff'),
-    url(icons/d52db6c69d08df98ae04.svg?876s7n#icomoon) format('svg');
+  src:  url(icons/9514e41f4abe68154251.eot?voo1im);
+  src:  url(icons/9514e41f4abe68154251.eot?voo1im#iefix) format('embedded-opentype'),
+    url(icons/60ec04d4deef42a421f1.ttf?voo1im) format('truetype'),
+    url(icons/c5c8ceba8c6708fbce30.woff?voo1im) format('woff'),
+    url(icons/4724f7c57a0e21491bb1.svg?voo1im#icomoon) format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -73,6 +73,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.narmi-icon-blob:before {
+  content: "\EA30";
+}
+.narmi-icon-solid-circle:before {
+  content: "\EA2F";
+}
 .narmi-icon-GroupOutlined:before {
   content: "\EA2B";
 }

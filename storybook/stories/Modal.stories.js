@@ -37,15 +37,16 @@ export const AccountModal = () => {
   const actions = (
     <>
       <PlainButton
-        onClick={() => {
-          setOpen(false);
-        }}
+        onClick={() => { setOpen(false); }}
         style={{ paddingRight: "16px", color: "rgb(var(--nds-primary-color))" }}
         type="plain"
       >
         Cancel
       </PlainButton>
-      <Button disabled={deleteTransaction === false}>Yes, Delete</Button>
+      <Button
+        disabled={deleteTransaction === false}
+        onClick={() => { setOpen(false); }}
+      >Yes, Delete</Button>
     </>
   );
   return (

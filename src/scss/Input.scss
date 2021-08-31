@@ -11,7 +11,7 @@
     background: RGB(var(--nds-background));
     position: relative;
     width: 100%;
-    padding: 0.4em 0.8em;
+    padding: 7px 0.8em;
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -21,6 +21,7 @@
 
       > label {
         color: RGB(var(--nds-primary-color));
+        margin-bottom: -4px;
       }
     }
   }
@@ -113,6 +114,7 @@
     font-family: var(--nds-font-family);
     padding: 0;
     width: 100%;
+    font-size: 16px;
   }
 
   input[type="text"]:placeholder-shown,
@@ -126,20 +128,11 @@
   .no-label input[type="email"],
   .no-label input[type="date"],
   .no-label input[type="search"] {
-    padding: 0.6em 0;
+    padding: 6px 0;
+    font-size: 16px;
 
     ~ label {
       display: none;
     }
   }
-
-  input[type="date"] {
-    margin-top: -0.3em;
-
-    label {
-      margin-top: -0.1em;
-      margin-bottom: 0.1em;
-    }
-  }
-
 }

@@ -1,7 +1,7 @@
 name: Check Build
 on: [pull_request]
 jobs:
-  Explore-GitHub-Actions:
+  Build-design_system:
     runs-on: ubuntu-latest
     steps:
       - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."

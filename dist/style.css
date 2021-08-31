@@ -48,11 +48,11 @@
 }
 @font-face {
   font-family: 'icomoon';
-  src:  url(icons/570172fc7615ee0d7e9c.eot?of05dj);
-  src:  url(icons/570172fc7615ee0d7e9c.eot?of05dj#iefix) format('embedded-opentype'),
-    url(icons/22009f1390f91282cead.ttf?of05dj) format('truetype'),
-    url(icons/480194197d8968fd4991.woff?of05dj) format('woff'),
-    url(icons/4724f7c57a0e21491bb1.svg?of05dj#icomoon) format('svg');
+  src:  url(icons/9514e41f4abe68154251.eot?voo1im);
+  src:  url(icons/9514e41f4abe68154251.eot?voo1im#iefix) format('embedded-opentype'),
+    url(icons/60ec04d4deef42a421f1.ttf?voo1im) format('truetype'),
+    url(icons/c5c8ceba8c6708fbce30.woff?voo1im) format('woff'),
+    url(icons/4724f7c57a0e21491bb1.svg?voo1im#icomoon) format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -75,7 +75,6 @@
 
 .narmi-icon-blob:before {
   content: "\EA30";
-  color: #1a4338;
 }
 .narmi-icon-solid-circle:before {
   content: "\EA2F";

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?of05dj');
-  src:  url('fonts/icomoon.eot?of05dj#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?of05dj') format('truetype'),
-    url('fonts/icomoon.woff?of05dj') format('woff'),
-    url('fonts/icomoon.svg?of05dj#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?voo1im');
+  src:  url('fonts/icomoon.eot?voo1im#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?voo1im') format('truetype'),
+    url('fonts/icomoon.woff?voo1im') format('woff'),
+    url('fonts/icomoon.svg?voo1im#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -27,7 +27,6 @@
 
 .narmi-icon-blob:before {
   content: "\ea30";
-  color: #1a4338;
 }
 .narmi-icon-solid-circle:before {
   content: "\ea2f";

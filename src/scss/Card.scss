@@ -14,11 +14,16 @@
     cursor: pointer;
   }
 
+  &[data-hoverable=true]:active,
   &[data-hoverable=true]:hover,
   &[data-selected=true] {
-    background-color: RGB(var(--nds-disabled-background));
     border: 2px solid RGB(var(--nds-primary-color));
     padding: 19px;
+  }
+
+  &[data-hoverable=true]:active,
+  &[data-selected=true] {
+    background-color: RGB(var(--nds-disabled-background));
   }
 
   @media (max-width: $mobile_size) {
@@ -41,7 +46,7 @@
   }
 
   .nds-card-content {
-    margin-top: 1em;
+    margin-top: 4px;
 
     > p:first-child {
       margin-top: 0;

@@ -10,15 +10,15 @@ export default {
 export const ContentVarieties = () => {
   const [selected, setSelected] = useState("nothing");
   return <div className="nds-typography">
-    <div style={{maxWidth: "35em", margin: "0 auto"}} className={"nds-grid"}>
+    <div className={"nds-grid"}>
       <div className={"nds-grid nds-span-7"} style={{alignContent: "flex-start"}}>
         <Card title="Title" classes={"nds-span-12"}>
-          <PlainButton style={{display: "block", marginBottom: "0.25em"}}>Button</PlainButton>
-          <PlainButton style={{display: "block", marginBottom: "0.25em"}}>Button</PlainButton>
-          <PlainButton style={{display: "block", marginBottom: "0.25em"}}>Button</PlainButton>
+          <PlainButton style={{display: "block", marginBottom: "8px", marginTop: "12px"}}>Button</PlainButton>
+          <PlainButton style={{display: "block", marginBottom: "8px"}}>Button</PlainButton>
+          <PlainButton style={{display: "block"}}>Button</PlainButton>
         </Card>
         <Card title="Title" classes={"nds-span-12"} button={<PlainButton>Button</PlainButton>} >
-          <div style={{display: "flex", justifyContent: "space-between"}}>
+          <div style={{display: "flex", justifyContent: "space-between", marginTop: "20px"}}>
             <span>Text</span>
             <span style={{textAlign: "right"}}>Text</span>
           </div>

@@ -34,7 +34,7 @@
     "chromatic": "^5.7.1",
     "copy-webpack-plugin": "^9.0.1",
     "core-js": "^3.15.2",
-    "css-loader": "^1.0.1",
+    "css-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",
     "husky": "^6.0.0",
     "jest": "^27.0.6",
@@ -52,7 +52,7 @@
     "style-loader": "^0.23.1",
     "watch": "^1.0.2",
     "webpack": "^5.50.0",
-    "webpack-cli": "^3.3.12",
+    "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^3.11.2"
   },
   "keywords": [],

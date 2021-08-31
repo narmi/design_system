@@ -1,0 +1,33 @@
+
+.nds-details {
+  position: relative;
+
+  & .nds-details-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+  }
+
+  & .nds-details-container .nds-button.menu {
+    font-weight: normal;
+    font-size: 16px;
+  }
+
+  @media (min-width: $desktop-small) {
+    & > .nds-modal.open > .nds-modal-overlay {
+      display: block;
+      opacity: 0;
+    }
+    & > .nds-modal > .nds-modal-container {
+      position: absolute;
+      width: min-content;
+      transform: translate(-50%, 40px);
+    }
+    & .nds-details-container {
+      margin: 0;
+      padding: 20px 40px;
+      box-shadow: 0px 2px 12px rgba(80, 80, 80, 0.05);
+      border-radius: 0px 0px 4px 4px;
+    }
+  }
+}

@@ -50,26 +50,4 @@ Details.defaultProps = {
   React,
 };
 
-Details.styles = `
-  .nds-details {
-    position: relative;
-  }
-  .nds-details-container {
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-  }
-
-  .nds-details .nds-details-container .nds-button.menu {
-    font-weight: normal;
-    font-size: 16px;
-  }
-
-  @media ${`(min-width: ${deviceBreakpoints.desktop})`} {
-    .nds-details-container {
-      margin: 0;
-    }
-  }
-`;
-
 export default Details;

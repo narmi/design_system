@@ -1,4 +1,4 @@
-.nds-modal { 
+.nds-modal {
     .nds-modal-overlay {
         display: none;
         z-index: 100;
@@ -10,12 +10,15 @@
         bottom: 0;
         right: 0;
     }
-    .nds-modal-container {
-        position: absolute;
+    & > .nds-modal-container {
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
         padding: 40px;
+        display: none;
+        z-index: 100;
+        position: fixed;
+        background: RGB(var(--nds-background));
     }
 
     &.open {
@@ -30,18 +33,35 @@
         }
     }
 
-    & > .nds-modal-container {
-        display: none;
-        z-index: 100;
-        position: fixed;
-        background: RGB(var(--nds-background));
-      }
-
     .nds-modal-dismiss {
         display: none;
         position: absolute;
         top: 18px;
         right: 18px;
         cursor: pointer;
+    }
+
+    /* right styles */
+    &.right > .nds-modal-container {
+      top: 0;
+      right: 0;
+      transform: none;
+      bottom: 0;
+      min-width: 335px;
+      padding: 40px 25px 40px 20px;
+    }
+    /* details styles */
+    &.details.open .nds-modal-overlay {
+      display: none;
+    }
+    &.details.open > .nds-modal-container > .nds-modal-dismiss {
+      display: none;
+    }
+    &.details > .nds-modal-container {
+      top: 0;
+      right: 0;
+      transform: none;
+      position: static;
+      padding: 0;
     }
 }

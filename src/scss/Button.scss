@@ -49,10 +49,9 @@
         display: none;
       }
 
-      /* mobile buttons have slightly different padding? */
-      @media (max-width: $mobile_size) {
-          margin: 0 12px;
-          font-weight: 600;
+      @media (min-width: $desktop-small) {
+        margin: 0 12px;
+        font-weight: 600;
       }
     }
 
@@ -64,7 +63,7 @@
         background-color: RGB(var(--nds-disabled));
       }
     }
-  }
+}
 
 .nds-plain-button {
   cursor: pointer;

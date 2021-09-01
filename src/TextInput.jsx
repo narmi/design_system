@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Input from "Input";
 
 const TextInput = (props) => {
-  const { multiline, ...nativeElementProps } = props;
+  const { multiline, style, ...nativeElementProps } = props;
   const ref = useRef();
 
   function handleKeyUp(e) {

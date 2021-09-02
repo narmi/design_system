@@ -15,9 +15,8 @@ jobs:
               BUILD=`diff -qr dist candidate_dist`
 
               if [ -z "$BUILD" ]; then
-                  echo "len"
+                  echo "build matches"
               else
                   echo "$BUILD"
-                  exit 1
               fi
 

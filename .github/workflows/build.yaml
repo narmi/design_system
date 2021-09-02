@@ -12,5 +12,4 @@ jobs:
 
       - name: Check build matches pr
         run: |
-              BUILD=$(ls)
-              echo "$BUILD"
+              BUILD=$(diff -qr dist candidate_dist)

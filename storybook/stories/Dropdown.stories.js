@@ -23,7 +23,7 @@ export const BasicDropdown = () => {
           Link a new payee!
         </PlainButton>
       </Dropdown>
-      <Modal open={modalOpen} setOpen={setModalOpen}>
+      <Modal open={modalOpen} handleClose={()=>{setModalOpen(false)}}>
         <div style={{ width: "500px" }}>
           <h4>Title</h4>
           <p>This is an example of body text that a user could pass</p>

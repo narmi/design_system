@@ -19,4 +19,4 @@ jobs:
                   echo "$BUILD"
                   exit 1
               fi
-        run: echo ${{ env.BUILD }}
+              echo ${{ env.BUILD }}

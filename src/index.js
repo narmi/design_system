@@ -13,6 +13,7 @@ const Modal = require("Modal").default;
 const Details = require("Details").default;
 const Card = require("Card").default;
 const RadioButtons = require("RadioButtons").default;
+const CheckBox = require("CheckBox").default;
 const components = {
   Input,
   DateInput,
@@ -23,6 +24,7 @@ const components = {
   NavBar,
   Modal,
   Details,
+  CheckBox,
   RadioButtons,
   Card,
 };
@@ -59,6 +61,7 @@ export {
   Modal,
   Details,
   Card,
+  CheckBox,
   GlobalStyles,
 };
 

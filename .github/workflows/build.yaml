@@ -7,11 +7,11 @@ jobs:
       - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
       - name: Check out repository code
         uses: actions/checkout@v2
-      - run: cp -r dist candidate_dist
-      - run: npm install
 
       - name: Check build matches pr
         run: |
+              cp -r dist candidate_dist
+              npm install
               BUILD=`diff -qr dist candidate_dist`
 
               if [ -z "$BUILD" ]; then

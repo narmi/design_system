@@ -12,6 +12,8 @@ jobs:
 
       - name: Check build matches pr
         run: |
+              echo "GITHUB_SHA_SHORT=$(ls)" >> $GITHUB_ENV
+              echo $GITHUB_SHA_SHORT
               BUILD="$(diff -qr dist candidate_dist)"
               if [ -z "$BUILD" ]; then
                   echo "build matches"

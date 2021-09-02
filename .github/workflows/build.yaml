@@ -12,9 +12,11 @@ jobs:
 
       - name: Check build matches pr
         run: |
-              echo "BUILD=$(diff -qr dist candidate_dist)"
+              echo "BUILD=$(diff -qr dist candidate_dist)" >> $GITHUB_ENV
               if [ -z "$BUILD" ]; then
                   echo "build matches"
               else
                   echo "$BUILD"
+                  exit 1
               fi
+        run: echo ${{ env.BUILD }}

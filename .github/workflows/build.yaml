@@ -12,7 +12,7 @@ jobs:
 
       - name: Check build matches pr
         run: |
-              echo "BUILD=$(diff -qr dist devdist)"
+              echo "BUILD=$(diff -qr dist candidate_dist)"
               if [ -z "$BUILD" ]; then
                   echo "build matches"
               else

@@ -12,6 +12,5 @@ jobs:
 
       - name: Check build matches pr
         run: |
-              "FOO=$(ls)"
               echo ::set-env name=BUILD::$(diff -qr dist candidate_dist)
 

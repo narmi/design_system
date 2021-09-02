@@ -1,5 +1,5 @@
 name: Check Build
-on: [pull_request]
+on: [push]
 jobs:
   Build-design_system:
     runs-on: ubuntu-latest
@@ -7,4 +7,9 @@ jobs:
       - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
       - name: Check out repository code
         uses: actions/checkout@v2
+      - run: cp -r dist candidate_dist
       - run: npm install
+
+      - name: Check build matches pr
+        run: |
+              diff -qr dist candidate_dist

@@ -16,6 +16,7 @@ const DateInput = (props) => {
     locale: english,
     allowInput: true,
     dateFormat: "Y-m-d",
+    ...props,
     onChange: (flatpickrVal) => props.onChange(moment(flatpickrVal[0]).format("YYYY-MM-DD"))
   }
 

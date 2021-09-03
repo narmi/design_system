@@ -7,7 +7,7 @@
 
   .nds-input-box {
     box-sizing: border-box;
-    border: 1px solid RGB(var(--nds-disabled));
+    border: 1px solid RGB(var(--medium-grey));
     background: RGB(var(--nds-background));
     position: relative;
     width: 100%;
@@ -34,11 +34,11 @@
 
   &.disabled .nds-input-box {
     pointer-events: none;
-    border: 1px solid RGB(var(--nds-disabled));
+    border: 1px solid RGB(var(--nds-medium-grey));
     background-color: RGB(var(--nds-disabled-background));
 
     input {
-      color: RGB(var(--nds-disabled));
+      color: RGB(var(--nds-medium-grey));
     }
   }
 
@@ -65,7 +65,7 @@
     font-family: var(--nds-font-family);
     font-weight: 400;
     font-size: 12px;
-    color: RGB(var(--nds-disabled));
+    color: RGB(var(--nds-medium-grey));
     line-height: 1.4;
     white-space: nowrap;
     overflow: hidden;

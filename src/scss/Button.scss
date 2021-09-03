@@ -60,7 +60,7 @@
       pointer-events: none;
 
       &::before {
-        background-color: RGB(var(--nds-disabled));
+        background-color: RGB(var(--nds-medium-grey));
       }
     }
 }

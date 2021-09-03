@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ChevronUp, ChevronDown } from "react-feather";
-import { deviceBreakpoints } from "global";
 import Modal, { modalZIndex } from "Modal";
 
 const Chevron = ({ open, setOpen }) => {

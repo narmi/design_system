@@ -48,7 +48,7 @@ NavBar.defaultProps = {
 NavBar.styles = `
   .nds-navbar {
     z-index: 1;
-    background: rgb(var(--nds-background));
+    background: rgb(var(--nds-white));
     position: fixed;
     left: 0;
     right: 0;

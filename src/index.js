@@ -33,19 +33,6 @@ Object.values(components).forEach((component) => {
     styleString += component.styles;
   }
 });
-const styleComponent = React.createElement("style", {
-  dangerouslySetInnerHTML: {
-    __html: styleString,
-  },
-  key: "style-component"
-});
-
-const GlobalStyles = () => (
-  React.createElement(React.Fragment, {}, [
-    styleComponent,
-
-  ])
-);
 
 export {
   Input,
@@ -59,6 +46,5 @@ export {
   Modal,
   Details,
   Card,
-  GlobalStyles,
 };
 

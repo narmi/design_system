@@ -24,13 +24,13 @@ const StyledList = styled.div`
   // - horizontal: border-right
   border-bottom: ${(p) =>
     p.divideCategories && !p.categoriesHorizontal
-      ? "1px solid var(--nds-grey-disabled)"
+      ? "1px solid var(--nds-medium-grey)"
       : null};
 
   @media ${`(min-width: ${deviceBreakpoints.tablet})`} {
     border-right: ${(p) =>
       p.divideCategories && p.categoriesHorizontal
-        ? "1px solid var(--nds-grey-disabled)"
+        ? "1px solid var(--nds-medium-grey)"
         : null};
   }
 
@@ -44,7 +44,7 @@ export const StyledListItem = styled.div`
   box-sizing: border-box;
 
   border-bottom: ${(p) =>
-    p.divideItems ? "1px solid var(--nds-grey-disabled)" : null};
+    p.divideItems ? "1px solid var(--nds-medium-grey)" : null};
 
   :hover {
     background-color: ${(props) =>

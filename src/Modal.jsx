@@ -16,7 +16,7 @@ const Modal = ({ open, handleClose, children, classes, header, actions }) => {
           className="nds-modal-dismiss"
           onClick={handleClose}
         >
-          <span className={"narmi-icon-x"} style={{ fontSize:"20px", color: "rgb(var(--nds-text-header))" }} />
+          <span className={"narmi-icon-x"} style={{ fontSize:"20px", color: "rgb(var(--nds-black))" }} />
         </div>
         {header ? <><h3 className="nds-sans">{header}</h3> <hr className="nds-hr"/> </>: ""}
         {children}

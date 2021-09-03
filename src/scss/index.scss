@@ -4,12 +4,13 @@ $desktop-small: 1280px;
 $desktop-big: 1440px;
 
 :root {
-    --nds-background: 256, 256, 256;
-    --nds-disabled-background: 243, 243, 243;
-    --nds-grey-border: 219, 219, 219;
-    --nds-disabled: 140, 140, 140;
-    --nds-text-header: 51, 51, 51;
-    --nds-text: 76, 76, 76;
+    --nds-black: 51, 51, 51;            /* #333333 */
+    --nds-grey: 76, 76, 76;             /* #4C4C4C */
+    --nds-medium-grey: 140, 140, 140;   /* #8C8C8C */
+    --nds-lightest-grey: 208, 208, 208; /* #D9D9D9 */
+    --nds-smoke-grey: 243, 243, 243;    /* #F3F3F3 */
+    --nds-red: 217, 59, 59;             /* #D93B3B */
+    --nds-white: 256, 256, 256;         /* #FFFFFF */
     --nds-font-family: 'Mulish';
     --nds-header-font: 'Narmi Matiere';
 }

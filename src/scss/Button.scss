@@ -42,7 +42,7 @@
     /* menu button styles */
     &.menu {
       text-align: left;
-      color: RGB(var(--nds-text-header));
+      color: RGB(var(--nds-black));
       padding: 10px 0;
 
       &::before {
@@ -60,7 +60,7 @@
       pointer-events: none;
 
       &::before {
-        background-color: RGB(var(--nds-disabled));
+        background-color: RGB(var(--nds-medium-grey));
       }
     }
 }

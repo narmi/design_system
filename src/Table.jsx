@@ -52,7 +52,7 @@ const StyledMobileTableCell = styled.td`
 `;
 
 const StyledTableRow = styled.tr`
-  border-top: 1px solid var(--nds-grey-disabled);
+  border-top: 1px solid var(--nds-medium-grey);
   :hover {
     background-color: ${(props) =>
       props.hoverable ? "var(--nds-primary-color-lightest)" : null};

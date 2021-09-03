@@ -7,8 +7,8 @@
 
   .nds-input-box {
     box-sizing: border-box;
-    border: 1px solid RGB(var(--nds-disabled));
-    background: RGB(var(--nds-background));
+    border: 1px solid RGB(var(--nds-lightest-grey));
+    background: RGB(var(--nds-white));
     position: relative;
     width: 100%;
     padding: 7px 0.8em;
@@ -19,7 +19,7 @@
     &:focus-within {
       border: 1px solid RGB(var(--nds-primary-color));
 
-      > label {
+      label {
         color: RGB(var(--nds-primary-color));
         margin-bottom: -4px;
       }
@@ -34,21 +34,20 @@
 
   &.disabled .nds-input-box {
     pointer-events: none;
-    border: 1px solid RGB(var(--nds-disabled));
-    background-color: RGB(var(--nds-disabled-background));
+    background-color: RGB(var(--nds-smoke-grey));
 
     input {
-      color: RGB(var(--nds-disabled));
+      color: RGB(var(--nds-medium-grey));
     }
   }
 
   &.error {
     .nds-input-box {
-      border: 1px solid RGB(var(--nds-error));
+      border: 1px solid RGB(var(--nds-red));
     }
 
     label {
-      color: RGB(var(--nds-error));
+      color: RGB(var(--nds-red));
     }
   }
 
@@ -65,7 +64,7 @@
     font-family: var(--nds-font-family);
     font-weight: 400;
     font-size: 12px;
-    color: RGB(var(--nds-disabled));
+    color: RGB(var(--nds-medium-grey));
     line-height: 1.4;
     white-space: nowrap;
     overflow: hidden;
@@ -75,7 +74,7 @@
   .nds-input-error {
     font-size: 12px;
     font-weight: 400;
-    color: RGB(var(--nds-error));
+    color: RGB(var(--nds-red));
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
@@ -87,6 +86,10 @@
       height: 1.2em;
       width: 1.2em;
     }
+  }
+
+  input, textarea {
+    color: RGB(var(--nds-grey));
   }
 
   textarea {
@@ -134,6 +137,12 @@
 
     ~ label {
       display: none;
+    }
+  }
+
+  input, textarea {
+    &::placeholder {
+      color: var(--nds-medium-grey);
     }
   }
 }

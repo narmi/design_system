@@ -7,7 +7,7 @@
   padding: 20px;
   box-sizing: border-box;
   background-color: RGB(var(--nds-white));
-  border: 1px solid RGB(var(--nds-grey-border));
+  border: 1px solid RGB(var(--nds-lightest-grey));
 
   &[data-hoverable=true] {
     box-shadow: none;
@@ -23,7 +23,7 @@
 
   &[data-hoverable=true]:active,
   &[data-selected=true] {
-    background-color: RGB(var(--nds-disabled-background));
+    background-color: RGB(var(--nds-smoke-grey));
   }
 
   @media (max-width: $mobile_size) {

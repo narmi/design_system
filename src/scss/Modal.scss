@@ -18,7 +18,7 @@
         display: none;
         z-index: 100;
         position: fixed;
-        background: RGB(var(--nds-background));
+        background: RGB(var(--nds-white));
         border-radius: 8px;
     }
 
@@ -38,7 +38,7 @@
         display: none;
         z-index: 1;
         position: fixed;
-        background: RGB(var(--nds-background));
+        background: RGB(var(--nds-white));
       }
 
     .nds-modal-dismiss {

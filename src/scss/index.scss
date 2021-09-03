@@ -4,12 +4,12 @@ $desktop-small: 1280px;
 $desktop-big: 1440px;
 
 :root {
-    --nds-black: 51, 51, 51;  /* #333333 */
+    --nds-black: 51, 51, 51;    /* #333333 */
+    --nds-grey: 76, 76, 76;     /* #4C4C4C */
     --nds-background: 256, 256, 256;
     --nds-disabled-background: 243, 243, 243;
     --nds-grey-border: 219, 219, 219;
     --nds-disabled: 140, 140, 140;
-    --nds-text: 76, 76, 76;
     --nds-font-family: 'Mulish';
     --nds-header-font: 'Narmi Matiere';
 }

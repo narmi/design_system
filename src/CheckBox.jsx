@@ -1,12 +1,17 @@
+// https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_checkbox
+
 import React from "react";
 import PropTypes from "prop-types";
 
-const CheckBox = ({label, onChange, id, name, value}) => {
+const CheckBox = ({ label, onChange, id, name, value }) => {
   return (
-        <label class="container">One
-          <input type="checkbox" checked="checked" />
-          <span class="checkmark"></span>
-        </label>
+    <>
+      <label class="container nds-typography">
+        {label}
+        <input type="checkbox" />
+        <span class="checkmark"></span>
+      </label>
+    </>
   );
 };
 

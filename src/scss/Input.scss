@@ -35,7 +35,7 @@
   &.disabled .nds-input-box {
     pointer-events: none;
     border: 1px solid RGB(var(--nds-medium-grey));
-    background-color: RGB(var(--nds-disabled-background));
+    background-color: RGB(var(--nds-smoke-grey));
 
     input {
       color: RGB(var(--nds-medium-grey));

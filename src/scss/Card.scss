@@ -23,7 +23,7 @@
 
   &[data-hoverable=true]:active,
   &[data-selected=true] {
-    background-color: RGB(var(--nds-disabled-background));
+    background-color: RGB(var(--nds-smoke-grey));
   }
 
   @media (max-width: $mobile_size) {

@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const CheckBox = (props) => {
+const CheckBox = ({label, onChange, id, name, value}) => {
   return (
-    <div>
-      yo
-    </div>
+        <label class="container">One
+          <input type="checkbox" checked="checked" />
+          <span class="checkmark"></span>
+        </label>
   );
 };
 

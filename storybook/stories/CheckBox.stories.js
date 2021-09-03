@@ -9,5 +9,5 @@ export default {
 };
 
 export const CHECK = () => {
-  return (<div><CheckBox /></div>);
+  return (<div><CheckBox label="Test" id={1} name="form_test" value="yo" onChange={()=>{console.log("woah")}}/></div>);
 }

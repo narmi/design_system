@@ -13,4 +13,6 @@ jobs:
       - name: Check build matches pr
         run: |
               ls candidate_dist
+              rm candidate_dist/index.js.map 
+              rm dist/index.js.map 
               diff -qr dist candidate_dist

@@ -8,7 +8,7 @@ const CheckBox = ({ label, onChange, id, name, value }) => {
     <>
       <label class="container nds-typography">
         {label}
-        <input type="checkbox" />
+        <input onChange={onChange} name={name} id={id} value={value} type="checkbox" />
         <span class="checkmark"></span>
       </label>
     </>

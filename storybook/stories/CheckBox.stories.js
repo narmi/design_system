@@ -1,6 +1,6 @@
 import React from "react";
 import { NdsStyles } from "./decorators/decorators";
-import { CheckBox } from "design_system";
+import { CheckBox, Button, Modal } from "design_system";
 
 export default {
   title: "Components/Check",
@@ -8,35 +8,54 @@ export default {
 };
 
 export const CHECK = () => {
+  const [checkData, setCheckData] = React.useState({cb1: false, cb2: false, cb3: false});
+  const [modalOpen, setModalOpen] = React.useState(false);
+  function  handleCheck(event) {
+    console.log(event.target.name, event.target.checked);
+    checkData[event.target.name] = event.target.checked;
+    setCheckData(checkData);
+  }
   return (
     <div>
       <CheckBox
-        label="Test"
+        label="CB1"
         id={1}
-        name="form_test"
-        value="yo"
-        onChange={() => {
-          console.log("woah");
-        }}
+        name="cb1"
+        defaultvalue={true}
+        onChange={handleCheck}
       />
-            <CheckBox
-        label="Test"
+      <CheckBox
+        label="CB2"
         id={1}
-        name="form_test"
-        value="yo"
-        onChange={() => {
-          console.log("woah");
-        }}
+        name="cb2"
+        defaultvalue={false}
+        onChange={handleCheck}
       />
-            <CheckBox
-        label="Test"
+      <CheckBox
+        label="CB3"
         id={1}
-        name="form_test"
-        value="yo"
-        onChange={() => {
-          console.log("woah");
-        }}
+        name="cb3"
+        defaultvalue={false}
+        onChange={handleCheck}
       />
+      <Button
+        onClick={() => {
+          setModalOpen(true);
+        }}
+      >
+        Submit
+      </Button>
+      <Modal
+        open={modalOpen}
+        header={"HEADER"}
+        handleClose={() => {
+          setModalOpen(false);
+        }}
+      >
+        <div style={{ width: "500px" }}>
+          {Object.keys(checkData).map((key)=><div style={{paddingBottom:"12px", display:"flex", alignItems: "center"}}>{key}:{ <span className="narmi-icon-solid-circle" style={{paddingLeft:"12px", color: checkData[key] ? "green" : "red"}}/> }</div>)}
+        </div>
+      </Modal>
     </div>
   );
 };

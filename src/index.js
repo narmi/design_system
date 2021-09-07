@@ -25,6 +25,7 @@ const components = {
   NavBar,
   Modal,
   Details,
+  Dropdown,
   RadioButtons,
   CheckBox,
   Card,

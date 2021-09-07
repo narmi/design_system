@@ -62,7 +62,10 @@ const Dropdown = (props) => {
 
   const childrenList = Array.isArray(props.children)
     ? props.children
-    : [props.children, "test"];
+    : [props.children];
+
+
+  childrenList.map((child, i) => {console.log(child, i)})
 
   return (
     <div

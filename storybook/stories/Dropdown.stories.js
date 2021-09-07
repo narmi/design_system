@@ -23,12 +23,39 @@ export const BasicDropdown = () => {
           Link a new payee!
         </PlainButton>
       </Dropdown>
-      <Modal open={modalOpen} handleClose={()=>{setModalOpen(false)}}>
+      <Modal
+        open={modalOpen}
+        handleClose={() => {
+          setModalOpen(false);
+        }}
+      >
         <div style={{ width: "500px" }}>
           <h4>Title</h4>
           <p>This is an example of body text that a user could pass</p>
         </div>
       </Modal>
+    </div>
+  );
+};
+
+export const PayeDDown = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  return (
+    <div>
+      <Dropdown triggerLabel={"Accounts"}>
+        {["test", "test2", 
+        <PlainButton
+          onClick={() => {
+            setModalOpen(true);
+          }}
+          style={{ color: "rgb(var(--nds-primary-color))" }}
+        >
+          Link a new payee!
+        </PlainButton>
+        ].map((option) => (
+          <div>{option}</div>
+        ))}
+      </Dropdown>
     </div>
   );
 };

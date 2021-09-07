@@ -65,8 +65,6 @@ const Dropdown = (props) => {
     : [props.children];
 
 
-  childrenList.map((child, i) => {console.log(child, i)})
-
   return (
     <div
       onKeyDown={(event) => {

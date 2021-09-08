@@ -29,7 +29,7 @@ const RadioButtons = (props) => {
             {label}
             <input
               type="radio"
-              defaultChecked={initialvalue===value}
+              defaultChecked={initialvalue === value}
               value={value}
               name={props.name}
             />

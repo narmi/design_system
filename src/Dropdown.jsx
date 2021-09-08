@@ -3,17 +3,17 @@ import TextInput from "./TextInput";
 import PropTypes from "prop-types";
 
 const Chevron = ({ open, setOpen }) => {
-  if (!open) {
+  if (open) {
     return (
       <span
         className={"nds-dropdown-chevron narmi-icon-chevron-up"}
-        onClick={setOpen.bind(null, true)}
+        onClick={setOpen.bind(null, false)}
       />
     );
   }
   return (
     <span
-      onClick={setOpen.bind(null, false)}
+      onClick={setOpen.bind(null, true)}
       className={"nds-dropdown-chevron narmi-icon-chevron-down"}
     />
   );

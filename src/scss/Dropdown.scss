@@ -6,7 +6,13 @@
         position: absolute;
         top: 12px;
         right: 13px;
-        z-index: 1000;
+        &.narmi-icon-chevron-up {
+            z-index: 1000;
+            top: 12px;
+        }
+        &.narmi-icon-chevron-down {
+            top: 15px;
+        }
     }
 
     .nds-plain-button:hover {

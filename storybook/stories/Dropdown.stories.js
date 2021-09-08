@@ -43,7 +43,9 @@ export const PayeDDown = () => {
   return (
     <div>
       <Dropdown triggerLabel={"Accounts"}>
-        {["test", "test2", 
+        {["test", "test2"].map((option) => (
+          <div>{option}</div>
+        ))} 
         <PlainButton
           onClick={() => {
             setModalOpen(true);
@@ -52,9 +54,6 @@ export const PayeDDown = () => {
         >
           Link a new payee!
         </PlainButton>
-        ].map((option) => (
-          <div>{option}</div>
-        ))}
       </Dropdown>
     </div>
   );

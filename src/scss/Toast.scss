@@ -1,0 +1,24 @@
+.nds-toast-success {
+	display: flex;
+	align-items: center;
+	background-color: #E3FAE7;
+	width: 163px;
+	height: 48px;
+	border: 1px solid #37B374;
+	border-radius: 4px;
+	position: absolute;
+	z-index: 1000;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	.narmi-icon-check {
+		color: #37B374;
+		padding-left: 15px;
+		padding-right: 8px;
+		font-size: 25px;
+	}
+}
+
+.nds-toast-hidden {
+	visibility: hidden;
+}

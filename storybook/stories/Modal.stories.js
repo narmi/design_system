@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button, PlainButton, RadioButtons } from "design_system";
+import { Modal, Button, PlainButton, RadioButtons, Toast } from "design_system";
 import { NdsStyles } from "./decorators/decorators";
 
 export default {
@@ -9,6 +9,7 @@ export default {
 
 export const SimpleModal = () => {
   const [open, setOpen] = useState(false);
+
   return (
     <div className="nds-typography">
       <Button
@@ -32,8 +33,11 @@ export const SimpleModal = () => {
 };
 
 export const AccountModal = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [deleteTransaction, setDeleteTransaction] = useState(false);
+  const [submit, setSubmit] = useState(false);
+  console.log("submit", submit);
+
   const actions = (
     <>
       <PlainButton
@@ -45,7 +49,7 @@ export const AccountModal = () => {
       </PlainButton>
       <Button
         disabled={deleteTransaction === false}
-        onClick={() => { setOpen(false); }}
+        onClick={() => { setOpen(false); setSubmit(true);}}
       >Yes, Delete</Button>
     </>
   );
@@ -54,6 +58,7 @@ export const AccountModal = () => {
       <Button
         onClick={() => {
           setOpen(true);
+          setSubmit(false);
         }}
       >
         Open Modal
@@ -78,6 +83,7 @@ export const AccountModal = () => {
           </div>
         </div>
       </Modal>
+      <Toast open={submit} style={{left: "47%"}} message={"Transfer Sent"} type="success"/>
     </div>
   );
 };

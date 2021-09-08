@@ -8,7 +8,7 @@ export default {
 };
 
 export const BooleanInput = ({ setting, error, onChange }) => (
-  <div style={{ widht: "50px" }}>
+  <div style={{ width: "50px" }}>
     <RadioButtons
       initialvalue={true}
       name="setting_value"

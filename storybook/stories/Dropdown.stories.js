@@ -38,11 +38,11 @@ export const BasicDropdown = () => {
   );
 };
 
-export const PayeDDown = () => {
+export const PayeDropDown = () => {
   const [modalOpen, setModalOpen] = useState(false);
   return (
     <div>
-      <Dropdown triggerLabel={"Accounts"}>
+      <Dropdown triggerLabel={"Accounts"} closeDropDown={modalOpen}>
         {["test", "test2"].map((option) => (
           <div>{option}</div>
         ))} 
@@ -52,9 +52,20 @@ export const PayeDDown = () => {
           }}
           style={{ color: "rgb(var(--nds-primary-color))" }}
         >
-          Link a new payee!
+          Add a new member
         </PlainButton>
       </Dropdown>
+      <Modal
+        open={modalOpen}
+        handleClose={() => {
+          setModalOpen(false);
+        }}
+      >
+        <div style={{ width: "500px" }}>
+          <h4>Title</h4>
+          <p>This is an example of body text that a user could pass</p>
+        </div>
+      </Modal>
     </div>
   );
 };

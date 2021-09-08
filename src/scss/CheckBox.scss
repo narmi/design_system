@@ -2,10 +2,13 @@
     display: flex;
     width: fit-content;
     position: relative;
-    padding-left: 46px;
+    padding-left: 32px;
     margin-bottom: 12px;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    align-items: center;
     input {
       position: absolute;
       opacity: 0;
@@ -28,9 +31,9 @@
       width: 24px;
       background-color: white;
       border-radius: 3px;
-      border: 2px solid grey;
+      border: 1px solid RGB(var(--nds-lightest-grey));
       &:hover input ~ .checkmark {
-        border: 2px solid RGB(var(--nds-primary-color));
+        border: 1px solid RGB(var(--nds-primary-color));
       }
       &:after {
         content: "";

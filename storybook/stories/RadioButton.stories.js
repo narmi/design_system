@@ -10,7 +10,7 @@ export default {
 export const BooleanInput = ({ setting, error, onChange }) => (
   <div style={{ width: "50px" }}>
     <RadioButtons
-      initialvalue={true}
+      defaultValue={true}
       name="setting_value"
       options={{ True: true, False: false }}
     />

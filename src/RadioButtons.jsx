@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 
 /*
 The Narmi RadioButtons component expects an "options" Prop, which is an object where the keys are the radiobutton
-labels and the values are the radiobutton values. An "initialvalue" Prop can be passed to set a default checked
+labels and the values are the radiobutton values. An "defaultValue" Prop can be passed to set a default checked
 radiobutton.
 
 i.e.
     <RadioButtons
-      initialvalue={"true"}
-      options={{ "True": "true", "False": "false" }}
+      defaultValue={'true'}
+      options={{ True: 'true', False: 'false' }}
     />
 */
 
@@ -20,7 +20,7 @@ const RadioButtons = (props) => {
     setRadioOptions(props.options);
   }, []);
 
-  const { initialvalue, ...nativeElementProps } = props;
+  const { defaultValue, ...nativeElementProps } = props;
   return (
     <div className="nds-radiobutton-group nds-typography" {...nativeElementProps}>
       {Object.entries(radioOptions).map(([label, value]) => (
@@ -29,7 +29,7 @@ const RadioButtons = (props) => {
             {label}
             <input
               type="radio"
-              defaultChecked={initialvalue === value}
+              defaultChecked={defaultValue === value}
               value={value}
               name={props.name}
             />
@@ -49,7 +49,7 @@ RadioButtons.propTypes = {
 
 RadioButtons.defaultProps = {
   disabled: false,
-  initialValue: false,
+  defaultValue: false,
 };
 
 export default RadioButtons;

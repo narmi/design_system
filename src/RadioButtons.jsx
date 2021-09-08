@@ -20,8 +20,7 @@ const RadioButtons = (props) => {
     setRadioOptions(props.options);
   }, []);
 
-  const { initialValue, ...nativeElementProps } = props;
-
+  const { initialvalue, ...nativeElementProps } = props;
   return (
     <div className="nds-radiobutton-group nds-typography" {...nativeElementProps}>
       {Object.entries(radioOptions).map(([label, value]) => (
@@ -30,7 +29,7 @@ const RadioButtons = (props) => {
             {label}
             <input
               type="radio"
-              defaultChecked={initialValue === value}
+              defaultChecked={initialvalue===value}
               value={value}
               name={props.name}
             />

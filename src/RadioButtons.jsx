@@ -8,7 +8,7 @@ radiobutton.
 
 i.e.
     <RadioButtons
-      initialvalue={"true"}
+      initialValue={"true"}
       options={{ "True": "true", "False": "false" }}
     />
 */

@@ -46,7 +46,13 @@ const DropdownMenu = ({ open, onClose, children, ...rest }) => {
 
 const Dropdown = (props) => {
   const [open, setOpen] = useState(props.defaultOpen);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(undefined);
+
+  useEffect(()=>{
+    if(value === undefined && props.defaultValue) {
+      setValue(props.defaultValue)
+    }
+  })
   useEffect(() => {
     if (props.closeDropDown === true) {
       closeDropdown();
@@ -64,26 +70,27 @@ const Dropdown = (props) => {
     ? props.children.flat()
     : props.children.flat();
 
-
-  console.log("childrenList", childrenList);
-  // childrenList.map((child, i) => {console.log(child, i, child.props)})
-
+  const { multiline, style, ...nativeElementProps } = props;
   return (
     <div
       onKeyDown={(event) => {
         if (["Tab", "Escape"].includes(event.key)) closeDropdown();
       }}
       className="nds-dropdown"
+      field="test"
     >
-      <TextInput
-        onChange={() => null}
+{/*      <TextInput
         onFocus={openDropdown}
         label={props.triggerLabel}
-        value={value}
-      />
+        value={props.value}
+        field={props.field}
+        onChange={props.onChange}
+      />*/}
+      <TextInput value={value} field={props.field} label={props.triggerLabel}/>
       <DropdownMenu
         open={open}
         onClose={closeDropdown}
+        field="test"
       >
         <div
           className="nds-dropdown-children nds-typography"
@@ -95,6 +102,7 @@ const Dropdown = (props) => {
                 ? child.props.onClick
                 : () => {
                     setValue(child.props.children);
+                    props.onChange ? props.onChange(child.props.children) : ()=>{null};
                     closeDropdown();
                   },
               key: i,

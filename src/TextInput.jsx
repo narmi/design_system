@@ -11,12 +11,12 @@ const TextInput = (props) => {
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
   useEffect(() => multiline ? handleKeyUp({target: ref.current}) : undefined, []);
+
   return (
     <Input
       onClick={() => {
         ref.current?.focus();
       }}
-      {...props}
     >
       {multiline ? (
         <textarea

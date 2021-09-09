@@ -56,7 +56,7 @@ export const NewMemberDropDown = () => {
     );
   return (
     <div>
-      <Dropdown triggerLabel={"Members"} closeDropDown={modalOpen}>
+      <Dropdown defaultValue={"test"} triggerLabel={"Members"} closeDropDown={modalOpen}>
         {["test", "test2"].map((option) => (
           <div>{option}</div>
         ))} 

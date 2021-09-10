@@ -46,13 +46,13 @@ const DropdownMenu = ({ open, onClose, children, ...rest }) => {
 
 const Dropdown = (props) => {
   const [open, setOpen] = useState(props.defaultOpen);
-  const [value, setValue] = useState(undefined);
+  const [value, setValue] = useState(props.defaultValue || "");
 
   useEffect(() => {
     if (value === undefined && props.defaultValue) {
       setValue(props.defaultValue);
     }
-  });
+  }, []);
   useEffect(() => {
     if (props.closeDropDown === true) {
       closeDropdown();
@@ -86,6 +86,7 @@ const Dropdown = (props) => {
         value={value}
         field={props.field}
         label={props.triggerLabel}
+        readOnly
       />
       <DropdownMenu open={open} onClose={closeDropdown}>
         <div className="nds-dropdown-children nds-typography">

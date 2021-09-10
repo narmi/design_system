@@ -87,24 +87,3 @@ export const NewMemberDropDown = () => {
     </div>
   );
 };
-
-
-export const Inputs = () => {
-    return(
-        <div style={{ width: "500px" }} className="nds-typography">
-          <TextInput
-            label={"First Name"}
-            style={{ paddingBottom: "20px" }}
-          />
-          <TextInput label={"Last Name"} style={{ paddingBottom: "20px" }} />
-          <TextInput
-            label={"Account Number"}
-            style={{ paddingBottom: "20px" }}
-          />
-          <TextInput
-            label={"Relationship (i.e. sister)"}
-            style={{ paddingBottom: "20px" }}
-          />
-        </div>
-        );
-      }

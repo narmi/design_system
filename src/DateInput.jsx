@@ -6,7 +6,7 @@ import flatpickr from "flatpickr";
 import moment from "moment";
 import "flatpickr/dist/themes/airbnb.css";
 
-const DateInput = (props) => {
+const DateInput = ({ minDate, altInput, altFormat, ...props }) => {
   const input = useRef();
 
   // Shorten "Sun" to "Su", "Mon" to "Mo", etc.
@@ -16,7 +16,9 @@ const DateInput = (props) => {
     locale: english,
     allowInput: true,
     dateFormat: "Y-m-d",
-    ...props,
+    minDate,
+    altInput,
+    altFormat,
     onChange: (flatpickrVal) => props.onChange(moment(flatpickrVal[0]).format("YYYY-MM-DD"))
   }
 

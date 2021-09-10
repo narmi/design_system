@@ -1,0 +1,73 @@
+.nds-dropdown {
+    position: relative;
+    cursor: pointer;
+    
+    .nds-dropdown-chevron {
+        position: absolute;
+        top: 15px;
+        right: 13px;
+        font-size: 26px;
+        color: #D9D9D9;
+        &.narmi-icon-chevron-up {
+            z-index: 1000;
+            top: 8px;
+        }
+        &.narmi-icon-chevron-down {
+            top: 11px;
+        }
+    }
+
+    .nds-plain-button:hover {
+        text-decoration: none;
+    }
+
+    .nds-dropdown-menu {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+
+        .nds-dropdown-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-color: transparent;
+            z-index: 999;
+            cursor: pointer;
+        }
+
+        .nds-dropdown-menu-items {
+            z-index: 1000;
+            position: absolute;
+            background-color: white;
+            width: 100%;
+            min-height: 100%;
+            box-sizing: content-box;
+            display: flex;
+            flex-flow: column nowrap;
+            border: 1px solid #1a4338;
+            border-radius: 4px;
+            overflow: hidden;
+            .nds-dropdown-children {
+                border-radius: 4px;
+                border: 1px solid var(--nds-primary-color);
+                font-size: 16px;
+                .nds-dropdown-item {
+                    padding-top: 5px;
+                    padding-left: 12px;
+                    padding-bottom: 5px; 
+                    width: 100%;
+                    display: flex;
+                    &:hover {
+                        background: rgba(26, 67, 56, 0.05);
+                    }
+                    &:first-child {
+                        margin-top: 6px;
+                    }
+                }
+            }
+        }
+    }
+}

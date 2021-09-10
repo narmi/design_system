@@ -79,7 +79,7 @@ export const AccountModal = () => {
           </div>
         </div>
       </Modal>
-      <Toast open={submit} style={{left: "47%"}} message={"Toast"} type="success"/>
+      <Toast open={submit} seconds={2} style={{left: "47%"}} message={"Toast"} type="success"/>
     </div>
   );
 };

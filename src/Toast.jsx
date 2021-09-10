@@ -8,7 +8,7 @@ const Toast = (props) => {
   React.useEffect(() => {
     if (props.open) {
       setOpen(props.open);
-      setSeconds(4);
+      setSeconds(props.seconds);
     }
   }, [props.open]);
 
@@ -45,9 +45,11 @@ const Toast = (props) => {
 
 Toast.defaultProps = {
   type: false,
+  seconds: 4,
 };
 Toast.propTypes = {
   type: PropTypes.string.isRequired,
+  seconds: PropTypes.int,
   message: PropTypes.string.isRequired,
 };
 

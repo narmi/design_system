@@ -12,8 +12,8 @@ export const BasicDropdown = () => {
   return (
     <div>
       <Dropdown triggerLabel={"Accounts"} closeDropDown={modalOpen}>
-        <div>Rowena Wick</div>
-        <div>Daya Zakim</div>
+        <div>Member 1</div>
+        <div>Member 2</div>
         <PlainButton
           onClick={() => {
             setModalOpen(true);
@@ -56,8 +56,8 @@ export const NewMemberDropDown = () => {
     );
   return (
     <div>
-      <Dropdown defaultValue={"test"} triggerLabel={"Members"} closeDropDown={modalOpen}>
-        {["test", "test2"].map((option) => (
+      <Dropdown defaultValue={"Rowena Wick"} triggerLabel={"Members"} closeDropDown={modalOpen}>
+        {["Rowena Wick", "Daya Zakim"].map((option) => (
           <div>{option}</div>
         ))} 
         <PlainButton

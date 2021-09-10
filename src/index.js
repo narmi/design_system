@@ -15,6 +15,7 @@ const Card = require("Card").default;
 const Dropdown = require("Dropdown").default;
 const RadioButtons = require("RadioButtons").default;
 const CheckBox = require("CheckBox").default;
+const Toast = require("Toast").default;
 const components = {
   Input,
   DateInput,
@@ -28,6 +29,7 @@ const components = {
   Dropdown,
   RadioButtons,
   CheckBox,
+  Toast,
   Card,
 };
 
@@ -51,6 +53,7 @@ export {
   Details,
   Card,
   CheckBox,
+  Toast,
   Dropdown,
 };
 

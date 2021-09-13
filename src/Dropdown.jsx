@@ -84,7 +84,7 @@ const Dropdown = (props) => {
         onClick={() => {
           setOpen(true);
         }}
-        value={value.label}
+        value={value.label.props ? value.label.props.children : value.label}
         field={props.field}
         label={props.triggerLabel}
         readOnly
@@ -102,6 +102,7 @@ const Dropdown = (props) => {
                         ? child.props.value
                         : child.props.children
                     );
+
                     props.onChange(
                       child.props.value
                         ? child.props.value

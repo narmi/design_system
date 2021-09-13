@@ -67,9 +67,7 @@ const Dropdown = (props) => {
     setOpen(false);
   };
 
-  const childrenList = Array.isArray(props.children)
-    ? props.children.flat()
-    : props.children.flat();
+  const childrenList = props.children.flat();
 
   const { multiline, style, ...nativeElementProps } = props;
   return (

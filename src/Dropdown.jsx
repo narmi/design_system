@@ -124,9 +124,6 @@ Dropdown.defaultProps = {
   onChange: () => {
     null;
   },
-  displaySelector: (value) => {
-    return value;
-  },
 };
 Dropdown.propTypes = {
   children: PropTypes.any,
@@ -135,7 +132,6 @@ Dropdown.propTypes = {
   closeDropDown: PropTypes.bool,
   triggerLabel: PropTypes.string.isRequired,
   triggerValue: PropTypes.string,
-  displaySelector: PropTypes.func,
 };
 
 export default Dropdown;

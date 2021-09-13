@@ -53,6 +53,7 @@ const Dropdown = (props) => {
       setValue(props.defaultValue);
     }
   }, []);
+
   useEffect(() => {
     if (props.closeDropDown === true) {
       closeDropdown();
@@ -83,7 +84,7 @@ const Dropdown = (props) => {
         onClick={() => {
           setOpen(true);
         }}
-        value={value}
+        value={props.displaySelector(value)}
         field={props.field}
         label={props.triggerLabel}
         readOnly
@@ -96,8 +97,8 @@ const Dropdown = (props) => {
               onClick: child.props.onClick
                 ? child.props.onClick
                 : () => {
-                    setValue(child.props.children);
-                    props.onChange(child.props.children);
+                    setValue(child.props.value ? child.props.value : child.props.children);
+                    props.onChange(child.props.value ? child.props.value : child.props.children);
                     closeDropdown();
                   },
               key: i,
@@ -115,6 +116,9 @@ Dropdown.defaultProps = {
   onChange: () => {
     null;
   },
+  displaySelector: (value) => {
+    return value;
+  }
 };
 Dropdown.propTypes = {
   children: PropTypes.any,
@@ -123,6 +127,7 @@ Dropdown.propTypes = {
   closeDropDown: PropTypes.bool,
   triggerLabel: PropTypes.string.isRequired,
   triggerValue: PropTypes.string,
+  displaySelector: PropTypes.func,
 };
 
 export default Dropdown;

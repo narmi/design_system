@@ -54,11 +54,14 @@ export const NewMemberDropDown = () => {
         >Add member</Button>
       </div>
     );
+
+  const displaySelector = (value) => {return(value.name);}
+  const members = [{name:"Rowena Wick", account_id: "1234"}, {name:"Daya Zakim", account_id: "2234"}]
   return (
     <div>
-      <Dropdown defaultValue={"Rowena Wick"} triggerLabel={"Members"} closeDropDown={modalOpen}>
-        {["Rowena Wick", "Daya Zakim"].map((option, i) => (
-          <div key={i}>{option}</div>
+      <Dropdown displaySelector={displaySelector} renderMenuItem={renderMenuItem} defaultValue={"Rowena Wick"} triggerLabel={"Members"} closeDropDown={modalOpen}>
+        {members.map((option, i) => (
+          <div key={i} value={option}>{option.name}</div>
         ))} 
         <PlainButton
           onClick={() => {

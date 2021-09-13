@@ -84,7 +84,7 @@ const Dropdown = (props) => {
         onClick={() => {
           setOpen(true);
         }}
-        value={props.displaySelector(value)}
+        value={value.label}
         field={props.field}
         label={props.triggerLabel}
         readOnly
@@ -97,8 +97,16 @@ const Dropdown = (props) => {
               onClick: child.props.onClick
                 ? child.props.onClick
                 : () => {
-                    setValue(child.props.value ? child.props.value : child.props.children);
-                    props.onChange(child.props.value ? child.props.value : child.props.children);
+                    setValue(
+                      child.props.value
+                        ? child.props.value
+                        : child.props.children
+                    );
+                    props.onChange(
+                      child.props.value
+                        ? child.props.value
+                        : child.props.children
+                    );
                     closeDropdown();
                   },
               key: i,
@@ -118,7 +126,7 @@ Dropdown.defaultProps = {
   },
   displaySelector: (value) => {
     return value;
-  }
+  },
 };
 Dropdown.propTypes = {
   children: PropTypes.any,

@@ -40,29 +40,47 @@ export const BasicDropdown = () => {
 
 export const NewMemberDropDown = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState("");
   const actions = (
-      <div className="nds-typography">
-        <PlainButton
-          onClick={() => { setModalOpen(false); }}
-          style={{ paddingRight: "16px", color: "rgb(var(--nds-primary-color))" }}
-          type="plain"
-        >
-          Cancel
-        </PlainButton>
-        <Button
-          onClick={() => { setModalOpen(false); }}
-        >Add member</Button>
-      </div>
-    );
+    <div className="nds-typography">
+      <PlainButton
+        onClick={() => {
+          setModalOpen(false);
+        }}
+        style={{ paddingRight: "16px", color: "rgb(var(--nds-primary-color))" }}
+        type="plain"
+      >
+        Cancel
+      </PlainButton>
+      <Button
+        onClick={() => {
+          setModalOpen(false);
+        }}
+      >
+        Add member
+      </Button>
+    </div>
+  );
 
-  const displaySelector = (value) => {return(value.name);}
-  const members = [{name:"Rowena Wick", account_id: "1234"}, {name:"Daya Zakim", account_id: "2234"}]
+  const members = [
+    { label: "Rowena Wick", value: { account_id: "1234" } },
+    { label: "Daya Zakim", value: { account_id: "2234" } },
+  ];
   return (
     <div>
-      <Dropdown displaySelector={displaySelector} defaultValue={"Rowena Wick"} triggerLabel={"Members"} closeDropDown={modalOpen}>
+      <Dropdown
+        defaultValue={"Rowena Wick"}
+        triggerLabel={"Members"}
+        closeDropDown={modalOpen}
+        onChange={(val) => {
+          setSelectedValue(val);
+        }}
+      >
         {members.map((option, i) => (
-          <div key={i} value={option}>{option.name}</div>
-        ))} 
+          <div key={i} value={option}>
+            {option.label}
+          </div>
+        ))}
         <PlainButton
           onClick={() => {
             setModalOpen(true);
@@ -72,6 +90,10 @@ export const NewMemberDropDown = () => {
           Add a new member
         </PlainButton>
       </Dropdown>
+      <div style={{ display: "flex", paddingTop: "20px", paddingLeft: "10px" }}>
+        {selectedValue ? `${selectedValue.label}: ` : ""}
+        {selectedValue ? selectedValue.value.account_id : ""}
+      </div>
       <Modal
         open={modalOpen}
         handleClose={() => {
@@ -81,10 +103,19 @@ export const NewMemberDropDown = () => {
         actions={actions}
       >
         <div style={{ width: "500px" }} className="nds-typography">
-          <TextInput label={"First Name"} style={{paddingTop: "20px", paddingBottom: "20px"}}/>
-          <TextInput label={"Last Name"} style={{paddingBottom: "20px"}}/>
-          <TextInput label={"Account Number"} style={{paddingBottom: "20px"}}/>
-          <TextInput label={"Relationship (i.e. sister)"} style={{paddingBottom: "20px"}}/>
+          <TextInput
+            label={"First Name"}
+            style={{ paddingTop: "20px", paddingBottom: "20px" }}
+          />
+          <TextInput label={"Last Name"} style={{ paddingBottom: "20px" }} />
+          <TextInput
+            label={"Account Number"}
+            style={{ paddingBottom: "20px" }}
+          />
+          <TextInput
+            label={"Relationship (i.e. sister)"}
+            style={{ paddingBottom: "20px" }}
+          />
         </div>
       </Modal>
     </div>

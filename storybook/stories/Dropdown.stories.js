@@ -40,7 +40,6 @@ export const BasicDropdown = () => {
 
 export const NewMemberDropDown = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("");
   const actions = (
     <div className="nds-typography">
       <PlainButton
@@ -66,10 +65,11 @@ export const NewMemberDropDown = () => {
     { label: "Rowena Wick", value: { account_id: "1234" } },
     { label: "Daya Zakim", value: { account_id: "2234" } },
   ];
+  const [selectedValue, setSelectedValue] = useState(members[0]);
   return (
     <div>
       <Dropdown
-        defaultValue={"Rowena Wick"}
+        defaultValue={selectedValue}
         triggerLabel={"Members"}
         closeDropDown={modalOpen}
         onChange={(val) => {
@@ -90,9 +90,11 @@ export const NewMemberDropDown = () => {
           Add a new member
         </PlainButton>
       </Dropdown>
-      <div style={{ display: "flex", paddingTop: "20px", paddingLeft: "10px" }}>
-        {selectedValue ? `${selectedValue.label}: ` : ""}
-        {selectedValue ? selectedValue.value.account_id : ""}
+      <div style={{ paddingTop: "20px", paddingLeft: "10px" }}>
+        <p>{selectedValue.label}</p>
+        <div style={{ display: "flex" }}>
+          {`account-id: ${selectedValue.value.account_id}`}
+        </div>
       </div>
       <Modal
         open={modalOpen}

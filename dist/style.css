@@ -1,49 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Mulish:400,600,700,400italic,700italic&subset=latin);
-@font-face {
-    font-family: 'Narmi Matiere';
-    src: url(fonts/9e04a52adbdcb5fccc45.woff2) format('woff2'),
-    url(fonts/b4387c884c61949a5fde.woff) format('woff');
-    font-weight: 300;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Narmi Matiere';
-    src: url(fonts/c1f89d4fa25225c2b77a.woff2) format('woff2'),
-    url(fonts/ca029b38a11809476f85.woff) format('woff');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Narmi Matiere';
-    src: url(fonts/d92328ecd277b70c15a7.woff2) format('woff2'),
-    url(fonts/4b43ead76dfcdfdbbd9a.woff) format('woff');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Narmi Matiere';
-    src: url(fonts/1426fc406250f7e955aa.woff2) format('woff2'),
-    url(fonts/1ad2c22f522891bb7468.woff) format('woff');
-    font-weight: 600;
-    font-style: normal;
-}
-
+@import url(https://fonts.googleapis.com/css?family=Mulish:400,600,700&subset=latin);
 @font-face {
     font-family: 'Narmi Matiere';
     src: url(fonts/d819207ee2e092cc2735.woff2) format('woff2'),
     url(fonts/8b53d5067b416b155cc8.woff) format('woff');
     font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Narmi Matiere';
-    src: url(fonts/72e9aec97996ab86dbd9.woff2) format('woff2'),
-    url(fonts/58f9c85fabd54bddb078.woff) format('woff');
-    font-weight: 900;
     font-style: normal;
 }
 @font-face {

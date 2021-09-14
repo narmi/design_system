@@ -22,7 +22,7 @@ const TextInput = (props) => {
         <textarea
           onKeyUp={handleKeyUp}
           key={"nds-text"}
-          wrap="hard"
+          wrap="soft"
           ref={ref}
           required
           {...nativeElementProps}

@@ -7,7 +7,7 @@ export default {
   decorators: [NdsStyles],
 };
 
-export const CHECK = () => {
+export const SampleCheckBox = () => {
   const [checkData, setCheckData] = React.useState({cb1: true, cb2: false, cb3: false});
   const [modalOpen, setModalOpen] = React.useState(false);
   function  handleCheck(event) {

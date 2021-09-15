@@ -15,7 +15,7 @@
       cursor: pointer;
       height: 0;
       width: 0;
-      &:checked ~ .checkmark {
+      &:checked ~ .narmi-icon-check {
         background-color: RGB(var(--nds-primary-color));
         border: 2px solid RGB(var(--nds-primary-color));
         &:after {
@@ -24,31 +24,22 @@
       }
     }
 
-    .checkmark {
+    .narmi-icon-check {
       position: absolute;
       left: 0;
       height: 24px;
       width: 24px;
       background-color: white;
+      font-weight: bold;
       border-radius: 3px;
-      border: 1px solid RGB(var(--nds-lightest-grey));
-      &:hover input ~ .checkmark {
-        border: 1px solid RGB(var(--nds-primary-color));
+      border: 2px solid RGB(var(--nds-lightest-grey));
+      color: white;
+      font-size: 24px;
+      &:hover {
+        border: 2px solid RGB(var(--nds-primary-color));
       }
       &:after {
-        content: "";
-        position: absolute;
-        display: none;
-        left: 9px;
-        top: 0.2em;
-        width: 5px;
-        height: 10px;
-        border: solid white;
-        border-width: 0 3px 3px 0;
-        border-radius: 1px;
-        -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        transform: rotate(45deg);
+        color: red;
       }
     }
   }

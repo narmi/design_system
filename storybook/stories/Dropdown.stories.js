@@ -64,7 +64,7 @@ export const NewMemberDropDown = () => {
   const members = [
     { label: "Rowena Wick", value: { account_id: "1234" } },
     { label: "Daya Zakim", value: { account_id: "2234" } },
-    { label: <b>Bob Bobson</b>, value: { account_id: "2234" } },
+    { label: <b>Bob Bobson</b>, value: { account_id: "3234" } },
   ];
   const [selectedValue, setSelectedValue] = useState(members[0]);
   return (

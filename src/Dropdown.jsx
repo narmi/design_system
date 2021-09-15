@@ -82,7 +82,13 @@ const Dropdown = (props) => {
         onClick={() => {
           setOpen(true);
         }}
-        value={value.label.props ? value.label.props.children : value.label}
+        value={
+          value.label
+            ? value.label.props
+              ? value.label.props.children
+              : value.label
+            : value
+        }
         field={props.field}
         label={props.triggerLabel}
         readOnly

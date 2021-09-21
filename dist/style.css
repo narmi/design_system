@@ -8,11 +8,11 @@
 }
 @font-face {
   font-family: 'icomoon';
-  src:  url(icons/9514e41f4abe68154251.eot?voo1im);
-  src:  url(icons/9514e41f4abe68154251.eot?voo1im#iefix) format('embedded-opentype'),
-    url(icons/60ec04d4deef42a421f1.ttf?voo1im) format('truetype'),
-    url(icons/c5c8ceba8c6708fbce30.woff?voo1im) format('woff'),
-    url(icons/4724f7c57a0e21491bb1.svg?voo1im#icomoon) format('svg');
+  src:  url(icons/20de8125bf1b3b2a4ff0.eot?i22uhu);
+  src:  url(icons/20de8125bf1b3b2a4ff0.eot?i22uhu#iefix) format('embedded-opentype'),
+    url(icons/3a3b307923f7769afb5a.ttf?i22uhu) format('truetype'),
+    url(icons/3f656958d77ac103b633.woff?i22uhu) format('woff'),
+    url(icons/2ec54f27a9dd478b4e1b.svg?i22uhu#icomoon) format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -33,6 +33,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.narmi-icon-dollar-bill-line:before {
+  content: "\EA32";
+}
+.narmi-icon-wires:before {
+  content: "\EA33";
+}
+.narmi-icon-m2m:before {
+  content: "\EA34";
+}
+.narmi-icon-transfer-arrows:before {
+  content: "\EA31";
+}
 .narmi-icon-blob:before {
   content: "\EA30";
 }

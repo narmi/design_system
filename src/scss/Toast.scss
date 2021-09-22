@@ -1,25 +1,25 @@
 .nds-toast-success {
-	display: flex;
-	align-items: center;
-	background-color: RGB(var(--nds-light-green));
-	height: 48px;
-	border: 1px solid RGB(var(--nds-green));
-	border-radius: 4px;
-	position: absolute;
-	z-index: 1000;
-	left: 50%;
-	top: 8%;
-	transform: translate(-50%, -50%);
-	padding-right: 25px;
+  display: flex;
+  align-items: center;
+  background-color: RGB(var(--nds-light-green));
+  height: 48px;
+  border: 1px solid RGB(var(--nds-green));
+  border-radius: 4px;
+  position: absolute;
+  z-index: 1000;
+  left: 50%;
+  top: 8%;
+  transform: translate(-50%, -50%);
+  padding-right: 25px;
 
-	.narmi-icon-check {
-		color: RGB(var(--nds-green));
-		padding-left: 15px;
-		padding-right: 8px;
-		font-size: 25px;
-	}
+  .narmi-icon-check {
+    color: RGB(var(--nds-green));
+	padding-left: 15px;
+	padding-right: 8px;
+ 	font-size: 25px;
+  }
 }
 
 .nds-toast-hidden {
-	visibility: hidden;
+  visibility: hidden;
 }

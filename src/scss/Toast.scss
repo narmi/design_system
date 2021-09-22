@@ -1,9 +1,9 @@
 .nds-toast-success {
 	display: flex;
 	align-items: center;
-	background-color: #E3FAE7;
+	background-color: RGB(var(--nds-light-green));
 	height: 48px;
-	border: 1px solid #37B374;
+	border: 1px solid RGB(var(--nds-green));
 	border-radius: 4px;
 	position: absolute;
 	z-index: 1000;
@@ -13,7 +13,7 @@
 	padding-right: 25px;
 
 	.narmi-icon-check {
-		color: #37B374;
+		color: RGB(var(--nds-green));
 		padding-left: 15px;
 		padding-right: 8px;
 		font-size: 25px;

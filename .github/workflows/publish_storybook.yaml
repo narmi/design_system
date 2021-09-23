@@ -14,5 +14,5 @@ jobs:
         run: |
           cd storybook
           npm ci --loglevel=warn
-          chmod +x node_modules/.bin/build-storybook
+          chmod -R a+rwx ./node_modules 
           npm run chromatic

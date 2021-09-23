@@ -13,6 +13,6 @@ jobs:
          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
         run: |
           cd storybook
-          chmod +x node_modules/.bin/build-storybook
           npm ci --loglevel=warn
+          chmod +x node_modules/.bin/build-storybook
           npm run chromatic

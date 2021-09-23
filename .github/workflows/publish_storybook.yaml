@@ -7,8 +7,7 @@ jobs:
       - name: Unlock secrets
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-        run: |
-          echo "token: $CHROMATIC_PROJECT_TOKEN"
+      - run: |
           cd storybook
           npm ci --loglevel=warn
           npm run chromatic

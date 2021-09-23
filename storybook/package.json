@@ -18,6 +18,5 @@
     "@storybook/react": "^6.3.7",
     "babel-loader": "^8.2.2",
     "design_system": "file:../"
-  },
-  "dependencies": {}
+  }
 }

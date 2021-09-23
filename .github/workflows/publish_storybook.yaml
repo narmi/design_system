@@ -5,12 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v2
-        uses: secrethub/actions/env-export@v0.2.1
-        env:
+        - uses: actions/checkout@v2
+        - uses: secrethub/actions/env-export@v0.2.1
+        - env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-        run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
-        run: |
+        - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
+        - run: |
           cd storybook
           npm ci --loglevel=warn
           npm run chromatic

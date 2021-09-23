@@ -9,7 +9,10 @@ jobs:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
       - name: Check out repository code
         uses: actions/checkout@v2
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
       - run: |
+          echo $CHROMATIC_PROJECT_TOKEN
           cd storybook
           npm ci --loglevel=warn
           npm run chromatic

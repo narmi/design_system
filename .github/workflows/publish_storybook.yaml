@@ -7,9 +7,9 @@ jobs:
       - uses: secrethub/actions/env-export@v0.2.1
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-      - uses: actions/checkout@v2
       - name: Check out repository code
-      - run: |
+        uses: actions/checkout@v2
+        run: |
           cd storybook
           npm ci --loglevel=warn
           npm run chromatic

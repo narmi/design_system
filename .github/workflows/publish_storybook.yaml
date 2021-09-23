@@ -8,7 +8,6 @@ jobs:
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
       - name: Check out repository code
-        uses: actions/checkout@v2
         run: |
           cd storybook
           npm ci --loglevel=warn

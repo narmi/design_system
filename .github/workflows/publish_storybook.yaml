@@ -12,7 +12,7 @@ jobs:
         env:
          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
         run: |
-          chmod +x node_modules/.bin/build-storybook
           cd storybook
+          chmod +x node_modules/.bin/build-storybook
           npm ci --loglevel=warn
           npm run chromatic

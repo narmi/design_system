@@ -14,5 +14,5 @@ jobs:
         run: |
           cd storybook
           npm install
-          npx sb upgrade
+          ./node_modules/.bin/build-storybook
           npm run chromatic

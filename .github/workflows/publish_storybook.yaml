@@ -1,0 +1,16 @@
+name: Publish Storybook
+on: [push]
+jobs:
+  Build-design_system:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: secrethub/actions/env-export@v0.2.1
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+      - name: Check out repository code
+      - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: |
+          cd storybook
+          npm ci --loglevel=warn
+          npm run chromatic

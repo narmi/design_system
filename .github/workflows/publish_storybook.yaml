@@ -4,14 +4,10 @@ jobs:
   Build-design_system:
     runs-on: ubuntu-latest
     steps:
-      - uses: secrethub/actions/env-export@v0.2.1
+      - name: Unlock secrets
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-      - name: Check out repository code
-        uses: actions/checkout@v2
-        env:
-          CHROMATIC_PROJECT_TOKEN: "${{ secrets.CHROMATIC_PROJECT_TOKEN }}"
-      - run: |
+        run: |
           echo "token: $CHROMATIC_PROJECT_TOKEN"
           cd storybook
           npm ci --loglevel=warn

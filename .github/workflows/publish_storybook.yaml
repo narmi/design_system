@@ -1,7 +1,7 @@
 name: Publish Storybook
-on: [pull_request]
+on: [push]
 jobs:
-  Publish-Chromatic:
+  Build-design_system:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code

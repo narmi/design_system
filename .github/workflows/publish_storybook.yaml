@@ -1,5 +1,5 @@
 name: Publish Storybook
-on: [pull_request]
+on: [push]
 jobs:
   Chromatic:
     runs-on: ubuntu-latest

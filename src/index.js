@@ -15,6 +15,7 @@ const Card = require("Card").default;
 const Dropdown = require("Dropdown").default;
 const RadioButtons = require("RadioButtons").default;
 const CheckBox = require("CheckBox").default;
+const Popover = require("Popover").default;
 const components = {
   Input,
   DateInput,
@@ -29,6 +30,7 @@ const components = {
   RadioButtons,
   CheckBox,
   Card,
+  Popover,
 };
 
 let styleString = require("global").styles;
@@ -52,5 +54,6 @@ export {
   Card,
   CheckBox,
   Dropdown,
+  Popover,
 };
 

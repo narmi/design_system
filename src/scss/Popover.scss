@@ -1,0 +1,38 @@
+.nds-popover-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+}
+
+.nds-popover-list {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 12px RGBA(80,80,80,0.2);
+    visibility: hidden;
+    position: absolute;
+    &.open {
+        visibility: visible;
+        top: 16px;
+        left: 33px;
+    }
+
+    &:hover {
+        visibility: visible;
+        top: 16px;
+        left: 33px;
+    }
+}
+
+.narmi-icon-chevron-down {
+    &.hover {
+        &:hover {
+            &+ .nds-popover-list {
+                visibility: visible;
+                position: absolute;
+                top: 16px;
+                left: 33px;
+            }
+        }
+    }
+}

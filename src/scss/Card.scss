@@ -8,6 +8,7 @@
   box-sizing: border-box;
   background-color: RGB(var(--nds-white));
   border: 1px solid RGB(var(--nds-lightest-grey));
+  box-sizing: content-box;
 
   &[data-hoverable=true] {
     box-shadow: none;
@@ -18,7 +19,7 @@
   &[data-hoverable=true]:hover,
   &[data-selected=true] {
     border: 2px solid RGB(var(--nds-primary-color));
-    padding: 19px;
+    margin: -1px;
   }
 
   &[data-hoverable=true]:active,

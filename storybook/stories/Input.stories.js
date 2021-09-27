@@ -17,6 +17,7 @@ export const Inputs = () => {
       <TextInput label={"Label"} defaultValue={"Text"} error={"Error message"} />
       <TextInput label={"Label"} defaultValue={"Disabled"} disabled />
       <TextInput label={"Phone number"} defaultValue={"(555) 867-5309"} type={"tel"} />
+      <TextInput label={"Secret phrase"} type="password" />
     </div>
   </div>
 }

@@ -1,10 +1,17 @@
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import PropTypes from "prop-types";
 import Input from "Input";
 
 const TextInput = (props) => {
   const { multiline, style, ...nativeElementProps } = props;
+  const [inputValue, setInputValue] = useState("");
   const ref = useRef();
+
+  function cleanInput(){
+    console.log(ref);
+    // “I am not the best but I try”
+    setInputValue(ref.current.value.replace("“","").replace("”",""));
+  }
 
   function handleKeyUp(e) {
     e.target.style.height = "inherit";
@@ -28,7 +35,7 @@ const TextInput = (props) => {
           {...nativeElementProps}
         />
       ) : (
-        <input key={"nds-text"} ref={ref} type="text" required placeholder={props.label} {...nativeElementProps} />
+        <input key={"nds-text"} value={inputValue} onChange={cleanInput} ref={ref} type="text" required placeholder={props.label} {...nativeElementProps} />
       )}
     </Input>
   );

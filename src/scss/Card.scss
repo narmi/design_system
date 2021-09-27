@@ -1,14 +1,11 @@
 .nds-card {
-  width: 100%;
-  height: 100%;
   box-shadow: RGB(var(--nds-dropshadow-light));
   border-radius: 4px;
 
   padding: 20px;
-  box-sizing: border-box;
+  box-sizing: content-box;
   background-color: RGB(var(--nds-white));
   border: 1px solid RGB(var(--nds-lightest-grey));
-  box-sizing: content-box;
 
   &[data-hoverable=true] {
     box-shadow: none;

@@ -8,7 +8,6 @@ export default {
 };
 
 export const ContentVarieties = () => {
-  const [selected, setSelected] = useState("nothing");
   return <div className="nds-typography">
     <div className={"nds-grid"}>
       <div className={"nds-grid nds-span-7"} style={{alignContent: "flex-start"}}>
@@ -41,27 +40,6 @@ export const ContentVarieties = () => {
           This is a selected piece of text that explains something
         </Card>
       </div>
-    </div>
-    <br/>
-    <br/>
-
-    <style>
-      {
-        `
-        .nds-card-test {
-          width: 274px;
-          height: 113px;
-          border: 1px solid grey
-        }
-        .nds-card-test:hover {
-          border: 2px solid blue;
-          margin: -1px;
-        }
-        `
-      }
-    </style>
-    <div className="nds-card-test">
-      yooyoyoyo
     </div>
   </div>
 }
@@ -125,22 +103,6 @@ export const Selection = () => {
     <h5 style={{textAlign: "center", marginTop: "1em"}}>(Try clicking these cards!)</h5>
   </div>
 }
-
-export const SelectionTest = () => {
-  const [selected, setSelected] = useState("nothing");
-  return <div className="nds-typography">
-    <h1 style={{textAlign: "center", marginBottom: "1em"}}>You've selected: {selected}</h1>
-    <div className="nds-grid" style={{maxWidth: "35em", margin: "0 auto"}}>
-      <Card classes="nds-span-6"
-            title="Transfer" icon="repeat" hoverable
-            onClick={() => setSelected("Transfer")}>
-        <p>Transfer funds to an internal or external account</p>
-      </Card>
-    </div>
-    <h5 style={{textAlign: "center", marginTop: "1em"}}>(Try clicking these cards!)</h5>
-  </div>
-}
-
 
 
 export const Form = () => {

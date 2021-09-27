@@ -110,6 +110,7 @@
   input[type="number"],
   input[type="email"],
   input[type="date"],
+  input[type="password"],
   input[type="search"] {
     border: none;
     outline: 0;
@@ -126,11 +127,13 @@
   input[type="number"]:placeholder-shown,
   input[type="email"]:placeholder-shown,
   input[type="search"]:placeholder-shown,
+  input[type="password"]:placeholder-shown,
   .no-label input[type="text"],
   .no-label input[type="tel"],
   .no-label input[type="number"],
   .no-label input[type="email"],
   .no-label input[type="date"],
+  .no-label input[type="password"],
   .no-label input[type="search"] {
     padding: 6px 0;
     font-size: 16px;

@@ -8,9 +8,7 @@ const TextInput = (props) => {
   const ref = useRef();
 
   function cleanInput(){
-    console.log(ref);
-    // “I am not the best but I try”
-    setInputValue(ref.current.value.replace("“","").replace("”",""));
+    setInputValue(ref.current.value.replace("“",'"').replace("”",'"'));
   }
 
   function handleKeyUp(e) {

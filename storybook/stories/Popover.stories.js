@@ -30,16 +30,16 @@ export const BasicPopover = () => {
     }
     return(
         <div style={{display: "flex", justifyContent: "space-around"}}>
-            <Popover label={"Popover"} listRender={listRender}>
+            <Popover label={"Popover"} listRender={listRender} y={"25px"}>
                 <span>Transfer</span>
                 <span>Log out</span>
             </Popover>
             
-            <Popover label={"Popover"} hoverable listRender={listRender}>
+            <Popover label={"Popover"} hoverable listRender={listRender} y={"25px"}>
                 <span>Transfer</span>
                 <span>Log out</span>
             </Popover>
-            <Popover label={"Popover"} hoverable>
+            <Popover label={"Popover"} hoverable y={"25px"}>
                 <span>Transfer</span>
                 <span>Log out</span>
             </Popover>

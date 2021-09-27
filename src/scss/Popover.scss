@@ -10,28 +10,31 @@
     flex-direction: column;
     box-shadow: 0 2px 12px RGBA(80,80,80,0.2);
     visibility: hidden;
+    background: white;
+    z-index: 1;
+    // top: var(--overlay-y); // 26px;
+    // left: var(--overlay-x); // might not be needed?
     position: absolute;
+    &.hover {
+        transition: 1s;
+    }
     &.open {
         visibility: visible;
-        top: 16px;
-        left: 33px;
     }
 
     &:hover {
         visibility: visible;
-        top: 16px;
-        left: 33px;
     }
 }
 
 .narmi-icon-chevron-down {
+    &::before{
+        padding-bottom: 10px;
+    }
     &.hover {
         &:hover {
             &+ .nds-popover-list {
                 visibility: visible;
-                position: absolute;
-                top: 16px;
-                left: 33px;
             }
         }
     }

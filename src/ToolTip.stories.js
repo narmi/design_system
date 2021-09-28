@@ -7,6 +7,8 @@ export default {
   decorators: [NdsStyles],
 };
 
+// Tool Tip requires parent to have relative position
+
 export const ToolTip = () => {
   return (
     <>

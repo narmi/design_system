@@ -29,6 +29,8 @@ const TextInput = (props) => {
           key={"nds-text"}
           wrap="soft"
           ref={ref}
+          value={inputValue} 
+          onChange={formatValue}
           required
           {...nativeElementProps}
         />

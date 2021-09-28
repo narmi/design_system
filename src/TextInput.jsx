@@ -30,12 +30,12 @@ const TextInput = (props) => {
           wrap="soft"
           ref={ref}
           value={inputValue} 
-          onChange={formatValue}
+          onChange={(e)=>{props.onChange(e); formatValue(e)}}
           required
           {...nativeElementProps}
         />
       ) : (
-        <input key={"nds-text"} value={inputValue} onChange={formatValue} ref={ref} type="text" required placeholder={props.label} {...nativeElementProps} />
+        <input key={"nds-text"} value={inputValue} onChange={(e)=>{props.onChange(e); formatValue(e)}} ref={ref} type="text" required placeholder={props.label} {...nativeElementProps} />
       )}
     </Input>
   );

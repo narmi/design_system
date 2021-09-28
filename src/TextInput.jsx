@@ -3,11 +3,15 @@ import PropTypes from "prop-types";
 import Input from "Input";
 
 const TextInput = (props) => {
-  const { formatter, multiline, defaultValue, style, ...nativeElementProps } = props;
+  const { formatter, multiline, style, onChange, ...nativeElementProps } = props;
+
   const [inputValue, setInputValue] = useState(props.defaultValue ? props.defaultValue : "");
   const ref = useRef();
 
-  function formatValue(){
+  function nativeOnChange(e){
+    if (props.onChange) {
+      props.onChange(e);
+    }
     setInputValue(props.formatter(ref.current.value));
   }
 
@@ -29,13 +33,13 @@ const TextInput = (props) => {
           key={"nds-text"}
           wrap="soft"
           ref={ref}
-          value={inputValue} 
-          onChange={(e)=>{props.onChange(e); formatValue(e)}}
+          value={inputValue}
+          onChange={nativeOnChange}
           required
           {...nativeElementProps}
         />
       ) : (
-        <input key={"nds-text"} value={inputValue} onChange={(e)=>{props.onChange(e); formatValue(e)}} ref={ref} type="text" required placeholder={props.label} {...nativeElementProps} />
+        <input key={"nds-text"} value={inputValue} onChange={nativeOnChange} ref={ref} type="text" required placeholder={props.label} {...nativeElementProps} />
       )}
     </Input>
   );

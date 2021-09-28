@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import Input from "Input";
 
 const TextInput = (props) => {
-  const { formatter, multiline, style, ...nativeElementProps } = props;
-  const [inputValue, setInputValue] = useState("");
+  const { formatter, multiline, defaultValue, style, ...nativeElementProps } = props;
+  const [inputValue, setInputValue] = useState(props.defaultValue ? props.defaultValue : "");
   const ref = useRef();
 
   function formatValue(){

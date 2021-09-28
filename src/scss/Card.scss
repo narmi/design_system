@@ -17,10 +17,10 @@
   &[data-hoverable=true]:active,
   &[data-hoverable=true]:hover,
   &[data-selected=true] {
-    box-shadow: -2.7px 2.9px RGB(var(--nds-primary-color)), 
-                -2.7px -2.9px RGB(var(--nds-primary-color)), 
-                2.7px 2.9px RGB(var(--nds-primary-color)), 
-                2.7px -2.9px RGB(var(--nds-primary-color));
+    box-shadow: -1.4px 1.6px RGB(var(--nds-primary-color)), 
+                -1.4px -1.6px RGB(var(--nds-primary-color)), 
+                1.4px 1.6px RGB(var(--nds-primary-color)), 
+                1.4px -1.6px RGB(var(--nds-primary-color));
     border: 1px solid RGB(var(--nds-primary-color));
   }
 

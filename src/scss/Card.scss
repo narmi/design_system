@@ -17,10 +17,10 @@
   &[data-hoverable=true]:active,
   &[data-hoverable=true]:hover,
   &[data-selected=true] {
-    box-shadow: -1.0px 1.2px RGB(var(--nds-primary-color)), 
-                -1.0px -1.2px RGB(var(--nds-primary-color)), 
-                1.0px 1.2px RGB(var(--nds-primary-color)), 
-                1.0px -1.2px RGB(var(--nds-primary-color));
+    box-shadow: -1.2px 1.2px RGB(var(--nds-primary-color)), 
+                -1.2px -1.2px RGB(var(--nds-primary-color)), 
+                1.2px 1.2px RGB(var(--nds-primary-color)), 
+                1.2px -1.2px RGB(var(--nds-primary-color));
     border: 1px solid RGB(var(--nds-primary-color));
   }
 

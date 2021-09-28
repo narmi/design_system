@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import Input from "Input";
 
 const TextInput = (props) => {
-  const { multiline, style, ...nativeElementProps } = props;
+  const { formatter, multiline, style, ...nativeElementProps } = props;
   const [inputValue, setInputValue] = useState("");
   const ref = useRef();
 
-  function cleanInput(){
-    setInputValue(ref.current.value.replace("“",'"').replace("”",'"'));
+  function formatValue(){
+    setInputValue(props.formatter(ref.current.value));
   }
 
   function handleKeyUp(e) {
@@ -33,17 +33,19 @@ const TextInput = (props) => {
           {...nativeElementProps}
         />
       ) : (
-        <input key={"nds-text"} value={inputValue} onChange={cleanInput} ref={ref} type="text" required placeholder={props.label} {...nativeElementProps} />
+        <input key={"nds-text"} value={inputValue} onChange={formatValue} ref={ref} type="text" required placeholder={props.label} {...nativeElementProps} />
       )}
     </Input>
   );
 };
 TextInput.propTypes = {
   multiline: PropTypes.bool,
+  formatter: PropTypes.func,
 };
 
 TextInput.defaultProps = {
   multiline: false,
+  formatter: (x) => x,
 };
 
 export default TextInput;

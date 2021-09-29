@@ -7,10 +7,10 @@ const CheckBox = ({ label, onChange, id, name, defaultChecked, value, ...rest })
 
   return (
     <>
-      <label class="nds-checkbox nds-typography">
+      <label className="nds-checkbox nds-typography">
         {label}
         <input onChange={onChange} defaultChecked={defaultChecked} name={name} id={id} value={value} {...rest} type="checkbox" />
-        <span class="narmi-icon-check"></span>
+        <span className="narmi-icon-check"></span>
       </label>
     </>
   );

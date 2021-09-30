@@ -1,38 +1,37 @@
 .nds-typography {
   font-family: var(--nds-font-family);
+  text-rendering: geometricPrecision;
+
+  h1,h2,h3,h4 {
+    font-family: var(--nds-header-font);
+    color: var(--nds-black);
+    font-weight: 700;
+    text-rendering: optimizeLegibility; /* enables Matiere ligatures */
+  }
 
   h1,h2,h3 {
-    color: var(--nds-black);
-    font-family: var(--nds-header-font);
     margin-top: 0;
     margin-bottom: 0;
   }
   h1 {
-    font-weight: 700;
     font-size: 32px;
     line-height: 40px;
   }
   h2 {
-    font-weight: 700;
     font-size: 28px;
     line-height: 35px;
-    font-family: var(--nds-header-font);
   }
   h3 {
-    font-weight: 700;
     font-size: 24px;
     line-height: 30px;
-    font-family: var(--nds-header-font);
 
     &.nds-sans {
       font-family: var(--nds-font-family);
     }
   }
   h4 {
-    font-weight: 700;
     font-size: 20px;
     line-height: 25px;
-    font-family: var(--nds-header-font);
 
     &.nds-sans {
       font-family: var(--nds-font-family);

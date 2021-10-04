@@ -35,11 +35,11 @@ export const DateInputs = () => {
 }
 
 export const ColorInput = () => {
-  const [color, setColor] = useState("#915F6D")
+  const [color, setColor] = useState("#915F6D");
   return <div className={"nds-typography"}>
     <h1 style={{marginBottom: "1em"}}>Edit Primary Accessible Color</h1>
     <div style={{display: "flex", alignItems: "center"}}>
-      <TextInput label={"Hex Code"} defaultValue="915F6D" onChange={(e)=>{setColor("#" + e.target.value);}}/>
+      <TextInput label={"Hex Code"} defaultValue="915F6D" formatter={(text)=>text.replace("#",'')} onBlur={(e)=>{setColor("#" + e.target.value)}} />
       <span className="narmi-icon-solid-circle" style={{marginLeft: "20px", color:color, fontSize:"50px"}}></span>
     </div>
   </div>

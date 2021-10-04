@@ -1,0 +1,23 @@
+name: Publish Storybook
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Chromatic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Publish to Chromatic
+        env:
+         CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        run: |
+          npm install
+          cd storybook
+          npm ci --loglevel=warn
+          ./node_modules/.bin/build-storybook
+          npm run chromatic

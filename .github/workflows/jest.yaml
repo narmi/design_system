@@ -9,8 +9,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Jest
-      - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
-      - name: Check out repository code
-        uses: actions/checkout@v2
-      - run: npm install
-      - run: jest
+        run: |
+          echo "The job was automatically triggered by a ${{ github.event_name }} event."
+          npm install
+          jest

@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import React from "react";
 import { render, screen, getByRole } from "@testing-library/react";
 import TextInput from "../src/TextInput";

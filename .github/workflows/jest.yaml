@@ -1,0 +1,15 @@
+name: Jest
+on: [pull_request]
+jobs:
+  Build-design_system:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Jest
+        run: |
+          echo "The job was automatically triggered by a ${{ github.event_name }} event."
+          npm install
+          ./node_modules/jest/bin/jest.js

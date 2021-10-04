@@ -1,5 +1,9 @@
 name: Publish Storybook
-on: [push]
+on:
+  push:
+    branches:
+      - master
+
 jobs:
   Chromatic:
     runs-on: ubuntu-latest

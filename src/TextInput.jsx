@@ -3,16 +3,22 @@ import PropTypes from "prop-types";
 import Input from "Input";
 
 const TextInput = (props) => {
-  const { formatter, multiline, style, defaultValue, onChange, ...nativeElementProps } = props;
+  const { formatter, multiline, style, defaultValue, onChange, onBlur, ...nativeElementProps } = props;
 
   const [inputValue, setInputValue] = useState(props.defaultValue ? props.defaultValue : "");
   const ref = useRef();
 
-  function _onChange(e){
-    if (props.onChange) {
-      props.onChange(e);
+  function _onBlur(e){
+    if (onBlur) {
+        onBlur(e);
     }
     setInputValue(props.formatter(ref.current.value));
+  }
+  function _onChange(e){
+    if (onChange) {
+      onChange(e);
+    }
+    setInputValue(ref.current.value);
   }
 
   function handleKeyUp(e) {
@@ -35,11 +41,12 @@ const TextInput = (props) => {
           ref={ref}
           value={inputValue}
           onChange={_onChange}
+          onBlur={_onBlur}
           required
           {...nativeElementProps}
         />
       ) : (
-        <input key={"nds-text"} value={inputValue} onChange={_onChange} ref={ref} type="text" required placeholder={props.label} {...nativeElementProps} />
+        <input key={"nds-text"} value={inputValue} onChange={_onChange} onBlur={_onBlur} ref={ref} type="text" required placeholder={props.label} {...nativeElementProps} />
       )}
     </Input>
   );

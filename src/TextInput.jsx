@@ -53,6 +53,7 @@ const TextInput = (props) => {
 };
 TextInput.propTypes = {
   multiline: PropTypes.bool,
+  /** function that formats the input value on blur */
   formatter: PropTypes.func,
 };
 

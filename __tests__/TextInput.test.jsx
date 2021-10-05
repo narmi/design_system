@@ -17,11 +17,13 @@ describe('TextInput', () => {
 
   it('Formatter prop test', () => {
     const TextInputFormatter = render(
-       <TextInput data-testid={1} label={"Test Quotes"} formatter={(text)=>text.replace("“",'"').replace("”",'"')}/>,
+       <TextInput id="test" label={"Test Quotes"} formatter={(text)=>text.replace("“",'"').replace("”",'"')}/>,
     );
-    const smartQuoteInput = screen.getByTestId(1);
+    const smartQuoteInput = screen.getByLabelText("Test Quotes");
     
     fireEvent.change(smartQuoteInput, { target: { value: '“this is a test”' } });
+
+    expect(smartQuoteInput.value).toBe('“this is a test”');
 
     fireEvent.blur(smartQuoteInput);
 
@@ -30,9 +32,9 @@ describe('TextInput', () => {
 
   it('No Formatter prop test', () => {
     const TextInputFormatter = render(
-       <TextInput data-testid={1} label={"Test Quotes"} />,
+       <TextInput  id="test" label={"Test Quotes"} />,
     );
-    const basicInput = screen.getByTestId(1);
+    const basicInput = screen.getByLabelText("Test Quotes");
     
     fireEvent.change(basicInput, { target: { value: '“this is a test”' } })
   

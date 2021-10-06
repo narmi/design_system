@@ -18,7 +18,7 @@ const Modal = ({ open, handleClose, children, classes, header, actions }) => {
         >
           <span className={"narmi-icon-x"} style={{ fontSize:"20px", color: "rgb(var(--nds-black))" }} />
         </div>
-        {header ? <><h3 className="nds-sans">{header}</h3> <hr className="nds-hr"/> </>: ""}
+        {header ? <><h4 className="nds-sans">{header}</h4> <hr className="nds-hr"/> </>: ""}
         {children}
         <div
           className="nds-modal-action-row"

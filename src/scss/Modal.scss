@@ -78,9 +78,15 @@
         flex-direction: row;
         float: right;
         align-items: center;
+        margin-top: 40px;
+    }
+
+    h4.nds-sans {
+        margin-top: 0;
+        margin-bottom: 0;
     }
 }
 
 hr.nds-hr {
-    border: 2px solid #1A4338;
+    border: 1px solid RGB(var(--nds-primary-color));
 }

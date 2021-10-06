@@ -1,17 +1,43 @@
 import React from "react";
-import { render, screen, getByRole } from "@testing-library/react";
+import { fireEvent, render, screen, getByRole } from "@testing-library/react";
 import TextInput from "../src/TextInput";
 
 
 describe('TextInput', () => {
   it('Basic Test to verify TextInput behaves as an Html input', () => {
-    const editScreen = render(
-       <TextInput id="textinput" label={"Label"} defaultValue={"Default"} />,
+    const BasicTextInput = render(
+       <TextInput data-testid={1} label={"Label"} defaultValue={"Default"} />,
     );
-    const label = screen.getByLabelText("Label");
-    expect(label.value).toEqual('Default');
+    const basicInput = screen.getByTestId(1);
+    expect(basicInput.value).toEqual('Default');
 
-    label.value = "User input text";
-    expect(label.value).toEqual('User input text');
+    fireEvent.change(basicInput, { target: { value: 'User input text' } })
+    expect(basicInput.value).toEqual('User input text');
+  });
+
+  it('Formatter prop test', () => {
+    const TextInputFormatter = render(
+       <TextInput id="test" label={"Test Quotes"} formatter={(text)=>text.replace("“",'"').replace("”",'"')}/>,
+    );
+    const smartQuoteInput = screen.getByLabelText("Test Quotes");
+    
+    fireEvent.change(smartQuoteInput, { target: { value: '“this is a test”' } });
+
+    expect(smartQuoteInput.value).toBe('“this is a test”');
+
+    fireEvent.blur(smartQuoteInput);
+
+    expect(smartQuoteInput.value).toBe('"this is a test"');
+  });
+
+  it('No Formatter prop test', () => {
+    const TextInputFormatter = render(
+       <TextInput  id="test" label={"Test Quotes"} />,
+    );
+    const basicInput = screen.getByLabelText("Test Quotes");
+    
+    fireEvent.change(basicInput, { target: { value: '“this is a test”' } })
+  
+    expect(basicInput.value).toBe('“this is a test”')
   });
 });

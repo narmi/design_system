@@ -92,6 +92,8 @@ Please check the following chart to see the minimum browser versions supported b
 
 - https://caniuse.com/?search=focus-within
 
+----
+
 ## Developing
 
 We need to set up your copy of `design_system` for local development. 
@@ -117,6 +119,59 @@ Results:
 - Your local `design_system` will be [symlinked](https://docs.npmjs.com/cli/v7/commands/npm-link) into <your-repo>/design_system for local dev.
 - On each change to files in design_system, the `dist/index.js` file will be rebuilt - 
   - This allows local changes to design_system to be live-updated in your consuming repo.
+
+### Releases
+
+This project uses [`semantic-release`](https://semantic-release.gitbook.io/semantic-release/),
+ configured to use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
+
+Any time new commits are added to the `master` branch, the GitHub Action "release" will run `semantic-release`. The job will
+parse recent git tags and commit messages to determine the new version number, tag the release, publish to NPM, and update the changelog.
+
+#### Versioning
+
+This project uses [Semantic Versioning](https://semver.org/).
+The `[major].[minor].[patch]` versions should be thought of as `[breaking].[feature].[fix]`
+
+#### Commit Guidelines
+
+This project requires structured commit messages in the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format:
+
+```
+<type>(<optional scope>): <short description>
+```
+
+Allowed types are `[build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test] `.
+The `build`, `chore`, and `ci` commit types will skip CI and do not trigger a release.
+Adding a bang (`!`) to the commit type denotes a breaking change ([see docs](https://www.conventionalcommits.org/en/v1.0.0/#commit-message-with-description-and-breaking-change-footer) for more details).
+
+##### Examples
+
+Making a fix without scope specified:
+```
+fix: update global `text-rendering` value
+```
+
+Adding a feature within the scope of the Button component:
+```
+feat(Button): Add secondary button variant
+```
+
+Breaking change within the Button component scope:
+```
+refactor(Button)!: Remove variant `disabled`. The `disabled` boolean prop is now used to disable a button.
+```
+
+#### What is a "Breaking Change?"
+
+Any modification to the design system that requires consumers to update their usage of NDS is considered a breaking change. For example:
+
+- removing or renaming a component
+- changing a public className
+- interface changes in public methods
+- renamed or retyped component props
+
+If you are making a breaking change, please [note it in your commit message](https://www.conventionalcommits.org/en/v1.0.0/#commit-message-with-description-and-breaking-change-footer) appropriately.
 
 ### Ergonomics
 

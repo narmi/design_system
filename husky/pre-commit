@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# run prettier on staged files
+pretty-quick --staged
+
+# ensure commit message follows Conventional Commits format
+npx --no-install commitlint --edit "$1"

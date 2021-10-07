@@ -21,11 +21,14 @@ jobs:
           CI: true
         run: npm ci
 
+<<<<<<< HEAD
       - name: Build Dist
         env:
           CI: true
         run: npm run build
 
+=======
+>>>>>>> 21590985af4225919a3b3bc3948aaf2c9340ee2a
       - name: Release
         if: success()
         env:

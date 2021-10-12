@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.0](https://github.com/narmi/design_system/compare/v0.2.0...v1.0.0) (2021-10-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove dist dir from versioning
+
+### Code Refactoring
+
+* remove dist dir from versioning ([9f6bca4](https://github.com/narmi/design_system/commit/9f6bca47b70cee488ec483528fec74563a2f5755))
+
 ## [0.2.0](https://github.com/narmi/design_system/compare/v0.1.0...v0.2.0) (2021-10-12)
 
 

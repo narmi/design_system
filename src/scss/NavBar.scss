@@ -1,0 +1,74 @@
+.nds-navbar {
+  z-index: 1;
+  background: RGB(var(--nds-white));
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+
+  .nds-navbar-hamburger {
+    cursor: pointer;
+  }
+  .nds-navbar-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+    .nds-navbar-mainmenu {
+      flex-grow: 1;
+    }
+  }
+  .nds-details {
+    width: 100%;
+  }
+
+  @media (min-width: $desktop-small) {
+    position: static;
+    padding: 0;
+    justify-content: normal;
+
+    .nds-details {
+      padding-right: 30px;
+      width: initial;
+    }
+
+    // desktop mode menu flows horizontally
+    .nds-navbar-container {
+      flex-direction: row;
+      overflow-y: initial;
+    }
+    // desktop mode menu is always visible
+    .nds-navbar-hamburger {
+      display: none;
+    }
+    & > .nds-modal.right {
+      flex-grow: 1;
+      & > .nds-modal-container {
+        display: block;
+        position: static;
+        padding: 16px 25px;
+        & > .nds-modal-dismiss {
+          display: none;
+        }
+      }
+    }
+    & > .nds-modal[data-open="true"] > .nds-modal-overlay {
+      display: none;
+    }
+    // underline while hover
+    .nds-navbar-container {
+      .nds-navbar-mainmenu, .nds-navbar-usermenu, .nds-details-container {
+        & > * {
+          border-bottom: 3px solid transparent;
+        }
+        & > *:hover {
+          border-bottom: 3px solid RGB(var(--nds-primary-color));
+        }
+      }
+    }
+  }
+}

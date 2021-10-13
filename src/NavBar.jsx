@@ -12,7 +12,7 @@ const NavBar = (props) => {
   return (
     <div className="nds-navbar">
       <div className="nds-navbar-logo">{props.logo}</div>
-      <Modal open={open} setOpen={setOpen} type="right">
+      <Modal open={open} setOpen={setOpen} classes="right">
         <div className={`nds-navbar-container`}>
           <ButtonBar className="nds-navbar-mainmenu">
             {props.children}
@@ -44,70 +44,5 @@ NavBar.defaultProps = {
   user: {},
   React,
 };
-
-NavBar.styles = `
-  .nds-navbar {
-    z-index: 1;
-    background: rgb(var(--nds-white));
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 20px;
-  }
-  .nds-navbar .nds-navbar-hamburger {
-    cursor: pointer;
-  }
-  .nds-navbar .nds-navbar-container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow-y: auto;
-  }
-  .nds-navbar .nds-navbar-container .nds-navbar-mainmenu {
-    flex-grow: 1;
-  }
-
-  @media ${`(min-width: ${deviceBreakpoints.desktop})`} {
-    .nds-navbar {
-      position: static;
-      padding: 0;
-      justify-content: normal;
-    }
-    .nds-navbar .nds-navbar-container {
-      flex-direction: row;
-      overflow-y: initial;
-    }
-    .nds-navbar .nds-navbar-hamburger {
-      display: none;
-    }
-    .nds-navbar > .nds-modal {
-      flex-grow: 1;
-    }
-    .nds-navbar > .nds-modal.right > .nds-modal-container {
-      display: block;
-      position: static;
-      padding: 16px 25px;
-    }
-    .nds-navbar > .nds-modal.right > .nds-modal-container > .nds-modal-dismiss {
-      display: none;
-    }
-    .nds-navbar > .nds-modal.open > .nds-modal-overlay {
-      display: none;
-    }
-    .nds-navbar .nds-details {
-      padding-right: 30px;
-    }
-    .nds-navbar .nds-navbar-container .nds-navbar-mainmenu > *, .nds-navbar .nds-navbar-container .nds-navbar-usermenu > *, .nds-navbar .nds-navbar-container .nds-details-container > * {
-      border-bottom: 3px solid transparent;
-    }
-    .nds-navbar .nds-navbar-container .nds-navbar-mainmenu > *:hover, .nds-navbar .nds-navbar-container .nds-navbar-usermenu > *:hover, .nds-navbar .nds-navbar-container .nds-details-container > *:hover {
-      border-bottom: 3px solid rgb(var(--nds-primary-color));
-    }
-  }
-`;
 
 export default NavBar;

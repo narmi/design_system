@@ -30,7 +30,7 @@ const Details = ({ summary, children, React }) => {
     >
       {summary}
     </div>
-    <Modal type="details" open={open} setOpen={setOpen}>
+    <Modal classes="details" open={open} setOpen={setOpen}>
       <div className="nds-details-container">
         {children}
       </div>

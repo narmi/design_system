@@ -26,7 +26,7 @@ Your project must provide the following packages as peer dependencies:
 
 ### Documentation
 
-- [Storybook (latest)](https://master--60620d422ffdf100216415b2.chromatic.com/).
+- 📖 [Storybook (latest)](https://master--60620d422ffdf100216415b2.chromatic.com/)
 
 ### Versioning
 

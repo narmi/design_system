@@ -34,9 +34,7 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 Refer to the [**Changelog**](https://github.com/narmi/design_system/blob/master/CHANGELOG.md) for details.
 
 
-### Additional Config and Tips
-
-## Browser Support Notes
+### Browser SUpport
 
 Please check the following chart to see the minimum browser versions supported by design_system:
 

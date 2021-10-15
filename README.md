@@ -8,83 +8,33 @@ This design system is intended to provide primitive "building blocks" for custom
 
 Please follow the below steps to install, consume, or contribute to the design_system.
 
-## Consuming design_system
+# Getting Started
 
-Please follow all steps below to set up your copy of design_system.
+## Installation
 
-### 1. Install design_system
-
-Install the latest version of design_system from NPM:
+Narmi Design System is currently published as a single NPM package.
 
 ```
 npm add @narmi/design_system --save
 ```
 
-
-### 2. Install PeerDependencies
-
-design_system doesn't package 2 key dependencies, because we want to let users configure their own versions of these deps, and avoid [forcing multiple copies](https://reactjs.org/warnings/invalid-hook-call-warning.html).
-
-You will need to install in your repo:
+### Peer dependencies
+Your project must provide the following packages as peer dependencies:
 
 - React (>=16.9, supports Hooks)
 - styled-components (>=5)
 
-```
-# in the repo where you are consuming design_system
-npm install react@16.9 styled-components@5 -S
-```
+### Documentation
 
-These are included as peerDependencies in package.json.
+- [Storybook (latest)](https://master--60620d422ffdf100216415b2.chromatic.com/).
 
-### 3. Configure Your Theme
+### Versioning
 
-Set up a `<GlobalStyles />` and a `<ThemeProvider />` component at each of your application's entry points to provide the necessary CSS variables to design_system components:
+This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+Refer to the [**Changelog**](https://github.com/narmi/design_system/blob/master/CHANGELOG.md) for details.
 
-```
-# In your top-level App.js or HTML page file
-import {ThemeProvider} from "styled-components"
-import {GlobalStyles} from "design_system"
 
-<ThemeProvider
-  theme={{
-    primaryColor: "your-primary-color",
-    secondaryColor: "your-secondary-color",
-    tertiaryColor: "your-tertiary-color",
-  }}
->
-  <GlobalStyles />
-</ThemeProvider>
-
-...the rest of your app...
-# no other design_system components should need access to `theme`
-```
-
-This will write a `<style>` tag to your page that contains the CSS variables the design system components depend on. Without this, you may see empty or colorless Buttons and pages.
-
-All CSS variables are prefixed with --nds (e.g. `--nds-my-variable`), to avoid collision with any existing CSS variables that may be contained in your app.
-
-### 4. View Available Components
-
-```
-# from design_system/
-npm run storybook
-```
-
-You can use [Storybook](https://storybook.js.org/tutorials/intro-to-storybook/react/en/get-started/) to see what components are available.
-
-We typically add a `Story` for each view or distinct state of each component.
-
-These distinct views or states are controlled by Storybook `args` (similar to props).
-
-If contributing a change, please test your components out in Storybook before making a PR.
-
-### 5. Additional Config and Tips
-
-#### Consuming design_system Themes in Your App
-
-`styled-components` exposes a [ThemeProvider context](https://styled-components.com/docs/advanced#getting-the-theme-without-styled-components) if you wish to grab the design_system Theme for use in your own components or Pages.
-
+### Additional Config and Tips
 
 ## Browser Support Notes
 
@@ -94,7 +44,7 @@ Please check the following chart to see the minimum browser versions supported b
 
 ----
 
-## Developing
+# Developing
 
 We need to set up your copy of `design_system` for local development. 
 
@@ -120,7 +70,7 @@ Results:
 - On each change to files in design_system, the `dist/index.js` file will be rebuilt - 
   - This allows local changes to design_system to be live-updated in your consuming repo.
 
-### Releases
+## Releases
 
 This project uses [`semantic-release`](https://semantic-release.gitbook.io/semantic-release/),
  configured to use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
@@ -128,12 +78,7 @@ This project uses [`semantic-release`](https://semantic-release.gitbook.io/seman
 Any time new commits are added to the `master` branch, the GitHub Action "release" will run `semantic-release`. The job will
 parse recent git tags and commit messages to determine the new version number, tag the release, publish to NPM, and update the changelog.
 
-#### Versioning
-
-This project uses [Semantic Versioning](https://semver.org/).
-The `[major].[minor].[patch]` versions should be thought of as `[breaking].[feature].[fix]`
-
-#### Commit Guidelines
+### Commit Guidelines
 
 This project requires structured commit messages in the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format:
 
@@ -145,7 +90,7 @@ Allowed types are `[build, chore, ci, docs, feat, fix, perf, refactor, revert, s
 The `build`, `chore`, and `ci` commit types will skip CI and do not trigger a release.
 Adding a bang (`!`) to the commit type denotes a breaking change ([see docs](https://www.conventionalcommits.org/en/v1.0.0/#commit-message-with-description-and-breaking-change-footer) for more details).
 
-##### Examples
+#### Examples
 
 Making a fix without scope specified:
 ```

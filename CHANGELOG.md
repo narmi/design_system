@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.0](https://github.com/narmi/design_system/compare/v1.0.0...v1.1.0) (2021-10-18)
+
+
+### Features
+
+* **DateInput:** add `disableDays` prop for disabling dates ([d7dd43a](https://github.com/narmi/design_system/commit/d7dd43acbf6eb01356fb4a2ea2e1ec850633f154))
+
 ## [1.0.0](https://github.com/narmi/design_system/compare/v0.2.0...v1.0.0) (2021-10-12)
 
 

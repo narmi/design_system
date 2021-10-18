@@ -44,6 +44,7 @@
       text-align: left;
       color: RGB(var(--nds-black));
       padding: 10px 0;
+      display: block;
 
       &::before {
         display: none;
@@ -52,6 +53,7 @@
       @media (min-width: $desktop-small) {
         margin: 0 12px;
         font-weight: 600;
+        display: inline-block;
       }
     }
 

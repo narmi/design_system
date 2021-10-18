@@ -55,14 +55,19 @@
       right: 0;
       transform: none;
       bottom: 0;
-      min-width: 335px;
+      left: initial;
       padding: 40px 25px 40px 20px;
+      border-radius: 0;
+      width: 335px;
+      @media (min-width: $desktop-small) {
+        width: initial;
+      }
     }
     /* details styles */
-    &.details.open .nds-modal-overlay {
+    &.details[data-open="true"] .nds-modal-overlay {
       display: none;
     }
-    &.details.open > .nds-modal-container > .nds-modal-dismiss {
+    &.details[data-open="true"] > .nds-modal-container > .nds-modal-dismiss {
       display: none;
     }
     &.details > .nds-modal-container {

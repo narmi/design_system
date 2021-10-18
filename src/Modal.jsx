@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-const Modal = ({ open, handleClose, children, classes, header, actions }) => {
+const Modal = ({ open, setOpen, handleClose, children, classes, header, actions }) => {
+  const setNotOpen = setOpen ? setOpen.bind(null, false) : handleClose;
   return (
     <div
       className={`nds-modal ${classes}`}
@@ -10,11 +11,12 @@ const Modal = ({ open, handleClose, children, classes, header, actions }) => {
     >
       <div
         className="nds-modal-overlay"
+        onClick={setNotOpen}
       ></div>
       <div className="nds-modal-container">
         <div
           className="nds-modal-dismiss"
-          onClick={handleClose}
+          onClick={setNotOpen}
         >
           <span className={"narmi-icon-x"} style={{ fontSize:"20px", color: "rgb(var(--nds-black))" }} />
         </div>
@@ -33,7 +35,10 @@ const Modal = ({ open, handleClose, children, classes, header, actions }) => {
 Modal.propTypes = {
   open: PropTypes.bool,
   setOpen: PropTypes.func,
+  handleClose: PropTypes.func, // deprecated
   children: PropTypes.node,
+  header: PropTypes.node,
+  actions: PropTypes.node,
   classes: PropTypes.string,
 };
 

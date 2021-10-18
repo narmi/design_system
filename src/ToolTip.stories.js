@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NdsStyles } from "./decorators/decorators";
-import { Tooltip } from 'design_system';
+import { Tooltip, TextInput } from 'design_system';
 
 export default {
   title: "Components/ToolTip",
@@ -47,6 +47,13 @@ export const ToolTip = () => {
             Tooltip text
           </Tooltip>
           </div>
+      </div>
+      <br />
+      <div style={{display: "flex", position: "relative"}}>
+        <TextInput label={"Phone number"} defaultValue={"(555) 867-5309"} type={"tel"} />
+                  <Tooltip top="19px" left="183px" direction={"top"} targetWidth={"22px"} targetHeight={"18px"}>
+            Tooltip text
+          </Tooltip>
       </div>
     </>
   );

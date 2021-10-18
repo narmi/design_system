@@ -1,14 +1,13 @@
-.tooltip {
+.nds-tooltip {
     position: absolute;
     display: inline-block;
-    border-bottom: 1px dotted #ccc;
     color: #006080;
     background: transparent;
     &:hover .tooltiptext {
         visibility: visible;
         opacity: 1;
     }
-    .tooltiptext {
+    .nds-tooltiptext {
         visibility: hidden;
         position: absolute;
         width: 120px;

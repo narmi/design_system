@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.1.1](https://github.com/narmi/design_system/compare/v1.1.0...v1.1.1) (2021-10-19)
+
+
+### Bug Fixes
+
+* **Modal:** continue to support closing modal via handleClose prop  ([#246](https://github.com/narmi/design_system/issues/246)) ([1017d5c](https://github.com/narmi/design_system/commit/1017d5cbd3a55d229856733e30654dc91be79a51))
+
 ## [1.1.0](https://github.com/narmi/design_system/compare/v1.0.0...v1.1.0) (2021-10-18)
 
 

@@ -18,9 +18,11 @@ export const SimpleModal = () => {
       >
         Open Modal
       </Button>
-      <Modal 
+      <Modal
         open={open}
-        handleClose={()=>{setOpen(false)}}
+        handleClose={() => {
+          setOpen(false);
+        }}
         header={"Title"}
       >
         <div style={{ width: "500px" }}>
@@ -37,7 +39,9 @@ export const AccountModal = () => {
   const actions = (
     <>
       <PlainButton
-        onClick={() => { setOpen(false); }}
+        onClick={() => {
+          setOpen(false);
+        }}
         style={{ paddingRight: "16px", color: "rgb(var(--nds-primary-color))" }}
         type="plain"
       >
@@ -45,8 +49,12 @@ export const AccountModal = () => {
       </PlainButton>
       <Button
         disabled={deleteTransaction === false}
-        onClick={() => { setOpen(false); }}
-      >Yes, Delete</Button>
+        onClick={() => {
+          setOpen(false);
+        }}
+      >
+        Yes, Delete
+      </Button>
     </>
   );
   return (
@@ -61,7 +69,9 @@ export const AccountModal = () => {
       <Modal
         open={open}
         actions={actions}
-        handleClose={()=>{setOpen(false)}}
+        handleClose={() => {
+          setOpen(false);
+        }}
         header={"Delete your upcoming transaction"}
       >
         <div style={{ width: "500px" }}>
@@ -76,6 +86,105 @@ export const AccountModal = () => {
               options={{ True: true, False: false }}
             />
           </div>
+        </div>
+      </Modal>
+    </div>
+  );
+};
+
+export const ScrollableModal = () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="nds-typography">
+      <Button
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
+        Open Scrollable Modal
+      </Button>
+      <div style={{ width: "300px" }}>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
+      <Modal
+        open={open}
+        handleClose={() => {
+          setOpen(false);
+        }}
+        header={"Title"}
+      >
+        <div style={{ width: "500px" }}>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
         </div>
       </Modal>
     </div>

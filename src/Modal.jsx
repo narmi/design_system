@@ -11,6 +11,12 @@ const Modal = ({
   actions,
 }) => {
   const setNotOpen = setOpen ? () => setOpen(false) : handleClose;
+  React.useEffect(() => {
+    if (open) document.body.style.overflow = "hidden";
+    else {
+      document.body.style.overflow = "";
+    }
+  }, [open]);
   return (
     <div
       className={`nds-modal ${classes}`}

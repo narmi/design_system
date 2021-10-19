@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/narmi/design_system/compare/v1.2.1...v1.3.0) (2021-10-19)
+
+
+### Features
+
+* **DateInput:** expose dateFormat prop ([319f298](https://github.com/narmi/design_system/commit/319f298dfdd5e392f24983508ff28747e6688ce7))
+
 ### [1.2.1](https://github.com/narmi/design_system/compare/v1.2.0...v1.2.1) (2021-10-19)
 
 

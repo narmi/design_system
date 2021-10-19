@@ -11,6 +11,7 @@ const DateInput = ({
   minDate,
   altInput,
   altFormat,
+  defaultDate,
   ...props
 }) => {
   const input = useRef();
@@ -28,6 +29,7 @@ const DateInput = ({
     altInput,
     altFormat,
     disable: disableDates,
+    defaultDate,
     onChange: (flatpickrVal) =>
       props.onChange(moment(flatpickrVal[0]).format("YYYY-MM-DD")),
   };
@@ -50,10 +52,26 @@ const DateInput = ({
   );
 };
 DateInput.propTypes = {
+  /** Placeholder of the input */
+  label: PropTypes.string.isRequired,
+  /** Fired with 'YYYY-MM-DD' selected date string when selected date changes */
   onChange: PropTypes.func,
-  label: PropTypes.string,
   /** Disables dates. See [flatpickr docs](https://flatpickr.js.org/examples/#disabling-dates) for usage instructions */
   disableDates: PropTypes.array,
+  /** Sets the minimum selectable date (inclusive) */
+  minDate: PropTypes.bool,
+  /** Alternate date format to show in input when a date is selected (e.g. 'MM-DD-YYYY')*/
+  altFormat: PropTypes.string,
+  /**
+   * When true, a readable date is shown in the input following the 'YYYY-MM-DD' format.
+   * The date format can be overridden with the `altFormat` prop.
+   */
+  altInput: PropTypes.bool,
+  /**
+   * Sets a default selected date.
+   * DateInput uses the format 'YYYY-MM-DD' by default.
+   */
+  defaultDate: PropTypes.string,
 };
 DateInput.defaultProps = {
   onChange: () => {},

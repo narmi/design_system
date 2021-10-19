@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.0](https://github.com/narmi/design_system/compare/v1.1.1...v1.2.0) (2021-10-19)
+
+
+### Features
+
+* **DateInput:** allow defaultDate to be set; document all prop types ([e0b726b](https://github.com/narmi/design_system/commit/e0b726b0d54cceb556964c58cac17fd45de46d2e))
+
 ### [1.1.1](https://github.com/narmi/design_system/compare/v1.1.0...v1.1.1) (2021-10-19)
 
 

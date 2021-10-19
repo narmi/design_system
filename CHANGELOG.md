@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.2.1](https://github.com/narmi/design_system/compare/v1.2.0...v1.2.1) (2021-10-19)
+
+
+### Bug Fixes
+
+* **Modal:** limit height of modal, and allow for vertical scroll ([#250](https://github.com/narmi/design_system/issues/250)) ([eb37832](https://github.com/narmi/design_system/commit/eb37832e636628bd4f05404c728784283b750baa))
+
 ## [1.2.0](https://github.com/narmi/design_system/compare/v1.1.1...v1.2.0) (2021-10-19)
 
 

@@ -9,6 +9,7 @@ import "flatpickr/dist/themes/airbnb.css";
 const DateInput = ({
   disableDates,
   minDate,
+  dateFormat,
   altInput,
   altFormat,
   defaultDate,
@@ -24,7 +25,7 @@ const DateInput = ({
     monthSelectorType: "static",
     locale: english,
     allowInput: true,
-    dateFormat: "Y-m-d",
+    dateFormat,
     minDate,
     altInput,
     altFormat,
@@ -72,10 +73,13 @@ DateInput.propTypes = {
    * DateInput uses the format 'YYYY-MM-DD' by default.
    */
   defaultDate: PropTypes.string,
+  /** Changes date format used in input. See [flatpickr docs](https://flatpickr.js.org/formatting/) for formatting options */
+  dateFormat: PropTypes.string,
 };
 DateInput.defaultProps = {
   onChange: () => {},
   disableDates: [],
+  dateFormat: "Y-m-d",
 };
 
 export default DateInput;

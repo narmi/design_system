@@ -23,7 +23,10 @@ const RadioButtons = (props) => {
   const { initialValue, ...nativeElementProps } = props;
 
   return (
-    <div className="nds-radiobutton-group nds-typography" {...nativeElementProps}>
+    <div
+      className="nds-radiobutton-group nds-typography"
+      {...nativeElementProps}
+    >
       {Object.entries(radioOptions).map(([label, value]) => (
         <div className="nds-radiobutton-container" key={value}>
           <label className="nds-label" key={label}>

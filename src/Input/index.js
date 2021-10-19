@@ -13,12 +13,11 @@ By default, if neither `multiline` nor `icon` are provided, an overhanging label
 
 const Error = ({ error }) => {
   if (!error) return null;
-  return <div className="nds-input-error">
-    <XCircle
-      size={14}
-    />{" "}
-    {error}
-  </div>;
+  return (
+    <div className="nds-input-error">
+      <XCircle size={14} /> {error}
+    </div>
+  );
 };
 
 const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
@@ -26,18 +25,18 @@ const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
     "nds-input",
     disabled ? "disabled" : "",
     props.multiline ? "multiline" : "",
-    error ? "error" : ""
-  ].join(" ")
+    error ? "error" : "",
+  ].join(" ");
 
   return (
-    <div
-      className={className}
-      onClick={props.onClick}
-      style={props.style}
-    >
+    <div className={className} onClick={props.onClick} style={props.style}>
       <div className="nds-input-box">
         {icon ? <div className={`nds-input-icon ${icon}`}></div> : ""}
-        <div className={`nds-input-column ${!label || (icon && !props.multiline) ? "no-label" : ""}`}>
+        <div
+          className={`nds-input-column ${
+            !label || (icon && !props.multiline) ? "no-label" : ""
+          }`}
+        >
           {props.children}
           {decoration}
           {!props.multiline ? <label htmlFor={id}>{label}</label> : ""}

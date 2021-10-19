@@ -1,20 +1,30 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import Input from "Input";
 
 const TextInput = (props) => {
-  const { formatter, multiline, style, defaultValue, onChange, onBlur, ...nativeElementProps } = props;
+  const {
+    formatter,
+    multiline,
+    style,
+    defaultValue,
+    onChange,
+    onBlur,
+    ...nativeElementProps
+  } = props;
 
-  const [inputValue, setInputValue] = useState(props.defaultValue ? props.defaultValue : "");
+  const [inputValue, setInputValue] = useState(
+    props.defaultValue ? props.defaultValue : ""
+  );
   const ref = useRef();
 
-  function _onBlur(e){
+  function _onBlur(e) {
     if (onBlur) {
-        onBlur(e);
+      onBlur(e);
     }
     setInputValue(props.formatter(ref.current.value));
   }
-  function _onChange(e){
+  function _onChange(e) {
     if (onChange) {
       onChange(e);
     }
@@ -25,7 +35,10 @@ const TextInput = (props) => {
     e.target.style.height = "inherit";
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
-  useEffect(() => multiline ? handleKeyUp({target: ref.current}) : undefined, []);
+  useEffect(
+    () => (multiline ? handleKeyUp({ target: ref.current }) : undefined),
+    []
+  );
   return (
     <Input
       onClick={() => {
@@ -46,7 +59,17 @@ const TextInput = (props) => {
           {...nativeElementProps}
         />
       ) : (
-        <input key={"nds-text"} value={inputValue} onChange={_onChange} onBlur={_onBlur} ref={ref} type="text" required placeholder={props.label} {...nativeElementProps} />
+        <input
+          key={"nds-text"}
+          value={inputValue}
+          onChange={_onChange}
+          onBlur={_onBlur}
+          ref={ref}
+          type="text"
+          required
+          placeholder={props.label}
+          {...nativeElementProps}
+        />
       )}
     </Input>
   );

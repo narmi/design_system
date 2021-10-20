@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { Modal, PlainButton, Dropdown, TextInput, Button } from "design_system";
-import { NdsStyles } from "./decorators/decorators";
+import { Modal, PlainButton, Dropdown, TextInput, Button } from "dist";
 
 export default {
   title: "Components/Dropdown",
-  decorators: [NdsStyles],
 };
 
 export const BasicDropdown = () => {
@@ -41,25 +39,35 @@ export const BasicDropdown = () => {
 export const NewMemberDropDown = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const actions = (
-      <div className="nds-typography">
-        <PlainButton
-          onClick={() => { setModalOpen(false); }}
-          style={{ paddingRight: "16px", color: "rgb(var(--nds-primary-color))" }}
-          type="plain"
-        >
-          Cancel
-        </PlainButton>
-        <Button
-          onClick={() => { setModalOpen(false); }}
-        >Add member</Button>
-      </div>
-    );
+    <div className="nds-typography">
+      <PlainButton
+        onClick={() => {
+          setModalOpen(false);
+        }}
+        style={{ paddingRight: "16px", color: "rgb(var(--nds-primary-color))" }}
+        type="plain"
+      >
+        Cancel
+      </PlainButton>
+      <Button
+        onClick={() => {
+          setModalOpen(false);
+        }}
+      >
+        Add member
+      </Button>
+    </div>
+  );
   return (
     <div>
-      <Dropdown defaultValue={"Rowena Wick"} triggerLabel={"Members"} closeDropDown={modalOpen}>
+      <Dropdown
+        defaultValue={"Rowena Wick"}
+        triggerLabel={"Members"}
+        closeDropDown={modalOpen}
+      >
         {["Rowena Wick", "Daya Zakim"].map((option, i) => (
           <div key={i}>{option}</div>
-        ))} 
+        ))}
         <PlainButton
           onClick={() => {
             setModalOpen(true);
@@ -78,10 +86,19 @@ export const NewMemberDropDown = () => {
         actions={actions}
       >
         <div style={{ width: "500px" }} className="nds-typography">
-          <TextInput label={"First Name"} style={{paddingTop: "20px", paddingBottom: "20px"}}/>
-          <TextInput label={"Last Name"} style={{paddingBottom: "20px"}}/>
-          <TextInput label={"Account Number"} style={{paddingBottom: "20px"}}/>
-          <TextInput label={"Relationship (i.e. sister)"} style={{paddingBottom: "20px"}}/>
+          <TextInput
+            label={"First Name"}
+            style={{ paddingTop: "20px", paddingBottom: "20px" }}
+          />
+          <TextInput label={"Last Name"} style={{ paddingBottom: "20px" }} />
+          <TextInput
+            label={"Account Number"}
+            style={{ paddingBottom: "20px" }}
+          />
+          <TextInput
+            label={"Relationship (i.e. sister)"}
+            style={{ paddingBottom: "20px" }}
+          />
         </div>
       </Modal>
     </div>

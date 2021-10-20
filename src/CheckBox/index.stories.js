@@ -1,16 +1,18 @@
 import React from "react";
-import { NdsStyles } from "./decorators/decorators";
-import { CheckBox, Button, Modal } from "design_system";
+import { CheckBox, Button, Modal } from "dist";
 
 export default {
   title: "Components/Check",
-  decorators: [NdsStyles],
 };
 
 export const SampleCheckBox = () => {
-  const [checkData, setCheckData] = React.useState({cb1: true, cb2: false, cb3: false});
+  const [checkData, setCheckData] = React.useState({
+    cb1: true,
+    cb2: false,
+    cb3: false,
+  });
   const [modalOpen, setModalOpen] = React.useState(false);
-  function  handleCheck(event) {
+  function handleCheck(event) {
     console.log(event.target.name, event.target.checked);
     checkData[event.target.name] = event.target.checked;
     setCheckData(checkData);
@@ -53,7 +55,26 @@ export const SampleCheckBox = () => {
         }}
       >
         <div style={{ width: "500px" }}>
-          {Object.keys(checkData).map((key)=><div style={{paddingBottom:"12px", display:"flex", alignItems: "center"}}>{key}:{ <span className="narmi-icon-solid-circle" style={{paddingLeft:"12px", color: checkData[key] ? "green" : "red"}}/> }</div>)}
+          {Object.keys(checkData).map((key) => (
+            <div
+              style={{
+                paddingBottom: "12px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              {key}:
+              {
+                <span
+                  className="narmi-icon-solid-circle"
+                  style={{
+                    paddingLeft: "12px",
+                    color: checkData[key] ? "green" : "red",
+                  }}
+                />
+              }
+            </div>
+          ))}
         </div>
       </Modal>
     </div>

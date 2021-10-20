@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { NdsStyles } from "./decorators/decorators";
-import { DateInput, TextInput } from "design_system";
+import { DateInput, TextInput } from "dist";
 
 export default {
   title: "Components/Inputs",
-  decorators: [NdsStyles],
 };
 
 export const Inputs = () => {

@@ -29,7 +29,7 @@ export const ToolTip = () => {
 
           <div style={{display: "flex", position:"relative"}}>
           <span>Right</span>
-          <Tooltip direction={"right"} targetWidth={"24px"} targetHeight={"18px"} left={"43px"}>
+          <Tooltip direction={"right"} targetWidth={"24px"} targetHeight={"18px"} left={"11px"}>
             Tooltip text
           </Tooltip>
           </div>

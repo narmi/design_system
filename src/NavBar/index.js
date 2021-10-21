@@ -16,21 +16,37 @@ const NavBar = (props) => {
         <div className={`nds-navbar-container`}>
           <ButtonBar className="nds-navbar-mainmenu">
             {props.children}
-          </ButtonBar> {/* .nds-navbar-mainmenu */}
+          </ButtonBar>{" "}
+          {/* .nds-navbar-mainmenu */}
           <ButtonBar className="nds-navbar-usermenu">
-            <Details summary={<Button type="menu">{props.user.email||"User"}</Button>} key={name} React={props.React}>
-              <Button type="menu" href="/settings">Settings</Button>
-              <Button type="menu" href="/logout">Logout</Button>
+            <Details
+              summary={
+                <Button type="menu">{props.user.email || "User"}</Button>
+              }
+              key={name}
+              React={props.React}
+            >
+              <Button type="menu" href="/settings">
+                Settings
+              </Button>
+              <Button type="menu" href="/logout">
+                Logout
+              </Button>
             </Details>
-          </ButtonBar> {/* .nds-navbar-usermenu */}
-        </div> {/* .nds-navbar-container */}
+          </ButtonBar>{" "}
+          {/* .nds-navbar-usermenu */}
+        </div>{" "}
+        {/* .nds-navbar-container */}
       </Modal>
       <div
         className="nds-navbar-hamburger"
-        onClick={() => {setOpen(!open)}}
+        onClick={() => {
+          setOpen(!open);
+        }}
       >
         <Menu />
-      </div> {/* .nds-navbar-hamburger */}
+      </div>{" "}
+      {/* .nds-navbar-hamburger */}
     </div>
   );
 };

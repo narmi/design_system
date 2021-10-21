@@ -2,9 +2,7 @@ import React from "react";
 import { deviceBreakpoints } from "global";
 
 const ButtonBar = ({ className, children }) => (
-  <div className={`nds-buttonbar ${className}`}>
-    {children}
-  </div>
+  <div className={`nds-buttonbar ${className}`}>{children}</div>
 );
 
 ButtonBar.styles = `

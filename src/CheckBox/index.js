@@ -3,13 +3,28 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const CheckBox = ({ label, onChange, id, name, defaultChecked, value, ...rest }) => {
-
+const CheckBox = ({
+  label,
+  onChange,
+  id,
+  name,
+  defaultChecked,
+  value,
+  ...rest
+}) => {
   return (
     <>
       <label className="nds-checkbox nds-typography">
         {label}
-        <input onChange={onChange} defaultChecked={defaultChecked} name={name} id={id} value={value} {...rest} type="checkbox" />
+        <input
+          onChange={onChange}
+          defaultChecked={defaultChecked}
+          name={name}
+          id={id}
+          value={value}
+          {...rest}
+          type="checkbox"
+        />
         <span className="narmi-icon-check"></span>
       </label>
     </>

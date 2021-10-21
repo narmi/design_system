@@ -239,17 +239,20 @@ const Table = (props) => {
 
   const renderPopoverHeader = (heading) => {
     return (
-      <StyledTableHeader style={{ padding: "12px 0px 12px 20px" }} className="nds-typography">
+      <StyledTableHeader
+        style={{ padding: "12px 0px 12px 20px" }}
+        className="nds-typography"
+      >
         <StyledPopoverContainer>
-        <Popover hoverable label={<h5>{heading}</h5>}>
-          <List
-            renderItem={(item) => renderSortableHeader(item, heading)}
-            items={[
-              { sortOrder: "asc", text: "Sort A to Z" },
-              { sortOrder: "desc", text: "Sort Z to A" },
-            ]}
-          ></List>
-        </Popover>
+          <Popover hoverable label={<h5>{heading}</h5>}>
+            <List
+              renderItem={(item) => renderSortableHeader(item, heading)}
+              items={[
+                { sortOrder: "asc", text: "Sort A to Z" },
+                { sortOrder: "desc", text: "Sort Z to A" },
+              ]}
+            ></List>
+          </Popover>
         </StyledPopoverContainer>
       </StyledTableHeader>
     );

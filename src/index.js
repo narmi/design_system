@@ -1,20 +1,20 @@
 const React = require("react");
 
-require("./scss/index.scss")
+require("./scss/index.scss");
 
-const Input = require("Input").default;
-const DateInput = require("DateInput").default;
-const TextInput = require("TextInput").default;
-const Button = require("Button").default;
-const PlainButton = require("PlainButton").default;
-const ButtonBar = require("ButtonBar").default;
-const NavBar = require("NavBar").default;
-const Modal = require("Modal").default;
-const Details = require("Details").default;
-const Card = require("Card").default;
-const Dropdown = require("Dropdown").default;
-const RadioButtons = require("RadioButtons").default;
-const CheckBox = require("CheckBox").default;
+const Input = require("./Input").default;
+const DateInput = require("./DateInput").default;
+const TextInput = require("./TextInput").default;
+const Button = require("./Button").default;
+const PlainButton = require("./PlainButton").default;
+const ButtonBar = require("./ButtonBar").default;
+const NavBar = require("./NavBar").default;
+const Modal = require("./Modal").default;
+const Details = require("./Details").default;
+const Card = require("./Card").default;
+const Dropdown = require("./Dropdown").default;
+const RadioButtons = require("./RadioButtons").default;
+const CheckBox = require("./CheckBox").default;
 const components = {
   Input,
   DateInput,
@@ -53,4 +53,3 @@ export {
   CheckBox,
   Dropdown,
 };
-

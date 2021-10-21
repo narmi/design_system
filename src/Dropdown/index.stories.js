@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import { Modal, PlainButton, Dropdown, TextInput, Button } from "dist";
+import Dropdown from "./";
+import Modal from "../Modal";
+import PlainButton from "../PlainButton";
+import TextInput from "../TextInput";
+import Button from "../Button";
 
 export default {
   title: "Components/Dropdown",
+  component: Dropdown,
 };
 
-export const BasicDropdown = () => {
+export const Overview = () => {
   const [modalOpen, setModalOpen] = useState(false);
   return (
     <div>

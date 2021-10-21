@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import { Modal, Button, PlainButton, RadioButtons } from "dist";
+import Modal from "./";
+import Button from "../Button";
+import PlainButton from "../PlainButton";
+import RadioButtons from "../RadioButtons";
 
 export default {
   title: "Components/Modal",
+  component: Modal,
 };
 
-export const SimpleModal = () => {
+export const Overview = () => {
   const [open, setOpen] = useState(false);
   return (
     <div className="nds-typography">

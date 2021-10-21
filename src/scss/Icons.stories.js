@@ -8,7 +8,6 @@ export default {
 export const Icons = () => {
   return (
     <div className="nds-typography">
-      <h4 className="nds-sans">Our Icons</h4>
       <div className="icon-demo">
         {IconSelection.icons.map((icon) => (
           <div className="icon-demo-box">

@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { Modal, Button, PlainButton, RadioButtons } from "design_system";
-import { NdsStyles } from "./decorators/decorators";
+import { Modal, Button, PlainButton, RadioButtons } from "dist";
 
 export default {
   title: "Components/Modal",
-  decorators: [NdsStyles],
 };
 
 export const SimpleModal = () => {

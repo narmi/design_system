@@ -1,13 +1,11 @@
-import React, { useState } from "react";
-import { NdsStyles } from "./decorators/decorators";
-import { DateInput, TextInput } from "design_system";
+import React, { useRef, useState } from "react";
+import { TextInput } from "dist";
 
 export default {
-  title: "Components/Inputs",
-  decorators: [NdsStyles],
+  title: "Components/TextInput",
 };
 
-export const Inputs = () => {
+export const Variations = () => {
   return (
     <div className={"nds-typography"}>
       <h1 style={{ marginBottom: "1em" }}>Text Inputs</h1>
@@ -42,18 +40,7 @@ export const Inputs = () => {
   );
 };
 
-export const DateInputs = () => {
-  return (
-    <div className={"nds-typography"}>
-      <h1 style={{ marginBottom: "1em" }}>Date Pickers</h1>
-      <div className="storybook-4col">
-        <DateInput label={"Date of Birth"} disableDates={["2021-10-22"]} />
-      </div>
-    </div>
-  );
-};
-
-export const ColorInput = () => {
+export const AsColorInput = () => {
   const [color, setColor] = useState("#915F6D");
   return (
     <div className={"nds-typography"}>

@@ -1,5 +1,6 @@
-import "../story-styles.css"
-import '../../dist/style.css';
+import "../story-styles.css";
+import "../../dist/style.css";
+import { NdsStyles } from "./decorators";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -9,4 +10,6 @@ export const parameters = {
       date: /Date$/,
     },
   },
-}
+};
+
+export const decorators = [NdsStyles];

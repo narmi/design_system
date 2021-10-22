@@ -1,8 +1,8 @@
 import React from "react";
 import "../story-styles.css";
 import "../../dist/style.css";
-import { NdsStyles } from "./decorators";
 import Layout from "./Layout";
+import { docPage } from "./theme/narmi";
 
 export const parameters = {
   previewTabs: {
@@ -10,6 +10,7 @@ export const parameters = {
   },
   docs: {
     page: () => <Layout />,
+    theme: docPage,
   },
   controls: {
     matchers: {
@@ -17,5 +18,3 @@ export const parameters = {
     },
   },
 };
-
-export const decorators = [NdsStyles];

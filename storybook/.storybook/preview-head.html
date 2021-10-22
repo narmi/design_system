@@ -1,0 +1,26 @@
+<!-- NDS-specific styles to inject -->
+<style type="text/css">
+  :root {
+    --nds-primary-color: 26, 67, 56;
+    --nds-secondary-color: 0, 101, 83;
+  }
+</style>
+
+<!-- storybook docs theming overrides -->
+<style type="text/css">
+  .sbdocs-title {
+    font-weight: 700;
+    color: var(--nds-black);
+  }
+  h1.sbdocs-title {
+    font-family: var(--nds-header-font);
+    font-size: 42px;
+  }
+  .docs-story,
+  .docblock-argstable-body td {
+    background: white !important;
+  }
+  .docblock-argstable-body tr {
+    border-color: rgb(230, 230, 230) !important;
+  }
+</style>

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import Input from "Input";
+import Input from "../Input";
 
 const TextInput = (props) => {
   const {

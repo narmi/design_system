@@ -1,11 +1,14 @@
 import React, { useRef, useState } from "react";
-import { Button, Card, PlainButton } from "dist";
+import Card from "./";
+import Button from "../Button";
+import PlainButton from "../PlainButton";
 
 export default {
   title: "Components/Card",
+  component: Card,
 };
 
-export const ContentVarieties = () => {
+export const Overview = () => {
   const [selected, setSelected] = useState("nothing");
   return (
     <div className="nds-typography">

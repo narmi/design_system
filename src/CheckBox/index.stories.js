@@ -1,11 +1,14 @@
 import React from "react";
-import { CheckBox, Button, Modal } from "dist";
+import CheckBox from "./";
+import Button from "../Button";
+import Modal from "../Modal";
 
 export default {
   title: "Components/Check",
+  component: CheckBox,
 };
 
-export const SampleCheckBox = () => {
+export const Overview = () => {
   const [checkData, setCheckData] = React.useState({
     cb1: true,
     cb2: false,

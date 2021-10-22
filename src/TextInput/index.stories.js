@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react";
-import { TextInput } from "dist";
+import TextInput from "./";
 
 export default {
   title: "Components/TextInput",
+  component: TextInput,
 };
 
-export const Variations = () => {
+export const Overview = () => {
   return (
     <div className={"nds-typography"}>
-      <h1 style={{ marginBottom: "1em" }}>Text Inputs</h1>
       <div className="storybook-4col">
         <TextInput label={"Label"} />
         <TextInput />

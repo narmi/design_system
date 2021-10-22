@@ -1,13 +1,19 @@
+import React from "react";
 import "../story-styles.css";
 import "../../dist/style.css";
 import { NdsStyles } from "./decorators";
+import Layout from "./Layout";
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  previewTabs: {
+    "storybook/docs/panel": { index: -1 },
+  },
+  docs: {
+    page: () => <Layout />,
+  },
   controls: {
     matchers: {
       color: /(background|color)$/i,
-      date: /Date$/,
     },
   },
 };

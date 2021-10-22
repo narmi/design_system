@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import TextInput from "TextInput";
+import TextInput from "../TextInput";
 import PropTypes from "prop-types";
 
 const Chevron = ({ open, setOpen }) => {

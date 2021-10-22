@@ -2,11 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import Input from "../Input";
 
+/**
+ * Narmi flavored text input with floating label
+ */
 const TextInput = (props) => {
   const {
     formatter,
     multiline,
-    style,
     defaultValue,
     onChange,
     onBlur,
@@ -75,6 +77,15 @@ const TextInput = (props) => {
   );
 };
 TextInput.propTypes = {
+  /** Label used as input placeholder _and_ floating label */
+  label: PropTypes.string.isRequired,
+  /** Callback invoked with event object on input change */
+  onChange: PropTypes.func,
+  /** Callback invoked with event object on input blur */
+  onBlur: PropTypes.func,
+  /** Sets the [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) value of the input */
+  defaultValue: PropTypes.string,
+  /** When true, the input is displayed as an auto-growing textarea */
   multiline: PropTypes.bool,
   /** function that formats the input value on blur */
   formatter: PropTypes.func,

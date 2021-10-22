@@ -13,8 +13,10 @@ const Button = ({ disabled, type, ...props }) => {
 };
 
 Button.propTypes = {
+  /** disables the button when set to `true` */
   disabled: PropTypes.bool,
-  type: PropTypes.string,
+  /** type of button to render */
+  type: PropTypes.oneOf(["menu", "primary"]),
 };
 
 Button.defaultProps = {

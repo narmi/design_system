@@ -4,12 +4,15 @@ import Button from "../Button";
 import PlainButton from "../PlainButton";
 import RadioButtons from "../RadioButtons";
 
-export default {
-  title: "Components/Modal",
-  component: Modal,
+const Template = (args) => <Modal {...args} />;
+
+export const Overview = Template.bind({});
+Overview.args = {
+  header: "Modal Header",
+  children: <p>Modal content</p>,
 };
 
-export const Overview = () => {
+export const BasicExample = () => {
   const [open, setOpen] = useState(false);
   return (
     <div className="nds-typography">
@@ -191,4 +194,9 @@ export const ScrollableModal = () => {
       </Modal>
     </div>
   );
+};
+
+export default {
+  title: "Components/Modal",
+  component: Modal,
 };

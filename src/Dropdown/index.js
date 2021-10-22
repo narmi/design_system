@@ -44,6 +44,9 @@ const DropdownMenu = ({ open, onClose, children, ...rest }) => {
   ) : null;
 };
 
+/**
+ * Combobox UI for filling an `input` value from a list of options
+ */
 const Dropdown = (props) => {
   const [open, setOpen] = useState(props.defaultOpen);
   const [value, setValue] = useState(props.defaultValue || "");
@@ -112,17 +115,23 @@ const Dropdown = (props) => {
 
 Dropdown.defaultProps = {
   defaultOpen: false,
-  onChange: () => {
-    null;
-  },
+  onChange: () => {},
 };
 Dropdown.propTypes = {
-  children: PropTypes.any,
-  defaultOpen: PropTypes.bool,
-  onChange: PropTypes.func,
-  closeDropDown: PropTypes.bool,
+  /** Initial label shown in input */
   triggerLabel: PropTypes.string.isRequired,
-  triggerValue: PropTypes.string,
+  /** Array of elements to render as items in the dropdown */
+  children: PropTypes.arrayOf(PropTypes.element),
+  /** Sets `field` prop of internal `TextInput` */
+  field: PropTypes.string,
+  /** When true, the dropdown initially renders as open */
+  defaultOpen: PropTypes.bool,
+  /** Callback invoked when user selects a new value from the options list */
+  onChange: PropTypes.func,
+  /** Callback invoked when the dropdown closes*/
+  onClose: PropTypes.func,
+  /** When true, the dropdown is forced to close */
+  closeDropDown: PropTypes.bool,
 };
 
 export default Dropdown;

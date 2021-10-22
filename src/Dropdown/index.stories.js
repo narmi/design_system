@@ -5,12 +5,15 @@ import PlainButton from "../PlainButton";
 import TextInput from "../TextInput";
 import Button from "../Button";
 
-export default {
-  title: "Components/Dropdown",
-  component: Dropdown,
+const Template = (args) => <Dropdown {...args} />;
+
+export const Overview = Template.bind({});
+Overview.args = {
+  triggerLabel: "Trigger Label",
+  children: [<div>One</div>, <div>Two</div>, <div>Three</div>],
 };
 
-export const Overview = () => {
+export const BasicExample = () => {
   const [modalOpen, setModalOpen] = useState(false);
   return (
     <div>
@@ -108,4 +111,9 @@ export const NewMemberDropDown = () => {
       </Modal>
     </div>
   );
+};
+
+export default {
+  title: "Components/Dropdown",
+  component: Dropdown,
 };

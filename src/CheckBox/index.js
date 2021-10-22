@@ -3,6 +3,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+/**
+ * Narmi flavored checkbox with label
+ */
 const CheckBox = ({
   label,
   onChange,
@@ -32,11 +35,18 @@ const CheckBox = ({
 };
 
 CheckBox.propTypes = {
-  title: PropTypes.node,
-};
-
-CheckBox.defaultProps = {
-  hoverable: false,
+  /** Content of `label` element */
+  label: PropTypes.string.isRequired,
+  /** Change callback invoked when the value of the `input` changes */
+  onChange: PropTypes.func,
+  /** `id` attribute of `input` */
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** `name` attribute of `input` */
+  name: PropTypes.string,
+  /** Sets the checkbox to checked by default, [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) */
+  defaultChecked: PropTypes.bool,
+  /** Sets the `value` attribute of the `input` */
+  value: PropTypes.string,
 };
 
 export default CheckBox;

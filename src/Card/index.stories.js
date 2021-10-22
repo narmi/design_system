@@ -3,12 +3,16 @@ import Card from "./";
 import Button from "../Button";
 import PlainButton from "../PlainButton";
 
-export default {
-  title: "Components/Card",
-  component: Card,
+const Template = (args) => <Card {...args} />;
+
+export const Overview = Template.bind({});
+Overview.args = {
+  title: "Card Title",
+  children: <p>Card content</p>,
+  icon: "star",
 };
 
-export const Overview = () => {
+export const Variations = () => {
   const [selected, setSelected] = useState("nothing");
   return (
     <div className="nds-typography">
@@ -243,4 +247,9 @@ export const Form = () => {
       </div>
     </div>
   );
+};
+
+export default {
+  title: "Components/Card",
+  component: Card,
 };

@@ -1,12 +1,14 @@
 import React, { useRef, useState } from "react";
 import TextInput from "./";
 
-export default {
-  title: "Components/TextInput",
-  component: TextInput,
+const Template = (args) => <TextInput {...args} />;
+
+export const Overview = Template.bind({});
+Overview.args = {
+  label: "TextInput Label",
 };
 
-export const Overview = () => {
+export const Example = () => {
   return (
     <div className={"nds-typography"}>
       <div className="storybook-4col">
@@ -61,4 +63,9 @@ export const AsColorInput = () => {
       </div>
     </div>
   );
+};
+
+export default {
+  title: "Components/TextInput",
+  component: TextInput,
 };

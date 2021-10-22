@@ -3,12 +3,15 @@ import CheckBox from "./";
 import Button from "../Button";
 import Modal from "../Modal";
 
-export default {
-  title: "Components/Check",
-  component: CheckBox,
+const Template = (args) => <CheckBox {...args} />;
+
+export const Overview = Template.bind({});
+Overview.args = {
+  label: "I agree to receive spam",
+  name: "spam",
 };
 
-export const Overview = () => {
+export const BasicExample = () => {
   const [checkData, setCheckData] = React.useState({
     cb1: true,
     cb2: false,
@@ -82,4 +85,9 @@ export const Overview = () => {
       </Modal>
     </div>
   );
+};
+
+export default {
+  title: "Components/CheckBox",
+  component: CheckBox,
 };

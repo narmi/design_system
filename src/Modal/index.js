@@ -1,6 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+/**
+ * Modal window.
+ * The content of the modal is scrollable and body scrolling is locked when the Modal is open.
+ */
 const Modal = ({
   open = false,
   setOpen,
@@ -46,12 +50,26 @@ const Modal = ({
 };
 
 Modal.propTypes = {
-  open: PropTypes.bool,
-  setOpen: PropTypes.func,
-  handleClose: PropTypes.func, // deprecated
-  children: PropTypes.node,
+  /** JSX content to render within the Modal body */
+  children: PropTypes.node.isRequired,
+  /** JSX content to render as the Modal header */
   header: PropTypes.node,
+  /** When true, the Modal will be open */
+  open: PropTypes.bool,
+  /**
+   * Callback called when user takes and opening or dismissal action on the modal.
+   * Function is invoked with a boolean representing the new `open` value to set.
+   */
+  setOpen: PropTypes.func,
+  /**
+   * ⚠️ DEPRECATED
+   * This prop will be removed in a future release.
+   * Callback invoked on user dismissal actions.
+   */
+  handleClose: PropTypes.func,
+  /** JSX content to render within the actions area of the Modal */
   actions: PropTypes.node,
+  /** Additional classes to pass to the root Modal element */
   classes: PropTypes.string,
 };
 

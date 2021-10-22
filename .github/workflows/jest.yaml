@@ -1,7 +1,7 @@
 name: Jest
 on: [pull_request]
 jobs:
-  Build-design_system:
+  Run-jest-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code

@@ -44,7 +44,7 @@ Please check the following chart to see the minimum browser versions supported b
 
 # Developing
 
-We need to set up your copy of `design_system` for local development. 
+We need to set up your copy of `design_system` for local development.
 
 The following command will install design_system as a local dependency and start your Storybook.
 
@@ -65,7 +65,7 @@ Results:
 
 - Storybook will now run on :6006.
 - Your local `design_system` will be [symlinked](https://docs.npmjs.com/cli/v7/commands/npm-link) into <your-repo>/design_system for local dev.
-- On each change to files in design_system, the `dist/index.js` file will be rebuilt - 
+- On each change to files in design_system, the `dist/index.js` file will be rebuilt -
   - This allows local changes to design_system to be live-updated in your consuming repo.
 
 ## Releases
@@ -97,12 +97,12 @@ fix: update global `text-rendering` value
 
 Adding a feature within the scope of the Button component:
 ```
-feat(Button): Add secondary button variant
+feat(Button): add secondary button variant
 ```
 
 Breaking change within the Button component scope:
 ```
-refactor(Button)!: Remove variant `disabled`. The `disabled` boolean prop is now used to disable a button.
+refactor(Button)!: remove variant `disabled`. The `disabled` boolean prop is now used to disable a button.
 ```
 
 #### What is a "Breaking Change?"
@@ -125,7 +125,7 @@ If you'd like to live-edit HTML in your components (i.e., passing custom `props.
 
 ## Contributing
 
-We accept PRs! We strive to make the design_system simple as well as powerful, which usually means being [open for extension](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle#:~:text=In%20object%2Doriented%20programming%2C%20the,without%20modifying%20its%20source%20code.), [but closed for modification](https://blog.cleancoder.com/uncle-bob/2014/05/12/TheOpenClosedPrinciple.html). 
+We accept PRs! We strive to make the design_system simple as well as powerful, which usually means being [open for extension](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle#:~:text=In%20object%2Doriented%20programming%2C%20the,without%20modifying%20its%20source%20code.), [but closed for modification](https://blog.cleancoder.com/uncle-bob/2014/05/12/TheOpenClosedPrinciple.html).
 
 We try to uphold these principles in our code review. Below please find some helpful guidelines for getting your PRs accepted:
 
@@ -133,7 +133,7 @@ We try to uphold these principles in our code review. Below please find some hel
 
 #### 1. Maintain the HTML interface
 
-Native HTML provides most of the attributes we want to customize in the design_system. For this reason, we've allowed passing `{...props}` through to almost any component. 
+Native HTML provides most of the attributes we want to customize in the design_system. For this reason, we've allowed passing `{...props}` through to almost any component.
 
 This allows you, the user, to achieve any desired behavior, by simply treating the design_system component as if it was native HTML.
 
@@ -141,7 +141,7 @@ This allows for the design_system to be opinionated about behavior specific to t
 
 ##### Example - Button:
 ```
-# Say you want to customize the border of your <Button> - 
+# Say you want to customize the border of your <Button> -
 # simply pass a `style` into the button as you would in HTML:
 
 <Button style={{borderRadius: "8px"}}>
@@ -197,9 +197,9 @@ This gives the user full control over the appearance of the Modal, while still a
 
 #### 3. Prefer native CSS over custom Javascript props
 
-Using CSS to solve problems allows us to provide control back to you, the user. 
+Using CSS to solve problems allows us to provide control back to you, the user.
 
-For instance, when designing a `<Card>` component, one might be tempted to add a `padding` prop. 
+For instance, when designing a `<Card>` component, one might be tempted to add a `padding` prop.
 
 Instead, we prefer the already-existing `style` prop, since this allows the user full control over the style.
 
@@ -219,7 +219,7 @@ return props.children		// assume the user will reverse the children when s/he wa
 # One could add a `padding` prop to allow the user to customize a `<Card>`
 <Card padding={8}>...</Card>
 
-# Instead, rely on the native `style` prop. 
+# Instead, rely on the native `style` prop.
 # This lets us keep the interface small, while allowing maximum control to the user.
 <Card style={{padding: "8px"}}...</Card>
 ```
@@ -244,14 +244,14 @@ We can also [wrap components using `styled-components`](https://styled-component
 ```
 const MyCustomButton = styled(Button)`
   backgroundColor: var(--my-background-color);
-  
+
   &:hover {
     backgroundColor: var(--my-custom-hover-color);
   }
 `;
 ```
 
-We default to using CSS to solve problems where some might reach for Javascript. 
+We default to using CSS to solve problems where some might reach for Javascript.
 
 Other useful links:
 
@@ -265,11 +265,10 @@ Other useful links:
 - Ask, "Can this prop be removed?"
 - Prefer CSS to JS
 
-We'd love for this library to be as usable as possible for all our partners. 
+We'd love for this library to be as usable as possible for all our partners.
 
 Feel free to ask us for suggestions or feedback - we're happy to help!
 
 ## License
 
 Source code is under a custom license based on MIT. The license restricts design_system usage to applications that integrate or interoperate with Narmi software or services, with additional restrictions for external, stand-alone applications. Please see LICENSE.md for full details.
-

@@ -8,6 +8,58 @@ Overview.args = {
   label: "TextInput Label",
 };
 
+function phoneFormatter (value) {
+  /* this is copied from byzantine.src.utils.functions */
+  if (value === null || value === undefined || value.length === 0) {
+    return "";
+  }
+  const numerical = value.replace(/[^0-9]/g, "");
+  const length = numerical.length;
+  // formatting area code
+  if (length < 4) {
+    if (numerical[0] === "1" && length === 1) {
+      return "";
+    }
+    return `(${numerical.substring(0, length)})`;
+  }
+  // formatting the next three digits along with area code
+  if (length < 7) {
+    //Checks to see if country code is included
+    if (numerical[0] === "1") {
+      return `(${numerical.substring(1, 4)}) ${numerical.substring(
+        4,
+        length
+      )}`;
+    }
+    return `(${numerical.substring(0, 3)}) ${numerical.substring(3, length)}`;
+  }
+  // formatting the full phone number
+  if (length < 12) {
+    // Checks to see if country code is included
+    if (numerical[0] === "1") {
+      return `(${numerical.substring(1, 4)}) ${numerical.substring(
+        4,
+        7
+      )}-${numerical.substring(7, length)}`;
+    }
+    return `(${numerical.substring(0, 3)}) ${numerical.substring(
+      3,
+      6
+    )}-${numerical.substring(6, length)}`;
+  }
+  // Checks to see if country code is included
+  if (numerical[0] === "1") {
+    return `(${numerical.substring(1, 4)}) ${numerical.substring(
+      4,
+      7
+    )}-${numerical.substring(7, 11)}`;
+  }
+  return `(${numerical.substring(0, 3)}) ${numerical.substring(
+    3,
+    6
+  )}-${numerical.substring(6, 10)}`;
+};
+
 export const Example = () => {
   return (
     <div className={"nds-typography"}>
@@ -25,6 +77,10 @@ export const Example = () => {
           label={"Phone number"}
           defaultValue={"(555) 867-5309"}
           type={"tel"}
+        />
+        <TextInput
+          label={"Another phone number"}
+          formatter={phoneFormatter}
         />
         <TextInput
           label={"Test Quotes"}

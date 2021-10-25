@@ -11,6 +11,7 @@ const Modal = ({
   handleClose,
   children,
   classes = "center",
+  maxWidth,
   header,
   actions,
 }) => {
@@ -28,7 +29,7 @@ const Modal = ({
       style={{ borderRadius: "8px" }}
     >
       <div className="nds-modal-overlay" onClick={setNotOpen}></div>
-      <div className="nds-modal-container">
+      <div className="nds-modal-container" style={{maxWidth: maxWidth}}>
         <div className="nds-modal-dismiss" onClick={setNotOpen}>
           <span
             className={"narmi-icon-x"}
@@ -71,6 +72,8 @@ Modal.propTypes = {
   actions: PropTypes.node,
   /** Additional classes to pass to the root Modal element */
   classes: PropTypes.string,
+  /** Sets a max-width for the Modal container */
+  maxWidth: PropTypes.oneOf([PropTypes.number, PropTypes.string])
 };
 
 export default Modal;

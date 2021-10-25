@@ -8,7 +8,7 @@ Overview.args = {
   label: "TextInput Label",
 };
 
-function phoneFormatter (value) {
+function phoneFormatter(value) {
   /* this is copied from byzantine.src.utils.functions */
   if (value === null || value === undefined || value.length === 0) {
     return "";
@@ -26,10 +26,7 @@ function phoneFormatter (value) {
   if (length < 7) {
     //Checks to see if country code is included
     if (numerical[0] === "1") {
-      return `(${numerical.substring(1, 4)}) ${numerical.substring(
-        4,
-        length
-      )}`;
+      return `(${numerical.substring(1, 4)}) ${numerical.substring(4, length)}`;
     }
     return `(${numerical.substring(0, 3)}) ${numerical.substring(3, length)}`;
   }
@@ -58,9 +55,11 @@ function phoneFormatter (value) {
     3,
     6
   )}-${numerical.substring(6, 10)}`;
-};
+}
 
 export const Example = () => {
+  const [phoneValue, setPhoneValue] = React.useState("");
+
   return (
     <div className={"nds-typography"}>
       <div className="storybook-4col">
@@ -81,6 +80,8 @@ export const Example = () => {
         <TextInput
           label={"Another phone number"}
           formatter={phoneFormatter}
+          value={phoneValue}
+          onChange={(e) => setPhoneValue(e.target.value)}
         />
         <TextInput
           label={"Test Quotes"}

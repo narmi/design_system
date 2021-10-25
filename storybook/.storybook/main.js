@@ -5,7 +5,11 @@ module.exports = {
     "../../src/**/*.stories.mdx",
     "../../src/**/*.stories.@(js|jsx|ts|tsx)",
   ],
-  addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-a11y",
+  ],
   webpackFinal: (config) => {
     config.resolve.alias = {
       dist: path.resolve(__dirname, "../../dist"),

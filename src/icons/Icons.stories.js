@@ -1,5 +1,5 @@
 import React from "react";
-import IconSelection from "dist/icons/selection.json";
+import IconSelection from "./selection.json";
 
 export default {
   title: "Style/Icons",

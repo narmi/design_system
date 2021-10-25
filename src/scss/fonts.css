@@ -1,9 +1,0 @@
-@import url('https://fonts.googleapis.com/css?family=Mulish:400,600,700&subset=latin');
-
-@font-face {
-    font-family: 'Narmi Matiere';
-    src: url('fonts/narmi-matiere-bold-webfont.woff2') format('woff2'),
-    url('fonts/narmi-matiere-bold-webfont.woff') format('woff');
-    font-weight: 700;
-    font-style: normal;
-}

@@ -1,6 +1,6 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CopyPlugin = require('copy-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -16,7 +16,7 @@ module.exports = {
       components: path.join(__dirname, "src", "components"),
     },
     extensions: [".js", ".jsx"],
-    preferRelative: true
+    preferRelative: true,
   },
   externals: {
     react: {
@@ -38,7 +38,10 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: path.join(__dirname, 'src/scss/fonts/selection.json'), to: path.resolve(__dirname, 'dist/icons/selection.json') },
+        {
+          from: path.join(__dirname, "src/icons/selection.json"),
+          to: path.resolve(__dirname, "dist/icons/selection.json"),
+        },
       ],
     }),
   ],
@@ -62,16 +65,15 @@ module.exports = {
       },
       {
         test: /icomoon.*\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        type: 'asset/resource',
-        generator: { filename: 'icons/[hash][ext][query]' }
+        type: "asset/resource",
+        generator: { filename: "icons/[hash][ext][query]" },
       },
       {
         test: /narmi-matiere.*\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        type: 'asset/resource',
-        generator: { filename: 'fonts/[hash][ext][query]' }
+        type: "asset/resource",
+        generator: { filename: "fonts/[hash][ext][query]" },
       },
     ],
   },
-  devtool: "source-map"
+  devtool: "source-map",
 };
-

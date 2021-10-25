@@ -61,7 +61,9 @@
     }
     // underline while hover
     .nds-navbar-container {
-      .nds-navbar-mainmenu, .nds-navbar-usermenu, .nds-details-container {
+      .nds-navbar-mainmenu,
+      .nds-navbar-usermenu,
+      .nds-details-container {
         & > * {
           border-bottom: 3px solid transparent;
         }

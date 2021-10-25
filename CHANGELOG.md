@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.3.1](https://github.com/narmi/design_system/compare/v1.3.0...v1.3.1) (2021-10-25)
+
+
+### Bug Fixes
+
+* **Input:** set line height and lower font weight ([#276](https://github.com/narmi/design_system/issues/276)) ([c10646e](https://github.com/narmi/design_system/commit/c10646e47a3083532fd59e549d98372d9c2d86a5))
+
 ## [1.3.0](https://github.com/narmi/design_system/compare/v1.2.1...v1.3.0) (2021-10-19)
 
 

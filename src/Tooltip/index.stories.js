@@ -1,16 +1,13 @@
 import React from "react";
 import Tooltip from "./";
+import Button from "../Button";
 
 const Template = (args) => <Tooltip {...args} />;
 
 export const Overview = Template.bind({});
 Overview.args = {
   text: "I am a tooltip, which is a tool for tips",
-  children: (
-    <p style={{ background: "pink", maxWidth: "300px" }}>
-      tooltip trigger area
-    </p>
-  ),
+  children: <Button>Button with a tooltip</Button>,
 };
 
 export default {

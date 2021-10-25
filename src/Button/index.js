@@ -1,16 +1,16 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
-const Button = ({ disabled, type, ...props }) => {
+const Button = forwardRef(({ disabled, type, ...props }, ref) => {
   const className = `nds-button nds-typography ${type}${
     disabled ? " disabled" : ""
   }`;
   return (
-    <a className={className} {...props}>
+    <a ref={ref} className={className} {...props} tabIndex="0">
       <div className="nds-button-content">{props.children}</div>
     </a>
   );
-};
+});
 
 Button.propTypes = {
   /** disables the button when set to `true` */

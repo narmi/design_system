@@ -4,7 +4,7 @@
       "low": { "value": "0 2px 12px 0 rgba(80, 80, 80, 0.05)" },
       "middle": { "value": "0 2px 12px 0 rgba(0, 0, 0, 0.1)" },
       "high": { "value": "0 2px 12px 0 rgba(80, 80, 80, 0.2)" },
-      "default": { "value": "{shadow.elevation.middle}" }
+      "default": { "value": "{shadow.elevation.middle.value}" }
     }
   }
 }

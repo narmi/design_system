@@ -1,7 +1,10 @@
 {
   "font": {
     "lineHeight": {
-      "default": { "value": "1.25" }
+      "smallText": { "value": "1.6" },
+      "bodyText": { "value": "1.25" },
+      "bigText": { "value": "1.1" },
+      "default": { "value": "{font.lineHeight.bodyText.value}" }
     }
   }
 }

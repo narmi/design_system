@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.4.5](https://github.com/narmi/design_system/compare/v1.4.4...v1.4.5) (2021-10-27)
+
+
+### Bug Fixes
+
+* remove optimizeLegibility for headers ([#289](https://github.com/narmi/design_system/issues/289)) ([24883dd](https://github.com/narmi/design_system/commit/24883dde4ef847cb4c2a7f71d8609080a43f8c82))
+
+### [1.4.4](https://github.com/narmi/design_system/compare/v1.4.3...v1.4.4) (2021-10-27)
+
+
+### Bug Fixes
+
+* **Button:** set font size to 16px for PlainButton ([#287](https://github.com/narmi/design_system/issues/287)) ([d9887cd](https://github.com/narmi/design_system/commit/d9887cd41d8eadf01cd4e6d40021d25058ca22ea))
+
+### [1.4.3](https://github.com/narmi/design_system/compare/v1.4.2...v1.4.3) (2021-10-27)
+
+
+### Bug Fixes
+
+* **DateInput:** increase space between input element and calendar ([#288](https://github.com/narmi/design_system/issues/288)) ([ac448c7](https://github.com/narmi/design_system/commit/ac448c7ade66cb0dc0e73b99cafae92e3fc6353c))
+
+### [1.4.2](https://github.com/narmi/design_system/compare/v1.4.1...v1.4.2) (2021-10-27)
+
+
+### Bug Fixes
+
+* **Input:** set font weight for value to 400 ([#286](https://github.com/narmi/design_system/issues/286)) ([cf165c5](https://github.com/narmi/design_system/commit/cf165c5c3848b6061c3ab4e786f2a7c9402b1f65))
+
+### [1.4.1](https://github.com/narmi/design_system/compare/v1.4.0...v1.4.1) (2021-10-27)
+
+
+### Bug Fixes
+
+* **Modal:** hide scrollbar space if not needed ([#285](https://github.com/narmi/design_system/issues/285)) ([1a0c522](https://github.com/narmi/design_system/commit/1a0c522eb48592e7621c1027dded7eea1109063c))
+
+## [1.4.0](https://github.com/narmi/design_system/compare/v1.3.2...v1.4.0) (2021-10-27)
+
+
+### Features
+
+* **Modal:** allow setting maxWidth CSS property on modal container ([b67a6c1](https://github.com/narmi/design_system/commit/b67a6c1dc2d34fdc5f9515d80b6494137f4ffda4))
+
+### [1.3.2](https://github.com/narmi/design_system/compare/v1.3.1...v1.3.2) (2021-10-26)
+
+
+### Bug Fixes
+
+* **Card:** set font size inside card content to be 16px ([#283](https://github.com/narmi/design_system/issues/283)) ([292b205](https://github.com/narmi/design_system/commit/292b20522e9851e0de2fea6e0af0501d11086f00))
+
+### [1.3.1](https://github.com/narmi/design_system/compare/v1.3.0...v1.3.1) (2021-10-25)
+
+
+### Bug Fixes
+
+* **Input:** set line height and lower font weight ([#276](https://github.com/narmi/design_system/issues/276)) ([c10646e](https://github.com/narmi/design_system/commit/c10646e47a3083532fd59e549d98372d9c2d86a5))
+
 ## [1.3.0](https://github.com/narmi/design_system/compare/v1.2.1...v1.3.0) (2021-10-19)
 
 

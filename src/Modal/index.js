@@ -29,7 +29,7 @@ const Modal = ({
       style={{ borderRadius: "8px" }}
     >
       <div className="nds-modal-overlay" onClick={setNotOpen}></div>
-      <div className="nds-modal-container" style={{maxWidth: maxWidth}}>
+      <div className="nds-modal-container" style={{maxWidth: `${maxWidth}px`}}>
         <div className="nds-modal-dismiss" onClick={setNotOpen}>
           <span
             className={"narmi-icon-x"}

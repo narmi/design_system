@@ -7,14 +7,12 @@ import * as RadixTooltip from "@radix-ui/react-tooltip";
  *
  * The tooltip will position itself based on the `side` prop, but will
  * automatically reposition to avoid collisions with viewport edges.
- *
- * Tooltip uses a `ref` on the root node of children to calculate positioning.
  */
 const Tooltip = ({ side = "top", text, children }) => {
   return (
     <RadixTooltip.Root>
       <RadixTooltip.Trigger className="nds-tooltip-trigger" asChild>
-        {children}
+        <span>{children}</span>
       </RadixTooltip.Trigger>
       <RadixTooltip.Content side={side} className="nds-typography nds-tooltip">
         {text}

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.4.4](https://github.com/narmi/design_system/compare/v1.4.3...v1.4.4) (2021-10-27)
+
+
+### Bug Fixes
+
+* **Button:** set font size to 16px for PlainButton ([#287](https://github.com/narmi/design_system/issues/287)) ([d9887cd](https://github.com/narmi/design_system/commit/d9887cd41d8eadf01cd4e6d40021d25058ca22ea))
+
 ### [1.4.3](https://github.com/narmi/design_system/compare/v1.4.2...v1.4.3) (2021-10-27)
 
 

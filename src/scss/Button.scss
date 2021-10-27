@@ -1,76 +1,76 @@
 .nds-button {
-    display: inline-block;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: center;
+  padding: 12px 32px;
+  color: #fff;
+
+  /* mobile buttons have slightly taller padding for ease of tapping */
+  @media (max-width: $mobile_size) {
+    padding: 16px 32px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: RGB(var(--nds-primary-color));
+    border-radius: 24px;
+  }
+  .nds-button-content {
     position: relative;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 16px;
-    text-align: center;
-    padding: 12px 32px;
-    color: #fff;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    white-space: nowrap;
+  }
 
-    /* mobile buttons have slightly taller padding for ease of tapping */
-    @media (max-width: $mobile_size) {
-      padding: 16px 32px;
-    }
-    
+  &:not(.menu):hover::before {
+    filter: brightness(80%);
+  }
+
+  /* menu button styles */
+  &.menu {
+    text-align: left;
+    color: RGB(var(--nds-black));
+    padding: 10px 0;
+    display: block;
+
     &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-color: RGB(var(--nds-primary-color));
-      border-radius: 24px;
-    }
-    .nds-button-content {
-      position: relative;
-      height: 100%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      white-space: nowrap;
+      display: none;
     }
 
-    &:not(.menu):hover::before {
-      filter: brightness(80%);
+    @media (min-width: $desktop-small) {
+      margin: 0 12px;
+      font-weight: 600;
+      display: inline-block;
     }
+  }
 
+  /* put disabled styles below type styles */
+  &.disabled {
+    pointer-events: none;
 
-    /* menu button styles */
-    &.menu {
-      text-align: left;
-      color: RGB(var(--nds-black));
-      padding: 10px 0;
-      display: block;
-
-      &::before {
-        display: none;
-      }
-
-      @media (min-width: $desktop-small) {
-        margin: 0 12px;
-        font-weight: 600;
-        display: inline-block;
-      }
+    &::before {
+      background-color: RGB(var(--nds-lightest-grey));
     }
-
-    /* put disabled styles below type styles */
-    &.disabled {
-      pointer-events: none;
-
-      &::before {
-        background-color: RGB(var(--nds-lightest-grey));
-      }
-    }
+  }
 }
 
 .nds-plain-button {
   cursor: pointer;
   color: RGB(var(--nds-primary-color));
   font-weight: 600;
+  font-size: 16px;
 
   &:hover {
     text-decoration: underline;

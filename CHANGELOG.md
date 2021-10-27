@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.4.3](https://github.com/narmi/design_system/compare/v1.4.2...v1.4.3) (2021-10-27)
+
+
+### Bug Fixes
+
+* **DateInput:** increase space between input element and calendar ([#288](https://github.com/narmi/design_system/issues/288)) ([ac448c7](https://github.com/narmi/design_system/commit/ac448c7ade66cb0dc0e73b99cafae92e3fc6353c))
+
 ### [1.4.2](https://github.com/narmi/design_system/compare/v1.4.1...v1.4.2) (2021-10-27)
 
 

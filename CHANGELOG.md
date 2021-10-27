@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.3.2](https://github.com/narmi/design_system/compare/v1.3.1...v1.3.2) (2021-10-26)
+
+
+### Bug Fixes
+
+* **Card:** set font size inside card content to be 16px ([#283](https://github.com/narmi/design_system/issues/283)) ([292b205](https://github.com/narmi/design_system/commit/292b20522e9851e0de2fea6e0af0501d11086f00))
+
 ### [1.3.1](https://github.com/narmi/design_system/compare/v1.3.0...v1.3.1) (2021-10-25)
 
 

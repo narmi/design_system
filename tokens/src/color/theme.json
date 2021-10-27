@@ -1,0 +1,10 @@
+{
+  "color": {
+    "theme": {
+      "primary": { "value": "{color.narmi.pine.value}" },
+      "secondary": { "value": "{color.narmi.moss.value}" },
+      "tertiary": { "value": "{color.narmi.cactus.value}" },
+      "link": { "value": "{color.theme.secondary}" }
+    }
+  }
+}

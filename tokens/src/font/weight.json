@@ -1,0 +1,10 @@
+{
+  "font": {
+    "weight": {
+      "normal": { "value": "400" },
+      "semibold": { "value": "600" },
+      "bold": { "value": "700" },
+      "default": { "value": "{font.weight.normal.value}" }
+    }
+  }
+}

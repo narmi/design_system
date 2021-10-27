@@ -1,0 +1,10 @@
+{
+  "color": {
+    "text": {
+      "heading": { "value": "{color.narmi.black.value}" },
+      "primary": { "value": "{color.narmi.grey.value}" },
+      "secondary": { "value": "{color.narmi.mediumGrey.value}" },
+      "hint": { "value": "{color.narmi.lightGrey.value}" }
+    }
+  }
+}

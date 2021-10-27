@@ -1,0 +1,13 @@
+{
+  "color": {
+    "background": {
+      "blueGrey": { "value": "#F4F6FA" },
+      "cloudGrey": { "value": "#E9E9E9" },
+      "neutralGrey": { "value": "#F9F9F9" },
+      "smokeGrey": { "value": "#F3F3F3" },
+      "snowGrey": { "value": "#FBFBFB" },
+      "white": { "value": "{color.narmi.white.value}" },
+      "scrim": { "value": "rgba(80, 80, 80, 0.7)" }
+    }
+  }
+}

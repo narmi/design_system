@@ -1,0 +1,9 @@
+{
+  "border": {
+    "size": {
+      "s": { "value": "1px" },
+      "m": { "value": "2px" },
+      "default": { "value": "{border.weight.s}" }
+    }
+  }
+}

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.4.5](https://github.com/narmi/design_system/compare/v1.4.4...v1.4.5) (2021-10-27)
+
+
+### Bug Fixes
+
+* remove optimizeLegibility for headers ([#289](https://github.com/narmi/design_system/issues/289)) ([24883dd](https://github.com/narmi/design_system/commit/24883dde4ef847cb4c2a7f71d8609080a43f8c82))
+
 ### [1.4.4](https://github.com/narmi/design_system/compare/v1.4.3...v1.4.4) (2021-10-27)
 
 

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.4.1](https://github.com/narmi/design_system/compare/v1.4.0...v1.4.1) (2021-10-27)
+
+
+### Bug Fixes
+
+* **Modal:** hide scrollbar space if not needed ([#285](https://github.com/narmi/design_system/issues/285)) ([1a0c522](https://github.com/narmi/design_system/commit/1a0c522eb48592e7621c1027dded7eea1109063c))
+
 ## [1.4.0](https://github.com/narmi/design_system/compare/v1.3.2...v1.4.0) (2021-10-27)
 
 

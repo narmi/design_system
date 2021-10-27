@@ -22,6 +22,7 @@
     position: fixed;
     background: RGB(var(--nds-white));
     border-radius: 8px;
+    max-width: 500px;
   }
 
   &[data-open="true"] {

@@ -13,29 +13,18 @@ i.e.
     />
 */
 
-const RadioButtons = (props) => {
-  const [radioOptions, setRadioOptions] = useState([]);
-
-  useEffect(() => {
-    setRadioOptions(props.options);
-  }, []);
-
-  const { initialValue, ...nativeElementProps } = props;
-
+const RadioButtons = ({ options, name, initialValue, ...containerProps }) => {
   return (
-    <div
-      className="nds-radiobutton-group nds-typography"
-      {...nativeElementProps}
-    >
-      {Object.entries(radioOptions).map(([label, value]) => (
+    <div className="nds-radiobutton-group nds-typography" {...containerProps}>
+      {Object.entries(options).map(([label, value]) => (
         <div className="nds-radiobutton-container" key={value}>
-          <label className="nds-label" key={label}>
+          <label className="nds-label">
             {label}
             <input
               type="radio"
               defaultChecked={initialValue === value}
               value={value}
-              name={props.name}
+              name={name}
             />
             <div className="nds-checkmark"></div>
           </label>
@@ -47,12 +36,11 @@ const RadioButtons = (props) => {
 
 RadioButtons.propTypes = {
   options: PropTypes.object,
-  disabled: PropTypes.bool,
   name: PropTypes.string,
+  initialValue: PropTypes.any,
 };
 
 RadioButtons.defaultProps = {
-  disabled: false,
   initialValue: false,
 };
 

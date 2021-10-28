@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.0](https://github.com/narmi/design_system/compare/v1.6.0...v1.7.0) (2021-10-28)
+
+
+### Features
+
+* **Modal:** add styles and support for wide detail modals ([#280](https://github.com/narmi/design_system/issues/280)) ([5f6bbf5](https://github.com/narmi/design_system/commit/5f6bbf546dc518f24cc93bae746a81d5b91391c0))
+
 ## [1.6.0](https://github.com/narmi/design_system/compare/v1.5.0...v1.6.0) (2021-10-28)
 
 

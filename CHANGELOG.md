@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.0](https://github.com/narmi/design_system/compare/v1.4.5...v1.5.0) (2021-10-28)
+
+
+### Features
+
+* add Tooltip component ([8bc6e0c](https://github.com/narmi/design_system/commit/8bc6e0cfcd456eed6b0b3578f6a706f2c47308d3))
+
 ### [1.4.5](https://github.com/narmi/design_system/compare/v1.4.4...v1.4.5) (2021-10-27)
 
 

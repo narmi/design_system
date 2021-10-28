@@ -71,7 +71,7 @@ Modal.propTypes = {
   /** JSX content to render within the actions area of the Modal */
   actions: PropTypes.node,
   /** Additional classes to pass to the root Modal element */
-  classes: PropTypes.string,
+  classes: PropTypes.oneOf(["center", "right", "details", "wide details"]),
   /** Sets a max-width for the Modal container */
   maxWidth: PropTypes.oneOf([PropTypes.number, PropTypes.string])
 };

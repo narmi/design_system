@@ -1,66 +1,66 @@
 /* Contains styles used purely for stories, e.g. subtitles for components */
 
-@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@600&display=swap&subset=latin');
+@import url("https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@600&display=swap&subset=latin");
 
 .storybook-2col {
-    display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: start;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: start;
 }
 
 .storybook-3col {
-    display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: start;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
 }
 
 .storybook-4col {
-    display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(4, 1fr);
-    align-items: start;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: start;
 }
 
 .storybook-example-list {
-    display: grid;
-    grid-template-columns: [description] 12rem [example] auto;
-    align-items: center;
-    gap: 16px;
+  display: grid;
+  grid-template-columns: [description] 12rem [example] auto;
+  align-items: center;
+  gap: 16px;
 }
 
 .storybook-example-list.storybook-3col div {
-    display: grid;
-    grid-template-columns: [description] 12rem [example] auto;
+  display: grid;
+  grid-template-columns: [description] 12rem [example] auto;
 }
 
 .storybook-example-list dt {
-    font-family: 'Hind Madurai', sans-serif;
-    font-weight: 600;
-    size: 18px;
-    line-height: 50px;
-    color: #8C8C8C;
+  font-family: "Hind Madurai", sans-serif;
+  font-weight: 600;
+  size: 18px;
+  line-height: 50px;
+  color: #8c8c8c;
 }
 
 .storybook-example-list dd {
-    margin-inline-start: 0;
+  margin-inline-start: 0;
 }
 
 .icon-demo {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .icon-demo-box {
-    width: 8em;
-    height: 5em;
-    text-align: center;
-    word-break: break-word;
-    margin-bottom: 1em;
+  width: 8em;
+  height: 5em;
+  text-align: center;
+  word-break: break-word;
+  margin-bottom: 1em;
 }
 
 .icon-demo-icon {
-    font-size: 2em;
-    display: block;
+  font-size: 2em;
+  display: block;
 }

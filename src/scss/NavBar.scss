@@ -62,11 +62,16 @@
     }
     // underline while hover
     .nds-navbar-container {
-      .nds-navbar-mainmenu, .nds-navbar-usermenu, .nds-details-container, .accountMenu-container {
-        & > .nds-button.menu, & > .nds-details {
+      .nds-navbar-mainmenu,
+      .nds-navbar-usermenu,
+      .nds-details-container,
+      .accountMenu-container {
+        & > .nds-button.menu,
+        & > .nds-details {
           border-bottom: 3px solid transparent;
         }
-        & > .nds-button.menu:hover, & > .nds-details:hover {
+        & > .nds-button.menu:hover,
+        & > .nds-details:hover {
           border-bottom: 3px solid RGB(var(--nds-primary-color));
         }
       }

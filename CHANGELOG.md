@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.0](https://github.com/narmi/design_system/compare/v1.5.0...v1.6.0) (2021-10-28)
+
+
+### Features
+
+* **RadioButtons:** add RadioButtons ([#294](https://github.com/narmi/design_system/issues/294)) ([9e77354](https://github.com/narmi/design_system/commit/9e77354bfbf118e79e319f7f742c6fafdb28a658))
+
 ## [1.5.0](https://github.com/narmi/design_system/compare/v1.4.5...v1.5.0) (2021-10-28)
 
 

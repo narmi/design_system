@@ -21,7 +21,7 @@ const NavBar = (props) => {
           <ButtonBar className="nds-navbar-usermenu">
             <Details
               summary={
-                <Button type="menu">{props.user.email || "User"}</Button>
+                <Button type="menu">{props.user.username || "User"}</Button>
               }
               key={name}
               React={props.React}

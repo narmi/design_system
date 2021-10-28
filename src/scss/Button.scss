@@ -44,6 +44,7 @@
     color: RGB(var(--nds-black));
     padding: 10px 0;
     display: block;
+    font-size: 20px;
 
     &::before {
       display: none;
@@ -53,6 +54,7 @@
       margin: 0 12px;
       font-weight: 600;
       display: inline-block;
+      font-size: 16px;
     }
   }
 

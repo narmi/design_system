@@ -24,6 +24,13 @@
       width: min-content;
       transform: translate(-50%, 40px);
     }
+    .nds-modal.wide > .nds-modal-container {
+      width: 100vw;
+      transform: none;
+      position: fixed;
+      left: 0;
+      top: 80px;
+    }
     & .nds-details-container {
       margin: 0;
       padding: 20px 40px;

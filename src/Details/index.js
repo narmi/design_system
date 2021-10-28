@@ -15,7 +15,7 @@ Chevron.propTypes = {
   setOpen: PropTypes.func,
 };
 
-const Details = ({ summary, children, React }) => {
+const Details = ({ summary, children, React, type }) => {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -28,7 +28,7 @@ const Details = ({ summary, children, React }) => {
       >
         {summary}
       </div>
-      <Modal classes="details" open={open} setOpen={setOpen}>
+      <Modal classes={type} open={open} setOpen={setOpen} React={React}>
         <div className="nds-details-container">{children}</div>
       </Modal>
       <Chevron open={open} setOpen={setOpen} />
@@ -39,10 +39,12 @@ const Details = ({ summary, children, React }) => {
 Details.propTypes = {
   summary: PropTypes.node,
   children: PropTypes.node,
+  type: PropTypes.oneOf(["details", "wide details"]),
 };
 
 Details.defaultProps = {
   summary: null,
+  type: "details",
   React,
 };
 

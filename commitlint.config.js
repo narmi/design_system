@@ -6,5 +6,5 @@
  * commitlint is run via a husty precommit hook.
  */
 module.exports = {
-	extends: ['@commitlint/config-conventional']
+  extends: ["@commitlint/config-conventional"],
 };

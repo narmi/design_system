@@ -7,15 +7,15 @@ $column_count: 12;
   padding: 0 20px;
 
   @media (max-width: $desktop-small) {
-    max-width: $desktop-small
+    max-width: $desktop-small;
   }
 
   @media (max-width: $tablet) {
-    max-width: $tablet
+    max-width: $tablet;
   }
 
   @media (max-width: $mobile_size) {
-    max-width: $mobile_size
+    max-width: $mobile_size;
   }
 }
 

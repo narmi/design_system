@@ -1,18 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Button = ({ disabled, type, ...props }) => {
+const Button = ({ disabled, type, children, ...props }) => {
   const className = `nds-button nds-typography ${type}${
     disabled ? " disabled" : ""
   }`;
   return (
     <a className={className} {...props}>
-      <div className="nds-button-content">{props.children}</div>
+      <div className="nds-button-content">{children}</div>
     </a>
   );
 };
 
 Button.propTypes = {
+  /** The children passed to `Button` are rendered as the button label */
+  children: PropTypes.node.isRequired,
   /** disables the button when set to `true` */
   disabled: PropTypes.bool,
   /** type of button to render */

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.7.2](https://github.com/narmi/design_system/compare/v1.7.1...v1.7.2) (2021-11-01)
+
+
+### Bug Fixes
+
+* make Tooltip importable ([3cecda8](https://github.com/narmi/design_system/commit/3cecda89ed90e8ee4ef0ba6355d06636cd39eed2))
+
 ### [1.7.1](https://github.com/narmi/design_system/compare/v1.7.0...v1.7.1) (2021-11-01)
 
 

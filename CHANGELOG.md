@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.7.3](https://github.com/narmi/design_system/compare/v1.7.2...v1.7.3) (2021-11-01)
+
+
+### Bug Fixes
+
+* remove tooltip from dist ([a6dd180](https://github.com/narmi/design_system/commit/a6dd18092ee7dd2e9814687dbbb9f2ec34195b97))
+
 ### [1.7.2](https://github.com/narmi/design_system/compare/v1.7.1...v1.7.2) (2021-11-01)
 
 

@@ -47,7 +47,7 @@ const Modal = ({
           ""
         )}
         {children}
-        <div className="nds-modal-action-row">{actions}</div>
+        {actions && <div className="nds-modal-action-row">{actions}</div>}
       </div>
     </div>
   );

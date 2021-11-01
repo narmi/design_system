@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.7.1](https://github.com/narmi/design_system/compare/v1.7.0...v1.7.1) (2021-11-01)
+
+
+### Bug Fixes
+
+* **Modal:** condition showing action row element on if actions are passed in ([#306](https://github.com/narmi/design_system/issues/306)) ([3dacefd](https://github.com/narmi/design_system/commit/3dacefd1242487dcf2afccde806934fa3deb5ca8))
+
 ## [1.7.0](https://github.com/narmi/design_system/compare/v1.6.0...v1.7.0) (2021-10-28)
 
 

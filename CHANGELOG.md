@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.7.5](https://github.com/narmi/design_system/compare/v1.7.4...v1.7.5) (2021-11-02)
+
+
+### Bug Fixes
+
+* **Button, PlainButton:** prevent props.className from overriding calculated className ([#316](https://github.com/narmi/design_system/issues/316)) ([00060b8](https://github.com/narmi/design_system/commit/00060b8391c38b8e9a6d40d6976e163b7753bd70))
+
 ### [1.7.4](https://github.com/narmi/design_system/compare/v1.7.3...v1.7.4) (2021-11-02)
 
 

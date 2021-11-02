@@ -2,7 +2,7 @@ import React from "react";
 
 const PlainButton = (props) => {
   return (
-    <a className="nds-plain-button" {...props}>
+    <a {...props} className="nds-plain-button">
       {props.children ? props.children : ""}
     </a>
   );

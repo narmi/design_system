@@ -7,7 +7,7 @@
   line-height: 16px;
   text-align: center;
   padding: 12px 32px;
-  color: #fff;
+  color: RGB(var(--nds-white));
 
   /* mobile buttons have slightly taller padding for ease of tapping */
   @media (max-width: $mobile_size) {
@@ -24,6 +24,7 @@
     background-color: RGB(var(--nds-primary-color));
     border-radius: 24px;
   }
+
   .nds-button-content {
     position: relative;
     height: 100%;
@@ -36,6 +37,10 @@
 
   &:not(.menu):hover::before {
     filter: brightness(80%);
+  }
+
+  &:not(.menu):hover {
+    color: RGB(var(--nds-white));
   }
 
   /* menu button styles */

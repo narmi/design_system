@@ -6,7 +6,7 @@ const Button = ({ disabled, type, children, ...props }) => {
     disabled ? " disabled" : ""
   }`;
   return (
-    <a className={className} {...props}>
+    <a {...props} className={className}>
       <div className="nds-button-content">{children}</div>
     </a>
   );

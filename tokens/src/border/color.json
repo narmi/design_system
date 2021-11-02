@@ -1,0 +1,9 @@
+{
+  "border": {
+    "color": {
+      "primary": { "value": "{color.theme.primary.value}" },
+      "light": { "value": "{color.narmi.lightGrey.value}" },
+      "default": { "value": "{border.color.light.value}" }
+    }
+  }
+}

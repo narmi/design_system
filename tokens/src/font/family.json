@@ -1,0 +1,9 @@
+{
+  "font": {
+    "family": {
+      "heading": { "value": "'Narmi Matiere', serif" },
+      "body": { "value": "Mulish, Helvetica, sans-serif" },
+      "default": { "value": "{font.family.body.value}" }
+    }
+  }
+}

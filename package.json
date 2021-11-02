@@ -1,6 +1,6 @@
 {
   "name": "@narmi/design_system",
-  "version": "1.7.4",
+  "version": "1.7.5",
   "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
   "files": [
@@ -8,7 +8,9 @@
   ],
   "scripts": {
     "watch": "watch 'npm run build' src",
-    "build": "webpack --mode=production",
+    "build:tokens": "style-dictionary build --config=./tokens/config.js",
+    "build:components": "webpack --mode=production",
+    "build": "npm run build:tokens && npm run build:components",
     "prepublish": "npm run build",
     "test": "jest --passWithNoTests",
     "release": "semantic-release"
@@ -52,6 +54,7 @@
     "react-test-renderer": "^17.0.2",
     "sass-loader": "^12.1.0",
     "semantic-release": "^18.0.0",
+    "style-dictionary": "^3.0.3",
     "style-loader": "^0.23.1",
     "watch": "^1.0.2",
     "webpack": "^5.50.0",

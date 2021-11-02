@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.7.4](https://github.com/narmi/design_system/compare/v1.7.3...v1.7.4) (2021-11-02)
+
+
+### Bug Fixes
+
+* **Modal:** padding around dismiss icon should be 12px ([#312](https://github.com/narmi/design_system/issues/312)) ([598e1ad](https://github.com/narmi/design_system/commit/598e1ad7e52bfcc1a5ff63607380583b0d7e1450))
+
 ### [1.7.3](https://github.com/narmi/design_system/compare/v1.7.2...v1.7.3) (2021-11-01)
 
 

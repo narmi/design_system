@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.0](https://github.com/narmi/design_system/compare/v1.7.5...v1.8.0) (2021-11-03)
+
+
+### Features
+
+* add Tooltip to dist; add 'admin user' icon ([510ff35](https://github.com/narmi/design_system/commit/510ff3584f6c8cd90121b40ea81c599eaa0a2d67))
+
 ### [1.7.5](https://github.com/narmi/design_system/compare/v1.7.4...v1.7.5) (2021-11-02)
 
 

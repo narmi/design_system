@@ -1,19 +1,19 @@
 @font-face {
-  font-family: "icomoon";
-  src: url("fonts/icomoon.eot?i22uhu");
-  src: url("fonts/icomoon.eot?i22uhu#iefix") format("embedded-opentype"),
-    url("fonts/icomoon.ttf?i22uhu") format("truetype"),
-    url("fonts/icomoon.woff?i22uhu") format("woff"),
-    url("fonts/icomoon.svg?i22uhu#icomoon") format("svg");
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?jttgec');
+  src:  url('fonts/icomoon.eot?jttgec#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.woff2?jttgec') format('woff2'),
+    url('fonts/icomoon.ttf?jttgec') format('truetype'),
+    url('fonts/icomoon.woff?jttgec') format('woff'),
+    url('fonts/icomoon.svg?jttgec#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="narmi-icon-"],
-[class*=" narmi-icon-"] {
+[class^="narmi-icon-"], [class*=" narmi-icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "icomoon" !important;
+  font-family: 'icomoon' !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -26,6 +26,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.narmi-icon-admin-user:before {
+  content: "\ea35";
+}
 .narmi-icon-dollar-bill-line:before {
   content: "\ea32";
 }
@@ -40,6 +43,31 @@
 }
 .narmi-icon-blob:before {
   content: "\ea30";
+}
+.narmi-icon-bill:before {
+  content: "\e90c";
+}
+.narmi-icon-venmo-logo:before {
+  content: "\e90b";
+  color: #3d95ce;
+}
+.narmi-icon-face-id:before {
+  content: "\e909";
+}
+.narmi-icon-office:before {
+  content: "\e904";
+}
+.narmi-icon-library:before {
+  content: "\e921";
+}
+.narmi-icon-file-text:before {
+  content: "\e922";
+}
+.narmi-icon-profile:before {
+  content: "\e923";
+}
+.narmi-icon-credit-card:before {
+  content: "\e93f";
 }
 .narmi-icon-solid-circle:before {
   content: "\ea2f";
@@ -928,29 +956,4 @@
 }
 .narmi-icon-settings-gear:before {
   content: "\e907";
-}
-.narmi-icon-bill:before {
-  content: "\e90c";
-}
-.narmi-icon-venmo-logo:before {
-  content: "\e90b";
-  color: #3d95ce;
-}
-.narmi-icon-face-id:before {
-  content: "\e909";
-}
-.narmi-icon-office:before {
-  content: "\e904";
-}
-.narmi-icon-library:before {
-  content: "\e921";
-}
-.narmi-icon-file-text:before {
-  content: "\e922";
-}
-.narmi-icon-profile:before {
-  content: "\e923";
-}
-.narmi-icon-credit-card:before {
-  content: "\e93f";
 }

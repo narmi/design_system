@@ -65,7 +65,7 @@
   "author": "@fkotsian, @reshav-abraham",
   "license": "SEE LICENSE IN LICENSE.md",
   "dependencies": {
-    "@radix-ui/react-tooltip": "^0.1.1",
+    "@tippyjs/react": "^4.2.6",
     "flatpickr": "^4.6.9",
     "moment": "^2.29.1"
   },

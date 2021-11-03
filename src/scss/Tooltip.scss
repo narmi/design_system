@@ -1,17 +1,17 @@
-.nds-tooltip-trigger {
-  cursor: help;
-}
-
 .nds-tooltip {
-  color: #fff;
-  background-color: #333;
-  text-align: center;
-  padding: 16px;
   border-radius: 8px;
-  max-width: 280px;
+  background-color: #333;
+  color: #fff;
+  font-size: 16px;
+  font-family: var(--nds-font-family);
   box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.2);
-}
 
-.nds-tooltip-arrow {
-  fill: #333;
+  .tippy-content {
+    text-align: center;
+    padding: 16px;
+  }
+
+  .tippy-arrow {
+    background-color: #333;
+  }
 }

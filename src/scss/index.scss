@@ -18,6 +18,10 @@ $desktop-big: 1440px;
   --subdued-5-opacity: 0.05;
 }
 
+// vendor styles
+@import "~tippy.js/dist/tippy.css";
+
+// base styles
 @import "fonts.css";
 @import "typography";
 

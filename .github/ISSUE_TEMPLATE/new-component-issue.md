@@ -5,11 +5,19 @@ title: ""
 labels: New Component
 ---
 
-### Description
+### Short Description
+
 
 ### Mockup
 
 <!-- insert relevant screenshots or figma/zerohieght links -->
+
+### Responsibilities
+
+<!-- what should the component be responsible for doing on its own? -->
+- 
+- 
+- 
 
 ### Props Signature
 

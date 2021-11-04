@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.0](https://github.com/narmi/design_system/compare/v1.8.0...v1.9.0) (2021-11-04)
+
+
+### Features
+
+* **Tooltip:** add  prop to control styling behavior of trigger wrapper ([2e0354c](https://github.com/narmi/design_system/commit/2e0354cd86136f0a855cd12b2f98c4f92fab27de))
+
 ## [1.8.0](https://github.com/narmi/design_system/compare/v1.7.5...v1.8.0) (2021-11-03)
 
 

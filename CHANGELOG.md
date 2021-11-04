@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.9.1](https://github.com/narmi/design_system/compare/v1.9.0...v1.9.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* **Input:** increase space very slightly between label and input value ([93a69f4](https://github.com/narmi/design_system/commit/93a69f408a479af8beb2b65f75de220ebe26d89a))
+
 ## [1.9.0](https://github.com/narmi/design_system/compare/v1.8.0...v1.9.0) (2021-11-04)
 
 

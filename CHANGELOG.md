@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.9.2](https://github.com/narmi/design_system/compare/v1.9.1...v1.9.2) (2021-11-04)
+
+
+### Bug Fixes
+
+* **Input:** make icon smaller if shown ([#330](https://github.com/narmi/design_system/issues/330)) ([15d591b](https://github.com/narmi/design_system/commit/15d591b9f7883f5efd75ceda1859386777e644da))
+
 ### [1.9.1](https://github.com/narmi/design_system/compare/v1.9.0...v1.9.1) (2021-11-04)
 
 

@@ -20,12 +20,22 @@ const Error = ({ error }) => {
   );
 };
 
-const Input = ({ id, label, icon, disabled, decoration, error, ...props }) => {
+const Input = ({
+  id,
+  label,
+  icon,
+  disabled,
+  decoration,
+  error,
+  search,
+  ...props
+}) => {
   const className = [
     "nds-input",
     disabled ? "disabled" : "",
     props.multiline ? "multiline" : "",
     error ? "error" : "",
+    search ? "search" : "",
   ].join(" ");
 
   return (

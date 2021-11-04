@@ -1,6 +1,6 @@
 const React = require("react");
 
-require("./scss/index.scss");
+require("./index.scss");
 
 const Input = require("./Input").default;
 const DateInput = require("./DateInput").default;

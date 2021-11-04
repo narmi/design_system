@@ -21,21 +21,25 @@ $desktop-big: 1440px;
 // vendor styles
 @import "~tippy.js/dist/tippy.css";
 
+// webfont
+@import "fonts/fonts.css";
+
+// icons
+@import "icons/icons.css";
+
 // base styles
-@import "fonts.css";
-@import "typography";
+@import "base-styles/typography";
+@import "base-styles/grid";
 
 // Components
-@import "RadioButtons";
-@import "Input";
-@import "DateInput";
-@import "Button";
-@import "Grid";
-@import "Card";
-@import "Modal";
-@import "NavBar";
-@import "Details";
-@import "CheckBox";
-@import "Dropdown";
-@import "Tooltip";
-@import "icons.css";
+@import "RadioButtons/";
+@import "Input/";
+@import "DateInput/";
+@import "Button/";
+@import "Card/";
+@import "Modal/";
+@import "NavBar/";
+@import "Details/";
+@import "CheckBox/";
+@import "Dropdown/";
+@import "Tooltip/";

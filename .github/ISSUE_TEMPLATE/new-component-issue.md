@@ -13,8 +13,14 @@ labels: New Component
 <!-- insert relevant screenshots or figma/zerohieght links -->
 
 ### Responsibilities
+<!-- what are the functional boundaries of this component? -->
 
-<!-- what should the component be responsible for doing on its own? -->
+**This component should be responsible for the following:**
+- 
+- 
+- 
+
+**This component should NOT be responsible for...**
 - 
 - 
 - 

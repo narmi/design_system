@@ -65,6 +65,10 @@ export const AsColorInput = () => {
   );
 };
 
+export const Search = () => {
+  return <TextInput search />;
+};
+
 export default {
   title: "Components/TextInput",
   component: TextInput,

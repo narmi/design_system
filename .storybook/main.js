@@ -13,6 +13,7 @@ module.exports = {
   webpackFinal: (config) => {
     config.resolve.alias = {
       dist: path.resolve(__dirname, "../dist"),
+      helpers: path.resolve(__dirname, "helpers"),
     };
     return config;
   },

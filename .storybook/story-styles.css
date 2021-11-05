@@ -2,6 +2,22 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@600&display=swap&subset=latin");
 
+:root {
+  --docs-code-family: Consolas, Monaco, monospace;
+}
+
+code {
+  font-family: var(--docs-code-family);
+}
+
+.color--azul500 {
+  color: #3664b5;
+}
+
+.sbdocs-h1 {
+  padding-bottom: 1em !important;
+}
+
 .storybook-2col {
   display: grid;
   gap: 16px;
@@ -63,4 +79,28 @@
 .icon-demo-icon {
   font-size: 2em;
   display: block;
+}
+
+.docs-tokenTable {
+  font-family: var(--docs-code-family);
+  font-size: 14px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.docs-tokenTable th,
+.docs-tokenTable td {
+  padding: 8px 4px;
+}
+
+.docs-tokenTable th {
+  text-align: left;
+}
+
+.docs-tokenTable thead {
+  border-bottom: 1px solid #4c4c4c;
+}
+
+.docs-tokenTable tbody tr:not(:last-child) {
+  border-bottom: 1px solid #d9d9d9;
 }

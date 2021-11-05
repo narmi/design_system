@@ -1,0 +1,15 @@
+import { Meta, Story } from "@storybook/addon-docs";
+import { layout } from "dist/tokens/js/manifest";
+import TokenTable, { toTokenRows } from "helpers/TokenTable";
+
+<Meta title="Design Tokens/Layout" />
+
+# Layout Tokens
+
+## Spacing
+
+All spacing values are divisible by 4.
+
+<Story name="Space">
+  <TokenTable rows={toTokenRows(layout, "space")} />
+</Story>

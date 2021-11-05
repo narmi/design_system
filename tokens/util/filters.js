@@ -4,18 +4,16 @@
 
 const filters = [
   // filter that passes only the tokens that should be in rgbColor.css dist
-  // includes: color tokens
-  // excludes: denylist colors, brand offset colors, theme colors, text colors
+  // includes only base colors
   {
     name: "rgbColorFilter",
     matcher: ({ attributes }) => {
       const { category, type, item } = attributes;
       const isColor = category === "color";
-      const isThemeColor = type === "theme";
+      const isBaseColor = type === "narmi";
       const isOffsetColor = new RegExp(/[0-9]/).test(item);
-      const isDeniedColor = type === "background" && item === "white"; // avoids naming collision with base color white
 
-      return isColor && !isOffsetColor && !isThemeColor && !isDeniedColor;
+      return isColor && isBaseColor && !isOffsetColor;
     },
   },
 ];

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.0](https://github.com/narmi/design_system/compare/v1.9.2...v1.10.0) (2021-11-05)
+
+
+### Features
+
+* **TextInput:** add search input styling ([#332](https://github.com/narmi/design_system/issues/332)) ([fa18103](https://github.com/narmi/design_system/commit/fa18103730eaac95dcfe41878ac2968df3b800f8))
+
 ### [1.9.2](https://github.com/narmi/design_system/compare/v1.9.1...v1.9.2) (2021-11-04)
 
 

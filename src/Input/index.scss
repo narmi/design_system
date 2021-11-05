@@ -51,9 +51,13 @@
     }
   }
 
+  &.search .nds-input-box {
+    padding: 3px 0.8em;
+  }
+
   .nds-input-icon {
     display: flex;
-    font-size: 2em;
+    font-size: 1.25em;
     padding: 0 0.3em 0 0;
     opacity: 0.5;
   }

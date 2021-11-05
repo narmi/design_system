@@ -9,6 +9,7 @@ const TextInput = (props) => {
   const {
     formatter,
     multiline,
+    search,
     defaultValue,
     onChange,
     onBlur,

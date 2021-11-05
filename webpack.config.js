@@ -39,7 +39,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: path.join(__dirname, "src/scss/fonts/selection.json"),
+          from: path.join(__dirname, "src/icons/selection.json"),
           to: path.resolve(__dirname, "dist/icons/selection.json"),
         },
       ],

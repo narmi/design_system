@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.10.2](https://github.com/narmi/design_system/compare/v1.10.1...v1.10.2) (2021-11-05)
+
+
+### Bug Fixes
+
+* **RadioButtons:** explicitly set font weight on label ([#347](https://github.com/narmi/design_system/issues/347)) ([af5044d](https://github.com/narmi/design_system/commit/af5044dd4438fbf013404f0a5067647245b3e978))
+
+### [1.10.1](https://github.com/narmi/design_system/compare/v1.10.0...v1.10.1) (2021-11-05)
+
+
+### Bug Fixes
+
+* **Card:** set line height for header ([#346](https://github.com/narmi/design_system/issues/346)) ([f8fe7af](https://github.com/narmi/design_system/commit/f8fe7af7df650bc544bfdc1093fc36474a63592c))
+
+## [1.10.0](https://github.com/narmi/design_system/compare/v1.9.2...v1.10.0) (2021-11-05)
+
+
+### Features
+
+* **TextInput:** add search input styling ([#332](https://github.com/narmi/design_system/issues/332)) ([fa18103](https://github.com/narmi/design_system/commit/fa18103730eaac95dcfe41878ac2968df3b800f8))
+
+### [1.9.2](https://github.com/narmi/design_system/compare/v1.9.1...v1.9.2) (2021-11-04)
+
+
+### Bug Fixes
+
+* **Input:** make icon smaller if shown ([#330](https://github.com/narmi/design_system/issues/330)) ([15d591b](https://github.com/narmi/design_system/commit/15d591b9f7883f5efd75ceda1859386777e644da))
+
 ### [1.9.1](https://github.com/narmi/design_system/compare/v1.9.0...v1.9.1) (2021-11-04)
 
 

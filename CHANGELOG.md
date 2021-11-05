@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.10.2](https://github.com/narmi/design_system/compare/v1.10.1...v1.10.2) (2021-11-05)
+
+
+### Bug Fixes
+
+* **RadioButtons:** explicitly set font weight on label ([#347](https://github.com/narmi/design_system/issues/347)) ([af5044d](https://github.com/narmi/design_system/commit/af5044dd4438fbf013404f0a5067647245b3e978))
+
 ### [1.10.1](https://github.com/narmi/design_system/compare/v1.10.0...v1.10.1) (2021-11-05)
 
 

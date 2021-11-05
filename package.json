@@ -13,7 +13,10 @@
     "build": "npm run build:tokens && npm run build:components",
     "prepublish": "npm run build",
     "test": "jest --passWithNoTests",
-    "release": "semantic-release"
+    "release": "semantic-release",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "chromatic": "npx chromatic --project-token $CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes"
   },
   "peerDependencies": {
     "react": "^16.12.0",
@@ -30,6 +33,13 @@
     "@commitlint/config-conventional": "^13.2.0",
     "@semantic-release/changelog": "^6.0.0",
     "@semantic-release/git": "^10.0.0",
+    "@storybook/addon-a11y": "^6.3.12",
+    "@storybook/addon-actions": "^6.3.7",
+    "@storybook/addon-essentials": "^6.3.7",
+    "@storybook/addon-links": "^6.3.7",
+    "@storybook/builder-webpack5": "^6.3.12",
+    "@storybook/manager-webpack5": "^6.3.12",
+    "@storybook/react": "^6.3.7",
     "@testing-library/react": "^12.0.0",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",

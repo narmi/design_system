@@ -1,10 +1,10 @@
 const path = require("path");
 
 module.exports = {
-  stories: [
-    "../../src/**/*.stories.mdx",
-    "../../src/**/*.stories.@(js|jsx|ts|tsx)",
-  ],
+  core: {
+    builder: "webpack5",
+  },
+  stories: ["../**/*.stories.@(mdx|js|jsx|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -12,7 +12,7 @@ module.exports = {
   ],
   webpackFinal: (config) => {
     config.resolve.alias = {
-      dist: path.resolve(__dirname, "../../dist"),
+      dist: path.resolve(__dirname, "../dist"),
     };
     return config;
   },

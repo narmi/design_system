@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.10.1](https://github.com/narmi/design_system/compare/v1.10.0...v1.10.1) (2021-11-05)
+
+
+### Bug Fixes
+
+* **Card:** set line height for header ([#346](https://github.com/narmi/design_system/issues/346)) ([f8fe7af](https://github.com/narmi/design_system/commit/f8fe7af7df650bc544bfdc1093fc36474a63592c))
+
 ## [1.10.0](https://github.com/narmi/design_system/compare/v1.9.2...v1.10.0) (2021-11-05)
 
 

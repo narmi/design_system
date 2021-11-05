@@ -1,0 +1,13 @@
+import { Meta, Story } from "@storybook/addon-docs";
+import { layout } from "dist/tokens/js/manifest";
+import TokenTable, { toTokenRows } from "helpers/TokenTable";
+
+<Meta title="Design Tokens/Layout" />
+
+# Layout Tokens
+
+## Spacing
+
+<Story name="Space">
+  <TokenTable previewType="spacing" rows={toTokenRows(layout, "space")} />
+</Story>

@@ -5,6 +5,8 @@
  * and are registered/referenced in the style dictionary config file.
  */
 
+const tinycolor = require("tinycolor2");
+
 /**
  * Used for filtering tokens in transform `matcher` functions.
  * Checks to see if any of the attribues in `arr` match the given token attribute.
@@ -68,6 +70,17 @@ const nameTransforms = [
       return `bgColor-${item}`;
     },
   },
+  {
+    // custom naming RGB list colors
+    // (color only)
+    name: "custom/name/rgbList",
+    type: "name",
+    matcher: ({ attributes }) => attributes.category === "color",
+    transformer: ({ attributes }) => {
+      const { item } = attributes;
+      return `rgb-${item}`;
+    },
+  },
 ];
 
 /**
@@ -80,6 +93,16 @@ const valueTransforms = [
     type: "value",
     matcher: ({ attributes }) => attributes.type === "alpha",
     transformer: ({ original }) => original.value,
+  },
+  {
+    // transforms a solid color into a list of its RGB components
+    name: "custom/value/rgbList",
+    type: "value",
+    matcher: ({ attributes }) => attributes.category === "color",
+    transformer: ({ original }) => {
+      const { r, g, b } = tinycolor(original.value).toRgb();
+      return `${r}, ${g}, ${b}`;
+    },
   },
 ];
 

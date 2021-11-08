@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.10.5](https://github.com/narmi/design_system/compare/v1.10.4...v1.10.5) (2021-11-08)
+
+
+### Bug Fixes
+
+* **RadioButtons:** properly set line height on label, and unchecked colour on checkbox ([#352](https://github.com/narmi/design_system/issues/352)) ([514df8b](https://github.com/narmi/design_system/commit/514df8b00c3d83120d860db77425ea91d55635ed))
+
 ### [1.10.4](https://github.com/narmi/design_system/compare/v1.10.3...v1.10.4) (2021-11-08)
 
 

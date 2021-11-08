@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.10.3](https://github.com/narmi/design_system/compare/v1.10.2...v1.10.3) (2021-11-08)
+
+
+### Bug Fixes
+
+* **Card:** remove box shadow from hoverable state ([#350](https://github.com/narmi/design_system/issues/350)) ([8ae2cd9](https://github.com/narmi/design_system/commit/8ae2cd9ad4bd2baee37b7ece76d850bf81e4a7fe))
+
 ### [1.10.2](https://github.com/narmi/design_system/compare/v1.10.1...v1.10.2) (2021-11-05)
 
 

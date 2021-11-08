@@ -1,6 +1,6 @@
 import React from "react";
-import "../story-styles.css";
-import "../../dist/style.css";
+import "./story-styles.css";
+import "dist/style.css";
 import { NdsStyles } from "./decorators";
 import Layout from "./Layout";
 

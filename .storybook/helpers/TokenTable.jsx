@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import cc from "classcat";
+import { useClipboard } from "use-clipboard-copy";
 
 /**
  * rendereers responsible for showing token previews
@@ -53,6 +55,32 @@ export const toTokenRows = (category, typeKey) =>
   }));
 
 /**
+ * component with clipboard functionality to render copyable cells
+ */
+const CopyableCell = ({ name }) => {
+  const clipboard = useClipboard({
+    copiedTimeout: 500,
+  });
+  return (
+    <td className="color--azul500">
+      <code
+        className={cc([
+          "docs-copyable",
+          {
+            "color--successDark": clipboard.copied,
+            "color--azul500": !clipboard.copied,
+          },
+        ])}
+        ref={clipboard.target}
+        onClick={clipboard.copy}
+      >
+        {clipboard.copied ? "Copied" : `var(${name})`}
+      </code>
+    </td>
+  );
+};
+
+/**
  * Displays token doucumentation table
  */
 const TokenTable = ({ rows, previewType }) => (
@@ -72,9 +100,7 @@ const TokenTable = ({ rows, previewType }) => (
               {previewRenderers[previewType](value)}
             </td>
           )}
-          <td>
-            <code className="color--azul500">var({name})</code>
-          </td>
+          <CopyableCell name={name} />
           <td>
             <code>{value}</code>
           </td>

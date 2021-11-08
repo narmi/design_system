@@ -11,7 +11,20 @@ code {
 }
 
 .color--azul500 {
-  color: #3664b5;
+  color: var(--color-azul500);
+}
+
+.color--successDark {
+  color: var(--color-successDark);
+}
+
+.docs-copyable {
+  cursor: copy;
+  padding: 2px 4px;
+}
+
+.docs-copyable:hover {
+  background-color: var(--color-cove800);
 }
 
 .sbdocs-h1 {

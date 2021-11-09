@@ -1,17 +1,20 @@
 .nds-button {
-  display: inline-block;
+  box-sizing: border-box;
+  display: inline-flex;
   position: relative;
   cursor: pointer;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 16px;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-default);
+  line-height: var(--font-lineHeight-bigText);
   text-align: center;
-  padding: 12px 32px;
-  color: RGB(var(--nds-white));
+  justify-content: center;
+  align-items: center;
+  padding: 0 32px;
+  min-height: 40px;
 
   /* mobile buttons have slightly taller padding for ease of tapping */
   @media (max-width: $mobile_size) {
-    padding: 16px 32px;
+    min-height: 48px;
   }
 
   &::before {
@@ -21,7 +24,6 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: RGB(var(--nds-primary-color));
     border-radius: 24px;
   }
 
@@ -35,44 +37,74 @@
     white-space: nowrap;
   }
 
-  &:not(.menu):hover::before {
+  &:hover::before {
     filter: brightness(80%);
-  }
-
-  &:not(.menu):hover {
-    color: RGB(var(--nds-white));
-  }
-
-  /* menu button styles */
-  &.menu {
-    text-align: left;
-    color: RGB(var(--nds-black));
-    padding: 10px 0;
-    display: block;
-    font-size: 20px;
-
-    &::before {
-      display: none;
-    }
-
-    @media (min-width: $desktop-small) {
-      margin: 0 12px;
-      font-weight: 600;
-      display: inline-block;
-      font-size: 16px;
-    }
-  }
-
-  /* put disabled styles below type styles */
-  &.disabled {
-    pointer-events: none;
-
-    &::before {
-      background-color: RGB(var(--nds-lightest-grey));
-    }
   }
 }
 
+.nds-button--primary {
+  color: var(--color-white);
+  &::before {
+    /* TODO: replace with `--theme` var when banking theming is ready */
+    background-color: RGB(var(--nds-primary-color));
+  }
+}
+
+.nds-button--secondary {
+  /* TODO: replace with `--theme` var when banking theming is ready */
+  color: RGB(var(--nds-primary-color));
+  &::before {
+    /* TODO: replace with `--theme` var when banking theming is ready */
+    border: var(--border-size-s) solid RGB(var(--nds-primary-color));
+  }
+}
+
+.nds-button--menu {
+  text-align: left;
+  color: RGB(var(--nds-black));
+  padding: 10px 0;
+  display: block;
+  font-size: var(--font-size-l);
+
+  &::before {
+    display: none;
+  }
+
+  @media (min-width: $desktop-small) {
+    margin: 0 12px;
+    font-weight: var(--font-weight-semibold);
+    display: inline-block;
+    font-size: var(--font-size-default);
+  }
+}
+
+.nds-button--plain {
+  color: RGB(var(--nds-primary-color));
+  font-weight: var(--font-weight-semibold);
+  padding: var(--space-s);
+
+  &:hover {
+    text-decoration: underline;
+    color: RGB(var(--nds-primary-color));
+  }
+
+  &::before {
+    display: none;
+  }
+}
+
+.nds-button--disabled {
+  pointer-events: none;
+  color: var(--color-white);
+  &::before {
+    background-color: var(--color-lightGrey);
+  }
+}
+
+/**
+️* ⚠️ DEPREACTED ⚠️
+* Will be removed in a future release.
+*/
 .nds-plain-button {
   cursor: pointer;
   color: RGB(var(--nds-primary-color));

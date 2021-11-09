@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.0](https://github.com/narmi/design_system/compare/v1.10.5...v1.11.0) (2021-11-09)
+
+
+### Features
+
+* **LoadingShim:** add  component ([880812c](https://github.com/narmi/design_system/commit/880812cfd95d721e3d24ef4b3dc69cbcb2b02e37))
+
 ### [1.10.5](https://github.com/narmi/design_system/compare/v1.10.4...v1.10.5) (2021-11-08)
 
 

@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+ * ⚠️ DEPRECATED ⚠️
+ * This component will be removed in a future release.
+ * Use `<Button type="plain">` instead.
+ */
 const PlainButton = (props) => {
   return (
     <a {...props} className="nds-plain-button">

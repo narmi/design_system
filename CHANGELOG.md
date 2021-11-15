@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.0](https://github.com/narmi/design_system/compare/v1.11.0...v1.12.0) (2021-11-15)
+
+
+### Features
+
+* **Button:** add new  variants - secondary, plain ([1b9217f](https://github.com/narmi/design_system/commit/1b9217ff94c8d369604b5b7ae7d035dafb32e268))
+
 ## [1.11.0](https://github.com/narmi/design_system/compare/v1.10.5...v1.11.0) (2021-11-09)
 
 

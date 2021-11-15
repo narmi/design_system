@@ -1,0 +1,19 @@
+import { Meta, Story } from "@storybook/addon-docs";
+import { border } from "dist/tokens/js/manifest";
+import TokenTable, { toTokenRows } from "helpers/TokenTable";
+
+<Meta title="Design Tokens/Border" />
+
+# Border Tokens
+
+## Border Color
+
+<Story name="Color">
+  <TokenTable previewType="color" rows={toTokenRows(border, "color")} />
+</Story>
+
+## Border Size
+
+<Story name="Size">
+  <TokenTable rows={toTokenRows(border, "size")} />
+</Story>

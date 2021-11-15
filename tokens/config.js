@@ -19,6 +19,16 @@ filters.forEach((filter) => {
   StyleDictionary.registerFilter(filter);
 });
 
+const CSS_TRANSFORM_GROUP = [
+  "attribute/cti",
+  "color/css",
+  "custom/name/kebab-cti",
+  "custom/name/kebab-ti",
+  "custom/name/kebab-ci",
+  "custom/name/bgColor",
+  "custom/value/alpha",
+];
+
 const config = {
   source: [`${path.resolve("tokens/src")}/**/*.json`],
   platforms: {
@@ -26,15 +36,7 @@ const config = {
      * Custom properties in a CSS file
      */
     css: {
-      transforms: [
-        "attribute/cti",
-        "color/css",
-        "custom/name/kebab-cti",
-        "custom/name/kebab-ti",
-        "custom/name/kebab-ci",
-        "custom/name/bgColor",
-        "custom/value/alpha",
-      ],
+      transforms: CSS_TRANSFORM_GROUP,
       buildPath: getBuildPath("css"),
       files: [
         {
@@ -61,6 +63,20 @@ const config = {
           filter: "rgbColorFilter",
           destination: "rgbColors.css",
           format: "css/variables",
+        },
+      ],
+    },
+
+    /**
+     * manifest of all tokens, used for documentation
+     */
+    manifest: {
+      transforms: CSS_TRANSFORM_GROUP,
+      buildPath: getBuildPath("js"),
+      files: [
+        {
+          destination: "manifest.js",
+          format: "javascript/module",
         },
       ],
     },

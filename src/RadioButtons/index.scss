@@ -8,7 +8,7 @@
     margin-bottom: 12px;
     cursor: pointer;
     font-size: 16px;
-    line-height: 22px;
+    line-height: 1.25;
     font-family: var(--nds-font-family);
     font-weight: 400;
 
@@ -41,7 +41,7 @@
       height: 20px;
       width: 20px;
       background-color: transparent;
-      border: 1px solid RGB(var(--nds-medium-grey));
+      border: 1px solid RGB(var(--nds-lightest-grey));
       border-radius: 50%;
 
       &:after {

@@ -7,7 +7,7 @@
       "smokeGrey": { "value": "#F3F3F3" },
       "snowGrey": { "value": "#FBFBFB" },
       "white": { "value": "{color.narmi.white.value}" },
-      "scrimLight": { "value": "rgba(255, 255, 255, 0.7)" },
+      "scrimLight": { "value": "rgba(255, 255, 255, 0.85)" },
       "scrimDark": { "value": "rgba(80, 80, 80, 0.7)" }
     }
   }

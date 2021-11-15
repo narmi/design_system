@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.0](https://github.com/narmi/design_system/compare/v1.10.5...v1.11.0) (2021-11-09)
+
+
+### Features
+
+* **LoadingShim:** add  component ([880812c](https://github.com/narmi/design_system/commit/880812cfd95d721e3d24ef4b3dc69cbcb2b02e37))
+
+### [1.10.5](https://github.com/narmi/design_system/compare/v1.10.4...v1.10.5) (2021-11-08)
+
+
+### Bug Fixes
+
+* **RadioButtons:** properly set line height on label, and unchecked colour on checkbox ([#352](https://github.com/narmi/design_system/issues/352)) ([514df8b](https://github.com/narmi/design_system/commit/514df8b00c3d83120d860db77425ea91d55635ed))
+
+### [1.10.4](https://github.com/narmi/design_system/compare/v1.10.3...v1.10.4) (2021-11-08)
+
+
+### Bug Fixes
+
+* **Input:** keep label margin consistent when focused, to avoid undesired shift on focus ([#351](https://github.com/narmi/design_system/issues/351)) ([6d94221](https://github.com/narmi/design_system/commit/6d942218494e7a09a5dfb2c514904bc3ebbc122c))
+
 ### [1.10.3](https://github.com/narmi/design_system/compare/v1.10.2...v1.10.3) (2021-11-08)
 
 

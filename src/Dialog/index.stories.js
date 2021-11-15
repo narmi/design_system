@@ -4,7 +4,7 @@ import Button from "../Button";
 import { DialogLayout } from "../../.storybook/Layouts";
 
 const BaseTemplate = (args) => <Dialog {...args} />;
-const InteractiveTempalte = (args) => {
+const InteractiveTemplate = (args) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   return (
     <>
@@ -52,7 +52,7 @@ Overview.args = {
   width: "500px",
 };
 
-export const UsingWithState = InteractiveTempalte.bind({});
+export const UsingWithState = InteractiveTemplate.bind({});
 UsingWithState.args = {
   title: "Dialog controlled by external state",
   children: <p>Dialog content</p>,
@@ -66,7 +66,7 @@ UsingWithState.parameters = {
   },
 };
 
-export const ScrollingContent = InteractiveTempalte.bind({});
+export const ScrollingContent = InteractiveTemplate.bind({});
 ScrollingContent.args = {
   hasLongContent: true,
   title: "Resize your window",

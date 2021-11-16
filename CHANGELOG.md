@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file. See
 
 ### Bug Fixes
 
-* **Button:** pass  through ([d3c0def](https://github.com/narmi/design_system/commit/d3c0def1d26063797d562fa23d4825e57e0d6a9d))
+* **Button:** pass custom `className` string through ([d3c0def](https://github.com/narmi/design_system/commit/d3c0def1d26063797d562fa23d4825e57e0d6a9d))
 
 ## [1.12.0](https://github.com/narmi/design_system/compare/v1.11.0...v1.12.0) (2021-11-15)
 

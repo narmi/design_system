@@ -68,6 +68,20 @@ const config = {
     },
 
     /**
+     * Scss variables (maps)
+     */
+    scssVariables: {
+      transforms: CSS_TRANSFORM_GROUP,
+      buildPath: getBuildPath("scss"),
+      files: [
+        {
+          destination: "variables.scss",
+          format: "scss/map-deep",
+        },
+      ],
+    },
+
+    /**
      * manifest of all tokens, used for documentation
      */
     manifest: {

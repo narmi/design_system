@@ -1,0 +1,87 @@
+import { Meta, Story } from "@storybook/addon-docs";
+
+<Meta title="Style/Helper Classes" />
+
+# Helper Classes
+
+Utility classes used to tweak styling of element using standard values from NDS.
+
+All helper classes follow a common signature:
+
+```css
+.<cssProperty > --<variant>(--<optional variant>);
+```
+
+## Spacing
+
+### Margin
+
+Valid sides are (`all`, `top`, `right`, `bottom`, `left`)
+
+Valid amounts are (`xxs`, `xs`, `s`, `m`, `l`, `xl`).
+
+| Class                      | Description                                                      |
+| -------------------------- | ---------------------------------------------------------------- |
+| `margin--all`              | Adds margin of default space to all sides of element             |
+| `margin--all--<amount>`    | Adds margin of a given _amount_ to all sides of element          |
+| `margin--none`             | Removes margin from all sides of element                         |
+| `margin--<side>`           | Adds margin of default space to given _side_ of element          |
+| `margin--<side>--none`     | Removes margin from given _side_ of element                      |
+| `margin--<side>--<amount>` | Adds a margin of a given _amount_ to the given _side_ of element |
+
+### Padding
+
+Valid sides are (`all`, `top`, `right`, `bottom`, `left`)
+
+Valid amounts are (`xxs`, `xs`, `s`, `m`, `l`, `xl`).
+
+| Class                       | Description                                                       |
+| --------------------------- | ----------------------------------------------------------------- |
+| `padding--all`              | Adds padding of default space to all sides of element             |
+| `padding--all--<amount>`    | Adds padding of a given _amount_ to all sides of element          |
+| `padding--none`             | Removes padding from all sides of element                         |
+| `padding--<side>`           | Adds padding of default space to given _side_ of element          |
+| `padding--<side>--none`     | Removes padding from given _side_ of element                      |
+| `padding--<side>--<amount>` | Adds a padding of a given _amount_ to the given _side_ of element |
+
+## Font
+
+### Color
+
+| Class                  | Description                                              |
+| ---------------------- | -------------------------------------------------------- |
+| `fontColor--heading`   | Sets text color to `var(--font-color-heading)`           |
+| `fontColor--primary`   | Sets text color to `var(--font-color-primary)`           |
+| `fontColor--secondary` | Sets text color to `var(--font-color-secondary)`         |
+| `fontColor--hint`      | Sets text color to `var(--font-color-hint)`              |
+| `fontColor--default`   | Sets text color to `var(--font-color-default)` (primary) |
+
+### Size
+
+| Class                | Description                                         |
+| -------------------- | --------------------------------------------------- |
+| `fontSize--xs`       | Sets font size to `var(--font-size-xs)`             |
+| `fontSize--s`        | Sets font size to `var(--font-size-s)`              |
+| `fontSize--m`        | Sets font size to `var(--font-size-m)`              |
+| `fontSize--l`        | Sets font size to `var(--font-size-l)`              |
+| `fontSize--heading1` | Sets font size to `var(--font-size-heading1)`       |
+| `fontSize--heading2` | Sets font size to `var(--font-size-heading2)`       |
+| `fontSize--heading3` | Sets font size to `var(--font-size-heading3)`       |
+| `fontSize--default`  | Sets font size to `var(--font-size-default)` (16px) |
+
+### Family
+
+| Class                 | Description                                               |
+| --------------------- | --------------------------------------------------------- |
+| `fontFamily--heading` | Sets font family to `var(--font-family-heading)`          |
+| `fontFamily--body`    | Sets font family to `var(--font-family-body)`             |
+| `fontFamily--default` | Sets font family to `var(--font-family-default)` (Mulish) |
+
+### Weight
+
+| Class                  | Description                                                   |
+| ---------------------- | ------------------------------------------------------------- |
+| `fontWeight--normal`   | Sets font weight to `var(--font-weight-normal)`               |
+| `fontWeight--semibold` | Sets font weight to `var(--font-weight-semibold)`             |
+| `fontWeight--bold`     | Sets font weight to `var(--font-weight-bold)`                 |
+| `fontWeight--default`  | Sets font weight to `var(--font-weight-default)` (normal/400) |

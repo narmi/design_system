@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.0](https://github.com/narmi/design_system/compare/v1.12.1...v1.13.0) (2021-11-19)
+
+
+### Features
+
+* **Dialog:** add `Dialog` component ([dd9aefa](https://github.com/narmi/design_system/commit/dd9aefad18c1110d7ce42065997b24b5ceab0a8d))
+
 ### [1.12.1](https://github.com/narmi/design_system/compare/v1.12.0...v1.12.1) (2021-11-16)
 
 

@@ -197,6 +197,6 @@ export const ScrollableModal = () => {
 };
 
 export default {
-  title: "Components/Modal",
+  title: "Components/Modal (deprecated)",
   component: Modal,
 };

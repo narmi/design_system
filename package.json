@@ -1,6 +1,6 @@
 {
   "name": "@narmi/design_system",
-  "version": "1.12.1",
+  "version": "1.13.0",
   "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
   "files": [
@@ -82,7 +82,8 @@
     "@tippyjs/react": "^4.2.6",
     "classcat": "^5.0.3",
     "flatpickr": "^4.6.9",
-    "moment": "^2.29.1"
+    "moment": "^2.29.1",
+    "raf-schd": "^4.0.3"
   },
   "repository": {
     "type": "git",

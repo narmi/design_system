@@ -10,6 +10,11 @@ code {
   font-family: var(--docs-code-family);
 }
 
+/* tables generated from markdown */
+.sbdocs-table code {
+  color: var(--color-azul);
+}
+
 .color--azul500 {
   color: var(--color-azul500);
 }

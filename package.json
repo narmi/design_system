@@ -1,6 +1,6 @@
 {
   "name": "@narmi/design_system",
-  "version": "1.13.0",
+  "version": "1.14.0",
   "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
   "files": [
@@ -12,7 +12,7 @@
     "build:components": "webpack --mode=production",
     "build": "npm run build:tokens && npm run build:components",
     "prepublish": "npm run build",
-    "test": "jest --passWithNoTests",
+    "test": "jest",
     "release": "semantic-release",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -40,7 +40,9 @@
     "@storybook/builder-webpack5": "^6.3.12",
     "@storybook/manager-webpack5": "^6.3.12",
     "@storybook/react": "^6.3.7",
-    "@testing-library/react": "^12.0.0",
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/react": "^12.1.2",
+    "@types/jest": "^27.0.2",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
     "chromatic": "^6",

@@ -25,7 +25,11 @@ const Tooltip = ({
     maxWidth={320}
     delay={[300, 100]}
   >
-    <div tabIndex="0" style={{ display: wrapperDisplay }}>
+    <div
+      tabIndex="0"
+      style={{ display: wrapperDisplay }}
+      data-testid="nds-tooltip-trigger"
+    >
       {children}
     </div>
   </Tippy>

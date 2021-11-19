@@ -10,7 +10,6 @@ const Card = (props) => {
   ) : (
     ""
   );
-  console.log(props.iconSize);
   return (
     <div
       className={`nds-card nds-typography ${props.classes}`}
@@ -24,22 +23,22 @@ const Card = (props) => {
             {props.title}&nbsp;
           </h4>
           <h4 className="nds-sans nds-card-title" style={{ fontSize: `${props.iconSize}px` }}>{icon}</h4>
+          {props.button ? props.button : ""}
         </div>
         ) : (
         <div className="nds-card-heading">
           <h4 className="nds-sans nds-card-title">
             {props.title}&nbsp;{icon}
           </h4>
+          {props.button ? props.button : ""}
         </div>
         )}
-        {props.button ? props.button : ""}
-
       {props.children ? (
         <div className="nds-card-content">{props.children}</div>
       ) : (
         ""
       )}
-      </div>
+    </div>
   );
 };
 

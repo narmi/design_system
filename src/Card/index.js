@@ -18,9 +18,14 @@ const Card = (props) => {
       {...props}
     >
       <div className="nds-card-heading">
-        <h4 className="nds-sans nds-card-title">
-          {props.title}&nbsp;{icon}
-        </h4>
+        <div style={{ justifyContent: "start", display: "flex"}}>
+          <h4 className="nds-sans nds-card-title">
+            {props.title}&nbsp;
+          </h4>
+          {icon && (
+            <div className="nds-sans nds-card-title" style={{ fontSize: props.iconSize }}>{icon}</div>
+          )}
+        </div>
         {props.button ? props.button : ""}
       </div>
       {props.children ? (
@@ -41,6 +46,8 @@ Card.propTypes = {
   button: PropTypes.node,
   /** `narmi-icon` name */
   icon: PropTypes.string,
+  /** `narmi-icon` size in px */
+  iconSize: PropTypes.string,
   /** When true, the Card will change style on hover */
   hoverable: PropTypes.bool,
   /** When true, the Card will change style to appear selected */
@@ -53,6 +60,7 @@ Card.defaultProps = {
   hoverable: false,
   selected: false,
   icon: "",
+  iconSize: "20px",
   classes: "",
 };
 

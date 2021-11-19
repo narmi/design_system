@@ -1,6 +1,7 @@
 .nds-typography {
   font-family: var(--nds-font-family);
   text-rendering: geometricPrecision;
+  line-height: var(--font-lineHeight-default);
 
   h1,
   h2,
@@ -8,7 +9,7 @@
   h4 {
     font-family: var(--nds-header-font);
     color: var(--nds-black);
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
 
     &::first-letter {
       text-transform: capitalize;
@@ -22,81 +23,69 @@
     margin-bottom: 0;
   }
   h1 {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: var(--font-size-heading1);
   }
   h2 {
-    font-size: 28px;
-    line-height: 35px;
+    font-size: var(--font-size-heading2);
   }
   h3 {
-    font-size: 24px;
-    line-height: 30px;
+    font-size: var(--font-size-heading3);
 
     &.nds-sans {
       font-family: var(--nds-font-family);
     }
   }
   h4 {
-    font-size: 20px;
-    line-height: 25px;
+    font-size: var(--font-size-l);
 
     &.nds-sans {
       font-family: var(--nds-font-family);
     }
   }
   h5 {
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 15px;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
   }
 
   .nds-subheader {
-    font-family: var(--nds-font-family);
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 15px;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-xs);
     text-transform: uppercase;
   }
 
   p {
     /* Default is equivalent to `.nds-p1.nds-lighter` */
-    font-family: var(--nds-font-family);
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
+    font-weight: var(--font-weight-default);
+    font-size: var(--font-size-default);
 
     &.nds-p1 {
-      font-weight: 700;
-      font-size: 16px;
-      line-height: 20px;
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-default);
 
       &.nds-light {
-        font-weight: 600;
+        font-weight: var(--font-weight-semibold);
       }
 
       &.nds-lighter {
-        font-weight: 400;
+        font-weight: var(--font-weight-normal);
       }
     }
 
     &.nds-p2 {
-      font-size: 14px;
-      line-height: 16px;
-      font-weight: 600;
+      font-size: var(--font-size-s);
+      font-weight: var(--font-weight-semibold);
 
       &.nds-light {
-        font-weight: 400;
+        font-weight: var(--font-weight-normal);
       }
     }
 
     &.nds-p3 {
-      font-size: 12px;
-      line-height: 16px;
-      font-weight: 600;
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
 
       &.nds-light {
-        font-weight: 400;
+        font-weight: var(--font-weight-normal);
       }
     }
   }

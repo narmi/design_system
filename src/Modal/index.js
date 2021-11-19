@@ -2,8 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 /**
- * Modal window.
- * The content of the modal is scrollable and body scrolling is locked when the Modal is open.
+ * **⚠️ DEPRECATED ⚠️**
+ *
+ * This component will be removed in a future release.
+ * Please use `Dialog` instead to display a centered modal window.
  */
 const Modal = ({
   open = false,

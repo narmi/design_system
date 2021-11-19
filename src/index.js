@@ -17,6 +17,7 @@ const RadioButtons = require("./RadioButtons").default;
 const CheckBox = require("./CheckBox").default;
 const Tooltip = require("./Tooltip").default;
 const LoadingShim = require("./LoadingShim").default;
+const Dialog = require("./Dialog").default;
 const components = {
   Input,
   DateInput,
@@ -33,6 +34,7 @@ const components = {
   Card,
   Tooltip,
   LoadingShim,
+  Dialog,
 };
 
 let styleString = require("global").styles;
@@ -58,4 +60,5 @@ export {
   Dropdown,
   Tooltip,
   LoadingShim,
+  Dialog,
 };

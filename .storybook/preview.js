@@ -2,7 +2,7 @@ import React from "react";
 import "./story-styles.css";
 import "dist/style.css";
 import { NdsStyles } from "./decorators";
-import Layout from "./Layout";
+import { Layout } from "./Layouts";
 
 export const parameters = {
   previewTabs: {

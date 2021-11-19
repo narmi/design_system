@@ -17,17 +17,17 @@ const Card = (props) => {
       data-selected={props.selected.toString()}
       {...props}
     >
-        <div className="nds-card-heading">
-          <div style={{ justifyContent: "start", display: "flex"}}>
-            <h4 className="nds-sans nds-card-title">
-              {props.title}&nbsp;
-            </h4>
-            {icon && (
-              <div className="nds-sans nds-card-title" style={{ fontSize: `${props.iconSize}px` }}>{icon}</div>
-            )}
-          </div>
-          {props.button ? props.button : ""}
+      <div className="nds-card-heading">
+        <div style={{ justifyContent: "start", display: "flex"}}>
+          <h4 className="nds-sans nds-card-title">
+            {props.title}&nbsp;
+          </h4>
+          {icon && (
+            <div className="nds-sans nds-card-title" style={{ fontSize: `${props.iconSize}px` }}>{icon}</div>
+          )}
         </div>
+        {props.button ? props.button : ""}
+      </div>
       {props.children ? (
         <div className="nds-card-content">{props.children}</div>
       ) : (
@@ -60,7 +60,7 @@ Card.defaultProps = {
   hoverable: false,
   selected: false,
   icon: "",
-  iconSize: "25",
+  iconSize: "20",
   classes: "",
 };
 

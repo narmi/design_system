@@ -54,5 +54,7 @@ $desktop-big: 1440px;
 @import "Tooltip/";
 
 // Helper classes
-@import "helperClasses/forms.scss";
-@import "helperClasses/scroll.scss";
+@import "helper-classes/spacing";
+@import "helper-classes/font";
+@import "helper-classes/forms";
+@import "helper-classes/scroll";

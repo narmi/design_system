@@ -1,0 +1,47 @@
+/**
+* font color helpers
+*/
+@each $color in (heading, primary, secondary, hint) {
+  .fontColor--#{$color} {
+    color: var(--font-color-#{$color}) !important;
+  }
+}
+.fontColor--default {
+  color: var(--font-color-primary) !important;
+}
+
+/**
+* font size helpers
+*/
+@each $size in (xs, s, m, l, heading1, heading2, heading3) {
+  .fontSize--#{$size} {
+    font-size: var(--font-size-#{$size}) !important;
+  }
+}
+.fontSize--default {
+  font-size: var(--font-size-default) !important;
+}
+
+/**
+* font family helpers
+*/
+@each $fam in (heading, body) {
+  .fontFamily--#{$fam} {
+    font-family: var(--font-family-#{$fam}) !important;
+  }
+}
+.fontFamily--default {
+  font-size: var(--font-family-default) !important;
+}
+
+/**
+* font weight helpers
+*/
+@each $weight in (normal, semibold, bold) {
+  .fontWeight--#{$weight} {
+    font-weight: var(--font-weight-#{$weight}) !important;
+  }
+}
+.fontWeight--default {
+  font-weight: var(--font-weight-default) !important;
+}

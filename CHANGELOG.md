@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.0](https://github.com/narmi/design_system/compare/v1.13.0...v1.14.0) (2021-11-19)
+
+
+### Features
+
+* **Classes:** add spacing and font helper classes ([65b8e69](https://github.com/narmi/design_system/commit/65b8e69c115e672b6ea54d09bbd7385bcb83bd42))
+
 ## [1.13.0](https://github.com/narmi/design_system/compare/v1.12.1...v1.13.0) (2021-11-19)
 
 

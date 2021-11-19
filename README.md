@@ -61,7 +61,7 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 Refer to the [**Changelog**](https://github.com/narmi/design_system/blob/master/CHANGELOG.md) for details.
 
 ### Browser Support
-Please check the following chart to see the minimum browser versions supported by design_system:
+Please check the following chart to see the minimum browser versions supported by `@narmi/design_system`:
 
 - https://caniuse.com/?search=focus-within
 
@@ -83,7 +83,7 @@ npm install && npm run build && npm run storybook
 `build:tokens`       | builds all distributions of design tokens to `dist/`
 `build:components`   | builds all components and base stylesheet to `dist/`
 `build`              | builds everytyhing
-`test`               | run all jest tests
+`test`               | runs all jest tests
 `storybook`          | starts storybook in dev server mode on `:6006`
 
 ### Releases

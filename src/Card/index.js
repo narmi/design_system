@@ -10,6 +10,7 @@ const Card = (props) => {
   ) : (
     ""
   );
+  console.log(props.iconSize);
   return (
     <div
       className={`nds-card nds-typography ${props.classes}`}
@@ -17,18 +18,28 @@ const Card = (props) => {
       data-selected={props.selected.toString()}
       {...props}
     >
-      <div className="nds-card-heading">
-        <h4 className="nds-sans nds-card-title">
-          {props.title}&nbsp;{icon}
-        </h4>
+      {props.iconSize ? (
+        <div className="nds-card-heading" style={{ alignItems: "center", justifyContent: "start"}}>
+          <h4 className="nds-sans nds-card-title">
+            {props.title}&nbsp;
+          </h4>
+          <h4 className="nds-sans nds-card-title" style={{ fontSize: `${props.iconSize}px` }}>{icon}</h4>
+        </div>
+        ) : (
+        <div className="nds-card-heading">
+          <h4 className="nds-sans nds-card-title">
+            {props.title}&nbsp;{icon}
+          </h4>
+        </div>
+        )}
         {props.button ? props.button : ""}
-      </div>
+
       {props.children ? (
         <div className="nds-card-content">{props.children}</div>
       ) : (
         ""
       )}
-    </div>
+      </div>
   );
 };
 
@@ -41,6 +52,8 @@ Card.propTypes = {
   button: PropTypes.node,
   /** `narmi-icon` name */
   icon: PropTypes.string,
+  /** `narmi-icon` size in px */
+  iconSize: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
   /** When true, the Card will change style on hover */
   hoverable: PropTypes.bool,
   /** When true, the Card will change style to appear selected */

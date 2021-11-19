@@ -1,0 +1,38 @@
+/**
+* padding and margin helpers
+*/
+@each $property in (padding, margin) {
+  // all sides spacing (`<margin|padding>--all`)
+  .#{$property}--all {
+    #{$property}: var(--space-default);
+  }
+
+  // negate all sides spacing (`<margin|padding>--none`)
+  .#{$property}--none {
+    #{$property}: 0;
+  }
+
+  @each $direction in (top, right, bottom, left) {
+    // default spacing by direction (`<margin|padding>--top`)
+    .#{$property}--#{$direction} {
+      #{$property}-#{$direction}: var(--space-default);
+    }
+
+    // negate spacing by direction (`<margin|padding>--top--none`)
+    .#{$property}--#{$direction}--none {
+      #{$property}-#{direction}: 0;
+    }
+
+    @each $size in (xxs, xs, s, m, l, xl) {
+      // spacing by direction and size (`<margin|padding>--top--xl`)
+      .#{$property}--#{$direction}--#{$size} {
+        #{$property}-#{$direction}: var(--space-#{$size});
+      }
+
+      // spacing by size for all sides (`<margin|padding>--all--xxs`)
+      .#{$property}--all--#{$size} {
+        margin: var(--space-#{$size});
+      }
+    }
+  }
+}

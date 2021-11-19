@@ -1,0 +1,7 @@
+{
+  "border": {
+    "radius": {
+      "default": { "value": "4px" }
+    }
+  }
+}

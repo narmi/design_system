@@ -45,9 +45,14 @@ $desktop-big: 1440px;
 @import "Button/";
 @import "Card/";
 @import "LoadingShim/";
+@import "Dialog/";
 @import "Modal/";
 @import "NavBar/";
 @import "Details/";
 @import "CheckBox/";
 @import "Dropdown/";
 @import "Tooltip/";
+
+// Helper classes
+@import "helperClasses/forms.scss";
+@import "helperClasses/scroll.scss";

@@ -15,7 +15,7 @@ import {
  * This allows us to insert custom elements or change the order
  * of doc blocks as we see fit.
  */
-const Layout = () => (
+export const Layout = () => (
   <>
     <Title />
     <Description />
@@ -25,4 +25,15 @@ const Layout = () => (
   </>
 );
 
-export default Layout;
+/**
+ * Docs tab layout just for the Dialog story
+ * (does not show an initial preview)
+ */
+export const DialogLayout = () => (
+  <>
+    <Title />
+    <Description />
+    <ArgsTable story={PRIMARY_STORY} />
+    <Stories />
+  </>
+);

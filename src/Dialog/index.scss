@@ -1,0 +1,97 @@
+.nds-shim--dark {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--bgColor-scrimDark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: var(--space-default); /* create space around viewport edges */
+}
+
+.nds-dialog {
+  position: relative;
+  border-radius: var(--border-radius-default);
+  background-color: var(--bgColor-white);
+  box-shadow: var(--elevation-high);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  /**
+  * `width` is configured via props; below are constraints
+  * for small screens and large modals.
+  */
+  max-height: 100%; /* prevent modal from being taller than the shim content box */
+  min-height: 240px; /* prevent content area from collapsing to 0 */
+  min-width: 240px; /* should be no narrower than this, even on phones */
+}
+
+.nds-dialog-header {
+  margin: 0 var(--space-xl);
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xs);
+
+  h4 {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family-default);
+    font-size: var(--font-size-l);
+    /* TODO: use --theme color when ready */
+    color: RGB(var(--nds-primary-color));
+  }
+}
+
+.nds-dialog-header--bordered {
+  /* TODO: use --theme color when ready */
+  border-bottom: var(--border-size-m) solid RGB(var(--nds-primary-color));
+}
+
+.nds-dialog-closeButton {
+  position: absolute;
+  font-size: var(--font-size-l) !important;
+  right: var(--space-m);
+  top: var(--space-m);
+}
+
+.nds-dialog-header,
+.nds-dialog-footer {
+  flex-basis: auto;
+  flex-grow: 0;
+  height: initial;
+}
+
+.nds-dialog-content {
+  padding: 0 var(--space-xl);
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.nds-dialog-footer {
+  margin: 0 var(--space-xl) var(--space-xl);
+  padding-top: var(--space-default);
+}
+
+.nds-dialog-footer--bordered {
+  border-top: var(--border-size-s) solid var(--border-color-light);
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -21px; /* stack on top of footer border */
+    height: 20px;
+    background-image: linear-gradient(
+      to top,
+      var(--color-white),
+      RGBA(var(--rgb-white), 0.33)
+    );
+  }
+}

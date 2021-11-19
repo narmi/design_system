@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.15.0](https://github.com/narmi/design_system/compare/v1.14.0...v1.15.0) (2021-11-19)
+
+
+### Features
+
+* **Card:** allow passing in icon size ([5eb8f19](https://github.com/narmi/design_system/commit/5eb8f194a08237cec541263b5ce8e5a748db180c))
+* **Card:** allow passing in icon size ([82bd362](https://github.com/narmi/design_system/commit/82bd36231a9741580a453593e5131e88d53ffd52))
+
 ## [1.14.0](https://github.com/narmi/design_system/compare/v1.13.0...v1.14.0) (2021-11-19)
 
 

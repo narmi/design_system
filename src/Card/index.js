@@ -23,7 +23,7 @@ const Card = (props) => {
             {props.title}&nbsp;
           </h4>
           {icon && (
-            <div className="nds-sans nds-card-title" style={{ fontSize: `${props.iconSize}px` }}>{icon}</div>
+            <div className="nds-sans nds-card-title" style={{ fontSize: props.iconSize }}>{icon}</div>
           )}
         </div>
         {props.button ? props.button : ""}
@@ -47,7 +47,7 @@ Card.propTypes = {
   /** `narmi-icon` name */
   icon: PropTypes.string,
   /** `narmi-icon` size in px */
-  iconSize: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
+  iconSize: PropTypes.string,
   /** When true, the Card will change style on hover */
   hoverable: PropTypes.bool,
   /** When true, the Card will change style to appear selected */
@@ -60,7 +60,7 @@ Card.defaultProps = {
   hoverable: false,
   selected: false,
   icon: "",
-  iconSize: "20",
+  iconSize: "20px",
   classes: "",
 };
 

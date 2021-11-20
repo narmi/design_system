@@ -2,8 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 
+export const VALID_GAP_SIZES = ["xxs", "xs", "s", "m", "l", "xl", "none"];
+
 /**
+ * Basic flexbox helper that arranges content into a non-wrapping row.
+ * Row will grow to fill the width of its parent container.
  *
+ * Items of Row will grow to fit remaining space by default.
+ * When a `Row.Item` has a boolean prop of `shrink`, it will shirnk to content width.
  */
 const Row = ({ gapSize, children }) => (
   <div
@@ -25,11 +31,12 @@ Row.propTypes = {
    * Sizes map to `var(--space-<size>)` variables.
    * Set `gapSize="none"` to remove gaps between all row items.
    */
-  gapSize: PropTypes.oneOf(["xxs", "xs", "s", "m", "l", "xl", "none"]),
+  gapSize: PropTypes.oneOf([VALID_GAP_SIZES]),
 };
 
 /**
- *
+ * Child component of `Row`.
+ * When a `Row.Item` has a boolean prop of `shrink`, it will shirnk to content width.
  */
 const RowItem = ({ shrink = false, children }) => (
   <div className={cc(["nds-row-item", { "nds-row-item--shrink": shrink }])}>

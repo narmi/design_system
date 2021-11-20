@@ -1,13 +1,17 @@
 import React from "react";
 import Row from "./";
 
-const Template = (args) => <Row {...args} />;
+const Template = (args) => (
+  <div className="nds-typography">
+    <Row {...args} />
+  </div>
+);
 
 export const Overview = Template.bind({});
 Overview.args = {
   children: [
     <Row.Item shrink>
-      <img alt="demo image" src="https://via.placeholder.com/40" />
+      <img alt="demo image" src="https://via.placeholder.com/60" />
     </Row.Item>,
     <Row.Item>
       The image row item is set to <code>shrink</code> to content width. This
@@ -17,11 +21,123 @@ Overview.args = {
   ],
 };
 
-// TODO: story of setting gap size
-// TODO: story of custom gap sizes using `none`
+export const DebugView = () => (
+  <>
+    <style
+      dangerouslySetInnerHTML={{
+        __html: `
+  .sb-nds-row-debug .nds-row {
+    outline: 1px dashed hotpink;
+    margin: var(--space-m);
+  }
+  .sb-nds-row-debug .nds-row-item {
+    background: antiquewhite;
+  }
+  .sb-nds-row-debug .nds-row-item--shrink {
+    background: aquamarine;
+  }
+  `,
+      }}
+    />
+    <div className="sb-nds-row-debug nds-typogrpahy fontSize--s">
+      <Row>
+        <Row.Item shrink>
+          <code>Row.Item shrink</code>
+        </Row.Item>
+        <Row.Item>
+          <code>Row.Item</code>
+        </Row.Item>
+      </Row>
+      <Row>
+        <Row.Item>
+          <code>Row.Item</code>
+        </Row.Item>
+        <Row.Item shrink>
+          <code>Row.Item shrink</code>
+        </Row.Item>
+      </Row>
+      <Row>
+        <Row.Item>
+          <code>Row.Item</code>
+        </Row.Item>
+        <Row.Item>
+          <code>Row.Item</code>
+        </Row.Item>
+        <Row.Item shrink>
+          <code>Row.Item shrink</code>
+        </Row.Item>
+        <Row.Item shrink>
+          <code>Row.Item shrink</code>
+        </Row.Item>
+      </Row>
+      <Row>
+        <Row.Item>
+          <code>Row.Item</code>
+        </Row.Item>
+        <Row.Item>
+          <code>Row.Item</code>
+        </Row.Item>
+        <Row.Item>
+          <code>Row.Item</code>
+        </Row.Item>
+        <Row.Item>
+          <code>Row.Item</code>
+        </Row.Item>
+      </Row>
+      <Row>
+        <Row.Item shrink>
+          <code>Row.Item shrink</code>
+        </Row.Item>
+        <Row.Item shrink>
+          <code>Row.Item shrink</code>
+        </Row.Item>
+        <Row.Item shrink>
+          <code>Row.Item shrink</code>
+        </Row.Item>
+        <Row.Item shrink>
+          <code>Row.Item shrink</code>
+        </Row.Item>
+      </Row>
+    </div>
+  </>
+);
+DebugView.parameters = {
+  docs: {
+    description: {
+      story:
+        "Extra styles have been added to visualize elements rendered by `Row` and `Row.Item`. Try resizing your browser window to see how the layout changes.",
+    },
+  },
+};
 
-// TODO: find out how storybook primary/sub components docs work
-// TODO: find out how to use the storybook CSS boxes addon
+export const SectionHeaderExample = () => (
+  <div className="nds-typography">
+    <Row alignItems="center">
+      <Row.Item>
+        <h3 className="fontFamily--body fontSize--l">Account details</h3>
+      </Row.Item>
+      <Row.Item shrink>
+        <a className="fontColor--pine" href="#">
+          More details
+        </a>
+      </Row.Item>
+      <Row.Item shrink>
+        <a className="fontColor--pine" href="#">
+          Edit
+        </a>
+      </Row.Item>
+    </Row>
+  </div>
+);
+SectionHeaderExample.parameters = {
+  docs: {
+    description: {
+      story:
+        "The first `Row.Item` fills the space while the last two shrink to the width of the links. The `alignItems` prop is used to vertically center the row item content.",
+    },
+  },
+};
+
 export default {
   title: "Components/Row",
   component: Row,

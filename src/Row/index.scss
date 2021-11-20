@@ -4,18 +4,7 @@
   flex-wrap: nowrap;
   flex-direction: row;
   width: 100%;
-  align-items: stretch;
-  gap: var(--space-default);
-
-  // variant classes to adjust gap size
-  @each $gapSize in (xxs, xs, s, m, l, xl) {
-    &--#{$gapSize}Gap {
-      gap: var(--space-#{$gapSize});
-    }
-  }
-  &--noneGap {
-    gap: 0;
-  }
+  align-items: center;
 }
 
 // Row items grow to fit remaining space in row by default
@@ -25,6 +14,7 @@
   flex-grow: 1;
   width: auto;
   height: 100%;
+  min-height: 0;
 
   // The shrink variant shrink wraps the row item to content width
   &--shrink {

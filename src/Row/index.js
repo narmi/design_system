@@ -2,25 +2,29 @@ import React from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 
-export const VALID_GAP_SIZES = ["xxs", "xs", "s", "m", "l", "xl", "none"];
+/**
+ * builds style object for `Row`
+ * @param {String} alignItems
+ * @param {String} gapSize
+ * @returns {Object} style object for `Row`
+ */
+const _getRowStyle = (alignItems, gapSize) => {
+  let result = {};
+  if (gapSize) {
+    result.gap = gapSize === "none" ? "0" : `var(--space-${gapSize})`;
+  }
+  result.alignItems = alignItems === "top" ? "flex-start" : alignItems;
+  return result;
+};
 
 /**
  * Basic flexbox helper that arranges content into a non-wrapping row.
- * Row will grow to fill the width of its parent container.
- *
- * Items of Row will grow to fit remaining space by default.
+ * `Row` will grow to fill the width of its parent container.
+ * Items of `Row` will grow to fit remaining space by default.
  * When a `Row.Item` has a boolean prop of `shrink`, it will shirnk to content width.
  */
-const Row = ({ gapSize, children }) => (
-  <div
-    className="nds-row"
-    className={cc([
-      "nds-row",
-      {
-        [`nds-row--${gapSize}Gap`]: Boolean(gapSize),
-      },
-    ])}
-  >
+const Row = ({ alignItems = "top", gapSize = "l", children }) => (
+  <div className="nds-row" style={_getRowStyle(alignItems, gapSize)}>
     {children}
   </div>
 );
@@ -31,7 +35,8 @@ Row.propTypes = {
    * Sizes map to `var(--space-<size>)` variables.
    * Set `gapSize="none"` to remove gaps between all row items.
    */
-  gapSize: PropTypes.oneOf([VALID_GAP_SIZES]),
+  gapSize: PropTypes.oneOf(["xxs", "xs", "s", "m", "l", "xl", "none"]),
+  alignItems: PropTypes.oneOf(["top", "center"]),
 };
 
 /**

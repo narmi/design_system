@@ -1,0 +1,36 @@
+.nds-row {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  width: 100%;
+  align-items: stretch;
+  gap: var(--space-default);
+
+  // variant classes to adjust gap size
+  @each $gapSize in (xxs, xs, s, m, l, xl) {
+    &--#{$gapSize}Gap {
+      gap: var(--space-#{$gapSize});
+    }
+  }
+  &--noneGap {
+    gap: 0;
+  }
+}
+
+// Row items grow to fit remaining space in row by default
+.nds-row-item {
+  box-sizing: border-box;
+  flex-basis: 0;
+  flex-grow: 1;
+  width: auto;
+  height: 100%;
+
+  // The shrink variant shrink wraps the row item to content width
+  &--shrink {
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: initial;
+  }
+}

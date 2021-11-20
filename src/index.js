@@ -18,6 +18,7 @@ const CheckBox = require("./CheckBox").default;
 const Tooltip = require("./Tooltip").default;
 const LoadingShim = require("./LoadingShim").default;
 const Dialog = require("./Dialog").default;
+const Row = require("./Row").default;
 const components = {
   Input,
   DateInput,
@@ -35,6 +36,7 @@ const components = {
   Tooltip,
   LoadingShim,
   Dialog,
+  Row,
 };
 
 let styleString = require("global").styles;
@@ -61,4 +63,5 @@ export {
   Tooltip,
   LoadingShim,
   Dialog,
+  Row,
 };

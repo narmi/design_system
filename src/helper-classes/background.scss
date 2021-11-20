@@ -1,0 +1,41 @@
+/**
+* Standard background colors
+*/
+@each $bgColor in (blueGrey, cloudGrey, neutralGrey, smokeGrey, snowGrey, white)
+{
+  .bgColor--#{$bgColor} {
+    background-color: var(--bgColor-#{$bgColor});
+  }
+}
+
+/**
+* brand/base background colors
+*/
+@each $color in (moss, pine, cove, azul, pistachio, cactus, sand) {
+  .bgColor--#{$color} {
+    background-color: var(--color-#{$color});
+  }
+}
+
+/**
+* system background colors
+*/
+.bgColor--success {
+  background-color: var(--color-successLight);
+}
+.bgColor--warn {
+  background-color: var(--color-warnLight);
+}
+.bgColor--error {
+  background-color: var(--color-errorLight);
+}
+
+/**
+* Overlay scrims
+*/
+.scrim--light {
+  background-color: var(--bgColor-scrimLight);
+}
+.scrim--dark {
+  background-color: var(--bgColor-scrimLight);
+}

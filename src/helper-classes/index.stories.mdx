@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/addon-docs";
+import { Meta, Story, Preview } from "@storybook/addon-docs";
 
 <Meta title="Style/Helper Classes" />
 
@@ -11,6 +11,28 @@ All helper classes follow a common signature:
 ```css
 .<cssProperty > --<variant>(--<optional variant>);
 ```
+
+#### Example
+
+Each helper class does one, and only one styling task. You can mix and match classes
+to compose styles without needing to write additional CSS. This can be useful for tweaking spacing, font properties, or colors.
+
+<Preview>
+  <Story name="Using Helper Classes">
+    <div className="fontFamily--default padding--all--m bgColor--smokeGrey">
+      <p>
+        Message in a "smokeGrey" padded box with some{" "}
+        <span className="fontWeight--bold fontColor--error">
+          bold error text
+        </span>
+        .
+      </p>
+      <p className="fontSize--xs fontColor--azul margin--bottom--xl">
+        extra small azul text with extra large bottom margin
+      </p>
+    </div>
+  </Story>
+</Preview>
 
 ## Spacing
 
@@ -54,6 +76,17 @@ Valid amounts are (`xxs`, `xs`, `s`, `m`, `l`, `xl`).
 | `fontColor--primary`   | Sets text color to `var(--font-color-primary)`           |
 | `fontColor--secondary` | Sets text color to `var(--font-color-secondary)`         |
 | `fontColor--hint`      | Sets text color to `var(--font-color-hint)`              |
+| `fontColor--moss`      | Sets text color to `var(--color-moss)`                   |
+| `fontColor--pine`      | Sets text color to `var(--color-pine)`                   |
+| `fontColor--cove`      | Sets text color to `var(--color-cove)`                   |
+| `fontColor--azul`      | Sets text color to `var(--color-azul)`                   |
+| `fontColor--pistachio` | Sets text color to `var(--color-pistachio)`              |
+| `fontColor--cactus`    | Sets text color to `var(--color-cactus)`                 |
+| `fontColor--sand`      | Sets text color to `var(--color-sand)`                   |
+| `fontColor--white`     | Sets text color to `var(--color-white)`                  |
+| `fontColor--success`   | Sets text color to `var(--color-successDark)`            |
+| `fontColor--warn`      | Sets text color to `var(--color-warnDark)`               |
+| `fontColor--error`     | Sets text color to `var(--color-errorDark)`              |
 | `fontColor--default`   | Sets text color to `var(--font-color-default)` (primary) |
 
 ### Size
@@ -85,3 +118,38 @@ Valid amounts are (`xxs`, `xs`, `s`, `m`, `l`, `xl`).
 | `fontWeight--semibold` | Sets font weight to `var(--font-weight-semibold)`             |
 | `fontWeight--bold`     | Sets font weight to `var(--font-weight-bold)`                 |
 | `fontWeight--default`  | Sets font weight to `var(--font-weight-default)` (normal/400) |
+
+## Color
+
+### Background colors
+
+These classes set the `background-color` property for an element. For a themable background color,
+you must write your own CSS selector that uses `var(--theme-<color>)` .
+
+| Class                  | Description                                           |
+| ---------------------- | ----------------------------------------------------- |
+| `bgColor--blueGrey`    | Sets background color to `var(--bgColor-blueGrey)`    |
+| `bgColor--cloudGrey`   | Sets background color to `var(--bgColor-cloudGrey)`   |
+| `bgColor--neutralGrey` | Sets background color to `var(--bgColor-neutralGrey)` |
+| `bgColor--smokeGrey`   | Sets background color to `var(--bgColor-smokeGrey)`   |
+| `bgColor--snowGrey`    | Sets background color to `var(--bgColor-snowGrey)`    |
+| `bgColor--white`       | Sets background color to `var(--bgColor-white)`       |
+| `bgColor--success`     | Sets background color to `var(--color-successLight)`  |
+| `bgColor--warn`        | Sets background color to `var(--color-warnLight)`     |
+| `bgColor--error`       | Sets background color to `var(--color-errorLight)`    |
+| `bgColor--moss`        | Sets background color to `var(--color-moss)`          |
+| `bgColor--pine`        | Sets background color to `var(--color-pine)`          |
+| `bgColor--cove`        | Sets background color to `var(--color-cove)`          |
+| `bgColor--azul`        | Sets background color to `var(--color-azul)`          |
+| `bgColor--pistachio`   | Sets background color to `var(--color-pistachio)`     |
+| `bgColor--cactus`      | Sets background color to `var(--color-cactus)`        |
+| `bgColor--sand`        | Sets background color to `var(--color-sand)`          |
+
+### Transparent overlay backgrounds
+
+Useful for loading states, modals, and other designs that require a transparent overlay.
+
+| Class          | Description                         |
+| -------------- | ----------------------------------- |
+| `scrim--light` | Sets a light transparent background |
+| `scrim--dark`  | Sets a dark transparent background  |

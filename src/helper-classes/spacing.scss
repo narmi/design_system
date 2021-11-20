@@ -31,7 +31,7 @@
 
       // spacing by size for all sides (`<margin|padding>--all--xxs`)
       .#{$property}--all--#{$size} {
-        margin: var(--space-#{$size});
+        #{$property}: var(--space-#{$size});
       }
     }
   }

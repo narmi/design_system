@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.16.0](https://github.com/narmi/design_system/compare/v1.15.0...v1.16.0) (2021-11-22)
+
+
+### Features
+
+* **helper-classes:** add color helpers for font and backgrounds ([62c7aa8](https://github.com/narmi/design_system/commit/62c7aa86a4d45a201f182a0f30b47c76c6a59c28))
+
 ## [1.15.0](https://github.com/narmi/design_system/compare/v1.14.0...v1.15.0) (2021-11-19)
 
 

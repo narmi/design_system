@@ -1,7 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const VALID_ELEMENTS = [
+/**
+ * This is not a complete list of HTML elements;
+ * only the elements we want to support in `as` props.
+ */
+export const VALID_ELEMENTS = [
   "ul",
   "ol",
   "li",
@@ -14,21 +18,33 @@ const VALID_ELEMENTS = [
   "h4",
   "h5",
   "h6",
-  "a",
 ];
 
+/**
+ * Utility to conditionally render different HTML elements
+ * in our components. Useful for exposing `as` props:
+ *
+ * `<Row as="ul"><Row.Item as="li" /></Row>
+ *
+ * @usage <AsElement elementName="ul">
+ */
 const AsElement = ({
-  elementName,
+  elementName = "div",
   fallbackElement = "div",
   children,
   ...rest
 }) => {
   let Element;
-  const invalidNames = [undefined, ""];
 
-  // fall back to a safe element if a bad `elementName` is given
-  if (invalidNames.any((name) => name === elementName)) {
+  // fall back to a safe element if an empty element name is given
+  if ([undefined, ""].any((name) => name === elementName)) {
     Element = fallbackElement;
+  }
+
+  // extra layer of validation; only set the element name to
+  // the given `elementName` if it is in our valid elements list
+  if (VALID_ELEMENTS.some((name) => name === elementName)) {
+    Element = elementName;
   }
 
   return <Element {...rest}>{children}</Element>;

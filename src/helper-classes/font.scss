@@ -11,6 +11,28 @@
 }
 
 /**
+* brand/base text colors
+*/
+@each $color in (moss, pine, cove, azul, pistachio, cactus, sand, white) {
+  .fontColor--#{$color} {
+    color: var(--color-#{$color});
+  }
+}
+
+/**
+* helpers for setting font color to a standard "system" color
+*/
+.fontColor--success {
+  color: var(--color-successDark);
+}
+.fontColor--warn {
+  color: var(--color-warnDark);
+}
+.fontColor--error {
+  color: var(--color-errorDark);
+}
+
+/**
 * font size helpers
 */
 @each $size in (xs, s, m, l, heading1, heading2, heading3) {
@@ -31,7 +53,7 @@
   }
 }
 .fontFamily--default {
-  font-size: var(--font-family-default) !important;
+  font-family: var(--font-family-default) !important;
 }
 
 /**

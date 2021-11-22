@@ -6,9 +6,12 @@ import PropTypes from "prop-types";
  * only the elements we want to support in `as` props.
  */
 export const VALID_ELEMENTS = [
+  "span",
+  "div",
   "ul",
   "ol",
   "li",
+  "p",
   "nav",
   "article",
   "section",
@@ -18,6 +21,8 @@ export const VALID_ELEMENTS = [
   "h4",
   "h5",
   "h6",
+  "button",
+  "a",
 ];
 
 /**
@@ -26,25 +31,15 @@ export const VALID_ELEMENTS = [
  *
  * `<Row as="ul"><Row.Item as="li" /></Row>
  *
- * @usage <AsElement elementName="ul">
+ * @usage <AsElement elementName="ul" otherProp="this gets passed through">
  */
-const AsElement = ({
-  elementName = "div",
-  fallbackElement = "div",
-  children,
-  ...rest
-}) => {
-  let Element;
-
-  // fall back to a safe element if an empty element name is given
-  if ([undefined, ""].any((name) => name === elementName)) {
-    Element = fallbackElement;
-  }
+const AsElement = ({ elementType = "div", children, ...rest }) => {
+  let Element = "div"; // always fall back to div if something is wrong
 
   // extra layer of validation; only set the element name to
   // the given `elementName` if it is in our valid elements list
-  if (VALID_ELEMENTS.some((name) => name === elementName)) {
-    Element = elementName;
+  if (VALID_ELEMENTS.includes(elementType)) {
+    Element = elementType;
   }
 
   return <Element {...rest}>{children}</Element>;
@@ -52,9 +47,7 @@ const AsElement = ({
 
 AsElement.propTypes = {
   /** element to render  */
-  elementName: PropTypes.oneOf(VALID_ELEMENTS).isRequired,
-  /** fallback element, in case `elementName` can not be rendered */
-  fallbackElement: PropTypes.oneOf(VALID_ELEMENTS),
+  elementType: PropTypes.oneOf(VALID_ELEMENTS).isRequired,
 };
 
 export default AsElement;

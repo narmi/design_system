@@ -5,6 +5,7 @@ import { NdsStyles } from "./decorators";
 import { Layout } from "./Layouts";
 
 export const parameters = {
+  viewMode: "docs",
   previewTabs: {
     "storybook/docs/panel": { index: -1 },
   },

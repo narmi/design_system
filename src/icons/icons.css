@@ -1,21 +1,19 @@
 @font-face {
-  font-family: "icomoon";
-  src: url("icomoon.eot?jttgec");
-  src: url("icomoon.eot?jttgec#iefix")
-      format("embedded-opentype"),
-    url("icomoon.woff2?jttgec") format("woff2"),
-    url("icomoon.ttf?jttgec") format("truetype"),
-    url("icomoon.woff?jttgec") format("woff"),
-    url("icomoon.svg?jttgec#icomoon") format("svg");
+  font-family: 'icomoon';
+  src:  url('icomoon.eot?4kz3qw');
+  src:  url('icomoon.eot?4kz3qw#iefix') format('embedded-opentype'),
+    url('icomoon.woff2?4kz3qw') format('woff2'),
+    url('icomoon.ttf?4kz3qw') format('truetype'),
+    url('icomoon.woff?4kz3qw') format('woff'),
+    url('icomoon.svg?4kz3qw#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="narmi-icon-"],
-[class*=" narmi-icon-"] {
+[class^="narmi-icon-"], [class*=" narmi-icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "icomoon" !important;
+  font-family: 'icomoon' !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -28,6 +26,19 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.narmi-icon-arrows:before {
+  content: "\ea36";
+}
+.narmi-icon-bill-pay-icon:before {
+  content: "\ea37";
+  color: #1a4338;
+}
+.narmi-icon-users-icon:before {
+  content: "\ea38";
+}
+.narmi-icon-wires-icon:before {
+  content: "\ea39";
+}
 .narmi-icon-admin-user:before {
   content: "\ea35";
 }

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.18.0](https://github.com/narmi/design_system/compare/v1.17.0...v1.18.0) (2021-11-23)
+
+
+### Features
+
+* **Pagination:** add Pagination component ([a491bf5](https://github.com/narmi/design_system/commit/a491bf5272a52db28221102a3e192224ccd1157f))
+
 ## [1.17.0](https://github.com/narmi/design_system/compare/v1.16.0...v1.17.0) (2021-11-22)
 
 

@@ -19,6 +19,7 @@ const Tooltip = require("./Tooltip").default;
 const LoadingShim = require("./LoadingShim").default;
 const Dialog = require("./Dialog").default;
 const Row = require("./Row").default;
+const Pagination = require("./Pagination").default;
 const components = {
   Input,
   DateInput,
@@ -37,6 +38,7 @@ const components = {
   LoadingShim,
   Dialog,
   Row,
+  Pagination,
 };
 
 let styleString = require("global").styles;
@@ -64,4 +66,5 @@ export {
   LoadingShim,
   Dialog,
   Row,
+  Pagination,
 };

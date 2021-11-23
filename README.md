@@ -85,6 +85,7 @@ npm install && npm run build && npm run storybook
 `build`              | builds everytyhing
 `test`               | runs all jest tests
 `storybook`          | starts storybook in dev server mode on `:6006`
+`watch`              | watches `src` dir, triggering `build` on changes
 
 ### Releases
 This project uses [`semantic-release`](https://semantic-release.gitbook.io/semantic-release/),

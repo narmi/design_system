@@ -1,0 +1,12 @@
+.nds-separatorList {
+  li {
+    display: inline-flex;
+    align-self: center;
+  }
+
+  li[data-separator]::after {
+    content: attr(data-separator);
+    color: var(--font-color-hint);
+    padding: 0 var(--space-xs);
+  }
+}

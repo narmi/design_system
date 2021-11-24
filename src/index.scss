@@ -54,6 +54,7 @@ $desktop-big: 1440px;
 @import "Tooltip/";
 @import "Row/";
 @import "Pagination/";
+@import "SeparatorList/";
 
 // Helper classes
 @import "helper-classes/spacing";
@@ -61,3 +62,4 @@ $desktop-big: 1440px;
 @import "helper-classes/background";
 @import "helper-classes/forms";
 @import "helper-classes/scroll";
+@import "helper-classes/lists";

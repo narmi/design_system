@@ -79,11 +79,11 @@
   "author": "@fkotsian, @reshav-abraham",
   "license": "SEE LICENSE IN LICENSE.md",
   "dependencies": {
-    "@tippyjs/react": "^4.2.6",
     "classcat": "^5.0.3",
     "flatpickr": "^4.6.9",
     "moment": "^2.29.1",
-    "raf-schd": "^4.0.3"
+    "raf-schd": "^4.0.3",
+    "react-laag": "^2.0.3"
   },
   "repository": {
     "type": "git",

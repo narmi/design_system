@@ -1,17 +1,14 @@
 .nds-tooltip {
-  border-radius: 8px;
-  background-color: #333;
-  color: #fff;
-  font-size: 16px;
-  font-family: var(--nds-font-family);
-  box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius-default);
+  padding: var(--space-s) var(--space-m);
+  font-size: var(--font-size-s);
+  background-color: var(--color-black);
+  color: var(--color-white);
+  text-align: center;
+  z-index: 999;
 
-  .tippy-content {
-    text-align: center;
-    padding: 16px;
-  }
-
-  .tippy-arrow {
-    background-color: #333;
+  // The arrow SVG path
+  path {
+    fill: var(--color-black);
   }
 }

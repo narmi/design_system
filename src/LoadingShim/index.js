@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
  */
 const LoadingShim = ({ isLoading = false, children }) => (
   <div
+    data-testid="nds-loadingshim"
     aria-live="polite"
     aria-busy={isLoading.toString()}
     style={{ position: "relative" }}

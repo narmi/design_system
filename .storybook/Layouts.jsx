@@ -7,6 +7,7 @@ import {
   Stories,
   PRIMARY_STORY,
 } from "@storybook/addon-docs";
+import ImportCopy from "./helpers/ImportCopy";
 
 /**
  * `preview.js` is configured to use this layout instead of
@@ -20,6 +21,7 @@ export const Layout = () => (
     <Title />
     <Description />
     <Primary />
+    <ImportCopy />
     <ArgsTable story={PRIMARY_STORY} />
     <Stories />
   </>
@@ -33,6 +35,7 @@ export const DialogLayout = () => (
   <>
     <Title />
     <Description />
+    <ImportCopy />
     <ArgsTable story={PRIMARY_STORY} />
     <Stories />
   </>

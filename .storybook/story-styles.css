@@ -36,6 +36,10 @@ code {
   padding-bottom: 1em !important;
 }
 
+.docblock-source {
+  margin: 24px 0;
+}
+
 .storybook-2col {
   display: grid;
   gap: 16px;

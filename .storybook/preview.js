@@ -13,6 +13,8 @@ export const parameters = {
     page: () => <Layout />,
   },
   controls: {
+    sort: "requiredFirst",
+    //exclude: ["children"],
     matchers: {
       color: /(background|color)$/i,
     },

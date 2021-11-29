@@ -1,39 +1,82 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Tippy from "@tippyjs/react";
+import { useLayer, Arrow } from "react-laag";
 
 /**
  * Renders a text-only tooltip on hover or focus of a trigger.
  *
  * The tooltip will position itself based on the `side` prop, but will
  * automatically reposition to avoid collisions with viewport edges.
- *
- * The `children` of this component will be wapped with a focusable `div`.
- * By default, this `div` shrink wraps content via `inline-flex`, but this styling
- * can be controlled via the `wrapperDisplay` prop.
  */
 const Tooltip = ({
   side = "top",
   text,
   children,
   wrapperDisplay = "inline-flex",
-}) => (
-  <Tippy
-    content={text}
-    placement={side}
-    className="nds-tooltip"
-    maxWidth={320}
-    delay={[300, 100]}
-  >
-    <div
-      tabIndex="0"
-      style={{ display: wrapperDisplay }}
-      data-testid="nds-tooltip-trigger"
-    >
-      {children}
-    </div>
-  </Tippy>
-);
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const delays = {
+    open: 500,
+    close: 100,
+  };
+  let activeTimer;
+
+  const openPopover = () => {
+    clearTimeout(activeTimer);
+    activeTimer = setTimeout(setIsOpen, delays.open, true);
+  };
+
+  const closePopover = () => {
+    clearTimeout(activeTimer);
+    activeTimer = setTimeout(setIsOpen, delays.close, false);
+  };
+
+  const { renderLayer, triggerProps, layerProps, arrowProps } = useLayer({
+    isOpen,
+    onOutsideClick: closePopover,
+    onDisappear: closePopover,
+    auto: true,
+    placement: `${side}-center`,
+    preferX: "left",
+    preferY: "top",
+    triggerOffset: 12,
+    arrowOffset: 12,
+    container: document.body,
+  });
+
+  return (
+    <>
+      <div
+        {...triggerProps}
+        aria-describedby="nds-tooltip"
+        style={{ display: wrapperDisplay }}
+        onFocus={openPopover}
+        onBlur={closePopover}
+        onMouseEnter={openPopover}
+        onMouseLeave={closePopover}
+        tabIndex="0"
+        data-testid="nds-tooltip-trigger"
+      >
+        {children}
+      </div>
+      {renderLayer(
+        <>
+          {isOpen && (
+            <div
+              id="nds-tooltip"
+              role="tooltip"
+              className="nds-typography nds-tooltip elevation--middle"
+              {...layerProps}
+            >
+              {text}
+              <Arrow {...arrowProps} />
+            </div>
+          )}
+        </>
+      )}
+    </>
+  );
+};
 
 Tooltip.propTypes = {
   /** The root node of JSX passed into Tooltip as children will act as the tooltip trigger */

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.20.0](https://github.com/narmi/design_system/compare/v1.19.0...v1.20.0) (2021-11-29)
+
+
+### Features
+
+* **Row:** add support for `as` prop in `Row` and `RowItem` ([54ba139](https://github.com/narmi/design_system/commit/54ba139e126caa910a5e146b1413f857fc7db43d))
+
 ## [1.19.0](https://github.com/narmi/design_system/compare/v1.18.0...v1.19.0) (2021-11-24)
 
 

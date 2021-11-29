@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import Input from "../Input";
 import { english } from "flatpickr/dist/l10n/default";
 import flatpickr from "flatpickr";
-import moment from "moment";
 import "flatpickr/dist/themes/airbnb.css";
+
+const noop = () => {};
 
 /**
  * Single day picker.
@@ -17,6 +18,7 @@ const DateInput = ({
   altInput,
   altFormat,
   defaultDate,
+  onChange: onChangeProp = noop,
   ...props
 }) => {
   const input = useRef();
@@ -35,8 +37,15 @@ const DateInput = ({
     altFormat,
     disable: disableDates,
     defaultDate,
-    onChange: (flatpickrVal) =>
-      props.onChange(moment(flatpickrVal[0]).format("YYYY-MM-DD")),
+    onChange: (flatpickrVal) => {
+      const selectedDate = new Date(flatpickrVal);
+      // 🇨🇦 Our neighbors to the north have adopted ISO 8601.
+      // localizing to en-CA produces the expected result of YYYY-MM-DD
+      const formattedDate = new Intl.DateTimeFormat("en-CA").format(
+        selectedDate
+      );
+      onChangeProp(formattedDate);
+    },
   };
 
   useEffect(() => {

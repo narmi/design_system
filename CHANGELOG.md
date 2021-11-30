@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.21.1](https://github.com/narmi/design_system/compare/v1.21.0...v1.21.1) (2021-11-30)
+
+
+### Bug Fixes
+
+* **Dialog:** add minimum z-index to shim ([f5fe662](https://github.com/narmi/design_system/commit/f5fe6623b513b1ff972a425d6e5dd93c746db7d4))
+
 ## [1.21.0](https://github.com/narmi/design_system/compare/v1.20.2...v1.21.0) (2021-11-30)
 
 

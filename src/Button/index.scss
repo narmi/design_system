@@ -1,4 +1,5 @@
-.nds-button {
+.nds-button,
+.nds-button.resetButton {
   box-sizing: border-box;
   display: inline-flex;
   position: relative;
@@ -9,65 +10,49 @@
   text-align: center;
   justify-content: center;
   align-items: center;
-  padding: 0 32px;
   min-height: 40px;
+  border-radius: 20px;
 
   /* mobile buttons have slightly taller padding for ease of tapping */
   @media (max-width: $mobile_size) {
     min-height: 48px;
   }
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    border-radius: 24px;
-  }
-
   .nds-button-content {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    white-space: nowrap;
-  }
-
-  &:hover::before {
-    filter: brightness(80%);
+    margin: var(--space-xs) 32px;
+    max-width: 240px;
   }
 }
 
 .nds-button--primary {
   color: var(--color-white);
-  &::before {
-    /* TODO: replace with `--theme` var when banking theming is ready */
-    background-color: RGB(var(--nds-primary-color));
+  background-color: var(--theme-primary);
+
+  &:hover {
+    filter: opacity(80%);
   }
 }
 
-.nds-button--secondary {
-  /* TODO: replace with `--theme` var when banking theming is ready */
-  color: RGB(var(--nds-primary-color));
-  &::before {
-    /* TODO: replace with `--theme` var when banking theming is ready */
-    border: var(--border-size-s) solid RGB(var(--nds-primary-color));
+.nds-button--secondary,
+.nds-button--secondary.resetButton {
+  color: var(--theme-primary);
+  background-color: var(--color-white);
+  border: var(--border-size-s) solid var(--theme-primary);
+
+  &:hover {
+    background-color: RGBA(var(--theme-rgb-primary), var(--alpha-10));
   }
 }
 
-.nds-button--menu {
+.nds-button--menu,
+.nds-button--menu.resetButton {
   text-align: left;
-  color: RGB(var(--nds-black));
-  padding: 10px 0;
+  color: var(--font-color-primary);
   display: block;
   font-size: var(--font-size-l);
 
-  &::before {
-    display: none;
+  .nds-button-content {
+    margin: 10px 0;
   }
 
   @media (min-width: $desktop-small) {
@@ -78,26 +63,34 @@
   }
 }
 
-.nds-button--plain {
-  color: RGB(var(--nds-primary-color));
+.nds-button--plain,
+.nds-button--plain.resetButton {
+  color: var(--theme-primary);
   font-weight: var(--font-weight-semibold);
-  padding: var(--space-s);
+
+  .nds-button-content {
+    margin: var(--space-s);
+  }
 
   &:hover {
     text-decoration: underline;
-    color: RGB(var(--nds-primary-color));
-  }
-
-  &::before {
-    display: none;
   }
 }
 
 .nds-button--disabled {
   pointer-events: none;
   color: var(--color-white);
-  &::before {
+
+  &.nds-button--menu,
+  &.nds-button--plain {
+    color: var(--font-color-hint);
+  }
+  &.nds-button--primary {
     background-color: var(--color-lightGrey);
+  }
+  &.nds-button--secondary {
+    color: var(--color-lightGrey);
+    border-color: var(--color-lightGrey);
   }
 }
 

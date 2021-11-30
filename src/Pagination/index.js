@@ -113,8 +113,8 @@ const Pagination = ({
   return (
     <div className="nds-typography nds-pagination">
       <nav aria-label="pagination">
-        <Row gapSize="xs" alignItems="center">
-          <Row.Item shrink>
+        <Row gapSize="xs" alignItems="center" as="ul">
+          <Row.Item as="li" shrink>
             <span
               role="button"
               aria-disabled={!showPrev}
@@ -132,7 +132,7 @@ const Pagination = ({
           </Row.Item>
 
           {firstPage && (
-            <Row.Item shrink>
+            <Row.Item as="li" shrink>
               <span
                 role="button"
                 aria-label="First page"
@@ -145,13 +145,13 @@ const Pagination = ({
             </Row.Item>
           )}
           {firstPage && (
-            <Row.Item shrink>
+            <Row.Item as="li" shrink>
               <div className="nds-pagination-ellipsis">&hellip;</div>
             </Row.Item>
           )}
 
           {visiblePages.map((page, i) => (
-            <Row.Item key={page} shrink>
+            <Row.Item as="li" key={page} shrink>
               <span
                 role="button"
                 className={cc([
@@ -171,12 +171,12 @@ const Pagination = ({
           ))}
 
           {lastPage && (
-            <Row.Item shrink>
+            <Row.Item as="li" shrink>
               <div className="nds-pagination-ellipsis">&hellip;</div>
             </Row.Item>
           )}
           {lastPage && (
-            <Row.Item shrink>
+            <Row.Item as="li" shrink>
               <span
                 role="button"
                 aria-label="Last page"
@@ -189,7 +189,7 @@ const Pagination = ({
             </Row.Item>
           )}
 
-          <Row.Item shrink>
+          <Row.Item as="li" shrink>
             <span
               role="button"
               aria-disabled={!showNext}

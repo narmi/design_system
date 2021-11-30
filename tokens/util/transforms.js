@@ -77,8 +77,12 @@ const nameTransforms = [
     type: "name",
     matcher: ({ attributes }) => attributes.category === "color",
     transformer: ({ attributes }) => {
-      const { item } = attributes;
-      return `rgb-${item}`;
+      const { type, item } = attributes;
+      let result = `rgb-${item}`;
+      if (type === "theme") {
+        result = `theme-rgb-${item}`;
+      }
+      return result;
     },
   },
 ];

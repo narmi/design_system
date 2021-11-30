@@ -31,7 +31,10 @@ properties are intended to be overridden by institution settings.
 ### Enabling theming in your application
 
 To set the value of these theming variables, redeclare theme custom properties
-in your application _after_ the design system styleheet link:
+in your application _after_ the design system styleheet link.
+
+You will need to declare both full values and RGB list values, which are used by
+this design system for composing transparent colors:
 
 ```html
 <link rel="stylesheet" href="<design system style.css url>" />
@@ -40,6 +43,8 @@ in your application _after_ the design system styleheet link:
   :root {
     --theme-primary: red;
     --theme-secondary: yellow;
+    --theme-rgb-primary: 255, 0, 0;
+    --theme-rgb-secondary: 255, 255, 0;
   }
 </style>
 ```
@@ -63,9 +68,11 @@ Colors used for system messages and indicators.
 ## Transparency
 
 All [Base Colors](#narmi-base-colors), [System Colors](#system-colors),
-and [Background Colors](#background-colors) are available as partial RGB values
+[Theme Colors](#theme-colors), and [Background Colors](#background-colors) are available as partial RGB values
 that can be composed with the following alpha values to lighten or darken a color.
+
 These values are prefixed with `--rgb` instead of `--color`.
+Theme RGB values are prefixed with `--theme-rgb`.
 
 The value `rgb(var(--rgb-pine))` is equivalent to `var(--color-pine)`.
 
@@ -79,4 +86,5 @@ The value `rgb(var(--rgb-pine))` is equivalent to `var(--color-pine)`.
 
 ```
 background-color: rgba(var(--rgb-pine), var(--alpha-10));
+color: rgba(var(--theme-rgb-primary), var(--alpha-20));
 ```

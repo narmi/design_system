@@ -21,6 +21,7 @@ const Dialog = require("./Dialog").default;
 const Row = require("./Row").default;
 const Pagination = require("./Pagination").default;
 const SeparatorList = require("./SeparatorList").default;
+const Popover = require("./Popover").default;
 const components = {
   Input,
   DateInput,
@@ -41,6 +42,7 @@ const components = {
   Row,
   Pagination,
   SeparatorList,
+  Popover,
 };
 
 let styleString = require("global").styles;
@@ -70,4 +72,5 @@ export {
   Row,
   Pagination,
   SeparatorList,
+  Popover,
 };

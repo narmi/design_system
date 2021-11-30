@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.21.0](https://github.com/narmi/design_system/compare/v1.20.2...v1.21.0) (2021-11-30)
+
+
+### Features
+
+* **Popover:** add generic Popover component ([dc65c45](https://github.com/narmi/design_system/commit/dc65c454055adc9c034d163e1b8a1c45f454134f))
+
 ### [1.20.2](https://github.com/narmi/design_system/compare/v1.20.1...v1.20.2) (2021-11-30)
 
 

@@ -81,7 +81,6 @@
   "dependencies": {
     "classcat": "^5.0.3",
     "flatpickr": "^4.6.9",
-    "moment": "^2.29.1",
     "raf-schd": "^4.0.3",
     "react-laag": "^2.0.3"
   },

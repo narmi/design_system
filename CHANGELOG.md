@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.20.1](https://github.com/narmi/design_system/compare/v1.20.0...v1.20.1) (2021-11-30)
+
+
+### Bug Fixes
+
+* **Input:** ensure input box does not gain height on user type event ([4a7fbdc](https://github.com/narmi/design_system/commit/4a7fbdcaf8535c10a11107920172f671f27d1ed9))
+
 ## [1.20.0](https://github.com/narmi/design_system/compare/v1.19.0...v1.20.0) (2021-11-29)
 
 

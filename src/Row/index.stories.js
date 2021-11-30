@@ -138,6 +138,27 @@ SectionHeaderExample.parameters = {
   },
 };
 
+export const AsProp = () => (
+  <div className="nds-typography">
+    <Row as="ul">
+      <Row.Item as="li">
+        Row item as a <code>li</code> inside a <code>ul</code> Row
+      </Row.Item>
+      <Row.Item as="li">
+        Row item as a <code>li</code> inside a <code>ul</code> Row
+      </Row.Item>
+    </Row>
+  </div>
+);
+AsProp.parameters = {
+  docs: {
+    description: {
+      story:
+        "The `as` prop is used to control the html element type that renders of the root nodes of `Row` and `Row.Item`",
+    },
+  },
+};
+
 export default {
   title: "Components/Row",
   component: Row,

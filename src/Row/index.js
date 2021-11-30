@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
+import AsElement from "../util/AsElement";
 
 /**
  * builds style object for `Row`
@@ -23,10 +24,14 @@ const _getRowStyle = (alignItems, gapSize) => {
  * Items of `Row` will grow to fit remaining space by default.
  * When a `Row.Item` has a boolean prop of `shrink`, it will shirnk to content width.
  */
-const Row = ({ alignItems = "top", gapSize = "l", children }) => (
-  <div className="nds-row" style={_getRowStyle(alignItems, gapSize)}>
+const Row = ({ alignItems = "top", gapSize = "l", as = "div", children }) => (
+  <AsElement
+    elementType={as}
+    className="nds-row"
+    style={_getRowStyle(alignItems, gapSize)}
+  >
     {children}
-  </div>
+  </AsElement>
 );
 
 Row.propTypes = {
@@ -36,17 +41,23 @@ Row.propTypes = {
    * Set `gapSize="none"` to remove gaps between all row items.
    */
   gapSize: PropTypes.oneOf(["xxs", "xs", "s", "m", "l", "xl", "none"]),
+  /** Controls vertical alignment of items within the row */
   alignItems: PropTypes.oneOf(["top", "center"]),
+  /** The html element to render as the root node of `Row` */
+  as: PropTypes.oneOf(["div", "ul"]),
 };
 
 /**
  * Child component of `Row`.
  * When a `Row.Item` has a boolean prop of `shrink`, it will shirnk to content width.
  */
-const RowItem = ({ shrink = false, children }) => (
-  <div className={cc(["nds-row-item", { "nds-row-item--shrink": shrink }])}>
+const RowItem = ({ shrink = false, as = "div", children }) => (
+  <AsElement
+    elementType={as}
+    className={cc(["nds-row-item", { "nds-row-item--shrink": shrink }])}
+  >
     {children}
-  </div>
+  </AsElement>
 );
 
 RowItem.propTypes = {
@@ -55,6 +66,8 @@ RowItem.propTypes = {
    * Otherwise, the item will expand to fill remaining space in the row.
    */
   shrink: PropTypes.bool,
+  /** The html element to render as the root node of `Row` */
+  as: PropTypes.oneOf(["div", "li"]),
 };
 
 Row.Item = RowItem;

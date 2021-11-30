@@ -51,6 +51,9 @@ Overview.args = {
   onUserDismiss: () => {},
   width: "500px",
 };
+Overview.argTypes = {
+  footer: { control: false }, // hide control for `footer` prop
+};
 
 export const UsingWithState = InteractiveTemplate.bind({});
 UsingWithState.args = {

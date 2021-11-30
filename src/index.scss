@@ -25,9 +25,6 @@ $desktop-big: 1440px;
   --subdued-5-opacity: var(--alpha-5);
 }
 
-// vendor styles
-@import "~tippy.js/dist/tippy.css";
-
 // webfont
 @import "fonts/fonts.css";
 

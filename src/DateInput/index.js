@@ -49,7 +49,7 @@ const DateInput = ({
 
   useEffect(() => {
     flatpickr(input.current, flatpickrOptions);
-  });
+  }, [flatpickrOptions, input]);
 
   return (
     <Input {...props}>
@@ -73,11 +73,10 @@ DateInput.propTypes = {
   disableDates: PropTypes.array,
   /** Sets the minimum selectable date (inclusive) */
   minDate: PropTypes.bool,
-  /** Alternate date format to show in input when a date is selected (e.g. 'MM-DD-YYYY')*/
+  /** Alternate date format to show in input when a date is selected (e.g. 'm/d/Y')*/
   altFormat: PropTypes.string,
   /**
-   * When true, a readable date is shown in the input following the 'YYYY-MM-DD' format.
-   * The date format can be overridden with the `altFormat` prop.
+   * When true, the input value will follow an alternate format defined by the `altFormat` prop
    */
   altInput: PropTypes.bool,
   /**

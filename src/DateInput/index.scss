@@ -170,6 +170,10 @@ body {
     }
   }
 
+  .flatpickr-day.flatpickr-disabled {
+    color: var(--font-color-hint) !important;
+  }
+
   .flatpickr-day.flatpickr-disabled:hover:before {
     background-color: transparent;
   }

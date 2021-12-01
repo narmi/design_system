@@ -2,7 +2,7 @@
 
 # Narmi Design System (NDS)
 
-⚡ Build your own experiences with the [Narmi platform](https://www.narmi.com/developers/developer-portal)!
+⚡ Build your own experiences on the [Narmi platform](https://www.narmi.com/developers/developer-portal)!
 
 This design system provides low level utilities and UI components for building
 custom experiences in combination with the [Narmi API](https://www.narmi.com/developers/developer-portal#api).

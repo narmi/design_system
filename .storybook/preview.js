@@ -21,6 +21,11 @@ export const parameters = {
       color: /(background|color)$/i,
     },
   },
+  options: {
+    storySort: {
+      order: ["Introduction", "Design Tokens", "Style", "Components"],
+    },
+  },
 };
 
 export const decorators = [NdsStyles];

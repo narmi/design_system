@@ -35,6 +35,9 @@ code {
 .sbdocs-h1 {
   padding-bottom: 1em !important;
 }
+#welcome-to-narmi-design-system {
+  padding-bottom: 0 !important; /* hacky override for welcome page h1 */
+}
 
 .docblock-source {
   margin: 24px 0;

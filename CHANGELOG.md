@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.21.2](https://github.com/narmi/design_system/compare/v1.21.1...v1.21.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **Card:** don't render space inside icon element ([#438](https://github.com/narmi/design_system/issues/438)) ([9561dd0](https://github.com/narmi/design_system/commit/9561dd0d83aa43e8eeb936c9117fbf89d2564678))
+
 ### [1.21.1](https://github.com/narmi/design_system/compare/v1.21.0...v1.21.1) (2021-11-30)
 
 

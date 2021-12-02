@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
  */
 const Card = (props) => {
   const icon = props.icon ? (
-    <span className={`narmi-icon-${props.icon}`}>&nbsp;</span>
+    <span className={`narmi-icon-${props.icon}`}></span>
   ) : (
     ""
   );
@@ -18,12 +18,15 @@ const Card = (props) => {
       {...props}
     >
       <div className="nds-card-heading">
-        <div style={{ justifyContent: "start", display: "flex"}}>
-          <h4 className="nds-sans nds-card-title">
-            {props.title}&nbsp;
-          </h4>
+        <div style={{ justifyContent: "start", display: "flex" }}>
+          <h4 className="nds-sans nds-card-title">{props.title}&nbsp;</h4>
           {icon && (
-            <div className="nds-sans nds-card-title" style={{ fontSize: props.iconSize }}>{icon}</div>
+            <div
+              className="nds-sans nds-card-title"
+              style={{ fontSize: props.iconSize }}
+            >
+              {icon}
+            </div>
           )}
         </div>
         {props.button ? props.button : ""}

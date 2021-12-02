@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.0](https://github.com/narmi/design_system/compare/v1.21.2...v1.22.0) (2021-12-02)
+
+
+### Features
+
+* **Tokens:** add default RGB values for theme colors ([2eace7c](https://github.com/narmi/design_system/commit/2eace7c0b03f82e510bbf35e2ffc6067cf5fc980))
+
 ### [1.21.2](https://github.com/narmi/design_system/compare/v1.21.1...v1.21.2) (2021-12-02)
 
 

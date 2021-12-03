@@ -1,31 +1,70 @@
 import React from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
+import AsElement from "../util/AsElement";
 
-const Button = ({ disabled, type, children, className, ...props }) => (
-  <a
-    {...props}
-    className={cc([
-      "nds-typography",
-      "nds-button",
-      `nds-button--${type}`,
-      {
-        "nds-button--disabled": disabled,
-      },
-      className,
-    ])}
-  >
-    <div className="nds-button-content">{children}</div>
-  </a>
-);
+/**
+ * Narmi style action buttons.
+ *
+ * Button renders as an `a` element by default, but can render as a `button` element
+ * via the `as` prop.
+ *
+ * This component supports rest props; any additional props on button will be
+ * passed through to the root node of `Button`.
+ */
+const Button = ({
+  disabled = false,
+  type = "primary",
+  children,
+  label,
+  className,
+  onClick = () => {},
+  as = "a",
+  ...otherProps
+}) => {
+  let buttonLabel = label;
+  if (!buttonLabel) {
+    buttonLabel = children;
+  }
+
+  // set disabled attribute if this is a `button` element
+  if (as === "button" && disabled) {
+    otherProps.disabled = true;
+  }
+
+  return (
+    <AsElement
+      role="button"
+      elementType={as}
+      onClick={onClick}
+      {...otherProps}
+      className={cc([
+        "nds-typography",
+        "nds-button",
+        `nds-button--${type}`,
+        {
+          resetButton: as === "button",
+          "nds-button--disabled": disabled,
+        },
+        className,
+      ])}
+    >
+      <div className="nds-button-content">{buttonLabel}</div>
+    </AsElement>
+  );
+};
 
 Button.propTypes = {
-  /** The children passed to `Button` are rendered as the button label */
-  children: PropTypes.node.isRequired,
+  /** The html element to render as the root node of `Button` */
+  as: PropTypes.oneOf(["a", "button"]),
+  /** Renders the button label */
+  label: PropTypes.string,
   /** disables the button when set to `true` */
   disabled: PropTypes.bool,
   /** type of button to render */
   type: PropTypes.oneOf(["primary", "secondary", "menu", "plain"]),
+  /** Click callback, with event object passed as argument */
+  onClick: PropTypes.func,
   /**
    * ️**⚠️ DEPRECATED**
    *
@@ -34,11 +73,13 @@ Button.propTypes = {
    * Please use the `type` prop to determine the button style instead.
    */
   className: PropTypes.string,
-};
-
-Button.defaultProps = {
-  disabled: false,
-  type: "primary",
+  /**
+   * **⚠️ DEPRECATED**
+   *
+   * Passing children to render the button label will be removed
+   * in a future release. Use the `label` prop instead.
+   */
+  children: PropTypes.node,
 };
 
 export default Button;

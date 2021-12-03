@@ -5,10 +5,13 @@ const Template = (args) => <Button {...args} />;
 
 export const Overview = Template.bind({});
 Overview.args = {
-  children: "Submit",
+  label: "Submit",
 };
 
 export default {
   title: "Components/Button",
   component: Button,
+  argTypes: {
+    onClick: { action: "clicked" },
+  },
 };

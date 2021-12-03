@@ -20,8 +20,8 @@ export const Layout = () => (
   <>
     <Title />
     <Description />
-    <Primary />
     <ImportCopy />
+    <Primary />
     <ArgsTable story={PRIMARY_STORY} />
     <Stories />
   </>
@@ -34,8 +34,8 @@ export const Layout = () => (
 export const DialogLayout = () => (
   <>
     <Title />
-    <Description />
     <ImportCopy />
+    <Description />
     <ArgsTable story={PRIMARY_STORY} />
     <Stories />
   </>

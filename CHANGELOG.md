@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.0](https://github.com/narmi/design_system/compare/v1.22.1...v1.23.0) (2021-12-03)
+
+
+### Features
+
+* **Toggle:** add Toggle component ([1820d64](https://github.com/narmi/design_system/commit/1820d647ed29e46e548ec3d6262686eb1f4f4beb))
+
 ### [1.22.1](https://github.com/narmi/design_system/compare/v1.22.0...v1.22.1) (2021-12-03)
 
 

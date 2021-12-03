@@ -1,6 +1,5 @@
 import React from "react";
 import Tabs from "./";
-import Button from "../Button";
 
 const Template = (args) => (
   <Tabs {...args}>

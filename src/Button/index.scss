@@ -24,7 +24,8 @@
   }
 }
 
-.nds-button--primary {
+.nds-button--primary,
+.nds-button--primary.resetButton {
   color: var(--color-white);
   background-color: var(--theme-primary);
 

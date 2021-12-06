@@ -1,14 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ChevronUp, ChevronDown } from "react-feather";
 import Modal from "Modal";
 
 const Chevron = ({ open, setOpen }) => {
   const style = { position: "absolute", top: "6px", right: "13px" };
   if (!open) {
-    return <ChevronDown onClick={setOpen.bind(null, true)} style={style} />;
+    return (
+      <div
+        className="narmi-icon-chevron-down"
+        onClick={setOpen.bind(null, true)}
+        style={style}
+      />
+    );
   }
-  return <ChevronUp onClick={setOpen.bind(null, false)} style={{ ...style }} />;
+  return (
+    <div
+      className="narmi-icon-chevron-up"
+      onClick={setOpen.bind(null, false)}
+      style={style}
+    />
+  );
 };
 Chevron.propTypes = {
   open: PropTypes.bool,

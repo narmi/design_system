@@ -23,6 +23,7 @@ const Pagination = require("./Pagination").default;
 const SeparatorList = require("./SeparatorList").default;
 const Popover = require("./Popover").default;
 const Toggle = require("./Toggle").default;
+const Tabs = require("./Tabs").default;
 const components = {
   Input,
   DateInput,
@@ -45,6 +46,7 @@ const components = {
   SeparatorList,
   Popover,
   Toggle,
+  Tabs,
 };
 
 let styleString = require("global").styles;
@@ -76,4 +78,5 @@ export {
   SeparatorList,
   Popover,
   Toggle,
+  Tabs,
 };

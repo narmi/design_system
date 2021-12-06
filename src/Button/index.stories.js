@@ -13,5 +13,6 @@ export default {
   component: Button,
   argTypes: {
     onClick: { action: "clicked" },
+    children: { control: false },
   },
 };

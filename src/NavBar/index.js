@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes, { bool } from "prop-types";
-import { Menu } from "react-feather";
 import { deviceBreakpoints } from "global";
 import Details from "Details";
 import Button from "Button";
@@ -44,7 +43,7 @@ const NavBar = (props) => {
           setOpen(!open);
         }}
       >
-        <Menu />
+        <div className="narmi-icon-menu" />
       </div>{" "}
       {/* .nds-navbar-hamburger */}
     </div>

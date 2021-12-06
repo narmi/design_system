@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { deviceBreakpoints } from "globalStyles";
-import { X } from "react-feather";
 
 const StyledSideBar = styled.div`
   position: fixed;
@@ -62,7 +61,7 @@ const Sidebar = (props) => {
       <StyledMobileMenuScrim open={open} />
       <StyledSideBar open={open} {...props}>
         <CloseIcon slideFromRight={props.slideFromRight}>
-          <X onClick={closeSidebar} />
+          <span className="narmi-icon-x"> </span>
         </CloseIcon>
         {props.children}
       </StyledSideBar>

@@ -90,4 +90,7 @@ export const BasicExample = () => {
 export default {
   title: "Components/CheckBox",
   component: CheckBox,
+  argTypes: {
+    onChange: { action: "change" },
+  },
 };

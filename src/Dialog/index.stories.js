@@ -115,6 +115,7 @@ export default {
   component: Dialog,
   argTypes: {
     children: { control: false },
+    onUserDismiss: { action: "user dismiss" },
   },
   parameters: {
     docs: {

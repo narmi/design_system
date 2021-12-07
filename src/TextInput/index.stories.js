@@ -72,4 +72,8 @@ export const Search = () => {
 export default {
   title: "Components/TextInput",
   component: TextInput,
+  argTypes: {
+    onChange: { action: "change" },
+    onBlur: { action: "blur" },
+  },
 };

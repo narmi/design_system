@@ -28,4 +28,7 @@ export const WithDefaultDate = () => {
 export default {
   title: "Components/DateInput",
   component: DateInput,
+  argTypes: {
+    onChange: { action: "change" },
+  },
 };

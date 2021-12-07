@@ -17,6 +17,9 @@ Overview.argTypes = {
 export default {
   title: "Components/Popover",
   component: Popover,
+  argTypes: {
+    children: { control: false },
+  },
   decorators: [
     (Story) => (
       <div

@@ -12,9 +12,6 @@ export const parameters = {
   docs: {
     page: () => <Layout />,
   },
-  argTypes: {
-    children: { control: false }, // never show a control for `children` prop
-  },
   controls: {
     sort: "requiredFirst",
     matchers: {

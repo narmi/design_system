@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { XCircle } from "react-feather";
 
 /*
 The Narmi TextInput component is designed for text-based form fields.
@@ -15,7 +14,8 @@ const Error = ({ error }) => {
   if (!error) return null;
   return (
     <div className="nds-input-error">
-      <XCircle size={14} /> {error}
+      <div className="fontSize--s narmi-icon-x-circle" />
+      {error}
     </div>
   );
 };

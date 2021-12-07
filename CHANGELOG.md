@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.0](https://github.com/narmi/design_system/compare/v1.23.0...v1.24.0) (2021-12-06)
+
+
+### Features
+
+* **Tabs:** add Tabs component ([70d99fe](https://github.com/narmi/design_system/commit/70d99feebfda7905f55d79e109a2dfc80fd324f6))
+
+## [1.23.0](https://github.com/narmi/design_system/compare/v1.22.1...v1.23.0) (2021-12-03)
+
+
+### Features
+
+* **Toggle:** add Toggle component ([1820d64](https://github.com/narmi/design_system/commit/1820d647ed29e46e548ec3d6262686eb1f4f4beb))
+
+### [1.22.1](https://github.com/narmi/design_system/compare/v1.22.0...v1.22.1) (2021-12-03)
+
+
+### Bug Fixes
+
+* **Button:** fix background of primary button when rendering as button element ([10a4801](https://github.com/narmi/design_system/commit/10a4801c2eca32cf0a2e1d3efe7d05ae3279e4bb))
+
+## [1.22.0](https://github.com/narmi/design_system/compare/v1.21.2...v1.22.0) (2021-12-02)
+
+
+### Features
+
+* **Tokens:** add default RGB values for theme colors ([2eace7c](https://github.com/narmi/design_system/commit/2eace7c0b03f82e510bbf35e2ffc6067cf5fc980))
+
+### [1.21.2](https://github.com/narmi/design_system/compare/v1.21.1...v1.21.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* **Card:** don't render space inside icon element ([#438](https://github.com/narmi/design_system/issues/438)) ([9561dd0](https://github.com/narmi/design_system/commit/9561dd0d83aa43e8eeb936c9117fbf89d2564678))
+
 ### [1.21.1](https://github.com/narmi/design_system/compare/v1.21.0...v1.21.1) (2021-11-30)
 
 

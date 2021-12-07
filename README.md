@@ -61,9 +61,11 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 Refer to the [**Changelog**](https://github.com/narmi/design_system/blob/master/CHANGELOG.md) for details.
 
 ### Browser Support
-Please check the following chart to see the minimum browser versions supported by `@narmi/design_system`:
+See [`.browserslistrc`](https://github.com/narmi/design_system/blob/master/.editorconfig) for officially supported browsers or
+run `npx browserslist` in this project locally to see a full list of targeted browsers.
 
-- https://caniuse.com/?search=focus-within
+This project does not support any version of Internet Explorer.
+
 
 ## Contributing
 

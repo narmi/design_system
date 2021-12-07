@@ -1,0 +1,31 @@
+.nds-toggle {
+  position: relative;
+  border-radius: 24px;
+  height: 24px;
+  width: 48px;
+  background-color: var(--color-lightGrey) !important;
+  will-change: background-color;
+  transition: background-color 200ms ease;
+
+  &--active {
+    background-color: var(--theme-primary) !important;
+  }
+}
+
+.nds-toggle-indicator {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  display: block;
+  border-radius: 100%;
+  background-color: var(--color-white);
+  top: 50%;
+  transform: translateY(-50%);
+  left: 4px;
+  will-change: left;
+  transition: left 200ms ease;
+}
+
+.nds-toggle--active .nds-toggle-indicator {
+  left: 28px;
+}

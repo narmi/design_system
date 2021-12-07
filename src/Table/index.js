@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Check } from "react-feather";
 import { deviceBreakpoints } from "globalStyles";
 import { StyledPlainButton } from "PlainButton";
 import List from "List";
@@ -77,7 +76,7 @@ const StyledOverlayItem = styled.div`
   float: right;
 `;
 
-const StyledCheck = styled(Check)`
+const StyledCheck = styled.span`
   width: 20px;
   height: 20px;
   padding: 0px 8px 0px 0px;
@@ -227,7 +226,7 @@ const Table = (props) => {
         <StyledOverlayItem>
           {activeSortColumns &&
           activeSortColumns[heading]["sortOrder"] === headerOption.sortOrder ? (
-            <StyledCheck />
+            <span className="narmi-icon-check"> </span>
           ) : (
             ""
           )}
@@ -307,7 +306,7 @@ Table.defaultProps = {
 props.gridData takes an array of arrays, the content of which are objects of the format
 
       {
-        column: "DESCRIPTION", // column name type string. This is optional for cells with no column name. 
+        column: "DESCRIPTION", // column name type string. This is optional for cells with no column name.
                                                     // Cells with no column name will placed at the end of a row
         content:  // cell content of type node
         sortKey: // value to sort column if sortable

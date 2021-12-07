@@ -40,6 +40,9 @@ WithTextInput.parameters = {
 export default {
   title: "Components/Tooltip",
   component: Tooltip,
+  argTypes: {
+    children: { control: false },
+  },
   decorators: [
     (Story) => (
       <div

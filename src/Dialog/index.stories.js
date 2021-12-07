@@ -113,6 +113,9 @@ ScrollingContent.parameters = {
 export default {
   title: "Components/Dialog",
   component: Dialog,
+  argTypes: {
+    children: { control: false },
+  },
   parameters: {
     docs: {
       page: DialogLayout,

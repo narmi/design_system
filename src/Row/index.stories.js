@@ -162,4 +162,7 @@ AsProp.parameters = {
 export default {
   title: "Components/Row",
   component: Row,
+  argTypes: {
+    children: { control: false },
+  },
 };

@@ -252,4 +252,7 @@ export const Form = () => {
 export default {
   title: "Components/Card",
   component: Card,
+  argTypes: {
+    children: { control: false },
+  },
 };

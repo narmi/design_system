@@ -1,9 +1,9 @@
 import React from "react";
-import CheckBox from "./";
+import Checkbox from "./";
 import Button from "../Button";
 import Modal from "../Modal";
 
-const Template = (args) => <CheckBox {...args} />;
+const Template = (args) => <Checkbox {...args} />;
 
 export const Overview = Template.bind({});
 Overview.args = {
@@ -25,21 +25,21 @@ export const BasicExample = () => {
   }
   return (
     <div>
-      <CheckBox
+      <Checkbox
         label="CB1"
         id={1}
         name="cb1"
         defaultChecked={checkData.cb1}
         onChange={handleCheck}
       />
-      <CheckBox
+      <Checkbox
         label="CB2"
         id={1}
         name="cb2"
         defaultChecked={checkData.cb2}
         onChange={handleCheck}
       />
-      <CheckBox
+      <Checkbox
         label="CB3"
         id={1}
         name="cb3"
@@ -88,6 +88,6 @@ export const BasicExample = () => {
 };
 
 export default {
-  title: "Components/CheckBox",
-  component: CheckBox,
+  title: "Components/Checkbox",
+  component: Checkbox,
 };

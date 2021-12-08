@@ -15,7 +15,7 @@ describe("Button", () => {
     expect(button).toHaveClass("nds-button--primary");
   });
 
-  it("has epxected classes for primary button as='button'", () => {
+  it("has expected classes for primary button as='button'", () => {
     render(<Button as="button" label={LABEL} />);
     const button = getButton();
     expect(button).toBeInTheDocument();
@@ -37,7 +37,7 @@ describe("Button", () => {
     expect(button).toHaveClass("nds-button--disabled");
   });
 
-  it("applies correct attribute for `disabled` when as='butotn'", () => {
+  it("applies correct attribute for `disabled` when as='button'", () => {
     render(<Button as="button" label={LABEL} disabled={true} />);
     const button = getButton();
     expect(button).toHaveClass("nds-button--disabled");

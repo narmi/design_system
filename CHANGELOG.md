@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.24.1](https://github.com/narmi/design_system/compare/v1.24.0...v1.24.1) (2021-12-08)
+
+
+### Bug Fixes
+
+* **Pagination:** fix bad import in pagination component ([46b30bb](https://github.com/narmi/design_system/commit/46b30bb8f648d1709902f4be16347c7e208975c5))
+
 ## [1.24.0](https://github.com/narmi/design_system/compare/v1.23.0...v1.24.0) (2021-12-06)
 
 

@@ -17,6 +17,13 @@ const filters = [
       return isColor && !isOffsetColor && !isDeniedColor;
     },
   },
+  {
+    name: "isColor",
+    matcher: ({ attributes }) => {
+      const { category } = attributes;
+      return category === "color";
+    },
+  },
 ];
 
 module.exports = filters;

@@ -3,6 +3,7 @@ import "./story-styles.css";
 import "dist/style.css";
 import { NdsStyles } from "./decorators";
 import { Layout } from "./Layouts";
+import { docs } from "./theme/narmi";
 
 export const parameters = {
   viewMode: "docs",
@@ -11,6 +12,7 @@ export const parameters = {
   },
   docs: {
     page: () => <Layout />,
+    theme: docs,
   },
   controls: {
     sort: "requiredFirst",

@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@600&display=swap&subset=latin");
 
 :root {
-  --docs-code-family: Consolas, Monaco, monospace;
+  --docs-code-family: Monaco, Consolas, monospace;
 }
 
 code {
@@ -32,9 +32,6 @@ code {
   background-color: var(--color-cove800);
 }
 
-.sbdocs-h1 {
-  padding-bottom: 1em !important;
-}
 #welcome-to-narmi-design-system {
   padding-bottom: 0 !important; /* hacky override for welcome page h1 */
 }

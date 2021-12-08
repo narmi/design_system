@@ -80,6 +80,21 @@ const config = {
         },
       ],
     },
+
+    /**
+     * Color tokens as properties in a javscript object, PascalCase
+     */
+    jsColorsModule: {
+      transforms: [...CSS_TRANSFORM_GROUP, "name/cti/pascal"],
+      buildPath: getBuildPath("js"),
+      files: [
+        {
+          filter: "isColor",
+          destination: "colors.js",
+          format: "javascript/module-flat",
+        },
+      ],
+    },
   },
 };
 

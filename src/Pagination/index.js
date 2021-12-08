@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import Row from "../Row";
-import { tSUnknownKeyword } from "@babel/types";
 
 const noop = () => {};
 const MAX_VISIBLE_PAGES = 5;

@@ -14,5 +14,7 @@ export default {
   argTypes: {
     onClick: { action: "clicked" },
     children: { control: false },
+    className: { control: false },
+    type: { control: false },
   },
 };

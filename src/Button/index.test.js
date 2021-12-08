@@ -45,19 +45,19 @@ describe("Button", () => {
   });
 
   it("has expected classes for secondary button", () => {
-    render(<Button label={LABEL} type="secondary" />);
+    render(<Button label={LABEL} kind="secondary" />);
     const button = getButton();
     expect(button).toHaveClass("nds-button--secondary");
   });
 
   it("has expected classes for menu button", () => {
-    render(<Button label={LABEL} type="menu" />);
+    render(<Button label={LABEL} kind="menu" />);
     const button = getButton();
     expect(button).toHaveClass("nds-button--menu");
   });
 
   it("has expected classes for plain button", () => {
-    render(<Button label={LABEL} type="plain" />);
+    render(<Button label={LABEL} kind="plain" />);
     const button = getButton();
     expect(button).toHaveClass("nds-button--plain");
   });

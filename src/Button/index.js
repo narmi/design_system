@@ -14,7 +14,8 @@ import AsElement from "../util/AsElement";
  */
 const Button = ({
   disabled = false,
-  type = "primary",
+  type,
+  kind = "primary",
   children,
   label,
   className,
@@ -30,6 +31,12 @@ const Button = ({
     buttonLabel = children;
   }
 
+  // support legacy `type` prop
+  let variant = kind;
+  if (!kind) {
+    variant = type;
+  }
+
   return (
     <AsElement
       role={isButtonElement ? undefined : "button"}
@@ -39,7 +46,7 @@ const Button = ({
       className={cc([
         "nds-typography",
         "nds-button",
-        `nds-button--${type}`,
+        `nds-button--${variant}`,
         {
           resetButton: as === "button",
           "nds-button--disabled": disabled,
@@ -61,8 +68,15 @@ Button.propTypes = {
   label: PropTypes.string,
   /** disables the button when set to `true` */
   disabled: PropTypes.bool,
-  /** type of button to render */
+  /**
+   * ️**⚠️ DEPRECATED**
+   *
+   * Support for the `type` prop will be removed in a future release.
+   * Please use the `kind` prop to set the kind of button.
+   */
   type: PropTypes.oneOf(["primary", "secondary", "menu", "plain"]),
+  /** kind of button to render */
+  kind: PropTypes.oneOf(["primary", "secondary", "menu", "plain"]),
   /** Click callback, with event object passed as argument */
   onClick: PropTypes.func,
   /**

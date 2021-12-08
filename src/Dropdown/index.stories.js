@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Dropdown from "./";
 import Modal from "../Modal";
-import PlainButton from "../PlainButton";
 import TextInput from "../TextInput";
 import Button from "../Button";
 
@@ -20,14 +19,13 @@ export const BasicExample = () => {
       <Dropdown triggerLabel={"Accounts"} closeDropDown={modalOpen}>
         <div>Member 1</div>
         <div>Member 2</div>
-        <PlainButton
+        <Button
+          type="plain"
           onClick={() => {
             setModalOpen(true);
           }}
-          style={{ color: "rgb(var(--nds-primary-color))" }}
-        >
-          Link a new payee!
-        </PlainButton>
+          label="Link a new payee"
+        />
       </Dropdown>
       <Modal
         open={modalOpen}
@@ -48,22 +46,21 @@ export const NewMemberDropDown = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const actions = (
     <div className="nds-typography">
-      <PlainButton
-        onClick={() => {
-          setModalOpen(false);
-        }}
-        style={{ paddingRight: "16px", color: "rgb(var(--nds-primary-color))" }}
-        type="plain"
-      >
-        Cancel
-      </PlainButton>
+      <div className="padding--right--m">
+        <Button
+          onClick={() => {
+            setModalOpen(false);
+          }}
+          type="plain"
+          label="Cancel"
+        />
+      </div>
       <Button
         onClick={() => {
           setModalOpen(false);
         }}
-      >
-        Add member
-      </Button>
+        label="Add member"
+      />
     </div>
   );
   return (
@@ -76,14 +73,13 @@ export const NewMemberDropDown = () => {
         {["Rowena Wick", "Daya Zakim"].map((option, i) => (
           <div key={i}>{option}</div>
         ))}
-        <PlainButton
+        <Button
           onClick={() => {
             setModalOpen(true);
           }}
-          style={{ color: "rgb(var(--nds-primary-color))" }}
-        >
-          Add a new member
-        </PlainButton>
+          type="plain"
+          label="Add a new member"
+        />
       </Dropdown>
       <Modal
         open={modalOpen}

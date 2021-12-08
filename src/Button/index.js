@@ -22,19 +22,17 @@ const Button = ({
   as = "a",
   ...otherProps
 }) => {
+  const isButtonElement = as === "button";
+
+  // support legacy method of passing label as children
   let buttonLabel = label;
   if (!buttonLabel) {
     buttonLabel = children;
   }
 
-  // set disabled attribute if this is a `button` element
-  if (as === "button" && disabled) {
-    otherProps.disabled = true;
-  }
-
   return (
     <AsElement
-      role="button"
+      role={isButtonElement ? undefined : "button"}
       elementType={as}
       onClick={onClick}
       {...otherProps}
@@ -48,6 +46,8 @@ const Button = ({
         },
         className,
       ])}
+      disabled={isButtonElement && disabled ? true : undefined}
+      data-testid="nds-button"
     >
       <div className="nds-button-content">{buttonLabel}</div>
     </AsElement>

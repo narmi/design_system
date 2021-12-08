@@ -4,9 +4,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 /**
- * Narmi flavored checkbox with label
+ * Narmi styled checkbox with built-in label.
  */
-const CheckBox = ({
+const Checkbox = ({
   label,
   onChange,
   id,
@@ -34,7 +34,7 @@ const CheckBox = ({
   );
 };
 
-CheckBox.propTypes = {
+Checkbox.propTypes = {
   /** Content of `label` element */
   label: PropTypes.string.isRequired,
   /** Change callback invoked when the value of the `input` changes */
@@ -49,4 +49,4 @@ CheckBox.propTypes = {
   value: PropTypes.string,
 };
 
-export default CheckBox;
+export default Checkbox;

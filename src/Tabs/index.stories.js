@@ -21,9 +21,6 @@ const Template = (args) => (
 );
 
 export const Overview = Template.bind({});
-Overview.argTypes = {
-  onTabChange: { action: "tab change" },
-};
 
 export const DefaultSelectedTab = Template.bind({});
 DefaultSelectedTab.args = {
@@ -51,4 +48,7 @@ WithoutPanels.parameters = {
 export default {
   title: "Components/Tabs",
   component: Tabs,
+  argTypes: {
+    onTabChange: { action: "tab change" },
+  },
 };

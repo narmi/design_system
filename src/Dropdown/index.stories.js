@@ -114,5 +114,7 @@ export default {
   component: Dropdown,
   argTypes: {
     children: { control: false },
+    onChange: { action: "change" },
+    onClose: { action: "close" },
   },
 };

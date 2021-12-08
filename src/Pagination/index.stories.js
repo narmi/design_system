@@ -12,4 +12,7 @@ Overview.args = {
 export default {
   title: "Components/Pagination",
   component: Pagination,
+  argTypes: {
+    onPageChange: { action: "page change" },
+  },
 };

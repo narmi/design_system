@@ -6,6 +6,7 @@ import { DialogLayout } from "../../.storybook/Layouts";
 const BaseTemplate = (args) => <Dialog {...args} />;
 const InteractiveTemplate = (args) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   return (
     <>
       <Button
@@ -16,6 +17,7 @@ const InteractiveTemplate = (args) => {
         Open Dialog
       </Button>
       <Dialog
+        {...args}
         isOpen={isDialogOpen}
         onUserDismiss={() => {
           setIsDialogOpen(false);
@@ -31,7 +33,6 @@ const InteractiveTemplate = (args) => {
             </Button>
           </div>
         }
-        {...args}
       />
     </>
   );
@@ -71,7 +72,6 @@ UsingWithState.parameters = {
 
 export const ScrollingContent = InteractiveTemplate.bind({});
 ScrollingContent.args = {
-  hasLongContent: true,
   title: "Resize your window",
   children: (
     <>

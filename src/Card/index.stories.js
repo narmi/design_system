@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import Card from "./";
 import Button from "../Button";
-import PlainButton from "../PlainButton";
 
 const Template = (args) => <Card {...args} />;
 
@@ -22,24 +21,18 @@ export const Variations = () => {
           style={{ alignContent: "flex-start" }}
         >
           <Card title="Title" classes={"nds-span-12"}>
-            <PlainButton
-              style={{
-                display: "block",
-                marginBottom: "8px",
-                marginTop: "12px",
-              }}
-            >
-              Button
-            </PlainButton>
-            <PlainButton style={{ display: "block", marginBottom: "8px" }}>
-              Button
-            </PlainButton>
-            <PlainButton style={{ display: "block" }}>Button</PlainButton>
+            <div className="margin--top--m margin--bottom-s">
+              <Button type="plain" label="Button" />
+            </div>
+            <div className="margin--bottom-s">
+              <Button type="plain" label="Button" />
+            </div>
+            <Button type="plain" label="Button" />
           </Card>
           <Card
             title="Title"
             classes={"nds-span-12"}
-            button={<PlainButton>Button</PlainButton>}
+            button={<Button type="plain" label="Button" />}
           >
             <div
               style={{
@@ -60,7 +53,7 @@ export const Variations = () => {
           <Card
             title="Title"
             classes={"nds-span-12"}
-            button={<PlainButton>Button</PlainButton>}
+            button={<Button type="plain" label="Button" />}
           />
         </div>
         <div

@@ -15,7 +15,7 @@
 */
 @each $color in (moss, pine, cove, azul, pistachio, cactus, sand, white) {
   .fontColor--#{$color} {
-    color: var(--color-#{$color});
+    color: var(--color-#{$color}) !important;
   }
 }
 
@@ -23,13 +23,13 @@
 * helpers for setting font color to a standard "system" color
 */
 .fontColor--success {
-  color: var(--color-successDark);
+  color: var(--color-successDark) !important;
 }
 .fontColor--warn {
-  color: var(--color-warnDark);
+  color: var(--color-warnDark) !important;
 }
 .fontColor--error {
-  color: var(--color-errorDark);
+  color: var(--color-errorDark) !important;
 }
 
 /**

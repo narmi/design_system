@@ -51,8 +51,8 @@ export const DialogLayout = () => {
   return (
     <>
       <Title />
-      {isComponent && <ImportCopy />}
       <Description />
+      {isComponent && <ImportCopy />}
       <ArgsTable story={PRIMARY_STORY} />
       <Stories />
     </>

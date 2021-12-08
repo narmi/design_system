@@ -25,7 +25,25 @@ export const WithDefaultDate = () => {
   return <DateInput label={"Select a date"} defaultDate="2021-10-22" />;
 };
 
+export const AltInput = Template.bind({});
+AltInput.args = {
+  altInput: true,
+  altFormat: "m/d/Y",
+  label: "Date in input will follow m/d/Y format",
+};
+AltInput.parameters = {
+  docs: {
+    description: {
+      story:
+        "The `altInput` prop will make the input show a date in an alternat format defined by `altFormat`. See [flatpickr docs](https://flatpickr.js.org/formatting/) for formatting options.",
+    },
+  },
+};
+
 export default {
   title: "Components/DateInput",
   component: DateInput,
+  argTypes: {
+    onChange: { action: "change" },
+  },
 };

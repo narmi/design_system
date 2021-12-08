@@ -1,5 +1,6 @@
-/* This is intended as a series of overrides for the "airbnb" Flatpickr theme */
+@import "~flatpickr/dist/themes/airbnb.css";
 
+/* This is intended as a series of overrides for the "airbnb" Flatpickr theme */
 body {
   .flatpickr-calendar {
     margin-top: 20px;
@@ -167,6 +168,10 @@ body {
     &:before {
       background-color: RGBA(var(--nds-primary-color));
     }
+  }
+
+  .flatpickr-day.flatpickr-disabled {
+    color: var(--font-color-hint) !important;
   }
 
   .flatpickr-day.flatpickr-disabled:hover:before {

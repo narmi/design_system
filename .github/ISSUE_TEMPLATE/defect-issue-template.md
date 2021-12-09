@@ -11,10 +11,6 @@ labels: bug
 
 ### Reproduction Steps
 
-1.
-2.
-3.
-
 ### Expected Result
 
 ### Actual Result

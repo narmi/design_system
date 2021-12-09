@@ -23,7 +23,7 @@ Your project must provide the following packages as peer dependencies:
 - styled-components (>=5)
 
 ### Documentation
-- 📖 [Storybook (latest)](https://master--60620d422ffdf100216415b2.chromatic.com/)
+- 📖 [Storybook (latest)](https://narmi.github.io/design_system/)
 
 
 ## Usage
@@ -47,7 +47,7 @@ styling in your markup with standard Narmi design values. For example:
 </div>
 ```
 
-For full documentation of available classes, see [storybook docs](https://master--60620d422ffdf100216415b2.chromatic.com/).
+For full documentation of available classes, see [storybook docs](https://narmi.github.io/design_system/).
 
 ### Design tokens
 All available distributions of design tokens can be found in `dist/tokens`.

@@ -27,8 +27,8 @@ DefaultSelectedTab.args = {
   defaultSelectedIndex: 1,
 };
 
-export const WithoutPanels = () => (
-  <Tabs>
+export const WithoutPanels = (args) => (
+  <Tabs {...args}>
     <Tabs.List>
       <Tabs.Tab label="Apples" tabId="apple" />
       <Tabs.Tab label="Oranges" tabId="orange" />

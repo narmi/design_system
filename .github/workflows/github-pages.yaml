@@ -1,6 +1,8 @@
 name: Github Pages
-on: [push]
-# TODO: limit to master after testing in this branch
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   github-pages-deploy:

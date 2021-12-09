@@ -21,6 +21,9 @@ const Template = (args) => (
 );
 
 export const Overview = Template.bind({});
+Overview.args = {
+  onTabChange: () => {},
+};
 
 export const DefaultSelectedTab = Template.bind({});
 DefaultSelectedTab.args = {

@@ -23,7 +23,7 @@ Your project must provide the following packages as peer dependencies:
 - styled-components (>=5)
 
 ### Documentation
-- 📖 [Storybook (latest)](https://master--60620d422ffdf100216415b2.chromatic.com/)
+- 📖 [Storybook (latest)](https://narmi.github.io/design_system/)
 
 
 ## Usage

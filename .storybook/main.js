@@ -9,6 +9,10 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-a11y",
+    {
+      name: "@storybook/addon-docs",
+      options: { transcludeMarkdown: true },
+    },
   ],
   webpackFinal: (config) => {
     config.resolve.alias = {

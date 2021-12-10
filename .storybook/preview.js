@@ -22,7 +22,13 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: ["Introduction", "Design Tokens", "Style", "Components"],
+      order: [
+        "Introduction",
+        ["Welcome", "Release Notes"],
+        "Design Tokens",
+        "Style",
+        "Components",
+      ],
     },
   },
 };

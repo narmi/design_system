@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.24.2](https://github.com/narmi/design_system/compare/v1.24.1...v1.24.2) (2021-12-14)
+
+
+### Bug Fixes
+
+* **typography:** use correct vars from design tokens; fix heading color ([05614f9](https://github.com/narmi/design_system/commit/05614f9cafa89ec029edd0afc53e9f4badb24cb6))
+
 ### [1.24.1](https://github.com/narmi/design_system/compare/v1.24.0...v1.24.1) (2021-12-08)
 
 

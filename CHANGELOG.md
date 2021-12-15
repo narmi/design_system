@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.24.3](https://github.com/narmi/design_system/compare/v1.24.2...v1.24.3) (2021-12-15)
+
+
+### Bug Fixes
+
+* **LoadingShim:** add z-index to absolutely positioend shim ([8d8a740](https://github.com/narmi/design_system/commit/8d8a740837ed01e0aa70f16f0fc484b31c604b5d))
+
 ### [1.24.2](https://github.com/narmi/design_system/compare/v1.24.1...v1.24.2) (2021-12-14)
 
 

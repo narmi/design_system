@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.24.4](https://github.com/narmi/design_system/compare/v1.24.3...v1.24.4) (2021-12-16)
+
+
+### Bug Fixes
+
+* **Tabs:** prevent state race condition with useEffect wrappers ([c5eb2a8](https://github.com/narmi/design_system/commit/c5eb2a88be4c10d12654741febc41a8bedc44a72))
+
 ### [1.24.3](https://github.com/narmi/design_system/compare/v1.24.2...v1.24.3) (2021-12-15)
 
 

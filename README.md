@@ -1,4 +1,5 @@
 [![npm](https://img.shields.io/npm/v/@narmi/design_system.svg?style=flat&color=blue)](http://www.npmjs.com/package/@narmi/design_system)
+[![Check Build](https://github.com/narmi/design_system/actions/workflows/build.yaml/badge.svg)](https://github.com/narmi/design_system/actions/workflows/build.yaml)
 
 # Narmi Design System (NDS)
 

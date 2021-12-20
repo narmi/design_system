@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.24.5](https://github.com/narmi/design_system/compare/v1.24.4...v1.24.5) (2021-12-20)
+
+
+### Bug Fixes
+
+* **Button:** remove width restriction from plain button ([613fdff](https://github.com/narmi/design_system/commit/613fdff47aa3c9fc028aa8e3c8ea829179ffadc0))
+
 ### [1.24.4](https://github.com/narmi/design_system/compare/v1.24.3...v1.24.4) (2021-12-16)
 
 

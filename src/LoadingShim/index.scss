@@ -8,6 +8,7 @@
   bottom: 0;
   left: 0;
   background-color: var(--bgColor-scrimLight);
+  z-index: 2;
 
   /* ensure enough room for the dots animation when there's no content */
   min-height: 200px;

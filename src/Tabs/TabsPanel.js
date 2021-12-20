@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import TabsContext from "./context";
 
@@ -7,9 +7,11 @@ const TabsPanel = ({ children, tabId }) => {
     useContext(TabsContext);
   const selectedId = tabIds[selectedIndex];
 
-  if (!hasPanels) {
-    setHasPanels(true);
-  }
+  useEffect(() => {
+    if (!hasPanels) {
+      setHasPanels(true);
+    }
+  }, [hasPanels, setHasPanels]);
 
   return (
     <div

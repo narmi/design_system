@@ -1,5 +1,5 @@
 .nds-typography {
-  font-family: var(--nds-font-family);
+  font-family: var(--font-family-default);
   text-rendering: geometricPrecision;
   line-height: var(--font-lineHeight-default);
 
@@ -7,8 +7,8 @@
   h2,
   h3,
   h4 {
-    font-family: var(--nds-header-font);
-    color: var(--nds-black);
+    font-family: var(--font-family-heading);
+    color: var(--font-color-heading);
     font-weight: var(--font-weight-bold);
 
     &::first-letter {
@@ -32,14 +32,14 @@
     font-size: var(--font-size-heading3);
 
     &.nds-sans {
-      font-family: var(--nds-font-family);
+      font-family: var(--font-family-body);
     }
   }
   h4 {
     font-size: var(--font-size-l);
 
     &.nds-sans {
-      font-family: var(--nds-font-family);
+      font-family: var(--font-family-body);
     }
   }
   h5 {

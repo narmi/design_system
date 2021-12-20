@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.24.5](https://github.com/narmi/design_system/compare/v1.24.4...v1.24.5) (2021-12-20)
+
+
+### Bug Fixes
+
+* **Button:** remove width restriction from plain button ([613fdff](https://github.com/narmi/design_system/commit/613fdff47aa3c9fc028aa8e3c8ea829179ffadc0))
+
+### [1.24.4](https://github.com/narmi/design_system/compare/v1.24.3...v1.24.4) (2021-12-16)
+
+
+### Bug Fixes
+
+* **Tabs:** prevent state race condition with useEffect wrappers ([c5eb2a8](https://github.com/narmi/design_system/commit/c5eb2a88be4c10d12654741febc41a8bedc44a72))
+
+### [1.24.3](https://github.com/narmi/design_system/compare/v1.24.2...v1.24.3) (2021-12-15)
+
+
+### Bug Fixes
+
+* **LoadingShim:** add z-index to absolutely positioend shim ([8d8a740](https://github.com/narmi/design_system/commit/8d8a740837ed01e0aa70f16f0fc484b31c604b5d))
+
+### [1.24.2](https://github.com/narmi/design_system/compare/v1.24.1...v1.24.2) (2021-12-14)
+
+
+### Bug Fixes
+
+* **typography:** use correct vars from design tokens; fix heading color ([05614f9](https://github.com/narmi/design_system/commit/05614f9cafa89ec029edd0afc53e9f4badb24cb6))
+
 ### [1.24.1](https://github.com/narmi/design_system/compare/v1.24.0...v1.24.1) (2021-12-08)
 
 

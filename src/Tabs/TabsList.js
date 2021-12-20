@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import TabsContext from "./context";
 
@@ -11,9 +11,11 @@ const TabsList = ({ children }) => {
 
   // populate tabIds state variable in root component
   // with tabId props from `Tabs.Tab` children passed into `Tabs.List`
-  if (tabIds.length !== childArray.length) {
-    setTabIds(childArray.map((t) => t.props.tabId));
-  }
+  useEffect(() => {
+    if (tabIds.length !== childArray.length) {
+      setTabIds(childArray.map((t) => t.props.tabId));
+    }
+  }, [tabIds, setTabIds, childArray]);
 
   const handleKeyDown = ({ key }) => {
     let newIndex;

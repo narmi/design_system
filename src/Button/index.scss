@@ -17,7 +17,10 @@
   @media (max-width: $mobile_size) {
     min-height: 48px;
   }
+}
 
+.nds-button--primary,
+.nds-button--secondary {
   .nds-button-content {
     margin: var(--space-xs) 32px;
     max-width: 240px;
@@ -70,10 +73,6 @@
   font-weight: var(--font-weight-semibold);
   border-radius: 0;
   justify-content: start;
-
-  .nds-button-content {
-    margin: 0;
-  }
 
   &:hover {
     text-decoration: underline;

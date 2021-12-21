@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.24.6](https://github.com/narmi/design_system/compare/v1.24.5...v1.24.6) (2021-12-21)
+
+
+### Bug Fixes
+
+* sub-header style should display text as --nds-black ([ee0fc74](https://github.com/narmi/design_system/commit/ee0fc74aec9fd117c44eae4f7e8347d9dd82bedc))
+
 ### [1.24.5](https://github.com/narmi/design_system/compare/v1.24.4...v1.24.5) (2021-12-20)
 
 

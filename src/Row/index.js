@@ -9,12 +9,13 @@ import AsElement from "../util/AsElement";
  * @param {String} gapSize
  * @returns {Object} style object for `Row`
  */
-const _getRowStyle = (alignItems, gapSize) => {
+const _getRowStyle = (alignItems, justifyContent, gapSize) => {
   let result = {};
   if (gapSize) {
     result.gap = gapSize === "none" ? "0" : `var(--space-${gapSize})`;
   }
   result.alignItems = alignItems === "top" ? "flex-start" : alignItems;
+  result.justifyContent = `flex-${justifyContent}`;
   return result;
 };
 
@@ -24,11 +25,17 @@ const _getRowStyle = (alignItems, gapSize) => {
  * Items of `Row` will grow to fit remaining space by default.
  * When a `Row.Item` has a boolean prop of `shrink`, it will shirnk to content width.
  */
-const Row = ({ alignItems = "top", gapSize = "l", as = "div", children }) => (
+const Row = ({
+  alignItems = "top",
+  justifyContent = "start",
+  gapSize = "l",
+  as = "div",
+  children,
+}) => (
   <AsElement
     elementType={as}
     className="nds-row"
-    style={_getRowStyle(alignItems, gapSize)}
+    style={_getRowStyle(alignItems, justifyContent, gapSize)}
   >
     {children}
   </AsElement>
@@ -43,6 +50,8 @@ Row.propTypes = {
   gapSize: PropTypes.oneOf(["xxs", "xs", "s", "m", "l", "xl", "none"]),
   /** Controls vertical alignment of items within the row */
   alignItems: PropTypes.oneOf(["top", "center"]),
+  /** Controls horizontal flex justification */
+  justifyContent: PropTypes.oneOf(["start", "end"]),
   /** The html element to render as the root node of `Row` */
   as: PropTypes.oneOf(["div", "ul"]),
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../Button";
 import Row from "./";
 
 const Template = (args) => (
@@ -134,6 +135,27 @@ SectionHeaderExample.parameters = {
     description: {
       story:
         "The first `Row.Item` fills the space while the last two shrink to the width of the links. The `alignItems` prop is used to vertically center the row item content.",
+    },
+  },
+};
+
+export const JustifyingContent = () => (
+  <div className="nds-typography">
+    <Row justifyContent="end">
+      <Row.Item shrink>
+        <Button type="plain">Cancel</Button>
+      </Row.Item>
+      <Row.Item shrink>
+        <Button>Continue</Button>
+      </Row.Item>
+    </Row>
+  </div>
+);
+JustifyingContent.parameters = {
+  docs: {
+    description: {
+      story:
+        "If a Row contains only shrink items, they will be justified to `flex-start` by default. To right-align them, set the `justifyContent` prop to `end`.",
     },
   },
 };

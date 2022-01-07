@@ -6,12 +6,18 @@ describe("Row", () => {
   it("has correct default styles for alignment and gap size", () => {
     const { container } = render(<Row />);
     expect(container.firstChild).toHaveStyle("align-items: flex-start");
+    expect(container.firstChild).toHaveStyle("justify-content: flex-start");
     expect(container.firstChild).toHaveStyle("gap: var(--space-l)");
   });
 
   it("has correct override styles for center alignment", () => {
     const { container } = render(<Row alignItems="center" />);
     expect(container.firstChild).toHaveStyle("align-items: center");
+  });
+
+  it("has correct override styles for 'end' justificiation", () => {
+    const { container } = render(<Row justifyContent="end" />);
+    expect(container.firstChild).toHaveStyle("justify-content: flex-end");
   });
 
   it("has correct override styles for gap shirt size values", () => {

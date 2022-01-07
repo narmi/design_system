@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.25.0](https://github.com/narmi/design_system/compare/v1.24.6...v1.25.0) (2022-01-07)
+
+
+### Features
+
+* **Row:** add `justifyContent` prop ([2aad9d7](https://github.com/narmi/design_system/commit/2aad9d7ebd62e8f905628e4aeebe99888911216c))
+
 ### [1.24.6](https://github.com/narmi/design_system/compare/v1.24.5...v1.24.6) (2021-12-21)
 
 

@@ -8,6 +8,7 @@ import glob from "glob";
 import Table from "cli-table";
 import toAst from "./util/toAst.mjs";
 import getComponentNames from "./util/getComponentNames.mjs";
+import ignore from "./util/ignore-patterns.mjs";
 
 if (!process.argv[2]) {
   throw new Error(
@@ -17,15 +18,6 @@ if (!process.argv[2]) {
 
 const PACKAGE_NAME = "@narmi/design_system";
 const TARGET_DIR = process.argv[2];
-const ignore = [
-  "**/node_modules/**",
-  "**/dist/**",
-  "**/static/**",
-  "**/test/**",
-  "**/spec/**",
-  "**/__tests__/**",
-  "**/__mocks__/**",
-];
 
 /**
  * Formats and prints import stats

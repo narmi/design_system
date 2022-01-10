@@ -17,6 +17,7 @@ const RadioButtons = require("./RadioButtons").default;
 const CheckBox = require("./CheckBox").default;
 const Tooltip = require("./Tooltip").default;
 const LoadingShim = require("./LoadingShim").default;
+const LoadingSkeleton = require("./LoadingSkeleton").default;
 const Dialog = require("./Dialog").default;
 const Row = require("./Row").default;
 const Pagination = require("./Pagination").default;
@@ -40,6 +41,7 @@ const components = {
   Card,
   Tooltip,
   LoadingShim,
+  LoadingSkeleton,
   Dialog,
   Row,
   Pagination,
@@ -72,6 +74,7 @@ export {
   Dropdown,
   Tooltip,
   LoadingShim,
+  LoadingSkeleton,
   Dialog,
   Row,
   Pagination,

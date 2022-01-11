@@ -12,7 +12,7 @@ const LoadingSkeleton = ({
   isLoading=false,
   content="paragraph",
   lines=3,
-  title=false,
+  showTitle=false,
   size="medium",
 }) => {
   return isLoading ?
@@ -20,7 +20,7 @@ const LoadingSkeleton = ({
       <div className="nds-loading-skeleton">
         {content === "paragraph" &&
           <>
-            {title && <div className="nds-line-block header" />}
+            {showTitle && <div className="nds-line-block header" />}
             {[...Array(lines)].map((_, i) => <div className="nds-line-block" key={i} />)}
           </>
         }
@@ -49,7 +49,7 @@ LoadingSkeleton.propTypes = {
    * Only applies if `content` prop is set to `paragraph`.
    * When `true`, a skeletal title row will be shown above the first line.
    */
-  title: PropTypes.bool,
+  showTitle: PropTypes.bool,
   /**
    * Only applies if `content` prop is set to `headerText`.
    * The size of the skeletal header text.

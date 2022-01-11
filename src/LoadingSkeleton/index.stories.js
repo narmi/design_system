@@ -6,7 +6,7 @@ const Template = (args) => <LoadingSkeleton {...args} />;
 export const Overview = Template.bind({});
 Overview.args = {
   isLoading: false,
-  title: true,
+  showTitle: true,
   content: "paragraph",
   children: (
     <div className="nds-typography" style={{ padding: "20px", outline: "1px dashed hotpink" }}>

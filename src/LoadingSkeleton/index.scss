@@ -1,0 +1,25 @@
+.nds-loading-skeleton {
+  padding: 8px;
+
+  .nds-line-block {
+    border-radius: 8px;
+    background-color: RGB(var(--nds-smoke-grey));
+    margin: 0 20px 20px 20px;
+    height: 22px;
+    &:first-of-type {
+      margin-top: 20px;
+    }
+    &.header {
+      width: 40%;
+    }
+    &.small {
+      height: 22px;
+    }
+    &.medium {
+      height: 28px;
+    }
+    &.large {
+      height: 40px;
+    }
+  }
+}

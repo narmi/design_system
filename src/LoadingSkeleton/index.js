@@ -12,8 +12,8 @@ const LoadingSkeleton = ({
   isLoading=false,
   content="paragraph",
   lines=3,
+  title=false,
   size="medium",
-  title=false
 }) => {
   return isLoading ?
     (
@@ -24,7 +24,7 @@ const LoadingSkeleton = ({
             {[...Array(lines)].map((_, i) => <div className="nds-line-block" key={i} />)}
           </>
         }
-        {content === "displayText" && <div className={`nds-line-block ${size}`} />}
+        {content === "headerText" && <div className={`nds-line-block ${size}`} />}
       </div>
     ) :
     (
@@ -34,12 +34,27 @@ const LoadingSkeleton = ({
     )
   }
 LoadingSkeleton.propTypes = {
+  /** Loadable content area - will render normally unless `isLoading` is true. */
   children: PropTypes.node,
+  /** When `true`, the child content is replaced by the skeleton imitation. */
   isLoading: PropTypes.bool,
-  content: PropTypes.oneOf(["paragraph", "displayText"]),
+  /** The mask type that best represents the content. */
+  content: PropTypes.oneOf(["paragraph", "headerText"]),
+  /**
+   * Only applies if `content` prop is set to `paragraph`.
+   * The number of lines to be shown by the skeleton.
+   */
   lines: PropTypes.number,
-  size: PropTypes.oneOf(["small", "medium", "large"]),
+  /**
+   * Only applies if `content` prop is set to `paragraph`.
+   * When `true`, a skeletal title row will be shown above the first line.
+   */
   title: PropTypes.bool,
+  /**
+   * Only applies if `content` prop is set to `headerText`.
+   * The size of the skeletal header text.
+   */
+  size: PropTypes.oneOf(["small", "medium", "large"]),
 }
 
 export default LoadingSkeleton;

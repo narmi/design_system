@@ -7,22 +7,24 @@ import PropTypes from "prop-types";
  * pending content.
  */
 
- const ParagraphSkeleton = ({ lines=3, showTitle=true}) => (
-  <div className="nds-paragraph-skeleton">
-    {showTitle && <div className="nds-line-block header" />}
-    {[...Array(lines)].map((_, i) => <div className="nds-line-block" key={i} />)}
-  </div>
-);
-ParagraphSkeleton.propTypes = {
-  lines: PropTypes.number,
-  showTitle: PropTypes.bool,
-}
-
- const LoadingSkeleton = ({ children, isLoading=false, displayText="paragraph" }) => {
+const LoadingSkeleton = ({
+  children,
+  isLoading=false,
+  content="paragraph",
+  lines=3,
+  size="medium",
+  title=false
+}) => {
   return isLoading ?
     (
       <div className="nds-loading-skeleton">
-        {displayText === "paragraph" && <ParagraphSkeleton />}
+        {content === "paragraph" &&
+          <>
+            {title && <div className="nds-line-block header" />}
+            {[...Array(lines)].map((_, i) => <div className="nds-line-block" key={i} />)}
+          </>
+        }
+        {content === "displayText" && <div className={`nds-line-block ${size}`} />}
       </div>
     ) :
     (
@@ -30,11 +32,14 @@ ParagraphSkeleton.propTypes = {
         {children}
       </>
     )
-}
+  }
 LoadingSkeleton.propTypes = {
   children: PropTypes.node,
   isLoading: PropTypes.bool,
-  displayText: PropTypes.oneOf(["paragraph"]),
+  content: PropTypes.oneOf(["paragraph", "displayText"]),
+  lines: PropTypes.number,
+  size: PropTypes.oneOf(["small", "medium", "large"]),
+  title: PropTypes.bool,
 }
 
 export default LoadingSkeleton;

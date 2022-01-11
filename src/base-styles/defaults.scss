@@ -1,0 +1,50 @@
+/**
+* NDS standard styles for base elements
+*
+* Any redundant rules here can be assumed to exist
+* in order to override `semantic-ui` in consumers that use it.
+*/
+
+body {
+  text-rendering: geometricPrecision;
+  font-family: var(--font-family-default);
+  font-size: var(--font-size-default);
+  font-weight: var(--font-weight-default);
+  line-height: var(--font-lineHeight-default);
+  color: var(--font-color-primary);
+  max-width: unset;
+  background-color: var(--color-white);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: var(--font-lineHeight-bigText);
+}
+
+h1 {
+  min-height: unset;
+}
+
+p {
+  line-height: var(--font-lineHeight-default);
+}
+
+a {
+  color: var(--theme-link);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--theme-link);
+  }
+}
+
+b,
+strong {
+  font-weight: var(--font-weight-bold);
+}

@@ -1,5 +1,4 @@
 .nds-row {
-  box-sizing: border-box;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
@@ -9,7 +8,6 @@
 
 // Row items grow to fit remaining space in row by default
 .nds-row-item {
-  box-sizing: border-box;
   flex-basis: 0;
   flex-grow: 1;
   width: auto;

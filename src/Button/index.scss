@@ -1,6 +1,5 @@
 .nds-button,
 .nds-button.resetButton {
-  box-sizing: border-box;
   display: inline-flex;
   position: relative;
   cursor: pointer;
@@ -33,6 +32,8 @@
   background-color: var(--theme-primary);
 
   &:hover {
+    color: var(--color-white);
+    text-decoration: none;
     filter: opacity(80%);
   }
 }
@@ -73,8 +74,10 @@
   font-weight: var(--font-weight-semibold);
   border-radius: 0;
   justify-content: start;
+  min-height: unset;
 
   &:hover {
+    color: var(--theme-primary);
     text-decoration: underline;
   }
 }

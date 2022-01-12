@@ -43,14 +43,12 @@
     padding: 0;
     font-family: var(--font-family-default);
     font-size: var(--font-size-l);
-    /* TODO: use --theme color when ready */
-    color: RGB(var(--nds-primary-color));
+    color: var(--font-color-heading);
   }
 }
 
 .nds-dialog-header--bordered {
-  /* TODO: use --theme color when ready */
-  border-bottom: var(--border-size-m) solid RGB(var(--nds-primary-color));
+  border-bottom: var(--border-size-m) solid var(--theme-primary);
 }
 
 .nds-dialog-closeButton {

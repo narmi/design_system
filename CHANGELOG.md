@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.26.1](https://github.com/narmi/design_system/compare/v1.26.0...v1.26.1) (2022-01-12)
+
+
+### Bug Fixes
+
+* **Dialog:** use heading color in dialog headting text ([75eb250](https://github.com/narmi/design_system/commit/75eb250748850231f067a8e18b4a6a1acbab4455))
+
 ## [1.26.0](https://github.com/narmi/design_system/compare/v1.25.0...v1.26.0) (2022-01-11)
 
 

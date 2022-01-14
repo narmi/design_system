@@ -141,7 +141,7 @@ SectionHeaderExample.parameters = {
 
 export const JustifyingContent = () => (
   <div className="nds-typography">
-    <Row justifyContent="end">
+    <Row justifyContent="end" alignItems="center">
       <Row.Item shrink>
         <Button type="plain">Cancel</Button>
       </Row.Item>

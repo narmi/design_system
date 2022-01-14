@@ -1,0 +1,192 @@
+/**
+* reset.css
+* Custom normailze/reset
+*
+* - Normalizes styling across browsers
+* - Sets sensible defaults for base elements
+* - Repeats some key rules from `semantic-ui` that allow us to remove it from consumers
+*/
+
+// border-box on all elements
+html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+// Avoid font size changing when device orientation changes
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+// Allow percentage-based heights in children
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+// Media defaults
+img,
+picture,
+audio,
+video,
+canvas,
+svg {
+  display: inline-block;
+  border-style: none;
+  max-width: 100%;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+
+// Inherit all font properties in forms from parent context
+input,
+button,
+optgroup,
+textarea,
+select {
+  font: inherit;
+  margin: 0;
+}
+
+// Avoid text overflows
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+// Override UA font family and sizing for code
+pre,
+code {
+  font-family: Monaco, Consolas, monospace;
+  font-size: 1em;
+}
+
+// Normalize summary/details across browsers
+details {
+  display: block;
+}
+summary {
+  display: list-item;
+}
+
+// Normalize horizontal rule
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+// normalize block flow elements
+article,
+aside,
+footer,
+header,
+nav,
+section,
+figcaption,
+figure,
+main,
+menu {
+  display: block;
+}
+
+// Normalize inline-block flow elements
+canvas,
+progress {
+  display: inline-block;
+}
+
+// Normalize progress element across browsers
+progress {
+  vertical-align: baseline;
+}
+
+// Scrollable textareas by default in all browsers
+textarea {
+  overflow: auto;
+}
+
+// Override UA styling that sets all caps on select and button
+button,
+select {
+  text-transform: none;
+  text-rendering: geometricPrecision;
+}
+
+// Replicates input reset behavior from `semantic-ui`
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="text"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+// iOS/Safari fix to enable styling clickable elements
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+// Firefox button reset
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+// Normalize checkbox/radio elements
+[type="checkbox"],
+[type="radio"] {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+// Improve rendering of webkit number input arrows
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+// Normalize search inputs
+[type="search"] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+// Improve webkit file upload input rendering
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}

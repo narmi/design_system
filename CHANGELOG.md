@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.27.0](https://github.com/narmi/design_system/compare/v1.26.1...v1.27.0) (2022-01-14)
+
+
+### Features
+
+* **base-styles:** add reset and base CSS ([70002b0](https://github.com/narmi/design_system/commit/70002b0b5cd9ea95eaad9f6a588c94f7ba3e5d87))
+
 ### [1.26.1](https://github.com/narmi/design_system/compare/v1.26.0...v1.26.1) (2022-01-12)
 
 

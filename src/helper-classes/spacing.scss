@@ -1,6 +1,8 @@
 /**
 * padding and margin helpers
 */
+$sizes: xxs, xs, s, m, l, xl;
+
 @each $property in (padding, margin) {
   // all sides spacing (`<margin|padding>--all`)
   .#{$property}--all {
@@ -10,6 +12,16 @@
   // negate all sides spacing (`<margin|padding>--none`)
   .#{$property}--none {
     #{$property}: 0;
+  }
+
+  // negate spacing on an axis (`<margin|padding>--<axis>--none`)
+  .#{$property}--x--none {
+    #{$property}-left: 0;
+    #{$property}-right: 0;
+  }
+  .#{$property}--y--none {
+    #{$property}-top: 0;
+    #{$property}-bottom: 0;
   }
 
   @each $direction in (top, right, bottom, left) {
@@ -23,7 +35,7 @@
       #{$property}-#{direction}: 0;
     }
 
-    @each $size in (xxs, xs, s, m, l, xl) {
+    @each $size in ($sizes) {
       // spacing by direction and size (`<margin|padding>--top--xl`)
       .#{$property}--#{$direction}--#{$size} {
         #{$property}-#{$direction}: var(--space-#{$size});
@@ -33,6 +45,18 @@
       .#{$property}--all--#{$size} {
         #{$property}: var(--space-#{$size});
       }
+    }
+  }
+
+  // spacing amount by axis (`<margin|padding>--<axis>--<amount>`)
+  @each $size in ($sizes) {
+    .#{$property}--x--#{$size} {
+      #{$property}-left: var(--space-#{$size});
+      #{$property}-right: var(--space-#{$size});
+    }
+    .#{$property}--y--#{$size} {
+      #{$property}-top: var(--space-#{$size});
+      #{$property}-bottom: var(--space-#{$size});
     }
   }
 }

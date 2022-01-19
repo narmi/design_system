@@ -3,7 +3,19 @@ import Tooltip from "./";
 import Button from "../Button";
 import TextInput from "../TextInput";
 
-const Template = (args) => <Tooltip {...args} />;
+const Template = (args) => (
+  <div
+    style={{
+      height: "200px",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+  >
+    <Tooltip {...args} />
+  </div>
+);
 
 export const Overview = Template.bind({});
 Overview.args = {
@@ -43,19 +55,4 @@ export default {
   argTypes: {
     children: { control: false },
   },
-  decorators: [
-    (Story) => (
-      <div
-        style={{
-          height: "200px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Story />
-      </div>
-    ),
-  ],
 };

@@ -11,6 +11,19 @@ const config = {
       "@semantic-release/commit-analyzer",
       {
         preset: "conventionalcommits",
+        releaseRules: [
+          // commits triggering a major version release
+          { breaking: true, release: "major" },
+
+          // commits triggering a minor version release
+          { type: "feat", release: "minor" },
+
+          // commits triggering a patch version release
+          { type: "fix", release: "patch" },
+          { type: "style", release: "patch" },
+          { type: "perf", release: "patch" },
+          { revert: true, release: "patch" },
+        ],
       },
     ],
     [

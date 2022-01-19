@@ -1,0 +1,27 @@
+/**
+* Child Alignment
+* `alignChild--<horizontal alignment>--<vertical alignment>`
+*/
+$xAlign: (
+  left: flex-start,
+  center: center,
+  right: flex-end,
+);
+$yAlign: (
+  top: flex-start,
+  center: center,
+  bottom: flex-end,
+);
+
+[class^="alignChild--"] {
+  display: flex;
+}
+
+@each $xAlignment, $xValue in $xAlign {
+  @each $yAlignment, $yValue in $yAlign {
+    .alignChild--#{$xAlignment}--#{$yAlignment} {
+      justify-content: #{$xValue};
+      align-items: #{$yValue};
+    }
+  }
+}

@@ -14,7 +14,7 @@ const Details = require("./Details").default;
 const Card = require("./Card").default;
 const Dropdown = require("./Dropdown").default;
 const RadioButtons = require("./RadioButtons").default;
-const CheckBox = require("./CheckBox").default;
+const Checkbox = require("./Checkbox").default;
 const Tooltip = require("./Tooltip").default;
 const LoadingShim = require("./LoadingShim").default;
 const LoadingSkeleton = require("./LoadingSkeleton").default;
@@ -37,7 +37,7 @@ const components = {
   Details,
   Dropdown,
   RadioButtons,
-  CheckBox,
+  Checkbox,
   Card,
   Tooltip,
   LoadingShim,
@@ -72,7 +72,7 @@ export {
   Modal,
   Details,
   Card,
-  CheckBox,
+  Checkbox,
   Dropdown,
   Tooltip,
   LoadingShim,

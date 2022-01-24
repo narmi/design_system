@@ -16,7 +16,6 @@ const Button = ({
   disabled = false,
   type = "primary",
   label,
-  className,
   onClick = () => {},
   as = "button",
   ...otherProps
@@ -37,7 +36,6 @@ const Button = ({
           resetButton: as === "button",
           "nds-button--disabled": disabled,
         },
-        className,
       ])}
       disabled={isButtonElement && disabled ? true : undefined}
       data-testid="nds-button"
@@ -58,14 +56,6 @@ Button.propTypes = {
   type: PropTypes.oneOf(["primary", "secondary", "menu", "plain"]),
   /** Click callback, with event object passed as argument */
   onClick: PropTypes.func,
-  /**
-   * ️**⚠️ DEPRECATED**
-   *
-   * Support for passing custom `className` strings will be removed in
-   * a future release.
-   * Please use the `type` prop to determine the button style instead.
-   */
-  className: PropTypes.string,
 };
 
 export default Button;

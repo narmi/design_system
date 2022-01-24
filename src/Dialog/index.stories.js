@@ -42,7 +42,7 @@ export const Overview = BaseTemplate.bind({});
 Overview.args = {
   isOpen: false,
   title: "Dialog title",
-  children: <p>Dialog content</p>,
+  children: <div>Dialog content</div>,
   footer: (
     <div style={{ textAlign: "right" }}>
       <Button>Accept</Button>
@@ -59,7 +59,7 @@ Overview.argTypes = {
 export const UsingWithState = InteractiveTemplate.bind({});
 UsingWithState.args = {
   title: "Dialog controlled by external state",
-  children: <p>Dialog content</p>,
+  children: <div>Dialog content</div>,
 };
 UsingWithState.parameters = {
   docs: {

@@ -80,14 +80,17 @@ const Dialog = ({
             <span className="narmi-icon-x"></span>
           </button>
         </div>
-        <div ref={contentRef} className="nds-dialog-content nds-typography">
+        <div
+          ref={contentRef}
+          className="nds-dialog-content nds-typography padding--top--xs"
+        >
           {children}
         </div>
         {footer && (
           <div
             className={cc([
               "nds-dialog-footer",
-              { "nds-dialog-footer--bordered": isContentOverflowing },
+              { "nds-dialog-footer--overflowing": isContentOverflowing },
             ])}
           >
             {footer}

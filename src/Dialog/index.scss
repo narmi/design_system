@@ -35,7 +35,7 @@
 .nds-dialog-header {
   margin: 0 var(--space-xl);
   padding-top: var(--space-xl);
-  padding-bottom: var(--space-xs);
+  padding-bottom: var(--space-xxs);
 
   h4 {
     margin: 0;
@@ -53,6 +53,7 @@
 .nds-dialog-closeButton {
   position: absolute;
   font-size: var(--font-size-l) !important;
+  color: var(--font-color-primary);
   right: var(--space-m);
   top: var(--space-m);
 }
@@ -75,8 +76,7 @@
   padding-top: var(--space-default);
 }
 
-.nds-dialog-footer--bordered {
-  border-top: var(--border-size-s) solid var(--border-color-light);
+.nds-dialog-footer--overflowing {
   position: relative;
 
   &::before {
@@ -84,7 +84,7 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: -21px; /* stack on top of footer border */
+    top: -20px; /* stack on top of footer border */
     height: 20px;
     background-image: linear-gradient(
       to top,

@@ -35,7 +35,7 @@
 /**
 * font size helpers
 */
-@each $size in (xs, s, m, l, heading1, heading2, heading3) {
+@each $size in (xs, s, m, l, heading0, heading1, heading2, heading3) {
   .fontSize--#{$size} {
     font-size: var(--font-size-#{$size}) !important;
   }

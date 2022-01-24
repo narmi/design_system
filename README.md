@@ -99,6 +99,12 @@ This project uses [`semantic-release`](https://semantic-release.gitbook.io/seman
 Any time new commits are added to the `master` branch, the GitHub Action "release" will run `semantic-release`. The job will
 parse recent git tags and commit messages to determine the new version number, tag the release, publish to NPM, and update the changelog.
 
+#### Major releases
+All PRs target `master` unless it contains breaking changes. Any branch continaing breaking change commits should target the open major release branch.
+For example, if NDS is on major version `1`, breaking changes should target the branch `major/v2`.
+
+Branches containing breaking change commits should follow the naming convention `breaking/<branch name>`.
+
 ### Commit Guidelines
 This project requires structured commit messages in the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format:
 

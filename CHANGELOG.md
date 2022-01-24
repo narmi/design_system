@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.28.1](https://github.com/narmi/design_system/compare/v1.28.0...v1.28.1) (2022-01-24)
+
+
+### Bug Fixes
+
+* **Dialog:** address design feedback ([cdc9dd0](https://github.com/narmi/design_system/commit/cdc9dd0dcb237da432371e7c5bb361bd08c1eed5))
+
 ## [1.28.0](https://github.com/narmi/design_system/compare/v1.27.2...v1.28.0) (2022-01-24)
 
 

@@ -11,15 +11,15 @@ describe("Button", () => {
     render(<Button label={LABEL} />);
     const button = getButton();
     expect(button).toBeInTheDocument();
-    expect(button).toHaveAttribute("role", "button");
+    expect(button).not.toHaveAttribute("role", "button"); // should be a button element
     expect(button).toHaveClass("nds-button--primary");
   });
 
   it("has expected classes for primary button as='button'", () => {
-    render(<Button as="button" label={LABEL} />);
+    render(<Button as="a" label={LABEL} />);
     const button = getButton();
     expect(button).toBeInTheDocument();
-    expect(button).not.toHaveAttribute("role", "button");
+    expect(button).toHaveAttribute("role", "button");
   });
 
   it("fires click callback as anchor", () => {
@@ -45,19 +45,19 @@ describe("Button", () => {
   });
 
   it("has expected classes for secondary button", () => {
-    render(<Button label={LABEL} type="secondary" />);
+    render(<Button label={LABEL} kind="secondary" />);
     const button = getButton();
     expect(button).toHaveClass("nds-button--secondary");
   });
 
   it("has expected classes for menu button", () => {
-    render(<Button label={LABEL} type="menu" />);
+    render(<Button label={LABEL} kind="menu" />);
     const button = getButton();
     expect(button).toHaveClass("nds-button--menu");
   });
 
   it("has expected classes for plain button", () => {
-    render(<Button label={LABEL} type="plain" />);
+    render(<Button label={LABEL} kind="plain" />);
     const button = getButton();
     expect(button).toHaveClass("nds-button--plain");
   });

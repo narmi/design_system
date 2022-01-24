@@ -14,7 +14,7 @@ import AsElement from "../util/AsElement";
  */
 const Button = ({
   disabled = false,
-  type = "primary",
+  kind = "primary",
   label,
   onClick = () => {},
   as = "button",
@@ -31,7 +31,7 @@ const Button = ({
       className={cc([
         "nds-typography",
         "nds-button",
-        `nds-button--${type}`,
+        `nds-button--${kind}`,
         {
           resetButton: as === "button",
           "nds-button--disabled": disabled,
@@ -52,8 +52,8 @@ Button.propTypes = {
   as: PropTypes.oneOf(["a", "button"]),
   /** disables the button when set to `true` */
   disabled: PropTypes.bool,
-  /** type of button to render */
-  type: PropTypes.oneOf(["primary", "secondary", "menu", "plain"]),
+  /** style of button to render */
+  kind: PropTypes.oneOf(["primary", "secondary", "menu", "plain"]),
   /** Click callback, with event object passed as argument */
   onClick: PropTypes.func,
 };

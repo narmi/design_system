@@ -19,7 +19,7 @@ const Button = ({
   label,
   className,
   onClick = () => {},
-  as = "a",
+  as = "button",
   ...otherProps
 }) => {
   const isButtonElement = as === "button";

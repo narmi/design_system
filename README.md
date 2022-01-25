@@ -84,6 +84,7 @@ npm install && npm run build && npm run storybook
 
 `npm run` command    | Description
 -------------------- | ---------------------------------------
+`build:jsdoc`        | builds jsDoc documentation to `dist/`
 `build:tokens`       | builds all distributions of design tokens to `dist/`
 `build:components`   | builds all components and base stylesheet to `dist/`
 `build`              | builds everytyhing

@@ -1,12 +1,14 @@
 .nds-card {
   width: 100%;
   height: 100%;
-  box-shadow: RGB(var(--nds-dropshadow-light));
+  box-shadow: RGB(
+    var(--nds-dropshadow-light)
+  ); /* TODO: looks like this var is being provided in banking only? */
   border-radius: 4px;
 
   padding: 20px;
-  background-color: RGB(var(--nds-white));
-  border: 1px solid RGB(var(--nds-lightest-grey));
+  background-color: var(--bgColor-white);
+  border: 1px solid var(--color-lightGrey);
 
   &[data-hoverable="true"] {
     box-shadow: none;
@@ -16,12 +18,12 @@
   &[data-hoverable="true"]:active,
   &[data-hoverable="true"]:hover,
   &[data-selected="true"] {
-    border: 1px solid RGB(var(--nds-primary-color));
+    border: 1px solid var(--theme-primary);
   }
 
   &[data-hoverable="true"]:active,
   &[data-selected="true"] {
-    background-color: RGBA(var(--nds-primary-color), var(--subdued-5-opacity));
+    background-color: RGBA(var(--theme-rgb-primary), var(--alpha-5));
   }
 
   @media (max-width: $mobile_size) {
@@ -34,7 +36,7 @@
     display: flex;
 
     .nds-card-title {
-      color: RGB(var(--nds-primary-color));
+      color: var(--font-color-primary);
       margin: 0;
       line-height: 28px;
 

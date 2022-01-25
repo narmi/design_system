@@ -16,8 +16,8 @@
     height: 0;
     width: 0;
     &:checked ~ .narmi-icon-check {
-      background-color: RGB(var(--nds-primary-color));
-      border: 1px solid RGB(var(--nds-primary-color));
+      background-color: var(--theme-primary);
+      border: 1px solid var(--theme-primary);
       &:after {
         display: block;
       }
@@ -32,17 +32,17 @@
     background-color: white;
     font-weight: bold;
     border-radius: 3px;
-    border: 1px solid RGB(var(--nds-lightest-grey));
+    border: 1px solid var(--color-lightGrey);
     color: white;
     font-size: 15px;
     text-align: center;
     line-height: 18px;
     box-sizing: content-box;
     &:hover {
-      border: 2px solid RGB(var(--nds-primary-color));
+      border: 2px solid var(--theme-primary);
     }
     &:after {
-      color: red;
+      color: var(--color-red);
     }
   }
 }

@@ -59,6 +59,7 @@ Object.values(components).forEach((component) => {
 });
 
 const formatNumber = require("./formatters/formatNumber").default;
+const formatDate = require("./formatters/formatDate").default;
 
 export {
   Input,
@@ -85,4 +86,5 @@ export {
   Toggle,
   Tabs,
   formatNumber,
+  formatDate,
 };

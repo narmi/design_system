@@ -28,6 +28,8 @@ export const parameters = {
         "Design Tokens",
         "Style",
         "Components",
+        "Utilities",
+        ["Formatters", "Hooks"],
       ],
     },
   },

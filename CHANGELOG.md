@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.29.1](https://github.com/narmi/design_system/compare/v1.29.0...v1.29.1) (2022-01-26)
+
+
+### Bug Fixes
+
+* **dist:** fix main exports in dist ([808da3f](https://github.com/narmi/design_system/commit/808da3f420ccb69dce725f1bcfc0c8e8b52856f8))
+
 ## [1.29.0](https://github.com/narmi/design_system/compare/v1.28.1...v1.29.0) (2022-01-26)
 
 

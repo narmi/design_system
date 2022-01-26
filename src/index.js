@@ -50,9 +50,6 @@ const components = {
   Toggle,
   Tabs,
 };
-const formatters = {
-  formatNumber: require("./formatters/formatNumber").default,
-};
 
 let styleString = require("global").styles;
 Object.values(components).forEach((component) => {
@@ -61,4 +58,31 @@ Object.values(components).forEach((component) => {
   }
 });
 
-module.exports = Object.assign({}, components, formatters);
+const formatNumber = require("./formatters/formatNumber").default;
+
+export {
+  Input,
+  DateInput,
+  TextInput,
+  Button,
+  RadioButtons,
+  PlainButton,
+  ButtonBar,
+  NavBar,
+  Modal,
+  Details,
+  Card,
+  CheckBox,
+  Dropdown,
+  Tooltip,
+  LoadingShim,
+  LoadingSkeleton,
+  Dialog,
+  Row,
+  Pagination,
+  SeparatorList,
+  Popover,
+  Toggle,
+  Tabs,
+  formatNumber,
+};

@@ -60,6 +60,11 @@ describe("Pagination", () => {
   });
 
   describe("Component render and interaction", () => {
+    it("does not render pagination when totalPages is 1", () => {
+      render(<Pagination totalPages={1} />);
+      expect(screen.queryByLabelText("pagination")).not.toBeInTheDocument();
+    });
+
     it("Clicking on page 3 changes selected page", () => {
       const handlePageChange = jest.fn();
       render(<Pagination totalPages={20} onPageChange={handlePageChange} />);

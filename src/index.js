@@ -25,6 +25,9 @@ const SeparatorList = require("./SeparatorList").default;
 const Popover = require("./Popover").default;
 const Toggle = require("./Toggle").default;
 const Tabs = require("./Tabs").default;
+
+const formatNumber = require("./formatters/formatNumber").default;
+
 const components = {
   Input,
   DateInput,
@@ -50,9 +53,6 @@ const components = {
   Toggle,
   Tabs,
 };
-const formatters = {
-  formatNumber: require("./formatters/formatNumber").default,
-};
 
 let styleString = require("global").styles;
 Object.values(components).forEach((component) => {
@@ -61,4 +61,30 @@ Object.values(components).forEach((component) => {
   }
 });
 
-module.exports = Object.assign({}, components, formatters);
+export {
+  Input,
+  DateInput,
+  TextInput,
+  Button,
+  PlainButton,
+  ButtonBar,
+  NavBar,
+  Modal,
+  Details,
+  Dropdown,
+  RadioButtons,
+  CheckBox,
+  Card,
+  Tooltip,
+  LoadingShim,
+  LoadingSkeleton,
+  Dialog,
+  Row,
+  Pagination,
+  SeparatorList,
+  Popover,
+  Toggle,
+  Tabs,
+  formatNumber,
+}
+

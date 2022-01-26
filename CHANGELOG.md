@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.29.0](https://github.com/narmi/design_system/compare/v1.28.1...v1.29.0) (2022-01-26)
+
+
+### Features
+
+* **formatters:** add value formatting helper functions ([2b43e9f](https://github.com/narmi/design_system/commit/2b43e9f903b3224a8473e4d3c27a4e67e34430a1))
+
 ### [1.28.1](https://github.com/narmi/design_system/compare/v1.28.0...v1.28.1) (2022-01-24)
 
 

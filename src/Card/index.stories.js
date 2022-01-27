@@ -224,9 +224,7 @@ export const Form = () => {
         </Card>
       </div>
       <div style={{ textAlign: "right", marginTop: "1em" }}>
-        <a className={"nds-plain-button"} style={{ marginRight: "1em" }}>
-          Cancel
-        </a>
+        <Button kind="plain" label="Cancel" />
         &nbsp;
         <Button
           onClick={() =>

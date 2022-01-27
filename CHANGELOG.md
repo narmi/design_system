@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.0](https://github.com/narmi/design_system/compare/v1.29.2...v1.30.0) (2022-01-27)
+
+
+### Features
+
+* **formatters:** add formatDate utility function ([1c864cf](https://github.com/narmi/design_system/commit/1c864cffc232f90cc24856678515169beb5e9f82))
+
 ### [1.29.2](https://github.com/narmi/design_system/compare/v1.29.1...v1.29.2) (2022-01-27)
 
 

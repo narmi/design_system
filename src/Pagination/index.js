@@ -109,7 +109,7 @@ const Pagination = ({
     onPageChange(newSelectedPage);
   };
 
-  return (
+  const pagination = (
     <div className="nds-typography nds-pagination">
       <nav aria-label="pagination">
         <Row gapSize="xs" alignItems="center" as="ul">
@@ -208,10 +208,15 @@ const Pagination = ({
       </nav>
     </div>
   );
+
+  return totalPages > 1 ? pagination : <></>;
 };
 
 Pagination.propTypes = {
-  /** Total number of pages */
+  /**
+   * Total number of pages
+   * If the number of pages is 1, pagination will not render
+   */
   totalPages: PropTypes.number.isRequired,
   /**
    * Default selected page by page number.

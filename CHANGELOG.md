@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.29.2](https://github.com/narmi/design_system/compare/v1.29.1...v1.29.2) (2022-01-27)
+
+
+### Bug Fixes
+
+* **Pagination:** render empty fragment when totalPages is 1 ([c4f3a95](https://github.com/narmi/design_system/commit/c4f3a957c73ee8afd0c9336c98f800ef79d7a2c6))
+
 ### [1.29.1](https://github.com/narmi/design_system/compare/v1.29.0...v1.29.1) (2022-01-26)
 
 

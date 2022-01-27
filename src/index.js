@@ -1,7 +1,6 @@
 require("./index.scss");
 
 import Button from "./Button";
-import ButtonBar from "./ButtonBar";
 import Card from "./Card";
 import Checkbox from "./Checkbox";
 import DateInput from "./DateInput";
@@ -25,7 +24,6 @@ import formatNumber from "./formatters/formatNumber";
 
 export {
   Button,
-  ButtonBar,
   Card,
   Checkbox,
   DateInput,

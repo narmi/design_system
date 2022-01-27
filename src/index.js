@@ -11,6 +11,7 @@ import LoadingShim from "./LoadingShim";
 import LoadingSkeleton from "./LoadingSkeleton";
 import Modal from "./Modal";
 import Pagination from "./Pagination";
+import PlainButton from "./PlainButton";
 import Popover from "./Popover";
 import RadioButtons from "./RadioButtons";
 import Row from "./Row";
@@ -34,6 +35,7 @@ export {
   LoadingSkeleton,
   Modal,
   Pagination,
+  PlainButton,
   Popover,
   RadioButtons,
   Row,

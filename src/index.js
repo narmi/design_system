@@ -1,88 +1,49 @@
-const React = require("react");
-
 require("./index.scss");
 
-const Input = require("./Input").default;
-const DateInput = require("./DateInput").default;
-const TextInput = require("./TextInput").default;
-const Button = require("./Button").default;
-const PlainButton = require("./PlainButton").default;
-const ButtonBar = require("./ButtonBar").default;
-const NavBar = require("./NavBar").default;
-const Modal = require("./Modal").default;
-const Details = require("./Details").default;
-const Card = require("./Card").default;
-const Dropdown = require("./Dropdown").default;
-const RadioButtons = require("./RadioButtons").default;
-const Checkbox = require("./Checkbox").default;
-const Tooltip = require("./Tooltip").default;
-const LoadingShim = require("./LoadingShim").default;
-const LoadingSkeleton = require("./LoadingSkeleton").default;
-const Dialog = require("./Dialog").default;
-const Row = require("./Row").default;
-const Pagination = require("./Pagination").default;
-const SeparatorList = require("./SeparatorList").default;
-const Popover = require("./Popover").default;
-const Toggle = require("./Toggle").default;
-const Tabs = require("./Tabs").default;
-const components = {
-  Input,
-  DateInput,
-  TextInput,
-  Button,
-  PlainButton,
-  ButtonBar,
-  NavBar,
-  Modal,
-  Details,
-  Dropdown,
-  RadioButtons,
-  Checkbox,
-  Card,
-  Tooltip,
-  LoadingShim,
-  LoadingSkeleton,
-  Dialog,
-  Row,
-  Pagination,
-  SeparatorList,
-  Popover,
-  Toggle,
-  Tabs,
-};
-
-let styleString = require("global").styles;
-Object.values(components).forEach((component) => {
-  if (component.styles) {
-    styleString += component.styles;
-  }
-});
-
-const formatNumber = require("./formatters/formatNumber").default;
+import Button from "./Button";
+import ButtonBar from "./ButtonBar";
+import Card from "./Card";
+import Checkbox from "./Checkbox";
+import DateInput from "./DateInput";
+import Dialog from "./Dialog";
+import Dropdown from "./Dropdown";
+import Input from "./Input";
+import LoadingShim from "./LoadingShim";
+import LoadingSkeleton from "./LoadingSkeleton";
+import Modal from "./Modal";
+import Pagination from "./Pagination";
+import PlainButton from "./PlainButton";
+import Popover from "./Popover";
+import RadioButtons from "./RadioButtons";
+import Row from "./Row";
+import SeparatorList from "./SeparatorList";
+import Tabs from "./Tabs";
+import TextInput from "./TextInput";
+import Toggle from "./Toggle";
+import Tooltip from "./Tooltip";
+import formatNumber from "./formatters/formatNumber";
 
 export {
-  Input,
-  DateInput,
-  TextInput,
   Button,
-  RadioButtons,
-  PlainButton,
   ButtonBar,
-  NavBar,
-  Modal,
-  Details,
   Card,
   Checkbox,
+  DateInput,
+  Dialog,
   Dropdown,
-  Tooltip,
+  Input,
   LoadingShim,
   LoadingSkeleton,
-  Dialog,
-  Row,
+  Modal,
   Pagination,
-  SeparatorList,
+  PlainButton,
   Popover,
-  Toggle,
+  RadioButtons,
+  Row,
+  SeparatorList,
   Tabs,
+  TextInput,
+  Toggle,
+  Tooltip,
   formatNumber,
 };

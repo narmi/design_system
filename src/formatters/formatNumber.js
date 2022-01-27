@@ -1,7 +1,9 @@
 /**
- * Thin wrapper for `Intl.NumberFormat` with options configured for Narmi applications.
+ * Wrapper for `Intl.NumberFormat` with options configured for Narmi applications.
  *
  * @example
+ * import { formatNumber } from '@narmi/design_system';
+ *
  * formatNumber(1234.56, 'currency'); // '$1,234.56'
  * formatNumber(34.4, 'currency');    // '$34.40'
  * formatNumber(-12, 'currency');     // '-$12'
@@ -10,7 +12,7 @@
  *
  * @param {String|Number} input string or number to format into a number string
  * @param {String} style format style (`currency` or `percent`)
- * @returns {String} formatted string
+ * @returns {String} number string formatted for display
  */
 const formatNumber = (input, style = "currency") => {
   let number = parseFloat(input, 10);

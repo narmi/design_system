@@ -15,12 +15,19 @@ import AsElement from "../util/AsElement";
 const Button = ({
   disabled = false,
   kind = "primary",
+  children,
   label,
   onClick = () => {},
   as = "button",
   ...otherProps
 }) => {
   const isButtonElement = as === "button";
+
+  // support legacy method of passing label as children
+  let buttonLabel = label;
+  if (!buttonLabel) {
+    buttonLabel = children;
+  }
 
   return (
     <AsElement
@@ -40,22 +47,29 @@ const Button = ({
       disabled={isButtonElement && disabled ? true : undefined}
       data-testid="nds-button"
     >
-      <div className="nds-button-content">{label}</div>
+      <div className="nds-button-content">{buttonLabel}</div>
     </AsElement>
   );
 };
 
 Button.propTypes = {
-  /** Renders the button label */
-  label: PropTypes.string.isRequired,
   /** The html element to render as the root node of `Button` */
   as: PropTypes.oneOf(["a", "button"]),
+  /** Renders the button label */
+  label: PropTypes.string,
   /** disables the button when set to `true` */
   disabled: PropTypes.bool,
   /** style of button to render */
   kind: PropTypes.oneOf(["primary", "secondary", "menu", "plain"]),
   /** Click callback, with event object passed as argument */
   onClick: PropTypes.func,
+  /**
+   * **⚠️ DEPRECATED**
+   *
+   * Passing children to render the button label will be removed
+   * in a future release. Use the `label` prop instead.
+   */
+  children: PropTypes.node,
 };
 
 export default Button;

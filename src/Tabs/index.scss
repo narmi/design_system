@@ -2,7 +2,10 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
-  border-bottom: var(--border-size-s) solid var(--border-color-light);
+
+  .nds-tabs--bordered & {
+    border-bottom: var(--border-size-s) solid var(--border-color-light);
+  }
 }
 
 .nds-tabs-tabItem {

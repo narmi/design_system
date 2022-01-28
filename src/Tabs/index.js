@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import cc from "classcat";
 import TabsContext from "./context";
 import TabsList from "./TabsList";
 import TabsTab from "./TabsTab";
@@ -14,7 +15,12 @@ const noop = () => {};
  * The `Tabs` component mananges its own state, changing the visible tab panel based
  * on user events. Use the `onTabChange` callback to add any custom behaviors.
  */
-const Tabs = ({ children, defaultSelectedIndex = 0, onTabChange = noop }) => {
+const Tabs = ({
+  children,
+  defaultSelectedIndex = 0,
+  onTabChange = noop,
+  hasBorder = true,
+}) => {
   const [tabIds, setTabIds] = useState([]);
   const [hasPanels, setHasPanels] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(defaultSelectedIndex);
@@ -36,7 +42,9 @@ const Tabs = ({ children, defaultSelectedIndex = 0, onTabChange = noop }) => {
         changeTabs,
       }}
     >
-      <div className="nds-tabs">{children}</div>
+      <div className={cc(["nds-tabs", { "nds-tabs--bordered": hasBorder }])}>
+        {children}
+      </div>
     </TabsContext.Provider>
   );
 };
@@ -53,6 +61,8 @@ Tabs.propTypes = {
   defaultSelectedIndex: PropTypes.number,
   /** Callback invoked with `tabId` of the tab as the argument */
   onTabChange: PropTypes.func,
+  /** Shows bottom border when `true` */
+  hasBorder: PropTypes.bool,
 };
 
 Tabs.List = TabsList;

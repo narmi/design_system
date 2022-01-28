@@ -48,6 +48,24 @@ WithoutPanels.parameters = {
   },
 };
 
+export const WithoutBorder = () => (
+  <Tabs hasBorder={false}>
+    <Tabs.List>
+      <Tabs.Tab label="Apples" tabId="apple" />
+      <Tabs.Tab label="Oranges" tabId="orange" />
+      <Tabs.Tab label="Pineapples" tabId="pineapple" />
+    </Tabs.List>
+  </Tabs>
+);
+WithoutBorder.parameters = {
+  docs: {
+    description: {
+      story:
+        "You can render tabs without a border via the `hasBorder` prop. This is useful when the element directly below the tabs list has a top border already.",
+    },
+  },
+};
+
 export default {
   title: "Components/Tabs",
   component: Tabs,

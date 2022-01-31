@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.31.1](https://github.com/narmi/design_system/compare/v1.31.0...v1.31.1) (2022-01-31)
+
+
+### Bug Fixes
+
+* **formatNumber:** use default NumberFormat behavior for percentage formatting ([5967149](https://github.com/narmi/design_system/commit/5967149e00ca9486929710a158d55e8ec771b8f5))
+
 ## [1.31.0](https://github.com/narmi/design_system/compare/v1.30.0...v1.31.0) (2022-01-28)
 
 

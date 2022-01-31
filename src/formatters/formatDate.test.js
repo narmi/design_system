@@ -21,6 +21,12 @@ describe("formatDate", () => {
       expect(actual).toEqual(expected);
     });
 
+    it("no leading zero on day", () => {
+      const actual = formatDate(new Date("2021-10-4"), style);
+      const expected = "10/4/21";
+      expect(actual).toEqual(expected);
+    });
+
     it("all digits for MM DD dates", () => {
       const actual = formatDate(MOCK_DATES.wallaceShawnBirthday, style);
       const expected = "11/12/22";

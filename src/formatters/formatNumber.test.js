@@ -61,27 +61,27 @@ describe("formatNumber", () => {
       expect(actual).toEqual(expected);
     });
 
-    it("formats between 0 and 1 correctly", () => {
+    it("formats less than 1% as expected", () => {
+      const actual = formatNumber("0.0023", style);
+      const expected = "0.23%";
+      expect(actual).toEqual(expected);
+    });
+
+    it("formats to two decimal places correctly", () => {
       const actual = formatNumber("0.12", style);
-      const expected = "0.12%";
+      const expected = "12%";
       expect(actual).toEqual(expected);
     });
 
-    it("only shows two decimal places", () => {
-      const actual = formatNumber("9.12345", style);
-      const expected = "9.12%";
+    it("handles empty tens place correctly", () => {
+      const actual = formatNumber("0.0342", style);
+      const expected = "3.42%";
       expect(actual).toEqual(expected);
     });
 
-    it("does not add trailing zero if only one decimal", () => {
-      const actual = formatNumber("4.9", style);
-      const expected = "4.9%";
-      expect(actual).toEqual(expected);
-    });
-
-    it("shows thousands separators (just in case)", () => {
-      const actual = formatNumber("1200", style);
-      const expected = "1,200%";
+    it("returns decimal precision of 2, rounding up tens place", () => {
+      const actual = formatNumber("0.21555", style);
+      const expected = "21.56%";
       expect(actual).toEqual(expected);
     });
   });

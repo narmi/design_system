@@ -7,8 +7,9 @@
  * formatNumber(1234.56, 'currency'); // '$1,234.56'
  * formatNumber(34.4, 'currency');    // '$34.40'
  * formatNumber(-12, 'currency');     // '-$12'
- * formatNumber('3.40', 'percent');   // '3.4%'
- * formatNumber(2, 'percent');        // '2%'
+ * formatNumber('0.0342', 'percent'); // '3.42%'
+ * formatNumber(0.0023, 'percent');   // '0.23%'
+ * formatNumber(0.215555, 'percent'); // '21.56%'
  *
  * @param {String|Number} input string or number to format into a number string
  * @param {String} style format style (`currency` or `percent`)
@@ -32,13 +33,8 @@ const formatNumber = (input, style = "currency") => {
     );
   }
 
-  switch (style) {
-    case "currency":
-      formatterOpts.currency = "USD";
-      break;
-    case "percent":
-      number = number / 100;
-      break;
+  if (style === "currency") {
+    formatterOpts.currency = "USD";
   }
 
   return new Intl.NumberFormat("en-US", formatterOpts).format(number);

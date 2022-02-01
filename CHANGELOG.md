@@ -16,17 +16,6 @@ All notable changes to this project will be documented in this file. See
 * **Checkbox:** rename export from `CheckBox` to `Checkbox`
 
 
-### Code Refactoring
-
-* **ButtonBar:** remove `ButtonBar` component ([cb3b9f1](https://github.com/narmi/design_system/commit/cb3b9f164b5cb4b572cb489accb1120439a16f2d))
-* **Button:** remove `className` support ([2165db5](https://github.com/narmi/design_system/commit/2165db525aacf4e35b9e649617311d4c8fec9483))
-* **Button:** remove support for `children`; use `label` instead ([c5972da](https://github.com/narmi/design_system/commit/c5972da5147ae7a13c7e4797b64fcca532fda6d3))
-* **Button:** rename `type` prop to `kind` ([175f92e](https://github.com/narmi/design_system/commit/175f92e60c12325befd9d8c338bab6785cbea9af))
-* **button:** render as button element by default ([965fb29](https://github.com/narmi/design_system/commit/965fb296c265eecd019313aa6a9008bf4698cee2))
-* **Checkbox:** rename export from CheckBox to Checkbox ([cc16fbf](https://github.com/narmi/design_system/commit/cc16fbff22336980e99fc3e8fab6dcaa0f8959f0))
-* **PlainButton:** remove `PlainButton`. Use `Button kind="plain"` instead ([282b298](https://github.com/narmi/design_system/commit/282b298295a2c9804f426a01542737c882cb0eae))
-* remove NavBar, Details from available components; clean up ([a42f71d](https://github.com/narmi/design_system/commit/a42f71da44f8ca35a9b750be77900a3a7274b6dc))
-
 ### [1.31.1](https://github.com/narmi/design_system/compare/v1.31.0...v1.31.1) (2022-01-31)
 
 

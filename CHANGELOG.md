@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file. See
 
 * **Button:** rename `type` prop to `kind`
 * **Button:** remove `className` support
-* **button:** render as button element by default
+* **Button:** render as button element by default
 * **ButtonBar:** remove `ButtonBar` component
 * remove `NavBar`, `Details` from available components
 * **Checkbox:** rename export from `CheckBox` to `Checkbox`

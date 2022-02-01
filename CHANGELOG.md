@@ -10,17 +10,10 @@ All notable changes to this project will be documented in this file. See
 
 * **Button:** rename `type` prop to `kind`
 * **Button:** remove `className` support
-* **Button:** remove support for `children`; use `label` instead
 * **button:** render as button element by default
-* **PlainButton:** remove `PlainButton`. Use `Button kind="plain"` instead
 * **ButtonBar:** remove `ButtonBar` component
-* remove NavBar, Details from available components; clean up
-* **Checkbox:** rename export from CheckBox to Checkbox
-
-### Reverts
-
-* Revert "refactor(Button)!: remove support for `children`; use `label` instead" ([7cbd9aa](https://github.com/narmi/design_system/commit/7cbd9aa04149ae6f7099c9b953de89d3b4ba4d72))
-* Revert "refactor(PlainButton)!: remove `PlainButton`. Use `Button kind="plain"` instead" ([f1286da](https://github.com/narmi/design_system/commit/f1286dad5249e7f4249c977a2f30eb1381dd0866))
+* remove `NavBar`, `Details` from available components
+* **Checkbox:** rename export from `CheckBox` to `Checkbox`
 
 
 ### Code Refactoring

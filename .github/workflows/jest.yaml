@@ -19,4 +19,5 @@ jobs:
         run: |
           echo "The job was automatically triggered by a ${{ github.event_name }} event."
           npm install
+          npm run build
           npm run test

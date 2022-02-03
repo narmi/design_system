@@ -1,7 +1,8 @@
 /**
 * Standard background colors
 */
-@each $bgColor in (blueGrey, cloudGrey, neutralGrey, smokeGrey, snowGrey, white)
+@each $bgColor
+  in (blueGrey, cloudGrey, neutralGrey, smokeGrey, snowGrey, "white")
 {
   .bgColor--#{$bgColor} {
     background-color: var(--bgColor-#{$bgColor});

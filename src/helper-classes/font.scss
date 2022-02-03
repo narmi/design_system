@@ -13,7 +13,7 @@
 /**
 * brand/base text colors
 */
-@each $color in (moss, pine, cove, azul, pistachio, cactus, sand, white) {
+@each $color in (moss, pine, cove, azul, pistachio, cactus, sand, "white") {
   .fontColor--#{$color} {
     color: var(--color-#{$color}) !important;
   }

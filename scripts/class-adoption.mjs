@@ -43,11 +43,8 @@ const printResults = (countMap) => {
  * @returns {Number} number of matches for the given file and class
  */
 const getNumMatches = (content, className) => {
-  // this pattern matches:
-  // - single classes `className="foo"` / `className='foo'`
-  // - multiple classes `className="foo bar"`
-  // - classcat conditionals `className={cc({ foo: condition })}`
-  const rx = new RegExp(`${className}[\s'":]+`, "g");
+  // look for any exact match for class name
+  const rx = new RegExp(`${className}`, "g");
   return (content.match(rx) || []).length;
 };
 

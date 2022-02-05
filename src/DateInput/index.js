@@ -59,6 +59,7 @@ const DateInput = ({
         type="date"
         required
         placeholder={props.label}
+        readOnly
         {...props}
       />
     </Input>

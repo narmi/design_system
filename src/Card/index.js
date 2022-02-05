@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+const noop = () => {};
+
 /**
  * Optionally clickable outlined content card
  */
@@ -10,12 +12,13 @@ const Card = (props) => {
   ) : (
     ""
   );
+  const { iconSize, ...otherProps } = props;
   return (
     <div
       className={`nds-card nds-typography ${props.classes}`}
       data-hoverable={props.hoverable.toString()}
       data-selected={props.selected.toString()}
-      {...props}
+      {...otherProps}
     >
       <div className="nds-card-heading">
         <div style={{ justifyContent: "start", display: "flex" }}>
@@ -23,7 +26,7 @@ const Card = (props) => {
           {icon && (
             <div
               className="nds-sans nds-card-title"
-              style={{ fontSize: props.iconSize }}
+              style={{ fontSize: iconSize }}
             >
               {icon}
             </div>
@@ -57,6 +60,8 @@ Card.propTypes = {
   selected: PropTypes.bool,
   /** classes to add to the `className` string of the root Card element */
   classes: PropTypes.string,
+  /** Click callback, with event object passed as argument */
+  onClick: PropTypes.func,
 };
 
 Card.defaultProps = {
@@ -65,6 +70,7 @@ Card.defaultProps = {
   icon: "",
   iconSize: "20px",
   classes: "",
+  onClick: noop,
 };
 
 export default Card;

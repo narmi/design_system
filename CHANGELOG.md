@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.0.1](https://github.com/narmi/design_system/compare/v2.0.0...v2.0.1) (2022-02-08)
+
+
+### Bug Fixes
+
+* **Card:** don't pass iconSize prop to native elements, to avoid console warning ([b65c5b2](https://github.com/narmi/design_system/commit/b65c5b2e4d307158dadff47784f2957a6ce83615))
+
 ## [2.0.0](https://github.com/narmi/design_system/compare/v1.31.1...v2.0.0) (2022-02-01)
 
 

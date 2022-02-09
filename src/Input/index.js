@@ -14,7 +14,7 @@ const Error = ({ error }) => {
   if (!error) return null;
   return (
     <div className="nds-input-error">
-      <div className="fontSize--s narmi-icon-x-circle" />
+      <div className="fontSize--s margin--right--xxs narmi-icon-x-circle" />
       {error}
     </div>
   );

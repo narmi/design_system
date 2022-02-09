@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.0.2](https://github.com/narmi/design_system/compare/v2.0.1...v2.0.2) (2022-02-09)
+
+
+### Bug Fixes
+
+* **Input:** add margin between error message icon and text ([14dcd55](https://github.com/narmi/design_system/commit/14dcd550d07e84c227e61ea59a522b0f4d80dafe))
+
 ### [2.0.1](https://github.com/narmi/design_system/compare/v2.0.0...v2.0.1) (2022-02-08)
 
 

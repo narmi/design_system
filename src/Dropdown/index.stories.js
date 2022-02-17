@@ -10,6 +10,8 @@ export const Overview = Template.bind({});
 Overview.args = {
   triggerLabel: "Trigger Label",
   children: [<div>One</div>, <div>Two</div>, <div>Three</div>],
+  error: "be nicer",
+  field: "triggerLabel",
 };
 
 export const BasicExample = () => {

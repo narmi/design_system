@@ -48,32 +48,43 @@ const DropdownMenu = ({ open, onClose, children, ...rest }) => {
  * Combobox UI for filling an `input` value from a list of options
  */
 const Dropdown = (props) => {
-  const [open, setOpen] = useState(props.defaultOpen);
-  const [value, setValue] = useState(props.defaultValue || "");
+  const {
+    children,
+    closeDropDown: isDropdownClosed,
+    defaultOpen,
+    defaultValue,
+    multiline,
+    onChange = () => {},
+    onClose = () => {},
+    style,
+    triggerLabel,
+    value: nativeValue,
+    ...nativeElementProps } = props;
+
+  const [open, setOpen] = useState(defaultOpen);
+  const [value, setValue] = useState(defaultValue || "");
 
   useEffect(() => {
-    if (value === undefined && props.defaultValue) {
-      setValue(props.defaultValue);
+    if (value === undefined && defaultValue) {
+      setValue(defaultValue);
     }
   }, []);
+
   useEffect(() => {
-    if (props.closeDropDown === true) {
+    if (isDropdownClosed === true) {
       closeDropdown();
     }
-  }, [props.closeDropDown]);
+  }, [isDropdownClosed]);
 
-  const openDropdown = () => {
-    setOpen(true);
-  };
   const closeDropdown = () => {
     setOpen(false);
+    onClose();
   };
 
-  const childrenList = Array.isArray(props.children)
-    ? props.children.flat()
-    : props.children.flat();
+  const childrenList = Array.isArray(children)
+    ? children.flat()
+    : children;
 
-  const { multiline, style, ...nativeElementProps } = props;
   return (
     <div
       onKeyDown={(event) => {
@@ -87,8 +98,8 @@ const Dropdown = (props) => {
           setOpen(true);
         }}
         value={value}
-        field={props.field}
-        label={props.triggerLabel}
+        label={triggerLabel}
+        {...nativeElementProps}
         readOnly
       />
       <DropdownMenu open={open} onClose={closeDropdown}>
@@ -100,7 +111,7 @@ const Dropdown = (props) => {
                 ? child.props.onClick
                 : () => {
                     setValue(child.props.children);
-                    props.onChange(child.props.children);
+                    onChange(child.props.children);
                     closeDropdown();
                   },
               key: i,

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.0.4](https://github.com/narmi/design_system/compare/v2.0.3...v2.0.4) (2022-02-23)
+
+
+### Bug Fixes
+
+* **Dialog:** more robustly check if a click event target is not inside the Dialog, before calling dismiss method. ([e794182](https://github.com/narmi/design_system/commit/e794182677dbe5cdb3fee969f0d696fc895a6f4a))
+
 ### [2.0.3](https://github.com/narmi/design_system/compare/v2.0.2...v2.0.3) (2022-02-22)
 
 

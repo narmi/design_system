@@ -62,15 +62,16 @@ const Dialog = ({
     };
   }, [handleKeyDown, checkContentOverflow, isOpen]);
 
-  const handleClick = (event) => {
-    const isClickInside = dialogRef?.current?.contains(event?.target);
+  const handleClick = React.useCallback((event) => {
+    if (!document.body.contains(event.target)) return;
+    const isClickInside = dialogRef.current?.contains(event.target);
     if (isOpen && !isClickInside) onUserDismiss();
-  };
+  }, [isOpen]);
 
   useEffect(() => {
     window.addEventListener("click", handleClick);
     return () => window.removeEventListener("click", handleClick);
-  }, [isOpen]);
+  }, [handleClick]);
 
   const dialogJSX = (
     <div className="nds-shim--dark">

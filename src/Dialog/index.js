@@ -69,8 +69,8 @@ const Dialog = ({
   }, [isOpen]);
 
   useEffect(() => {
-    document.addEventListener("click", handleClick);
-    return () => document.removeEventListener("click", handleClick);
+    window.addEventListener("click", handleClick);
+    return () => window.removeEventListener("click", handleClick);
   }, [handleClick]);
 
   const dialogJSX = (

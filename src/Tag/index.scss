@@ -1,0 +1,30 @@
+.nds-tag {
+  padding: 8px;
+  border-radius: 16px;
+  display: flex;
+  align-items: baseline;
+  font-size: 12px;
+  .narmi-icon-x {
+    color: RGB(var(--rgb-white));
+    cursor: pointer;
+    padding-left: 8px;
+    font-size: 12px;
+    position: relative;
+    top: 1px;
+  }
+}
+.nds-tag--dismissible {
+  color: RGB(var(--rgb-white));
+  background: RGB(var(--rgb-cactus));
+  border: 1px solid RGB(var(--rgb-cactus));
+}
+.nds-tag--outline {
+  color: RGB(var(--rgb-pine));
+  background: transparent;
+  border: 1px solid RGB(var(--rgb-pine));
+}
+.nds-tag--subdued {
+  color: RGB(var(--rgb-pine));
+  background: RGB(var(--rgb-smokeGrey));
+  border: 1px solid RGB(var(--rgb-smokeGrey));
+}

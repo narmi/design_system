@@ -1,32 +1,30 @@
 import React, { useState } from "react";
 import Tag from "./";
-import Button from "../Button";
-import TextInput from "../TextInput";
 
 const Template = (args) => <Tag {...args} />;
 const InteractiveTemplate = (args) => {
-  const [isDialogOpen, setIsDialogOpen] = useState(true);
+  const [isTagVisible, setTagVisible] = useState(true);
   return (
     <div
       onClick={() => {
-        setIsDialogOpen(!isDialogOpen);
+        setTagVisible(!isTagVisible);
       }}
     >
-      {isDialogOpen ? (
+      {isTagVisible ? (
         <Tag
           label={"My cool tag"}
           kind={"dismissible"}
           onDismiss={() => {
-            setIsDialogOpen(false);
+            setTagVisible(false);
           }}
         ></Tag>
       ) : (
         <button
           onClick={() => {
-            setIsDialogOpen(true);
+            setTagVisible(true);
           }}
         >
-          make tag come back
+          Make tag come back
         </button>
       )}
     </div>
@@ -46,13 +44,8 @@ Overview.argTypes = {
 };
 
 export const UsingWithState = InteractiveTemplate.bind({});
-UsingWithState.args = {
-  title: "Dialog controlled by external state",
-  children: <div>Dialog content</div>,
-};
 
 const OutlineTag = (args) => {
-  const [isDialogOpen, setIsDialogOpen] = useState(true);
   return (
         <Tag
           label={"My cool tag"}

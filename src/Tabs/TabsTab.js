@@ -4,9 +4,9 @@ import TabsContext from "./context";
 import cc from "classcat";
 
 const TabsTab = ({ label, tabId }) => {
-  const { selectedIndex, tabIds, hasPanels, changeTabs } =
+  const { currentIndex, tabIds, hasPanels, changeTabs } =
     useContext(TabsContext);
-  const isSelected = tabId === tabIds[selectedIndex];
+  const isSelected = tabId === tabIds[currentIndex];
 
   return (
     <li

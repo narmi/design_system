@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import TabsContext from "./context";
 
 const TabsPanel = ({ children, tabId }) => {
-  const { selectedIndex, tabIds, hasPanels, setHasPanels } =
+  const { currentIndex, tabIds, hasPanels, setHasPanels } =
     useContext(TabsContext);
-  const selectedId = tabIds[selectedIndex];
+  const selectedId = tabIds[currentIndex];
 
   useEffect(() => {
     if (!hasPanels) {

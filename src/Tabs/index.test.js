@@ -104,7 +104,7 @@ describe("Tabs", () => {
 
     expect(handleTabChange).not.toHaveBeenCalled();
     fireEvent.click(secondTab);
-    expect(handleTabChange).toHaveBeenCalledWith(TAB_IDS[1]);
+    expect(handleTabChange).toHaveBeenCalledWith(1);
 
     expect(secondTab).toHaveAttribute("aria-selected", "true");
     [firstTab, thirdTab].forEach((tab) => {
@@ -126,7 +126,7 @@ describe("Tabs", () => {
     // arrow to second tab
     expect(handleTabChange).not.toHaveBeenCalled();
     fireEvent.keyDown(firstTab, { key: "ArrowRight" });
-    expect(handleTabChange).toHaveBeenCalledWith(TAB_IDS[1]);
+    expect(handleTabChange).toHaveBeenCalledWith(1);
 
     expect(secondTab).toHaveAttribute("aria-selected", "true");
     [firstTab, thirdTab].forEach((tab) => {
@@ -140,7 +140,7 @@ describe("Tabs", () => {
 
     // arrow back to first tab
     fireEvent.keyDown(secondTab, { key: "ArrowLeft" });
-    expect(handleTabChange).toHaveBeenCalledWith(TAB_IDS[0]);
+    expect(handleTabChange).toHaveBeenCalledWith(0);
 
     expect(firstTab).toHaveAttribute("aria-selected", "true");
     [secondTab, thirdTab].forEach((tab) => {
@@ -191,6 +191,46 @@ describe("Tabs", () => {
     [firstTab, secondTab, thirdTab].forEach((tab) => {
       expect(tab).not.toHaveAttribute("role", "tab");
       expect(tab).not.toHaveAttribute("aria-controls");
+    });
+  });
+
+  describe("Controlled Tabs", () => {
+    it("sets initial selected tab correctly when `selectedIndex` is passed", () => {
+      renderTabsWithoutPanels({ selectedIndex: 1 });
+      const { firstTab, secondTab, thirdTab } = getTabs();
+
+      expect(secondTab).toHaveAttribute("aria-selected", "true");
+      [firstTab, thirdTab].forEach((tab) => {
+        expect(tab).toHaveAttribute("aria-selected", "false");
+      });
+    });
+
+    it("does NOT change tab selection in uncontrolled manner when `selectedIndex` is passed", () => {
+      const handleTabChange = jest.fn();
+      renderTabsWithoutPanels({
+        selectedIndex: 2,
+        onTabChange: handleTabChange,
+      });
+      const { firstTab, secondTab, thirdTab } = getTabs();
+
+      // third tab is set as selected initially
+      expect(thirdTab).toHaveAttribute("aria-selected", "true");
+      [firstTab, secondTab].forEach((tab) => {
+        expect(tab).toHaveAttribute("aria-selected", "false");
+      });
+
+      // callback fired as expected, with the new tab index
+      expect(handleTabChange).not.toHaveBeenCalled();
+      fireEvent.click(firstTab);
+      expect(handleTabChange).toHaveBeenCalledWith(0);
+
+      // because this is in controlled mode and our handler doesn't update the
+      // `selectedIndex` prop, the selected tab should NOT update,
+      // leaving the third tab in a selected state
+      expect(thirdTab).toHaveAttribute("aria-selected", "true");
+      [firstTab, secondTab].forEach((tab) => {
+        expect(tab).toHaveAttribute("aria-selected", "false");
+      });
     });
   });
 });

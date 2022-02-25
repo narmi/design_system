@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.1.1](https://github.com/narmi/design_system/compare/v2.1.0...v2.1.1) (2022-02-25)
+
+
+### Bug Fixes
+
+* **helper-classes:** important all background color and spacing helpers ([e43b002](https://github.com/narmi/design_system/commit/e43b00234cd9a08c8d5f4e8e30b2030cd75cef66))
+
 ## [2.1.0](https://github.com/narmi/design_system/compare/v2.0.4...v2.1.0) (2022-02-25)
 
 

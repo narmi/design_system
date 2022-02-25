@@ -18,16 +18,23 @@ const noop = () => {};
 const Tabs = ({
   children,
   defaultSelectedIndex = 0,
+  selectedIndex = null,
   onTabChange = noop,
   hasBorder = true,
 }) => {
   const [tabIds, setTabIds] = useState([]);
   const [hasPanels, setHasPanels] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(defaultSelectedIndex);
+  const [currentIndex, setCurrentIndex] = useState(defaultSelectedIndex);
+  const isControlledComponent = selectedIndex !== null;
 
   const changeTabs = (tabId) => {
-    onTabChange(tabId);
-    setSelectedIndex(tabIds.indexOf(tabId));
+    const tabIndex = tabIds.indexOf(tabId);
+
+    onTabChange(tabIndex);
+
+    if (!isControlledComponent) {
+      setCurrentIndex(tabIndex);
+    }
   };
 
   return (
@@ -35,8 +42,7 @@ const Tabs = ({
       value={{
         tabIds,
         setTabIds,
-        selectedIndex,
-        setSelectedIndex,
+        currentIndex: isControlledComponent ? selectedIndex : currentIndex,
         hasPanels,
         setHasPanels,
         changeTabs,
@@ -56,10 +62,16 @@ Tabs.propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   * Sets default tab selection by index in source order
+   * Sets _default_ tab selection by index in source order
    */
   defaultSelectedIndex: PropTypes.number,
-  /** Callback invoked with `tabId` of the tab as the argument */
+  /**
+   * Sets selected tab by index, making Tabs **fully controlled**.
+   * When using this prop, you must use the `onTabChange` callback
+   * to update the value of this prop to update the selected tab.
+   */
+  selectedIndex: PropTypes.number,
+  /** Callback invoked with the index of the tab the user is moving selection to */
   onTabChange: PropTypes.func,
   /** Shows bottom border when `true` */
   hasBorder: PropTypes.bool,

@@ -5,7 +5,7 @@ import TabsContext from "./context";
 const noop = () => {};
 
 const TabsList = ({ children }) => {
-  const { tabIds, setTabIds, changeTabs, selectedIndex, hasPanels } =
+  const { tabIds, setTabIds, changeTabs, currentIndex, hasPanels } =
     useContext(TabsContext);
   const childArray = React.Children.toArray(children);
 
@@ -21,13 +21,13 @@ const TabsList = ({ children }) => {
     let newIndex;
     switch (key) {
       case "ArrowLeft":
-        newIndex = selectedIndex - 1;
+        newIndex = currentIndex - 1;
         if (newIndex >= 0) {
           changeTabs(tabIds[newIndex]);
         }
         break;
       case "ArrowRight":
-        newIndex = selectedIndex + 1;
+        newIndex = currentIndex + 1;
         if (newIndex <= tabIds.length - 1) {
           changeTabs(tabIds[newIndex]);
         }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Tabs from "./";
 
 const Template = (args) => (
@@ -62,6 +62,40 @@ WithoutBorder.parameters = {
     description: {
       story:
         "You can render tabs without a border via the `hasBorder` prop. This is useful when the element directly below the tabs list has a top border already.",
+    },
+  },
+};
+
+export const FullyControlledTabs = () => {
+  const [selectedTab, setSelectedTab] = useState(1);
+
+  return (
+    <Tabs
+      selectedIndex={selectedTab}
+      onTabChange={(index) => setSelectedTab(index)}
+    >
+      <Tabs.List>
+        <Tabs.Tab label="Apples" tabId="apple" />
+        <Tabs.Tab label="Oranges" tabId="orange" />
+        <Tabs.Tab label="Pineapples" tabId="pineapple" />
+      </Tabs.List>
+      <Tabs.Panel tabId="apple">
+        <div className="padding--all--s">🍎🍎🍎</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="orange">
+        <div className="padding--all--s">🍊🍊🍊</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="pineapple">
+        <div className="padding--all--s">🍍🍍🍍</div>
+      </Tabs.Panel>
+    </Tabs>
+  );
+};
+FullyControlledTabs.parameters = {
+  docs: {
+    description: {
+      story:
+        "Using the `selectedIndex` prop will make Tabs fully controlled. When using this prop, you **must** use the `onTabChange` callback to respond to user events and update the selected tab.",
     },
   },
 };

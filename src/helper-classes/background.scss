@@ -5,7 +5,7 @@
   in (blueGrey, cloudGrey, neutralGrey, smokeGrey, snowGrey, "white")
 {
   .bgColor--#{$bgColor} {
-    background-color: var(--bgColor-#{$bgColor});
+    background-color: var(--bgColor-#{$bgColor}) !important;
   }
 }
 
@@ -14,7 +14,7 @@
 */
 @each $color in (moss, pine, cove, azul, pistachio, cactus, sand) {
   .bgColor--#{$color} {
-    background-color: var(--color-#{$color});
+    background-color: var(--color-#{$color}) !important;
   }
 }
 
@@ -22,21 +22,21 @@
 * system background colors
 */
 .bgColor--success {
-  background-color: var(--color-successLight);
+  background-color: var(--color-successLight) !important;
 }
 .bgColor--warn {
-  background-color: var(--color-warnLight);
+  background-color: var(--color-warnLight) !important;
 }
 .bgColor--error {
-  background-color: var(--color-errorLight);
+  background-color: var(--color-errorLight) !important;
 }
 
 /**
 * Overlay scrims
 */
 .scrim--light {
-  background-color: var(--bgColor-scrimLight);
+  background-color: var(--bgColor-scrimLight) !important;
 }
 .scrim--dark {
-  background-color: var(--bgColor-scrimLight);
+  background-color: var(--bgColor-scrimLight) !important;
 }

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.0](https://github.com/narmi/design_system/compare/v2.0.4...v2.1.0) (2022-02-25)
+
+
+### Features
+
+* **Tabs:** add `selectedIndex` prop to enable fully controlled Tabs ([33b0f73](https://github.com/narmi/design_system/commit/33b0f733805f8a61b7e33278eeea6b54136ed519))
+
 ### [2.0.4](https://github.com/narmi/design_system/compare/v2.0.3...v2.0.4) (2022-02-23)
 
 

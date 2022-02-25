@@ -6,44 +6,44 @@ $sizes: xxs, xs, s, m, l, xl;
 @each $property in (padding, margin) {
   // all sides spacing (`<margin|padding>--all`)
   .#{$property}--all {
-    #{$property}: var(--space-default);
+    #{$property}: var(--space-default) !important;
   }
 
   // negate all sides spacing (`<margin|padding>--none`)
   .#{$property}--none {
-    #{$property}: 0;
+    #{$property}: 0 !important;
   }
 
   // negate spacing on an axis (`<margin|padding>--<axis>--none`)
   .#{$property}--x--none {
-    #{$property}-left: 0;
-    #{$property}-right: 0;
+    #{$property}-left: 0 !important;
+    #{$property}-right: 0 !important;
   }
   .#{$property}--y--none {
-    #{$property}-top: 0;
-    #{$property}-bottom: 0;
+    #{$property}-top: 0 !important;
+    #{$property}-bottom: 0 !important;
   }
 
   @each $direction in (top, right, bottom, left) {
     // default spacing by direction (`<margin|padding>--top`)
     .#{$property}--#{$direction} {
-      #{$property}-#{$direction}: var(--space-default);
+      #{$property}-#{$direction}: var(--space-default) !important;
     }
 
     // negate spacing by direction (`<margin|padding>--top--none`)
     .#{$property}--#{$direction}--none {
-      #{$property}-#{direction}: 0;
+      #{$property}-#{direction}: 0 !important;
     }
 
     @each $size in ($sizes) {
       // spacing by direction and size (`<margin|padding>--top--xl`)
       .#{$property}--#{$direction}--#{$size} {
-        #{$property}-#{$direction}: var(--space-#{$size});
+        #{$property}-#{$direction}: var(--space-#{$size}) !important;
       }
 
       // spacing by size for all sides (`<margin|padding>--all--xxs`)
       .#{$property}--all--#{$size} {
-        #{$property}: var(--space-#{$size});
+        #{$property}: var(--space-#{$size}) !important;
       }
     }
   }
@@ -51,12 +51,12 @@ $sizes: xxs, xs, s, m, l, xl;
   // spacing amount by axis (`<margin|padding>--<axis>--<amount>`)
   @each $size in ($sizes) {
     .#{$property}--x--#{$size} {
-      #{$property}-left: var(--space-#{$size});
-      #{$property}-right: var(--space-#{$size});
+      #{$property}-left: var(--space-#{$size}) !important;
+      #{$property}-right: var(--space-#{$size}) !important;
     }
     .#{$property}--y--#{$size} {
-      #{$property}-top: var(--space-#{$size});
-      #{$property}-bottom: var(--space-#{$size});
+      #{$property}-top: var(--space-#{$size}) !important;
+      #{$property}-bottom: var(--space-#{$size}) !important;
     }
   }
 }

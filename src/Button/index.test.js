@@ -61,4 +61,20 @@ describe("Button", () => {
     const button = getButton();
     expect(button).toHaveClass("nds-button--plain");
   });
+
+  it("renders startIcon when passed", () => {
+    const iconName = "anchor";
+    render(<Button label={LABEL} startIcon={iconName} />);
+    const icon = screen.getByLabelText(iconName);
+    expect(icon).toBeInTheDocument();
+    expect(icon).toHaveClass(`narmi-icon-${iconName}`);
+  });
+
+  it("renders endIcon when passed", () => {
+    const iconName = "star";
+    render(<Button label={LABEL} endIcon={iconName} />);
+    const icon = screen.getByLabelText(iconName);
+    expect(icon).toBeInTheDocument();
+    expect(icon).toHaveClass(`narmi-icon-${iconName}`);
+  });
 });

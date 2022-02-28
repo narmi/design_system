@@ -1,5 +1,5 @@
 import React from "react";
-import IconSelection from "dist/icons/selection.json";
+import iconSelection from "dist/icons/selection.json";
 
 export default {
   title: "Style/Icons",
@@ -9,7 +9,7 @@ export const Icons = () => {
   return (
     <div className="nds-typography">
       <div className="icon-demo">
-        {IconSelection.icons.map((icon) => (
+        {iconSelection.icons.map((icon) => (
           <div className="icon-demo-box">
             <span
               className={`icon-demo-icon narmi-icon-${icon.properties.name}`}

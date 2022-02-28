@@ -1,7 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
-import AsElement from "../util/AsElement";
+import iconSelection from "src/icons/selection.json";
+import AsElement from "src/util/AsElement";
+import Row from "src/Row";
+
+export const VALID_ICON_NAMES = iconSelection.icons.map(
+  (icon) => icon.properties.name
+);
 
 /**
  * Narmi style action buttons.
@@ -15,6 +21,8 @@ import AsElement from "../util/AsElement";
 const Button = ({
   disabled = false,
   kind = "primary",
+  startIcon = null,
+  endIcon = null,
   children,
   label,
   onClick = () => {},
@@ -28,6 +36,12 @@ const Button = ({
   if (!buttonLabel) {
     buttonLabel = children;
   }
+
+  const Icon = ({ name }) => (
+    <div className="alignChild--center--center">
+      <i role="img" aria-label={name} className={`narmi-icon-${name}`} />
+    </div>
+  );
 
   return (
     <AsElement
@@ -47,7 +61,21 @@ const Button = ({
       disabled={isButtonElement && disabled ? true : undefined}
       data-testid="nds-button"
     >
-      <div className="nds-button-content">{buttonLabel}</div>
+      <div className="nds-button-content">
+        <Row gapSize="s" alignItems="center">
+          {startIcon && (
+            <Row.Item shrink>
+              <Icon name={startIcon} />
+            </Row.Item>
+          )}
+          <Row.Item>{buttonLabel}</Row.Item>
+          {endIcon && (
+            <Row.Item shrink>
+              <Icon name={endIcon} />
+            </Row.Item>
+          )}
+        </Row>
+      </div>
     </AsElement>
   );
 };
@@ -63,6 +91,10 @@ Button.propTypes = {
   kind: PropTypes.oneOf(["primary", "secondary", "menu", "plain"]),
   /** Click callback, with event object passed as argument */
   onClick: PropTypes.func,
+  /** Name of Narmi icon to place at the start of the label */
+  startIcon: PropTypes.oneOf(VALID_ICON_NAMES),
+  /** Name of Narmi icon to place at the end of the label */
+  endIcon: PropTypes.oneOf(VALID_ICON_NAMES),
   /**
    * **⚠️ DEPRECATED**
    *

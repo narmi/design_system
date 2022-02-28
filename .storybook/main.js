@@ -16,6 +16,7 @@ module.exports = {
   ],
   webpackFinal: (config) => {
     config.resolve.alias = {
+      src: path.resolve(__dirname, "../src"),
       dist: path.resolve(__dirname, "../dist"),
       helpers: path.resolve(__dirname, "helpers"),
     };

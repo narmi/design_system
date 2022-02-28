@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.0](https://github.com/narmi/design_system/compare/v2.1.1...v2.2.0) (2022-02-28)
+
+
+### Features
+
+* **Button:** add `startIcon` and `endIcon` props for Button icons ([9e0b748](https://github.com/narmi/design_system/commit/9e0b7484600216aea2c2048ff72d56cc3c8605a5))
+
 ### [2.1.1](https://github.com/narmi/design_system/compare/v2.1.0...v2.1.1) (2022-02-25)
 
 

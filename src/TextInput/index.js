@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import Input from "../Input";
 
@@ -34,14 +34,6 @@ const TextInput = (props) => {
     setInputValue(ref.current.value);
   }
 
-  function handleKeyUp(e) {
-    e.target.style.height = "inherit";
-    e.target.style.height = `${e.target.scrollHeight}px`;
-  }
-  useEffect(
-    () => (multiline ? handleKeyUp({ target: ref.current }) : undefined),
-    []
-  );
   return (
     <Input
       onClick={() => {
@@ -50,17 +42,21 @@ const TextInput = (props) => {
       {...props}
     >
       {multiline ? (
-        <textarea
-          onKeyUp={handleKeyUp}
-          key={"nds-text"}
-          wrap="soft"
-          ref={ref}
-          value={inputValue}
-          onChange={_onChange}
-          onBlur={_onBlur}
-          required
-          {...nativeElementProps}
-        />
+        <div
+          className="nds-input-multiline-grid"
+          data-textarea-value={inputValue}
+        >
+          <textarea
+            key={"nds-text"}
+            wrap="soft"
+            ref={ref}
+            value={inputValue}
+            onChange={_onChange}
+            onBlur={_onBlur}
+            required
+            {...nativeElementProps}
+          />
+        </div>
       ) : (
         <input
           key={"nds-text"}

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.2.1](https://github.com/narmi/design_system/compare/v2.2.0...v2.2.1) (2022-03-01)
+
+
+### Bug Fixes
+
+* **TextInput:** use CSS grid for multiline autogrow ([5e184ec](https://github.com/narmi/design_system/commit/5e184ecc65c18beb6909fb18df23fb48fd99ac5e))
+
 ## [2.2.0](https://github.com/narmi/design_system/compare/v2.1.1...v2.2.0) (2022-02-28)
 
 

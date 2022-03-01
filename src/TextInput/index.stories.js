@@ -42,6 +42,10 @@ export const Example = () => {
   );
 };
 
+export const MultiLine = () => {
+  return <TextInput multiline />;
+};
+
 export const AsColorInput = () => {
   const [color, setColor] = useState("#915F6D");
   return (

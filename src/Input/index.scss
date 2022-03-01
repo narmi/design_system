@@ -1,3 +1,16 @@
+// Sass placeholder for styles shared between
+// `textarea` and the psuedo-element that enables CSS auto growing
+%shared-multiline-styles {
+  line-height: 1.2;
+  vertical-align: middle;
+  font-weight: 400;
+  line-height: normal;
+  font-family: var(--nds-font-family);
+  border: none;
+  outline: 0;
+  padding: 0;
+}
+
 .nds-input {
   display: flex;
   flex-flow: column nowrap;
@@ -91,23 +104,14 @@
     }
   }
 
-  input,
-  textarea {
+  input {
     color: RGB(var(--nds-grey));
-    line-height: normal;
-    font-weight: 400;
   }
 
   textarea {
-    line-height: 1.2;
-    vertical-align: middle;
+    @extend %shared-multiline-styles;
     color: var(--nds-grey-text);
-    font-family: var(--nds-font-family);
-    border: none;
-    outline: 0;
-    padding: 0;
     width: 100%;
-    overflow: hidden;
     resize: none;
   }
 
@@ -155,5 +159,33 @@
       color: var(--nds-medium-grey);
       font-weight: 400;
     }
+  }
+}
+
+.nds-input-multiline-grid {
+  display: grid;
+
+  &,
+  & > textarea {
+    max-height: 80vh; // avoid growing larger than viewport height
+  }
+
+  // This pseudo-element is an auto height invisible container that
+  // gets filled in with the value of the text area
+  &::after {
+    content: attr(data-textarea-value) " "; // space prevents jumpy updates
+    white-space: pre-wrap; // match textarea default wrapping
+    visibility: hidden;
+
+    // match styling of textarea to keep things aligned
+    @extend %shared-multiline-styles;
+  }
+
+  // The growth of the psuedo-element will expand the grid container.
+  // The textarea will grow with it, as it is placed over the entire grid area
+  &::after,
+  & > textarea {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
   }
 }

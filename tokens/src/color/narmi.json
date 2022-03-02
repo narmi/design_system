@@ -75,6 +75,7 @@
       "grey": { "value": "#4C4C4C" },
       "mediumGrey": { "value": "#8C8C8C" },
       "lightGrey": { "value": "#D9D9D9" },
+      "smokeGrey": { "value": "#F3F3F3" },
       "white": { "value": "#FFFFFF" }
     }
   }

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.2.2](https://github.com/narmi/design_system/compare/v2.2.1...v2.2.2) (2022-03-02)
+
+
+### Bug Fixes
+
+* **Pagination:** accommodate large numbers in page styles; address design feedback ([6439c8d](https://github.com/narmi/design_system/commit/6439c8dddd56b33de2c46b62e39e902e72b20134))
+
 ### [2.2.1](https://github.com/narmi/design_system/compare/v2.2.0...v2.2.1) (2022-03-01)
 
 

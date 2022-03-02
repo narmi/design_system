@@ -22,15 +22,16 @@
   justify-content: center;
   align-items: center;
   height: 28px;
-  width: 28px;
-  border-radius: 50%;
+  min-width: 28px;
+  border-radius: 28px;
+  padding: 0 var(--space-xs);
 }
 
 .nds-pagination-page {
   cursor: pointer;
 
   &:hover {
-    background-color: var(--bgColor-smokeGrey);
+    background-color: RGBA(var(--theme-rgb-primary), var(--alpha-20));
   }
 
   &--selected {

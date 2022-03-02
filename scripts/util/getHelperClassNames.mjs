@@ -18,10 +18,15 @@ const getHelperClassNames = () => {
   const compiledCSS = sass.compileString(sassString).css;
 
   // parse CSS into AST and get a list of all classNames and return result
-  return parse(compiledCSS)
+  const result = parse(compiledCSS)
     .stylesheet.rules.filter((rule) => rule.type === "rule") // no comments
     .flatMap((rule) => rule.selectors) // take only the selector from each rule
+    .filter((selector) => !selector.includes("[")) // no attribute selectors
+    .filter((selector) => !selector.includes(" ")) // no ancestry selectors
+    .filter((selector) => selector.includes("--")) // must have `base--variant` pattern
     .map((selector) => selector.replace(".", "")); // return classes as they'red used in DOM attributes
+
+  return [...new Set(result)];
 };
 
 export default getHelperClassNames;

@@ -112,7 +112,7 @@ const Pagination = ({
   const pagination = (
     <div className="nds-typography nds-pagination">
       <nav aria-label="pagination">
-        <Row gapSize="xs" alignItems="center" as="ul">
+        <Row gapSize="xxs" alignItems="center" as="ul">
           <Row.Item as="li" shrink>
             <span
               role="button"
@@ -121,12 +121,13 @@ const Pagination = ({
               onClick={handlePrevClick}
               className={cc([
                 "nds-pagination-page",
+                "padding--none",
                 {
                   "nds-pagination-page--disabled": !showPrev,
                 },
               ])}
             >
-              <i role="image" className="narmi-icon-chevron-left"></i>
+              <i role="img" className="narmi-icon-chevron-left fontSize--l"></i>
             </span>
           </Row.Item>
 
@@ -196,12 +197,16 @@ const Pagination = ({
               onClick={handleNextClick}
               className={cc([
                 "nds-pagination-page",
+                "padding--none",
                 {
                   "nds-pagination-page--disabled": !showNext,
                 },
               ])}
             >
-              <i role="image" className="narmi-icon-chevron-right"></i>
+              <i
+                role="img"
+                className="narmi-icon-chevron-right fontSize--l"
+              ></i>
             </span>
           </Row.Item>
         </Row>

@@ -34,9 +34,6 @@ const InteractiveTemplate = (args) => {
 export const Overview = Template.bind({});
 Overview.args = {
   kind: "subdued",
-  onDismiss: () => {
-    console.log('click')
-  },
   label: "My cool tag",
 };
 Overview.argTypes = {

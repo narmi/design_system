@@ -42,14 +42,11 @@ Overview.argTypes = {
 
 export const UsingWithState = InteractiveTemplate.bind({});
 
-const OutlineTag = (args) => {
+const OutlineTag = () => {
   return (
         <Tag
           label={"My cool tag"}
           kind={"outline"}
-          onDismiss={() => {
-           
-          }}
         ></Tag>
   );
 };

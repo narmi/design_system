@@ -11,7 +11,7 @@ const noop = () => {};
 const Tag = ({
   kind = "subdued", // outline, subdued, x-tag (cactus400) #7fbc5b; #7FBC5B oneof
   onDismiss = noop,
-  label = "my cool tag",
+  label,
 }) => {
   return (
       <div className={cc(["nds-typography", "nds-tag", `nds-tag--${kind}`])}>

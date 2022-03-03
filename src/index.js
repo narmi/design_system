@@ -17,6 +17,7 @@ import RadioButtons from "./RadioButtons";
 import Row from "./Row";
 import SeparatorList from "./SeparatorList";
 import Tabs from "./Tabs";
+import Tag from "./Tag";
 import TextInput from "./TextInput";
 import Toggle from "./Toggle";
 import Tooltip from "./Tooltip";
@@ -41,6 +42,7 @@ export {
   Row,
   SeparatorList,
   Tabs,
+  Tag,
   TextInput,
   Toggle,
   Tooltip,

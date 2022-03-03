@@ -17,7 +17,7 @@ export const Example = () => {
   const [value, setValue] = useState();
   return (
     <div className="nds-typography">
-      <h3> What is your favourite colour? </h3>
+      <h3 style={{marginBottom: "16px"}}> What is your favourite colour? </h3>
       <RadioButtons
         options={{
           Red: "red",

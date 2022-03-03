@@ -44,6 +44,7 @@ export const BasicExample = () => {
 
 export const NewMemberDropDown = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [error, setError] = useState(true);
   const actions = (
     <div className="nds-typography">
       <div className="padding--right--m">
@@ -65,10 +66,12 @@ export const NewMemberDropDown = () => {
   );
   return (
     <div>
+      <Button onClick={()=>{setError(!error)}} style={{marginBottom: "20px"}}>{error ? "remove error" : "add error"}</Button>
       <Dropdown
         defaultValue={"Rowena Wick"}
         triggerLabel={"Members"}
         closeDropDown={modalOpen}
+        error={error?"Error message":""}
       >
         {["Rowena Wick", "Daya Zakim"].map((option, i) => (
           <div key={i}>{option}</div>

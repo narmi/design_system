@@ -90,6 +90,7 @@ const Dropdown = (props) => {
         field={props.field}
         label={props.triggerLabel}
         readOnly
+        error={props.error}
       />
       <DropdownMenu open={open} onClose={closeDropdown}>
         <div className="nds-dropdown-children nds-typography">

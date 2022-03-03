@@ -71,7 +71,7 @@ export const NewMemberDropDown = () => {
         defaultValue={"Rowena Wick"}
         triggerLabel={"Members"}
         closeDropDown={modalOpen}
-        error={error?"Error message":""}
+        error={error ? "Error message" : ""}
       >
         {["Rowena Wick", "Daya Zakim"].map((option, i) => (
           <div key={i}>{option}</div>

@@ -122,7 +122,7 @@ Dropdown.propTypes = {
   /** Initial label shown in input */
   triggerLabel: PropTypes.string.isRequired,
   /** Array of elements to render as items in the dropdown */
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.array,
   /** Sets `field` prop of internal `TextInput` */
   field: PropTypes.string,
   /** When true, the dropdown initially renders as open */

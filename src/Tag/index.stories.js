@@ -6,9 +6,6 @@ const InteractiveTemplate = (args) => {
   const [isTagVisible, setTagVisible] = useState(true);
   return (
     <div
-      onClick={() => {
-        setTagVisible(!isTagVisible);
-      }}
     >
       {isTagVisible ? (
         <Tag

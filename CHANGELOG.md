@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.2.3](https://github.com/narmi/design_system/compare/v2.2.2...v2.2.3) (2022-03-04)
+
+
+### Bug Fixes
+
+* **Dialog:** capture click events on shim to close modal ([cc9b7ea](https://github.com/narmi/design_system/commit/cc9b7eaf65f314c793543844e0de73637893c6c9))
+
 ### [2.2.2](https://github.com/narmi/design_system/compare/v2.2.1...v2.2.2) (2022-03-02)
 
 

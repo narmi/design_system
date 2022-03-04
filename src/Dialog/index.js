@@ -37,7 +37,7 @@ const Dialog = ({
 }) => {
   const [isContentOverflowing, setIsContentOverflowing] = useState(false);
   const contentRef = useRef(null);
-  const dialogRef = useRef(null);
+  const shimRef = useRef(null);
   useLockBodyScroll(isOpen);
 
   // `rafSchd` uses `requestAnimationFrame` to schedule the state update
@@ -62,26 +62,20 @@ const Dialog = ({
     };
   }, [handleKeyDown, checkContentOverflow, isOpen]);
 
-  const handleClick = React.useCallback((event) => {
-    if (!document.body.contains(event.target)) return;
-    const isClickInside = dialogRef.current?.contains(event.target);
-    if (isOpen && !isClickInside) onUserDismiss();
-  }, [isOpen]);
-
-  useEffect(() => {
-    window.addEventListener("click", handleClick);
-    return () => window.removeEventListener("click", handleClick);
-  }, [handleClick]);
+  const handleShimClick = ({ target }) => {
+    if (shimRef.current && target === shimRef.current) {
+      onUserDismiss();
+    }
+  };
 
   const dialogJSX = (
-    <div className="nds-shim--dark">
+    <div className="nds-shim--dark" ref={shimRef} onClick={handleShimClick}>
       <div
         role="dialog"
         aria-labelledby="aria-dialog-label"
         aria-modal="true"
         className="nds-dialog"
         style={{ width }}
-        ref={dialogRef}
       >
         <div className={`nds-dialog-header nds-dialog-header--${headerStyle}`}>
           <h4 id="aria-dialog-label">{title}</h4>

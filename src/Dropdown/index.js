@@ -47,7 +47,7 @@ const DropdownMenu = ({ open, onClose, children, ...rest }) => {
 /**
  * Combobox UI for filling an `input` value from a list of options
  */
-const Dropdown = (props) => {
+const Dropdown = ({error, ...props}) => {
   const [open, setOpen] = useState(props.defaultOpen);
   const [value, setValue] = useState(props.defaultValue || "");
 
@@ -90,6 +90,7 @@ const Dropdown = (props) => {
         field={props.field}
         label={props.triggerLabel}
         readOnly
+        error={error}
       />
       <DropdownMenu open={open} onClose={closeDropdown}>
         <div className="nds-dropdown-children nds-typography">
@@ -121,7 +122,7 @@ Dropdown.propTypes = {
   /** Initial label shown in input */
   triggerLabel: PropTypes.string.isRequired,
   /** Array of elements to render as items in the dropdown */
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.array,
   /** Sets `field` prop of internal `TextInput` */
   field: PropTypes.string,
   /** When true, the dropdown initially renders as open */
@@ -132,6 +133,8 @@ Dropdown.propTypes = {
   onClose: PropTypes.func,
   /** When true, the dropdown is forced to close */
   closeDropDown: PropTypes.bool,
+  /** Optional error message that displays an error state when passed */
+  error: PropTypes.string,
 };
 
 export default Dropdown;

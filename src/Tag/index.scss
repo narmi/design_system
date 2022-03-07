@@ -1,0 +1,30 @@
+.nds-tag {
+  padding:var(--space-xs);
+  border-radius: 16px;
+  display: flex;
+  align-items: baseline;
+  font-size: var(--font-size-xs);
+  .narmi-icon-x {
+    color: var(--color-white);
+    cursor: pointer;
+    margin-left: 8px;
+    font-size:var(--font-size-xs);
+    position: relative;
+    top: 1px;
+  }
+}
+.nds-tag--dismissible {
+  color: var(--color-white);
+  background: var(--color-cactus);
+  border: 1px solid var(--color-cactus);
+}
+.nds-tag--outline {
+  color: var(--color-pine);
+  background: transparent;
+  border: 1px solid var(--color-pine);
+}
+.nds-tag--subdued {
+  color: var(--color-pine);
+  background: var(--bgColor-smokeGrey);
+  border: 1px solid var(--bgColor-smokeGrey);
+}

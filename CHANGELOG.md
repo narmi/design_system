@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.2.5](https://github.com/narmi/design_system/compare/v2.2.4...v2.2.5) (2022-03-07)
+
+
+### Bug Fixes
+
+* **helper-classes:** fix alignChild base selector to apply to any class order ([0c12774](https://github.com/narmi/design_system/commit/0c127740291fe7650f47c37c72ec2cac2fd242dd))
+
 ### [2.2.4](https://github.com/narmi/design_system/compare/v2.2.3...v2.2.4) (2022-03-07)
 
 

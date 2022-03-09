@@ -13,6 +13,7 @@ const Tooltip = ({
   text,
   children,
   wrapperDisplay = "inline-flex",
+  maxWidth = "500px",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const delays = {
@@ -49,7 +50,7 @@ const Tooltip = ({
       <div
         {...triggerProps}
         aria-describedby="nds-tooltip"
-        style={{ display: wrapperDisplay }}
+        style={{ display: wrapperDisplay, maxWidth: maxWidth }}
         onFocus={openPopover}
         onBlur={closePopover}
         onMouseEnter={openPopover}
@@ -93,6 +94,8 @@ Tooltip.propTypes = {
     "block",
     "flex",
   ]),
+  /** Sets maximum width of tooltip */
+  maxWidth: PropTypes.number,
 };
 
 export default Tooltip;

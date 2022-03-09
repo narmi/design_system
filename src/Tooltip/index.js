@@ -13,6 +13,7 @@ const Tooltip = ({
   text,
   children,
   wrapperDisplay = "inline-flex",
+  maxWidth = "500px",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const delays = {
@@ -66,6 +67,7 @@ const Tooltip = ({
               id="nds-tooltip"
               role="tooltip"
               className="nds-typography nds-tooltip elevation--middle"
+              style={{ maxWidth: maxWidth }}
               {...layerProps}
             >
               {text}
@@ -93,6 +95,8 @@ Tooltip.propTypes = {
     "block",
     "flex",
   ]),
+  /** Sets maximum width of tooltip */
+  maxWidth: PropTypes.number,
 };
 
 export default Tooltip;

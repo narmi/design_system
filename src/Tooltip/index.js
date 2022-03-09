@@ -50,7 +50,7 @@ const Tooltip = ({
       <div
         {...triggerProps}
         aria-describedby="nds-tooltip"
-        style={{ display: wrapperDisplay, maxWidth: maxWidth }}
+        style={{ display: wrapperDisplay }}
         onFocus={openPopover}
         onBlur={closePopover}
         onMouseEnter={openPopover}
@@ -67,6 +67,7 @@ const Tooltip = ({
               id="nds-tooltip"
               role="tooltip"
               className="nds-typography nds-tooltip elevation--middle"
+              style={{ maxWidth: maxWidth }}
               {...layerProps}
             >
               {text}

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.2.6](https://github.com/narmi/design_system/compare/v2.2.5...v2.2.6) (2022-03-10)
+
+
+### Bug Fixes
+
+* **helper-classes:** add default space axis helpers ([7e944c3](https://github.com/narmi/design_system/commit/7e944c32b3c56736dd62e41374fe69c9e6636ebb))
+
 ### [2.2.5](https://github.com/narmi/design_system/compare/v2.2.4...v2.2.5) (2022-03-07)
 
 

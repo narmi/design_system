@@ -14,6 +14,16 @@ $sizes: xxs, xs, s, m, l, xl;
     #{$property}: 0 !important;
   }
 
+  // default spacing on an axis (`<margin|padding>--<axis>--none`)
+  .#{$property}--x {
+    #{$property}-left: var(--space-default) !important;
+    #{$property}-right: var(--space-default) !important;
+  }
+  .#{$property}--y {
+    #{$property}-top: var(--space-default) !important;
+    #{$property}-bottom: var(--space-default) !important;
+  }
+
   // negate spacing on an axis (`<margin|padding>--<axis>--none`)
   .#{$property}--x--none {
     #{$property}-left: 0 !important;

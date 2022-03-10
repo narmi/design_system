@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
+import Row from "../Row";
 
 const noop = () => {};
 
 /**
  * A rounded rectangle inline label.
- * The user has the option of firing a callback for 'dismissible' Tags.  
+ * The user has the option of firing a callback for 'dismissible' Tags.
  */
 const Tag = ({
   kind = "subdued", // outline, subdued, x-tag (cactus400) #7fbc5b; #7FBC5B oneof
@@ -14,10 +15,21 @@ const Tag = ({
   label,
 }) => {
   return (
-      <div className={cc(["nds-typography", "nds-tag", `nds-tag--${kind}`])}>
-        <span className="nds-tag-content">{label}</span>
-        {kind === 'dismissible' ? <span className="narmi-icon-x" role="button" tabIndex={0} onClick={onDismiss}/>  : '' }
-      </div>
+    <div className={cc(["nds-typography", "nds-tag", `nds-tag--${kind}`])}>
+      <Row alignItems="center" gapSize="xs">
+        <Row.Item shrink>{label}</Row.Item>
+        {kind === "dismissible" && (
+          <Row.Item shrink>
+            <span
+              className="narmi-icon-x"
+              role="button"
+              tabIndex={0}
+              onClick={onDismiss}
+            />
+          </Row.Item>
+        )}
+      </Row>
+    </div>
   );
 };
 

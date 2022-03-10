@@ -1,30 +1,27 @@
 .nds-tag {
-  padding:var(--space-xs);
+  padding: var(--space-xs) var(--space-s);
   border-radius: 16px;
-  display: flex;
-  align-items: baseline;
+  display: inline-block;
   font-size: var(--font-size-xs);
   .narmi-icon-x {
-    color: var(--color-white);
     cursor: pointer;
-    margin-left: 8px;
-    font-size:var(--font-size-xs);
-    position: relative;
-    top: 1px;
+    font-size: var(--font-size-xs);
+    display: inline-block;
+    transform: translateY(1px);
   }
 }
 .nds-tag--dismissible {
   color: var(--color-white);
-  background: var(--color-cactus);
-  border: 1px solid var(--color-cactus);
+  background: var(--theme-tertiary);
+  border: 1px solid var(--theme-tertiary);
 }
 .nds-tag--outline {
-  color: var(--color-pine);
+  color: var(--theme-primary);
   background: transparent;
-  border: 1px solid var(--color-pine);
+  border: 1px solid var(--theme-primary);
 }
 .nds-tag--subdued {
-  color: var(--color-pine);
+  color: var(--theme-primary);
   background: var(--bgColor-smokeGrey);
   border: 1px solid var(--bgColor-smokeGrey);
 }

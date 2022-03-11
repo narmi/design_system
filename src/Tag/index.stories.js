@@ -1,12 +1,12 @@
 import React, { useState } from "react";
+import Row from "../Row";
 import Tag from "./";
 
 const Template = (args) => <Tag {...args} />;
 const InteractiveTemplate = (args) => {
   const [isTagVisible, setTagVisible] = useState(true);
   return (
-    <div
-    >
+    <div>
       {isTagVisible ? (
         <Tag
           label={"My cool tag"}
@@ -14,7 +14,7 @@ const InteractiveTemplate = (args) => {
           onDismiss={() => {
             setTagVisible(false);
           }}
-        ></Tag>
+        />
       ) : (
         <button
           onClick={() => {
@@ -33,42 +33,28 @@ Overview.args = {
   kind: "subdued",
   label: "My cool tag",
 };
-Overview.argTypes = {
-  content: { control: false },
-};
 
 export const UsingWithState = InteractiveTemplate.bind({});
 
-const OutlineTag = () => {
-  return (
-        <Tag
-          label={"My cool tag"}
-          kind={"outline"}
-        ></Tag>
-  );
+export const TagWithText = () => (
+  <Row alignItems="center" gapSize="s">
+    <Row.Item shrink>
+      <p>Transfer from Wells Fargo-9876</p>
+    </Row.Item>
+    <Row.Item shrink>
+      <Tag label="Pending" kind="outline" />
+    </Row.Item>
+  </Row>
+);
+TagWithText.parameters = {
+  docs: {
+    description: {
+      story: "The `Tag` is designed to match the height of default body text",
+    },
+  },
 };
-
-export const TagOutline = OutlineTag.bind({});
 
 export default {
   title: "Components/Tag",
   component: Tag,
-  argTypes: {
-    children: { control: false },
-  },
-  decorators: [
-    (Story) => (
-      <div
-        style={{
-          height: "200px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Story />
-      </div>
-    ),
-  ],
 };

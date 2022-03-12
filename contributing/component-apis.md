@@ -4,14 +4,14 @@ Guidelines for designing a robust and clear UI component interface for Narmi Des
 
 ### Props
 
-Use explicit prop types:
+Prefer specific prop types:
 
 ```diff
 -size: PropTypes.string,
 +size: PropTypes.oneOf(['xxs', 'xs', 's', 'm', 'l', 'xl']),
 ```
 
-Prefer explicit props over children whenever possible:
+Prefer props over children whenever possible to give the component full rendering control:
 
 ```diff
 -<Button><marquee>I can pass anything as children!</marquee></Button>

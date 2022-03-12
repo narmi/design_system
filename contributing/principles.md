@@ -24,6 +24,7 @@ The props interface for NDS components aim to be simple and explicit. No behavio
 ### Predictable behavior
 
 Components should behave the same way regardless of the context in which they're used.
+NDS Components avoid layout and context side effects and limit styling customization to maintain predictable behavior.
 
 ### Accurate documentation
 

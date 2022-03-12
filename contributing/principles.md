@@ -11,7 +11,7 @@ may not be as flexible or configurable as they might be in other frameworks. Thi
 
 ### Flexibility through composition
 
-When components are too large, they tend to gather increasingly complex configuration options as users need to do different things with it. The more complex configuration is, the harder the component is to use and the more likely it is to contain undocumented behavior.
+When components are too large, they tend to gather increasingly complex configuration options to support new behaviors. The more complex configuration is, the harder the component is to use and the more likely it is to contain undocumented behavior.
 
 NDS follows the Unix philosophy of small, sharp tools that can be composed into more complex UI patterns.
 

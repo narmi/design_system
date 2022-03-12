@@ -6,7 +6,7 @@
   - [Components](//github.com/narmi/design_system/tree/master/contributing/naming-conventions.md#components)
   - [Props](//github.com/narmi/design_system/tree/master/contributing/naming-conventions.md#props)
   - [CSS](//github.com/narmi/design_system/tree/master/contributing/naming-conventions.md#css)
-- [Component Interfaces](//github.com/narmi/design_system/tree/master/contributing/component-apis.md)
+- [Component Interface Guidelines](//github.com/narmi/design_system/tree/master/contributing/component-apis.md)
   - [Props](//github.com/narmi/design_system/tree/master/contributing/component-apis.md#props)
   - [Styling Customization](//github.com/narmi/design_system/tree/master/contributing/component-apis.md#styling-customization)
   - [Component Variants](//github.com/narmi/design_system/tree/master/contributing/component-apis.md#component-variants)

@@ -33,7 +33,7 @@ Props for event handlers should always include an `on` prefix:
 
 ```diff
 -select
--onSelect
++onSelect
 ```
 
 Use auxillary verb prefixes for boolean props:

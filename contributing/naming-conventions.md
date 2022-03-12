@@ -22,7 +22,9 @@ Use `PascalCase` for component names.
 Prefer using a `kind` prop to support multiple variants of a component instead of providing separate components:
 
 ```diff
-<Button kind="plain">
+-<PlainButton>
+-<Button>
++<Button kind="plain">
 ```
 
 ## Props

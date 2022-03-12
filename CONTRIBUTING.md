@@ -3,7 +3,6 @@
 While we rely on linting to enforce many of the rules outlined below, these docs explain _why_ these rules are in place.
 
 - [Engineering Principles](github.com/narmi/design_system/tree/master/contributing/principles.md)
-  - [foo](github.com/narmi/design_system/tree/master/contributing/principles.md#foo)
 - [Naming conventions](github.com/narmi/design_system/tree/master/contributing/naming-conventions.md)
   - [Size](github.com/narmi/design_system/tree/master/contributing/naming-conventions.md#size)
   - [Components](github.com/narmi/design_system/tree/master/contributing/naming-conventions.md#components)

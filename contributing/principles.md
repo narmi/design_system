@@ -13,7 +13,7 @@ may not be as flexible or configurable as they might be in other frameworks. Thi
 
 When components are too large, they tend to gather increasingly complex configuration options to support new behaviors. The more complex configuration is, the harder the component is to use and the more likely it is to contain undocumented behavior.
 
-NDS follows the Unix philosophy of small, sharp tools that can be composed into more complex UI patterns.
+NDS follows the Unix philosophy of "small, sharp tools" by providing pieces that can be composed into more complex UI patterns.
 
 Components in NDS are kept as small as possible, with well-defined domains.
 

@@ -67,3 +67,27 @@
 .fontWeight--default {
   font-weight: var(--font-weight-default) !important;
 }
+
+/**
+* whitespace text flow helpers
+*/
+.whiteSpace--singleLine {
+  white-space: nowrap;
+}
+.whiteSpace--truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+%whiteSpace--truncate--multiLine {
+  // uses experimental, but widely supported
+  // "box" display mode to set content flow
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+@each $clamp in (2, 3, 4) {
+  .whiteSpace--truncate--multiLine--#{$clamp} {
+    @extend %whiteSpace--truncate--multiLine;
+    -webkit-line-clamp: #{$clamp};
+  }
+}

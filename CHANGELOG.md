@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.0](https://github.com/narmi/design_system/compare/v2.2.7...v2.3.0) (2022-03-14)
+
+
+### Features
+
+* **helper-classes:** add text flow control helpers ([d984d85](https://github.com/narmi/design_system/commit/d984d852bc563a0a6b3796782cff52db8da45aaa))
+
 ### [2.2.7](https://github.com/narmi/design_system/compare/v2.2.6...v2.2.7) (2022-03-11)
 
 

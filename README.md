@@ -26,6 +26,7 @@ Your project must provide the following packages as peer dependencies:
 
 - 📖 [Storybook (latest)](https://narmi.github.io/design_system/)
 - 🎨 [Design Guidelines](https://zeroheight.com/8ac87d4ba/p/446c38-narmi-design-system-nds)
+- ✏️  [Contributing](https://github.com/narmi/design_system/blob/master/CONTRIBUTING.md)
 
 
 ## Usage

@@ -1,6 +1,6 @@
 # Engineering Principles of Narmi Design System (NDS)
 
-## 1) Express the look and feel of Narmi
+## 1) Build Narmi
 
 **Namri Design System is not a general purpose UI framework.**
 
@@ -30,3 +30,10 @@ NDS Components avoid layout and context side effects and limit styling customiza
 
 Static documentation is a lie waiting to happen. Narmi Design System generates
 documentation from code as much as possible to ensure docs remain accurate and up to date.
+
+## 3) Evolve as the Narmi product evolves
+
+### Build for change
+
+As new features and enhancements are added to Narmi core products, changes will be codified in the design system.
+Components in the design system are built to anticipate change.

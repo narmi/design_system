@@ -45,8 +45,8 @@ const Button = ({
 
   return (
     <AsElement
-      role={isButtonElement ? undefined : "button"}
       elementType={as}
+      tabIndex={0}
       onClick={onClick}
       {...otherProps}
       className={cc([
@@ -81,7 +81,12 @@ const Button = ({
 };
 
 Button.propTypes = {
-  /** The html element to render as the root node of `Button` */
+  /**
+   * The html element to render as the root node of `Button`.
+   *
+   * When rendering as an "a" you **MUST** pass an `href` attribute
+   * for the anchor to be valid.
+   */
   as: PropTypes.oneOf(["a", "button"]),
   /** Renders the button label */
   label: PropTypes.string,

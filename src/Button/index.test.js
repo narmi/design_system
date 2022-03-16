@@ -13,13 +13,14 @@ describe("Button", () => {
     expect(button).toBeInTheDocument();
     expect(button).not.toHaveAttribute("role", "button"); // should be a button element
     expect(button).toHaveClass("nds-button--primary");
+    expect(button).toHaveClass("resetButton");
   });
 
-  it("has expected classes for primary button as='button'", () => {
+  it("has expected classes for primary button as='a'", () => {
     render(<Button as="a" label={LABEL} />);
     const button = getButton();
     expect(button).toBeInTheDocument();
-    expect(button).toHaveAttribute("role", "button");
+    expect(button).not.toHaveClass("resetButton");
   });
 
   it("fires click callback as anchor", () => {

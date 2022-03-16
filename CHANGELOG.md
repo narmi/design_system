@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.3.1](https://github.com/narmi/design_system/compare/v2.3.0...v2.3.1) (2022-03-16)
+
+
+### Bug Fixes
+
+* **peers:** allow React 17 as a peer dependency ([64ba6f0](https://github.com/narmi/design_system/commit/64ba6f058e8477bfa3337c6cf00b7f5f400ed2af))
+
 ## [2.3.0](https://github.com/narmi/design_system/compare/v2.2.7...v2.3.0) (2022-03-14)
 
 

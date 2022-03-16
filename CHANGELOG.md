@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.3.2](https://github.com/narmi/design_system/compare/v2.3.1...v2.3.2) (2022-03-16)
+
+
+### Bug Fixes
+
+* **Button:** remove uncessary role attr; update docs for anchor buttons ([f72784f](https://github.com/narmi/design_system/commit/f72784f62a7357180f5dcfb8db6c23a1122cf868))
+
 ### [2.3.1](https://github.com/narmi/design_system/compare/v2.3.0...v2.3.1) (2022-03-16)
 
 

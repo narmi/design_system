@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.3.4](https://github.com/narmi/design_system/compare/v2.3.3...v2.3.4) (2022-03-21)
+
+
+### Bug Fixes
+
+* **Button:** make secondary hover color consistent in all contexts ([e28ea39](https://github.com/narmi/design_system/commit/e28ea3988f3902e8bc0762c15377ed242b658c2f))
+
 ### [2.3.3](https://github.com/narmi/design_system/compare/v2.3.2...v2.3.3) (2022-03-21)
 
 

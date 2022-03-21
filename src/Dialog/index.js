@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import rafSchd from "raf-schd";
+import useFocusTrap from "@charlietango/use-focus-trap";
 import cc from "classcat";
 import useLockBodyScroll from "./useLockBodyScroll";
 
@@ -38,6 +39,7 @@ const Dialog = ({
   const [isContentOverflowing, setIsContentOverflowing] = useState(false);
   const contentRef = useRef(null);
   const shimRef = useRef(null);
+  const focusTrapRef = useFocusTrap(isOpen);
   useLockBodyScroll(isOpen);
 
   // `rafSchd` uses `requestAnimationFrame` to schedule the state update
@@ -76,6 +78,7 @@ const Dialog = ({
         aria-modal="true"
         className="nds-dialog"
         style={{ width }}
+        ref={focusTrapRef}
       >
         <div className={`nds-dialog-header nds-dialog-header--${headerStyle}`}>
           <h4 id="aria-dialog-label">{title}</h4>

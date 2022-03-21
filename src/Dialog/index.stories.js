@@ -110,6 +110,29 @@ ScrollingContent.parameters = {
   },
 };
 
+export const FocusManagement = InteractiveTemplate.bind({});
+FocusManagement.args = {
+  title: "Tab through this Dialog",
+  children: (
+    <div>
+      Focus will be trapped to{" "}
+      <a _target="blank" href="http://narmi.com">
+        focusable elements
+      </a>{" "}
+      within the Dialog. Background content is marked as hidden via ARIA
+      attributes.
+    </div>
+  ),
+};
+FocusManagement.parameters = {
+  docs: {
+    description: {
+      story:
+        "For accessibility purposes, only elements within the Dialog can be focused while the Dialog is open.",
+    },
+  },
+};
+
 export default {
   title: "Components/Dialog",
   component: Dialog,

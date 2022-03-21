@@ -1,5 +1,7 @@
 .nds-button,
 .nds-button.resetButton {
+  --button-radius: 20px;
+
   display: inline-flex;
   position: relative;
   cursor: pointer;
@@ -10,7 +12,7 @@
   justify-content: center;
   align-items: center;
   min-height: 40px;
-  border-radius: 20px;
+  border-radius: var(--button-radius);
 
   /* mobile buttons have slightly taller padding for ease of tapping */
   @media (max-width: $mobile_size) {
@@ -40,9 +42,21 @@
 
 .nds-button--secondary,
 .nds-button--secondary.resetButton {
+  position: relative;
   color: var(--theme-primary);
   background-color: var(--color-white);
   border: var(--border-size-s) solid var(--theme-primary);
+
+  // adds a white shim behind the button so that the transparent
+  // hover color appears the same regardless of context
+  &::before {
+    content: "";
+    border-radius: var(--button-radius);
+    background-color: var(--color-white);
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
 
   &:hover {
     background-color: RGBA(var(--theme-rgb-primary), var(--alpha-10));

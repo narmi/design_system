@@ -1,0 +1,64 @@
+/**
+* Helpers for adding standard borders
+*/
+.border--all {
+  border: var(--border-size-default) solid var(--border-color-default);
+}
+@each $side in (top, right, bottom, left) {
+  .border--#{$side} {
+    border-#{$side}: var(--border-size-default)
+      solid
+      var(--border-color-default);
+  }
+}
+
+/**
+* Helpers for border radius
+*
+* Shorthand values are:
+* top-left | top-right | bottom-right | bottom-left
+*/
+.rounded--all {
+  border-radius: var(--border-radius-default);
+}
+.rounded--top {
+  border-radius: var(--border-radius-default) var(--border-radius-default) 0 0;
+}
+.rounded--right {
+  border-radius: 0 var(--border-radius-default) var(--border-radius-default) 0;
+}
+.rounded--bottom {
+  border-radius: 0 0 var(--border-radius-default) var(--border-radius-default);
+}
+.rounded--left {
+  border-radius: var(--border-radius-default) 0 0 var(--border-radius-default);
+}
+@each $amount in (s, m, l) {
+  .rounded--all--#{$amount} {
+    border-radius: var(--border-radius-#{$amount});
+  }
+  .rounded--top--#{$amount} {
+    border-radius: var(--border-radius-#{$amount})
+      var(--border-radius-#{$amount})
+      0
+      0;
+  }
+  .rounded--right--#{$amount} {
+    border-radius: 0
+      var(--border-radius-#{$amount})
+      var(--border-radius-#{$amount})
+      0;
+  }
+  .rounded--bottom--#{$amount} {
+    border-radius: 0
+      0
+      var(--border-radius-#{$amount})
+      var(--border-radius-#{$amount});
+  }
+  .rounded--left--#{$amount} {
+    border-radius: var(--border-radius-#{$amount})
+      0
+      0
+      var(--border-radius-#{$amount});
+  }
+}

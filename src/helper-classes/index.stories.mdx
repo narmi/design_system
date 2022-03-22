@@ -19,17 +19,19 @@ to compose styles without needing to write additional CSS. This can be useful fo
 
 <Preview>
   <Story name="Using Helper Classes">
-    <div className="fontFamily--default padding--all--m bgColor--smokeGrey">
-      <p>
-        Message in a "smokeGrey" padded box with some{" "}
-        <span className="fontWeight--bold fontColor--error">
+    <div className="fontFamily--default">
+      <div className="bgColor--blueGrey padding--all--m rounded--top--l border--bottom">
+        Message in a "blueGrey" padded element with a rounded top and bottom
+        border
+      </div>
+      <div className="bgColor--blueGrey padding--all--m rounded--bottom--l">
+        This element has some{" "}
+        <span className="fontSize--xs fontColor--azul">small azul text</span>{" "}
+        and some{" "}
+        <span className="fontColor--error fontWeight--bold">
           bold error text
         </span>
-        .
-      </p>
-      <p className="fontSize--xs fontColor--azul margin--bottom--xl">
-        extra small azul text with extra large bottom margin
-      </p>
+      </div>
     </div>
   </Story>
 </Preview>
@@ -185,6 +187,24 @@ Useful for loading states, modals, and other designs that require a transparent 
 | -------------- | ----------------------------------- |
 | `scrim--light` | Sets a light transparent background |
 | `scrim--dark`  | Sets a dark transparent background  |
+
+## Border
+
+### Adding borders
+
+| Class            | Description                                   |
+| ---------------- | --------------------------------------------- |
+| `border--all`    | adds standard border to all sides of element  |
+| `border--<side>` | adds standard border to given side of element |
+
+### Adjusting border radius
+
+| Class                       | Description                                                      |
+| --------------------------- | ---------------------------------------------------------------- |
+| `rounded--all`              | adds standard border radius to all sides of element              |
+| `rounded--all--<amount>`    | rounds all corners of element by _amount_ (`s`, `m`, `l`)        |
+| `rounded--<side>`           | rounds the corners of the given _side_                           |
+| `rounded--<side>--<amount>` | rounds the corners of a given _side_ by _amount_ (`s`, `m`, `l`) |
 
 ## Lists
 

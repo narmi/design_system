@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.0](https://github.com/narmi/design_system/compare/v2.3.4...v2.4.0) (2022-03-22)
+
+
+### Features
+
+* **helper-classes:** add border helpers ([5c84f3b](https://github.com/narmi/design_system/commit/5c84f3b6921a0831e91d2f9887a93c30339c7a4d))
+
 ### [2.3.4](https://github.com/narmi/design_system/compare/v2.3.3...v2.3.4) (2022-03-21)
 
 

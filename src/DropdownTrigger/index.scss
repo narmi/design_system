@@ -1,0 +1,51 @@
+.nds-dropdownTrigger {
+  position: relative;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+.nds-dropdownTrigger-button {
+  height: 100%;
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--border-color-default) !important;
+
+  &:focus {
+    outline: none;
+    border-color: var(--theme-primary) !important;
+  }
+
+  &--hasError {
+    border-color: var(--color-errorDark) !important;
+  }
+}
+
+.nds-dropdownTrigger-label {
+  color: var(--color-mediumGrey);
+}
+
+// float the label to top like a text input
+// when there's a value to display
+.nds-dropdownTrigger-button--hasValue {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  & .nds-dropdownTrigger-label {
+    font-size: var(--font-size-xs);
+  }
+}
+
+.nds-dropdownTrigger-chevron {
+  position: absolute;
+  right: var(--space-s);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.nds-dropdownTrigger-error {
+  .narmi-icon-x-circle::before {
+    position: relative;
+    top: 1px;
+  }
+}

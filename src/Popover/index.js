@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useLayer } from "react-laag";
+import useFocusTrap from "@charlietango/use-focus-trap";
 
 /**
  * Generic Popover component. Renders a floating element that can contain any content,
@@ -23,6 +24,7 @@ const Popover = ({
   matchTriggerWidth = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const focusTrapRef = useFocusTrap(isOpen);
 
   const closePopover = () => {
     setIsOpen(false);
@@ -89,10 +91,12 @@ const Popover = ({
           {isOpen && (
             <div
               {...layerProps}
-              className="nds-typography nds-popover round--all bgColor--white"
+              className="nds-typography nds-popover rounded--all bgColor--white"
               style={layerStyle}
             >
-              {content}
+              <div ref={focusTrapRef} tabIndex={-1}>
+                {content}
+              </div>
             </div>
           )}
         </>

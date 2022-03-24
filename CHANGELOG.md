@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.0](https://github.com/narmi/design_system/compare/v2.4.1...v2.5.0) (2022-03-24)
+
+
+### Features
+
+* **DropdownTrigger:** add component for triggering popovers ([678ee0b](https://github.com/narmi/design_system/commit/678ee0be629a4b119e58fc3e257a587376986116))
+
 ### [2.4.1](https://github.com/narmi/design_system/compare/v2.4.0...v2.4.1) (2022-03-24)
 
 

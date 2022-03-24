@@ -1,0 +1,30 @@
+// make sure we don't need to flex center the outer wrapper??
+.nds-select {
+  position: relative;
+}
+
+.nds-select-list {
+  visibility: hidden;
+  position: absolute;
+  z-index: 3;
+  border-color: var(--theme-primary) !important;
+  top: 0;
+  right: 0;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.nds-select-list--active {
+  visibility: visible;
+}
+
+.nds-select-item {
+  cursor: pointer;
+  &:hover,
+  &--highlighted {
+    background: RGBA(var(--theme-rgb-primary), var(--alpha-5));
+  }
+}

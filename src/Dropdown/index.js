@@ -45,9 +45,12 @@ const DropdownMenu = ({ open, onClose, children, ...rest }) => {
 };
 
 /**
- * Combobox UI for filling an `input` value from a list of options
+ * **⚠️ DEPRECATED ⚠️**
+ *
+ * This component will be removed in a future release.
+ * Please use `Select` instead
  */
-const Dropdown = ({error, ...props}) => {
+const Dropdown = ({ error, ...props }) => {
   const [open, setOpen] = useState(props.defaultOpen);
   const [value, setValue] = useState(props.defaultValue || "");
 

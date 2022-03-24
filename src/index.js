@@ -6,6 +6,7 @@ import Checkbox from "./Checkbox";
 import DateInput from "./DateInput";
 import Dialog from "./Dialog";
 import Dropdown from "./Dropdown";
+import DropdownTrigger from "./DropdownTrigger";
 import Input from "./Input";
 import LoadingShim from "./LoadingShim";
 import LoadingSkeleton from "./LoadingSkeleton";
@@ -31,6 +32,7 @@ export {
   DateInput,
   Dialog,
   Dropdown,
+  DropdownTrigger,
   Input,
   LoadingShim,
   LoadingSkeleton,

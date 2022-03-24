@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import Tabs from "./";
+import TabsList from "./TabsList";
+import TabsPanel from "./TabsPanel";
+import TabsTab from "./TabsTab";
 
 const Template = (args) => (
   <Tabs {...args}>
@@ -103,6 +106,7 @@ FullyControlledTabs.parameters = {
 export default {
   title: "Components/Tabs",
   component: Tabs,
+  subcomponents: { TabsList, TabsTab, TabsPanel },
   argTypes: {
     onTabChange: { action: "tab change" },
   },

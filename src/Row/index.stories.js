@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../Button";
 import Row from "./";
+import RowItem from "./RowItem";
 
 const Template = (args) => (
   <div className="nds-typography">
@@ -184,6 +185,7 @@ AsProp.parameters = {
 export default {
   title: "Components/Row",
   component: Row,
+  subcomponents: { RowItem },
   argTypes: {
     children: { control: false },
   },

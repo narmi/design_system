@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 import { useSelect } from "downshift";
 import cc from "classcat";
 import DropdownTrigger from "../DropdownTrigger";
+import SelectItem from "./SelectItem";
+import SelectAction from "./SelectAction";
+
+// TODO: test in a modal
 
 const noop = () => {};
 
@@ -10,7 +14,7 @@ const noop = () => {};
  * @param {Object} item a Select.Item or Select.Action component
  * @returns {Boolean} true if the item is a Select.Action
  */
-const isAction = (item) => {
+export const isAction = (item) => {
   let result = false;
   if (item) {
     result = item.type.name === "SelectAction";
@@ -25,7 +29,7 @@ const isAction = (item) => {
  * @param {Object} item the currently selected Select.Item or Select.Action
  * @returns {String|Node} The value to display in the trigger button
  */
-const getSelectedItemDsiplay = (item) => {
+export const getSelectedItemDisplay = (item) => {
   let result = "";
   if (item && !isAction(item)) {
     result = item.props.children;
@@ -35,7 +39,8 @@ const getSelectedItemDsiplay = (item) => {
 
 /**
  * Accessible custom select control for giving users the ability to select one option from a list of options.
- * `Select` supports the ability to pass in a `<Select.Action>` that acts as an option that only triggers a side effect.
+ * `Select` also supports the ability to pass in a `<Select.Action>` that acts as an option that only triggers a side effect.
+ * Typeahead is enabled based on the `value` prop of `<Select.Item>` elements passed in.
  */
 const Select = ({
   label,
@@ -43,6 +48,7 @@ const Select = ({
   onChange = noop,
   defaultValue,
   defaultOpen = false,
+  errorText,
 }) => {
   // only include valid Select children in options items
   const items = React.Children.toArray(children).filter((child) =>
@@ -50,10 +56,11 @@ const Select = ({
   );
 
   const defaultSelectedItem = items
-    .filter((item) => !isAction(item))
+    .filter((item) => !isAction(item)) // action items may not be selected by default
     .filter((item) => item.props.value === defaultValue)
     .pop();
 
+  /** @see https://www.downshift-js.com/use-select */
   const {
     isOpen,
     selectedItem,
@@ -72,7 +79,7 @@ const Select = ({
       if (isAction(selectedItem)) {
         selectedItem.props.onSelect();
       } else {
-        onChange(selectedItem);
+        onChange(selectedItem.props.value);
       }
     },
   });
@@ -82,8 +89,9 @@ const Select = ({
       <DropdownTrigger
         isOpen={isOpen}
         labelText={label}
-        displayValue={getSelectedItemDsiplay(selectedItem)}
+        displayValue={getSelectedItemDisplay(selectedItem)}
         labelProps={{ ...getLabelProps() }}
+        errorText={errorText}
         {...getToggleButtonProps()}
       />
       <ul
@@ -127,28 +135,13 @@ Select.propTypes = {
    * of one of the `<Select.Item>` children.
    */
   defaultValue: PropTypes.string,
-  /** Open the dropdown on rendder if `true` */
+  /** Open the dropdown on render if `true` */
   defaultOpen: PropTypes.bool,
-};
-
-const SelectItem = ({ value, children }) => <>{children}</>;
-
-SelectItem.propTypes = {
   /**
-   * String representation of the option.
-   *
-   * This value is also used as a typeahead; if a user types "n" while
-   * the Select is open, highlight will move to the first item with a
-   * value starting with `n`.
+   * Error message.
+   * When passed, this will cause the trigger to render in error state.
    */
-  value: PropTypes.string.isRequired,
-};
-
-const SelectAction = ({ onSelect, children }) => <>{children}</>;
-
-SelectAction.propTypes = {
-  /** Side effect to run on selection */
-  onSelect: PropTypes.func.isRequired,
+  errorText: PropTypes.string,
 };
 
 Select.Item = SelectItem;

@@ -1,63 +1,109 @@
 import React from "react";
-import { render, screen, prettyDOM } from "@testing-library/react";
-import DropdownTrigger from "./";
+import { render, screen, fireEvent, prettyDOM } from "@testing-library/react";
+import Select, { isAction, getSelectedItemDisplay } from "./";
 
-describe("DropdownTrigger", () => {
-  it("Renders with default props as expected", () => {
-    render(<DropdownTrigger labelText="Account" />);
-    expect(screen.getByText("Account")).toBeInTheDocument();
-    expect(screen.queryByRole("img")).toBeInTheDocument();
+describe("Select", () => {
+  /**
+   * Most of the complexity of this component is in `DropdownTrigger` and
+   * `useSelect` from downshift, which have their own test coverage.
+   */
+
+  it("isAction: detects action items correctly", () => {
+    expect(isAction(<Select.Item value="foo" />)).toBe(false);
+    expect(isAction(<Select.Action onSelect={() => {}} />)).toBe(true);
   });
 
-  it("Does NOT show label when `labelText` is not passed", () => {
-    render(<DropdownTrigger labelText="Account" />);
-    expect(screen.getByText("Account")).toBeInTheDocument();
+  it("getSelectedItemDisplay: only returns non-action items", () => {
+    const kids = "test";
+    const item = <Select.Item value="foo">{kids}</Select.Item>;
+    const action = <Select.Action onSelect={() => {}}>{kids}</Select.Action>;
+    expect(getSelectedItemDisplay(item)).toBeTruthy();
+    expect(getSelectedItemDisplay(action)).toBeFalsy();
   });
 
-  it("Moves label into floating position when a displayValue is passed", () => {
-    render(<DropdownTrigger labelText="Account" displayValue="Value" />);
-    expect(screen.getByTestId("dropdownTriggerButton")).toHaveClass(
-      "nds-dropdownTrigger-button--hasValue"
-    );
-  });
-
-  it("Does NOT show open indicator when showOpenIndicator is set to false", () => {
-    render(<DropdownTrigger labelText="Account" showOpenIndicator={false} />);
-    expect(screen.queryByRole("img")).not.toBeInTheDocument();
-  });
-
-  it("Shows correct label and icon in closed state", () => {
-    render(<DropdownTrigger labelText="Account" />);
-    expect(screen.queryByRole("img")).toHaveClass("narmi-icon-chevron-down");
-  });
-
-  it("Shows correct label and icon in open state", () => {
-    render(<DropdownTrigger labelText="Account" isOpen />);
-    expect(screen.queryByRole("img")).toHaveClass("narmi-icon-chevron-up");
-  });
-
-  it("Renders error state correctly when `errorText` is passed", () => {
-    render(<DropdownTrigger labelText="Account" errorText="You did an oops" />);
-    expect(screen.getByText("You did an oops")).toBeInTheDocument();
-  });
-
-  it("spreads labelProps on label element correctly", () => {
+  it("renders as expected with basic props", () => {
     render(
-      <DropdownTrigger
-        labelText="Account"
-        labelProps={{
-          htmlFor: "somefield",
-        }}
-      />
+      <Select label="Account Type">
+        <Select.Item value="checking"></Select.Item>
+        <Select.Item value="savings"></Select.Item>
+      </Select>
     );
-    expect(screen.getByText("Account")).toHaveAttribute("for", "somefield");
+
+    expect(screen.getByText("Account Type")).toBeInTheDocument();
+    expect(screen.getByRole("listbox")).toBeEmptyDOMElement();
   });
 
-  it("spreads extra props onto the button element", () => {
-    render(<DropdownTrigger labelText="Account" aria-haspopup="true" />);
-    expect(screen.getByTestId("dropdownTriggerButton")).toHaveAttribute(
-      "aria-haspopup",
-      "true"
+  it("dropdown opens, selection works, and onChange is fired correctly", () => {
+    const handleChange = jest.fn();
+    render(
+      <Select label="Account Type" onChange={handleChange}>
+        <Select.Item value="checking">Checking</Select.Item>
+        <Select.Item value="savings">Savings</Select.Item>
+      </Select>
     );
+
+    // open the dropdown
+    const trigger = screen.getByText("Account Type");
+    fireEvent.click(trigger);
+    expect(handleChange).not.toHaveBeenCalled();
+
+    // dropdown should be open
+    const checkingItem = screen.getByText("Checking");
+    expect(checkingItem).toBeInTheDocument();
+
+    // clicking should select the time and fire the onChange event
+    fireEvent.click(checkingItem);
+    expect(handleChange).toHaveBeenCalledWith("checking");
+  });
+
+  it("defaultValue sets selection in trigger correctly", () => {
+    render(
+      <Select label="Account Type" defaultValue="savings">
+        <Select.Item value="checking">Checking</Select.Item>
+        <Select.Item value="savings">Savings</Select.Item>
+      </Select>
+    );
+    expect(screen.getByText("Savings")).toBeInTheDocument();
+  });
+
+  it("default open works", () => {
+    render(
+      <Select label="Account Type" defaultOpen>
+        <Select.Item value="checking">Checking</Select.Item>
+        <Select.Item value="savings">Savings</Select.Item>
+      </Select>
+    );
+    expect(screen.getByText("Savings")).toBeInTheDocument();
+  });
+
+  it("does not treat action items as selected; fires side effect for action", () => {
+    const handleChange = jest.fn();
+    const sideEffect = jest.fn();
+    render(
+      <Select label="Account Type" onChange={handleChange}>
+        <Select.Item value="checking">Checking</Select.Item>
+        <Select.Item value="savings">Savings</Select.Item>
+        <Select.Action onSelect={sideEffect}>Action</Select.Action>
+      </Select>
+    );
+
+    // open the dropdown
+    const trigger = screen.getByText("Account Type");
+    fireEvent.click(trigger);
+    expect(handleChange).not.toHaveBeenCalled();
+
+    // dropdown should be open
+    const actionItem = screen.getByText("Action");
+    expect(actionItem).toBeInTheDocument();
+
+    // clicking the action item should not select the item
+    // the side effect of the action item should be called
+    fireEvent.click(actionItem);
+    expect(handleChange).not.toHaveBeenCalled();
+    expect(sideEffect).toHaveBeenCalled();
+
+    // dropdown should be closed at this point, so the text "Action"
+    // should no longer be in the DOM (including in the trigger label)
+    expect(screen.queryByText("Action")).not.toBeInTheDocument();
   });
 });

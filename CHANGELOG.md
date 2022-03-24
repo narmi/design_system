@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.4.1](https://github.com/narmi/design_system/compare/v2.4.0...v2.4.1) (2022-03-24)
+
+
+### Bug Fixes
+
+* **Popover:** add focus trap for a11y ([7952529](https://github.com/narmi/design_system/commit/7952529c40550ccd616cd04627b9246cd45ddba2))
+
 ## [2.4.0](https://github.com/narmi/design_system/compare/v2.3.4...v2.4.0) (2022-03-22)
 
 

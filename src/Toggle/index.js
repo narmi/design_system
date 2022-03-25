@@ -5,7 +5,12 @@ import cc from "classcat";
 /**
  * Checkbox behavior with the visual treatment of a physical toggle switch.
  */
-const Toggle = ({ defaultActive = false, onChange = () => {} }) => {
+const Toggle = ({
+  defaultActive = false,
+  onChange = () => {},
+  labelledBy,
+  label,
+}) => {
   const [isActive, setIsActive] = useState(defaultActive);
 
   const toggleActive = () => {
@@ -13,7 +18,7 @@ const Toggle = ({ defaultActive = false, onChange = () => {} }) => {
     setIsActive(!isActive);
   };
 
-  return (
+  const buttonJsx = (
     <button
       className={cc([
         "resetButton",
@@ -25,11 +30,21 @@ const Toggle = ({ defaultActive = false, onChange = () => {} }) => {
       type="button"
       role="switch"
       aria-checked={isActive.toString()}
-      value={isActive ? "on" : "off"}
       onClick={toggleActive}
+      aria-labelledBy={labelledBy}
     >
       <span className="nds-toggle-indicator elevation--low" />
+      <span className="nds-toggle-buttonText">{isActive ? "on" : "off"}</span>
     </button>
+  );
+
+  return label ? (
+    <label className="alignChild--center--center">
+      {buttonJsx}
+      <span className="padding--left--xs">{label}</span>
+    </label>
+  ) : (
+    buttonJsx
   );
 };
 
@@ -41,6 +56,10 @@ Toggle.propTypes = {
   onChange: PropTypes.func,
   /** When set to `true`, the toggle will initially render as active */
   defaultActive: PropTypes.bool,
+  /** Label element to render to the right of the toggle */
+  label: PropTypes.string,
+  /** ID of element that labels the toggle control (e.g. `my-label-element`)*/
+  labelledBy: PropTypes.string,
 };
 
 export default Toggle;

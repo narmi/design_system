@@ -5,6 +5,11 @@ const noop = () => {};
 
 /**
  * Optionally clickable outlined content card
+ *
+ * **⚠️ DEPRECATED ⚠️**
+ *
+ * This component will be removed in a future release.
+ * Please use `ContentCard` instead
  */
 const Card = (props) => {
   const icon = props.icon ? (

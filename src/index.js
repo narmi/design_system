@@ -3,6 +3,7 @@ require("./index.scss");
 import Button from "./Button";
 import Card from "./Card";
 import Checkbox from "./Checkbox";
+import ContentCard from "./ContentCard";
 import DateInput from "./DateInput";
 import Dialog from "./Dialog";
 import Dropdown from "./Dropdown";
@@ -30,6 +31,7 @@ export {
   Button,
   Card,
   Checkbox,
+  ContentCard,
   DateInput,
   Dialog,
   Dropdown,

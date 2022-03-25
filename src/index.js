@@ -16,6 +16,7 @@ import PlainButton from "./PlainButton";
 import Popover from "./Popover";
 import RadioButtons from "./RadioButtons";
 import Row from "./Row";
+import Select from "./Select";
 import SeparatorList from "./SeparatorList";
 import Tabs from "./Tabs";
 import Tag from "./Tag";
@@ -42,6 +43,7 @@ export {
   Popover,
   RadioButtons,
   Row,
+  Select,
   SeparatorList,
   Tabs,
   Tag,

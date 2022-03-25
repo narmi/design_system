@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.0](https://github.com/narmi/design_system/compare/v2.5.0...v2.6.0) (2022-03-25)
+
+
+### Features
+
+* **Select:** add `Select` component ([4ebc061](https://github.com/narmi/design_system/commit/4ebc06148e5bfc6f10121ef5519274d0c87f80ab))
+
 ## [2.5.0](https://github.com/narmi/design_system/compare/v2.4.1...v2.5.0) (2022-03-24)
 
 

@@ -84,6 +84,7 @@
   // "box" display mode to set content flow
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 @each $clamp in (2, 3, 4) {
   .whiteSpace--truncate--multiLine--#{$clamp} {

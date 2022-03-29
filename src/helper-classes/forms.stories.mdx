@@ -1,0 +1,17 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs";
+import { button } from "dist/docs/classManifest";
+import ClassExample from "helpers/ClassExample";
+
+<Meta title="Style/Helper Classes/Forms" />
+
+# Button reset
+
+Resets browser defaults on `button` element.
+
+<Story name="Button Reset">
+  <ClassExample signature="button--reset" classCategory={button} hideBorder>
+    <button>
+      This is a button element with styles reset to look like normal text
+    </button>
+  </ClassExample>
+</Story>

@@ -1,0 +1,66 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs";
+import {
+  fontColor as fontColorHelpers,
+  fontSize as fontSizeHelpers,
+  fontWeight as fontWeightHelpers,
+  fontFamily as fontFamilyHelpers,
+} from "dist/docs/classManifest";
+import ClassExample from "helpers/ClassExample";
+
+<Meta title="Style/Helper Classes/Font" />
+
+# Font Color
+
+Adjusts font color.
+
+<Story name="Font Color">
+  <ClassExample
+    signature="fontColor--<color>"
+    classCategory={fontColorHelpers}
+    hideBorder
+  >
+    <div>The quick brown fox jumps over the lazy dog</div>
+  </ClassExample>
+</Story>
+
+# Font Size
+
+Adjusts font size.
+
+<Story name="Font Size">
+  <ClassExample
+    signature="fontSize--<size>"
+    classCategory={fontSizeHelpers}
+    hideBorder
+  >
+    <div>The quick brown fox jumps over the lazy dog</div>
+  </ClassExample>
+</Story>
+
+# Font Weight
+
+Adjusts font weight.
+
+<Story name="Font Weight">
+  <ClassExample
+    signature="fontWeight--<weight>"
+    classCategory={fontWeightHelpers}
+    hideBorder
+  >
+    <div>The quick brown fox jumps over the lazy dog</div>
+  </ClassExample>
+</Story>
+
+# Font Family
+
+Adjusts font family.
+
+<Story name="Font Family">
+  <ClassExample
+    signature="fontFamily--<family>"
+    classCategory={fontFamilyHelpers}
+    hideBorder
+  >
+    <div>The quick brown fox jumps over the lazy dog</div>
+  </ClassExample>
+</Story>

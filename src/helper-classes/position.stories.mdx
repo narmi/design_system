@@ -1,0 +1,23 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs";
+import { alignChild } from "dist/docs/classManifest";
+import ClassExample from "helpers/ClassExample";
+
+<Meta title="Style/Helper Classes/Position" />
+
+# Child Alignment
+
+Aligns children of element using flexbox. Useful for quick center alignment.
+
+<Story name="Child Alignment">
+  <ClassExample
+    signature="alignChild--<xAlign>--<yAlign>"
+    classCategory={alignChild}
+    hideBorder
+  >
+    <div
+      style={{ width: "120px", height: "120px", outline: "1px solid hotpink" }}
+    >
+      <div className="bgColor--cactus fontColor--white">Child</div>
+    </div>
+  </ClassExample>
+</Story>

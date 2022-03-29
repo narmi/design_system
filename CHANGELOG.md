@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.6.1](https://github.com/narmi/design_system/compare/v2.6.0...v2.6.1) (2022-03-29)
+
+
+### Bug Fixes
+
+* **Toggle:** allow accessible labelling of Toggles ([39e0e28](https://github.com/narmi/design_system/commit/39e0e282c17eee2d40f41a8254054f748d52189e))
+
 ## [2.6.0](https://github.com/narmi/design_system/compare/v2.5.0...v2.6.0) (2022-03-25)
 
 

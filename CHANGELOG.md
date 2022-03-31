@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.7.1](https://github.com/narmi/design_system/compare/v2.7.0...v2.7.1) (2022-03-31)
+
+
+### Bug Fixes
+
+* **RadioButtons:** fix keyboard navigation for a11y ([9376301](https://github.com/narmi/design_system/commit/9376301ddc740eabc6c8c8fd47a3e9cb33b061db))
+
 ## [2.7.0](https://github.com/narmi/design_system/compare/v2.6.1...v2.7.0) (2022-03-30)
 
 

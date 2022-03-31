@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.7.3](https://github.com/narmi/design_system/compare/v2.7.2...v2.7.3) (2022-03-31)
+
+
+### Bug Fixes
+
+* **Checkbox:** enable keyboard navigation for a11y ([75ce0d0](https://github.com/narmi/design_system/commit/75ce0d048e56d8c64fe48f08c26641cdf6a2033b))
+
 ### [2.7.2](https://github.com/narmi/design_system/compare/v2.7.1...v2.7.2) (2022-03-31)
 
 

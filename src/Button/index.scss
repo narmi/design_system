@@ -83,7 +83,9 @@
 }
 
 .nds-button--plain,
-.nds-button--plain.resetButton {
+.nds-button--plain.resetButton,
+.nds-button--negative,
+.nds-button--negative.resetButton {
   color: var(--theme-secondary);
   font-weight: var(--font-weight-semibold);
   border-radius: 0;
@@ -96,12 +98,21 @@
   }
 }
 
+.nds-button--negative,
+.nds-button--negative.resetButton {
+  color: var(--theme-primary);
+  &:hover {
+    color: var(--theme-primary);
+  }
+}
+
 .nds-button--disabled {
   pointer-events: none;
   color: var(--color-white);
 
   &.nds-button--menu,
-  &.nds-button--plain {
+  &.nds-button--plain,
+  &.nds-button--negative {
     color: var(--font-color-hint);
   }
   &.nds-button--primary {

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.0](https://github.com/narmi/design_system/compare/v2.7.4...v2.8.0) (2022-03-31)
+
+
+### Features
+
+* **Button:** add `kind="negative"` for negating action buttons ([0809841](https://github.com/narmi/design_system/commit/0809841f6674ffe8a446000a004a94c9e5d41657))
+
 ### [2.7.4](https://github.com/narmi/design_system/compare/v2.7.3...v2.7.4) (2022-03-31)
 
 

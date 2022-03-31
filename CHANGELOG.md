@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.7.2](https://github.com/narmi/design_system/compare/v2.7.1...v2.7.2) (2022-03-31)
+
+
+### Bug Fixes
+
+* **Button:** use secondary theme color for plain button ([a227ef9](https://github.com/narmi/design_system/commit/a227ef90e5271dc93205d6f6605a249c9f560918))
+
 ### [2.7.1](https://github.com/narmi/design_system/compare/v2.7.0...v2.7.1) (2022-03-31)
 
 

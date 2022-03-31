@@ -84,14 +84,14 @@
 
 .nds-button--plain,
 .nds-button--plain.resetButton {
-  color: var(--theme-primary);
+  color: var(--theme-secondary);
   font-weight: var(--font-weight-semibold);
   border-radius: 0;
   justify-content: start;
   min-height: unset;
 
   &:hover {
-    color: var(--theme-primary);
+    color: var(--theme-secondary);
     text-decoration: underline;
   }
 }

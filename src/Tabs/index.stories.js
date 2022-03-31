@@ -82,7 +82,7 @@ PaddedTabsList.parameters = {
   docs: {
     description: {
       story:
-        "You may offset the tabs from the edgge using the `xPadding` prop on `Tabs.TabsList`.",
+        "You may offset the tabs from the edge using the `xPadding` prop on `Tabs.TabsList`.",
     },
   },
 };

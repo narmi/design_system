@@ -93,7 +93,7 @@ Button.propTypes = {
   /** disables the button when set to `true` */
   disabled: PropTypes.bool,
   /** style of button to render */
-  kind: PropTypes.oneOf(["primary", "secondary", "menu", "plain"]),
+  kind: PropTypes.oneOf(["primary", "secondary", "negative", "menu", "plain"]),
   /** Click callback, with event object passed as argument */
   onClick: PropTypes.func,
   /** Name of Narmi icon to place at the start of the label */

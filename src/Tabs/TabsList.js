@@ -4,7 +4,7 @@ import TabsContext from "./context";
 
 const noop = () => {};
 
-const TabsList = ({ children }) => {
+const TabsList = ({ children, xPadding = "none" }) => {
   const { tabIds, setTabIds, changeTabs, currentIndex, hasPanels } =
     useContext(TabsContext);
   const childArray = React.Children.toArray(children);
@@ -38,7 +38,7 @@ const TabsList = ({ children }) => {
   return (
     <ul
       role={hasPanels ? "tablist" : undefined}
-      className="list--reset nds-tabs-tabsList"
+      className={`nds-tabs-tabsList list--reset padding--x--${xPadding}`}
       onKeyDown={hasPanels ? handleKeyDown : noop}
       tabIndex={hasPanels ? "0" : undefined}
       data-testid="nds-tablist"
@@ -51,6 +51,11 @@ const TabsList = ({ children }) => {
 TabsList.propTypes = {
   /** Children must be of type `Tabs.Tab` */
   children: PropTypes.node.isRequired,
+  /**
+   * Amount of padding to apply on the x axis to indent tabs
+   * from edges of the `Tabs.Panel`
+   * */
+  xPadding: PropTypes.oneOf(["xxs", "xs", "s", "m", "l", "xl", "none"]),
 };
 
 TabsList.displayName = "Tabs.List";

@@ -69,6 +69,24 @@ WithoutBorder.parameters = {
   },
 };
 
+export const PaddedTabsList = () => (
+  <Tabs>
+    <Tabs.List xPadding="l">
+      <Tabs.Tab label="Apples" tabId="apple" />
+      <Tabs.Tab label="Oranges" tabId="orange" />
+      <Tabs.Tab label="Pineapples" tabId="pineapple" />
+    </Tabs.List>
+  </Tabs>
+);
+PaddedTabsList.parameters = {
+  docs: {
+    description: {
+      story:
+        "You may offset the tabs from the edgge using the `xPadding` prop on `Tabs.TabsList`.",
+    },
+  },
+};
+
 export const FullyControlledTabs = () => {
   const [selectedTab, setSelectedTab] = useState(1);
 

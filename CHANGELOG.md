@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.7.4](https://github.com/narmi/design_system/compare/v2.7.3...v2.7.4) (2022-03-31)
+
+
+### Bug Fixes
+
+* **Tag:** bump font size; fix height to 26px ([434fd2a](https://github.com/narmi/design_system/commit/434fd2a0a1dc5d6642912185450b7b8356d84722))
+
 ### [2.7.3](https://github.com/narmi/design_system/compare/v2.7.2...v2.7.3) (2022-03-31)
 
 

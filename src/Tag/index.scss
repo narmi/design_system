@@ -1,11 +1,13 @@
 .nds-tag {
-  padding: var(--space-xxs) var(--space-s);
+  padding: 0 var(--space-xs);
   border-radius: 16px;
-  display: inline-block;
-  font-size: var(--font-size-xs);
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--font-size-s);
+  height: 26px; // per design
   .narmi-icon-x {
     cursor: pointer;
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-s);
     display: inline-block;
     transform: translateY(1px);
   }

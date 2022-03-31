@@ -7,21 +7,24 @@
     padding-left: 34px;
     margin-bottom: var(--space-m);
     cursor: pointer;
-    font-size: 16px;
     line-height: 1.25;
-    font-family: var(--nds-font-family);
     font-weight: 400;
 
     input {
       position: absolute;
-      opacity: 0;
-      display: none;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
       cursor: pointer;
 
       &:checked {
         ~ .nds-checkmark {
           background-color: transparent;
-          border: 2px solid RGB(var(--nds-primary-color));
+          border: 2px solid var(--theme-primary);
 
           &:after {
             display: block;
@@ -30,6 +33,7 @@
       }
     }
 
+    input:focus ~ .nds-checkmark,
     &:hover input ~ .nds-checkmark {
       border: 2px solid RGB(var(--nds-primary-color));
     }

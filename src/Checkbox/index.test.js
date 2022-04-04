@@ -19,26 +19,38 @@ describe("Checkbox", () => {
     expect(input).toHaveAttribute("name", name);
   });
 
+  it("renders with expected classes for card kind", () => {
+    render(<Checkbox label={LABEL} kind="card" />);
+    const { label } = getElements();
+    expect(label).toHaveClass("nds-checkbox--card");
+    expect(label).toHaveClass("border--all");
+  });
+
   it("changes value on label click", () => {
     render(<Checkbox label={LABEL} />);
     const { label, input } = getElements();
     expect(input).not.toBeChecked();
+    expect(label).not.toHaveClass("nds-checkbox--checked");
     fireEvent.click(label);
     expect(input).toBeChecked();
+    expect(label).toHaveClass("nds-checkbox--checked");
   });
 
   it("shows correct initial state for defaultChecked", () => {
     render(<Checkbox label={LABEL} defaultChecked />);
-    const { input } = getElements();
+    const { label, input } = getElements();
     expect(input).toBeChecked();
+    expect(label).toHaveClass("nds-checkbox--checked");
   });
 
   it("allows uncontrolled value changes if defaultChecked", () => {
     render(<Checkbox label={LABEL} defaultChecked />);
-    const { input } = getElements();
+    const { label, input } = getElements();
     expect(input).toBeChecked();
+    expect(label).toHaveClass("nds-checkbox--checked");
     fireEvent.click(input);
     expect(input).not.toBeChecked();
+    expect(label).not.toHaveClass("nds-checkbox--checked");
   });
 
   it("fires onChange callback", () => {

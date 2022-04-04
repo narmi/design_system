@@ -4,7 +4,7 @@
  * @example
  * import { formatDate } from '@narmi/design_system';
  *
- * formatDate(new Date('July 4, 2022'), 'short'); // '7/4/2022'
+ * formatDate(new Date('July 4, 2022'), 'short'); // '7/4/22'
  * formatDate(new Date('7/4/2022'), 'long');      // 'July 4, 2022'
  *
  * @param {Date} date native date object

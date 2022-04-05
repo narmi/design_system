@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.10.0](https://github.com/narmi/design_system/compare/v2.9.0...v2.10.0) (2022-04-05)
+
+
+### Features
+
+* **Checkbox:** add `card` variant ([d0b52c5](https://github.com/narmi/design_system/commit/d0b52c5383a18beaebcc4be46b02e683d03fa0c8))
+
 ## [2.9.0](https://github.com/narmi/design_system/compare/v2.8.0...v2.9.0) (2022-03-31)
 
 

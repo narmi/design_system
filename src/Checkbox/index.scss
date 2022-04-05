@@ -1,16 +1,8 @@
 .nds-checkbox {
-  display: flex;
-  width: fit-content;
-  position: relative;
-  padding-left: 28px;
-  margin-bottom: 12px;
   cursor: pointer;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 20px;
-  align-items: center;
+  margin-bottom: var(--space-s);
+
   input {
-    position: absolute;
     cursor: pointer;
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
@@ -19,15 +11,29 @@
     position: absolute;
     white-space: nowrap;
     width: 1px;
-    &:checked ~ .narmi-icon-check {
+  }
+}
+
+.nds-checkbox--normal {
+  display: flex;
+  width: fit-content;
+  position: relative;
+  align-items: center;
+  padding-left: 28px;
+
+  &.nds-checkbox--focused {
+    .narmi-icon-check {
+      border: 2px solid var(--theme-primary);
+    }
+  }
+
+  &.nds-checkbox--checked {
+    .narmi-icon-check {
       background-color: RGB(var(--nds-primary-color));
       border: 1px solid RGB(var(--nds-primary-color));
       &:after {
         display: block;
       }
-    }
-    &:focus ~ .narmi-icon-check {
-      border: 2px solid var(--theme-primary);
     }
   }
 
@@ -50,6 +56,46 @@
     }
     &:after {
       color: red;
+    }
+  }
+}
+
+.nds-checkbox--card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+
+  .narmi-icon-check {
+    display: none;
+  }
+
+  &.nds-checkbox--checked,
+  &.nds-checkbox--focused {
+    border-color: var(--theme-primary);
+  }
+
+  &:hover,
+  &.nds-checkbox--checked {
+    background-color: RGBA(var(--theme-rgb-primary), var(--alpha-5));
+  }
+
+  &.nds-checkbox--checked {
+    .narmi-icon-check {
+      margin-left: var(--space-default);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--space-default);
+      height: var(--space-default);
+      border-radius: 100%;
+      background-color: var(--theme-primary);
+      color: var(--color-white);
+      font-size: var(--font-size-s);
+      font-weight: var(--font-weight-default);
     }
   }
 }

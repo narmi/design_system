@@ -18,6 +18,20 @@ export const MultipleCheckboxes = () => (
   </>
 );
 
+export const AsCard = Template.bind({});
+AsCard.args = {
+  label: "Checbox of 'card' kind",
+  name: "card_kind",
+  kind: "card",
+};
+AsCard.parameters = {
+  docs: {
+    description: {
+      story: "Renders a checkbox input and label styled as a card",
+    },
+  },
+};
+
 export default {
   title: "Components/Checkbox",
   component: Checkbox,

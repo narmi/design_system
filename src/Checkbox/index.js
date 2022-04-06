@@ -1,26 +1,60 @@
 // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_checkbox
-
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
+import cc from "classcat";
 
 /**
  * Narmi styled checkbox with built-in label.
  */
 const Checkbox = ({
   label,
-  onChange,
+  onChange = () => {},
   id,
   name,
   defaultChecked,
+  checked = false,
   value,
+  kind = "normal",
   ...rest
 }) => {
+  const [isChecked, setIsChecked] = useState(
+    checked || defaultChecked || false
+  );
+  const [isFocused, setIsFocused] = useState(false);
+  const isCard = kind === "card";
+
+  const handleChange = () => {
+    setIsChecked((isChecked) => !isChecked);
+    onChange();
+  };
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
+
   return (
     <>
-      <label className="nds-checkbox nds-typography">
+      <label
+        className={cc([
+          "nds-typograhy",
+          `nds-checkbox nds-checkbox--${kind}`,
+          {
+            "nds-checkbox--checked": isChecked,
+            "nds-checkbox--focused": isFocused,
+            "padding--all rounded--all border--all": isCard,
+          },
+        ])}
+      >
         {label}
         <input
-          onChange={onChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          checked={isChecked}
           defaultChecked={defaultChecked}
           name={name}
           id={id}
@@ -43,10 +77,23 @@ Checkbox.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** `name` attribute of `input` */
   name: PropTypes.string,
-  /** Sets the checkbox to checked by default, [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) */
+  /**
+   * ⚠️ DEPRECATED
+   *
+   * Uncontrolled Checkbox props will be removed in a future release.
+   * Use `checked` instead to use Checkbox as a fully controlled input.
+   */
   defaultChecked: PropTypes.bool,
+  /** Sets the checkbox checked value */
+  checked: PropTypes.bool,
   /** Sets the `value` attribute of the `input` */
   value: PropTypes.string,
+  /**
+   * `normal` - visually matche a checkbox input
+   *
+   * `card` - visually present as a toggleable card
+   */
+  kind: PropTypes.oneOf(["normal", "card"]),
 };
 
 export default Checkbox;

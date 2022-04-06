@@ -73,12 +73,12 @@ This project does not support any version of Internet Explorer.
 ## Contributing
 
 ### Local development
-To run storybook locally:
+To run project locally:
 
 ```
 git clone git@github.com:narmi/design_system.git
 cd design_system
-npm install && npm run build && npm run storybook
+npm run dev
 ```
 
 ### NPM scripts
@@ -92,6 +92,7 @@ npm install && npm run build && npm run storybook
 `test`               | runs all jest tests
 `storybook`          | starts storybook in dev server mode on `:6006`
 `watch`              | watches `src` dir, triggering `build` on changes
+`dev`                | **Start storybook and watch for all `src` changes**
 
 ### Releases
 This project uses [`semantic-release`](https://semantic-release.gitbook.io/semantic-release/),

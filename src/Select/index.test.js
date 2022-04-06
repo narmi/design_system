@@ -1,6 +1,6 @@
 import React from "react";
-import { render, screen, fireEvent, prettyDOM } from "@testing-library/react";
-import Select, { isAction, getSelectedItemDisplay } from "./";
+import { render, screen, fireEvent } from "@testing-library/react";
+import Select, { isAction, getSelectedItemDisplay, getItemByValue } from "./";
 
 describe("Select", () => {
   /**
@@ -19,6 +19,17 @@ describe("Select", () => {
     const action = <Select.Action onSelect={() => {}}>{kids}</Select.Action>;
     expect(getSelectedItemDisplay(item)).toBeTruthy();
     expect(getSelectedItemDisplay(action)).toBeFalsy();
+  });
+
+  it("getItemByValue: gets correct item from list by value or an empty string", () => {
+    const MOCK_ITEM_FOO = <Select.Item value="foo"></Select.Item>;
+    const MOCK_ITEM_BAR = <Select.Item value="bar"></Select.Item>;
+    expect(getItemByValue("foo", [MOCK_ITEM_BAR, MOCK_ITEM_FOO])).toBe(
+      MOCK_ITEM_FOO
+    );
+    expect(getItemByValue("doesNotExist", [MOCK_ITEM_BAR, MOCK_ITEM_FOO])).toBe(
+      ""
+    );
   });
 
   it("renders as expected with basic props", () => {

@@ -1,6 +1,6 @@
 {
   "name": "@narmi/design_system",
-  "version": "2.9.0",
+  "version": "2.11.0",
   "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
   "files": [
@@ -24,7 +24,8 @@
     "build-storybook": "build-storybook",
     "chromatic": "npx chromatic --project-token $CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes",
     "stats:components": "node ./scripts/component-adoption.mjs",
-    "stats:classes": "node ./scripts/class-adoption.mjs"
+    "stats:classes": "node ./scripts/class-adoption.mjs",
+    "dev": "tmux new-session \"npm i && npm run watch\"\\; split-window 'npm run storybook'"
   },
   "peerDependencies": {
     "react": "^16 || ^17",

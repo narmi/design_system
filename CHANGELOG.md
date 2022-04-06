@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.11.1](https://github.com/narmi/design_system/compare/v2.11.0...v2.11.1) (2022-04-06)
+
+
+### Bug Fixes
+
+* **Tag:** font size should be xs ([a21be51](https://github.com/narmi/design_system/commit/a21be51b0c474656c81a8836be9005b42a40fac3))
+
 ## [2.11.0](https://github.com/narmi/design_system/compare/v2.10.0...v2.11.0) (2022-04-06)
 
 

@@ -42,7 +42,7 @@ export const getSelectedItemDisplay = (item) => {
  */
 export const getItemByValue = (value, items) => {
   const founditem = items
-    .filter((item) => !isAction(item)) // action items may not be selected by default
+    .filter((item) => !isAction(item)) // action items are not selectable
     .filter(({ props }) => props.value === value)
     .pop();
 

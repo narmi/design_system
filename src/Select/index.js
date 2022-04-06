@@ -6,8 +6,6 @@ import DropdownTrigger from "../DropdownTrigger";
 import SelectItem from "./SelectItem";
 import SelectAction from "./SelectAction";
 
-// TODO: test in a modal
-
 const noop = () => {};
 
 /**
@@ -38,6 +36,20 @@ export const getSelectedItemDisplay = (item) => {
 };
 
 /**
+ * @param {String} value `value` of the Select.Item to get
+ * @param {Array} items Select.Item nodes
+ * @returns {ReactElement|String} the Select.Item elemenet found or an empty string
+ */
+export const getItemByValue = (value, items) => {
+  const founditem = items
+    .filter((item) => !isAction(item)) // action items may not be selected by default
+    .filter(({ props }) => props.value === value)
+    .pop();
+
+  return founditem || "";
+};
+
+/**
  * Accessible custom select control for giving users the ability to select one option from a list of options.
  * `Select` also supports the ability to pass in a `<Select.Action>` that acts as an option that only triggers a side effect.
  * Typeahead is enabled based on the `value` prop of `<Select.Item>` elements passed in.
@@ -46,6 +58,7 @@ const Select = ({
   label,
   children,
   onChange = noop,
+  value,
   defaultValue,
   defaultOpen = false,
   errorText,
@@ -54,24 +67,9 @@ const Select = ({
   const items = React.Children.toArray(children).filter((child) =>
     ["SelectItem", "SelectAction"].includes(child.type.name)
   );
-
-  const defaultSelectedItem = items
-    .filter((item) => !isAction(item)) // action items may not be selected by default
-    .filter((item) => item.props.value === defaultValue)
-    .pop();
-
-  /** @see https://www.downshift-js.com/use-select */
-  const {
-    isOpen,
-    selectedItem,
-    getToggleButtonProps,
-    getLabelProps,
-    getMenuProps,
-    highlightedIndex,
-    getItemProps,
-  } = useSelect({
+  const downshiftOpts = {
     items,
-    defaultSelectedItem,
+    initialSelectedItem: defaultValue && getItemByValue(defaultValue, items),
     initialIsOpen: defaultOpen,
     itemToString: (item) => item.props.value || item.props.children, // typeahead string
     onSelectedItemChange: ({ selectedItem }) => {
@@ -82,7 +80,24 @@ const Select = ({
         onChange(selectedItem.props.value);
       }
     },
-  });
+  };
+
+  // When `value` prop is passed, the Select becomes fully controlled and the
+  // selected item is set programmitically by the consumer only
+  if (value !== undefined) {
+    downshiftOpts.selectedItem = getItemByValue(value, items);
+  }
+
+  /** @see https://www.downshift-js.com/use-select */
+  const {
+    isOpen,
+    selectedItem,
+    getToggleButtonProps,
+    getLabelProps,
+    getMenuProps,
+    highlightedIndex,
+    getItemProps,
+  } = useSelect(downshiftOpts);
 
   return (
     <div className="nds-select">
@@ -131,8 +146,15 @@ Select.propTypes = {
   /** Change callback. Called with value string from the selected item */
   onChange: PropTypes.func,
   /**
+   * Sets selected item by value and makes the Select **fully controlled**.
+   *
+   * When passing a `value`, you must provide an `onChange` handler to update it
+   */
+  value: PropTypes.string,
+  /**
    * Use to set a default selection by passing the `value` prop
    * of one of the `<Select.Item>` children.
+   * The Select will remain uncontrolled.
    */
   defaultValue: PropTypes.string,
   /** Open the dropdown on render if `true` */

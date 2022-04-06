@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 
-/*
+/**
 The Narmi RadioButtons component expects an "options" Prop, which is an object where the keys are the radiobutton
 labels and the values are the radiobutton values. An "initialvalue" Prop can be passed to set a default checked
 radiobutton.
@@ -14,7 +14,6 @@ radiobutton.
   />
 ```
 */
-
 const RadioButtons = ({
   options,
   name,
@@ -41,7 +40,7 @@ const RadioButtons = ({
 
   return (
     <div
-      className="nds-radiobuttons nds-typography"
+      className={`nds-radiobuttons nds-radiobuttons--${kind}`}
       onChange={handleChange}
       {...containerProps}
     >
@@ -49,10 +48,10 @@ const RadioButtons = ({
         <label
           className={cc([
             "nds-radiobuttons-option",
-            `nds-radiobuttons-option--${kind}`,
             {
               "nds-radiobuttons-option--checked": checkedValue == value,
               "nds-radiobuttons-option--focused": focusedValue == value,
+              "padding--all rounded--all border--all": kind === "card",
             },
           ])}
           key={value}
@@ -67,7 +66,13 @@ const RadioButtons = ({
             value={value}
             name={name}
           />
-          <div className="nds-checkmark"></div>
+          <div
+            role="img"
+            className={cc([
+              "nds-radio",
+              { "narmi-icon-check": kind === "card" },
+            ])}
+          />
         </label>
       ))}
     </div>

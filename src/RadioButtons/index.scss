@@ -1,17 +1,16 @@
-.nds-radiobuttons {
-  display: inline-block;
-  input {
-    position: absolute;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-  }
+// input style shared between variants
+.nds-radiobuttons input {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
+// base option styles
 .nds-radiobuttons-option {
   display: block;
   position: relative;
@@ -19,48 +18,95 @@
   cursor: pointer;
 }
 
-.nds-radiobuttons-option--normal {
-  padding-left: 34px;
+// normal variant of radiobuttons
+.nds-radiobuttons--normal {
+  display: inline-block;
 
-  .nds-checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background-color: transparent;
-    border: 1px solid RGB(var(--nds-lightest-grey));
-    border-radius: 50%;
+  .nds-radiobuttons-option {
+    padding-left: 34px;
 
-    &:after {
-      content: "";
+    .nds-radio {
       position: absolute;
-      display: none;
-      top: 50%;
-      left: 50%;
-      width: 12px;
-      height: 12px;
-      transform: translate(-50%, -50%);
+      top: 0;
+      left: 0;
+      height: 20px;
+      width: 20px;
+      background-color: transparent;
+      border: 1px solid RGB(var(--nds-lightest-grey));
       border-radius: 50%;
-      background: RGB(var(--nds-primary-color));
+
+      &:after {
+        content: "";
+        position: absolute;
+        display: none;
+        top: 50%;
+        left: 50%;
+        width: 12px;
+        height: 12px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: RGB(var(--nds-primary-color));
+      }
+    }
+
+    &:hover .nds-radio,
+    &.nds-radiobuttons-option--focused .nds-radio,
+    &.nds-radiobuttons-option--checked .nds-radio {
+      border: 2px solid var(--theme-primary);
+    }
+
+    &.nds-radiobuttons-option--checked .nds-radio {
+      background-color: transparent;
+
+      &:after {
+        display: block;
+      }
     }
   }
+}
 
-  .nds-radiobuttons-option--checked {
-    outline: 12px dotted lawngreen;
-  }
+// card style radiobuttons variant
+.nds-radiobuttons--card {
+  display: block;
 
-  &.nds-radiobuttons-option--checked .nds-checkmark {
-    background-color: transparent;
-    border: 2px solid var(--theme-primary);
+  .nds-radiobuttons-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
 
-    &:after {
-      display: block;
+    .narmi-icon-check {
+      display: none;
     }
-  }
 
-  &.nds-radiobuttons--focused,
-  &:hover input ~ .nds-checkmark {
-    border: 2px solid RGB(var(--nds-primary-color));
+    &:hover,
+    &.nds-radiobuttons-option--focused,
+    &.nds-radiobuttons-option--checked {
+      border-color: var(--theme-primary);
+    }
+
+    &:hover,
+    &.nds-radiobuttons-option--checked {
+      color: var(--theme-primary);
+      background-color: RGBA(var(--theme-rgb-primary), var(--alpha-5));
+    }
+
+    &.nds-radiobuttons-option--checked .narmi-icon-check {
+      margin-left: var(--space-default);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--space-default);
+      height: var(--space-default);
+      border-radius: 100%;
+      background-color: var(--theme-primary);
+      color: var(--color-white);
+      font-size: var(--font-size-s);
+      font-weight: var(--font-weight-default);
+    }
   }
 }

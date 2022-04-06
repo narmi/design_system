@@ -96,11 +96,41 @@ InAForm.parameters = {
   },
 };
 
+export const Controlled = () => {
+  const [value, setValue] = useState("");
+  return (
+    <>
+      <Select label="Account" value={value} onChange={setValue}>
+        <Select.Item value="checking1234">Checking (1234)</Select.Item>
+        <Select.Item value="savings4321">Savings (4321)</Select.Item>
+      </Select>
+      <div className="margin--top">
+        <button
+          onClick={() => {
+            setValue("");
+          }}
+        >
+          Clear selection
+        </button>
+      </div>
+    </>
+  );
+};
+Controlled.parameters = {
+  docs: {
+    description: {
+      story:
+        "You can programmatically select selection by updating the `value` prop. When `value` is passed, the component becomes **fully controlled** and you must use the `onChange` prop to update the `value`.",
+    },
+  },
+};
+
 export default {
   title: "Components/Select",
   component: Select,
   subcomponents: { SelectItem, SelectAction },
   argTypes: {
     children: { control: false },
+    onChange: { action: "Select change" },
   },
 };

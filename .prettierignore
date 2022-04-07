@@ -1,6 +1,6 @@
-**/*.md
-**/*.yml
-**/*.yaml
+.github/**/*.md
+.github/**/*.yml
+.github/**/*.yaml
 
-# ignore diff on generated dist
-dist/index.js
+dist/
+storybook-static/

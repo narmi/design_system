@@ -9,7 +9,10 @@ Overview.args = {
   showTitle: true,
   content: "paragraph",
   children: (
-    <div className="nds-typography" style={{ padding: "20px", outline: "1px dashed hotpink" }}>
+    <div
+      className="nds-typography"
+      style={{ padding: "20px", outline: "1px dashed hotpink" }}
+    >
       <h2>This area has a LoadingSkeleton wrapper</h2>
       <p>
         Toggle the <code>isLoading</code> prop below to see the mask appear.

@@ -9,30 +9,28 @@ import PropTypes from "prop-types";
 
 const LoadingSkeleton = ({
   children,
-  isLoading=false,
-  content="paragraph",
-  lines=3,
-  showTitle=false,
-  size="medium",
+  isLoading = false,
+  content = "paragraph",
+  lines = 3,
+  showTitle = false,
+  size = "medium",
 }) => {
-  return isLoading ?
-    (
-      <div className="nds-loading-skeleton">
-        {content === "paragraph" &&
-          <>
-            {showTitle && <div className="nds-line-block header" />}
-            {[...Array(lines)].map((_, i) => <div className="nds-line-block" key={i} />)}
-          </>
-        }
-        {content === "headerText" && <div className={`nds-line-block ${size}`} />}
-      </div>
-    ) :
-    (
-      <>
-        {children}
-      </>
-    )
-  }
+  return isLoading ? (
+    <div className="nds-loading-skeleton">
+      {content === "paragraph" && (
+        <>
+          {showTitle && <div className="nds-line-block header" />}
+          {[...Array(lines)].map((_, i) => (
+            <div className="nds-line-block" key={i} />
+          ))}
+        </>
+      )}
+      {content === "headerText" && <div className={`nds-line-block ${size}`} />}
+    </div>
+  ) : (
+    <>{children}</>
+  );
+};
 LoadingSkeleton.propTypes = {
   /** Loadable content area - will render normally unless `isLoading` is true. */
   children: PropTypes.node,
@@ -55,6 +53,6 @@ LoadingSkeleton.propTypes = {
    * The size of the skeletal header text.
    */
   size: PropTypes.oneOf(["small", "medium", "large"]),
-}
+};
 
 export default LoadingSkeleton;

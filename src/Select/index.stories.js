@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Select from "./";
 import SelectItem from "./SelectItem";
 import SelectAction from "./SelectAction";
+import Button from "../Button";
+import Dialog from "../Dialog";
 
 const Template = (args) => <Select {...args} />;
 
@@ -14,6 +16,9 @@ const children = [
   </Select.Item>,
   <Select.Item value="truck">
     <span className="narmi-icon-truck padding--right--xs" /> Truck
+  </Select.Item>,
+  <Select.Item value="coffee">
+    <span className="narmi-icon-coffee padding--right--xs" /> Coffee
   </Select.Item>,
 ];
 
@@ -105,13 +110,13 @@ export const Controlled = () => {
         <Select.Item value="savings4321">Savings (4321)</Select.Item>
       </Select>
       <div className="margin--top">
-        <button
+        <Button
+          label="Clear selection"
+          kind="negative"
           onClick={() => {
             setValue("");
           }}
-        >
-          Clear selection
-        </button>
+        />
       </div>
     </>
   );
@@ -120,9 +125,46 @@ Controlled.parameters = {
   docs: {
     description: {
       story:
-        "You can programmatically select selection by updating the `value` prop. When `value` is passed, the component becomes **fully controlled** and you must use the `onChange` prop to update the `value`.",
+        "You can programmatically select selection by updating the `value` prop. When `value` is passed, the component becomes **fully controlled** and you must use the `onChange` prop to update the `value`. Clear the selection by passing an empty string as the `value`.",
     },
   },
+};
+
+export const InADialog = (args) => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  return (
+    <>
+      <Button
+        label="Open Dialog"
+        onClick={() => {
+          setIsDialogOpen(true);
+        }}
+      />
+      <Dialog
+        title="Dialog with a Select"
+        isOpen={isDialogOpen}
+        onUserDismiss={() => {
+          setIsDialogOpen(false);
+        }}
+      >
+        <div className="padding--y--s">
+          <div>
+            The floating menu list will take up space in document flow, allowing
+            <code>Select</code> to expand the height of its content container if
+            there isn't enough room for the dropdown.
+          </div>
+          <div className="padding--y--l">
+            <Select {...args} />
+          </div>
+        </div>
+      </Dialog>
+    </>
+  );
+};
+InADialog.args = {
+  label: "Favorite icon",
+  children,
 };
 
 export default {

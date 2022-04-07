@@ -13,7 +13,7 @@ export const Overview = Template.bind({});
 Overview.args = {
   children: [
     <Row.Item shrink>
-      <img alt="demo image" src="https://via.placeholder.com/60" />
+      <img alt="demo" src="https://via.placeholder.com/60" />
     </Row.Item>,
     <Row.Item>
       The image row item is set to <code>shrink</code> to content width. This

@@ -69,6 +69,7 @@ const DropdownTrigger = React.forwardRef(
     </>
   )
 );
+DropdownTrigger.displayName = "DropdownTrigger";
 
 DropdownTrigger.propTypes = {
   /** Set this to `true` when the associated popup is open */

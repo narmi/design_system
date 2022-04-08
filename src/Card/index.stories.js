@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useRef, useState } from "react";
 import Card from "./";
 import Button from "../Button";

@@ -1,0 +1,19 @@
+# deps and build artifacts
+node_modules/
+dist/
+storybook-static/
+selection.json
+
+# dirs without any JS source
+src/base-styles/
+
+# ignored file types
+*.md
+*.css
+*.scss
+*.mdx
+*.svg
+*.eot
+*.ttf
+*.woff
+*.woff2

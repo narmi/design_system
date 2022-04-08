@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import TabsContext from "./context";

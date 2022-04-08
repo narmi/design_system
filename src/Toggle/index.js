@@ -31,7 +31,7 @@ const Toggle = ({
       role="switch"
       aria-checked={isActive.toString()}
       onClick={toggleActive}
-      aria-labelledBy={labelledBy}
+      aria-labelledby={labelledBy}
     >
       <span className="nds-toggle-indicator elevation--low" />
       <span className="nds-toggle-buttonText">{isActive ? "on" : "off"}</span>

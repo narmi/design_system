@@ -1,0 +1,21 @@
+name: Lint
+on: [pull_request]
+jobs:
+  Run-jest-tests:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org
+
+      - name: Lint
+        run: |
+          echo "The job was automatically triggered by a ${{ github.event_name }} event."
+          npm ci
+          npm run lint

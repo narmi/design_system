@@ -1,4 +1,4 @@
-import { writeFileSync, existsSync } from "fs";
+import { writeFileSync, existsSync, mkdirSync } from "fs";
 import { resolve } from "path";
 import getHelperClassNames from "./util/getHelperClassNames.mjs";
 

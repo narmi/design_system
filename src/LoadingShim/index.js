@@ -16,7 +16,7 @@ const LoadingShim = ({ isLoading = false, children }) => (
       <div className="nds-loadingShim">
         <div
           title="Loading..."
-          role="image"
+          role="img"
           className="nds-loadingShim-indicator"
         >
           <div>&nbsp;</div>

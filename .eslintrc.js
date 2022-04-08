@@ -1,5 +1,4 @@
 module.exports = {
-  root: true,
   parser: "@babel/eslint-parser",
   plugins: ["jest", "jsx-a11y"],
   settings: {

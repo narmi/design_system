@@ -14,8 +14,12 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org
 
+      - name: Install dependencies
+        env:
+          CI: true
+        run: npm ci
+
       - name: Lint
         run: |
           echo "The job was automatically triggered by a ${{ github.event_name }} event."
-          npm ci
           npm run lint

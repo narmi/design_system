@@ -43,7 +43,7 @@ AsCard.args = {
     OptionB: "B",
     OptionC: "C",
   },
-  name: "options",
+  name: "card_options",
   kind: "card",
 };
 AsCard.parameters = {

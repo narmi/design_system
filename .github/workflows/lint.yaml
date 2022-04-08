@@ -1,7 +1,7 @@
 name: Lint
 on: [pull_request]
 jobs:
-  Run-jest-tests:
+  run-lint:
     runs-on: ubuntu-latest
     steps:
 

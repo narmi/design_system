@@ -12,7 +12,7 @@ export const VALID_ICON_NAMES = iconSelection.icons.map(
 /**
  * Narmi style action buttons.
  *
- * Button renders as an `a` element by default, but can render as a `button` element
+ * Button renders as a `button` element by default, but can render as an `a` element
  * via the `as` prop.
  *
  * This component supports rest props; any additional props on button will be

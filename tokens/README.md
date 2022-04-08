@@ -11,6 +11,7 @@ Tokens are defined as JSON in `src/tokens`. These tokens are transformed into
 distributions for multiple platforms by [`style-dictionary`](https://amzn.github.io/style-dictionary).
 
 Currently, NDS builds tokens to the following formats in `dist/tokens/`:
+
 - CSS Custom properties for all tokens
 - CSS Custom properties for color tokens in RGB format
 - JS manifest of all tokens

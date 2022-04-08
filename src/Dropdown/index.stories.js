@@ -66,7 +66,14 @@ export const NewMemberDropDown = () => {
   );
   return (
     <div>
-      <Button onClick={()=>{setError(!error)}} style={{marginBottom: "20px"}}>{error ? "remove error" : "add error"}</Button>
+      <Button
+        onClick={() => {
+          setError(!error);
+        }}
+        style={{ marginBottom: "20px" }}
+      >
+        {error ? "remove error" : "add error"}
+      </Button>
       <Dropdown
         defaultValue={"Rowena Wick"}
         triggerLabel={"Members"}

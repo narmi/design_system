@@ -10,4 +10,3 @@
   - [Props](//github.com/narmi/design_system/tree/master/contributing/component-apis.md#props)
   - [Styling Customization](//github.com/narmi/design_system/tree/master/contributing/component-apis.md#styling-customization)
   - [Component Variants](//github.com/narmi/design_system/tree/master/contributing/component-apis.md#component-variants)
-

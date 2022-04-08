@@ -58,14 +58,18 @@ We use BEM-like naming conventions in Narmi Design System. Single hyphens refere
 
 ```css
 /* <base> */
-.dialog {}
+.dialog {
+}
 
 /* <parent>-<child> */
-.dialog-content {}
+.dialog-content {
+}
 
 /* <base>--<modifer> */
-.dialog--extraWide {}
+.dialog--extraWide {
+}
 
 /* <base>--<modifer>--<modifier> */
-.alignChild--left--center {}
+.alignChild--left--center {
+}
 ```

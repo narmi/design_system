@@ -80,6 +80,7 @@
 
   &:hover,
   &.nds-checkbox--checked {
+    color: var(--theme-primary);
     background-color: RGBA(var(--theme-rgb-primary), var(--alpha-5));
   }
 

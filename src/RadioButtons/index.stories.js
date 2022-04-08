@@ -36,7 +36,29 @@ export const Example = () => {
   );
 };
 
+export const AsCard = Template.bind({});
+AsCard.args = {
+  options: {
+    OptionA: "A",
+    OptionB: "B",
+    OptionC: "C",
+  },
+  name: "card_options",
+  kind: "card",
+};
+AsCard.parameters = {
+  docs: {
+    description: {
+      story:
+        "Renders a radio group styled as a cards. The cards will grow to fill the width of their parent container.",
+    },
+  },
+};
+
 export default {
   title: "Components/RadioButtons",
   component: RadioButtons,
+  artTypes: {
+    onChange: { action: "change" },
+  },
 };

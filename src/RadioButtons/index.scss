@@ -1,44 +1,31 @@
-.nds-radiobutton-group {
+// input style shared between variants
+.nds-radiobuttons input {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+// base option styles
+.nds-radiobuttons-option {
+  display: block;
+  position: relative;
+  margin-bottom: var(--space-m);
+  cursor: pointer;
+}
+
+// normal variant of radiobuttons
+.nds-radiobuttons--normal {
   display: inline-block;
 
-  .nds-label {
-    display: block;
-    position: relative;
+  .nds-radiobuttons-option {
     padding-left: 34px;
-    margin-bottom: var(--space-m);
-    cursor: pointer;
-    line-height: 1.25;
-    font-weight: 400;
 
-    input {
-      position: absolute;
-      clip: rect(0 0 0 0);
-      clip-path: inset(50%);
-      height: 1px;
-      overflow: hidden;
-      position: absolute;
-      white-space: nowrap;
-      width: 1px;
-      cursor: pointer;
-
-      &:checked {
-        ~ .nds-checkmark {
-          background-color: transparent;
-          border: 2px solid var(--theme-primary);
-
-          &:after {
-            display: block;
-          }
-        }
-      }
-    }
-
-    input:focus ~ .nds-checkmark,
-    &:hover input ~ .nds-checkmark {
-      border: 2px solid RGB(var(--nds-primary-color));
-    }
-
-    .nds-checkmark {
+    .nds-radio {
       position: absolute;
       top: 0;
       left: 0;
@@ -60,6 +47,66 @@
         border-radius: 50%;
         background: RGB(var(--nds-primary-color));
       }
+    }
+
+    &:hover .nds-radio,
+    &.nds-radiobuttons-option--focused .nds-radio,
+    &.nds-radiobuttons-option--checked .nds-radio {
+      border: 2px solid var(--theme-primary);
+    }
+
+    &.nds-radiobuttons-option--checked .nds-radio {
+      background-color: transparent;
+
+      &:after {
+        display: block;
+      }
+    }
+  }
+}
+
+// card style radiobuttons variant
+.nds-radiobuttons--card {
+  display: block;
+
+  .nds-radiobuttons-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+
+    .narmi-icon-check {
+      display: none;
+    }
+
+    &:hover,
+    &.nds-radiobuttons-option--focused,
+    &.nds-radiobuttons-option--checked {
+      border-color: var(--theme-primary);
+    }
+
+    &:hover,
+    &.nds-radiobuttons-option--checked {
+      color: var(--theme-primary);
+      background-color: RGBA(var(--theme-rgb-primary), var(--alpha-5));
+    }
+
+    &.nds-radiobuttons-option--checked .narmi-icon-check {
+      margin-left: var(--space-default);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--space-default);
+      height: var(--space-default);
+      border-radius: 100%;
+      background-color: var(--theme-primary);
+      color: var(--color-white);
+      font-size: var(--font-size-s);
+      font-weight: var(--font-weight-default);
     }
   }
 }

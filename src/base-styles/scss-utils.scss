@@ -1,0 +1,25 @@
+/**
+* Sass helpers
+* Global mixins, placeholders, functions, and vars
+*/
+
+$breakpoints: (
+  "s": 375px,
+  "m": 768px,
+  "l": 1280px,
+  "xl": 1440px,
+);
+
+/**
+* Mobile first style media query helper.
+* Styles wrapped in this mixin will apply to screens
+* of the given breakpoint size _and larger_.
+*
+* @include atMediaUp(m) { styles for M size or larger }
+*/
+@mixin atMediaUp($breakpointName) {
+  $minWidth: map.get($breakpoints, $breakpointName);
+  @media (screen) and (min-width: #{$minWidth}) {
+    @content;
+  }
+}

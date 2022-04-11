@@ -81,6 +81,7 @@ glob(`${resolve(TARGET_DIR)}/**/*.+(js|jsx)`, { ignore }, (error, files) => {
     }, totals);
 
   // sorted object of adopted components and their counts
+  /* eslint-disable no-unused-vars */
   const adoptedComponentCounts = Object.entries(importCountMap)
     .filter(([key, value]) => value >= 1)
     .sort(([aKey, aValue], [bKey, bValue]) => bValue - aValue)
@@ -88,11 +89,14 @@ glob(`${resolve(TARGET_DIR)}/**/*.+(js|jsx)`, { ignore }, (error, files) => {
       acc[key] = value;
       return acc;
     }, {});
+  /* eslint-enable no-unused-vars */
 
   // list of component names that are not used
+  /* eslint-disable no-unused-vars */
   const unadoptedComponentNames = Object.entries(importCountMap)
     .filter(([key, value]) => value === 0)
     .flatMap(([key]) => key);
+  /* eslint-enable no-unused-vars */
 
   printResults(adoptedComponentCounts, unadoptedComponentNames);
 });

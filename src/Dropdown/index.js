@@ -66,9 +66,6 @@ const Dropdown = ({ error, ...props }) => {
     }
   }, [props.closeDropDown]);
 
-  const openDropdown = () => {
-    setOpen(true);
-  };
   const closeDropdown = () => {
     setOpen(false);
   };
@@ -77,7 +74,6 @@ const Dropdown = ({ error, ...props }) => {
     ? props.children.flat()
     : props.children.flat();
 
-  const { multiline, style, ...nativeElementProps } = props;
   return (
     <div
       onKeyDown={(event) => {

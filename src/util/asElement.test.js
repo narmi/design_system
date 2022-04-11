@@ -11,9 +11,7 @@ describe("AsElement", () => {
   it("passes through any additional props", () => {
     const elementType = "p";
     const testClass = "color--azul";
-    const { container } = render(
-      <AsElement elementType={elementType} className={testClass} />
-    );
+    render(<AsElement elementType={elementType} className={testClass} />);
     expect(document.querySelector(elementType)).toHaveClass(testClass);
   });
 });

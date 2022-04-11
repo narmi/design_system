@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import TextInput from "./";
 
 const Template = (args) => <TextInput {...args} />;

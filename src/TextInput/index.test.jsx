@@ -1,10 +1,10 @@
 import React from "react";
-import { fireEvent, render, screen, getByRole } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import TextInput from "./";
 
 describe("TextInput", () => {
   it("Basic Test to verify TextInput behaves as an Html input", () => {
-    const BasicTextInput = render(
+    render(
       <TextInput data-testid={1} label={"Label"} defaultValue={"Default"} />
     );
     const basicInput = screen.getByTestId(1);
@@ -15,7 +15,7 @@ describe("TextInput", () => {
   });
 
   it("Formatter prop test", () => {
-    const TextInputFormatter = render(
+    render(
       <TextInput
         id="test"
         label={"Test Quotes"}
@@ -36,9 +36,7 @@ describe("TextInput", () => {
   });
 
   it("No Formatter prop test", () => {
-    const TextInputFormatter = render(
-      <TextInput id="test" label={"Test Quotes"} />
-    );
+    render(<TextInput id="test" label={"Test Quotes"} />);
     const basicInput = screen.getByLabelText("Test Quotes");
 
     fireEvent.change(basicInput, { target: { value: "“this is a test”" } });

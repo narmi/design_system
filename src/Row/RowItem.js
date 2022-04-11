@@ -24,6 +24,10 @@ RowItem.propTypes = {
   shrink: PropTypes.bool,
   /** The html element to render as the root node of `Row` */
   as: PropTypes.oneOf(["div", "li"]),
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
 };
 
 export default RowItem;

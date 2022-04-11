@@ -43,6 +43,10 @@ const Button = ({
     </div>
   );
 
+  Icon.propTypes = {
+    name: PropTypes.string.isRequired,
+  };
+
   return (
     <AsElement
       elementType={as}

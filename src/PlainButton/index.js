@@ -1,3 +1,4 @@
+/* eslint-disable */ // deprecated; will remove this file in a future release
 import React from "react";
 
 /**

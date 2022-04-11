@@ -28,8 +28,6 @@ module.exports = {
     "jsx-a11y/no-static-element-interactions": "off",
     "jsx-a11y/no-noninteractive-tabindex": "off",
     "jsx-a11y/label-has-associated-control": "off",
-    "react/prop-types": "off",
-    "react/jsx-key": "off",
     "no-unused-vars": "off",
   },
 };

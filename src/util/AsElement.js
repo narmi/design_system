@@ -48,6 +48,10 @@ const AsElement = ({ elementType = "div", children, ...rest }) => {
 AsElement.propTypes = {
   /** element to render  */
   elementType: PropTypes.oneOf(VALID_ELEMENTS).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
 };
 
 export default AsElement;

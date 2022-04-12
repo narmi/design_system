@@ -14,6 +14,7 @@ const InteractiveTemplate = (args) => {
           onDismiss={() => {
             setTagVisible(false);
           }}
+          {...args}
         />
       ) : (
         <button

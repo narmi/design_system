@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SelectAction = ({ onSelect, children }) => <>{children}</>;
+const SelectAction = ({ children }) => <>{children}</>;
 
 SelectAction.propTypes = {
   /** Side effect to run on selection */

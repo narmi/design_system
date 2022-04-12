@@ -170,7 +170,7 @@ describe("Tabs", () => {
 
   it("applies tabs design pattern aria attributes when panels are present", () => {
     renderTabsWithPanels();
-    const { firstTab, secondTab, thirdTab } = getTabs();
+    const { firstTab } = getTabs();
     const tabList = screen.getByTestId("nds-tablist");
 
     expect(tabList).toHaveAttribute("role", "tablist");

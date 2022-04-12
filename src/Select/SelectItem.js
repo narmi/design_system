@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SelectItem = ({ value, children }) => <>{children}</>;
+const SelectItem = ({ children }) => <>{children}</>;
 
 SelectItem.propTypes = {
   /**

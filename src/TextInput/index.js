@@ -16,7 +16,7 @@ const TextInput = (props) => {
   } = props;
 
   const [inputValue, setInputValue] = useState(
-    props.defaultValue ? props.defaultValue : ""
+    defaultValue ? defaultValue : ""
   );
   const ref = useRef();
 
@@ -24,7 +24,7 @@ const TextInput = (props) => {
     if (onBlur) {
       onBlur(e);
     }
-    setInputValue(props.formatter(ref.current.value));
+    setInputValue(formatter(ref.current.value));
   }
   function _onChange(e) {
     if (onChange) {

@@ -12,75 +12,72 @@ Overview.args = {
   icon: "star",
 };
 
-export const Variations = () => {
-  const [selected, setSelected] = useState("nothing");
-  return (
-    <div className="nds-typography">
-      <div className={"nds-grid"}>
-        <div
-          className={"nds-grid nds-span-7"}
-          style={{ alignContent: "flex-start" }}
-        >
-          <Card title="Title" classes={"nds-span-12"}>
-            <div className="margin--top--m margin--bottom-s">
-              <Button type="plain" label="Button" />
-            </div>
-            <div className="margin--bottom-s">
-              <Button type="plain" label="Button" />
-            </div>
+export const Variations = () => (
+  <div className="nds-typography">
+    <div className={"nds-grid"}>
+      <div
+        className={"nds-grid nds-span-7"}
+        style={{ alignContent: "flex-start" }}
+      >
+        <Card title="Title" classes={"nds-span-12"}>
+          <div className="margin--top--m margin--bottom-s">
             <Button type="plain" label="Button" />
-          </Card>
-          <Card
-            title="Title"
-            classes={"nds-span-12"}
-            button={<Button type="plain" label="Button" />}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginTop: "20px",
-              }}
-            >
-              <span>Text</span>
-              <span style={{ textAlign: "right" }}>Text</span>
-            </div>
-            <hr />
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <span>Text</span>
-              <span style={{ textAlign: "right" }}>Text</span>
-            </div>
-          </Card>
-          <Card
-            title="Title"
-            classes={"nds-span-12"}
-            button={<Button type="plain" label="Button" />}
-          />
-        </div>
-        <div
-          className={"nds-grid nds-span-5"}
-          style={{ alignContent: "flex-start" }}
+          </div>
+          <div className="margin--bottom-s">
+            <Button type="plain" label="Button" />
+          </div>
+          <Button type="plain" label="Button" />
+        </Card>
+        <Card
+          title="Title"
+          classes={"nds-span-12"}
+          button={<Button type="plain" label="Button" />}
         >
-          <Card title="Title" icon="star" classes={"nds-span-12"}>
-            This is a piece of text that explains something
-          </Card>
-          <Card title="Title" icon="star" hoverable classes={"nds-span-12"}>
-            This is a hoverable piece of text that explains something
-          </Card>
-          <Card
-            title="Title"
-            icon="star"
-            hoverable
-            selected
-            classes={"nds-span-12"}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: "20px",
+            }}
           >
-            This is a selected piece of text that explains something
-          </Card>
-        </div>
+            <span>Text</span>
+            <span style={{ textAlign: "right" }}>Text</span>
+          </div>
+          <hr />
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span>Text</span>
+            <span style={{ textAlign: "right" }}>Text</span>
+          </div>
+        </Card>
+        <Card
+          title="Title"
+          classes={"nds-span-12"}
+          button={<Button type="plain" label="Button" />}
+        />
+      </div>
+      <div
+        className={"nds-grid nds-span-5"}
+        style={{ alignContent: "flex-start" }}
+      >
+        <Card title="Title" icon="star" classes={"nds-span-12"}>
+          This is a piece of text that explains something
+        </Card>
+        <Card title="Title" icon="star" hoverable classes={"nds-span-12"}>
+          This is a hoverable piece of text that explains something
+        </Card>
+        <Card
+          title="Title"
+          icon="star"
+          hoverable
+          selected
+          classes={"nds-span-12"}
+        >
+          This is a selected piece of text that explains something
+        </Card>
       </div>
     </div>
-  );
-};
+  </div>
+);
 
 export const ThreeTransferChoices = () => {
   return (

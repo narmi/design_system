@@ -1,4 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/no-unescaped-entities,jsx-a11y/anchor-is-valid */
 import React, { useRef, useState } from "react";
 import Card from "./";
 import Button from "../Button";

@@ -116,6 +116,7 @@ const Pagination = ({
           <Row.Item as="li" shrink>
             <span
               role="button"
+              tabIndex={0}
               aria-disabled={!showPrev}
               aria-label="Previous page"
               onClick={handlePrevClick}
@@ -135,6 +136,7 @@ const Pagination = ({
             <Row.Item as="li" shrink>
               <span
                 role="button"
+                tabIndex={0}
                 aria-label="First page"
                 onClick={handlePageClick}
                 data-page={firstPage}
@@ -154,6 +156,7 @@ const Pagination = ({
             <Row.Item as="li" key={page} shrink>
               <span
                 role="button"
+                tabIndex={0}
                 className={cc([
                   "nds-pagination-page",
                   {
@@ -179,6 +182,7 @@ const Pagination = ({
             <Row.Item as="li" shrink>
               <span
                 role="button"
+                tabIndex={0}
                 aria-label="Last page"
                 onClick={handlePageClick}
                 data-page={lastPage}
@@ -192,6 +196,7 @@ const Pagination = ({
           <Row.Item as="li" shrink>
             <span
               role="button"
+              tabIndex={0}
               aria-disabled={!showNext}
               aria-label="Next page"
               onClick={handleNextClick}

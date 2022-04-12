@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/anchor-is-valid,react/jsx-key */
 import React from "react";
 import Button from "../Button";
 import Row from "./";

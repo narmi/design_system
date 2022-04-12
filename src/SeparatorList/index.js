@@ -7,11 +7,15 @@ import PropTypes from "prop-types";
 const SeparatorList = ({ separator = "|", items = [] }) => (
   <ul className="list--reset nds-typography nds-separatorList">
     {items.map((item, i) => {
-      const itemProps = { key: i };
+      const itemProps = {};
       if (i !== items.length - 1) {
         itemProps["data-separator"] = separator;
       }
-      return <li {...itemProps}>{item}</li>;
+      return (
+        <li key={`${i}-${separator}`} {...itemProps}>
+          {item}
+        </li>
+      );
     })}
   </ul>
 );

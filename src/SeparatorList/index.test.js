@@ -2,7 +2,11 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import SeparatorList from "./";
 
-const items = [<span>One</span>, <span>Two</span>, <span>Three</span>];
+const items = [
+  <span key="one">One</span>,
+  <span key="two">Two</span>,
+  <span key="three">Three</span>,
+];
 
 describe("SeparatorList", () => {
   it("renders all items", () => {

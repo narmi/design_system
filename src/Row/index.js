@@ -54,6 +54,8 @@ Row.propTypes = {
   justifyContent: PropTypes.oneOf(["start", "end"]),
   /** The html element to render as the root node of `Row` */
   as: PropTypes.oneOf(["div", "ul"]),
+  /** Children must be of type `Row.Item` */
+  children: PropTypes.arrayOf(PropTypes.node).isRequired,
 };
 
 Row.Item = RowItem;

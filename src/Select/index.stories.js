@@ -1,4 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/jsx-key,react/no-unescaped-entities */
 import React, { useState } from "react";
 import Select from "./";
 import SelectItem from "./SelectItem";

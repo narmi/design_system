@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React, { useState } from "react";
 import Dropdown from "./";
 import Modal from "../Modal";

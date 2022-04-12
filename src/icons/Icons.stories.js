@@ -10,7 +10,7 @@ export const Icons = () => {
     <div className="nds-typography">
       <div className="icon-demo">
         {iconSelection.icons.map((icon) => (
-          <div className="icon-demo-box">
+          <div key={icon.properties.name} className="icon-demo-box">
             <span
               className={`icon-demo-icon narmi-icon-${icon.properties.name}`}
             >

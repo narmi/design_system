@@ -164,6 +164,10 @@ Select.propTypes = {
    * When passed, this will cause the trigger to render in error state.
    */
   errorText: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
 };
 
 Select.Item = SelectItem;

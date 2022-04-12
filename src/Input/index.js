@@ -20,14 +20,22 @@ const Error = ({ error }) => {
   );
 };
 
+Error.propTypes = {
+  error: PropTypes.string,
+};
+
 const Input = ({
   id,
   label,
   icon,
   disabled,
+  multiline = false,
   decoration,
   error,
   search,
+  onClick,
+  style,
+  children,
   ...props
 }) => {
   const className = [
@@ -39,17 +47,17 @@ const Input = ({
   ].join(" ");
 
   return (
-    <div className={className} onClick={props.onClick} style={props.style}>
+    <div className={className} onClick={onClick} style={style}>
       <div className="nds-input-box">
         {icon ? <div className={`nds-input-icon ${icon}`}></div> : ""}
         <div
           className={`nds-input-column ${
-            !label || (icon && !props.multiline) ? "no-label" : ""
+            !label || (icon && !multiline) ? "no-label" : ""
           }`}
         >
-          {props.children}
+          {children}
           {decoration}
-          {!props.multiline ? <label htmlFor={id}>{label}</label> : ""}
+          {!multiline ? <label htmlFor={id}>{label}</label> : ""}
         </div>
       </div>
       <Error error={error} />
@@ -58,22 +66,20 @@ const Input = ({
 };
 
 Input.propTypes = {
+  id: PropTypes.string,
   label: PropTypes.string,
-  placeholder: PropTypes.string,
   icon: PropTypes.node,
   decoration: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
   multiline: PropTypes.bool,
+  disabled: PropTypes.bool,
+  search: PropTypes.bool,
+  onClick: PropTypes.func,
+  style: PropTypes.object,
   error: PropTypes.string,
-};
-
-Input.defaultProps = {
-  label: null,
-  placeholder: "",
-  icon: null,
-  decoration: null,
-  error: null,
-  multiline: false,
-  React,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
 };
 
 export default Input;

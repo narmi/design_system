@@ -9,7 +9,7 @@ const InteractiveTemplate = (args) => {
     <div>
       {isTagVisible ? (
         <Tag
-          label={"My cool tag"}
+          label={"Label"}
           kind={"dismissible"}
           onDismiss={() => {
             setTagVisible(false);
@@ -32,7 +32,7 @@ const InteractiveTemplate = (args) => {
 export const Overview = Template.bind({});
 Overview.args = {
   kind: "subdued",
-  label: "My cool tag",
+  label: "Label",
 };
 
 export const UsingWithState = InteractiveTemplate.bind({});

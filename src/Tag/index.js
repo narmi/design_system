@@ -16,7 +16,7 @@ const Tag = ({
 }) => {
   return (
     <div className={cc(["nds-typography", "nds-tag", `nds-tag--${kind}`])}>
-      <Row alignItems="center" gapSize="xs">
+      <Row alignItems="center" gapSize="xxs">
         <Row.Item shrink>{label}</Row.Item>
         {kind === "dismissible" && (
           <Row.Item shrink>
@@ -25,6 +25,11 @@ const Tag = ({
               role="button"
               tabIndex={0}
               onClick={onDismiss}
+              onKeyUp={({ key }) => {
+                if (key === "Enter" || key == " ") {
+                  onDismiss();
+                }
+              }}
             />
           </Row.Item>
         )}

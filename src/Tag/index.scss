@@ -1,29 +1,30 @@
 .nds-tag {
-  padding: 0 var(--space-xs);
+  padding: 0 var(--space-s);
   border-radius: 16px;
   display: inline-flex;
   align-items: center;
   font-size: var(--font-size-xs);
-  height: 26px; // per design
+  height: 23px;
   .narmi-icon-x {
     cursor: pointer;
-    font-size: var(--font-size-s);
     display: inline-block;
     transform: translateY(1px);
   }
 }
 .nds-tag--dismissible {
+  height: 25px;
+  padding-right: var(--space-xs);
   color: var(--color-white);
   background: var(--theme-tertiary);
   border: 1px solid var(--theme-tertiary);
 }
 .nds-tag--outline {
   color: var(--theme-primary);
+  font-size: 10px;
   background: transparent;
   border: 1px solid var(--theme-primary);
 }
 .nds-tag--subdued {
   color: var(--theme-primary);
-  background: var(--bgColor-smokeGrey);
-  border: 1px solid var(--bgColor-smokeGrey);
+  background: rgba(var(--theme-rgb-primary), var(--alpha-10));
 }

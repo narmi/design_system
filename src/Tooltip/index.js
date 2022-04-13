@@ -55,6 +55,7 @@ const Tooltip = ({
         onBlur={closePopover}
         onMouseEnter={openPopover}
         onMouseLeave={closePopover}
+        role="button"
         tabIndex="0"
         data-testid="nds-tooltip-trigger"
       >

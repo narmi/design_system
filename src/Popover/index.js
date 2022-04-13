@@ -79,6 +79,7 @@ const Popover = ({
         style={{ display: wrapperDisplay }}
         onClick={togglePopover}
         onKeyDown={handleKeyDown}
+        role="button"
         tabIndex="0"
         data-testid="nds-popover-trigger"
         aria-haspopup="true"

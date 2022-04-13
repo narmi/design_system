@@ -21,6 +21,15 @@ const ContentCard = ({
       tabIndex={isInteractive ? "0" : undefined}
       aria-pressed={isInteractive ? isSelected : undefined}
       onClick={isInteractive ? onClick : undefined}
+      onKeyUp={
+        isInteractive
+          ? ({ key }) => {
+              if (key === "Enter") {
+                onClick();
+              }
+            }
+          : undefined
+      }
       className={cc([
         "nds-contentCard",
         `nds-contentCard--${type}`,

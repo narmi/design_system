@@ -120,6 +120,11 @@ const Pagination = ({
               aria-disabled={!showPrev}
               aria-label="Previous page"
               onClick={handlePrevClick}
+              onKeyUp={({ key }) => {
+                if (key === "Enter") {
+                  handlePrevClick();
+                }
+              }}
               className={cc([
                 "nds-pagination-page",
                 "padding--none",
@@ -139,6 +144,11 @@ const Pagination = ({
                 tabIndex={0}
                 aria-label="First page"
                 onClick={handlePageClick}
+                onKeyUp={(e) => {
+                  if (e.key === "Enter") {
+                    handlePageClick(e);
+                  }
+                }}
                 data-page={firstPage}
                 className="nds-pagination-page"
               >
@@ -165,6 +175,11 @@ const Pagination = ({
                 ])}
                 data-page={page}
                 onClick={handlePageClick}
+                onKeyUp={(e) => {
+                  if (e.key === "Enter") {
+                    handlePageClick(e);
+                  }
+                }}
                 aria-label={`Page ${page}`}
                 aria-current={i === selectedIndex && "page"}
               >
@@ -185,6 +200,11 @@ const Pagination = ({
                 tabIndex={0}
                 aria-label="Last page"
                 onClick={handlePageClick}
+                onKeyUp={(e) => {
+                  if (e.key === "Enter") {
+                    handlePageClick(e);
+                  }
+                }}
                 data-page={lastPage}
                 className="nds-pagination-page"
               >
@@ -200,6 +220,11 @@ const Pagination = ({
               aria-disabled={!showNext}
               aria-label="Next page"
               onClick={handleNextClick}
+              onKeyUp={({ key }) => {
+                if (key === "Enter") {
+                  handleNextClick();
+                }
+              }}
               className={cc([
                 "nds-pagination-page",
                 "padding--none",

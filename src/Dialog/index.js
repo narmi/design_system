@@ -70,6 +70,8 @@ const Dialog = ({
     }
   };
 
+  // the shim has events for mouse users only; does not require a role
+  /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
   const dialogJSX = (
     <div className="nds-shim--dark" ref={shimRef} onClick={handleShimClick}>
       <div
@@ -109,6 +111,7 @@ const Dialog = ({
       </div>
     </div>
   );
+  /* eslint-enable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
 
   return <>{isOpen && ReactDOM.createPortal(dialogJSX, document.body)}</>;
 };

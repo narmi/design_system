@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.12.1](https://github.com/narmi/design_system/compare/v2.12.0...v2.12.1) (2022-04-13)
+
+
+### Bug Fixes
+
+* **Tag:** adjust sizes on variants ([10bf1f7](https://github.com/narmi/design_system/commit/10bf1f7ad5bbc69722695e12e964c258c009f5d3))
+
 ## [2.12.0](https://github.com/narmi/design_system/compare/v2.11.2...v2.12.0) (2022-04-08)
 
 

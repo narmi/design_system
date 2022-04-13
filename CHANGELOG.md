@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.0](https://github.com/narmi/design_system/compare/v2.12.1...v2.13.0) (2022-04-13)
+
+
+### Features
+
+* **Dialog:** use takeover modal for mobile sized screens ([0d3da0e](https://github.com/narmi/design_system/commit/0d3da0e9e8365e7697ca0ed6f0602a744e26ccd8))
+
 ### [2.12.1](https://github.com/narmi/design_system/compare/v2.12.0...v2.12.1) (2022-04-13)
 
 

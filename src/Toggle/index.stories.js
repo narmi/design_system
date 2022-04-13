@@ -10,6 +10,8 @@ export const WithLabel = () => (
   <Toggle defaultActive={true} label="Include hidden accounts" />
 );
 
+// eslint doesn't have visibility of the `aria-labelledby` prop inside Toggle
+/* eslint-disable jsx-a11y/label-has-associated-control */
 export const WithCustomLabel = () => (
   <div className="padding--y--xs border--top">
     <Row alignItems="center">
@@ -22,6 +24,7 @@ export const WithCustomLabel = () => (
     </Row>
   </div>
 );
+/* eslint-enable jsx-a11y/label-has-associated-control */
 
 export default {
   title: "Components/Toggle",

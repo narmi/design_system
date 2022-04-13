@@ -9,26 +9,35 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: var(--space-default); /* create space around viewport edges */
   z-index: 2;
+
+  // create spaces around viewport edges for tablet or larger
+  @include atMediaUp("s") {
+    padding: var(--space-default);
+  }
 }
 
 .nds-dialog {
   position: relative;
-  border-radius: var(--border-radius-default);
   background-color: var(--bgColor-white);
   box-shadow: var(--elevation-high);
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
 
-  /**
-  * `width` is configured via props; below are constraints
-  * for small screens and large modals.
-  */
-  max-height: 100%; /* prevent modal from being taller than the shim content box */
-  min-height: 240px; /* prevent content area from collapsing to 0 */
-  min-width: 240px; /* should be no narrower than this, even on phones */
+  // the modal dialog takes over the whole screen by default
+  // (small veiwports)
+  height: 100vh;
+  width: 100vw;
+
+  // for tablet or larger, display the modal dialog as a floating box.
+  @include atMediaUp("s") {
+    height: auto;
+    border-radius: var(--border-radius-default);
+    max-height: 100%; // prevent modal from being taller than the shim content box
+    min-height: 240px; // prevent content area from collapsing to 0
+    min-width: 240px; // should be no narrower than this on larger viewports
+  }
 }
 
 .nds-dialog-header {

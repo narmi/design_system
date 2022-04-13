@@ -24,7 +24,7 @@
     background-color: RGBA(var(--nds-primary-color), var(--subdued-5-opacity));
   }
 
-  @media (max-width: $mobile_size) {
+  @media (max-width: #{map.get($breakpoints, "s")}) {
     padding: 0;
   }
 

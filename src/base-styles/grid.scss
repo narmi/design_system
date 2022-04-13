@@ -1,5 +1,10 @@
 $column_count: 12;
 
+$mobile_size: 375px; // legacy breakpoint size for mobile
+$tablet: map.get($breakpoints, "m");
+$desktop-small: map.get($breakpoints, "l");
+$desktop-big: map.get($breakpoints, "xl");
+
 .nds-container {
   display: block;
   margin: 0 auto;

@@ -1,7 +1,4 @@
-$mobile_size: 375px;
-$tablet: 768px;
-$desktop-small: 1280px;
-$desktop-big: 1440px;
+@use "sass:map";
 
 // NDS Tokens
 @import "../dist/tokens/css/tokens.css";
@@ -32,6 +29,7 @@ $desktop-big: 1440px;
 @import "icons/icons.css";
 
 // base styles
+@import "base-styles/scss-utils"; // this must come first
 @import "base-styles/reset";
 @import "base-styles/defaults";
 @import "base-styles/typography";

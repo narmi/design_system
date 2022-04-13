@@ -1,0 +1,33 @@
+/**
+* Sass helpers
+* Global mixins, placeholders, functions, and vars
+*/
+
+/**
+* Breakpoints are mobile first, meaning default styles are for mobile-sized
+* screens and these breakpoints are for targeting larger viewports.
+*/
+$breakpoints: (
+  // larger than most phones
+  "s": 480px,
+  // larger than most tablets
+  "m": 768px,
+  // larger than some laptop screens
+  "l": 1280px,
+  // larger than many desktop screens
+  "xl": 1440px
+);
+
+/**
+* Mobile first style media query helper.
+* Styles wrapped in this mixin will apply to screens
+* of the given breakpoint size _and larger_.
+*
+* @include atMediaUp(m) { styles for M size or larger }
+*/
+@mixin atMediaUp($breakpointName) {
+  $minWidth: map.get($breakpoints, $breakpointName);
+  @media only screen and (min-width: #{$minWidth}) {
+    @content;
+  }
+}

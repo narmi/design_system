@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.0](https://github.com/narmi/design_system/compare/v2.13.0...v2.14.0) (2022-04-22)
+
+
+### Features
+
+* **icons:** add `car`, `student`, `signal`, `question`, and `hand-spock` ([d6c50fc](https://github.com/narmi/design_system/commit/d6c50fc4d4c84bdf7c30d38651f908130137f8bc))
+
 ## [2.13.0](https://github.com/narmi/design_system/compare/v2.12.1...v2.13.0) (2022-04-13)
 
 

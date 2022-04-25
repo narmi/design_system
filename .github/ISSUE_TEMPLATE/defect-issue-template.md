@@ -1,8 +1,8 @@
 ---
-name: Defect
+name: Bug
 about: File a bug report
 title: ""
-labels: bug
+labels: bug,Platform
 ---
 
 ### Component/Module

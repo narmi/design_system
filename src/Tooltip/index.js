@@ -13,7 +13,7 @@ const Tooltip = ({
   text,
   children,
   wrapperDisplay = "inline-flex",
-  maxWidth = "500px",
+  maxWidth = "400px",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const delays = {
@@ -68,8 +68,8 @@ const Tooltip = ({
               id="nds-tooltip"
               role="tooltip"
               className="nds-typography nds-tooltip elevation--middle"
-              style={{ maxWidth: maxWidth }}
               {...layerProps}
+              style={{ maxWidth: maxWidth, ...layerProps.style }}
             >
               {text}
               <Arrow {...arrowProps} />

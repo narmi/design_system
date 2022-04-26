@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.14.2](https://github.com/narmi/design_system/compare/v2.14.1...v2.14.2) (2022-04-26)
+
+
+### Bug Fixes
+
+* **Tooltip:** fix `maxWidth` prop ([dd6105f](https://github.com/narmi/design_system/commit/dd6105f2265a0a781c3d14ea83f4f62d2647dac5))
+
 ### [2.14.1](https://github.com/narmi/design_system/compare/v2.14.0...v2.14.1) (2022-04-26)
 
 

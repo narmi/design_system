@@ -23,9 +23,9 @@ const Checkbox = ({
   const [isFocused, setIsFocused] = useState(false);
   const isCard = kind === "card";
 
-  const handleChange = () => {
+  const handleChange = (e) => {
     setIsChecked((isChecked) => !isChecked);
-    onChange();
+    onChange(e);
   };
 
   const handleFocus = () => {

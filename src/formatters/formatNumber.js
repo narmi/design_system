@@ -41,8 +41,8 @@ const formatNumber = (input, style = "currency") => {
     return new Intl.NumberFormat("en-US", formatterOpts).format(number);
   }
   catch {
-    formatterOpts.currencyDisplay = "symbol"
-    return new Intl.NumberFormat("en-US", formatterOpts).format(number);
+    // Failover for browsers that do not support Intl.NumberFormat
+    return style === "currency" ? '$' + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') : number.toFixed(2) + '%';
   }
 };
 

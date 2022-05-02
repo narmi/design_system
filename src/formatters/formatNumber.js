@@ -37,7 +37,13 @@ const formatNumber = (input, style = "currency") => {
     formatterOpts.currency = "USD";
   }
 
-  return new Intl.NumberFormat("en-US", formatterOpts).format(number);
+  try {
+    return new Intl.NumberFormat("en-US", formatterOpts).format(number);
+  }
+  catch {
+    formatterOpts.currencyDisplay = "symbol"
+    return new Intl.NumberFormat("en-US", formatterOpts).format(number);
+  }
 };
 
 export default formatNumber;

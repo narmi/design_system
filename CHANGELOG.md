@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.14.3](https://github.com/narmi/design_system/compare/v2.14.2...v2.14.3) (2022-05-02)
+
+
+### Bug Fixes
+
+* **numberformat:** Catch error in case of browser unsupported currency format ([c4863d0](https://github.com/narmi/design_system/commit/c4863d0ebf18f27f12bd86618f4c9cc6785427a8))
+
 ### [2.14.2](https://github.com/narmi/design_system/compare/v2.14.1...v2.14.2) (2022-04-26)
 
 

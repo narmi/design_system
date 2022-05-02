@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.14.4](https://github.com/narmi/design_system/compare/v2.14.3...v2.14.4) (2022-05-02)
+
+
+### Bug Fixes
+
+* **RadioButtons/Checkbox:** explicitly set font size ([ed6ab6c](https://github.com/narmi/design_system/commit/ed6ab6c1f9522d51b2de3c74841d1d05081fef61))
+
 ### [2.14.3](https://github.com/narmi/design_system/compare/v2.14.2...v2.14.3) (2022-05-02)
 
 

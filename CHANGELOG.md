@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.14.5](https://github.com/narmi/design_system/compare/v2.14.4...v2.14.5) (2022-05-02)
+
+
+### Bug Fixes
+
+* **numberformat:** Add native JS failover ([b7bde22](https://github.com/narmi/design_system/commit/b7bde228f323e8c6e5451968c03901c32c2ced16))
+
 ### [2.14.4](https://github.com/narmi/design_system/compare/v2.14.3...v2.14.4) (2022-05-02)
 
 

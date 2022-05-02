@@ -42,7 +42,7 @@ const formatNumber = (input, style = "currency") => {
   }
   catch {
     // Failover for browsers that do not support Intl.NumberFormat
-    return '$' + toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    return '$' + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
   }
 };
 

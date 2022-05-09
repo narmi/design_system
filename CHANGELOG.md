@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.14.6](https://github.com/narmi/design_system/compare/v2.14.5...v2.14.6) (2022-05-09)
+
+
+### Bug Fixes
+
+* **TextInput:** force wrap long lines ([eb5a15a](https://github.com/narmi/design_system/commit/eb5a15a26fce4b99db504f8e8f696fcee561b8cd))
+
 ### [2.14.5](https://github.com/narmi/design_system/compare/v2.14.4...v2.14.5) (2022-05-02)
 
 

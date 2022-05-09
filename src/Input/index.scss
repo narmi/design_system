@@ -168,6 +168,7 @@
   &,
   & > textarea {
     max-height: 80vh; // avoid growing larger than viewport height
+    overflow-wrap: anywhere; // always break line if it exceeds available width
   }
 
   // This pseudo-element is an auto height invisible container that

@@ -68,6 +68,7 @@ const Select = ({
     ["SelectItem", "SelectAction"].includes(child.type.name)
   );
   const downshiftOpts = {
+    id: "nds-select",
     items,
     initialSelectedItem: defaultValue && getItemByValue(defaultValue, items),
     initialIsOpen: defaultOpen,

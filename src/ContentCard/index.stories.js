@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ContentCard from "./";
-import Row from "../Row";
 
 const Template = (args) => (
   <div className="bgColor--snowGrey alignChild--center--center padding--all--xl">
@@ -33,22 +32,13 @@ export const SelectableCard = () => {
       onClick={handleClick}
       isSelected={isCardSelected}
     >
-      <Row>
-        <Row.Item>
-          <h3 className="fontSize--heading4 padding--bottom--xs">
-            Selectable card
-          </h3>
-          <div className="fontSize--s fontColor--secondary">
-            This card is currently{" "}
-            <em>{isCardSelected ? "selected" : "not selected"}</em>
-          </div>
-        </Row.Item>
-        {isCardSelected && (
-          <Row.Item shrink>
-            <span className="narmi-icon-check color--successDark fontSize--heading2" />
-          </Row.Item>
-        )}
-      </Row>
+      <h3 className="fontSize--heading4 padding--bottom--xs">
+        Selectable card
+      </h3>
+      <div className="fontSize--s fontColor--secondary">
+        This card is currently{" "}
+        <em>{isCardSelected ? "selected" : "not selected"}</em>
+      </div>
     </ContentCard>
   );
 };

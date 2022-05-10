@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TextInput from "./";
+import TextInput, { VALID_ICON_NAMES } from "./";
 
 const Template = (args) => <TextInput {...args} />;
 
@@ -46,6 +46,12 @@ export const MultiLine = () => {
   return <TextInput multiline />;
 };
 
+export const WithIcon = Template.bind({});
+WithIcon.args = {
+  label: "Search",
+  icon: "search",
+};
+
 export const AsColorInput = () => {
   const [color, setColor] = useState("#915F6D");
   return (
@@ -79,5 +85,6 @@ export default {
   argTypes: {
     onChange: { action: "change" },
     onBlur: { action: "blur" },
+    icon: { options: ["", ...VALID_ICON_NAMES] },
   },
 };

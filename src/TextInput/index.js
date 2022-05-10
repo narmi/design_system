@@ -1,12 +1,18 @@
 import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import Input from "../Input";
+import iconSelection from "src/icons/selection.json";
+
+export const VALID_ICON_NAMES = iconSelection.icons.map(
+  (icon) => icon.properties.name
+);
 
 /**
  * Narmi flavored text input with floating label
  */
 const TextInput = (props) => {
   const {
+    icon,
     formatter,
     multiline,
     defaultValue,
@@ -39,6 +45,7 @@ const TextInput = (props) => {
         ref.current?.focus();
       }}
       {...props}
+      icon={icon ? `narmi-icon-${icon}` : undefined}
     >
       {multiline ? (
         <div
@@ -85,6 +92,8 @@ TextInput.propTypes = {
   multiline: PropTypes.bool,
   /** function that formats the input value on blur */
   formatter: PropTypes.func,
+  /** Name of Narmi icon to place at the start of the input box */
+  icon: PropTypes.oneOf(VALID_ICON_NAMES),
 };
 
 TextInput.defaultProps = {

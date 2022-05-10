@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.15.3](https://github.com/narmi/design_system/compare/v2.15.2...v2.15.3) (2022-05-10)
+
+
+### Bug Fixes
+
+* **Card fields:** match design spec for card variants of radios and checkbox ([ea2b07a](https://github.com/narmi/design_system/commit/ea2b07a97beea1e129110bc8b1612eac2fe8bd9f))
+
 ### [2.15.2](https://github.com/narmi/design_system/compare/v2.15.1...v2.15.2) (2022-05-10)
 
 

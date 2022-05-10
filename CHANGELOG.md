@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.15.1](https://github.com/narmi/design_system/compare/v2.15.0...v2.15.1) (2022-05-10)
+
+
+### Bug Fixes
+
+* **Select:** enable SSR ([a3c139f](https://github.com/narmi/design_system/commit/a3c139fe47ee34625ef40d255e5303c21f8dd633))
+
 ## [2.15.0](https://github.com/narmi/design_system/compare/v2.14.6...v2.15.0) (2022-05-10)
 
 

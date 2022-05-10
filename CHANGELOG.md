@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.15.0](https://github.com/narmi/design_system/compare/v2.14.6...v2.15.0) (2022-05-10)
+
+
+### Features
+
+* **TextInput:** add icon support to TextInput ([ea8975a](https://github.com/narmi/design_system/commit/ea8975a094e0f3d68c9f5c9abb4eccc41ea1a6fb))
+
 ### [2.14.6](https://github.com/narmi/design_system/compare/v2.14.5...v2.14.6) (2022-05-09)
 
 

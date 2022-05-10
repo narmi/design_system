@@ -74,14 +74,13 @@
     display: none;
   }
 
+  &:hover,
   &.nds-checkbox--checked,
   &.nds-checkbox--focused {
     border-color: var(--theme-primary);
   }
 
-  &:hover,
   &.nds-checkbox--checked {
-    color: var(--theme-primary);
     background-color: RGBA(var(--theme-rgb-primary), var(--alpha-5));
   }
 

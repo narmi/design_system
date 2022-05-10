@@ -90,9 +90,7 @@
       border-color: var(--theme-primary);
     }
 
-    &:hover,
     &.nds-radiobuttons-option--checked {
-      color: var(--theme-primary);
       background-color: RGBA(var(--theme-rgb-primary), var(--alpha-5));
     }
 

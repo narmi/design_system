@@ -69,6 +69,7 @@ const Input = ({
 Input.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string,
+  /** full `narmi-icon-<shape>` className */
   icon: PropTypes.node,
   decoration: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
   multiline: PropTypes.bool,

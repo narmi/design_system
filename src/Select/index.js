@@ -15,7 +15,7 @@ const noop = () => {};
 export const isAction = (item) => {
   let result = false;
   if (item) {
-    result = item.type.name === "SelectAction";
+    result = "onSelect" in item.props;
   }
   return result;
 };
@@ -63,10 +63,11 @@ const Select = ({
   defaultOpen = false,
   errorText,
 }) => {
-  // only include valid Select children in options items
-  const items = React.Children.toArray(children).filter((child) =>
-    ["SelectItem", "SelectAction"].includes(child.type.name)
+  // The menu should only render children that have `value` or `onSelect` prop
+  const items = React.Children.toArray(
+    children.filter(({ props }) => "value" in props || "onSelect" in props)
   );
+
   const downshiftOpts = {
     id: "nds-select",
     items,

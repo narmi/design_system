@@ -35,6 +35,16 @@
 @import "base-styles/typography";
 @import "base-styles/grid";
 
+// Helper classes
+@import "helper-classes/position";
+@import "helper-classes/spacing";
+@import "helper-classes/font";
+@import "helper-classes/background";
+@import "helper-classes/border";
+@import "helper-classes/forms";
+@import "helper-classes/scroll";
+@import "helper-classes/lists";
+
 // Components
 @import "RadioButtons/";
 @import "Input/";
@@ -58,13 +68,3 @@
 @import "Toggle/";
 @import "Tabs/";
 @import "Tag/";
-
-// Helper classes
-@import "helper-classes/position";
-@import "helper-classes/spacing";
-@import "helper-classes/font";
-@import "helper-classes/background";
-@import "helper-classes/border";
-@import "helper-classes/forms";
-@import "helper-classes/scroll";
-@import "helper-classes/lists";

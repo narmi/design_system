@@ -101,6 +101,8 @@ const Select = ({
     getItemProps,
   } = useSelect(downshiftOpts);
 
+  const hasSelectedItem = selectedItem !== undefined;
+
   return (
     <div className="nds-select">
       <DropdownTrigger
@@ -130,10 +132,16 @@ const Select = ({
                   "nds-select-item--highlighted": highlightedIndex === index,
                   "rounded--top": index === 0,
                   "rounded--bottom": index === items.length - 1,
+                  // make a left gutter for the checkmark if any item selected
+                  "nds-select-item--hasGutter": hasSelectedItem,
                 },
               ])}
               {...getItemProps({ item, index })}
             >
+              {hasSelectedItem &&
+                selectedItem.props.value === item.props.value && (
+                  <span className="narmi-icon-check fontSize--l fontWeight--bold" />
+                )}
               {item}
             </li>
           ))}

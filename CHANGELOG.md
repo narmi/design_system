@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.15.4](https://github.com/narmi/design_system/compare/v2.15.3...v2.15.4) (2022-05-11)
+
+
+### Bug Fixes
+
+* **Select:** fix children filtering for SSR & React 17 ([5704b72](https://github.com/narmi/design_system/commit/5704b72514ae38e1d5f689836ef495a018d3fda6))
+
 ### [2.15.3](https://github.com/narmi/design_system/compare/v2.15.2...v2.15.3) (2022-05-10)
 
 

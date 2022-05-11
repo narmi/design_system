@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.16.0](https://github.com/narmi/design_system/compare/v2.15.4...v2.16.0) (2022-05-11)
+
+
+### Features
+
+* **Select:** add checkmark to selected item in menu list ([7351890](https://github.com/narmi/design_system/commit/7351890ad611c52eff6d53caff7ebaaafbc65958))
+
 ### [2.15.4](https://github.com/narmi/design_system/compare/v2.15.3...v2.15.4) (2022-05-11)
 
 

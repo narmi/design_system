@@ -18,8 +18,8 @@ const children = [
   <Select.Item value="truck">
     <span className="narmi-icon-truck padding--right--xs" /> Truck
   </Select.Item>,
-  <Select.Item value="coffee">
-    <span className="narmi-icon-coffee padding--right--xs" /> Coffee
+  <Select.Item value="blob">
+    <span className="narmi-icon-blob padding--right--xs" /> Blob
   </Select.Item>,
 ];
 

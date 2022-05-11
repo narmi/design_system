@@ -41,6 +41,7 @@
   right: var(--space-s);
   top: 50%;
   transform: translateY(-50%);
+  z-index: 999; /* appear above popovers per design */
 }
 
 .nds-dropdownTrigger-error {

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.16.1](https://github.com/narmi/design_system/compare/v2.16.0...v2.16.1) (2022-05-12)
+
+
+### Bug Fixes
+
+* **ContentCard:** deprecate ; use  prop for variants ([b679912](https://github.com/narmi/design_system/commit/b679912d9c359d839dbe8670f47688abf9712a7f))
+* **TextArea:** deprecate  prop; use  moving forward ([f491380](https://github.com/narmi/design_system/commit/f4913808c1d15f1d1a31ad4545de13c49cac2b8a))
+
 ## [2.16.0](https://github.com/narmi/design_system/compare/v2.15.4...v2.16.0) (2022-05-11)
 
 

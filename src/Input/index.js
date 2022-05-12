@@ -25,10 +25,16 @@ Error.propTypes = {
   error: PropTypes.string,
 };
 
+/**
+ * PRIVATE
+ *
+ * This component has no stories because it is only used internally by NDS.
+ * In a future release, this base Input component will be merged with TextInput.
+ */
 const Input = ({
   id,
   label,
-  icon,
+  startIconClass,
   disabled,
   multiline = false,
   decoration,
@@ -50,10 +56,14 @@ const Input = ({
   return (
     <div className={className} onClick={onClick} style={style}>
       <div className="nds-input-box">
-        {icon ? <div className={`nds-input-icon ${icon}`}></div> : ""}
+        {startIconClass ? (
+          <div className={`nds-input-icon ${startIconClass}`}></div>
+        ) : (
+          ""
+        )}
         <div
           className={`nds-input-column ${
-            !label || (icon && !multiline) ? "no-label" : ""
+            !label || (startIconClass && !multiline) ? "no-label" : ""
           }`}
         >
           {children}
@@ -69,8 +79,8 @@ const Input = ({
 Input.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string,
-  /** full `narmi-icon-<shape>` className */
-  icon: PropTypes.node,
+  /** full `narmi-icon-<shape>` className for icon at start of input*/
+  startIconClass: PropTypes.node,
   decoration: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
   multiline: PropTypes.bool,
   disabled: PropTypes.bool,

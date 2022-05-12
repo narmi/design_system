@@ -85,6 +85,7 @@ export default {
   argTypes: {
     onChange: { action: "change" },
     onBlur: { action: "blur" },
-    icon: { options: ["", ...VALID_ICON_NAMES] },
+    icon: { table: { disable: true } },
+    startIcon: { options: ["", ...VALID_ICON_NAMES] },
   },
 };

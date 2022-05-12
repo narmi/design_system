@@ -4,7 +4,7 @@ import ContentCard from "./";
 
 const testId = "ndsContentCard";
 
-describe("Toggle", () => {
+describe("ContentCard", () => {
   it("renders without errors", () => {
     render(
       <ContentCard>
@@ -17,12 +17,12 @@ describe("Toggle", () => {
   });
 
   it("sets correct classes for elevated card", () => {
-    render(<ContentCard type="elevated">lol</ContentCard>);
+    render(<ContentCard kind="elevated">lol</ContentCard>);
     expect(screen.getByTestId(testId)).toHaveClass("nds-contentCard--elevated");
   });
 
-  it("sets correct attributes and classes for interactive type", () => {
-    render(<ContentCard type="interactive">lol</ContentCard>);
+  it("sets correct attributes and classes for interactive kind", () => {
+    render(<ContentCard kind="interactive">lol</ContentCard>);
     const card = screen.getByTestId(testId);
     expect(screen.queryByRole("button")).toBeInTheDocument();
     expect(card).toHaveAttribute("aria-pressed", "false");
@@ -30,10 +30,10 @@ describe("Toggle", () => {
     expect(card).toHaveClass("nds-contentCard--interactive");
   });
 
-  it("fires onClick handler for `interactive` type", () => {
+  it("fires onClick handler for `interactive` kind", () => {
     const handleClick = jest.fn();
     render(
-      <ContentCard type="interactive" onClick={handleClick}>
+      <ContentCard kind="interactive" onClick={handleClick}>
         lol
       </ContentCard>
     );
@@ -42,7 +42,7 @@ describe("Toggle", () => {
     expect(handleClick).toHaveBeenCalled();
   });
 
-  it("does NOT fire onClick handler for non-interactive types", () => {
+  it("does NOT fire onClick handler for non-interactive kind", () => {
     const handleClick = jest.fn();
     render(<ContentCard onClick={handleClick}>lol</ContentCard>);
     expect(handleClick).not.toHaveBeenCalled();
@@ -52,7 +52,7 @@ describe("Toggle", () => {
 
   it("sets correct attributes for `isSelected`", () => {
     render(
-      <ContentCard type="interactive" isSelected={true} onCLick={() => {}}>
+      <ContentCard kind="interactive" isSelected={true} onCLick={() => {}}>
         lol
       </ContentCard>
     );
@@ -60,7 +60,7 @@ describe("Toggle", () => {
     expect(card).toHaveAttribute("aria-pressed", "true");
   });
 
-  it("does NOT set classes or attributes for `isSelected` for non-interactive types", () => {
+  it("does NOT set classes or attributes for `isSelected` for non-interactive kind", () => {
     render(<ContentCard isSelected={true}>lol</ContentCard>);
     const card = screen.getByTestId(testId);
     expect(card).not.toHaveAttribute("aria-pressed");

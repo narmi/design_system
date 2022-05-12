@@ -4,7 +4,7 @@ import ContentCard from "./";
 
 const testId = "ndsContentCard";
 
-describe("Toggle", () => {
+describe("ContentCard", () => {
   it("renders without errors", () => {
     render(
       <ContentCard>

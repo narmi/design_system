@@ -6,7 +6,7 @@ import cc from "classcat";
  * Narmi style content containers, with support for rendering as an interactive button.
  */
 const ContentCard = ({
-  type = "plain", // DEPRECATED
+  type, // DEPRECATED
   kind = "plain",
   paddingSize = "l",
   onClick = () => {},

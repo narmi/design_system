@@ -12,7 +12,8 @@ export const VALID_ICON_NAMES = iconSelection.icons.map(
  */
 const TextInput = (props) => {
   const {
-    icon,
+    icon, // DEPRECATED
+    startIcon,
     formatter,
     multiline,
     defaultValue,
@@ -20,6 +21,9 @@ const TextInput = (props) => {
     onBlur,
     ...nativeElementProps
   } = props;
+
+  // support deprecated `icon` prop as the startIcon until we remove it
+  const leftIcon = icon !== undefined ? icon : startIcon;
 
   const [inputValue, setInputValue] = useState(
     defaultValue ? defaultValue : ""
@@ -45,7 +49,7 @@ const TextInput = (props) => {
         ref.current?.focus();
       }}
       {...props}
-      icon={icon ? `narmi-icon-${icon}` : undefined}
+      startIconClass={leftIcon ? `narmi-icon-${leftIcon}` : undefined}
     >
       {multiline ? (
         <div
@@ -93,6 +97,8 @@ TextInput.propTypes = {
   /** function that formats the input value on blur */
   formatter: PropTypes.func,
   /** Name of Narmi icon to place at the start of the input box */
+  startIcon: PropTypes.oneOf(VALID_ICON_NAMES),
+  /** DEPREACTED - use `startIcon` instead */
   icon: PropTypes.oneOf(VALID_ICON_NAMES),
 };
 

@@ -14,10 +14,31 @@ Overview.args = {
 };
 
 export const Example = () => {
-  const [value, setValue] = useState();
+  const [color, setColor] = useState();
   return (
     <div className="nds-typography">
       <h3 className="margin--bottom--l"> What is your favourite colour? </h3>
+      <RadioButtons
+        options={{
+          Red: "red",
+          Blue: "blue",
+          Green: "green",
+          Yellow: "yellow",
+        }}
+        name="colours"
+        onChange={(e) => {
+          setColor(e.target.value);
+        }}
+      />
+      <div>{color && `You have selected ${color}`}</div>
+    </div>
+  );
+};
+
+export const FullyControlled = () => {
+  const [value, setValue] = useState("blue");
+  return (
+    <>
       <RadioButtons
         options={{
           Red: "red",
@@ -31,9 +52,25 @@ export const Example = () => {
         }}
         value={value}
       />
-      <div>{value && `You have selected ${value}`}</div>
-    </div>
+      <div className="margin--top">
+        <button
+          onClick={() => {
+            setValue(null);
+          }}
+        >
+          Clear selection
+        </button>
+      </div>
+    </>
   );
+};
+FullyControlled.parameters = {
+  docs: {
+    description: {
+      story:
+        "Passing a `value` prop makes the component fully controlled; you must manage the value of `value` with the `onChange` handler. To clear selection, pass `null` or an empty string to `value`.",
+    },
+  },
 };
 
 export const AsCard = Template.bind({});

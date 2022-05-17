@@ -94,7 +94,9 @@
 
   &:hover {
     color: var(--theme-secondary);
-    text-decoration: underline;
+    .nds-button-label {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -135,7 +137,9 @@
   font-size: var(--font-size-default);
 
   &:hover {
-    text-decoration: underline;
     color: RGB(var(--nds-primary-color));
+    .nds-button-label {
+      text-decoration: underline;
+    }
   }
 }

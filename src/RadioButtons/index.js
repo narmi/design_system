@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 
@@ -8,25 +8,34 @@ labels and the values are the radiobutton values. An "initialvalue" Prop can be 
 radiobutton.
 
 ```
-  <RadioButtons
-    initialValue={"secondValue"}
-    options={{ "First Label": "firstValue", "Second Label": "secondValue" }}
-  />
+  options={{ "First Label": "firstValue", "Second Label": "secondValue" }}
 ```
 */
 const RadioButtons = ({
   options,
   name,
   initialValue,
+  value,
   kind = "normal",
   onChange = () => {},
   ...containerProps
 }) => {
-  const [checkedValue, setCheckedValue] = useState(initialValue);
+  const isControlled = value !== undefined;
+  const [checkedValue, setCheckedValue] = useState(
+    isControlled ? value : initialValue
+  );
   const [focusedValue, setFocusedValue] = useState(null);
 
+  useEffect(() => {
+    if (isControlled) {
+      setCheckedValue(value);
+    }
+  }, [value]);
+
   const handleChange = (e) => {
-    setCheckedValue(e.target.value);
+    if (!isControlled) {
+      setCheckedValue(e.target.value);
+    }
     onChange(e);
   };
 
@@ -44,26 +53,26 @@ const RadioButtons = ({
       onChange={handleChange}
       {...containerProps}
     >
-      {Object.entries(options).map(([label, value]) => (
+      {Object.entries(options).map(([label, inputValue]) => (
         <label
           className={cc([
             "nds-radiobuttons-option",
             {
-              "nds-radiobuttons-option--checked": checkedValue == value,
-              "nds-radiobuttons-option--focused": focusedValue == value,
+              "nds-radiobuttons-option--checked": checkedValue == inputValue,
+              "nds-radiobuttons-option--focused": focusedValue == inputValue,
               "padding--all rounded--all border--all": kind === "card",
             },
           ])}
-          key={value}
+          key={inputValue}
         >
           {label}
           <input
             type="radio"
-            checked={checkedValue === value}
+            checked={checkedValue === inputValue}
             onChange={handleChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
-            value={value}
+            value={inputValue}
             name={name}
           />
           <div
@@ -84,8 +93,14 @@ RadioButtons.propTypes = {
   options: PropTypes.object,
   /** name of radiogroup */
   name: PropTypes.string,
-  /** initially selected option by input value */
+  /** initially selected option by input value (uncontrolled) */
   initialValue: PropTypes.any,
+  /**
+   * selected option by input value (fully controlled)
+   * When passing a `value` prop, you must use the `onChange`
+   * hanlder to update the `value`
+   */
+  value: PropTypes.string,
   /** change callback invoked with input value */
   onChange: PropTypes.func,
   /**

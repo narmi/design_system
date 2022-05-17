@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.18.0](https://github.com/narmi/design_system/compare/v2.17.1...v2.18.0) (2022-05-17)
+
+
+### Features
+
+* **helper-classes:** add xxl spacing size ([4672a2c](https://github.com/narmi/design_system/commit/4672a2ca2cf68290b737f375d98d31a067dfbca3))
+
 ### [2.17.1](https://github.com/narmi/design_system/compare/v2.17.0...v2.17.1) (2022-05-17)
 
 

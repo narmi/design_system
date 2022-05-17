@@ -1,7 +1,7 @@
 /**
 * padding and margin helpers
 */
-$sizes: xxs, xs, s, m, l, xl;
+$sizes: xxs, xs, s, m, l, xl, xxl;
 
 @each $property in (padding, margin) {
   // all sides spacing (`<margin|padding>--all`)

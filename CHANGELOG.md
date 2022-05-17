@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.17.1](https://github.com/narmi/design_system/compare/v2.17.0...v2.17.1) (2022-05-17)
+
+
+### Bug Fixes
+
+* **Button:** restrict hover underlines to text label ([cdef21b](https://github.com/narmi/design_system/commit/cdef21bb1855652b04d95bc5d99c5084e9cdcceb))
+
 ## [2.17.0](https://github.com/narmi/design_system/compare/v2.16.1...v2.17.0) (2022-05-17)
 
 

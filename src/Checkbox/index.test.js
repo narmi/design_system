@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import Checkbox from "./";
 
@@ -60,5 +60,33 @@ describe("Checkbox", () => {
     expect(handleChange).not.toHaveBeenCalled();
     fireEvent.click(input);
     expect(handleChange).toHaveBeenCalled();
+  });
+
+  it("acts as fully controlled component with `checked` prop (no handler)", () => {
+    render(<Checkbox label={LABEL} checked={false} />);
+    const { input } = getElements();
+    expect(input).not.toBeChecked();
+    fireEvent.click(input);
+    // checkbox should remain unchecked unless the value of `checked` is updated
+    expect(input).not.toBeChecked();
+  });
+
+  it("acts as fully controlled component with `checked` prop (with handler)", () => {
+    const ControlledCheckboxWithHandler = () => {
+      const [isChecked, setIsChecked] = useState(false);
+      return (
+        <Checkbox
+          label={LABEL}
+          checked={isChecked}
+          onChange={() => setIsChecked((isChecked) => !isChecked)}
+        />
+      );
+    };
+    render(<ControlledCheckboxWithHandler />);
+    const { input } = getElements();
+    expect(input).not.toBeChecked();
+    fireEvent.click(input);
+    // handler should update the checked state
+    expect(input).toBeChecked();
   });
 });

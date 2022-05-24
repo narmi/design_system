@@ -1,5 +1,5 @@
 // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_checkbox
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 
@@ -12,19 +12,28 @@ const Checkbox = ({
   id,
   name,
   defaultChecked,
-  checked = false,
+  checked,
   value,
   kind = "normal",
   ...rest
 }) => {
+  const isControlled = checked !== undefined;
   const [isChecked, setIsChecked] = useState(
-    checked || defaultChecked || false
+    isControlled ? checked : defaultChecked || false
   );
   const [isFocused, setIsFocused] = useState(false);
   const isCard = kind === "card";
 
+  useEffect(() => {
+    if (isControlled) {
+      setIsChecked(checked);
+    }
+  }, [checked]);
+
   const handleChange = (e) => {
-    setIsChecked((isChecked) => !isChecked);
+    if (!isControlled) {
+      setIsChecked((isChecked) => !isChecked);
+    }
     onChange(e);
   };
 

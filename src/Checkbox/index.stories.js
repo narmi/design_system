@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Checkbox from "./";
 
 const Template = (args) => <Checkbox {...args} />;
@@ -7,6 +7,26 @@ export const Overview = Template.bind({});
 Overview.args = {
   label: "I agree to receive spam",
   name: "spam",
+};
+
+export const FullyControlled = () => {
+  const [isChecked, setIsChecked] = useState(false);
+  return (
+    <Checkbox
+      label="Make deposits"
+      name="deposit"
+      checked={isChecked}
+      onChange={() => setIsChecked((isChecked) => !isChecked)}
+    />
+  );
+};
+FullyControlled.parameters = {
+  docs: {
+    description: {
+      story:
+        "When passing `checked`, the input becomes fully controlled and you must use the `onChange` callback to update the value of `checked`.",
+    },
+  },
 };
 
 export const MultipleCheckboxes = () => (

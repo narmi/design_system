@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.18.1](https://github.com/narmi/design_system/compare/v2.18.0...v2.18.1) (2022-05-24)
+
+
+### Bug Fixes
+
+* **Checkbox:** fix fully controlled mode via  prop ([e3a17fa](https://github.com/narmi/design_system/commit/e3a17fafc15c0ff5866d830d37e2180be58929f5))
+
 ## [2.18.0](https://github.com/narmi/design_system/compare/v2.17.1...v2.18.0) (2022-05-17)
 
 

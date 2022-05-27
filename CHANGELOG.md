@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.18.2](https://github.com/narmi/design_system/compare/v2.18.1...v2.18.2) (2022-05-27)
+
+
+### Bug Fixes
+
+* **formatting:** Expect decimal representation in backfall percent formatter ([c333af4](https://github.com/narmi/design_system/commit/c333af409cec2561f7f49ff1d123d2aa996c23f1))
+
 ### [2.18.1](https://github.com/narmi/design_system/compare/v2.18.0...v2.18.1) (2022-05-24)
 
 

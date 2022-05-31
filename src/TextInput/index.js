@@ -19,6 +19,7 @@ const TextInput = (props) => {
     defaultValue,
     onChange,
     onBlur,
+    testId,
     ...nativeElementProps
   } = props;
 
@@ -64,6 +65,7 @@ const TextInput = (props) => {
             onChange={_onChange}
             onBlur={_onBlur}
             required
+            data-testid={testId}
             {...nativeElementProps}
           />
         </div>
@@ -77,6 +79,7 @@ const TextInput = (props) => {
           type="text"
           required
           placeholder={props.label}
+          data-testid={testId}
           {...nativeElementProps}
         />
       )}
@@ -100,6 +103,8 @@ TextInput.propTypes = {
   startIcon: PropTypes.oneOf(VALID_ICON_NAMES),
   /** DEPREACTED - use `startIcon` instead */
   icon: PropTypes.oneOf(VALID_ICON_NAMES),
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
 };
 
 TextInput.defaultProps = {

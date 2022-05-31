@@ -35,6 +35,7 @@ const Dialog = ({
   children,
   footer,
   width = "500px",
+  testId,
 }) => {
   const [isContentOverflowing, setIsContentOverflowing] = useState(false);
   const contentRef = useRef(null);
@@ -81,6 +82,7 @@ const Dialog = ({
         className="nds-dialog"
         style={{ width }}
         ref={focusTrapRef}
+        data-testid={testId}
       >
         <div className={`nds-dialog-header nds-dialog-header--${headerStyle}`}>
           <h4 id="aria-dialog-label">{title}</h4>
@@ -137,6 +139,8 @@ Dialog.propTypes = {
    * Use the full CSS value with the unit (e.g. "400px")
    */
   width: PropTypes.string,
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
 };
 
 export default Dialog;

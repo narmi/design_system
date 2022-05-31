@@ -22,6 +22,7 @@ const Popover = ({
   offset = 2,
   disableAutoPlacement = false,
   matchTriggerWidth = false,
+  testId,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const focusTrapRef = useFocusTrap(isOpen);
@@ -94,6 +95,7 @@ const Popover = ({
               {...layerProps}
               className="nds-typography nds-popover rounded--all bgColor--white"
               style={layerStyle}
+              data-testid={testId}
             >
               <div ref={focusTrapRef} tabIndex={-1}>
                 {content}
@@ -131,6 +133,8 @@ Popover.propTypes = {
    * always be placed on the given `side` prop.
    */
   disableAutoPlacement: PropTypes.bool,
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
 };
 
 export default Popover;

@@ -14,9 +14,10 @@ const LoadingSkeleton = ({
   lines = 3,
   showTitle = false,
   size = "medium",
+  testId,
 }) => {
   return isLoading ? (
-    <div className="nds-loading-skeleton">
+    <div className="nds-loading-skeleton" data-testid={testId}>
       {content === "paragraph" && (
         <>
           {showTitle && <div className="nds-line-block header" />}
@@ -53,6 +54,8 @@ LoadingSkeleton.propTypes = {
    * The size of the skeletal header text.
    */
   size: PropTypes.oneOf(["small", "medium", "large"]),
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
 };
 
 export default LoadingSkeleton;

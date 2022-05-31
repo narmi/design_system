@@ -13,9 +13,13 @@ const Tag = ({
   kind = "subdued", // outline, subdued, x-tag (cactus400) #7fbc5b; #7FBC5B oneof
   onDismiss = noop,
   label,
+  testId,
 }) => {
   return (
-    <div className={cc(["nds-typography", "nds-tag", `nds-tag--${kind}`])}>
+    <div
+      className={cc(["nds-typography", "nds-tag", `nds-tag--${kind}`])}
+      data-testid={testId}
+    >
       <Row alignItems="center" gapSize="xxs">
         <Row.Item shrink>{label}</Row.Item>
         {kind === "dismissible" && (
@@ -39,10 +43,17 @@ const Tag = ({
 };
 
 Tag.propTypes = {
-  disableAutoPlacement: PropTypes.bool,
+  /** Variant of Tag */
   kind: PropTypes.oneOf(["subdued", "dismissible", "outline"]),
+  /**
+   * Callback for user dismissal action
+   * (only applicable for `dismissable` kind)
+   */
   onDismiss: PropTypes.func,
+  /** Label text of tag */
   label: PropTypes.string,
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
 };
 
 export default Tag;

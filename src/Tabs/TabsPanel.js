@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import TabsContext from "./context";
 
-const TabsPanel = ({ children, tabId }) => {
+const TabsPanel = ({ children, tabId, testId }) => {
   const { currentIndex, tabIds, hasPanels, setHasPanels } =
     useContext(TabsContext);
   const selectedId = tabIds[currentIndex];
@@ -21,6 +21,7 @@ const TabsPanel = ({ children, tabId }) => {
       id={`${tabId}-tabpanel`}
       aria-labelledby={`${tabId}-tab`}
       hidden={tabId !== selectedId ? true : undefined}
+      data-testid={testId}
     >
       {children}
     </div>
@@ -32,6 +33,8 @@ TabsPanel.propTypes = {
   children: PropTypes.node.isRequired,
   /** String ID used to link the `Tabs.Panel` to a `Tabs.Tab` */
   tabId: PropTypes.string.isRequired,
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
 };
 
 TabsPanel.displayName = "Tabs.Panel";

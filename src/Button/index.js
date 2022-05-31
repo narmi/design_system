@@ -23,6 +23,7 @@ const Button = ({
   kind = "primary",
   startIcon = null,
   endIcon = null,
+  testId,
   children,
   label,
   onClick = () => {},
@@ -63,7 +64,7 @@ const Button = ({
         },
       ])}
       disabled={isButtonElement && disabled ? true : undefined}
-      data-testid="nds-button"
+      data-testid={testId || "nds-button"}
     >
       <div className="nds-button-content">
         <Row gapSize="s" alignItems="center">
@@ -106,6 +107,8 @@ Button.propTypes = {
   startIcon: PropTypes.oneOf(VALID_ICON_NAMES),
   /** Name of Narmi icon to place at the end of the label */
   endIcon: PropTypes.oneOf(VALID_ICON_NAMES),
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
   /**
    * **⚠️ DEPRECATED**
    *

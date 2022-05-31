@@ -10,6 +10,7 @@ const Toggle = ({
   onChange = () => {},
   labelledBy,
   label,
+  testId,
 }) => {
   const [isActive, setIsActive] = useState(defaultActive);
 
@@ -32,6 +33,7 @@ const Toggle = ({
       aria-checked={isActive.toString()}
       onClick={toggleActive}
       aria-labelledby={labelledBy}
+      data-testid={testId}
     >
       <span className="nds-toggle-indicator elevation--low" />
       <span className="nds-toggle-buttonText">{isActive ? "on" : "off"}</span>
@@ -60,6 +62,8 @@ Toggle.propTypes = {
   label: PropTypes.string,
   /** ID of element that labels the toggle control (e.g. `my-label-element`)*/
   labelledBy: PropTypes.string,
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
 };
 
 export default Toggle;

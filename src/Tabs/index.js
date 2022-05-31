@@ -21,6 +21,7 @@ const Tabs = ({
   selectedIndex = null,
   onTabChange = noop,
   hasBorder = true,
+  testId,
 }) => {
   const [tabIds, setTabIds] = useState([]);
   const [hasPanels, setHasPanels] = useState(false);
@@ -48,7 +49,10 @@ const Tabs = ({
         changeTabs,
       }}
     >
-      <div className={cc(["nds-tabs", { "nds-tabs--bordered": hasBorder }])}>
+      <div
+        className={cc(["nds-tabs", { "nds-tabs--bordered": hasBorder }])}
+        data-testid={testId}
+      >
         {children}
       </div>
     </TabsContext.Provider>
@@ -75,6 +79,8 @@ Tabs.propTypes = {
   onTabChange: PropTypes.func,
   /** Shows bottom border when `true` */
   hasBorder: PropTypes.bool,
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
 };
 
 Tabs.List = TabsList;

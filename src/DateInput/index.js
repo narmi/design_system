@@ -18,6 +18,7 @@ const DateInput = ({
   altFormat,
   defaultDate,
   onChange: onChangeProp = noop,
+  testId,
   ...props
 }) => {
   const input = useRef();
@@ -59,6 +60,7 @@ const DateInput = ({
         type="date"
         required
         placeholder={props.label}
+        data-testid={testId}
         {...props}
       />
     </Input>
@@ -86,6 +88,8 @@ DateInput.propTypes = {
   defaultDate: PropTypes.string,
   /** Changes date format used in input. See [flatpickr docs](https://flatpickr.js.org/formatting/) for formatting options */
   dateFormat: PropTypes.string,
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
 };
 DateInput.defaultProps = {
   onChange: () => {},

@@ -7,10 +7,11 @@ import AsElement from "../util/AsElement";
  * Child component of `Row`.
  * When a `Row.Item` has a boolean prop of `shrink`, it will shirnk to content width.
  */
-const RowItem = ({ shrink = false, as = "div", children }) => (
+const RowItem = ({ shrink = false, as = "div", children, testId }) => (
   <AsElement
     elementType={as}
     className={cc(["nds-row-item", { "nds-row-item--shrink": shrink }])}
+    data-testid={testId}
   >
     {children}
   </AsElement>
@@ -28,6 +29,8 @@ RowItem.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
 };
 
 export default RowItem;

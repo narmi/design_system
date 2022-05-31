@@ -62,6 +62,7 @@ const Select = ({
   defaultValue,
   defaultOpen = false,
   errorText,
+  testId,
 }) => {
   // The menu should only render children that have `value` or `onSelect` prop
   const items = React.Children.toArray(
@@ -104,7 +105,7 @@ const Select = ({
   const hasSelectedItem = selectedItem !== undefined;
 
   return (
-    <div className="nds-select">
+    <div className="nds-select" data-testid={testId}>
       <DropdownTrigger
         isOpen={isOpen}
         labelText={label}
@@ -178,6 +179,8 @@ Select.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
 };
 
 Select.Item = SelectItem;

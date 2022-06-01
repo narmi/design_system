@@ -18,6 +18,7 @@ const RadioButtons = ({
   value,
   kind = "normal",
   onChange = () => {},
+  testId,
   ...containerProps
 }) => {
   const isControlled = value !== undefined;
@@ -51,6 +52,7 @@ const RadioButtons = ({
     <div
       className={`nds-radiobuttons nds-radiobuttons--${kind}`}
       onChange={handleChange}
+      data-testid={testId}
       {...containerProps}
     >
       {Object.entries(options).map(([label, inputValue]) => (
@@ -109,6 +111,8 @@ RadioButtons.propTypes = {
    * `card` - display input and label as a toggleable card
    */
   kind: PropTypes.oneOf(["normal", "card"]),
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
 };
 
 export default RadioButtons;

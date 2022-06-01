@@ -70,6 +70,7 @@ const Pagination = ({
   onPageChange = noop,
   totalPages = 1,
   defaultSelectedPage = 1,
+  testId,
 }) => {
   // no jokers allowed 🤡
   // - default to first page if default selected page is out of bounds
@@ -110,7 +111,7 @@ const Pagination = ({
   };
 
   const pagination = (
-    <div className="nds-typography nds-pagination">
+    <div className="nds-typography nds-pagination" data-testid={testId}>
       <nav aria-label="pagination">
         <Row gapSize="xxs" alignItems="center" as="ul">
           <Row.Item as="li" shrink>
@@ -264,6 +265,8 @@ Pagination.propTypes = {
    * Invoked with selected page number as the argument.
    */
   onPageChange: PropTypes.func,
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
 };
 
 export default Pagination;

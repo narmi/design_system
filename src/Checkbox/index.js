@@ -15,6 +15,7 @@ const Checkbox = ({
   checked,
   value,
   kind = "normal",
+  testId,
   ...rest
 }) => {
   const isControlled = checked !== undefined;
@@ -68,6 +69,7 @@ const Checkbox = ({
           name={name}
           id={id}
           value={value}
+          data-testid={testId}
           {...rest}
           type="checkbox"
         />
@@ -97,6 +99,8 @@ Checkbox.propTypes = {
   checked: PropTypes.bool,
   /** Sets the `value` attribute of the `input` */
   value: PropTypes.string,
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
   /**
    * `normal` - visually matche a checkbox input
    *

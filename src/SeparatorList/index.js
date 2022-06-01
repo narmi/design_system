@@ -4,8 +4,11 @@ import PropTypes from "prop-types";
 /**
  * Takes a list of elements and places a visual separator between items.
  */
-const SeparatorList = ({ separator = "|", items = [] }) => (
-  <ul className="list--reset nds-typography nds-separatorList">
+const SeparatorList = ({ separator = "|", items = [], testId }) => (
+  <ul
+    className="list--reset nds-typography nds-separatorList"
+    data-testid={testId}
+  >
     {items.map((item, i) => {
       const itemProps = {};
       if (i !== items.length - 1) {
@@ -29,6 +32,8 @@ SeparatorList.propTypes = {
    * Character to use as separator between items
    */
   separator: PropTypes.string,
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
 };
 
 export default SeparatorList;

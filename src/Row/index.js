@@ -31,11 +31,13 @@ const Row = ({
   gapSize = "l",
   as = "div",
   children,
+  testId,
 }) => (
   <AsElement
     elementType={as}
     className="nds-row"
     style={_getRowStyle(alignItems, justifyContent, gapSize)}
+    data-testid={testId}
   >
     {children}
   </AsElement>
@@ -56,6 +58,8 @@ Row.propTypes = {
   as: PropTypes.oneOf(["div", "ul"]),
   /** Children must be of type `Row.Item` */
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
 };
 
 Row.Item = RowItem;

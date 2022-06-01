@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import TabsContext from "./context";
 import cc from "classcat";
 
-const TabsTab = ({ label, tabId }) => {
+const TabsTab = ({ label, tabId, testId }) => {
   const { currentIndex, tabIds, hasPanels, changeTabs } =
     useContext(TabsContext);
   const isSelected = tabId === tabIds[currentIndex];
@@ -31,6 +31,7 @@ const TabsTab = ({ label, tabId }) => {
         id={`${tabId}-tab`}
         tabIndex={hasPanels ? "-1" : "0"}
         onClick={() => changeTabs(tabId)}
+        data-testid={testId}
       >
         {label}
       </button>
@@ -43,6 +44,8 @@ TabsTab.propTypes = {
   label: PropTypes.string.isRequired,
   /** String ID used to link the `Tabs.Tab` to a `Tabs.Panel` */
   tabId: PropTypes.string.isRequired,
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
 };
 
 TabsTab.displayName = "Tabs.Tab";

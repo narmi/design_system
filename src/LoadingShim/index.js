@@ -5,9 +5,9 @@ import PropTypes from "prop-types";
  * Used to wrap a block of loadable content. When `isLoading` is set to true,
  * the content area will have an overlay and loading animation.
  */
-const LoadingShim = ({ isLoading = false, children }) => (
+const LoadingShim = ({ isLoading = false, children, testId }) => (
   <div
-    data-testid="nds-loadingshim"
+    data-testid={testId || "nds-loadingshim"}
     aria-live="polite"
     aria-busy={isLoading.toString()}
     style={{ position: "relative" }}
@@ -34,6 +34,8 @@ LoadingShim.propTypes = {
   children: PropTypes.node.isRequired,
   /** When `true`, the loading shim appears over child content */
   isLoading: PropTypes.bool,
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
 };
 
 export default LoadingShim;

@@ -12,13 +12,14 @@ const ContentCard = ({
   onClick = () => {},
   isSelected = false,
   children,
+  testId,
 }) => {
   const variant = type !== undefined ? type : kind; // support deprecated prop
   const isInteractive = variant === "interactive";
 
   return (
     <div
-      data-testid="ndsContentCard"
+      data-testid={testId || "ndsContentCard"}
       role={isInteractive ? "button" : undefined}
       tabIndex={isInteractive ? "0" : undefined}
       aria-pressed={isInteractive ? isSelected : undefined}
@@ -97,6 +98,8 @@ ContentCard.propTypes = {
    * Renders card in visually selected state with appropriate attributes.
    */
   isSelected: PropTypes.bool,
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
 };
 
 export default ContentCard;

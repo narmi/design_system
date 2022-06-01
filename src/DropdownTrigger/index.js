@@ -20,6 +20,7 @@ const DropdownTrigger = React.forwardRef(
       displayValue,
       errorText,
       minWidth = "auto",
+      testId,
       ...otherProps
     },
     ref
@@ -28,7 +29,7 @@ const DropdownTrigger = React.forwardRef(
       <div className="nds-dropdownTrigger" style={{ minWidth }}>
         <button
           ref={ref}
-          data-testid="dropdownTriggerButton"
+          data-testid={testId || "dropdownTriggerButton"}
           className={cc([
             "nds-dropdownTrigger-button button--reset padding--x--s",
             "bgColor--white rounded--all",
@@ -92,6 +93,8 @@ DropdownTrigger.propTypes = {
    * Use the full CSS value with the unit (e.g. "400px")
    */
   minWidth: PropTypes.string,
+  /** Optional value for `data-testid` attribute */
+  testId: PropTypes.string,
 };
 
 export default DropdownTrigger;

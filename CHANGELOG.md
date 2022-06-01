@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.19.0](https://github.com/narmi/design_system/compare/v2.18.2...v2.19.0) (2022-06-01)
+
+
+### Features
+
+* add  prop to all components ([61aff40](https://github.com/narmi/design_system/commit/61aff40de3ea1842988ae2ba970e57605181adde))
+
 ### [2.18.2](https://github.com/narmi/design_system/compare/v2.18.1...v2.18.2) (2022-05-27)
 
 

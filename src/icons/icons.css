@@ -1,11 +1,11 @@
 @font-face {
   font-family: "icomoon";
-  src: url("./icomoon.eot?tsm2bw");
-  src: url("./icomoon.eot?tsm2bw#iefix")
-      format("embedded-opentype"),
-    url("./icomoon.ttf?tsm2bw") format("truetype"),
-    url("./icomoon.woff?tsm2bw") format("woff"),
-    url("./icomoon.svg?tsm2bw#icomoon") format("svg");
+  /*
+  * Because our webpack config inlines these resources as base64,
+  * we only include the `woff` format to reduce CSS file size.
+  * (this format works in all supported browsers)
+  */
+  src: url("./icomoon.woff?tsm2bw") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: block;

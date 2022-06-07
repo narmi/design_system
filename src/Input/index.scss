@@ -29,10 +29,10 @@
     align-items: center;
 
     &:focus-within {
-      border: 1px solid RGB(var(--nds-primary-color));
+      border: 1px solid var(--theme-primary);
 
       label {
-        color: RGB(var(--nds-primary-color));
+        color: var(--theme-primary);
         margin-bottom: -3px;
       }
     }

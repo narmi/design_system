@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.19.1](https://github.com/narmi/design_system/compare/v2.19.0...v2.19.1) (2022-06-07)
+
+
+### Bug Fixes
+
+* update unshimmed legacy theme vars ([25fb8ab](https://github.com/narmi/design_system/commit/25fb8ab259c39c89f19b4b50b25703cee0c24e85))
+
 ## [2.19.0](https://github.com/narmi/design_system/compare/v2.18.2...v2.19.0) (2022-06-01)
 
 

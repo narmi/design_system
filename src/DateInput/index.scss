@@ -5,10 +5,9 @@ body {
   .flatpickr-calendar {
     margin-top: 20px;
     margin-left: -10px;
-    box-shadow: 2px 0 0 RGB(var(--nds-primary-color)),
-      -2px 0 0 RGB(var(--nds-primary-color)),
-      0 2px 0 RGB(var(--nds-primary-color)),
-      0 -2px 0 RGB(var(--nds-primary-color)), 0 3px 13px RGB(0 0 0 / 8%);
+    box-shadow: 2px 0 0 var(--theme-primary), -2px 0 0 var(--theme-primary),
+      0 2px 0 var(--theme-primary), 0 -2px 0 var(--theme-primary),
+      0 3px 13px RGB(0 0 0 / 8%);
 
     &:before,
     &:after {
@@ -32,7 +31,7 @@ body {
   }
 
   .flatpickr-current-month {
-    color: RGB(var(--nds-primary-color));
+    color: var(--theme-primary);
 
     span.cur-month {
       user-select: none;
@@ -187,7 +186,7 @@ body {
     }
 
     &:hover {
-      color: RGB(var(--nds-primary-color));
+      color: var(--theme-primary);
     }
 
     &:after {
@@ -195,7 +194,7 @@ body {
       font-family: "icomoon";
       top: -2px;
       font-size: 24px;
-      color: RGB(var(--nds-primary-color));
+      color: var(--theme-primary);
     }
   }
 

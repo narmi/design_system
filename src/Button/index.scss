@@ -132,12 +132,12 @@
 */
 .nds-plain-button {
   cursor: pointer;
-  color: RGB(var(--nds-primary-color));
+  color: var(--theme-primary);
   font-weight: var(--font-weight-semibold);
   font-size: var(--font-size-default);
 
   &:hover {
-    color: RGB(var(--nds-primary-color));
+    color: var(--theme-primary);
     .nds-button-label {
       text-decoration: underline;
     }

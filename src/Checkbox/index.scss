@@ -30,8 +30,8 @@
 
   &.nds-checkbox--checked {
     .narmi-icon-check {
-      background-color: RGB(var(--nds-primary-color));
-      border: 1px solid RGB(var(--nds-primary-color));
+      background-color: var(--theme-primary);
+      border: 1px solid var(--theme-primary);
       &:after {
         display: block;
       }

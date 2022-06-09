@@ -6,11 +6,13 @@ import ComboboxItem from "./ComboboxItem";
 import ComboboxHeading from "./ComboboxHeading";
 import TextInput from "../TextInput";
 
+const noop = () => {};
+
 /**
  * @param {Object} component a Combobox.Item or Combobox.Heading component
  * @returns {Boolean} true if the item is a selectable Combobox.Item
  */
-const isSelectable = (component) => {
+export const isSelectable = (component) => {
   let result = false;
   if (component) {
     result = "value" in component.props;
@@ -22,9 +24,16 @@ const isSelectable = (component) => {
  * TK
  * TODO: story with section headings
  * TODO: dropdown indicator (ala Select)
+ * TODO: default selection?
  * TODO: tests
  */
-const Combobox = ({ label, children, disableFiltering = false, testId }) => {
+const Combobox = ({
+  label,
+  onChange = noop,
+  children,
+  disableFiltering = false,
+  testId,
+}) => {
   // Initial items includes all children that are
   // `Combobox.Item` or `Combobox.Heading` children
   const initialItems = React.Children.toArray(
@@ -66,6 +75,13 @@ const Combobox = ({ label, children, disableFiltering = false, testId }) => {
         setDisplayedItems(initialItems); // restore original list in dropdown
         reset(); // clear any active selections
       }
+    },
+    onSelectedItemChange: ({ selectedItem }) => {
+      let newSelection = "";
+      if (selectedItem) {
+        newSelection = selectedItem.props.value;
+      }
+      onChange(newSelection);
     },
   });
 
@@ -160,7 +176,7 @@ const Combobox = ({ label, children, disableFiltering = false, testId }) => {
 Combobox.propTypes = {
   /** Label for the select control */
   label: PropTypes.string.isRequired,
-  /** Change callback. Called with value string from the selected item */
+  /** Change callback. Called when an item is selected, with the `value` of the selected item */
   onChange: PropTypes.func,
   /**
    * Set to `true` to disable the default behavior of filtering the list

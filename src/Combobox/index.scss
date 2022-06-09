@@ -17,7 +17,7 @@
   border-top: 1px solid var(--border-color-default);
   top: 47px; // 48px tall TextInput -1 to connect borders
   width: 100%;
-  max-height: 500px;
+  max-height: 60vh;
   overflow-y: scroll;
 
   &:focus {

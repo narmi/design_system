@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Input from "../Input";
 import iconSelection from "src/icons/selection.json";
@@ -10,7 +10,7 @@ export const VALID_ICON_NAMES = iconSelection.icons.map(
 /**
  * Narmi flavored text input with floating label
  */
-const TextInput = (props) => {
+const TextInput = React.forwardRef((props, forwardedRef) => {
   const {
     icon, // DEPRECATED
     startIcon,
@@ -29,26 +29,22 @@ const TextInput = (props) => {
   const [inputValue, setInputValue] = useState(
     defaultValue ? defaultValue : ""
   );
-  const ref = useRef();
 
   function _onBlur(e) {
     if (onBlur) {
       onBlur(e);
     }
-    setInputValue(formatter(ref.current.value));
+    setInputValue(formatter(e.target.value));
   }
   function _onChange(e) {
     if (onChange) {
       onChange(e);
     }
-    setInputValue(ref.current.value);
+    setInputValue(e.target.value);
   }
 
   return (
     <Input
-      onClick={() => {
-        ref.current?.focus();
-      }}
       {...props}
       startIconClass={leftIcon ? `narmi-icon-${leftIcon}` : undefined}
     >
@@ -60,7 +56,7 @@ const TextInput = (props) => {
           <textarea
             key={"nds-text"}
             wrap="soft"
-            ref={ref}
+            ref={forwardedRef}
             value={inputValue}
             onChange={_onChange}
             onBlur={_onBlur}
@@ -75,7 +71,7 @@ const TextInput = (props) => {
           value={inputValue}
           onChange={_onChange}
           onBlur={_onBlur}
-          ref={ref}
+          ref={forwardedRef}
           type="text"
           required
           placeholder={props.label}
@@ -85,7 +81,10 @@ const TextInput = (props) => {
       )}
     </Input>
   );
-};
+});
+
+TextInput.displayName = "TextInput";
+
 TextInput.propTypes = {
   /** Label used as input placeholder _and_ floating label */
   label: PropTypes.string.isRequired,

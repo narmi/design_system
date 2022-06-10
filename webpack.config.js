@@ -64,9 +64,8 @@ module.exports = {
         ],
       },
       {
-        test: /icomoon.*\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        type: "asset/resource",
-        generator: { filename: "icons/[hash][ext][query]" },
+        test: /(icomoon).*\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        type: "asset/inline",
       },
       {
         test: /narmi-matiere.*\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,

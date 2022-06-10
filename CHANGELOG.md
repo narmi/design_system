@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.19.2](https://github.com/narmi/design_system/compare/v2.19.1...v2.19.2) (2022-06-10)
+
+
+### Bug Fixes
+
+* **icons:** inline icon assets ([5ea4754](https://github.com/narmi/design_system/commit/5ea4754dfa83c2bb5303c1fe0354daa26e19cc19))
+
 ### [2.19.1](https://github.com/narmi/design_system/compare/v2.19.0...v2.19.1) (2022-06-07)
 
 

@@ -14,6 +14,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
   const {
     icon, // DEPRECATED
     startIcon,
+    endIcon,
     formatter,
     multiline,
     defaultValue,
@@ -47,6 +48,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
     <Input
       {...props}
       startIconClass={leftIcon ? `narmi-icon-${leftIcon}` : undefined}
+      endIconClass={endIcon ? `narmi-icon-${endIcon}` : undefined}
     >
       {multiline ? (
         <div
@@ -100,6 +102,10 @@ TextInput.propTypes = {
   formatter: PropTypes.func,
   /** Name of Narmi icon to place at the start of the input box */
   startIcon: PropTypes.oneOf(VALID_ICON_NAMES),
+  /** Name of Narmi icon to place at the end of the input box */
+  endIcon: PropTypes.oneOf(VALID_ICON_NAMES),
+  /** Text of error message to display under the input */
+  error: PropTypes.string,
   /** DEPREACTED - use `startIcon` instead */
   icon: PropTypes.oneOf(VALID_ICON_NAMES),
   /** Optional value for `data-testid` attribute */

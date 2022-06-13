@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
+import iconSelection from "src/icons/selection.json";
 import { useCombobox } from "downshift";
 import ComboboxItem from "./ComboboxItem";
 import ComboboxHeading from "./ComboboxHeading";
 import TextInput from "../TextInput";
 
 const noop = () => {};
+
+export const VALID_ICON_NAMES = iconSelection.icons.map(
+  (icon) => icon.properties.name
+);
 
 /**
  * @param {Object} component a Combobox.Item or Combobox.Heading component
@@ -21,24 +26,33 @@ export const isSelectable = (component) => {
 };
 
 /**
- * TK
- * TODO: story with section headings
- * TODO: dropdown indicator (ala Select)
- * TODO: default selection?
- * TODO: tests
+ * Autocomplete input component following the accessible
+ * [ARIA combobox pattern](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/combobox_role).
+ *
+ * Autocomplete options are defined by passing the `Combobox.Item` subcomponent
+ * as children. To add heading dividers, use the `Combobox.Heading` subcomponent.
+ *
+ * By default options will be filtered down as the user types in the input. This
+ * behavior can be disabled via the `disableFiltering` prop.
  */
 const Combobox = ({
   label,
   onChange = noop,
+  onInputChange = noop,
   children,
   disableFiltering = false,
+  errorText,
+  icon,
   testId,
 }) => {
+  const childArray = React.Children.toArray(children);
+
   // Initial items includes all children that are
   // `Combobox.Item` or `Combobox.Heading` children
-  const initialItems = React.Children.toArray(
-    children.filter(({ props }) => "value" in props || "text" in props)
-  );
+  const initialItems =
+    childArray.length < 1
+      ? []
+      : childArray.filter(({ props }) => "value" in props || "text" in props);
 
   const [displayedItems, setDisplayedItems] = useState(initialItems);
 
@@ -75,6 +89,8 @@ const Combobox = ({
         setDisplayedItems(initialItems); // restore original list in dropdown
         reset(); // clear any active selections
       }
+
+      onInputChange(inputValue);
     },
     onSelectedItemChange: ({ selectedItem }) => {
       let newSelection = "";
@@ -87,6 +103,20 @@ const Combobox = ({
 
   const hasSelectedItem = !!selectedItem;
 
+  // It is possible that a consumer may have nothing to pass to `children`.
+  // For example, if an API response hasn't completed to load in the autocomplete
+  // options. In that case, Cobmobox should render a normal TextInput.
+  if (initialItems.length < 1) {
+    return (
+      <TextInput
+        error={errorText}
+        label={label}
+        startIcon={icon}
+        onChange={onInputChange}
+      />
+    );
+  }
+
   return (
     <div
       className={cc(["nds-combobox", { "nds-combobox--active": isOpen }])}
@@ -94,9 +124,11 @@ const Combobox = ({
       data-testid={testId}
     >
       <TextInput
+        error={errorText}
         label={label}
         value={inputValue}
-        startIcon="search"
+        startIcon={icon}
+        endIcon={isOpen ? "chevron-up" : "chevron-down"}
         {...getInputProps({
           onFocus: () => {
             if (!isOpen) {
@@ -174,10 +206,16 @@ const Combobox = ({
 };
 
 Combobox.propTypes = {
-  /** Label for the select control */
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]).isRequired,
+  /** Label for the input */
   label: PropTypes.string.isRequired,
   /** Change callback. Called when an item is selected, with the `value` of the selected item */
   onChange: PropTypes.func,
+  /** Input change callback. Called whenever the user updates the value of the input. */
+  onInputChange: PropTypes.func,
   /**
    * Set to `true` to disable the default behavior of filtering the list
    * as the user types.
@@ -185,16 +223,13 @@ Combobox.propTypes = {
   disableFiltering: PropTypes.bool,
   /**
    * Error message.
-   * When passed, this will cause the trigger to render in error state.
+   * When passed, this will cause the input to render in error state.
    */
   errorText: PropTypes.string,
+  /** Name of icon to place at the start of the input */
+  icon: PropTypes.oneOf(VALID_ICON_NAMES),
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
-  // TODO: startIcon
 };
 
 Combobox.Item = ComboboxItem;

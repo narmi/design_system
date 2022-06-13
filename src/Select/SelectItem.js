@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 const SelectItem = ({ children }) => <>{children}</>;
 
+SelectItem.displayName = "Select.Item";
+
 SelectItem.propTypes = {
   /**
    * String representation of the option.

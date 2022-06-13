@@ -35,6 +35,7 @@ const Input = ({
   id,
   label,
   startIconClass,
+  endIconClass,
   disabled,
   multiline = false,
   decoration,
@@ -56,10 +57,8 @@ const Input = ({
   return (
     <div className={className} onClick={onClick} style={style}>
       <div className="nds-input-box">
-        {startIconClass ? (
+        {startIconClass && (
           <div className={`nds-input-icon ${startIconClass}`}></div>
-        ) : (
-          ""
         )}
         <div
           className={`nds-input-column ${
@@ -70,6 +69,9 @@ const Input = ({
           {decoration}
           {!multiline ? <label htmlFor={id}>{label}</label> : ""}
         </div>
+        {endIconClass && (
+          <div className={`nds-input-icon ${endIconClass}`}></div>
+        )}
       </div>
       <Error error={error} />
     </div>
@@ -79,8 +81,10 @@ const Input = ({
 Input.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string,
-  /** full `narmi-icon-<shape>` className for icon at start of input*/
+  /** full `narmi-icon-<shape>` className for icon at start of input */
   startIconClass: PropTypes.node,
+  /** full `narmi-icon-<shape>` className for icon at end of input */
+  endIconClass: PropTypes.node,
   decoration: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
   multiline: PropTypes.bool,
   disabled: PropTypes.bool,

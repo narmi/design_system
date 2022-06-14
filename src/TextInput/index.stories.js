@@ -87,5 +87,6 @@ export default {
     onBlur: { action: "blur" },
     icon: { table: { disable: true } },
     startIcon: { options: ["", ...VALID_ICON_NAMES] },
+    endIcon: { options: ["", ...VALID_ICON_NAMES] },
   },
 };

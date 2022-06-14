@@ -1,14 +1,21 @@
-.nds-select {
+.nds-combobox {
   position: relative;
 }
 
-.nds-select-list {
+.nds-combobox--active .nds-input-box {
+  border-color: var(--theme-primary);
+  border-bottom-width: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.nds-combobox-list {
   visibility: hidden;
   position: absolute;
   z-index: 3;
-  border-color: var(--theme-primary) !important;
-  top: 0;
-  right: 0;
+  border-color: var(--theme-primary);
+  border-top: 1px solid var(--border-color-default);
+  top: 47px; // 48px tall TextInput -1 to connect borders
   width: 100%;
   max-height: 60vh;
   overflow-y: scroll;
@@ -18,14 +25,18 @@
   }
 }
 
-.nds-select-list--active {
+.nds-combobox-list--active {
   visibility: visible;
 }
 
-.nds-select-item {
+.nds-combobox-item,
+.nds-combobox-heading {
+  min-height: var(--space-xl);
+}
+
+.nds-combobox-item {
   cursor: pointer;
   position: relative;
-  min-height: var(--space-xl);
   &:hover,
   &--highlighted {
     background: RGBA(var(--theme-rgb-primary), var(--alpha-5));

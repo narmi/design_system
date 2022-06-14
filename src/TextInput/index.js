@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Input from "../Input";
 import iconSelection from "src/icons/selection.json";
@@ -10,10 +10,11 @@ export const VALID_ICON_NAMES = iconSelection.icons.map(
 /**
  * Narmi flavored text input with floating label
  */
-const TextInput = (props) => {
+const TextInput = React.forwardRef((props, forwardedRef) => {
   const {
     icon, // DEPRECATED
     startIcon,
+    endIcon,
     formatter,
     multiline,
     defaultValue,
@@ -29,28 +30,25 @@ const TextInput = (props) => {
   const [inputValue, setInputValue] = useState(
     defaultValue ? defaultValue : ""
   );
-  const ref = useRef();
 
   function _onBlur(e) {
     if (onBlur) {
       onBlur(e);
     }
-    setInputValue(formatter(ref.current.value));
+    setInputValue(formatter(e.target.value));
   }
   function _onChange(e) {
     if (onChange) {
       onChange(e);
     }
-    setInputValue(ref.current.value);
+    setInputValue(e.target.value);
   }
 
   return (
     <Input
-      onClick={() => {
-        ref.current?.focus();
-      }}
       {...props}
       startIconClass={leftIcon ? `narmi-icon-${leftIcon}` : undefined}
+      endIconClass={endIcon ? `narmi-icon-${endIcon}` : undefined}
     >
       {multiline ? (
         <div
@@ -60,7 +58,7 @@ const TextInput = (props) => {
           <textarea
             key={"nds-text"}
             wrap="soft"
-            ref={ref}
+            ref={forwardedRef}
             value={inputValue}
             onChange={_onChange}
             onBlur={_onBlur}
@@ -75,7 +73,7 @@ const TextInput = (props) => {
           value={inputValue}
           onChange={_onChange}
           onBlur={_onBlur}
-          ref={ref}
+          ref={forwardedRef}
           type="text"
           required
           placeholder={props.label}
@@ -85,7 +83,10 @@ const TextInput = (props) => {
       )}
     </Input>
   );
-};
+});
+
+TextInput.displayName = "TextInput";
+
 TextInput.propTypes = {
   /** Label used as input placeholder _and_ floating label */
   label: PropTypes.string.isRequired,
@@ -101,6 +102,10 @@ TextInput.propTypes = {
   formatter: PropTypes.func,
   /** Name of Narmi icon to place at the start of the input box */
   startIcon: PropTypes.oneOf(VALID_ICON_NAMES),
+  /** Name of Narmi icon to place at the end of the input box */
+  endIcon: PropTypes.oneOf(VALID_ICON_NAMES),
+  /** Text of error message to display under the input */
+  error: PropTypes.string,
   /** DEPREACTED - use `startIcon` instead */
   icon: PropTypes.oneOf(VALID_ICON_NAMES),
   /** Optional value for `data-testid` attribute */

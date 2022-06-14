@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SelectItem = ({ children }) => <>{children}</>;
+const ComboboxItem = ({ children, value }) => <>{children || value}</>;
 
-SelectItem.displayName = "Select.Item";
+ComboboxItem.displayName = "Combobox.Item";
 
-SelectItem.propTypes = {
+ComboboxItem.propTypes = {
   /**
    * String representation of the option.
    *
@@ -20,4 +20,4 @@ SelectItem.propTypes = {
   ]),
 };
 
-export default SelectItem;
+export default ComboboxItem;

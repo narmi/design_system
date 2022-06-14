@@ -4,6 +4,7 @@ import Button from "./Button";
 import Card from "./Card";
 import Checkbox from "./Checkbox";
 import ContentCard from "./ContentCard";
+import Combobox from "./Combobox";
 import DateInput from "./DateInput";
 import Dialog from "./Dialog";
 import Dropdown from "./Dropdown";
@@ -32,6 +33,7 @@ export {
   Card,
   Checkbox,
   ContentCard,
+  Combobox,
   DateInput,
   Dialog,
   Dropdown,

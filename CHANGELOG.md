@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.20.0](https://github.com/narmi/design_system/compare/v2.19.2...v2.20.0) (2022-06-14)
+
+
+### Features
+
+* **Combobox:** add autocomplete Combobox component ([f07b1a8](https://github.com/narmi/design_system/commit/f07b1a87b47fc147118160240df360a4f5f8e85d))
+
 ### [2.19.2](https://github.com/narmi/design_system/compare/v2.19.1...v2.19.2) (2022-06-10)
 
 

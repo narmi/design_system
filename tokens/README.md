@@ -17,7 +17,7 @@ Currently, NDS builds tokens to the following formats in `dist/tokens/`:
 - JS manifest of all tokens
 
 **All CSS custom properties are included in the NDS base stylesheet**
-See [storybook documentation](https://master--60620d422ffdf100216415b2.chromatic.com/?path=/story/design-tokens-color--base)
+See [storybook documentation](https://narmi.github.io/design_system/)
 for a full list of CSS custom properties.
 
 ## Development

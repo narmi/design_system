@@ -28,7 +28,7 @@ Your project must provide the following packages as peer dependencies:
 
 - 📖 [Storybook (latest)](https://narmi.github.io/design_system/)
 - 🎨 [Design Guidelines](https://zeroheight.com/8ac87d4ba/p/446c38-narmi-design-system-nds)
-- ✏️ [Contributing](https://github.com/narmi/design_system/blob/master/CONTRIBUTING.md)
+- ✏️ [Contributing](https://github.com/narmi/design_system/blob/main/CONTRIBUTING.md)
 
 ## Usage
 
@@ -66,11 +66,11 @@ To request a new distribution, please [file an issue](https://github.com/narmi/d
 ### Versioning
 
 This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-Refer to the [**Changelog**](https://github.com/narmi/design_system/blob/master/CHANGELOG.md) for details.
+Refer to the [**Changelog**](https://github.com/narmi/design_system/blob/main/CHANGELOG.md) for details.
 
 ### Browser Support
 
-See [`.browserslistrc`](https://github.com/narmi/design_system/blob/master/.editorconfig) for officially supported browsers or
+See [`.browserslistrc`](https://github.com/narmi/design_system/blob/main/.editorconfig) for officially supported browsers or
 run `npx browserslist` in this project locally to see a full list of targeted browsers.
 
 This project does not support any version of Internet Explorer.
@@ -105,12 +105,12 @@ npm run dev
 This project uses [`semantic-release`](https://semantic-release.gitbook.io/semantic-release/),
 configured to use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
-Any time new commits are added to the `master` branch, the GitHub Action "release" will run `semantic-release`. The job will
+Any time new commits are added to the `main` branch, the GitHub Action "release" will run `semantic-release`. The job will
 parse recent git tags and commit messages to determine the new version number, tag the release, publish to NPM, and update the changelog.
 
 #### Major releases
 
-All PRs target `master` unless it contains breaking changes. Any branch continaing breaking change commits should target the open major release branch.
+All PRs target `main` unless it contains breaking changes. Any branch continaing breaking change commits should target the open major release branch.
 For example, if NDS is on major version `1`, breaking changes should target the branch `major/v2`.
 
 Branches containing breaking change commits should follow the naming convention `breaking/<branch name>`.

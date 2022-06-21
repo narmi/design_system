@@ -5,7 +5,7 @@
  * `semantic-release` runs with the following configuration via the `release.yml` github action.
  */
 const config = {
-  branches: ["master"],
+  branches: ["main"],
   plugins: [
     [
       "@semantic-release/commit-analyzer",

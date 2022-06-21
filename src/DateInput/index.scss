@@ -27,7 +27,7 @@ body {
   }
 
   .flatpickr-month {
-    font-family: var(--nds-font-family);
+    font-family: var(--font-family-body);
   }
 
   .flatpickr-current-month {
@@ -72,7 +72,7 @@ body {
   }
 
   span.flatpickr-weekday {
-    font-family: var(--nds-font-family);
+    font-family: var(--font-family-body);
     font-weight: 400;
     user-select: none;
   }
@@ -81,8 +81,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--nds-black);
-    font-family: var(--nds-font-family);
+    color: var(--color-black);
+    font-family: var(--font-family-body);
     user-select: none;
   }
 
@@ -135,15 +135,12 @@ body {
   .flatpickr-day.today:hover {
     background-color: transparent;
     border-color: #e9e9e9;
-    color: var(--nds-black);
+    color: var(--color-black);
 
     &:before {
       position: absolute;
       content: "\A";
-      background-color: RGBA(
-        var(--nds-primary-color),
-        var(--subdued-20-opacity)
-      );
+      background-color: RGBA(var(--theme-rgb-primary), var(--alpha-20));
       border-radius: 40px;
       z-index: -1;
       height: 30px;
@@ -165,7 +162,7 @@ body {
   .flatpickr-day.flatpickr-day.endRange:focus {
     color: white;
     &:before {
-      background-color: RGBA(var(--nds-primary-color));
+      background-color: var(--theme-primary);
     }
   }
 

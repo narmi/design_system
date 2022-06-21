@@ -20,7 +20,7 @@
     display: none;
     z-index: 100;
     position: fixed;
-    background: RGB(var(--nds-white));
+    background: var(--color-white);
     border-radius: 8px;
     max-width: 500px;
   }
@@ -84,7 +84,7 @@
     padding: 0;
     background: none;
     & > .nds-details-container {
-      background: RGB(var(--nds-white));
+      background: var(--color-white);
     }
   }
 

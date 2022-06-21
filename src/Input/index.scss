@@ -5,7 +5,7 @@
   vertical-align: middle;
   font-weight: 400;
   line-height: normal;
-  font-family: var(--nds-font-family);
+  font-family: var(--font-family-body);
   border: none;
   outline: 0;
   padding: 0;
@@ -19,8 +19,8 @@
   font-size: 16px;
 
   .nds-input-box {
-    border: 1px solid RGB(var(--nds-lightest-grey));
-    background: RGB(var(--nds-white));
+    border: 1px solid var(--color-lightGrey);
+    background: var(--color-white);
     position: relative;
     width: 100%;
     padding: 7px 0.8em;
@@ -46,20 +46,20 @@
 
   &.disabled .nds-input-box {
     pointer-events: none;
-    background-color: RGB(var(--nds-smoke-grey));
+    background-color: var(--color-smokeGrey);
 
     input {
-      color: RGB(var(--nds-medium-grey));
+      color: var(--color-mediumGrey);
     }
   }
 
   &.error {
     .nds-input-box {
-      border: 1px solid RGB(var(--nds-red));
+      border: 1px solid var(--color-errorDark);
     }
 
     label {
-      color: RGB(var(--nds-red));
+      color: var(--color-errorDark);
     }
   }
 
@@ -77,10 +77,10 @@
   label {
     background: transparent;
     pointer-events: none;
-    font-family: var(--nds-font-family);
+    font-family: var(--font-family-body);
     font-weight: 400;
     font-size: 12px;
-    color: RGB(var(--nds-medium-grey));
+    color: var(--color-mediumGrey);
     line-height: 1.25;
     white-space: nowrap;
     overflow: hidden;
@@ -90,7 +90,7 @@
   .nds-input-error {
     font-size: 12px;
     font-weight: 400;
-    color: RGB(var(--nds-red));
+    color: var(--color-errorDark);
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
@@ -105,12 +105,12 @@
   }
 
   input {
-    color: RGB(var(--nds-grey));
+    color: var(--color-grey);
   }
 
   textarea {
     @extend %shared-multiline-styles;
-    color: var(--nds-grey-text);
+    color: var(--color-grey);
     width: 100%;
     resize: none;
   }
@@ -126,7 +126,7 @@
     outline: 0;
     letter-spacing: 0;
     vertical-align: middle;
-    font-family: var(--nds-font-family);
+    font-family: var(--font-family-body);
     padding: 0;
     width: 100%;
     font-size: 16px;
@@ -156,7 +156,7 @@
   input,
   textarea {
     &::placeholder {
-      color: var(--nds-medium-grey);
+      color: var(--color-mediumGrey);
       font-weight: 400;
     }
   }

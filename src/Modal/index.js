@@ -39,7 +39,7 @@ const Modal = ({
         <div className="nds-modal-dismiss" onClick={setNotOpen}>
           <span
             className={"narmi-icon-x"}
-            style={{ fontSize: "20px", color: "rgb(var(--nds-black))" }}
+            style={{ fontSize: "20px", color: "var(--color-black)" }}
           />
         </div>
         {header ? (

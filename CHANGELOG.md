@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.21.0](https://github.com/narmi/design_system/compare/v2.20.1...v2.21.0) (2022-06-23)
+
+
+### Features
+
+* **icons:** add `security` and `feed` shapes to cover mobile UI ([6a141ad](https://github.com/narmi/design_system/commit/6a141adc64185bfb3475d778f131ec2f5fb9fbf5))
+
 ### [2.20.1](https://github.com/narmi/design_system/compare/v2.20.0...v2.20.1) (2022-06-21)
 
 

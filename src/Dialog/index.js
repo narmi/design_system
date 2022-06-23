@@ -115,7 +115,9 @@ const Dialog = ({
   );
   /* eslint-enable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
 
-  return <>{isOpen && ReactDOM.createPortal(dialogJSX, document.body)}</>;
+  return (
+    <>{isOpen && document && ReactDOM.createPortal(dialogJSX, document.body)}</>
+  );
 };
 
 Dialog.propTypes = {

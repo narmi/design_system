@@ -1,11 +1,6 @@
 @font-face {
   font-family: "icomoon";
-  /*
-  * Because our webpack config inlines these resources as base64,
-  * we only include the `woff` format to reduce CSS file size.
-  * (this format works in all supported browsers)
-  */
-  src: url("./icomoon.woff?tsm2bw") format("woff");
+  src: url("./icomoon.woff?43hwv3") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -27,32 +22,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.narmi-icon-solid-circle:before {
-  content: "\ea2f";
+.narmi-icon-security:before {
+  content: "\ea3b";
+  color: #4c4c4c;
 }
-.narmi-icon-GroupOutlined:before {
-  content: "\ea2b";
-}
-.narmi-icon-LocalAtm:before {
-  content: "\ea2c";
-}
-.narmi-icon-MonetizationOnOutlined:before {
-  content: "\ea2d";
-}
-.narmi-icon-SyncAlt:before {
-  content: "\ea2e";
-}
-.narmi-icon-p2p:before {
-  content: "\e908";
-}
-.narmi-icon-check-front:before {
-  content: "\e906";
-}
-.narmi-icon-check-endorsed:before {
-  content: "\e902";
-}
-.narmi-icon-piggy-bank:before {
-  content: "\e905";
+.narmi-icon-feed:before {
+  content: "\ea3c";
+  color: #4c4c4c;
 }
 .narmi-icon-activity:before {
   content: "\e90d";
@@ -914,6 +890,33 @@
 }
 .narmi-icon-hand-spock:before {
   content: "\ea3a";
+}
+.narmi-icon-solid-circle:before {
+  content: "\ea2f";
+}
+.narmi-icon-GroupOutlined:before {
+  content: "\ea2b";
+}
+.narmi-icon-LocalAtm:before {
+  content: "\ea2c";
+}
+.narmi-icon-MonetizationOnOutlined:before {
+  content: "\ea2d";
+}
+.narmi-icon-SyncAlt:before {
+  content: "\ea2e";
+}
+.narmi-icon-p2p:before {
+  content: "\e908";
+}
+.narmi-icon-check-front:before {
+  content: "\e906";
+}
+.narmi-icon-check-endorsed:before {
+  content: "\e902";
+}
+.narmi-icon-piggy-bank:before {
+  content: "\e905";
 }
 .narmi-icon-venmo:before {
   content: "\e90a";

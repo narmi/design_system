@@ -1,11 +1,11 @@
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 
 /**
  * Hook for locking body scrolling while a component is mounted
  * @param {Boolean} isActive - applies scroll locking when `true`
  */
 const useLockBodyScroll = (isActive) => {
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (isActive) {
       document.body.classList.add("overflow--hidden");
     }

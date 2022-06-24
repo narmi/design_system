@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.21.1](https://github.com/narmi/design_system/compare/v2.21.0...v2.21.1) (2022-06-24)
+
+
+### Bug Fixes
+
+* **icons:** include ttf and woff font assets in dist for mobile ([3b2ca54](https://github.com/narmi/design_system/commit/3b2ca54c751996a1e1634db913409b7de8ccaf4b))
+
 ## [2.21.0](https://github.com/narmi/design_system/compare/v2.20.1...v2.21.0) (2022-06-23)
 
 

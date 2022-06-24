@@ -42,6 +42,14 @@ module.exports = {
           from: path.join(__dirname, "src/icons/selection.json"),
           to: path.resolve(__dirname, "dist/icons/selection.json"),
         },
+        {
+          from: path.join(__dirname, "src/icons/icomoon.ttf"),
+          to: path.resolve(__dirname, "dist/icons/icomoon.ttf"),
+        },
+        {
+          from: path.join(__dirname, "src/icons/icomoon.woff"),
+          to: path.resolve(__dirname, "dist/icons/icomoon.woff"),
+        },
       ],
     }),
   ],

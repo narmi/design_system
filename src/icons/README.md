@@ -17,11 +17,14 @@ when updating our icon set.
 Uncompress the zip file from icomoon and move files into NDS. The destination
 and file names will not match the icomoon assets exactly - use the table below:
 
-| Icomoon download      | NDS destination            |
-| --------------------- | -------------------------- |
-| `selection.json`      | `src/icons/selection.json` |
-| `style.css`           | `src/icons/icons.css`      |
-| `fonts/icomooon.woff` | `src/icons/icomoon.woff`   |
+| Icomoon download       | NDS destination            |
+| ---------------------- | -------------------------- | ----------------------- |
+| `selection.json`       | `src/icons/selection.json` |
+| `style.css`            | `src/icons/icons.css`      |
+| `fonts/icomooon.woff`  | `src/icons/icomoon.woff`   |
+| `fonts/icomooon.woff2` | `src/icons/icomoon.woff2`  |
+| k                      | `fonts/icomooon.svg`       | `src/icons/icomoon.svg` |
+| `fonts/icomooon.ttf`   | `src/icons/icomoon.ttf`    |
 
 #### You MUST modify the CSS file after copying
 

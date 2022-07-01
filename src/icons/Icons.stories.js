@@ -6,17 +6,22 @@ export default {
 };
 
 export const Icons = () => {
+  const iconNames = [];
+
+  iconSelection.icons.forEach((iconData) => {
+    const namesAndAliases = iconData.properties.name.split(",");
+    namesAndAliases.forEach((name) => {
+      iconNames.push(name.trim());
+    });
+  });
+
   return (
     <div className="nds-typography">
       <div className="icon-demo">
-        {iconSelection.icons.map((icon) => (
-          <div key={icon.properties.name} className="icon-demo-box">
-            <span
-              className={`icon-demo-icon narmi-icon-${icon.properties.name}`}
-            >
-              {" "}
-            </span>
-            <span className="icon-demo-title">{icon.properties.name}</span>
+        {iconNames.map((name) => (
+          <div key={name} className="icon-demo-box">
+            <span className={`icon-demo-icon narmi-icon-${name}`}> </span>
+            <span className="icon-demo-title">{name}</span>
           </div>
         ))}
       </div>

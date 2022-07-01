@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.21.2](https://github.com/narmi/design_system/compare/v2.21.1...v2.21.2) (2022-07-01)
+
+
+### Bug Fixes
+
+* **icons:** add icon aliases for mobile support ([fe02052](https://github.com/narmi/design_system/commit/fe0205240dfa68e8622d4faaee53b25b48bdd4bd))
+
 ### [2.21.1](https://github.com/narmi/design_system/compare/v2.21.0...v2.21.1) (2022-06-24)
 
 

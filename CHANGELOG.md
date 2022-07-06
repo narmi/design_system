@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.23.0](https://github.com/narmi/design_system/compare/v2.22.0...v2.23.0) (2022-07-06)
+
+
+### Features
+
+* **Toggle:** add `isActive` prop to `Toggle` (fully controlled) ([060cc74](https://github.com/narmi/design_system/commit/060cc74f0ad1cf7a4ec2b5029cd52ef3221f0072))
+
 ## [2.22.0](https://github.com/narmi/design_system/compare/v2.21.2...v2.22.0) (2022-07-06)
 
 

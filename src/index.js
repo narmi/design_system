@@ -25,6 +25,7 @@ import Tag from "./Tag";
 import TextInput from "./TextInput";
 import Toggle from "./Toggle";
 import Tooltip from "./Tooltip";
+import TruncatedAccount from "./TruncatedAccount";
 import formatNumber from "./formatters/formatNumber";
 import formatDate from "./formatters/formatDate";
 
@@ -54,6 +55,7 @@ export {
   TextInput,
   Toggle,
   Tooltip,
+  TruncatedAccount,
   formatNumber,
   formatDate,
 };

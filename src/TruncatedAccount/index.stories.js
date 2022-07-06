@@ -26,7 +26,7 @@ export const LongAccountName = (args) => (
   </>
 );
 LongAccountName.args = {
-  name: "Secdonary Savings Account / Car Repair Funds",
+  name: "Secondary Savings Account / Car Repair Funds",
   lastFour: 4441,
 };
 LongAccountName.parameters = {

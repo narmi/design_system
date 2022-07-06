@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 
@@ -7,16 +7,28 @@ import cc from "classcat";
  */
 const Toggle = ({
   defaultActive = false,
+  isActive,
   onChange = () => {},
   labelledBy,
   label,
   testId,
 }) => {
-  const [isActive, setIsActive] = useState(defaultActive);
+  const isControlled = isActive !== undefined;
+  const [isActiveInternal, setIsActiveInternal] = useState(
+    isControlled ? isActive : defaultActive || false
+  );
+
+  useEffect(() => {
+    if (isControlled) {
+      setIsActiveInternal(isActive);
+    }
+  }, [isActive]);
 
   const toggleActive = () => {
-    onChange(!isActive);
-    setIsActive(!isActive);
+    if (!isControlled) {
+      setIsActiveInternal(!isActiveInternal);
+    }
+    onChange(!isActiveInternal);
   };
 
   const buttonJsx = (
@@ -25,18 +37,20 @@ const Toggle = ({
         "resetButton",
         "nds-toggle",
         {
-          "nds-toggle--active": isActive,
+          "nds-toggle--active": isActiveInternal,
         },
       ])}
       type="button"
       role="switch"
-      aria-checked={isActive.toString()}
+      aria-checked={isActiveInternal.toString()}
       onClick={toggleActive}
       aria-labelledby={labelledBy}
       data-testid={testId}
     >
       <span className="nds-toggle-indicator elevation--low" />
-      <span className="nds-toggle-buttonText">{isActive ? "on" : "off"}</span>
+      <span className="nds-toggle-buttonText">
+        {isActiveInternal ? "on" : "off"}
+      </span>
     </button>
   );
 
@@ -58,6 +72,12 @@ Toggle.propTypes = {
   onChange: PropTypes.func,
   /** When set to `true`, the toggle will initially render as active */
   defaultActive: PropTypes.bool,
+  /**
+   * Sets active state of toggle; makes the component fully controlled.
+   * When using `isActive` you **must** use the `onChange` callback
+   * to update the active state of the toggle.
+   */
+  isActive: PropTypes.bool,
   /** Label element to render to the right of the toggle */
   label: PropTypes.string,
   /** ID of element that labels the toggle control (e.g. `my-label-element`)*/

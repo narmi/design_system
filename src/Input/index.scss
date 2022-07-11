@@ -104,6 +104,11 @@
     }
   }
 
+  input,
+  textarea {
+    background: transparent;
+  }
+
   input {
     color: var(--color-grey);
   }

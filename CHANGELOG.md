@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.23.2](https://github.com/narmi/design_system/compare/v2.23.1...v2.23.2) (2022-07-11)
+
+
+### Bug Fixes
+
+* **TextInput:** prevent descenders in floating label from being cut off ([7ed2020](https://github.com/narmi/design_system/commit/7ed2020ad1ee9de0f12ab6f03ade634273aa8063))
+
 ### [2.23.1](https://github.com/narmi/design_system/compare/v2.23.0...v2.23.1) (2022-07-11)
 
 

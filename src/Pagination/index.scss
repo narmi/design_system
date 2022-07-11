@@ -29,6 +29,7 @@
 
 .nds-pagination-page {
   cursor: pointer;
+  color: var(--font-color-primary);
 
   &:hover {
     background-color: RGBA(var(--theme-rgb-primary), var(--alpha-20));

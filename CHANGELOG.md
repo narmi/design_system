@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.23.1](https://github.com/narmi/design_system/compare/v2.23.0...v2.23.1) (2022-07-11)
+
+
+### Bug Fixes
+
+* **Pagination:** fix unselected page number color ([ad29994](https://github.com/narmi/design_system/commit/ad29994eb46406cf9c157ba08f1fd4f34c52be80))
+
 ## [2.23.0](https://github.com/narmi/design_system/compare/v2.22.0...v2.23.0) (2022-07-06)
 
 

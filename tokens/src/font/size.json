@@ -1,6 +1,7 @@
 {
   "font": {
     "size": {
+      "xxs": { "value": "10px" },
       "xs": { "value": "12px" },
       "s": { "value": "14px" },
       "m": { "value": "16px" },

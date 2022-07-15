@@ -20,7 +20,7 @@
 }
 .nds-tag--outline {
   color: var(--theme-primary);
-  font-size: 10px;
+  font-size: var(--font-size-xxs);
   background: transparent;
   border: 1px solid var(--theme-primary);
 }

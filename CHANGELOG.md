@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.24.0](https://github.com/narmi/design_system/compare/v2.23.2...v2.24.0) (2022-07-15)
+
+
+### Features
+
+* **fonts:** add xxs font size (and helper class) ([75322a9](https://github.com/narmi/design_system/commit/75322a99b187849e10b7ecc43a83b868b3bb3464))
+
 ### [2.23.2](https://github.com/narmi/design_system/compare/v2.23.1...v2.23.2) (2022-07-11)
 
 

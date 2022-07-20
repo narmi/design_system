@@ -21,6 +21,7 @@ export const VALID_ICON_NAMES = iconSelection.icons.map(
 const Button = ({
   disabled = false,
   kind = "primary",
+  size = "m",
   startIcon = null,
   endIcon = null,
   testId,
@@ -58,6 +59,7 @@ const Button = ({
         "nds-typography",
         "nds-button",
         `nds-button--${kind}`,
+        `fontSize--${size}`,
         {
           resetButton: as === "button",
           "nds-button--disabled": disabled,
@@ -101,6 +103,8 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   /** style of button to render */
   kind: PropTypes.oneOf(["primary", "secondary", "negative", "menu", "plain"]),
+  /** size variant of button */
+  size: PropTypes.oneOf(["s", "m", "l"]),
   /** Click callback, with event object passed as argument */
   onClick: PropTypes.func,
   /** Name of Narmi icon to place at the start of the label */

@@ -42,6 +42,20 @@ ConfirmAndCancel.parameters = {
   },
 };
 
+export const ButtonSizes = () => (
+  <Row alignItems="center">
+    <Row.Item shrink>
+      <Button kind="plain" label="Small Button" size="s" />
+    </Row.Item>
+    <Row.Item shrink>
+      <Button kind="plain" label="Medium Button" size="m" />
+    </Row.Item>
+    <Row.Item shrink>
+      <Button kind="plain" label="Large Button" size="l" />
+    </Row.Item>
+  </Row>
+);
+
 export default {
   title: "Components/Button",
   component: Button,

@@ -54,7 +54,7 @@ describe("Button", () => {
   it("has expected classes for `m` size", () => {
     render(<Button label={LABEL} size="m" />);
     const button = getButton();
-    expect(button).toHaveClass("fontSize--s");
+    expect(button).toHaveClass("fontSize--m");
   });
 
   it("has expected classes for `l` size", () => {

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.25.0](https://github.com/narmi/design_system/compare/v2.24.0...v2.25.0) (2022-07-20)
+
+
+### Features
+
+* **Button:** add `size` prop to support size variants ([7f1ceca](https://github.com/narmi/design_system/commit/7f1ceca55204e4bd4be14724a7e61083d0289a92))
+
 ## [2.24.0](https://github.com/narmi/design_system/compare/v2.23.2...v2.24.0) (2022-07-15)
 
 

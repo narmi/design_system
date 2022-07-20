@@ -39,6 +39,7 @@ const Combobox = ({
   label,
   onChange = noop,
   onInputChange = noop,
+  inputValue: controlledInputValue,
   children,
   disableFiltering = false,
   errorText,
@@ -70,6 +71,7 @@ const Combobox = ({
     reset,
   } = useCombobox({
     items: displayedItems,
+    inputValue: controlledInputValue,
     itemToString: (item) => item.props.value,
     onInputValueChange: ({ inputValue }) => {
       // Typeahead behavior - we adjust the list of available options passed
@@ -98,10 +100,9 @@ const Combobox = ({
         newSelection = selectedItem.props.value;
       }
       onChange(newSelection);
+      onInputChange(newSelection);
     },
   });
-
-  const hasSelectedItem = !!selectedItem;
 
   // It is possible that a consumer may have nothing to pass to `children`.
   // For example, if an API response hasn't completed to load in the autocomplete
@@ -113,9 +114,12 @@ const Combobox = ({
         label={label}
         startIcon={icon}
         onChange={onInputChange}
+        value={inputValue}
       />
     );
   }
+
+  const hasSelectedItem = !!selectedItem;
 
   return (
     <div
@@ -214,6 +218,12 @@ Combobox.propTypes = {
   label: PropTypes.string.isRequired,
   /** Change callback. Called when an item is selected, with the `value` of the selected item */
   onChange: PropTypes.func,
+  /**
+   * Sets value of the input in a controlled manner.
+   * When using the `inputValue` prop, you **must** update it via the
+   * `onInputChange` handler.
+   */
+  inputValue: PropTypes.string,
   /** Input change callback. Called whenever the user updates the value of the input. */
   onInputChange: PropTypes.func,
   /**

@@ -19,9 +19,11 @@ const RadioButtons = ({
   kind = "normal",
   onChange = () => {},
   testId,
+  error,
   ...containerProps
 }) => {
   const isControlled = value !== undefined;
+  const hasError = error !== undefined && error.length > 0;
   const [checkedValue, setCheckedValue] = useState(
     isControlled ? value : initialValue
   );
@@ -62,6 +64,7 @@ const RadioButtons = ({
             {
               "nds-radiobuttons-option--checked": checkedValue == inputValue,
               "nds-radiobuttons-option--focused": focusedValue == inputValue,
+              "nds-radiobuttons-option--error": hasError,
               "padding--all rounded--all border--all": kind === "card",
             },
           ])}
@@ -86,6 +89,12 @@ const RadioButtons = ({
           />
         </label>
       ))}
+      {hasError && (
+        <div className="fontColor--error">
+          <span className="fontSize--s margin--right--xxs narmi-icon-x-circle" />
+          {error}
+        </div>
+      )}
     </div>
   );
 };
@@ -111,6 +120,11 @@ RadioButtons.propTypes = {
    * `card` - display input and label as a toggleable card
    */
   kind: PropTypes.oneOf(["normal", "card"]),
+  /**
+   * Error message. When passed, the `error` prop will
+   * render the radio group in an error state.
+   */
+  error: PropTypes.string,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
 };

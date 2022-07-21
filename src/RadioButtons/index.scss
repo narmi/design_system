@@ -56,6 +56,10 @@
       border: 2px solid var(--theme-primary);
     }
 
+    &.nds-radiobuttons-option--error .nds-radio {
+      border-color: var(--color-errorDark);
+    }
+
     &.nds-radiobuttons-option--checked .nds-radio {
       background-color: transparent;
 
@@ -88,6 +92,10 @@
     &.nds-radiobuttons-option--focused,
     &.nds-radiobuttons-option--checked {
       border-color: var(--theme-primary);
+    }
+
+    &.nds-radiobuttons-option--error {
+      border-color: var(--color-errorDark);
     }
 
     &.nds-radiobuttons-option--checked {

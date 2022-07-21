@@ -35,6 +35,17 @@ export const Example = () => {
   );
 };
 
+export const ErrorState = Template.bind({});
+ErrorState.args = {
+  options: {
+    OptionA: "A",
+    OptionB: "B",
+    OptionC: "C",
+  },
+  name: "options",
+  error: "Selection required",
+};
+
 export const FullyControlled = () => {
   const [value, setValue] = useState("blue");
   return (

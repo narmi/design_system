@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.26.0](https://github.com/narmi/design_system/compare/v2.25.0...v2.26.0) (2022-07-21)
+
+
+### Features
+
+* **Combobox:** add `inputValue` prop to enable fully controlled input ([e2d6970](https://github.com/narmi/design_system/commit/e2d6970076e4ed344daa6b4177eba514f7be961f))
+* **RadioButtons:** add `error` prop to support RadioButtons error state ([9134b91](https://github.com/narmi/design_system/commit/9134b912acb2ccf5ce14de846cfe0cf0ecb15d1e))
+
 ## [2.25.0](https://github.com/narmi/design_system/compare/v2.24.0...v2.25.0) (2022-07-20)
 
 

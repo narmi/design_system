@@ -99,4 +99,17 @@ describe("Combobox", () => {
     fireEvent.blur(input);
     expect(screen.getByDisplayValue("New York")).toBeInTheDocument();
   });
+
+  it("should not update input value in uncontrolled manner when `inputValue` is passed", () => {
+    const value = "Initial value unhandled by parent state";
+    render(
+      <Combobox label={LABEL} inputValue={value}>
+        {CHILDREN}
+      </Combobox>
+    );
+    const input = screen.getByPlaceholderText(LABEL);
+    expect(screen.getByDisplayValue(value)).toBeInTheDocument();
+    fireEvent.change(input, { target: { value: "New value" } });
+    expect(screen.getByDisplayValue(value)).toBeInTheDocument();
+  });
 });

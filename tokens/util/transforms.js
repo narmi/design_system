@@ -99,6 +99,31 @@ const valueTransforms = [
     transformer: ({ original }) => original.value,
   },
   {
+    // make all pixel values unitless
+    name: "custom/value/native-unitless",
+    type: "value",
+    transformer: ({ original }) => {
+      const { value } = original;
+
+      let result = value;
+      if (value.includes("px")) {
+        result = value.replace("px", "");
+      }
+
+      return result;
+    },
+  },
+  {
+    // convert string values of certain types to number
+    name: "custom/value/native-number",
+    type: "value",
+    transformer: ({ original }) => parseFloat(original.value),
+    matcher: ({ attributes }) =>
+      ["radius", "size", "alpha", "lineHeight", "space"].some(
+        (allowedType) => attributes.type === allowedType
+      ),
+  },
+  {
     // transforms a solid color into a list of its RGB components
     name: "custom/value/rgbList",
     type: "value",

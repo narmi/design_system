@@ -5,6 +5,7 @@ const path = require("path");
 const StyleDictionary = require("style-dictionary");
 const transforms = require("./util/transforms");
 const filters = require("./util/filters");
+const formats = require("./util/formats");
 
 //  we call this config from repo root, so __dirname will be root.
 const getBuildPath = (subdir) => `${path.resolve("./dist/tokens")}/${subdir}/`;
@@ -17,6 +18,11 @@ transforms.forEach((transform) => {
 // register all custom filters
 filters.forEach((filter) => {
   StyleDictionary.registerFilter(filter);
+});
+
+// register all custom formats
+formats.forEach((format) => {
+  StyleDictionary.registerFormat(format);
 });
 
 const CSS_TRANSFORM_GROUP = [
@@ -92,6 +98,24 @@ const config = {
           filter: "isColor",
           destination: "colors.js",
           format: "javascript/module-flat",
+        },
+      ],
+    },
+
+    /**
+     * All tokens in a nested object es6 format
+     */
+    reactNativeWeb: {
+      transforms: [
+        "attribute/cti",
+        "custom/value/native-unitless",
+        "custom/value/native-number",
+      ],
+      buildPath: getBuildPath("js"),
+      files: [
+        {
+          destination: "reactNativeWeb.js",
+          format: "custom/es6-nested",
         },
       ],
     },

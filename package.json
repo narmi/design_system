@@ -86,7 +86,7 @@
     "sass": "^1.45.0",
     "sass-loader": "^12.1.0",
     "semantic-release": "^19.0.0",
-    "style-dictionary": "^3.0.3",
+    "style-dictionary": "^3.7.1",
     "style-loader": "^0.23.1",
     "tinycolor2": "^1.4.2",
     "use-clipboard-copy": "^0.2.0",

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.26.1](https://github.com/narmi/design_system/compare/v2.26.0...v2.26.1) (2022-07-25)
+
+
+### Bug Fixes
+
+* **DropdownTrigger:** set `type` attribute on button element ([b4c88dc](https://github.com/narmi/design_system/commit/b4c88dc08221c984f7a3b95d2681987fcec0f2d4))
+
 ## [2.26.0](https://github.com/narmi/design_system/compare/v2.25.0...v2.26.0) (2022-07-21)
 
 

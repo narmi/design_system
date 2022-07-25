@@ -39,6 +39,7 @@ const DropdownTrigger = React.forwardRef(
             },
           ])}
           aria-expanded={isOpen ? "true" : "false"}
+          type="button"
           {...otherProps}
         >
           {labelText && (

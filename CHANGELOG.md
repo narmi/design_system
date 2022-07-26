@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.27.0](https://github.com/narmi/design_system/compare/v2.26.1...v2.27.0) (2022-07-26)
+
+
+### Features
+
+* **tokens:** generate dist for react native web ([38b53f9](https://github.com/narmi/design_system/commit/38b53f9cbf577205ca655bdba01accc63eb1607c))
+
 ### [2.26.1](https://github.com/narmi/design_system/compare/v2.26.0...v2.26.1) (2022-07-25)
 
 

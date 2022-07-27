@@ -1,6 +1,6 @@
 @font-face {
   font-family: "icomoon";
-  src: url("./icomoon.woff?mid0wd") format("woff");
+  src: url("./icomoon.woff?bcrq8u") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -884,15 +884,6 @@
 .narmi-icon-zoom-out:before {
   content: "\ea2a";
 }
-.narmi-icon-question:before {
-  content: "\ea36";
-}
-.narmi-icon-signal:before {
-  content: "\ea37";
-}
-.narmi-icon-car:before {
-  content: "\ea38";
-}
 .narmi-icon-student:before {
   content: "\ea39";
 }
@@ -917,9 +908,6 @@
 .narmi-icon-p2p:before {
   content: "\e908";
 }
-.narmi-icon-check-front:before {
-  content: "\e906";
-}
 .narmi-icon-check-endorsed:before {
   content: "\e902";
 }
@@ -928,9 +916,6 @@
 }
 .narmi-icon-venmo:before {
   content: "\e90a";
-}
-.narmi-icon-bank:before {
-  content: "\e900";
 }
 .narmi-icon-folder-open:before {
   content: "\e901";
@@ -944,15 +929,6 @@
 .narmi-icon-admin-user:before {
   content: "\ea35";
 }
-.narmi-icon-dollar-bill-line:before {
-  content: "\ea32";
-}
-.narmi-icon-wires:before {
-  content: "\ea33";
-}
-.narmi-icon-m2m:before {
-  content: "\ea34";
-}
 .narmi-icon-transfer-arrows:before {
   content: "\ea31";
 }
@@ -965,6 +941,30 @@
 .narmi-icon-bill:before {
   content: "\e90c";
 }
+.narmi-icon-credit-card:before {
+  content: "\e93f";
+}
+.narmi-icon-question:before {
+  content: "\ea36";
+}
+.narmi-icon-signal:before {
+  content: "\ea37";
+}
+.narmi-icon-car:before {
+  content: "\ea38";
+}
+.narmi-icon-check-front:before {
+  content: "\e906";
+}
+.narmi-icon-dollar-bill-line:before {
+  content: "\ea32";
+}
+.narmi-icon-wires:before {
+  content: "\ea33";
+}
+.narmi-icon-m2m:before {
+  content: "\ea34";
+}
 .narmi-icon-venmo-logo:before {
   content: "\e90b";
   color: #3d95ce;
@@ -972,18 +972,18 @@
 .narmi-icon-face-id:before {
   content: "\e909";
 }
-.narmi-icon-office:before {
-  content: "\e904";
-}
 .narmi-icon-library:before {
   content: "\e921";
-}
-.narmi-icon-file-text:before {
-  content: "\e922";
 }
 .narmi-icon-profile:before {
   content: "\e923";
 }
-.narmi-icon-credit-card:before {
-  content: "\e93f";
+.narmi-icon-bank:before {
+  content: "\e900";
+}
+.narmi-icon-office:before {
+  content: "\e904";
+}
+.narmi-icon-file-text:before {
+  content: "\e922";
 }

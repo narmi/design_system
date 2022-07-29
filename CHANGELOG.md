@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.27.1](https://github.com/narmi/design_system/compare/v2.27.0...v2.27.1) (2022-07-29)
+
+
+### Bug Fixes
+
+* **icons:** make all glyphs equal width; pixel hint and center all shapes ([7c3d41c](https://github.com/narmi/design_system/commit/7c3d41c52140ee4c343cd90eeaa4b6ca8f4cd1b5))
+
 ## [2.27.0](https://github.com/narmi/design_system/compare/v2.26.1...v2.27.0) (2022-07-26)
 
 

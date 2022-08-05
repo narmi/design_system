@@ -11,6 +11,9 @@ describe("Select", () => {
   it("isAction: detects action items correctly", () => {
     expect(isAction(<Select.Item value="foo" />)).toBe(false);
     expect(isAction(<Select.Action onSelect={() => {}} />)).toBe(true);
+    expect(isAction(null)).toBe(false);
+    expect(isAction(undefined)).toBe(false);
+    expect(isAction("")).toBe(false);
   });
 
   it("getSelectedItemDisplay: only returns non-action items", () => {

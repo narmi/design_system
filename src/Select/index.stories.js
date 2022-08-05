@@ -103,10 +103,10 @@ InAForm.parameters = {
 };
 
 export const Controlled = () => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(null);
   return (
     <>
-      <Select label="Account" value={value} onChange={setValue}>
+      <Select label="Account" value={value} onChange={(v) => setValue(v)}>
         <Select.Item value="checking1234">Checking (1234)</Select.Item>
         <Select.Item value="savings4321">Savings (4321)</Select.Item>
       </Select>
@@ -115,7 +115,7 @@ export const Controlled = () => {
           label="Clear selection"
           kind="negative"
           onClick={() => {
-            setValue("");
+            setValue(null);
           }}
         />
       </div>

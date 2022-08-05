@@ -14,7 +14,7 @@ const noop = () => {};
  */
 export const isAction = (item) => {
   let result = false;
-  if (item) {
+  if (item && item.props) {
     result = "onSelect" in item.props;
   }
   return result;
@@ -80,7 +80,7 @@ const Select = ({
       if (isAction(selectedItem)) {
         selectedItem.props.onSelect();
       } else {
-        onChange(selectedItem.props.value);
+        onChange(selectedItem.props ? selectedItem.props.value : "");
       }
     },
   };
@@ -102,7 +102,7 @@ const Select = ({
     getItemProps,
   } = useSelect(downshiftOpts);
 
-  const hasSelectedItem = selectedItem !== undefined;
+  const hasSelectedItem = selectedItem !== undefined && selectedItem.props;
 
   return (
     <div className="nds-select" data-testid={testId}>

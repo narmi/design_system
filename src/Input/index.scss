@@ -160,7 +160,9 @@
 
   input,
   textarea {
-    &::placeholder {
+    &:placeholder,
+    &:autofill {
+      background: transparent;
       color: var(--color-mediumGrey);
       font-weight: 400;
     }

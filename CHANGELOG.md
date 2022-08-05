@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.27.2](https://github.com/narmi/design_system/compare/v2.27.1...v2.27.2) (2022-08-05)
+
+
+### Bug Fixes
+
+* **Select:** cover deselection case in controlled mode ([9107832](https://github.com/narmi/design_system/commit/910783221ccb53c371187b7d801c463c64368dda))
+
 ### [2.27.1](https://github.com/narmi/design_system/compare/v2.27.0...v2.27.1) (2022-07-29)
 
 

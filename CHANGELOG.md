@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.27.3](https://github.com/narmi/design_system/compare/v2.27.2...v2.27.3) (2022-08-07)
+
+
+### Bug Fixes
+
+* **TextInput:** ensure autofill styling doesn't overlap floating label ([3480c86](https://github.com/narmi/design_system/commit/3480c86424f12ba069fdb56f7896dd88053c92a4))
+
 ### [2.27.2](https://github.com/narmi/design_system/compare/v2.27.1...v2.27.2) (2022-08-05)
 
 

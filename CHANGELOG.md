@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.27.4](https://github.com/narmi/design_system/compare/v2.27.3...v2.27.4) (2022-08-08)
+
+
+### Bug Fixes
+
+* **RadioButtons:** set radio backgrounds to white ([d349697](https://github.com/narmi/design_system/commit/d349697f36845931a8282e4d18d29a34b714428c))
+
 ### [2.27.3](https://github.com/narmi/design_system/compare/v2.27.2...v2.27.3) (2022-08-07)
 
 

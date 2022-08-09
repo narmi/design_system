@@ -55,7 +55,9 @@ const _toImportedComponentsList = (fileContent) =>
   toAst(fileContent)
     .program.body.filter((o) => o.type === "ImportDeclaration") // only import statements
     .filter((o) => o.source.value.includes(PACKAGE_NAME)) // only NDS imports
-    .flatMap((o) => o.specifiers.map((s) => s.imported.name)); // return a flat array of component names in NDS imports
+    .flatMap((o) =>
+      o.specifiers.map((s) => (s.imported ? s.imported.name : s))
+    ); // return a flat array of component names in NDS imports
 
 glob(`${resolve(TARGET_DIR)}/**/*.+(js|jsx)`, { ignore }, (error, files) => {
   if (error) {

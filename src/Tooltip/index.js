@@ -43,7 +43,6 @@ const Tooltip = ({
     preferY: "top",
     triggerOffset: 12,
     arrowOffset: 12,
-    container: document.body,
   });
 
   return (

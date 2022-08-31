@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
  * The account name will truncate with ellipsis as needed to fit the space.
  */
 const TruncatedAccount = ({ name, lastFour }) => (
-  <span className="nds-truncatedAccount">
+  <span className="nds-truncatedAccount" title={`${name} - ${lastFour}`}>
     <span className="whiteSpace--truncate">{name}</span>
     {lastFour && (
       <span role="img" className="padding--x--xxs">

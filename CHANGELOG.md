@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.27.6](https://github.com/narmi/design_system/compare/v2.27.5...v2.27.6) (2022-08-31)
+
+
+### Bug Fixes
+
+* **TruncatedAccount:** show full account name in `title` on hover ([089c938](https://github.com/narmi/design_system/commit/089c938971692a203004e1b17fc21544432e2a7d))
+
 ### [2.27.5](https://github.com/narmi/design_system/compare/v2.27.4...v2.27.5) (2022-08-31)
 
 

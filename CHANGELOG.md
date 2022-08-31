@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.27.5](https://github.com/narmi/design_system/compare/v2.27.4...v2.27.5) (2022-08-31)
+
+
+### Bug Fixes
+
+* **Tooltip:** allow SSR by using default `container` option of `useLayer` ([3fd8d0a](https://github.com/narmi/design_system/commit/3fd8d0a5f2ad31746e1d16084fc74f6508d8ad44))
+
 ### [2.27.4](https://github.com/narmi/design_system/compare/v2.27.3...v2.27.4) (2022-08-08)
 
 

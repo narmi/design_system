@@ -160,7 +160,7 @@ export const PopoverDialog = () => {
         }
         `}
       </style>
-      <Popover closeOnSelect content={
+      <Popover closeOnContentClick content={
         <div className="popover-content">
           <div tabIndex="0" role="button" onClick={() => { setIsDialogOpen(true) }} onKeyDown={() => { }}>
             Open Modal

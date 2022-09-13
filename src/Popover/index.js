@@ -23,9 +23,17 @@ const Popover = ({
   disableAutoPlacement = false,
   matchTriggerWidth = false,
   testId,
+  closeOnSelect = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const focusTrapRef = useFocusTrap(isOpen);
+  const popoverContent = closeOnSelect ? React.cloneElement(content, {
+    onClick: () => {
+      if (content.onClick) {
+        content.onClick();
+      } setIsOpen(false);
+    }
+  }) : content
 
   const closePopover = () => {
     setIsOpen(false);
@@ -98,7 +106,7 @@ const Popover = ({
               data-testid={testId}
             >
               <div ref={focusTrapRef} tabIndex={-1}>
-                {content}
+                {popoverContent}
               </div>
             </div>
           )}
@@ -135,6 +143,8 @@ Popover.propTypes = {
   disableAutoPlacement: PropTypes.bool,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
+  /** Close the popover if the User clicks on the content */
+  closeOnSelect: PropTypes.bool,
 };
 
 export default Popover;

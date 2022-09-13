@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Dialog from "./";
 import Button from "../Button";
+import Popover from "../Popover";
 import { DialogLayout } from "../../.storybook/Layouts";
 
 const BaseTemplate = (args) => <Dialog {...args} />;
@@ -146,3 +147,34 @@ export default {
     },
   },
 };
+
+export const PopoverDialog = () => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  return (
+    <>
+      <style>
+        {`
+        .popover-content > div:hover {
+          cursor: pointer;
+          background-color: rgba(26, 67, 56, 0.05);
+        }
+        `}
+      </style>
+      <Popover closeOnSelect content={
+        <div className="popover-content">
+          <div onClick={() => { setIsDialogOpen(true) }}>
+            Open Modal
+          </div>
+          <div>
+            Does Nothing
+          </div>
+        </div>
+      }>
+        <span className="narmi-icon-more-horizontal"></span>
+      </Popover>
+      <Dialog isOpen={isDialogOpen} title={`Remove account`}>
+        <Button onClick={() => { setIsDialogOpen(false) }}>Close</Button>
+      </Dialog>
+    </>
+  );
+}

@@ -162,10 +162,10 @@ export const PopoverDialog = () => {
       </style>
       <Popover closeOnSelect content={
         <div className="popover-content">
-          <div onClick={() => { setIsDialogOpen(true) }}>
+          <div tabIndex="0" role="button" onClick={() => { setIsDialogOpen(true) }} onKeyDown={() => { }}>
             Open Modal
           </div>
-          <div>
+          <div tabIndex="0" role="button" onClick={() => { }} onKeyDown={() => { }}>
             Does Nothing
           </div>
         </div>

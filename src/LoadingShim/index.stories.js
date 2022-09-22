@@ -27,7 +27,4 @@ Overview.args = {
 export default {
   title: "Components/LoadingShim",
   component: LoadingShim,
-  argTypes: {
-    children: { control: false },
-  },
 };

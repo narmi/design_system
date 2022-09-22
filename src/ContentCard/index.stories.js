@@ -56,7 +56,5 @@ export default {
   component: ContentCard,
   argTypes: {
     type: { table: { disable: true } },
-    onClick: { action: "clicked (only fires for `interactive` type)" },
-    children: { control: false },
   },
 };

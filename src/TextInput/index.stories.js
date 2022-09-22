@@ -83,8 +83,6 @@ export default {
   title: "Components/TextInput",
   component: TextInput,
   argTypes: {
-    onChange: { action: "change" },
-    onBlur: { action: "blur" },
     icon: { table: { disable: true } },
     startIcon: { options: ["", ...VALID_ICON_NAMES] },
     endIcon: { options: ["", ...VALID_ICON_NAMES] },

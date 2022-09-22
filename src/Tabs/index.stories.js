@@ -125,7 +125,4 @@ export default {
   title: "Components/Tabs",
   component: Tabs,
   subcomponents: { TabsList, TabsTab, TabsPanel },
-  argTypes: {
-    onTabChange: { action: "tab change" },
-  },
 };

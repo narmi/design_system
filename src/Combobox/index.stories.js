@@ -97,9 +97,6 @@ export default {
   component: Combobox,
   subcomponents: { ComboboxItem, ComboboxHeading },
   argTypes: {
-    children: { control: false },
-    onChange: { action: "Combobox change" },
-    onInputChange: { action: "Combobox input change" },
+    icon: { options: ["", ...VALID_ICON_NAMES] },
   },
-  icon: { options: ["", ...VALID_ICON_NAMES] },
 };

@@ -40,7 +40,4 @@ AsBreadcrumbs.parameters = {
 export default {
   title: "Components/SeparatorList",
   component: SeparatorList,
-  argTypes: {
-    items: { control: false },
-  },
 };

@@ -137,10 +137,6 @@ FocusManagement.parameters = {
 export default {
   title: "Components/Dialog",
   component: Dialog,
-  argTypes: {
-    children: { control: false },
-    onUserDismiss: { action: "user dismiss" },
-  },
   parameters: {
     docs: {
       page: DialogLayout,
@@ -160,21 +156,42 @@ export const PopoverDialog = () => {
         }
         `}
       </style>
-      <Popover closeOnContentClick content={
-        <div className="popover-content">
-          <div tabIndex="0" role="button" onClick={() => { setIsDialogOpen(true) }} onKeyDown={() => { }}>
-            Open Modal
+      <Popover
+        closeOnContentClick
+        content={
+          <div className="popover-content">
+            <div
+              tabIndex="0"
+              role="button"
+              onClick={() => {
+                setIsDialogOpen(true);
+              }}
+              onKeyDown={() => {}}
+            >
+              Open Modal
+            </div>
+            <div
+              tabIndex="0"
+              role="button"
+              onClick={() => {}}
+              onKeyDown={() => {}}
+            >
+              Does Nothing
+            </div>
           </div>
-          <div tabIndex="0" role="button" onClick={() => { }} onKeyDown={() => { }}>
-            Does Nothing
-          </div>
-        </div>
-      }>
+        }
+      >
         <span className="narmi-icon-more-horizontal"></span>
       </Popover>
       <Dialog isOpen={isDialogOpen} title={`Remove account`}>
-        <Button onClick={() => { setIsDialogOpen(false) }}>Close</Button>
+        <Button
+          onClick={() => {
+            setIsDialogOpen(false);
+          }}
+        >
+          Close
+        </Button>
       </Dialog>
     </>
   );
-}
+};

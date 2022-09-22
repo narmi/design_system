@@ -46,8 +46,4 @@ export const FullyControlled = () => {
 export default {
   title: "Components/Toggle",
   component: Toggle,
-  argTypes: {
-    children: { table: { disable: true } },
-    onChange: { action: "clicked" },
-  },
 };

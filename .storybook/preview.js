@@ -14,8 +14,12 @@ export const parameters = {
     page: () => <Layout />,
     theme: docs,
   },
+  actions: {
+    argTypesRegex: "^on[A-Z].*",
+  },
   controls: {
     sort: "requiredFirst",
+    exclude: /children/,
     matchers: {
       color: /(background|color)$/i,
     },

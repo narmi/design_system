@@ -55,7 +55,4 @@ AsCard.parameters = {
 export default {
   title: "Components/Checkbox",
   component: Checkbox,
-  argTypes: {
-    onChange: { action: "change" },
-  },
 };

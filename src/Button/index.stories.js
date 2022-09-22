@@ -60,8 +60,6 @@ export default {
   title: "Components/Button",
   component: Button,
   argTypes: {
-    onClick: { action: "clicked" },
-    children: { control: false },
     startIcon: { options: ["", ...VALID_ICON_NAMES] },
     endIcon: { options: ["", ...VALID_ICON_NAMES] },
   },

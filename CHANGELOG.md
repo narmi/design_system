@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.27.7](https://github.com/narmi/design_system/compare/v2.27.6...v2.27.7) (2022-09-22)
+
+
+### Bug Fixes
+
+* **RadioButtons:** adjust spacing and border widths ([1d4ad5e](https://github.com/narmi/design_system/commit/1d4ad5e1cf4cef6d1798c01b5c7a7fecc3c91bb7))
+
 ### [2.27.6](https://github.com/narmi/design_system/compare/v2.27.5...v2.27.6) (2022-08-31)
 
 

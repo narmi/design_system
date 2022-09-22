@@ -14,7 +14,7 @@
 .nds-radiobuttons-option {
   display: block;
   position: relative;
-  margin-bottom: var(--space-m);
+  margin-bottom: var(--space-s);
   cursor: pointer;
   font-size: var(--font-size-default);
 }
@@ -53,7 +53,7 @@
     &:hover .nds-radio,
     &.nds-radiobuttons-option--focused .nds-radio,
     &.nds-radiobuttons-option--checked .nds-radio {
-      border: 2px solid var(--theme-primary);
+      border: 1px solid var(--theme-primary);
     }
 
     &.nds-radiobuttons-option--error .nds-radio {

@@ -32,6 +32,19 @@
 }
 
 /**
+* Theme background colors
+*/
+.bgColor--theme--primary {
+  background-color: var(--theme-primary);
+}
+.bgColor--theme--secondary {
+  background-color: var(--theme-secondary);
+}
+.bgColor--theme--tertiary {
+  background-color: var(--theme-tertiary);
+}
+
+/**
 * Overlay scrims
 */
 .scrim--light {

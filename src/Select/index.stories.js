@@ -174,6 +174,5 @@ export default {
   subcomponents: { SelectItem, SelectAction },
   argTypes: {
     children: { control: false },
-    onChange: { action: "Select change" },
   },
 };

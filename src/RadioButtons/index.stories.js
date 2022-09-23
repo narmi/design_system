@@ -106,7 +106,4 @@ AsCard.parameters = {
 export default {
   title: "Components/RadioButtons",
   component: RadioButtons,
-  artTypes: {
-    onChange: { action: "change" },
-  },
 };

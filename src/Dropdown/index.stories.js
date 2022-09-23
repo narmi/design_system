@@ -123,9 +123,4 @@ export const NewMemberDropDown = () => {
 export default {
   title: "Components/Dropdown",
   component: Dropdown,
-  argTypes: {
-    children: { control: false },
-    onChange: { action: "change" },
-    onClose: { action: "close" },
-  },
 };

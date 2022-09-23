@@ -187,7 +187,4 @@ export default {
   title: "Components/Row",
   component: Row,
   subcomponents: { RowItem },
-  argTypes: {
-    children: { control: false },
-  },
 };

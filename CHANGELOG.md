@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.28.0](https://github.com/narmi/design_system/compare/v2.27.7...v2.28.0) (2022-09-23)
+
+
+### Features
+
+* **helper-casses:** add theme color variants for fontColor and bgColor ([96f41f8](https://github.com/narmi/design_system/commit/96f41f8a67c7fb228da298613ab81269cc114ff5))
+
 ### [2.27.7](https://github.com/narmi/design_system/compare/v2.27.6...v2.27.7) (2022-09-22)
 
 

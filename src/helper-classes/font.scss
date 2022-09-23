@@ -20,6 +20,19 @@
 }
 
 /**
+* theme colors
+*/
+.fontColor--theme--primary {
+  color: var(--theme-primary);
+}
+.fontColor--theme--secondary {
+  color: var(--theme-secondary);
+}
+.fontColor--theme--tertiary {
+  color: var(--theme-tertiary);
+}
+
+/**
 * helpers for setting font color to a standard "system" color
 */
 .fontColor--success {

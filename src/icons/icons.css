@@ -1,6 +1,6 @@
 @font-face {
   font-family: "icomoon";
-  src: url("./icomoon.woff?bcrq8u") format("woff");
+  src: url("./icomoon.woff?j396xu") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -22,6 +22,33 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.narmi-icon-star-filled:before {
+  content: "\ea3f";
+}
+.narmi-icon-car-outline:before {
+  content: "\ea40";
+}
+.narmi-icon-dining:before {
+  content: "\ea41";
+}
+.narmi-icon-fingerprint:before {
+  content: "\ea42";
+}
+.narmi-icon-heart-pulse:before {
+  content: "\ea43";
+}
+.narmi-icon-paw:before {
+  content: "\ea44";
+}
+.narmi-icon-receipt:before {
+  content: "\ea45";
+}
+.narmi-icon-self-care:before {
+  content: "\ea46";
+}
+.narmi-icon-stroller:before {
+  content: "\ea47";
+}
 .narmi-icon-security:before {
   content: "\ea3b";
   color: #4c4c4c;

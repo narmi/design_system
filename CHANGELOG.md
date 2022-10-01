@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.29.1](https://github.com/narmi/design_system/compare/v2.29.0...v2.29.1) (2022-10-01)
+
+
+### Bug Fixes
+
+* **RadioButtons:** don't show bottom margin on last radio button option ([178d8d6](https://github.com/narmi/design_system/commit/178d8d6b2f242233bb19af20e61669db9f295825))
+
 ## [2.29.0](https://github.com/narmi/design_system/compare/v2.28.0...v2.29.0) (2022-09-28)
 
 

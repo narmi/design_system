@@ -17,6 +17,9 @@
   margin-bottom: var(--space-s);
   cursor: pointer;
   font-size: var(--font-size-default);
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 }
 
 // normal variant of radiobuttons

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.29.4](https://github.com/narmi/design_system/compare/v2.29.3...v2.29.4) (2022-10-03)
+
+
+### Bug Fixes
+
+* **TextInput:** prevent global CSS from modifying input height ([c62b3a5](https://github.com/narmi/design_system/commit/c62b3a5ceb5e83862c5a07e30d701fa66d219acc))
+
 ### [2.29.3](https://github.com/narmi/design_system/compare/v2.29.2...v2.29.3) (2022-10-03)
 
 

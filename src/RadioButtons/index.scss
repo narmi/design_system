@@ -17,7 +17,7 @@
   margin-bottom: var(--space-s);
   cursor: pointer;
   font-size: var(--font-size-default);
-  &:last-of-type {
+  &:last-child {
     margin-bottom: 0;
   }
 }

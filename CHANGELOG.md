@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.29.2](https://github.com/narmi/design_system/compare/v2.29.1...v2.29.2) (2022-10-03)
+
+
+### Bug Fixes
+
+* **RadioButtons:** spacing should exist between the last option and an error, if one exists. ([dfe1057](https://github.com/narmi/design_system/commit/dfe1057625e5a0986709b042e52308337d160816))
+
 ### [2.29.1](https://github.com/narmi/design_system/compare/v2.29.0...v2.29.1) (2022-10-01)
 
 

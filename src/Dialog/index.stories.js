@@ -161,6 +161,7 @@ export const PopoverDialog = () => {
         content={
           <div className="popover-content">
             <div
+              className="padding--all--s"
               tabIndex="0"
               role="button"
               onClick={() => {
@@ -171,6 +172,7 @@ export const PopoverDialog = () => {
               Open Modal
             </div>
             <div
+              className="padding--all--s"
               tabIndex="0"
               role="button"
               onClick={() => {}}
@@ -183,7 +185,13 @@ export const PopoverDialog = () => {
       >
         <span className="narmi-icon-more-horizontal"></span>
       </Popover>
-      <Dialog isOpen={isDialogOpen} title={`Remove account`}>
+      <Dialog
+        isOpen={isDialogOpen}
+        title={`Remove account`}
+        onUserDismiss={() => {
+          setIsDialogOpen(false);
+        }}
+      >
         <Button
           onClick={() => {
             setIsDialogOpen(false);

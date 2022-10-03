@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.29.3](https://github.com/narmi/design_system/compare/v2.29.2...v2.29.3) (2022-10-03)
+
+
+### Bug Fixes
+
+* **RadioButtons:** card-style radio buttons should have font weight bold and color theme primary ([730a810](https://github.com/narmi/design_system/commit/730a810dbede941b3866777a16fb71f2b147c33c))
+
 ### [2.29.2](https://github.com/narmi/design_system/compare/v2.29.1...v2.29.2) (2022-10-03)
 
 

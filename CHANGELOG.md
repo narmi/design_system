@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.29.5](https://github.com/narmi/design_system/compare/v2.29.4...v2.29.5) (2022-10-11)
+
+
+### Bug Fixes
+
+* **TextInput:** add `aria-label` property as a11y fallback ([910832f](https://github.com/narmi/design_system/commit/910832f8c5126e4deef4dfcb354a447a9f92ac43))
+
 ### [2.29.4](https://github.com/narmi/design_system/compare/v2.29.3...v2.29.4) (2022-10-03)
 
 

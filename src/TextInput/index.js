@@ -76,6 +76,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
           ref={forwardedRef}
           type="text"
           required
+          aria-label={props.label}
           placeholder={props.label}
           data-testid={testId}
           {...nativeElementProps}

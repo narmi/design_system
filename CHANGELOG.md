@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.30.0](https://github.com/narmi/design_system/compare/v2.29.5...v2.30.0) (2022-10-18)
+
+
+### Features
+
+* **icons:** add zelle outline icon ([baf4b58](https://github.com/narmi/design_system/commit/baf4b58b8db768018c3722a6e9be25adc12390b6))
+
 ### [2.29.5](https://github.com/narmi/design_system/compare/v2.29.4...v2.29.5) (2022-10-11)
 
 

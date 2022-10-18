@@ -6,10 +6,9 @@
   font-display: block;
 }
 
-[class^="narmi-icon-"],
-[class*=" narmi-icon-"] {
+[class^="narmi-icon-"], [class*=" narmi-icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "icomoon" !important;
+  font-family: 'icomoon' !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -22,6 +21,43 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.narmi-icon-zelle-outline:before {
+  content: "\ea3d";
+}
+.narmi-icon-question:before {
+  content: "\ea36";
+}
+.narmi-icon-signal:before {
+  content: "\ea37";
+}
+.narmi-icon-car:before {
+  content: "\ea38";
+}
+.narmi-icon-check-front:before {
+  content: "\e906";
+}
+.narmi-icon-dollar-bill-line:before {
+  content: "\ea32";
+}
+.narmi-icon-wires:before {
+  content: "\ea33";
+}
+.narmi-icon-m2m:before {
+  content: "\ea34";
+}
+.narmi-icon-venmo-logo:before {
+  content: "\e90b";
+  color: #3d95ce;
+}
+.narmi-icon-face-id:before {
+  content: "\e909";
+}
+.narmi-icon-library:before {
+  content: "\e921";
+}
+.narmi-icon-profile:before {
+  content: "\e923";
+}
 .narmi-icon-star-filled:before {
   content: "\ea3f";
 }
@@ -970,40 +1006,6 @@
 }
 .narmi-icon-credit-card:before {
   content: "\e93f";
-}
-.narmi-icon-question:before {
-  content: "\ea36";
-}
-.narmi-icon-signal:before {
-  content: "\ea37";
-}
-.narmi-icon-car:before {
-  content: "\ea38";
-}
-.narmi-icon-check-front:before {
-  content: "\e906";
-}
-.narmi-icon-dollar-bill-line:before {
-  content: "\ea32";
-}
-.narmi-icon-wires:before {
-  content: "\ea33";
-}
-.narmi-icon-m2m:before {
-  content: "\ea34";
-}
-.narmi-icon-venmo-logo:before {
-  content: "\e90b";
-  color: #3d95ce;
-}
-.narmi-icon-face-id:before {
-  content: "\e909";
-}
-.narmi-icon-library:before {
-  content: "\e921";
-}
-.narmi-icon-profile:before {
-  content: "\e923";
 }
 .narmi-icon-bank:before {
   content: "\e900";

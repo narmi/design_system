@@ -14,6 +14,7 @@ const Checkbox = ({
   defaultChecked,
   checked,
   value,
+  error,
   kind = "normal",
   testId,
   ...rest
@@ -47,7 +48,7 @@ const Checkbox = ({
   };
 
   return (
-    <>
+    <div className="nds-checkbox-container">
       <label
         className={cc([
           "nds-typograhy",
@@ -75,7 +76,13 @@ const Checkbox = ({
         />
         <span className="narmi-icon-check"></span>
       </label>
-    </>
+      {error &&
+        <div className="fontColor--error margin--top--xs">
+          <span className="fontSize--s margin--right--xxs narmi-icon-x-circle" />
+          {error}
+        </div>
+      }
+    </div>
   );
 };
 
@@ -99,6 +106,8 @@ Checkbox.propTypes = {
   checked: PropTypes.bool,
   /** Sets the `value` attribute of the `input` */
   value: PropTypes.string,
+  /** Text of error message to display under the checkbox */
+  error: PropTypes.string,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
   /**

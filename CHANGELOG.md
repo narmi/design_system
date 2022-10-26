@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.33.0](https://github.com/narmi/design_system/compare/v2.32.0...v2.33.0) (2022-10-26)
+
+
+### Features
+
+* **icons:** add list of mobile-compatible icons to the built dist ([597b1f8](https://github.com/narmi/design_system/commit/597b1f8ad34f689a24c00709f752b8b7db4c9bfc))
+
 ## [2.32.0](https://github.com/narmi/design_system/compare/v2.31.0...v2.32.0) (2022-10-26)
 
 

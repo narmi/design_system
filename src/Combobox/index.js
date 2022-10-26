@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import cc from "classcat";
 import iconSelection from "src/icons/selection.json";
 import { useCombobox } from "downshift";
+import { useLayer } from "react-laag";
 import ComboboxItem from "./ComboboxItem";
 import ComboboxHeading from "./ComboboxHeading";
 import TextInput from "../TextInput";
@@ -104,6 +105,27 @@ const Combobox = ({
     },
   });
 
+  const hasSelectedItem = !!selectedItem;
+
+
+  // react-laag positioning engine for autocomplete popup
+  const {
+    renderLayer,
+    triggerProps,
+    layerProps,
+    triggerBounds,
+    layerSide,
+  } = useLayer({
+    isOpen,
+    overflowContainer: true,
+    auto: true,
+    snap: true,
+    placement: "bottom-start",
+    possiblePlacements: ["top-start", "bottom-start"],
+    triggerOffset: -3,
+    containerOffset: 16,
+  });
+
   // It is possible that a consumer may have nothing to pass to `children`.
   // For example, if an API response hasn't completed to load in the autocomplete
   // options. In that case, Cobmobox should render a normal TextInput.
@@ -119,12 +141,10 @@ const Combobox = ({
     );
   }
 
-  const hasSelectedItem = !!selectedItem;
-
   return (
     <div
       className={cc(["nds-combobox", { "nds-combobox--active": isOpen }])}
-      {...getComboboxProps()}
+      {...getComboboxProps(triggerProps)}
       data-testid={testId}
     >
       <TextInput
@@ -150,61 +170,69 @@ const Combobox = ({
             if (hasSelectedItem) {
               setInputValue(selectedItem.props.value);
             }
-          },
+    },
         })}
       />
-      <ul
-        className={cc([
-          "nds-combobox-list",
-          "list--reset bgColor--white rounded--bottom",
-          "border--right border--bottom border--left",
-          { "nds-combobox-list--active": isOpen },
-        ])}
-        {...getMenuProps()}
-      >
-        {isOpen &&
-          displayedItems.map((item, index) => {
-            let result = (
-              <li
-                key={`${item}-${index}`}
-                className={cc([
-                  "nds-combobox-heading",
-                  "alignChild--left--center padding--x--s padding--y--xs",
-                ])}
-              >
-                {item}
-              </li>
-            );
-
-            if (isSelectable(item)) {
-              result = (
+      {renderLayer(
+        <ul
+          className={cc([
+            "nds-combobox-list",
+            "list--reset bgColor--white border--right bottom border--left",
+            {
+              "nds-combobox-list--active": isOpen,
+              "nds-combobox-list--bottom": layerSide === "bottom",
+              "nds-combobox-list--top": layerSide === "top",
+            },
+          ])}
+          {...getMenuProps(layerProps)}
+          style={{
+            width: triggerBounds?.width || 'auto',
+            ...layerProps.style,
+          }}
+        >
+          {isOpen && displayedItems.map((item, index) => {
+              let result = (
                 <li
                   key={`${item}-${index}`}
                   className={cc([
-                    "nds-combobox-item",
+                    "nds-combobox-heading",
                     "alignChild--left--center padding--x--s padding--y--xs",
-                    {
-                      "nds-combobox-item--highlighted":
-                        highlightedIndex === index,
-                      "rounded--top": index === 0,
-                      "rounded--bottom": index === displayedItems.length - 1,
-                      "nds-combobox-item--hasGutter": hasSelectedItem,
-                    },
                   ])}
-                  {...getItemProps({ item, index })}
                 >
-                  {hasSelectedItem &&
-                    selectedItem.props.value === item.props.value && (
-                      <span className="narmi-icon-check fontSize--l fontWeight--bold" />
-                    )}
                   {item}
                 </li>
               );
-            }
 
-            return result;
-          })}
-      </ul>
+              if (isSelectable(item)) {
+                result = (
+                  <li
+                    key={`${item}-${index}`}
+                    className={cc([
+                      "nds-combobox-item",
+                      "alignChild--left--center padding--x--s padding--y--xs",
+                      {
+                        "nds-combobox-item--highlighted":
+                          highlightedIndex === index,
+                        "rounded--top": index === 0,
+                        "rounded--bottom": index === displayedItems.length - 1,
+                        "nds-combobox-item--hasGutter": hasSelectedItem,
+                      },
+                    ])}
+                    {...getItemProps({ item, index })}
+                  >
+                    {hasSelectedItem &&
+                      selectedItem.props.value === item.props.value && (
+                        <span className="narmi-icon-check fontSize--l fontWeight--bold" />
+                      )}
+                    {item}
+                  </li>
+                );
+              }
+
+              return result;
+            })}
+        </ul>
+      )}
     </div>
   );
 };

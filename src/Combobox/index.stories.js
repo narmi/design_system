@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Combobox, { VALID_ICON_NAMES } from "./";
 import ComboboxItem from "./ComboboxItem";
 import ComboboxHeading from "./ComboboxHeading";
+import Dialog from "../Dialog";
 import { options_states } from "./util";
 
 const Template = (args) => <Combobox {...args} />;
@@ -91,6 +92,32 @@ FullyControlled.parameters = {
     },
   },
 };
+
+export const InADialog = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <button onClick={() => {setIsOpen(true)}}>Open dialog</button>
+      <Dialog
+        title="Dialog with a Combobox"
+        isOpen={isOpen}
+        onUserDismiss={() => setIsOpen(false)}
+      >
+        <Combobox label="Select Account">
+          <Combobox.Heading text="Checking" />
+          <Combobox.Item value="Primary Checking - 4567" />
+          <Combobox.Item value="Secondary Checking - 9876" />
+          <Combobox.Item value="Other Checking - 1112" />
+          <Combobox.Item value="Wow, more Checking - 3112" />
+          <Combobox.Heading text="Savings" />
+          <Combobox.Item value="Primary Savings - 1234" />
+          <Combobox.Item value="Cheese Fund - 5432" />
+        </Combobox>
+      </Dialog>
+    </>
+  );
+}
 
 export default {
   title: "Components/Combobox",

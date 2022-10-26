@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
 import React from "react";
 import PropTypes from "prop-types";
+import Error from "../Error";
 
 /*
 The Narmi TextInput component is designed for text-based form fields.
@@ -10,20 +11,6 @@ If `icon` is provided, the value of the icon property must match an available ic
 By default, if neither `multiline` nor `icon` are provided, an overhanging label will be shown in the input.
 
 */
-
-const Error = ({ error }) => {
-  if (!error) return null;
-  return (
-    <div className="nds-input-error">
-      <div className="fontSize--s margin--right--xxs narmi-icon-x-circle" />
-      {error}
-    </div>
-  );
-};
-
-Error.propTypes = {
-  error: PropTypes.string,
-};
 
 /**
  * PRIVATE

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
+import Error from "../Error";
 
 /**
  * Narmi styled checkbox with built-in label.
@@ -74,14 +75,14 @@ const Checkbox = ({
           {...rest}
           type="checkbox"
         />
-        <span className="narmi-icon-check"></span>
+        <span
+          className={cc([
+            "narmi-icon-check",
+            { "error": !!error },
+          ])}
+        ></span>
       </label>
-      {error &&
-        <div className="fontColor--error margin--top--xs">
-          <span className="fontSize--s margin--right--xxs narmi-icon-x-circle" />
-          {error}
-        </div>
-      }
+      <Error marginTop="xs" error={error} />
     </div>
   );
 };

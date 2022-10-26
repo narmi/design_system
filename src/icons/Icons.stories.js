@@ -7,7 +7,7 @@ import {
   Stories,
 } from '@storybook/addon-docs';
 import iconSelection from "dist/icons/selection.json";
-import compatIcons from "./2022.7-compat-icons";
+import compatIcons from "./compat-icons";
 
 const IconDocs = ({ iconNames }) => {
   return (

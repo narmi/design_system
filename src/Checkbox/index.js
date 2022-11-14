@@ -52,8 +52,8 @@ const Checkbox = ({
     <div className="nds-checkbox-container">
       <label
         className={cc([
-          "nds-typograhy",
           `nds-checkbox nds-checkbox--${kind}`,
+          "fontWeight--default",
           {
             "nds-checkbox--checked": isChecked,
             "nds-checkbox--focused": isFocused,

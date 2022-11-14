@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.34.1](https://github.com/narmi/design_system/compare/v2.34.0...v2.34.1) (2022-11-14)
+
+
+### Bug Fixes
+
+* **Checkbox,RadioButtons:** specify label font weights ([a414975](https://github.com/narmi/design_system/commit/a41497521e23211a0b5d9ede88851fb43b9c028b))
+
 ## [2.34.0](https://github.com/narmi/design_system/compare/v2.33.1...v2.34.0) (2022-10-28)
 
 

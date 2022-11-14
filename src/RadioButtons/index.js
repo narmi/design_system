@@ -61,6 +61,7 @@ const RadioButtons = ({
         <label
           className={cc([
             "nds-radiobuttons-option",
+            "fontWeight--default",
             {
               "nds-radiobuttons-option--checked": checkedValue == inputValue,
               "nds-radiobuttons-option--focused": focusedValue == inputValue,

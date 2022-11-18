@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.35.0](https://github.com/narmi/design_system/compare/v2.34.1...v2.35.0) (2022-11-18)
+
+
+### Features
+
+* **Button:** add `xs` size option ([5d592d3](https://github.com/narmi/design_system/commit/5d592d379fec2cdd864780c2b0bb12bf95079c0e)), closes [/github.com/narmi/design_system/pull/852#pullrequestreview-1186812380](https://github.com/narmi//github.com/narmi/design_system/pull/852/issues/pullrequestreview-1186812380)
+
 ### [2.34.1](https://github.com/narmi/design_system/compare/v2.34.0...v2.34.1) (2022-11-14)
 
 

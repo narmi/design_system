@@ -45,6 +45,12 @@ describe("Button", () => {
     expect(button).toHaveAttribute("disabled");
   });
 
+  it("has expected classes for `xs` size", () => {
+    render(<Button label={LABEL} size="xs" />);
+    const button = getButton();
+    expect(button).toHaveClass("fontSize--xs");
+  });
+
   it("has expected classes for `s` size", () => {
     render(<Button label={LABEL} size="s" />);
     const button = getButton();

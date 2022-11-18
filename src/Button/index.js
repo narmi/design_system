@@ -104,7 +104,7 @@ Button.propTypes = {
   /** style of button to render */
   kind: PropTypes.oneOf(["primary", "secondary", "negative", "menu", "plain"]),
   /** size variant of button */
-  size: PropTypes.oneOf(["s", "m", "l"]),
+  size: PropTypes.oneOf(["xs", "s", "m", "l"]),
   /** Click callback, with event object passed as argument */
   onClick: PropTypes.func,
   /** Name of Narmi icon to place at the start of the label */

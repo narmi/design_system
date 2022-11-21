@@ -51,8 +51,8 @@ module.exports = {
           to: path.resolve(__dirname, "dist/icons/icomoon.woff"),
         },
         {
-          from: path.join(__dirname, "src/icons/compat-icons.js"),
-          to: path.resolve(__dirname, "dist/icons/compat-icons.js"),
+          from: path.join(__dirname, "src/icons/compat-icons.json"),
+          to: path.resolve(__dirname, "dist/icons/compat-icons.json"),
         },
       ],
     }),

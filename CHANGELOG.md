@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.35.1](https://github.com/narmi/design_system/compare/v2.35.0...v2.35.1) (2022-11-22)
+
+
+### Bug Fixes
+
+* **Checkbox:** correct styling for hover and focus states ([cacd269](https://github.com/narmi/design_system/commit/cacd2690335d6a1a318a39d6807d871052128aee))
+
 ## [2.35.0](https://github.com/narmi/design_system/compare/v2.34.1...v2.35.0) (2022-11-18)
 
 

@@ -25,22 +25,6 @@
   align-items: center;
   padding-left: 28px;
 
-  &.nds-checkbox--focused {
-    .narmi-icon-check {
-      border: 2px solid var(--theme-primary);
-    }
-  }
-
-  &.nds-checkbox--checked {
-    .narmi-icon-check {
-      background-color: var(--theme-primary);
-      border: 1px solid var(--theme-primary);
-      &:after {
-        display: block;
-      }
-    }
-  }
-
   .narmi-icon-check {
     position: absolute;
     left: 0;
@@ -55,14 +39,33 @@
     text-align: center;
     line-height: 18px;
     box-sizing: content-box;
-    &:hover {
-      border: 2px solid var(--theme-primary);
-    }
     &:after {
       color: red;
     }
     &.error {
       border: 1px solid var(--color-errorDark);
+    }
+  }
+
+  // hover
+  .narmi-icon-check:hover {
+    border-color: var(--theme-primary);
+  }
+
+  // focused
+  &.nds-checkbox--focused .narmi-icon-check {
+    border-color: var(--theme-primary);
+    outline: 3px solid RGBA(var(--theme-rgb-primary), var(--alpha-10));
+  }
+
+  // checked
+  &.nds-checkbox--checked {
+    .narmi-icon-check {
+      background-color: var(--theme-primary);
+      border-color: var(--theme-primary);
+      &:after {
+        display: block;
+      }
     }
   }
 }

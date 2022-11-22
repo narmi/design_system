@@ -44,15 +44,15 @@ export const Icons = () => {
 // Mobile-Compatible Icons story
 export const MobileCompatibleIcons = () => (
   <>
-    <IconDocs iconNames={compatIcons} />
+    <IconDocs iconNames={compatIcons.icons} />
   </>
 );
 MobileCompatibleIcons.parameters = {
   docs: {
     description: {
       story: `This set of icons is safe to use in our mobile application.
-      These shapes are supported down to release \`v2022.7\` to account for
-      users on older versions of the mobile app.`,
+      These shapes are supported down to release \`v2022.7\` (NDS version \`v2.21.2\`)
+      to account for users on older versions of the mobile app.`,
     },
   },
 };

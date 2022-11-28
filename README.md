@@ -169,6 +169,7 @@ The best way to approach testing unpublished NDS changes in a consumer is to use
 **beta versions**.
 
 #### Publishing a beta version
+⚠️ Only do this if absolutely necessary
 
 1. Rebuild NDS (`npm run build`)
 2. Update the `version` field of package.json to be a beta of the next minor.

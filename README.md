@@ -99,6 +99,8 @@ npm run dev
 | `storybook`        | starts storybook in dev server mode on `:6006`       |
 | `watch`            | watches `src` dir, triggering `build` on changes     |
 | `dev`              | **Start storybook and watch for all `src` changes**  |
+| `stats:components` | analyzes a given project and reports component usage |
+| `stats:classes`    | analyzes a given project and reports class usage     |
 
 ### Releases
 
@@ -158,6 +160,31 @@ Any modification to the design system that requires consumers to update their us
 
 If you are making a breaking change, please [note it in your commit message](https://www.conventionalcommits.org/en/v1.0.0/#commit-message-with-description-and-breaking-change-footer) appropriately.
 
+### Testing unpublished changes in a consumer
+
+**Development of Narmi Design System should be done in isolation within this repo.**
+There are however, some rare circumstances where you may need to test NDS changes against some consuming application.
+
+The best way to approach testing unpublished NDS changes in a consumer is to use
+**beta versions**.
+
+#### Publishing a beta version
+
+1. Rebuild NDS (`npm run build`)
+2. Update the `version` field of package.json to be a beta of the next minor.
+   For example, you would change `2.35.2` to `2.36.0-beta.0`.
+   DO NOT COMMIT THIS CHANGE.
+3. Publish the package (`npm run publish --tag beta`)
+4. In your consuming application, you can point the `@narmi/design_system`
+   version to the beta version you just published.
+
+If you need to make additional changes after the beta is published...
+
+1. Rebuild NDS (`npm run build`)
+2. Bump the beta version number in package.json (`2.36.0-beta.0` -> `2.36.0-beta.1`)
+3. Install the new beta version in your consuming application.
+
+----
 ## License
 
 Source code is under a custom license based on MIT. The license restricts `@narmi/design_system` usage to applications that integrate or interoperate with Narmi software or services, with additional restrictions for external, stand-alone applications. Please see LICENSE.md for full details.

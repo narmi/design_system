@@ -7,6 +7,7 @@ import ContentCard from "./ContentCard";
 import Combobox from "./Combobox";
 import DateInput from "./DateInput";
 import Dialog from "./Dialog";
+import Drawer from "./Drawer";
 import Dropdown from "./Dropdown";
 import DropdownTrigger from "./DropdownTrigger";
 import Input from "./Input";
@@ -37,6 +38,7 @@ export {
   Combobox,
   DateInput,
   Dialog,
+  Drawer,
   Dropdown,
   DropdownTrigger,
   Input,

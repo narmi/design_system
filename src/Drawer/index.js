@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions,react/require-default-props */
 import React, { useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
@@ -36,40 +36,30 @@ const Drawer = ({
   const depthStyle = isHorizontal ? { height: depth } : { width: depth };
   useLockBodyScroll(isOpen);
 
-  // Navigation buttons on vertical drawers are the opposite compared to
-  // horizontal ones due to the order of navigation buttons being the opposite
-  //(rows are reversed in parent divs for horizontal drawers)
-  const prevOrNext = (opposite = false) => {
-    if (isHorizontal) {
-      if (opposite) return onPrev;
-      return onNext;
-    }
-    if (opposite) return onNext;
-    return onPrev;
-  };
-
   const handleKeyDown = ({ key }) => {
     if (key === "Escape") {
       onUserDismiss();
     }
+    if (!showControls) return;
     if (isHorizontal) {
       if (key === "ArrowRight") {
-        prevOrNext() && prevOrNext()();
+        onNext && onNext();
       }
       if (key === "ArrowLeft") {
-        prevOrNext(true) && prevOrNext(true)();
+        onPrev && onPrev();
       }
     } else {
       if (key === "ArrowDown") {
-        prevOrNext(true) && prevOrNext(true)();
+        onNext && onNext();
       }
       if (key === "ArrowUp") {
-        prevOrNext() && prevOrNext()();
+        onPrev && onPrev();
       }
     }
   };
 
   useEffect(() => {
+    if (!isOpen) return;
     window.addEventListener("keydown", handleKeyDown);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
@@ -91,23 +81,14 @@ const Drawer = ({
       ref={navRef}
       onClick={handleShimClick}
       style={depthStyle}
-      className={cc([
-        `drawer navigation ${position}`,
-        {
-          open: isOpen,
-          in: isTransitioning,
-        },
-      ])}
+      className={`drawer drawer--${position} navigation  ${
+        isOpen && isTransitioning ? `navigation--open--${position}` : ""
+      }`}
       data-testid={testId}
     >
-      <div
-        className={cc(`navigation-container ${position}`, {
-          open: isOpen,
-          in: isTransitioning,
-        })}
-      >
+      <div className={`navigation-container--${position}`}>
         <div
-          className={`navigation-button ${position} alignChild--center--center`}
+          className={`navigation-button navigation-button--${position} alignChild--center--center`}
           onClick={onUserDismiss}
         >
           <span className="narmi-icon-x clickable" />
@@ -118,10 +99,18 @@ const Drawer = ({
         {showControls && (
           <>
             <div
-              className={`navigation-button ${position} alignChild--center--center ${
-                prevOrNext() !== null ? "clickable" : "disabled"
-              }`}
-              onClick={prevOrNext() !== null ? prevOrNext() : undefined}
+              className={cc([
+                `navigation-button navigation-button--${position} alignChild--center--center`,
+                {
+                  // Navigation buttons on vertical drawers are the opposite compared to
+                  // horizontal ones due to the order of navigation buttons being the opposite
+                  // (rows are reversed in parent divs for horizontal drawers)
+                  "navigation-button--disabled": isHorizontal
+                    ? onNext == null
+                    : onPrev == null,
+                },
+              ])}
+              onClick={isHorizontal ? onNext : onPrev}
             >
               <span
                 className={`narmi-icon-chevron-${
@@ -130,10 +119,15 @@ const Drawer = ({
               />
             </div>
             <div
-              className={`navigation-button ${position} alignChild--center--center ${
-                prevOrNext(true) !== null ? "clickable" : "disabled"
-              }`}
-              onClick={prevOrNext(true) !== null ? prevOrNext(true) : undefined}
+              className={cc([
+                `navigation-button navigation-button--${position} alignChild--center--center`,
+                {
+                  "navigation-button--disabled": isHorizontal
+                    ? onPrev == null
+                    : onNext == null,
+                },
+              ])}
+              onClick={isHorizontal ? onPrev : onNext}
             >
               <span
                 className={`narmi-icon-chevron-${
@@ -150,7 +144,9 @@ const Drawer = ({
   const childrenJSX = (
     <div
       style={depthStyle}
-      className={cc(["drawer", position])}
+      className={`drawer drawer--${position} ${
+        isOpen && isTransitioning ? `drawer--open--${position}` : ""
+      }`}
       role="dialog"
       data-testid={testId}
     >
@@ -161,18 +157,17 @@ const Drawer = ({
   // the shim has events for mouse users only; does not require a role
   /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
   const drawerJSX = (
-    <div
-      className={cc([
-        "drawer-container",
-        {
-          open: isOpen,
-          in: isTransitioning,
-        },
-      ])}
-    >
+    <div className="drawerContainer">
       {childrenJSX}
       {navigationContainerJSX}
-      <div ref={shimRef} className="backdrop" onClick={handleShimClick} />
+      <div
+        ref={shimRef}
+        className={cc([
+          "backdrop",
+          { "backdrop--open": isOpen && isTransitioning },
+        ])}
+        onClick={handleShimClick}
+      />
     </div>
   );
 
@@ -185,47 +180,38 @@ const Drawer = ({
 Drawer.propTypes = {
   /** Scrollable contents of the Drawer */
   children: PropTypes.node.isRequired,
-
   /** Controls open/close state of the modal. Use the `onUserDismiss` callback to update. */
-  // eslint-disable-next-line react/require-default-props
   isOpen: PropTypes.bool,
   /**
    * Callback to handle user taking an action to dismiss the modal
    * (click outside, Escape key, click close button)
    */
-  // eslint-disable-next-line react/require-default-props
   onUserDismiss: PropTypes.func,
   /**
    * Callback to handle user taking an action to go to the next element
    * (click on the next arrow, right/down arrow key)
    */
-  // eslint-disable-next-line react/require-default-props
   onNext: PropTypes.func,
   /**
    * Callback to handle user taking an action to go to the previous element
    * (click on the previous arrow, left/up arrow key)
    */
-  // eslint-disable-next-line react/require-default-props
   onPrev: PropTypes.func,
   /**
    * Sets how far the drawer opens out (width or height).
    * Use the full CSS value with the percentage (e.g. `"400px"` or `"70%"`)
    */
-  // eslint-disable-next-line react/require-default-props
   depth: PropTypes.string,
   /**
    * Determines whether the next and prev buttons show.
    */
-  // eslint-disable-next-line react/require-default-props
   showControls: PropTypes.bool,
   /**
    * Sets the position from which the drawers open.
    * Valid values are `right`, `left`, `bottom`, `top`.
    */
-  // eslint-disable-next-line react/require-default-props
   position: PropTypes.oneOf(["right", "left", "top", "bottom"]),
   /** Optional value for `data-testid` attribute */
-  // eslint-disable-next-line react/require-default-props
   testId: PropTypes.string,
 };
 

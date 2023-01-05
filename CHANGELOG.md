@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.37.0](https://github.com/narmi/design_system/compare/v2.36.1...v2.37.0) (2023-01-05)
+
+
+### Features
+
+* **Tag:** add success, warn and error kinds ([d210588](https://github.com/narmi/design_system/commit/d21058865fabee60c1f8d9292ec0409b5a59cc36))
+
 ### [2.36.1](https://github.com/narmi/design_system/compare/v2.36.0...v2.36.1) (2023-01-05)
 
 

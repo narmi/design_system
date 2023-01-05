@@ -44,7 +44,14 @@ const Tag = ({
 
 Tag.propTypes = {
   /** Variant of Tag */
-  kind: PropTypes.oneOf(["subdued", "dismissible", "outline"]),
+  kind: PropTypes.oneOf([
+    "subdued",
+    "dismissible",
+    "outline",
+    "success",
+    "warn",
+    "error",
+  ]),
   /**
    * Callback for user dismissal action
    * (only applicable for `dismissable` kind)

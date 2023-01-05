@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.36.1](https://github.com/narmi/design_system/compare/v2.36.0...v2.36.1) (2023-01-05)
+
+
+### Bug Fixes
+
+* **Tabs:** set selected tab's font weight to semibold ([cf24522](https://github.com/narmi/design_system/commit/cf24522e125f424bf83d73660cb1a4692770d88d))
+
 ## [2.36.0](https://github.com/narmi/design_system/compare/v2.35.2...v2.36.0) (2022-12-21)
 
 

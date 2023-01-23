@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Drawer from "./";
 import Button from "../Button";
+import Popover from "../Popover";
 
 const CONTENTS = [
   <>
@@ -170,6 +171,26 @@ ScrollingContentWithoutNavigation.parameters = {
         "The Drawer will render open or closed based on the isOpen prop passed in. Use the onUserDismiss callback to determine when to change the value of isOpen.",
     },
   },
+};
+
+export const ContentWithPopover = BaseTemplate.bind({});
+ContentWithPopover.args = {
+  showControls: false,
+  children: (
+    <div
+      style={{
+        height: "200px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Popover content={<div className="padding--all--m">📦 Any content</div>}>
+        <Button type="secondary">Click to show Popover</Button>
+      </Popover>
+    </div>
+  ),
 };
 
 export default {

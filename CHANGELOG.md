@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.38.0](https://github.com/narmi/design_system/compare/v2.37.1...v2.38.0) (2023-01-23)
+
+
+### Features
+
+* **Drawer:** allow popovers within Drawer by decreasing z-index ([be77c89](https://github.com/narmi/design_system/commit/be77c89c951623cfde347823d4e55c42ff9c8986))
+
 ### [2.37.1](https://github.com/narmi/design_system/compare/v2.37.0...v2.37.1) (2023-01-20)
 
 

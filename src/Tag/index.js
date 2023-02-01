@@ -51,6 +51,7 @@ Tag.propTypes = {
     "success",
     "warn",
     "error",
+    "grey",
   ]),
   /**
    * Callback for user dismissal action

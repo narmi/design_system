@@ -91,10 +91,10 @@ const Drawer = ({
           className={`navigation-button navigation-button--${position} alignChild--center--center`}
           onClick={onUserDismiss}
         >
-          <span className="narmi-icon-x clickable" />
+          <span className="narmi-icon-x clickable fontSize--heading3" />
         </div>
         <div
-          className={isHorizontal ? "margin--right--l" : "margin--bottom--l"}
+          className={isHorizontal ? "margin--right--xl" : "margin--bottom--xl"}
         />
         {showControls && (
           <>
@@ -115,7 +115,7 @@ const Drawer = ({
               <span
                 className={`narmi-icon-chevron-${
                   isHorizontal ? "right" : "up"
-                }`}
+                } fontSize--heading3`}
               />
             </div>
             <div
@@ -132,7 +132,7 @@ const Drawer = ({
               <span
                 className={`narmi-icon-chevron-${
                   isHorizontal ? "left" : "down"
-                }`}
+                } fontSize--heading3`}
               />
             </div>
           </>

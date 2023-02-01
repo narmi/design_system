@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.39.0](https://github.com/narmi/design_system/compare/v2.38.1...v2.39.0) (2023-02-01)
+
+
+### Features
+
+* **Tag:** add new `grey` kind ([a47e822](https://github.com/narmi/design_system/commit/a47e8223a1d17f4b87d42e2fb5f8dc2f9893f302))
+
 ### [2.38.1](https://github.com/narmi/design_system/compare/v2.38.0...v2.38.1) (2023-02-01)
 
 

@@ -36,6 +36,10 @@
   background: rgba(var(--rgb-warnLight), 0.8);
   color: var(--color-warnDark);
 }
+.nds-tag--grey {
+  background: var(--color-lightGrey);
+  color: var(--color-grey);
+}
 .nds-tag--error {
   background: var(--color-errorLight);
   color: var(--color-errorDark);

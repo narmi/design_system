@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.38.1](https://github.com/narmi/design_system/compare/v2.38.0...v2.38.1) (2023-02-01)
+
+
+### Bug Fixes
+
+* **Drawer:** update navigation panel design ([442d496](https://github.com/narmi/design_system/commit/442d49687d549a72a01576e865f051381802c533))
+
 ## [2.38.0](https://github.com/narmi/design_system/compare/v2.37.1...v2.38.0) (2023-01-23)
 
 

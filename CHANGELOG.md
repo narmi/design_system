@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.39.1](https://github.com/narmi/design_system/compare/v2.39.0...v2.39.1) (2023-02-02)
+
+
+### Bug Fixes
+
+* **Tag:** change `grey` Tag to `subdued-secondary` ([e6fab53](https://github.com/narmi/design_system/commit/e6fab5398216d70a05e84086166f57b736eca7f5))
+
 ## [2.39.0](https://github.com/narmi/design_system/compare/v2.38.1...v2.39.0) (2023-02-01)
 
 

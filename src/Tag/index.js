@@ -46,12 +46,12 @@ Tag.propTypes = {
   /** Variant of Tag */
   kind: PropTypes.oneOf([
     "subdued",
+    "subdued-secondary",
     "dismissible",
     "outline",
     "success",
     "warn",
     "error",
-    "grey",
   ]),
   /**
    * Callback for user dismissal action

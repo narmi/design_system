@@ -28,6 +28,10 @@
   color: var(--theme-primary);
   background: rgba(var(--theme-rgb-primary), var(--alpha-10));
 }
+.nds-tag--subdued-secondary {
+  color: var(--theme-secondary);
+  background: rgba(var(--theme-rgb-secondary), var(--alpha-10));
+}
 .nds-tag--success {
   background: var(--color-successLight);
   color: var(--color-successDark);
@@ -35,10 +39,6 @@
 .nds-tag--warn {
   background: rgba(var(--rgb-warnLight), 0.8);
   color: var(--color-warnDark);
-}
-.nds-tag--grey {
-  background: var(--color-lightGrey);
-  color: var(--color-grey);
 }
 .nds-tag--error {
   background: var(--color-errorLight);

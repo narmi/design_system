@@ -3,13 +3,13 @@ import formatNumber from "./formatNumber";
 describe("formatNumber", () => {
   it("formats as currecny by default", () => {
     const actual = formatNumber("0");
-    const expected = "$0";
+    const expected = "$0.00";
     expect(actual).toEqual(expected);
   });
 
   it("accepts a Number as input", () => {
     const actual = formatNumber(0);
-    const expected = "$0";
+    const expected = "$0.00";
     expect(actual).toEqual(expected);
   });
 
@@ -18,7 +18,7 @@ describe("formatNumber", () => {
 
     it("formats absolute 0 correctly", () => {
       const actual = formatNumber("0", style);
-      const expected = "$0";
+      const expected = "$0.00";
       expect(actual).toEqual(expected);
     });
 
@@ -30,24 +30,24 @@ describe("formatNumber", () => {
 
     it("formats 999 correctly", () => {
       const actual = formatNumber("999", style);
-      const expected = "$999";
+      const expected = "$999.00";
       expect(actual).toEqual(expected);
     });
 
     it("shows thousands separators", () => {
       const actual = formatNumber("1200", style);
-      const expected = "$1,200";
+      const expected = "$1,200.00";
       expect(actual).toEqual(expected);
     });
 
     it("shows negative sign for < 0 string", () => {
       const actual = formatNumber("-1500", style);
-      const expected = "-$1,500";
+      const expected = "-$1,500.00";
       expect(actual).toEqual(expected);
     });
     it("shows negative sign for < 0 number", () => {
       const actual = formatNumber(-12, style);
-      const expected = "-$12";
+      const expected = "-$12.00";
       expect(actual).toEqual(expected);
     });
   });

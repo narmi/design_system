@@ -6,7 +6,7 @@
  *
  * formatNumber(1234.56, 'currency'); // '$1,234.56'
  * formatNumber(34.4, 'currency');    // '$34.40'
- * formatNumber(-12, 'currency');     // '-$12'
+ * formatNumber(-12, 'currency');     // '-$12.00'
  * formatNumber('0.0342', 'percent'); // '3.42%'
  * formatNumber(0.0023, 'percent');   // '0.23%'
  * formatNumber(0.215555, 'percent'); // '21.56%'
@@ -20,7 +20,6 @@ const formatNumber = (input, style = "currency") => {
   let formatterOpts = {
     style,
     currencyDisplay: "narrowSymbol",
-    maximumFractionDigits: Number.isInteger(number) ? 0 : 2,
   };
 
   // only allow currency and percentage types for now
@@ -35,6 +34,10 @@ const formatNumber = (input, style = "currency") => {
 
   if (style === "currency") {
     formatterOpts.currency = "USD";
+    formatterOpts.minimumFractionDigits = 2;
+    formatterOpts.maximumFractionDigits = 2;
+  } else if (style === "percent") {
+    formatterOpts.maximumFractionDigits = Number.isInteger(number) ? 0 : 2;
   }
 
   try {

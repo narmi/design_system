@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.39.2](https://github.com/narmi/design_system/compare/v2.39.1...v2.39.2) (2023-02-08)
+
+
+### Bug Fixes
+
+* **formatNumber:** Always format numbers with 2 decimal places ([8fb1800](https://github.com/narmi/design_system/commit/8fb1800fff455cd96c01cb2d7448da07563d9b15))
+
 ### [2.39.1](https://github.com/narmi/design_system/compare/v2.39.0...v2.39.1) (2023-02-02)
 
 

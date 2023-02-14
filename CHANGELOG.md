@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.39.3](https://github.com/narmi/design_system/compare/v2.39.2...v2.39.3) (2023-02-14)
+
+
+### Bug Fixes
+
+* **Input:** error color wins against focus color ([0cbaed2](https://github.com/narmi/design_system/commit/0cbaed2553c7b2556addca0f671969ccd1180057))
+
 ### [2.39.2](https://github.com/narmi/design_system/compare/v2.39.1...v2.39.2) (2023-02-08)
 
 

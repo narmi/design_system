@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.39.3](https://github.com/narmi/design_system/compare/v2.39.2...v2.39.3) (2023-02-14)
+
+
+### Bug Fixes
+
+* **Input:** error color wins against focus color ([0cbaed2](https://github.com/narmi/design_system/commit/0cbaed2553c7b2556addca0f671969ccd1180057))
+
+### [2.39.2](https://github.com/narmi/design_system/compare/v2.39.1...v2.39.2) (2023-02-08)
+
+
+### Bug Fixes
+
+* **formatNumber:** Always format numbers with 2 decimal places ([8fb1800](https://github.com/narmi/design_system/commit/8fb1800fff455cd96c01cb2d7448da07563d9b15))
+
+### [2.39.1](https://github.com/narmi/design_system/compare/v2.39.0...v2.39.1) (2023-02-02)
+
+
+### Bug Fixes
+
+* **Tag:** change `grey` Tag to `subdued-secondary` ([e6fab53](https://github.com/narmi/design_system/commit/e6fab5398216d70a05e84086166f57b736eca7f5))
+
+## [2.39.0](https://github.com/narmi/design_system/compare/v2.38.1...v2.39.0) (2023-02-01)
+
+
+### Features
+
+* **Tag:** add new `grey` kind ([a47e822](https://github.com/narmi/design_system/commit/a47e8223a1d17f4b87d42e2fb5f8dc2f9893f302))
+
+### [2.38.1](https://github.com/narmi/design_system/compare/v2.38.0...v2.38.1) (2023-02-01)
+
+
+### Bug Fixes
+
+* **Drawer:** update navigation panel design ([442d496](https://github.com/narmi/design_system/commit/442d49687d549a72a01576e865f051381802c533))
+
 ## [2.38.0](https://github.com/narmi/design_system/compare/v2.37.1...v2.38.0) (2023-01-23)
 
 

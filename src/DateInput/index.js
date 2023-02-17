@@ -18,6 +18,7 @@ const DateInput = ({
   altFormat,
   defaultDate,
   onChange: onChangeProp = noop,
+  useIsoOnChange = true,
   testId,
   ...props
 }) => {
@@ -38,10 +39,11 @@ const DateInput = ({
     disable: disableDates,
     defaultDate,
     onChange: (flatpickrVal) => {
-      const selectedDate = new Date(flatpickrVal);
       // 🇨🇦 Our neighbors to the north have adopted ISO 8601.
       // localizing to en-CA produces the expected result of YYYY-MM-DD
-      const formattedDate = new Intl.DateTimeFormat("en-CA").format(
+      let locale = useIsoOnChange ? "en-CA" : "en-US";
+      const selectedDate = new Date(flatpickrVal);
+      const formattedDate = new Intl.DateTimeFormat(locale).format(
         selectedDate
       );
       onChangeProp(formattedDate);
@@ -88,6 +90,8 @@ DateInput.propTypes = {
   defaultDate: PropTypes.string,
   /** Changes date format used in input. See [flatpickr docs](https://flatpickr.js.org/formatting/) for formatting options */
   dateFormat: PropTypes.string,
+  /** If the `onChange` callback should pass the date string in ISO8601 format */
+  useIsoOnChange: PropTypes.bool,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
 };

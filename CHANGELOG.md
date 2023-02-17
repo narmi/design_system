@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.40.0](https://github.com/narmi/design_system/compare/v2.39.3...v2.40.0) (2023-02-17)
+
+
+### Features
+
+* **icons:** Add 'logo-remitly' icon ([b6c49da](https://github.com/narmi/design_system/commit/b6c49da0c31038a5cea50903108c01c786e27b6c))
+
 ### [2.39.3](https://github.com/narmi/design_system/compare/v2.39.2...v2.39.3) (2023-02-14)
 
 

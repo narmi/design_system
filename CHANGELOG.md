@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.40.1](https://github.com/narmi/design_system/compare/v2.40.0...v2.40.1) (2023-02-18)
+
+
+### Bug Fixes
+
+* **DateInput:** format onChange callback based on useIsoChange prop ([718588a](https://github.com/narmi/design_system/commit/718588acb5df9f3b6fb2f7fe8eb505cb4339ce2c))
+
 ## [2.40.0](https://github.com/narmi/design_system/compare/v2.39.3...v2.40.0) (2023-02-17)
 
 

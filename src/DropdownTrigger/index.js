@@ -43,9 +43,9 @@ const DropdownTrigger = React.forwardRef(
           {...otherProps}
         >
           {labelText && (
-            <label className="nds-dropdownTrigger-label" {...labelProps}>
+            <span className="nds-dropdownTrigger-label" {...labelProps}>
               {labelText}
-            </label>
+            </span>
           )}
           {displayValue && <span>{displayValue}</span>}
           {showOpenIndicator && (

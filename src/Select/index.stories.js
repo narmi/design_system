@@ -168,6 +168,26 @@ InADialog.args = {
   children,
 };
 
+export const OneItem = () => {
+  return (
+    <Select label="Account">
+      <Select.Item value="checking1234">Checking (1234)</Select.Item>
+    </Select>
+  );
+}
+
+export const OneAction = () => {
+  return (
+    <Select label="Account">
+      <Select.Action onSelect={()=>{}}>
+        <span className="fontColor--pine fontWeight--bold">
+          <span className="narmi-icon-plus padding--right--xs" /> Add new account
+        </span>
+      </Select.Action>
+    </Select>
+  );
+}
+
 export default {
   title: "Components/Select",
   component: Select,

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.40.2](https://github.com/narmi/design_system/compare/v2.40.1...v2.40.2) (2023-02-23)
+
+
+### Bug Fixes
+
+* **select:** correctly render with less than two options ([cc16e51](https://github.com/narmi/design_system/commit/cc16e51272c6deff485d3aeed1f93365d1220fda))
+
 ### [2.40.1](https://github.com/narmi/design_system/compare/v2.40.0...v2.40.1) (2023-02-18)
 
 

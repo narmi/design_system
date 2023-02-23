@@ -70,7 +70,7 @@ const Select = ({
   );
 
   const downshiftOpts = {
-    id: "nds-select",
+    id: `nds-select-${label}`+ Math.random().toString(16).slice(2),
     items,
     initialSelectedItem: defaultValue && getItemByValue(defaultValue, items),
     initialIsOpen: defaultOpen,

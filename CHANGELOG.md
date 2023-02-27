@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.40.2](https://github.com/narmi/design_system/compare/v2.40.1...v2.40.2) (2023-02-23)
+
+
+### Bug Fixes
+
+* **select:** correctly render with less than two options ([cc16e51](https://github.com/narmi/design_system/commit/cc16e51272c6deff485d3aeed1f93365d1220fda))
+
+### [2.40.1](https://github.com/narmi/design_system/compare/v2.40.0...v2.40.1) (2023-02-18)
+
+
+### Bug Fixes
+
+* **DateInput:** format onChange callback based on useIsoChange prop ([718588a](https://github.com/narmi/design_system/commit/718588acb5df9f3b6fb2f7fe8eb505cb4339ce2c))
+
+## [2.40.0](https://github.com/narmi/design_system/compare/v2.39.3...v2.40.0) (2023-02-17)
+
+
+### Features
+
+* **icons:** Add 'logo-remitly' icon ([b6c49da](https://github.com/narmi/design_system/commit/b6c49da0c31038a5cea50903108c01c786e27b6c))
+
+### [2.39.3](https://github.com/narmi/design_system/compare/v2.39.2...v2.39.3) (2023-02-14)
+
+
+### Bug Fixes
+
+* **Input:** error color wins against focus color ([0cbaed2](https://github.com/narmi/design_system/commit/0cbaed2553c7b2556addca0f671969ccd1180057))
+
+### [2.39.2](https://github.com/narmi/design_system/compare/v2.39.1...v2.39.2) (2023-02-08)
+
+
+### Bug Fixes
+
+* **formatNumber:** Always format numbers with 2 decimal places ([8fb1800](https://github.com/narmi/design_system/commit/8fb1800fff455cd96c01cb2d7448da07563d9b15))
+
+### [2.39.1](https://github.com/narmi/design_system/compare/v2.39.0...v2.39.1) (2023-02-02)
+
+
+### Bug Fixes
+
+* **Tag:** change `grey` Tag to `subdued-secondary` ([e6fab53](https://github.com/narmi/design_system/commit/e6fab5398216d70a05e84086166f57b736eca7f5))
+
+## [2.39.0](https://github.com/narmi/design_system/compare/v2.38.1...v2.39.0) (2023-02-01)
+
+
+### Features
+
+* **Tag:** add new `grey` kind ([a47e822](https://github.com/narmi/design_system/commit/a47e8223a1d17f4b87d42e2fb5f8dc2f9893f302))
+
+### [2.38.1](https://github.com/narmi/design_system/compare/v2.38.0...v2.38.1) (2023-02-01)
+
+
+### Bug Fixes
+
+* **Drawer:** update navigation panel design ([442d496](https://github.com/narmi/design_system/commit/442d49687d549a72a01576e865f051381802c533))
+
 ## [2.38.0](https://github.com/narmi/design_system/compare/v2.37.1...v2.38.0) (2023-01-23)
 
 

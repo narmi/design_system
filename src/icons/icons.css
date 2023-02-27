@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "icomoon";
-  src: url("./icomoon.woff?j396xu") format("woff");
+  font-family: 'icomoon';
+  src: url('./icomoon.woff?ufdyh3') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -21,6 +21,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.narmi-icon-logo-remitly:before {
+  content: "\ea3e";
+}
 .narmi-icon-zelle-outline:before {
   content: "\ea3d";
 }

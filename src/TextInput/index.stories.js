@@ -27,6 +27,11 @@ export const Example = () => {
           type={"tel"}
         />
         <TextInput
+          type={"date"}
+          label={"Test Quotes"}
+          formatter={(text) => text.replace("“", '"').replace("”", '"')}
+        />
+        <TextInput
           label={"Test Quotes"}
           formatter={(text) => text.replace("“", '"').replace("”", '"')}
         />

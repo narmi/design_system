@@ -1,0 +1,35 @@
+@keyframes dashChange {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform-origin: center;
+    transform: rotate(360deg);
+  }
+}
+
+.nds-spinner {
+  display: grid;
+}
+
+.nds-spinner svg {
+  animation: rotate 2.5s linear infinite;
+  grid-area: 1 / 1;
+}
+
+.nds-spinner-circle {
+  animation: dashChange 2s ease-in-out infinite;
+}
+

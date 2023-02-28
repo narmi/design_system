@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.42.0](https://github.com/narmi/design_system/compare/v2.41.0...v2.42.0) (2023-02-28)
+
+
+### Features
+
+* **Button:** add isLoading prop for disabled loading state ([31923a6](https://github.com/narmi/design_system/commit/31923a6c085b4e6ca1052e38bf22d4f309a34f52))
+
 ## [2.41.0](https://github.com/narmi/design_system/compare/v2.40.2...v2.41.0) (2023-02-27)
 
 

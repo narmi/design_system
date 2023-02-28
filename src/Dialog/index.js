@@ -5,6 +5,7 @@ import rafSchd from "raf-schd";
 import useFocusTrap from "@charlietango/use-focus-trap";
 import cc from "classcat";
 import useLockBodyScroll from "./useLockBodyScroll";
+import { CSSTransition } from "react-transition-group";
 
 const noop = () => {};
 
@@ -74,44 +75,47 @@ const Dialog = ({
   // the shim has events for mouse users only; does not require a role
   /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
   const dialogJSX = (
-    <div className="nds-shim--dark" ref={shimRef} onClick={handleShimClick}>
-      <div
-        role="dialog"
-        aria-labelledby="aria-dialog-label"
-        aria-modal="true"
-        className="nds-dialog"
-        style={{ width }}
-        ref={focusTrapRef}
-        data-testid={testId}
-      >
-        <div className={`nds-dialog-header nds-dialog-header--${headerStyle}`}>
-          <h4 id="aria-dialog-label">{title}</h4>
-          <button
-            className="resetButton nds-dialog-closeButton"
-            aria-label="close"
-            onClick={onUserDismiss}
-          >
-            <span className="narmi-icon-x"></span>
-          </button>
-        </div>
+    <CSSTransition timeout={1} classNames="nds-dialog-transition" appear in>
+      <div className="nds-shim--dark" ref={shimRef} onClick={handleShimClick}>
         <div
-          ref={contentRef}
-          className="nds-dialog-content nds-typography padding--top--xs"
+          role="dialog"
+          aria-labelledby="aria-dialog-label"
+          aria-modal="true"
+          className="nds-dialog"
+          style={{ width }}
+          ref={focusTrapRef}
+          data-testid={testId}
         >
-          {children}
-        </div>
-        {footer && (
-          <div
-            className={cc([
-              "nds-dialog-footer",
-              { "nds-dialog-footer--overflowing": isContentOverflowing },
-            ])}
-          >
-            {footer}
+          <div className={`nds-dialog-header nds-dialog-header--${headerStyle}`}>
+            <h4 id="aria-dialog-label">{title}</h4>
+            <button
+              className="resetButton nds-dialog-closeButton"
+              aria-label="close"
+              onClick={onUserDismiss}
+            >
+              <span className="narmi-icon-x"></span>
+            </button>
           </div>
-        )}
+          <div
+            ref={contentRef}
+            className="nds-dialog-content nds-typography padding--top--xs"
+          >
+            {children}
+          </div>
+          {footer && (
+            <div
+              className={cc([
+                "nds-dialog-footer",
+                { "nds-dialog-footer--overflowing": isContentOverflowing },
+              ])}
+            >
+              {footer}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </CSSTransition>
+
   );
   /* eslint-enable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
 

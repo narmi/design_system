@@ -1,6 +1,6 @@
 {
   "name": "@narmi/design_system",
-  "version": "2.40.1",
+  "version": "2.41.0",
   "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
   "files": [
@@ -104,7 +104,8 @@
     "eslint-plugin-json": "^3.1.0",
     "flatpickr": "^4.6.9",
     "raf-schd": "^4.0.3",
-    "react-laag": "^2.0.3"
+    "react-laag": "^2.0.3",
+    "react-transition-group": "^4.4.5"
   },
   "repository": {
     "type": "git",

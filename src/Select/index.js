@@ -66,9 +66,7 @@ const Select = ({
   testId,
 }) => {
   // The menu should only render children that have `value` or `onSelect` prop
-  const items = React.Children.toArray(
-    children.filter(({ props }) => "value" in props || "onSelect" in props)
-  );
+  const items = React.Children.toArray(children).filter(({ props }) => "value" in props || "onSelect" in props);
 
   const downshiftOpts = {
     id: id || `nds-select-${label}`,

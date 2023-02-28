@@ -7,14 +7,33 @@
   background-color: var(--bgColor-scrimDark);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   min-height: 100vh;
   z-index: 2;
 
   // create spaces around viewport edges for tablet or larger
   @include atMediaUp("s") {
     padding: var(--space-default);
+    padding-top: 120px;
   }
+}
+
+.nds-dialog-transition-appear {
+  opacity: 0;
+}
+
+.nds-dialog-transition-appear-done {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+.nds-dialog-transition-exit {
+  opacity: 1;
+}
+
+.nds-dialog-transition-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
 }
 
 .nds-dialog {
@@ -92,12 +111,11 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: -20px; /* stack on top of footer border */
+    top: -20px;
+    /* stack on top of footer border */
     height: 20px;
-    background-image: linear-gradient(
-      to top,
-      var(--color-white),
-      RGBA(var(--rgb-white), 0.33)
-    );
+    background-image: linear-gradient(to top,
+        var(--color-white),
+        RGBA(var(--rgb-white), 0.33));
   }
 }

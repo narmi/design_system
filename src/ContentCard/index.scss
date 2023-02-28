@@ -19,6 +19,9 @@
   }
   &:active,
   &[aria-pressed="true"] {
+    // use outline to prevent layout thrashing
+    // when the border is thickened in selected state
+    outline: 1px solid var(--theme-primary);
     &::before {
       content: "";
       position: absolute;

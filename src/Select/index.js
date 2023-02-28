@@ -55,6 +55,7 @@ export const getItemByValue = (value, items) => {
  * Typeahead is enabled based on the `value` prop of `<Select.Item>` elements passed in.
  */
 const Select = ({
+  id,
   label,
   children,
   onChange = noop,
@@ -70,7 +71,7 @@ const Select = ({
   );
 
   const downshiftOpts = {
-    id: `nds-select-${label}`+ Math.random().toString(16).slice(2),
+    id: id || `nds-select-${label}`,
     items,
     initialSelectedItem: defaultValue && getItemByValue(defaultValue, items),
     initialIsOpen: defaultOpen,
@@ -152,6 +153,8 @@ const Select = ({
 };
 
 Select.propTypes = {
+  /** unique id attribute of the input (used for `htmlFor`) */
+  id: PropTypes.string.isRequired,
   /** Label for the select control */
   label: PropTypes.string.isRequired,
   /** Change callback. Called with value string from the selected item */

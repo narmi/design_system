@@ -50,6 +50,7 @@ ErrorState.args = {
 export const WithAction = Template.bind({});
 WithAction.args = {
   label: "Account",
+  id: "3",
   children: [
     ...children,
     <Select.Action
@@ -86,7 +87,7 @@ export const InAForm = () => {
           )
         </p>
       </div>
-      <Select label="Account" onChange={setInputValue}>
+      <Select id={"2"} label="Account" onChange={setInputValue}>
         <Select.Item value="checking1234">Checking (1234)</Select.Item>
         <Select.Item value="savings4321">Savings (4321)</Select.Item>
       </Select>
@@ -106,7 +107,7 @@ export const Controlled = () => {
   const [value, setValue] = useState(null);
   return (
     <>
-      <Select label="Account" value={value} onChange={(v) => setValue(v)}>
+      <Select id="1" label="Account" value={value} onChange={(v) => setValue(v)}>
         <Select.Item value="checking1234">Checking (1234)</Select.Item>
         <Select.Item value="savings4321">Savings (4321)</Select.Item>
       </Select>

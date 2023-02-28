@@ -4,6 +4,7 @@ import cc from "classcat";
 import iconSelection from "src/icons/selection.json";
 import AsElement from "src/util/AsElement";
 import Row from "src/Row";
+import Spinner from "./Spinner";
 
 export const VALID_ICON_NAMES = iconSelection.icons.map(
   (icon) => icon.properties.name
@@ -19,6 +20,7 @@ export const VALID_ICON_NAMES = iconSelection.icons.map(
  * passed through to the root node of `Button`.
  */
 const Button = ({
+  isLoading = false,
   disabled = false,
   kind = "primary",
   size = "m",
@@ -62,13 +64,19 @@ const Button = ({
         `fontSize--${size}`,
         {
           resetButton: as === "button",
-          "nds-button--disabled": disabled,
+          "nds-button--disabled": disabled || isLoading,
+          "nds-button--loading": isLoading,
         },
       ])}
-      disabled={isButtonElement && disabled ? true : undefined}
+      disabled={isButtonElement && disabled || isLoading ? true : undefined}
       data-testid={testId || "nds-button"}
     >
       <div className="nds-button-content">
+        {isLoading && (
+          <div className="nds-button-spinner">
+            <Spinner color={kind !== "primary" ? "var(--color-lightGrey)" : undefined} />
+          </div>
+        )}
         <Row gapSize="s" alignItems="center">
           {startIcon && (
             <Row.Item shrink>
@@ -101,6 +109,8 @@ Button.propTypes = {
   label: PropTypes.string,
   /** disables the button when set to `true` */
   disabled: PropTypes.bool,
+  /** disables the button and adds a loading spinner when set to `true` */
+  isLoading: PropTypes.bool,
   /** style of button to render */
   kind: PropTypes.oneOf(["primary", "secondary", "negative", "menu", "plain"]),
   /** size variant of button */

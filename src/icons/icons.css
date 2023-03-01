@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'icomoon';
-  src: url('./icomoon.woff?fn8ux7') format('woff');
+  src: url('./icomoon.woff?ookznz') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -21,13 +21,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.narmi-icon-profiles:before {
-  content: "\ea48";
-  color: #4c4c4c;
-}
 .narmi-icon-business:before {
-  content: "\ea4b";
-  color: #4c4c4c;
+  content: "\ea48";
+}
+.narmi-icon-profiles:before {
+  content: "\ea49";
 }
 .narmi-icon-star-filled:before {
   content: "\ea3f";

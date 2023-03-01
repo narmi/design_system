@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.42.4](https://github.com/narmi/design_system/compare/v2.42.3...v2.42.4) (2023-03-01)
+
+
+### Bug Fixes
+
+* **Select:** prevent chevron from overlapping other open popovers ([cde33f8](https://github.com/narmi/design_system/commit/cde33f840bd62cc3daef597b754d1d1ae9101d77))
+
 ### [2.42.3](https://github.com/narmi/design_system/compare/v2.42.2...v2.42.3) (2023-03-01)
 
 

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.42.1](https://github.com/narmi/design_system/compare/v2.42.0...v2.42.1) (2023-03-01)
+
+
+### Bug Fixes
+
+* **ContentCard:** thicken border of selected interactive card ([4389f6a](https://github.com/narmi/design_system/commit/4389f6a523d71680eda428cc5a50f0083de27e45))
+
 ## [2.42.0](https://github.com/narmi/design_system/compare/v2.41.0...v2.42.0) (2023-02-28)
 
 

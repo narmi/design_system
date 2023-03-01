@@ -34,6 +34,10 @@
   & .nds-dropdownTrigger-label {
     font-size: var(--font-size-xs);
   }
+
+  &.nds-dropdownTrigger-button--hasError .nds-dropdownTrigger-label{
+    color: var(--color-errorDark);
+  }
 }
 
 .nds-dropdownTrigger-chevron {

@@ -1,3 +1,5 @@
+@import "./spinner.scss";
+
 .nds-button,
 .nds-button.resetButton {
   --button-radius: 20px;
@@ -123,6 +125,18 @@
   &.nds-button--secondary {
     color: var(--color-lightGrey);
     border-color: var(--color-lightGrey);
+  }
+}
+
+.nds-button--loading {
+  .nds-button-content {
+    padding-left: var(--space-s);
+    position: relative;
+  }
+  .nds-button-spinner {
+    position: absolute;
+    left: calc(var(--space-default) * -1);
+    bottom: calc(var(--space-xxs) * -1);
   }
 }
 

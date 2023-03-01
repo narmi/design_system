@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.42.3](https://github.com/narmi/design_system/compare/v2.42.2...v2.42.3) (2023-03-01)
+
+
+### Bug Fixes
+
+* **icon:** make 'business' and 'profiles' accept custom color ([69c36d5](https://github.com/narmi/design_system/commit/69c36d57eb1789696b4d7649826dda8557001bf1))
+
 ### [2.42.2](https://github.com/narmi/design_system/compare/v2.42.1...v2.42.2) (2023-03-01)
 
 

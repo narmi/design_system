@@ -24,6 +24,10 @@
   color: var(--color-mediumGrey);
 }
 
+.nds-dropdownTrigger-value {
+  color: var(--font-color-primary);
+}
+
 // float the label to top like a text input
 // when there's a value to display
 .nds-dropdownTrigger-button--hasValue {

@@ -10,6 +10,7 @@ import Dialog from "./Dialog";
 import Drawer from "./Drawer";
 import Dropdown from "./Dropdown";
 import DropdownTrigger from "./DropdownTrigger";
+import FormSection from "./FormSection";
 import Input from "./Input";
 import LoadingShim from "./LoadingShim";
 import LoadingSkeleton from "./LoadingSkeleton";
@@ -41,6 +42,7 @@ export {
   Drawer,
   Dropdown,
   DropdownTrigger,
+  FormSection,
   Input,
   LoadingShim,
   LoadingSkeleton,

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.43.0](https://github.com/narmi/design_system/compare/v2.42.4...v2.43.0) (2023-03-02)
+
+
+### Features
+
+* **FormSection:** add FormSection component ([47e0cc8](https://github.com/narmi/design_system/commit/47e0cc83a0a2d2d00fd3dde60dc06c21669ad2d7))
+
 ### [2.42.4](https://github.com/narmi/design_system/compare/v2.42.3...v2.42.4) (2023-03-01)
 
 

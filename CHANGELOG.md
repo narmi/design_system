@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.43.1](https://github.com/narmi/design_system/compare/v2.43.0...v2.43.1) (2023-03-02)
+
+
+### Bug Fixes
+
+* **DropdownTrigger:** set explicit text color for value ([19e4880](https://github.com/narmi/design_system/commit/19e4880ac47b36ec892f60e23aa7e2f958a2781c))
+
 ## [2.43.0](https://github.com/narmi/design_system/compare/v2.42.4...v2.43.0) (2023-03-02)
 
 

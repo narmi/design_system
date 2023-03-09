@@ -85,7 +85,7 @@
     width: 100%;
     background-color: var(--color-white);
     color: var(--theme-primary);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold) !important;
 
     .narmi-icon-check {
       display: none;

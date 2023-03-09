@@ -77,7 +77,7 @@
   justify-content: space-between;
   background-color: var(--color-white);
   color: var(--color-primary);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-bold) !important;
 
   .narmi-icon-check {
     display: none;

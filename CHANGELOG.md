@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.43.2](https://github.com/narmi/design_system/compare/v2.43.1...v2.43.2) (2023-03-09)
+
+
+### Bug Fixes
+
+* RadioButtons and Checkbox card kinds use bold text ([1f20d54](https://github.com/narmi/design_system/commit/1f20d54c193c210f606732657e888c34ffb0602c))
+
 ### [2.43.1](https://github.com/narmi/design_system/compare/v2.43.0...v2.43.1) (2023-03-02)
 
 

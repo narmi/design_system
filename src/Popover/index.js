@@ -44,15 +44,16 @@ const Popover = ({
   };
 
   const handleKeyDown = ({ key }) => {
-    switch (key) {
-      case "Escape":
-        setIsOpen(false);
-        break;
-      case "Enter":
-        setIsOpen(true);
-        break;
+    if (key === "Enter") {
+      setIsOpen(true);
     }
   };
+
+  const handleKeyUp = ({ key }) => {
+    if (key === "Escape" && isOpen) {
+      setIsOpen(false);
+    }
+  }
 
   const { renderLayer, triggerProps, triggerBounds, layerProps } = useLayer({
     isOpen,
@@ -67,11 +68,11 @@ const Popover = ({
   });
 
   useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleKeyUp);
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keydown", handleKeyUp);
     };
-  }, [handleKeyDown]);
+  }, [handleKeyUp]);
 
   let layerStyle = layerProps.style;
   if (triggerBounds && matchTriggerWidth) {

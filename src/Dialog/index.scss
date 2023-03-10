@@ -54,7 +54,6 @@
     height: auto;
     border-radius: var(--border-radius-m);
     max-height: 100%; // prevent modal from being taller than the shim content box
-    min-height: 240px; // prevent content area from collapsing to 0
     min-width: 240px; // should be no narrower than this on larger viewports
   }
 }

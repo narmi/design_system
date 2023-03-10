@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.43.3](https://github.com/narmi/design_system/compare/v2.43.2...v2.43.3) (2023-03-10)
+
+
+### Bug Fixes
+
+* **Dialog:** remove min-height of dialog ([f0c84fb](https://github.com/narmi/design_system/commit/f0c84fb93856f4ae4a2d0c3e41218ba6709623cf))
+
 ### [2.43.2](https://github.com/narmi/design_system/compare/v2.43.1...v2.43.2) (2023-03-09)
 
 

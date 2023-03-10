@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.43.4](https://github.com/narmi/design_system/compare/v2.43.3...v2.43.4) (2023-03-10)
+
+
+### Bug Fixes
+
+* **Popover:** only open with Enter key on trigger event ([8467735](https://github.com/narmi/design_system/commit/84677353518ba5cd52563d8a48aa497fab0f3798))
+
 ### [2.43.3](https://github.com/narmi/design_system/compare/v2.43.2...v2.43.3) (2023-03-10)
 
 

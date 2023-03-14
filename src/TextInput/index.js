@@ -63,6 +63,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
             onChange={_onChange}
             onBlur={_onBlur}
             required
+            aria-label={props.label}
             data-testid={testId}
             {...nativeElementProps}
           />

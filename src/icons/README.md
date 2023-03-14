@@ -14,33 +14,13 @@ when updating our icon set.
 
 ### Copying assets into NDS
 
-Uncompress the zip file from icomoon and move files into NDS. The destination
-and file names will not match the icomoon assets exactly - use the table below:
+Unzip the icomoon download. Copy all of the following into `src/icons/` in NDS:
 
-| Icomoon download       | NDS destination            |
-| ---------------------- | -------------------------- | ----------------------- |
-| `selection.json`       | `src/icons/selection.json` |
-| `style.css`            | `src/icons/icons.css`      |
-| `fonts/icomooon.woff`  | `src/icons/icomoon.woff`   |
-| `fonts/icomooon.woff2` | `src/icons/icomoon.woff2`  |
-| k                      | `fonts/icomooon.svg`       | `src/icons/icomoon.svg` |
-| `fonts/icomooon.ttf`   | `src/icons/icomoon.ttf`    |
+- `fonts/`
+- `selection.json`
+- `style.css`
 
-#### You MUST modify the CSS file after copying
+### Testing icon changes
 
-To acommodate NextJS consumers, we inline font assets. To reduce file size,
-modify the icons CSS to serve only the `woff` format from a relative path:
-
-```diff
-@font-face {
-  font-family: "icomoon";
-- src: url("fonts/icomoon.woff2?43hwv3") format("woff2"),
--    url("fonts/icomoon.ttf?43hwv3") format("truetype"),
--    url("fonts/icomoon.woff?43hwv3") format("woff"),
--    url("fonts/icomoon.svg?43hwv3#icomoon") format("svg");
-+ src: url("./icomoon.woff?43hwv3") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-}
-```
+Run storybook with `npm run dev` and navigate to the icons page. Icon additions
+and changes should be visible in the story.

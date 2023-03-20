@@ -74,6 +74,7 @@ const Checkbox = ({
           data-testid={testId}
           {...rest}
           type="checkbox"
+          aria-label={label}
         />
         <span
           className={cc([

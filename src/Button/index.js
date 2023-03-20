@@ -69,6 +69,7 @@ const Button = ({
         },
       ])}
       disabled={isButtonElement && disabled || isLoading ? true : undefined}
+      aria-label={buttonLabel}
       data-testid={testId || "nds-button"}
     >
       <div className="nds-button-content">

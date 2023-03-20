@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.43.5](https://github.com/narmi/design_system/compare/v2.43.4...v2.43.5) (2023-03-20)
+
+
+### Bug Fixes
+
+* **Button, Checkbox, TextInput:** add aria-label ([43d581c](https://github.com/narmi/design_system/commit/43d581cb9f16e845f6a5d07875ac4f0b6e05f7e5))
+
 ### [2.43.4](https://github.com/narmi/design_system/compare/v2.43.3...v2.43.4) (2023-03-10)
 
 

@@ -3,6 +3,7 @@
 .nds-button,
 .nds-button.resetButton {
   --button-radius: 20px;
+  --button-radius-s: 24px;
 
   display: inline-flex;
   position: relative;
@@ -19,6 +20,7 @@
   /* mobile buttons have slightly taller padding for ease of tapping */
   @media (max-width: #{map.get($breakpoints, "s")}) {
     min-height: 48px;
+    border-radius: var(--button-radius-s);
   }
 }
 

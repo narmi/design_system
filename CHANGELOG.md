@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.43.7](https://github.com/narmi/design_system/compare/v2.43.6...v2.43.7) (2023-03-28)
+
+
+### Bug Fixes
+
+* **base-styles:** skip ink on text underline globally ([306812d](https://github.com/narmi/design_system/commit/306812db9c4260d1b82c6d5627587e347779706d))
+
 ### [2.43.6](https://github.com/narmi/design_system/compare/v2.43.5...v2.43.6) (2023-03-28)
 
 

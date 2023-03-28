@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.43.6](https://github.com/narmi/design_system/compare/v2.43.5...v2.43.6) (2023-03-28)
+
+
+### Bug Fixes
+
+* increase button border radius size on mobile ([07e453d](https://github.com/narmi/design_system/commit/07e453dde8e258f491f475f72aa00a4f19d455ce))
+
 ### [2.43.5](https://github.com/narmi/design_system/compare/v2.43.4...v2.43.5) (2023-03-20)
 
 

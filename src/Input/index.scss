@@ -141,16 +141,18 @@
       display: none;
     }
   }
+}
 
-  input,
-  textarea {
-    &:placeholder,
-    &:autofill {
-      background: transparent;
-      color: var(--color-mediumGrey);
-      font-weight: 400;
-    }
-  }
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-mediumGrey);
+  font-weight: 400;
+}
+
+input::autofill,
+textarea::autofill {
+  background: transparent;
+  color: var(--color-mediumGrey);
 }
 
 .nds-input-multiline-grid {

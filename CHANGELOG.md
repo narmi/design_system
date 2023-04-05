@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.43.8](https://github.com/narmi/design_system/compare/v2.43.7...v2.43.8) (2023-04-05)
+
+
+### Bug Fixes
+
+* **TextInput:** fix placeholder color ([7b9042e](https://github.com/narmi/design_system/commit/7b9042e7f7a97db1351aa1f09988d7beaf875400))
+
 ### [2.43.7](https://github.com/narmi/design_system/compare/v2.43.6...v2.43.7) (2023-03-28)
 
 

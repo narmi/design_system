@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.44.0](https://github.com/narmi/design_system/compare/v2.43.8...v2.44.0) (2023-04-12)
+
+
+### Features
+
+* **icons:** inline icon font asset ([d597930](https://github.com/narmi/design_system/commit/d5979308a11ac49c785720d00503ccee9bc3e0d4))
+
 ### [2.43.8](https://github.com/narmi/design_system/compare/v2.43.7...v2.43.8) (2023-04-05)
 
 

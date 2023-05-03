@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.45.0](https://github.com/narmi/design_system/compare/v2.44.0...v2.45.0) (2023-05-03)
+
+
+### Features
+
+* Support React 18 consumers ([c35f79c](https://github.com/narmi/design_system/commit/c35f79c15cd0b28b44a3f1c0b6f76852104059bd))
+
 ## [2.44.0](https://github.com/narmi/design_system/compare/v2.43.8...v2.44.0) (2023-04-12)
 
 

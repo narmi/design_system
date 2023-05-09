@@ -42,6 +42,10 @@ module.exports = {
           from: path.join(__dirname, "src/icons/"),
           to: path.resolve(__dirname, "dist/icons/"),
         },
+        {
+          from: path.join(__dirname, "src/deprecations.json"),
+          to: path.join(__dirname, "dist/deprecations.json"),
+        }
       ],
     }),
   ],

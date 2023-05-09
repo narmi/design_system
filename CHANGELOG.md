@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.45.1](https://github.com/narmi/design_system/compare/v2.45.0...v2.45.1) (2023-05-09)
+
+
+### Bug Fixes
+
+* **dist:** add deprecations json to dist/ ([bef439d](https://github.com/narmi/design_system/commit/bef439d40e72af665e0b057f4f8ffc49b2d7eff6))
+
 ## [2.45.0](https://github.com/narmi/design_system/compare/v2.44.0...v2.45.0) (2023-05-03)
 
 

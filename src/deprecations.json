@@ -1,0 +1,20 @@
+{
+  "cssCustomProperties": [
+    "--nds-black",
+    "--nds-grey",
+    "--nds-medium-grey",
+    "--nds-lightest-grey",
+    "--nds-smoke-grey",
+    "--nds-red",
+    "--nds-white",
+    "--nds-font-family",
+    "nds-header-font",
+    "subdued-20-opacity",
+    "subdued-10-opacity"
+  ],
+  "components": [
+    "Card",
+    "Dropdown",
+    "PlainButton"
+  ]
+}

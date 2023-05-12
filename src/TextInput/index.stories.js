@@ -85,7 +85,7 @@ export const Search = () => {
 };
 
 export const WithClearInputIcon = () => {
-  return <TextInput displayClearInputIcon />;
+  return <TextInput showClearButton />;
 };
 
 export default {

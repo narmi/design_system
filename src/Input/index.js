@@ -23,6 +23,8 @@ const Input = ({
   label,
   startIconClass,
   endIconClass,
+  showClearButton,
+  clearInput,
   disabled,
   multiline = false,
   decoration,
@@ -41,6 +43,18 @@ const Input = ({
     search ? "search" : "",
   ].join(" ");
 
+  const endIconJsx = showClearButton ? (
+    <div
+      className={`nds-input-icon nds-input-close narmi-icon-x`}
+      onClick={clearInput}
+      role="button"
+      tabIndex="0"
+      aria-label="Clear Input"
+    ></div>
+  ) : (
+    <div className={`nds-input-icon ${endIconClass}`}></div>
+  );
+
   return (
     <div className={className} onClick={onClick} style={style}>
       <div className="nds-input-box">
@@ -56,9 +70,7 @@ const Input = ({
           {decoration}
           {!multiline ? <label htmlFor={id}>{label}</label> : ""}
         </div>
-        {endIconClass && (
-          <div className={`nds-input-icon ${endIconClass}`}></div>
-        )}
+        {(endIconClass || showClearButton) && endIconJsx}
       </div>
       <Error error={error} />
     </div>
@@ -72,6 +84,8 @@ Input.propTypes = {
   startIconClass: PropTypes.node,
   /** full `narmi-icon-<shape>` className for icon at end of input */
   endIconClass: PropTypes.node,
+  showClearButton: PropTypes.bool,
+  clearInput: PropTypes.func,
   decoration: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
   multiline: PropTypes.bool,
   disabled: PropTypes.bool,

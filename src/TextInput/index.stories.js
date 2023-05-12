@@ -84,6 +84,10 @@ export const Search = () => {
   return <TextInput search />;
 };
 
+export const WithClearInputIcon = () => {
+  return <TextInput showClearButton />;
+};
+
 export default {
   title: "Components/TextInput",
   component: TextInput,

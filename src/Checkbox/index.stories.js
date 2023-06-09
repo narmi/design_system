@@ -40,7 +40,7 @@ export const MultipleCheckboxes = () => (
 
 export const AsCard = Template.bind({});
 AsCard.args = {
-  label: "Checbox of 'card' kind",
+  label: "Checkbox of 'card' kind",
   name: "card_kind",
   kind: "card",
 };

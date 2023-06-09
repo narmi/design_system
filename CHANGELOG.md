@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.46.0](https://github.com/narmi/design_system/compare/v2.45.1...v2.46.0) (2023-05-12)
+
+
+### Features
+
+* **TextInput:** add support for clear input icon ([3c16c68](https://github.com/narmi/design_system/commit/3c16c686c03042dc8235e24bab90e4e7ce8dcb9d))
+
 ### [2.45.1](https://github.com/narmi/design_system/compare/v2.45.0...v2.45.1) (2023-05-09)
 
 

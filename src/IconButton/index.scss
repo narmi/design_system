@@ -7,7 +7,7 @@
   cursor: pointer;
   outline: inherit;
   font-size: var(--font-size-default);
-  text-align: center;
+  display: flex;
   justify-content: center;
   align-items: center;
   border-radius: var(--button-radius);
@@ -17,6 +17,15 @@
   @media (max-width: #{map.get($breakpoints, "s")}) {
     height: 48px;
     width: 48px;
+  }
+
+  /* Nudge the large size icons to be centered more accurately */
+  &.fontSize--l {
+    [class^="narmi-icon-"] {
+      position: relative;
+      top: -1px;
+      right: -0.5px;
+    }
   }
 }
 
@@ -53,7 +62,7 @@
   }
 }
 
-.nds-icon-button--plain,
+.nds-icon-button--size- .nds-icon-button--plain,
 .nds-icon-button--negative {
   font-weight: var(--font-weight-semibold);
 

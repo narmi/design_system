@@ -1,0 +1,87 @@
+.nds-icon-button {
+  --button-radius: 50%;
+  background: none;
+  color: inherit;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  font-size: var(--font-size-default);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--button-radius);
+  height: 32px;
+  width: 32px;
+  /* mobile buttons are larger for ease of tapping */
+  @media (max-width: #{map.get($breakpoints, "s")}) {
+    height: 48px;
+    width: 48px;
+  }
+}
+
+.nds-icon-button--primary {
+  color: var(--color-white);
+  background-color: var(--theme-primary);
+
+  &:hover {
+    color: var(--color-white);
+    text-decoration: none;
+    filter: opacity(80%);
+  }
+}
+
+.nds-icon-button--secondary {
+  position: relative;
+  color: var(--theme-primary);
+  background-color: var(--color-white);
+  border: var(--border-size-s) solid var(--theme-primary);
+
+  // adds a white shim behind the button so that the transparent
+  // hover color appears the same regardless of context
+  &::before {
+    content: "";
+    border-radius: var(--button-radius);
+    background-color: var(--color-white);
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+
+  &:hover {
+    background-color: RGBA(var(--theme-rgb-primary), var(--alpha-10));
+  }
+}
+
+.nds-icon-button--plain,
+.nds-icon-button--negative {
+  font-weight: var(--font-weight-semibold);
+
+  &:hover {
+    color: var(--theme-secondary);
+  }
+}
+
+.nds-icon-button--negative {
+  color: var(--theme-primary);
+  &:hover {
+    color: var(--theme-primary);
+  }
+}
+
+.nds-icon-button--disabled {
+  pointer-events: none;
+  color: var(--color-white);
+
+  &.nds-icon-button--plain,
+  &.nds-icon-button--negative {
+    color: var(--font-color-hint);
+  }
+  &.nds-icon-button--primary {
+    background-color: var(--color-lightGrey);
+  }
+  &.nds-icon-button--secondary {
+    color: var(--color-lightGrey);
+    border-color: var(--color-lightGrey);
+  }
+}

@@ -62,6 +62,10 @@
   }
 }
 
+.nds-icon-button--plain {
+  color: var(--theme-secondary);
+}
+
 .nds-icon-button--plain,
 .nds-icon-button--negative {
   font-weight: var(--font-weight-semibold);

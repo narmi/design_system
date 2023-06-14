@@ -20,7 +20,6 @@ const IconButton = ({
   kind = "plain",
   size = "m",
   testId = "nds-icon-button",
-  children,
   label,
   name,
   onClick = () => {},
@@ -66,6 +65,8 @@ IconButton.propTypes = {
   onClick: PropTypes.func,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
+  /** className for adding classNames to the icon button  */
+  className: PropTypes.string,
 };
 
 export default IconButton;

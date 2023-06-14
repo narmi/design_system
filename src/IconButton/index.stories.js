@@ -16,7 +16,7 @@ PlainIconButton.parameters = {
   docs: {
     description: {
       story:
-        'An Icon Button of `kind="plain"` is a button styled to look like an icon.',
+        'An Icon Button of `kind="plain"` is a button styled to look like a plain icon.',
     },
   },
 };

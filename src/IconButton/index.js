@@ -12,7 +12,7 @@ export const VALID_ICON_NAMES = iconSelection.icons.map(
  *
  * Icon Button renders a button with a central Narmi icon
  *
- * This component supports rest props; any additional props on button will be
+ * This component supports rest props; any additional props on icon button will be
  * passed through to button element.
  */
 const IconButton = ({
@@ -24,6 +24,7 @@ const IconButton = ({
   label,
   name,
   onClick = () => {},
+  className,
   ...otherProps
 }) => {
   return (
@@ -32,7 +33,7 @@ const IconButton = ({
       onClick={onClick}
       {...otherProps}
       className={cc([
-        "alignChild--center--center",
+        className,
         "nds-typography",
         "nds-icon-button",
         `nds-icon-button--${kind}`,
@@ -53,13 +54,13 @@ const IconButton = ({
 IconButton.propTypes = {
   /** Name of Narmi icon */
   name: PropTypes.oneOf(VALID_ICON_NAMES).isRequired,
-  /** Renders the button label */
+  /** Renders the icon button label */
   label: PropTypes.string,
-  /** disables the button when set to `true` */
+  /** disables the icon button when set to `true` */
   disabled: PropTypes.bool,
-  /** style of button to render */
+  /** style of icon button to render */
   kind: PropTypes.oneOf(["primary", "secondary", "negative", "plain"]),
-  /** size variant of button */
+  /** size variant of icon button */
   size: PropTypes.oneOf(["xs", "s", "m", "l"]),
   /** Click callback, with event object passed as argument */
   onClick: PropTypes.func,

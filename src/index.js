@@ -14,7 +14,6 @@ import FormSection from "./FormSection";
 import Input from "./Input";
 import LoadingShim from "./LoadingShim";
 import LoadingSkeleton from "./LoadingSkeleton";
-import Modal from "./Modal";
 import Pagination from "./Pagination";
 import PlainButton from "./PlainButton";
 import Popover from "./Popover";
@@ -46,7 +45,6 @@ export {
   Input,
   LoadingShim,
   LoadingSkeleton,
-  Modal,
   Pagination,
   PlainButton,
   Popover,

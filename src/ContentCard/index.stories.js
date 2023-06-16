@@ -28,7 +28,7 @@ export const SelectableCard = () => {
 
   return (
     <ContentCard
-      type="interactive"
+      kind="interactive"
       onClick={handleClick}
       isSelected={isCardSelected}
     >
@@ -46,7 +46,7 @@ SelectableCard.parameters = {
   docs: {
     description: {
       story:
-        "Cards of type `interactive` support a selected state that can be controlled with the `isSelected` prop.",
+        "Cards of kind `interactive` support a selected state that can be controlled with the `isSelected` prop.",
     },
   },
 };

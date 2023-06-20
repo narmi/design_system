@@ -11,20 +11,19 @@
   justify-content: center;
   align-items: center;
   border-radius: var(--button-radius);
-  height: 32px;
-  width: 32px;
   /* mobile buttons are larger for ease of tapping */
-  @media (max-width: #{map.get($breakpoints, "s")}) {
-    height: 48px;
-    width: 48px;
+  height: 48px;
+  width: 48px;
+
+  @include atMediaUp("m") {
+    height: 32px;
+    width: 32px;
   }
 
   /* Nudge the large size icons to be centered more accurately */
   &.fontSize--l {
     [class^="narmi-icon-"] {
-      position: relative;
-      top: -1px;
-      right: -0.5px;
+      transform: translate(0px, -1px);
     }
   }
 }
@@ -41,7 +40,6 @@
 }
 
 .nds-icon-button--secondary {
-  position: relative;
   color: var(--theme-primary);
   background-color: var(--color-white);
   border: var(--border-size-s) solid var(--theme-primary);

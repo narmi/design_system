@@ -23,16 +23,12 @@ const IconButton = ({
   label,
   name,
   onClick = () => {},
-  className,
-  ...otherProps
 }) => {
   return (
     <button
       tabIndex={0}
       onClick={onClick}
-      {...otherProps}
       className={cc([
-        className,
         "nds-typography",
         "nds-icon-button",
         `nds-icon-button--${kind}`,

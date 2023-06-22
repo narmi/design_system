@@ -81,7 +81,7 @@ ControlledTooltip.parameters = {
   docs: {
     description: {
       story:
-        "Tooltip can be used in a TextInput by composing an absolutely positioned narmi icon as the Tooltip trigger.",
+        "Tooltip can controlled to be open or closed by passing an optional isOpen property",
     },
   },
 };

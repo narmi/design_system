@@ -37,4 +37,28 @@ describe("Tooltip", () => {
     const tip = await screen.findByText(TIP_TEXT);
     expect(tip).toBeInTheDocument();
   });
+
+  it("renders tooltip when isOpen is set to true", () => {
+    render(
+      <Tooltip text={TIP_TEXT} isOpen={true}>
+        <p>{CHILD_TEXT}</p>
+      </Tooltip>
+    );
+
+    const tip = screen.getByText(TIP_TEXT);
+    expect(tip).toBeInTheDocument();
+  });
+
+  it("does not render tooltip when isOpen is false and trigger is focused", async () => {
+    render(
+      <Tooltip text={TIP_TEXT} isOpen={false}>
+        <p>{CHILD_TEXT}</p>
+      </Tooltip>
+    );
+    const trigger = getTrigger();
+    fireEvent.focus(trigger);
+    const tip = await screen.queryByText(TIP_TEXT);
+
+    expect(tip).toBeNull();
+  });
 });

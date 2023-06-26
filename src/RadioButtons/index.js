@@ -74,6 +74,7 @@ const RadioButtons = ({
           {label}
           <input
             type="radio"
+            aria-label={`Radio ${name} option ${label}`}
             checked={checkedValue === inputValue}
             onChange={handleChange}
             onFocus={handleFocus}

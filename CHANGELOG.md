@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.46.1](https://github.com/narmi/design_system/compare/v2.46.0...v2.46.1) (2023-06-12)
+
+
+### Bug Fixes
+
+* **Radio:** add aria-label ([5b4dc81](https://github.com/narmi/design_system/commit/5b4dc81f735933d12dec11930468d7e2a9226feb))
+
 ## [2.46.0](https://github.com/narmi/design_system/compare/v2.45.1...v2.46.0) (2023-05-12)
 
 

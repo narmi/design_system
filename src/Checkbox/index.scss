@@ -1,20 +1,22 @@
-.nds-checkbox-container {
-  margin-bottom: var(--space-s);
+// only apply top margin to a checkbox container
+// that is preceeded by another checkbox container
+.nds-checkbox-container ~ .nds-checkbox-container {
+  padding-top: var(--space-s);
+}
 
-  .nds-checkbox {
+.nds-checkbox {
+  cursor: pointer;
+  font-size: var(--font-size-default);
+
+  input {
     cursor: pointer;
-    font-size: var(--font-size-default);
-
-    input {
-      cursor: pointer;
-      clip: rect(0 0 0 0);
-      clip-path: inset(50%);
-      height: 1px;
-      overflow: hidden;
-      position: absolute;
-      white-space: nowrap;
-      width: 1px;
-    }
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
   }
 }
 

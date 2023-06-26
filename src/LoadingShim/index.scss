@@ -15,7 +15,7 @@
 }
 
 .nds-loadingShim-indicator {
-  width: 80px;
+  width: 60px;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
@@ -26,8 +26,8 @@
   transform: translateY(-40%);
 
   div {
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background-color: var(--color-mediumGrey);
     transform: translateY(-80%);

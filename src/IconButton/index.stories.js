@@ -21,21 +21,81 @@ PlainIconButton.parameters = {
   },
 };
 
-export const IconButtonSizes = () => (
+export const DefaultIconButtonSizes = () => (
   <Row alignItems="center">
     <Row.Item shrink>
-      <IconButton kind="plain" label="X-Small Button" size="xs" name="info" />
+      <IconButton kind="action" label="Default Action Button" name="info" />
     </Row.Item>
     <Row.Item shrink>
-      <IconButton kind="plain" label="Small Button" size="s" name="info" />
-    </Row.Item>
-    <Row.Item shrink>
-      <IconButton kind="plain" label="Medium Button" size="m" name="info" />
-    </Row.Item>
-    <Row.Item shrink>
-      <IconButton kind="plain" label="Large Button" size="l" name="info" />
+      <IconButton kind="plain" label="Default Plain Button" name="info" />
     </Row.Item>
   </Row>
+);
+
+export const ActionIconButtonSizes = () => (
+  <Row alignItems="center">
+    <Row.Item shrink>
+      <IconButton
+        kind="action"
+        label="X-Small Button"
+        textSize="xs"
+        name="info"
+      />
+    </Row.Item>
+    <Row.Item shrink>
+      <IconButton kind="action" label="Small Button" textSize="s" name="info" />
+    </Row.Item>
+    <Row.Item shrink>
+      <IconButton
+        kind="action"
+        label="Medium Button"
+        textSize="m"
+        name="info"
+      />
+    </Row.Item>
+    <Row.Item shrink>
+      <IconButton kind="action" label="Large Button" textSize="l" name="info" />
+    </Row.Item>
+  </Row>
+);
+
+export const PlainIconButtonSizes = () => (
+  <>
+    <Row alignItems="center">
+      <Row.Item shrink>
+        <IconButton
+          kind="plain"
+          label="X-Small Button"
+          textSize="xs"
+          name="info"
+        />
+      </Row.Item>
+      <Row.Item shrink>
+        <IconButton
+          kind="plain"
+          label="Small Button"
+          textSize="s"
+          name="info"
+        />
+      </Row.Item>
+      <Row.Item shrink>
+        <IconButton
+          kind="plain"
+          label="Medium Button"
+          textSize="m"
+          name="info"
+        />
+      </Row.Item>
+      <Row.Item shrink>
+        <IconButton
+          kind="plain"
+          label="Large Button"
+          textSize="l"
+          name="info"
+        />
+      </Row.Item>
+    </Row>
+  </>
 );
 
 export default {
@@ -44,5 +104,6 @@ export default {
   argTypes: {
     name: { options: ["", ...VALID_ICON_NAMES] },
     size: { options: ["xs", "s", "m", "l"] },
+    kind: { options: ["plain", "action"] },
   },
 };

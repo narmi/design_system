@@ -31,19 +31,16 @@ describe("IconButton", () => {
 
   it.each(["xs", "s", "m", "l"])(
     "has expected classes for `%s` size",
-    (size) => {
-      render(<IconButton label={LABEL} name="info" size={size} />);
+    (textSize) => {
+      render(<IconButton label={LABEL} name="info" textSize={textSize} />);
       const iconButton = getIconButton();
-      expect(iconButton).toHaveClass(`fontSize--${size}`);
+      expect(iconButton).toHaveClass(`fontSize--${textSize}`);
     }
   );
 
-  it.each(["plain", "primary", "secondary"])(
-    "has expected classes for %s button",
-    (kind) => {
-      render(<IconButton label={LABEL} name="info" kind={kind} />);
-      const iconButton = getIconButton();
-      expect(iconButton).toHaveClass(`nds-icon-button--${kind}`);
-    }
-  );
+  it.each(["plain", "action"])("has expected classes for %s button", (kind) => {
+    render(<IconButton label={LABEL} name="info" kind={kind} />);
+    const iconButton = getIconButton();
+    expect(iconButton).toHaveClass(`nds-icon-button--${kind}`);
+  });
 });

@@ -1,26 +1,17 @@
 .nds-icon-button {
-  --button-radius: 50%;
   background: none;
   color: inherit;
   border: none;
   font: inherit;
   cursor: pointer;
   outline: inherit;
-  font-size: var(--font-size-default);
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: var(--button-radius);
-  /* mobile buttons are larger for ease of tapping */
-  height: 48px;
-  width: 48px;
+  height: 32px;
+  width: 32px;
 
-  @include atMediaUp("m") {
-    height: 32px;
-    width: 32px;
-  }
-
-  /* Nudge the large size icons to be centered more accurately */
   &.fontSize--l {
     [class^="narmi-icon-"] {
       transform: translate(0px, -1px);
@@ -28,44 +19,25 @@
   }
 }
 
-.nds-icon-button--primary {
-  color: var(--color-white);
-  background-color: var(--theme-primary);
+.nds-icon-button--action {
+  --button-radius: 50%;
+  color: var(--color-secondary);
 
   &:hover {
-    color: var(--color-white);
+    color: var(--theme-primary);
+    background-color: rgba(var(--theme-rgb-primary), var(--alpha-5));
     text-decoration: none;
-    filter: opacity(80%);
-  }
-}
-
-.nds-icon-button--secondary {
-  color: var(--theme-primary);
-  background-color: var(--color-white);
-  border: var(--border-size-s) solid var(--theme-primary);
-
-  // adds a white shim behind the button so that the transparent
-  // hover color appears the same regardless of context
-  &::before {
-    content: "";
-    border-radius: var(--button-radius);
-    background-color: var(--color-white);
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-  }
-
-  &:hover {
-    background-color: RGBA(var(--theme-rgb-primary), var(--alpha-10));
   }
 }
 
 .nds-icon-button--plain {
+  height: 24px;
+  width: 24px;
   color: var(--theme-secondary);
 }
 
-.nds-icon-button--plain,
-.nds-icon-button--negative {
+.nds-icon-button--plain {
+  font-size: --font-size;
   font-weight: var(--font-weight-semibold);
 
   &:hover {
@@ -73,26 +45,14 @@
   }
 }
 
-.nds-icon-button--negative {
-  color: var(--theme-primary);
-  &:hover {
-    color: var(--theme-primary);
-  }
-}
-
 .nds-icon-button--disabled {
   pointer-events: none;
   color: var(--color-white);
 
-  &.nds-icon-button--plain,
-  &.nds-icon-button--negative {
+  &.nds-icon-button--plain {
     color: var(--font-color-hint);
   }
-  &.nds-icon-button--primary {
+  &.nds-icon-button--action {
     background-color: var(--color-lightGrey);
-  }
-  &.nds-icon-button--secondary {
-    color: var(--color-lightGrey);
-    border-color: var(--color-lightGrey);
   }
 }

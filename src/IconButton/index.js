@@ -18,7 +18,7 @@ export const VALID_ICON_NAMES = iconSelection.icons.map(
 const IconButton = ({
   disabled = false,
   kind = "plain",
-  size = "m",
+  textSize = kind === "plain" ? "xs" : "l",
   testId = "nds-icon-button",
   label,
   name,
@@ -31,7 +31,7 @@ const IconButton = ({
         "nds-typography",
         "nds-icon-button",
         `nds-icon-button--${kind}`,
-        `fontSize--${size}`,
+        `fontSize--${textSize}`,
         {
           "nds-icon-button--disabled": disabled,
         },
@@ -53,9 +53,9 @@ IconButton.propTypes = {
   /** disables the icon button when set to `true` */
   disabled: PropTypes.bool,
   /** style of icon button to render */
-  kind: PropTypes.oneOf(["primary", "secondary", "negative", "plain"]),
-  /** size variant of icon button */
-  size: PropTypes.oneOf(["xs", "s", "m", "l"]),
+  kind: PropTypes.oneOf(["action", "plain"]),
+  /** Optional text size of the icon in the icon button defaults different for different kinds (plain/action)*/
+  textSize: PropTypes.oneOf(["xs", "s", "m", "l"]),
   /** Click callback, with event object passed as argument */
   onClick: PropTypes.func,
   /** Optional value for `data-testid` attribute */

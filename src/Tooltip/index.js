@@ -15,26 +15,30 @@ const Tooltip = ({
   wrapperDisplay = "inline-flex",
   maxWidth = "400px",
   testId,
+  isOpen,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const isControlled = isOpen === true || isOpen === false;
+  const [open, setOpen] = useState(false);
   const delays = {
     open: 500,
     close: 100,
   };
   let activeTimer;
 
+  const shouldRenderTooltip = isControlled ? isOpen : open;
+
   const openPopover = () => {
     clearTimeout(activeTimer);
-    activeTimer = setTimeout(setIsOpen, delays.open, true);
+    activeTimer = setTimeout(setOpen, delays.open, true);
   };
 
   const closePopover = () => {
     clearTimeout(activeTimer);
-    activeTimer = setTimeout(setIsOpen, delays.close, false);
+    activeTimer = setTimeout(setOpen, delays.close, false);
   };
 
   const { renderLayer, triggerProps, layerProps, arrowProps } = useLayer({
-    isOpen,
+    isOpen: shouldRenderTooltip,
     onOutsideClick: closePopover,
     onDisappear: closePopover,
     auto: true,
@@ -63,7 +67,7 @@ const Tooltip = ({
       </div>
       {renderLayer(
         <>
-          {isOpen && (
+          {shouldRenderTooltip && (
             <div
               id="nds-tooltip"
               role="tooltip"
@@ -99,6 +103,9 @@ Tooltip.propTypes = {
   ]),
   /** Sets maximum width of tooltip */
   maxWidth: PropTypes.number,
+
+  /** If isOpen is set the component becomes a controlled component */
+  isOpen: PropTypes.bool,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
 };

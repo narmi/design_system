@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Tooltip from "./";
 import Button from "../Button";
 import TextInput from "../TextInput";
@@ -40,11 +40,48 @@ export const WithTextInput = () => (
     </div>
   </div>
 );
+
 WithTextInput.parameters = {
   docs: {
     description: {
       story:
         "Tooltip can be used in a TextInput by composing an absolutely positioned narmi icon as the Tooltip trigger.",
+    },
+  },
+};
+
+export const ControlledTooltip = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div
+      onMouseLeave={() => {
+        setIsOpen(false);
+      }}
+    >
+      <Tooltip
+        isOpen={isOpen}
+        text="Hover over anywhere else to close the tooltip."
+      >
+        Tooltip should be over me
+      </Tooltip>
+      <Button
+        style={{ marginLeft: 8 }}
+        onClick={() => {
+          setIsOpen((newIsOpen) => !newIsOpen);
+        }}
+      >
+        Click Me.
+      </Button>
+    </div>
+  );
+};
+
+ControlledTooltip.parameters = {
+  docs: {
+    description: {
+      story:
+        "Tooltip can controlled to be open or closed by passing an optional isOpen property",
     },
   },
 };

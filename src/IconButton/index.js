@@ -18,7 +18,7 @@ export const VALID_ICON_NAMES = iconSelection.icons.map(
 const IconButton = ({
   disabled = false,
   kind = "plain",
-  textSize = kind === "plain" ? "xs" : "l",
+  textSize = kind === "plain" ? "m" : "l",
   testId = "nds-icon-button",
   label,
   name,

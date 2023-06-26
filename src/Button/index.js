@@ -23,6 +23,7 @@ const Button = ({
   isLoading = false,
   disabled = false,
   kind = "primary",
+  type = "button",
   size = "m",
   startIcon = null,
   endIcon = null,
@@ -56,6 +57,7 @@ const Button = ({
       elementType={as}
       tabIndex={0}
       onClick={onClick}
+      type={type}
       {...otherProps}
       className={cc([
         "nds-typography",
@@ -114,6 +116,8 @@ Button.propTypes = {
   isLoading: PropTypes.bool,
   /** style of button to render */
   kind: PropTypes.oneOf(["primary", "secondary", "negative", "menu", "plain"]),
+  /** type attribute of button element */
+  type: PropTypes.oneOf(["submit", "button"]),
   /** size variant of button */
   size: PropTypes.oneOf(["xs", "s", "m", "l"]),
   /** Click callback, with event object passed as argument */

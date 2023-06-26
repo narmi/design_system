@@ -26,7 +26,6 @@ const IconButton = ({
 }) => {
   return (
     <button
-      tabIndex={0}
       onClick={onClick}
       className={cc([
         "nds-typography",

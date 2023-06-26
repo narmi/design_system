@@ -55,7 +55,7 @@ export const ControlledTooltip = () => {
 
   return (
     <div
-      onMouseLeave={(event) => {
+      onMouseLeave={() => {
         setIsOpen(false);
       }}
     >

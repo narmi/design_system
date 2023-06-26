@@ -13,8 +13,6 @@
     "subdued-10-opacity"
   ],
   "components": [
-    "Card",
-    "Dropdown",
-    "PlainButton"
+    "Dropdown"
   ]
 }

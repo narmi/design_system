@@ -1,25 +1,24 @@
-.nds-select {
-  position: relative;
-}
-
 .nds-select-list {
-  visibility: hidden;
-  position: absolute;
-  z-index: 3;
-  border-color: var(--theme-primary) !important;
-  top: 0;
-  right: 0;
-  width: 100%;
   max-height: 60vh;
   overflow-y: auto;
+  z-index: 3;
 
   &:focus {
     outline: none;
   }
-}
 
-.nds-select-list--active {
-  visibility: visible;
+  &--active--top,
+  &--active--bottom {
+    border: 1px solid var(--theme-primary);
+  }
+
+  &--active--top {
+    border-bottom: 1px solid var(--border-color-default);
+  }
+
+  &--active--bottom {
+    border-top: 1px solid var(--border-color-default);
+  }
 }
 
 .nds-select-item {

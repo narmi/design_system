@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useLayer } from "react-laag";
-import useFocusTrap from "@charlietango/use-focus-trap";
+import FocusLock from "react-focus-lock";
 
 /**
  * Generic Popover component. Renders a floating element that can contain any content,
@@ -26,7 +26,6 @@ const Popover = ({
   closeOnContentClick = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const focusTrapRef = useFocusTrap(isOpen);
   const popoverContent = closeOnContentClick ? React.cloneElement(content, {
     onClick: () => {
       if (content.onClick) {
@@ -106,8 +105,10 @@ const Popover = ({
               style={layerStyle}
               data-testid={testId}
             >
-              <div ref={focusTrapRef} tabIndex={-1}>
-                {popoverContent}
+              <div tabIndex={-1}>
+                <FocusLock>
+                  {popoverContent}
+                </FocusLock>
               </div>
             </div>
           )}

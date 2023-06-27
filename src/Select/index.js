@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useSelect } from "downshift";
+import { useLayer } from "react-laag";
 import cc from "classcat";
 import DropdownTrigger from "../DropdownTrigger";
 import SelectItem from "./SelectItem";
@@ -66,7 +67,9 @@ const Select = ({
   testId,
 }) => {
   // The menu should only render children that have `value` or `onSelect` prop
-  const items = React.Children.toArray(children).filter(({ props }) => "value" in props || "onSelect" in props);
+  const items = React.Children.toArray(children).filter(
+    ({ props }) => "value" in props || "onSelect" in props
+  );
 
   const downshiftOpts = {
     id: id || `nds-select-${label}`,
@@ -102,50 +105,78 @@ const Select = ({
   } = useSelect(downshiftOpts);
 
   const hasSelectedItem = selectedItem !== undefined && selectedItem.props;
+  const showMenu = isOpen && items.length > 0;
+
+  /** @see https://github.com/everweij/react-laag#api-docs */
+  const { renderLayer, triggerProps, triggerBounds, layerProps, layerSide } =
+    useLayer({
+      isOpen: showMenu,
+      auto: true,
+      snap: true,
+      triggerOffset: 0,
+      containerOffset: 0,
+      placement: "bottom-start",
+      possiblePlacements: ["top-start", "bottom-start"],
+    });
 
   return (
     <div className="nds-select" data-testid={testId}>
       <DropdownTrigger
-        isOpen={isOpen}
+        isOpen={showMenu}
         labelText={label}
         displayValue={getSelectedItemDisplay(selectedItem)}
         labelProps={{ ...getLabelProps() }}
         errorText={errorText}
-        {...getToggleButtonProps()}
+        {...getToggleButtonProps(triggerProps)}
+        style={{
+          ...triggerProps.style,
+
+        }}
       />
-      <ul
-        className={cc([
-          "nds-select-list",
-          "list--reset bgColor--white rounded--all border--all",
-          { "nds-select-list--active": isOpen },
-        ])}
-        {...getMenuProps()}
-      >
-        {isOpen &&
-          items.map((item, index) => (
-            <li
-              key={`${item}${index}`}
-              className={cc([
-                "nds-select-item",
-                "alignChild--left--center padding--x--s padding--y--xs",
-                {
-                  "nds-select-item--highlighted": highlightedIndex === index,
-                  "rounded--top": index === 0,
-                  "rounded--bottom": index === items.length - 1,
-                  // make a left gutter for the checkmark if any item selected
-                  "nds-select-item--hasGutter": hasSelectedItem,
-                },
-              ])}
-              {...getItemProps({ item, index })}
-            >
-              {hasSelectedItem &&
-                selectedItem.props.value === item.props.value && (
-                  <span className="narmi-icon-check fontSize--l fontWeight--bold" />
-                )}
-              {item}
-            </li>
-          ))}
-      </ul>
+      {renderLayer(
+        <ul
+          className={cc([
+            "nds-select-list",
+            "list--reset bgColor--white",
+            {
+              "rounded--bottom": layerSide === "bottom",
+              "rounded--top": layerSide === "top",
+              [`nds-select-list--active--${layerSide}`]: showMenu,
+            },
+          ])}
+          {...getMenuProps(layerProps)}
+          style={{
+            width: triggerBounds?.width,
+            transform: `translateY(${layerSide == "top" ? "3px" : "-3px"})`,
+            ...layerProps.style,
+          }}
+        >
+          {showMenu &&
+            items.map((item, index) => (
+              <li
+                key={`${item}${index}`}
+                className={cc([
+                  "nds-select-item",
+                  "alignChild--left--center padding--x--s padding--y--xs",
+                  {
+                    "nds-select-item--highlighted": highlightedIndex === index,
+                    "rounded--top": index === 0,
+                    "rounded--bottom": index === items.length - 1,
+                    // make a left gutter for the checkmark if any item selected
+                    "nds-select-item--hasGutter": hasSelectedItem,
+                  },
+                ])}
+                {...getItemProps({ item, index })}
+              >
+                {hasSelectedItem &&
+                  selectedItem.props.value === item.props.value && (
+                    <span className="narmi-icon-check fontSize--l fontWeight--bold" />
+                  )}
+                {item}
+              </li>
+            ))}
+        </ul>
+      )}
     </div>
   );
 };

@@ -19,9 +19,20 @@ const Template = (args) => (
 export const Overview = Template.bind({});
 Overview.args = {
   content: <div className="padding--all--m">📦 Any content</div>,
-  children: <Button type="secondary">Click to show Popover</Button>,
+  children: <Button type="secondary">Open Popover</Button>,
 };
 Overview.argTypes = {
+  content: { control: false },
+};
+
+export const Positioning = Template.bind({});
+Positioning.args = {
+  content: <div className="padding--all--m">Use <code>side</code> and <code>alignment</code> to set your preferred positioning</div>,
+  children: <Button type="secondary">Top / Start positioned Popover</Button>,
+  side: "top",
+  alignment: "start",
+};
+Positioning.argTypes = {
   content: { control: false },
 };
 

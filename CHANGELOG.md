@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.46.3](https://github.com/narmi/design_system/compare/v2.46.2...v2.46.3) (2023-06-27)
+
+
+### Bug Fixes
+
+* **TextInput:** make clearInput call onChange ([62f8b23](https://github.com/narmi/design_system/commit/62f8b230ed8010e143a505d39b96e60ebd3ce26c))
+
 ### [2.46.2](https://github.com/narmi/design_system/compare/v2.46.1...v2.46.2) (2023-06-26)
 
 

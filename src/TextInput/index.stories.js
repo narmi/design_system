@@ -88,6 +88,17 @@ export const WithClearInputIcon = () => {
   return <TextInput showClearButton />;
 };
 
+export const WithClearInputIconAndOnChange = () => {
+  const [text, setText] = useState("");
+
+  return (
+    <>
+      <TextInput onChange={(e) => setText(e.target.value)} showClearButton />
+      <div>Your text is: {text}</div>
+    </>
+  );
+};
+
 export default {
   title: "Components/TextInput",
   component: TextInput,

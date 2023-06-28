@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file. See
 ### Features
 
 * **Popover:** add alignment prop for more position control ([beb557a](https://github.com/narmi/design_system/commit/beb557aa12dff01d8344c94f894de53774f84203))
+* **IconButton:** add new component, `IconButton`
 
 ### [2.46.3](https://github.com/narmi/design_system/compare/v2.46.2...v2.46.3) (2023-06-27)
 

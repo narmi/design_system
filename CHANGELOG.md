@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.47.0](https://github.com/narmi/design_system/compare/v2.46.3...v2.47.0) (2023-06-28)
+
+
+### Features
+
+* **Popover:** add alignment prop for more position control ([beb557a](https://github.com/narmi/design_system/commit/beb557aa12dff01d8344c94f894de53774f84203))
+
 ### [2.46.3](https://github.com/narmi/design_system/compare/v2.46.2...v2.46.3) (2023-06-27)
 
 

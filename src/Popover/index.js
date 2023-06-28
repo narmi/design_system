@@ -16,6 +16,7 @@ import useFocusTrap from "@charlietango/use-focus-trap";
  */
 const Popover = ({
   side = "bottom",
+  alignment = "center",
   content,
   children,
   wrapperDisplay = "inline-flex",
@@ -60,7 +61,7 @@ const Popover = ({
     onOutsideClick: closePopover,
     onDisappear: closePopover,
     auto: !disableAutoPlacement,
-    placement: `${side}-center`,
+    placement: `${side}-${alignment}`,
     preferX: "left",
     preferY: "bottom",
     container: document.body,
@@ -124,6 +125,8 @@ Popover.propTypes = {
   content: PropTypes.node.isRequired,
   /** Sets prefferred side of the trigger the tooltip should appear */
   side: PropTypes.oneOf(["top", "right", "bottom", "left"]),
+  /** Sets preferred alignment of the tooltip relative to the trigger */
+  alignment: PropTypes.oneOf(["start", "center", "end"]),
   /** CSS `display` value for the element that wraps the Tooltip children */
   wrapperDisplay: PropTypes.oneOf([
     "inline-flex",

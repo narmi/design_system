@@ -1,0 +1,58 @@
+.nds-icon-button {
+  background: none;
+  color: inherit;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--button-radius);
+  height: 32px;
+  width: 32px;
+
+  &.fontSize--l {
+    [class^="narmi-icon-"] {
+      transform: translate(0px, -1px);
+    }
+  }
+}
+
+.nds-icon-button--action {
+  --button-radius: 50%;
+  color: var(--font-color-secondary);
+
+  &:hover {
+    color: var(--theme-primary);
+    background-color: rgba(var(--theme-rgb-primary), var(--alpha-5));
+    text-decoration: none;
+  }
+}
+
+.nds-icon-button--plain {
+  height: 24px;
+  width: 24px;
+  color: var(--font-color-secondary);
+}
+
+.nds-icon-button--plain {
+  font-size: --font-size;
+  font-weight: var(--font-weight-semibold);
+
+  &:hover {
+    color: var(--theme-secondary);
+  }
+}
+
+.nds-icon-button--disabled {
+  pointer-events: none;
+  color: var(--color-white);
+
+  &.nds-icon-button--plain {
+    color: var(--font-color-hint);
+  }
+  &.nds-icon-button--action {
+    background-color: var(--color-lightGrey);
+  }
+}

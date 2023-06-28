@@ -21,7 +21,7 @@
 
 .nds-icon-button--action {
   --button-radius: 50%;
-  color: var(--color-secondary);
+  color: var(--font-color-secondary);
 
   &:hover {
     color: var(--theme-primary);
@@ -33,7 +33,7 @@
 .nds-icon-button--plain {
   height: 24px;
   width: 24px;
-  color: var(--theme-secondary);
+  color: var(--font-color-secondary);
 }
 
 .nds-icon-button--plain {

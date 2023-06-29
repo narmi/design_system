@@ -11,6 +11,7 @@ import Drawer from "./Drawer";
 import Dropdown from "./Dropdown";
 import DropdownTrigger from "./DropdownTrigger";
 import FormSection from "./FormSection";
+import IconButton from "./IconButton";
 import Input from "./Input";
 import LoadingShim from "./LoadingShim";
 import LoadingSkeleton from "./LoadingSkeleton";
@@ -43,6 +44,7 @@ export {
   Dropdown,
   DropdownTrigger,
   FormSection,
+  IconButton,
   Input,
   LoadingShim,
   LoadingSkeleton,

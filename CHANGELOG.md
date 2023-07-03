@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.47.1](https://github.com/narmi/design_system/compare/v2.47.0...v2.47.1) (2023-06-29)
+
+
+### Bug Fixes
+
+* **IconButton:** export IconButton in index.js ([33e580c](https://github.com/narmi/design_system/commit/33e580c7ff4ec48f8722ccb8f4390272ca32b05d))
+
 ## [2.47.0](https://github.com/narmi/design_system/compare/v2.46.3...v2.47.0) (2023-06-28)
 
 

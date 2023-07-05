@@ -15,6 +15,7 @@ const TabsContext = createContext({
 
   // allows any consumer of this context to change tabs by id
   changeTabs: () => {},
+  tabsListRef: null,
 });
 
 export default TabsContext;

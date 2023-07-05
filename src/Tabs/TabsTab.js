@@ -1,12 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import TabsContext from "./context";
 import cc from "classcat";
 
 const TabsTab = ({ label, tabId, testId }) => {
-  const { currentIndex, tabIds, hasPanels, changeTabs } =
+  const { currentIndex, tabIds, hasPanels, changeTabs, tabsContainerRef } =
     useContext(TabsContext);
+  const tabRef = useRef();
   const isSelected = tabId === tabIds[currentIndex];
+
+  useEffect(() => {
+    if (isSelected) {
+      tabsContainerRef.current.scrollIntoView(tabRef.current);
+    }
+  }, [isSelected]);
+
+  const onTabClick = () => {
+    changeTabs(tabId);
+  };
 
   return (
     <li
@@ -19,6 +30,7 @@ const TabsTab = ({ label, tabId, testId }) => {
           "nds-tabs-tabItem--selected": isSelected,
         },
       ])}
+      ref={tabRef}
     >
       <button
         className={cc([
@@ -30,7 +42,7 @@ const TabsTab = ({ label, tabId, testId }) => {
         ])}
         id={`${tabId}-tab`}
         tabIndex={hasPanels ? "-1" : "0"}
-        onClick={() => changeTabs(tabId)}
+        onClick={onTabClick}
         data-testid={testId}
       >
         {label}

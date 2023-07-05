@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import TabsContext from "./context";
@@ -23,17 +23,37 @@ const Tabs = ({
   hasBorder = true,
   testId,
 }) => {
+  const tabsListRef = useRef();
+  const tabsContainerRef = useRef();
   const [tabIds, setTabIds] = useState([]);
   const [hasPanels, setHasPanels] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(defaultSelectedIndex);
   const isControlledComponent = selectedIndex !== null;
 
+  const getScrollToIndexSize = (currentSelectedIndex) => {
+    let totalSize = 0;
+    const children = Array.from(tabsListRef.current.children);
+
+    for (let i = 0; i < currentSelectedIndex; i += 1) {
+      const tab = children[i];
+      totalSize += tab.clientWidth + 40;
+    }
+
+    return totalSize;
+  };
+
+  useEffect(() => {
+    if (isControlledComponent) {
+      tabsListRef.current.scrollLeft = getScrollToIndexSize(selectedIndex);
+    }
+  }, [selectedIndex]);
+
   const changeTabs = (tabId) => {
     const tabIndex = tabIds.indexOf(tabId);
-
     onTabChange(tabIndex);
 
     if (!isControlledComponent) {
+      tabsListRef.current.scrollLeft = getScrollToIndexSize(tabIndex);
       setCurrentIndex(tabIndex);
     }
   };
@@ -47,11 +67,14 @@ const Tabs = ({
         hasPanels,
         setHasPanels,
         changeTabs,
+        tabsContainerRef,
+        tabsListRef,
       }}
     >
       <div
         className={cc(["nds-tabs", { "nds-tabs--bordered": hasBorder }])}
         data-testid={testId}
+        ref={tabsContainerRef}
       >
         {children}
       </div>

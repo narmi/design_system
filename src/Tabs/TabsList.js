@@ -1,14 +1,9 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, {
-  useState,
-  useEffect,
-  useContext,
-  useRef,
-  useCallback,
-} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import debounce from "lodash.debounce";
 import PropTypes from "prop-types";
 import TabsContext from "./context";
+import Arrow from "./Arrow";
 
 const noop = () => {};
 
@@ -98,7 +93,7 @@ const TabsList = ({ children, xPadding = "none" }) => {
     }
   };
 
-  // From https://github.com/mui/material-ui/blob/master/packages/mui-material-next/src/Tabs/Tabs.js#L395
+  // Heavily inspired from https://github.com/mui/material-ui/blob/master/packages/mui-material-next/src/Tabs/Tabs.js#L395
   const getScrollSize = () => {
     const containerSize = tabsListRef.current.clientWidth;
     let totalSize = 0;
@@ -121,20 +116,22 @@ const TabsList = ({ children, xPadding = "none" }) => {
   };
 
   const onLeftClick = () => {
-    tabsListRef.current.scrollLeft -= getScrollSize();
+    tabsListRef.current.scroll({
+      left: tabsListRef.current.scrollLeft - getScrollSize(),
+      behavior: "smooth",
+    });
   };
 
   const onRightClick = () => {
-    tabsListRef.current.scrollLeft += getScrollSize();
+    tabsListRef.current.scroll({
+      left: tabsListRef.current.scrollLeft + getScrollSize(),
+      behavior: "smooth",
+    });
   };
 
   return (
     <div style={{ display: "flex" }}>
-      {showLeftArrow && (
-        <li style={{ listStyle: "none" }} onClick={onLeftClick}>
-          {"<"}
-        </li>
-      )}
+      <Arrow direction="left" onClick={onLeftClick} show={showLeftArrow} />
       <ul
         ref={tabsListRef}
         role={hasPanels ? "tablist" : undefined}
@@ -144,7 +141,7 @@ const TabsList = ({ children, xPadding = "none" }) => {
         style={{
           overflowX: "hidden",
           scrollbarWidth: "none", // Firefox
-          "&::-webkit-scrollbar": {
+          "&:webkitScrollbar": {
             display: "none", // Safari + Chrome
           },
         }}
@@ -152,11 +149,7 @@ const TabsList = ({ children, xPadding = "none" }) => {
       >
         {children}
       </ul>
-      {showRightArrow && (
-        <li style={{ listStyle: "none" }} onClick={onRightClick}>
-          {">"}
-        </li>
-      )}
+      <Arrow direction="right" onClick={onRightClick} show={showRightArrow} />
     </div>
   );
 };

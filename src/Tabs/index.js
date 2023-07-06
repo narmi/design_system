@@ -44,7 +44,10 @@ const Tabs = ({
 
   useEffect(() => {
     if (isControlledComponent) {
-      tabsListRef.current.scrollLeft = getScrollToIndexSize(selectedIndex);
+      tabsListRef.current.scroll({
+        left: getScrollToIndexSize(selectedIndex),
+        behavior: "smooth",
+      });
     }
   }, [selectedIndex]);
 
@@ -53,7 +56,10 @@ const Tabs = ({
     onTabChange(tabIndex);
 
     if (!isControlledComponent) {
-      tabsListRef.current.scrollLeft = getScrollToIndexSize(tabIndex);
+      tabsListRef.current.scroll({
+        left: getScrollToIndexSize(tabIndex),
+        behavior: "smooth",
+      });
       setCurrentIndex(tabIndex);
     }
   };

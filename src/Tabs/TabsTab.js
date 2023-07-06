@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useRef } from "react";
 import PropTypes from "prop-types";
 import TabsContext from "./context";
 import cc from "classcat";
@@ -8,12 +8,6 @@ const TabsTab = ({ label, tabId, testId }) => {
     useContext(TabsContext);
   const tabRef = useRef();
   const isSelected = tabId === tabIds[currentIndex];
-
-  useEffect(() => {
-    if (isSelected) {
-      tabsContainerRef.current.scrollIntoView(tabRef.current);
-    }
-  }, [isSelected]);
 
   const onTabClick = () => {
     changeTabs(tabId);

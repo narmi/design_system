@@ -134,12 +134,7 @@ const TabsList = ({ children, xPadding = "none" }) => {
 
   return (
     <div style={{ display: "flex" }}>
-      <Arrow
-        direction="left"
-        onClick={onLeftClick}
-        show={showLeftArrow}
-        isResponsive={isResponsive}
-      />
+      <Arrow direction="left" onClick={onLeftClick} show={showLeftArrow} />
       <ul
         ref={tabsListRef}
         role={hasPanels ? "tablist" : undefined}
@@ -157,12 +152,7 @@ const TabsList = ({ children, xPadding = "none" }) => {
       >
         {children}
       </ul>
-      <Arrow
-        direction="right"
-        onClick={onRightClick}
-        show={showRightArrow}
-        isResponsive={isResponsive}
-      />
+      <Arrow direction="right" onClick={onRightClick} show={showRightArrow} />
     </div>
   );
 };

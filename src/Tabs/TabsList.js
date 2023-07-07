@@ -19,7 +19,6 @@ const TabsList = ({ children, xPadding = "none" }) => {
     hasPanels,
     tabsListRef,
     setIsResponsive,
-    isResponsive,
   } = useContext(TabsContext);
   const childArray = React.Children.toArray(children);
 

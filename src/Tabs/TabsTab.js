@@ -1,10 +1,10 @@
-import React, { useContext, useRef } from "react";
-import PropTypes from "prop-types";
-import TabsContext from "./context";
 import cc from "classcat";
+import PropTypes from "prop-types";
+import React, { useContext, useRef } from "react";
+import TabsContext from "./context";
 
 const TabsTab = ({ label, tabId, testId }) => {
-  const { currentIndex, tabIds, hasPanels, changeTabs, tabsContainerRef } =
+  const { currentIndex, tabIds, hasPanels, changeTabs } =
     useContext(TabsContext);
   const tabRef = useRef();
   const isSelected = tabId === tabIds[currentIndex];

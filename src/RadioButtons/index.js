@@ -83,7 +83,7 @@ const RadioButtons = ({
             name={name}
           />
           <div
-            role="img"
+            role="presentation"
             className={cc([
               "nds-radio",
               { "narmi-icon-check": kind === "card" },

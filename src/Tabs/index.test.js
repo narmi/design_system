@@ -1,5 +1,5 @@
+import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
 import Tabs from "./";
 
 const TAB_NAMES = ["Tab One", "Tab Two", "Tab Three"];
@@ -50,6 +50,7 @@ const renderTabsWithoutPanels = (args) =>
   );
 
 describe("Tabs", () => {
+  window.HTMLElement.prototype.scroll = function () {};
   it("renders tabs with tablist only without errors", () => {
     renderTabsWithoutPanels();
     TAB_NAMES.forEach((tabText) => {

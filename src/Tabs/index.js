@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
-import PropTypes from "prop-types";
 import cc from "classcat";
-import TabsContext from "./context";
+import PropTypes from "prop-types";
+import React, { useEffect, useRef, useState } from "react";
 import TabsList from "./TabsList";
-import TabsTab from "./TabsTab";
 import TabsPanel from "./TabsPanel";
+import TabsTab from "./TabsTab";
+import TabsContext from "./context";
 
 const noop = () => {};
 
@@ -27,6 +27,7 @@ const Tabs = ({
   const tabsContainerRef = useRef();
   const [tabIds, setTabIds] = useState([]);
   const [hasPanels, setHasPanels] = useState(false);
+  const [isResponsive, setIsResponsive] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(defaultSelectedIndex);
   const isControlledComponent = selectedIndex !== null;
 
@@ -75,6 +76,8 @@ const Tabs = ({
         changeTabs,
         tabsContainerRef,
         tabsListRef,
+        isResponsive,
+        setIsResponsive,
       }}
     >
       <div

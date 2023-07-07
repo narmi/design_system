@@ -1,9 +1,9 @@
-import React, { useEffect, useContext } from "react";
 import PropTypes from "prop-types";
+import React, { useContext, useEffect } from "react";
 import TabsContext from "./context";
 
 const TabsPanel = ({ children, tabId, testId }) => {
-  const { currentIndex, tabIds, hasPanels, setHasPanels } =
+  const { currentIndex, tabIds, hasPanels, setHasPanels, isResponsive } =
     useContext(TabsContext);
   const selectedId = tabIds[currentIndex];
 
@@ -23,7 +23,11 @@ const TabsPanel = ({ children, tabId, testId }) => {
       hidden={tabId !== selectedId ? true : undefined}
       data-testid={testId}
     >
-      {children}
+      {isResponsive ? (
+        <div className="panel-responsive">{children}</div>
+      ) : (
+        <>{children}</>
+      )}
     </div>
   );
 };

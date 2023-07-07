@@ -1,12 +1,32 @@
-import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import IconButton from "../IconButton";
+import React, { useRef } from "react";
 import { CSSTransition } from "react-transition-group";
-import cc from "classcat";
+import IconButton from "../IconButton";
 
-const Arrow = ({ direction, onClick, show }) => {
+const Arrow = ({ direction, onClick, show, isResponsive }) => {
   const arrowRef = useRef();
 
+  if (isResponsive === true) {
+    return (
+      <div className="arrow-reponsive">
+        <CSSTransition
+          nodeRef={arrowRef}
+          in={show}
+          timeout={300}
+          unmountOnExit
+          classNames="nds-tabs-arrow"
+        >
+          <div ref={arrowRef} className="nds-tabs-arrow">
+            <IconButton
+              onClick={onClick}
+              name={direction === "left" ? "arrow-left" : "arrow-right"}
+              kind="action"
+            />
+          </div>
+        </CSSTransition>
+      </div>
+    );
+  }
   return (
     <CSSTransition
       nodeRef={arrowRef}
@@ -31,6 +51,7 @@ Arrow.propTypes = {
   direction: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   show: PropTypes.bool,
+  isResponsive: PropTypes.bool,
 };
 
 Arrow.displayName = "Arrow";

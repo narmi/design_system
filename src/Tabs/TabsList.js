@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, { useState, useEffect, useContext } from "react";
 import debounce from "lodash.debounce";
 import PropTypes from "prop-types";
-import TabsContext from "./context";
+import React, { useContext, useEffect, useState } from "react";
 import Arrow from "./Arrow";
+import TabsContext from "./context";
 
 const noop = () => {};
 
@@ -18,6 +18,8 @@ const TabsList = ({ children, xPadding = "none" }) => {
     currentIndex,
     hasPanels,
     tabsListRef,
+    setIsResponsive,
+    isResponsive,
   } = useContext(TabsContext);
   const childArray = React.Children.toArray(children);
 
@@ -28,6 +30,7 @@ const TabsList = ({ children, xPadding = "none" }) => {
 
     setShowLeftArrow(nextShowLeftArrow);
     setShowRightArrow(nextShowRightArrow);
+    setIsResponsive(nextShowLeftArrow || nextShowRightArrow);
   };
 
   useEffect(() => {
@@ -131,7 +134,12 @@ const TabsList = ({ children, xPadding = "none" }) => {
 
   return (
     <div style={{ display: "flex" }}>
-      <Arrow direction="left" onClick={onLeftClick} show={showLeftArrow} />
+      <Arrow
+        direction="left"
+        onClick={onLeftClick}
+        show={showLeftArrow}
+        isResponsive={isResponsive}
+      />
       <ul
         ref={tabsListRef}
         role={hasPanels ? "tablist" : undefined}
@@ -149,7 +157,12 @@ const TabsList = ({ children, xPadding = "none" }) => {
       >
         {children}
       </ul>
-      <Arrow direction="right" onClick={onRightClick} show={showRightArrow} />
+      <Arrow
+        direction="right"
+        onClick={onRightClick}
+        show={showRightArrow}
+        isResponsive={isResponsive}
+      />
     </div>
   );
 };

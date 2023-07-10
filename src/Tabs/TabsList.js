@@ -132,7 +132,7 @@ const TabsList = ({ children, xPadding = "none" }) => {
   };
 
   return (
-    <div style={{ display: "flex" }}>
+    <div className="display-flex">
       <Arrow direction="left" onClick={onLeftClick} show={showLeftArrow} />
       <ul
         ref={tabsListRef}
@@ -140,13 +140,6 @@ const TabsList = ({ children, xPadding = "none" }) => {
         className={`nds-tabs-tabsList list--reset padding--x--${xPadding}`}
         onKeyDown={hasPanels ? handleKeyDown : noop}
         tabIndex={hasPanels ? "0" : undefined}
-        style={{
-          overflowX: "hidden",
-          scrollbarWidth: "none", // Firefox
-          "&:webkitScrollbar": {
-            display: "none", // Safari + Chrome
-          },
-        }}
         data-testid="nds-tablist"
       >
         {children}

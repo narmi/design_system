@@ -6,18 +6,18 @@ import Row from "../Row";
  * A sectioning element for forms that renders a label and line above the section
  */
 const FormSection = ({ title, children }) => (
-  <div className="nds-formSection padding--bottom">
+  <div className="nds-formSection fontFamily--body">
     <Row alignItems="center" gapSize="xs">
       <Row.Item shrink>
-        <h3 className="fontColor--secondary fontSize--xs">{title}</h3>
+        <h3 className="fontColor--secondary fontSize--xs fontFamily--body">{title}</h3>
       </Row.Item>
       <Row.Item>
-        <div style={{ width: "100%", height: "var(--space-l)" }}>
+        <div style={{ width: "100%", height: "var(--space-m)" }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             version="1.1"
             xmlnsXlink="http://www.w3.org/1999/xlink"
-            height="var(--space-l)"
+            height="var(--space-m)"
             width="100%"
           >
             <line
@@ -32,9 +32,7 @@ const FormSection = ({ title, children }) => (
         </div>
       </Row.Item>
     </Row>
-    <div className="padding--top">
-      {children}
-    </div>
+    {children}
   </div>
 );
 

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import debounce from "lodash.debounce";
 import PropTypes from "prop-types";
+import rafSchd from "raf-schd";
 import React, { useContext, useEffect, useState } from "react";
 import Arrow from "./Arrow";
 import TabsContext from "./context";
@@ -39,11 +39,11 @@ const TabsList = ({ children, xPadding = "none" }) => {
   }, []);
 
   useEffect(() => {
-    const handleScrollButtonsUpdate = debounce(() => {
+    const handleScrollButtonsUpdate = () => {
       if (tabsListRef.current) {
-        updateScrollButtonState();
+        rafSchd(updateScrollButtonState());
       }
-    }, 100);
+    };
 
     window.addEventListener("resize", handleScrollButtonsUpdate);
 
@@ -53,11 +53,11 @@ const TabsList = ({ children, xPadding = "none" }) => {
   }, []);
 
   useEffect(() => {
-    const handleScrollButtonsUpdate = debounce(() => {
+    const handleScrollButtonsUpdate = () => {
       if (tabsListRef.current) {
-        updateScrollButtonState();
+        rafSchd(updateScrollButtonState());
       }
-    }, 100);
+    };
 
     tabsListRef.current.addEventListener("scroll", handleScrollButtonsUpdate);
 

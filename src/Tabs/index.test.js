@@ -176,8 +176,8 @@ describe("Tabs", () => {
     expect(tabList).toHaveAttribute("role", "tablist");
     expect(tabList).toHaveAttribute("tabIndex", "0");
 
-    expect(firstTab).toHaveAttribute("role", "tab");
-    expect(firstTab).toHaveAttribute("aria-controls");
+    expect(firstTab.parentElement).toHaveAttribute("role", "tab");
+    expect(firstTab.parentElement).toHaveAttribute("aria-controls");
   });
 
   it("does NOT apply tabs design pattern aria attributes when panels are NOT present", () => {
@@ -189,8 +189,8 @@ describe("Tabs", () => {
     expect(tabList).not.toHaveAttribute("tabIndex", "0");
 
     [firstTab, secondTab, thirdTab].forEach((tab) => {
-      expect(tab).not.toHaveAttribute("role", "tab");
-      expect(tab).not.toHaveAttribute("aria-controls");
+      expect(tab.parentElement).not.toHaveAttribute("role", "tab");
+      expect(tab.parentElement).not.toHaveAttribute("aria-controls");
     });
   });
 

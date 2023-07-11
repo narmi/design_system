@@ -1,6 +1,6 @@
 {
   "name": "@narmi/design_system",
-  "version": "2.47.3",
+  "version": "2.47.4",
   "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
   "files": [
@@ -8,7 +8,7 @@
   ],
   "engineStrict": true,
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "scripts": {
     "watch": "watch 'npm run build' src",

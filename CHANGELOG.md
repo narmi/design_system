@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.47.4](https://github.com/narmi/design_system/compare/v2.47.3...v2.47.4) (2023-07-11)
+
+
+### Bug Fixes
+
+* **tooltip:** add aria-label to tooltip trigger ([aafd106](https://github.com/narmi/design_system/commit/aafd10631ab7affbe433111b7055d580f8796741))
+
 ### [2.47.3](https://github.com/narmi/design_system/compare/v2.47.2...v2.47.3) (2023-07-10)
 
 

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.47.5](https://github.com/narmi/design_system/compare/v2.47.4...v2.47.5) (2023-07-11)
+
+
+### Bug Fixes
+
+* **tabs:** lift aria role for tabs up ([acfdd31](https://github.com/narmi/design_system/commit/acfdd31bb6e9fc7ffdcb54cba0ced0185305f7a3))
+
 ### [2.47.4](https://github.com/narmi/design_system/compare/v2.47.3...v2.47.4) (2023-07-11)
 
 

@@ -1,12 +1,17 @@
-import React, { useContext } from "react";
-import PropTypes from "prop-types";
-import TabsContext from "./context";
 import cc from "classcat";
+import PropTypes from "prop-types";
+import React, { useContext, useRef } from "react";
+import TabsContext from "./context";
 
 const TabsTab = ({ label, tabId, testId }) => {
   const { currentIndex, tabIds, hasPanels, changeTabs } =
     useContext(TabsContext);
+  const tabRef = useRef();
   const isSelected = tabId === tabIds[currentIndex];
+
+  const onTabClick = () => {
+    changeTabs(tabId);
+  };
 
   return (
     <li
@@ -19,6 +24,7 @@ const TabsTab = ({ label, tabId, testId }) => {
           "nds-tabs-tabItem--selected": isSelected,
         },
       ])}
+      ref={tabRef}
     >
       <button
         className={cc([
@@ -30,7 +36,7 @@ const TabsTab = ({ label, tabId, testId }) => {
         ])}
         id={`${tabId}-tab`}
         tabIndex={hasPanels ? "-1" : "0"}
-        onClick={() => changeTabs(tabId)}
+        onClick={onTabClick}
         data-testid={testId}
       >
         {label}

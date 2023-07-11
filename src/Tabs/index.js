@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
 import cc from "classcat";
-import TabsContext from "./context";
+import PropTypes from "prop-types";
+import React, { useEffect, useRef, useState } from "react";
 import TabsList from "./TabsList";
-import TabsTab from "./TabsTab";
 import TabsPanel from "./TabsPanel";
+import TabsTab from "./TabsTab";
+import TabsContext from "./context";
 
 const noop = () => {};
 
@@ -23,17 +23,44 @@ const Tabs = ({
   hasBorder = true,
   testId,
 }) => {
+  const tabsListRef = useRef();
+  const tabsContainerRef = useRef();
   const [tabIds, setTabIds] = useState([]);
   const [hasPanels, setHasPanels] = useState(false);
+  const [isResponsive, setIsResponsive] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(defaultSelectedIndex);
   const isControlledComponent = selectedIndex !== null;
 
+  const getScrollToIndexSize = (currentSelectedIndex) => {
+    let totalSize = 0;
+    const children = Array.from(tabsListRef.current.children);
+
+    for (let i = 0; i < currentSelectedIndex; i += 1) {
+      const tab = children[i];
+      totalSize += tab.clientWidth + 40;
+    }
+
+    return totalSize;
+  };
+
+  useEffect(() => {
+    if (isControlledComponent) {
+      tabsListRef.current.scroll({
+        left: getScrollToIndexSize(selectedIndex),
+        behavior: "smooth",
+      });
+    }
+  }, [selectedIndex]);
+
   const changeTabs = (tabId) => {
     const tabIndex = tabIds.indexOf(tabId);
-
     onTabChange(tabIndex);
 
     if (!isControlledComponent) {
+      tabsListRef.current.scroll({
+        left: getScrollToIndexSize(tabIndex),
+        behavior: "smooth",
+      });
       setCurrentIndex(tabIndex);
     }
   };
@@ -47,11 +74,16 @@ const Tabs = ({
         hasPanels,
         setHasPanels,
         changeTabs,
+        tabsContainerRef,
+        tabsListRef,
+        isResponsive,
+        setIsResponsive,
       }}
     >
       <div
         className={cc(["nds-tabs", { "nds-tabs--bordered": hasBorder }])}
         data-testid={testId}
+        ref={tabsContainerRef}
       >
         {children}
       </div>

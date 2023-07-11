@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.47.3](https://github.com/narmi/design_system/compare/v2.47.2...v2.47.3) (2023-07-10)
+
+
+### Bug Fixes
+
+* **radio:** set check icon to presentation role ([3ddd15c](https://github.com/narmi/design_system/commit/3ddd15c07d1eabb1c57bc0da97fa7afb4819835b))
+
+### [2.47.2](https://github.com/narmi/design_system/compare/v2.47.1...v2.47.2) (2023-07-10)
+
+
+### Bug Fixes
+
+* **FormSection:** update styling to better suit design use case ([78bed9e](https://github.com/narmi/design_system/commit/78bed9e075af06f38aabe4649e73ea881a9a40d1))
+
 ### [2.47.1](https://github.com/narmi/design_system/compare/v2.47.0...v2.47.1) (2023-06-29)
 
 

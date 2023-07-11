@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.49.0](https://github.com/narmi/design_system/compare/v2.48.0...v2.49.0) (2023-07-11)
+
+
+### Features
+
+* **button:** Create optional button input for ariaLabel ([7ef1b95](https://github.com/narmi/design_system/commit/7ef1b952d38bbea18ae8b274ac62a498659caf00))
+
 ## [2.48.0](https://github.com/narmi/design_system/compare/v2.47.5...v2.48.0) (2023-07-11)
 
 

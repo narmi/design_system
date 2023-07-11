@@ -34,7 +34,13 @@ DefaultSelectedTab.args = {
 };
 
 export const ResponsiveTabs = (args) => (
-  <div className="nds-tabs-responsive-container">
+  <div
+    style={{
+      display: "flex",
+      width: 200,
+      flexDirection: "column",
+    }}
+  >
     <Tabs {...args}>
       <Tabs.List>
         <Tabs.Tab label="Apples" tabId="apple" />

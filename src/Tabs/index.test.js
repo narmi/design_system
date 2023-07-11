@@ -50,7 +50,6 @@ const renderTabsWithoutPanels = (args) =>
   );
 
 describe("Tabs", () => {
-  window.HTMLElement.prototype.scroll = function () {};
   it("renders tabs with tablist only without errors", () => {
     renderTabsWithoutPanels();
     TAB_NAMES.forEach((tabText) => {

@@ -32,39 +32,31 @@ const TabsList = ({ children, xPadding = "none" }) => {
     setIsResponsive(nextShowLeftArrow || nextShowRightArrow);
   };
 
-  useEffect(() => {
+  const scheduleScrollButtonUpdate = () => {
     if (tabsListRef.current) {
-      updateScrollButtonState();
+      rafSchd(updateScrollButtonState());
     }
+  };
+
+  useEffect(() => {
+    scheduleScrollButtonUpdate();
   }, []);
 
   useEffect(() => {
-    const handleScrollButtonsUpdate = () => {
-      if (tabsListRef.current) {
-        rafSchd(updateScrollButtonState());
-      }
-    };
-
-    window.addEventListener("resize", handleScrollButtonsUpdate);
+    window.addEventListener("resize", scheduleScrollButtonUpdate);
 
     return () => {
-      window.removeEventListener("resize", handleScrollButtonsUpdate);
+      window.removeEventListener("resize", scheduleScrollButtonUpdate);
     };
   }, []);
 
   useEffect(() => {
-    const handleScrollButtonsUpdate = () => {
-      if (tabsListRef.current) {
-        rafSchd(updateScrollButtonState());
-      }
-    };
-
-    tabsListRef.current.addEventListener("scroll", handleScrollButtonsUpdate);
+    tabsListRef.current.addEventListener("scroll", scheduleScrollButtonUpdate);
 
     return () => {
       tabsListRef.current.removeEventListener(
         "scroll",
-        handleScrollButtonsUpdate
+        scheduleScrollButtonUpdate
       );
     };
   }, [tabsListRef.current]);

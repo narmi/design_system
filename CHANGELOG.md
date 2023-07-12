@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.49.1](https://github.com/narmi/design_system/compare/v2.49.0...v2.49.1) (2023-07-12)
+
+
+### Bug Fixes
+
+* **DatePicker:** Android mobile datepicker doesn't like backspace ([6a8d759](https://github.com/narmi/design_system/commit/6a8d759f1be088e0624bd2295ecd1d5caffde2ed))
+
 ## [2.49.0](https://github.com/narmi/design_system/compare/v2.48.0...v2.49.0) (2023-07-11)
 
 

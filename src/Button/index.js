@@ -31,6 +31,7 @@ const Button = ({
   label,
   onClick = () => {},
   as = "button",
+  ariaLabel = null,
   ...otherProps
 }) => {
   const isButtonElement = as === "button";
@@ -43,7 +44,7 @@ const Button = ({
 
   const Icon = ({ name }) => (
     <div className="alignChild--center--center">
-      <i role="img" aria-label={name} className={`narmi-icon-${name}`} />
+      <i role="img" aria-label={ariaLabel || name} className={`narmi-icon-${name}`} />
     </div>
   );
 
@@ -69,7 +70,7 @@ const Button = ({
         },
       ])}
       disabled={isButtonElement && disabled || isLoading ? true : undefined}
-      aria-label={buttonLabel}
+      aria-label={ariaLabel || buttonLabel}
       data-testid={testId || "nds-button"}
     >
       <div className="nds-button-content">
@@ -124,6 +125,8 @@ Button.propTypes = {
   endIcon: PropTypes.oneOf(VALID_ICON_NAMES),
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
+  /** Optional value for setting the aria-label. If unset label will be used. */
+  ariaLabel: PropTypes.string,
   /**
    * **⚠️ DEPRECATED**
    *

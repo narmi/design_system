@@ -1,21 +1,30 @@
-import React, { useContext } from "react";
-import PropTypes from "prop-types";
-import TabsContext from "./context";
 import cc from "classcat";
+import PropTypes from "prop-types";
+import React, { useContext, useRef } from "react";
+import TabsContext from "./context";
 
 const TabsTab = ({ label, tabId, testId }) => {
   const { currentIndex, tabIds, hasPanels, changeTabs } =
     useContext(TabsContext);
+  const tabRef = useRef();
   const isSelected = tabId === tabIds[currentIndex];
+
+  const onTabClick = () => {
+    changeTabs(tabId);
+  };
 
   return (
     <li
+      role={hasPanels ? "tab" : undefined}
+      aria-selected={isSelected.toString()}
+      aria-controls={hasPanels ? `${tabId}-tabpanel` : undefined}
       className={cc([
         "nds-tabs-tabItem",
         {
           "nds-tabs-tabItem--selected": isSelected,
         },
       ])}
+      ref={tabRef}
     >
       <button
         className={cc([
@@ -25,12 +34,9 @@ const TabsTab = ({ label, tabId, testId }) => {
             "nds-tabs-button--selected": isSelected,
           },
         ])}
-        role={hasPanels ? "tab" : undefined}
-        aria-selected={isSelected.toString()}
-        aria-controls={hasPanels ? `${tabId}-tabpanel` : undefined}
         id={`${tabId}-tab`}
         tabIndex={hasPanels ? "-1" : "0"}
-        onClick={() => changeTabs(tabId)}
+        onClick={onTabClick}
         data-testid={testId}
       >
         {label}

@@ -54,6 +54,7 @@ const Tooltip = ({
       <div
         {...triggerProps}
         aria-describedby="nds-tooltip"
+        aria-label={text}
         style={{ display: wrapperDisplay }}
         onFocus={openPopover}
         onBlur={closePopover}

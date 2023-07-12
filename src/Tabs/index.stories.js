@@ -33,6 +33,45 @@ DefaultSelectedTab.args = {
   defaultSelectedIndex: 1,
 };
 
+export const ResponsiveTabs = (args) => (
+  <div
+    style={{
+      display: "flex",
+      width: 200,
+      flexDirection: "column",
+    }}
+  >
+    <Tabs {...args}>
+      <Tabs.List>
+        <Tabs.Tab label="Apples" tabId="apple" />
+        <Tabs.Tab label="Oranges" tabId="orange" />
+        <Tabs.Tab label="Pineapples" tabId="pineapple" />
+        <Tabs.Tab label="Bird" tabId="bird" />
+        <Tabs.Tab label="Cat" tabId="cat" />
+        <Tabs.Tab label="Dog" tabId="dog" />
+      </Tabs.List>
+      <Tabs.Panel tabId="apple">
+        <div className="padding--all--s">🍎🍎🍎</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="orange">
+        <div className="padding--all--s">🍊🍊🍊</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="pineapple">
+        <div className="padding--all--s">🍍🍍🍍</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="bird">
+        <div className="padding--all--s">🐦🐦🐦</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="cat">
+        <div className="padding--all--s">🐈🐈🐈</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="dog">
+        <div className="padding--all--s">🐕🐕🐕</div>
+      </Tabs.Panel>
+    </Tabs>
+  </div>
+);
+
 export const WithoutPanels = (args) => (
   <Tabs {...args}>
     <Tabs.List>

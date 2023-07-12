@@ -1,6 +1,6 @@
 {
   "name": "@narmi/design_system",
-  "version": "2.47.1",
+  "version": "2.49.1",
   "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
   "files": [
@@ -8,7 +8,7 @@
   ],
   "engineStrict": true,
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "scripts": {
     "watch": "watch 'npm run build' src",
@@ -71,7 +71,7 @@
     "eslint-plugin-react": "^7.29.4",
     "glob": "^7.2.0",
     "html-webpack-plugin": "^5.3.1",
-    "husky": "^7.0.2",
+    "husky": "^8.0.3",
     "jest": "^27.2.4",
     "jsdoc-to-markdown": "^7.1.0",
     "mini-css-extract-plugin": "^2.2.0",
@@ -101,7 +101,7 @@
     "classcat": "^5.0.3",
     "downshift": "^6.1.7",
     "eslint-plugin-json": "^3.1.0",
-    "flatpickr": "^4.6.9",
+    "flatpickr": "^4.6.12",
     "raf-schd": "^4.0.3",
     "react-focus-lock": "^2.9.4",
     "react-laag": "^2.0.3",

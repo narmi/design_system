@@ -7,3 +7,5 @@ class MockResizeObserver {
   unobserve() {}
 }
 window.ResizeObserver = MockResizeObserver;
+
+window.HTMLElement.prototype.scroll = function () {};

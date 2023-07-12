@@ -10,6 +10,7 @@
   text-align: left;
   border: 1px solid var(--border-color-default) !important;
 
+  &--isActive,
   &:focus {
     outline: none;
     border-color: var(--theme-primary) !important;

@@ -19,6 +19,7 @@ const DateInput = ({
   defaultDate,
   onChange: onChangeProp = noop,
   useIsoOnChange = true,
+  disableMobile = false,
   testId,
   ...props
 }) => {
@@ -36,6 +37,7 @@ const DateInput = ({
     minDate,
     altInput,
     altFormat,
+    disableMobile,
     disable: disableDates,
     defaultDate,
     onChange: (flatpickrVal) => {
@@ -92,6 +94,8 @@ DateInput.propTypes = {
   dateFormat: PropTypes.string,
   /** If the `onChange` callback should pass the date string in ISO8601 format */
   useIsoOnChange: PropTypes.bool,
+  /** Disable mobile text inputs on mobile web */
+  disableMobile: PropTypes.bool,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
 };

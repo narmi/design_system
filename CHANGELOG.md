@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.49.2](https://github.com/narmi/design_system/compare/v2.49.1...v2.49.2) (2023-07-12)
+
+
+### Bug Fixes
+
+* **Select:** use portalled popover element ([a7b1b42](https://github.com/narmi/design_system/commit/a7b1b4234d51a6f196549fa7bbdffe1e2d96334e))
+
 ### [2.49.1](https://github.com/narmi/design_system/compare/v2.49.0...v2.49.1) (2023-07-12)
 
 ### Bug Fixes

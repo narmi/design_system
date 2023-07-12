@@ -72,7 +72,7 @@
 /**
 * font weight helpers
 */
-@each $weight in (normal, semibold, bold) {
+@each $weight in (thin, normal, semibold, bold) {
   .fontWeight--#{$weight} {
     font-weight: var(--font-weight-#{$weight}) !important;
   }

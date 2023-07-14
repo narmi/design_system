@@ -45,6 +45,9 @@ const DateInput = ({
       // localizing to en-CA produces the expected result of YYYY-MM-DD
       let locale = useIsoOnChange ? "en-CA" : "en-US";
       const selectedDate = new Date(flatpickrVal);
+      if (isNaN(selectedDate)) {
+        return;
+      }
       const formattedDate = new Intl.DateTimeFormat(locale).format(
         selectedDate
       );

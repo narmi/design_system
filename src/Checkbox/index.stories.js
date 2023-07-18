@@ -5,7 +5,7 @@ const Template = (args) => <Checkbox {...args} />;
 
 export const Overview = Template.bind({});
 Overview.args = {
-  label: "I agree to receive spam",
+  label: "I agree to receive spam from [google](https://www.google.com/)",
   name: "spam",
 };
 

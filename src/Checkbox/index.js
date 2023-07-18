@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import Error from "../Error";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 /**
  * Narmi styled checkbox with built-in label.
@@ -26,6 +27,19 @@ const Checkbox = ({
   );
   const [isFocused, setIsFocused] = useState(false);
   const isCard = kind === "card";
+
+  const LinkRenderer = ({ href, children }) => {
+    return (
+      <a href={href} target="_blank" rel="noreferrer">
+        {children}
+      </a>
+    );
+  }
+
+  LinkRenderer.propTypes = {
+    href: PropTypes.string.isRequired,
+    children: PropTypes.string.isRequired,
+  }
 
   useEffect(() => {
     if (isControlled) {
@@ -61,7 +75,9 @@ const Checkbox = ({
           },
         ])}
       >
-        {label}
+        <ReactMarkdown components={{ a: LinkRenderer }}>
+          {label}
+        </ReactMarkdown>
         <input
           onFocus={handleFocus}
           onBlur={handleBlur}

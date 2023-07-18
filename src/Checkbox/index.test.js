@@ -5,7 +5,7 @@ import Checkbox from "./";
 const LABEL = "test input";
 
 const getElements = () => ({
-  label: screen.getByText(LABEL),
+  label: screen.getByText(LABEL).parentElement,
   input: screen.getByLabelText(LABEL),
 });
 

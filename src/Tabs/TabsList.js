@@ -54,7 +54,7 @@ const TabsList = ({ children, xPadding = "none" }) => {
     tabsListRef.current.addEventListener("scroll", scheduleScrollButtonUpdate);
 
     return () => {
-      tabsListRef.current.removeEventListener(
+      tabsListRef?.current?.removeEventListener(
         "scroll",
         scheduleScrollButtonUpdate
       );

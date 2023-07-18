@@ -5,6 +5,19 @@ import cc from "classcat";
 import Error from "../Error";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
+const LinkRenderer = ({ href, children }) => {
+  return (
+    <a href={href} target="_blank" rel="noreferrer">
+      {children}
+    </a>
+  );
+}
+
+LinkRenderer.propTypes = {
+  href: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
+}
+
 /**
  * Narmi styled checkbox with built-in label.
  */
@@ -27,19 +40,6 @@ const Checkbox = ({
   );
   const [isFocused, setIsFocused] = useState(false);
   const isCard = kind === "card";
-
-  const LinkRenderer = ({ href, children }) => {
-    return (
-      <a href={href} target="_blank" rel="noreferrer">
-        {children}
-      </a>
-    );
-  }
-
-  LinkRenderer.propTypes = {
-    href: PropTypes.string.isRequired,
-    children: PropTypes.string.isRequired,
-  }
 
   useEffect(() => {
     if (isControlled) {

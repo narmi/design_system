@@ -36,6 +36,7 @@ const DropdownTrigger = React.forwardRef(
             {
               "nds-dropdownTrigger-button--hasValue": Boolean(displayValue),
               "nds-dropdownTrigger-button--hasError": Boolean(errorText),
+              "nds-dropdownTrigger-button--isActive": isOpen,
             },
           ])}
           aria-expanded={isOpen ? "true" : "false"}

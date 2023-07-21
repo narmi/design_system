@@ -2,10 +2,10 @@ import React, { useRef, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import rafSchd from "raf-schd";
-import useFocusTrap from "@charlietango/use-focus-trap";
 import cc from "classcat";
 import useLockBodyScroll from "./useLockBodyScroll";
 import { CSSTransition } from "react-transition-group";
+import FocusLock from "react-focus-lock";
 
 const noop = () => {};
 
@@ -41,7 +41,6 @@ const Dialog = ({
   const [isContentOverflowing, setIsContentOverflowing] = useState(false);
   const contentRef = useRef(null);
   const shimRef = useRef(null);
-  const focusTrapRef = useFocusTrap(isOpen);
   useLockBodyScroll(isOpen);
 
   // `rafSchd` uses `requestAnimationFrame` to schedule the state update
@@ -77,45 +76,47 @@ const Dialog = ({
   const dialogJSX = (
     <CSSTransition timeout={1} classNames="nds-dialog-transition" appear in>
       <div className="nds-shim--dark" ref={shimRef} onClick={handleShimClick}>
-        <div
-          role="dialog"
-          aria-labelledby="aria-dialog-label"
-          aria-modal="true"
-          className="nds-dialog"
-          style={{ width }}
-          ref={focusTrapRef}
-          data-testid={testId}
-        >
-          <div className={`nds-dialog-header nds-dialog-header--${headerStyle}`}>
-            <h4 id="aria-dialog-label">{title}</h4>
-            <button
-              className="resetButton nds-dialog-closeButton"
-              aria-label="close"
-              onClick={onUserDismiss}
-            >
-              <span className="narmi-icon-x"></span>
-            </button>
-          </div>
+        <FocusLock>
           <div
-            ref={contentRef}
-            className="nds-dialog-content nds-typography padding--top--xs"
+            role="dialog"
+            aria-labelledby="aria-dialog-label"
+            aria-modal="true"
+            className="nds-dialog"
+            style={{ width }}
+            data-testid={testId}
           >
-            {children}
-          </div>
-          {footer && (
             <div
-              className={cc([
-                "nds-dialog-footer",
-                { "nds-dialog-footer--overflowing": isContentOverflowing },
-              ])}
+              className={`nds-dialog-header nds-dialog-header--${headerStyle}`}
             >
-              {footer}
+              <h4 id="aria-dialog-label">{title}</h4>
+              <button
+                className="resetButton nds-dialog-closeButton"
+                aria-label="close"
+                onClick={onUserDismiss}
+              >
+                <span className="narmi-icon-x"></span>
+              </button>
             </div>
-          )}
-        </div>
+            <div
+              ref={contentRef}
+              className="nds-dialog-content nds-typography padding--top--xs"
+            >
+              {children}
+            </div>
+            {footer && (
+              <div
+                className={cc([
+                  "nds-dialog-footer",
+                  { "nds-dialog-footer--overflowing": isContentOverflowing },
+                ])}
+              >
+                {footer}
+              </div>
+            )}
+          </div>
+        </FocusLock>
       </div>
     </CSSTransition>
-
   );
   /* eslint-enable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
 

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.0](https://github.com/narmi/design_system/compare/v2.49.3...v2.50.0) (2023-07-21)
+
+
+### Features
+
+* **Typography:** darken secondary text; add thin Mullish weight ([c50dd57](https://github.com/narmi/design_system/commit/c50dd57143c1cc2608031bbd3c29c226362c0305))
+
 ### [2.49.3](https://github.com/narmi/design_system/compare/v2.49.2...v2.49.3) (2023-07-18)
 
 

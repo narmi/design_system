@@ -3,7 +3,7 @@
     "color": {
       "heading": { "value": "{color.narmi.black.value}" },
       "primary": { "value": "{color.narmi.grey.value}" },
-      "secondary": { "value": "{color.narmi.mediumGrey.value}" },
+      "secondary": { "value": "#6c6c6c" },
       "hint": { "value": "{color.narmi.lightGrey.value}" }
     }
   }

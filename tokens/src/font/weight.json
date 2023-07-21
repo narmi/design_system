@@ -1,6 +1,7 @@
 {
   "font": {
     "weight": {
+      "thin": { "value": "200" },
       "normal": { "value": "400" },
       "semibold": { "value": "600" },
       "bold": { "value": "700" },

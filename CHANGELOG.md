@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.50.1](https://github.com/narmi/design_system/compare/v2.50.0...v2.50.1) (2023-07-21)
+
+
+### Bug Fixes
+
+* **date input:** handle NaN selected date ([c020b6a](https://github.com/narmi/design_system/commit/c020b6ad3a8fa8a33c4b0075eb50a19af3095c33))
+
 ## [2.50.0](https://github.com/narmi/design_system/compare/v2.49.3...v2.50.0) (2023-07-21)
 
 

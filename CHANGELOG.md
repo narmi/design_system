@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.49.3](https://github.com/narmi/design_system/compare/v2.49.2...v2.49.3) (2023-07-18)
+
+
+### Bug Fixes
+
+* **tabslist:** Tabslist scroll removal throwing error ([63a36d9](https://github.com/narmi/design_system/commit/63a36d97e5816e618538b100391547a5cf1f6eaf))
+
 ### [2.49.2](https://github.com/narmi/design_system/compare/v2.49.1...v2.49.2) (2023-07-12)
 
 

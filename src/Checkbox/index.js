@@ -10,6 +10,7 @@ import ReactMarkdown from "react-markdown";
  */
 const Checkbox = ({
   label,
+  markdownLabel,
   onChange = () => {},
   id,
   name,
@@ -75,9 +76,16 @@ const Checkbox = ({
           },
         ])}
       >
-        <ReactMarkdown components={{ a: LinkRenderer }}>
-          {label}
-        </ReactMarkdown>
+        {markdownLabel &&
+          <ReactMarkdown components={{ a: LinkRenderer }}>
+            {markdownLabel}
+          </ReactMarkdown>
+        }
+        {!markdownLabel &&
+          <p>
+            {label}
+          </p>
+        }
         <input
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -106,7 +114,9 @@ const Checkbox = ({
 
 Checkbox.propTypes = {
   /** Content of `label` element */
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  /** Markdown to use in place of the `label` field */
+  markdownLabel: PropTypes.string,
   /** Change callback invoked when the value of the `input` changes */
   onChange: PropTypes.func,
   /** `id` attribute of `input` */

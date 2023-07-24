@@ -93,6 +93,6 @@ describe("Checkbox", () => {
   it("renders markdown when `markdownLabel` prop is set", () => {
     render(<Checkbox markdownLabel="[Google](https://www.google.com/)"/>);
     const a = screen.getByText("Google");
-    expect(a.tagName).toBe("a");
+    expect(a.tagName).toBe("A");
   });
 });

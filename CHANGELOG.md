@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.50.1](https://github.com/narmi/design_system/compare/v2.50.0...v2.50.1) (2023-07-21)
+
+
+### Bug Fixes
+
+* **date input:** handle NaN selected date ([c020b6a](https://github.com/narmi/design_system/commit/c020b6ad3a8fa8a33c4b0075eb50a19af3095c33))
+
+## [2.50.0](https://github.com/narmi/design_system/compare/v2.49.3...v2.50.0) (2023-07-21)
+
+
+### Features
+
+* **Typography:** darken secondary text; add thin Mullish weight ([c50dd57](https://github.com/narmi/design_system/commit/c50dd57143c1cc2608031bbd3c29c226362c0305))
+
+### [2.49.3](https://github.com/narmi/design_system/compare/v2.49.2...v2.49.3) (2023-07-18)
+
+
+### Bug Fixes
+
+* **tabslist:** Tabslist scroll removal throwing error ([63a36d9](https://github.com/narmi/design_system/commit/63a36d97e5816e618538b100391547a5cf1f6eaf))
+
 ### [2.49.2](https://github.com/narmi/design_system/compare/v2.49.1...v2.49.2) (2023-07-12)
 
 

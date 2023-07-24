@@ -3,12 +3,14 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import Error from "../Error";
+import ReactMarkdown from "react-markdown";
 
 /**
  * Narmi styled checkbox with built-in label.
  */
 const Checkbox = ({
   label,
+  markdownLabel,
   onChange = () => {},
   id,
   name,
@@ -26,6 +28,19 @@ const Checkbox = ({
   );
   const [isFocused, setIsFocused] = useState(false);
   const isCard = kind === "card";
+
+  const LinkRenderer = ({ href, children }) => {
+    return (
+      <a href={href} target="_blank" rel="noreferrer">
+        {children}
+      </a>
+    );
+  }
+
+  LinkRenderer.propTypes = {
+    href: PropTypes.string.isRequired,
+    children: PropTypes.array.isRequired,
+  }
 
   useEffect(() => {
     if (isControlled) {
@@ -61,7 +76,16 @@ const Checkbox = ({
           },
         ])}
       >
-        {label}
+        {markdownLabel &&
+          <ReactMarkdown components={{ a: LinkRenderer }}>
+            {markdownLabel}
+          </ReactMarkdown>
+        }
+        {!markdownLabel &&
+          <p>
+            {label}
+          </p>
+        }
         <input
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -90,7 +114,9 @@ const Checkbox = ({
 
 Checkbox.propTypes = {
   /** Content of `label` element */
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  /** Markdown to use in place of the `label` field */
+  markdownLabel: PropTypes.string,
   /** Change callback invoked when the value of the `input` changes */
   onChange: PropTypes.func,
   /** `id` attribute of `input` */

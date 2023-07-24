@@ -52,6 +52,19 @@ AsCard.parameters = {
   },
 };
 
+export const markdown = Template.bind({});
+markdown.args = {
+  markdownLabel: "I agree to receive spam from [google](https://www.google.com/)",
+  name: "spam",
+};
+markdown.parameters = {
+  docs: {
+    description: {
+      story: "Renders markdown when markdownLabel prop is set"
+    }
+  }
+}
+
 export default {
   title: "Components/Checkbox",
   component: Checkbox,

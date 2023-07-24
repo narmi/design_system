@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.51.0](https://github.com/narmi/design_system/compare/v2.50.1...v2.51.0) (2023-07-24)
+
+
+### Features
+
+* **checkbox:** Allow markdown ([5583667](https://github.com/narmi/design_system/commit/5583667f2afd0849ef784a5e96eec5fb69abe630))
+
+
+### Bug Fixes
+
+* **Checkbox:** Comments ([58d3da5](https://github.com/narmi/design_system/commit/58d3da5061daf344eb14e1dca80d0ab81469258e))
+* **import:** import react-markdown properly ([9a80a95](https://github.com/narmi/design_system/commit/9a80a955329f4cd23084936279fc577314996579))
+* **select:** Select must have id ([44f543a](https://github.com/narmi/design_system/commit/44f543a05a059a006a43ee2f15e6e481b8edbd1d))
+
 ### [2.50.1](https://github.com/narmi/design_system/compare/v2.50.0...v2.50.1) (2023-07-21)
 
 

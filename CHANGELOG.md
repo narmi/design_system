@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.52.0](https://github.com/narmi/design_system/compare/v2.51.0...v2.52.0) (2023-07-24)
+
+
+### Features
+
+* **toggle:** add enabled/disabled label for screen readers ([d45f77b](https://github.com/narmi/design_system/commit/d45f77be96feec760fda52007e166150f1a132bc))
+
 ## [2.51.0](https://github.com/narmi/design_system/compare/v2.50.1...v2.51.0) (2023-07-24)
 
 

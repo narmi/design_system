@@ -12,6 +12,8 @@ const Toggle = ({
   labelledBy,
   label,
   testId,
+  enabledLabel = "on",
+  disabledLabel = "off",
 }) => {
   const isControlled = isActive !== undefined;
   const [isActiveInternal, setIsActiveInternal] = useState(
@@ -49,7 +51,7 @@ const Toggle = ({
     >
       <span className="nds-toggle-indicator elevation--low" />
       <span className="nds-toggle-buttonText">
-        {isActiveInternal ? "on" : "off"}
+        {isActiveInternal ? enabledLabel : disabledLabel}
       </span>
     </button>
   );
@@ -84,6 +86,10 @@ Toggle.propTypes = {
   labelledBy: PropTypes.string,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
+  /** Label for enabled state. Not displayed, used for screen readers. */
+  enabledLabel: PropTypes.string,
+  /** Label for disabled state. Not displayed, used for screen readers. */
+  disabledLabel: PropTypes.string,
 };
 
 export default Toggle;

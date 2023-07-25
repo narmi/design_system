@@ -19,6 +19,7 @@ const TabsList = ({ children, xPadding = "none" }) => {
     hasPanels,
     tabsListRef,
     setIsResponsive,
+    isResponsive,
   } = useContext(TabsContext);
   const childArray = React.Children.toArray(children);
 
@@ -124,7 +125,7 @@ const TabsList = ({ children, xPadding = "none" }) => {
   };
 
   return (
-    <div className="display-flex">
+    <div className={isResponsive ? "display-flex" : ""}>
       <Arrow direction="left" onClick={onLeftClick} show={showLeftArrow} />
       <ul
         ref={tabsListRef}

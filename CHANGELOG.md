@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.52.1](https://github.com/narmi/design_system/compare/v2.52.0...v2.52.1) (2023-07-25)
+
+
+### Bug Fixes
+
+* **tabs:** non-responsive tabs should not be flex ([c56d799](https://github.com/narmi/design_system/commit/c56d799d141216e60a19e426a71ca0b87e93a250))
+
 ## [2.52.0](https://github.com/narmi/design_system/compare/v2.51.0...v2.52.0) (2023-07-24)
 
 

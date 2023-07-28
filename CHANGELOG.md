@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.52.2](https://github.com/narmi/design_system/compare/v2.52.1...v2.52.2) (2023-07-28)
+
+
+### Bug Fixes
+
+* **focus traps:** diable autofocus in Popover and Dialog ([1a6d390](https://github.com/narmi/design_system/commit/1a6d39073d85eb5afae8bae75e8d07cf4b254b60))
+
 ### [2.52.1](https://github.com/narmi/design_system/compare/v2.52.0...v2.52.1) (2023-07-25)
 
 

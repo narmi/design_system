@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import React, { useRef, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
@@ -76,7 +77,7 @@ const Dialog = ({
   const dialogJSX = (
     <CSSTransition timeout={1} classNames="nds-dialog-transition" appear in>
       <div className="nds-shim--dark" ref={shimRef} onClick={handleShimClick}>
-        <FocusLock>
+        <FocusLock autoFocus={false}>
           <div
             role="dialog"
             aria-labelledby="aria-dialog-label"

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useLayer } from "react-laag";
@@ -27,13 +28,16 @@ const Popover = ({
   closeOnContentClick = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const popoverContent = closeOnContentClick ? React.cloneElement(content, {
-    onClick: () => {
-      if (content.onClick) {
-        content.onClick();
-      } setIsOpen(false);
-    }
-  }) : content
+  const popoverContent = closeOnContentClick
+    ? React.cloneElement(content, {
+        onClick: () => {
+          if (content.onClick) {
+            content.onClick();
+          }
+          setIsOpen(false);
+        },
+      })
+    : content;
 
   const closePopover = () => {
     setIsOpen(false);
@@ -53,7 +57,7 @@ const Popover = ({
     if (key === "Escape" && isOpen) {
       setIsOpen(false);
     }
-  }
+  };
 
   const { renderLayer, triggerProps, triggerBounds, layerProps } = useLayer({
     isOpen,
@@ -107,9 +111,7 @@ const Popover = ({
               data-testid={testId}
             >
               <div tabIndex={-1}>
-                <FocusLock>
-                  {popoverContent}
-                </FocusLock>
+                <FocusLock autoFocus={false}>{popoverContent}</FocusLock>
               </div>
             </div>
           )}

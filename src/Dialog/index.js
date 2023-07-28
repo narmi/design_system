@@ -38,7 +38,6 @@ const Dialog = ({
   footer,
   width = "500px",
   testId,
-  hasAutoFocus = true,
 }) => {
   const [isContentOverflowing, setIsContentOverflowing] = useState(false);
   const contentRef = useRef(null);

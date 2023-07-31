@@ -11,9 +11,6 @@ import SelectCategory from "./SelectCategory";
 
 const noop = () => {};
 
-// TODO: open category if current selection is in it
-// TODO: update tests
-
 /**
  * @param {Object} item a Select.Item or Select.Action component
  * @returns {Boolean} true if the item is a Select.Action
@@ -202,6 +199,17 @@ const Select = ({
     );
   };
 
+  const getDetailsProps = (categoryChildren) => {
+    let detailsExtraProps = {};
+    if (
+      isHighlightedInCategory(highlightedIndex, categoryChildren, items) ||
+      isSelectedItemInCategory(selectedItem, categoryChildren)
+    ) {
+      detailsExtraProps.open = true;
+    }
+    return detailsExtraProps;
+  };
+
   return (
     <div className="nds-select" data-testid={testId}>
       <DropdownTrigger
@@ -239,20 +247,17 @@ const Select = ({
               <details
                 key={label}
                 className="nds-select-category"
-                open={
-                  isHighlightedInCategory(
-                    highlightedIndex,
-                    categoryChildren,
-                    items
-                  ) || isSelectedItemInCategory(selectedItem, categoryChildren)
-                }
+                {...getDetailsProps(categoryChildren)} // controls open state
               >
                 <summary className="fontWeight--bold alignChild--left--center padding--x--s padding--y-xs">
-                  <span>{label}</span>
+                  <span id={`select-category-${label}`}>{label}</span>
                   <span className="nds-category-icon narmi-icon-chevron-down" />
                   <span className="nds-category-icon narmi-icon-chevron-up" />
                 </summary>
-                <ul className="list--reset">
+                <ul
+                  className="list--reset"
+                  aria-labelledby={`select-category-${label}`}
+                >
                   {categoryChildren.map((item) => renderItem(item, items))}
                 </ul>
               </details>

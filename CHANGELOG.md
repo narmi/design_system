@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.52.3](https://github.com/narmi/design_system/compare/v2.52.2...v2.52.3) (2023-08-01)
+
+
+### Bug Fixes
+
+* **dropdown:** ellipsize dropdown label ([716cb10](https://github.com/narmi/design_system/commit/716cb1057250d47d896a4d82a6e65498b84a042e))
+
 ### [2.52.2](https://github.com/narmi/design_system/compare/v2.52.1...v2.52.2) (2023-07-28)
 
 

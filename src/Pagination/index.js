@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import Row from "../Row";
@@ -16,7 +16,7 @@ const MAX_VISIBLE_PAGES = 5;
  */
 export const _getAttributes = (
   totalPages,
-  selectedPage = 1,
+  selectedPage,
   segmentSize = MAX_VISIBLE_PAGES
 ) => {
   // create a list of page segments
@@ -32,10 +32,11 @@ export const _getAttributes = (
       return segments;
     }, []); // [[1,2,3,4,5], [6,7,8,9,10], ...]
 
-  // show the segment that has the selected page
-  const visiblePages = pageSegments.filter((segment) =>
-    segment.includes(selectedPage)
-  )[0];
+  // Show the segment that has the selected page.
+  // If out of bounds, default to first segment
+  const visiblePages =
+    pageSegments.filter((segment) => segment.includes(selectedPage))[0] ||
+    pageSegments[0];
   const selectedIndex = visiblePages.indexOf(selectedPage);
 
   // show prev/next arrows unless we are in the first or last segment
@@ -48,7 +49,7 @@ export const _getAttributes = (
 
   return {
     visiblePages,
-    selectedIndex,
+    selectedIndex: selectedIndex >= 0 ? selectedIndex : 0,
     firstPage,
     lastPage,
     showPrev,
@@ -70,19 +71,27 @@ const Pagination = ({
   onPageChange = noop,
   totalPages = 1,
   defaultSelectedPage = 1,
+  selectedPage: selectedPageControlled,
   testId,
 }) => {
-  // no jokers allowed 🤡
-  // - default to first page if default selected page is out of bounds
-  // - enforce minimum of 1 pages
-  if (defaultSelectedPage > totalPages || defaultSelectedPage < 1) {
-    defaultSelectedPage = 1;
-  }
-  if (totalPages < 1) {
-    totalPages = 1;
-  }
-
+  const isControlled = selectedPageControlled !== undefined;
   const [selectedPage, setSelectedPage] = useState(defaultSelectedPage);
+  const [paginationAttributes, setPaginationAttributes] = useState(
+    _getAttributes(totalPages, selectedPage)
+  );
+
+  useEffect(() => {
+    const isOutOfBounds = totalPages < selectedPageControlled;
+    if (isControlled) {
+      setSelectedPage(isOutOfBounds ? 1 : selectedPageControlled);
+      setPaginationAttributes(
+        _getAttributes(totalPages, selectedPageControlled)
+      );
+    } else {
+      setPaginationAttributes(_getAttributes(totalPages, selectedPage));
+    }
+  }, [totalPages, selectedPageControlled, selectedPage]);
+
   const {
     visiblePages,
     selectedIndex,
@@ -90,23 +99,29 @@ const Pagination = ({
     showNext,
     firstPage,
     lastPage,
-  } = _getAttributes(totalPages, selectedPage);
+  } = paginationAttributes;
 
   const handlePageClick = ({ target }) => {
     const page = parseInt(target.dataset.page, 10);
-    setSelectedPage(page);
+    if (!isControlled) {
+      setSelectedPage(page);
+    }
     onPageChange(page);
   };
 
   const handlePrevClick = () => {
     const newSelectedPage = selectedPage - 1;
-    setSelectedPage(newSelectedPage);
+    if (!isControlled) {
+      setSelectedPage(newSelectedPage);
+    }
     onPageChange(newSelectedPage);
   };
 
   const handleNextClick = () => {
     const newSelectedPage = selectedPage + 1;
-    setSelectedPage(newSelectedPage);
+    if (!isControlled) {
+      setSelectedPage(newSelectedPage);
+    }
     onPageChange(newSelectedPage);
   };
 
@@ -255,9 +270,15 @@ Pagination.propTypes = {
    */
   totalPages: PropTypes.number.isRequired,
   /**
-   * Default selected page by page number.
+   * Default selected page by page number (uncontrolled)
    */
   defaultSelectedPage: PropTypes.number,
+  /**
+   * Selected page by page number (controlled).
+   * In fully controlled mode, you **must** define an `onPageChange`
+   * handler to update the value of the `selectedPage` prop.
+   */
+  selectedPage: PropTypes.number,
   /**
    * Callback invoked when user selects a new page via page numbers or
    * previous/next arrows.

@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
 import cc from "classcat";
+import PropTypes from "prop-types";
+import React from "react";
 
 /**
  * Narmi style content containers, with support for rendering as an interactive button.
@@ -66,8 +66,10 @@ ContentCard.propTypes = {
    * `elevated`: rounded rect with shadow
    *
    * `interactive`: rounded rect with border, hover styles, and click handler
+   *
+   * `bordered`: flat, rounded rect with border
    */
-  kind: PropTypes.oneOf(["plain", "elevated", "interactive"]),
+  kind: PropTypes.oneOf(["plain", "elevated", "interactive", "bordered"]),
   /** DEPRECATED - use `kind` instead. This will be removed in a future release */
   type: PropTypes.oneOf(["plain", "elevated", "interactive"]),
   /**

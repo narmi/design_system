@@ -27,6 +27,11 @@
 
 .nds-dropdownTrigger-value {
   color: var(--font-color-primary);
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 24px;
 }
 
 // float the label to top like a text input

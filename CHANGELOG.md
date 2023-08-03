@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.53.0](https://github.com/narmi/design_system/compare/v2.52.3...v2.53.0) (2023-08-03)
+
+
+### Features
+
+* **Pagination:** enable fully controlled mode ([6e1b638](https://github.com/narmi/design_system/commit/6e1b638121b0f7b0f130f17cf7b386bac12b8cb4))
+
 ### [2.52.3](https://github.com/narmi/design_system/compare/v2.52.2...v2.52.3) (2023-08-01)
 
 

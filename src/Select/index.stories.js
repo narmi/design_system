@@ -113,6 +113,29 @@ WithCategories.parameters = {
   },
 };
 
+export const CustomTypeahead = Template.bind({});
+CustomTypeahead.args = {
+  label: "Select an Industry",
+  children: [
+    { name: "Agriculture", code: 12345 },
+    { name: "Manufacturing", code: 55555 },
+    { name: "Logistics", code: 32144 },
+    { name: "Hospitality", code: 22147 },
+  ].map(({ name, code }) => (
+    <Select.Item value={code} searchValue={name}>
+      {name}
+    </Select.Item>
+  )),
+};
+CustomTypeahead.parameters = {
+  docs: {
+    description: {
+      story:
+        "By default, typeahead highlights items based on `value`. You may pass a `searchValue` to customize the string users search against when using typeahead. In this example, the value is a numeric code, but we'd like the user to filter on industry namej",
+    },
+  },
+};
+
 export const InAForm = () => {
   const [inputValue, setInputValue] = useState("");
   return (

@@ -130,7 +130,7 @@ const Select = ({
     items,
     initialSelectedItem: defaultValue && getItemByValue(defaultValue, items),
     initialIsOpen: defaultOpen,
-    itemToString: (item) => item.props.value || item.props.children, // typeahead string
+    itemToString: (item) => item.props.searchValue || item.props.value, // typeahead string
     onSelectedItemChange: ({ selectedItem }) => {
       // for Select.Action items, we only fire the side effect
       if (isAction(selectedItem)) {

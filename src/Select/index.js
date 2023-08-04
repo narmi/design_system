@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useSelect } from "downshift";
 import { useLayer } from "react-laag";
@@ -92,6 +92,16 @@ export const isSelectedItemInCategory = (selectedItem, categoryChildren) => {
 };
 
 /**
+ * @param {Node} selectItem full react element of a select item
+ * @param {String} userInput most recent thing a user typed while focused on input
+ * @returns {String} the string to use for typeahead for each given `selectItem`
+ */
+// eslint-disable-next-line no-unused-vars
+const defaultGetTypeAheadString = (userInput = "", selectItem) => {
+  return selectItem.props.searchValue || selectItem.props.value;
+};
+
+/**
  * Accessible custom select control for giving users the ability to select one option from a list of options.
  * `Select` also supports the ability to pass in a `<Select.Action>` that acts as an option that only triggers a side effect.
  * Typeahead is enabled based on the `value` prop of `<Select.Item>` elements passed in.
@@ -104,11 +114,13 @@ const Select = ({
   value,
   defaultValue,
   defaultOpen = false,
+  getTypeaheadString = defaultGetTypeAheadString,
   errorText,
   testId,
 }) => {
   let items = [];
   let categories = [];
+  const [userInput, setUserInput] = useState(""); // most recent val the user typed while focused on this input
 
   const allChildren = React.Children.toArray(children);
 
@@ -130,7 +142,7 @@ const Select = ({
     items,
     initialSelectedItem: defaultValue && getItemByValue(defaultValue, items),
     initialIsOpen: defaultOpen,
-    itemToString: (item) => item.props.searchValue || item.props.value, // typeahead string
+    itemToString: (item) => getTypeaheadString(userInput, item),
     onSelectedItemChange: ({ selectedItem }) => {
       // for Select.Action items, we only fire the side effect
       if (isAction(selectedItem)) {
@@ -138,6 +150,20 @@ const Select = ({
       } else {
         onChange(selectedItem.props ? selectedItem.props.value : "");
       }
+    },
+
+    // this allows us to subscribe to downshift events
+    // so we can track user keyboard input
+    // <https://www.downshift-js.com/use-select#state-reducer>
+    stateReducer: (state, actionAndChanges) => {
+      const { type, changes } = actionAndChanges;
+      if (type === "__menu_keydown_character__") {
+        const { inputValue } = changes;
+        setUserInput(inputValue);
+      } else {
+        setUserInput(""); // reset input after any other event
+      }
+      return changes;
     },
   };
 
@@ -215,7 +241,7 @@ const Select = ({
       <DropdownTrigger
         isOpen={showMenu}
         labelText={label}
-        displayValue={getSelectedItemDisplay(selectedItem)}
+        displayValue={getSelectedItemDisplay(selectedItem) || userInput}
         labelProps={{ ...getLabelProps() }}
         errorText={errorText}
         {...getToggleButtonProps(triggerProps)}
@@ -286,6 +312,12 @@ Select.propTypes = {
    * When passing a `value`, you must provide an `onChange` handler to update it
    */
   value: PropTypes.string,
+  /**
+   * Function with signature `(userInputValue, selectItemNode) => {}`,
+   * used to customize typeahead filtering behavior.
+   * See "Changing Typeahead Behavior" story for example.
+   */
+  getTypeaheadString: PropTypes.func,
   /**
    * Use to set a default selection by passing the `value` prop
    * of one of the `<Select.Item>` children.

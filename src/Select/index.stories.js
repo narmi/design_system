@@ -73,6 +73,69 @@ WithAction.parameters = {
   },
 };
 
+export const WithCategories = Template.bind({});
+WithCategories.args = {
+  label: "Select an Icon",
+  children: [
+    <Select.Category label="Transportation">
+      <Select.Item value="truck">
+        <span className="narmi-icon-truck padding--right--xs" /> Truck
+      </Select.Item>
+      <Select.Item value="anchor">
+        <span className="narmi-icon-anchor padding--right--xs" /> Anchor
+      </Select.Item>
+      <Select.Item value="car-outline">
+        <span className="narmi-icon-car-outline padding--right--xs" /> Car
+      </Select.Item>
+    </Select.Category>,
+    <Select.Category label="Art">
+      <Select.Item value="film">
+        <span className="narmi-icon-film padding--right--xs" /> Film
+      </Select.Item>
+      <Select.Item value="aperture">
+        <span className="narmi-icon-aperture padding--right--xs" /> Aperture
+      </Select.Item>
+      <Select.Item value="pen">
+        <span className="narmi-icon-pen-tool padding--right--xs" /> Pen
+      </Select.Item>
+      <Select.Item value="blob">
+        <span className="narmi-icon-blob padding--right--xs" /> Blob
+      </Select.Item>
+    </Select.Category>,
+  ],
+};
+WithCategories.parameters = {
+  docs: {
+    description: {
+      story:
+        "You may group `Select.Item` elements by category with `Select.Category`. When using categories, you **must** make all direct children of `Select` a `Select.Category`; no orphan items are allowed when using categories.",
+    },
+  },
+};
+
+export const CustomTypeahead = Template.bind({});
+CustomTypeahead.args = {
+  label: "Select an Industry",
+  children: [
+    { name: "Agriculture", code: 12345 },
+    { name: "Manufacturing", code: 55555 },
+    { name: "Logistics", code: 32144 },
+    { name: "Hospitality", code: 22147 },
+  ].map(({ name, code }) => (
+    <Select.Item value={code} searchValue={name}>
+      {name}
+    </Select.Item>
+  )),
+};
+CustomTypeahead.parameters = {
+  docs: {
+    description: {
+      story:
+        "By default, typeahead highlights items based on `value`. You may pass a `searchValue` to customize the string users search against when using typeahead. In this example, the value is a numeric code, but we'd like the user to filter on industry namej",
+    },
+  },
+};
+
 export const InAForm = () => {
   const [inputValue, setInputValue] = useState("");
   return (
@@ -107,7 +170,12 @@ export const Controlled = () => {
   const [value, setValue] = useState(null);
   return (
     <>
-      <Select id="controlled-product-field" label="Account" value={value} onChange={(v) => setValue(v)}>
+      <Select
+        id="controlled-product-field"
+        label="Account"
+        value={value}
+        onChange={(v) => setValue(v)}
+      >
         <Select.Item value="checking1234">Checking (1234)</Select.Item>
         <Select.Item value="savings4321">Savings (4321)</Select.Item>
       </Select>
@@ -175,19 +243,20 @@ export const OneItem = () => {
       <Select.Item value="checking1234">Checking (1234)</Select.Item>
     </Select>
   );
-}
+};
 
 export const OneAction = () => {
   return (
     <Select label="Account">
-      <Select.Action onSelect={()=>{}}>
+      <Select.Action onSelect={() => {}}>
         <span className="fontColor--pine fontWeight--bold">
-          <span className="narmi-icon-plus padding--right--xs" /> Add new account
+          <span className="narmi-icon-plus padding--right--xs" /> Add new
+          account
         </span>
       </Select.Action>
     </Select>
   );
-}
+};
 
 export default {
   title: "Components/Select",

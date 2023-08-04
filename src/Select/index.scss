@@ -22,6 +22,7 @@
 }
 
 .nds-select-item {
+  box-sizing: border-box;
   cursor: pointer;
   position: relative;
   min-height: var(--space-xl);
@@ -38,5 +39,40 @@
     top: 50%;
     transform: translateY(-50%);
     color: var(--theme-primary);
+  }
+}
+
+.nds-select-category {
+  list-style: none;
+
+  .narmi-icon-chevron-up {
+    display: none;
+  }
+
+  &[open] {
+    .narmi-icon-chevron-down {
+      display: none;
+    }
+    .narmi-icon-chevron-up {
+      display: block;
+    }
+  }
+
+  summary {
+    display: flex;
+    cursor: pointer;
+    position: relative;
+    min-height: var(--space-xl);
+
+    span {
+      align-self: center;
+    }
+  }
+
+  .nds-category-icon {
+    position: absolute;
+    right: var(--space-s);
+    top: 50%;
+    transform: translateY(-50%);
   }
 }

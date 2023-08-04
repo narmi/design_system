@@ -1,6 +1,33 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Select, { isAction, getSelectedItemDisplay, getItemByValue } from "./";
+import Select, {
+  isAction,
+  getSelectedItemDisplay,
+  getItemByValue,
+  getItemIndex,
+  isHighlightedInCategory,
+  isSelectedItemInCategory,
+} from "./";
+
+const MOCK_ITEMS = [
+  <Select.Item key=".0" value="uno">
+    one
+  </Select.Item>,
+  <Select.Item key=".1" value="dos">
+    two
+  </Select.Item>,
+  <Select.Item key=".2" value="tres">
+    three
+  </Select.Item>,
+  <Select.Item key=".3" value="quatro">
+    four
+  </Select.Item>,
+];
+
+const MOCK_CATEGORIES = [
+  { label: "Below Two", categoryChildren: [...MOCK_ITEMS].slice(0, 2) },
+  { label: "Above Two", categoryChildren: [...MOCK_ITEMS].slice(2, 2) },
+];
 
 describe("Select", () => {
   /**
@@ -35,9 +62,41 @@ describe("Select", () => {
     );
   });
 
+  it("getItemIndex: gets expected index of item by its value", () => {
+    const item = (
+      <Select.Item key=".2" value="tres">
+        three
+      </Select.Item>
+    );
+    expect(getItemIndex(item, MOCK_ITEMS)).toBe(2);
+  });
+
+  it("isHighlightedInCategory: correctly determines which category a highlighted item is in", () => {
+    const firstCategoryChildren = MOCK_CATEGORIES[0].categoryChildren;
+    expect(isHighlightedInCategory(-1, firstCategoryChildren, MOCK_ITEMS)).toBe(
+      false
+    ); // no item highlighted
+    expect(isHighlightedInCategory(1, firstCategoryChildren, MOCK_ITEMS)).toBe(
+      true
+    ); // second item is in first category
+    expect(isHighlightedInCategory(3, firstCategoryChildren, MOCK_ITEMS)).toBe(
+      false
+    ); // fourth item is NOT in first category
+  });
+
+  it("isSelectedItemInCategory: correctly determines if the selected item is in a given category", () => {
+    const firstCategoryChildren = MOCK_CATEGORIES[0].categoryChildren;
+    expect(isSelectedItemInCategory(MOCK_ITEMS[3], firstCategoryChildren)).toBe(
+      false
+    );
+    expect(isSelectedItemInCategory(MOCK_ITEMS[0], firstCategoryChildren)).toBe(
+      true
+    );
+  });
+
   it("renders as expected with basic props", () => {
     render(
-      <Select label="Account Type">
+      <Select id="accountField" label="Account Type">
         <Select.Item value="checking"></Select.Item>
         <Select.Item value="savings"></Select.Item>
       </Select>
@@ -94,7 +153,7 @@ describe("Select", () => {
     const handleChange = jest.fn();
     const sideEffect = jest.fn();
     render(
-      <Select label="Account Type" onChange={handleChange}>
+      <Select id="accountField" label="Account Type" onChange={handleChange}>
         <Select.Item value="checking">Checking</Select.Item>
         <Select.Item value="savings">Savings</Select.Item>
         <Select.Action onSelect={sideEffect}>Action</Select.Action>

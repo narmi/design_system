@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React from "react";
 import PropTypes from "prop-types";
 import { useSelect } from "downshift";
@@ -6,6 +7,7 @@ import cc from "classcat";
 import DropdownTrigger from "../DropdownTrigger";
 import SelectItem from "./SelectItem";
 import SelectAction from "./SelectAction";
+import SelectCategory from "./SelectCategory";
 
 const noop = () => {};
 
@@ -51,6 +53,45 @@ export const getItemByValue = (value, items) => {
 };
 
 /**
+ * @param {Object} item an item from `items`
+ * @param {array} items downshift index `items`
+ * @returns {Number} index of item
+ */
+export const getItemIndex = ({ props }, items) => {
+  const values = items.map(({ props }) => props.value);
+  return values.indexOf(props.value);
+};
+
+/**
+ * @param {Object} highlightedIndex index of currently highlight item
+ * @param {Array} categoryChildren child items in a given category
+ * @param {Array} items downshift `items`
+ * @returns {Boolean} if the provided item is in the category
+ */
+export const isHighlightedInCategory = (
+  highlightedIndex,
+  categoryChildren,
+  items
+) => {
+  if (highlightedIndex < 0) return false;
+  const highlightedValue = items[highlightedIndex].props.value;
+  const categoryValues = categoryChildren.map((child) => child.props.value);
+  return categoryValues.includes(highlightedValue);
+};
+
+/**
+ * @param {Object} selectedItem
+ * @param {Array} categoryChildren child items in a given category
+ * @returns {Boolean} if the selected item is in the given cagetory children
+ */
+export const isSelectedItemInCategory = (selectedItem, categoryChildren) => {
+  if (!selectedItem) return false;
+  const selectedValue = selectedItem.props.value;
+  const categoryValues = categoryChildren.map((child) => child.props.value);
+  return categoryValues.includes(selectedValue);
+};
+
+/**
  * Accessible custom select control for giving users the ability to select one option from a list of options.
  * `Select` also supports the ability to pass in a `<Select.Action>` that acts as an option that only triggers a side effect.
  * Typeahead is enabled based on the `value` prop of `<Select.Item>` elements passed in.
@@ -66,17 +107,30 @@ const Select = ({
   errorText,
   testId,
 }) => {
-  // The menu should only render children that have `value` or `onSelect` prop
-  const items = React.Children.toArray(children).filter(
-    ({ props }) => "value" in props || "onSelect" in props
-  );
+  let items = [];
+  let categories = [];
+
+  const allChildren = React.Children.toArray(children);
+
+  // If categories are being used, extract items from categories
+  if (allChildren.some(({ type }) => type.displayName === "Select.Category")) {
+    items = allChildren.flatMap(({ props }) =>
+      React.Children.toArray(props.children)
+    );
+    categories = allChildren.map(({ props }) => ({
+      label: props.label,
+      categoryChildren: React.Children.toArray(props.children),
+    }));
+  } else {
+    items = allChildren;
+  }
 
   const downshiftOpts = {
     id: id || `nds-select-${label}`,
     items,
     initialSelectedItem: defaultValue && getItemByValue(defaultValue, items),
     initialIsOpen: defaultOpen,
-    itemToString: (item) => item.props.value || item.props.children, // typeahead string
+    itemToString: (item) => item.props.searchValue || item.props.value, // typeahead string
     onSelectedItemChange: ({ selectedItem }) => {
       // for Select.Action items, we only fire the side effect
       if (isAction(selectedItem)) {
@@ -104,6 +158,7 @@ const Select = ({
     getItemProps,
   } = useSelect(downshiftOpts);
 
+  const hasCategories = categories.length > 0;
   const hasSelectedItem = selectedItem !== undefined && selectedItem.props;
   const showMenu = isOpen && items.length > 0;
 
@@ -119,6 +174,42 @@ const Select = ({
       possiblePlacements: ["top-start", "bottom-start"],
     });
 
+  const renderItem = (item, items) => {
+    const index = getItemIndex(item, items);
+    return (
+      <li
+        key={`item-${index}`}
+        className={cc([
+          "nds-select-item",
+          "alignChild--left--center padding--x--s padding--y--xs",
+          {
+            "nds-select-item--highlighted": highlightedIndex === index,
+            "rounded--top": index === 0,
+            "rounded--bottom": index === items.length - 1,
+            "nds-select-item--hasGutter": hasSelectedItem || hasCategories,
+          },
+        ])}
+        {...getItemProps({ item, index })}
+      >
+        {hasSelectedItem && selectedItem.props.value === item.props.value && (
+          <span className="narmi-icon-check fontSize--l fontWeight--bold" />
+        )}
+        {item}
+      </li>
+    );
+  };
+
+  const getDetailsProps = (categoryChildren) => {
+    let detailsExtraProps = {};
+    if (
+      isHighlightedInCategory(highlightedIndex, categoryChildren, items) ||
+      isSelectedItemInCategory(selectedItem, categoryChildren)
+    ) {
+      detailsExtraProps.open = true;
+    }
+    return detailsExtraProps;
+  };
+
   return (
     <div className="nds-select" data-testid={testId}>
       <DropdownTrigger
@@ -130,14 +221,13 @@ const Select = ({
         {...getToggleButtonProps(triggerProps)}
         style={{
           ...triggerProps.style,
-
         }}
       />
       {renderLayer(
-        <ul
+        <div
           className={cc([
             "nds-select-list",
-            "list--reset bgColor--white",
+            "bgColor--white",
             {
               "rounded--bottom": layerSide === "bottom",
               "rounded--top": layerSide === "top",
@@ -152,30 +242,32 @@ const Select = ({
           }}
         >
           {showMenu &&
-            items.map((item, index) => (
-              <li
-                key={`${item}${index}`}
-                className={cc([
-                  "nds-select-item",
-                  "alignChild--left--center padding--x--s padding--y--xs",
-                  {
-                    "nds-select-item--highlighted": highlightedIndex === index,
-                    "rounded--top": index === 0,
-                    "rounded--bottom": index === items.length - 1,
-                    // make a left gutter for the checkmark if any item selected
-                    "nds-select-item--hasGutter": hasSelectedItem,
-                  },
-                ])}
-                {...getItemProps({ item, index })}
+            hasCategories &&
+            categories.map(({ label, categoryChildren }) => (
+              <details
+                key={label}
+                className="nds-select-category"
+                {...getDetailsProps(categoryChildren)} // controls open state
               >
-                {hasSelectedItem &&
-                  selectedItem.props.value === item.props.value && (
-                    <span className="narmi-icon-check fontSize--l fontWeight--bold" />
-                  )}
-                {item}
-              </li>
+                <summary className="fontWeight--bold alignChild--left--center padding--x--s padding--y-xs">
+                  <span id={`select-category-${label}`}>{label}</span>
+                  <span className="nds-category-icon narmi-icon-chevron-down" />
+                  <span className="nds-category-icon narmi-icon-chevron-up" />
+                </summary>
+                <ul
+                  className="list--reset"
+                  aria-labelledby={`select-category-${label}`}
+                >
+                  {categoryChildren.map((item) => renderItem(item, items))}
+                </ul>
+              </details>
             ))}
-        </ul>
+          {showMenu && !hasCategories && (
+            <ul className="list--reset">
+              {items.map((item) => renderItem(item, items))}
+            </ul>
+          )}
+        </div>
       )}
     </div>
   );
@@ -217,4 +309,5 @@ Select.propTypes = {
 
 Select.Item = SelectItem;
 Select.Action = SelectAction;
+Select.Category = SelectCategory;
 export default Select;

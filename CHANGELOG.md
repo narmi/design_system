@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file. See
 * **Checkbox:** use auto spacing between checkboxes
 * **Button:** set default type attribute as 'button'
 * **ContentCard:** remove deprecated `type` prop
-* Remove Modal component. Use Dialog moving forward.
+* **Dialog:** Remove Modal component. Use Dialog moving forward.
 * **Card:** Removes Card component. Use ContentCard moving forward.
 * **TextInput:** Remove deprecated 'icon' prop. Use 'startIcon' and 'endIcon' instead
 

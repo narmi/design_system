@@ -1,7 +1,6 @@
 require("./index.scss");
 
 import Button from "./Button";
-import Card from "./Card";
 import Checkbox from "./Checkbox";
 import ContentCard from "./ContentCard";
 import Combobox from "./Combobox";
@@ -15,7 +14,6 @@ import IconButton from "./IconButton";
 import Input from "./Input";
 import LoadingShim from "./LoadingShim";
 import LoadingSkeleton from "./LoadingSkeleton";
-import Modal from "./Modal";
 import Pagination from "./Pagination";
 import PlainButton from "./PlainButton";
 import Popover from "./Popover";
@@ -34,7 +32,6 @@ import formatDate from "./formatters/formatDate";
 
 export {
   Button,
-  Card,
   Checkbox,
   ContentCard,
   Combobox,
@@ -48,7 +45,6 @@ export {
   Input,
   LoadingShim,
   LoadingSkeleton,
-  Modal,
   Pagination,
   PlainButton,
   Popover,

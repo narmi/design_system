@@ -6,7 +6,6 @@ import React from "react";
  * Narmi style content containers, with support for rendering as an interactive button.
  */
 const ContentCard = ({
-  type, // DEPRECATED
   kind = "plain",
   paddingSize = "l",
   onClick = () => {},
@@ -14,8 +13,7 @@ const ContentCard = ({
   children,
   testId,
 }) => {
-  const variant = type !== undefined ? type : kind; // support deprecated prop
-  const isInteractive = variant === "interactive";
+  const isInteractive = kind === "interactive";
 
   return (
     <div
@@ -35,7 +33,7 @@ const ContentCard = ({
       }
       className={cc([
         "nds-contentCard",
-        `nds-contentCard--${variant}`,
+        `nds-contentCard--${kind}`,
         `padding--all--${paddingSize}`,
         "rounded--all bgColor--white",
         { "button--reset": isInteractive },
@@ -70,8 +68,6 @@ ContentCard.propTypes = {
    * `bordered`: flat, rounded rect with border
    */
   kind: PropTypes.oneOf(["plain", "elevated", "interactive", "bordered"]),
-  /** DEPRECATED - use `kind` instead. This will be removed in a future release */
-  type: PropTypes.oneOf(["plain", "elevated", "interactive"]),
   /**
    * Only valid for `interactive` card type.
    * Callback for card click event.

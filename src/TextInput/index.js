@@ -12,7 +12,6 @@ export const VALID_ICON_NAMES = iconSelection.icons.map(
  */
 const TextInput = React.forwardRef((props, forwardedRef) => {
   const {
-    icon, // DEPRECATED
     startIcon,
     endIcon,
     showClearButton,
@@ -24,9 +23,6 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
     testId,
     ...nativeElementProps
   } = props;
-
-  // support deprecated `icon` prop as the startIcon until we remove it
-  const leftIcon = icon !== undefined ? icon : startIcon;
 
   const [inputValue, setInputValue] = useState(
     defaultValue ? defaultValue : ""
@@ -52,7 +48,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
   return (
     <Input
       {...props}
-      startIconClass={leftIcon ? `narmi-icon-${leftIcon}` : undefined}
+      startIconClass={startIcon ? `narmi-icon-${startIcon}` : undefined}
       endIconClass={endIcon ? `narmi-icon-${endIcon}` : undefined}
       showClearButton={showClearButton && inputValue}
       clearInput={_onClearInput}
@@ -117,8 +113,6 @@ TextInput.propTypes = {
   showClearButton: PropTypes.bool,
   /** Text of error message to display under the input */
   error: PropTypes.string,
-  /** DEPREACTED - use `startIcon` instead */
-  icon: PropTypes.oneOf(VALID_ICON_NAMES),
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
 };

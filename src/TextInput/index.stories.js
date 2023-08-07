@@ -54,7 +54,7 @@ export const MultiLine = () => {
 export const WithIcon = Template.bind({});
 WithIcon.args = {
   label: "Search",
-  icon: "search",
+  startIcon: "search",
 };
 
 export const AsColorInput = () => {
@@ -103,7 +103,6 @@ export default {
   title: "Components/TextInput",
   component: TextInput,
   argTypes: {
-    icon: { table: { disable: true } },
     startIcon: { options: ["", ...VALID_ICON_NAMES] },
     endIcon: { options: ["", ...VALID_ICON_NAMES] },
   },

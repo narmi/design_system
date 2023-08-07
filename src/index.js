@@ -1,7 +1,6 @@
 require("./index.scss");
 
 import Button from "./Button";
-import Card from "./Card";
 import Checkbox from "./Checkbox";
 import ContentCard from "./ContentCard";
 import Combobox from "./Combobox";
@@ -34,7 +33,6 @@ import formatDate from "./formatters/formatDate";
 
 export {
   Button,
-  Card,
   Checkbox,
   ContentCard,
   Combobox,

@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.0](https://github.com/narmi/design_system/compare/v2.56.0...v3.0.0) (2023-08-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Button:** set default type attribute as 'button'
+* **Checkbox:** use auto spacing between checkboxes
+* **Button:** set default type attribute as 'button'
+* **ContentCard:** remove deprecated `type` prop
+* Remove Modal component. Use Dialog moving forward.
+* **Card:** Removes Card component. Use ContentCard moving forward.
+* **TextInput:** Remove deprecated 'icon' prop. Use 'startIcon' and 'endIcon' instead
+
+### Bug Fixes
+
+* **Button:** set default type attribute as 'button' ([5b0336f](https://github.com/narmi/design_system/commit/5b0336f4cbcb074ace3ce9f836538a9d7dc42848))
+* **Button:** set default type attribute as 'button' ([7820426](https://github.com/narmi/design_system/commit/782042626986ee5125a8a7dc84f3da70c77b2972))
+* important auto Dialog height ([6ce230c](https://github.com/narmi/design_system/commit/6ce230cad3fbd4cc5f61f3985e86df417d0ef159))
+* use 80vh as max Dialog height ([e85165d](https://github.com/narmi/design_system/commit/e85165d2c465ebe9c80961aee27759bfedb251c7))
+
+
+### Code Refactoring
+
+* **Card:** Removes Card component. Use ContentCard moving forward. ([4524cc6](https://github.com/narmi/design_system/commit/4524cc6eac66aaaab3dbeb199df91a384e5d20fd))
+* **Checkbox:** use auto spacing between checkboxes ([2f830a5](https://github.com/narmi/design_system/commit/2f830a5bfc34fd6e8c6c07d48f5e08d093426c7a))
+* **ContentCard:** remove deprecated `type` prop ([f9d7648](https://github.com/narmi/design_system/commit/f9d764852805232252ffdc459d9155241ba951e4))
+* Remove Modal component. Use Dialog moving forward. ([18a1ba5](https://github.com/narmi/design_system/commit/18a1ba572235f80f3083a096cb56eb65fc50fd37))
+* **TextInput:** Remove deprecated 'icon' prop. Use 'startIcon' and 'endIcon' instead ([73db1f1](https://github.com/narmi/design_system/commit/73db1f1f112a00faa49bc4d0bc4e2d89778b441d))
+
 ## [2.56.0](https://github.com/narmi/design_system/compare/v2.55.0...v2.56.0) (2023-08-07)
 
 

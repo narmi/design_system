@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.56.0](https://github.com/narmi/design_system/compare/v2.55.0...v2.56.0) (2023-08-07)
+
+
+### Features
+
+* **Select:** add getTypeaheadString prop for custom typeahead behavior ([7730808](https://github.com/narmi/design_system/commit/773080868f3340bdc9a3b6a142ee40f12bbad0bb))
+
 ## [2.55.0](https://github.com/narmi/design_system/compare/v2.54.0...v2.55.0) (2023-08-04)
 
 

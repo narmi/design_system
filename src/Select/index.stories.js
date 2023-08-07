@@ -25,12 +25,14 @@ const children = [
 
 export const Overview = Template.bind({});
 Overview.args = {
+  id: "overviewStory",
   label: "Favorite icon",
   children,
 };
 
 export const DefaultSelection = Template.bind({});
 DefaultSelection.args = {
+  id: "defaultSelection",
   label: "Favorite icon",
   children,
   defaultValue: "film",
@@ -38,6 +40,7 @@ DefaultSelection.args = {
 
 export const ErrorState = Template.bind({});
 ErrorState.args = {
+  id: "errorState",
   label: "Account",
   children: [
     <Select.Item value="checking1234">Checking (1234)</Select.Item>,
@@ -75,6 +78,7 @@ WithAction.parameters = {
 
 export const WithCategories = Template.bind({});
 WithCategories.args = {
+  id: "withCategories",
   label: "Select an Icon",
   children: [
     <Select.Category label="Transportation">
@@ -115,12 +119,13 @@ WithCategories.parameters = {
 
 export const CustomTypeahead = Template.bind({});
 CustomTypeahead.args = {
+  id: "customTypeaheadString",
   label: "Select an Industry",
   children: [
-    { name: "Agriculture", code: 12345 },
-    { name: "Manufacturing", code: 55555 },
-    { name: "Logistics", code: 32144 },
-    { name: "Hospitality", code: 22147 },
+    { name: "Agriculture", code: "12345" },
+    { name: "Manufacturing", code: "55555" },
+    { name: "Logistics", code: "32144" },
+    { name: "Hospitality", code: "22147" },
   ].map(({ name, code }) => (
     <Select.Item value={code} searchValue={name}>
       {name}
@@ -132,6 +137,43 @@ CustomTypeahead.parameters = {
     description: {
       story:
         "By default, typeahead highlights items based on `value`. You may pass a `searchValue` to customize the string users search against when using typeahead. In this example, the value is a numeric code, but we'd like the user to filter on industry namej",
+    },
+  },
+};
+
+export const ChangingTypeaheadBehavior = Template.bind({});
+ChangingTypeaheadBehavior.args = {
+  id: "customTypeaheadBehavior",
+  label: "Select an Industry",
+  getTypeaheadString: (userInput, selectItem) => {
+    console.info(`User typed: "${userInput}"`);
+    let searchString =
+      selectItem.props.searchValue || selectItem.props.value || "";
+
+    // user is searching by code
+    if (/\d/.test(userInput)) {
+      searchString = selectItem.props.value;
+      console.info("Searching by NAICS code instead of name");
+    }
+
+    return searchString;
+  },
+  children: [
+    { name: "Agriculture", code: "12345" },
+    { name: "Manufacturing", code: "55555" },
+    { name: "Logistics", code: "32144" },
+    { name: "Hospitality", code: "22147" },
+  ].map(({ name, code }) => (
+    <Select.Item value={code} searchValue={name}>
+      {name} - {code}
+    </Select.Item>
+  )),
+};
+ChangingTypeaheadBehavior.parameters = {
+  docs: {
+    description: {
+      story:
+        "You may provide a function to the `getTypeaheadString` prop to customize which item props/data should be used for autocomplete. In this example, we autocomplete on `value` when the user input is numeric, and autocomplete on `searchValue` (name) when the input is alpha",
     },
   },
 };

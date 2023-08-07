@@ -5,130 +5,104 @@ All notable changes to this project will be documented in this file. See
 
 ## [3.0.0](https://github.com/narmi/design_system/compare/v2.56.0...v3.0.0) (2023-08-07)
 
-
 ### ⚠ BREAKING CHANGES
 
-* **Button:** set default type attribute as 'button'
-* **Checkbox:** use auto spacing between checkboxes
-* **Button:** set default type attribute as 'button'
-* **ContentCard:** remove deprecated `type` prop
-* **Dialog:** Remove Modal component. Use Dialog moving forward.
-* **Card:** Removes Card component. Use ContentCard moving forward.
-* **TextInput:** Remove deprecated 'icon' prop. Use 'startIcon' and 'endIcon' instead
+- **Button:** set default type attribute as 'button'
+- **Card:** Removes Card component. Use `ContentCard` moving forward.
+- **Checkbox:** use auto spacing between checkboxes (adjust bottom margin overrides accordingly)
+- **ContentCard:** remove deprecated `type` prop
+- **Dialog:** Remove Modal component. Use `Dialog` moving forward.
+- **TextInput:** Remove deprecated 'icon' prop. Use 'startIcon' and 'endIcon' instead
 
 ### Bug Fixes
 
-* **Button:** set default type attribute as 'button' ([5b0336f](https://github.com/narmi/design_system/commit/5b0336f4cbcb074ace3ce9f836538a9d7dc42848))
-* **Button:** set default type attribute as 'button' ([7820426](https://github.com/narmi/design_system/commit/782042626986ee5125a8a7dc84f3da70c77b2972))
-* important auto Dialog height ([6ce230c](https://github.com/narmi/design_system/commit/6ce230cad3fbd4cc5f61f3985e86df417d0ef159))
-* use 80vh as max Dialog height ([e85165d](https://github.com/narmi/design_system/commit/e85165d2c465ebe9c80961aee27759bfedb251c7))
-
-
-### Code Refactoring
-
-* **Card:** Removes Card component. Use ContentCard moving forward. ([4524cc6](https://github.com/narmi/design_system/commit/4524cc6eac66aaaab3dbeb199df91a384e5d20fd))
-* **Checkbox:** use auto spacing between checkboxes ([2f830a5](https://github.com/narmi/design_system/commit/2f830a5bfc34fd6e8c6c07d48f5e08d093426c7a))
-* **ContentCard:** remove deprecated `type` prop ([f9d7648](https://github.com/narmi/design_system/commit/f9d764852805232252ffdc459d9155241ba951e4))
-* Remove Modal component. Use Dialog moving forward. ([18a1ba5](https://github.com/narmi/design_system/commit/18a1ba572235f80f3083a096cb56eb65fc50fd37))
-* **TextInput:** Remove deprecated 'icon' prop. Use 'startIcon' and 'endIcon' instead ([73db1f1](https://github.com/narmi/design_system/commit/73db1f1f112a00faa49bc4d0bc4e2d89778b441d))
+- **Button:** set default type attribute as 'button' ([5b0336f](https://github.com/narmi/design_system/commit/5b0336f4cbcb074ace3ce9f836538a9d7dc42848))
+- **Dialog:** important auto Dialog height ([6ce230c](https://github.com/narmi/design_system/commit/6ce230cad3fbd4cc5f61f3985e86df417d0ef159))
+- **Dialog:** use 80vh as max Dialog height ([e85165d](https://github.com/narmi/design_system/commit/e85165d2c465ebe9c80961aee27759bfedb251c7))
 
 ## [2.56.0](https://github.com/narmi/design_system/compare/v2.55.0...v2.56.0) (2023-08-07)
 
-
 ### Features
 
-* **Select:** add getTypeaheadString prop for custom typeahead behavior ([7730808](https://github.com/narmi/design_system/commit/773080868f3340bdc9a3b6a142ee40f12bbad0bb))
+- **Select:** add getTypeaheadString prop for custom typeahead behavior ([7730808](https://github.com/narmi/design_system/commit/773080868f3340bdc9a3b6a142ee40f12bbad0bb))
 
 ## [2.55.0](https://github.com/narmi/design_system/compare/v2.54.0...v2.55.0) (2023-08-04)
 
-
 ### Features
 
-* **Select:** add category grouping feature ([46b6a54](https://github.com/narmi/design_system/commit/46b6a544897d0da2155b0c0ebc114743da5d0dd9))
+- **Select:** add category grouping feature ([46b6a54](https://github.com/narmi/design_system/commit/46b6a544897d0da2155b0c0ebc114743da5d0dd9))
 
 ## [2.54.0](https://github.com/narmi/design_system/compare/v2.53.0...v2.54.0) (2023-08-03)
 
-
 ### Features
 
-* **ContentCard:** add bordered kind ([b17249e](https://github.com/narmi/design_system/commit/b17249e4d22608024726087b1e45b3eac883c037))
+- **ContentCard:** add bordered kind ([b17249e](https://github.com/narmi/design_system/commit/b17249e4d22608024726087b1e45b3eac883c037))
 
 ## [2.53.0](https://github.com/narmi/design_system/compare/v2.52.3...v2.53.0) (2023-08-03)
 
-
 ### Features
 
-* **Pagination:** enable fully controlled mode ([6e1b638](https://github.com/narmi/design_system/commit/6e1b638121b0f7b0f130f17cf7b386bac12b8cb4))
+- **Pagination:** enable fully controlled mode ([6e1b638](https://github.com/narmi/design_system/commit/6e1b638121b0f7b0f130f17cf7b386bac12b8cb4))
 
 ### [2.52.3](https://github.com/narmi/design_system/compare/v2.52.2...v2.52.3) (2023-08-01)
 
-
 ### Bug Fixes
 
-* **dropdown:** ellipsize dropdown label ([716cb10](https://github.com/narmi/design_system/commit/716cb1057250d47d896a4d82a6e65498b84a042e))
+- **dropdown:** ellipsize dropdown label ([716cb10](https://github.com/narmi/design_system/commit/716cb1057250d47d896a4d82a6e65498b84a042e))
 
 ### [2.52.2](https://github.com/narmi/design_system/compare/v2.52.1...v2.52.2) (2023-07-28)
 
-
 ### Bug Fixes
 
-* **focus traps:** diable autofocus in Popover and Dialog ([1a6d390](https://github.com/narmi/design_system/commit/1a6d39073d85eb5afae8bae75e8d07cf4b254b60))
+- **focus traps:** diable autofocus in Popover and Dialog ([1a6d390](https://github.com/narmi/design_system/commit/1a6d39073d85eb5afae8bae75e8d07cf4b254b60))
 
 ### [2.52.1](https://github.com/narmi/design_system/compare/v2.52.0...v2.52.1) (2023-07-25)
 
-
 ### Bug Fixes
 
-* **tabs:** non-responsive tabs should not be flex ([c56d799](https://github.com/narmi/design_system/commit/c56d799d141216e60a19e426a71ca0b87e93a250))
+- **tabs:** non-responsive tabs should not be flex ([c56d799](https://github.com/narmi/design_system/commit/c56d799d141216e60a19e426a71ca0b87e93a250))
 
 ## [2.52.0](https://github.com/narmi/design_system/compare/v2.51.0...v2.52.0) (2023-07-24)
 
-
 ### Features
 
-* **toggle:** add enabled/disabled label for screen readers ([d45f77b](https://github.com/narmi/design_system/commit/d45f77be96feec760fda52007e166150f1a132bc))
+- **toggle:** add enabled/disabled label for screen readers ([d45f77b](https://github.com/narmi/design_system/commit/d45f77be96feec760fda52007e166150f1a132bc))
 
 ## [2.51.0](https://github.com/narmi/design_system/compare/v2.50.1...v2.51.0) (2023-07-24)
 
-
 ### Features
 
-* **checkbox:** Allow markdown ([5583667](https://github.com/narmi/design_system/commit/5583667f2afd0849ef784a5e96eec5fb69abe630))
-
+- **checkbox:** Allow markdown ([5583667](https://github.com/narmi/design_system/commit/5583667f2afd0849ef784a5e96eec5fb69abe630))
 
 ### Bug Fixes
 
-* **Checkbox:** Comments ([58d3da5](https://github.com/narmi/design_system/commit/58d3da5061daf344eb14e1dca80d0ab81469258e))
-* **import:** import react-markdown properly ([9a80a95](https://github.com/narmi/design_system/commit/9a80a955329f4cd23084936279fc577314996579))
-* **select:** Select must have id ([44f543a](https://github.com/narmi/design_system/commit/44f543a05a059a006a43ee2f15e6e481b8edbd1d))
+- **Checkbox:** Comments ([58d3da5](https://github.com/narmi/design_system/commit/58d3da5061daf344eb14e1dca80d0ab81469258e))
+- **import:** import react-markdown properly ([9a80a95](https://github.com/narmi/design_system/commit/9a80a955329f4cd23084936279fc577314996579))
+- **select:** Select must have id ([44f543a](https://github.com/narmi/design_system/commit/44f543a05a059a006a43ee2f15e6e481b8edbd1d))
 
 ### [2.50.1](https://github.com/narmi/design_system/compare/v2.50.0...v2.50.1) (2023-07-21)
 
-
 ### Bug Fixes
 
-* **date input:** handle NaN selected date ([c020b6a](https://github.com/narmi/design_system/commit/c020b6ad3a8fa8a33c4b0075eb50a19af3095c33))
+- **date input:** handle NaN selected date ([c020b6a](https://github.com/narmi/design_system/commit/c020b6ad3a8fa8a33c4b0075eb50a19af3095c33))
 
 ## [2.50.0](https://github.com/narmi/design_system/compare/v2.49.3...v2.50.0) (2023-07-21)
 
-
 ### Features
 
-* **Typography:** darken secondary text; add thin Mullish weight ([c50dd57](https://github.com/narmi/design_system/commit/c50dd57143c1cc2608031bbd3c29c226362c0305))
+- **Typography:** darken secondary text; add thin Mullish weight ([c50dd57](https://github.com/narmi/design_system/commit/c50dd57143c1cc2608031bbd3c29c226362c0305))
 
 ### [2.49.3](https://github.com/narmi/design_system/compare/v2.49.2...v2.49.3) (2023-07-18)
 
-
 ### Bug Fixes
 
-* **tabslist:** Tabslist scroll removal throwing error ([63a36d9](https://github.com/narmi/design_system/commit/63a36d97e5816e618538b100391547a5cf1f6eaf))
+- **tabslist:** Tabslist scroll removal throwing error ([63a36d9](https://github.com/narmi/design_system/commit/63a36d97e5816e618538b100391547a5cf1f6eaf))
 
 ### [2.49.2](https://github.com/narmi/design_system/compare/v2.49.1...v2.49.2) (2023-07-12)
 
-
 ### Bug Fixes
 
-* **Select:** use portalled popover element ([a7b1b42](https://github.com/narmi/design_system/commit/a7b1b4234d51a6f196549fa7bbdffe1e2d96334e))
+- **Select:** use portalled popover element ([a7b1b42](https://github.com/narmi/design_system/commit/a7b1b4234d51a6f196549fa7bbdffe1e2d96334e))
 
 ### [2.49.1](https://github.com/narmi/design_system/compare/v2.49.0...v2.49.1) (2023-07-12)
 

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.0.1](https://github.com/narmi/design_system/compare/v3.0.0...v3.0.1) (2023-08-08)
+
+
+### Bug Fixes
+
+* remove modal stories ([bcc9b4d](https://github.com/narmi/design_system/commit/bcc9b4d10ac4d3a9e033060ea4d58f2649adc418))
+
 ## [3.0.0](https://github.com/narmi/design_system/compare/v2.56.0...v3.0.0) (2023-08-07)
 
 ### ⚠ BREAKING CHANGES

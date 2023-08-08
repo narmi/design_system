@@ -12,8 +12,5 @@
     "subdued-20-opacity",
     "subdued-10-opacity"
   ],
-  "components": [
-    "Dropdown",
-    "PlainButton"
-  ]
+  "components": ["Dropdown"]
 }

@@ -23,7 +23,7 @@ const Button = ({
   isLoading = false,
   disabled = false,
   kind = "primary",
-  type = "button",
+  type,
   size = "m",
   startIcon = null,
   endIcon = null,
@@ -45,7 +45,11 @@ const Button = ({
 
   const Icon = ({ name }) => (
     <div className="alignChild--center--center">
-      <i role="img" aria-label={ariaLabel || name} className={`narmi-icon-${name}`} />
+      <i
+        role="img"
+        aria-label={ariaLabel || name}
+        className={`narmi-icon-${name}`}
+      />
     </div>
   );
 
@@ -71,14 +75,16 @@ const Button = ({
           "nds-button--loading": isLoading,
         },
       ])}
-      disabled={isButtonElement && disabled || isLoading ? true : undefined}
+      disabled={(isButtonElement && disabled) || isLoading ? true : undefined}
       aria-label={ariaLabel || buttonLabel}
       data-testid={testId || "nds-button"}
     >
       <div className="nds-button-content">
         {isLoading && (
           <div className="nds-button-spinner">
-            <Spinner color={kind !== "primary" ? "var(--color-lightGrey)" : undefined} />
+            <Spinner
+              color={kind !== "primary" ? "var(--color-lightGrey)" : undefined}
+            />
           </div>
         )}
         <Row gapSize="s" alignItems="center">
@@ -118,7 +124,7 @@ Button.propTypes = {
   /** style of button to render */
   kind: PropTypes.oneOf(["primary", "secondary", "negative", "menu", "plain"]),
   /** type attribute of button element */
-  type: PropTypes.oneOf(["submit", "button"]),
+  type: PropTypes.oneOf(["submit", "button", "reset"]),
   /** size variant of button */
   size: PropTypes.oneOf(["xs", "s", "m", "l"]),
   /** Click callback, with event object passed as argument */

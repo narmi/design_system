@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.0](https://github.com/narmi/design_system/compare/v3.0.2...v3.1.0) (2023-08-15)
+
+
+### Features
+
+* **ContentCard:** add radiusSize prop ([38ba965](https://github.com/narmi/design_system/commit/38ba965be8961a758dbbd334e0a6cad13382e720))
+
 ### [3.0.2](https://github.com/narmi/design_system/compare/v3.0.1...v3.0.2) (2023-08-08)
 
 

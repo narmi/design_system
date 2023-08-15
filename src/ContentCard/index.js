@@ -12,6 +12,7 @@ const ContentCard = ({
   isSelected = false,
   children,
   testId,
+  radiusSize = "s",
 }) => {
   const isInteractive = kind === "interactive";
 
@@ -35,7 +36,7 @@ const ContentCard = ({
         "nds-contentCard",
         `nds-contentCard--${kind}`,
         `padding--all--${paddingSize}`,
-        "rounded--all bgColor--white",
+        `rounded--all--${radiusSize} bgColor--white`,
         { "button--reset": isInteractive },
       ])}
     >
@@ -68,6 +69,10 @@ ContentCard.propTypes = {
    * `bordered`: flat, rounded rect with border
    */
   kind: PropTypes.oneOf(["plain", "elevated", "interactive", "bordered"]),
+  /**
+   * Amount of border radius to add on all sides of card.
+   */
+  radiusSize: PropTypes.oneOf(["s", "m", "l"]),
   /**
    * Only valid for `interactive` card type.
    * Callback for card click event.

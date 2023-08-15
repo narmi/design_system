@@ -29,6 +29,7 @@
   color: var(--font-color-primary) !important;
   font-size: var(--font-size-default);
   font-family: var(--font-family-default);
+  white-space: nowrap;
 
   &--selected,
   &:hover {

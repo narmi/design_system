@@ -10,6 +10,7 @@ const Template = (args) => (
       <Tabs.Tab label="Apples" tabId="apple" />
       <Tabs.Tab label="Oranges" tabId="orange" />
       <Tabs.Tab label="Pineapples" tabId="pineapple" />
+      <Tabs.Tab label="Snow leopard" tabId="snowLeopard" />
     </Tabs.List>
     <Tabs.Panel tabId="apple">
       <div className="padding--all--s">🍎🍎🍎</div>
@@ -19,6 +20,9 @@ const Template = (args) => (
     </Tabs.Panel>
     <Tabs.Panel tabId="pineapple">
       <div className="padding--all--s">🍍🍍🍍</div>
+    </Tabs.Panel>
+    <Tabs.Panel tabId="snowLeopard">
+      <div className="padding--all--s">️❄️🐆</div>
     </Tabs.Panel>
   </Tabs>
 );
@@ -49,6 +53,8 @@ export const ResponsiveTabs = (args) => (
         <Tabs.Tab label="Bird" tabId="bird" />
         <Tabs.Tab label="Cat" tabId="cat" />
         <Tabs.Tab label="Dog" tabId="dog" />
+        <Tabs.Tab label="Snow leopard" tabId="snowLeopard" />
+        <Tabs.Tab label="My absolute favorite animal of all time" tabId="penguin" />
       </Tabs.List>
       <Tabs.Panel tabId="apple">
         <div className="padding--all--s">🍎🍎🍎</div>
@@ -67,6 +73,12 @@ export const ResponsiveTabs = (args) => (
       </Tabs.Panel>
       <Tabs.Panel tabId="dog">
         <div className="padding--all--s">🐕🐕🐕</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="snowLeopard">
+        <div className="padding--all--s">️❄️🐆</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="penguin">
+        <div className="padding--all--s">️🐧🐧🐧</div>
       </Tabs.Panel>
     </Tabs>
   </div>

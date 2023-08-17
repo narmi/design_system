@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.1.2](https://github.com/narmi/design_system/compare/v3.1.1...v3.1.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **Select:** Max-height 50vh ([50bb8f9](https://github.com/narmi/design_system/commit/50bb8f95563dd0acc037f7608e9dca00b3544da5))
+
 ### [3.1.1](https://github.com/narmi/design_system/compare/v3.1.0...v3.1.1) (2023-08-15)
 
 

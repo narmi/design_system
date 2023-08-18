@@ -100,7 +100,10 @@ const Dialog = ({
             </div>
             <div
               ref={contentRef}
-              className="nds-dialog-content nds-typography padding--top--xs"
+              className={cc([
+                "nds-dialog-content nds-typography padding--top--xs",
+                { "padding--bottom--xl": !footer },
+              ])}
             >
               {children}
             </div>

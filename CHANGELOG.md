@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.1.3](https://github.com/narmi/design_system/compare/v3.1.2...v3.1.3) (2023-08-18)
+
+
+### Bug Fixes
+
+* **Dialog:** add bottom spacing when no footer is passed in ([db70bab](https://github.com/narmi/design_system/commit/db70bab093f6384de7063a355cbb87a6a5adc4fe))
+
 ### [3.1.2](https://github.com/narmi/design_system/compare/v3.1.1...v3.1.2) (2023-08-17)
 
 

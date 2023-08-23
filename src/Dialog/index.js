@@ -83,7 +83,7 @@ const Dialog = ({
             aria-labelledby="aria-dialog-label"
             aria-modal="true"
             className="nds-dialog"
-            style={{ width }}
+            style={{ "--dialog-preferred-width": width }}
             data-testid={testId}
           >
             <div

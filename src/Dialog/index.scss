@@ -55,6 +55,7 @@
     border-radius: var(--border-radius-m);
     max-height: 80vh; // prevent modal from being taller than the shim content box
     min-width: 240px; // should be no narrower than this on larger viewports
+    width: var(--dialog-preferred-width);
   }
 }
 

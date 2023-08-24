@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.1.5](https://github.com/narmi/design_system/compare/v3.1.4...v3.1.5) (2023-08-23)
+
+
+### Bug Fixes
+
+* **Dialog:** prevent width prop from overriding mobile viewport behavior ([8c86a06](https://github.com/narmi/design_system/commit/8c86a06a20114f817c4829f1eaf112a1e9cd080c))
+
+### [3.1.4](https://github.com/narmi/design_system/compare/v3.1.3...v3.1.4) (2023-08-23)
+
+
+### Bug Fixes
+
+* **DropdownTrigger:** remove z-index on chevron-down ([42800a9](https://github.com/narmi/design_system/commit/42800a91ffbeac20f65d92feb39dc08b4f7bf48c))
+
 ### [3.1.3](https://github.com/narmi/design_system/compare/v3.1.2...v3.1.3) (2023-08-18)
 
 

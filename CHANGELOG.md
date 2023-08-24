@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.1.6](https://github.com/narmi/design_system/compare/v3.1.5...v3.1.6) (2023-08-24)
+
+
+### Bug Fixes
+
+* **docs:** update popover stories to use type button ([f3b04c0](https://github.com/narmi/design_system/commit/f3b04c00136ce2d3dcb2e8adfc6d08ceccae9c0a))
+
 ### [3.1.5](https://github.com/narmi/design_system/compare/v3.1.4...v3.1.5) (2023-08-23)
 
 

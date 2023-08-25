@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.1.8](https://github.com/narmi/design_system/compare/v3.1.7...v3.1.8) (2023-08-25)
+
+
+### Bug Fixes
+
+* **Popover:** use typeof for SSR check ([f2ebd66](https://github.com/narmi/design_system/commit/f2ebd666d5c60f6fe64f5b0541f79b228e868f19))
+
 ### [3.1.7](https://github.com/narmi/design_system/compare/v3.1.6...v3.1.7) (2023-08-25)
 
 

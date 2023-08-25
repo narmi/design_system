@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.1.7](https://github.com/narmi/design_system/compare/v3.1.6...v3.1.7) (2023-08-25)
+
+
+### Bug Fixes
+
+* **Popover:** check if SSR in useLayer options ([08de555](https://github.com/narmi/design_system/commit/08de55599be8011373370d2363f1edfd2e7235ca))
+
 ### [3.1.6](https://github.com/narmi/design_system/compare/v3.1.5...v3.1.6) (2023-08-24)
 
 

@@ -67,7 +67,7 @@ const Popover = ({
     placement: `${side}-${alignment}`,
     preferX: "left",
     preferY: "bottom",
-    container: document ? document.body : undefined,
+    container: typeof document !== "undefined" ? document.body : undefined,
     triggerOffset: offset,
   });
 

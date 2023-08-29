@@ -6,6 +6,7 @@ import { useCombobox } from "downshift";
 import { useLayer } from "react-laag";
 import ComboboxItem from "./ComboboxItem";
 import ComboboxHeading from "./ComboboxHeading";
+import ComboboxCategory from "./ComboboxCategory";
 import TextInput from "../TextInput";
 
 const noop = () => {};
@@ -107,24 +108,18 @@ const Combobox = ({
 
   const hasSelectedItem = !!selectedItem;
 
-
   // react-laag positioning engine for autocomplete popup
-  const {
-    renderLayer,
-    triggerProps,
-    layerProps,
-    triggerBounds,
-    layerSide,
-  } = useLayer({
-    isOpen,
-    overflowContainer: true,
-    auto: true,
-    snap: true,
-    placement: "bottom-start",
-    possiblePlacements: ["top-start", "bottom-start"],
-    triggerOffset: -3,
-    containerOffset: 16,
-  });
+  const { renderLayer, triggerProps, layerProps, triggerBounds, layerSide } =
+    useLayer({
+      isOpen,
+      overflowContainer: true,
+      auto: true,
+      snap: true,
+      placement: "bottom-start",
+      possiblePlacements: ["top-start", "bottom-start"],
+      triggerOffset: -3,
+      containerOffset: 16,
+    });
 
   // It is possible that a consumer may have nothing to pass to `children`.
   // For example, if an API response hasn't completed to load in the autocomplete
@@ -170,7 +165,7 @@ const Combobox = ({
             if (hasSelectedItem) {
               setInputValue(selectedItem.props.value);
             }
-    },
+          },
         })}
       />
       {renderLayer(
@@ -186,11 +181,12 @@ const Combobox = ({
           ])}
           {...getMenuProps(layerProps)}
           style={{
-            width: triggerBounds?.width || 'auto',
+            width: triggerBounds?.width || "auto",
             ...layerProps.style,
           }}
         >
-          {isOpen && displayedItems.map((item, index) => {
+          {isOpen &&
+            displayedItems.map((item, index) => {
               let result = (
                 <li
                   key={`${item}-${index}`}
@@ -272,4 +268,5 @@ Combobox.propTypes = {
 
 Combobox.Item = ComboboxItem;
 Combobox.Heading = ComboboxHeading;
+Combobox.Category = ComboboxCategory;
 export default Combobox;

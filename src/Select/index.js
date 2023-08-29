@@ -157,13 +157,23 @@ const Select = ({
     // <https://www.downshift-js.com/use-select#state-reducer>
     stateReducer: (state, actionAndChanges) => {
       const { type, changes } = actionAndChanges;
-      if (type === "__menu_keydown_character__") {
+      let isOpen = changes.isOpen;
+
+      if (
+        type === "__menu_keydown_character__" ||
+        type === "__togglebutton_keydown_character__"
+      ) {
         const { inputValue } = changes;
         setUserInput(inputValue);
+        isOpen = true;
       } else {
         setUserInput(""); // reset input after any other event
       }
-      return changes;
+
+      return {
+        ...changes,
+        isOpen,
+      };
     },
   };
 

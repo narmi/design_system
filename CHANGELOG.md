@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.0](https://github.com/narmi/design_system/compare/v3.1.8...v3.2.0) (2023-08-29)
+
+
+### Features
+
+* **icons:** add `filter-2` icon ([92e021b](https://github.com/narmi/design_system/commit/92e021be8af3c4c137dd5af34e59d6ecaba603bb))
+
 ### [3.1.8](https://github.com/narmi/design_system/compare/v3.1.7...v3.1.8) (2023-08-25)
 
 

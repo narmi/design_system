@@ -21,6 +21,7 @@ const DateInput = ({
   useIsoOnChange = true,
   disableMobile = false,
   testId,
+  disablePortal,
   ...props
 }) => {
   const input = useRef();
@@ -56,21 +57,26 @@ const DateInput = ({
   };
 
   useEffect(() => {
+    if (disablePortal) {
+      console.dir({ ...props });
+      flatpickrOptions.static = true;
+    }
     flatpickr(input.current, flatpickrOptions);
-  }, [flatpickrOptions, input]);
+  }, [flatpickrOptions, input, disablePortal]);
 
   return (
-    <Input {...props}>
-      <input
-        key={"nds-text"}
-        ref={input}
-        type="date"
-        required
-        placeholder={props.label}
-        data-testid={testId}
-        {...props}
-      />
-    </Input>
+    <div>
+      <Input {...props} label={props.label}>
+        <input
+          key={"nds-text"}
+          ref={input}
+          type="date"
+          required
+          data-testid={testId}
+          {...props}
+        />
+      </Input>
+    </div>
   );
 };
 DateInput.propTypes = {
@@ -101,6 +107,8 @@ DateInput.propTypes = {
   disableMobile: PropTypes.bool,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
+  /** When true, appends the calendar popup to the parent of the input instead of to document body */
+  disablePortal: PropTypes.bool,
 };
 DateInput.defaultProps = {
   onChange: () => {},

@@ -58,7 +58,6 @@ const DateInput = ({
 
   useEffect(() => {
     if (disablePortal) {
-      console.dir({ ...props });
       flatpickrOptions.static = true;
     }
     flatpickr(input.current, flatpickrOptions);

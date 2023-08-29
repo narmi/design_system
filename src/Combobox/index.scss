@@ -57,3 +57,39 @@
     transform: translateY(-50%);
   }
 }
+
+.nds-combobox-category {
+  list-style: none;
+
+  .narmi-icon-chevron-up {
+    display: none;
+  }
+
+  &[open] {
+    .narmi-icon-chevron-down {
+      display: none;
+    }
+    .narmi-icon-chevron-up {
+      display: block;
+    }
+  }
+
+  summary {
+    outline: none;
+    display: flex;
+    cursor: pointer;
+    position: relative;
+    min-height: var(--space-xl);
+
+    span {
+      align-self: center;
+    }
+  }
+
+  .nds-category-icon {
+    position: absolute;
+    right: var(--space-s);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

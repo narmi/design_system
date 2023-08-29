@@ -6,7 +6,12 @@ import { useCombobox } from "downshift";
 import { useLayer } from "react-laag";
 import ComboboxItem from "./ComboboxItem";
 import ComboboxHeading from "./ComboboxHeading";
+import ComboboxCategory from "./ComboboxCategory";
 import TextInput from "../TextInput";
+import { getItemIndex } from "../Select";
+
+// TODO: track open states?
+// TODO: check select for test coverage and do it here
 
 const noop = () => {};
 
@@ -47,16 +52,30 @@ const Combobox = ({
   icon,
   testId,
 }) => {
-  const childArray = React.Children.toArray(children);
-
-  // Initial items includes all children that are
-  // `Combobox.Item` or `Combobox.Heading` children
-  const initialItems =
-    childArray.length < 1
+  const allChildren = React.Children.toArray(children);
+  const hasCategories = allChildren.some(
+    ({ type }) => type.displayName === ComboboxCategory.displayName
+  );
+  let categories = [];
+  let items =
+    allChildren.length < 1
       ? []
-      : childArray.filter(({ props }) => "value" in props || "text" in props);
+      : allChildren.filter(({ props }) => "value" in props || "text" in props);
 
-  const [displayedItems, setDisplayedItems] = useState(initialItems);
+  // If categories are being used, `items` is populated by the children of each category
+  if (hasCategories) {
+    items = allChildren.flatMap(({ props }) =>
+      React.Children.toArray(props.children)
+    );
+    categories = allChildren.map(({ props }) => ({
+      label: props.label,
+      categoryChildren: React.Children.toArray(props.children),
+    }));
+  } else {
+    items = allChildren;
+  }
+
+  const [displayedItems, setDisplayedItems] = useState(items);
 
   const {
     isOpen,
@@ -78,19 +97,18 @@ const Combobox = ({
       // Typeahead behavior - we adjust the list of available options passed
       // into `useCombobox` by filtering the initial items list from input value
       if (!disableFiltering) {
-        const filteredItems = initialItems
+        const filteredItems = items
           .filter(isSelectable)
           .filter((item) => {
             const query = item.props.searchValue || item.props.value;
             return query.toLowerCase().startsWith(inputValue.toLowerCase());
           });
-
         setDisplayedItems(filteredItems);
       }
 
       // if the user clears the input...
       if (inputValue.length === 0) {
-        setDisplayedItems(initialItems); // restore original list in dropdown
+        setDisplayedItems(items); // restore original list in dropdown
         reset(); // clear any active selections
       }
 
@@ -99,7 +117,8 @@ const Combobox = ({
     onSelectedItemChange: ({ selectedItem }) => {
       let newSelection = "";
       if (selectedItem) {
-        newSelection = selectedItem.props.value;
+        newSelection =
+          selectedItem.props.searchValue || selectedItem.props.value;
       }
       onChange(newSelection);
       onInputChange(newSelection);
@@ -121,10 +140,123 @@ const Combobox = ({
       containerOffset: 16,
     });
 
+  // renders a single combobox item
+  const renderItem = (item, index) => {
+    let itemJsx = (
+      <li
+        key={`${item}-${index}`}
+        className={cc([
+          "nds-combobox-heading",
+          "alignChild--left--center padding--x--s padding--y--xs",
+        ])}
+      >
+        {item}
+      </li>
+    );
+
+    if (isSelectable(item)) {
+      itemJsx = (
+        <li
+          key={`${item}-${index}`}
+          className={cc([
+            "nds-combobox-item",
+            "alignChild--left--center padding--x--s",
+            {
+              "padding--y--xs": !hasCategories,
+              "nds-combobox-item--highlighted": highlightedIndex === index,
+              "rounded--top": index === 0,
+              "rounded--bottom": index === displayedItems.length - 1,
+              "nds-combobox-item--hasGutter": hasSelectedItem,
+            },
+          ])}
+          {...getItemProps({ item, index })}
+        >
+          {hasSelectedItem && selectedItem.props.value === item.props.value && (
+            <span className="narmi-icon-check fontSize--l fontWeight--bold" />
+          )}
+          {item}
+        </li>
+      );
+    }
+
+    return itemJsx;
+  };
+
+  // renders category including all child items
+  const renderCategory = ({ label, categoryChildren }) => {
+    const detailsProps = {};
+    const categoryValues = categoryChildren.map((child) => child.props.value);
+    const visibleCategoryChildren = categoryValues.reduce(
+      (visibleItems, value) => {
+        const visibleItem = displayedItems.find(
+          (displayedItem) => value === displayedItem.props.value
+        );
+        if (visibleItem) {
+          visibleItems.push(visibleItem);
+        }
+        return visibleItems;
+      },
+      []
+    );
+    const showCategory = visibleCategoryChildren.length > 0;
+
+    const shouldForceOpen = () => {
+      let result = false;
+
+      // an item in the category is currently highlighted
+      if (highlightedIndex > -1 && displayedItems.length > 0) {
+        const highlightedValue = displayedItems[highlightedIndex].props.value;
+        const categoryValues = categoryChildren.map(
+          (child) => child.props.value
+        );
+        result = categoryValues.includes(highlightedValue);
+      }
+
+      // user is actively filtering; open all categories and show suggestions
+      if (typeof inputValue === "string" && inputValue.length > 0) {
+        result = true;
+      }
+
+      return result;
+    };
+
+    if (shouldForceOpen()) {
+      detailsProps.open = true;
+    }
+
+    return showCategory ? (
+      <details
+        key={label}
+        className="nds-combobox-category"
+        open={shouldForceOpen()}
+        tabIndex={-1}
+      >
+        <summary
+          className="fontWeight--bold alignChild--left--center padding--x--s padding--y-xs"
+          onFocus={(e) => {
+            e.target.blur();
+          }}
+        >
+          <span id={`combobox-category-${label}`}>{label}</span>
+          <span className="nds-category-icon narmi-icon-chevron-down" />
+          <span className="nds-category-icon narmi-icon-chevron-up" />
+        </summary>
+        <ul
+          className="list--reset"
+          aria-labelledby={`combobox-category-${label}`}
+        >
+          {visibleCategoryChildren.map((item) =>
+            renderItem(item, getItemIndex(item, displayedItems))
+          )}
+        </ul>
+      </details>
+    ) : null;
+  };
+
   // It is possible that a consumer may have nothing to pass to `children`.
   // For example, if an API response hasn't completed to load in the autocomplete
   // options. In that case, Cobmobox should render a normal TextInput.
-  if (initialItems.length < 1) {
+  if (items.length < 1) {
     return (
       <TextInput
         error={errorText}
@@ -163,7 +295,9 @@ const Combobox = ({
             // If the user has selected an option, we should
             // always set that as the value of the input.
             if (hasSelectedItem) {
-              setInputValue(selectedItem.props.value);
+              setInputValue(
+                selectedItem.props.searchValue || selectedItem.props.value
+              );
             }
           },
         })}
@@ -174,7 +308,7 @@ const Combobox = ({
             "nds-combobox-list",
             "list--reset bgColor--white border--right bottom border--left",
             {
-              "nds-combobox-list--active": isOpen,
+              "nds-combobox-list--active": isOpen && displayedItems.length > 0,
               "nds-combobox-list--bottom": layerSide === "bottom",
               "nds-combobox-list--top": layerSide === "top",
             },
@@ -186,47 +320,9 @@ const Combobox = ({
           }}
         >
           {isOpen &&
-            displayedItems.map((item, index) => {
-              let result = (
-                <li
-                  key={`${item}-${index}`}
-                  className={cc([
-                    "nds-combobox-heading",
-                    "alignChild--left--center padding--x--s padding--y--xs",
-                  ])}
-                >
-                  {item}
-                </li>
-              );
-
-              if (isSelectable(item)) {
-                result = (
-                  <li
-                    key={`${item}-${index}`}
-                    className={cc([
-                      "nds-combobox-item",
-                      "alignChild--left--center padding--x--s padding--y--xs",
-                      {
-                        "nds-combobox-item--highlighted":
-                          highlightedIndex === index,
-                        "rounded--top": index === 0,
-                        "rounded--bottom": index === displayedItems.length - 1,
-                        "nds-combobox-item--hasGutter": hasSelectedItem,
-                      },
-                    ])}
-                    {...getItemProps({ item, index })}
-                  >
-                    {hasSelectedItem &&
-                      selectedItem.props.value === item.props.value && (
-                        <span className="narmi-icon-check fontSize--l fontWeight--bold" />
-                      )}
-                    {item}
-                  </li>
-                );
-              }
-
-              return result;
-            })}
+            (hasCategories
+              ? categories.map(renderCategory)
+              : displayedItems.map(renderItem))}
         </ul>
       )}
     </div>
@@ -268,4 +364,5 @@ Combobox.propTypes = {
 
 Combobox.Item = ComboboxItem;
 Combobox.Heading = ComboboxHeading;
+Combobox.Category = ComboboxCategory;
 export default Combobox;

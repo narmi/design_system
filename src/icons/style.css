@@ -1,14 +1,15 @@
 @font-face {
-  font-family: 'icomoon';
-  src: url('fonts/icomoon.woff?ookznz') format('woff');
+  font-family: "icomoon";
+  src: url("fonts/icomoon.woff?gn9nhp") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class*="narmi-icon-"] {
+[class^="narmi-icon-"],
+[class*=" narmi-icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
+  font-family: "icomoon" !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -17,11 +18,14 @@
   line-height: 1;
 
   /* Better Font Rendering =========== */
-  text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+.narmi-icon-filter-2:before {
+  content: "\ea4a";
+  color: #4c4c4c;
+}
 .narmi-icon-business:before {
   content: "\ea48";
 }

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import DropdownTrigger from "./";
 import Popover from "../Popover";
 import RadioButtons from "../RadioButtons";
-import useViewportSizes from "../hooks/useViewportSizes";
 
 const Template = (args) => <DropdownTrigger {...args} />;
 

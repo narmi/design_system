@@ -11,25 +11,25 @@ export const Overview = () => {
       </h1>
       <ul className="list--reset padding--all rounded--all bgColor--blueGrey fontColor--azul fontSize--l">
         <li>
-          <code>"s" or larger:&nbsp;</code>
+          <code>s or larger:&nbsp;</code>
           <code className={`fontColor--${s ? "success" : "error"}`}>
             {s.toString()}
           </code>
         </li>
         <li>
-          <code>"m" or larger:&nbsp;</code>
+          <code>m or larger:&nbsp;</code>
           <code className={`fontColor--${m ? "success" : "error"}`}>
             {m.toString()}
           </code>
         </li>
         <li>
-          <code>"l" or larger:&nbsp;</code>
+          <code>l or larger:&nbsp;</code>
           <code className={`fontColor--${l ? "success" : "error"}`}>
             {l.toString()}
           </code>
         </li>
         <li>
-          <code>"xl" or larger:&nbsp;</code>
+          <code>xl or larger:&nbsp;</code>
           <code className={`fontColor--${xl ? "success" : "error"}`}>
             {xl.toString()}
           </code>

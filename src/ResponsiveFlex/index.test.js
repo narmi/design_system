@@ -1,4 +1,3 @@
-import React from "react";
 import { getFlexDirection } from "./index";
 
 describe("ResponsiveFlex: getFlexDirection", () => {

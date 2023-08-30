@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.2.1](https://github.com/narmi/design_system/compare/v3.2.0...v3.2.1) (2023-08-30)
+
+
+### Bug Fixes
+
+* **Select:** enable typing in faux input before menu is open ([8e8083d](https://github.com/narmi/design_system/commit/8e8083dc5c164bc4368ac43c1adeb92466774649))
+
 ## [3.2.0](https://github.com/narmi/design_system/compare/v3.1.8...v3.2.0) (2023-08-29)
 
 

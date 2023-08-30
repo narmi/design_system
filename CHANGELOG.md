@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.2.1](https://github.com/narmi/design_system/compare/v3.2.0...v3.2.1) (2023-08-30)
+
+
+### Bug Fixes
+
+* **Select:** enable typing in faux input before menu is open ([8e8083d](https://github.com/narmi/design_system/commit/8e8083dc5c164bc4368ac43c1adeb92466774649))
+
+## [3.2.0](https://github.com/narmi/design_system/compare/v3.1.8...v3.2.0) (2023-08-29)
+
+
+### Features
+
+* **icons:** add `filter-2` icon ([92e021b](https://github.com/narmi/design_system/commit/92e021be8af3c4c137dd5af34e59d6ecaba603bb))
+
+### [3.1.8](https://github.com/narmi/design_system/compare/v3.1.7...v3.1.8) (2023-08-25)
+
+
+### Bug Fixes
+
+* **Popover:** use typeof for SSR check ([f2ebd66](https://github.com/narmi/design_system/commit/f2ebd666d5c60f6fe64f5b0541f79b228e868f19))
+
+### [3.1.7](https://github.com/narmi/design_system/compare/v3.1.6...v3.1.7) (2023-08-25)
+
+
+### Bug Fixes
+
+* **Popover:** check if SSR in useLayer options ([08de555](https://github.com/narmi/design_system/commit/08de55599be8011373370d2363f1edfd2e7235ca))
+
 ### [3.1.6](https://github.com/narmi/design_system/compare/v3.1.5...v3.1.6) (2023-08-24)
 
 

@@ -28,7 +28,6 @@ export const getFlexDirection = ({
     flexDirection = `${flexDirection}-reverse`;
   }
 
-  console.info(flexDirection);
   return flexDirection;
 };
 

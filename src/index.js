@@ -18,6 +18,7 @@ import Pagination from "./Pagination";
 import PlainButton from "./PlainButton";
 import Popover from "./Popover";
 import RadioButtons from "./RadioButtons";
+import ResponsiveFlex from "./ResponsiveFlex";
 import Row from "./Row";
 import Select from "./Select";
 import SeparatorList from "./SeparatorList";
@@ -49,6 +50,7 @@ export {
   PlainButton,
   Popover,
   RadioButtons,
+  ResponsiveFlex,
   Row,
   Select,
   SeparatorList,

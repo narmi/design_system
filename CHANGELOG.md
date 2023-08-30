@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.2.2](https://github.com/narmi/design_system/compare/v3.2.1...v3.2.2) (2023-08-30)
+
+
+### Bug Fixes
+
+* **tabs:** align tab panel with the menu area, not the arrows ([97b10ec](https://github.com/narmi/design_system/commit/97b10ec1e5a6f6c2c6a45a895873b1801fed5c56))
+
 ### [3.2.1](https://github.com/narmi/design_system/compare/v3.2.0...v3.2.1) (2023-08-30)
 
 

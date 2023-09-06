@@ -160,8 +160,8 @@ const Select = ({
       let isOpen = changes.isOpen;
 
       if (
-        type === "__menu_keydown_character__" ||
-        type === "__togglebutton_keydown_character__"
+        type === useSelect.stateChangeTypes.MenuKeyDownCharacter ||
+        type === useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter
       ) {
         const { inputValue } = changes;
         setUserInput(inputValue);

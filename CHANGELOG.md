@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.3.2](https://github.com/narmi/design_system/compare/v3.3.1...v3.3.2) (2023-09-06)
+
+
+### Bug Fixes
+
+* **Select:** use correct state change types in state reducer ([2564f95](https://github.com/narmi/design_system/commit/2564f958df658fd9ff6c19539415278d0d59ea1b))
+
 ### [3.3.1](https://github.com/narmi/design_system/compare/v3.3.0...v3.3.1) (2023-09-06)
 
 

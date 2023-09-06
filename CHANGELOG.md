@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.3.1](https://github.com/narmi/design_system/compare/v3.3.0...v3.3.1) (2023-09-06)
+
+
+### Bug Fixes
+
+* **icon:** remove color from filter-2 ([8a99335](https://github.com/narmi/design_system/commit/8a99335681ce9eb05ae5560af9a3634351240946))
+
 ## [3.3.0](https://github.com/narmi/design_system/compare/v3.2.2...v3.3.0) (2023-08-30)
 
 

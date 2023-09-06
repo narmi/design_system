@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useViewportSizes from "../hooks/useViewportSizes";
+import useBreakpoints from "../hooks/useBreakpoints";
 
 const VALID_GAPS = ["xs", "s", "m", "l", "xl"];
 const VALID_SIZES = ["s", "m", "l", "xl"];
@@ -43,7 +43,7 @@ const ResponsiveFlex = ({
   toColumnAt,
   toRowAt,
 }) => {
-  const viewportMatches = useViewportSizes();
+  const viewportMatches = useBreakpoints();
   const flexDirection = getFlexDirection({
     viewportMatches,
     direction,

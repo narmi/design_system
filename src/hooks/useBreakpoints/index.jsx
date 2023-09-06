@@ -11,7 +11,7 @@ const MQ_MAP = {
 // Mobile first only (viewport width >= breakpoint)
 const getMq = (size) => `(min-width: ${size})`;
 
-const useViewportSizes = (
+const useBreakpoints = (
   queries = {
     s: getMq(MQ_MAP.s),
     m: getMq(MQ_MAP.m),
@@ -26,4 +26,4 @@ const useViewportSizes = (
   return { s, m, l, xl };
 };
 
-export default useViewportSizes;
+export default useBreakpoints;

@@ -1,8 +1,8 @@
 import React from "react";
-import useViewportSizes from ".";
+import useBreakpoints from ".";
 
 export const Overview = () => {
-  const { s, m, l, xl } = useViewportSizes();
+  const { s, m, l, xl } = useBreakpoints();
 
   return (
     <>
@@ -39,4 +39,4 @@ export const Overview = () => {
   );
 };
 
-export default { title: "Hooks/useViewportSizes" };
+export default { title: "Hooks/useBreakpoints" };

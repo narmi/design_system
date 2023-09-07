@@ -25,6 +25,31 @@ WithIcon.args = {
   children,
 };
 
+export const CustomSearchStrings = (args) => (
+  <Combobox label={`Favorite Emoji (e.g. "Cactus")`} {...args}>
+    <Combobox.Item value="🐪" searchValue="Camel" />
+    <Combobox.Item value="📷" searchValue="Camera" />
+    <Combobox.Item value="🌵" searchValue="Cactus" />
+    <Combobox.Item value="🚬" searchValue="Cigarette" />
+    <Combobox.Item value="⭕️" searchValue="Circle Mark" />
+    <Combobox.Item value="🥒" searchValue="Cucumber" />
+    <Combobox.Item value="🇨🇺" searchValue="Cuban Flag" />
+    <Combobox.Item value="🥌" searchValue="Curling Stone" />
+    <Combobox.Item value="🐓" searchValue="Chicken" />
+    <Combobox.Item value="🎊" searchValue="Confetti Ball" />
+    <Combobox.Item value="🧥" searchValue="Coat" />
+    <Combobox.Item value="🧁" searchValue="Cupcake" />
+  </Combobox>
+);
+CustomSearchStrings.parameters = {
+  docs: {
+    description: {
+      story:
+        "By default typeahead is based on `value`. You may use `searchValue` to explicitly set the string the typeahead should match against.",
+    },
+  },
+};
+
 export const WithHeadings = (args) => (
   <Combobox label="Select Account" {...args}>
     <Combobox.Heading text="Checking" />
@@ -98,7 +123,13 @@ export const InADialog = () => {
 
   return (
     <>
-      <button onClick={() => {setIsOpen(true)}}>Open dialog</button>
+      <button
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
+        Open dialog
+      </button>
       <Dialog
         title="Dialog with a Combobox"
         isOpen={isOpen}
@@ -117,7 +148,7 @@ export const InADialog = () => {
       </Dialog>
     </>
   );
-}
+};
 
 export default {
   title: "Components/Combobox",

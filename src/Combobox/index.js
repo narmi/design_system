@@ -48,16 +48,33 @@ const Combobox = ({
   icon,
   testId,
 }) => {
-  const childArray = React.Children.toArray(children);
+  let items = [];
+  let categories = [];
+  const allChildren = React.Children.toArray(children);
 
   // Initial items includes all children that are
   // `Combobox.Item` or `Combobox.Heading` children
-  const initialItems =
-    childArray.length < 1
+  items =
+    allChildren.length < 1
       ? []
-      : childArray.filter(({ props }) => "value" in props || "text" in props);
+      : allChildren.filter(({ props }) => "value" in props || "text" in props);
 
-  const [displayedItems, setDisplayedItems] = useState(initialItems);
+  // If categories are being used, extract items from categories
+  if (
+    allChildren.some(({ type }) => type.displayName === "Combobox.Category")
+  ) {
+    items = allChildren.flatMap(({ props }) =>
+      React.Children.toArray(props.children)
+    );
+    categories = allChildren.map(({ props }) => ({
+      label: props.label,
+      categoryChildren: React.Children.toArray(props.children),
+    }));
+  } else {
+    items = allChildren;
+  }
+
+  const [displayedItems, setDisplayedItems] = useState(items);
 
   const {
     isOpen,
@@ -72,14 +89,14 @@ const Combobox = ({
     openMenu,
     reset,
   } = useCombobox({
-    items: displayedItems,
+    items,
     inputValue: controlledInputValue,
     itemToString: (item) => item.props.value,
     onInputValueChange: ({ inputValue }) => {
       // Typeahead behavior - we adjust the list of available options passed
       // into `useCombobox` by filtering the initial items list from input value
       if (!disableFiltering) {
-        const filteredItems = initialItems
+        const filteredItems = items
           .filter(isSelectable)
           .filter((item) =>
             item.props.value.toLowerCase().startsWith(inputValue.toLowerCase())
@@ -90,7 +107,7 @@ const Combobox = ({
 
       // if the user clears the input...
       if (inputValue.length === 0) {
-        setDisplayedItems(initialItems); // restore original list in dropdown
+        setDisplayedItems(items); // restore original list in dropdown
         reset(); // clear any active selections
       }
 
@@ -107,6 +124,7 @@ const Combobox = ({
   });
 
   const hasSelectedItem = !!selectedItem;
+  const hasCategories = categories.length > 0;
 
   // react-laag positioning engine for autocomplete popup
   const { renderLayer, triggerProps, layerProps, triggerBounds, layerSide } =
@@ -121,10 +139,50 @@ const Combobox = ({
       containerOffset: 16,
     });
 
+  const renderItem = (item, index) => {
+    let itemJsx = (
+      <li
+        key={`${item}-${index}`}
+        className={cc([
+          "nds-combobox-heading",
+          "alignChild--left--center padding--x--s padding--y--xs",
+        ])}
+      >
+        {item}
+      </li>
+    );
+
+    if (isSelectable(item)) {
+      itemJsx = (
+        <li
+          key={`${item}-${index}`}
+          className={cc([
+            "nds-combobox-item",
+            "alignChild--left--center padding--x--s padding--y--xs",
+            {
+              "nds-combobox-item--highlighted": highlightedIndex === index,
+              "rounded--top": index === 0,
+              "rounded--bottom": index === displayedItems.length - 1,
+              "nds-combobox-item--hasGutter": hasSelectedItem,
+            },
+          ])}
+          {...getItemProps({ item, index })}
+        >
+          {hasSelectedItem && selectedItem.props.value === item.props.value && (
+            <span className="narmi-icon-check fontSize--l fontWeight--bold" />
+          )}
+          {item}
+        </li>
+      );
+    }
+
+    return itemJsx;
+  };
+
   // It is possible that a consumer may have nothing to pass to `children`.
   // For example, if an API response hasn't completed to load in the autocomplete
   // options. In that case, Cobmobox should render a normal TextInput.
-  if (initialItems.length < 1) {
+  if (items.length < 1) {
     return (
       <TextInput
         error={errorText}
@@ -185,48 +243,7 @@ const Combobox = ({
             ...layerProps.style,
           }}
         >
-          {isOpen &&
-            displayedItems.map((item, index) => {
-              let result = (
-                <li
-                  key={`${item}-${index}`}
-                  className={cc([
-                    "nds-combobox-heading",
-                    "alignChild--left--center padding--x--s padding--y--xs",
-                  ])}
-                >
-                  {item}
-                </li>
-              );
-
-              if (isSelectable(item)) {
-                result = (
-                  <li
-                    key={`${item}-${index}`}
-                    className={cc([
-                      "nds-combobox-item",
-                      "alignChild--left--center padding--x--s padding--y--xs",
-                      {
-                        "nds-combobox-item--highlighted":
-                          highlightedIndex === index,
-                        "rounded--top": index === 0,
-                        "rounded--bottom": index === displayedItems.length - 1,
-                        "nds-combobox-item--hasGutter": hasSelectedItem,
-                      },
-                    ])}
-                    {...getItemProps({ item, index })}
-                  >
-                    {hasSelectedItem &&
-                      selectedItem.props.value === item.props.value && (
-                        <span className="narmi-icon-check fontSize--l fontWeight--bold" />
-                      )}
-                    {item}
-                  </li>
-                );
-              }
-
-              return result;
-            })}
+          {isOpen && displayedItems.map(renderItem)}
         </ul>
       )}
     </div>

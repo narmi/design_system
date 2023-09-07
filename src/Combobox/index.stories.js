@@ -98,7 +98,13 @@ export const InADialog = () => {
 
   return (
     <>
-      <button onClick={() => {setIsOpen(true)}}>Open dialog</button>
+      <button
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
+        Open dialog
+      </button>
       <Dialog
         title="Dialog with a Combobox"
         isOpen={isOpen}
@@ -117,7 +123,48 @@ export const InADialog = () => {
       </Dialog>
     </>
   );
-}
+};
+
+export const WithCategories = Template.bind({});
+WithCategories.args = {
+  id: "withCategories",
+  label: "Select an Icon",
+  children: [
+    <Combobox.Category label="Transportation">
+      <Combobox.Item value="truck">
+        <span className="narmi-icon-truck padding--right--xs" /> Truck
+      </Combobox.Item>
+      <Combobox.Item value="anchor">
+        <span className="narmi-icon-anchor padding--right--xs" /> Anchor
+      </Combobox.Item>
+      <Combobox.Item value="car-outline">
+        <span className="narmi-icon-car-outline padding--right--xs" /> Car
+      </Combobox.Item>
+    </Combobox.Category>,
+    <Combobox.Category label="Art">
+      <Combobox.Item value="film">
+        <span className="narmi-icon-film padding--right--xs" /> Film
+      </Combobox.Item>
+      <Combobox.Item value="aperture">
+        <span className="narmi-icon-aperture padding--right--xs" /> Aperture
+      </Combobox.Item>
+      <Combobox.Item value="pen">
+        <span className="narmi-icon-pen-tool padding--right--xs" /> Pen
+      </Combobox.Item>
+      <Combobox.Item value="blob">
+        <span className="narmi-icon-blob padding--right--xs" /> Blob
+      </Combobox.Item>
+    </Combobox.Category>,
+  ],
+};
+WithCategories.parameters = {
+  docs: {
+    description: {
+      story:
+        "You may group `Combobox.Item` elements by category with `Combobox.Category`. When using categories, you **must** make all direct children of `Combobox` a `Combobox.Category`; no orphan items are allowed when using categories.",
+    },
+  },
+};
 
 export default {
   title: "Components/Combobox",

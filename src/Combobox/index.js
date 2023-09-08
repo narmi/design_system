@@ -73,7 +73,7 @@ const Combobox = ({
   } = useCombobox({
     items: displayedItems,
     inputValue: controlledInputValue,
-    itemToString: (item) => item.props.value,
+    itemToString: (item) => item.props.searchValue || item.props.value,
     onInputValueChange: ({ inputValue }) => {
       // Typeahead behavior - we adjust the list of available options passed
       // into `useCombobox` by filtering the initial items list from input value

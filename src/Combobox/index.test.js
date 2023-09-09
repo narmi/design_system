@@ -1,16 +1,100 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Combobox, { isSelectable } from "./";
+import Combobox, {
+  isSelectable,
+  shouldOpenCategory,
+  getVisibleChildrenByCategory,
+} from "./";
 import { options_states } from "./util";
 
 const LABEL = "Select your state";
-const CHILDREN = options_states.map((state) => (
+
+const STATE_ITEMS = options_states.map((state) => (
   <Combobox.Item value={state} key={state}>
     {state}
   </Combobox.Item>
 ));
 
+const MOCK_ITEMS = [
+  <Combobox.Item key=".0" value="uno">
+    one
+  </Combobox.Item>,
+  <Combobox.Item key=".1" value="dos">
+    two
+  </Combobox.Item>,
+  <Combobox.Item key=".2" value="tres">
+    three
+  </Combobox.Item>,
+  <Combobox.Item key=".3" value="quatro">
+    four
+  </Combobox.Item>,
+];
+
+const MOCK_DISPLAYED_ITEMS = [...MOCK_ITEMS];
+const MOCK_CATEGORY_CHILDREN = [...MOCK_ITEMS].slice(0, 2);
+
 describe("Combobox", () => {
+  describe("getVisibleChildrenByCategory", () => {
+    it("returns all children when list is not filtered", () => {
+      const actual = getVisibleChildrenByCategory(
+        MOCK_DISPLAYED_ITEMS,
+        MOCK_CATEGORY_CHILDREN
+      );
+      expect(actual).toStrictEqual(MOCK_CATEGORY_CHILDREN);
+    });
+
+    it("returns only visible children when first child is filtered out", () => {
+      const actual = getVisibleChildrenByCategory(
+        [...MOCK_DISPLAYED_ITEMS].slice(1, 4), // items: dos, tres, quatro
+        MOCK_CATEGORY_CHILDREN // contains: uno, dos
+      );
+      const expected = [MOCK_CATEGORY_CHILDREN[1]];
+      expect(actual).toStrictEqual(expected);
+    });
+  });
+
+  describe("shouldOpenCategory", () => {
+    it("opens category if a child is highlighted", () => {
+      const actual = shouldOpenCategory(
+        "",
+        1,
+        MOCK_DISPLAYED_ITEMS,
+        MOCK_CATEGORY_CHILDREN
+      );
+      expect(actual).toBe(true);
+    });
+
+    it("does NOT open category if no children highlighted", () => {
+      const actual = shouldOpenCategory(
+        "",
+        3,
+        MOCK_DISPLAYED_ITEMS,
+        MOCK_CATEGORY_CHILDREN
+      );
+      expect(actual).toBe(false);
+    });
+
+    it("opens category if filtering is active", () => {
+      const actual = shouldOpenCategory(
+        "tre",
+        -1,
+        MOCK_DISPLAYED_ITEMS,
+        MOCK_CATEGORY_CHILDREN
+      );
+      expect(actual).toBe(true);
+    });
+
+    it("does NOT open category if filtering is not active", () => {
+      const actual = shouldOpenCategory(
+        "",
+        -1,
+        MOCK_DISPLAYED_ITEMS,
+        MOCK_CATEGORY_CHILDREN
+      );
+      expect(actual).toBe(false);
+    });
+  });
+
   it("isSelectable: detects selectable options correctly", () => {
     expect(isSelectable(<Combobox.Heading text="just a heading" />)).toBe(
       false
@@ -23,7 +107,7 @@ describe("Combobox", () => {
   });
 
   it("renders as expected with basic props", () => {
-    render(<Combobox label={LABEL}>{CHILDREN}</Combobox>);
+    render(<Combobox label={LABEL}>{STATE_ITEMS}</Combobox>);
     expect(screen.getByText(LABEL)).toBeInTheDocument();
     expect(screen.getByRole("listbox")).toBeEmptyDOMElement();
   });
@@ -32,7 +116,7 @@ describe("Combobox", () => {
     const handleChange = jest.fn();
     render(
       <Combobox label={LABEL} onChange={handleChange}>
-        {CHILDREN}
+        {STATE_ITEMS}
       </Combobox>
     );
 
@@ -51,7 +135,7 @@ describe("Combobox", () => {
   });
 
   it("options list is filtered as user types; original list is restored when input is cleared", () => {
-    render(<Combobox label={LABEL}>{CHILDREN}</Combobox>);
+    render(<Combobox label={LABEL}>{STATE_ITEMS}</Combobox>);
 
     // open the dropdown and type in the input
     const input = screen.getByPlaceholderText(LABEL);
@@ -75,7 +159,7 @@ describe("Combobox", () => {
     const handleChange = jest.fn();
     render(
       <Combobox label={LABEL} onChange={handleChange}>
-        {CHILDREN}
+        {STATE_ITEMS}
       </Combobox>
     );
 
@@ -104,7 +188,7 @@ describe("Combobox", () => {
     const value = "Initial value unhandled by parent state";
     render(
       <Combobox label={LABEL} inputValue={value}>
-        {CHILDREN}
+        {STATE_ITEMS}
       </Combobox>
     );
     const input = screen.getByPlaceholderText(LABEL);

@@ -10,9 +10,6 @@ import ComboboxCategory from "./ComboboxCategory";
 import TextInput from "../TextInput";
 import { getItemIndex } from "../Select";
 
-// TODO: track open states?
-// TODO: check select for test coverage and do it here
-
 const noop = () => {};
 
 export const VALID_ICON_NAMES = iconSelection.icons.map(
@@ -29,6 +26,57 @@ export const isSelectable = (component) => {
     result = "value" in component.props;
   }
   return result;
+};
+
+/**
+ * @param {String} inputValue current value of the combobox input
+ * @param {Number} highlightedIndex index of highlighted item from downshift
+ * @param {Array} displayedItems list of all items currently displayed
+ * @param {Array} categoryChildren list of items in category
+ * @returns {Boolean} if the category should be fored open
+ */
+export const shouldOpenCategory = (
+  inputValue,
+  highlightedIndex,
+  displayedItems,
+  categoryChildren
+) => {
+  let result = false;
+
+  // an item in the category is currently highlighted
+  if (highlightedIndex > -1 && displayedItems.length > 0) {
+    const highlightedValue = displayedItems[highlightedIndex].props.value;
+    const categoryValues = categoryChildren.map((child) => child.props.value);
+    result = categoryValues.includes(highlightedValue);
+  }
+
+  // user is actively filtering; open all categories and show suggestions
+  if (typeof inputValue === "string" && inputValue.length > 0) {
+    result = true;
+  }
+
+  return result;
+};
+
+/**
+ * @param {Array} displayedItems currently displayed combobox items
+ * @param {Array} categoryChildren items in category
+ * @returns {Array} [] containing which category items should be visible
+ */
+export const getVisibleChildrenByCategory = (
+  displayedItems,
+  categoryChildren
+) => {
+  const categoryValues = categoryChildren.map((child) => child.props.value);
+  return categoryValues.reduce((visibleItems, value) => {
+    const visibleItem = displayedItems.find(
+      (displayedItem) => value === displayedItem.props.value
+    );
+    if (visibleItem) {
+      visibleItems.push(visibleItem);
+    }
+    return visibleItems;
+  }, []);
 };
 
 /**
@@ -97,12 +145,10 @@ const Combobox = ({
       // Typeahead behavior - we adjust the list of available options passed
       // into `useCombobox` by filtering the initial items list from input value
       if (!disableFiltering) {
-        const filteredItems = items
-          .filter(isSelectable)
-          .filter((item) => {
-            const query = item.props.searchValue || item.props.value;
-            return query.toLowerCase().startsWith(inputValue.toLowerCase());
-          });
+        const filteredItems = items.filter(isSelectable).filter((item) => {
+          const query = item.props.searchValue || item.props.value;
+          return query.toLowerCase().startsWith(inputValue.toLowerCase());
+        });
         setDisplayedItems(filteredItems);
       }
 
@@ -185,42 +231,21 @@ const Combobox = ({
   // renders category including all child items
   const renderCategory = ({ label, categoryChildren }) => {
     const detailsProps = {};
-    const categoryValues = categoryChildren.map((child) => child.props.value);
-    const visibleCategoryChildren = categoryValues.reduce(
-      (visibleItems, value) => {
-        const visibleItem = displayedItems.find(
-          (displayedItem) => value === displayedItem.props.value
-        );
-        if (visibleItem) {
-          visibleItems.push(visibleItem);
-        }
-        return visibleItems;
-      },
-      []
+    const visibleChildren = getVisibleChildrenByCategory(
+      displayedItems,
+      categoryChildren
     );
-    const showCategory = visibleCategoryChildren.length > 0;
 
-    const shouldForceOpen = () => {
-      let result = false;
+    const showCategory = visibleChildren.length > 0;
 
-      // an item in the category is currently highlighted
-      if (highlightedIndex > -1 && displayedItems.length > 0) {
-        const highlightedValue = displayedItems[highlightedIndex].props.value;
-        const categoryValues = categoryChildren.map(
-          (child) => child.props.value
-        );
-        result = categoryValues.includes(highlightedValue);
-      }
-
-      // user is actively filtering; open all categories and show suggestions
-      if (typeof inputValue === "string" && inputValue.length > 0) {
-        result = true;
-      }
-
-      return result;
-    };
-
-    if (shouldForceOpen()) {
+    if (
+      shouldOpenCategory(
+        inputValue,
+        highlightedIndex,
+        displayedItems,
+        categoryChildren
+      )
+    ) {
       detailsProps.open = true;
     }
 
@@ -228,8 +253,8 @@ const Combobox = ({
       <details
         key={label}
         className="nds-combobox-category"
-        open={shouldForceOpen()}
         tabIndex={-1}
+        {...detailsProps}
       >
         <summary
           className="fontWeight--bold alignChild--left--center padding--x--s padding--y-xs"
@@ -245,7 +270,7 @@ const Combobox = ({
           className="list--reset"
           aria-labelledby={`combobox-category-${label}`}
         >
-          {visibleCategoryChildren.map((item) =>
+          {visibleChildren.map((item) =>
             renderItem(item, getItemIndex(item, displayedItems))
           )}
         </ul>

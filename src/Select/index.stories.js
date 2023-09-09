@@ -81,7 +81,7 @@ WithCategories.args = {
   id: "withCategories",
   label: "Select an Icon",
   children: [
-    <Select.Category label="Transportation" key="transport">
+    <Select.Category label="Transportation">
       <Select.Item value="truck">
         <span className="narmi-icon-truck padding--right--xs" /> Truck
       </Select.Item>
@@ -92,7 +92,7 @@ WithCategories.args = {
         <span className="narmi-icon-car-outline padding--right--xs" /> Car
       </Select.Item>
     </Select.Category>,
-    <Select.Category label="Art" key="art">
+    <Select.Category label="Art">
       <Select.Item value="film">
         <span className="narmi-icon-film padding--right--xs" /> Film
       </Select.Item>

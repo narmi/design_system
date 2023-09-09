@@ -50,7 +50,7 @@ export const shouldOpenCategory = (
     result = categoryValues.includes(highlightedValue);
   }
 
-  // user is actively filtering; open all categories and show suggestions
+  // user is actively filtering; default all categories to open
   if (typeof inputValue === "string" && inputValue.length > 0) {
     result = true;
   }

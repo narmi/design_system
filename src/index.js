@@ -28,7 +28,7 @@ import TextInput from "./TextInput";
 import Toggle from "./Toggle";
 import Tooltip from "./Tooltip";
 import TruncatedAccount from "./TruncatedAccount";
-import useViewportSizes from "./hooks/useViewportSizes";
+import useBreakpoints from "./hooks/useBreakpoints";
 import formatNumber from "./formatters/formatNumber";
 import formatDate from "./formatters/formatDate";
 
@@ -61,7 +61,7 @@ export {
   Toggle,
   Tooltip,
   TruncatedAccount,
-  useViewportSizes,
+  useBreakpoints,
   formatNumber,
   formatDate,
 };

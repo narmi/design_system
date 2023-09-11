@@ -1,12 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
+import cc from "classcat";
 
 /**
  * Takes a list of elements and places a visual separator between items.
  */
-const SeparatorList = ({ separator = "|", items = [], testId }) => (
+const SeparatorList = ({
+  separator = "|",
+  noWrap = false,
+  items = [],
+  testId,
+}) => (
   <ul
-    className="list--reset nds-typography nds-separatorList"
+    className={cc([
+      "list--reset nds-typography nds-separatorList",
+      { "nds-separatorList--noWrap": noWrap },
+    ])}
     data-testid={testId}
   >
     {items.map((item, i) => {
@@ -32,6 +41,10 @@ SeparatorList.propTypes = {
    * Character to use as separator between items
    */
   separator: PropTypes.string,
+  /**
+   * When `true`, the separator list will be forced to a single line
+   */
+  noWrap: PropTypes.bool,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
 };

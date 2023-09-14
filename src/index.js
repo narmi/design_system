@@ -15,6 +15,7 @@ import IconButton from "./IconButton";
 import Input from "./Input";
 import LoadingShim from "./LoadingShim";
 import LoadingSkeleton from "./LoadingSkeleton";
+import MenuButton from "./MenuButton";
 import Pagination from "./Pagination";
 import PlainButton from "./PlainButton";
 import Popover from "./Popover";
@@ -49,6 +50,7 @@ export {
   Input,
   LoadingShim,
   LoadingSkeleton,
+  MenuButton,
   Pagination,
   PlainButton,
   Popover,

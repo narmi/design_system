@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.0](https://github.com/narmi/design_system/compare/v3.3.2...v3.4.0) (2023-09-15)
+
+
+### Features
+
+* **Error:** expose component publicly ([10b8c66](https://github.com/narmi/design_system/commit/10b8c6652ba1478a4abbf382dcd3f835651dd5c0))
+
 ### [3.3.2](https://github.com/narmi/design_system/compare/v3.3.1...v3.3.2) (2023-09-06)
 
 

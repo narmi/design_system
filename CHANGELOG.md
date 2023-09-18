@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.4.1](https://github.com/narmi/design_system/compare/v3.4.0...v3.4.1) (2023-09-18)
+
+
+### Bug Fixes
+
+* **TextInput:** support the 'time' and 'datetime-local' types ([67f928f](https://github.com/narmi/design_system/commit/67f928fabe67443844d242beceba608d192e6a27))
+
 ## [3.4.0](https://github.com/narmi/design_system/compare/v3.3.2...v3.4.0) (2023-09-15)
 
 

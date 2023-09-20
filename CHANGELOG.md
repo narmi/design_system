@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.0](https://github.com/narmi/design_system/compare/v3.4.2...v3.5.0) (2023-09-20)
+
+
+### Features
+
+* **Combobox:** add searchValue to items for typeahead control ([3ad86f2](https://github.com/narmi/design_system/commit/3ad86f202ecf2ee23c92dd7a86078adbaf168762))
+
+
+### Bug Fixes
+
+* use searchValue for input val if available ([37447bf](https://github.com/narmi/design_system/commit/37447bff3399a517bc4016d3fc80ffafb174e094))
+
 ### [3.4.2](https://github.com/narmi/design_system/compare/v3.4.1...v3.4.2) (2023-09-20)
 
 

@@ -291,6 +291,17 @@ const Combobox = ({
     ) : null;
   };
 
+  const handleMenuOpen = () => {
+    if (!isOpen) {
+      // Reset filtered items every time user refocuses.
+      // Subsequent changes in the input will re-filter the list.
+      openMenu();
+      if (hasSelectedItem) {
+        setDisplayedItems(items.filter(isSelectable));
+      }
+    }
+  };
+
   // It is possible that a consumer may have nothing to pass to `children`.
   // For example, if an API response hasn't completed to load in the autocomplete
   // options. In that case, Cobmobox should render a normal TextInput.
@@ -319,16 +330,8 @@ const Combobox = ({
         startIcon={icon}
         endIcon={isOpen ? "chevron-up" : "chevron-down"}
         {...getInputProps({
-          onFocus: () => {
-            if (!isOpen) {
-              openMenu();
-            }
-          },
-          onClick: () => {
-            if (!isOpen) {
-              openMenu();
-            }
-          },
+          onFocus: handleMenuOpen,
+          onClick: handleMenuOpen,
           onBlur: () => {
             // If the user has selected an option, we should
             // always set that as the value of the input.

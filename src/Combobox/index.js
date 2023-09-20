@@ -80,6 +80,17 @@ export const getVisibleChildrenByCategory = (
 };
 
 /**
+ * @param {Array} items all selectable Combobox.Item children
+ * @param {String} inputValue lowercase value of input
+ * @returns {Array} Combobox.Item children, filtered by the input value
+ */
+export const defaultFilterItemsByInput = (items, inputValue) =>
+  items.filter((item) => {
+    const query = item.props.searchValue || item.props.value;
+    return query.toLowerCase().startsWith(inputValue);
+  });
+
+/**
  * Autocomplete input component following the accessible
  * [ARIA combobox pattern](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/combobox_role).
  *
@@ -94,6 +105,7 @@ const Combobox = ({
   onChange = noop,
   onInputChange = noop,
   inputValue: controlledInputValue,
+  filterItemsByInput = defaultFilterItemsByInput,
   children,
   disableFiltering = false,
   errorText,
@@ -145,10 +157,10 @@ const Combobox = ({
       // Typeahead behavior - we adjust the list of available options passed
       // into `useCombobox` by filtering the initial items list from input value
       if (!disableFiltering) {
-        const filteredItems = items.filter(isSelectable).filter((item) => {
-          const query = item.props.searchValue || item.props.value;
-          return query.toLowerCase().startsWith(inputValue.toLowerCase());
-        });
+        const filteredItems = filterItemsByInput(
+          items.filter(isSelectable),
+          inputValue.toLowerCase()
+        );
         setDisplayedItems(filteredItems);
       }
 
@@ -377,6 +389,12 @@ Combobox.propTypes = {
    * as the user types.
    */
   disableFiltering: PropTypes.bool,
+  /**
+   * Optionally pass a function to customize filtering behavior
+   *
+   * Signature: `(items, inputValue) => [...filteredItems]`
+   */
+  filterItemsByInput: PropTypes.func,
   /**
    * Error message.
    * When passed, this will cause the input to render in error state.

@@ -81,6 +81,10 @@
     position: relative;
     min-height: var(--space-xl);
 
+    &:hover {
+      background: RGBA(var(--theme-rgb-primary), var(--alpha-5));
+    }
+
     span {
       align-self: center;
     }

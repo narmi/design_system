@@ -182,6 +182,7 @@ const Combobox = ({
       snap: true,
       placement: "bottom-start",
       possiblePlacements: ["top-start", "bottom-start"],
+      preferY: "bottom",
       triggerOffset: -3,
       containerOffset: 16,
     });

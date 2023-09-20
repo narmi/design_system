@@ -73,16 +73,17 @@ const Combobox = ({
   } = useCombobox({
     items: displayedItems,
     inputValue: controlledInputValue,
-    itemToString: (item) => item.props.value,
+    itemToString: (item) => item.props.searchValue || item.props.value,
     onInputValueChange: ({ inputValue }) => {
       // Typeahead behavior - we adjust the list of available options passed
       // into `useCombobox` by filtering the initial items list from input value
       if (!disableFiltering) {
         const filteredItems = initialItems
           .filter(isSelectable)
-          .filter((item) =>
-            item.props.value.toLowerCase().startsWith(inputValue.toLowerCase())
-          );
+          .filter((item) => {
+            const query = item.props.searchValue || item.props.value;
+            return query.toLowerCase().startsWith(inputValue.toLowerCase());
+          });
 
         setDisplayedItems(filteredItems);
       }
@@ -107,24 +108,18 @@ const Combobox = ({
 
   const hasSelectedItem = !!selectedItem;
 
-
   // react-laag positioning engine for autocomplete popup
-  const {
-    renderLayer,
-    triggerProps,
-    layerProps,
-    triggerBounds,
-    layerSide,
-  } = useLayer({
-    isOpen,
-    overflowContainer: true,
-    auto: true,
-    snap: true,
-    placement: "bottom-start",
-    possiblePlacements: ["top-start", "bottom-start"],
-    triggerOffset: -3,
-    containerOffset: 16,
-  });
+  const { renderLayer, triggerProps, layerProps, triggerBounds, layerSide } =
+    useLayer({
+      isOpen,
+      overflowContainer: true,
+      auto: true,
+      snap: true,
+      placement: "bottom-start",
+      possiblePlacements: ["top-start", "bottom-start"],
+      triggerOffset: -3,
+      containerOffset: 16,
+    });
 
   // It is possible that a consumer may have nothing to pass to `children`.
   // For example, if an API response hasn't completed to load in the autocomplete
@@ -170,7 +165,7 @@ const Combobox = ({
             if (hasSelectedItem) {
               setInputValue(selectedItem.props.value);
             }
-    },
+          },
         })}
       />
       {renderLayer(
@@ -186,11 +181,12 @@ const Combobox = ({
           ])}
           {...getMenuProps(layerProps)}
           style={{
-            width: triggerBounds?.width || 'auto',
+            width: triggerBounds?.width || "auto",
             ...layerProps.style,
           }}
         >
-          {isOpen && displayedItems.map((item, index) => {
+          {isOpen &&
+            displayedItems.map((item, index) => {
               let result = (
                 <li
                   key={`${item}-${index}`}

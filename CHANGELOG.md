@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.6.1](https://github.com/narmi/design_system/compare/v3.6.0...v3.6.1) (2023-09-21)
+
+
+### Bug Fixes
+
+* **Combobox:** use combobox value for new selection ([6562814](https://github.com/narmi/design_system/commit/656281460920f73a266f17ced61028954380ac90))
+
 ## [3.6.0](https://github.com/narmi/design_system/compare/v3.5.0...v3.6.0) (2023-09-21)
 
 

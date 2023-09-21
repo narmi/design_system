@@ -207,7 +207,7 @@ CustomFiltering.args = {
     <Combobox.Item searchValue="Business Checking - 11234" value="checking1">
       Business Checking - 11234
     </Combobox.Item>,
-    <Combobox.Item searchValue="Business Checking - 62947" value="savings1">
+    <Combobox.Item searchValue="Business Savings - 62947" value="savings1">
       Business Savings - 62947
     </Combobox.Item>,
   ],

@@ -175,8 +175,7 @@ const Combobox = ({
     onSelectedItemChange: ({ selectedItem }) => {
       let newSelection = "";
       if (selectedItem) {
-        newSelection =
-          selectedItem.props.searchValue || selectedItem.props.value;
+        newSelection = selectedItem.props.value;
       }
       onChange(newSelection);
       onInputChange(newSelection);

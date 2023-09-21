@@ -83,7 +83,7 @@ NoChildren.parameters = {
 };
 
 export const FullyControlled = () => {
-  const [inputValue, setInputValue] = useState("Initial Value");
+  const [inputValue, setInputValue] = useState("");
   return (
     <div>
       <Combobox
@@ -148,6 +148,82 @@ export const InADialog = () => {
       </Dialog>
     </>
   );
+};
+
+export const WithCategories = Template.bind({});
+WithCategories.args = {
+  id: "withCategories",
+  label: "Transfer to",
+  children: [
+    <Combobox.Category label="Checking">
+      <Combobox.Item searchValue="Business Checking" value="checking1">
+        Business Checking - 11234
+      </Combobox.Item>
+      <Combobox.Item searchValue="Main Checking" value="checking2">
+        Main Checking - 13989
+      </Combobox.Item>
+      <Combobox.Item searchValue="Joint Checking" value="checking3">
+        Joint Checking - 14857
+      </Combobox.Item>
+    </Combobox.Category>,
+    <Combobox.Category label="Savings">
+      <Combobox.Item searchValue="Business Checking" value="savings1">
+        Business Savings - 13938
+      </Combobox.Item>
+      <Combobox.Item searchValue="Main Savings" value="savings2">
+        Main Savings - 48274
+      </Combobox.Item>
+      <Combobox.Item searchValue="Joint Savings" value="savings3">
+        Joint Savings - 48284
+      </Combobox.Item>
+    </Combobox.Category>,
+    <Combobox.Category label="External Accounts">
+      <Combobox.Item value="Sasha">Sasha - 84839</Combobox.Item>
+      <Combobox.Item value="Joan">Joan - 36183</Combobox.Item>
+      <Combobox.Item value="Benoit">Benoit - 53261</Combobox.Item>
+    </Combobox.Category>,
+  ],
+};
+WithCategories.parameters = {
+  docs: {
+    description: {
+      story:
+        "You may group `Combobox.Item` elements by category with `Combobox.Category`. When using categories, you **must** make all direct children of `Combobox` a `Combobox.Category`; no orphan items are allowed when using categories.",
+    },
+  },
+};
+
+export const CustomFiltering = Template.bind({});
+CustomFiltering.args = {
+  id: "customFiltering",
+  label: "Transfer to",
+  children: [
+    <Combobox.Item searchValue="Main Checking - 67289" value="checking2">
+      Main Checking - 67289
+    </Combobox.Item>,
+    <Combobox.Item searchValue="Joint Checking - 14857" value="checking3">
+      Joint Checking - 14857
+    </Combobox.Item>,
+    <Combobox.Item searchValue="Business Checking - 11234" value="checking1">
+      Business Checking - 11234
+    </Combobox.Item>,
+    <Combobox.Item searchValue="Business Checking - 62947" value="savings1">
+      Business Savings - 62947
+    </Combobox.Item>,
+  ],
+  filterItemsByInput: (items, inputVal) =>
+    items.filter((item) => {
+      const query = (item.props.searchValue || item.props.value).toLowerCase();
+      return query.includes(inputVal);
+    }),
+};
+CustomFiltering.parameters = {
+  docs: {
+    description: {
+      story:
+        "In this example, a custom `filterItemsByInput` function is used to enable search by either account name OR first four.",
+    },
+  },
 };
 
 export default {

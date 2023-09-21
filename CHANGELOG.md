@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.0](https://github.com/narmi/design_system/compare/v3.5.0...v3.6.0) (2023-09-21)
+
+
+### Features
+
+* **Combobox:** add `Combobox.Category` support ([255ddd4](https://github.com/narmi/design_system/commit/255ddd436fe5f97390b7949f2fd6a1d710ab7e7f))
+* **Combobox:** add filterItemsByInput prop for custom filtering ([4dc11be](https://github.com/narmi/design_system/commit/4dc11be829d44214ef3d512080b45d6341119765))
+
+
+### Bug Fixes
+
+* **Combobox:** add hover to categories; prefer bottom placement ([fbabbff](https://github.com/narmi/design_system/commit/fbabbff12951b861fc8d685a748b6ca57e742723))
+* **Combobox:** when input has a selected item; reset the menulist when reopening ([69f4a51](https://github.com/narmi/design_system/commit/69f4a519c7faa74d64514c42f7dc588a3a832be5))
+
 ## [3.5.0](https://github.com/narmi/design_system/compare/v3.4.2...v3.5.0) (2023-09-20)
 
 

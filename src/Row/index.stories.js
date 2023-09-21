@@ -145,7 +145,7 @@ export const JustifyingContent = () => (
   <div className="nds-typography">
     <Row justifyContent="end" alignItems="center">
       <Row.Item shrink>
-        <Button type="plain">Cancel</Button>
+        <Button kind="plain">Cancel</Button>
       </Row.Item>
       <Row.Item shrink>
         <Button>Continue</Button>

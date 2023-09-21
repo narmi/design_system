@@ -21,6 +21,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
     onChange,
     onBlur,
     testId,
+    type = "text",
     ...nativeElementProps
   } = props;
 
@@ -78,7 +79,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
           onChange={_onChange}
           onBlur={_onBlur}
           ref={forwardedRef}
-          type="text"
+          type={type}
           required
           aria-label={props.label}
           placeholder={props.label}
@@ -115,6 +116,16 @@ TextInput.propTypes = {
   error: PropTypes.string,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
+  type: PropTypes.oneOf([
+    "text",
+    "tel",
+    "number",
+    "email",
+    "password",
+    "search",
+    "time",
+    "datetime-local",
+  ]),
 };
 
 TextInput.defaultProps = {

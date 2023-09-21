@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.6.1](https://github.com/narmi/design_system/compare/v3.6.0...v3.6.1) (2023-09-21)
+
+
+### Bug Fixes
+
+* **Combobox:** use combobox value for new selection ([6562814](https://github.com/narmi/design_system/commit/656281460920f73a266f17ced61028954380ac90))
+
+## [3.6.0](https://github.com/narmi/design_system/compare/v3.5.0...v3.6.0) (2023-09-21)
+
+
+### Features
+
+* **Combobox:** add `Combobox.Category` support ([255ddd4](https://github.com/narmi/design_system/commit/255ddd436fe5f97390b7949f2fd6a1d710ab7e7f))
+* **Combobox:** add filterItemsByInput prop for custom filtering ([4dc11be](https://github.com/narmi/design_system/commit/4dc11be829d44214ef3d512080b45d6341119765))
+
+
+### Bug Fixes
+
+* **Combobox:** add hover to categories; prefer bottom placement ([fbabbff](https://github.com/narmi/design_system/commit/fbabbff12951b861fc8d685a748b6ca57e742723))
+* **Combobox:** when input has a selected item; reset the menulist when reopening ([69f4a51](https://github.com/narmi/design_system/commit/69f4a519c7faa74d64514c42f7dc588a3a832be5))
+
+## [3.5.0](https://github.com/narmi/design_system/compare/v3.4.2...v3.5.0) (2023-09-20)
+
+
+### Features
+
+* **Combobox:** add searchValue to items for typeahead control ([3ad86f2](https://github.com/narmi/design_system/commit/3ad86f202ecf2ee23c92dd7a86078adbaf168762))
+
+
+### Bug Fixes
+
+* use searchValue for input val if available ([37447bf](https://github.com/narmi/design_system/commit/37447bff3399a517bc4016d3fc80ffafb174e094))
+
+### [3.4.2](https://github.com/narmi/design_system/compare/v3.4.1...v3.4.2) (2023-09-20)
+
+
+### Bug Fixes
+
+* **icons:** remove fill from filter-2 icon ([6de6f3e](https://github.com/narmi/design_system/commit/6de6f3e4c58f608d7d2e20c78c67d47715d45ba8))
+
+### [3.4.1](https://github.com/narmi/design_system/compare/v3.4.0...v3.4.1) (2023-09-18)
+
+
+### Bug Fixes
+
+* **TextInput:** support the 'time' and 'datetime-local' types ([67f928f](https://github.com/narmi/design_system/commit/67f928fabe67443844d242beceba608d192e6a27))
+
+## [3.4.0](https://github.com/narmi/design_system/compare/v3.3.2...v3.4.0) (2023-09-15)
+
+
+### Features
+
+* **Error:** expose component publicly ([10b8c66](https://github.com/narmi/design_system/commit/10b8c6652ba1478a4abbf382dcd3f835651dd5c0))
+
 ### [3.3.2](https://github.com/narmi/design_system/compare/v3.3.1...v3.3.2) (2023-09-06)
 
 

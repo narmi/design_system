@@ -9,6 +9,7 @@ import Dialog from "./Dialog";
 import Drawer from "./Drawer";
 import Dropdown from "./Dropdown";
 import DropdownTrigger from "./DropdownTrigger";
+import Error from "./Error";
 import FormSection from "./FormSection";
 import IconButton from "./IconButton";
 import Input from "./Input";
@@ -42,6 +43,7 @@ export {
   Drawer,
   Dropdown,
   DropdownTrigger,
+  Error,
   FormSection,
   IconButton,
   Input,

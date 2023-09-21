@@ -99,6 +99,26 @@ export const WithClearInputIconAndOnChange = () => {
   );
 };
 
+export const DateTime = () => {
+  const [dateTime, setDateTime] = useState(null);
+  return (
+    <>
+      <TextInput type="datetime-local" label="Start datetime" onChange={(e) => setDateTime(e.target.value)} />
+      <div className="margin--top--xxs" >Value: {dateTime}</div>
+    </>
+  )
+};
+
+export const Time = () => {
+  const [time, setTime] = useState(null);
+  return (
+    <>
+      <TextInput type="time" label="Start time" onChange={(e) => setTime(e.target.value)} />
+      <div className="margin--top--xxs" >Value: {time}</div>
+    </>
+  )
+};
+
 export default {
   title: "Components/TextInput",
   component: TextInput,

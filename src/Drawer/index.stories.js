@@ -187,7 +187,7 @@ ContentWithPopover.args = {
       }}
     >
       <Popover content={<div className="padding--all--m">📦 Any content</div>}>
-        <Button type="secondary">Click to show Popover</Button>
+        <Button kind="secondary">Click to show Popover</Button>
       </Popover>
     </div>
   ),

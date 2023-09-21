@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.0](https://github.com/narmi/design_system/compare/v3.6.1...v3.7.0) (2023-09-21)
+
+
+### Features
+
+* **ResponsiveFlex:** add useViewportSizes hook and ResponsiveFlex ([9ddb9e9](https://github.com/narmi/design_system/commit/9ddb9e9264bf6111ee94c030b115fbc545532a0f))
+
 ### [3.6.1](https://github.com/narmi/design_system/compare/v3.6.0...v3.6.1) (2023-09-21)
 
 

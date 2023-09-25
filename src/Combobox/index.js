@@ -8,6 +8,7 @@ import ComboboxItem from "./ComboboxItem";
 import ComboboxHeading from "./ComboboxHeading";
 import ComboboxCategory from "./ComboboxCategory";
 import TextInput from "../TextInput";
+import Error from "../Error";
 import { getItemIndex } from "../Select";
 
 const noop = () => {};
@@ -317,55 +318,58 @@ const Combobox = ({
   }
 
   return (
-    <div
-      className={cc(["nds-combobox", { "nds-combobox--active": isOpen }])}
-      {...getComboboxProps(triggerProps)}
-      data-testid={testId}
-    >
-      <TextInput
-        error={errorText}
-        label={label}
-        value={inputValue}
-        startIcon={icon}
-        endIcon={isOpen ? "chevron-up" : "chevron-down"}
-        {...getInputProps({
-          onFocus: handleMenuOpen,
-          onClick: handleMenuOpen,
-          onBlur: () => {
-            // If the user has selected an option, we should
-            // always set that as the value of the input.
-            if (hasSelectedItem) {
-              setInputValue(
-                selectedItem.props.searchValue || selectedItem.props.value
-              );
-            }
-          },
-        })}
-      />
-      {renderLayer(
-        <ul
-          className={cc([
-            "nds-combobox-list",
-            "list--reset bgColor--white border--right bottom border--left",
-            {
-              "nds-combobox-list--active": isOpen && displayedItems.length > 0,
-              "nds-combobox-list--bottom": layerSide === "bottom",
-              "nds-combobox-list--top": layerSide === "top",
+    <>
+      <div
+        className={cc(["nds-combobox", { "nds-combobox--active": isOpen }])}
+        {...getComboboxProps(triggerProps)}
+        data-testid={testId}
+      >
+        <TextInput
+          label={label}
+          value={inputValue}
+          startIcon={icon}
+          endIcon={isOpen ? "chevron-up" : "chevron-down"}
+          {...getInputProps({
+            onFocus: handleMenuOpen,
+            onClick: handleMenuOpen,
+            onBlur: () => {
+              // If the user has selected an option, we should
+              // always set that as the value of the input.
+              if (hasSelectedItem) {
+                setInputValue(
+                  selectedItem.props.searchValue || selectedItem.props.value
+                );
+              }
             },
-          ])}
-          {...getMenuProps(layerProps)}
-          style={{
-            width: triggerBounds?.width || "auto",
-            ...layerProps.style,
-          }}
-        >
-          {isOpen &&
-            (hasCategories
-              ? categories.map(renderCategory)
-              : displayedItems.map(renderItem))}
-        </ul>
-      )}
-    </div>
+          })}
+        />
+        {renderLayer(
+          <ul
+            className={cc([
+              "nds-combobox-list",
+              "list--reset bgColor--white border--right bottom border--left",
+              {
+                "nds-combobox-list--active":
+                  isOpen && displayedItems.length > 0,
+                "nds-combobox-list--bottom": layerSide === "bottom",
+                "nds-combobox-list--top": layerSide === "top",
+              },
+            ])}
+            {...getMenuProps(layerProps)}
+            style={{
+              width: triggerBounds?.width || "auto",
+              ...layerProps.style,
+            }}
+          >
+            {isOpen &&
+              (hasCategories
+                ? categories.map(renderCategory)
+                : displayedItems.map(renderItem))}
+          </ul>
+        )}
+      </div>
+      <Error error={errorText} />
+    </>
   );
 };
 

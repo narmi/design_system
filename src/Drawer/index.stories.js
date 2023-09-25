@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Drawer from "./";
 import Button from "../Button";
 import Popover from "../Popover";
+import Dialog from "../Dialog";
 
 const CONTENTS = [
   <>
@@ -23,21 +24,21 @@ const CONTENTS = [
 ];
 
 const BaseTemplate = (args) => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
     <>
       <Button
         onClick={() => {
-          setIsDialogOpen(true);
+          setIsDrawerOpen(true);
         }}
       >
         Open Drawer
       </Button>
       <Drawer
         {...args}
-        isOpen={isDialogOpen}
-        onUserDismiss={() => setIsDialogOpen(false)}
+        isOpen={isDrawerOpen}
+        onUserDismiss={() => setIsDrawerOpen(false)}
       >
         {args.children}
       </Drawer>
@@ -46,7 +47,7 @@ const BaseTemplate = (args) => {
 };
 
 const InteractiveTemplate = (args) => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [contentIdxToDisplay, setContentIdxToDisplay] = useState(0);
 
   const onPrev = () => {
@@ -64,15 +65,15 @@ const InteractiveTemplate = (args) => {
     <>
       <Button
         onClick={() => {
-          setIsDialogOpen(true);
+          setIsDrawerOpen(true);
         }}
       >
         Open Drawer
       </Button>
       <Drawer
         {...args}
-        isOpen={isDialogOpen}
-        onUserDismiss={() => setIsDialogOpen(false)}
+        isOpen={isDrawerOpen}
+        onUserDismiss={() => setIsDrawerOpen(false)}
         onNext={onNext()}
         onPrev={onPrev()}
       >
@@ -191,6 +192,42 @@ ContentWithPopover.args = {
       </Popover>
     </div>
   ),
+};
+
+export const ContentWithDialog = () => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  return (
+    <>
+      <Button
+        onClick={() => {
+          setIsDrawerOpen(true);
+        }}
+        label="Open Drawer"
+      />
+      <Drawer
+        isOpen={isDrawerOpen}
+        onUserDismiss={() => setIsDrawerOpen(false)}
+      >
+        <Button
+          label="Open Dialog"
+          onClick={() => {
+            setIsDialogOpen(true);
+          }}
+        />
+        <Dialog
+          title="Dialog launched from a Drawer"
+          isOpen={isDialogOpen}
+          onUserDismiss={() => {
+            setIsDialogOpen(false);
+          }}
+        >
+          <p>Dialog overlapping a Drawer</p>
+        </Dialog>
+      </Drawer>
+    </>
+  );
 };
 
 export default {

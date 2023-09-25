@@ -158,8 +158,6 @@ const Drawer = ({
   /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
   const drawerJSX = (
     <div className="drawerContainer">
-      {childrenJSX}
-      {navigationContainerJSX}
       <div
         ref={shimRef}
         className={cc([
@@ -168,6 +166,8 @@ const Drawer = ({
         ])}
         onClick={handleShimClick}
       />
+      {navigationContainerJSX}
+      {childrenJSX}
     </div>
   );
 

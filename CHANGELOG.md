@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.7.1](https://github.com/narmi/design_system/compare/v3.7.0...v3.7.1) (2023-09-21)
+
+
+### Bug Fixes
+
+* **Drawer:** lower z indecies; use DOM order for stacking ([365e1d3](https://github.com/narmi/design_system/commit/365e1d3dbf7e6d1673b28a48565bdd62e10dcb42))
+
 ## [3.7.0](https://github.com/narmi/design_system/compare/v3.6.1...v3.7.0) (2023-09-21)
 
 

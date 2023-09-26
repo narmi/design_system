@@ -71,7 +71,6 @@ const Button = ({
         `fontSize--${size}`,
         {
           resetButton: as === "button",
-          "nds-button--disabled": disabled || isLoading,
           "nds-button--loading": isLoading,
         },
       ])}
@@ -87,21 +86,23 @@ const Button = ({
             />
           </div>
         )}
-        <Row gapSize="s" alignItems="center">
-          {startIcon && (
-            <Row.Item shrink>
-              <Icon name={startIcon} />
+        <div style={{visibility: isLoading ? "hidden" : "visible"}}>
+          <Row gapSize="s" alignItems="center">
+            {startIcon && (
+              <Row.Item shrink>
+                <Icon name={startIcon} />
+              </Row.Item>
+            )}
+            <Row.Item>
+              <span className="nds-button-label">{buttonLabel}</span>
             </Row.Item>
-          )}
-          <Row.Item>
-            <span className="nds-button-label">{buttonLabel}</span>
-          </Row.Item>
-          {endIcon && (
-            <Row.Item shrink>
-              <Icon name={endIcon} />
-            </Row.Item>
-          )}
-        </Row>
+            {endIcon && (
+              <Row.Item shrink>
+                <Icon name={endIcon} />
+              </Row.Item>
+            )}
+          </Row>
+        </div>
       </div>
     </AsElement>
   );

@@ -71,6 +71,7 @@ const Button = ({
         `fontSize--${size}`,
         {
           resetButton: as === "button",
+          "nds-button--disabled": disabled,
           "nds-button--loading": isLoading,
         },
       ])}

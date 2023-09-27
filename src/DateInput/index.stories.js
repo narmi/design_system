@@ -45,10 +45,18 @@ export const DisablePortal = () => {
   const content = (
     <div className="padding--all">
       <div className="padding--bottom">
-        <DateInput label="Start Date" disablePortal={true} />
+        <DateInput
+          label="Start Date"
+          placeholder="YYYY-MM-DD"
+          disablePortal={true}
+        />
       </div>
       <div className="padding--bottom">
-        <DateInput label="End Date" disablePortal={true} />
+        <DateInput
+          label="End Date"
+          placeholder="YYYY-MM-DD"
+          disablePortal={true}
+        />
       </div>
     </div>
   );

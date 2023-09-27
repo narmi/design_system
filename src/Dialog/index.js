@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import rafSchd from "raf-schd";
 import cc from "classcat";
-import useLockBodyScroll from "./useLockBodyScroll";
+import useLockBodyScroll from "../hooks/useLockBodyScroll";
 import { CSSTransition } from "react-transition-group";
 import FocusLock from "react-focus-lock";
 

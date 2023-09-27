@@ -132,18 +132,18 @@
 
 .nds-button--loading {
   .nds-button-content {
-    padding-left: var(--space-s);
     position: relative;
   }
   .nds-button-spinner {
     position: absolute;
-    left: calc(var(--space-default) * -1);
-    bottom: calc(var(--space-xxs) * -1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
 /**
-️* ⚠️ DEPREACTED ⚠️
+️* ⚠️ DEPRECATED ⚠️
 * Will be removed in a future release.
 */
 .nds-plain-button {

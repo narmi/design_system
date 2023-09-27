@@ -9,6 +9,7 @@ import Dialog from "./Dialog";
 import Drawer from "./Drawer";
 import Dropdown from "./Dropdown";
 import DropdownTrigger from "./DropdownTrigger";
+import Error from "./Error";
 import FormSection from "./FormSection";
 import IconButton from "./IconButton";
 import Input from "./Input";
@@ -18,6 +19,7 @@ import Pagination from "./Pagination";
 import PlainButton from "./PlainButton";
 import Popover from "./Popover";
 import RadioButtons from "./RadioButtons";
+import ResponsiveFlex from "./ResponsiveFlex";
 import Row from "./Row";
 import Select from "./Select";
 import SeparatorList from "./SeparatorList";
@@ -27,6 +29,7 @@ import TextInput from "./TextInput";
 import Toggle from "./Toggle";
 import Tooltip from "./Tooltip";
 import TruncatedAccount from "./TruncatedAccount";
+import useBreakpoints from "./hooks/useBreakpoints";
 import formatNumber from "./formatters/formatNumber";
 import formatDate from "./formatters/formatDate";
 
@@ -40,6 +43,7 @@ export {
   Drawer,
   Dropdown,
   DropdownTrigger,
+  Error,
   FormSection,
   IconButton,
   Input,
@@ -49,6 +53,7 @@ export {
   PlainButton,
   Popover,
   RadioButtons,
+  ResponsiveFlex,
   Row,
   Select,
   SeparatorList,
@@ -58,6 +63,7 @@ export {
   Toggle,
   Tooltip,
   TruncatedAccount,
+  useBreakpoints,
   formatNumber,
   formatDate,
 };

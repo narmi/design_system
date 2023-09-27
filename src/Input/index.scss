@@ -114,7 +114,9 @@
   input[type="email"],
   input[type="date"],
   input[type="password"],
-  input[type="search"] {
+  input[type="search"],
+  input[type="datetime-local"],
+  input[type="time"] {
     border: none;
     outline: 0;
     letter-spacing: 0;

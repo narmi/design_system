@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
-  z-index: 2;
+  z-index: 3;
 
   // create spaces around viewport edges for tablet or larger
   @include atMediaUp("s") {

@@ -2,12 +2,14 @@
   color: var(--font-color-secondary);
   border-radius: var(--border-radius-s);
 
-  &:focus button,
-  &:hover,
-  &:active {
-    color: var(--theme-primary);
-    background-color: rgba(var(--theme-rgb-primary), var(--alpha-5));
-    text-decoration: none;
+  &--useHoverEffect {
+    &:focus button,
+    &:hover,
+    &:active {
+      color: var(--theme-primary);
+      background-color: rgba(var(--theme-rgb-primary), var(--alpha-5));
+      text-decoration: none;
+    }
   }
 }
 

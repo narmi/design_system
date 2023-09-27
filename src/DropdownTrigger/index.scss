@@ -23,6 +23,8 @@
 
 .nds-dropdownTrigger-label {
   color: var(--color-mediumGrey);
+  font-weight: var(--font-weight-default);
+  text-rendering: geometricPrecision; // match input placeholder weight
 }
 
 .nds-dropdownTrigger-value {
@@ -45,7 +47,7 @@
     font-size: var(--font-size-xs);
   }
 
-  &.nds-dropdownTrigger-button--hasError .nds-dropdownTrigger-label{
+  &.nds-dropdownTrigger-button--hasError .nds-dropdownTrigger-label {
     color: var(--color-errorDark);
   }
 }

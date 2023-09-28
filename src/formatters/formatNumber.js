@@ -15,7 +15,7 @@
  * @param {String} style format style (`currency` or `percent`)
  * @returns {String} number string formatted for display
  */
-const formatNumber = (input, style = "currency") => {
+const formatNumber = (input, style = "currency", signDisplay="auto") => {
   let number = parseFloat(input, 10);
   let formatterOpts = {
     style,
@@ -32,6 +32,15 @@ const formatNumber = (input, style = "currency") => {
     );
   }
 
+  const validSignDisplays = ["auto", "never", "always", "exceptZero"];
+  if (!validSignDisplays.includes(signDisplay)) {
+    throw new Error(
+      `formatNumber: invalid signDisplay argument. Must be one of: ${JSON.stringify(
+        validSignDisplays
+      )}`
+    );
+  }
+
   if (style === "currency") {
     formatterOpts.currency = "USD";
     formatterOpts.minimumFractionDigits = 2;
@@ -39,7 +48,7 @@ const formatNumber = (input, style = "currency") => {
   } else if (style === "percent") {
     formatterOpts.maximumFractionDigits = Number.isInteger(number) ? 0 : 2;
   }
-
+  formatterOpts.signDisplay = signDisplay;
   try {
     return new Intl.NumberFormat("en-US", formatterOpts).format(number);
   }

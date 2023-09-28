@@ -50,6 +50,26 @@ describe("formatNumber", () => {
       const expected = "-$12.00";
       expect(actual).toEqual(expected);
     });
+    it("shows negative sign for < 0 number", () => {
+      const actual = formatNumber(-12, style, "auto");
+      const expected = "-$12.00";
+      expect(actual).toEqual(expected);
+    });
+    it("shows negative sign for < 0 number", () => {
+      const actual = formatNumber(-12, style, "always");
+      const expected = "-$12.00";
+      expect(actual).toEqual(expected);
+    });
+    it("shows negative sign for < 0 number", () => {
+      const actual = formatNumber(-12, style, "never");
+      const expected = "$12.00";
+      expect(actual).toEqual(expected);
+    });
+    it("shows negative sign for < 0 number", () => {
+      const actual = formatNumber(-0, style, "exceptZero");
+      const expected = "$0.00";
+      expect(actual).toEqual(expected);
+    });
   });
 
   describe("percent", () => {
@@ -82,6 +102,26 @@ describe("formatNumber", () => {
     it("returns decimal precision of 2, rounding up tens place", () => {
       const actual = formatNumber("0.21555", style);
       const expected = "21.56%";
+      expect(actual).toEqual(expected);
+    });
+    it("shows negative sign for < 0 number", () => {
+      const actual = formatNumber(-0.12, style, "auto");
+      const expected = "-12%";
+      expect(actual).toEqual(expected);
+    });
+    it("shows negative sign for < 0 number", () => {
+      const actual = formatNumber(-0.12, style, "always");
+      const expected = "-12%";
+      expect(actual).toEqual(expected);
+    });
+    it("shows negative sign for < 0 number", () => {
+      const actual = formatNumber(-0.12, style, "never");
+      const expected = "12%";
+      expect(actual).toEqual(expected);
+    });
+    it("shows negative sign for < 0 number", () => {
+      const actual = formatNumber(-0, style, "exceptZero");
+      const expected = "0%";
       expect(actual).toEqual(expected);
     });
   });

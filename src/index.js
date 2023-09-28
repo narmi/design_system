@@ -30,6 +30,7 @@ import Toggle from "./Toggle";
 import Tooltip from "./Tooltip";
 import TruncatedAccount from "./TruncatedAccount";
 import useBreakpoints from "./hooks/useBreakpoints";
+import useLockBodyScroll from "./hooks/useLockBodyScroll";
 import formatNumber from "./formatters/formatNumber";
 import formatDate from "./formatters/formatDate";
 
@@ -64,6 +65,7 @@ export {
   Tooltip,
   TruncatedAccount,
   useBreakpoints,
+  useLockBodyScroll,
   formatNumber,
   formatDate,
 };

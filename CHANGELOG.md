@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.7.4](https://github.com/narmi/design_system/compare/v3.7.3...v3.7.4) (2023-10-03)
+
+
+### Bug Fixes
+
+* **Combobox, Select:** Fixes a regression when rendering Select and Comboboxes inside of a Dialog. ([38a5554](https://github.com/narmi/design_system/commit/38a5554b959298500a8101d81369bda20840a184))
+
 ### [3.7.3](https://github.com/narmi/design_system/compare/v3.7.2...v3.7.3) (2023-09-27)
 
 

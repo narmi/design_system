@@ -1,8 +1,8 @@
-.sidebar-item--active {
-  font-weight: var(--font-weight-semibold);
-  color: var(--theme-primary);
+.sidebar-item {
+  color: var(--font-color-primary);
 }
 
-.sidebar-item {
-  cursor: pointer;
+.sidebar-item--active {
+  font-weight: var(--font-weight-semibold) !important;
+  color: var(--theme-primary) !important;
 }

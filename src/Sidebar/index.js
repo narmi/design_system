@@ -13,34 +13,38 @@ const Sidebar = ({
   const sidebarItems = React.Children.toArray(children)
   const mappedSidebarItems = sidebarItems.map((item) => (
     <li
-      className={cc([
-        "margin--bottom--s",
-        "sidebar-item",
-        {
-          "sidebar-item--active": item.props.isActive,
-        },
-
-      ])}
-      onClick={item.props.onClick}
+      className="margin--bottom--s"
+      key={item.props.label}
     >
-      <Row gapSize="xs">
-        {item.props.startIcon &&
-          <Row.Item shrink>
-            <span className={`narmi-icon-${item.props.startIcon} sidebar-icon`} />
-          </Row.Item>
-        }
-        <Row.Item shrink>{item.props.label}</Row.Item>
-        {item.props.endIcon &&
-          <Row.Item shrink>
-            <span className={`narmi-icon-${item.props.endIcon} .sidebar-icon`} />
-          </Row.Item>
-        }
-      </Row>
+      <button
+        onClick={item.props.onClick}
+        className={cc([
+          "button--reset",
+          "sidebar-item",
+          {
+            "sidebar-item--active": item.props.isActive,
+          },
+        ])}
+      >
+        <Row gapSize="xs">
+          {item.props.startIcon &&
+            <Row.Item shrink>
+              <span className={`narmi-icon-${item.props.startIcon} sidebar-icon`} />
+            </Row.Item>
+          }
+          <Row.Item shrink>{item.props.label}</Row.Item>
+          {item.props.endIcon &&
+            <Row.Item shrink>
+              <span className={`narmi-icon-${item.props.endIcon} .sidebar-icon`} />
+            </Row.Item>
+          }
+        </Row>
+      </button>
     </li>
   ))
 
   return (
-    <nav>
+    <nav className={`sidebar--${kind}`}>
       <ul className="list--reset">
         {mappedSidebarItems}
       </ul>

@@ -6,13 +6,9 @@ export const VALID_ICON_NAMES = iconSelection.icons.map(
   (icon) => icon.properties.name
 );
 
-const SidebarItem = ({ }) => {
-  return (
-    <>
-
-    </>
-  );
-};
+const SidebarItem = () => (
+  <></>
+);
 
 SidebarItem.propTypes = {
   /** Click callback, with event object passed as argument */

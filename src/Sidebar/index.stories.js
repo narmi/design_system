@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Sidebar from "./";
 import SidebarItem from "./SidebarItem";
 
@@ -11,26 +11,32 @@ const children = [
     label="Home"
     isActive={true}
     onClick={() => console.log("clicked")}
+    key="home"
   />,
   <SidebarItem
     label="Accounts"
     onClick={() => console.log("clicked")}
+    key="accounts"
   />,
   <SidebarItem
     label="Transactions"
     onClick={() => console.log("clicked")}
+    key="transactions"
   />,
   <SidebarItem
     label="Settings"
     onClick={() => console.log("clicked")}
+    key="settings"
   />,
   <SidebarItem
     label="Help"
     onClick={() => console.log("clicked")}
+    key="help"
   />,
   <SidebarItem
     label="Logout"
     onClick={() => console.log("clicked")}
+    key="logout"
   />,
 ];
 
@@ -40,32 +46,38 @@ const childrenWithIcons = [
     startIcon="feed"
     isActive={true}
     onClick={() => console.log("clicked")}
+    key="home"
   />,
   <SidebarItem
     label="Accounts"
     startIcon="solid-circle"
     onClick={() => console.log("clicked")}
+    key="accounts"
   />,
   <SidebarItem
     label="Transactions"
     startIcon="bill"
     onClick={() => console.log("clicked")}
+    key="transactions"
   />,
   <SidebarItem
     label="Settings"
     startIcon="settings"
     onClick={() => console.log("clicked")}
+    key="settings"
   />,
   <SidebarItem
     label="Help"
     startIcon="question"
     onClick={() => console.log("clicked")}
+    key="help"
   />,
   <SidebarItem
     label="Logout"
     startIcon="log-out"
     endIcon="smile"
     onClick={() => console.log("clicked")}
+    key="logout"
   />,
 ];
 

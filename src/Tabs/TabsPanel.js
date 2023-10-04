@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from "react";
 import TabsContext from "./context";
 
 const TabsPanel = ({ children, tabId, testId }) => {
-  const { currentIndex, tabIds, hasPanels, setHasPanels, isResponsive } =
+  const { currentIndex, tabIds, hasPanels, setHasPanels } =
     useContext(TabsContext);
   const selectedId = tabIds[currentIndex];
 

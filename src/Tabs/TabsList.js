@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import PropTypes from "prop-types";
 import rafSchd from "raf-schd";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import TabsContext from "./context";
 
 const noop = () => {};

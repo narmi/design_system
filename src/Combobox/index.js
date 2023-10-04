@@ -332,7 +332,13 @@ const Combobox = ({
           label={label}
           value={inputValue}
           startIcon={icon}
-          endIcon={isOpen ? "chevron-up" : "chevron-down"}
+          endContent={
+            <span
+              className={`fontSize--l fontColor--primary narmi-icon-${
+                isOpen ? "chevron-up" : "chevron-down"
+              }`}
+            />
+          }
           {...getInputProps({
             onFocus: handleMenuOpen,
             onClick: handleMenuOpen,

@@ -48,13 +48,15 @@ const DropdownTrigger = React.forwardRef(
               {labelText}
             </label>
           )}
-          {displayValue && <span className="nds-dropdownTrigger-value">{displayValue}</span>}
+          {displayValue && (
+            <span className="nds-dropdownTrigger-value">{displayValue}</span>
+          )}
           {showOpenIndicator && (
             <span
               role="img"
               aria-label={isOpen ? "popup open" : "popup closed"}
               className={cc([
-                "nds-dropdownTrigger-chevron fontSize--l fontColor--secondary",
+                "nds-dropdownTrigger-chevron fontSize--l fontColor--primary",
                 `narmi-icon-chevron-${isOpen ? "up" : "down"}`,
               ])}
             />

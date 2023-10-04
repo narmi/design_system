@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useImperativeHandle } from "react";
 import PropTypes from "prop-types";
 import Input from "../Input";
 import iconSelection from "src/icons/selection.json";
@@ -21,15 +21,20 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
     multiline,
     defaultValue,
     onChange,
+    onInputClear = () => {},
     onBlur,
     testId,
     type = "text",
     ...nativeElementProps
   } = props;
 
+  const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState(
     defaultValue ? defaultValue : ""
   );
+
+  // allows us to use the forwarded ref internally
+  useImperativeHandle(forwardedRef, () => inputRef.current);
 
   function _onBlur(e) {
     if (onBlur) {
@@ -38,14 +43,22 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
     setInputValue(formatter(e.target.value));
   }
   function _onChange(e) {
+    e.preventDefault();
     if (onChange) {
       onChange(e);
     }
     setInputValue(e.target.value);
   }
   function _onClearInput(e) {
+    e.preventDefault(); // don't let the event bubble up to the input
+
+    // refocus the input when user clears it via the clear button
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+
     _onChange(e);
-    setInputValue("");
+    onInputClear();
   }
 
   return (
@@ -55,7 +68,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
       endContent={endContent}
       startIconClass={startIcon ? `narmi-icon-${startIcon}` : undefined}
       endIconClass={endIcon ? `narmi-icon-${endIcon}` : undefined}
-      showClearButton={showClearButton && inputValue}
+      showClearButton={showClearButton && Boolean(inputValue)}
       clearInput={_onClearInput}
     >
       {multiline ? (
@@ -66,7 +79,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
           <textarea
             key={"nds-text"}
             wrap="soft"
-            ref={forwardedRef}
+            ref={inputRef}
             value={inputValue}
             onChange={_onChange}
             onBlur={_onBlur}
@@ -82,7 +95,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
           value={inputValue}
           onChange={_onChange}
           onBlur={_onBlur}
-          ref={forwardedRef}
+          ref={inputRef}
           type={type}
           required
           aria-label={props.label}
@@ -104,6 +117,8 @@ TextInput.propTypes = {
   onChange: PropTypes.func,
   /** Callback invoked with event object on input blur */
   onBlur: PropTypes.func,
+  /** Callback invoked when user clicks on clear button */
+  onInputClear: PropTypes.func,
   /** Sets the [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) value of the input */
   defaultValue: PropTypes.string,
   /** When true, the input is displayed as an auto-growing textarea */

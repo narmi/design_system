@@ -46,15 +46,22 @@ const Input = ({
   ].join(" ");
 
   const endIconJsx = showClearButton ? (
-    <div
-      className={`nds-input-icon nds-input-close narmi-icon-x`}
+    <button
+      className={`button--reset nds-input-icon nds-input-close fontColor--primary`}
       onClick={clearInput}
-      role="button"
-      tabIndex="0"
+      onKeyUp={({ key }) => {
+        if (key === "Enter" || key === "Space") {
+          clearInput();
+        }
+      }}
       aria-label="Clear Input"
-    ></div>
+    >
+      <span className="narmi-icon-x" />
+    </button>
   ) : (
-    <div className={`nds-input-icon ${endIconClass}`}></div>
+    <div
+      className={`nds-input-icon nds-input-icon--faded ${endIconClass}`}
+    ></div>
   );
 
   return (
@@ -62,7 +69,9 @@ const Input = ({
       <div className="nds-input-box">
         {startContent && <div>{startContent}</div>}
         {startIconClass && (
-          <div className={`nds-input-icon ${startIconClass}`}></div>
+          <div
+            className={`nds-input-icon nds-input-icon--faded ${startIconClass}`}
+          ></div>
         )}
         <div
           className={`nds-input-column ${
@@ -88,6 +97,8 @@ Input.propTypes = {
   startIconClass: PropTypes.node,
   /** full `narmi-icon-<shape>` className for icon at end of input */
   endIconClass: PropTypes.node,
+  startContent: PropTypes.node,
+  endContent: PropTypes.node,
   showClearButton: PropTypes.bool,
   clearInput: PropTypes.func,
   decoration: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),

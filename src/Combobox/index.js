@@ -137,7 +137,11 @@ const Combobox = ({
   }
 
   const [displayedItems, setDisplayedItems] = useState(items);
+  const [showClearButton, setShowClearButton] = useState(
+    Boolean(controlledInputValue)
+  );
 
+  // TODO: state reducer
   const {
     isOpen,
     selectedItem,
@@ -147,7 +151,6 @@ const Combobox = ({
     getItemProps,
     highlightedIndex,
     inputValue,
-    setInputValue,
     openMenu,
     reset,
   } = useCombobox({
@@ -180,6 +183,14 @@ const Combobox = ({
       }
       onChange(newSelection);
       onInputChange(newSelection);
+    },
+    onStateChange: ({ type }) => {
+      if (
+        type === useCombobox.stateChangeTypes.ItemClick ||
+        type === useCombobox.stateChangeTypes.InputChange
+      ) {
+        setShowClearButton(true);
+      }
     },
   });
 
@@ -296,11 +307,7 @@ const Combobox = ({
       // Reset filtered items every time user refocuses.
       // Subsequent changes in the input will re-filter the list.
       openMenu();
-      // If the user revisits the combobox after selecting an item,
-      // only show the selected item and clear the input. The list will
-      // be re-filtered as they type
       if (hasSelectedItem) {
-        setInputValue("");
         setDisplayedItems(items.filter(isSelectable));
       }
     }
@@ -331,6 +338,10 @@ const Combobox = ({
         <TextInput
           label={label}
           value={inputValue}
+          showClearButton={showClearButton}
+          onInputClear={() => {
+            reset(); // reset all downshift state when user clicks clear button
+          }}
           startIcon={icon}
           endContent={
             <span
@@ -342,15 +353,6 @@ const Combobox = ({
           {...getInputProps({
             onFocus: handleMenuOpen,
             onClick: handleMenuOpen,
-            onBlur: () => {
-              // If the user has selected an option, we should
-              // always set that as the value of the input.
-              if (hasSelectedItem) {
-                setInputValue(
-                  selectedItem.props.searchValue || selectedItem.props.value
-                );
-              }
-            },
           })}
         />
         {renderLayer(

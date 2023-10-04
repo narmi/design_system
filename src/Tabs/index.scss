@@ -2,11 +2,11 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
-  overflow-x: hidden;
-  scrollbar-width: "none"; // Firefox
+  overflow-x: auto;
+  scrollbar-width: none; // Firefox
 
-  &:webkit-scrollbar {
-    display: "none"; // Safari + Chrome
+  &::-webkit-scrollbar {
+    display: none; // Safari + Chrome
   }
 
   .nds-tabs--bordered & {
@@ -16,9 +16,6 @@
 
 .nds-tabs-tabItem {
   border-bottom: 3px solid transparent;
-  &:not(:last-child) {
-    margin-right: var(--space-xl);
-  }
   &--selected {
     border-color: var(--theme-primary);
   }
@@ -69,11 +66,6 @@
 
 .arrow-reponsive {
   flex: 0 0 32px;
-}
-
-.panel-responsive {
-  padding-left: 32px;
-  padding-right: 32px;
 }
 
 .display-flex {

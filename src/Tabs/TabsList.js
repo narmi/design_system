@@ -2,15 +2,11 @@
 import PropTypes from "prop-types";
 import rafSchd from "raf-schd";
 import React, { useContext, useEffect, useState } from "react";
-import Arrow from "./Arrow";
 import TabsContext from "./context";
 
 const noop = () => {};
 
 const TabsList = ({ children, xPadding = "none" }) => {
-  const [showLeftArrow, setShowLeftArrow] = useState(false);
-  const [showRightArrow, setShowRightArrow] = useState(false);
-
   const {
     tabIds,
     setTabIds,
@@ -20,44 +16,52 @@ const TabsList = ({ children, xPadding = "none" }) => {
     tabsListRef,
     setIsResponsive,
     isResponsive,
+    setMarginRight,
   } = useContext(TabsContext);
   const childArray = React.Children.toArray(children);
 
-  const updateScrollButtonState = () => {
+  const updateTabPadding = () => {
     const { scrollWidth, clientWidth, scrollLeft } = tabsListRef.current;
-    const nextShowLeftArrow = scrollLeft > 1;
-    const nextShowRightArrow = scrollLeft < scrollWidth - clientWidth - 1;
-
-    setShowLeftArrow(nextShowLeftArrow);
-    setShowRightArrow(nextShowRightArrow);
-    setIsResponsive(nextShowLeftArrow || nextShowRightArrow);
+    setIsResponsive(
+      scrollLeft > 1 || scrollLeft < scrollWidth - clientWidth - 1
+    );
+    const tabsSize = getTabsSize();
+    // adjust tab padding based on scroll sizing
+    if (isResponsive) {
+      if (tabsSize < clientWidth - 20) {
+        setMarginRight("xxl");
+      }
+      if (tabsSize >= clientWidth - 20) {
+        setMarginRight("m");
+      }
+    }
   };
 
-  const scheduleScrollButtonUpdate = () => {
+  const scheduleTabPaddingUpdate = () => {
     if (tabsListRef.current) {
-      rafSchd(updateScrollButtonState());
+      rafSchd(() => updateTabPadding());
     }
   };
 
   useEffect(() => {
-    scheduleScrollButtonUpdate();
-  }, []);
+    updateTabPadding();
+  }, [tabIds]);
 
   useEffect(() => {
-    window.addEventListener("resize", scheduleScrollButtonUpdate);
+    window.addEventListener("resize", scheduleTabPaddingUpdate);
 
     return () => {
-      window.removeEventListener("resize", scheduleScrollButtonUpdate);
+      window.removeEventListener("resize", scheduleTabPaddingUpdate);
     };
   }, []);
 
   useEffect(() => {
-    tabsListRef.current.addEventListener("scroll", scheduleScrollButtonUpdate);
+    tabsListRef.current.addEventListener("scroll", scheduleTabPaddingUpdate);
 
     return () => {
       tabsListRef?.current?.removeEventListener(
         "scroll",
-        scheduleScrollButtonUpdate
+        scheduleTabPaddingUpdate
       );
     };
   }, [tabsListRef.current]);
@@ -78,18 +82,26 @@ const TabsList = ({ children, xPadding = "none" }) => {
         if (newIndex >= 0) {
           changeTabs(tabIds[newIndex]);
         }
+        tabsListRef.current.scroll({
+          left: tabsListRef.current.scrollLeft - getTabsSize(),
+          behavior: "smooth",
+        });
         break;
       case "ArrowRight":
         newIndex = currentIndex + 1;
         if (newIndex <= tabIds.length - 1) {
           changeTabs(tabIds[newIndex]);
         }
+        tabsListRef.current.scroll({
+          left: tabsListRef.current.scrollLeft + getTabsSize(),
+          behavior: "smooth",
+        });
         break;
     }
   };
 
   // Heavily inspired from https://github.com/mui/material-ui/blob/master/packages/mui-material-next/src/Tabs/Tabs.js#L395
-  const getScrollSize = () => {
+  const getTabsSize = () => {
     const containerSize = tabsListRef.current.clientWidth;
     let totalSize = 0;
     const children = Array.from(tabsListRef.current.children);
@@ -110,23 +122,8 @@ const TabsList = ({ children, xPadding = "none" }) => {
     return totalSize;
   };
 
-  const onLeftClick = () => {
-    tabsListRef.current.scroll({
-      left: tabsListRef.current.scrollLeft - getScrollSize(),
-      behavior: "smooth",
-    });
-  };
-
-  const onRightClick = () => {
-    tabsListRef.current.scroll({
-      left: tabsListRef.current.scrollLeft + getScrollSize(),
-      behavior: "smooth",
-    });
-  };
-
   return (
     <div className={isResponsive ? "display-flex" : ""}>
-      <Arrow direction="left" onClick={onLeftClick} show={showLeftArrow} />
       <ul
         ref={tabsListRef}
         role={hasPanels ? "tablist" : undefined}
@@ -137,7 +134,6 @@ const TabsList = ({ children, xPadding = "none" }) => {
       >
         {children}
       </ul>
-      <Arrow direction="right" onClick={onRightClick} show={showRightArrow} />
     </div>
   );
 };

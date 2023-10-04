@@ -28,6 +28,7 @@ const Tabs = ({
   const [tabIds, setTabIds] = useState([]);
   const [hasPanels, setHasPanels] = useState(false);
   const [isResponsive, setIsResponsive] = useState(false);
+  const [marginRight, setMarginRight] = useState("xl");
   const [currentIndex, setCurrentIndex] = useState(defaultSelectedIndex);
   const isControlledComponent = selectedIndex !== null;
 
@@ -78,6 +79,8 @@ const Tabs = ({
         tabsListRef,
         isResponsive,
         setIsResponsive,
+        marginRight,
+        setMarginRight,
       }}
     >
       <div

@@ -4,7 +4,7 @@ import React, { useContext, useRef } from "react";
 import TabsContext from "./context";
 
 const TabsTab = ({ label, tabId, testId }) => {
-  const { currentIndex, tabIds, hasPanels, changeTabs } =
+  const { currentIndex, tabIds, hasPanels, changeTabs, marginRight } =
     useContext(TabsContext);
   const tabRef = useRef();
   const isSelected = tabId === tabIds[currentIndex];
@@ -23,6 +23,7 @@ const TabsTab = ({ label, tabId, testId }) => {
         {
           "nds-tabs-tabItem--selected": isSelected,
         },
+        `margin--right--${marginRight}`,
       ])}
       ref={tabRef}
     >

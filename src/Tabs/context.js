@@ -19,6 +19,9 @@ const TabsContext = createContext({
 
   isResponsive: false,
   setIsResponsive: () => {},
+
+  marginRight: "none",
+  setMarginRight: () => {},
 });
 
 export default TabsContext;

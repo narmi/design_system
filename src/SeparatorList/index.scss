@@ -1,4 +1,8 @@
 .nds-separatorList {
+  &--noWrap {
+    white-space: nowrap;
+  }
+
   li {
     display: inline-flex;
     align-self: center;

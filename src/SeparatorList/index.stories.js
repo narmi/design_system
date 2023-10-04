@@ -37,6 +37,35 @@ AsBreadcrumbs.parameters = {
   },
 };
 
+export const NoWrap = () => (
+  <SeparatorList
+    noWrap={true}
+    items={[
+      <a href="#" className="fontColor--link">
+        Account
+      </a>,
+      <a href="#" className="fontColor--link">
+        Settings
+      </a>,
+      <a href="#" className="fontColor--link">
+        Email Preferences
+      </a>,
+      <a href="#" className="fontColor--link">
+        Mail Preferences
+      </a>,
+      <a href="#" className="fontColor--link">
+        Phone Preferences
+      </a>,
+      <a href="#" className="fontColor--link">
+        Beverage Preferences
+      </a>,
+      <a href="#" className="fontColor--link">
+        Dietary Preferences
+      </a>,
+    ]}
+  />
+);
+
 export default {
   title: "Components/SeparatorList",
   component: SeparatorList,

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.8.0](https://github.com/narmi/design_system/compare/v3.7.5...v3.8.0) (2023-10-04)
+
+
+### Features
+
+* **SeparatorList:** add noWrap prop ([da26926](https://github.com/narmi/design_system/commit/da2692633a7656575038a6e88f6b269c1a377755))
+
+### [3.7.5](https://github.com/narmi/design_system/compare/v3.7.4...v3.7.5) (2023-10-04)
+
+
+### Bug Fixes
+
+* **ContentCard:** reduce boldness thickness when selected ([f46a175](https://github.com/narmi/design_system/commit/f46a17514643b0421d0c71be84b9e5829645e627))
+
 ### [3.7.4](https://github.com/narmi/design_system/compare/v3.7.3...v3.7.4) (2023-10-03)
 
 

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.7.5](https://github.com/narmi/design_system/compare/v3.7.4...v3.7.5) (2023-10-04)
+
+
+### Bug Fixes
+
+* **ContentCard:** reduce boldness thickness when selected ([f46a175](https://github.com/narmi/design_system/commit/f46a17514643b0421d0c71be84b9e5829645e627))
+
 ### [3.7.4](https://github.com/narmi/design_system/compare/v3.7.3...v3.7.4) (2023-10-03)
 
 

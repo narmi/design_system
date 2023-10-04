@@ -296,7 +296,11 @@ const Combobox = ({
       // Reset filtered items every time user refocuses.
       // Subsequent changes in the input will re-filter the list.
       openMenu();
+      // If the user revisits the combobox after selecting an item,
+      // only show the selected item and clear the input. The list will
+      // be re-filtered as they type
       if (hasSelectedItem) {
+        setInputValue("");
         setDisplayedItems(items.filter(isSelectable));
       }
     }

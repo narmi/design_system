@@ -21,8 +21,10 @@ By default, if neither `multiline` nor `icon` are provided, an overhanging label
 const Input = ({
   id,
   label,
+  startContent,
   startIconClass,
   endIconClass,
+  endContent,
   showClearButton,
   clearInput,
   disabled,
@@ -58,6 +60,7 @@ const Input = ({
   return (
     <div className={className} onClick={onClick} style={style}>
       <div className="nds-input-box">
+        {startContent && <div>{startContent}</div>}
         {startIconClass && (
           <div className={`nds-input-icon ${startIconClass}`}></div>
         )}
@@ -71,6 +74,7 @@ const Input = ({
           {!multiline ? <label htmlFor={id}>{label}</label> : ""}
         </div>
         {(endIconClass || showClearButton) && endIconJsx}
+        {endContent && <div>{endContent}</div>}
       </div>
       <Error error={error} />
     </div>

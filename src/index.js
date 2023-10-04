@@ -23,6 +23,7 @@ import ResponsiveFlex from "./ResponsiveFlex";
 import Row from "./Row";
 import Select from "./Select";
 import SeparatorList from "./SeparatorList";
+import Sidebar from "./Sidebar";
 import Tabs from "./Tabs";
 import Tag from "./Tag";
 import TextInput from "./TextInput";
@@ -58,6 +59,7 @@ export {
   Row,
   Select,
   SeparatorList,
+  Sidebar,
   Tabs,
   Tag,
   TextInput,

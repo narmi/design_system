@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.9.0](https://github.com/narmi/design_system/compare/v3.8.0...v3.9.0) (2023-10-04)
+
+
+### Features
+
+* **Sidebar:** add Sidebar component ([148718c](https://github.com/narmi/design_system/commit/148718cf7dd25d7c893a7b0820d807bf0b935cda))
+
 ## [3.8.0](https://github.com/narmi/design_system/compare/v3.7.5...v3.8.0) (2023-10-04)
 
 

@@ -97,5 +97,3 @@ export default {
   component: Sidebar,
   subcomponents: { "Sidebar.Item": SidebarItem }
 };
-
-

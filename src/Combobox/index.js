@@ -141,7 +141,6 @@ const Combobox = ({
     Boolean(controlledInputValue)
   );
 
-  // TODO: state reducer
   const {
     isOpen,
     selectedItem,

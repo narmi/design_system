@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.9.0](https://github.com/narmi/design_system/compare/v3.8.0...v3.9.0) (2023-10-04)
+
+
+### Features
+
+* **Sidebar:** add Sidebar component ([148718c](https://github.com/narmi/design_system/commit/148718cf7dd25d7c893a7b0820d807bf0b935cda))
+
+## [3.8.0](https://github.com/narmi/design_system/compare/v3.7.5...v3.8.0) (2023-10-04)
+
+
+### Features
+
+* **SeparatorList:** add noWrap prop ([da26926](https://github.com/narmi/design_system/commit/da2692633a7656575038a6e88f6b269c1a377755))
+
+### [3.7.5](https://github.com/narmi/design_system/compare/v3.7.4...v3.7.5) (2023-10-04)
+
+
+### Bug Fixes
+
+* **ContentCard:** reduce boldness thickness when selected ([f46a175](https://github.com/narmi/design_system/commit/f46a17514643b0421d0c71be84b9e5829645e627))
+
+### [3.7.4](https://github.com/narmi/design_system/compare/v3.7.3...v3.7.4) (2023-10-03)
+
+
+### Bug Fixes
+
+* **Combobox, Select:** Fixes a regression when rendering Select and Comboboxes inside of a Dialog. ([38a5554](https://github.com/narmi/design_system/commit/38a5554b959298500a8101d81369bda20840a184))
+
+### [3.7.3](https://github.com/narmi/design_system/compare/v3.7.2...v3.7.3) (2023-09-27)
+
+
+### Bug Fixes
+
+* **DateInput:** use TextInput component instead of native input directly ([6bf6887](https://github.com/narmi/design_system/commit/6bf68875cab5415b9bcf8258b5c11983cacdd20d))
+
 ### [3.7.2](https://github.com/narmi/design_system/compare/v3.7.1...v3.7.2) (2023-09-25)
 
 

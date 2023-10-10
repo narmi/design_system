@@ -23,6 +23,7 @@ import ResponsiveFlex from "./ResponsiveFlex";
 import Row from "./Row";
 import Select from "./Select";
 import SeparatorList from "./SeparatorList";
+import Sidebar from "./Sidebar";
 import Tabs from "./Tabs";
 import Tag from "./Tag";
 import TextInput from "./TextInput";
@@ -30,6 +31,7 @@ import Toggle from "./Toggle";
 import Tooltip from "./Tooltip";
 import TruncatedAccount from "./TruncatedAccount";
 import useBreakpoints from "./hooks/useBreakpoints";
+import useLockBodyScroll from "./hooks/useLockBodyScroll";
 import formatNumber from "./formatters/formatNumber";
 import formatDate from "./formatters/formatDate";
 
@@ -57,6 +59,7 @@ export {
   Row,
   Select,
   SeparatorList,
+  Sidebar,
   Tabs,
   Tag,
   TextInput,
@@ -64,6 +67,7 @@ export {
   Tooltip,
   TruncatedAccount,
   useBreakpoints,
+  useLockBodyScroll,
   formatNumber,
   formatDate,
 };

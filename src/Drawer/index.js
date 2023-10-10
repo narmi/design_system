@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import useMountTransition from "./useMountTransition";
-import useLockBodyScroll from "./useLockBodyScroll";
+import useLockBodyScroll from "../hooks/useLockBodyScroll";
 
 const noop = () => {};
 

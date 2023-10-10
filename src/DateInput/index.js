@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import Input from "../Input";
+import TextInput from "../TextInput";
 import { english } from "flatpickr/dist/l10n/default";
 import flatpickr from "flatpickr";
 
@@ -64,18 +64,17 @@ const DateInput = ({
   }, [flatpickrOptions, input, disablePortal]);
 
   return (
-    <div>
-      <Input {...props} label={props.label}>
-        <input
-          key={"nds-text"}
-          ref={input}
-          type="date"
-          required
-          data-testid={testId}
-          {...props}
-        />
-      </Input>
-    </div>
+    <>
+      <TextInput
+        {...props}
+        label={props.label}
+        ref={input}
+        type="date"
+        required
+        data-testid={testId}
+        {...props}
+      />
+    </>
   );
 };
 DateInput.propTypes = {

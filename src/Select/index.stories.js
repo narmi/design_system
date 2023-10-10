@@ -262,9 +262,8 @@ export const InADialog = (args) => {
       >
         <div className="padding--y--s">
           <div>
-            The floating menu list will take up space in document flow, allowing
-            <code>Select</code> to expand the height of its content container if
-            there isn't enough room for the dropdown.
+            The floating menu list will render portaled near the bottom of the{" "}
+            {"<body>"} HTML element.
           </div>
           <div className="padding--y--l">
             <Select {...args} />

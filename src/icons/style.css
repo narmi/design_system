@@ -60,19 +60,15 @@
 }
 .narmi-icon-security:before {
   content: "\ea3b";
-  color: #4c4c4c;
 }
 .narmi-icon-narmi-fat-security:before {
   content: "\ea3b";
-  color: #4c4c4c;
 }
 .narmi-icon-feed:before {
   content: "\ea3c";
-  color: #4c4c4c;
 }
 .narmi-icon-narmi-feed:before {
   content: "\ea3c";
-  color: #4c4c4c;
 }
 .narmi-icon-activity:before {
   content: "\e90d";

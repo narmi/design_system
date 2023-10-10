@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.9.1](https://github.com/narmi/design_system/compare/v3.9.0...v3.9.1) (2023-10-10)
+
+
+### Bug Fixes
+
+* use consistent text-rendering for input labels ([ea0cf64](https://github.com/narmi/design_system/commit/ea0cf64288e7d81e9ee22e7dc0946ea296491613))
+
 ## [3.9.0](https://github.com/narmi/design_system/compare/v3.8.0...v3.9.0) (2023-10-04)
 
 

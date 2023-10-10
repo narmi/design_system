@@ -137,6 +137,7 @@ const Combobox = ({
   }
 
   const [displayedItems, setDisplayedItems] = useState(items);
+  const [clearOnNextInput, setClearOnNextInput] = useState(false);
 
   const {
     isOpen,
@@ -165,7 +166,7 @@ const Combobox = ({
         setDisplayedItems(filteredItems);
       }
 
-      // if the user clears the input...
+      // reset all downshift state when the input is cleared
       if (inputValue.length === 0) {
         setDisplayedItems(items); // restore original list in dropdown
         reset(); // clear any active selections
@@ -180,6 +181,29 @@ const Combobox = ({
       }
       onChange(newSelection);
       onInputChange(newSelection);
+    },
+    // <https://www.downshift-js.com/use-select#state-reducer>
+    stateReducer: (state, actionAndChanges) => {
+      const { type, changes } = actionAndChanges;
+      let inputValue = changes.inputValue;
+
+      // if there's already a selected item when the user revisists the input,
+      // wipe away the old input value so they can start typing right away.
+      // (selection is preserved until user picks another item)
+      if (
+        type === useCombobox.stateChangeTypes.InputChange &&
+        clearOnNextInput &&
+        hasSelectedItem &&
+        changes.inputValue.length > state.inputValue.length
+      ) {
+        inputValue = changes.inputValue.slice(-1); // the last character the user typed
+        setClearOnNextInput(false);
+      }
+
+      return {
+        ...changes,
+        inputValue,
+      };
     },
   });
 
@@ -291,7 +315,7 @@ const Combobox = ({
     ) : null;
   };
 
-  const handleMenuOpen = () => {
+  const handleMenuToggle = () => {
     if (!isOpen) {
       // Reset filtered items every time user refocuses.
       // Subsequent changes in the input will re-filter the list.
@@ -330,11 +354,16 @@ const Combobox = ({
           startIcon={icon}
           endIcon={isOpen ? "chevron-up" : "chevron-down"}
           {...getInputProps({
-            onFocus: handleMenuOpen,
-            onClick: handleMenuOpen,
+            onFocus: () => {
+              if (hasSelectedItem) {
+                setClearOnNextInput(true);
+              }
+              handleMenuToggle();
+            },
+            onClick: handleMenuToggle,
             onBlur: () => {
               // If the user has selected an option, we should
-              // always set that as the value of the input.
+              // always set that as the input value when they leave the input
               if (hasSelectedItem) {
                 setInputValue(
                   selectedItem.props.searchValue || selectedItem.props.value

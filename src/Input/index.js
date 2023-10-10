@@ -23,6 +23,8 @@ const Input = ({
   label,
   startIconClass,
   endIconClass,
+  startContent,
+  endContent,
   showClearButton,
   clearInput,
   disabled,
@@ -52,14 +54,19 @@ const Input = ({
       aria-label="Clear Input"
     ></div>
   ) : (
-    <div className={`nds-input-icon ${endIconClass}`}></div>
+    <div
+      className={`nds-input-icon nds-input-icon--faded ${endIconClass}`}
+    ></div>
   );
 
   return (
     <div className={className} onClick={onClick} style={style}>
       <div className="nds-input-box">
+        {startContent && <div>startContent</div>}
         {startIconClass && (
-          <div className={`nds-input-icon ${startIconClass}`}></div>
+          <div
+            className={`nds-input-icon nds-input-icon--faded ${startIconClass}`}
+          ></div>
         )}
         <div
           className={`nds-input-column ${
@@ -71,6 +78,7 @@ const Input = ({
           {!multiline ? <label htmlFor={id}>{label}</label> : ""}
         </div>
         {(endIconClass || showClearButton) && endIconJsx}
+        {endContent && <div>{endContent}</div>}
       </div>
       <Error error={error} />
     </div>
@@ -81,9 +89,13 @@ Input.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string,
   /** full `narmi-icon-<shape>` className for icon at start of input */
-  startIconClass: PropTypes.node,
+  startIconClass: PropTypes.string,
   /** full `narmi-icon-<shape>` className for icon at end of input */
-  endIconClass: PropTypes.node,
+  endIconClass: PropTypes.string,
+  /** arbitrary JSX to place at the start of the input */
+  startContent: PropTypes.node,
+  /** arbitrary JSX to place at the end of the input */
+  endContent: PropTypes.node,
   showClearButton: PropTypes.bool,
   clearInput: PropTypes.func,
   decoration: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),

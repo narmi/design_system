@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.11.0](https://github.com/narmi/design_system/compare/v3.10.0...v3.11.0) (2023-10-17)
+
+
+### Features
+
+* **TextInput:** add startContent and endContent props for custom icons ([16d3ff7](https://github.com/narmi/design_system/commit/16d3ff77d375c4ed79030ed62942f64dc8699ba0))
+
+## [3.10.0](https://github.com/narmi/design_system/compare/v3.9.1...v3.10.0) (2023-10-10)
+
+
+### Features
+
+* **Combobox:** add clearing behavior when revisiting a completed input ([31e2059](https://github.com/narmi/design_system/commit/31e2059e7b190f50cf59c0558c861fe62a34a299))
+
+### [3.9.1](https://github.com/narmi/design_system/compare/v3.9.0...v3.9.1) (2023-10-10)
+
+
+### Bug Fixes
+
+* use consistent text-rendering for input labels ([ea0cf64](https://github.com/narmi/design_system/commit/ea0cf64288e7d81e9ee22e7dc0946ea296491613))
+
 ## [3.9.0](https://github.com/narmi/design_system/compare/v3.8.0...v3.9.0) (2023-10-04)
 
 

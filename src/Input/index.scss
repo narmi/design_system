@@ -3,7 +3,7 @@
 %shared-multiline-styles {
   line-height: 1.2;
   vertical-align: middle;
-  font-weight: 400;
+  font-weight: var(--font-weight-default);
   line-height: normal;
   font-family: var(--font-family-body);
   border: none;
@@ -19,7 +19,7 @@
   font-size: 16px;
 
   .nds-input-box {
-    box-sizing: border-box;;
+    box-sizing: border-box;
     min-height: 48px;
     border: 1px solid var(--color-lightGrey);
     background: var(--color-white);
@@ -76,7 +76,6 @@
     display: flex;
     font-size: 1.25em;
     padding: 0 0.3em 0 0;
-    opacity: 0.5;
   }
 
   label {
@@ -152,7 +151,8 @@
 input::placeholder,
 textarea::placeholder {
   color: var(--color-mediumGrey);
-  font-weight: 400;
+  font-weight: var(--font-weight-default);
+  text-rendering: geometricPrecision;
 }
 
 input::autofill,
@@ -188,4 +188,8 @@ textarea::autofill {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
   }
+}
+
+.nds-input-icon--faded {
+  opacity: 0.5;
 }

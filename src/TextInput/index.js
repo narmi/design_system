@@ -14,6 +14,8 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
   const {
     startIcon,
     endIcon,
+    startContent,
+    endContent,
     showClearButton,
     formatter,
     multiline,
@@ -51,6 +53,8 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
       {...props}
       startIconClass={startIcon ? `narmi-icon-${startIcon}` : undefined}
       endIconClass={endIcon ? `narmi-icon-${endIcon}` : undefined}
+      startContent={startContent}
+      endContent={endContent}
       showClearButton={showClearButton && inputValue}
       clearInput={_onClearInput}
     >
@@ -110,6 +114,10 @@ TextInput.propTypes = {
   startIcon: PropTypes.oneOf(VALID_ICON_NAMES),
   /** Name of Narmi icon to place at the end of the input box */
   endIcon: PropTypes.oneOf(VALID_ICON_NAMES),
+  /** JSX content slot at input start for custom buttons and icons  */
+  startContent: PropTypes.node,
+  /** JSX content slot at input end for custom buttons and icons  */
+  endContent: PropTypes.node,
   /** Display an X at the end of label that clears input and calls onChange on click. Takes precedence over endIcon when input is not empty */
   showClearButton: PropTypes.bool,
   /** Text of error message to display under the input */

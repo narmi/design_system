@@ -76,7 +76,6 @@
     display: flex;
     font-size: 1.25em;
     padding: 0 0.3em 0 0;
-    opacity: 0.5;
   }
 
   label {
@@ -189,4 +188,8 @@ textarea::autofill {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
   }
+}
+
+.nds-input-icon--faded {
+  opacity: 0.5;
 }

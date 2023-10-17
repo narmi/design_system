@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.11.0](https://github.com/narmi/design_system/compare/v3.10.0...v3.11.0) (2023-10-17)
+
+
+### Features
+
+* **TextInput:** add startContent and endContent props for custom icons ([16d3ff7](https://github.com/narmi/design_system/commit/16d3ff77d375c4ed79030ed62942f64dc8699ba0))
+
 ## [3.10.0](https://github.com/narmi/design_system/compare/v3.9.1...v3.10.0) (2023-10-10)
 
 

@@ -77,12 +77,26 @@
   border-bottom: var(--border-size-m) solid var(--theme-primary);
 }
 
+.nds-dialog-header--banner {
+  background-color: var(--theme-primary);
+  color: white;
+  margin: 0 0;
+  padding: 0 var(--space-s) 0 var(--space-s);
+  @include atMediaUp("s") {
+    border-radius: var(--border-radius-m) var(--border-radius-m) 0 0;
+  }
+}
+
 .nds-dialog-closeButton {
   position: absolute;
   font-size: var(--font-size-l) !important;
   color: var(--font-color-primary);
   right: var(--space-m);
   top: var(--space-m);
+}
+
+.nds-dialog-closeButton--banner {
+  color: white !important;
 }
 
 .nds-dialog-header,

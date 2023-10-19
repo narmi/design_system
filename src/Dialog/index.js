@@ -42,6 +42,7 @@ const Dialog = ({
   const [isContentOverflowing, setIsContentOverflowing] = useState(false);
   const contentRef = useRef(null);
   const shimRef = useRef(null);
+  const isBanner = headerStyle === "banner";
   useLockBodyScroll(isOpen);
 
   // `rafSchd` uses `requestAnimationFrame` to schedule the state update
@@ -72,6 +73,20 @@ const Dialog = ({
     }
   };
 
+  const closeButtonJSX = (
+    <button
+      className={cc([
+        "resetButton",
+        "nds-dialog-closeButton",
+        { "nds-dialog-closeButton--banner": isBanner },
+      ])}
+      aria-label="close"
+      onClick={onUserDismiss}
+    >
+      <span className="narmi-icon-x"></span>
+    </button>
+  );
+
   // the shim has events for mouse users only; does not require a role
   /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
   const dialogJSX = (
@@ -89,14 +104,23 @@ const Dialog = ({
             <div
               className={`nds-dialog-header nds-dialog-header--${headerStyle}`}
             >
-              <h4 id="aria-dialog-label">{title}</h4>
-              <button
-                className="resetButton nds-dialog-closeButton"
-                aria-label="close"
-                onClick={onUserDismiss}
-              >
-                <span className="narmi-icon-x"></span>
-              </button>
+              {isBanner ? (
+                <div className="margin--y--s">
+                  <div
+                    className="padding--y--xxs"
+                    id="aria-dialog-label"
+                    style={{ textAlign: "center" }}
+                  >
+                    {title}
+                  </div>
+                  {closeButtonJSX}
+                </div>
+              ) : (
+                <>
+                  <h4 id="aria-dialog-label">{title}</h4>
+                  {closeButtonJSX}
+                </>
+              )}
             </div>
             <div
               ref={contentRef}
@@ -137,7 +161,7 @@ Dialog.propTypes = {
   /** Contents of Dialog footer, typically reserved for action buttons */
   footer: PropTypes.node,
   /** Visual style for Dialog header */
-  headerStyle: PropTypes.oneOf(["bordered", "plain"]),
+  headerStyle: PropTypes.oneOf(["bordered", "plain", "banner"]),
   /** Controls open/close state of the modal. Use the `onUserDismiss` callback to update. */
   isOpen: PropTypes.bool,
   /**

@@ -70,6 +70,45 @@ UsingWithState.parameters = {
     },
   },
 };
+export const BannerType = InteractiveTemplate.bind({});
+BannerType.args = {
+  title:
+    "This shows how the `title` will look like for the banner header style",
+  headerStyle: "banner",
+  width: "800px",
+  children: (
+    <>
+      <h4 className="margin--top--l">Lorem ipsum</h4>
+      <p>
+        Lorem ipsum dolor sit amet. Ea fugiat dolore quo possimus adipisci est
+        ipsum libero ab dolores minima ut facere rerum? Aut vitae sint ut nemo
+        nisi ut tempore voluptas. Eum adipisci quasi eum praesentium libero est
+        quidem consequatur At voluptatum debitis et laborum ducimus aut eaque
+        eligendi.
+      </p>
+      <p>
+        Ut alias eligendi ut dolorem eius rem consectetur ullam et natus nihil.
+        Et maiores dolores hic nesciunt quibusdam ut laboriosam earum qui quas
+        sapiente in molestiae accusantium.
+      </p>
+      <p>
+        Ut ducimus amet quo deleniti repellendus in illo eaque 33 nihil quis
+        eveniet deleniti qui sapiente quia At repellendus veritatis. Qui
+        voluptatem culpa et fugit debitis ut fugit quidem sit omnis deserunt qui
+        sequi placeat. Non voluptatem molestiae et explicabo voluptas ut facilis
+        quia?
+      </p>
+    </>
+  ),
+};
+BannerType.parameters = {
+  docs: {
+    description: {
+      story:
+        "Works the same way as above, but its title is a banner instead. Note that the width might need to be set to be larger than the default depending on the length of title.",
+    },
+  },
+};
 
 export const ScrollingContent = InteractiveTemplate.bind({});
 ScrollingContent.args = {

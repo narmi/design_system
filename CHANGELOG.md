@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.12.0](https://github.com/narmi/design_system/compare/v3.11.0...v3.12.0) (2023-10-19)
+
+
+### Features
+
+* **Dialog:** add `banner` header style ([f61bd58](https://github.com/narmi/design_system/commit/f61bd580c90b8d3401ec25c0701b3cbfbc67d323))
+
 ## [3.11.0](https://github.com/narmi/design_system/compare/v3.10.0...v3.11.0) (2023-10-17)
 
 

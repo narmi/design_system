@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.13.0](https://github.com/narmi/design_system/compare/v3.12.0...v3.13.0) (2023-10-21)
+
+
+### Features
+
+* **MenuButton:** add custom trigger and icon options ([721173d](https://github.com/narmi/design_system/commit/721173d696610846061c048f7021f185a760abb7))
+* **MenuButton:** add MenuButton component ([ed11c54](https://github.com/narmi/design_system/commit/ed11c54f1a05b56b1d6e3ea53999b71a3c7cbc3a))
+
 ## [3.12.0](https://github.com/narmi/design_system/compare/v3.11.0...v3.12.0) (2023-10-19)
 
 

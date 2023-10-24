@@ -15,7 +15,7 @@ module.exports = {
     alias: {
       src: path.join(__dirname, "src"),
     },
-    extensions: [".js", ".jsx"],
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
     preferRelative: true,
   },
   externals: {
@@ -45,12 +45,19 @@ module.exports = {
         {
           from: path.join(__dirname, "src/deprecations.json"),
           to: path.join(__dirname, "dist/deprecations.json"),
-        }
+        },
       ],
     }),
   ],
   module: {
     rules: [
+      {
+        test: /\.(ts|tsx)$/,
+        exclude: [/node_modules/],
+        use: {
+          loader: "ts-loader",
+        },
+      },
       {
         test: /\.(js|jsx)$/,
         exclude: [/node_modules/],

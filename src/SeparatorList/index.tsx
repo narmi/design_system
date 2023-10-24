@@ -1,11 +1,17 @@
 import React from "react";
-import PropTypes from "prop-types";
 import cc from "classcat";
+
+interface SeparatorListProps {
+  items: React.ReactNode[];
+  separator?: string;
+  noWrap?: boolean;
+  testId?: string;
+}
 
 /**
  * Takes a list of elements and places a visual separator between items.
  */
-const SeparatorList = ({
+const SeparatorList: React.FC<SeparatorListProps> = ({
   separator = "|",
   noWrap = false,
   items = [],
@@ -31,22 +37,5 @@ const SeparatorList = ({
     })}
   </ul>
 );
-
-SeparatorList.propTypes = {
-  /**
-   * Items to render in the list
-   */
-  items: PropTypes.arrayOf(PropTypes.node),
-  /**
-   * Character to use as separator between items
-   */
-  separator: PropTypes.string,
-  /**
-   * When `true`, the separator list will be forced to a single line
-   */
-  noWrap: PropTypes.bool,
-  /** Optional value for `data-testid` attribute */
-  testId: PropTypes.string,
-};
 
 export default SeparatorList;

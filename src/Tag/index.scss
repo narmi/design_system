@@ -2,9 +2,11 @@
   padding: 0 var(--space-s);
   border-radius: 16px;
   display: inline-flex;
+  justify-content: flex-start;
   align-items: center;
   font-size: var(--font-size-xs);
   height: 23px;
+  max-width: 100%;
   .narmi-icon-x {
     cursor: pointer;
     display: inline-block;

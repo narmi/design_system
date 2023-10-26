@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
-import Row from "../Row";
 
 const noop = () => {};
 
@@ -20,24 +19,20 @@ const Tag = ({
       className={cc(["nds-typography", "nds-tag", `nds-tag--${kind}`])}
       data-testid={testId}
     >
-      <Row alignItems="center" gapSize="xxs">
-        <Row.Item shrink>{label}</Row.Item>
-        {kind === "dismissible" && (
-          <Row.Item shrink>
-            <span
-              className="narmi-icon-x"
-              role="button"
-              tabIndex={0}
-              onClick={onDismiss}
-              onKeyUp={({ key }) => {
-                if (key === "Enter" || key == " ") {
-                  onDismiss();
-                }
-              }}
-            />
-          </Row.Item>
-        )}
-      </Row>
+      <div className="whiteSpace--truncate">{label}</div>
+      {kind === "dismissible" && (
+        <div
+          className="narmi-icon-x margin--left--xs"
+          role="button"
+          tabIndex={0}
+          onClick={onDismiss}
+          onKeyUp={({ key }) => {
+            if (key === "Enter" || key == " ") {
+              onDismiss();
+            }
+          }}
+        />
+      )}
     </div>
   );
 };

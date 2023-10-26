@@ -1,5 +1,5 @@
 module.exports = {
-  moduleFileExtensions: ["js", "json", "jsx", "vue"],
+  moduleFileExtensions: ["js", "json", "jsx", "ts", "tsx"],
   moduleDirectories: ["node_modules", "src"],
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: ["<rootDir>/setupTests.js"],

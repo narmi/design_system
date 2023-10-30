@@ -5,7 +5,10 @@ module.exports = {
     reactDocgen: "react-docgen-typescript-plugin",
   },
 
-  stories: ["../**/*.stories.@(mdx|js|jsx|ts|tsx)"],
+  stories: [
+    "../src/**/*.stories.@(mdx|js|jsx|ts|tsx)",
+    "../tokens/**/*.stories.@(mdx|js|jsx|ts|tsx)",
+  ],
 
   addons: [
     "@storybook/addon-essentials",

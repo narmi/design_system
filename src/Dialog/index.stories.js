@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import Dialog from "./";
 import Button from "../Button";
 import Popover from "../Popover";
-import { DialogLayout } from "../../.storybook/Layouts";
 
 const BaseTemplate = (args) => <Dialog {...args} />;
+
 const InteractiveTemplate = (args) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -176,11 +176,6 @@ FocusManagement.parameters = {
 export default {
   title: "Components/Dialog",
   component: Dialog,
-  parameters: {
-    docs: {
-      page: DialogLayout,
-    },
-  },
 };
 
 export const PopoverDialog = () => {

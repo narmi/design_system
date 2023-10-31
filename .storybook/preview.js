@@ -2,7 +2,6 @@ import React from "react";
 import "./story-styles.css";
 import "dist/style.css";
 import { NdsStyles } from "./decorators";
-import { Layout } from "./Layouts";
 import { docs } from "./theme/narmi";
 
 export const parameters = {
@@ -11,7 +10,6 @@ export const parameters = {
     "storybook/docs/panel": { index: -1 },
   },
   docs: {
-    page: () => <Layout />,
     theme: docs,
   },
   actions: {

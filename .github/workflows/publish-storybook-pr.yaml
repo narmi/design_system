@@ -1,0 +1,48 @@
+name: Publish Storybook (Chromatic build from PR)
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+jobs:
+  Chromatic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        run:
+          npm ci --loglevel=warn
+
+      - name: Publish to Chromatic
+        id: chromatic
+        uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+
+      - name: Comment storybook url in PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          debug: true
+          pr_number: ${{github.event.number}}
+          mode: recreate
+          comment_tag: execution
+          message: |+
+            ## 📘 Storybook Preview Available 👀
+
+            View the Storybook build from this PR in your browser:
+            ${{ steps.chromatic.outputs.storybookUrl }}
+
+            <sub>_(This action will publish a new comment and url if this PR is modified)_</sub>

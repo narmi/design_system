@@ -169,6 +169,7 @@ The best way to approach testing unpublished NDS changes in a consumer is to use
 **beta versions**.
 
 #### Publishing a beta version
+
 ⚠️ Only do this if absolutely necessary
 
 1. Rebuild NDS (`npm run build`)
@@ -185,8 +186,8 @@ If you need to make additional changes after the beta is published...
 2. Bump the beta version number in package.json (`2.36.0-beta.0` -> `2.36.0-beta.1`)
 3. Install the new beta version in your consuming application.
 
-----
+---
+
 ## License
 
 Source code is under a custom license based on MIT. The license restricts `@narmi/design_system` usage to applications that integrate or interoperate with Narmi software or services, with additional restrictions for external, stand-alone applications. Please see LICENSE.md for full details.
-

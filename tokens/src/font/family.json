@@ -1,8 +1,8 @@
 {
   "font": {
     "family": {
-      "heading": { "value": "'Narmi Matiere', serif" },
-      "body": { "value": "Mulish, Helvetica, sans-serif" },
+      "heading": { "value": "'Comic Sans MS', 'Comic Sans', cursive" },
+      "body": { "value": "'Comic Sans MS', 'Comic Sans', cursive" },
       "default": { "value": "{font.family.body.value}" }
     }
   }

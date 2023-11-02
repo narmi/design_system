@@ -1,9 +1,9 @@
 {
   "color": {
     "theme": {
-      "primary": { "value": "{color.narmi.pine.value}" },
-      "secondary": { "value": "{color.narmi.moss.value}" },
-      "tertiary": { "value": "{color.narmi.cactus.value}" },
+      "primary": { "value": "hotpink" },
+      "secondary": { "value": "lime" },
+      "tertiary": { "value": "cornflowerblue" },
       "link": { "value": "{color.theme.secondary.value}" }
     }
   }

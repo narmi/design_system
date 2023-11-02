@@ -1,10 +1,10 @@
 {
   "font": {
     "color": {
-      "heading": { "value": "{color.narmi.black.value}" },
-      "primary": { "value": "{color.narmi.grey.value}" },
-      "secondary": { "value": "#6c6c6c" },
-      "hint": { "value": "{color.narmi.lightGrey.value}" }
+      "heading": { "value": "red" },
+      "primary": { "value": "purple" },
+      "secondary": { "value": "green" },
+      "hint": { "value": "yellow" }
     }
   }
 }

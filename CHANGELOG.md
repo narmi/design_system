@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.13.2](https://github.com/narmi/design_system/compare/v3.13.1...v3.13.2) (2023-11-02)
+
+
+### Bug Fixes
+
+* **row:** set min-width on Row.Item ([76dca24](https://github.com/narmi/design_system/commit/76dca24da75cd6c0d55892d785ce996b9730a26d))
+
 ### [3.13.1](https://github.com/narmi/design_system/compare/v3.13.0...v3.13.1) (2023-10-26)
 
 

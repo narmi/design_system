@@ -9,6 +9,7 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:json/recommended",
+    "plugin:storybook/recommended",
   ],
   env: {
     node: true,

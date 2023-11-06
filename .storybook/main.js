@@ -1,13 +1,15 @@
 const path = require("path");
 
 module.exports = {
-  core: {
-    builder: "webpack5",
-  },
   typescript: {
     reactDocgen: "react-docgen-typescript-plugin",
   },
-  stories: ["../**/*.stories.@(mdx|js|jsx|ts|tsx)"],
+
+  stories: [
+    "../src/**/*.stories.@(mdx|js|jsx|ts|tsx)",
+    "../tokens/**/*.stories.@(mdx|js|jsx|ts|tsx)",
+  ],
+
   addons: [
     "@storybook/addon-essentials",
     "@storybook/addon-links",
@@ -16,7 +18,9 @@ module.exports = {
       name: "@storybook/addon-docs",
       options: { transcludeMarkdown: true },
     },
+    "@storybook/addon-mdx-gfm",
   ],
+
   webpackFinal: (config) => {
     config.resolve.alias = {
       src: path.resolve(__dirname, "../src"),
@@ -24,5 +28,14 @@ module.exports = {
       helpers: path.resolve(__dirname, "helpers"),
     };
     return config;
+  },
+
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {},
+  },
+
+  docs: {
+    autodocs: true,
   },
 };

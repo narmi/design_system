@@ -1,6 +1,6 @@
 import React from "react";
 import cc from "classcat";
-import { IconName } from "../";
+import { IconName } from "../../types";
 
 interface SeparatorListProps {
   items: React.ReactNode[];

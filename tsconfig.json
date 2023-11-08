@@ -1,21 +1,15 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
-    "target": "es5",
-    "allowJs": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist",
+    "target": "ES5",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "esModuleInterop": true,
-    "module": "es6",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+    "lib": ["es2015", "dom"],
     "jsx": "react-jsx",
-    "incremental": true,
-    "baseUrl": ".",
-    "downlevelIteration": true,
+    "sourceMap": true,
     "declaration": true
   },
   "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "dist", "types"]
+  "exclude": ["node_modules", "dist"]
 }

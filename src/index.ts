@@ -1,5 +1,7 @@
 require("./index.scss");
 
+export * from "../types";
+
 import Alert from "./Alert";
 import Button from "./Button";
 import Checkbox from "./Checkbox";

@@ -1,6 +1,7 @@
 import { resolve } from "path";
 import { readFileSync, writeFileSync } from "fs";
 
+// TODO: put icon type on a real component
 // TODO: Size types (font, space) from tokens (update dictionary)
 // TODO: NDS classes?
 

@@ -37,7 +37,10 @@ const MenuButton = ({
             className={cc([
               "nds-menubutton-trigger",
               "button--reset",
-              { "nds-menubutton-trigger--useHoverEffect": !trigger },
+              {
+                "nds-menubutton-trigger--useCssHover": !trigger,
+                "nds-menubutton-trigger--hovered": !trigger && isExpanded,
+              },
             ])}
           >
             <Row gapSize="xxs">

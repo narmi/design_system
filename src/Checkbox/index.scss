@@ -43,6 +43,7 @@
   align-items: flex-start;
   gap: var(--space-s);
 
+  .narmi-icon-minus,
   .narmi-icon-check {
     height: 18px;
     width: 18px;
@@ -70,11 +71,34 @@
   }
 
   // hover
+  .narmi-icon-minus:hover,
   .narmi-icon-check:hover {
     border-color: var(--theme-primary);
   }
 
+  // disabled states
+  &.nds-checkbox--disabled {
+    .narmi-icon-minus,
+    .narmi-icon-check,
+    .narmi-icon-minus:hover,
+    .narmi-icon-check:hover {
+      background-color: var(--font-color-hint);
+      border-color: var(--color-mediumGrey);
+    }
+
+    &.nds-checkbox--checked {
+      .narmi-icon-minus,
+      .narmi-icon-check,
+      .narmi-icon-minus:hover,
+      .narmi-icon-check:hover {
+        background-color: var(--color-mediumGrey);
+        border-color: var(--color-mediumGrey);
+      }
+    }
+  }
+
   // focused
+  &.nds-checkbox--focused .narmi-icon-minus,
   &.nds-checkbox--focused .narmi-icon-check {
     border-color: var(--theme-primary);
     outline: 3px solid RGBA(var(--theme-rgb-primary), var(--alpha-10));
@@ -82,6 +106,7 @@
 
   // checked
   &.nds-checkbox--checked {
+    .narmi-icon-minus,
     .narmi-icon-check {
       background-color: var(--theme-primary);
       border-color: var(--theme-primary);

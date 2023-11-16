@@ -50,6 +50,19 @@ ControllingVisibility.parameters = {
   },
 };
 
+export const WithoutDismiss = Template.bind({});
+WithoutDismiss.args = {
+  isActive: true,
+  kind: "error",
+  isDismissable: false,
+  children: (
+    <span>
+      The user can not dismiss this Alert when <code>isDismissable</code> is set
+      to <code>false</code>
+    </span>
+  ),
+};
+
 export default {
   title: "Components/Alert",
   component: Alert,

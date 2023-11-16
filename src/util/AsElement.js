@@ -23,6 +23,7 @@ export const VALID_ELEMENTS = [
   "h6",
   "button",
   "a",
+  "label",
 ];
 
 /**

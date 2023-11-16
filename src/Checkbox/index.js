@@ -2,8 +2,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
-import Error from "../Error";
 import ReactMarkdown from "react-markdown";
+import Error from "../Error";
 
 /**
  * Narmi styled checkbox with built-in label.
@@ -18,7 +18,6 @@ const Checkbox = ({
   checked,
   disabled = false,
   indeterminate = false,
-  size = "m",
   value,
   error,
   kind = "normal",
@@ -77,7 +76,6 @@ const Checkbox = ({
         className={cc([
           `nds-checkbox nds-checkbox--${kind}`,
           "fontWeight--default",
-          `nds-checkbox--${size}`,
           {
             "nds-checkbox--checked": isChecked || indeterminate,
             "nds-checkbox--disabled": disabled,
@@ -86,7 +84,15 @@ const Checkbox = ({
           },
         ])}
       >
-        <span className={cc(["narmi-icon-check", { error: !!error }])}></span>
+        <span
+          className={cc([
+            {
+              "narmi-icon-check": !indeterminate,
+              "narmi-icon-minus": indeterminate,
+              error: !!error,
+            },
+          ])}
+        ></span>
         <div className="nds-checkbox-label">
           {markdownLabel && (
             <ReactMarkdown components={{ a: LinkRenderer }}>
@@ -109,7 +115,6 @@ const Checkbox = ({
           data-testid={testId}
           {...rest}
           type="checkbox"
-          aria-label={label}
         />
       </label>
       <Error marginTop="xs" error={error} />
@@ -147,8 +152,6 @@ Checkbox.propTypes = {
    * Checkbox renders as disabled and ignores click/check events.
    */
   disabled: PropTypes.bool,
-  /** Size of checkbox */
-  size: PropTypes.oneOf(["s", "m"]),
   /** Sets the `value` attribute of the `input` */
   value: PropTypes.string,
   /** Text of error message to display under the checkbox */
@@ -160,7 +163,7 @@ Checkbox.propTypes = {
    *
    * `card` - visually present as a toggleable card
    */
-  kind: PropTypes.oneOf(["normal", "card"]),
+  kind: PropTypes.oneOf(["normal", "card", "table"]),
 };
 
 export default Checkbox;

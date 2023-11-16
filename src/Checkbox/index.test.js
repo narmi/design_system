@@ -5,7 +5,7 @@ import Checkbox from "./";
 const LABEL = "test input";
 
 const getElements = () => ({
-  label: screen.getByText(LABEL).parentElement,
+  label: screen.getByText(LABEL).closest("label"),
   input: screen.getByLabelText(LABEL),
 });
 
@@ -91,7 +91,7 @@ describe("Checkbox", () => {
   });
 
   it("renders markdown when `markdownLabel` prop is set", () => {
-    render(<Checkbox markdownLabel="[Google](https://www.google.com/)"/>);
+    render(<Checkbox markdownLabel="[Google](https://www.google.com/)" />);
     const a = screen.getByText("Google");
     expect(a.tagName).toBe("A");
   });

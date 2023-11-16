@@ -52,18 +52,33 @@ AsCard.parameters = {
   },
 };
 
+export const TableCheckbox = Template.bind({});
+TableCheckbox.args = {
+  kind: "table",
+  name: "table_kind",
+  label: "Select row",
+};
+TableCheckbox.parameters = {
+  docs: {
+    description: {
+      story: "Checkbox used in table row selection",
+    },
+  },
+};
+
 export const Markdown = Template.bind({});
 Markdown.args = {
-  markdownLabel: "I agree to receive spam from [google](https://www.google.com/)",
+  markdownLabel:
+    "I agree to receive spam from [google](https://www.google.com/)",
   name: "spam",
 };
 Markdown.parameters = {
   docs: {
     description: {
-      story: "Renders markdown when markdownLabel prop is set"
-    }
-  }
-}
+      story: "Renders markdown when markdownLabel prop is set",
+    },
+  },
+};
 
 export default {
   title: "Components/Checkbox",

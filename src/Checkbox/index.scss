@@ -21,14 +21,7 @@
   font-size: var(--font-size-default);
 
   input {
-    cursor: pointer;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
+    @extend %a11y-visually-hide;
   }
 
   a:hover {
@@ -36,7 +29,11 @@
   }
 }
 
-.nds-checkbox--normal {
+/**
+* kind="normal|table"
+*/
+.nds-checkbox--normal,
+.nds-checkbox--table {
   display: flex;
   width: fit-content;
   position: relative;
@@ -47,24 +44,18 @@
   .narmi-icon-check {
     height: 18px;
     width: 18px;
-
-    // - prevent this flex item from shrinking to checkmark width
-    // - visually align checkbox icon baseline with label baseline
-    flex-shrink: 0;
-    transform: translateY(1px);
-
+    line-height: 18px;
+    font-size: 15px;
     background-color: white;
     font-weight: bold;
     border-radius: 3px;
     border: 1px solid var(--color-lightGrey);
     color: white;
-    font-size: 15px;
     text-align: center;
-    line-height: 18px;
     box-sizing: content-box;
-    &:after {
-      color: red;
-    }
+    // - prevent this flex item from shrinking to checkmark width
+    // - visually align checkbox icon baseline with label baseline
+    flex-shrink: 0;
     &.error {
       border: 1px solid var(--color-errorDark);
     }
@@ -84,6 +75,9 @@
     .narmi-icon-check:hover {
       background-color: var(--font-color-hint);
       border-color: var(--color-mediumGrey);
+      &::before {
+        color: transparent;
+      }
     }
 
     &.nds-checkbox--checked {
@@ -93,6 +87,9 @@
       .narmi-icon-check:hover {
         background-color: var(--color-mediumGrey);
         border-color: var(--color-mediumGrey);
+        &::before {
+          color: var(--color-white);
+        }
       }
     }
   }
@@ -117,6 +114,47 @@
   }
 }
 
+/**
+* kind="table
+*/
+.nds-checkbox--table {
+  .narmi-icon-minus,
+  .narmi-icon-check {
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+    font-size: 12px;
+  }
+
+  .nds-checkbox-label {
+    // hide the label for this variant of checkbox,
+    // but make it available to screen readers
+    @extend %a11y-visually-hide;
+  }
+
+  // hover state
+  .narmi-icon-minus:hover,
+  .narmi-icon-check:hover {
+    outline: unset !important; // override focus indicator when hovering
+
+    &::after {
+      content: " ";
+      border-radius: 50%;
+      height: 32px;
+      width: 32px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(var(--theme-rgb-primary), var(--alpha-10));
+      z-index: -1; // make the circle appear behind the checkbox
+    }
+  }
+}
+
+/**
+* kind="card"
+*/
 .nds-checkbox--card {
   position: relative;
   display: flex;

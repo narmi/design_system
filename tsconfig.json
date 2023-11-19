@@ -1,13 +1,11 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/types",
-    "target": "es5",
+    "outFile": "./dist/types/index",
+    "target": "ES5",
     "allowJs": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
-    "module": "es6",
-    "moduleResolution": "node",
+    "module": "ES6",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "emitDeclarationOnly": true,

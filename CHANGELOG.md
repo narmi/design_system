@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.14.1](https://github.com/narmi/design_system/compare/v3.14.0...v3.14.1) (2023-11-22)
+
+
+### Bug Fixes
+
+* **MenuButton:** set default z-index for reach-ui portals ([397841c](https://github.com/narmi/design_system/commit/397841c722642dafcf7ec85becea071c5d49670b))
+
 ## [3.14.0](https://github.com/narmi/design_system/compare/v3.13.3...v3.14.0) (2023-11-22)
 
 

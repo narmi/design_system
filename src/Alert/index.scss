@@ -9,6 +9,12 @@
 .nds-alert--error {
   background-color: var(--color-errorLight);
 
+  // Rotating the info icon until we have a "!" icon
+  .nds-alert-icon {
+    display: inline-block;
+    transform: rotate(180deg);
+  }
+
   .nds-alert-icon::before {
     color: var(--color-errorDark);
   }

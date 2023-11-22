@@ -1,20 +1,14 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
+    "outFile": "./dist/types/index",
     "target": "es5",
     "allowJs": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
-    "module": "es6",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "jsx": "react-jsx",
-    "incremental": true,
-    "baseUrl": ".",
-    "downlevelIteration": true,
-    "declaration": true
+    "declaration": true,
+    "emitDeclarationOnly": true
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist"]

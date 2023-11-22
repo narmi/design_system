@@ -6,6 +6,7 @@
   "files": [
     "dist/*"
   ],
+  "types": "dist/types/index.d.ts",
   "engineStrict": true,
   "engines": {
     "node": ">=18"

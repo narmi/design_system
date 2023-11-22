@@ -1,15 +1,24 @@
+%trigger-hover {
+  color: var(--theme-primary);
+  background-color: rgba(var(--theme-rgb-primary), var(--alpha-5));
+  text-decoration: none;
+}
+
 .nds-menubutton-trigger {
   color: var(--font-color-secondary);
   border-radius: var(--border-radius-s);
 
-  &--useHoverEffect {
+  &--useCssHover {
     &:focus button,
     &:hover,
     &:active {
-      color: var(--theme-primary);
-      background-color: rgba(var(--theme-rgb-primary), var(--alpha-5));
-      text-decoration: none;
+      @extend %trigger-hover;
     }
+  }
+
+  // forces hover effect when menu is open
+  &--hovered {
+    @extend %trigger-hover;
   }
 }
 
@@ -27,7 +36,7 @@
 [data-reach-menu-popover] {
   display: block;
   position: absolute;
-  z-index: 2;
+  z-index: 3;
 }
 
 [data-reach-menu-popover][hidden] {

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.13.3](https://github.com/narmi/design_system/compare/v3.13.2...v3.13.3) (2023-11-16)
+
+
+### Bug Fixes
+
+* **MenuButton:** use hover effect on icon trigger when menu is open ([1cc04c8](https://github.com/narmi/design_system/commit/1cc04c8b64e65fd43e2a4f78524f74af86b8dab3))
+
 ### [3.13.2](https://github.com/narmi/design_system/compare/v3.13.1...v3.13.2) (2023-11-02)
 
 

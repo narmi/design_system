@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.14.0](https://github.com/narmi/design_system/compare/v3.13.3...v3.14.0) (2023-11-22)
+
+
+### Features
+
+* **Alert:** add Alert component ([f5ae67f](https://github.com/narmi/design_system/commit/f5ae67f11d8d4a0d8e9edaa5d6c760cf34e17624))
+
 ### [3.13.3](https://github.com/narmi/design_system/compare/v3.13.2...v3.13.3) (2023-11-16)
 
 

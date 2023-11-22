@@ -1,13 +1,11 @@
 import React from "react";
 import cc from "classcat";
-import { IconName } from "../types/Icon.types";
 
 interface SeparatorListProps {
   items: React.ReactNode[];
   separator?: string;
   noWrap?: boolean;
   testId?: string;
-  icon?: IconName;
 }
 
 /**
@@ -18,7 +16,6 @@ const SeparatorList: React.FC<SeparatorListProps> = ({
   noWrap = false,
   items = [],
   testId,
-  icon,
 }) => (
   <ul
     className={cc([
@@ -34,7 +31,7 @@ const SeparatorList: React.FC<SeparatorListProps> = ({
       }
       return (
         <li key={`${i}-${separator}`} {...itemProps}>
-          {item} {icon}
+          {item}
         </li>
       );
     })}

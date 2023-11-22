@@ -1,5 +1,6 @@
 require("./index.scss");
 
+import Alert from "./Alert";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
 import ContentCard from "./ContentCard";
@@ -37,6 +38,7 @@ import formatNumber from "./formatters/formatNumber";
 import formatDate from "./formatters/formatDate";
 
 export {
+  Alert,
   Button,
   Checkbox,
   ContentCard,

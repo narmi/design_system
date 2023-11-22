@@ -1,0 +1,37 @@
+.nds-alert {
+  color: var(--font-color-primary);
+}
+
+.nds-alert-icon::before {
+  font-weight: bold;
+}
+
+.nds-alert--error {
+  background-color: var(--color-errorLight);
+
+  // Rotating the info icon until we have a "!" icon
+  .nds-alert-icon {
+    display: inline-block;
+    transform: rotate(180deg);
+  }
+
+  .nds-alert-icon::before {
+    color: var(--color-errorDark);
+  }
+}
+
+.nds-alert--info {
+  background-color: var(--color-warnLight);
+
+  .nds-alert-icon::before {
+    color: var(--color-warnDark);
+  }
+}
+
+.nds-alert--success {
+  background-color: var(--color-successLight);
+
+  .nds-alert-icon::before {
+    color: var(--color-successDark);
+  }
+}

@@ -46,7 +46,8 @@
 
   // the modal dialog takes over the whole screen by default
   // (small veiwports)
-  height: 100vh;
+  height: 100vh; // fall back to 100vh for older mobile browsers
+  height: 100dvh; // prevents toolbar overlap in modern mobile browsers
   width: 100vw;
 
   // for tablet or larger, display the modal dialog as a floating box.

@@ -4,6 +4,18 @@
   padding-top: var(--space-s);
 }
 
+// normal checkboxes git a bit of extra spacing
+.nds-checkbox-container--normal ~ .nds-checkbox-container--normal {
+  margin-top: var(--space-default);
+}
+
+// reset paragraph spacing in markdown labels
+.nds-checkbox-label p {
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
 .nds-checkbox {
   cursor: pointer;
   font-size: var(--font-size-default);
@@ -28,14 +40,18 @@
   display: flex;
   width: fit-content;
   position: relative;
-  align-items: center;
-  padding-left: 28px;
+  align-items: flex-start;
+  gap: var(--space-s);
 
   .narmi-icon-check {
-    position: absolute;
-    left: 0;
     height: 18px;
     width: 18px;
+
+    // - prevent this flex item from shrinking to checkmark width
+    // - visually align checkbox icon baseline with label baseline
+    flex-shrink: 0;
+    transform: translateY(1px);
+
     background-color: white;
     font-weight: bold;
     border-radius: 3px;
@@ -79,11 +95,16 @@
 .nds-checkbox--card {
   position: relative;
   display: flex;
+  flex-direction: row-reverse; // check should render on the right side
   align-items: center;
   justify-content: space-between;
   background-color: var(--color-white);
   color: var(--color-primary);
   font-weight: var(--font-weight-bold) !important;
+
+  .nds-checkbox-label {
+    flex-grow: 1;
+  }
 
   .narmi-icon-check {
     display: none;
@@ -101,7 +122,6 @@
 
   &.nds-checkbox--checked {
     .narmi-icon-check {
-      margin-left: var(--space-default);
       display: inline-flex;
       align-items: center;
       justify-content: center;

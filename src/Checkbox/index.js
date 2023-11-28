@@ -35,12 +35,12 @@ const Checkbox = ({
         {children}
       </a>
     );
-  }
+  };
 
   LinkRenderer.propTypes = {
     href: PropTypes.string.isRequired,
     children: PropTypes.array.isRequired,
-  }
+  };
 
   useEffect(() => {
     if (isControlled) {
@@ -64,7 +64,7 @@ const Checkbox = ({
   };
 
   return (
-    <div className="nds-checkbox-container">
+    <div className={`nds-checkbox-container nds-checkbox-container--${kind}`}>
       <label
         className={cc([
           `nds-checkbox nds-checkbox--${kind}`,
@@ -72,20 +72,19 @@ const Checkbox = ({
           {
             "nds-checkbox--checked": isChecked,
             "nds-checkbox--focused": isFocused,
-            "padding--all rounded--all border--all": isCard,
+            "padding--y--xl padding--x rounded--all border--all": isCard,
           },
         ])}
       >
-        {markdownLabel &&
-          <ReactMarkdown components={{ a: LinkRenderer }}>
-            {markdownLabel}
-          </ReactMarkdown>
-        }
-        {!markdownLabel &&
-          <p>
-            {label}
-          </p>
-        }
+        <span className={cc(["narmi-icon-check", { error: !!error }])}></span>
+        <div className="nds-checkbox-label">
+          {markdownLabel && (
+            <ReactMarkdown components={{ a: LinkRenderer }}>
+              {markdownLabel}
+            </ReactMarkdown>
+          )}
+          {!markdownLabel && <>{label}</>}
+        </div>
         <input
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -100,12 +99,6 @@ const Checkbox = ({
           type="checkbox"
           aria-label={label}
         />
-        <span
-          className={cc([
-            "narmi-icon-check",
-            { "error": !!error },
-          ])}
-        ></span>
       </label>
       <Error marginTop="xs" error={error} />
     </div>

@@ -4,6 +4,33 @@ import PropTypes from "prop-types";
 import { useLayer } from "react-laag";
 import FocusLock from "react-focus-lock";
 
+interface PopoverProps {
+  /** The root node of JSX passed into Tooltip as children will act as the tooltip trigger */
+  children: React.ReactNode;
+  /** Content of popover */
+  content: React.ReactNode;
+  /** Sets prefferred side of the trigger the tooltip should appear */
+  side?: "top" | "right" | "bottom" | "left";
+  /** Sets preferred alignment of the tooltip relative to the trigger */
+  alignment?: "start" | "center" | "end";
+  /** CSS `display` value for the element that wraps the Tooltip children */
+  wrapperDisplay?: "inline-flex" | "inline-block" | "inline" | "block" | "flex";
+  /** Distance of Popover from trigger element in number of pixels */
+  offset?: number;
+  /** When `true`, the Popover container will match the width of its triggering element */
+  matchTriggerWidth?: boolean;
+  /**
+   * By default, the Popover will automatically reposition itself to avoid viewport edges.
+   * Setting this prop to `true` will disable this behavior so that the Popover will
+   * always be placed on the given `side` prop.
+   */
+  disableAutoPlacement?: boolean;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+  /** Close the popover if the User clicks on the content */
+  closeOnContentClick?: boolean;
+}
+
 /**
  * Generic Popover component. Renders a floating element that can contain any content,
  * positioned relatively to its triggering element.
@@ -26,12 +53,15 @@ const Popover = ({
   matchTriggerWidth = false,
   testId,
   closeOnContentClick = false,
-}) => {
+}: PopoverProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const popoverContent = closeOnContentClick
-    ? React.cloneElement(content, {
+    ? // @ts-expect-error content should be assignable to ReactNode here
+      React.cloneElement(content, {
         onClick: () => {
+          // @ts-expect-error this onClick accesses ReactNode's props
           if (content.onClick) {
+            // @ts-expect-error this onClick accesses ReactNode's props
             content.onClick();
           }
           setIsOpen(false);
@@ -94,10 +124,10 @@ const Popover = ({
         onClick={togglePopover}
         onKeyDown={handleKeyDown}
         role="button"
-        tabIndex="0"
+        tabIndex={0}
         data-testid="nds-popover-trigger"
         aria-haspopup="true"
-        aria-expanded={isOpen.toString()}
+        aria-expanded={isOpen}
       >
         {children}
       </div>

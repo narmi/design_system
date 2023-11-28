@@ -4,16 +4,39 @@ import cc from "classcat";
 
 const noop = () => {};
 
+interface TagProps {
+  /** Variant of Tag */
+  kind?:
+    | "subdued"
+    | "subdued-secondary"
+    | "dismissible"
+    | "outline"
+    | "success"
+    | "warn"
+    | "error";
+  /**
+   * Callback for user dismissal action
+   * (only applicable for `dismissable` kind)
+   */
+  onDismiss?(...args: unknown[]): unknown;
+  /** Label text of tag */
+  label?: string;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+}
+
 /**
  * A rounded rectangle inline label.
  * The user has the option of firing a callback for 'dismissible' Tags.
  */
 const Tag = ({
-  kind = "subdued", // outline, subdued, x-tag (cactus400) #7fbc5b; #7FBC5B oneof
+  // outline, subdued, x-tag (cactus400) #7fbc5b; #7FBC5B oneof
+  kind = "subdued",
+
   onDismiss = noop,
   label,
   testId,
-}) => {
+}: TagProps) => {
   return (
     <div
       className={cc(["nds-typography", "nds-tag", `nds-tag--${kind}`])}

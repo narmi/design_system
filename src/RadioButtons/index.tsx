@@ -2,6 +2,36 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 
+interface RadioButtonsProps {
+  /** Map of label strings to input values */
+  options?: object;
+  /** name of radiogroup */
+  name?: string;
+  /** initially selected option by input value (uncontrolled) */
+  initialValue?: string;
+  /**
+   * selected option by input value (fully controlled)
+   * When passing a `value` prop, you must use the `onChange`
+   * hanlder to update the `value`
+   */
+  value?: string;
+  /** change callback invoked with input value */
+  onChange?(...args: unknown[]): unknown;
+  /**
+   * `normal` - display input and label normally
+   *
+   * `card` - display input and label as a toggleable card
+   */
+  kind?: "normal" | "card";
+  /**
+   * Error message. When passed, the `error` prop will
+   * render the radio group in an error state.
+   */
+  error?: string;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+}
+
 /**
 The Narmi RadioButtons component expects an "options" Prop, which is an object where the keys are the radiobutton
 labels and the values are the radiobutton values. An "initialvalue" Prop can be passed to set a default checked
@@ -21,7 +51,7 @@ const RadioButtons = ({
   testId,
   error,
   ...containerProps
-}) => {
+}: RadioButtonsProps) => {
   const isControlled = value !== undefined;
   const hasError = error !== undefined && error.length > 0;
   const [checkedValue, setCheckedValue] = useState(
@@ -107,7 +137,7 @@ RadioButtons.propTypes = {
   /** name of radiogroup */
   name: PropTypes.string,
   /** initially selected option by input value (uncontrolled) */
-  initialValue: PropTypes.any,
+  initialValue: PropTypes.string,
   /**
    * selected option by input value (fully controlled)
    * When passing a `value` prop, you must use the `onChange`

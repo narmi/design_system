@@ -8,6 +8,44 @@ import useLockBodyScroll from "../hooks/useLockBodyScroll";
 
 const noop = () => {};
 
+interface DrawerProps {
+  /** Scrollable contents of the Drawer */
+  children: React.ReactNode;
+  /** Controls open/close state of the modal. Use the `onUserDismiss` callback to update. */
+  isOpen?: boolean;
+  /**
+   * Callback to handle user taking an action to dismiss the modal
+   * (click outside, Escape key, click close button)
+   */
+  onUserDismiss?(...args: unknown[]): unknown;
+  /**
+   * Callback to handle user taking an action to go to the next element
+   * (click on the next arrow, right/down arrow key)
+   */
+  onNext?(...args: unknown[]): unknown;
+  /**
+   * Callback to handle user taking an action to go to the previous element
+   * (click on the previous arrow, left/up arrow key)
+   */
+  onPrev?(...args: unknown[]): unknown;
+  /**
+   * Sets how far the drawer opens out (width or height).
+   * Use the full CSS value with the percentage (e.g. `"400px"` or `"70%"`)
+   */
+  depth?: string;
+  /**
+   * Determines whether the next and prev buttons show.
+   */
+  showControls?: boolean;
+  /**
+   * Sets the position from which the drawers open.
+   * Valid values are `right`, `left`, `bottom`, `top`.
+   */
+  position?: "right" | "left" | "top" | "bottom";
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+}
+
 /**
  * Renders an animated drawer dialog with an overlay that
  * allows navigation between multiple contents
@@ -25,7 +63,7 @@ const Drawer = ({
   position = "right",
   depth = "70%",
   testId,
-}) => {
+}: DrawerProps) => {
   const shimRef = useRef(null);
   const navRef = useRef(null);
 

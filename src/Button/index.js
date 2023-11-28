@@ -87,7 +87,7 @@ const Button = ({
             />
           </div>
         )}
-        <div style={{visibility: isLoading ? "hidden" : "visible"}}>
+        <div style={{ visibility: isLoading ? "hidden" : "visible" }}>
           <Row gapSize="s" alignItems="center">
             {startIcon && (
               <Row.Item shrink>

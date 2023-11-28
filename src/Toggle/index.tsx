@@ -2,6 +2,32 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 
+interface ToggleProps {
+  /**
+   * Callback invoked with current active state (bool) as the function argument
+   * when user changes the active state of the Toggle
+   */
+  onChange?(...args: unknown[]): unknown;
+  /** When set to `true`, the toggle will initially render as active */
+  defaultActive?: boolean;
+  /**
+   * Sets active state of toggle; makes the component fully controlled.
+   * When using `isActive` you **must** use the `onChange` callback
+   * to update the active state of the toggle.
+   */
+  isActive?: boolean;
+  /** Label element to render to the right of the toggle */
+  label?: string;
+  /** ID of element that labels the toggle control (e.g. `my-label-element`)*/
+  labelledBy?: string;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+  /** Label for enabled state. Not displayed, used for screen readers. */
+  enabledLabel?: string;
+  /** Label for disabled state. Not displayed, used for screen readers. */
+  disabledLabel?: string;
+}
+
 /**
  * Checkbox behavior with the visual treatment of a physical toggle switch.
  */
@@ -14,7 +40,7 @@ const Toggle = ({
   testId,
   enabledLabel = "on",
   disabledLabel = "off",
-}) => {
+}: ToggleProps) => {
   const isControlled = isActive !== undefined;
   const [isActiveInternal, setIsActiveInternal] = useState(
     isControlled ? isActive : defaultActive || false
@@ -34,6 +60,7 @@ const Toggle = ({
   };
 
   const buttonJsx = (
+    // @ts-expect-error `aria-checked` should be on this button
     <button
       className={cc([
         "resetButton",

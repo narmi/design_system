@@ -57,6 +57,33 @@ export const _getAttributes = (
   };
 };
 
+interface PaginationProps {
+  /**
+   * Total number of pages
+   * If the number of pages is 1, pagination will not render
+   */
+  totalPages: number;
+  /**
+   * Default selected page by page number (uncontrolled)
+   */
+  defaultSelectedPage?: number;
+  /**
+   * Selected page by page number (controlled).
+   * In fully controlled mode, you **must** define an `onPageChange`
+   * handler to update the value of the `selectedPage` prop.
+   */
+  selectedPage?: number;
+  /**
+   * Callback invoked when user selects a new page via page numbers or
+   * previous/next arrows.
+   *
+   * Invoked with selected page number as the argument.
+   */
+  onPageChange?(...args: unknown[]): unknown;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+}
+
 /**
  * Component that allows users to navigate between pages of information.
  * Your application is responsible for setting the total number of pages and
@@ -73,7 +100,7 @@ const Pagination = ({
   defaultSelectedPage = 1,
   selectedPage: selectedPageControlled,
   testId,
-}) => {
+}: PaginationProps) => {
   const isControlled = selectedPageControlled !== undefined;
   const [selectedPage, setSelectedPage] = useState(defaultSelectedPage);
   const [paginationAttributes, setPaginationAttributes] = useState(
@@ -197,7 +224,6 @@ const Pagination = ({
                   }
                 }}
                 aria-label={`Page ${page}`}
-                aria-current={i === selectedIndex && "page"}
               >
                 {page.toString()}
               </span>

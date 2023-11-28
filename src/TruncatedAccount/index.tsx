@@ -1,12 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+interface TruncatedAccountProps {
+  /** Name of account */
+  name: string;
+  /** Last four digits of account number */
+  lastFour?: string | number;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+}
+
 /**
  * Auto-truncated display of account name and account last four digits.
  * This component will grow to the width of its parent container.
  * The account name will truncate with ellipsis as needed to fit the space.
  */
-const TruncatedAccount = ({ name, lastFour }) => (
+const TruncatedAccount = ({ name, lastFour }: TruncatedAccountProps) => (
   <span className="nds-truncatedAccount" title={`${name} - ${lastFour}`}>
     <span className="whiteSpace--truncate">{name}</span>
     {lastFour && (

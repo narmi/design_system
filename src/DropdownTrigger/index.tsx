@@ -2,6 +2,31 @@ import React from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 
+interface DropdownTriggerProps {
+  /** Set this to `true` when the associated popup is open */
+  isOpen?: boolean;
+  /** Set to `false` to hide the chevron icon indicating open state */
+  showOpenIndicator?: boolean;
+  /** Text of `label` element */
+  labelText?: string;
+  /** Props to spread onto the `label` element */
+  labelProps?: object;
+  /**
+   * Renders a string or node as the value displayed in the `DropdownTrigger`
+   * Usually, this represents the name of a selected option
+   */
+  displayValue?: string | React.ReactNode;
+  /** Error message. When this prop is passed, an error state is dsiplayed */
+  errorText?: string;
+  /**
+   * Sets a mimimum width.
+   * Use the full CSS value with the unit (e.g. "400px")
+   */
+  minWidth?: string;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+}
+
 /**
  * Generic trigger button for dropdowns. `DropdownTrigger` can be composed with
  * other components like `Popover` to create a wide range of dropdown, popover, and menu components.
@@ -10,7 +35,7 @@ import cc from "classcat";
  *
  *  **Additional props will be spread on the `button` element.**
  */
-const DropdownTrigger = React.forwardRef(
+const DropdownTrigger = React.forwardRef<HTMLElement, DropdownTriggerProps>(
   (
     {
       isOpen = false,
@@ -28,6 +53,7 @@ const DropdownTrigger = React.forwardRef(
     <>
       <div className="nds-dropdownTrigger" style={{ minWidth }}>
         <button
+          // @ts-expect-error fix for React 18
           ref={ref}
           data-testid={testId || "dropdownTriggerButton"}
           className={cc([
@@ -48,7 +74,9 @@ const DropdownTrigger = React.forwardRef(
               {labelText}
             </label>
           )}
-          {displayValue && <span className="nds-dropdownTrigger-value">{displayValue}</span>}
+          {displayValue && (
+            <span className="nds-dropdownTrigger-value">{displayValue}</span>
+          )}
           {showOpenIndicator && (
             <span
               role="img"
@@ -87,7 +115,7 @@ DropdownTrigger.propTypes = {
    * Renders a string or node as the value displayed in the `DropdownTrigger`
    * Usually, this represents the name of a selected option
    */
-  displayValue: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  displayValue: PropTypes.any,
   /** Error message. When this prop is passed, an error state is dsiplayed */
   errorText: PropTypes.string,
   /**

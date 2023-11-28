@@ -42,6 +42,6 @@ Spinner.propTypes = {
    * CSS color value
    */
   color: PropTypes.string,
-}
+};
 
 export default Spinner;

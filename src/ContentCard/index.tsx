@@ -2,6 +2,45 @@ import cc from "classcat";
 import PropTypes from "prop-types";
 import React from "react";
 
+interface ContentCardProps {
+  /** Accepts any content as children */
+  children: React.ReactNode | React.ReactNode[];
+  /**
+   * Amount of padding to add on all sides of card.
+   * For custom padding control, use `none` and compose your own element(s)
+   * in ContentCard children.
+   */
+  paddingSize?: "xs" | "s" | "m" | "l" | "xl" | "none";
+  /**
+   * Kind of card to render.
+   *
+   * `plain`: flat, rounded rect
+   *
+   * `elevated`: rounded rect with shadow
+   *
+   * `interactive`: rounded rect with border, hover styles, and click handler
+   *
+   * `bordered`: flat, rounded rect with border
+   */
+  kind?: "plain" | "elevated" | "interactive" | "bordered";
+  /**
+   * Amount of border radius to add on all sides of card.
+   */
+  radiusSize?: "s" | "m" | "l";
+  /**
+   * Only valid for `interactive` card type.
+   * Callback for card click event.
+   */
+  onClick?(...args: unknown[]): unknown;
+  /**
+   * Only applicable for `interactive` type.
+   * Renders card in visually selected state with appropriate attributes.
+   */
+  isSelected?: boolean;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+}
+
 /**
  * Narmi style content containers, with support for rendering as an interactive button.
  */
@@ -13,14 +52,14 @@ const ContentCard = ({
   children,
   testId,
   radiusSize = "s",
-}) => {
+}: ContentCardProps) => {
   const isInteractive = kind === "interactive";
 
   return (
     <div
       data-testid={testId || "ndsContentCard"}
       role={isInteractive ? "button" : undefined}
-      tabIndex={isInteractive ? "0" : undefined}
+      tabIndex={isInteractive ? 0 : undefined}
       aria-pressed={isInteractive ? isSelected : undefined}
       onClick={isInteractive ? onClick : undefined}
       onKeyUp={

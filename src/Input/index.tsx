@@ -3,6 +3,29 @@ import React from "react";
 import PropTypes from "prop-types";
 import Error from "../Error";
 
+interface InputProps {
+  id?: string;
+  label?: string;
+  /** full `narmi-icon-<shape>` className for icon at start of input */
+  startIconClass?: string;
+  /** full `narmi-icon-<shape>` className for icon at end of input */
+  endIconClass?: string;
+  /** arbitrary JSX to place at the start of the input */
+  startContent?: React.ReactNode;
+  /** arbitrary JSX to place at the end of the input */
+  endContent?: React.ReactNode;
+  showClearButton?: boolean;
+  clearInput?(...args: unknown[]): unknown;
+  decoration?: React.ReactNode | React.ReactElement;
+  multiline?: boolean;
+  disabled?: boolean;
+  search?: boolean;
+  onClick?(...args: unknown[]): unknown;
+  style?: object;
+  error?: string;
+  children?: React.ReactNode | React.ReactNode[];
+}
+
 /*
 The Narmi TextInput component is designed for text-based form fields.
 
@@ -35,12 +58,11 @@ const Input = ({
   onClick,
   style,
   children,
-  ...props
-}) => {
+}: InputProps) => {
   const className = [
     "nds-input",
     disabled ? "disabled" : "",
-    props.multiline ? "multiline" : "",
+    multiline ? "multiline" : "",
     error ? "error" : "",
     search ? "search" : "",
   ].join(" ");
@@ -50,7 +72,7 @@ const Input = ({
       className={`nds-input-icon nds-input-close narmi-icon-x`}
       onClick={clearInput}
       role="button"
-      tabIndex="0"
+      tabIndex={0}
       aria-label="Clear Input"
     ></div>
   ) : (

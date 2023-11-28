@@ -23,6 +23,31 @@ const getIsContentTooLong = (contentRef) => {
   return result;
 };
 
+interface DialogProps {
+  /** Scrollable contents of the Dialog */
+  children: React.ReactNode;
+  /** Heading in the top of the Dialog */
+  title: string;
+  /** Contents of Dialog footer, typically reserved for action buttons */
+  footer?: React.ReactNode;
+  /** Visual style for Dialog header */
+  headerStyle?: "bordered" | "plain" | "banner";
+  /** Controls open/close state of the modal. Use the `onUserDismiss` callback to update. */
+  isOpen?: boolean;
+  /**
+   * Callback to handle user taking an action to dismiss the modal
+   * (click outside, Escape key, click close button)
+   */
+  onUserDismiss?(...args: unknown[]): unknown;
+  /**
+   * Sets a custom modal width.
+   * Use the full CSS value with the unit (e.g. "400px")
+   */
+  width?: string;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+}
+
 /**
  * Renders a centered modal dialog with an overlay
  *
@@ -38,7 +63,7 @@ const Dialog = ({
   footer,
   width = "500px",
   testId,
-}) => {
+}: DialogProps) => {
   const [isContentOverflowing, setIsContentOverflowing] = useState(false);
   const contentRef = useRef(null);
   const shimRef = useRef(null);
@@ -98,6 +123,7 @@ const Dialog = ({
             aria-labelledby="aria-dialog-label"
             aria-modal="true"
             className="nds-dialog"
+            // @ts-expect-error custom property not in HTML div type for style attr
             style={{ "--dialog-preferred-width": width }}
             data-testid={testId}
           >

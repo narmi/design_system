@@ -1,7 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Error = ({ error, marginTop = "xxs" }) => {
+interface ErrorProps {
+  error?: string;
+  marginTop?: "xxs" | "xs" | "s" | "m" | "l" | "xl" | "xxl" | "none";
+}
+
+const Error = ({ error, marginTop = "xxs" }: ErrorProps) => {
   if (!error) return null;
   return (
     <div className={`nds-input-error margin--top--${marginTop}`}>
@@ -12,7 +17,7 @@ const Error = ({ error, marginTop = "xxs" }) => {
 };
 Error.propTypes = {
   error: PropTypes.string,
-  marginTop: PropTypes.oneOf(["xxs", "xs", "s", "m", "l", "xl", "xxl", "none"])
+  marginTop: PropTypes.oneOf(["xxs", "xs", "s", "m", "l", "xl", "xxl", "none"]),
 };
 
 export default Error;

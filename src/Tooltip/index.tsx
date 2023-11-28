@@ -2,6 +2,23 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useLayer, Arrow } from "react-laag";
 
+interface TooltipProps {
+  /** The root node of JSX passed into Tooltip as children will act as the tooltip trigger */
+  children: React.ReactNode;
+  /** Message shown inside the tooltip */
+  text: string;
+  /** Sets prefferred side of the trigger the tooltip should appear */
+  side?: "top" | "right" | "bottom" | "left";
+  /** CSS `display` value for the element that wraps the Tooltip children */
+  wrapperDisplay?: "inline-flex" | "inline-block" | "inline" | "block" | "flex";
+  /** Sets maximum width of tooltip */
+  maxWidth?: string;
+  /** If isOpen is set the component becomes a controlled component */
+  isOpen?: boolean;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+}
+
 /**
  * Renders a text-only tooltip on hover or focus of a trigger.
  *
@@ -16,7 +33,7 @@ const Tooltip = ({
   maxWidth = "400px",
   testId,
   isOpen,
-}) => {
+}: TooltipProps) => {
   const isControlled = isOpen === true || isOpen === false;
   const [open, setOpen] = useState(false);
   const delays = {
@@ -61,7 +78,7 @@ const Tooltip = ({
         onMouseEnter={openPopover}
         onMouseLeave={closePopover}
         role="button"
-        tabIndex="0"
+        tabIndex={0}
         data-testid="nds-tooltip-trigger"
       >
         {children}
@@ -103,8 +120,7 @@ Tooltip.propTypes = {
     "flex",
   ]),
   /** Sets maximum width of tooltip */
-  maxWidth: PropTypes.number,
-
+  maxWidth: PropTypes.string,
   /** If isOpen is set the component becomes a controlled component */
   isOpen: PropTypes.bool,
   /** Optional value for `data-testid` attribute */

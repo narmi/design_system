@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.14.2](https://github.com/narmi/design_system/compare/v3.14.1...v3.14.2) (2023-11-28)
+
+
+### Bug Fixes
+
+* **Checkbox:** fix top alignment for multiline labels ([50c73be](https://github.com/narmi/design_system/commit/50c73be3259ea6b81038c3254ba509f368556ce8))
+* **Checkbox:** reset paragraph spacing in markdown labels ([718a134](https://github.com/narmi/design_system/commit/718a134c5c8ebdcbb5842e30f129f882aba141a4))
+* **Checkbox:** reset paragraph spacing in markdown labels ([6c96c12](https://github.com/narmi/design_system/commit/6c96c122d5f5fc1e9be6f8ef121c1383c9fb4b5d))
+
 ### [3.14.1](https://github.com/narmi/design_system/compare/v3.14.0...v3.14.1) (2023-11-22)
 
 

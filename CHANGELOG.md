@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.14.3](https://github.com/narmi/design_system/compare/v3.14.2...v3.14.3) (2023-11-28)
+
+
+### Bug Fixes
+
+* **Dialog:** prevent mobile chrome from overlapping dialog footer ([992e314](https://github.com/narmi/design_system/commit/992e314eff3a19a18c957cad9bd075b5928660d1))
+
 ### [3.14.2](https://github.com/narmi/design_system/compare/v3.14.1...v3.14.2) (2023-11-28)
 
 

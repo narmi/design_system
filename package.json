@@ -1,6 +1,6 @@
 {
   "name": "@narmi/design_system",
-  "version": "3.14.3",
+  "version": "3.14.4",
   "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
   "files": [
@@ -12,7 +12,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "watch": "watch 'npm run build' src",
+    "watch": "watch 'npm run build' src --ignoreDirectoryPattern=src/types/",
     "build:types": "node ./scripts/buildTypes.mjs && npx tsc",
     "build:jsdoc": "node ./scripts/jsDoc.mjs",
     "build:classdoc": "node ./scripts/classManifest.mjs",

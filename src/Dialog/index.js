@@ -35,6 +35,7 @@ const Dialog = ({
   title,
   headerStyle = "bordered",
   children,
+  notification,
   footer,
   width = "500px",
   testId,
@@ -122,6 +123,11 @@ const Dialog = ({
                 </>
               )}
             </div>
+            {notification && (
+              <div className="nds-dialog-notification padding--y padding--x--xl">
+                {notification}
+              </div>
+            )}
             <div
               ref={contentRef}
               className={cc([
@@ -158,6 +164,8 @@ Dialog.propTypes = {
   children: PropTypes.node.isRequired,
   /** Heading in the top of the Dialog */
   title: PropTypes.string.isRequired,
+  /** Optional notification content to render pinned under the header */
+  notification: PropTypes.node,
   /** Contents of Dialog footer, typically reserved for action buttons */
   footer: PropTypes.node,
   /** Visual style for Dialog header */

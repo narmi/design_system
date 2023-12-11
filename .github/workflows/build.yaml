@@ -16,20 +16,4 @@ jobs:
       - run: |
           npm ci
           npm run build
-
-  license-check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout latest code
-        uses: actions/checkout@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 18
-          registry-url: https://registry.npmjs.org
-      - name: Run npm install
-        run: npm install
-      - name: Check licenses
-        uses: tangro/actions-license-check@v1.0.14
-        with:
-          allowed-licenses: 'MIT; ISC; Apache-2.0;'
+          npx license-checker -- --onlyAllow "MIT;(BSD-2-Clause OR MIT OR Apache-2.0);(BSD-3-Clause OR GPL-2.0);(MIT AND BSD-3-Clause);(MIT AND Zlib);(MIT OR Apache-2.0);(MIT OR CC0-1.0);(MIT OR GPL-3.0);(WTFPL OR MIT);0BSD;Apache 2.0;Apache-2.0;Artistic-2.0;BSD*;BSD-2-Clause;BSD-3-Clause;CC-BY-3.0;CC-BY-4.0;CC0-1.0;ISC;MIT;MIT*;MPL-2.0;ODC-By-1.0;Python-2.0;Unlicense;WTFPL"

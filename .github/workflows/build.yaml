@@ -16,4 +16,4 @@ jobs:
       - run: |
           npm ci
           npm run build
-          npx license-checker --onlyAllow "Apache-2.0"
+          npx license-checker --onlyAllow "Apache-2.0;MIT"

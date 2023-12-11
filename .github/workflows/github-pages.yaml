@@ -22,7 +22,7 @@ jobs:
       - name: Build static storybook
         run: |
           npm ci -loglevel=warn
-          ./node_modules/.bin/build-storybook
+          npm run build-storybook
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.7

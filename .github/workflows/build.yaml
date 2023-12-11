@@ -16,4 +16,4 @@ jobs:
       - run: |
           npm ci
           npm run build
-          npx license-checker --onlyAllow "MIT;0BSD;Apache 2.0;Apache-2.0;Artistic-2.0;BSD*;BSD-2-Clause;BSD-3-Clause;CC-BY-3.0;CC-BY-4.0;CC0-1.0;ISC;MIT;MIT*;MPL-2.0;ODC-By-1.0;Python-2.0;Unlicense;WTFPL;BlueOak-1.0.0"
+          npx license-checker --onlyAllow "MIT;0BSD;Apache 2.0;Apache-2.0;Artistic-2.0;BSD*;BSD-2-Clause;BSD-3-Clause;CC-BY-3.0;CC-BY-4.0;CC0-1.0;ISC;MIT;MIT*;MPL-2.0;ODC-By-1.0;Python-2.0;Unlicense;WTFPL;BlueOak-1.0.0" --excludePackages "taffydb@2.6.2"

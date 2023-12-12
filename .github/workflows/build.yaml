@@ -17,7 +17,7 @@ jobs:
           npm ci
           npm run build
           
-  Check license:
+  Check-license:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code

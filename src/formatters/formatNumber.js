@@ -15,7 +15,7 @@
  * @param {String} style format style (`currency` or `percent`)
  * @returns {String} number string formatted for display
  */
-const formatNumber = (input, style = "currency", signDisplay="auto") => {
+const formatNumber = (input, style = "currency", signDisplay = "auto", showCents = true) => {
   let number = parseFloat(input, 10);
   let formatterOpts = {
     style,
@@ -43,8 +43,8 @@ const formatNumber = (input, style = "currency", signDisplay="auto") => {
 
   if (style === "currency") {
     formatterOpts.currency = "USD";
-    formatterOpts.minimumFractionDigits = 2;
-    formatterOpts.maximumFractionDigits = 2;
+    formatterOpts.minimumFractionDigits = showCents ? 2 : 0;
+    formatterOpts.maximumFractionDigits = showCents ? 2 : 0;
   } else if (style === "percent") {
     formatterOpts.maximumFractionDigits = Number.isInteger(number) ? 0 : 2;
   }

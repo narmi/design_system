@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Dialog from "./";
 import Button from "../Button";
 import Popover from "../Popover";
+import Alert from "../Alert";
 
 const BaseTemplate = (args) => <Dialog {...args} />;
 
@@ -173,11 +174,6 @@ FocusManagement.parameters = {
   },
 };
 
-export default {
-  title: "Components/Dialog",
-  component: Dialog,
-};
-
 export const PopoverDialog = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   return (
@@ -236,4 +232,20 @@ export const PopoverDialog = () => {
       </Dialog>
     </>
   );
+};
+
+export const WithNotification = InteractiveTemplate.bind({});
+WithNotification.args = {
+  title: "Dialog controlled by external state",
+  children: <div>Dialog content</div>,
+  notification: (
+    <Alert kind="error" isActive={true}>
+      This alert is pinned to the top of the dialog
+    </Alert>
+  ),
+};
+
+export default {
+  title: "Components/Dialog",
+  component: Dialog,
 };

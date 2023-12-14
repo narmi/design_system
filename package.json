@@ -1,6 +1,6 @@
 {
   "name": "@narmi/design_system",
-  "version": "3.14.4",
+  "version": "3.16.0",
   "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
   "files": [
@@ -12,16 +12,17 @@
     "node": ">=18"
   },
   "scripts": {
-    "watch": "watch 'npm run build' src --ignoreDirectoryPattern=src/types/",
+    "watch": "watch 'npm run build' src",
     "build:types": "node ./scripts/buildTypes.mjs && npx tsc",
     "build:jsdoc": "node ./scripts/jsDoc.mjs",
     "build:classdoc": "node ./scripts/classManifest.mjs",
     "build:tokens": "style-dictionary build --config=./tokens/config.js",
     "build:components": "webpack --mode=production",
-    "build": "npm run build:types && npm run build:tokens && npm run build:jsdoc && npm run build:classdoc && npm run build:components",
+    "build": "npm run build:tokens && npm run build:jsdoc && npm run build:classdoc && npm run build:components",
     "build:clean": "rm -rf dist/ && npm run build",
     "prepublish": "npm run build",
     "test": "jest",
+    "test:watch": "jest --watch",
     "lint": "eslint \"./src/**\" \"./scripts/**\" \"./tokens/**\" --no-error-on-unmatched-pattern",
     "release": "semantic-release",
     "storybook": "storybook dev -p 6006",

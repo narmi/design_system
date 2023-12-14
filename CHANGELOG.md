@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.16.0](https://github.com/narmi/design_system/compare/v3.15.0...v3.16.0) (2023-12-14)
+
+
+### Features
+
+* **numberFormat:** add option to not show cents on currency ([85b32ff](https://github.com/narmi/design_system/commit/85b32ffadc23f59a33acbff3c08f8a4fffd3ba15))
+
+## [3.15.0](https://github.com/narmi/design_system/compare/v3.14.4...v3.15.0) (2023-12-11)
+
+
+### Features
+
+* **Dialog:** add notification content slot ([016a83b](https://github.com/narmi/design_system/commit/016a83b9bcdd0e387234b55fc5a1d71fe627472d))
+
 ### [3.14.4](https://github.com/narmi/design_system/compare/v3.14.3...v3.14.4) (2023-12-08)
 
 

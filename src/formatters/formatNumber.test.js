@@ -70,6 +70,21 @@ describe("formatNumber", () => {
       const expected = "$0.00";
       expect(actual).toEqual(expected);
     });
+    it("optionally hides cents for integer number", () => {
+      const actual = formatNumber(12, style, "auto", false);
+      const expected = "$12";
+      expect(actual).toEqual(expected);
+    });
+    it("optionally hides cents for float number, rounding up", () => {
+      const actual = formatNumber(12.5, style, "auto", false);
+      const expected = "$13";
+      expect(actual).toEqual(expected);
+    });
+    it("optionally hides cents for float number, rounding down", () => {
+      const actual = formatNumber(12.4, style, "auto", false);
+      const expected = "$12";
+      expect(actual).toEqual(expected);
+    });
   });
 
   describe("percent", () => {

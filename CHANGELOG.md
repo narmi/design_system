@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.15.0](https://github.com/narmi/design_system/compare/v3.14.4...v3.15.0) (2023-12-11)
+
+
+### Features
+
+* **Dialog:** add notification content slot ([016a83b](https://github.com/narmi/design_system/commit/016a83b9bcdd0e387234b55fc5a1d71fe627472d))
+
+### [3.14.4](https://github.com/narmi/design_system/compare/v3.14.3...v3.14.4) (2023-12-08)
+
+
+### Bug Fixes
+
+* **TextInput:** Fix start content property for text input ([1c49a35](https://github.com/narmi/design_system/commit/1c49a35173a4b10b8d625b44f541c3e3f9d028fb))
+
 ### [3.14.3](https://github.com/narmi/design_system/compare/v3.14.2...v3.14.3) (2023-11-28)
 
 

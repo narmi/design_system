@@ -52,12 +52,12 @@ AsCard.parameters = {
   },
 };
 
-export const markdown = Template.bind({});
-markdown.args = {
+export const Markdown = Template.bind({});
+Markdown.args = {
   markdownLabel: "I agree to receive spam from [google](https://www.google.com/)",
   name: "spam",
 };
-markdown.parameters = {
+Markdown.parameters = {
   docs: {
     description: {
       story: "Renders markdown when markdownLabel prop is set"

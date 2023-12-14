@@ -84,7 +84,7 @@ const Input = ({
   return (
     <div className={className} onClick={onClick} style={style}>
       <div className="nds-input-box">
-        {startContent && <div>startContent</div>}
+        {startContent && <div>{startContent}</div>}
         {startIconClass && (
           <div
             className={`nds-input-icon nds-input-icon--faded ${startIconClass}`}

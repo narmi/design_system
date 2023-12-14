@@ -15,12 +15,12 @@ interface InputProps {
   /** arbitrary JSX to place at the end of the input */
   endContent?: React.ReactNode;
   showClearButton?: boolean;
-  clearInput?(...args: unknown[]): unknown;
+  clearInput?: React.EventHandler<React.SyntheticEvent>;
   decoration?: React.ReactNode | React.ReactElement;
   multiline?: boolean;
   disabled?: boolean;
   search?: boolean;
-  onClick?(...args: unknown[]): unknown;
+  onClick?: React.EventHandler<React.SyntheticEvent>;
   style?: object;
   error?: string;
   children?: React.ReactNode | React.ReactNode[];

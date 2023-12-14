@@ -79,7 +79,7 @@ interface PaginationProps {
    *
    * Invoked with selected page number as the argument.
    */
-  onPageChange?(...args: unknown[]): unknown;
+  onPageChange?: (page: number) => void;
   /** Optional value for `data-testid` attribute */
   testId?: string;
 }

@@ -7,7 +7,7 @@ interface ToggleProps {
    * Callback invoked with current active state (bool) as the function argument
    * when user changes the active state of the Toggle
    */
-  onChange?(...args: unknown[]): unknown;
+  onChange?: React.EventHandler<React.SyntheticEvent>;
   /** When set to `true`, the toggle will initially render as active */
   defaultActive?: boolean;
   /**

@@ -11,7 +11,7 @@ interface CheckboxProps {
   /** Markdown to use in place of the `label` field */
   markdownLabel?: string;
   /** Change callback invoked when the value of the `input` changes */
-  onChange?(...args: unknown[]): unknown;
+  onChange?: React.EventHandler<React.SyntheticEvent>;
   /** `id` attribute of `input` */
   id?: string;
   /** `name` attribute of `input` */

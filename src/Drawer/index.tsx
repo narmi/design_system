@@ -17,17 +17,17 @@ interface DrawerProps {
    * Callback to handle user taking an action to dismiss the modal
    * (click outside, Escape key, click close button)
    */
-  onUserDismiss?(...args: unknown[]): unknown;
+  onUserDismiss?: () => void;
   /**
    * Callback to handle user taking an action to go to the next element
    * (click on the next arrow, right/down arrow key)
    */
-  onNext?(...args: unknown[]): unknown;
+  onNext?: () => void;
   /**
    * Callback to handle user taking an action to go to the previous element
    * (click on the previous arrow, left/up arrow key)
    */
-  onPrev?(...args: unknown[]): unknown;
+  onPrev?: () => void;
   /**
    * Sets how far the drawer opens out (width or height).
    * Use the full CSS value with the percentage (e.g. `"400px"` or `"70%"`)

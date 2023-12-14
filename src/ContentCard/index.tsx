@@ -31,7 +31,7 @@ interface ContentCardProps {
    * Only valid for `interactive` card type.
    * Callback for card click event.
    */
-  onClick?(...args: unknown[]): unknown;
+  onClick?: React.EventHandler<React.SyntheticEvent>;
   /**
    * Only applicable for `interactive` type.
    * Renders card in visually selected state with appropriate attributes.

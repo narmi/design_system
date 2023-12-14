@@ -18,7 +18,7 @@ interface TagProps {
    * Callback for user dismissal action
    * (only applicable for `dismissable` kind)
    */
-  onDismiss?(...args: unknown[]): unknown;
+  onDismiss?: () => void;
   /** Label text of tag */
   label?: string;
   /** Optional value for `data-testid` attribute */

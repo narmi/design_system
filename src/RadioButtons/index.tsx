@@ -16,7 +16,7 @@ interface RadioButtonsProps {
    */
   value?: string;
   /** change callback invoked with input value */
-  onChange?(...args: unknown[]): unknown;
+  onChange?: React.EventHandler<React.SyntheticEvent>;
   /**
    * `normal` - display input and label normally
    *

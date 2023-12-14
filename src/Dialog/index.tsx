@@ -38,7 +38,7 @@ interface DialogProps {
    * Callback to handle user taking an action to dismiss the modal
    * (click outside, Escape key, click close button)
    */
-  onUserDismiss?(...args: unknown[]): unknown;
+  onUserDismiss?: () => void;
   /**
    * Sets a custom modal width.
    * Use the full CSS value with the unit (e.g. "400px")

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactEventHandler, useState } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import iconSelection from "src/icons/selection.json";
@@ -10,6 +10,43 @@ import ComboboxCategory from "./ComboboxCategory";
 import TextInput from "../TextInput";
 import Error from "../Error";
 import { getItemIndex } from "../Select";
+import { IconName } from "../types/Icon.types";
+
+interface ComboboxProps {
+  children: React.ReactNode;
+  /** Label for the input */
+  label: string;
+  /** Change callback. Called when an item is selected, with the `value` of the selected item */
+  onChange?: React.EventHandler<React.SyntheticEvent>;
+  /**
+   * Sets value of the input in a controlled manner.
+   * When using the `inputValue` prop, you **must** update it via the
+   * `onInputChange` handler.
+   */
+  inputValue?: string;
+  /** Input change callback. Called whenever the user updates the value of the input. */
+  onInputChange?: () => void;
+  /**
+   * Set to `true` to disable the default behavior of filtering the list
+   * as the user types.
+   */
+  disableFiltering?: boolean;
+  /**
+   * Optionally pass a function to customize filtering behavior
+   *
+   * Signature: `(items, inputValue) => [...filteredItems]`
+   */
+  filterItemsByInput?: (items: [], inputValue: string) => [];
+  /**
+   * Error message.
+   * When passed, this will cause the input to render in error state.
+   */
+  errorText?: string;
+  /** Name of icon to place at the start of the input */
+  icon?: IconName;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+}
 
 const noop = () => {};
 
@@ -101,7 +138,11 @@ export const defaultFilterItemsByInput = (items, inputValue) =>
  * By default options will be filtered down as the user types in the input. This
  * behavior can be disabled via the `disableFiltering` prop.
  */
-const Combobox = ({
+const Combobox: React.FC<ComboboxProps> & {
+  Item: typeof ComboboxItem;
+  Heading: typeof ComboboxHeading;
+  Category: typeof ComboboxCategory;
+} = ({
   label,
   onChange = noop,
   onInputChange = noop,
@@ -409,10 +450,6 @@ const Combobox = ({
 };
 
 Combobox.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]).isRequired,
   /** Label for the input */
   label: PropTypes.string.isRequired,
   /** Change callback. Called when an item is selected, with the `value` of the selected item */

@@ -3,6 +3,25 @@ import PropTypes from "prop-types";
 import AsElement from "../util/AsElement";
 import RowItem from "./RowItem";
 
+interface RowProps {
+  /**
+   * Adjusts size of gap between row items.
+   * Sizes map to `var(--space-<size>)` variables.
+   * Set `gapSize="none"` to remove gaps between all row items.
+   */
+  gapSize?: "xxs" | "xs" | "s" | "m" | "l" | "xl" | "none";
+  /** Controls vertical alignment of items within the row */
+  alignItems?: "top" | "center";
+  /** Controls horizontal flex justification */
+  justifyContent?: "start" | "end";
+  /** The html element to render as the root node of `Row` */
+  as?: "div" | "ul";
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+  /** Children must be of type `Row.Item` */
+  children: React.ReactNode[];
+}
+
 /**
  * builds style object for `Row`
  * @param {String} alignItems
@@ -25,7 +44,9 @@ const _getRowStyle = (alignItems, justifyContent, gapSize) => {
  * Items of `Row` will grow to fit remaining space by default.
  * When a `Row.Item` has a boolean prop of `shrink`, it will shirnk to content width.
  */
-const Row = ({
+const Row: React.FC<RowProps> & {
+  Item: typeof RowItem;
+} = ({
   alignItems = "top",
   justifyContent = "start",
   gapSize = "l",

@@ -10,6 +10,26 @@ import {
 import iconSelection from "src/icons/selection.json";
 import Row from "../Row";
 import MenuButtonItem from "./MenuButtonItem";
+import { IconName } from "../types/Icon.types";
+
+interface MenuButtonProps {
+  /** Accessible label for the menu trigger (e.g. "Transaction Actions")*/
+  label: string;
+  /** Optional value for `data-testid` attribute */
+  testId: string;
+  /** Name of NDS icon to use as a trigger */
+  triggerIcon: IconName;
+  /** Custom element for trigger */
+  trigger: React.ReactNode;
+  /** MenuButton.Item children */
+  children: React.ReactNode;
+  /**
+   * If true, a caret indicator is rendered as the end icon
+   * within the trigger. The icon will change direction when
+   * the expanded state of the menulist changes.
+   */
+  showDropdownIndicator: boolean;
+}
 
 const noop = () => {};
 
@@ -21,7 +41,9 @@ export const VALID_ICON_NAMES = iconSelection.icons.map(
  * Keyboard navigable popover menu following the
  * [WIA-ARIA "MenuButton" pattern](https://www.w3.org/TR/wai-aria-practices-1.2/#menubutton).
  */
-const MenuButton = ({
+const MenuButton: React.FC<MenuButtonProps> & {
+  Item: typeof MenuButtonItem;
+} = ({
   label,
   testId,
   trigger,
@@ -86,9 +108,11 @@ MenuButton.propTypes = {
   /** Name of NDS icon to use as a trigger */
   triggerIcon: PropTypes.oneOf(VALID_ICON_NAMES),
   /** Custom element for trigger */
+  // @ts-expect-error TS v5 isn't recognizing this as ReactNodeLike
   trigger: PropTypes.node,
   /** MenuButton.Item children */
-  children: PropTypes.arrayOf(PropTypes.node),
+  // @ts-expect-error TS v5 isn't recognizing this as ReactNodeLike
+  children: PropTypes.node,
   /**
    * If true, a caret indicator is rendered as the end icon
    * within the trigger. The icon will change direction when

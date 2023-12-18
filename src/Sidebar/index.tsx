@@ -3,19 +3,25 @@ import PropTypes from "prop-types";
 import React from "react";
 import Row from "../Row";
 
+interface SidebarProps {
+  /** Accepts any content as children */
+  children: React.ReactNode;
+  /**
+   * Kind of Sidebar to render
+   *
+   * `nav`: navigation sidebar
+   *
+   */
+  kind?: string;
+}
+
 /**
  * Narmi Sidebar component
  */
-const Sidebar = ({
-  kind = "nav",
-  children,
-}) => {
-  const sidebarItems = React.Children.toArray(children)
-  const mappedSidebarItems = sidebarItems.map((item) => (
-    <li
-      className="margin--bottom--s"
-      key={item.props.label}
-    >
+const Sidebar: React.FC<SidebarProps> = ({ kind = "nav", children }) => {
+  const sidebarItems = React.Children.toArray(children);
+  const mappedSidebarItems = sidebarItems.map((item: React.ReactElement) => (
+    <li className="margin--bottom--s" key={item.props.label}>
       <button
         onClick={item.props.onClick}
         className={cc([
@@ -27,33 +33,36 @@ const Sidebar = ({
         ])}
       >
         <Row gapSize="xs">
-          {item.props.startIcon &&
+          {item.props.startIcon && (
             <Row.Item shrink>
-              <span className={`narmi-icon-${item.props.startIcon} sidebar-icon`} />
+              <span
+                className={`narmi-icon-${item.props.startIcon} sidebar-icon`}
+              />
             </Row.Item>
-          }
+          )}
           <Row.Item shrink>{item.props.label}</Row.Item>
-          {item.props.endIcon &&
+          {item.props.endIcon && (
             <Row.Item shrink>
-              <span className={`narmi-icon-${item.props.endIcon} .sidebar-icon`} />
+              <span
+                className={`narmi-icon-${item.props.endIcon} .sidebar-icon`}
+              />
             </Row.Item>
-          }
+          )}
         </Row>
       </button>
     </li>
-  ))
+  ));
 
   return (
     <nav className={`sidebar--${kind}`}>
-      <ul className="list--reset">
-        {mappedSidebarItems}
-      </ul>
+      <ul className="list--reset">{mappedSidebarItems}</ul>
     </nav>
   );
 };
 
 Sidebar.propTypes = {
   /** Accepts any content as children */
+  // @ts-expect-error ts v5 doesn't recognize this as ReactNodeLike
   children: PropTypes.arrayOf(PropTypes.node),
   /**
    * Kind of Sidebar to render

@@ -10,7 +10,8 @@ when updating our icon set.
 3. Modify the icon set in the icomoon UI as needed
 4. Click "Download" in the icomoon UI
 5. Copy assets (**SEE BELOW**)
-6. Commit the changes to NDS
+6. `npm run build:types` will regenerate `src/Icon.types.ts`
+7. Commit the changes & submit a PR
 
 ### Copying assets into NDS
 

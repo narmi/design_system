@@ -9,6 +9,46 @@ import SelectItem from "./SelectItem";
 import SelectAction from "./SelectAction";
 import SelectCategory from "./SelectCategory";
 
+interface SelectProps {
+  /** unique id attribute of the input (used for `htmlFor`) */
+  id: string;
+  /** Label for the select control */
+  label: string;
+  /** Change callback. Called with value string from the selected item */
+  onChange: (value: string) => void;
+  /**
+   * Sets selected item by value and makes the Select **fully controlled**.
+   *
+   * When passing a `value`, you must provide an `onChange` handler to update it
+   */
+  value?: string;
+  /**
+   * Function with signature `(userInputValue, selectItemNode) => {}`,
+   * used to customize typeahead filtering behavior.
+   * See "Changing Typeahead Behavior" story for example.
+   */
+  getTypeaheadString?: (
+    userInputValue: string,
+    selectedItemNode: React.ReactNode
+  ) => void;
+  /**
+   * Use to set a default selection by passing the `value` prop
+   * of one of the `<Select.Item>` children.
+   * The Select will remain uncontrolled.
+   */
+  defaultValue?: string;
+  /** Open the dropdown on render if `true` */
+  defaultOpen?: boolean;
+  /**
+   * Error message.
+   * When passed, this will cause the trigger to render in error state.
+   */
+  errorText?: string;
+  children: React.ReactNode;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+}
+
 const noop = () => {};
 
 /**
@@ -96,7 +136,7 @@ export const isSelectedItemInCategory = (selectedItem, categoryChildren) => {
  * @param {String} userInput most recent thing a user typed while focused on input
  * @returns {String} the string to use for typeahead for each given `selectItem`
  */
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const defaultGetTypeAheadString = (userInput = "", selectItem) => {
   return selectItem.props.searchValue || selectItem.props.value;
 };
@@ -106,7 +146,11 @@ const defaultGetTypeAheadString = (userInput = "", selectItem) => {
  * `Select` also supports the ability to pass in a `<Select.Action>` that acts as an option that only triggers a side effect.
  * Typeahead is enabled based on the `value` prop of `<Select.Item>` elements passed in.
  */
-const Select = ({
+const Select: React.FC<SelectProps> & {
+  Item: typeof SelectItem;
+  Action: typeof SelectAction;
+  Category: typeof SelectCategory;
+} = ({
   id,
   label,
   children,
@@ -236,7 +280,10 @@ const Select = ({
   };
 
   const getDetailsProps = (categoryChildren) => {
-    let detailsExtraProps = {};
+    interface DetailsExtraProps {
+      open?: boolean;
+    }
+    const detailsExtraProps: DetailsExtraProps = {};
     if (
       isHighlightedInCategory(highlightedIndex, categoryChildren, items) ||
       isSelectedItemInCategory(selectedItem, categoryChildren)
@@ -341,6 +388,7 @@ Select.propTypes = {
    * When passed, this will cause the trigger to render in error state.
    */
   errorText: PropTypes.string,
+  // @ts-expect-error ts v5 doesn't recognize this as ReactNodeLike
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),

@@ -1,4 +1,4 @@
-import React, { ReactEventHandler, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import iconSelection from "src/icons/selection.json";
@@ -482,6 +482,8 @@ Combobox.propTypes = {
   icon: PropTypes.oneOf(VALID_ICON_NAMES),
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
+  // @ts-expect-error ts v5 doesn't recognize this as ReactNodeLike
+  children: PropTypes.node,
 };
 
 Combobox.Item = ComboboxItem;

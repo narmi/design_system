@@ -29,7 +29,12 @@ interface RowProps {
  * @returns {Object} style object for `Row`
  */
 const _getRowStyle = (alignItems, justifyContent, gapSize) => {
-  let result = {};
+  interface RowStyleResult {
+    gap?: string;
+    alignItems?: string;
+    justifyContent?: string;
+  }
+  const result: RowStyleResult = {};
   if (gapSize) {
     result.gap = gapSize === "none" ? "0" : `var(--space-${gapSize})`;
   }
@@ -78,6 +83,7 @@ Row.propTypes = {
   /** The html element to render as the root node of `Row` */
   as: PropTypes.oneOf(["div", "ul"]),
   /** Children must be of type `Row.Item` */
+  // @ts-expect-error ts v5 doesn't recognize this as ReactNodeLike
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,

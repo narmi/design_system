@@ -6,6 +6,30 @@ import TabsPanel from "./TabsPanel";
 import TabsTab from "./TabsTab";
 import TabsContext from "./context";
 
+interface TabsProps {
+  /**
+   * Direct children of `Tabs` should be one of:
+   * `Tabs.List` or `Tabs.Panel`
+   */
+  children: React.ReactNode;
+  /**
+   * Sets _default_ tab selection by index in source order
+   */
+  defaultSelectedIndex?: number;
+  /**
+   * Sets selected tab by index, making Tabs **fully controlled**.
+   * When using this prop, you must use the `onTabChange` callback
+   * to update the value of this prop to update the selected tab.
+   */
+  selectedIndex?: number;
+  /** Callback invoked with the index of the tab the user is moving selection to */
+  onTabChange?: (index: number) => void;
+  /** Shows bottom border when `true` */
+  hasBorder?: boolean;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+}
+
 const noop = () => {};
 
 /**
@@ -15,7 +39,11 @@ const noop = () => {};
  * The `Tabs` component mananges its own state, changing the visible tab panel based
  * on user events. Use the `onTabChange` callback to add any custom behaviors.
  */
-const Tabs = ({
+const Tabs: React.FC<TabsProps> & {
+  List: typeof TabsList;
+  Tab: typeof TabsTab;
+  Panel: typeof TabsPanel;
+} = ({
   children,
   defaultSelectedIndex = 0,
   selectedIndex = null,
@@ -23,8 +51,8 @@ const Tabs = ({
   hasBorder = true,
   testId,
 }) => {
-  const tabsListRef = useRef();
-  const tabsContainerRef = useRef();
+  const tabsListRef: React.Ref<HTMLUListElement> | undefined = useRef();
+  const tabsContainerRef: React.Ref<HTMLDivElement> | undefined = useRef();
   const [tabIds, setTabIds] = useState([]);
   const [hasPanels, setHasPanels] = useState(false);
   const [isResponsive, setIsResponsive] = useState(false);
@@ -96,6 +124,7 @@ Tabs.propTypes = {
    * Direct children of `Tabs` should be one of:
    * `Tabs.List` or `Tabs.Panel`
    */
+  // @ts-expect-error ts v5 doesn't recognize this as ReactNodeLike
   children: PropTypes.node.isRequired,
   /**
    * Sets _default_ tab selection by index in source order

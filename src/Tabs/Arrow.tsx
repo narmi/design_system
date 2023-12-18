@@ -4,7 +4,15 @@ import { CSSTransition } from "react-transition-group";
 import IconButton from "../IconButton";
 import TabsContext from "./context";
 
-const Arrow = ({ direction, onClick, show }) => {
+interface ArrowProps {
+  /** Direction of the arrow button */
+  direction: "left" | "right";
+  onClick?: React.EventHandler<React.SyntheticEvent>;
+  show?: boolean;
+  isResponsive?: boolean;
+}
+
+const Arrow: React.FC<ArrowProps> = ({ direction, onClick, show }) => {
   const { isResponsive } = useContext(TabsContext);
   const arrowRef = useRef();
 

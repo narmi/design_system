@@ -5,9 +5,19 @@ import React, { useContext, useEffect, useState } from "react";
 import Arrow from "./Arrow";
 import TabsContext from "./context";
 
+interface TabsListProps {
+  /** Children must be of type `Tabs.Tab` */
+  children: React.ReactNode;
+  /**
+   * Amount of padding to apply on the x axis to indent tabs
+   * from edges of the `Tabs.Panel`
+   * */
+  xPadding: "xxs" | "xs" | "s" | "m" | "l" | "xl" | "none";
+}
+
 const noop = () => {};
 
-const TabsList = ({ children, xPadding = "none" }) => {
+const TabsList: React.FC<TabsListProps> = ({ children, xPadding = "none" }) => {
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
 
@@ -132,7 +142,7 @@ const TabsList = ({ children, xPadding = "none" }) => {
         role={hasPanels ? "tablist" : undefined}
         className={`nds-tabs-tabsList list--reset padding--x--${xPadding}`}
         onKeyDown={hasPanels ? handleKeyDown : noop}
-        tabIndex={hasPanels ? "0" : undefined}
+        tabIndex={hasPanels ? 0 : undefined}
         data-testid="nds-tablist"
       >
         {children}
@@ -144,6 +154,7 @@ const TabsList = ({ children, xPadding = "none" }) => {
 
 TabsList.propTypes = {
   /** Children must be of type `Tabs.Tab` */
+  // @ts-expect-error ts v5 doesn't recognize this as ReactNodeLike
   children: PropTypes.node.isRequired,
   /**
    * Amount of padding to apply on the x axis to indent tabs

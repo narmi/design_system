@@ -41,7 +41,8 @@ const Arrow: React.FC<ArrowProps> = ({ direction, onClick, show }) => {
 
 Arrow.propTypes = {
   /** Direction of the arrow button */
-  direction: PropTypes.string.isRequired,
+  // @ts-expect-error inferred type is "string"
+  direction: PropTypes.oneOf(["left", "right"]).isRequired,
   onClick: PropTypes.func,
   show: PropTypes.bool,
   isResponsive: PropTypes.bool,

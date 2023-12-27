@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import PropTypes from "prop-types";
 import rafSchd from "raf-schd";
-import React, { useContext, useEffect, useState } from "react";
+import React, { ReactElement, useContext, useEffect, useState } from "react";
 import Arrow from "./Arrow";
 import TabsContext from "./context";
 
@@ -76,7 +76,7 @@ const TabsList: React.FC<TabsListProps> = ({ children, xPadding = "none" }) => {
   // with tabId props from `Tabs.Tab` children passed into `Tabs.List`
   useEffect(() => {
     if (tabIds.length !== childArray.length) {
-      setTabIds(childArray.map((t) => t.props.tabId));
+      setTabIds(childArray.map((t: ReactElement) => t.props.tabId));
     }
   }, [tabIds, setTabIds, childArray]);
 
@@ -105,7 +105,8 @@ const TabsList: React.FC<TabsListProps> = ({ children, xPadding = "none" }) => {
     const children = Array.from(tabsListRef.current.children);
 
     for (let i = 0; i < children.length; i += 1) {
-      const tab = children[i];
+      // @ts-expect-error this version of TS expects all 300+ properties to be defined
+      const tab: HTMLElement = children[i];
       if (totalSize + tab.clientWidth > containerSize) {
         // If the first item is longer than the container size, then only scroll
         // by the container size.

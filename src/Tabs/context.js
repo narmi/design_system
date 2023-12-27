@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
 import { createContext } from "react";
 
 const TabsContext = createContext({
+  tabsContainerRef: null,
+
   // list of tabIds set by TabsList
   tabIds: [],
-  setTabIds: () => {},
+  setTabIds: (tabIds) => {},
 
   // index of tab in source order that is currently selected
   currentIndex: 0,
@@ -11,14 +14,14 @@ const TabsContext = createContext({
   // only set if there is a TabsPanel present inside Tabs.
   // used to determine when to add aria labelling attributes
   hasPanels: false,
-  setHasPanels: () => {},
+  setHasPanels: (hasPanels) => {},
 
   // allows any consumer of this context to change tabs by id
-  changeTabs: () => {},
+  changeTabs: (tabId) => {},
   tabsListRef: null,
 
   isResponsive: false,
-  setIsResponsive: () => {},
+  setIsResponsive: (isResponsive) => {},
 });
 
 export default TabsContext;

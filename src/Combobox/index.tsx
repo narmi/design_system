@@ -301,13 +301,11 @@ const Combobox: React.FC<ComboboxProps> & {
           ])}
           {...getItemProps({ item, index })}
         >
-          {
+          {hasSelectedItem &&
             // @ts-expect-error Children.toArray not assignable to ReactElement[]
-            hasSelectedItem &&
-              selectedItem.props.value === item.props.value && (
-                <span className="narmi-icon-check fontSize--l fontWeight--bold" />
-              )
-          }
+            selectedItem.props.value === item.props.value && (
+              <span className="narmi-icon-check fontSize--l fontWeight--bold" />
+            )}
           {item}
         </li>
       );

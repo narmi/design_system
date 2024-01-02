@@ -4,6 +4,7 @@ import Alert from "./Alert";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
 import ContentCard from "./ContentCard";
+import CollapsibleCard from "./CollapsibleCard";
 import Combobox from "./Combobox";
 import DateInput from "./DateInput";
 import Dialog from "./Dialog";
@@ -42,6 +43,7 @@ export {
   Button,
   Checkbox,
   ContentCard,
+  CollapsibleCard,
   Combobox,
   DateInput,
   Dialog,

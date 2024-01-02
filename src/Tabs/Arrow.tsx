@@ -41,7 +41,7 @@ const Arrow: React.FC<ArrowProps> = ({ direction, onClick, show }) => {
 
 Arrow.propTypes = {
   /** Direction of the arrow button */
-  // @ts-expect-error inferred type is "string"
+  // @ts-expect-error this version of TS doesn't resolve oneOf as a union
   direction: PropTypes.oneOf(["left", "right"]).isRequired,
   onClick: PropTypes.func,
   show: PropTypes.bool,

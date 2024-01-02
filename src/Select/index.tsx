@@ -169,10 +169,13 @@ const Select: React.FC<SelectProps> & {
   const allChildren = React.Children.toArray(children);
 
   // If categories are being used, extract items from categories
+  // @ts-expect-error React.Children iteration methods have typing issues
   if (allChildren.some(({ type }) => type.displayName === "Select.Category")) {
+    // @ts-expect-error React.Children iteration methods have typing issues
     items = allChildren.flatMap(({ props }) =>
       React.Children.toArray(props.children)
     );
+    // @ts-expect-error React.Children iteration methods have typing issues
     categories = allChildren.map(({ props }) => ({
       label: props.label,
       categoryChildren: React.Children.toArray(props.children),
@@ -224,6 +227,7 @@ const Select: React.FC<SelectProps> & {
   // When `value` prop is passed, the Select becomes fully controlled and the
   // selected item is set programmitically by the consumer only
   if (value !== undefined) {
+    // @ts-expect-error hook arg type in downshift is wrong
     downshiftOpts.selectedItem = getItemByValue(value, items);
   }
 
@@ -236,6 +240,7 @@ const Select: React.FC<SelectProps> & {
     getMenuProps,
     highlightedIndex,
     getItemProps,
+    // @ts-expect-error hook arg type in downshift is wrong
   } = useSelect(downshiftOpts);
 
   const hasCategories = categories.length > 0;
@@ -303,6 +308,7 @@ const Select: React.FC<SelectProps> & {
         errorText={errorText}
         {...getToggleButtonProps(triggerProps)}
         style={{
+          // @ts-expect-error missing in downshift types
           ...triggerProps.style,
         }}
       />

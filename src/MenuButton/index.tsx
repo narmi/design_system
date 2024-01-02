@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import {
@@ -7,7 +7,7 @@ import {
   MenuButton as ReachMenuButton,
   MenuItem as ReachMenuItem,
 } from "@reach/menu-button";
-import iconSelection from "src/icons/selection.json";
+import iconSelection from "../icons/selection.json";
 import Row from "../Row";
 import MenuButtonItem from "./MenuButtonItem";
 import { IconName } from "../types/Icon.types";
@@ -85,7 +85,7 @@ const MenuButton: React.FC<MenuButtonProps> & {
             </Row>
           </ReachMenuButton>
           <ReachMenuList className="bgColor--white rounded--all padding--y--xxs">
-            {React.Children.map(children, (child) => (
+            {React.Children.map(children, (child: ReactElement) => (
               <ReachMenuItem
                 className="padding--y--xs padding--x--s"
                 onSelect={child.props.onSelect || noop}
@@ -106,6 +106,7 @@ MenuButton.propTypes = {
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
   /** Name of NDS icon to use as a trigger */
+  // @ts-expect-error oneOf not inferred as union type
   triggerIcon: PropTypes.oneOf(VALID_ICON_NAMES),
   /** Custom element for trigger */
   // @ts-expect-error TS v5 isn't recognizing this as ReactNodeLike

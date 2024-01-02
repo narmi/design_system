@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import iconSelection from "src/icons/selection.json";
+import iconSelection from "../icons/selection.json";
 import Row from "../Row";
 import { IconName } from "../types/Icon.types";
 
@@ -37,6 +37,7 @@ MenuButtonItem.propTypes = {
   /** Selection handler */
   onSelect: PropTypes.func.isRequired,
   /** Optional start icon for menu item */
+  // @ts-expect-error TS doesn't infer union type from oneOf
   startIcon: PropTypes.oneOf(VALID_ICON_NAMES),
 };
 

@@ -43,6 +43,7 @@ RowItem.propTypes = {
   shrink: PropTypes.bool,
   /** The html element to render as the root node of `Row` */
   as: PropTypes.oneOf(["div", "li"]),
+  // @ts-expect-error TS infers the wrong thing from oneOfType
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),

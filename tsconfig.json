@@ -6,7 +6,9 @@
     "forceConsistentCasingInFileNames": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
+    "resolveJsonModule": true,
     "jsx": "react-jsx",
+    "noImplicitAny": false,
     "declaration": true,
     "emitDeclarationOnly": true
   },

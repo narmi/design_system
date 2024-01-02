@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import iconSelection from "src/icons/selection.json";
+import iconSelection from "../icons/selection.json";
 import React from "react";
 import { IconName } from "../types/Icon.types";
 
@@ -30,8 +30,10 @@ SidebarItem.propTypes = {
   /** Label for the tab */
   label: PropTypes.string.isRequired,
   /** Name of Narmi icon to place at the start of the label */
+  // @ts-expect-error TS doesn't infer union type from oneOf
   startIcon: PropTypes.oneOf(VALID_ICON_NAMES),
   /** Name of Narmi icon to place at the end of the label */
+  // @ts-expect-error TS doesn't infer union type from oneOf
   endIcon: PropTypes.oneOf(VALID_ICON_NAMES),
 };
 

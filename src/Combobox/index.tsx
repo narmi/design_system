@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
-import iconSelection from "src/icons/selection.json";
+import iconSelection from "../icons/selection.json";
 import { useCombobox } from "downshift";
 import { useLayer } from "react-laag";
 import ComboboxItem from "./ComboboxItem";
@@ -17,7 +17,7 @@ interface ComboboxProps {
   /** Label for the input */
   label: string;
   /** Change callback. Called when an item is selected, with the `value` of the selected item */
-  onChange?: React.EventHandler<React.SyntheticEvent>;
+  onChange?: (value: string) => void;
   /**
    * Sets value of the input in a controlled manner.
    * When using the `inputValue` prop, you **must** update it via the
@@ -25,7 +25,7 @@ interface ComboboxProps {
    */
   inputValue?: string;
   /** Input change callback. Called whenever the user updates the value of the input. */
-  onInputChange?: () => void;
+  onInputChange?: (value: string) => void;
   /**
    * Set to `true` to disable the default behavior of filtering the list
    * as the user types.
@@ -156,19 +156,23 @@ const Combobox: React.FC<ComboboxProps> & {
 }) => {
   const allChildren = React.Children.toArray(children);
   const hasCategories = allChildren.some(
+    // @ts-expect-error Children.toArray not assignable to ReactElement[]
     ({ type }) => type.displayName === ComboboxCategory.displayName
   );
   let categories = [];
   let items =
     allChildren.length < 1
       ? []
-      : allChildren.filter(({ props }) => "value" in props || "text" in props);
+      : // @ts-expect-error Children.toArray not assignable to ReactElement[]
+        allChildren.filter(({ props }) => "value" in props || "text" in props);
 
   // If categories are being used, `items` is populated by the children of each category
   if (hasCategories) {
+    // @ts-expect-error Children.toArray not assignable to ReactElement[]
     items = allChildren.flatMap(({ props }) =>
       React.Children.toArray(props.children)
     );
+    // @ts-expect-error Children.toArray not assignable to ReactElement[]
     categories = allChildren.map(({ props }) => ({
       label: props.label,
       categoryChildren: React.Children.toArray(props.children),
@@ -195,6 +199,7 @@ const Combobox: React.FC<ComboboxProps> & {
   } = useCombobox({
     items: displayedItems,
     inputValue: controlledInputValue,
+    // @ts-expect-error issues with ComboboxItem namespace when typing `item`
     itemToString: (item) => item.props.searchValue || item.props.value,
     onInputValueChange: ({ inputValue }) => {
       // Typeahead behavior - we adjust the list of available options passed
@@ -218,6 +223,7 @@ const Combobox: React.FC<ComboboxProps> & {
     onSelectedItemChange: ({ selectedItem }) => {
       let newSelection = "";
       if (selectedItem) {
+        // @ts-expect-error Children.toArray not assignable to ReactElement[]
         newSelection = selectedItem.props.value;
       }
       onChange(newSelection);
@@ -295,9 +301,13 @@ const Combobox: React.FC<ComboboxProps> & {
           ])}
           {...getItemProps({ item, index })}
         >
-          {hasSelectedItem && selectedItem.props.value === item.props.value && (
-            <span className="narmi-icon-check fontSize--l fontWeight--bold" />
-          )}
+          {
+            // @ts-expect-error Children.toArray not assignable to ReactElement[]
+            hasSelectedItem &&
+              selectedItem.props.value === item.props.value && (
+                <span className="narmi-icon-check fontSize--l fontWeight--bold" />
+              )
+          }
           {item}
         </li>
       );
@@ -308,7 +318,7 @@ const Combobox: React.FC<ComboboxProps> & {
 
   // renders category including all child items
   const renderCategory = ({ label, categoryChildren }) => {
-    const detailsProps = {};
+    const detailsProps: { [key: string]: boolean } = {};
     const visibleChildren = getVisibleChildrenByCategory(
       displayedItems,
       categoryChildren
@@ -373,6 +383,7 @@ const Combobox: React.FC<ComboboxProps> & {
   if (items.length < 1) {
     return (
       <TextInput
+        // @ts-expect-error ts(2322)
         error={errorText}
         label={label}
         startIcon={icon}
@@ -413,6 +424,7 @@ const Combobox: React.FC<ComboboxProps> & {
               // always set that as the input value when they leave the input
               if (hasSelectedItem) {
                 setInputValue(
+                  // @ts-expect-error Children.toArray not assignable to ReactElement[]
                   selectedItem.props.searchValue || selectedItem.props.value
                 );
               }
@@ -479,6 +491,7 @@ Combobox.propTypes = {
    */
   errorText: PropTypes.string,
   /** Name of icon to place at the start of the input */
+  // @ts-expect-error oneOf not recognized as union type
   icon: PropTypes.oneOf(VALID_ICON_NAMES),
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,

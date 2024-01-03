@@ -22,7 +22,7 @@ const IconButton = ({
   testId = "nds-icon-button",
   label,
   name,
-  onClick = (e) => {}, // eslint-disable-line no-unused-vars
+  onClick = (_) => {},
 }) => {
   return (
     <button

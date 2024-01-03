@@ -124,7 +124,7 @@ WithHelperText.parameters = {
   docs: {
     description: {
       story:
-        "The `CollapsibleCard` with a helper text on the right. This could be a link, button, etc.",
+        "The `CollapsibleCard` with a helper text on the right. This could be also a link, button, etc.",
     },
   },
 };
@@ -141,6 +141,14 @@ DisabledCard.args = {
     </>
   ),
 };
+DisabledCard.parameters = {
+  docs: {
+    description: {
+      story:
+        "Disabled cards can still be clicked on, in which case a message could be displayed.",
+    },
+  },
+};
 
 export const WithError = Template.bind({});
 WithError.args = {
@@ -156,8 +164,8 @@ WithError.args = {
   ),
 };
 
-export const PermanentlyOpenWithDisabedHover = PermanentlyOpen.bind({});
-PermanentlyOpenWithDisabedHover.args = {
+export const PermanentlyOpenWithDisabledHover = PermanentlyOpen.bind({});
+PermanentlyOpenWithDisabledHover.args = {
   title: "Your title here",
   subtitle: "A subtitle here",
   onOpen: () => {},
@@ -167,7 +175,7 @@ PermanentlyOpenWithDisabedHover.args = {
   children: (
     <>
       <div>
-        This is just a card with information. Here's a list of useless facts:
+        This is just a card with information. Here is a list of useless facts:
       </div>
       <ul>
         <li>

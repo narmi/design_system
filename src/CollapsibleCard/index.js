@@ -17,6 +17,21 @@ const CollapsibleCard = ({
 }) => {
   const [hover, setHover] = React.useState(false);
 
+  const onTitleContainerClick = (disabled = false, action) => {
+    if (disabled) {
+      onDisabledClick();
+      return;
+    } else if (action === "open") {
+      onOpen();
+      // When clicking to open mouse will always be on the title container, so setHover to true
+      setHover(true);
+    } else if (action === "close") {
+      onClose();
+      // When closing, let the css set the hover state
+      setHover(false);
+    }
+  };
+
   const titleContainerJSX = (
     <div className="collapsible-card--title-container">
       <div>
@@ -70,12 +85,12 @@ const CollapsibleCard = ({
     >
       <div
         className="collapsible-card--title-expanded"
-        aria-expanded="true"
-        onClick={() => {
-          onClose();
-          // When closing, let the css set the hover state
-          setHover(false);
+        role="button"
+        onKeyUp={({ key }) => {
+          if (key === "Enter") onTitleContainerClick(false, "close");
         }}
+        aria-expanded="true"
+        onClick={() => onTitleContainerClick(false, "close")}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
@@ -96,15 +111,13 @@ const CollapsibleCard = ({
         "rounded--all",
         "bgColor--white",
       ])}
-      onClick={() => {
-        if (isDisabled) {
-          onDisabledClick();
-          return;
-        }
-        onOpen();
-        // When clicking to open mouse will always be on the title container, so setHover to true
-        setHover(true);
+      role="button"
+      onKeyUp={({ key }) => {
+        if (key === "Enter") onTitleContainerClick(isDisabled, "open");
       }}
+      aria-expanded="false"
+      aria-disabled={isDisabled ? "true" : "false"}
+      onClick={() => onTitleContainerClick(isDisabled, "open")}
     >
       {titleContainerJSX}
     </div>
@@ -131,9 +144,9 @@ CollapsibleCard.propTypes = {
   onClose: PropTypes.func,
   /** Disabled cards are greyed out and do not open */
   isDisabled: PropTypes.bool,
-  /** Callback to Disabled */
+  /** Callback to handle user clickling on disabled card */
   onDisabledClick: PropTypes.func,
-  /** Displays a red border on the card */
+  /** Displays a red border on the card. Does not interfere with user interactions */
   hasError: PropTypes.bool,
   /** Disable hover. Useful for cards that are always open */
   disableHover: PropTypes.bool,

@@ -86,6 +86,7 @@ const CollapsibleCard = ({
       <div
         className="collapsible-card--title-expanded"
         role="button"
+        tabIndex={0}
         onKeyUp={({ key }) => {
           if (key === "Enter") onTitleContainerClick(false, "close");
         }}
@@ -112,6 +113,7 @@ const CollapsibleCard = ({
         "bgColor--white",
       ])}
       role="button"
+      tabIndex={0}
       onKeyUp={({ key }) => {
         if (key === "Enter") onTitleContainerClick(isDisabled, "open");
       }}

@@ -1,0 +1,38 @@
+name: Publish Storybook (Chromatic build from PR)
+on:
+  workflow_call:
+    inputs:
+      config-path:
+        required: false
+        type: string
+    secrets:
+      envPAT:
+        required: false
+
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+jobs:
+  Prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.org
+        
+      - name: Create Build
+        run: |
+          pwd
+          npm ci --loglevel=warn
+          npm run build

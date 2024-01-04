@@ -1,23 +1,22 @@
 name: Jest
-on: [pull_request]
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
 jobs:
-  Run-jest-tests:
+  call-pr-workflow:
+    uses: ./.github/workflows/pull_request.yml
+  
+  Jest:
     runs-on: ubuntu-latest
+    needs: call-pr-workflow
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 18
-          registry-url: https://registry.npmjs.org
-
       - name: Jest
         run: |
+          pwd
           echo "The job was automatically triggered by a ${{ github.event_name }} event."
-          npm install
-          npm run build
           npm run test

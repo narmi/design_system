@@ -8,33 +8,24 @@ on:
       - ready_for_review
 
 jobs:
+  call-pr-workflow:
+    uses: ./.github/workflows/pull_request.yml
+  
   Chromatic:
     runs-on: ubuntu-latest
+    needs: call-pr-workflow
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 18
-          registry-url: https://registry.npmjs.org
-
-      - name: Install dependencies
-        run:
-          npm ci --loglevel=warn
-
       - name: Publish to Chromatic
         id: chromatic
         uses: chromaui/action@v1
         with:
+          cache: 'npm'
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
       - name: Comment storybook url in PR
         uses: thollander/actions-comment-pull-request@v2
         with:
+          cache: 'npm'
           debug: true
           pr_number: ${{github.event.number}}
           mode: recreate

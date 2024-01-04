@@ -3,6 +3,7 @@ import Dialog from "./";
 import Button from "../Button";
 import Popover from "../Popover";
 import Alert from "../Alert";
+import TextInput from "../TextInput";
 
 const BaseTemplate = (args) => <Dialog {...args} />;
 
@@ -78,8 +79,13 @@ BannerType.args = {
   headerStyle: "banner",
   width: "800px",
   children: (
-    <>
+    <div>
       <h4 className="margin--top--l">Lorem ipsum</h4>
+      <TextInput
+            label={"Secret phrase"}
+            type="password"
+            autoComplete="on"
+          />
       <p>
         Lorem ipsum dolor sit amet. Ea fugiat dolore quo possimus adipisci est
         ipsum libero ab dolores minima ut facere rerum? Aut vitae sint ut nemo
@@ -99,7 +105,7 @@ BannerType.args = {
         sequi placeat. Non voluptatem molestiae et explicabo voluptas ut facilis
         quia?
       </p>
-    </>
+    </div>
   ),
 };
 BannerType.parameters = {
@@ -115,7 +121,7 @@ export const ScrollingContent = InteractiveTemplate.bind({});
 ScrollingContent.args = {
   title: "Resize your window",
   children: (
-    <>
+    <div>
       <p>
         This content area will become scrollable whenever the content overflows
         its container.
@@ -139,7 +145,7 @@ ScrollingContent.args = {
         sequi placeat. Non voluptatem molestiae et explicabo voluptas ut facilis
         quia?
       </p>
-    </>
+    </div>
   ),
 };
 ScrollingContent.parameters = {

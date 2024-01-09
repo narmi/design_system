@@ -53,7 +53,7 @@ const ChangingHelperText = (args) => {
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         onOpen={() => setIsOpen(true)}
-        helperText={isOpen ? completedJSX : "Closed"}
+        statusText={isOpen ? completedJSX : "Closed"}
       >
         {args.children}
       </CollapsibleCard>
@@ -108,8 +108,8 @@ Overview.args = {
   ),
 };
 
-export const WithHelperText = ChangingHelperText.bind({});
-WithHelperText.args = {
+export const WithStatusText = ChangingHelperText.bind({});
+WithStatusText.args = {
   title: "Your title here",
   subtitle: "Hover over and click anywhere",
   onOpen: () => {},
@@ -120,11 +120,11 @@ WithHelperText.args = {
     </>
   ),
 };
-WithHelperText.parameters = {
+WithStatusText.parameters = {
   docs: {
     description: {
       story:
-        "The `CollapsibleCard` with a helper text on the right. This could be also a link, button, etc.",
+        "The `CollapsibleCard` with a status text on the right. This could be also a link, button, etc.",
     },
   },
 };

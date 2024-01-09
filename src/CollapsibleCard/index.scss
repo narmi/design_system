@@ -31,7 +31,9 @@
     display: flex;
     justify-content: space-between;
   }
-
+  .collapsible-card--no-user-select {
+    user-select: none;
+  }
   .collapsible-card--content-card .title {
     color: var(--theme-primary) !important;
   }
@@ -50,6 +52,6 @@
     color: var(--color-mediumGrey) !important;
   }
 
-  .collapsible-card--helperText {
+  .collapsible-card--statusText {
     color: var(--color-mediumGrey);
   }

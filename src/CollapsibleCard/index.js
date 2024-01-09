@@ -5,8 +5,8 @@ import cc from "classcat";
 const CollapsibleCard = ({
   title,
   subtitle,
-  helperText,
-  isOpen = false,
+  statusText,
+  isOpen,
   onOpen = () => {},
   onClose = () => {},
   isDisabled = false,
@@ -58,13 +58,13 @@ const CollapsibleCard = ({
           {subtitle}
         </div>
       </div>
-      {helperText && (
+      {statusText && (
         <div style={{ display: "flex" }}>
           <div
-            className="collapsible-card--helperText padding--right--l fontSize--s"
+            className="collapsible-card--statusText padding--right--l fontSize--s"
             style={{ alignSelf: "center" }}
           >
-            {helperText}
+            {statusText}
           </div>
         </div>
       )}
@@ -78,6 +78,7 @@ const CollapsibleCard = ({
         {
           "content-card--error": hasError,
           "content-card--hover": !disableHover && hover,
+          "collapsible-card--no-user-select": !disableHover,
         },
         "rounded--bottom",
         "bgColor--white",
@@ -107,6 +108,7 @@ const CollapsibleCard = ({
           "content-card--error": hasError,
           "content-card--disabled": isDisabled,
           "content-card--hover": !disableHover && hover,
+          "collapsible-card--no-user-select": !disableHover,
         },
         "content-card--closed",
         "rounded--all",
@@ -133,11 +135,11 @@ CollapsibleCard.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
   ]).isRequired,
   /** Card title */
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   /** Card subtitle */
   subtitle: PropTypes.string,
-  /** Card helper text, placed on the right side of the title container */
-  helperText: PropTypes.node,
+  /** Card status text, placed on the right side of the title container. Can be a JSX fragment. */
+  statusText: PropTypes.node,
   /** Controls whether card is opened */
   isOpen: PropTypes.bool.isRequired,
   /** Callback to handle user opening card */

@@ -73,7 +73,15 @@ const MenuButton = ({
         className="button--reset"
         {...triggerProps}
       >
-        <div className="nds-menubutton-trigger">
+        <div
+          className={cc([
+            "nds-menubutton-trigger",
+            {
+              "nds-menubutton-trigger--useCssHover": !trigger,
+              "nds-menubutton-trigger--hovered": !trigger && isOpen,
+            },
+          ])}
+        >
           <Row gapSize="xxs">
             <Row.Item>
               {trigger ? (

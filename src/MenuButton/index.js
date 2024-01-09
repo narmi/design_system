@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import {
-  Button,
+  Button as AriaButton,
   Menu,
   MenuItem,
   MenuTrigger,
-  Popover,
 } from "react-aria-components";
+import { useLayer } from "react-laag";
 import iconSelection from "src/icons/selection.json";
 import MenuButtonItem from "./MenuButtonItem";
 import Row from "../Row";
@@ -34,6 +34,17 @@ const MenuButton = ({
   const [isOpen, setIsOpen] = useState(false);
   const menuItems = React.Children.toArray(children);
 
+  const { renderLayer, layerProps, triggerProps } = useLayer({
+    isOpen,
+    onOutsideClick: closePopover,
+    onDisappear: closePopover,
+    placement: "bottom-start",
+    preferX: "right",
+    preferY: "bottom",
+    container: typeof document !== "undefined" ? document.body : undefined,
+    triggerOffset: 2,
+  });
+
   /**
    * react-aria only supports `onAction` at the `Menu` level.
    * This handler finds the corresponding `onSelect` of the
@@ -46,6 +57,10 @@ const MenuButton = ({
     selectedItem.props.onSelect();
   };
 
+  const closePopover = () => {
+    setIsOpen(false);
+  };
+
   return (
     <MenuTrigger
       isOpen={isOpen}
@@ -53,7 +68,11 @@ const MenuButton = ({
       data-testid={testId}
       className="nds-menubutton"
     >
-      <Button aria-label={label} className="button--reset">
+      <AriaButton
+        aria-label={label}
+        className="button--reset"
+        {...triggerProps}
+      >
         <div className="nds-menubutton-trigger">
           <Row gapSize="xxs">
             <Row.Item>
@@ -74,38 +93,42 @@ const MenuButton = ({
             )}
           </Row>
         </div>
-      </Button>
-      <Popover>
-        <Menu
-          onAction={handleOnSelect}
-          className="nds-menubutton-menu rounded--all elevation--high"
-        >
-          {menuItems.map((child, childIndex) => (
-            <MenuItem
-              key={labelToItemId(child.props.label)}
-              id={labelToItemId(child.props.label)}
-              /**
-               * react-aria provides a className interface similar
-               * to render props
-               */
-              className={({ isSelected, isFocused, isDisabled }) =>
-                cc([
-                  "nds-menubutton-item",
-                  "padding--x--s padding--y--xs",
-                  {
-                    "nds-menubutton-item--highlighted": isSelected || isFocused,
-                    "nds-menubutton-item--disabled": isDisabled,
-                    "rounded--top": childIndex === 0,
-                    "rounded--bottom": childIndex === menuItems.length - 1,
-                  },
-                ])
-              }
+      </AriaButton>
+      {isOpen &&
+        renderLayer(
+          <div {...layerProps} className="nds-menubutton-popover">
+            <Menu
+              onAction={handleOnSelect}
+              className="nds-menubutton-menu rounded--all elevation--high"
             >
-              {child}
-            </MenuItem>
-          ))}
-        </Menu>
-      </Popover>
+              {menuItems.map((child, childIndex) => (
+                <MenuItem
+                  key={labelToItemId(child.props.label)}
+                  id={labelToItemId(child.props.label)}
+                  /**
+                   * react-aria provides a className interface similar
+                   * to render props
+                   */
+                  className={({ isSelected, isFocused, isDisabled }) =>
+                    cc([
+                      "nds-menubutton-item",
+                      "padding--x--s padding--y--xs",
+                      {
+                        "nds-menubutton-item--highlighted":
+                          isSelected || isFocused,
+                        "nds-menubutton-item--disabled": isDisabled,
+                        "rounded--top": childIndex === 0,
+                        "rounded--bottom": childIndex === menuItems.length - 1,
+                      },
+                    ])
+                  }
+                >
+                  {child}
+                </MenuItem>
+              ))}
+            </Menu>
+          </div>
+        )}
     </MenuTrigger>
   );
 };

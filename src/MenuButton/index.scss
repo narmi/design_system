@@ -22,8 +22,13 @@
   }
 }
 
+.nds-menubutton-popover {
+  z-index: 4;
+}
+
 .nds-menubutton-menu {
   white-space: nowrap;
+  background-color: var(--color-white);
   box-shadow: var(--elevation-high);
   outline: none;
 }

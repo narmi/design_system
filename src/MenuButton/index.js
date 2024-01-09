@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import {
@@ -34,6 +34,16 @@ const MenuButton = ({
   const [isOpen, setIsOpen] = useState(false);
   const menuItems = React.Children.toArray(children);
 
+  const closePopover = () => {
+    setIsOpen(false);
+  };
+
+  const handleKeyUp = ({ key }) => {
+    if (key === "Escape" && isOpen) {
+      setIsOpen(false);
+    }
+  };
+
   const { renderLayer, layerProps, triggerProps } = useLayer({
     isOpen,
     onOutsideClick: closePopover,
@@ -45,6 +55,13 @@ const MenuButton = ({
     triggerOffset: 2,
   });
 
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyUp);
+    return () => {
+      window.removeEventListener("keydown", handleKeyUp);
+    };
+  }, [handleKeyUp]);
+
   /**
    * react-aria only supports `onAction` at the `Menu` level.
    * This handler finds the corresponding `onSelect` of the
@@ -55,10 +72,6 @@ const MenuButton = ({
       (item) => labelToItemId(item.props.label) === itemId
     );
     selectedItem.props.onSelect();
-  };
-
-  const closePopover = () => {
-    setIsOpen(false);
   };
 
   return (

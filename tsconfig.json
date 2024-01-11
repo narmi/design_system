@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "outFile": "./dist/types/index",
-    "target": "es5",
+    "target": "ES6",
+    "lib": ["ES2022", "dom"],
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "module": "NodeNext",

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.17.0](https://github.com/narmi/design_system/compare/v3.16.0...v3.17.0) (2024-01-10)
+
+
+### Features
+
+* **CollapsibleCard:** add CollapsibleCard component ([79b7b3f](https://github.com/narmi/design_system/commit/79b7b3f99904c744d8c28d55734a71ea685f1c25))
+
 ## [3.16.0](https://github.com/narmi/design_system/compare/v3.15.0...v3.16.0) (2023-12-14)
 
 

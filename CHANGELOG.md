@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.17.1](https://github.com/narmi/design_system/compare/v3.17.0...v3.17.1) (2024-01-11)
+
+
+### Bug Fixes
+
+* **MenuButton:** close on typical userDismiss actions ([afdfbeb](https://github.com/narmi/design_system/commit/afdfbebfafea2764e116bdef9a31d1c76b693d88))
+* **MenuButton:** style default trigger hover state ([9ebcaf5](https://github.com/narmi/design_system/commit/9ebcaf5ac945ccbb17fe386737bd6ea87fc3b94f))
+* use react-laag popover for MenuButton ([adfdfd7](https://github.com/narmi/design_system/commit/adfdfd7f460d8ef46f4e9a425a78ec3e77895451))
+
 ## [3.17.0](https://github.com/narmi/design_system/compare/v3.16.0...v3.17.0) (2024-01-10)
 
 

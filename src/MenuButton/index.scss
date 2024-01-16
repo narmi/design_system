@@ -22,54 +22,32 @@
   }
 }
 
-/**
-* Reach MenuButton theme
-*/
-:root {
-  --reach-menu-button: 1;
+.nds-menubutton-popover {
+  z-index: 4;
 }
 
-[data-reach-menu] {
-  position: relative;
-}
-
-[data-reach-menu-popover] {
-  display: block;
-  position: absolute;
-}
-
-[data-reach-menu-popover][hidden] {
-  display: none;
-}
-
-[data-reach-menu-list],
-[data-reach-menu-items] {
-  display: block;
+.nds-menubutton-menu {
   white-space: nowrap;
+  background-color: var(--color-white);
   box-shadow: var(--elevation-high);
   outline: none;
 }
 
-[data-reach-menu-item] {
-  display: block;
+.nds-menubutton-item {
   user-select: none;
-}
-
-[data-reach-menu-item] {
   cursor: pointer;
   display: block;
   color: inherit;
   font: inherit;
   text-decoration: initial;
-}
-
-/* pseudo pseudo selector */
-[data-reach-menu-item][data-selected] {
-  background: rgba(var(--theme-rgb-primary), var(--alpha-5));
   outline: none;
-}
 
-[data-reach-menu-item][aria-disabled] {
-  opacity: 0.5;
-  cursor: not-allowed;
+  &--highlighted {
+    background: rgba(var(--theme-rgb-primary), var(--alpha-5));
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }

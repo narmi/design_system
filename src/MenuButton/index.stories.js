@@ -64,7 +64,13 @@ export const InADialog = () => {
       >
         Open Dialog
       </button>
-      <Dialog isOpen={isOpen} title="Dialog with a MenuButton">
+      <Dialog
+        isOpen={isOpen}
+        title="Dialog with a MenuButton"
+        onUserDismiss={() => {
+          setIsOpen(false);
+        }}
+      >
         <p>Check out this menubutton</p>
         <MenuButton label="In a dialog menubutton">
           <MenuButton.Item

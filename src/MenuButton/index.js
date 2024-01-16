@@ -1,80 +1,156 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import {
-  Menu as ReachMenu,
-  MenuList as ReachMenuList,
-  MenuButton as ReachMenuButton,
-  MenuItem as ReachMenuItem,
-} from "@reach/menu-button";
+  Button as AriaButton,
+  Menu,
+  MenuItem,
+  MenuTrigger,
+} from "react-aria-components";
+import { useLayer } from "react-laag";
 import iconSelection from "src/icons/selection.json";
-import Row from "../Row";
 import MenuButtonItem from "./MenuButtonItem";
-
-const noop = () => {};
+import Row from "../Row";
 
 export const VALID_ICON_NAMES = iconSelection.icons.map(
   (icon) => icon.properties.name
 );
+
+export const labelToItemId = (label) =>
+  label.replace(/\s+/g, "-").toLowerCase();
 
 /**
  * Keyboard navigable popover menu following the
  * [WIA-ARIA "MenuButton" pattern](https://www.w3.org/TR/wai-aria-practices-1.2/#menubutton).
  */
 const MenuButton = ({
-  label,
+  label = "Menu",
   testId,
   trigger,
   triggerIcon = "more-vertical",
   showDropdownIndicator = false,
   children,
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const menuItems = React.Children.toArray(children);
+
+  const closePopover = () => {
+    setIsOpen(false);
+  };
+
+  const handleKeyUp = ({ key }) => {
+    if (key === "Escape" && isOpen) {
+      setIsOpen(false);
+    }
+  };
+
+  const { renderLayer, layerProps, triggerProps } = useLayer({
+    isOpen,
+    onOutsideClick: closePopover,
+    onDisappear: closePopover,
+    placement: "bottom-start",
+    preferX: "right",
+    preferY: "bottom",
+    container: typeof document !== "undefined" ? document.body : undefined,
+    triggerOffset: 2,
+  });
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyUp);
+    return () => {
+      window.removeEventListener("keydown", handleKeyUp);
+    };
+  }, [handleKeyUp]);
+
+  /**
+   * react-aria only supports `onAction` at the `Menu` level.
+   * This handler finds the corresponding `onSelect` of the
+   * relevant `MenuButton.Item` and calls it.
+   */
+  const handleOnSelect = (itemId) => {
+    const selectedItem = menuItems.find(
+      (item) => labelToItemId(item.props.label) === itemId
+    );
+    selectedItem.props.onSelect();
+  };
+
   return (
-    <ReachMenu data-testId={testId} className="nds-menubutton">
-      {({ isExpanded }) => (
-        <>
-          <ReachMenuButton
-            className={cc([
-              "nds-menubutton-trigger",
-              "button--reset",
-              {
-                "nds-menubutton-trigger--useCssHover": !trigger,
-                "nds-menubutton-trigger--hovered": !trigger && isExpanded,
-              },
-            ])}
-          >
-            <Row gapSize="xxs">
-              <Row.Item>
-                {trigger ? (
-                  trigger
+    <MenuTrigger
+      isOpen={isOpen}
+      onOpenChange={setIsOpen}
+      data-testid={testId}
+      className="nds-menubutton"
+    >
+      <AriaButton
+        aria-label={label}
+        className="button--reset"
+        {...triggerProps}
+      >
+        <div
+          className={cc([
+            "nds-menubutton-trigger",
+            {
+              "nds-menubutton-trigger--useCssHover": !trigger,
+              "nds-menubutton-trigger--hovered": !trigger && isOpen,
+            },
+          ])}
+        >
+          <Row gapSize="xxs">
+            <Row.Item>
+              {trigger ? (
+                trigger
+              ) : (
+                <span className={`narmi-icon-${triggerIcon}`} />
+              )}
+            </Row.Item>
+            {showDropdownIndicator && (
+              <Row.Item shrink>
+                {isOpen ? (
+                  <span className={`narmi-icon-chevron-up`} />
                 ) : (
-                  <span className={`narmi-icon-${triggerIcon}`} title={label} />
+                  <span className={`narmi-icon-chevron-down`} />
                 )}
               </Row.Item>
-              {showDropdownIndicator && (
-                <Row.Item shrink>
-                  {isExpanded ? (
-                    <span className={`narmi-icon-chevron-up`} />
-                  ) : (
-                    <span className={`narmi-icon-chevron-down`} />
-                  )}
-                </Row.Item>
-              )}
-            </Row>
-          </ReachMenuButton>
-          <ReachMenuList className="bgColor--white rounded--all padding--y--xxs">
-            {React.Children.map(children, (child) => (
-              <ReachMenuItem
-                className="padding--y--xs padding--x--s"
-                onSelect={child.props.onSelect || noop}
-              >
-                {child}
-              </ReachMenuItem>
-            ))}
-          </ReachMenuList>
-        </>
-      )}
-    </ReachMenu>
+            )}
+          </Row>
+        </div>
+      </AriaButton>
+      {isOpen &&
+        renderLayer(
+          <div {...layerProps} className="nds-menubutton-popover">
+            <Menu
+              onAction={handleOnSelect}
+              className="nds-menubutton-menu rounded--all elevation--high"
+            >
+              {menuItems.map((child, childIndex) => (
+                <MenuItem
+                  key={labelToItemId(child.props.label)}
+                  id={labelToItemId(child.props.label)}
+                  /**
+                   * react-aria provides a className interface similar
+                   * to render props
+                   */
+                  className={({ isSelected, isFocused, isDisabled }) =>
+                    cc([
+                      "nds-menubutton-item",
+                      "padding--x--s padding--y--xs",
+                      {
+                        "nds-menubutton-item--highlighted":
+                          isSelected || isFocused,
+                        "nds-menubutton-item--disabled": isDisabled,
+                        "rounded--top": childIndex === 0,
+                        "rounded--bottom": childIndex === menuItems.length - 1,
+                      },
+                    ])
+                  }
+                >
+                  {child}
+                </MenuItem>
+              ))}
+            </Menu>
+          </div>
+        )}
+    </MenuTrigger>
   );
 };
 

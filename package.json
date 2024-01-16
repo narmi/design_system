@@ -1,6 +1,6 @@
 {
   "name": "@narmi/design_system",
-  "version": "3.16.0",
+  "version": "3.17.1",
   "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
   "files": [
@@ -111,12 +111,12 @@
   "author": "@narmi",
   "license": "SEE LICENSE IN LICSENSE.md, VENDOR_LICENSE.md",
   "dependencies": {
-    "@reach/menu-button": "^0.18.0",
     "classcat": "^5.0.3",
     "downshift": "^6.1.7",
     "eslint-plugin-json": "^3.1.0",
     "flatpickr": "^4.6.12",
     "raf-schd": "^4.0.3",
+    "react-aria-components": "^1.0.0",
     "react-focus-lock": "^2.9.4",
     "react-laag": "^2.0.3",
     "react-markdown": "^6.0.3",

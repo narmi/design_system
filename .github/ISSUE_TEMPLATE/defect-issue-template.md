@@ -2,7 +2,7 @@
 name: Bug
 about: File a bug report
 title: ""
-labels: bug,Platform
+labels: bug,UI-Platform
 ---
 
 ### Component/Module

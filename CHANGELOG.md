@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.17.2](https://github.com/narmi/design_system/compare/v3.17.1...v3.17.2) (2024-01-17)
+
+
+### Bug Fixes
+
+* **docs:** fix release notes mdx for storybook v7 ([969f5e1](https://github.com/narmi/design_system/commit/969f5e1ac3a33b18dc18235d49f10195f9c43a73))
+
 ### [3.17.1](https://github.com/narmi/design_system/compare/v3.17.0...v3.17.1) (2024-01-11)
 
 

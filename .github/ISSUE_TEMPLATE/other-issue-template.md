@@ -2,7 +2,7 @@
 name: Other
 about: Generial issue template
 title: ""
-labels: Platform
+labels: UI-Platform
 ---
 
 

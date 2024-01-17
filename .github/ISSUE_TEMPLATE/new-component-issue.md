@@ -2,7 +2,7 @@
 name: New Component
 about: Issue for creation of a new component
 title: ""
-labels: New Component
+labels: New Component,UI-Platform
 ---
 
 ### Short Description
@@ -16,14 +16,14 @@ labels: New Component
 <!-- what are the functional boundaries of this component? -->
 
 **This component should be responsible for the following:**
-- 
-- 
-- 
+-
+-
+-
 
 **This component should NOT be responsible for...**
-- 
-- 
-- 
+-
+-
+-
 
 ### Props Signature
 

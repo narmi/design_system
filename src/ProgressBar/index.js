@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ProgressBar = ({ totalWidth = 120, percentComplete = 0 }) => {
+const ProgressBar = ({ totalWidth = "100%", percentComplete = 0 }) => {
   return (
     <div
       className="nds-progressbar"
-      style={{ width: `${totalWidth}px`, height: "18px" }}
+      style={{ width: `${totalWidth}`, height: "18px" }}
     >
       <svg xmlns="http://www.w3.org/2000/svg">
         <line
@@ -22,9 +22,10 @@ const ProgressBar = ({ totalWidth = 120, percentComplete = 0 }) => {
 
 ProgressBar.propTypes = {
   /**
-   * Total width of progress bar
+   * CSS Value; Total width of progress bar.
+   * (e.g. "50%" or "200px")
    */
-  totalWidth: PropTypes.number,
+  totalWidth: PropTypes.string,
   /**
    * Percent complete
    */

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.18.0](https://github.com/narmi/design_system/compare/v3.17.3...v3.18.0) (2024-01-18)
+
+
+### Features
+
+* **typography:** use real weight and italics instead of faux bolding and oblique ([94c5143](https://github.com/narmi/design_system/commit/94c514351b4183c8341e51eccd8c9faa5199060e))
+
 ### [3.17.3](https://github.com/narmi/design_system/compare/v3.17.2...v3.17.3) (2024-01-18)
 
 

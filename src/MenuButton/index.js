@@ -72,12 +72,22 @@ const MenuButton = ({
       (item) => labelToItemId(item.props.label) === itemId
     );
     selectedItem.props.onSelect();
+    closePopover();
   };
 
   return (
     <MenuTrigger
       isOpen={isOpen}
-      onOpenChange={setIsOpen}
+      onOpenChange={(o) => {
+        /**
+         * We only need to use MenuTrigger to manage when
+         * the popover opens. Closing the popover is managed
+         * by `useLayer`
+         */
+        if (o) {
+          setIsOpen(true);
+        }
+      }}
       data-testid={testId}
       className="nds-menubutton"
     >

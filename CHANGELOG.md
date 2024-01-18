@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.17.3](https://github.com/narmi/design_system/compare/v3.17.2...v3.17.3) (2024-01-18)
+
+
+### Bug Fixes
+
+* **MenuButton:** prevent popover from closing before selection callback ([7017f61](https://github.com/narmi/design_system/commit/7017f61dfa157a253e612ba61f9812e92bdd9397))
+
 ### [3.17.2](https://github.com/narmi/design_system/compare/v3.17.1...v3.17.2) (2024-01-17)
 
 

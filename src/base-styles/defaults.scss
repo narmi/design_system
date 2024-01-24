@@ -15,6 +15,7 @@ body {
   max-width: unset;
   background-color: var(--color-white);
   text-decoration-skip-ink: none;
+  font-synthesis: none; /* Prevent browser from using faux italics */
 }
 
 h1,

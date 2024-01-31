@@ -25,3 +25,16 @@ $yAlign: (
     }
   }
 }
+
+/**
+* Rotation
+* `rotate--<degrees>`
+*/
+$degrees: (45, 90, 180, 225, 270, 315);
+
+@each $deg in $degrees {
+  .rotate--#{$deg} {
+    transform: rotate(#{$deg}deg);
+    transform-origin: center;
+  }
+}

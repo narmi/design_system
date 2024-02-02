@@ -1,0 +1,14 @@
+.nds-progressbar {
+  border: 1px solid var(--theme-primary);
+  border-radius: var(--border-radius-default);
+}
+
+.nds-progressbar svg {
+  height: 100%;
+  width: 100%;
+}
+
+.nds-progressbar line {
+  stroke: var(--theme-primary);
+  transition: all 0.5s ease-in-out;
+}

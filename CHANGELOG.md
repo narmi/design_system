@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.20.0](https://github.com/narmi/design_system/compare/v3.19.0...v3.20.0) (2024-02-01)
+
+
+### Features
+
+* **ProgressBar:** add ProgressBar component ([d30d3ff](https://github.com/narmi/design_system/commit/d30d3ffcbd3b5cc5a38c9e33e1c37baef671d033))
+
+## [3.19.0](https://github.com/narmi/design_system/compare/v3.18.0...v3.19.0) (2024-01-31)
+
+
+### Features
+
+* **helper-classes:** add rotation helpers ([d3a9e35](https://github.com/narmi/design_system/commit/d3a9e3590550f1f708879bd50ecbc1b2c8bd56c4))
+
 ## [3.18.0](https://github.com/narmi/design_system/compare/v3.17.3...v3.18.0) (2024-01-18)
 
 

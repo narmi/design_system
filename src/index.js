@@ -20,6 +20,7 @@ import LoadingSkeleton from "./LoadingSkeleton";
 import MenuButton from "./MenuButton";
 import Pagination from "./Pagination";
 import PlainButton from "./PlainButton";
+import ProgressBar from "./Pagination";
 import Popover from "./Popover";
 import RadioButtons from "./RadioButtons";
 import ResponsiveFlex from "./ResponsiveFlex";
@@ -59,6 +60,7 @@ export {
   MenuButton,
   Pagination,
   PlainButton,
+  ProgressBar,
   Popover,
   RadioButtons,
   ResponsiveFlex,

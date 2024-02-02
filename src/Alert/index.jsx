@@ -42,6 +42,7 @@ const Alert = ({
                   className="nds-alert-close resetButton"
                   aria-label="close"
                   onClick={onUserDismiss}
+                  data-testid="nds-alert-close"
                 >
                   <span className="narmi-icon-x"></span>
                 </button>

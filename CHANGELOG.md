@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.21.0](https://github.com/narmi/design_system/compare/v3.20.0...v3.21.0) (2024-02-06)
+
+
+### Features
+
+* **Alert:** add testid prop ([7140f5d](https://github.com/narmi/design_system/commit/7140f5df2d3ca6b775d4d0c92357cc4898d840fc))
+
 ## [3.20.0](https://github.com/narmi/design_system/compare/v3.19.0...v3.20.0) (2024-02-01)
 
 ### Features

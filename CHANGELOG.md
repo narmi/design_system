@@ -5,391 +5,336 @@ All notable changes to this project will be documented in this file. See
 
 ## [3.20.0](https://github.com/narmi/design_system/compare/v3.19.0...v3.20.0) (2024-02-01)
 
-
 ### Features
 
-* **ProgressBar:** add ProgressBar component ([d30d3ff](https://github.com/narmi/design_system/commit/d30d3ffcbd3b5cc5a38c9e33e1c37baef671d033))
+- **ProgressBar:** add ProgressBar component ([d30d3ff](https://github.com/narmi/design_system/commit/d30d3ffcbd3b5cc5a38c9e33e1c37baef671d033))
 
 ## [3.19.0](https://github.com/narmi/design_system/compare/v3.18.0...v3.19.0) (2024-01-31)
 
-
 ### Features
 
-* **helper-classes:** add rotation helpers ([d3a9e35](https://github.com/narmi/design_system/commit/d3a9e3590550f1f708879bd50ecbc1b2c8bd56c4))
+- **helper-classes:** add rotation helpers ([d3a9e35](https://github.com/narmi/design_system/commit/d3a9e3590550f1f708879bd50ecbc1b2c8bd56c4))
 
 ## [3.18.0](https://github.com/narmi/design_system/compare/v3.17.3...v3.18.0) (2024-01-18)
 
-
 ### Features
 
-* **typography:** use real weight and italics instead of faux bolding and oblique ([94c5143](https://github.com/narmi/design_system/commit/94c514351b4183c8341e51eccd8c9faa5199060e))
+- **typography:** use real weight and italics instead of faux bolding and oblique ([94c5143](https://github.com/narmi/design_system/commit/94c514351b4183c8341e51eccd8c9faa5199060e))
 
 ### [3.17.3](https://github.com/narmi/design_system/compare/v3.17.2...v3.17.3) (2024-01-18)
 
-
 ### Bug Fixes
 
-* **MenuButton:** prevent popover from closing before selection callback ([7017f61](https://github.com/narmi/design_system/commit/7017f61dfa157a253e612ba61f9812e92bdd9397))
+- **MenuButton:** prevent popover from closing before selection callback ([7017f61](https://github.com/narmi/design_system/commit/7017f61dfa157a253e612ba61f9812e92bdd9397))
 
 ### [3.17.2](https://github.com/narmi/design_system/compare/v3.17.1...v3.17.2) (2024-01-17)
 
-
 ### Bug Fixes
 
-* **docs:** fix release notes mdx for storybook v7 ([969f5e1](https://github.com/narmi/design_system/commit/969f5e1ac3a33b18dc18235d49f10195f9c43a73))
+- **docs:** fix release notes mdx for storybook v7 ([969f5e1](https://github.com/narmi/design_system/commit/969f5e1ac3a33b18dc18235d49f10195f9c43a73))
 
 ### [3.17.1](https://github.com/narmi/design_system/compare/v3.17.0...v3.17.1) (2024-01-11)
 
-
 ### Bug Fixes
 
-* **MenuButton:** close on typical userDismiss actions ([afdfbeb](https://github.com/narmi/design_system/commit/afdfbebfafea2764e116bdef9a31d1c76b693d88))
-* **MenuButton:** style default trigger hover state ([9ebcaf5](https://github.com/narmi/design_system/commit/9ebcaf5ac945ccbb17fe386737bd6ea87fc3b94f))
-* use react-laag popover for MenuButton ([adfdfd7](https://github.com/narmi/design_system/commit/adfdfd7f460d8ef46f4e9a425a78ec3e77895451))
+- **MenuButton:** close on typical userDismiss actions ([afdfbeb](https://github.com/narmi/design_system/commit/afdfbebfafea2764e116bdef9a31d1c76b693d88))
+- **MenuButton:** style default trigger hover state ([9ebcaf5](https://github.com/narmi/design_system/commit/9ebcaf5ac945ccbb17fe386737bd6ea87fc3b94f))
+- use react-laag popover for MenuButton ([adfdfd7](https://github.com/narmi/design_system/commit/adfdfd7f460d8ef46f4e9a425a78ec3e77895451))
 
 ## [3.17.0](https://github.com/narmi/design_system/compare/v3.16.0...v3.17.0) (2024-01-10)
 
-
 ### Features
 
-* **CollapsibleCard:** add CollapsibleCard component ([79b7b3f](https://github.com/narmi/design_system/commit/79b7b3f99904c744d8c28d55734a71ea685f1c25))
+- **CollapsibleCard:** add CollapsibleCard component ([79b7b3f](https://github.com/narmi/design_system/commit/79b7b3f99904c744d8c28d55734a71ea685f1c25))
 
 ## [3.16.0](https://github.com/narmi/design_system/compare/v3.15.0...v3.16.0) (2023-12-14)
 
-
 ### Features
 
-* **numberFormat:** add option to not show cents on currency ([85b32ff](https://github.com/narmi/design_system/commit/85b32ffadc23f59a33acbff3c08f8a4fffd3ba15))
+- **numberFormat:** add option to not show cents on currency ([85b32ff](https://github.com/narmi/design_system/commit/85b32ffadc23f59a33acbff3c08f8a4fffd3ba15))
 
 ## [3.15.0](https://github.com/narmi/design_system/compare/v3.14.4...v3.15.0) (2023-12-11)
 
-
 ### Features
 
-* **Dialog:** add notification content slot ([016a83b](https://github.com/narmi/design_system/commit/016a83b9bcdd0e387234b55fc5a1d71fe627472d))
+- **Dialog:** add notification content slot ([016a83b](https://github.com/narmi/design_system/commit/016a83b9bcdd0e387234b55fc5a1d71fe627472d))
 
 ### [3.14.4](https://github.com/narmi/design_system/compare/v3.14.3...v3.14.4) (2023-12-08)
 
-
 ### Bug Fixes
 
-* **TextInput:** Fix start content property for text input ([1c49a35](https://github.com/narmi/design_system/commit/1c49a35173a4b10b8d625b44f541c3e3f9d028fb))
+- **TextInput:** Fix start content property for text input ([1c49a35](https://github.com/narmi/design_system/commit/1c49a35173a4b10b8d625b44f541c3e3f9d028fb))
 
 ### [3.14.3](https://github.com/narmi/design_system/compare/v3.14.2...v3.14.3) (2023-11-28)
 
-
 ### Bug Fixes
 
-* **Dialog:** prevent mobile chrome from overlapping dialog footer ([992e314](https://github.com/narmi/design_system/commit/992e314eff3a19a18c957cad9bd075b5928660d1))
+- **Dialog:** prevent mobile chrome from overlapping dialog footer ([992e314](https://github.com/narmi/design_system/commit/992e314eff3a19a18c957cad9bd075b5928660d1))
 
 ### [3.14.2](https://github.com/narmi/design_system/compare/v3.14.1...v3.14.2) (2023-11-28)
 
-
 ### Bug Fixes
 
-* **Checkbox:** fix top alignment for multiline labels ([50c73be](https://github.com/narmi/design_system/commit/50c73be3259ea6b81038c3254ba509f368556ce8))
-* **Checkbox:** reset paragraph spacing in markdown labels ([718a134](https://github.com/narmi/design_system/commit/718a134c5c8ebdcbb5842e30f129f882aba141a4))
-* **Checkbox:** reset paragraph spacing in markdown labels ([6c96c12](https://github.com/narmi/design_system/commit/6c96c122d5f5fc1e9be6f8ef121c1383c9fb4b5d))
+- **Checkbox:** fix top alignment for multiline labels ([50c73be](https://github.com/narmi/design_system/commit/50c73be3259ea6b81038c3254ba509f368556ce8))
+- **Checkbox:** reset paragraph spacing in markdown labels ([718a134](https://github.com/narmi/design_system/commit/718a134c5c8ebdcbb5842e30f129f882aba141a4))
+- **Checkbox:** reset paragraph spacing in markdown labels ([6c96c12](https://github.com/narmi/design_system/commit/6c96c122d5f5fc1e9be6f8ef121c1383c9fb4b5d))
 
 ### [3.14.1](https://github.com/narmi/design_system/compare/v3.14.0...v3.14.1) (2023-11-22)
 
-
 ### Bug Fixes
 
-* **MenuButton:** set default z-index for reach-ui portals ([397841c](https://github.com/narmi/design_system/commit/397841c722642dafcf7ec85becea071c5d49670b))
+- **MenuButton:** set default z-index for reach-ui portals ([397841c](https://github.com/narmi/design_system/commit/397841c722642dafcf7ec85becea071c5d49670b))
 
 ## [3.14.0](https://github.com/narmi/design_system/compare/v3.13.3...v3.14.0) (2023-11-22)
 
-
 ### Features
 
-* **Alert:** add Alert component ([f5ae67f](https://github.com/narmi/design_system/commit/f5ae67f11d8d4a0d8e9edaa5d6c760cf34e17624))
+- **Alert:** add Alert component ([f5ae67f](https://github.com/narmi/design_system/commit/f5ae67f11d8d4a0d8e9edaa5d6c760cf34e17624))
 
 ### [3.13.3](https://github.com/narmi/design_system/compare/v3.13.2...v3.13.3) (2023-11-16)
 
-
 ### Bug Fixes
 
-* **MenuButton:** use hover effect on icon trigger when menu is open ([1cc04c8](https://github.com/narmi/design_system/commit/1cc04c8b64e65fd43e2a4f78524f74af86b8dab3))
+- **MenuButton:** use hover effect on icon trigger when menu is open ([1cc04c8](https://github.com/narmi/design_system/commit/1cc04c8b64e65fd43e2a4f78524f74af86b8dab3))
 
 ### [3.13.2](https://github.com/narmi/design_system/compare/v3.13.1...v3.13.2) (2023-11-02)
 
-
 ### Bug Fixes
 
-* **row:** set min-width on Row.Item ([76dca24](https://github.com/narmi/design_system/commit/76dca24da75cd6c0d55892d785ce996b9730a26d))
+- **row:** set min-width on Row.Item ([76dca24](https://github.com/narmi/design_system/commit/76dca24da75cd6c0d55892d785ce996b9730a26d))
 
 ### [3.13.1](https://github.com/narmi/design_system/compare/v3.13.0...v3.13.1) (2023-10-26)
 
-
 ### Bug Fixes
 
-* **Tag:** prevent label overflow ([054e20a](https://github.com/narmi/design_system/commit/054e20a8990889bafa1dd4c81d2cae8c715369ec))
+- **Tag:** prevent label overflow ([054e20a](https://github.com/narmi/design_system/commit/054e20a8990889bafa1dd4c81d2cae8c715369ec))
 
 ## [3.13.0](https://github.com/narmi/design_system/compare/v3.12.0...v3.13.0) (2023-10-21)
 
-
 ### Features
 
-* **MenuButton:** add custom trigger and icon options ([721173d](https://github.com/narmi/design_system/commit/721173d696610846061c048f7021f185a760abb7))
-* **MenuButton:** add MenuButton component ([ed11c54](https://github.com/narmi/design_system/commit/ed11c54f1a05b56b1d6e3ea53999b71a3c7cbc3a))
+- **MenuButton:** add custom trigger and icon options ([721173d](https://github.com/narmi/design_system/commit/721173d696610846061c048f7021f185a760abb7))
+- **MenuButton:** add MenuButton component ([ed11c54](https://github.com/narmi/design_system/commit/ed11c54f1a05b56b1d6e3ea53999b71a3c7cbc3a))
 
 ## [3.12.0](https://github.com/narmi/design_system/compare/v3.11.0...v3.12.0) (2023-10-19)
 
-
 ### Features
 
-* **Dialog:** add `banner` header style ([f61bd58](https://github.com/narmi/design_system/commit/f61bd580c90b8d3401ec25c0701b3cbfbc67d323))
+- **Dialog:** add `banner` header style ([f61bd58](https://github.com/narmi/design_system/commit/f61bd580c90b8d3401ec25c0701b3cbfbc67d323))
 
 ## [3.11.0](https://github.com/narmi/design_system/compare/v3.10.0...v3.11.0) (2023-10-17)
 
-
 ### Features
 
-* **TextInput:** add startContent and endContent props for custom icons ([16d3ff7](https://github.com/narmi/design_system/commit/16d3ff77d375c4ed79030ed62942f64dc8699ba0))
+- **TextInput:** add startContent and endContent props for custom icons ([16d3ff7](https://github.com/narmi/design_system/commit/16d3ff77d375c4ed79030ed62942f64dc8699ba0))
 
 ## [3.10.0](https://github.com/narmi/design_system/compare/v3.9.1...v3.10.0) (2023-10-10)
 
-
 ### Features
 
-* **Combobox:** add clearing behavior when revisiting a completed input ([31e2059](https://github.com/narmi/design_system/commit/31e2059e7b190f50cf59c0558c861fe62a34a299))
+- **Combobox:** add clearing behavior when revisiting a completed input ([31e2059](https://github.com/narmi/design_system/commit/31e2059e7b190f50cf59c0558c861fe62a34a299))
 
 ### [3.9.1](https://github.com/narmi/design_system/compare/v3.9.0...v3.9.1) (2023-10-10)
 
-
 ### Bug Fixes
 
-* use consistent text-rendering for input labels ([ea0cf64](https://github.com/narmi/design_system/commit/ea0cf64288e7d81e9ee22e7dc0946ea296491613))
+- use consistent text-rendering for input labels ([ea0cf64](https://github.com/narmi/design_system/commit/ea0cf64288e7d81e9ee22e7dc0946ea296491613))
 
 ## [3.9.0](https://github.com/narmi/design_system/compare/v3.8.0...v3.9.0) (2023-10-04)
 
-
 ### Features
 
-* **Sidebar:** add Sidebar component ([148718c](https://github.com/narmi/design_system/commit/148718cf7dd25d7c893a7b0820d807bf0b935cda))
+- **Sidebar:** add Sidebar component ([148718c](https://github.com/narmi/design_system/commit/148718cf7dd25d7c893a7b0820d807bf0b935cda))
 
 ## [3.8.0](https://github.com/narmi/design_system/compare/v3.7.5...v3.8.0) (2023-10-04)
 
-
 ### Features
 
-* **SeparatorList:** add noWrap prop ([da26926](https://github.com/narmi/design_system/commit/da2692633a7656575038a6e88f6b269c1a377755))
+- **SeparatorList:** add noWrap prop ([da26926](https://github.com/narmi/design_system/commit/da2692633a7656575038a6e88f6b269c1a377755))
 
 ### [3.7.5](https://github.com/narmi/design_system/compare/v3.7.4...v3.7.5) (2023-10-04)
 
-
 ### Bug Fixes
 
-* **ContentCard:** reduce boldness thickness when selected ([f46a175](https://github.com/narmi/design_system/commit/f46a17514643b0421d0c71be84b9e5829645e627))
+- **ContentCard:** reduce boldness thickness when selected ([f46a175](https://github.com/narmi/design_system/commit/f46a17514643b0421d0c71be84b9e5829645e627))
 
 ### [3.7.4](https://github.com/narmi/design_system/compare/v3.7.3...v3.7.4) (2023-10-03)
 
-
 ### Bug Fixes
 
-* **Combobox, Select:** Fixes a regression when rendering Select and Comboboxes inside of a Dialog. ([38a5554](https://github.com/narmi/design_system/commit/38a5554b959298500a8101d81369bda20840a184))
+- **Combobox, Select:** Fixes a regression when rendering Select and Comboboxes inside of a Dialog. ([38a5554](https://github.com/narmi/design_system/commit/38a5554b959298500a8101d81369bda20840a184))
 
 ### [3.7.3](https://github.com/narmi/design_system/compare/v3.7.2...v3.7.3) (2023-09-27)
 
-
 ### Bug Fixes
 
-* **DateInput:** use TextInput component instead of native input directly ([6bf6887](https://github.com/narmi/design_system/commit/6bf68875cab5415b9bcf8258b5c11983cacdd20d))
+- **DateInput:** use TextInput component instead of native input directly ([6bf6887](https://github.com/narmi/design_system/commit/6bf68875cab5415b9bcf8258b5c11983cacdd20d))
 
 ### [3.7.2](https://github.com/narmi/design_system/compare/v3.7.1...v3.7.2) (2023-09-25)
 
-
 ### Bug Fixes
 
-* **Combobox:** render error outside of positioning ref for dropdown ([6db32ad](https://github.com/narmi/design_system/commit/6db32ad96fc9858ddb56929ffb7a831b17c90b36))
+- **Combobox:** render error outside of positioning ref for dropdown ([6db32ad](https://github.com/narmi/design_system/commit/6db32ad96fc9858ddb56929ffb7a831b17c90b36))
 
 ### [3.7.1](https://github.com/narmi/design_system/compare/v3.7.0...v3.7.1) (2023-09-21)
 
-
 ### Bug Fixes
 
-* **Drawer:** lower z indecies; use DOM order for stacking ([365e1d3](https://github.com/narmi/design_system/commit/365e1d3dbf7e6d1673b28a48565bdd62e10dcb42))
+- **Drawer:** lower z indecies; use DOM order for stacking ([365e1d3](https://github.com/narmi/design_system/commit/365e1d3dbf7e6d1673b28a48565bdd62e10dcb42))
 
 ## [3.7.0](https://github.com/narmi/design_system/compare/v3.6.1...v3.7.0) (2023-09-21)
 
-
 ### Features
 
-* **ResponsiveFlex:** add useViewportSizes hook and ResponsiveFlex ([9ddb9e9](https://github.com/narmi/design_system/commit/9ddb9e9264bf6111ee94c030b115fbc545532a0f))
+- **ResponsiveFlex:** add useViewportSizes hook and ResponsiveFlex ([9ddb9e9](https://github.com/narmi/design_system/commit/9ddb9e9264bf6111ee94c030b115fbc545532a0f))
 
 ### [3.6.1](https://github.com/narmi/design_system/compare/v3.6.0...v3.6.1) (2023-09-21)
 
-
 ### Bug Fixes
 
-* **Combobox:** use combobox value for new selection ([6562814](https://github.com/narmi/design_system/commit/656281460920f73a266f17ced61028954380ac90))
+- **Combobox:** use combobox value for new selection ([6562814](https://github.com/narmi/design_system/commit/656281460920f73a266f17ced61028954380ac90))
 
 ## [3.6.0](https://github.com/narmi/design_system/compare/v3.5.0...v3.6.0) (2023-09-21)
 
-
 ### Features
 
-* **Combobox:** add `Combobox.Category` support ([255ddd4](https://github.com/narmi/design_system/commit/255ddd436fe5f97390b7949f2fd6a1d710ab7e7f))
-* **Combobox:** add filterItemsByInput prop for custom filtering ([4dc11be](https://github.com/narmi/design_system/commit/4dc11be829d44214ef3d512080b45d6341119765))
-
+- **Combobox:** add `Combobox.Category` support ([255ddd4](https://github.com/narmi/design_system/commit/255ddd436fe5f97390b7949f2fd6a1d710ab7e7f))
+- **Combobox:** add filterItemsByInput prop for custom filtering ([4dc11be](https://github.com/narmi/design_system/commit/4dc11be829d44214ef3d512080b45d6341119765))
 
 ### Bug Fixes
 
-* **Combobox:** add hover to categories; prefer bottom placement ([fbabbff](https://github.com/narmi/design_system/commit/fbabbff12951b861fc8d685a748b6ca57e742723))
-* **Combobox:** when input has a selected item; reset the menulist when reopening ([69f4a51](https://github.com/narmi/design_system/commit/69f4a519c7faa74d64514c42f7dc588a3a832be5))
+- **Combobox:** add hover to categories; prefer bottom placement ([fbabbff](https://github.com/narmi/design_system/commit/fbabbff12951b861fc8d685a748b6ca57e742723))
+- **Combobox:** when input has a selected item; reset the menulist when reopening ([69f4a51](https://github.com/narmi/design_system/commit/69f4a519c7faa74d64514c42f7dc588a3a832be5))
 
 ## [3.5.0](https://github.com/narmi/design_system/compare/v3.4.2...v3.5.0) (2023-09-20)
 
-
 ### Features
 
-* **Combobox:** add searchValue to items for typeahead control ([3ad86f2](https://github.com/narmi/design_system/commit/3ad86f202ecf2ee23c92dd7a86078adbaf168762))
-
+- **Combobox:** add searchValue to items for typeahead control ([3ad86f2](https://github.com/narmi/design_system/commit/3ad86f202ecf2ee23c92dd7a86078adbaf168762))
 
 ### Bug Fixes
 
-* use searchValue for input val if available ([37447bf](https://github.com/narmi/design_system/commit/37447bff3399a517bc4016d3fc80ffafb174e094))
+- use searchValue for input val if available ([37447bf](https://github.com/narmi/design_system/commit/37447bff3399a517bc4016d3fc80ffafb174e094))
 
 ### [3.4.2](https://github.com/narmi/design_system/compare/v3.4.1...v3.4.2) (2023-09-20)
 
-
 ### Bug Fixes
 
-* **icons:** remove fill from filter-2 icon ([6de6f3e](https://github.com/narmi/design_system/commit/6de6f3e4c58f608d7d2e20c78c67d47715d45ba8))
+- **icons:** remove fill from filter-2 icon ([6de6f3e](https://github.com/narmi/design_system/commit/6de6f3e4c58f608d7d2e20c78c67d47715d45ba8))
 
 ### [3.4.1](https://github.com/narmi/design_system/compare/v3.4.0...v3.4.1) (2023-09-18)
 
-
 ### Bug Fixes
 
-* **TextInput:** support the 'time' and 'datetime-local' types ([67f928f](https://github.com/narmi/design_system/commit/67f928fabe67443844d242beceba608d192e6a27))
+- **TextInput:** support the 'time' and 'datetime-local' types ([67f928f](https://github.com/narmi/design_system/commit/67f928fabe67443844d242beceba608d192e6a27))
 
 ## [3.4.0](https://github.com/narmi/design_system/compare/v3.3.2...v3.4.0) (2023-09-15)
 
-
 ### Features
 
-* **Error:** expose component publicly ([10b8c66](https://github.com/narmi/design_system/commit/10b8c6652ba1478a4abbf382dcd3f835651dd5c0))
+- **Error:** expose component publicly ([10b8c66](https://github.com/narmi/design_system/commit/10b8c6652ba1478a4abbf382dcd3f835651dd5c0))
 
 ### [3.3.2](https://github.com/narmi/design_system/compare/v3.3.1...v3.3.2) (2023-09-06)
 
-
 ### Bug Fixes
 
-* **Select:** use correct state change types in state reducer ([2564f95](https://github.com/narmi/design_system/commit/2564f958df658fd9ff6c19539415278d0d59ea1b))
+- **Select:** use correct state change types in state reducer ([2564f95](https://github.com/narmi/design_system/commit/2564f958df658fd9ff6c19539415278d0d59ea1b))
 
 ### [3.3.1](https://github.com/narmi/design_system/compare/v3.3.0...v3.3.1) (2023-09-06)
 
-
 ### Bug Fixes
 
-* **icon:** remove color from filter-2 ([8a99335](https://github.com/narmi/design_system/commit/8a99335681ce9eb05ae5560af9a3634351240946))
+- **icon:** remove color from filter-2 ([8a99335](https://github.com/narmi/design_system/commit/8a99335681ce9eb05ae5560af9a3634351240946))
 
 ## [3.3.0](https://github.com/narmi/design_system/compare/v3.2.2...v3.3.0) (2023-08-30)
 
-
 ### Features
 
-* **DateInput:** add `disablePortal` for use inside popover ([f992f95](https://github.com/narmi/design_system/commit/f992f959126f7ac5bbd129c146192b5d3a2bd4cb))
+- **DateInput:** add `disablePortal` for use inside popover ([f992f95](https://github.com/narmi/design_system/commit/f992f959126f7ac5bbd129c146192b5d3a2bd4cb))
 
 ### [3.2.2](https://github.com/narmi/design_system/compare/v3.2.1...v3.2.2) (2023-08-30)
 
-
 ### Bug Fixes
 
-* **tabs:** align tab panel with the menu area, not the arrows ([97b10ec](https://github.com/narmi/design_system/commit/97b10ec1e5a6f6c2c6a45a895873b1801fed5c56))
+- **tabs:** align tab panel with the menu area, not the arrows ([97b10ec](https://github.com/narmi/design_system/commit/97b10ec1e5a6f6c2c6a45a895873b1801fed5c56))
 
 ### [3.2.1](https://github.com/narmi/design_system/compare/v3.2.0...v3.2.1) (2023-08-30)
 
-
 ### Bug Fixes
 
-* **Select:** enable typing in faux input before menu is open ([8e8083d](https://github.com/narmi/design_system/commit/8e8083dc5c164bc4368ac43c1adeb92466774649))
+- **Select:** enable typing in faux input before menu is open ([8e8083d](https://github.com/narmi/design_system/commit/8e8083dc5c164bc4368ac43c1adeb92466774649))
 
 ## [3.2.0](https://github.com/narmi/design_system/compare/v3.1.8...v3.2.0) (2023-08-29)
 
-
 ### Features
 
-* **icons:** add `filter-2` icon ([92e021b](https://github.com/narmi/design_system/commit/92e021be8af3c4c137dd5af34e59d6ecaba603bb))
+- **icons:** add `filter-2` icon ([92e021b](https://github.com/narmi/design_system/commit/92e021be8af3c4c137dd5af34e59d6ecaba603bb))
 
 ### [3.1.8](https://github.com/narmi/design_system/compare/v3.1.7...v3.1.8) (2023-08-25)
 
-
 ### Bug Fixes
 
-* **Popover:** use typeof for SSR check ([f2ebd66](https://github.com/narmi/design_system/commit/f2ebd666d5c60f6fe64f5b0541f79b228e868f19))
+- **Popover:** use typeof for SSR check ([f2ebd66](https://github.com/narmi/design_system/commit/f2ebd666d5c60f6fe64f5b0541f79b228e868f19))
 
 ### [3.1.7](https://github.com/narmi/design_system/compare/v3.1.6...v3.1.7) (2023-08-25)
 
-
 ### Bug Fixes
 
-* **Popover:** check if SSR in useLayer options ([08de555](https://github.com/narmi/design_system/commit/08de55599be8011373370d2363f1edfd2e7235ca))
+- **Popover:** check if SSR in useLayer options ([08de555](https://github.com/narmi/design_system/commit/08de55599be8011373370d2363f1edfd2e7235ca))
 
 ### [3.1.6](https://github.com/narmi/design_system/compare/v3.1.5...v3.1.6) (2023-08-24)
 
-
 ### Bug Fixes
 
-* **docs:** update popover stories to use type button ([f3b04c0](https://github.com/narmi/design_system/commit/f3b04c00136ce2d3dcb2e8adfc6d08ceccae9c0a))
+- **docs:** update popover stories to use type button ([f3b04c0](https://github.com/narmi/design_system/commit/f3b04c00136ce2d3dcb2e8adfc6d08ceccae9c0a))
 
 ### [3.1.5](https://github.com/narmi/design_system/compare/v3.1.4...v3.1.5) (2023-08-23)
 
-
 ### Bug Fixes
 
-* **Dialog:** prevent width prop from overriding mobile viewport behavior ([8c86a06](https://github.com/narmi/design_system/commit/8c86a06a20114f817c4829f1eaf112a1e9cd080c))
+- **Dialog:** prevent width prop from overriding mobile viewport behavior ([8c86a06](https://github.com/narmi/design_system/commit/8c86a06a20114f817c4829f1eaf112a1e9cd080c))
 
 ### [3.1.4](https://github.com/narmi/design_system/compare/v3.1.3...v3.1.4) (2023-08-23)
 
-
 ### Bug Fixes
 
-* **DropdownTrigger:** remove z-index on chevron-down ([42800a9](https://github.com/narmi/design_system/commit/42800a91ffbeac20f65d92feb39dc08b4f7bf48c))
+- **DropdownTrigger:** remove z-index on chevron-down ([42800a9](https://github.com/narmi/design_system/commit/42800a91ffbeac20f65d92feb39dc08b4f7bf48c))
 
 ### [3.1.3](https://github.com/narmi/design_system/compare/v3.1.2...v3.1.3) (2023-08-18)
 
-
 ### Bug Fixes
 
-* **Dialog:** add bottom spacing when no footer is passed in ([db70bab](https://github.com/narmi/design_system/commit/db70bab093f6384de7063a355cbb87a6a5adc4fe))
+- **Dialog:** add bottom spacing when no footer is passed in ([db70bab](https://github.com/narmi/design_system/commit/db70bab093f6384de7063a355cbb87a6a5adc4fe))
 
 ### [3.1.2](https://github.com/narmi/design_system/compare/v3.1.1...v3.1.2) (2023-08-17)
 
-
 ### Bug Fixes
 
-* **Select:** Max-height 50vh ([50bb8f9](https://github.com/narmi/design_system/commit/50bb8f95563dd0acc037f7608e9dca00b3544da5))
+- **Select:** Max-height 50vh ([50bb8f9](https://github.com/narmi/design_system/commit/50bb8f95563dd0acc037f7608e9dca00b3544da5))
 
 ### [3.1.1](https://github.com/narmi/design_system/compare/v3.1.0...v3.1.1) (2023-08-15)
 
-
 ### Bug Fixes
 
-* **tabs:** responsive tab titles should not wrap ([70cb938](https://github.com/narmi/design_system/commit/70cb93804f55b90b40be12dea83531b7dc50b810))
+- **tabs:** responsive tab titles should not wrap ([70cb938](https://github.com/narmi/design_system/commit/70cb93804f55b90b40be12dea83531b7dc50b810))
 
 ## [3.1.0](https://github.com/narmi/design_system/compare/v3.0.2...v3.1.0) (2023-08-15)
 
-
 ### Features
 
-* **ContentCard:** add radiusSize prop ([38ba965](https://github.com/narmi/design_system/commit/38ba965be8961a758dbbd334e0a6cad13382e720))
+- **ContentCard:** add radiusSize prop ([38ba965](https://github.com/narmi/design_system/commit/38ba965be8961a758dbbd334e0a6cad13382e720))
 
 ### [3.0.2](https://github.com/narmi/design_system/compare/v3.0.1...v3.0.2) (2023-08-08)
 
-
 ### Bug Fixes
 
-* **Button:** use implicit type; add 'reset' type ([14a6bca](https://github.com/narmi/design_system/commit/14a6bcaac095842c8a0d2fef9c80bcb233bd2e48))
+- **Button:** use implicit type; add 'reset' type ([14a6bca](https://github.com/narmi/design_system/commit/14a6bcaac095842c8a0d2fef9c80bcb233bd2e48))
 
 ### [3.0.1](https://github.com/narmi/design_system/compare/v3.0.0...v3.0.1) (2023-08-08)
 
-
 ### Bug Fixes
 
-* remove modal stories ([bcc9b4d](https://github.com/narmi/design_system/commit/bcc9b4d10ac4d3a9e033060ea4d58f2649adc418))
+- remove modal stories ([bcc9b4d](https://github.com/narmi/design_system/commit/bcc9b4d10ac4d3a9e033060ea4d58f2649adc418))
 
 ## [3.0.0](https://github.com/narmi/design_system/compare/v2.56.0...v3.0.0) (2023-08-07)
 

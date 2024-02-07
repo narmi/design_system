@@ -1,5 +1,5 @@
 // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_checkbox
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import Error from "../Error";
@@ -16,6 +16,7 @@ const Checkbox = ({
   name,
   defaultChecked,
   checked,
+  indeterminate,
   value,
   error,
   kind = "normal",
@@ -28,6 +29,7 @@ const Checkbox = ({
   );
   const [isFocused, setIsFocused] = useState(false);
   const isCard = kind === "card";
+  const inputRef = useRef(null);
 
   const LinkRenderer = ({ href, children }) => {
     return (
@@ -47,6 +49,12 @@ const Checkbox = ({
       setIsChecked(checked);
     }
   }, [checked]);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.indeterminate = indeterminate;
+    }
+  }, [indeterminate, inputRef]);
 
   const handleChange = (e) => {
     if (!isControlled) {
@@ -71,12 +79,18 @@ const Checkbox = ({
           "fontWeight--default",
           {
             "nds-checkbox--checked": isChecked,
+            "nds-checkbox--indeterminate": indeterminate,
             "nds-checkbox--focused": isFocused,
             "padding--y--xl padding--x rounded--all border--all": isCard,
           },
         ])}
       >
-        <span className={cc(["narmi-icon-check", { error: !!error }])}></span>
+        <span
+          className={cc([
+            indeterminate ? "narmi-icon-minus" : "narmi-icon-check",
+            { error: !!error },
+          ])}
+        ></span>
         <div className="nds-checkbox-label">
           {markdownLabel && (
             <ReactMarkdown components={{ a: LinkRenderer }}>
@@ -98,6 +112,7 @@ const Checkbox = ({
           {...rest}
           type="checkbox"
           aria-label={label}
+          ref={inputRef}
         />
       </label>
       <Error marginTop="xs" error={error} />
@@ -125,6 +140,8 @@ Checkbox.propTypes = {
   defaultChecked: PropTypes.bool,
   /** Sets the checkbox checked value */
   checked: PropTypes.bool,
+  /** Sets the checkbox indeterminate value */
+  indeterminate: PropTypes.bool,
   /** Sets the `value` attribute of the `input` */
   value: PropTypes.string,
   /** Text of error message to display under the checkbox */

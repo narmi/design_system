@@ -90,8 +90,22 @@ describe("Checkbox", () => {
     expect(input).toBeChecked();
   });
 
+  it("renders as indeterminate with checked false", () => {
+    render(<Checkbox label={LABEL} checked={false} indeterminate />);
+    const { input } = getElements();
+    expect(input).not.toBeChecked();
+    expect(input).toHaveProperty("indeterminate");
+  });
+
+  it("renders as indeterminate with checked true", () => {
+    render(<Checkbox label={LABEL} checked={true} indeterminate />);
+    const { input } = getElements();
+    expect(input).toBeChecked();
+    expect(input).toHaveProperty("indeterminate");
+  });
+
   it("renders markdown when `markdownLabel` prop is set", () => {
-    render(<Checkbox markdownLabel="[Google](https://www.google.com/)"/>);
+    render(<Checkbox markdownLabel="[Google](https://www.google.com/)" />);
     const a = screen.getByText("Google");
     expect(a.tagName).toBe("A");
   });

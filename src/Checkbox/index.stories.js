@@ -43,7 +43,7 @@ export const Indeterminate = () => {
   return (
     <>
       <Checkbox
-        label="Intermediate state"
+        label="Indeterminate state"
         indeterminate
         checked={isChecked}
         onChange={() => setIsChecked((isChecked) => !isChecked)}

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.22.0](https://github.com/narmi/design_system/compare/v3.21.0...v3.22.0) (2024-02-08)
+
+
+### Features
+
+* **checkbox:** add indeterminate state property ([a0dd690](https://github.com/narmi/design_system/commit/a0dd69083bdea5b8c9b29cb28cdcc366ebdc4fa2))
+
 ## [3.21.0](https://github.com/narmi/design_system/compare/v3.20.0...v3.21.0) (2024-02-06)
 
 

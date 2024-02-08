@@ -38,6 +38,33 @@ export const MultipleCheckboxes = () => (
   </>
 );
 
+export const Indeterminate = () => {
+  const [isChecked, setIsChecked] = useState(false);
+  return (
+    <>
+      <Checkbox
+        label="Indeterminate state"
+        indeterminate
+        checked={isChecked}
+        onChange={() => setIsChecked((isChecked) => !isChecked)}
+      />
+      <Checkbox
+        label="Checked state"
+        checked={isChecked}
+        onChange={() => setIsChecked((isChecked) => !isChecked)}
+      />
+    </>
+  );
+};
+Indeterminate.parameters = {
+  docs: {
+    description: {
+      story:
+        "When passing `indeterminate`, the input renders as indeterminate regardless of the checked value but checked is still toggled on click.",
+    },
+  },
+};
+
 export const AsCard = Template.bind({});
 AsCard.args = {
   label: "Checkbox of 'card' kind",
@@ -54,16 +81,17 @@ AsCard.parameters = {
 
 export const Markdown = Template.bind({});
 Markdown.args = {
-  markdownLabel: "I agree to receive spam from [google](https://www.google.com/)",
+  markdownLabel:
+    "I agree to receive spam from [google](https://www.google.com/)",
   name: "spam",
 };
 Markdown.parameters = {
   docs: {
     description: {
-      story: "Renders markdown when markdownLabel prop is set"
-    }
-  }
-}
+      story: "Renders markdown when markdownLabel prop is set",
+    },
+  },
+};
 
 export default {
   title: "Components/Checkbox",

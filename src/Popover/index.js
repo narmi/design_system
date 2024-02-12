@@ -68,7 +68,7 @@ const Popover = ({
   };
 
   const { renderLayer, triggerProps, triggerBounds, layerProps } = useLayer({
-    isOpen: open,
+    isOpen: shouldRenderPopover,
     onOutsideClick: closePopover,
     onDisappear: closePopover,
     auto: !disableAutoPlacement,

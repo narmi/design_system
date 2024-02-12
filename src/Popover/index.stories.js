@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Popover from "./";
 import Button from "../Button";
+import Checkbox from "../Checkbox";
 
 const Template = (args) => (
   <div
@@ -68,6 +69,27 @@ FocusManagement.args = {
       within the Popover while it is open.
     </div>
   ),
+};
+
+export const Controlled = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <Checkbox
+        label="Show popover"
+        checked={isOpen}
+        onChange={() => setIsOpen(!isOpen)}
+      />
+      <div className="margin--top--m">
+        <Popover
+          content={<div className="padding--all--m">📦 Any content</div>}
+          isOpen={isOpen}
+        >
+          <div>Arbitrary target</div>
+        </Popover>
+      </div>
+    </>
+  );
 };
 
 export default {

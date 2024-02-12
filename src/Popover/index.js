@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useLayer } from "react-laag";
 import FocusLock from "react-focus-lock";
+import noop from "lodash";
 
 /**
  * Generic Popover component. Renders a floating element that can contain any content,
@@ -26,41 +27,48 @@ const Popover = ({
   matchTriggerWidth = false,
   testId,
   closeOnContentClick = false,
+  isOpen,
+  onUserDismiss = noop,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const isControlled = isOpen === true || isOpen === false;
+  const [open, setOpen] = useState(false);
+  const shouldRenderPopover = isControlled ? isOpen : open;
   const popoverContent = closeOnContentClick
     ? React.cloneElement(content, {
         onClick: () => {
           if (content.onClick) {
             content.onClick();
           }
-          setIsOpen(false);
+          setOpen(false);
+          onUserDismiss();
         },
       })
     : content;
 
   const closePopover = () => {
-    setIsOpen(false);
+    setOpen(false);
+    onUserDismiss();
   };
 
   const togglePopover = () => {
-    setIsOpen(!isOpen);
+    setOpen(!open);
   };
 
   const handleKeyDown = ({ key }) => {
     if (key === "Enter") {
-      setIsOpen(true);
+      setOpen(true);
     }
   };
 
   const handleKeyUp = ({ key }) => {
-    if (key === "Escape" && isOpen) {
-      setIsOpen(false);
+    if (key === "Escape" && shouldRenderPopover) {
+      setOpen(false);
+      onUserDismiss();
     }
   };
 
   const { renderLayer, triggerProps, triggerBounds, layerProps } = useLayer({
-    isOpen,
+    isOpen: open,
     onOutsideClick: closePopover,
     onDisappear: closePopover,
     auto: !disableAutoPlacement,
@@ -97,13 +105,13 @@ const Popover = ({
         tabIndex="0"
         data-testid="nds-popover-trigger"
         aria-haspopup="true"
-        aria-expanded={isOpen.toString()}
+        aria-expanded={shouldRenderPopover.toString()}
       >
         {children}
       </div>
       {renderLayer(
         <>
-          {isOpen && (
+          {shouldRenderPopover && (
             <div
               {...layerProps}
               className="nds-typography nds-popover rounded--all bgColor--white"
@@ -152,6 +160,13 @@ Popover.propTypes = {
   testId: PropTypes.string,
   /** Close the popover if the User clicks on the content */
   closeOnContentClick: PropTypes.bool,
+  /** If isOpen is set the component becomes a controlled component. Use the `onUserDismiss` callback to update. */
+  isOpen: PropTypes.bool,
+  /**
+   * Callback to handle user taking an action to dismiss the popover
+   * (click outside, Escape key)
+   */
+  onUserDismiss: PropTypes.func,
 };
 
 export default Popover;

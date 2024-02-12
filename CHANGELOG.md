@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.23.0](https://github.com/narmi/design_system/compare/v3.22.0...v3.23.0) (2024-02-12)
+
+
+### Features
+
+* **popover:** allow popover to be controlled ([b9d6b97](https://github.com/narmi/design_system/commit/b9d6b978ba95f0646a68571f60f6c902d5e3b50f))
+
 ## [3.22.0](https://github.com/narmi/design_system/compare/v3.21.0...v3.22.0) (2024-02-08)
 
 

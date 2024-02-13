@@ -16,9 +16,12 @@ const noop = () => {};
  * @returns {Boolean}
  */
 const getIsContentTooLong = (contentRef) => {
+  const threshold = 1; // Scrollheight in firefox is reported as 1px taller
   let result = false;
   if (contentRef.current) {
-    result = contentRef.current.scrollHeight > contentRef.current.clientHeight;
+    result =
+      contentRef.current.scrollHeight >
+      contentRef.current.clientHeight + threshold;
   }
   return result;
 };

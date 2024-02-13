@@ -35,3 +35,11 @@
     color: var(--color-successDark);
   }
 }
+
+.nds-alert--plain {
+  background-color: var(--color-infoLight);
+
+  .nds-alert-icon::before {
+    color: var(--color-infoDark);
+  }
+}

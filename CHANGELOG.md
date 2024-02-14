@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.24.0](https://github.com/narmi/design_system/compare/v3.23.1...v3.24.0) (2024-02-14)
+
+
+### Features
+
+* **drawer:** allow children to be a render function ([8ade35f](https://github.com/narmi/design_system/commit/8ade35f18c25d3ccc9b8bbad1b7f896cee84f250))
+
 ### [3.23.1](https://github.com/narmi/design_system/compare/v3.23.0...v3.23.1) (2024-02-13)
 
 

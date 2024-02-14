@@ -20,7 +20,7 @@
   }
 }
 
-.nds-alert--info {
+.nds-alert--warn {
   background-color: var(--color-warnLight);
 
   .nds-alert-icon::before {
@@ -33,5 +33,13 @@
 
   .nds-alert-icon::before {
     color: var(--color-successDark);
+  }
+}
+
+.nds-alert--info {
+  background-color: var(--color-infoLight);
+
+  .nds-alert-icon::before {
+    color: var(--color-infoDark);
   }
 }

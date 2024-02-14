@@ -16,6 +16,7 @@ const Alert = ({
   isDismissable = true,
   onUserDismiss = noop,
   kind = "info",
+  icon = null,
   children,
 }) => {
   const iconName = kind === "success" ? "check" : "info";
@@ -33,7 +34,7 @@ const Alert = ({
         >
           <Row gapSize="s">
             <Row.Item shrink>
-              <span className={`nds-alert-icon narmi-icon-${iconName}`} />
+              <span className={`nds-alert-icon narmi-icon-${icon || iconName}`} />
             </Row.Item>
             <Row.Item>{children}</Row.Item>
             {isDismissable && (
@@ -63,7 +64,9 @@ Alert.propTypes = {
   /** Callback for user dismissal actions */
   onUserDismiss: PropTypes.func,
   /** Variant of Alert to use */
-  kind: PropTypes.oneOf(["info", "error", "success"]),
+  kind: PropTypes.oneOf(["info", "error", "success", "warn"]),
+  /** Override the default icon of the alert */
+  icon: PropTypes.string,
   /** Message content of the Alert */
   children: PropTypes.oneOfType([
     PropTypes.node,

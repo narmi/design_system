@@ -5,6 +5,8 @@
       "successLight": { "value": "#E3FAE7" },
       "warnDark": { "value": "#EAC348" },
       "warnLight": { "value": "#FEF8E3" },
+      "infoDark": { "value": "#195274" },
+      "infoLight": { "value": "#E8EEF1" },
       "errorDark": { "value": "#D93B3B" },
       "errorLight": { "value": "#FDF1F1" }
     }

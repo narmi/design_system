@@ -230,6 +230,40 @@ export const ContentWithDialog = () => {
   );
 };
 
+export const LazyLoadedContent = () => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setIsDrawerOpen(true)}>Open Drawer</Button>
+      <Drawer
+        isOpen={isDrawerOpen}
+        onUserDismiss={() => setIsDrawerOpen(false)}
+      >
+        {({ isVisible }) => {
+          if (!isVisible) {
+            return null;
+          }
+          return (
+            <div>
+              <h2>Lazy Loaded Content</h2>
+              <p>Content that was loaded after the Drawer was opened</p>
+            </div>
+          );
+        }}
+      </Drawer>
+    </>
+  );
+};
+LazyLoadedContent.parameters = {
+  docs: {
+    description: {
+      story:
+        "The Drawer component accepts a render prop for its children. This can be used to lazy load content or to render content conditionally.",
+    },
+  },
+};
+
 export default {
   title: "Components/Drawer",
   component: Drawer,

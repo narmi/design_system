@@ -150,7 +150,9 @@ const Drawer = ({
       role="dialog"
       data-testid={testId}
     >
-      {children}
+      {typeof children === "function"
+        ? children({ isVisible: isTransitioning })
+        : children}
     </div>
   );
 
@@ -179,7 +181,7 @@ const Drawer = ({
 
 Drawer.propTypes = {
   /** Scrollable contents of the Drawer */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
   /** Controls open/close state of the modal. Use the `onUserDismiss` callback to update. */
   isOpen: PropTypes.bool,
   /**

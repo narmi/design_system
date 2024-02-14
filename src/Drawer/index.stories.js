@@ -259,7 +259,7 @@ LazyLoadedContent.parameters = {
   docs: {
     description: {
       story:
-        "The Drawer component accepts a render prop for its children. This can be used to lazy load content or to render content conditionally.",
+        "The Drawer component accepts a render prop for its children with argument `isVisible`. This can be used to lazy load content or to render content conditionally.",
     },
   },
 };

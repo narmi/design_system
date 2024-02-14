@@ -64,7 +64,7 @@ Alert.propTypes = {
   /** Callback for user dismissal actions */
   onUserDismiss: PropTypes.func,
   /** Variant of Alert to use */
-  kind: PropTypes.oneOf(["info", "error", "success", "plain"]),
+  kind: PropTypes.oneOf(["info", "error", "success", "warn"]),
   /** Override the default icon of the alert */
   icon: PropTypes.string,
   /** Message content of the Alert */

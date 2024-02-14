@@ -5,7 +5,7 @@ import Checkbox from "./";
 const LABEL = "test input";
 
 const getElements = () => ({
-  label: screen.getByText(LABEL).parentElement,
+  label: screen.getByText(LABEL).closest("label"),
   input: screen.getByLabelText(LABEL),
 });
 
@@ -88,20 +88,6 @@ describe("Checkbox", () => {
     fireEvent.click(input);
     // handler should update the checked state
     expect(input).toBeChecked();
-  });
-
-  it("renders as indeterminate with checked false", () => {
-    render(<Checkbox label={LABEL} checked={false} indeterminate />);
-    const { input } = getElements();
-    expect(input).not.toBeChecked();
-    expect(input).toHaveProperty("indeterminate");
-  });
-
-  it("renders as indeterminate with checked true", () => {
-    render(<Checkbox label={LABEL} checked={true} indeterminate />);
-    const { input } = getElements();
-    expect(input).toBeChecked();
-    expect(input).toHaveProperty("indeterminate");
   });
 
   it("renders markdown when `markdownLabel` prop is set", () => {

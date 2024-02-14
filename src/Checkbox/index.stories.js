@@ -38,33 +38,6 @@ export const MultipleCheckboxes = () => (
   </>
 );
 
-export const Indeterminate = () => {
-  const [isChecked, setIsChecked] = useState(false);
-  return (
-    <>
-      <Checkbox
-        label="Indeterminate state"
-        indeterminate
-        checked={isChecked}
-        onChange={() => setIsChecked((isChecked) => !isChecked)}
-      />
-      <Checkbox
-        label="Checked state"
-        checked={isChecked}
-        onChange={() => setIsChecked((isChecked) => !isChecked)}
-      />
-    </>
-  );
-};
-Indeterminate.parameters = {
-  docs: {
-    description: {
-      story:
-        "When passing `indeterminate`, the input renders as indeterminate regardless of the checked value but checked is still toggled on click.",
-    },
-  },
-};
-
 export const AsCard = Template.bind({});
 AsCard.args = {
   label: "Checkbox of 'card' kind",
@@ -75,6 +48,20 @@ AsCard.parameters = {
   docs: {
     description: {
       story: "Renders a checkbox input and label styled as a card",
+    },
+  },
+};
+
+export const TableCheckbox = Template.bind({});
+TableCheckbox.args = {
+  kind: "table",
+  name: "table_kind",
+  label: "Select row",
+};
+TableCheckbox.parameters = {
+  docs: {
+    description: {
+      story: "Checkbox used in table row selection",
     },
   },
 };

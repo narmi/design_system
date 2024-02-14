@@ -1,9 +1,9 @@
 // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_checkbox
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
-import Error from "../Error";
 import ReactMarkdown from "react-markdown";
+import Error from "../Error";
 
 /**
  * Narmi styled checkbox with built-in label.
@@ -16,20 +16,21 @@ const Checkbox = ({
   name,
   defaultChecked,
   checked,
-  indeterminate,
+  disabled = false,
+  indeterminate = false,
   value,
   error,
   kind = "normal",
   testId,
   ...rest
 }) => {
+  const inputRef = useRef(null);
   const isControlled = checked !== undefined;
   const [isChecked, setIsChecked] = useState(
     isControlled ? checked : defaultChecked || false
   );
   const [isFocused, setIsFocused] = useState(false);
   const isCard = kind === "card";
-  const inputRef = useRef(null);
 
   const LinkRenderer = ({ href, children }) => {
     return (
@@ -48,13 +49,11 @@ const Checkbox = ({
     if (isControlled) {
       setIsChecked(checked);
     }
-  }, [checked]);
-
-  useEffect(() => {
+    // ensure indeterminate state is reflected in rendered DOM
     if (inputRef.current) {
       inputRef.current.indeterminate = indeterminate;
     }
-  }, [indeterminate, inputRef]);
+  }, [checked, indeterminate]);
 
   const handleChange = (e) => {
     if (!isControlled) {
@@ -78,8 +77,8 @@ const Checkbox = ({
           `nds-checkbox nds-checkbox--${kind}`,
           "fontWeight--default",
           {
-            "nds-checkbox--checked": isChecked,
-            "nds-checkbox--indeterminate": indeterminate,
+            "nds-checkbox--checked": isChecked || indeterminate,
+            "nds-checkbox--disabled": disabled,
             "nds-checkbox--focused": isFocused,
             "padding--y--xl padding--x rounded--all border--all": isCard,
           },
@@ -87,8 +86,11 @@ const Checkbox = ({
       >
         <span
           className={cc([
-            indeterminate ? "narmi-icon-minus" : "narmi-icon-check",
-            { error: !!error },
+            {
+              "narmi-icon-check": !indeterminate,
+              "narmi-icon-minus": indeterminate,
+              error: !!error,
+            },
           ])}
         ></span>
         <div className="nds-checkbox-label">
@@ -100,19 +102,19 @@ const Checkbox = ({
           {!markdownLabel && <>{label}</>}
         </div>
         <input
+          ref={inputRef}
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChange={handleChange}
           checked={isChecked}
           defaultChecked={defaultChecked}
+          disabled={disabled}
           name={name}
           id={id}
           value={value}
           data-testid={testId}
           {...rest}
           type="checkbox"
-          aria-label={label}
-          ref={inputRef}
         />
       </label>
       <Error marginTop="xs" error={error} />
@@ -140,8 +142,16 @@ Checkbox.propTypes = {
   defaultChecked: PropTypes.bool,
   /** Sets the checkbox checked value */
   checked: PropTypes.bool,
-  /** Sets the checkbox indeterminate value */
+  /**
+   * Checkbox renders in
+   * [indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes)
+   * when `true`.
+   */
   indeterminate: PropTypes.bool,
+  /**
+   * Checkbox renders as disabled and ignores click/check events.
+   */
+  disabled: PropTypes.bool,
   /** Sets the `value` attribute of the `input` */
   value: PropTypes.string,
   /** Text of error message to display under the checkbox */
@@ -153,7 +163,7 @@ Checkbox.propTypes = {
    *
    * `card` - visually present as a toggleable card
    */
-  kind: PropTypes.oneOf(["normal", "card"]),
+  kind: PropTypes.oneOf(["normal", "card", "table"]),
 };
 
 export default Checkbox;

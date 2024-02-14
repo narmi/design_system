@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.25.0](https://github.com/narmi/design_system/compare/v3.24.0...v3.25.0) (2024-02-14)
+
+
+### Features
+
+* **alert:** Customizable icon and new alert kind ([e87b53a](https://github.com/narmi/design_system/commit/e87b53a97cbfb345f5cce8b9a26fced3e909696b))
+
 ## [3.24.0](https://github.com/narmi/design_system/compare/v3.23.1...v3.24.0) (2024-02-14)
 
 

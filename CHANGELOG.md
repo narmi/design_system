@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.23.1](https://github.com/narmi/design_system/compare/v3.23.0...v3.23.1) (2024-02-13)
+
+
+### Bug Fixes
+
+* **Dialog:** prevent misplaced scroll gradient in firefox ([a200ac8](https://github.com/narmi/design_system/commit/a200ac8de4ec092cab5412cc133e42597aec16bf))
+
 ## [3.23.0](https://github.com/narmi/design_system/compare/v3.22.0...v3.23.0) (2024-02-12)
 
 

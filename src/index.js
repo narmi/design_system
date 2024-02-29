@@ -31,6 +31,7 @@ import Sidebar from "./Sidebar";
 import Tabs from "./Tabs";
 import Tag from "./Tag";
 import TextInput from "./TextInput";
+import TimelineEvent from "./TimelineEvent";
 import Toggle from "./Toggle";
 import Tooltip from "./Tooltip";
 import TruncatedAccount from "./TruncatedAccount";
@@ -71,6 +72,7 @@ export {
   Tabs,
   Tag,
   TextInput,
+  TimelineEvent,
   Toggle,
   Tooltip,
   TruncatedAccount,

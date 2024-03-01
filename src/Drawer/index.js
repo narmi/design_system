@@ -20,6 +20,7 @@ const Drawer = ({
   onUserDismiss = noop,
   onNext = null,
   onPrev = null,
+  showClose = true,
   showControls = true,
   children,
   position = "right",
@@ -87,15 +88,21 @@ const Drawer = ({
       data-testid={testId}
     >
       <div className={`navigation-container--${position}`}>
-        <div
-          className={`navigation-button navigation-button--${position} alignChild--center--center`}
-          onClick={onUserDismiss}
-        >
-          <span className="narmi-icon-x clickable fontSize--heading3" />
-        </div>
-        <div
-          className={isHorizontal ? "margin--right--xl" : "margin--bottom--xl"}
-        />
+        {showClose && (
+          <div
+            className={`navigation-button navigation-button--${position} alignChild--center--center`}
+            onClick={onUserDismiss}
+          >
+            <span className="narmi-icon-x clickable fontSize--heading3" />
+          </div>
+        )}
+        {showClose && showControls && (
+          <div
+            className={
+              isHorizontal ? "margin--right--xl" : "margin--bottom--xl"
+            }
+          />
+        )}
         {showControls && (
           <>
             <div
@@ -204,6 +211,10 @@ Drawer.propTypes = {
    * Use the full CSS value with the percentage (e.g. `"400px"` or `"70%"`)
    */
   depth: PropTypes.string,
+  /**
+   * Determines whether the close button shows.
+   */
+  showClose: PropTypes.bool,
   /**
    * Determines whether the next and prev buttons show.
    */

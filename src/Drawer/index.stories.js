@@ -174,6 +174,19 @@ ScrollingContentWithoutNavigation.parameters = {
   },
 };
 
+export const WithoutClose = BaseTemplate.bind({});
+WithoutClose.args = {
+  showClose: false,
+};
+WithoutClose.parameters = {
+  docs: {
+    description: {
+      story:
+        "The Drawer will hide the close button when `showClose` is set to false.",
+    },
+  },
+};
+
 export const ContentWithPopover = BaseTemplate.bind({});
 ContentWithPopover.args = {
   showControls: false,

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.27.0](https://github.com/narmi/design_system/compare/v3.26.0...v3.27.0) (2024-03-01)
+
+
+### Features
+
+* **drawer:** allow the close button to be hidden ([fa3740b](https://github.com/narmi/design_system/commit/fa3740b9c63ca75edfb7d320f718b3622cee2522))
+
 ## [3.26.0](https://github.com/narmi/design_system/compare/v3.25.0...v3.26.0) (2024-02-14)
 
 

@@ -11,6 +11,7 @@ const noop = () => {};
 const Tag = ({
   kind = "subdued", // outline, subdued, x-tag (cactus400) #7fbc5b; #7FBC5B oneof
   onDismiss = noop,
+  dismissible,
   label,
   testId,
 }) => {
@@ -20,7 +21,7 @@ const Tag = ({
       data-testid={testId}
     >
       <div className="whiteSpace--truncate">{label}</div>
-      {kind === "dismissible" && (
+      {(dismissible || kind === "dismissible") && (
         <div
           className="narmi-icon-x margin--left--xs"
           role="button"
@@ -38,7 +39,7 @@ const Tag = ({
 };
 
 Tag.propTypes = {
-  /** Variant of Tag */
+  /** Variant of Tag. The "dismissible" kind is deprecated in favor of the dismissible property. */
   kind: PropTypes.oneOf([
     "subdued",
     "subdued-secondary",
@@ -50,10 +51,12 @@ Tag.propTypes = {
   ]),
   /**
    * Callback for user dismissal action
-   * (only applicable for `dismissable` kind)
+   * (only applicable for `dismissible` kind)
    */
   onDismiss: PropTypes.func,
-  /** Label text of tag */
+  /** Whether the tag is dismissible */
+  dismissible: PropTypes.bool,
+  /** Label text of tag. */
   label: PropTypes.string,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,

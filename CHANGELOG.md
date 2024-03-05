@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.28.0](https://github.com/narmi/design_system/compare/v3.27.0...v3.28.0) (2024-03-05)
+
+
+### Features
+
+* **tag:** Support dismissable tag behavior for all kinds ([2e3b926](https://github.com/narmi/design_system/commit/2e3b9266f114b9529460d6daa89e95241bb06ee2))
+
 ## [3.27.0](https://github.com/narmi/design_system/compare/v3.26.0...v3.27.0) (2024-03-01)
 
 

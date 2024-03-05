@@ -52,7 +52,8 @@
 
   &.disabled .nds-input-box {
     pointer-events: none;
-    background-color: var(--color-smokeGrey);
+    user-select: none;
+    background-color: var(--bgColor-smokeGrey) !important;
 
     input {
       color: var(--color-mediumGrey);

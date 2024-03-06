@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.28.1](https://github.com/narmi/design_system/compare/v3.28.0...v3.28.1) (2024-03-06)
+
+
+### Bug Fixes
+
+* **TextInput:** restore disabled background color ([6460f58](https://github.com/narmi/design_system/commit/6460f5847b0c3c3e6edf6ea41167f1603715429d))
+
 ## [3.28.0](https://github.com/narmi/design_system/compare/v3.27.0...v3.28.0) (2024-03-05)
 
 

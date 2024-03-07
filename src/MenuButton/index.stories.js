@@ -53,6 +53,51 @@ CustomTrigger.parameters = {
   },
 };
 
+export const AutomaticPositioning = () => (
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "flex-end",
+      outline: "1px dotted hotpink",
+    }}
+  >
+    <MenuButton label="Menu button on right side of viewport">
+      <MenuButton.Item
+        key="edit"
+        startIcon="edit-2"
+        label="Edit"
+        onSelect={() => {
+          alert("edit handler");
+        }}
+      />
+      <MenuButton.Item
+        key="screenshot"
+        startIcon="camera"
+        label="Screenshot"
+        onSelect={() => {
+          alert("screenshot handler");
+        }}
+      />
+      <MenuButton.Item
+        key="deposit"
+        startIcon="bank"
+        label="Deposit"
+        onSelect={() => {
+          alert("deposit handler");
+        }}
+      />
+    </MenuButton>
+  </div>
+);
+AutomaticPositioning.parameters = {
+  docs: {
+    description: {
+      story:
+        "We often render a MenuButton on the right hand of the viewport. The popover menu will reposition itself so it it always visible.",
+    },
+  },
+};
+
 export const InADialog = () => {
   const [isOpen, setIsOpen] = useState();
   return (

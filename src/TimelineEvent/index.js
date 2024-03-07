@@ -7,7 +7,8 @@ export const VALID_ICON_NAMES = iconSelection.icons.map(
   (icon) => icon.properties.name
 );
 
-const TimelineEvent = ({ kind = "node", icon, imgUrl, children }) => {
+const TimelineEvent = ({ kind = "node", icon, imgUrl, initial, children }) => {
+  const useInitial = !icon && !imgUrl && initial;
   return (
     <div
       className={cc([
@@ -27,6 +28,7 @@ const TimelineEvent = ({ kind = "node", icon, imgUrl, children }) => {
           ])}
           style={{ backgroundImage: imgUrl ? `url(${imgUrl})` : "none" }}
         >
+          {useInitial && <span>{initial}</span>}
           {icon && <span className={`narmi-icon-${icon}`} />}
         </div>
         {kind !== "start" && (
@@ -67,6 +69,13 @@ TimelineEvent.propTypes = {
    * as an avatar
    */
   imgUrl: PropTypes.string,
+  /**
+   * Initial to render in the timeline node
+   * Overridden by:
+   * - icon
+   * - imgUrl
+   */
+  initial: PropTypes.string,
   /**
    * Timline event content (any JSX)
    */

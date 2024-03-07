@@ -49,7 +49,10 @@
 
   // support for icons
   color: var(--color-white);
-  font-size: var(--fontSize--s);
+  font-size: var(--font-size-s);
+
+  // support for initial
+  line-height: var(--space-l);
 
   // support for avatar images
   background-size: cover;

@@ -13,7 +13,7 @@ export const StackingTimelineEvents = () => (
     <TimelineEvent kind="pending">
       We are still waiting on this one
     </TimelineEvent>
-    <TimelineEvent kind="pending">
+    <TimelineEvent>
       At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
       praesentium voluptatum deleniti atque corrupti quos dolores et quas
       molestias excepturi sint occaecati cupiditate non provident, similique

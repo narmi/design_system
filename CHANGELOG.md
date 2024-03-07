@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.28.2](https://github.com/narmi/design_system/compare/v3.28.1...v3.28.2) (2024-03-07)
+
+
+### Bug Fixes
+
+* **MenuButton:** enable auto placement of popover ([fbfd15e](https://github.com/narmi/design_system/commit/fbfd15e4cf7aa8a617b269c9d1335f615793b69d))
+
 ### [3.28.1](https://github.com/narmi/design_system/compare/v3.28.0...v3.28.1) (2024-03-06)
 
 

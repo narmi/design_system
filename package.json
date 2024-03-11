@@ -89,7 +89,7 @@
     "postcss-loader": "^6.1.1",
     "postcss-preset-env": "^7.0.1",
     "prettier": "^3.2.5",
-    "pretty-quick": "^3.1.0",
+    "pretty-quick": "^4",
     "prop-types": "^15.7.2",
     "react": "^16",
     "react-docgen-typescript-plugin": "^1.0.5",

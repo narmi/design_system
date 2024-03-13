@@ -12,8 +12,6 @@ export const VALID_ICON_NAMES = iconSelection.icons.map(
  *
  * Icon Button renders a button with a central Narmi icon
  *
- * This component supports rest props; any additional props on icon button will be
- * passed through to button element.
  */
 const IconButton = ({
   disabled = false,
@@ -22,10 +20,12 @@ const IconButton = ({
   testId = "nds-icon-button",
   label,
   name,
-  onClick = () => {},
+  onClick = () => { },
+  type,
 }) => {
   return (
     <button
+      type={type}
       onClick={onClick}
       className={cc([
         "nds-typography",
@@ -54,6 +54,8 @@ IconButton.propTypes = {
   disabled: PropTypes.bool,
   /** style of icon button to render */
   kind: PropTypes.oneOf(["action", "plain"]),
+  /** type attribute for underlying HTML button element */
+  type: PropTypes.string,
   /** Optional text size of the icon in the icon button defaults different for different kinds (plain/action)*/
   textSize: PropTypes.oneOf(["xs", "s", "m", "l"]),
   /** Click callback, with event object passed as argument */

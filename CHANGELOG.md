@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.29.0](https://github.com/narmi/design_system/compare/v3.28.2...v3.29.0) (2024-03-13)
+
+
+### Features
+
+* **IconButton:** allow passing type to IconButton ([1d69c29](https://github.com/narmi/design_system/commit/1d69c29efa774a85bc86816833e5b1b6eb805d72))
+
 ### [3.28.2](https://github.com/narmi/design_system/compare/v3.28.1...v3.28.2) (2024-03-07)
 
 

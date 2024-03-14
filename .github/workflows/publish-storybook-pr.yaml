@@ -6,6 +6,9 @@ on:
       - synchronize
       - reopened
       - ready_for_review
+    paths:
+      - 'src/**'
+      - 'tokens/src/**'
 
 jobs:
   Chromatic:

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.30.0](https://github.com/narmi/design_system/compare/v3.29.0...v3.30.0) (2024-03-18)
+
+
+### Features
+
+* **TimelineEvent:** add timeline component ([d90dbc3](https://github.com/narmi/design_system/commit/d90dbc3a99b88e56b5ca1a46f591b3fe57ca2a90))
+
 ## [3.29.0](https://github.com/narmi/design_system/compare/v3.28.2...v3.29.0) (2024-03-13)
 
 

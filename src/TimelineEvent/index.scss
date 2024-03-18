@@ -1,0 +1,73 @@
+@keyframes flash {
+  from {
+    background-color: var(--theme-secondary);
+  }
+  to {
+    background-color: var(--color-lightGrey);
+  }
+}
+
+.nds-timeline-event {
+  padding-bottom: var(--space-l);
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-xs);
+}
+
+.nds-timeline-track {
+  position: relative;
+  min-width: 56px;
+  flex-grow: 0;
+}
+
+.nds-timeline-content {
+  flex-grow: 1;
+}
+
+.nds-timeline-line {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  // height of event + gap
+  height: calc(100% + var(--space-l));
+}
+
+.nds-timeline-node {
+  box-sizing: border-box;
+  z-index: 2;
+  margin: 0 auto;
+  width: var(--space-l);
+  height: var(--space-l);
+  border-radius: 50%;
+  background-color: var(--theme-primary);
+  border: 1px solid var(--color-lightGrey);
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+
+  // support for icons
+  color: var(--color-white);
+  font-size: var(--font-size-s);
+
+  // support for initial
+  line-height: var(--space-l);
+
+  // support for avatar images
+  background-size: cover;
+  background-position: center center;
+
+  &--hasAvatar {
+    border-width: 0;
+  }
+}
+
+.nds-timeline-event--pending {
+  .nds-timeline-node {
+    animation: flash 1.5s alternate infinite;
+  }
+  svg line {
+    stroke-dasharray: 2;
+  }
+}

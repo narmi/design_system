@@ -55,16 +55,14 @@ const Popover = ({
     setOpen(!open);
   };
 
-  const handleKeyDown = (event) => {
-    event.stopPropagation();
-    if (event.key === "Enter") {
+  const handleKeyDown = ({ key }) => {
+    if (key === "Enter") {
       setOpen(true);
     }
   };
 
-  const handleKeyUp = (event) => {
-    event.stopPropagation();
-    if (event.key === "Escape" && shouldRenderPopover) {
+  const handleKeyUp = ({ key }) => {
+    if (key === "Escape" && shouldRenderPopover) {
       setOpen(false);
       onUserDismiss();
     }

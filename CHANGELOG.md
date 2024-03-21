@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.30.1](https://github.com/narmi/design_system/compare/v3.30.0...v3.30.1) (2024-03-20)
+
+
+### Bug Fixes
+
+* force patch release ([63a7b8c](https://github.com/narmi/design_system/commit/63a7b8c027f3520b1d35a98ad7ea6c978cb8b406))
+
 ## [3.30.0](https://github.com/narmi/design_system/compare/v3.29.0...v3.30.0) (2024-03-18)
 
 

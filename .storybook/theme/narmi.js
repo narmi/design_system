@@ -29,7 +29,7 @@ export const ui = create({
 
   // logo/branding
   brandTitle: "Narmi Design System",
-  brandUrl: "https://github.com/narmi/design_system",
+  brandUrl: "http://narmi.com",
   brandImage: logo,
 
   colorPrimary: azul,

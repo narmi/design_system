@@ -12,6 +12,7 @@
   transition: transform var(--transition-speed-fast) ease;
   border: var(--border-size-s);
   border-color: var(--border-color-light);
+  padding: var(--space-xxl);
   z-index: 3;
 }
 .drawer--left {
@@ -47,23 +48,16 @@
   transform: translateX(0);
 }
 /*
-the drawer--mobile class styles only apply to mobile drawers that open from the right or left,
+this class only applies to mobile drawers that open from the right or left,
 because we need to replace the left/right controls with controls that are inside the drawer
 */
 .drawer--vertical--mobile {
+  padding: 48px var(--space-l);
   .narmi-icon-x {
     position: absolute;
     top: var(--space-s);
     right: var(--space-s);
     font-size: var(--font-size-heading3);
-  }
-}
-// for extra small screens, ensure there's a minimum amount of padding inside the drawer content
-.drawer-children {
-  padding: 48px var(--space-l);
-
-  @include atMediaUp("s") {
-    padding: var(--space-xxl);
   }
 }
 
@@ -88,7 +82,6 @@ because we need to replace the left/right controls with controls that are inside
 }
 
 .navigation {
-  padding: var(--space-xxl);
   background: transparent;
   transition: transform var(--transition-speed-medium) ease;
   z-index: 1;

@@ -38,7 +38,14 @@ const Drawer = ({
 
   // The depth is how far the drawer opens out, but the CSS prop depends
   // on whether the Drawer is vertical or not
-  const depthStyle = isHorizontal ? { height: depth } : { width: !isVerticalMobileDrawer ? depth : "100%" };
+  const depthStyle = {
+    width: isHorizontal ? "auto" : depth,
+    height: isHorizontal ? depth : "100%",
+  };
+  if (isVerticalMobileDrawer) {
+    depthStyle.width = "100%";
+  }
+
   useLockBodyScroll(isOpen);
 
   const handleKeyDown = ({ key }) => {
@@ -155,9 +162,14 @@ const Drawer = ({
   const childrenJSX = (
     <div
       style={depthStyle}
-      className={`drawer drawer-children drawer--${position} ${
-        isOpen && isTransitioning ? `drawer--open--${position}` : ""
-      } ${isVerticalMobileDrawer ? "drawer--vertical--mobile" : ""}`}
+      className={cc([
+        "drawer",
+        `drawer--${position}`,
+        {
+          [`drawer--open--${position}`]: isOpen && isTransitioning,
+          "drawer--vertical--mobile": isVerticalMobileDrawer,
+        },
+      ])}
       role="dialog"
       data-testid={testId}
     >

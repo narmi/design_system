@@ -38,10 +38,7 @@ const Drawer = ({
 
   // The depth is how far the drawer opens out, but the CSS prop depends
   // on whether the Drawer is vertical or not
-  const depthStyle = {
-    width: isHorizontal ? "auto" : depth,
-    height: isHorizontal ? depth : "100%",
-  };
+  const depthStyle = isHorizontal ? { height: depth } : { width: depth };
   if (isVerticalMobileDrawer) {
     depthStyle.width = "100%";
   }

@@ -172,20 +172,24 @@ const Drawer = ({
     >
       {isVerticalMobileDrawer && (
         <>
-          <div
-            onClick={onPrev}
-          >
-            <span
-              className="narmi-icon-chevron-left fontSize--heading3"
-            />
-          </div>
-          <div
-            onClick={onNext}
-          >
-            <span
-              className="narmi-icon-chevron-right fontSize--heading3"
-            />
-          </div>
+          {showControls && (
+            <>
+              <div
+                onClick={onPrev}
+              >
+                <span
+                  className="narmi-icon-chevron-left fontSize--heading3"
+                />
+              </div>
+              <div
+                onClick={onNext}
+              >
+                <span
+                  className="narmi-icon-chevron-right fontSize--heading3"
+                />
+              </div>
+            </>
+          )}
           <div
             onClick={onUserDismiss}
           >

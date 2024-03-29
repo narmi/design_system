@@ -91,6 +91,7 @@
   .nds-radiobutton-details {
     max-height: 0;
     transition: max-height 0.3s ease-in;
+    transition: margin-top 0.2s ease-in;
     overflow: hidden;
 
     &.nds-radiobutton-details--checked {

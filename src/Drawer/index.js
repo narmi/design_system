@@ -171,11 +171,27 @@ const Drawer = ({
       data-testid={testId}
     >
       {isVerticalMobileDrawer && (
-        <div
-          onClick={onUserDismiss}
-        >
-          <span className="narmi-icon-x clickable fontSize--heading3" />
-        </div>
+        <>
+          <div
+            onClick={onPrev}
+          >
+            <span
+              className="narmi-icon-chevron-left fontSize--heading3"
+            />
+          </div>
+          <div
+            onClick={onNext}
+          >
+            <span
+              className="narmi-icon-chevron-right fontSize--heading3"
+            />
+          </div>
+          <div
+            onClick={onUserDismiss}
+          >
+            <span className="narmi-icon-x clickable fontSize--heading3" />
+          </div>
+        </>
       )}
       {typeof children === "function"
         ? children({ isVisible: isTransitioning })

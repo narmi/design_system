@@ -53,11 +53,20 @@ because we need to replace the left/right controls with controls that are inside
 */
 .drawer--vertical--mobile {
   padding: 48px var(--space-l);
-  .narmi-icon-x {
+  .narmi-icon-x,
+  .narmi-icon-chevron-left,
+  .narmi-icon-chevron-right {
     position: absolute;
     top: var(--space-s);
+  }
+  .narmi-icon-x {
     right: var(--space-s);
-    font-size: var(--font-size-heading3);
+  }
+  .narmi-icon-chevron-left {
+    left: var(--space-s);
+  }
+  .narmi-icon-chevron-right {
+    left: 45px;
   }
 }
 

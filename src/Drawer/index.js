@@ -3,6 +3,7 @@ import React, { useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import cc from "classcat";
+import useBreakpoints from "../hooks/useBreakpoints";
 import useMountTransition from "./useMountTransition";
 import useLockBodyScroll from "../hooks/useLockBodyScroll";
 
@@ -31,10 +32,17 @@ const Drawer = ({
   const navRef = useRef(null);
 
   const isTransitioning = useMountTransition(isOpen, 300);
+  const { m } = useBreakpoints();
   const isHorizontal = position === "bottom" || position === "top";
+  const isVerticalMobileDrawer = (!m) && !isHorizontal;
+
   // The depth is how far the drawer opens out, but the CSS prop depends
   // on whether the Drawer is vertical or not
   const depthStyle = isHorizontal ? { height: depth } : { width: depth };
+  if (isVerticalMobileDrawer) {
+    depthStyle.width = "100%";
+  }
+
   useLockBodyScroll(isOpen);
 
   const handleKeyDown = ({ key }) => {
@@ -77,7 +85,7 @@ const Drawer = ({
   };
 
   /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
-  const navigationContainerJSX = (
+  const navigationContainerJSX = isVerticalMobileDrawer ? null : (
     <div
       ref={navRef}
       onClick={handleShimClick}
@@ -151,12 +159,44 @@ const Drawer = ({
   const childrenJSX = (
     <div
       style={depthStyle}
-      className={`drawer drawer--${position} ${
-        isOpen && isTransitioning ? `drawer--open--${position}` : ""
-      }`}
+      className={cc([
+        "drawer",
+        `drawer--${position}`,
+        {
+          [`drawer--open--${position}`]: isOpen && isTransitioning,
+          "drawer--vertical--mobile": isVerticalMobileDrawer,
+        },
+      ])}
       role="dialog"
       data-testid={testId}
     >
+      {isVerticalMobileDrawer && (
+        <>
+          {showControls && (
+            <>
+              <div
+                onClick={onPrev}
+              >
+                <span
+                  className="narmi-icon-chevron-left fontSize--heading3"
+                />
+              </div>
+              <div
+                onClick={onNext}
+              >
+                <span
+                  className="narmi-icon-chevron-right fontSize--heading3"
+                />
+              </div>
+            </>
+          )}
+          <div
+            onClick={onUserDismiss}
+          >
+            <span className="narmi-icon-x clickable fontSize--heading3" />
+          </div>
+        </>
+      )}
       {typeof children === "function"
         ? children({ isVisible: isTransitioning })
         : children}

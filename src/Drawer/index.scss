@@ -47,6 +47,28 @@
 .drawer--open--bottom {
   transform: translateX(0);
 }
+/*
+this class only applies to mobile drawers that open from the right or left,
+because we need to replace the left/right controls with controls that are inside the drawer
+*/
+.drawer--vertical--mobile {
+  padding: 48px var(--space-l);
+  .narmi-icon-x,
+  .narmi-icon-chevron-left,
+  .narmi-icon-chevron-right {
+    position: absolute;
+    top: var(--space-s);
+  }
+  .narmi-icon-x {
+    right: var(--space-s);
+  }
+  .narmi-icon-chevron-left {
+    left: var(--space-s);
+  }
+  .narmi-icon-chevron-right {
+    left: 45px;
+  }
+}
 
 .backdrop {
   visibility: hidden;

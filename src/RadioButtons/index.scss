@@ -90,30 +90,33 @@
 
   .nds-radiobutton-details {
     max-height: 0;
+    opacity: 0;
+    padding-right: 60px;
     line-height: 0;
     transition:
-      max-height 0.3s ease-in,
-      line-height 0.2s ease-in,
-      margin-top 0.2s ease-in;
+      max-height 0.3s ease,
+      opacity 0.15s ease,
+      line-height 0.15s ease,
+      margin-top 0.2s ease;
     overflow: hidden;
 
     &.nds-radiobutton-details--checked {
       line-height: var(--font-lineHeight-default);
       max-height: 300px;
+      opacity: 1;
       margin-top: var(--space-s);
-      padding-right: 60px;
     }
   }
 
   .nds-radiobuttons-option {
     position: relative;
+    background-color: var(--color-white);
 
     .nds-radiobuttons-label-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      background-color: var(--color-white);
       color: var(--theme-primary);
       font-weight: var(--font-weight-bold) !important;
     }

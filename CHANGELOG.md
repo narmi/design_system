@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.31.0](https://github.com/narmi/design_system/compare/v3.30.2...v3.31.0) (2024-03-29)
+
+
+### Features
+
+* **Drawer:** use takeover drawer for mobile sized screens ([4878c42](https://github.com/narmi/design_system/commit/4878c42906e82867bdc024416512f6d8fa274930))
+
+### [3.30.2](https://github.com/narmi/design_system/compare/v3.30.1...v3.30.2) (2024-03-21)
+
+
+### Bug Fixes
+
+* **Popover:** don't bubble up the user events that we handle ([3e98cc8](https://github.com/narmi/design_system/commit/3e98cc8d37de8cb4a0312983dbf73ea124560ff1))
+
 ### [3.30.1](https://github.com/narmi/design_system/compare/v3.30.0...v3.30.1) (2024-03-20)
 
 

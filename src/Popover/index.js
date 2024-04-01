@@ -50,7 +50,8 @@ const Popover = ({
     onUserDismiss();
   };
 
-  const togglePopover = () => {
+  const togglePopover = (event) => {
+    event.stopPropagation();
     setOpen(!open);
   };
 

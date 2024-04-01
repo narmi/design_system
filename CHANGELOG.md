@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.32.1](https://github.com/narmi/design_system/compare/v3.32.0...v3.32.1) (2024-04-01)
+
+
+### Bug Fixes
+
+* **RadioButtons:** Cleaner transition for RadioButtons component and this also fixes the card background color ([68833ec](https://github.com/narmi/design_system/commit/68833ec10228824bf29402b7a8cab44194770cea))
+
 ## [3.32.0](https://github.com/narmi/design_system/compare/v3.31.0...v3.32.0) (2024-04-01)
 
 

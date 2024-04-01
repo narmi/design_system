@@ -20,6 +20,17 @@
   &:last-child {
     margin-bottom: 0;
   }
+
+  .nds-radiobutton-details {
+    max-height: 0;
+    margin-top: 0;
+    overflow: hidden;
+
+    &.nds-radiobutton-details--checked {
+      margin-top: var(--space-xs);
+      max-height: 300px;
+    }
+  }
 }
 
 // normal variant of radiobuttons
@@ -77,15 +88,35 @@
 .nds-radiobuttons--card {
   display: block;
 
+  .nds-radiobutton-details {
+    max-height: 0;
+    line-height: 0;
+    transition:
+      max-height 0.3s ease-in,
+      line-height 0.2s ease-in,
+      margin-top 0.2s ease-in;
+    overflow: hidden;
+
+    &.nds-radiobutton-details--checked {
+      line-height: var(--font-lineHeight-default);
+      max-height: 300px;
+      margin-top: var(--space-s);
+      padding-right: 60px;
+    }
+  }
+
   .nds-radiobuttons-option {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    background-color: var(--color-white);
-    color: var(--theme-primary);
-    font-weight: var(--font-weight-bold) !important;
+
+    .nds-radiobuttons-label-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background-color: var(--color-white);
+      color: var(--theme-primary);
+      font-weight: var(--font-weight-bold) !important;
+    }
 
     .narmi-icon-check {
       display: none;
@@ -103,6 +134,9 @@
 
     &.nds-radiobuttons-option--checked {
       background-color: RGBA(var(--theme-rgb-primary), var(--alpha-5));
+      .nds-radiobuttons-label-container {
+        background-color: transparent;
+      }
     }
 
     &.nds-radiobuttons-option--checked .narmi-icon-check {

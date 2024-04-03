@@ -68,7 +68,7 @@ const RadioButtons = ({
     >
       {Object.entries(options).map(([label, subOptions]) => {
         const { value: inputValue, details } =
-          typeof subOptions === "string" ? { value: subOptions } : subOptions;
+          typeof subOptions === "object" ? subOptions : { value: subOptions };
         return (
           <label
             className={cc([

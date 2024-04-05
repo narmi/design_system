@@ -6,10 +6,18 @@ import cc from "classcat";
 The Narmi RadioButtons component expects an "options" Prop, which is an object where the keys are the radiobutton
 labels and the values are the radiobutton values. An "initialvalue" Prop can be passed to set a default checked
 radiobutton.
+```
+  options={{
+    "First Label": { value: "firstValue", details: "This is the explanation of the firstValue" },
+    "Second Label": { value: "secondValue", details: "This is the explanation of the secondValue" }
+  }
+```
 
+The other options configuration without details would be:
 ```
   options={{ "First Label": "firstValue", "Second Label": "secondValue" }}
 ```
+
 */
 const RadioButtons = ({
   options,
@@ -20,12 +28,13 @@ const RadioButtons = ({
   onChange = () => {},
   testId,
   error,
+  alwaysShowDetails = false,
   ...containerProps
 }) => {
   const isControlled = value !== undefined;
   const hasError = error !== undefined && error.length > 0;
   const [checkedValue, setCheckedValue] = useState(
-    isControlled ? value : initialValue
+    isControlled ? value : initialValue,
   );
   const [focusedValue, setFocusedValue] = useState(null);
 
@@ -57,40 +66,61 @@ const RadioButtons = ({
       data-testid={testId}
       {...containerProps}
     >
-      {Object.entries(options).map(([label, inputValue]) => (
-        <label
-          className={cc([
-            "nds-radiobuttons-option",
-            "fontWeight--default",
-            {
-              "nds-radiobuttons-option--checked": checkedValue == inputValue,
-              "nds-radiobuttons-option--focused": focusedValue == inputValue,
-              "nds-radiobuttons-option--error": hasError,
-              "padding--all rounded--all border--all": kind === "card",
-            },
-          ])}
-          key={inputValue}
-        >
-          {label}
-          <input
-            type="radio"
-            aria-label={`Radio ${name} option ${label}`}
-            checked={checkedValue === inputValue}
-            onChange={handleChange}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            value={inputValue}
-            name={name}
-          />
-          <div
-            role="presentation"
+      {Object.entries(options).map(([label, subOptions]) => {
+        const { value: inputValue, details } =
+          typeof subOptions === "object" ? subOptions : { value: subOptions };
+        return (
+          <label
             className={cc([
-              "nds-radio",
-              { "narmi-icon-check": kind === "card" },
+              "nds-radiobuttons-option",
+              "fontWeight--default",
+              {
+                "nds-radiobuttons-option--checked": checkedValue == inputValue,
+                "nds-radiobuttons-option--focused": focusedValue == inputValue,
+                "nds-radiobuttons-option--error": hasError,
+                "padding--all rounded--all border--all": kind === "card",
+              },
             ])}
-          />
-        </label>
-      ))}
+            key={inputValue}
+          >
+            <div className="nds-radiobuttons-label-container">
+              {label}
+              <input
+                type="radio"
+                aria-label={`Radio ${name} option ${label}`}
+                checked={checkedValue === inputValue}
+                onChange={handleChange}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                value={inputValue}
+                name={name}
+              />
+              <div
+                role="presentation"
+                className={cc([
+                  "nds-radio",
+                  { "narmi-icon-check": kind === "card" },
+                ])}
+              />
+            </div>
+            {details && (
+              <div
+                className={cc([
+                  "nds-radiobutton-details",
+                  {
+                    "nds-radiobutton-details--checked":
+                      alwaysShowDetails || checkedValue == inputValue,
+                    "fontColor--secondary": kind != "card",
+                    "fontSize--s": kind != "card",
+                  },
+                ])}
+              >
+                {details}
+              </div>
+            )}
+          </label>
+        );
+      })}
       {hasError && (
         <div className="fontColor--error">
           <span className="fontSize--s margin--right--xxs narmi-icon-x-circle" />
@@ -127,6 +157,13 @@ RadioButtons.propTypes = {
    * render the radio group in an error state.
    */
   error: PropTypes.string,
+  /**
+   * Always show details. When `true`, the details will
+   * always be shown, regardless of if an radio button is selected.
+   * When `false`, the details will only be shown when a radio
+   * button is selected. Defaults to `false`
+   */
+  alwaysShowDetails: PropTypes.bool,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
 };

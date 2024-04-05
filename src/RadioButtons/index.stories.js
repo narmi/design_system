@@ -84,6 +84,53 @@ FullyControlled.parameters = {
   },
 };
 
+export const AsRadioButtonsWithDetails = Template.bind({});
+AsRadioButtonsWithDetails.args = {
+  options: {
+    OptionA: {
+      value: "A",
+      details:
+        "Option A details. The Option A details are very long and will wrap to the next line. The Option A details are very long and will wrap to the next line.",
+    },
+    OptionB: { value: "B", details: "Option B details" },
+    OptionC: { value: "C", details: "Option C details" },
+  },
+  name: "card_options_with_details",
+};
+
+AsRadioButtonsWithDetails.parameters = {
+  docs: {
+    description: {
+      story:
+        "Renders a radio group styled as a cards. The cards will grow to fill the width of their parent container. Each card can have a `details` property to show additional information when the card is selected.",
+    },
+  },
+};
+
+export const AsRadioButtonsWithDetailsAlwaysShown = Template.bind({});
+AsRadioButtonsWithDetailsAlwaysShown.args = {
+  options: {
+    OptionA: {
+      value: "A",
+      details:
+        "Option A details. The Option A details are very long and will wrap to the next line. The Option A details are very long and will wrap to the next line.",
+    },
+    OptionB: { value: "B", details: "Option B details" },
+    OptionC: { value: "C", details: "Option C details" },
+  },
+  alwaysShowDetails: true,
+  name: "card_options_with_details",
+};
+
+AsRadioButtonsWithDetailsAlwaysShown.parameters = {
+  docs: {
+    description: {
+      story:
+        "Renders a radio group styled as a cards. The cards will grow to fill the width of their parent container. Each card can have a `details` property to show additional information when the card is selected.",
+    },
+  },
+};
+
 export const AsCard = Template.bind({});
 AsCard.args = {
   options: {
@@ -99,6 +146,30 @@ AsCard.parameters = {
     description: {
       story:
         "Renders a radio group styled as a cards. The cards will grow to fill the width of their parent container.",
+    },
+  },
+};
+
+export const AsCardWithDetails = Template.bind({});
+AsCardWithDetails.args = {
+  options: {
+    OptionA: {
+      value: "A",
+      details:
+        "Option A details. The Option A details are very long and will wrap to the next line. The Option A details are very long and will wrap to the next line.",
+    },
+    OptionB: { value: "B", details: "Option B details" },
+    OptionC: { value: "C", details: "Option C details" },
+  },
+  name: "card_options_with_details",
+  kind: "card",
+};
+
+AsCardWithDetails.parameters = {
+  docs: {
+    description: {
+      story:
+        "Renders a radio group styled as a cards. The cards will grow to fill the width of their parent container. Each card can have a `details` property to show additional information when the card is selected.",
     },
   },
 };

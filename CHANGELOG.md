@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.32.2](https://github.com/narmi/design_system/compare/v3.32.1...v3.32.2) (2024-04-04)
+
+
+### Bug Fixes
+
+* **RadioButtons:** Fix duck-typing for radio buttons options ([4708f3c](https://github.com/narmi/design_system/commit/4708f3c1388161d64df5e7349ea0739c5256363f))
+
+### [3.32.1](https://github.com/narmi/design_system/compare/v3.32.0...v3.32.1) (2024-04-01)
+
+
+### Bug Fixes
+
+* **RadioButtons:** Cleaner transition for RadioButtons component and this also fixes the card background color ([68833ec](https://github.com/narmi/design_system/commit/68833ec10228824bf29402b7a8cab44194770cea))
+
+## [3.32.0](https://github.com/narmi/design_system/compare/v3.31.0...v3.32.0) (2024-04-01)
+
+
+### Features
+
+* **RadioButtons:** Add details to the RadioButtons component ([76239e2](https://github.com/narmi/design_system/commit/76239e27bc7538b187c291202398ff828173a089))
+
 ## [3.31.0](https://github.com/narmi/design_system/compare/v3.30.2...v3.31.0) (2024-03-29)
 
 

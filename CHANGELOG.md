@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.32.3](https://github.com/narmi/design_system/compare/v3.32.2...v3.32.3) (2024-04-08)
+
+
+### Bug Fixes
+
+* **menu:** allow closing the menu via the trigger ([2ac0894](https://github.com/narmi/design_system/commit/2ac089452f22d7753fb277d3896247280652d94b))
+
 ### [3.32.2](https://github.com/narmi/design_system/compare/v3.32.1...v3.32.2) (2024-04-04)
 
 

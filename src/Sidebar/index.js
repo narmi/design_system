@@ -64,6 +64,6 @@ Sidebar.propTypes = {
    */
   kind: PropTypes.oneOf(["nav"]),
 };
-Sidebar.Item = SidebarItem
 
+Sidebar.Item = SidebarItem
 export default Sidebar;

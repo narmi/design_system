@@ -1,6 +1,6 @@
 {
   "name": "@narmi/design_system",
-  "version": "3.32.3",
+  "version": "3.32.4",
   "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
   "files": [
@@ -83,7 +83,7 @@
     "html-webpack-plugin": "^5.3.1",
     "husky": "^8.0.3",
     "jest": "^27.2.4",
-    "jsdoc-to-markdown": "^7.1.0",
+    "jsdoc-to-markdown": "^8.0.1",
     "mini-css-extract-plugin": "^2.2.0",
     "polished": "^4.1.1",
     "postcss-loader": "^6.1.1",

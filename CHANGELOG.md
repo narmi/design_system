@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.32.4](https://github.com/narmi/design_system/compare/v3.32.3...v3.32.4) (2024-04-24)
+
+
+### Bug Fixes
+
+* **Sidebar:** map SidebarItem to Sidebar.Item ([80cce7c](https://github.com/narmi/design_system/commit/80cce7c1052a47e7aa32d632710b61ea1cb1c570))
+
 ### [3.32.3](https://github.com/narmi/design_system/compare/v3.32.2...v3.32.3) (2024-04-08)
 
 

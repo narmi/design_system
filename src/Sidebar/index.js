@@ -2,6 +2,7 @@ import cc from "classcat";
 import PropTypes from "prop-types";
 import React from "react";
 import Row from "../Row";
+import SidebarItem from "./SidebarItem";
 
 /**
  * Narmi Sidebar component
@@ -64,4 +65,5 @@ Sidebar.propTypes = {
   kind: PropTypes.oneOf(["nav"]),
 };
 
+Sidebar.Item = SidebarItem
 export default Sidebar;

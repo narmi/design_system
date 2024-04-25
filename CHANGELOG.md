@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.32.5](https://github.com/narmi/design_system/compare/v3.32.4...v3.32.5) (2024-04-25)
+
+
+### Bug Fixes
+
+* docs for formatters ([f91fc0f](https://github.com/narmi/design_system/commit/f91fc0f510f156517a30dc40c53cc4881122d397))
+
 ### [3.32.4](https://github.com/narmi/design_system/compare/v3.32.3...v3.32.4) (2024-04-24)
 
 

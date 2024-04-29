@@ -1,4 +1,5 @@
-import { useRef } from "react";
+/* eslint-disable react/prop-types */
+import React, { useRef } from "react";
 import { VisuallyHidden, mergeProps, useFocusRing, useSliderThumb } from "react-aria";
 
 const getRailWidth = (lowerInputThumbProps, higherInputThumbProps) => parseFloat(higherInputThumbProps.style?.left.toString().slice(0, -1)) - parseFloat(lowerInputThumbProps.style?.left.toString().slice(0, -1));

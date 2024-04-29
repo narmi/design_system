@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { useNumberFormatter, useSlider, VisuallyHidden } from "react-aria";
 import { useSliderState } from 'react-stately';
 import Thumbs from "./Thumbs";
@@ -8,7 +8,7 @@ interface Props {
   output?: string;
   higherName?: string;
   lowerName?: string;
-  formatOptions: Object;
+  formatOptions: Intl.NumberFormatOptions;
   maxValue: number;
   defaultValue?: number[];
   step: number;

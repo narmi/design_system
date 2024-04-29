@@ -12,6 +12,7 @@ import Drawer from "./Drawer";
 import Dropdown from "./Dropdown";
 import DropdownTrigger from "./DropdownTrigger";
 import Error from "./Error";
+import FieldToken from "./FieldToken";
 import FormSection from "./FormSection";
 import IconButton from "./IconButton";
 import Input from "./Input";
@@ -53,6 +54,7 @@ export {
   Dropdown,
   DropdownTrigger,
   Error,
+  FieldToken,
   FormSection,
   IconButton,
   Input,

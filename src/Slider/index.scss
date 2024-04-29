@@ -1,0 +1,43 @@
+
+
+.nds-slider {
+  position: relative;
+  width: 300px;
+  touch-action: none;
+
+  .rail {
+    position: absolute;
+    background-color: rgba(var(--theme-rgb-primary), var(--alpha-20));
+    height: 2px;
+    width: 100%;
+  }
+
+  .rail-active {
+    position: relative;
+    background-color: var(--theme-primary);
+    height: 2px;
+  }
+
+  .track {
+    position: relative;
+    height: 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .thumb {
+    top: 8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    background-color: var(--theme-primary);
+  }
+
+  .output-container {
+    margin-bottom: var(--space-l);
+  }
+}
+
+

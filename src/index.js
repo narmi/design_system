@@ -34,6 +34,7 @@ import Tag from "./Tag";
 import TextInput from "./TextInput";
 import TimelineEvent from "./TimelineEvent";
 import Toggle from "./Toggle";
+import TokenInput from "./TokenInput";
 import Tooltip from "./Tooltip";
 import TruncatedAccount from "./TruncatedAccount";
 import useBreakpoints from "./hooks/useBreakpoints";
@@ -76,6 +77,7 @@ export {
   TextInput,
   TimelineEvent,
   Toggle,
+  TokenInput,
   Tooltip,
   TruncatedAccount,
   useBreakpoints,

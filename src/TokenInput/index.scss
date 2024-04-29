@@ -1,0 +1,27 @@
+.nds-tokenInput {
+  .nds-input-box {
+    flex-wrap: wrap;
+  }
+
+  // We use the floating label flex column height to create space above and
+  // below the input instead of input padding.
+  // This allows us to center the input with tokens on a single line,
+  // and creates vertical space between the tokens and the input when tokens wrap.
+  .nds-input-column {
+    justify-content: center;
+    height: 32px;
+  }
+  input {
+    padding: 0 !important;
+  }
+
+  .nds-input-column label {
+    @extend %a11y-visually-hide;
+  }
+}
+
+.nds-tokenInput-tokens {
+  display: flex;
+  gap: var(--space-s);
+  flex-wrap: wrap;
+}

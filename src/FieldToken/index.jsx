@@ -27,10 +27,12 @@ const FieldToken = ({ label, onDismiss = noop, testId }) => {
         className="narmi-icon-x margin--left--xs"
         role="button"
         tabIndex={0}
-        onClick={onDismiss}
+        onClick={() => {
+          onDismiss(label);
+        }}
         onKeyUp={({ key }) => {
           if (key === "Enter" || key == " ") {
-            onDismiss();
+            onDismiss(label);
           }
         }}
       />
@@ -42,7 +44,8 @@ FieldToken.propTypes = {
   /** Label text of tag. */
   label: PropTypes.string.isRequired,
   /**
-   * Callback for user dismissal action
+   * Callback for user dismissal action,
+   * called with token label as the argument
    */
   onDismiss: PropTypes.func,
   /** Optional value for `data-testid` attribute */

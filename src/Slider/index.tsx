@@ -49,7 +49,6 @@ const Slider = (props: Props) => {
         <Thumbs state={state} trackRef={trackRef} lowerName={props.lowerName} higherName={props.higherName} />
       </div>
     </div>
-
   );
 };
 

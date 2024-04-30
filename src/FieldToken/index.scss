@@ -3,9 +3,12 @@
   justify-content: flex-start;
   align-items: center;
   height: 25px;
-  max-width: 100%;
   color: var(--theme-primary);
   background: rgba(var(--theme-rgb-primary), var(--alpha-20));
+
+  // Prevent forced overflow.
+  // Truncate after 300px - no token should be wider than a small mobile viewport
+  max-width: 300px;
 
   // Renders an icon with a small glyph inside a 16x16 click target
   .narmi-icon-x {

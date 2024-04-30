@@ -75,7 +75,10 @@ const TokenInput = ({
         startContent={
           <div
             className="nds-tokenInput-tokens margin--right--s"
-            aria-label="Current selection"
+            role="list"
+            aria-label="Selected Items"
+            aria-live="polite"
+            aria-atomic="true"
           >
             {tokens.map((label) => (
               <FieldToken

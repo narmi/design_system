@@ -11,6 +11,7 @@ const noop = () => {};
 const FieldToken = ({ label, onDismiss = noop, testId }) => {
   return (
     <div
+      role="listitem"
       className={cc([
         "nds-fieldToken",
         "padding--y--none",
@@ -26,6 +27,7 @@ const FieldToken = ({ label, onDismiss = noop, testId }) => {
       <div
         className="narmi-icon-x margin--left--xs"
         role="button"
+        aria-label={`Remove ${label}`}
         tabIndex={0}
         onClick={() => {
           onDismiss(label);

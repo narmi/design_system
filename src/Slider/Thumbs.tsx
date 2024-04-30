@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useRef } from "react";
 import { VisuallyHidden, mergeProps, useFocusRing, useSliderThumb } from "react-aria";
+import cc from "classcat";
 
 const getRailWidth = (lowerInputThumbProps, higherInputThumbProps) => parseFloat(higherInputThumbProps.style?.left.toString().slice(0, -1)) - parseFloat(lowerInputThumbProps.style?.left.toString().slice(0, -1));
 
@@ -12,20 +13,21 @@ const useThumb = (index, trackRef, name, state) => {
     inputRef,
     name
   }, state);
-  const { focusProps } = useFocusRing();
+  const { focusProps, isFocusVisible } = useFocusRing();
   return {
     inputRef,
     thumbProps,
     inputProps,
     focusProps,
+    isFocusVisible
   }
 }
 
-const Thumb = ({ thumbProps, inputRef, inputProps, focusProps }) => {
+const Thumb = ({ thumbProps, inputRef, inputProps, focusProps, isFocusVisible }) => {
   return (
     <div
       {...thumbProps}
-      className="thumb"
+      className={cc(["thumb", { "focus": isFocusVisible }])}
     >
       <VisuallyHidden>
         <input ref={inputRef} {...mergeProps(inputProps, focusProps)} />
@@ -54,6 +56,7 @@ const Thumbs = (props) => {
         inputRef={lowerThumb.inputRef}
         inputProps={lowerThumb.inputProps}
         focusProps={lowerThumb.focusProps}
+        isFocusVisible={lowerThumb.isFocusVisible}
       />
       <div className="rail-active" style={activeRailStyle}/>
       <Thumb
@@ -61,6 +64,7 @@ const Thumbs = (props) => {
         inputRef={higherThumb.inputRef}
         inputProps={higherThumb.inputProps}
         focusProps={higherThumb.focusProps}
+        isFocusVisible={higherThumb.isFocusVisible}
       />
     </>
 

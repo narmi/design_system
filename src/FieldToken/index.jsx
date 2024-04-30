@@ -23,7 +23,9 @@ const FieldToken = ({ label, onDismiss = noop, testId }) => {
       ])}
       data-testid={testId}
     >
-      <div className="whiteSpace--truncate">{label}</div>
+      <div className="whiteSpace--truncate" style={{ userSelect: "none" }}>
+        {label}
+      </div>
       <div
         className="narmi-icon-x margin--left--xs"
         role="button"

@@ -27,7 +27,7 @@ export const UsingWithState = () => {
         </output>
       </div>
       <TokenInput
-        label="Add your favorite foods!"
+        label="Favorite Foods"
         fieldName="favorite_foods"
         fieldValue={value}
         inputValue={inputValue}

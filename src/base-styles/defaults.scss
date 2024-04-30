@@ -50,3 +50,9 @@ b,
 strong {
   font-weight: var(--font-weight-bold);
 }
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}

@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 // Click event for handleBoxClick is for mouse users only.
 // Keyboard navigation tabs through the tokens and input as expected.
@@ -70,7 +70,8 @@ const TokenInput = ({
   };
 
   return (
-    <div className="nds-tokenInput" onClick={handleBoxClick}>
+    <fieldset className="nds-tokenInput" onClick={handleBoxClick}>
+      <legend>{label}</legend>
       <input type="hidden" id={fieldName} name={fieldName} value={fieldValue} />
       <TextInput
         ref={inputRef}
@@ -84,7 +85,7 @@ const TokenInput = ({
           <div
             className="nds-tokenInput-tokens margin--right--s"
             role="list"
-            aria-label="Selected Items"
+            aria-atomic="true"
           >
             {tokens.map((label) => (
               <FieldToken
@@ -98,7 +99,7 @@ const TokenInput = ({
         onKeyUp={handleKeyUp}
         {...otherProps}
       />
-    </div>
+    </fieldset>
   );
 };
 

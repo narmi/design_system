@@ -52,6 +52,11 @@ const TokenInput = ({
     const newTokens = new Set(tokens);
     newTokens.delete(token);
     onTokensChange([...newTokens]);
+
+    // always refocus the input after token list updates
+    if (inputRef?.current) {
+      inputRef.current.focus();
+    }
   };
 
   // The actual input element may wrap or shrink as tokens are added.
@@ -77,8 +82,6 @@ const TokenInput = ({
             className="nds-tokenInput-tokens margin--right--s"
             role="list"
             aria-label="Selected Items"
-            aria-live="polite"
-            aria-atomic="true"
           >
             {tokens.map((label) => (
               <FieldToken

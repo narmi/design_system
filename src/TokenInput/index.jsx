@@ -23,9 +23,9 @@ export const createToken = (inputValue, delimiter) =>
  * a user has entered into the accompanying text input.
  */
 const TokenInput = ({
-  name,
+  fieldName,
   label,
-  value,
+  fieldValue,
   onInputChange = noop,
   onTokensChange = noop,
   inputValue,
@@ -71,11 +71,14 @@ const TokenInput = ({
 
   return (
     <div className="nds-tokenInput" onClick={handleBoxClick}>
-      <input name={name} type="hidden" value={value} />
+      <input type="hidden" id={fieldName} name={fieldName} value={fieldValue} />
       <TextInput
         ref={inputRef}
         label={label}
         onChange={onInputChange}
+        onBlur={() => {
+          onInputChange(INPUT_RESET_EVENT);
+        }}
         value={inputValue}
         startContent={
           <div
@@ -100,22 +103,22 @@ const TokenInput = ({
 };
 
 TokenInput.propTypes = {
+  /** Label for input */
+  label: PropTypes.string.isRequired,
   /**
    * Name of input that holds the submission value.
    * This should be the name of the field in the submitted form.
    */
-  name: PropTypes.string.isRequired,
-  /** Label for input */
-  label: PropTypes.string.isRequired,
-  /** Input change calback */
-  onInputChange: PropTypes.func,
-  /** Value of input element */
-  inputValue: PropTypes.string,
+  fieldName: PropTypes.string.isRequired,
   /**
    * Value for the input with the given `name` prop.
    * This should be the value of the field in the submitted form.
    */
-  value: PropTypes.string,
+  fieldValue: PropTypes.string.isRequired,
+  /** Input change calback */
+  onInputChange: PropTypes.func,
+  /** Value of input element */
+  inputValue: PropTypes.string,
   /**
    * Called with the list of selected tokens
    * as the argument when user updates tokens list

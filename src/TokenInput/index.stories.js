@@ -27,10 +27,10 @@ export const UsingWithState = () => {
         </output>
       </div>
       <TokenInput
-        name="favorite_foods"
         label="Add your favorite foods!"
+        fieldName="favorite_foods"
+        fieldValue={value}
         inputValue={inputValue}
-        value={value}
         tokens={tokens}
         onInputChange={(e) => {
           setInputValue(e.target.value);

@@ -12,7 +12,7 @@ const noop = () => {};
 const MIN_TOKEN_LENGTH = 1; // assume anything less than 2 is an accident
 const INPUT_RESET_EVENT = { target: { value: "" } };
 
-// take value of input with any leading or trailing delimiters removed
+// take value of input with leading and trailing delimiters removed
 export const createToken = (inputValue, delimiter) =>
   inputValue
     .trim()

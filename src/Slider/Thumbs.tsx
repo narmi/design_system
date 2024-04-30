@@ -23,14 +23,14 @@ const useThumb = (index, trackRef, name, state) => {
   }
 }
 
-const Thumb = ({ thumbProps, inputRef, inputProps, focusProps, isFocusVisible }) => {
+const Thumb = ({ thumbProps, inputRef, inputProps, focusProps, isFocusVisible, ariaLabel }) => {
   return (
     <div
       {...thumbProps}
       className={cc(["thumb", { "focus": isFocusVisible }])}
     >
       <VisuallyHidden>
-        <input ref={inputRef} {...mergeProps(inputProps, focusProps)} />
+        <input ref={inputRef} {...mergeProps(inputProps, focusProps)} aria-label={ariaLabel} />
       </VisuallyHidden>
     </div>
   )
@@ -57,6 +57,7 @@ const Thumbs = (props) => {
         inputProps={lowerThumb.inputProps}
         focusProps={lowerThumb.focusProps}
         isFocusVisible={lowerThumb.isFocusVisible}
+        ariaLabel="minimum"
       />
       <div className="rail-active" style={activeRailStyle}/>
       <Thumb
@@ -65,6 +66,7 @@ const Thumbs = (props) => {
         inputProps={higherThumb.inputProps}
         focusProps={higherThumb.focusProps}
         isFocusVisible={higherThumb.isFocusVisible}
+        ariaLabel="maximum"
       />
     </>
 

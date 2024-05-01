@@ -13,7 +13,7 @@ interface Props {
   defaultValue?: number[];
   step: number;
   value?: number[];
-  setValue?: CallableFunction
+  onChange?: (value: number[]) => void
 }
 const Slider = (props: Props) => {
   const trackRef = useRef(null);

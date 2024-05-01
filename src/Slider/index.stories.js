@@ -15,13 +15,16 @@ Overview.args = {
 export const AsControlled = () => {
   const [value, setValue] = useState([20, 50]);
   return (
-    <Slider
-      label="Age"
-      maxValue={120}
-      step={1}
-      value={value}
-      onChange={setValue}
-    />
+    <>
+      <div className="fontSize--l margin--bottom--xl">{`State in controlling component: ${value.join(" - ")}`}</div>
+      <Slider
+        label="Age"
+        maxValue={120}
+        step={1}
+        value={value}
+        onChange={setValue}
+      />
+    </>
   )
 }
 

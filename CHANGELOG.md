@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.32.6](https://github.com/narmi/design_system/compare/v3.32.5...v3.32.6) (2024-05-01)
+
+
+### Bug Fixes
+
+* **IconButton:** use default browser outline styling on focus ([841e1eb](https://github.com/narmi/design_system/commit/841e1eb70b714fc4fa3fde8654d550644df9bece))
+* **IconButton:** use focus-visible instead ([3e8aa40](https://github.com/narmi/design_system/commit/3e8aa40450ec797387dfec7b726ff90e029dc86e))
+
 ### [3.32.5](https://github.com/narmi/design_system/compare/v3.32.4...v3.32.5) (2024-04-25)
 
 

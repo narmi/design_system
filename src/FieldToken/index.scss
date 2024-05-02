@@ -1,0 +1,26 @@
+.nds-fieldToken {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 25px;
+  color: var(--theme-primary);
+  background: rgba(var(--theme-rgb-primary), var(--alpha-20));
+
+  // Prevent forced overflow.
+  // Truncate after 300px - no token should be wider than a small mobile viewport
+  max-width: 300px;
+
+  // Renders an icon with a small glyph inside a 16x16 click target
+  .narmi-icon-x {
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--space-s);
+    width: var(--space-s);
+    &:before {
+      font-weight: var(--font-weight-semibold);
+      font-size: 10px;
+    }
+  }
+}

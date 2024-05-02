@@ -12,6 +12,7 @@ import Drawer from "./Drawer";
 import Dropdown from "./Dropdown";
 import DropdownTrigger from "./DropdownTrigger";
 import Error from "./Error";
+import FieldToken from "./FieldToken";
 import FormSection from "./FormSection";
 import IconButton from "./IconButton";
 import Input from "./Input";
@@ -34,6 +35,7 @@ import Tag from "./Tag";
 import TextInput from "./TextInput";
 import TimelineEvent from "./TimelineEvent";
 import Toggle from "./Toggle";
+import TokenInput from "./TokenInput";
 import Tooltip from "./Tooltip";
 import TruncatedAccount from "./TruncatedAccount";
 import useBreakpoints from "./hooks/useBreakpoints";
@@ -54,6 +56,7 @@ export {
   Dropdown,
   DropdownTrigger,
   Error,
+  FieldToken,
   FormSection,
   IconButton,
   Input,
@@ -76,6 +79,7 @@ export {
   TextInput,
   TimelineEvent,
   Toggle,
+  TokenInput,
   Tooltip,
   TruncatedAccount,
   useBreakpoints,

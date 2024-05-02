@@ -28,6 +28,7 @@ import Row from "./Row";
 import Select from "./Select";
 import SeparatorList from "./SeparatorList";
 import Sidebar from "./Sidebar";
+import Slider from "./Slider";
 import Tabs from "./Tabs";
 import Tag from "./Tag";
 import TextInput from "./TextInput";
@@ -69,6 +70,7 @@ export {
   Select,
   SeparatorList,
   Sidebar,
+  Slider,
   Tabs,
   Tag,
   TextInput,

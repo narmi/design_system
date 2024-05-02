@@ -17,6 +17,10 @@
       transform: translate(0px, -1px);
     }
   }
+
+  &:focus-visible {
+    outline: revert;
+  }
 }
 
 .nds-icon-button--action {

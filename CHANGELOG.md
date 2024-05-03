@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.34.0](https://github.com/narmi/design_system/compare/v3.33.0...v3.34.0) (2024-05-03)
+
+
+### Features
+
+* **FieldToken:** add FieldToken component ([3db5475](https://github.com/narmi/design_system/commit/3db547546736f0d0ceb8c87657004d1e7c2348a9))
+* **TokenInput:** add token input ([7aa6e02](https://github.com/narmi/design_system/commit/7aa6e020900b4ef503c1fc630f9c73d99797dc31))
+
+
+### Bug Fixes
+
+* **Slider:** export Slider ([a7d2647](https://github.com/narmi/design_system/commit/a7d264759461ad78cfda1df19fb5d3b93ee7bbde))
+
 ## [3.33.0](https://github.com/narmi/design_system/compare/v3.32.6...v3.33.0) (2024-05-01)
 
 

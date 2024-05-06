@@ -22,8 +22,10 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
     defaultValue,
     onChange,
     onBlur,
+    maxLength,
     testId,
     type = "text",
+    error,
     ...nativeElementProps
   } = props;
 
@@ -48,15 +50,28 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
     setInputValue("");
   }
 
+  const characterCounter = maxLength ? (
+    <div className="nds-input-character-counter">
+      {inputValue.length}/{maxLength}
+    </div>
+  ) : null;
+
   return (
     <Input
       {...props}
+      error={
+        error ||
+        (maxLength && inputValue.length > maxLength
+          ? "Exceeds character limits"
+          : undefined)
+      }
       startIconClass={startIcon ? `narmi-icon-${startIcon}` : undefined}
       endIconClass={endIcon ? `narmi-icon-${endIcon}` : undefined}
       startContent={startContent}
       endContent={endContent}
       showClearButton={showClearButton && inputValue}
       clearInput={_onClearInput}
+      tailContent={characterCounter}
     >
       {multiline ? (
         <div
@@ -122,6 +137,8 @@ TextInput.propTypes = {
   showClearButton: PropTypes.bool,
   /** Text of error message to display under the input */
   error: PropTypes.string,
+  /** Maximum number of characters allowed in the input */
+  maxLength: PropTypes.number,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
   type: PropTypes.oneOf([

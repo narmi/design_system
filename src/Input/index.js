@@ -25,6 +25,7 @@ const Input = ({
   endIconClass,
   startContent,
   endContent,
+  tailContent,
   showClearButton,
   clearInput,
   disabled,
@@ -80,7 +81,13 @@ const Input = ({
         {(endIconClass || showClearButton) && endIconJsx}
         {endContent && <div>{endContent}</div>}
       </div>
-      <Error error={error} />
+      <div className="nds-input-subline">
+        {/* this is styled using row-reverse to 1. make it easier to render and 2. accommodate screen reading order better */}
+        {tailContent && (
+          <div className="nds-input-tail margin--top--xxs">{tailContent}</div>
+        )}
+        <Error error={error} />
+      </div>
     </div>
   );
 };
@@ -96,6 +103,8 @@ Input.propTypes = {
   startContent: PropTypes.node,
   /** arbitrary JSX to place at the end of the input */
   endContent: PropTypes.node,
+  /** arbitrary JSX to place at the end of the subtitle/error */
+  tailContent: PropTypes.node,
   showClearButton: PropTypes.bool,
   clearInput: PropTypes.func,
   decoration: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),

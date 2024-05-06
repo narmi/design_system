@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.35.3](https://github.com/narmi/design_system/compare/v3.35.2...v3.35.3) (2024-05-06)
+
+
+### Bug Fixes
+
+* **TimelineEvent:** fix iconSelection map ([40b571c](https://github.com/narmi/design_system/commit/40b571c9700989f891d907b3e1f528da50a0e413))
+
 ### [3.35.2](https://github.com/narmi/design_system/compare/v3.35.1...v3.35.2) (2024-05-06)
 
 

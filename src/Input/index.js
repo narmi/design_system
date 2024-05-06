@@ -82,7 +82,7 @@ const Input = ({
         {endContent && <div>{endContent}</div>}
       </div>
       <div className="nds-input-subline">
-        {/* this is in opposite direction to 1. make it easier to render and 2. accommodate screen reading order better */}
+        {/* this is styled using row-reverse to 1. make it easier to render and 2. accommodate screen reading order better */}
         {tailContent && (
           <div className="nds-input-tail margin--top--xxs">{tailContent}</div>
         )}

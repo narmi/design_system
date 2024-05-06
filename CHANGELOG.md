@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.35.0](https://github.com/narmi/design_system/compare/v3.34.0...v3.35.0) (2024-05-06)
+
+
+### Features
+
+* **input:** add a character counter to text inputs ([5e8de46](https://github.com/narmi/design_system/commit/5e8de462cf642cbbe87e2d2489ffcf83f38824d6))
+
 ## [3.34.0](https://github.com/narmi/design_system/compare/v3.33.0...v3.34.0) (2024-05-03)
 
 

@@ -6,14 +6,14 @@ import {
   Menu,
   MenuItem,
   MenuTrigger,
+  Popover,
 } from "react-aria-components";
-import { useLayer } from "react-laag";
 import iconSelection from "src/icons/selection.json";
 import MenuButtonItem from "./MenuButtonItem";
 import Row from "../Row";
 
 export const VALID_ICON_NAMES = iconSelection.icons.map(
-  (icon) => icon.properties.name
+  (icon) => icon.properties.name,
 );
 
 export const labelToItemId = (label) =>
@@ -44,19 +44,6 @@ const MenuButton = ({
     }
   };
 
-  const { renderLayer, layerProps, triggerProps } = useLayer({
-    isOpen,
-    onOutsideClick: closePopover,
-    onDisappear: closePopover,
-    auto: true,
-    placement: "bottom-start",
-    possiblePlacements: ["bottom-start", "bottom-end", "top-start", "top-end"],
-    referX: "right",
-    preferY: "bottom",
-    container: typeof document !== "undefined" ? document.body : undefined,
-    triggerOffset: 2,
-  });
-
   useEffect(() => {
     window.addEventListener("keydown", handleKeyUp);
     return () => {
@@ -71,7 +58,7 @@ const MenuButton = ({
    */
   const handleOnSelect = (itemId) => {
     const selectedItem = menuItems.find(
-      (item) => labelToItemId(item.props.label) === itemId
+      (item) => labelToItemId(item.props.label) === itemId,
     );
     selectedItem.props.onSelect();
     closePopover();
@@ -84,11 +71,7 @@ const MenuButton = ({
       data-testid={testId}
       className="nds-menubutton"
     >
-      <AriaButton
-        aria-label={label}
-        className="button--reset"
-        {...triggerProps}
-      >
+      <AriaButton aria-label={label} className="button--reset">
         <div
           className={cc([
             "nds-menubutton-trigger",
@@ -118,41 +101,40 @@ const MenuButton = ({
           </Row>
         </div>
       </AriaButton>
-      {isOpen &&
-        renderLayer(
-          <div {...layerProps} className="nds-menubutton-popover">
-            <Menu
-              onAction={handleOnSelect}
-              className="nds-menubutton-menu rounded--all elevation--high"
-            >
-              {menuItems.map((child, childIndex) => (
-                <MenuItem
-                  key={labelToItemId(child.props.label)}
-                  id={labelToItemId(child.props.label)}
-                  /**
-                   * react-aria provides a className interface similar
-                   * to render props
-                   */
-                  className={({ isSelected, isFocused, isDisabled }) =>
-                    cc([
-                      "nds-menubutton-item",
-                      "padding--x--s padding--y--xs",
-                      {
-                        "nds-menubutton-item--highlighted":
-                          isSelected || isFocused,
-                        "nds-menubutton-item--disabled": isDisabled,
-                        "rounded--top": childIndex === 0,
-                        "rounded--bottom": childIndex === menuItems.length - 1,
-                      },
-                    ])
-                  }
-                >
-                  {child}
-                </MenuItem>
-              ))}
-            </Menu>
-          </div>
-        )}
+      <Popover>
+        <div className="nds-menubutton-popover">
+          <Menu
+            onAction={handleOnSelect}
+            className="nds-menubutton-menu rounded--all elevation--high"
+          >
+            {menuItems.map((child, childIndex) => (
+              <MenuItem
+                key={labelToItemId(child.props.label)}
+                id={labelToItemId(child.props.label)}
+                /**
+                 * react-aria provides a className interface similar
+                 * to render props
+                 */
+                className={({ isSelected, isFocused, isDisabled }) =>
+                  cc([
+                    "nds-menubutton-item",
+                    "padding--x--s padding--y--xs",
+                    {
+                      "nds-menubutton-item--highlighted":
+                        isSelected || isFocused,
+                      "nds-menubutton-item--disabled": isDisabled,
+                      "rounded--top": childIndex === 0,
+                      "rounded--bottom": childIndex === menuItems.length - 1,
+                    },
+                  ])
+                }
+              >
+                {child}
+              </MenuItem>
+            ))}
+          </Menu>
+        </div>
+      </Popover>
     </MenuTrigger>
   );
 };

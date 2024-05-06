@@ -4,7 +4,7 @@ import Input from "../Input";
 import iconSelection from "src/icons/selection.json";
 
 export const VALID_ICON_NAMES = iconSelection.icons.map(
-  (icon) => icon.properties.name
+  (icon) => icon.properties.name,
 );
 
 /**
@@ -30,7 +30,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
   } = props;
 
   const [inputValue, setInputValue] = useState(
-    defaultValue ? defaultValue : ""
+    defaultValue ? defaultValue : "",
   );
 
   function _onBlur(e) {
@@ -86,6 +86,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
             onChange={_onChange}
             onBlur={_onBlur}
             required
+            placeholder={props.label}
             aria-label={props.label}
             data-testid={testId}
             {...nativeElementProps}

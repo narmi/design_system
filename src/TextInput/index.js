@@ -56,12 +56,6 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
     </div>
   ) : null;
 
-  console.log(
-    maxLength,
-    inputValue.length,
-    maxLength && inputValue.length > maxLength
-  );
-
   return (
     <Input
       {...props}

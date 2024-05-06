@@ -27,6 +27,12 @@
   text-rendering: geometricPrecision; // match input placeholder weight
 }
 
+.nds-dropdownTrigger-tokens {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
 .nds-dropdownTrigger-value {
   color: var(--font-color-primary);
   max-width: 100%;

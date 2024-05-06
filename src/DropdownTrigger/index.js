@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
+import FieldToken from "../FieldToken";
+
+const noop = () => {};
 
 /**
  * Generic trigger button for dropdowns. `DropdownTrigger` can be composed with
@@ -21,56 +24,81 @@ const DropdownTrigger = React.forwardRef(
       errorText,
       minWidth = "auto",
       testId,
+      tokens = [],
+      onTokensChange = noop,
       ...otherProps
     },
-    ref
-  ) => (
-    <>
-      <div className="nds-dropdownTrigger" style={{ minWidth }}>
-        <button
-          ref={ref}
-          data-testid={testId || "dropdownTriggerButton"}
-          className={cc([
-            "nds-dropdownTrigger-button button--reset padding--x--s",
-            "bgColor--white rounded--all",
-            {
-              "nds-dropdownTrigger-button--hasValue": Boolean(displayValue),
-              "nds-dropdownTrigger-button--hasError": Boolean(errorText),
-              "nds-dropdownTrigger-button--isActive": isOpen,
-            },
-          ])}
-          aria-expanded={isOpen ? "true" : "false"}
-          type="button"
-          {...otherProps}
-        >
-          {labelText && (
-            <label className="nds-dropdownTrigger-label" {...labelProps}>
-              {labelText}
-            </label>
-          )}
-          {displayValue && <span className="nds-dropdownTrigger-value">{displayValue}</span>}
-          {showOpenIndicator && (
-            <span
-              role="img"
-              aria-label={isOpen ? "popup open" : "popup closed"}
-              className={cc([
-                "nds-dropdownTrigger-chevron fontSize--l fontColor--secondary",
-                `narmi-icon-chevron-${isOpen ? "up" : "down"}`,
-              ])}
-            />
-          )}
-        </button>
-      </div>
-      {errorText && (
-        <div className="nds-dropdownTrigger-error fontColor--error">
-          <span role="img" className="narmi-icon-x-circle fontSize--s" />
-          <span className="padding--left--xxs fontColor--error fontSize--xs">
-            {errorText}
-          </span>
+    ref,
+  ) => {
+    const handleTokenDismiss = (token) => {
+      const newTokens = new Set(tokens);
+      newTokens.delete(token);
+      onTokensChange([...newTokens]);
+    };
+    return (
+      <>
+        <div className="nds-dropdownTrigger" style={{ minWidth }}>
+          <button
+            ref={ref}
+            data-testid={testId || "dropdownTriggerButton"}
+            className={cc([
+              "nds-dropdownTrigger-button button--reset padding--x--s",
+              "bgColor--white rounded--all",
+              {
+                "nds-dropdownTrigger-button--hasValue": Boolean(displayValue),
+                "nds-dropdownTrigger-button--hasError": Boolean(errorText),
+                "nds-dropdownTrigger-button--isActive": isOpen,
+              },
+            ])}
+            aria-expanded={isOpen ? "true" : "false"}
+            type="button"
+            {...otherProps}
+          >
+            {labelText && (
+              <label className="nds-dropdownTrigger-label" {...labelProps}>
+                {labelText}
+              </label>
+            )}
+            {tokens ? (
+              <span className="nds-dropdownTrigger-tokens">
+                {tokens.map((label) => (
+                  <FieldToken
+                    key="label"
+                    label={label}
+                    onDismiss={handleTokenDismiss}
+                  />
+                ))}
+              </span>
+            ) : (
+              displayValue && (
+                <span className="nds-dropdownTrigger-value">
+                  {displayValue}
+                </span>
+              )
+            )}
+            {showOpenIndicator && (
+              <span
+                role="img"
+                aria-label={isOpen ? "popup open" : "popup closed"}
+                className={cc([
+                  "nds-dropdownTrigger-chevron fontSize--l fontColor--secondary",
+                  `narmi-icon-chevron-${isOpen ? "up" : "down"}`,
+                ])}
+              />
+            )}
+          </button>
         </div>
-      )}
-    </>
-  )
+        {errorText && (
+          <div className="nds-dropdownTrigger-error fontColor--error">
+            <span role="img" className="narmi-icon-x-circle fontSize--s" />
+            <span className="padding--left--xxs fontColor--error fontSize--xs">
+              {errorText}
+            </span>
+          </div>
+        )}
+      </>
+    );
+  },
 );
 DropdownTrigger.displayName = "DropdownTrigger";
 
@@ -97,6 +125,16 @@ DropdownTrigger.propTypes = {
   minWidth: PropTypes.string,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
+  /**
+   * Pass labels to show a token list of current selections
+   */
+  tokens: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * Called with new list of tokens. Called whenever a user
+   * adds or dismisses a token.
+   * `onTokensChange={(tokens) => setTokens(tokens)}`
+   */
+  onTokensChange: PropTypes.func,
 };
 
 export default DropdownTrigger;

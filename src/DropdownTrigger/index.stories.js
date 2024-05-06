@@ -20,6 +20,27 @@ LabelOnly.parameters = {
   },
 };
 
+export const WithTokens = () => {
+  const [tokens, setTokens] = useState([
+    "Detroit, MI",
+    "Chicago, IL",
+    "Miami, FL",
+  ]);
+  return (
+    <DropdownTrigger
+      tokens={tokens}
+      onTokensChange={(tokes) => setTokens(tokes)}
+    />
+  );
+};
+WithTokens.parameters = {
+  docs: {
+    description: {
+      story: "Tokens in `DropdownTrigger` are fully controlled.",
+    },
+  },
+};
+
 export const ErrorState = () => (
   <DropdownTrigger
     labelText="Account"

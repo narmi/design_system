@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.35.1](https://github.com/narmi/design_system/compare/v3.35.0...v3.35.1) (2024-05-06)
+
+
+### Bug Fixes
+
+* **input:** render placeholder for multiline text inputs ([534e45e](https://github.com/narmi/design_system/commit/534e45e9ce9ef705c8eaa689d37fe33b1066daf4))
+
 ## [3.35.0](https://github.com/narmi/design_system/compare/v3.34.0...v3.35.0) (2024-05-06)
 
 

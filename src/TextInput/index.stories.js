@@ -62,7 +62,12 @@ export const Example = () => {
 };
 
 export const MultiLine = () => {
-  return <TextInput multiline />;
+  return (
+    <>
+      <TextInput multiline />
+      <TextInput multiline label="Multiline with label" />
+    </>
+  );
 };
 
 export const WithIcon = Template.bind({});

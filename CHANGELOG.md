@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.35.2](https://github.com/narmi/design_system/compare/v3.35.1...v3.35.2) (2024-05-06)
+
+
+### Bug Fixes
+
+* **MenuButton:** allow selection handler to fire before closing ([74ed98f](https://github.com/narmi/design_system/commit/74ed98fa7866ae535932abf476dd58bbcff35e9a))
+
 ### [3.35.1](https://github.com/narmi/design_system/compare/v3.35.0...v3.35.1) (2024-05-06)
 
 

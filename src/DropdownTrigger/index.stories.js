@@ -25,6 +25,11 @@ export const WithTokens = () => {
     "Detroit, MI",
     "Chicago, IL",
     "Miami, FL",
+    "Boston, MA",
+    "Seattle, WA",
+    "Denver, CO",
+    "Houston, TX",
+    "Philadelphia, PA",
   ]);
   return (
     <DropdownTrigger

@@ -1,11 +1,11 @@
 .nds-dropdownTrigger {
   position: relative;
-  height: 48px;
+  min-height: 48px;
   display: flex;
   align-items: center;
 }
 .nds-dropdownTrigger-button {
-  height: 100%;
+  min-height: 48px;
   width: 100%;
   text-align: left;
   border: 1px solid var(--border-color-default) !important;

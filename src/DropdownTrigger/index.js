@@ -60,7 +60,7 @@ const DropdownTrigger = React.forwardRef(
               </label>
             )}
             {tokens ? (
-              <span className="nds-dropdownTrigger-tokens">
+              <span className="nds-dropdownTrigger-tokens padding--y--xs">
                 {tokens.map((label) => (
                   <FieldToken
                     key="label"

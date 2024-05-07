@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.35.4](https://github.com/narmi/design_system/compare/v3.35.3...v3.35.4) (2024-05-07)
+
+
+### Bug Fixes
+
+* **TextInput:**  prop was not being passed down to native input element ([ba9f888](https://github.com/narmi/design_system/commit/ba9f8888870f32a9f7c3a48909c93338f97202ab))
+
 ### [3.35.3](https://github.com/narmi/design_system/compare/v3.35.2...v3.35.3) (2024-05-06)
 
 

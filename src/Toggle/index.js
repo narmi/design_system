@@ -4,7 +4,7 @@ import cc from "classcat";
 import LoadingShim from "../LoadingShim";
 
 /**
- * A toggle switch component for toggling between two states.
+ * Checkbox behavior with the visual treatment of a physical toggle switch.
  */
 const Toggle = ({
   defaultActive = false,

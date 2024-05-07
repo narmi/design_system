@@ -56,24 +56,16 @@ export const WhenIsLoading = () => {
   };
 
   return (
-    <>
-      <Toggle
-        label="Click me"
-        isActive={isActive}
-        onChange={onToggle}
-        isLoading={isLoading}
-      />
-    </>
+    <Toggle
+      label="Click me"
+      isActive={isActive}
+      onChange={onToggle}
+      isLoading={isLoading}
+    />
   );
 };
 
-export const WhenDisabled = () => {
-  return (
-    <>
-      <Toggle disabled />
-    </>
-  );
-};
+export const WhenDisabled = () => <Toggle disabled />;
 
 export default {
   title: "Components/Toggle",

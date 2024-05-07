@@ -1,0 +1,43 @@
+.nds-multiselect-list {
+  max-height: 50vh;
+  overflow-y: auto;
+  z-index: 4;
+
+  &:focus {
+    outline: none;
+  }
+
+  &--active--top,
+  &--active--bottom {
+    border: 1px solid var(--theme-primary);
+  }
+
+  &--active--top {
+    border-bottom: 1px solid var(--border-color-default);
+  }
+
+  &--active--bottom {
+    border-top: 1px solid var(--border-color-default);
+  }
+}
+
+.nds-multiselect-item {
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+  min-height: var(--space-xl);
+  &:hover,
+  &--highlighted {
+    background: RGBA(var(--theme-rgb-primary), var(--alpha-5));
+  }
+  &--hasGutter {
+    padding-left: var(--space-xl) !important;
+  }
+  .narmi-icon-check {
+    position: absolute;
+    left: var(--space-s);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--theme-primary);
+  }
+}

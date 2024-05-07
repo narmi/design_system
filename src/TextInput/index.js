@@ -4,7 +4,7 @@ import Input from "../Input";
 import iconSelection from "src/icons/selection.json";
 
 export const VALID_ICON_NAMES = iconSelection.icons.map(
-  (icon) => icon.properties.name
+  (icon) => icon.properties.name,
 );
 
 /**
@@ -22,13 +22,15 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
     defaultValue,
     onChange,
     onBlur,
+    maxLength,
     testId,
     type = "text",
+    error,
     ...nativeElementProps
   } = props;
 
   const [inputValue, setInputValue] = useState(
-    defaultValue ? defaultValue : ""
+    defaultValue ? defaultValue : "",
   );
 
   function _onBlur(e) {
@@ -48,15 +50,28 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
     setInputValue("");
   }
 
+  const characterCounter = maxLength ? (
+    <div className="nds-input-character-counter">
+      {inputValue.length}/{maxLength}
+    </div>
+  ) : null;
+
+  const inputError = error ||
+    (maxLength && inputValue.length > maxLength
+    ? "Exceeds character limits"
+    : undefined)
+
   return (
     <Input
       {...props}
+      error={inputError}
       startIconClass={startIcon ? `narmi-icon-${startIcon}` : undefined}
       endIconClass={endIcon ? `narmi-icon-${endIcon}` : undefined}
       startContent={startContent}
       endContent={endContent}
       showClearButton={showClearButton && inputValue}
       clearInput={_onClearInput}
+      tailContent={characterCounter}
     >
       {multiline ? (
         <div
@@ -71,8 +86,10 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
             onChange={_onChange}
             onBlur={_onBlur}
             required
+            placeholder={props.label}
             aria-label={props.label}
             data-testid={testId}
+            error={inputError}
             {...nativeElementProps}
           />
         </div>
@@ -88,6 +105,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
           aria-label={props.label}
           placeholder={props.label}
           data-testid={testId}
+          error={inputError}
           {...nativeElementProps}
         />
       )}
@@ -122,6 +140,8 @@ TextInput.propTypes = {
   showClearButton: PropTypes.bool,
   /** Text of error message to display under the input */
   error: PropTypes.string,
+  /** Maximum number of characters allowed in the input */
+  maxLength: PropTypes.number,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
   type: PropTypes.oneOf([

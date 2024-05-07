@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.35.4](https://github.com/narmi/design_system/compare/v3.35.3...v3.35.4) (2024-05-07)
+
+
+### Bug Fixes
+
+* **TextInput:**  prop was not being passed down to native input element ([ba9f888](https://github.com/narmi/design_system/commit/ba9f8888870f32a9f7c3a48909c93338f97202ab))
+
+### [3.35.3](https://github.com/narmi/design_system/compare/v3.35.2...v3.35.3) (2024-05-06)
+
+
+### Bug Fixes
+
+* **TimelineEvent:** fix iconSelection map ([40b571c](https://github.com/narmi/design_system/commit/40b571c9700989f891d907b3e1f528da50a0e413))
+
+### [3.35.2](https://github.com/narmi/design_system/compare/v3.35.1...v3.35.2) (2024-05-06)
+
+
+### Bug Fixes
+
+* **MenuButton:** allow selection handler to fire before closing ([74ed98f](https://github.com/narmi/design_system/commit/74ed98fa7866ae535932abf476dd58bbcff35e9a))
+
+### [3.35.1](https://github.com/narmi/design_system/compare/v3.35.0...v3.35.1) (2024-05-06)
+
+
+### Bug Fixes
+
+* **input:** render placeholder for multiline text inputs ([534e45e](https://github.com/narmi/design_system/commit/534e45e9ce9ef705c8eaa689d37fe33b1066daf4))
+
+## [3.35.0](https://github.com/narmi/design_system/compare/v3.34.0...v3.35.0) (2024-05-06)
+
+
+### Features
+
+* **input:** add a character counter to text inputs ([5e8de46](https://github.com/narmi/design_system/commit/5e8de462cf642cbbe87e2d2489ffcf83f38824d6))
+
 ## [3.34.0](https://github.com/narmi/design_system/compare/v3.33.0...v3.34.0) (2024-05-03)
 
 

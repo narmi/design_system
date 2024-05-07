@@ -50,6 +50,20 @@
     flex-grow: 1;
   }
 
+  .nds-input-subline {
+    font-size: 12px;
+    color: var(--color-mediumGrey);
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    width: 100%;
+
+    &:has(.nds-input-error) .nds-input-tail {
+      color: var(--color-errorDark);
+    }
+  }
+
   &.disabled .nds-input-box {
     pointer-events: none;
     user-select: none;

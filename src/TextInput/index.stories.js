@@ -43,13 +43,31 @@ export const Example = () => {
             autoComplete="on"
           />
         </form>
+        <TextInput type="text" label="Text" maxLength={10} />
+        <TextInput
+          type="text"
+          label="Text"
+          maxLength={10}
+          error={"Error message"}
+        />
+        <TextInput
+          type="text"
+          label="Text"
+          defaultValue="Text input that is too long"
+          maxLength={10}
+        />
       </div>
     </div>
   );
 };
 
 export const MultiLine = () => {
-  return <TextInput multiline />;
+  return (
+    <>
+      <TextInput multiline />
+      <TextInput multiline label="Multiline with label" />
+    </>
+  );
 };
 
 export const WithIcon = Template.bind({});

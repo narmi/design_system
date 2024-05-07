@@ -6,8 +6,8 @@ import AsElement from "src/util/AsElement";
 import Row from "src/Row";
 import Spinner from "./Spinner";
 
-export const VALID_ICON_NAMES = iconSelection.icons.map(
-  (icon) => icon.properties.name
+export const VALID_ICON_NAMES = iconSelection?.icons.map(
+  (icon) => icon.properties.name,
 );
 
 /**
@@ -87,7 +87,7 @@ const Button = ({
             />
           </div>
         )}
-        <div style={{visibility: isLoading ? "hidden" : "visible"}}>
+        <div style={{ visibility: isLoading ? "hidden" : "visible" }}>
           <Row gapSize="s" alignItems="center">
             {startIcon && (
               <Row.Item shrink>

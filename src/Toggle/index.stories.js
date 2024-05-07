@@ -43,6 +43,38 @@ export const FullyControlled = () => {
   );
 };
 
+export const WhenIsLoading = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const onToggle = (isActive) => {
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsActive(isActive);
+      setIsLoading(false);
+    }, 2000);
+  };
+
+  return (
+    <>
+      <Toggle
+        label="Click me"
+        isActive={isActive}
+        onChange={onToggle}
+        isLoading={isLoading}
+      />
+    </>
+  );
+};
+
+export const WhenDisabled = () => {
+  return (
+    <>
+      <Toggle disabled />
+    </>
+  );
+};
+
 export default {
   title: "Components/Toggle",
   component: Toggle,

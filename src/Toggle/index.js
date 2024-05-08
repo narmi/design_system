@@ -98,7 +98,7 @@ Toggle.propTypes = {
   /**
    * Shows a disabled state for the toggle when set to `true`.
    */
-  isLoading: PropTypes.bool,
+  disabled: PropTypes.bool,
   /**
    * Shows a loading state for the toggle when set to `true`.
    */

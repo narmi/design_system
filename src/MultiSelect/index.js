@@ -6,6 +6,7 @@ import { useLayer } from "react-laag";
 import cc from "classcat";
 import DropdownTrigger from "../DropdownTrigger";
 import MultiSelectItem from "./MultiSelectItem";
+import FieldToken from "../FieldToken";
 
 // :TIX:FIXME:
 // -? Consider making the dropdown take `content` instead of `tokens`
@@ -18,12 +19,12 @@ const noop = () => {};
  */
 const itemToString = (item) =>
   !item?.props ? "" : item.props.searchValue || item.props.value;
-const itemsToStrings = (items) => items.map(itemToString);
 
 /**
  * Check an item component against the tokens list to see if it's currentlly selected
  */
-const isSelected = (selectedItem, item) => selectedItem === item;
+const isSelected = (selectedItem, item) =>
+  itemToString(selectedItem) === itemToString(item);
 
 /**
  * Get new list of `MenuSelect.item` components that are selected after
@@ -96,7 +97,7 @@ const MultiSelect = ({
         case useSelect.stateChangeTypes.MenuBlur:
         case useSelect.stateChangeTypes.MenuKeyDownEnter:
         case useSelect.stateChangeTypes.ItemClick:
-          if (newSelectedItem) {
+          if (newSelectedItem && !selectedItems.includes(newSelectedItem)) {
             addSelectedItem(newSelectedItem);
           }
           return;
@@ -106,12 +107,10 @@ const MultiSelect = ({
     },
   });
 
-  const showMenu = isOpen && items.length > 0;
-
   /** @see https://github.com/everweij/react-laag#api-docs */
   const { renderLayer, triggerProps, triggerBounds, layerProps, layerSide } =
     useLayer({
-      isOpen: showMenu,
+      isOpen,
       auto: true,
       snap: true,
       triggerOffset: 0,
@@ -121,27 +120,37 @@ const MultiSelect = ({
     });
 
   const hasSelectedItem = selectedItems.length > 0;
-  const tokens = [...new Set(itemsToStrings(selectedItems))];
 
-  const handleTokensChange = (newTokenLabels) => {
-    console.info(
-      `tokens change with: ${JSON.stringify(newTokenLabels, null, 2)}`,
-    );
-  };
+  const renderTokens = () =>
+    selectedItems.map((itemComponent, i) => {
+      const tokenLabel = itemToString(itemComponent);
+      return (
+        <FieldToken
+          key={`${i}-${tokenLabel}`}
+          label={tokenLabel}
+          onDismiss={() => removeSelectedItem(itemComponent)}
+          {...getSelectedItemProps({
+            selectedItem: itemComponent,
+            i,
+          })}
+        />
+      );
+    });
 
   return (
     <div className="nds-multiselect" data-testid={testId}>
       <DropdownTrigger
-        isOpen={showMenu}
+        isOpen={isOpen}
         labelText={label}
-        tokens={tokens}
-        onTokensChange={handleTokensChange}
+        startContent={renderTokens()}
         errorText={errorText}
         labelProps={{ ...getLabelProps() }}
-        {...getToggleButtonProps({
-          ...triggerProps,
-          ...getDropdownProps({ preventKeyAction: isOpen }),
-        })}
+        {...getToggleButtonProps(
+          getDropdownProps({
+            preventKeyAction: isOpen,
+            ...triggerProps,
+          }),
+        )}
         style={{
           ...triggerProps.style,
         }}
@@ -154,7 +163,7 @@ const MultiSelect = ({
             {
               "rounded--bottom": layerSide === "bottom",
               "rounded--top": layerSide === "top",
-              [`nds-select-list--active--${layerSide}`]: showMenu,
+              [`nds-select-list--active--${layerSide}`]: isOpen,
             },
           ])}
           {...getMenuProps(layerProps)}
@@ -164,7 +173,7 @@ const MultiSelect = ({
             ...layerProps.style,
           }}
         >
-          {showMenu && (
+          {isOpen && (
             <ul className="list--reset">
               {items.map((item, index) => (
                 <li

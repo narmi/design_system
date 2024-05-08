@@ -39,44 +39,29 @@ ErrorState.args = {
   errorText: "Required",
 };
 
-export const Controlled = () => {
+export const Test = () => {
+  // :TODO: do we need a `fieldValue` and `setFieldValue`?
   return (
-    <>
-      <MultiSelect
-        name="controlled-product-field"
-        label="Favorite Icons"
-        onSelectedItemsChange={() => {}}
-      >
-        <MultiSelect.Item value="coffee">
-          <span className="narmi-icon-coffee padding--right--xs" /> Coffee
-        </MultiSelect.Item>
-        <MultiSelect.Item value="film">
-          <span className="narmi-icon-film padding--right--xs" /> Film
-        </MultiSelect.Item>
-        <MultiSelect.Item value="truck">
-          <span className="narmi-icon-truck padding--right--xs" /> Truck
-        </MultiSelect.Item>
-        <MultiSelect.Item value="blob">
-          <span className="narmi-icon-blob padding--right--xs" /> Blob
-        </MultiSelect.Item>
-      </MultiSelect>
-      <div className="margin--top">
-        <Button
-          label="Clear selection"
-          kind="negative"
-          onClick={() => {
-            setValue(null);
-          }}
-        />
-      </div>
-    </>
+    <MultiSelect name="controlled-product-field" label="Favorite Icons">
+      <MultiSelect.Item value="coffee">
+        <span className="narmi-icon-coffee padding--right--xs" /> Coffee
+      </MultiSelect.Item>
+      <MultiSelect.Item value="film">
+        <span className="narmi-icon-film padding--right--xs" /> Film
+      </MultiSelect.Item>
+      <MultiSelect.Item value="truck">
+        <span className="narmi-icon-truck padding--right--xs" /> Truck
+      </MultiSelect.Item>
+      <MultiSelect.Item value="blob">
+        <span className="narmi-icon-blob padding--right--xs" /> Blob
+      </MultiSelect.Item>
+    </MultiSelect>
   );
 };
-Controlled.parameters = {
+Test.parameters = {
   docs: {
     description: {
-      story:
-        "You can programmatically select selection by updating the `value` prop. When `value` is passed, the component becomes **fully controlled** and you must use the `onChange` prop to update the `value`. Clear the selection by passing an empty string as the `value`.",
+      story: "TK",
     },
   },
 };

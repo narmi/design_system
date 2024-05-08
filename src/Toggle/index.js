@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
+import LoadingShim from "../LoadingShim";
 
 /**
  * Checkbox behavior with the visual treatment of a physical toggle switch.
@@ -8,6 +9,8 @@ import cc from "classcat";
 const Toggle = ({
   defaultActive = false,
   isActive,
+  disabled = false,
+  isLoading,
   onChange = () => {},
   labelledBy,
   label,
@@ -16,48 +19,60 @@ const Toggle = ({
   disabledLabel = "off",
 }) => {
   const isControlled = isActive !== undefined;
-  const [isActiveInternal, setIsActiveInternal] = useState(
-    isControlled ? isActive : defaultActive || false
-  );
+  const [active, setActive] = useState(defaultActive);
 
   useEffect(() => {
     if (isControlled) {
-      setIsActiveInternal(isActive);
+      setActive(isActive);
     }
-  }, [isActive]);
+  }, [isActive, isControlled]);
 
-  const toggleActive = () => {
+  const handleToggle = () => {
     if (!isControlled) {
-      setIsActiveInternal(!isActiveInternal);
+      setActive(!active);
     }
-    onChange(!isActiveInternal);
+    onChange(!active);
   };
 
   const buttonJsx = (
-    <button
+    <div
       className={cc([
-        "resetButton",
-        "nds-toggle",
+        "nds-toggle-button-container",
         {
-          "nds-toggle--active": isActiveInternal,
+          "nds-toggle-button-container--active": active,
         },
       ])}
-      type="button"
-      role="switch"
-      aria-checked={isActiveInternal.toString()}
-      onClick={toggleActive}
-      aria-labelledby={labelledBy}
-      data-testid={testId}
     >
-      <span className="nds-toggle-indicator elevation--low" />
-      <span className="nds-toggle-buttonText">
-        {isActiveInternal ? enabledLabel : disabledLabel}
-      </span>
-    </button>
+      <button
+        className={cc([
+          "resetButton",
+          "nds-toggle",
+          { "nds-toggle--loading": isLoading },
+        ])}
+        type="button"
+        role="switch"
+        aria-checked={active}
+        onClick={handleToggle}
+        disabled={disabled || isLoading}
+        aria-labelledby={labelledBy}
+        data-testid={testId}
+      >
+        <span className="nds-toggle-indicator elevation--low" />
+        <div className="nds-toggle-loading-overlay">
+          <LoadingShim size="s" isLoading />
+        </div>
+        <span className="nds-toggle-buttonText">
+          {active ? enabledLabel : disabledLabel}
+        </span>
+      </button>
+    </div>
   );
 
   return label ? (
-    <label className="alignChild--center--center">
+    <label
+      className="alignChild--center--center"
+      aria-disabled={disabled || isLoading}
+    >
       {buttonJsx}
       <span className="padding--left--xs">{label}</span>
     </label>
@@ -80,6 +95,14 @@ Toggle.propTypes = {
    * to update the active state of the toggle.
    */
   isActive: PropTypes.bool,
+  /**
+   * Shows a disabled state for the toggle when set to `true`.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * Shows a loading state for the toggle when set to `true`.
+   */
+  isLoading: PropTypes.bool,
   /** Label element to render to the right of the toggle */
   label: PropTypes.string,
   /** ID of element that labels the toggle control (e.g. `my-label-element`)*/

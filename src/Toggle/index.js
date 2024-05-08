@@ -59,7 +59,7 @@ const Toggle = ({
       >
         <span className="nds-toggle-indicator elevation--low" />
         <div className="nds-toggle-loading-overlay">
-          <LoadingShim size="small" isLoading />
+          <LoadingShim size="s" isLoading />
         </div>
         <span className="nds-toggle-buttonText">
           {active ? enabledLabel : disabledLabel}

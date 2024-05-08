@@ -1,45 +1,16 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { useSelect } from "downshift";
+import { useSelect, useMultipleSelection } from "downshift";
 import { useLayer } from "react-laag";
 import cc from "classcat";
 import DropdownTrigger from "../DropdownTrigger";
 import MultiSelectItem from "./MultiSelectItem";
 
+// :TIX:FIXME:
+// -? Consider making the dropdown take `content` instead of `tokens`
+
 const noop = () => {};
-
-/**
- * Downshift state reducer passed to `useSelect` hook
- */
-export const stateReducer = (state, actionAndChanges) => {
-  const { changes, type } = actionAndChanges;
-  const isDeselecting =
-    itemToString(state.selectedItem) === itemToString(changes.selectedItem);
-  const newChanges = { ...changes };
-
-  switch (type) {
-    case useSelect.stateChangeTypes.MenuKeyDownEnter:
-    case useSelect.stateChangeTypes.MenuKeyDownSpaceButton:
-    case useSelect.stateChangeTypes.ItemClick:
-      // allow users to toggle selection in dropdown menu
-      if (isDeselecting) {
-        newChanges.selectedItem = null;
-      }
-      console.dir({
-        ...newChanges,
-        isOpen: true,
-        highlightedIndex: state.highlightedIndex,
-      });
-      return {
-        ...newChanges,
-        isOpen: true, // keep menu open for users to select more
-        highlightedIndex: state.highlightedIndex,
-      };
-    default:
-      return newChanges;
-  }
-};
 
 /**
  * @param item JXS node
@@ -51,10 +22,8 @@ const itemsToStrings = (items) => items.map(itemToString);
 
 /**
  * Check an item component against the tokens list to see if it's currentlly selected
- * @param {JSX} item
- * @returns
  */
-const isSelected = (item, tokens) => tokens.includes(itemToString(item));
+const isSelected = (selectedItem, item) => selectedItem === item;
 
 /**
  * Get new list of `MenuSelect.item` components that are selected after
@@ -82,37 +51,58 @@ const MultiSelect = ({
   errorText,
   testId,
 }) => {
-  const [selectedItems, setSelectedItems] = useState([]);
   const items = React.Children.toArray(children);
+
+  /** @see https://www.downshift-js.com/use-multiple-selection/#usage-with-select  */
+  const {
+    getSelectedItemProps,
+    getDropdownProps,
+    addSelectedItem,
+    removeSelectedItem,
+    selectedItems,
+  } = useMultipleSelection({ initialSelectedItems: [] });
 
   /** @see https://www.downshift-js.com/use-select */
   const {
     isOpen,
+    selectedItem,
     getToggleButtonProps,
     getLabelProps,
     getMenuProps,
     highlightedIndex,
     getItemProps,
   } = useSelect({
+    selectedItem: null,
     id: name || `nds-multiselect-${label}`,
     items,
-    stateReducer,
     itemToString,
-    onSelectedItemChange: ({ selectedItem }) => {
-      if (!selectedItem) return;
-      const index = selectedItems.indexOf(selectedItem);
-
-      if (index > 0) {
-        setSelectedItems([
-          ...selectedItems.slice(0, index),
-          ...selectedItem.slice(index + 1),
-        ]);
-      } else if (index === 0) {
-        setSelectedItems([...selectedItems.slice(1)]);
-      } else {
-        setSelectedItems([...selectedItems, selectedItem]);
+    stateReducer: (state, actionAndChanges) => {
+      const { changes: newChanges, type } = actionAndChanges;
+      switch (type) {
+        case useSelect.stateChangeTypes.MenuKeyDownEnter:
+        case useSelect.stateChangeTypes.MenuKeyDownSpaceButton:
+        case useSelect.stateChangeTypes.ItemClick:
+          return {
+            ...newChanges,
+            isOpen: true, // keep menu open for users to select more
+            highlightedIndex: state.highlightedIndex, // keep highlight in place
+          };
+        default:
+          return newChanges;
       }
-      onChangeProp(selectedItems);
+    },
+    onStateChange: ({ type, selectedItem: newSelectedItem }) => {
+      switch (type) {
+        case useSelect.stateChangeTypes.MenuBlur:
+        case useSelect.stateChangeTypes.MenuKeyDownEnter:
+        case useSelect.stateChangeTypes.ItemClick:
+          if (newSelectedItem) {
+            addSelectedItem(newSelectedItem);
+          }
+          return;
+        default:
+          return;
+      }
     },
   });
 
@@ -134,8 +124,8 @@ const MultiSelect = ({
   const tokens = [...new Set(itemsToStrings(selectedItems))];
 
   const handleTokensChange = (newTokenLabels) => {
-    setSelectedItems((selectedItemComponents) =>
-      getUpdatedSelection(newTokenLabels, selectedItemComponents),
+    console.info(
+      `tokens change with: ${JSON.stringify(newTokenLabels, null, 2)}`,
     );
   };
 
@@ -148,7 +138,10 @@ const MultiSelect = ({
         onTokensChange={handleTokensChange}
         errorText={errorText}
         labelProps={{ ...getLabelProps() }}
-        {...getToggleButtonProps(triggerProps)}
+        {...getToggleButtonProps({
+          ...triggerProps,
+          ...getDropdownProps({ preventKeyAction: isOpen }),
+        })}
         style={{
           ...triggerProps.style,
         }}
@@ -189,7 +182,7 @@ const MultiSelect = ({
                   ])}
                   {...getItemProps({ item, index })}
                 >
-                  {isSelected(item, tokens) && (
+                  {isSelected(selectedItem, item) && (
                     <span className="narmi-icon-check fontSize--l fontWeight--bold" />
                   )}
                   {item}

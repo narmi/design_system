@@ -6,12 +6,7 @@ import cc from "classcat";
  * Used to wrap a block of loadable content. When `isLoading` is set to true,
  * the content area will have an overlay and loading animation.
  */
-const LoadingShim = ({
-  isLoading = false,
-  children,
-  testId,
-  size = "large",
-}) => (
+const LoadingShim = ({ isLoading = false, children, testId, size = "l" }) => (
   <div
     data-testid={testId || "nds-loadingshim"}
     aria-live="polite"
@@ -23,7 +18,7 @@ const LoadingShim = ({
         className={cc([
           "nds-loadingShim",
           {
-            "nds-loadingShim--small": size === "small",
+            "nds-loadingShim--small": size === "s",
           },
         ])}
       >
@@ -50,7 +45,7 @@ LoadingShim.propTypes = {
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
   /** Size of the loading indicator */
-  size: PropTypes.oneOf(["small", "large"]),
+  size: PropTypes.oneOf(["s", "l"]),
 };
 
 export default LoadingShim;

@@ -24,17 +24,12 @@ const DropdownTrigger = React.forwardRef(
       errorText,
       minWidth = "auto",
       testId,
-      tokens = [],
-      onTokensChange = noop,
+      startContent = <></>,
+      endContent = <></>,
       ...otherProps
     },
     ref,
   ) => {
-    const handleTokenDismiss = (token) => {
-      const newTokens = new Set(tokens);
-      newTokens.delete(token);
-      onTokensChange([...newTokens]);
-    };
     return (
       <>
         <div className="nds-dropdownTrigger" style={{ minWidth }}>
@@ -59,23 +54,11 @@ const DropdownTrigger = React.forwardRef(
                 {labelText}
               </label>
             )}
-            {tokens ? (
-              <span className="nds-dropdownTrigger-tokens padding--y--xs">
-                {tokens.map((label) => (
-                  <FieldToken
-                    key="label"
-                    label={label}
-                    onDismiss={handleTokenDismiss}
-                  />
-                ))}
-              </span>
-            ) : (
-              displayValue && (
-                <span className="nds-dropdownTrigger-value">
-                  {displayValue}
-                </span>
-              )
+            {startContent}
+            {displayValue && (
+              <span className="nds-dropdownTrigger-value">{displayValue}</span>
             )}
+            {endContent}
             {showOpenIndicator && (
               <span
                 role="img"

@@ -23,32 +23,29 @@ const children = [
 
 export const Overview = Template.bind({});
 Overview.args = {
-  id: "overviewStory",
+  name: "overviewStory",
   label: "Favorite icons",
   children,
 };
 
 export const ErrorState = Template.bind({});
 ErrorState.args = {
-  id: "errorState",
+  name: "errorState",
   label: "Account",
   children: [
     <MultiSelect.Item value="checking1234">Checking (1234)</MultiSelect.Item>,
     <MultiSelect.Item value="checkint4321">Checking (4321)</MultiSelect.Item>,
   ],
-  defaultValue: "checking1234",
-  errorText: "Checking (1234) is not eligible",
+  errorText: "Required",
 };
 
 export const Controlled = () => {
-  const [value, setValue] = useState(null);
   return (
     <>
       <MultiSelect
-        id="controlled-product-field"
-        label="Account"
-        value={value}
-        onChange={(v) => setValue(v)}
+        name="controlled-product-field"
+        label="Favorite Icons"
+        onSelectedItemsChange={() => {}}
       >
         <MultiSelect.Item value="coffee">
           <span className="narmi-icon-coffee padding--right--xs" /> Coffee

@@ -7,39 +7,78 @@ import cc from "classcat";
 import DropdownTrigger from "../DropdownTrigger";
 import MultiSelectItem from "./MultiSelectItem";
 
-const MOCK_TOKENS = ["California", "Ohio", "Pissconsin"];
-
 const noop = () => {};
 
+/**
+ * Downshift state reducer passed to `useSelect` hook
+ */
 export const stateReducer = (state, actionAndChanges) => {
   const { changes, type } = actionAndChanges;
+  const isDeselecting =
+    itemToString(state.selectedItem) === itemToString(changes.selectedItem);
+  const newChanges = { ...changes };
+
   switch (type) {
     case useSelect.stateChangeTypes.MenuKeyDownEnter:
     case useSelect.stateChangeTypes.MenuKeyDownSpaceButton:
     case useSelect.stateChangeTypes.ItemClick:
+      // allow users to toggle selection in dropdown menu
+      if (isDeselecting) {
+        newChanges.selectedItem = null;
+      }
+      console.dir({
+        ...newChanges,
+        isOpen: true,
+        highlightedIndex: state.highlightedIndex,
+      });
       return {
-        ...changes,
+        ...newChanges,
         isOpen: true, // keep menu open for users to select more
         highlightedIndex: state.highlightedIndex,
       };
     default:
-      return changes;
+      return newChanges;
   }
 };
 
 /**
+ * @param item JXS node
+ * @returns string
+ */
+const itemToString = (item) =>
+  !item?.props ? "" : item.props.searchValue || item.props.value;
+const itemsToStrings = (items) => items.map(itemToString);
+
+/**
+ * Check an item component against the tokens list to see if it's currentlly selected
+ * @param {JSX} item
+ * @returns
+ */
+const isSelected = (item, tokens) => tokens.includes(itemToString(item));
+
+/**
+ * Get new list of `MenuSelect.item` components that are selected after
+ * user dismisses a token.
+ * @param {Array} newTokenLabels
+ * @param {Array} selectedItems
+ * @returns Array
+ */
+export const getUpdatedSelection = (newTokenLabels, selectedItems) =>
+  selectedItems.filter((item) => newTokenLabels.includes(itemToString(item)));
+
+/**
  * Accessible multiple select control for giving users the ability to select
- * multiple options from a list of options. Typeahead is enabled based on
- * the `value` prop of `MultiSelect.Item` elements passed in. You may also
- * set a custom `searchValue` on each `MultiSelect.Item` for control
- * over typeahead behavior.
+ * multiple options from a list of options.
+ *
+ * Typeahead is enabled based on the `value` prop of `MultiSelect.Item`
+ * elements passed in. You may also set a custom `searchValue`
+ * on each `MultiSelect.Item` for control over typeahead behavior.
  */
 const MultiSelect = ({
-  id,
+  name,
   label,
   children,
-  onChange = noop,
-  value,
+  onSelectedItemsChange: onChangeProp = noop,
   errorText,
   testId,
 }) => {
@@ -55,10 +94,10 @@ const MultiSelect = ({
     highlightedIndex,
     getItemProps,
   } = useSelect({
-    id: id || `nds-multiselect-${label}`,
+    id: name || `nds-multiselect-${label}`,
     items,
     stateReducer,
-    itemToString: (item) => item.props.searchValue || item.props.value,
+    itemToString,
     onSelectedItemChange: ({ selectedItem }) => {
       if (!selectedItem) return;
       const index = selectedItems.indexOf(selectedItem);
@@ -73,11 +112,10 @@ const MultiSelect = ({
       } else {
         setSelectedItems([...selectedItems, selectedItem]);
       }
-      onChange(selectedItems);
+      onChangeProp(selectedItems);
     },
   });
 
-  const hasSelectedItem = selectedItems.length > 0;
   const showMenu = isOpen && items.length > 0;
 
   /** @see https://github.com/everweij/react-laag#api-docs */
@@ -92,14 +130,24 @@ const MultiSelect = ({
       possiblePlacements: ["top-start", "bottom-start"],
     });
 
+  const hasSelectedItem = selectedItems.length > 0;
+  const tokens = [...new Set(itemsToStrings(selectedItems))];
+
+  const handleTokensChange = (newTokenLabels) => {
+    setSelectedItems((selectedItemComponents) =>
+      getUpdatedSelection(newTokenLabels, selectedItemComponents),
+    );
+  };
+
   return (
     <div className="nds-multiselect" data-testid={testId}>
       <DropdownTrigger
         isOpen={showMenu}
         labelText={label}
-        tokens={MOCK_TOKENS}
-        labelProps={{ ...getLabelProps() }}
+        tokens={tokens}
+        onTokensChange={handleTokensChange}
         errorText={errorText}
+        labelProps={{ ...getLabelProps() }}
         {...getToggleButtonProps(triggerProps)}
         style={{
           ...triggerProps.style,
@@ -141,7 +189,7 @@ const MultiSelect = ({
                   ])}
                   {...getItemProps({ item, index })}
                 >
-                  {hasSelectedItem && (
+                  {isSelected(item, tokens) && (
                     <span className="narmi-icon-check fontSize--l fontWeight--bold" />
                   )}
                   {item}
@@ -156,18 +204,15 @@ const MultiSelect = ({
 };
 
 MultiSelect.propTypes = {
-  /** unique id attribute of the input (used for `htmlFor`) */
-  id: PropTypes.string.isRequired,
+  /** unique name attribute for the input (used for `id` and `name`) */
+  name: PropTypes.string.isRequired,
   /** Label for the select control */
   label: PropTypes.string.isRequired,
-  /** Change callback. Called with value string from the selected item */
-  onChange: PropTypes.func,
   /**
-   * Sets selected item by value and makes the Select **fully controlled**.
-   *
-   * When passing a `value`, you must provide an `onChange` handler to update it
+   * Change callback for user actions that select or deselect items.
+   * Called with an array of selected item values.
    */
-  value: PropTypes.string,
+  onSelectedItemsChange: PropTypes.func,
   /**
    * Error message.
    * When passed, this will cause the trigger to render in error state.

@@ -1,3 +1,11 @@
+/**
+* MultiSelect styles
+*
+* Base styles mostly copied from `Select`.
+* We can unify these styles later, but for now,
+* we're leaving them separate to make iteration easier.
+*/
+
 .nds-multiselect-list {
   max-height: 50vh;
   overflow-y: auto;

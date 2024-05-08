@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.36.0](https://github.com/narmi/design_system/compare/v3.35.4...v3.36.0) (2024-05-08)
+
+
+### Features
+
+* **LoadingShim:** Adds a small variant for LoadingShim - good for buttons ([58a7d15](https://github.com/narmi/design_system/commit/58a7d156b544746794d1982c8e0d2c488e4a5e99))
+* **Toggle:** Adds a loading and disabled state for the toggle ([69f9dd6](https://github.com/narmi/design_system/commit/69f9dd65a173fdf1b75cd223fccd1f8923ae4083))
+
+
+### Bug Fixes
+
+* **Toggle:** Update size for loadingshim ([0bbbce6](https://github.com/narmi/design_system/commit/0bbbce6447cd1f81fb27295b8c186c57159db01c))
+
 ### [3.35.4](https://github.com/narmi/design_system/compare/v3.35.3...v3.35.4) (2024-05-07)
 
 

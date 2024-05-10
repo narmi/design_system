@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { useSelect, useMultipleSelection } from "downshift";
 import { useLayer } from "react-laag";
@@ -7,9 +7,6 @@ import cc from "classcat";
 import DropdownTrigger from "../DropdownTrigger";
 import MultiSelectItem from "./MultiSelectItem";
 import FieldToken from "../FieldToken";
-
-// :TIX:FIXME:
-// -? Consider making the dropdown take `content` instead of `tokens`
 
 const noop = () => {};
 
@@ -23,8 +20,8 @@ const itemToString = (item) =>
 /**
  * Check an item component against the tokens list to see if it's currentlly selected
  */
-const isSelected = (selectedItem, item) =>
-  itemToString(selectedItem) === itemToString(item);
+const isSelected = (selectedItems, item) =>
+  selectedItems.map(itemToString).includes(itemToString(item));
 
 /**
  * Get new list of `MenuSelect.item` components that are selected after
@@ -48,7 +45,7 @@ const MultiSelect = ({
   name,
   label,
   children,
-  onSelectedItemsChange: onChangeProp = noop,
+  onSelectedItemsChange: onChangeProp = noop, // :FIXME: this needs to be called
   errorText,
   testId,
 }) => {
@@ -66,7 +63,6 @@ const MultiSelect = ({
   /** @see https://www.downshift-js.com/use-select */
   const {
     isOpen,
-    selectedItem,
     getToggleButtonProps,
     getLabelProps,
     getMenuProps,
@@ -97,7 +93,11 @@ const MultiSelect = ({
         case useSelect.stateChangeTypes.MenuBlur:
         case useSelect.stateChangeTypes.MenuKeyDownEnter:
         case useSelect.stateChangeTypes.ItemClick:
-          if (newSelectedItem && !selectedItems.includes(newSelectedItem)) {
+          if (isSelected(selectedItems, newSelectedItem)) {
+            console.info("removing item");
+            removeSelectedItem(newSelectedItem);
+          } else {
+            console.info("adding item");
             addSelectedItem(newSelectedItem);
           }
           return;
@@ -124,16 +124,30 @@ const MultiSelect = ({
   const renderTokens = () =>
     selectedItems.map((itemComponent, i) => {
       const tokenLabel = itemToString(itemComponent);
+      const isLastToken = i === selectedItems.length - 1;
       return (
-        <FieldToken
+        <span
           key={`${i}-${tokenLabel}`}
-          label={tokenLabel}
-          onDismiss={() => removeSelectedItem(itemComponent)}
-          {...getSelectedItemProps({
-            selectedItem: itemComponent,
-            i,
-          })}
-        />
+          className={cc([
+            "padding--y--xs",
+            {
+              "padding--right--s": isLastToken,
+              "padding--right--xs": !isLastToken,
+            },
+          ])}
+        >
+          <FieldToken
+            label={tokenLabel}
+            onDismiss={() => removeSelectedItem(itemComponent)}
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+            {...getSelectedItemProps({
+              selectedItem: itemComponent,
+              i,
+            })}
+          />
+        </span>
       );
     });
 
@@ -191,7 +205,7 @@ const MultiSelect = ({
                   ])}
                   {...getItemProps({ item, index })}
                 >
-                  {isSelected(selectedItem, item) && (
+                  {isSelected(selectedItems, item) && (
                     <span className="narmi-icon-check fontSize--l fontWeight--bold" />
                   )}
                   {item}

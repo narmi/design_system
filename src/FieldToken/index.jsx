@@ -35,7 +35,8 @@ const FieldToken = React.forwardRef(function FieldToken(
         role="button"
         aria-label={`Remove ${label}`}
         tabIndex={0}
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
           onDismiss(label);
         }}
         onKeyUp={({ key }) => {

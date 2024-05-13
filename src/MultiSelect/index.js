@@ -58,7 +58,30 @@ const MultiSelect = ({
     addSelectedItem,
     removeSelectedItem,
     selectedItems,
-  } = useMultipleSelection({ initialSelectedItems: [] });
+  } = useMultipleSelection({
+    initialSelectedItems: [],
+    stateReducer: (state, actionAndChanges) => {
+      const { type, changes, selectedItem } = actionAndChanges;
+      const newSelectedItems = [...new Set(changes.selectedItems)];
+      switch (type) {
+        case useMultipleSelection.stateChangeTypes.FunctionRemoveSelectedItem:
+          return {
+            ...changes,
+            selectedItems: newSelectedItems.filter(
+              // eslint-disable-next-line react/prop-types
+              ({ props }) => props.value !== selectedItem.props.value,
+            ),
+          };
+        case useMultipleSelection.stateChangeTypes.FunctionAddSelectedItem:
+          return {
+            ...changes,
+            selectedItems: newSelectedItems,
+          };
+        default:
+          return changes;
+      }
+    },
+  });
 
   /** @see https://www.downshift-js.com/use-select */
   const {
@@ -94,10 +117,8 @@ const MultiSelect = ({
         case useSelect.stateChangeTypes.MenuKeyDownEnter:
         case useSelect.stateChangeTypes.ItemClick:
           if (isSelected(selectedItems, newSelectedItem)) {
-            console.info("removing item");
             removeSelectedItem(newSelectedItem);
-          } else {
-            console.info("adding item");
+          } else if (newSelectedItem) {
             addSelectedItem(newSelectedItem);
           }
           return;
@@ -139,9 +160,6 @@ const MultiSelect = ({
           <FieldToken
             label={tokenLabel}
             onDismiss={() => removeSelectedItem(itemComponent)}
-            onClick={(e) => {
-              e.preventDefault();
-            }}
             {...getSelectedItemProps({
               selectedItem: itemComponent,
               i,
@@ -161,7 +179,6 @@ const MultiSelect = ({
         labelProps={{ ...getLabelProps() }}
         {...getToggleButtonProps(
           getDropdownProps({
-            preventKeyAction: isOpen,
             ...triggerProps,
           }),
         )}
@@ -204,6 +221,8 @@ const MultiSelect = ({
                     },
                   ])}
                   {...getItemProps({ item, index })}
+                  role="option"
+                  aria-selected={isSelected(selectedItems, item).toString()}
                 >
                   {isSelected(selectedItems, item) && (
                     <span className="narmi-icon-check fontSize--l fontWeight--bold" />

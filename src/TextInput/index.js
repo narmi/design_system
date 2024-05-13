@@ -56,15 +56,15 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
     </div>
   ) : null;
 
+  const inputError = error ||
+    (maxLength && inputValue.length > maxLength
+    ? "Exceeds character limits"
+    : undefined)
+
   return (
     <Input
       {...props}
-      error={
-        error ||
-        (maxLength && inputValue.length > maxLength
-          ? "Exceeds character limits"
-          : undefined)
-      }
+      error={inputError}
       startIconClass={startIcon ? `narmi-icon-${startIcon}` : undefined}
       endIconClass={endIcon ? `narmi-icon-${endIcon}` : undefined}
       startContent={startContent}
@@ -89,6 +89,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
             placeholder={props.label}
             aria-label={props.label}
             data-testid={testId}
+            error={inputError}
             {...nativeElementProps}
           />
         </div>
@@ -104,6 +105,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
           aria-label={props.label}
           placeholder={props.label}
           data-testid={testId}
+          error={inputError}
           {...nativeElementProps}
         />
       )}

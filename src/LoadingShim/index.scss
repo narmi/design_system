@@ -12,6 +12,25 @@
 
   /* ensure enough room for the dots animation when there's no content */
   min-height: 200px;
+
+  &.nds-loadingShim--small {
+    min-height: 24px;
+
+    .nds-loadingShim-indicator {
+      min-width: 16px;
+      justify-content: center;
+
+      div {
+        width: 3px;
+        height: 3px;
+        margin-right: 1px;
+      }
+
+      div:last-child {
+        margin-right: 0;
+      }
+    }
+  }
 }
 
 .nds-loadingShim-indicator {
@@ -38,6 +57,14 @@
     }
     &:nth-child(2) {
       animation-delay: -133ms;
+    }
+  }
+
+  &.nds-loadingShim-indicator--small {
+    width: 20px;
+    div {
+      width: 6px;
+      height: 6px;
     }
   }
 }

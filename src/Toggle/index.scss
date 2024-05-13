@@ -1,40 +1,82 @@
-.nds-toggle {
-  display: inline-block;
-  position: relative;
-  border-radius: 24px;
-  height: 24px;
+.nds-toggle-button-container {
   width: 48px;
-  background-color: var(--color-lightGrey) !important;
-  will-change: background-color;
-  transition: background-color 200ms ease;
+  line-height: 13px;
+
+  .nds-toggle {
+    position: relative;
+    width: 48px;
+    height: 24px;
+    border-radius: 24px;
+    border: 0;
+    background-color: var(--color-lightGrey);
+    will-change: background-color, left, width;
+    transition:
+      background-color 200ms ease,
+      left 200ms ease,
+      width 200ms ease;
+
+    &--loading {
+      width: 24px;
+      border-radius: 50%;
+      left: 12px;
+
+      .nds-toggle-indicator {
+        left: 4px;
+      }
+
+      .nds-toggle-loading-overlay {
+        opacity: 0.8;
+        display: block;
+        will-change: opacity;
+        transition: opacity 200ms ease;
+        transition-delay: 200ms;
+      }
+    }
+  }
 
   &--active {
-    background-color: var(--theme-primary) !important;
+    .nds-toggle {
+      background-color: var(--theme-primary);
+
+      .nds-toggle-indicator {
+        left: 28px;
+      }
+      &.nds-toggle--loading {
+        .nds-toggle-indicator {
+          left: 4px;
+        }
+      }
+    }
   }
 }
 
 .nds-toggle-indicator {
+  position: absolute;
+  top: 50%;
+  left: 4px;
   width: 16px;
   height: 16px;
-  position: absolute;
-  display: block;
-  border-radius: 100%;
+  border-radius: 50%;
   background-color: var(--color-white);
-  top: 50%;
   transform: translateY(-50%);
-  left: 4px;
   will-change: left;
   transition: left 200ms ease;
 }
 
-.nds-toggle--active .nds-toggle-indicator {
-  left: 28px;
-}
-
 /**
-* Hide the "on" : "off" button text visually, but
-* still visible to screen readers and other assistive technology
-*/
+ * Hide the "on" : "off" button text visually, but
+ * still visible to screen readers and other assistive technology
+ */
 .nds-toggle-buttonText {
   @extend %a11y-visually-hide;
+}
+
+.nds-toggle-loading-overlay {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  left: 0;
+  top: 0;
+  border-radius: 24px;
+  opacity: 0;
 }

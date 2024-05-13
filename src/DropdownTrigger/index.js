@@ -1,9 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
-import FieldToken from "../FieldToken";
-
-const noop = () => {};
 
 /**
  * Generic trigger button for dropdowns. `DropdownTrigger` can be composed with
@@ -118,6 +115,10 @@ DropdownTrigger.propTypes = {
    * `onTokensChange={(tokens) => setTokens(tokens)}`
    */
   onTokensChange: PropTypes.func,
+  /** arbitrary JSX to place at the start of the faux input */
+  startContent: PropTypes.node,
+  /** arbitrary JSX to place at the end of the faux input */
+  endContent: PropTypes.node,
 };
 
 export default DropdownTrigger;

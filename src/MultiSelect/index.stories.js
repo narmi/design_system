@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import MultiSelect from ".";
 import MultiSelectItem from "./MultiSelectItem";
-import Button from "../Button";
 
 const Template = (args) => <MultiSelect {...args} />;
 
@@ -39,10 +38,18 @@ ErrorState.args = {
   errorText: "Required",
 };
 
-export const Test = () => {
-  // :TODO: do we need a `fieldValue` and `setFieldValue`?
+export const SettingTheFieldValue = () => {
+  const [fieldValue, setFieldValue] = useState("");
+  const handleSelectedItemsChange = (selectedItems) => {
+    setFieldValue(selectedItems.join(","));
+  };
   return (
-    <MultiSelect name="controlled-product-field" label="Favorite Icons">
+    <MultiSelect
+      name="controlled-product-field"
+      fieldValue={fieldValue}
+      label="Favorite Icons"
+      onSelectedItemsChange={handleSelectedItemsChange}
+    >
       <MultiSelect.Item value="coffee">
         <span className="narmi-icon-coffee padding--right--xs" /> Coffee
       </MultiSelect.Item>
@@ -58,10 +65,11 @@ export const Test = () => {
     </MultiSelect>
   );
 };
-Test.parameters = {
+SettingTheFieldValue.parameters = {
   docs: {
     description: {
-      story: "TK",
+      story:
+        "Adding and removing selected items is uncontrolled and internal to `MultiSelect`. To set the actual form field value, use `fieldValue`. To update `fieldValue`, you may use `onSelectedItemsChange`.",
     },
   },
 };

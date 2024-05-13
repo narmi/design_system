@@ -45,7 +45,8 @@ const MultiSelect = ({
   name,
   label,
   children,
-  onSelectedItemsChange: onChangeProp = noop, // :FIXME: this needs to be called
+  onSelectedItemsChange: onChangeProp = noop,
+  fieldValue,
   errorText,
   testId,
 }) => {
@@ -62,17 +63,21 @@ const MultiSelect = ({
     initialSelectedItems: [],
     stateReducer: (state, actionAndChanges) => {
       const { type, changes, selectedItem } = actionAndChanges;
-      const newSelectedItems = [...new Set(changes.selectedItems)];
+      let newSelectedItems = [...new Set(changes.selectedItems)];
+
       switch (type) {
         case useMultipleSelection.stateChangeTypes.FunctionRemoveSelectedItem:
+          newSelectedItems = newSelectedItems.filter(
+            // eslint-disable-next-line react/prop-types
+            ({ props }) => props.value !== selectedItem.props.value,
+          );
+          onChangeProp(newSelectedItems.map(itemToString));
           return {
             ...changes,
-            selectedItems: newSelectedItems.filter(
-              // eslint-disable-next-line react/prop-types
-              ({ props }) => props.value !== selectedItem.props.value,
-            ),
+            selectedItems: newSelectedItems,
           };
         case useMultipleSelection.stateChangeTypes.FunctionAddSelectedItem:
+          onChangeProp(newSelectedItems.map(itemToString));
           return {
             ...changes,
             selectedItems: newSelectedItems,
@@ -171,6 +176,7 @@ const MultiSelect = ({
 
   return (
     <div className="nds-multiselect" data-testid={testId}>
+      <input type="hidden" name={name} id={name} value={fieldValue} />
       <DropdownTrigger
         isOpen={isOpen}
         labelText={label}
@@ -259,6 +265,11 @@ MultiSelect.propTypes = {
   ]),
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
+  /**
+   * Value for the input with the given `name` prop.
+   * This should be the value of the field in the submitted form.
+   */
+  fieldValue: PropTypes.string,
 };
 
 MultiSelect.Item = MultiSelectItem;

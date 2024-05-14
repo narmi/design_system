@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.37.1](https://github.com/narmi/design_system/compare/v3.37.0...v3.37.1) (2024-05-14)
+
+
+### Bug Fixes
+
+* **MultiSelect:** add selectedItems prop for fully controlled component ([e2f14f1](https://github.com/narmi/design_system/commit/e2f14f12ead6d811e11b25e5212caf9869e00474))
+
 ## [3.37.0](https://github.com/narmi/design_system/compare/v3.36.1...v3.37.0) (2024-05-14)
 
 

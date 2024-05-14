@@ -24,6 +24,12 @@ const isSelected = (selectedItems, item) =>
   selectedItems.map(itemToString).includes(itemToString(item));
 
 /**
+ * Gets full item element by its `value` prop
+ */
+const getSelectedItems = (values, items) =>
+  items.filter((item) => values.includes(item.props.value));
+
+/**
  * Get new list of `MenuSelect.item` components that are selected after
  * user dismisses a token.
  * @param {Array} newTokenLabels
@@ -45,6 +51,7 @@ const MultiSelect = ({
   name,
   label,
   children,
+  selectedItems: selectedItemsProp = [],
   onSelectedItemsChange: onChangeProp = noop,
   fieldValue,
   errorText,
@@ -60,7 +67,7 @@ const MultiSelect = ({
     removeSelectedItem,
     selectedItems,
   } = useMultipleSelection({
-    initialSelectedItems: [],
+    initialSelectedItems: getSelectedItems(selectedItemsProp, items),
     stateReducer: (state, actionAndChanges) => {
       const { type, changes, selectedItem } = actionAndChanges;
       let newSelectedItems = [...new Set(changes.selectedItems)];
@@ -176,7 +183,12 @@ const MultiSelect = ({
 
   return (
     <div className="nds-multiselect" data-testid={testId}>
-      <input type="hidden" name={name} id={name} value={fieldValue} />
+      <input
+        type="hidden"
+        name={name}
+        id={name}
+        value={fieldValue || selectedItems.map(itemToString).join(",")}
+      />
       <DropdownTrigger
         isOpen={isOpen}
         labelText={label}
@@ -249,6 +261,11 @@ MultiSelect.propTypes = {
   name: PropTypes.string.isRequired,
   /** Label for the select control */
   label: PropTypes.string.isRequired,
+  /**
+   * When passed, the MultiSelect becomes fully controlled.
+   * Use `onSelectedItemsChange` to manage this value.
+   */
+  selectedItems: PropTypes.arrayOf(PropTypes.string),
   /**
    * Change callback for user actions that select or deselect items.
    * Called with an array of selected item values.

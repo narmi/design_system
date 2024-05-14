@@ -69,7 +69,43 @@ SettingTheFieldValue.parameters = {
   docs: {
     description: {
       story:
-        "Adding and removing selected items is uncontrolled and internal to `MultiSelect`. To set the actual form field value, use `fieldValue`. To update `fieldValue`, you may use `onSelectedItemsChange`.",
+        "By default, `fieldValue` will populate the value of the underlying hidden input as a string of selected values separated by `,`. You may use the `fieldValue` prop to change the formatting of the string value applied to the hidden input.",
+    },
+  },
+};
+
+export const ControlledSelectedItems = () => {
+  const [selectedItems, setSelectedItems] = useState(["truck", "coffee"]);
+  const handleSelectedItemsChange = (selectedItems) => {
+    setSelectedItems(selectedItems);
+  };
+  return (
+    <MultiSelect
+      name="controlled-product-field"
+      label="Favorite Icons"
+      selectedItems={selectedItems}
+      onSelectedItemsChange={handleSelectedItemsChange}
+    >
+      <MultiSelect.Item value="coffee">
+        <span className="narmi-icon-coffee padding--right--xs" /> Coffee
+      </MultiSelect.Item>
+      <MultiSelect.Item value="film">
+        <span className="narmi-icon-film padding--right--xs" /> Film
+      </MultiSelect.Item>
+      <MultiSelect.Item value="truck">
+        <span className="narmi-icon-truck padding--right--xs" /> Truck
+      </MultiSelect.Item>
+      <MultiSelect.Item value="blob">
+        <span className="narmi-icon-blob padding--right--xs" /> Blob
+      </MultiSelect.Item>
+    </MultiSelect>
+  );
+};
+ControlledSelectedItems.parameters = {
+  docs: {
+    description: {
+      story:
+        "By default, the `MultiSelect` component behaves like an uncontrolled component. To make this component fully controlled, pass in `selectedItems` and update the list of values by using `onSelectedItemsChange`",
     },
   },
 };

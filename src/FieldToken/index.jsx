@@ -8,9 +8,13 @@ const noop = () => {};
  * Shared component to render "tokens" inside inputs, active filters,
  * or other user selections we want to tokenize.
  */
-const FieldToken = ({ label, onDismiss = noop, testId }) => {
+const FieldToken = React.forwardRef(function FieldToken(
+  { label, onDismiss = noop, testId },
+  forwardedRef,
+) {
   return (
     <div
+      ref={forwardedRef}
       role="listitem"
       className={cc([
         "nds-fieldToken",
@@ -31,7 +35,8 @@ const FieldToken = ({ label, onDismiss = noop, testId }) => {
         role="button"
         aria-label={`Remove ${label}`}
         tabIndex={0}
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
           onDismiss(label);
         }}
         onKeyUp={({ key }) => {
@@ -42,7 +47,7 @@ const FieldToken = ({ label, onDismiss = noop, testId }) => {
       />
     </div>
   );
-};
+});
 
 FieldToken.propTypes = {
   /** Label text of tag. */

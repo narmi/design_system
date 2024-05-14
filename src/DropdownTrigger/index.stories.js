@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DropdownTrigger from "./";
 import Popover from "../Popover";
 import RadioButtons from "../RadioButtons";
+import FieldToken from "../FieldToken";
 
 const Template = (args) => <DropdownTrigger {...args} />;
 
@@ -16,6 +17,52 @@ LabelOnly.parameters = {
     description: {
       story:
         "The `displayValue` can be omitted if you only need to render a label",
+    },
+  },
+};
+
+export const WithTokensAsStartContent = () => {
+  const [tokens, setTokens] = useState([
+    "Detroit, MI",
+    "Chicago, IL",
+    "Miami, FL",
+    "Boston, MA",
+    "Seattle, WA",
+    "Denver, CO",
+    "Houston, TX",
+    "Philadelphia, PA",
+  ]);
+
+  const handleTokenDismiss = (token) => {
+    setTokens((oldTokens) => {
+      const newTokens = new Set(oldTokens);
+      newTokens.delete(token);
+      return [...newTokens];
+    });
+  };
+
+  return (
+    <DropdownTrigger
+      displayValue={null}
+      startContent={
+        <span className="nds-dropdownTrigger-tokens padding--y--xs">
+          {tokens.map((label) => (
+            <FieldToken
+              key="label"
+              label={label}
+              onDismiss={handleTokenDismiss}
+            />
+          ))}
+        </span>
+      }
+    />
+  );
+};
+WithTokensAsStartContent.parameters = {
+  docs: {
+    description: {
+      story:
+        "The `startContent` and `endContent` props may be used to render arbitrary JSX, like tokens and icons.",
     },
   },
 };

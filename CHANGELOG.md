@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.36.1](https://github.com/narmi/design_system/compare/v3.36.0...v3.36.1) (2024-05-13)
+
+
+### Bug Fixes
+
+* **TruncatedAccount:** prevent 'lastFour' from wrapping ([bd8a5dc](https://github.com/narmi/design_system/commit/bd8a5dcca26952433132c313601490a035122e18))
+
 ## [3.36.0](https://github.com/narmi/design_system/compare/v3.35.4...v3.36.0) (2024-05-08)
 
 

@@ -14,7 +14,7 @@ const TruncatedAccount = ({ name, lastFour }) => (
         -
       </span>
     )}
-    {lastFour && <span>{lastFour}</span>}
+    {lastFour && <span className="whiteSpace--singleLine">{lastFour}</span>}
   </span>
 );
 

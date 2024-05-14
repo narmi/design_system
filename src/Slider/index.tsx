@@ -3,17 +3,32 @@ import { useNumberFormatter, useSlider, VisuallyHidden } from "react-aria";
 import { useSliderState } from 'react-stately';
 import Thumbs from "./Thumbs";
 
-interface Props {
+export interface Props {
+  /** Visually hidden label to describe the input */
   label: string;
-  output?: string;
-  higherName?: string;
-  lowerName?: string;
-  formatOptions: Intl.NumberFormatOptions;
-  maxValue: number;
-  defaultValue?: number[];
-  step: number;
+  /** `name` attribute passed to the lower value input thumb */
+  lowerName: string;
+  /** `name` attribute passed to the higher value input thumb */
+  higherName: string;
+  /** value of the input */
   value?: number[];
+  /** change callback invoked when the value of the `input` changes */
   onChange?: (value: number[]) => void
+  /** optionally format the input value */
+  formatOptions?: Intl.NumberFormatOptions;
+  /** lower bound for the input, inclusive */
+  minValue?: number;
+  /** upper bound for the input, inclusive */
+  maxValue?: number;
+  /** if uncontrolled, intial value for the input */
+  defaultValue?: number[];
+  /** increment number for the range input */
+  step?: number;
+  /**
+   * Text rendered within an `<output>` element.
+   * If omitted, will default to `Between {lower} and {upper}`
+   */
+  output?: string;
 }
 const Slider = (props: Props) => {
   const trackRef = useRef(null);

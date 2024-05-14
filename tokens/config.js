@@ -42,7 +42,8 @@ const config = {
      * Custom properties in a CSS file
      */
     css: {
-      transforms: CSS_TRANSFORM_GROUP,
+      basePxFontSize: 16,
+      transforms: [...CSS_TRANSFORM_GROUP, "custom/value/pxToRem"],
       buildPath: getBuildPath("css"),
       files: [
         {

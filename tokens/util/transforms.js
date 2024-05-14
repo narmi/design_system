@@ -40,7 +40,7 @@ const nameTransforms = [
     matcher: ({ attributes }) =>
       _matchByAttribute(
         ["theme", "alpha", "space", "elevation"],
-        attributes.type
+        attributes.type,
       ),
     transformer: ({ attributes }) => {
       const { type, item } = attributes;
@@ -120,7 +120,7 @@ const valueTransforms = [
     transformer: ({ original }) => parseFloat(original.value),
     matcher: ({ attributes }) =>
       ["radius", "size", "alpha", "lineHeight", "space"].some(
-        (allowedType) => attributes.type === allowedType
+        (allowedType) => attributes.type === allowedType,
       ),
   },
   {
@@ -131,6 +131,22 @@ const valueTransforms = [
     transformer: ({ original }) => {
       const { r, g, b } = tinycolor(original.value).toRgb();
       return `${r}, ${g}, ${b}`;
+    },
+  },
+  // transforms a pixel font size to rem based on base font size
+  // (base font size is configured in `tokens/config.js`)
+  {
+    name: "custom/value/pxToRem",
+    type: "value",
+    matcher: ({ attributes }) => {
+      const { category, type } = attributes;
+      return type === "size" && category === "font";
+    },
+    transformer: (token, options) => {
+      const base = (options && options.basePxFontSize) || 16;
+      const floatVal = parseFloat(token.value);
+      if (floatVal === 0) return floatVal;
+      return `${floatVal / base}rem`;
     },
   },
 ];

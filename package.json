@@ -95,7 +95,7 @@
     "react-docgen-typescript-plugin": "^1.0.5",
     "react-dom": "^16",
     "sass": "^1.45.0",
-    "sass-loader": "^12.1.0",
+    "sass-loader": "^14.2.1",
     "semantic-release": "^19.0.0",
     "storybook": "^7.5.2",
     "style-dictionary": "^3.7.1",

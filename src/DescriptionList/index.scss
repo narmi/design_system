@@ -1,0 +1,37 @@
+@import "./_mixins";
+
+.nds-descriptionList {
+  container-name: ndsDl;
+  container-type: inline-size;
+
+  dl {
+    // stacked by default
+    @include columnLayout;
+
+    // spreads out into rows at viewport sizes larger than mobile
+    @include atMediaUp("s") {
+      @include rowLayout;
+    }
+
+    .allowWrap {
+      white-space: normal;
+      overflow: visible;
+
+      // allow the dd element to grow, but constrain
+      // line length of text to a readable length
+      span {
+        display: inline-block;
+        max-width: 56ch;
+        line-height: var(--font-lineHeight-default);
+      }
+    }
+  }
+}
+
+// If the container is narrow, regardless of the viewport size,
+// use the mobile layout.
+@container ndsDl (max-width: 18rem) {
+  dl {
+    @include columnLayout(!important);
+  }
+}

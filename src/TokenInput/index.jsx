@@ -31,6 +31,7 @@ const TokenInput = ({
   inputValue,
   tokens = [],
   delimiter = ",",
+  disabled = false,
   ...otherProps
 }) => {
   const inputRef = useRef(null);
@@ -76,6 +77,7 @@ const TokenInput = ({
       <TextInput
         ref={inputRef}
         label={label}
+        disabled={disabled}
         onChange={onInputChange}
         onBlur={() => {
           onInputChange(INPUT_RESET_EVENT);
@@ -91,7 +93,8 @@ const TokenInput = ({
               <FieldToken
                 key={label}
                 label={label}
-                onDismiss={handleTokenDismiss}
+                disabled={disabled}
+                onDismiss={disabled ? noop : handleTokenDismiss}
               />
             ))}
           </div>
@@ -120,6 +123,8 @@ TokenInput.propTypes = {
   onInputChange: PropTypes.func,
   /** Value of input element */
   inputValue: PropTypes.string,
+  /** Is the input disabled? */
+  disabled: PropTypes.bool,
   /**
    * Called with the list of selected tokens
    * as the argument when user updates tokens list

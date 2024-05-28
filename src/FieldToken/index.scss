@@ -10,6 +10,10 @@
   // Truncate after 300px - no token should be wider than a small mobile viewport
   max-width: 300px;
 
+  &--disabled {
+    background: rgba(var(--theme-rgb-primary), var(--alpha-10));
+  }
+
   // Renders an icon with a small glyph inside a 16x16 click target
   .narmi-icon-x {
     cursor: pointer;

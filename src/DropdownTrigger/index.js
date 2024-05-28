@@ -15,6 +15,7 @@ const DropdownTrigger = React.forwardRef(
     {
       isOpen = false,
       showOpenIndicator = true,
+      disabled = false,
       labelText,
       labelProps,
       displayValue,
@@ -31,15 +32,17 @@ const DropdownTrigger = React.forwardRef(
       <>
         <div className="nds-dropdownTrigger" style={{ minWidth }}>
           <button
+            disabled={disabled}
             ref={ref}
             data-testid={testId || "dropdownTriggerButton"}
             className={cc([
-              "nds-dropdownTrigger-button button--reset padding--x--s",
-              "bgColor--white rounded--all",
+              "nds-dropdownTrigger-button button--reset",
+              "padding--x--s rounded--all",
               {
                 "nds-dropdownTrigger-button--hasValue": Boolean(displayValue),
                 "nds-dropdownTrigger-button--hasError": Boolean(errorText),
                 "nds-dropdownTrigger-button--isActive": isOpen,
+                "nds-dropdownTrigger-button--disabled": disabled,
               },
             ])}
             aria-expanded={isOpen ? "true" : "false"}
@@ -56,7 +59,7 @@ const DropdownTrigger = React.forwardRef(
               <span className="nds-dropdownTrigger-value">{displayValue}</span>
             )}
             {endContent}
-            {showOpenIndicator && (
+            {showOpenIndicator && !disabled && (
               <span
                 role="img"
                 aria-label={isOpen ? "popup open" : "popup closed"}
@@ -119,6 +122,11 @@ DropdownTrigger.propTypes = {
   startContent: PropTypes.node,
   /** arbitrary JSX to place at the end of the faux input */
   endContent: PropTypes.node,
+  /**
+   * Renders the button with the appearance of a disabled input and
+   * prevents user interaction.
+   */
+  disabled: PropTypes.bool,
 };
 
 export default DropdownTrigger;

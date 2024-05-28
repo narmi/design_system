@@ -53,6 +53,7 @@ const MultiSelect = ({
   children,
   selectedItems: selectedItemsProp = [],
   onSelectedItemsChange: onChangeProp = noop,
+  disabled = false,
   fieldValue,
   errorText,
   testId,
@@ -104,6 +105,7 @@ const MultiSelect = ({
     highlightedIndex,
     getItemProps,
   } = useSelect({
+    disabled,
     selectedItem: null,
     id: name || `nds-multiselect-${label}`,
     items,
@@ -170,6 +172,7 @@ const MultiSelect = ({
           ])}
         >
           <FieldToken
+            disabled={disabled}
             label={tokenLabel}
             onDismiss={() => removeSelectedItem(itemComponent)}
             {...getSelectedItemProps({
@@ -190,6 +193,7 @@ const MultiSelect = ({
         value={fieldValue || selectedItems.map(itemToString).join(",")}
       />
       <DropdownTrigger
+        disabled={disabled}
         isOpen={isOpen}
         labelText={label}
         startContent={renderTokens()}
@@ -287,6 +291,12 @@ MultiSelect.propTypes = {
    * This should be the value of the field in the submitted form.
    */
   fieldValue: PropTypes.string,
+  /**
+   * Disables the input and all user interaction.
+   * You may still pass in `selectedItems` if items need to be selected
+   * when the input is disabled.
+   */
+  disabled: PropTypes.bool,
 };
 
 MultiSelect.Item = MultiSelectItem;

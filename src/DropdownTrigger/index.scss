@@ -9,6 +9,7 @@
   width: 100%;
   text-align: left;
   border: 1px solid var(--border-color-default) !important;
+  background-color: var(--color-white);
 
   &--isActive,
   &:focus {
@@ -18,6 +19,13 @@
 
   &--hasError {
     border-color: var(--color-errorDark) !important;
+  }
+
+  &--disabled {
+    user-select: none;
+    pointer-events: none;
+    color: var(--color-mediumGrey);
+    background-color: var(--bgColor-smokeGrey);
   }
 }
 

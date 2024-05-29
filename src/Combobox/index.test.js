@@ -38,7 +38,7 @@ describe("Combobox", () => {
     it("returns all children when list is not filtered", () => {
       const actual = getVisibleChildrenByCategory(
         MOCK_DISPLAYED_ITEMS,
-        MOCK_CATEGORY_CHILDREN
+        MOCK_CATEGORY_CHILDREN,
       );
       expect(actual).toStrictEqual(MOCK_CATEGORY_CHILDREN);
     });
@@ -46,7 +46,7 @@ describe("Combobox", () => {
     it("returns only visible children when first child is filtered out", () => {
       const actual = getVisibleChildrenByCategory(
         [...MOCK_DISPLAYED_ITEMS].slice(1, 4), // items: dos, tres, quatro
-        MOCK_CATEGORY_CHILDREN // contains: uno, dos
+        MOCK_CATEGORY_CHILDREN, // contains: uno, dos
       );
       const expected = [MOCK_CATEGORY_CHILDREN[1]];
       expect(actual).toStrictEqual(expected);
@@ -59,7 +59,7 @@ describe("Combobox", () => {
         "",
         1,
         MOCK_DISPLAYED_ITEMS,
-        MOCK_CATEGORY_CHILDREN
+        MOCK_CATEGORY_CHILDREN,
       );
       expect(actual).toBe(true);
     });
@@ -69,7 +69,7 @@ describe("Combobox", () => {
         "",
         3,
         MOCK_DISPLAYED_ITEMS,
-        MOCK_CATEGORY_CHILDREN
+        MOCK_CATEGORY_CHILDREN,
       );
       expect(actual).toBe(false);
     });
@@ -79,7 +79,7 @@ describe("Combobox", () => {
         "tre",
         -1,
         MOCK_DISPLAYED_ITEMS,
-        MOCK_CATEGORY_CHILDREN
+        MOCK_CATEGORY_CHILDREN,
       );
       expect(actual).toBe(true);
     });
@@ -89,7 +89,7 @@ describe("Combobox", () => {
         "",
         -1,
         MOCK_DISPLAYED_ITEMS,
-        MOCK_CATEGORY_CHILDREN
+        MOCK_CATEGORY_CHILDREN,
       );
       expect(actual).toBe(false);
     });
@@ -97,12 +97,12 @@ describe("Combobox", () => {
 
   it("isSelectable: detects selectable options correctly", () => {
     expect(isSelectable(<Combobox.Heading text="just a heading" />)).toBe(
-      false
+      false,
     );
     expect(
       isSelectable(
-        <Combobox.Item value="selectable item">selectable item</Combobox.Item>
-      )
+        <Combobox.Item value="selectable item">selectable item</Combobox.Item>,
+      ),
     ).toBe(true);
   });
 
@@ -117,7 +117,7 @@ describe("Combobox", () => {
     render(
       <Combobox label={LABEL} onChange={handleChange}>
         {STATE_ITEMS}
-      </Combobox>
+      </Combobox>,
     );
 
     // open the dropdown
@@ -160,7 +160,7 @@ describe("Combobox", () => {
     render(
       <Combobox label={LABEL} onChange={handleChange}>
         {STATE_ITEMS}
-      </Combobox>
+      </Combobox>,
     );
 
     // open the dropdown
@@ -189,7 +189,7 @@ describe("Combobox", () => {
     render(
       <Combobox label={LABEL} inputValue={value}>
         {STATE_ITEMS}
-      </Combobox>
+      </Combobox>,
     );
     const input = screen.getByPlaceholderText(LABEL);
     expect(screen.getByDisplayValue(value)).toBeInTheDocument();

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.39.0](https://github.com/narmi/design_system/compare/v3.38.0...v3.39.0) (2024-05-29)
+
+
+### Features
+
+* **icons:** add loan icon ([2c8933e](https://github.com/narmi/design_system/commit/2c8933e4696752048c8a7b73fad7ce5214f4bb0d))
+
 ## [3.38.0](https://github.com/narmi/design_system/compare/v3.37.1...v3.38.0) (2024-05-28)
 
 

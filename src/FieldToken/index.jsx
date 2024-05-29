@@ -9,7 +9,7 @@ const noop = () => {};
  * or other user selections we want to tokenize.
  */
 const FieldToken = React.forwardRef(function FieldToken(
-  { label, onDismiss = noop, testId },
+  { label, onDismiss = noop, disabled = false, testId },
   forwardedRef,
 ) {
   return (
@@ -24,27 +24,32 @@ const FieldToken = React.forwardRef(function FieldToken(
         "rounded--all--l",
         "fontSize--xs",
         "fontWeight--semibold",
+        {
+          "nds-fieldToken--disabled": disabled,
+        },
       ])}
       data-testid={testId}
     >
       <div className="whiteSpace--truncate" style={{ userSelect: "none" }}>
         {label}
       </div>
-      <div
-        className="narmi-icon-x margin--left--xs"
-        role="button"
-        aria-label={`Remove ${label}`}
-        tabIndex={0}
-        onClick={(e) => {
-          e.stopPropagation();
-          onDismiss(label);
-        }}
-        onKeyUp={({ key }) => {
-          if (key === "Enter" || key == " ") {
+      {!disabled && (
+        <div
+          className="narmi-icon-x margin--left--xs"
+          role="button"
+          aria-label={`Remove ${label}`}
+          tabIndex={0}
+          onClick={(e) => {
+            e.stopPropagation();
             onDismiss(label);
-          }
-        }}
-      />
+          }}
+          onKeyUp={({ key }) => {
+            if (key === "Enter" || key == " ") {
+              onDismiss(label);
+            }
+          }}
+        />
+      )}
     </div>
   );
 });
@@ -59,6 +64,10 @@ FieldToken.propTypes = {
   onDismiss: PropTypes.func,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
+  /**
+   * Disabled state for FieldToken
+   */
+  disabled: PropTypes.bool,
 };
 
 export default FieldToken;

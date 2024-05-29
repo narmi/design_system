@@ -27,6 +27,15 @@ Overview.args = {
   children,
 };
 
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true,
+  name: "overviewStory",
+  label: "Favorite icons",
+  selectedItems: ["blob", "coffee"],
+  children,
+};
+
 export const ErrorState = Template.bind({});
 ErrorState.args = {
   name: "errorState",

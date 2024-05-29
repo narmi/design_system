@@ -38,6 +38,15 @@ DefaultSelection.args = {
   defaultValue: "film",
 };
 
+export const DisabledSelection = Template.bind({});
+DisabledSelection.args = {
+  disabled: true,
+  id: "disabledSelection",
+  label: "Account",
+  children: [<Select.Item value="checking0001">Checking - 0001</Select.Item>],
+  value: "checking0001",
+};
+
 export const ErrorState = Template.bind({});
 ErrorState.args = {
   id: "errorState",

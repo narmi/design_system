@@ -71,7 +71,7 @@ export const getItemIndex = ({ props }, items) => {
 export const isHighlightedInCategory = (
   highlightedIndex,
   categoryChildren,
-  items
+  items,
 ) => {
   if (highlightedIndex < 0) return false;
   const highlightedValue = items[highlightedIndex].props.value;
@@ -114,6 +114,7 @@ const Select = ({
   value,
   defaultValue,
   defaultOpen = false,
+  disabled = false,
   getTypeaheadString = defaultGetTypeAheadString,
   errorText,
   testId,
@@ -127,7 +128,7 @@ const Select = ({
   // If categories are being used, extract items from categories
   if (allChildren.some(({ type }) => type.displayName === "Select.Category")) {
     items = allChildren.flatMap(({ props }) =>
-      React.Children.toArray(props.children)
+      React.Children.toArray(props.children),
     );
     categories = allChildren.map(({ props }) => ({
       label: props.label,
@@ -140,6 +141,7 @@ const Select = ({
   const downshiftOpts = {
     id: id || `nds-select-${label}`,
     items,
+    disabled,
     initialSelectedItem: defaultValue && getItemByValue(defaultValue, items),
     initialIsOpen: defaultOpen,
     itemToString: (item) => getTypeaheadString(userInput, item),
@@ -251,6 +253,7 @@ const Select = ({
       <DropdownTrigger
         isOpen={showMenu}
         labelText={label}
+        disabled={disabled}
         displayValue={getSelectedItemDisplay(selectedItem) || userInput}
         labelProps={{ ...getLabelProps() }}
         errorText={errorText}
@@ -303,7 +306,7 @@ const Select = ({
               {items.map((item) => renderItem(item, items))}
             </ul>
           )}
-        </div>
+        </div>,
       )}
     </div>
   );
@@ -347,6 +350,11 @@ Select.propTypes = {
   ]),
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
+  /**
+   * When true, Select renders a disabled button with the appearance
+   * of a disabled input. User interaction is disabled.
+   */
+  disabled: PropTypes.bool,
 };
 
 Select.Item = SelectItem;

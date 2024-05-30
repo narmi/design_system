@@ -50,16 +50,19 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
     setInputValue("");
   }
 
-  const characterCounter = maxLength ? (
+  const charCount = (nativeElementProps?.value || inputValue).length;
+  const showCharacterCounter = maxLength && charCount > 0;
+  const characterCounter = showCharacterCounter ? (
     <div className="nds-input-character-counter">
-      {inputValue.length}/{maxLength}
+      {charCount}/{maxLength}
     </div>
   ) : null;
 
-  const inputError = error ||
+  const inputError =
+    error ||
     (maxLength && inputValue.length > maxLength
-    ? "Exceeds character limits"
-    : undefined)
+      ? "Exceeds character limits"
+      : undefined);
 
   return (
     <Input

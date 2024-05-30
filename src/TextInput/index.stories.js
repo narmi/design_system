@@ -177,6 +177,22 @@ export const PasswordShowHide = () => {
   );
 };
 
+export const WithMaxLength = () => {
+  const [inputValue, setInputValue] = useState("Default value");
+  return (
+    <>
+      <TextInput
+        label="Limited to 20 chars"
+        maxLength={20}
+        value={inputValue}
+        onChange={(e) => {
+          setInputValue(e.target.value);
+        }}
+      />
+    </>
+  );
+};
+
 export default {
   title: "Components/TextInput",
   component: TextInput,

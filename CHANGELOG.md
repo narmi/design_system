@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.39.1](https://github.com/narmi/design_system/compare/v3.39.0...v3.39.1) (2024-05-30)
+
+
+### Bug Fixes
+
+* **TextInput:** read maxLength from `value` prop ([6ac0ecc](https://github.com/narmi/design_system/commit/6ac0ecc83381ccda4dd5be9972b9044a646d471c))
+
 ## [3.39.0](https://github.com/narmi/design_system/compare/v3.38.0...v3.39.0) (2024-05-29)
 
 

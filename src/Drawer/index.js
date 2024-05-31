@@ -26,6 +26,7 @@ const Drawer = ({
   children,
   position = "right",
   depth = "70%",
+  paddingSize = "xxl",
   testId,
 }) => {
   const shimRef = useRef(null);
@@ -34,7 +35,7 @@ const Drawer = ({
   const isTransitioning = useMountTransition(isOpen, 300);
   const { m } = useBreakpoints();
   const isHorizontal = position === "bottom" || position === "top";
-  const isVerticalMobileDrawer = (!m) && !isHorizontal;
+  const isVerticalMobileDrawer = !m && !isHorizontal;
 
   // The depth is how far the drawer opens out, but the CSS prop depends
   // on whether the Drawer is vertical or not
@@ -90,7 +91,7 @@ const Drawer = ({
       ref={navRef}
       onClick={handleShimClick}
       style={depthStyle}
-      className={`drawer drawer--${position} navigation  ${
+      className={`drawer padding--all--xxl drawer--${position} navigation  ${
         isOpen && isTransitioning ? `navigation--open--${position}` : ""
       }`}
       data-testid={testId}
@@ -161,6 +162,7 @@ const Drawer = ({
       style={depthStyle}
       className={cc([
         "drawer",
+        `padding--all--${paddingSize}`,
         `drawer--${position}`,
         {
           [`drawer--open--${position}`]: isOpen && isTransitioning,
@@ -174,25 +176,15 @@ const Drawer = ({
         <>
           {showControls && (
             <>
-              <div
-                onClick={onPrev}
-              >
-                <span
-                  className="narmi-icon-chevron-left fontSize--heading3"
-                />
+              <div onClick={onPrev}>
+                <span className="narmi-icon-chevron-left fontSize--heading3" />
               </div>
-              <div
-                onClick={onNext}
-              >
-                <span
-                  className="narmi-icon-chevron-right fontSize--heading3"
-                />
+              <div onClick={onNext}>
+                <span className="narmi-icon-chevron-right fontSize--heading3" />
               </div>
             </>
           )}
-          <div
-            onClick={onUserDismiss}
-          >
+          <div onClick={onUserDismiss}>
             <span className="narmi-icon-x clickable fontSize--heading3" />
           </div>
         </>
@@ -264,6 +256,10 @@ Drawer.propTypes = {
    * Valid values are `right`, `left`, `bottom`, `top`.
    */
   position: PropTypes.oneOf(["right", "left", "top", "bottom"]),
+  /**
+   * Sets the padding amount, or disable padding by passing "none"
+   */
+  paddingSize: PropTypes.oneOf(["none", "xs", "s", "m", "l", "xl", "xxl"]),
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
 };

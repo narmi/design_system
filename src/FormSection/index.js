@@ -9,15 +9,17 @@ const FormSection = ({ title, children }) => (
   <div className="nds-formSection fontFamily--body">
     <Row alignItems="center" gapSize="xs">
       <Row.Item shrink>
-        <h3 className="fontColor--secondary fontSize--xs fontFamily--body">{title}</h3>
+        <h3 className="fontColor--secondary fontSize--xs fontFamily--body">
+          {title}
+        </h3>
       </Row.Item>
       <Row.Item>
-        <div style={{ width: "100%", height: "var(--space-m)" }}>
+        <div style={{ width: "100%", height: "var(--font-size-default)" }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             version="1.1"
             xmlnsXlink="http://www.w3.org/1999/xlink"
-            height="var(--space-m)"
+            height="var(--font-size-default)"
             width="100%"
           >
             <line
@@ -40,6 +42,6 @@ FormSection.propTypes = {
   /** Title of form section */
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-}
+};
 
 export default FormSection;

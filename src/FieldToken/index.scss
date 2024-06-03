@@ -2,13 +2,13 @@
   display: inline-flex;
   justify-content: flex-start;
   align-items: center;
-  height: 25px;
+  height: rem(25px);
   color: var(--theme-primary);
   background: rgba(var(--theme-rgb-primary), var(--alpha-20));
 
   // Prevent forced overflow.
   // Truncate after 300px - no token should be wider than a small mobile viewport
-  max-width: 300px;
+  max-width: rem(300px); // this constraint should scale relative to user font
 
   &--disabled {
     background: rgba(var(--theme-rgb-primary), var(--alpha-10));
@@ -24,7 +24,7 @@
     width: var(--space-s);
     &:before {
       font-weight: var(--font-weight-semibold);
-      font-size: 10px;
+      font-size: rem(10px);
     }
   }
 }

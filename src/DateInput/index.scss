@@ -3,10 +3,13 @@
 /* This is intended as a series of overrides for the "airbnb" Flatpickr theme */
 body {
   .flatpickr-calendar {
-    margin-top: 20px;
-    margin-left: -10px;
-    box-shadow: 2px 0 0 var(--theme-primary), -2px 0 0 var(--theme-primary),
-      0 2px 0 var(--theme-primary), 0 -2px 0 var(--theme-primary),
+    margin-top: rem(20px);
+    margin-left: -rem(10px);
+    box-shadow:
+      2px 0 0 var(--theme-primary),
+      -2px 0 0 var(--theme-primary),
+      0 2px 0 var(--theme-primary),
+      0 -2px 0 var(--theme-primary),
       0 3px 13px RGB(0 0 0 / 8%);
 
     &:before,
@@ -16,7 +19,7 @@ body {
   }
 
   .flatpickr-months {
-    margin-top: 8px;
+    margin-top: rem(8px);
 
     * {
       user-select: none;
@@ -61,9 +64,9 @@ body {
   }
 
   .flatpickr-weekdays {
-    padding-bottom: 4px;
-    padding-top: 8px;
-    font-size: 16px;
+    padding-bottom: rem(4px);
+    padding-top: rem(8px);
+    font-size: var(--font-size-default);
   }
 
   .flatpickr-day.today:hover,
@@ -92,8 +95,8 @@ body {
   */
   .dayContainer {
     overflow: hidden;
-    transform: translateX(-0.5px);
-    border-radius: 0 0 0 5px; /* matches bottom left popover radius */
+    transform: translateX(rem(-0.5px));
+    border-radius: 0 0 0 rem(5px);
 
     .flatpickr-day {
       border-width: 0 !important;
@@ -141,10 +144,10 @@ body {
       position: absolute;
       content: "\A";
       background-color: RGBA(var(--theme-rgb-primary), var(--alpha-20));
-      border-radius: 40px;
+      border-radius: rem(40px);
       z-index: -1;
-      height: 30px;
-      width: 30px;
+      height: rem(30px);
+      width: rem(30px);
       left: 50%;
       top: 50%;
       transform: translateX(-50%) translateY(-50%);
@@ -176,7 +179,7 @@ body {
 
   .flatpickr-months .flatpickr-prev-month,
   .flatpickr-months .flatpickr-next-month {
-    top: 6px;
+    top: rem(6px);
 
     svg {
       display: none;
@@ -189,8 +192,8 @@ body {
     &:after {
       position: relative;
       font-family: "icomoon";
-      top: -2px;
-      font-size: 24px;
+      top: rem(-2px);
+      font-size: rem(24px);
       color: var(--theme-primary);
     }
   }
@@ -198,11 +201,11 @@ body {
   .flatpickr-months .flatpickr-prev-month:after {
     /* narmi-icon-chevron-left */
     content: "\e940";
-    margin-left: 30px;
+    margin-left: rem(30px);
   }
   .flatpickr-months .flatpickr-next-month:after {
     /* narmi-icon-chevron-right */
     content: "\e941";
-    margin-right: 30px;
+    margin-right: rem(30px);
   }
 }

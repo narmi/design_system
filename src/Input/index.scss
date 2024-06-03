@@ -16,17 +16,17 @@
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
-  font-size: 16px;
+  font-size: var(--font-size-default);
 
   .nds-input-box {
     box-sizing: border-box;
-    min-height: 48px;
+    min-height: rem(48px);
     border: 1px solid var(--color-lightGrey);
     background: var(--color-white);
     position: relative;
     width: 100%;
-    padding: 7px 0.8em;
-    border-radius: 4px;
+    padding: rem(7px) 0.8em;
+    border-radius: rem(4px);
     display: flex;
     align-items: center;
 
@@ -35,7 +35,7 @@
 
       label {
         color: var(--theme-primary);
-        margin-bottom: -3px;
+        margin-bottom: rem(-3px);
       }
     }
 
@@ -51,9 +51,9 @@
   }
 
   .nds-input-subline {
-    font-size: 12px;
+    font-size: var(--font-size-s);
     color: var(--color-mediumGrey);
-    margin-top: 4px;
+    margin-top: rem(4px);
     display: flex;
     justify-content: space-between;
     flex-direction: row-reverse;
@@ -84,7 +84,7 @@
   }
 
   &.search .nds-input-box {
-    padding: 3px 0.8em;
+    padding: rem(3px) 0.8em;
   }
 
   .nds-input-icon {
@@ -98,12 +98,12 @@
     pointer-events: none;
     font-family: var(--font-family-body);
     font-weight: 400;
-    font-size: 12px;
+    font-size: var(--font-size-s);
     color: var(--color-mediumGrey);
-    line-height: 1.25;
+    line-height: var(--font-lineHeight-bodyText);
     white-space: nowrap;
     overflow: hidden;
-    margin-bottom: -3px;
+    margin-bottom: rem(-3px);
   }
 
   input,
@@ -138,7 +138,7 @@
     font-family: var(--font-family-body);
     padding: 0;
     width: 100%;
-    font-size: 16px;
+    font-size: var(--font-size-default);
   }
 
   input[type="text"]:placeholder-shown,
@@ -155,7 +155,7 @@
   .no-label input[type="password"],
   .no-label input[type="search"] {
     padding: 6px 0;
-    font-size: 16px;
+    font-size: var(--font-size-default);
 
     ~ label {
       display: none;

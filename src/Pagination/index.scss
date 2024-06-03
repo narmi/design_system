@@ -21,9 +21,9 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  height: 28px;
-  min-width: 28px;
-  border-radius: 28px;
+  height: rem(28px);
+  min-width: rem(28px);
+  border-radius: rem(28px);
   padding: 0 var(--space-xs);
 }
 
@@ -49,7 +49,7 @@
 }
 
 .nds-pagination-ellipsis {
-  transform: translateY(-5px);
+  transform: translateY(rem(-5px));
   color: var(--fontColor-tertiary);
   font-weight: var(--fontWeight-semibold);
 }

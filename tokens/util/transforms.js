@@ -140,7 +140,9 @@ const valueTransforms = [
     type: "value",
     matcher: ({ attributes }) => {
       const { category, type } = attributes;
-      return type === "size" && category === "font";
+      const isFont = type === "size" && category === "font";
+      const isRadius = type === "border" && category === "radius";
+      return isFont || isRadius;
     },
     transformer: (token, options) => {
       const base = (options && options.basePxFontSize) || 16;

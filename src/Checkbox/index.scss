@@ -42,13 +42,13 @@
 
   .narmi-icon-minus,
   .narmi-icon-check {
-    height: 18px;
-    width: 18px;
-    line-height: 18px;
-    font-size: 15px;
+    height: rem(18px);
+    width: rem(18px);
+    line-height: rem(18px);
+    font-size: rem(15px);
     background-color: white;
     font-weight: bold;
-    border-radius: 3px;
+    border-radius: rem(3px);
     border: 1px solid var(--color-lightGrey);
     color: white;
     text-align: center;
@@ -120,10 +120,10 @@
 .nds-checkbox--table {
   .narmi-icon-minus,
   .narmi-icon-check {
-    height: 16px;
-    width: 16px;
-    line-height: 16px;
-    font-size: 12px;
+    height: var(--font-size-default);
+    width: var(--font-size-default);
+    line-height: var(--font-size-default);
+    font-size: var(--font-size-default);
   }
 
   .nds-checkbox-label {
@@ -140,8 +140,8 @@
     &::after {
       content: " ";
       border-radius: 50%;
-      height: 32px;
-      width: 32px;
+      height: rem(32px);
+      width: rem(32px);
       position: absolute;
       top: 50%;
       left: 50%;

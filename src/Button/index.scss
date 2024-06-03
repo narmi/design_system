@@ -1,9 +1,5 @@
 @import "./spinner.scss";
 
-@function rem($pxValue) {
-  @return #{$pxValue / 16px * 1rem};
-}
-
 .nds-button,
 .nds-button.resetButton {
   display: inline-flex;

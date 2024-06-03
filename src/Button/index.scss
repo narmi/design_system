@@ -1,10 +1,11 @@
 @import "./spinner.scss";
 
+@function rem($pxValue) {
+  @return #{$pxValue / 16px * 1rem};
+}
+
 .nds-button,
 .nds-button.resetButton {
-  --button-radius: 20px;
-  --button-radius-s: 24px;
-
   display: inline-flex;
   position: relative;
   cursor: pointer;
@@ -14,21 +15,22 @@
   text-align: center;
   justify-content: center;
   align-items: center;
-  min-height: 40px;
-  border-radius: var(--button-radius);
+  min-height: rem(40px);
+  border-radius: rem(20px);
 
   /* mobile buttons have slightly taller padding for ease of tapping */
   @media (max-width: #{map.get($breakpoints, "s")}) {
-    min-height: 48px;
-    border-radius: var(--button-radius-s);
+    min-height: rem(48px);
+    border-radius: rem(24px);
   }
 }
 
 .nds-button--primary,
 .nds-button--secondary {
   .nds-button-content {
-    margin: var(--space-xs) 32px;
-    max-width: 240px;
+    margin: rem(8px) rem(32px);
+    // label constraint should scale evenly with font size
+    max-width: rem(240px);
   }
 }
 
@@ -75,11 +77,11 @@
   font-size: var(--font-size-l) !important;
 
   .nds-button-content {
-    margin: 10px 0;
+    margin: rem(10px) 0;
   }
 
   @media (min-width: #{map.get($breakpoints, "l")}) {
-    margin: 0 12px;
+    margin: 0 rem(12px);
     font-weight: var(--font-weight-semibold);
     display: inline-block;
     font-size: var(--font-size-default) !important;

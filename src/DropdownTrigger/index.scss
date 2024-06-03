@@ -1,11 +1,11 @@
 .nds-dropdownTrigger {
   position: relative;
-  min-height: 48px;
+  min-height: rem(48px);
   display: flex;
   align-items: center;
 }
 .nds-dropdownTrigger-button {
-  min-height: 48px;
+  min-height: rem(48px);
   width: 100%;
   text-align: left;
   border: 1px solid var(--border-color-default) !important;
@@ -47,7 +47,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-right: 24px;
+  padding-right: rem(24px);
 }
 
 // float the label to top like a text input
@@ -81,6 +81,6 @@
 .nds-dropdownTrigger-error {
   .narmi-icon-x-circle::before {
     position: relative;
-    top: 1px;
+    top: rem(1px);
   }
 }

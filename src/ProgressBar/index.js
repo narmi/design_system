@@ -5,7 +5,7 @@ const ProgressBar = ({ totalWidth = "100%", percentComplete = 0 }) => {
   return (
     <div
       className="nds-progressbar"
-      style={{ width: `${totalWidth}`, height: "18px" }}
+      style={{ width: `${totalWidth}`, height: "var(--font-size-default)" }}
     >
       <svg xmlns="http://www.w3.org/2000/svg">
         <line

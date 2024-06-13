@@ -12,7 +12,6 @@
   transition: transform var(--transition-speed-fast) ease;
   border: var(--border-size-s);
   border-color: var(--border-color-light);
-  padding: var(--space-xxl);
   z-index: 3;
 }
 .drawer--left {
@@ -74,7 +73,8 @@ because we need to replace the left/right controls with controls that are inside
   visibility: hidden;
   opacity: 0;
   background: rgba(0, 0, 0, 0.5);
-  transition: opacity var(--transition-speed-slow) ease,
+  transition:
+    opacity var(--transition-speed-slow) ease,
     visibility var(--transition-speed-slow) ease;
   width: 100%;
   height: 100%;

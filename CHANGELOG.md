@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.40.0](https://github.com/narmi/design_system/compare/v3.39.2...v3.40.0) (2024-06-13)
+
+
+### Features
+
+* **Drawer:** make padding size configurable via prop ([fbfa3a9](https://github.com/narmi/design_system/commit/fbfa3a9e5967d7ea19990cc72783fb932b78b19a))
+
 ### [3.39.2](https://github.com/narmi/design_system/compare/v3.39.1...v3.39.2) (2024-06-13)
 
 

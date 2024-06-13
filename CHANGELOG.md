@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.39.2](https://github.com/narmi/design_system/compare/v3.39.1...v3.39.2) (2024-06-13)
+
+
+### Bug Fixes
+
+* **Combobox:** collapse all unselected categories when reopening ([5271a38](https://github.com/narmi/design_system/commit/5271a3885216bfb6bfa542ed963682c8aed19fbe))
+
 ### [3.39.1](https://github.com/narmi/design_system/compare/v3.39.0...v3.39.1) (2024-05-30)
 
 

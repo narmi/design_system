@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.41.0](https://github.com/narmi/design_system/compare/v3.40.0...v3.41.0) (2024-06-17)
+
+
+### Features
+
+* **scss:** add rem function; update Button ([1498b21](https://github.com/narmi/design_system/commit/1498b213a9c8746ded864a0a0def722335504cfa))
+* **tokens:** make border radius tokens rem scale ([95f914b](https://github.com/narmi/design_system/commit/95f914bf6cdba963641d7b8d63f8729f6931f3fb))
+* **tokens:** use rem sizing for font size ([06c3036](https://github.com/narmi/design_system/commit/06c3036da46d9aaecadb2521fc9bc320ec202866))
+
+
+### Bug Fixes
+
+* **Checkbox:** scale checkbox with user base font ([55269a7](https://github.com/narmi/design_system/commit/55269a736fb17390977c976124cd266c239de5fd))
+* **CollapsibleCard:** scale card with user font size ([895b279](https://github.com/narmi/design_system/commit/895b2796b7267186423a2d19cdefacaab531cbcc))
+* **Combobox:** scale icon with user font size ([5abe63c](https://github.com/narmi/design_system/commit/5abe63c8472cfa208088e2068cc87cefdc928d8e))
+* **DropdownTrigger:** scale component with user font size ([71a92fb](https://github.com/narmi/design_system/commit/71a92fb2dd53fc8d9e3efabe18395d4649c7f16f))
+* **FieldToken:** scale component with user font size ([c6cbd62](https://github.com/narmi/design_system/commit/c6cbd62fed1f315c3813e030eac42764d9954959))
+* **FormSection:** scale component with user font size ([a8ad641](https://github.com/narmi/design_system/commit/a8ad641b7b44c80c51fa0a77be7bfeb1361112cd))
+* **inputs:** scale inputs and DateInput with user font size ([78bc50a](https://github.com/narmi/design_system/commit/78bc50a8f765a2032be9baad09a8bbbe32f04890))
+* make IconButton, LoadingSkeleton, and Pagination scaleable ([82eaeb0](https://github.com/narmi/design_system/commit/82eaeb0d63d551e9a502d83daffc9072f052db1a))
+* **ProgressBar:** scale component with user font size ([d4dd099](https://github.com/narmi/design_system/commit/d4dd099e93373a3ccb14e52e53684c467e4c68ea))
+* **RadioButtons:** scale positioning with user font size ([018c23f](https://github.com/narmi/design_system/commit/018c23f9766bba5cc192d9d8c8afb955f53f7f4f))
+* **Select:** make component scale with user font size ([d79bcbe](https://github.com/narmi/design_system/commit/d79bcbe0a74b894833d16232f7a6d3cf9ac8f1ca))
+
 ## [3.40.0](https://github.com/narmi/design_system/compare/v3.39.2...v3.40.0) (2024-06-13)
 
 

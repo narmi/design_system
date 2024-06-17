@@ -14,7 +14,7 @@ import { getItemIndex } from "../Select";
 const noop = () => {};
 
 export const VALID_ICON_NAMES = iconSelection.icons.map(
-  (icon) => icon.properties.name
+  (icon) => icon.properties.name,
 );
 
 /**
@@ -40,7 +40,8 @@ export const shouldOpenCategory = (
   inputValue,
   highlightedIndex,
   displayedItems,
-  categoryChildren
+  categoryChildren,
+  selectedItem,
 ) => {
   let result = false;
 
@@ -56,6 +57,14 @@ export const shouldOpenCategory = (
     result = true;
   }
 
+  // the combobox has a selection; collapse all categories except the category
+  // the selection belongs to
+  if (selectedItem) {
+    result = categoryChildren
+      .map((child) => child.props.value)
+      .includes(selectedItem.props.value);
+  }
+
   return result;
 };
 
@@ -66,12 +75,12 @@ export const shouldOpenCategory = (
  */
 export const getVisibleChildrenByCategory = (
   displayedItems,
-  categoryChildren
+  categoryChildren,
 ) => {
   const categoryValues = categoryChildren.map((child) => child.props.value);
   return categoryValues.reduce((visibleItems, value) => {
     const visibleItem = displayedItems.find(
-      (displayedItem) => value === displayedItem.props.value
+      (displayedItem) => value === displayedItem.props.value,
     );
     if (visibleItem) {
       visibleItems.push(visibleItem);
@@ -115,7 +124,7 @@ const Combobox = ({
 }) => {
   const allChildren = React.Children.toArray(children);
   const hasCategories = allChildren.some(
-    ({ type }) => type.displayName === ComboboxCategory.displayName
+    ({ type }) => type.displayName === ComboboxCategory.displayName,
   );
   let categories = [];
   let items =
@@ -126,7 +135,7 @@ const Combobox = ({
   // If categories are being used, `items` is populated by the children of each category
   if (hasCategories) {
     items = allChildren.flatMap(({ props }) =>
-      React.Children.toArray(props.children)
+      React.Children.toArray(props.children),
     );
     categories = allChildren.map(({ props }) => ({
       label: props.label,
@@ -161,7 +170,7 @@ const Combobox = ({
       if (!disableFiltering) {
         const filteredItems = filterItemsByInput(
           items.filter(isSelectable),
-          inputValue.toLowerCase()
+          inputValue.toLowerCase(),
         );
         setDisplayedItems(filteredItems);
       }
@@ -270,7 +279,7 @@ const Combobox = ({
     const detailsProps = {};
     const visibleChildren = getVisibleChildrenByCategory(
       displayedItems,
-      categoryChildren
+      categoryChildren,
     );
 
     const showCategory = visibleChildren.length > 0;
@@ -280,7 +289,8 @@ const Combobox = ({
         inputValue,
         highlightedIndex,
         displayedItems,
-        categoryChildren
+        categoryChildren,
+        selectedItem,
       )
     ) {
       detailsProps.open = true;
@@ -308,7 +318,7 @@ const Combobox = ({
           aria-labelledby={`combobox-category-${label}`}
         >
           {visibleChildren.map((item) =>
-            renderItem(item, getItemIndex(item, displayedItems))
+            renderItem(item, getItemIndex(item, displayedItems)),
           )}
         </ul>
       </details>
@@ -372,7 +382,7 @@ const Combobox = ({
               // always set that as the input value when they leave the input
               if (hasSelectedItem) {
                 setInputValue(
-                  selectedItem.props.searchValue || selectedItem.props.value
+                  selectedItem.props.searchValue || selectedItem.props.value,
                 );
               }
             },
@@ -400,7 +410,7 @@ const Combobox = ({
               (hasCategories
                 ? categories.map(renderCategory)
                 : displayedItems.map(renderItem))}
-          </ul>
+          </ul>,
         )}
       </div>
       <Error error={errorText} />

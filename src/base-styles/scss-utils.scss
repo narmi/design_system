@@ -48,3 +48,19 @@ $breakpoints: (
   white-space: nowrap;
   width: 1px;
 }
+
+/**
+* Convert px values to rem. Use this when defining a value that
+* needs to scale with font size (e.g. checkbox offsets)
+*
+* ⚠️ NOTE: The base size is always assumed to be 16px
+*
+* @usage
+* ```diff
+* -transform: translateY(18px);
+* +transform: translateY(rem(18px));
+* ```
+*/
+@function rem($pxValue) {
+  @return #{$pxValue / 16px * 1rem};
+}

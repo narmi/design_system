@@ -31,11 +31,11 @@
     background: RGBA(var(--theme-rgb-primary), var(--alpha-5));
   }
   &--hasGutter {
-    padding-left: var(--space-xl) !important;
+    padding-left: rem(40px) !important;
   }
   .narmi-icon-check {
     position: absolute;
-    left: var(--space-s);
+    left: rem(12px);
     top: 50%;
     transform: translateY(-50%);
     color: var(--theme-primary);
@@ -62,7 +62,7 @@
     display: flex;
     cursor: pointer;
     position: relative;
-    min-height: var(--space-xl);
+    min-height: rem(40px);
 
     span {
       align-self: center;
@@ -70,10 +70,10 @@
   }
 
   .nds-category-icon {
-    font-size: 20px;
+    font-size: rem(20px);
     position: absolute;
-    right: var(--space-s);
+    right: rem(12px);
     top: 50%;
-    transform: translate(1px, -50%);
+    transform: translate(rem(1px), -50%);
   }
 }

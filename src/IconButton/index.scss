@@ -9,12 +9,12 @@
   justify-content: center;
   align-items: center;
   border-radius: var(--button-radius);
-  height: 32px;
-  width: 32px;
+  height: rem(32px);
+  width: rem(32px);
 
   &.fontSize--l {
     [class^="narmi-icon-"] {
-      transform: translate(0px, -1px);
+      transform: translate(rem(0px), rem(-1px));
     }
   }
 
@@ -35,8 +35,8 @@
 }
 
 .nds-icon-button--plain {
-  height: 24px;
-  width: 24px;
+  height: rem(24px);
+  width: rem(24px);
   color: var(--font-color-secondary);
 }
 

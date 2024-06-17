@@ -91,10 +91,10 @@
   }
 
   .nds-category-icon {
-    font-size: 20px;
+    font-size: rem(20px);
     position: absolute;
     right: var(--space-s);
     top: 50%;
-    transform: translate(1px, -50%);
+    transform: translate(rem(1px), -50%);
   }
 }

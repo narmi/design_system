@@ -61,7 +61,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
   const inputError =
     error ||
     (maxLength && inputValue.length > maxLength
-      ? "Exceeds character limits"
+      ? "Exceeds character limits."
       : undefined);
 
   return (

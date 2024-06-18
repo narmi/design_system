@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.41.1](https://github.com/narmi/design_system/compare/v3.41.0...v3.41.1) (2024-06-18)
+
+
+### Bug Fixes
+
+* **TextInput:** add period after error message ([1a2fbd3](https://github.com/narmi/design_system/commit/1a2fbd394614a608bd3343c433788c80a4ea028e))
+
 ## [3.41.0](https://github.com/narmi/design_system/compare/v3.40.0...v3.41.0) (2024-06-17)
 
 

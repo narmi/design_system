@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.41.2](https://github.com/narmi/design_system/compare/v3.41.1...v3.41.2) (2024-06-20)
+
+
+### Bug Fixes
+
+* **slider:** reduce z-index on thumb ([02706f1](https://github.com/narmi/design_system/commit/02706f1aa042b36cb52646c35a437880bf6601f7))
+
 ### [3.41.1](https://github.com/narmi/design_system/compare/v3.41.0...v3.41.1) (2024-06-18)
 
 

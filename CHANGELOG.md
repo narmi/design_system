@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.41.3](https://github.com/narmi/design_system/compare/v3.41.2...v3.41.3) (2024-06-24)
+
+
+### Bug Fixes
+
+* **Drawer:** When padding none is set on mobile only the top nav padding should be retained ([f7c564e](https://github.com/narmi/design_system/commit/f7c564eaf1cdea483109bf8ce661637077446d47))
+* **Drawer:** When padding none is set on mobile only the top nav padding should be retained ([e867897](https://github.com/narmi/design_system/commit/e86789708311cb5fa17a1b6741cf98ad36bd4f8f))
+
 ### [3.41.2](https://github.com/narmi/design_system/compare/v3.41.1...v3.41.2) (2024-06-20)
 
 

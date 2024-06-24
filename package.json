@@ -57,7 +57,7 @@
     "@storybook/addon-mdx-gfm": "^7.5.2",
     "@storybook/react": "^7.5.2",
     "@storybook/react-webpack5": "^7.5.2",
-    "@storybook/theming": "^7.5.2",
+    "@storybook/theming": "^8.1.10",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.0.2",

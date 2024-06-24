@@ -74,8 +74,8 @@ because we need to replace the left/right controls with controls that are inside
   but retain the padding for the controls at the top of the drawer.
 */
 .padding--all--none.drawer--vertical--mobile {
-  padding: 0 !important;
-  padding-top: 48px !important;
+  padding: 0;
+  padding-top: 48px;
 }
 
 .backdrop {

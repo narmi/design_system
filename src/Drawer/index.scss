@@ -69,6 +69,15 @@ because we need to replace the left/right controls with controls that are inside
   }
 }
 
+/*
+  Remove padding from the content of the drawer when set to none,
+  but retain the padding for the controls at the top of the drawer.
+*/
+.padding--all--none.drawer--vertical--mobile {
+  padding: 0;
+  padding-top: 48px;
+}
+
 .backdrop {
   visibility: hidden;
   opacity: 0;

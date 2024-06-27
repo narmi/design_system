@@ -151,7 +151,7 @@ RadioButtons.propTypes = {
    *
    * `card` - display input and label as a toggleable card
    */
-  kind: PropTypes.oneOf(["normal", "card"]),
+  kind: PropTypes.oneOf(["normal", "row", "card"]),
   /**
    * Error message. When passed, the `error` prop will
    * render the radio group in an error state.

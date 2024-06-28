@@ -14,4 +14,9 @@ describe("AsElement", () => {
     render(<AsElement elementType={elementType} className={testClass} />);
     expect(document.querySelector(elementType)).toHaveClass(testClass);
   });
+  it("renders a react component directly", () => {
+    const TestComponent = () => <p>Test</p>;
+    render(<AsElement elementType={TestComponent} />);
+    expect(document.querySelector("p")).toBeInTheDocument();
+  });
 });

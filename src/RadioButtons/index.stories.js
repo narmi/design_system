@@ -174,6 +174,49 @@ AsCardWithDetails.parameters = {
   },
 };
 
+export const AsRow = Template.bind({});
+AsRow.args = {
+  options: {
+    OptionA: "A",
+    OptionB: "B",
+    OptionC: "C",
+  },
+  name: "row_options",
+  kind: "row",
+};
+
+AsRow.parameters = {
+  docs: {
+    description: {
+      story:
+        "Renders a radio group styled as a row.",
+    },
+  },
+};
+
+export const AsRowWithDetails = Template.bind({});
+AsRowWithDetails.args = {
+  options: {
+    OptionA: {
+      value: "A",
+      details: "Option A details",
+    },
+    OptionB: { value: "B", details: "Option B details" },
+    OptionC: { value: "C", details: "Option C details" },
+  },
+  name: "row_options_with_details",
+  kind: "row",
+};
+
+AsRowWithDetails.parameters = {
+  docs: {
+    description: {
+      story:
+        "Renders a radio group styled as a row. Each radio button can have a `details` property to show additional information when the radio button is selected.",
+    },
+  },
+};
+
 export default {
   title: "Components/RadioButtons",
   component: RadioButtons,

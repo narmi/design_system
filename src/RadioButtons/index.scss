@@ -84,6 +84,58 @@
   }
 }
 
+// row variant of radiobuttons
+.nds-radiobuttons--row {
+  display: flex;
+  justify-content: space-between;
+
+  .nds-radiobuttons-option {
+    padding-left: rem(28px);
+
+    .nds-radio {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: rem(20px);
+      width: rem(20px);
+      background-color: var(--color-white);
+      border: 1px solid var(--color-lightGrey);
+      border-radius: 50%;
+
+      &:after {
+        content: "";
+        position: absolute;
+        display: none;
+        top: 50%;
+        left: 50%;
+        width: rem(12px);
+        height: rem(12px);
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: var(--theme-primary);
+      }
+    }
+
+    &:hover .nds-radio,
+    &.nds-radiobuttons-option--focused .nds-radio,
+    &.nds-radiobuttons-option--checked .nds-radio {
+      border: 1px solid var(--theme-primary);
+    }
+
+    &.nds-radiobuttons-option--error .nds-radio {
+      border-color: var(--color-errorDark);
+    }
+
+    &.nds-radiobuttons-option--checked .nds-radio {
+      background-color: transparent;
+
+      &:after {
+        display: block;
+      }
+    }
+  }
+}
+
 // card style radiobuttons variant
 .nds-radiobuttons--card {
   display: block;

@@ -7,6 +7,7 @@ import ContentCard from "./ContentCard";
 import CollapsibleCard from "./CollapsibleCard";
 import Combobox from "./Combobox";
 import DateInput from "./DateInput";
+import DescriptionList from "./DescriptionList";
 import Dialog from "./Dialog";
 import Drawer from "./Drawer";
 import Dropdown from "./Dropdown";
@@ -52,6 +53,7 @@ export {
   CollapsibleCard,
   Combobox,
   DateInput,
+  DescriptionList,
   Dialog,
   Drawer,
   Dropdown,

@@ -34,6 +34,14 @@ export const VALID_ELEMENTS = [
  * @usage <AsElement elementName="ul" otherProp="this gets passed through">
  */
 const AsElement = ({ elementType = "div", children, ...rest }) => {
+  if (
+    typeof elementType === "function" ||
+    typeof elementType.type === "function"
+  ) {
+    // this is a react component so render it directly
+    return React.createElement(elementType, rest, children);
+  }
+
   let Element = "div"; // always fall back to div if something is wrong
 
   // extra layer of validation; only set the element name to
@@ -47,7 +55,10 @@ const AsElement = ({ elementType = "div", children, ...rest }) => {
 
 AsElement.propTypes = {
   /** element to render  */
-  elementType: PropTypes.oneOf(VALID_ELEMENTS).isRequired,
+  elementType: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.oneOf(VALID_ELEMENTS),
+  ]).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),

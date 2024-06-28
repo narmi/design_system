@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.42.0](https://github.com/narmi/design_system/compare/v3.41.4...v3.42.0) (2024-06-28)
+
+
+### Features
+
+* **AsElement:** support react component element types ([1ac63f9](https://github.com/narmi/design_system/commit/1ac63f9b97b64d49cc8fde0087020bbbce84870c))
+
+### [3.41.4](https://github.com/narmi/design_system/compare/v3.41.3...v3.41.4) (2024-06-27)
+
+
+### Bug Fixes
+
+* **TextInput:** set label text to xs to avoid resizing container on focus ([2082de3](https://github.com/narmi/design_system/commit/2082de32b0b15d94fc4859c65037e61bafaefc49))
+
 ### [3.41.3](https://github.com/narmi/design_system/compare/v3.41.2...v3.41.3) (2024-06-24)
 
 

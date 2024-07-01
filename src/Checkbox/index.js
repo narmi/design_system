@@ -19,6 +19,7 @@ const Checkbox = ({
   disabled = false,
   indeterminate = false,
   value,
+  hasError,
   error,
   kind = "normal",
   testId,
@@ -89,7 +90,7 @@ const Checkbox = ({
             {
               "narmi-icon-check": !indeterminate,
               "narmi-icon-minus": indeterminate,
-              error: !!error,
+              error: hasError || !!error,
             },
           ])}
         ></span>
@@ -154,6 +155,8 @@ Checkbox.propTypes = {
   disabled: PropTypes.bool,
   /** Sets the `value` attribute of the `input` */
   value: PropTypes.string,
+  /** Sets whether the checkbox has an error. To be used with multiple checkboxes */
+  hasError: PropTypes.bool,
   /** Text of error message to display under the checkbox */
   error: PropTypes.string,
   /** Optional value for `data-testid` attribute */

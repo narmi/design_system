@@ -133,8 +133,8 @@ const CollapsibleCard = ({
     >
       <div
         className="collapsible-card--title-expanded"
-        role="button"
-        tabIndex={0}
+      role={trigger === "header" ? "button" : undefined}
+      tabIndex={trigger === "header" ? 0 : undefined}
         onKeyUp={({ key }) => {
           if (key === "Enter" && trigger === "header")
             onTitleContainerClick(false, "close");

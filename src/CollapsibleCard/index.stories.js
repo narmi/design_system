@@ -108,6 +108,21 @@ Overview.args = {
   ),
 };
 
+export const CaretAsTrigger = Template.bind({});
+CaretAsTrigger.args = {
+  title: "Your title here",
+  trigger: "caret-end",
+  subtitle:
+    "Only the caret opens the card. Start and End positions are both supported.",
+  onOpen: () => {},
+  onClose: () => {},
+  children: (
+    <>
+      <div>Any content can go in here!</div>
+    </>
+  ),
+};
+
 export const WithStatusText = ChangingHelperText.bind({});
 WithStatusText.args = {
   title: "Your title here",

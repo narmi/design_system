@@ -4,7 +4,7 @@ import cc from "classcat";
 import iconSelection from "src/icons/selection.json";
 
 export const VALID_ICON_NAMES = iconSelection.icons.map(
-  (icon) => icon.properties.name
+  (icon) => icon.properties.name,
 );
 
 /**
@@ -20,7 +20,7 @@ const IconButton = ({
   testId = "nds-icon-button",
   label,
   name,
-  onClick = () => { },
+  onClick = () => {},
   type,
 }) => {
   return (
@@ -57,7 +57,7 @@ IconButton.propTypes = {
   /** type attribute for underlying HTML button element */
   type: PropTypes.string,
   /** Optional text size of the icon in the icon button defaults different for different kinds (plain/action)*/
-  textSize: PropTypes.oneOf(["xs", "s", "m", "l"]),
+  textSize: PropTypes.oneOf(["xs", "s", "m", "l", "xl"]),
   /** Click callback, with event object passed as argument */
   onClick: PropTypes.func,
   /** Optional value for `data-testid` attribute */

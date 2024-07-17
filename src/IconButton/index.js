@@ -57,7 +57,7 @@ IconButton.propTypes = {
   /** type attribute for underlying HTML button element */
   type: PropTypes.string,
   /** Optional text size of the icon in the icon button defaults different for different kinds (plain/action)*/
-  textSize: PropTypes.oneOf(["xs", "s", "m", "l", "xl"]),
+  textSize: PropTypes.oneOf(["xs", "s", "m", "l"]),
   /** Click callback, with event object passed as argument */
   onClick: PropTypes.func,
   /** Optional value for `data-testid` attribute */

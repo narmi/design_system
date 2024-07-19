@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.43.0](https://github.com/narmi/design_system/compare/v3.42.0...v3.43.0) (2024-07-19)
+
+
+### Features
+
+* **CollapsibleCard:** add option for caret trigger ([3348d24](https://github.com/narmi/design_system/commit/3348d247495e92cf07bba97e5d0bcc50f3c02dda))
+
 ## [3.42.0](https://github.com/narmi/design_system/compare/v3.41.4...v3.42.0) (2024-06-28)
 
 

@@ -98,6 +98,19 @@ export const PlainIconButtonSizes = () => (
   </>
 );
 
+export const IconButtonAsAnchor = () => (
+  <>
+    <IconButton
+      as="a"
+      kind="plain"
+      label="Link button"
+      textSize="xs"
+      name="info"
+      href="/"
+    />
+  </>
+);
+
 export default {
   title: "Components/IconButton",
   component: IconButton,

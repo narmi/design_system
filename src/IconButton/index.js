@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import iconSelection from "src/icons/selection.json";
+import AsElement from "../util/AsElement";
 
 export const VALID_ICON_NAMES = iconSelection.icons.map(
   (icon) => icon.properties.name,
@@ -22,9 +23,12 @@ const IconButton = ({
   name,
   onClick = () => {},
   type,
+  as = "button",
+  ...otherProps
 }) => {
   return (
-    <button
+    <AsElement
+      elementType={as}
       type={type}
       onClick={onClick}
       className={cc([
@@ -39,9 +43,10 @@ const IconButton = ({
       disabled={disabled}
       aria-label={label}
       data-testid={testId}
+      {...otherProps}
     >
       <span aria-label={name} className={`narmi-icon-${name}`} />
-    </button>
+    </AsElement>
   );
 };
 
@@ -64,6 +69,13 @@ IconButton.propTypes = {
   testId: PropTypes.string,
   /** className for adding classNames to the icon button  */
   className: PropTypes.string,
+  /**
+   * The html element to render as the root node of `Button`.
+   *
+   * When rendering as an "a" you **MUST** pass an `href` attribute
+   * for the anchor to be valid.
+   */
+  as: PropTypes.oneOf(["a", "button"]),
 };
 
 export default IconButton;

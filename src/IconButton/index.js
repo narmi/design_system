@@ -4,7 +4,7 @@ import cc from "classcat";
 import iconSelection from "src/icons/selection.json";
 
 export const VALID_ICON_NAMES = iconSelection.icons.map(
-  (icon) => icon.properties.name
+  (icon) => icon.properties.name,
 );
 
 /**
@@ -20,7 +20,7 @@ const IconButton = ({
   testId = "nds-icon-button",
   label,
   name,
-  onClick = () => { },
+  onClick = () => {},
   type,
 }) => {
   return (

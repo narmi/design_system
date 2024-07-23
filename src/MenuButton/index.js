@@ -12,8 +12,6 @@ import iconSelection from "src/icons/selection.json";
 import MenuButtonItem from "./MenuButtonItem";
 import Row from "../Row";
 
-const noop = () => {};
-
 export const VALID_ICON_NAMES = iconSelection.icons.map(
   (icon) => icon.properties.name,
 );

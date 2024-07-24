@@ -1,6 +1,6 @@
 @font-face {
   font-family: "icomoon";
-  src: url("fonts/icomoon.woff?gl1ieu") format("woff");
+  src: url("fonts/icomoon.woff?edoxd9") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -22,6 +22,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.narmi-icon-bank:before {
+  content: "\ea4c";
+}
 .narmi-icon-loan:before {
   content: "\ea4b";
 }
@@ -1022,9 +1025,6 @@
 }
 .narmi-icon-credit-card:before {
   content: "\e93f";
-}
-.narmi-icon-bank:before {
-  content: "\e900";
 }
 .narmi-icon-office:before {
   content: "\e904";

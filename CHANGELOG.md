@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.45.0](https://github.com/narmi/design_system/compare/v3.44.0...v3.45.0) (2024-07-25)
+
+
+### Features
+
+* **icons:** update 'bank' icon shape ([ee9c4fb](https://github.com/narmi/design_system/commit/ee9c4fbe6b008a97c7c0e251799d68ab2192365b))
+
 ## [3.44.0](https://github.com/narmi/design_system/compare/v3.43.0...v3.44.0) (2024-07-19)
 
 

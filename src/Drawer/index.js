@@ -176,15 +176,15 @@ const Drawer = ({
         <>
           {showControls && (
             <>
-              <div onClick={onPrev}>
+              <div className="mobile-navigation-button" onClick={onPrev}>
                 <span className="narmi-icon-chevron-left fontSize--heading3" />
               </div>
-              <div onClick={onNext}>
+              <div className="mobile-navigation-button" onClick={onNext}>
                 <span className="narmi-icon-chevron-right fontSize--heading3" />
               </div>
             </>
           )}
-          <div onClick={onUserDismiss}>
+          <div className="mobile-navigation-button" onClick={onUserDismiss}>
             <span className="narmi-icon-x clickable fontSize--heading3" />
           </div>
         </>

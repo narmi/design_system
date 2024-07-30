@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.45.2](https://github.com/narmi/design_system/compare/v3.45.1...v3.45.2) (2024-07-30)
+
+
+### Bug Fixes
+
+* **MenuButton:** prevent react-aria scrolljacking ([378f971](https://github.com/narmi/design_system/commit/378f97190d4bc55a094a588b50beabadbc945446))
+
 ### [3.45.1](https://github.com/narmi/design_system/compare/v3.45.0...v3.45.1) (2024-07-30)
 
 

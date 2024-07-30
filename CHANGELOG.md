@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.45.1](https://github.com/narmi/design_system/compare/v3.45.0...v3.45.1) (2024-07-30)
+
+
+### Bug Fixes
+
+* **Drawer:** add classname to navigation icons in mobile drawer ([ecc04f6](https://github.com/narmi/design_system/commit/ecc04f6c75407a0e9812ed9617233e3a1d850684))
+
 ## [3.45.0](https://github.com/narmi/design_system/compare/v3.44.0...v3.45.0) (2024-07-25)
 
 

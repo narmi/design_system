@@ -42,7 +42,7 @@ Use auxillary verb prefixes for boolean props:
 -selected
 -portal
 +isSelected
-+usePortal
++hasPortal
 ```
 
 Props that accept more than one thing should be pluralized:

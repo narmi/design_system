@@ -8,6 +8,10 @@
   border-radius: rem(8px);
 }
 
+.collapsible-card-trigger {
+  height: 100%;
+}
+
 .collapsible-card--content-card.content-card--disabled {
   background-color: var(--bgColor-smokeGrey) !important;
   border: 1px solid var(--color-lightGrey) !important;
@@ -26,6 +30,10 @@
 .collapsible-card--content-card.content-card--closed:hover {
   border: 1px solid var(--theme-primary);
   cursor: pointer;
+}
+.collapsible-card--content-card.content-card--hasCaretTrigger.content-card--closed:hover {
+  border: 1px solid var(--color-lightGrey) !important;
+  cursor: unset !important;
 }
 .collapsible-card--title-container {
   display: flex;
@@ -54,4 +62,5 @@
 
 .collapsible-card--statusText {
   color: var(--color-mediumGrey);
+  height: 100%;
 }

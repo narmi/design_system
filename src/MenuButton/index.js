@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
+import { useLayer } from "react-laag";
 import {
   Button as AriaButton,
   Menu,
   MenuItem,
   MenuTrigger,
-  Popover,
 } from "react-aria-components";
 import iconSelection from "src/icons/selection.json";
 import MenuButtonItem from "./MenuButtonItem";
@@ -33,10 +33,16 @@ const MenuButton = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuItems = React.Children.toArray(children);
-
-  const closePopover = () => {
-    setIsOpen(false);
-  };
+  const { renderLayer, triggerProps, layerProps } = useLayer({
+    isOpen,
+    auto: true,
+    onOutsideClick: () => {
+      setIsOpen(false);
+    },
+    preferX: "right",
+    preferY: "bottom",
+    placement: "bottom-start",
+  });
 
   const handleKeyUp = ({ key }) => {
     if (key === "Escape" && isOpen) {
@@ -61,17 +67,25 @@ const MenuButton = ({
       (item) => labelToItemId(item.props.label) === itemId,
     );
     selectedItem.props.onSelect();
-    closePopover();
+    setIsOpen(false);
   };
 
   return (
     <MenuTrigger
       isOpen={isOpen}
-      onOpenChange={(o) => setIsOpen(o)}
+      onOpenChange={(o) => {
+        if (o) {
+          setIsOpen(true);
+        }
+      }}
       data-testid={testId}
       className="nds-menubutton"
     >
-      <AriaButton aria-label={label} className="button--reset">
+      <AriaButton
+        aria-label={label}
+        className="button--reset"
+        {...triggerProps}
+      >
         <div
           className={cc([
             "nds-menubutton-trigger",
@@ -101,40 +115,50 @@ const MenuButton = ({
           </Row>
         </div>
       </AriaButton>
-      <Popover>
-        <div className="nds-menubutton-popover">
-          <Menu
-            onAction={handleOnSelect}
-            className="nds-menubutton-menu rounded--all elevation--high"
-          >
-            {menuItems.map((child, childIndex) => (
-              <MenuItem
-                key={labelToItemId(child.props.label)}
-                id={labelToItemId(child.props.label)}
-                /**
-                 * react-aria provides a className interface similar
-                 * to render props
-                 */
-                className={({ isSelected, isFocused, isDisabled }) =>
-                  cc([
-                    "nds-menubutton-item",
-                    "padding--x--s padding--y--xs",
-                    {
-                      "nds-menubutton-item--highlighted":
-                        isSelected || isFocused,
-                      "nds-menubutton-item--disabled": isDisabled,
-                      "rounded--top": childIndex === 0,
-                      "rounded--bottom": childIndex === menuItems.length - 1,
-                    },
-                  ])
-                }
-              >
-                {child}
-              </MenuItem>
-            ))}
-          </Menu>
-        </div>
-      </Popover>
+      {isOpen &&
+        renderLayer(
+          <div className="nds-menubutton-popover" {...layerProps}>
+            <Menu
+              onAction={handleOnSelect}
+              className="nds-menubutton-menu rounded--all elevation--high"
+              // autoFocus is required to enter the menu focus trap when
+              // the menu popover opens
+              // eslint-disable-next-line jsx-a11y/no-autofocus
+              autoFocus={true}
+            >
+              {menuItems.map((child, childIndex) => {
+                const itemId = labelToItemId(child.props.label);
+                return (
+                  <MenuItem
+                    key={itemId}
+                    id={itemId}
+                    value={itemId}
+                    /**
+                     * react-aria provides a className interface similar
+                     * to render props
+                     */
+                    className={({ isSelected, isFocused, isDisabled }) =>
+                      cc([
+                        "nds-menubutton-item",
+                        "padding--x--s padding--y--xs",
+                        {
+                          "nds-menubutton-item--highlighted":
+                            isSelected || isFocused,
+                          "nds-menubutton-item--disabled": isDisabled,
+                          "rounded--top": childIndex === 0,
+                          "rounded--bottom":
+                            childIndex === menuItems.length - 1,
+                        },
+                      ])
+                    }
+                  >
+                    {child.props.label}
+                  </MenuItem>
+                );
+              })}
+            </Menu>
+          </div>,
+        )}
     </MenuTrigger>
   );
 };

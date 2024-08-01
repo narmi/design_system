@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.45.2](https://github.com/narmi/design_system/compare/v3.45.1...v3.45.2) (2024-07-30)
+
+
+### Bug Fixes
+
+* **MenuButton:** prevent react-aria scrolljacking ([378f971](https://github.com/narmi/design_system/commit/378f97190d4bc55a094a588b50beabadbc945446))
+
+### [3.45.1](https://github.com/narmi/design_system/compare/v3.45.0...v3.45.1) (2024-07-30)
+
+
+### Bug Fixes
+
+* **Drawer:** add classname to navigation icons in mobile drawer ([ecc04f6](https://github.com/narmi/design_system/commit/ecc04f6c75407a0e9812ed9617233e3a1d850684))
+
+## [3.45.0](https://github.com/narmi/design_system/compare/v3.44.0...v3.45.0) (2024-07-25)
+
+
+### Features
+
+* **icons:** update 'bank' icon shape ([ee9c4fb](https://github.com/narmi/design_system/commit/ee9c4fbe6b008a97c7c0e251799d68ab2192365b))
+
+## [3.44.0](https://github.com/narmi/design_system/compare/v3.43.0...v3.44.0) (2024-07-19)
+
+
+### Features
+
+* **IconButton:** support configuring the icon button element tag ([1bc8201](https://github.com/narmi/design_system/commit/1bc82013c8467876ce3b8e46fc4cb69f0c4f0081))
+
+## [3.43.0](https://github.com/narmi/design_system/compare/v3.42.0...v3.43.0) (2024-07-19)
+
+
+### Features
+
+* **CollapsibleCard:** add option for caret trigger ([3348d24](https://github.com/narmi/design_system/commit/3348d247495e92cf07bba97e5d0bcc50f3c02dda))
+
 ## [3.42.0](https://github.com/narmi/design_system/compare/v3.41.4...v3.42.0) (2024-06-28)
 
 

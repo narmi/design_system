@@ -1,0 +1,69 @@
+/**
+* DescriptionList column layout for small viewports or containers
+*/
+@mixin columnLayout($suffix: "") {
+  display: flex #{$suffix};
+  flex-direction: column #{$suffix};
+  gap: var(--space-xxs) #{$suffix};
+
+  &.nds-descriptionList-list--bordered {
+    // only apply the border _between_ entries
+    dd + dt {
+      border-top: 1px solid var(--border-color-default) #{$suffix};
+      padding-top: var(--space-s) #{$suffix};
+    }
+  }
+
+  dt,
+  dd {
+    white-space: normal #{$suffix};
+  }
+
+  dd {
+    margin-bottom: var(--space-s) #{$suffix};
+    padding-left: unset #{$suffix};
+  }
+}
+
+/**
+* DescriptionList row layout for larger viewports or containers
+*/
+@mixin rowLayout {
+  gap: unset;
+  display: grid;
+  row-gap: var(--space-m);
+
+  // The label column should never be shorter than content length (max-content).
+  // The label column should never be wider than 1/5th of the total width
+  grid-template-columns: minmax(max-content, 1fr) 4fr;
+
+  &.nds-descriptionList-list--bordered {
+    row-gap: var(--space-xs);
+
+    // only apply the border _between_ entries
+    dd + dt,
+    dd:nth-child(n + 3) {
+      border-top: 1px solid var(--border-color-default);
+      padding-top: var(--space-xs);
+    }
+  }
+
+  dt,
+  dd {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  dt {
+    margin-bottom: unset;
+    grid-column: 1;
+    min-width: max-content;
+  }
+
+  dd {
+    margin-bottom: unset;
+    grid-column: 2;
+    padding-left: var(--space-xl);
+  }
+}

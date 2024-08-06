@@ -1,15 +1,18 @@
 @font-face {
-  font-family: "icomoon";
-  src: url("fonts/icomoon.woff?edoxd9") format("woff");
+  font-family: 'icomoon';
+  src:
+    url('fonts/icomoon.woff2?18z8tb') format('woff2'),
+    url('fonts/icomoon.ttf?18z8tb') format('truetype'),
+    url('fonts/icomoon.woff?18z8tb') format('woff'),
+    url('fonts/icomoon.svg?18z8tb#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="narmi-icon-"],
-[class*=" narmi-icon-"] {
+[class^="narmi-icon-"], [class*=" narmi-icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "icomoon" !important;
+  font-family: 'icomoon' !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -191,6 +194,9 @@
 }
 .narmi-icon-arrow-up-right:before {
   content: "\e927";
+}
+.narmi-icon-arrow-up-down:before {
+  content: "\e900";
 }
 .narmi-icon-at-sign:before {
   content: "\e928";

@@ -21,7 +21,7 @@ Unzip the icomoon download. Copy all of the following into `src/icons/` in NDS:
 - `selection.json`
 - `style.css`
 
-NOTE: style.css may include multiple urls
+NOTE: style.css may include multiple urls as the src for @font-face. Please remove all except the woff url.
 
 ### Testing icon changes
 

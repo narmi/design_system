@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.46.0](https://github.com/narmi/design_system/compare/v3.45.2...v3.46.0) (2024-08-06)
+
+
+### Features
+
+* **icons:** add up-down arrow icon ([7f866c9](https://github.com/narmi/design_system/commit/7f866c94d9ce01e929cd1f99e3c02a8ad0842fb5))
+
 ### [3.45.2](https://github.com/narmi/design_system/compare/v3.45.1...v3.45.2) (2024-07-30)
 
 

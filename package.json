@@ -113,7 +113,7 @@
   "dependencies": {
     "classcat": "^5.0.3",
     "downshift": "^6.1.7",
-    "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-json": "^4.0.0",
     "flatpickr": "^4.6.12",
     "raf-schd": "^4.0.3",
     "react-aria-components": "^1.0.0",

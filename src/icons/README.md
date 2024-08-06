@@ -21,6 +21,8 @@ Unzip the icomoon download. Copy all of the following into `src/icons/` in NDS:
 - `selection.json`
 - `style.css`
 
+NOTE: style.css may include multiple urls
+
 ### Testing icon changes
 
 Run storybook with `npm run dev` and navigate to the icons page. Icon additions

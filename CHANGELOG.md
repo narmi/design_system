@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.47.0](https://github.com/narmi/design_system/compare/v3.46.0...v3.47.0) (2024-08-08)
+
+
+### Features
+
+* **TextInput:** allow component to control native HTML 'required' attribute ([ea95f84](https://github.com/narmi/design_system/commit/ea95f84190aafb3fdbc500d815a30d9a669bf257))
+
 ## [3.46.0](https://github.com/narmi/design_system/compare/v3.45.2...v3.46.0) (2024-08-06)
 
 

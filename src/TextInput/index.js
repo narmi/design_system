@@ -88,7 +88,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
             value={inputValue}
             onChange={_onChange}
             onBlur={_onBlur}
-            required
+            required={props.required}
             placeholder={props.label}
             aria-label={props.label}
             data-testid={testId}
@@ -104,7 +104,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
           onBlur={_onBlur}
           ref={forwardedRef}
           type={type}
-          required
+          required={props.required}
           aria-label={props.label}
           placeholder={props.label}
           data-testid={testId}
@@ -157,11 +157,14 @@ TextInput.propTypes = {
     "time",
     "datetime-local",
   ]),
+  /** Native element prop passed to the underlying input/textarea element. Defaults to true. */
+  required: PropTypes.bool,
 };
 
 TextInput.defaultProps = {
   multiline: false,
   formatter: (x) => x,
+  required: true,
 };
 
 export default TextInput;

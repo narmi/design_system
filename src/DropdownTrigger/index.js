@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
+import Error from "../Error";
 
 /**
  * Generic trigger button for dropdowns. `DropdownTrigger` can be composed with
@@ -71,14 +72,7 @@ const DropdownTrigger = React.forwardRef(
             )}
           </button>
         </div>
-        {errorText && (
-          <div className="nds-dropdownTrigger-error fontColor--error">
-            <span role="img" className="narmi-icon-x-circle fontSize--s" />
-            <span className="padding--left--xxs fontColor--error fontSize--xs">
-              {errorText}
-            </span>
-          </div>
-        )}
+        <Error error={errorText} />
       </>
     );
   },

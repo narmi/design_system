@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.47.1](https://github.com/narmi/design_system/compare/v3.47.0...v3.47.1) (2024-08-09)
+
+
+### Bug Fixes
+
+* **Select:** fix text size for Select error ([42faa0b](https://github.com/narmi/design_system/commit/42faa0b6922f94bfba360a576f44ef9e46a3ce68))
+* **TextInput:** remove unwanted padding between input box and error message ([32228c7](https://github.com/narmi/design_system/commit/32228c74b1fe3766d5aee9690d6d02f34796864c))
+
 ## [3.47.0](https://github.com/narmi/design_system/compare/v3.46.0...v3.47.0) (2024-08-08)
 
 

@@ -404,7 +404,7 @@ const Combobox = ({
             {...getMenuProps(layerProps)}
             style={{
               width: triggerBounds?.width || "auto",
-              transform: `translateY(${layerSide === "top" ? "0px" : "-22px"})`,
+              transform: `${errorText ? `translateY(${layerSide === "top" ? "0px" : "-22px"} )` : "none"}`,
               ...layerProps.style,
             }}
           >

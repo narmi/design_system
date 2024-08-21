@@ -359,6 +359,7 @@ const Combobox = ({
         data-testid={testId}
       >
         <TextInput
+          error={errorText}
           label={label}
           value={inputValue}
           startIcon={icon}
@@ -403,6 +404,7 @@ const Combobox = ({
             {...getMenuProps(layerProps)}
             style={{
               width: triggerBounds?.width || "auto",
+              transform: `translateY(${layerSide === "top" ? "0px" : "-22px"})`,
               ...layerProps.style,
             }}
           >
@@ -413,7 +415,6 @@ const Combobox = ({
           </ul>,
         )}
       </div>
-      <Error error={errorText} />
     </>
   );
 };

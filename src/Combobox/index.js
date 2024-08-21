@@ -8,7 +8,6 @@ import ComboboxItem from "./ComboboxItem";
 import ComboboxHeading from "./ComboboxHeading";
 import ComboboxCategory from "./ComboboxCategory";
 import TextInput from "../TextInput";
-import Error from "../Error";
 import { getItemIndex } from "../Select";
 
 const noop = () => {};

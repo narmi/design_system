@@ -5,7 +5,7 @@ import AsElement from "../util/AsElement";
 
 /**
  * Child component of `Row`.
- * When a `Row.Item` has a boolean prop of `shrink`, it will shirnk to content width.
+ * When a `Row.Item` has a boolean prop of `shrink`, it will shrink to content width.
  */
 const RowItem = ({ shrink = false, as = "div", children, testId }) => (
   <AsElement

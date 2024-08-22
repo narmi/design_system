@@ -93,10 +93,10 @@ DropdownTrigger.propTypes = {
    * Usually, this represents the name of a selected option
    */
   displayValue: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  /** Error message. When this prop is passed, an error state is dsiplayed */
+  /** Error message. When this prop is passed, an error state is displayed */
   errorText: PropTypes.string,
   /**
-   * Sets a mimimum width.
+   * Sets a minimum width.
    * Use the full CSS value with the unit (e.g. "400px")
    */
   minWidth: PropTypes.string,

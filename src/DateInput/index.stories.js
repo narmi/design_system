@@ -36,7 +36,7 @@ AltInput.parameters = {
   docs: {
     description: {
       story:
-        "The `altInput` prop will make the input show a date in an alternat format defined by `altFormat`. See [flatpickr docs](https://flatpickr.js.org/formatting/) for formatting options.",
+        "The `altInput` prop will make the input show a date in an alternate format defined by `altFormat`. See [flatpickr docs](https://flatpickr.js.org/formatting/) for formatting options.",
     },
   },
 };

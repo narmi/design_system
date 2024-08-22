@@ -41,15 +41,15 @@ export const getSelectedItemDisplay = (item) => {
 /**
  * @param {String} value `value` of the Select.Item to get
  * @param {Array} items Select.Item nodes
- * @returns {ReactElement|String} the Select.Item elemenet found or an empty string
+ * @returns {ReactElement|String} the Select.Item element found or an empty string
  */
 export const getItemByValue = (value, items) => {
-  const founditem = items
+  const foundItem = items
     .filter((item) => !isAction(item)) // action items are not selectable
     .filter(({ props }) => props.value === value)
     .pop();
 
-  return founditem || "";
+  return foundItem || "";
 };
 
 /**
@@ -82,7 +82,7 @@ export const isHighlightedInCategory = (
 /**
  * @param {Object} selectedItem
  * @param {Array} categoryChildren child items in a given category
- * @returns {Boolean} if the selected item is in the given cagetory children
+ * @returns {Boolean} if the selected item is in the given category children
  */
 export const isSelectedItemInCategory = (selectedItem, categoryChildren) => {
   if (!selectedItem) return false;
@@ -180,7 +180,7 @@ const Select = ({
   };
 
   // When `value` prop is passed, the Select becomes fully controlled and the
-  // selected item is set programmitically by the consumer only
+  // selected item is set programmatically by the consumer only
   if (value !== undefined) {
     downshiftOpts.selectedItem = getItemByValue(value, items);
   }

@@ -1,5 +1,5 @@
 // only apply top spacing to a checkbox container
-// that is preceeded by another checkbox container
+// that is preceded by another checkbox container
 .nds-checkbox-container ~ .nds-checkbox-container {
   padding-top: var(--space-s);
 }

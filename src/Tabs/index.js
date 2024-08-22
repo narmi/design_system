@@ -12,7 +12,7 @@ const noop = () => {};
  * Component that handles tabs and tab panels based on WAI-ARIA [best practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel)
  * for the "tabs" design pattern.
  *
- * The `Tabs` component mananges its own state, changing the visible tab panel based
+ * The `Tabs` component manages its own state, changing the visible tab panel based
  * on user events. Use the `onTabChange` callback to add any custom behaviors.
  */
 const Tabs = ({

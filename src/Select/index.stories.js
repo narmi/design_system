@@ -53,7 +53,7 @@ ErrorState.args = {
   label: "Account",
   children: [
     <Select.Item value="checking1234">Checking (1234)</Select.Item>,
-    <Select.Item value="checkint4321">Checking (4321)</Select.Item>,
+    <Select.Item value="checking4321">Checking (4321)</Select.Item>,
   ],
   defaultValue: "checking1234",
   errorText: "Checking (1234) is not eligible",
@@ -145,7 +145,7 @@ CustomTypeahead.parameters = {
   docs: {
     description: {
       story:
-        "By default, typeahead highlights items based on `value`. You may pass a `searchValue` to customize the string users search against when using typeahead. In this example, the value is a numeric code, but we'd like the user to filter on industry namej",
+        "By default, typeahead highlights items based on `value`. You may pass a `searchValue` to customize the string users search against when using typeahead. In this example, the value is a numeric code, but we'd like the user to filter on industry name",
     },
   },
 };

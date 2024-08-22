@@ -90,8 +90,8 @@ body {
   }
 
   /**
-  * Border management - overrides flatpicker nth-child border styles.
-  * The uncessary left border on the Sunday days are masked by the .dayContainer element
+  * Border management - overrides Flatpickr nth-child border styles.
+  * The unnecessary left border on the Sunday days are masked by the .dayContainer element
   */
   .dayContainer {
     overflow: hidden;

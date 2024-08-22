@@ -15,8 +15,8 @@ const TARGET_DIR = process.argv[2];
 const CLASSES = getHelperClassNames();
 
 /**
- * Prints a table of total casses found in target project and a count for each class
- * @param {Object} countMap className keys to occurance count values
+ * Prints a table of total classes found in target project and a count for each class
+ * @param {Object} countMap className keys to occurrence count values
  */
 const printResults = (countMap) => {
   const ansi = { bold: "\x1b[1m", reset: "\x1b[0m" };
@@ -63,7 +63,7 @@ glob(`${resolve(TARGET_DIR)}/**/*.+(js|jsx)`, { ignore }, (error, files) => {
     .map((path) => readFileSync(path).toString())
     .reduce((acc, curr) => {
       // check each file for matches on every available helper class
-      // if matches exist, increment totals key by occurrance count
+      // if matches exist, increment totals key by occurrence count
       CLASSES.forEach((className) => {
         acc[className] = acc[className] + getNumMatches(curr, className);
       });

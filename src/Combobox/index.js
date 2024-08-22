@@ -121,6 +121,7 @@ const Combobox = ({
   errorText,
   icon,
   testId,
+  inputEndContent,
 }) => {
   const allChildren = React.Children.toArray(children);
   const hasCategories = allChildren.some(
@@ -363,11 +364,12 @@ const Combobox = ({
           value={inputValue}
           startIcon={icon}
           endContent={
+            inputEndContent === undefined ? (
             <span
               className={`fontSize--l fontColor--primary narmi-icon-${
                 isOpen ? "chevron-up" : "chevron-down"
               }`}
-            />
+            />) : inputEndContent
           }
           {...getInputProps({
             onFocus: () => {
@@ -455,6 +457,10 @@ Combobox.propTypes = {
   icon: PropTypes.oneOf(VALID_ICON_NAMES),
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
+  /** Content to render at the end of the input. By default, a chevron that indicates whether
+   * the dropdown is open or closed.
+   */
+  inputEndContent: PropTypes.node,
 };
 
 Combobox.Item = ComboboxItem;

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useNumberFormatter, useSlider, VisuallyHidden } from "react-aria";
-import { useSliderState } from "react-stately";
+import { useSliderState } from 'react-stately';
 import Thumbs from "./Thumbs";
 
 export interface Props {
@@ -13,7 +13,7 @@ export interface Props {
   /** value of the input */
   value?: number[];
   /** change callback invoked when the value of the `input` changes */
-  onChange?: (value: number[]) => void;
+  onChange?: (value: number[]) => void
   /** optionally format the input value */
   formatOptions?: Intl.NumberFormatOptions;
   /** lower bound for the input, inclusive */
@@ -35,33 +35,33 @@ const Slider = (props: Props) => {
 
   const numberFormatter = useNumberFormatter(props.formatOptions);
   const state = useSliderState({ ...props, numberFormatter });
-  const { groupProps, trackProps, labelProps, outputProps } = useSlider(
-    props,
-    state,
-    trackRef,
-  );
+  const {
+    groupProps,
+    trackProps,
+    labelProps,
+    outputProps
+  } = useSlider(props, state, trackRef);
 
   return (
     <div {...groupProps} className="nds-slider">
-      {props.label && (
-        <VisuallyHidden>
-          <label {...labelProps}>{props.label}</label>
-        </VisuallyHidden>
-      )}
+      {props.label &&
+        (
+          <VisuallyHidden>
+            <label {...labelProps}>{props.label}</label>
+          </VisuallyHidden>
+        )}
       <div className="output-container">
         <output {...outputProps}>
-          {props.output ||
-            `Between ${state.getThumbValueLabel(0)} and ${state.getThumbValueLabel(1)}`}
+          {props.output || `Between ${state.getThumbValueLabel(0)} and ${state.getThumbValueLabel(1)}`}
         </output>
       </div>
-      <div {...trackProps} ref={trackRef} className="track">
+      <div
+        {...trackProps}
+        ref={trackRef}
+        className="track"
+      >
         <div className="rail" />
-        <Thumbs
-          state={state}
-          trackRef={trackRef}
-          lowerName={props.lowerName}
-          higherName={props.higherName}
-        />
+        <Thumbs state={state} trackRef={trackRef} lowerName={props.lowerName} higherName={props.higherName} />
       </div>
     </div>
   );

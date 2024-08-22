@@ -15,7 +15,7 @@ describe("Row", () => {
     expect(container.firstChild).toHaveStyle("align-items: center");
   });
 
-  it("has correct override styles for 'end' justificiation", () => {
+  it("has correct override styles for 'end' justification", () => {
     const { container } = render(<Row justifyContent="end" />);
     expect(container.firstChild).toHaveStyle("justify-content: flex-end");
   });

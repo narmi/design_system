@@ -15,14 +15,14 @@ const shared = {
 };
 
 /**
- * Thmes the contents of the docs area
+ * Themes the contents of the docs area
  */
 export const docs = create({
   ...shared,
 });
 
 /**
- * Thmes the Storybook UI (sidebar, toolbars, etc)
+ * Themes the Storybook UI (sidebar, toolbars, etc)
  */
 export const ui = create({
   ...shared,

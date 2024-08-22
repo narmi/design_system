@@ -4,7 +4,7 @@ import cc from "classcat";
 import { useClipboard } from "use-clipboard-copy";
 
 /**
- * rendereers responsible for showing token previews
+ * renderers responsible for showing token previews
  */
 const previewRenderers = {
   color: (value) => (
@@ -81,15 +81,15 @@ const CopyableCell = ({ text }) => {
 };
 
 /**
- * Displays token doucumentation table
+ * Displays token documentation table
  */
 const TokenTable = ({ rows, previewType }) => (
   <table className="docs-tokenTable">
     <thead>
       <tr>
         {Boolean(previewType) && <th>Preview</th>}
-        <th scope="coloumn">CSS</th>
-        <th scope="coloumn">Value</th>
+        <th scope="column">CSS</th>
+        <th scope="column">Value</th>
       </tr>
     </thead>
     <tbody>
@@ -115,7 +115,7 @@ TokenTable.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
   previewType: PropTypes.oneOf(Object.keys(previewRenderers)),
 };

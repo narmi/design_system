@@ -2,7 +2,7 @@
 
 ## 1) Build Narmi
 
-**Namri Design System is not a general purpose UI framework.**
+**Narmi Design System is not a general purpose UI framework.**
 
 Because the goal of this design system is to match the look and feel of Narmi applications, components
 may not be as flexible or configurable as they might be in other frameworks. This is by design.

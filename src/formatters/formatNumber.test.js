@@ -1,7 +1,7 @@
 import formatNumber from "./formatNumber";
 
 describe("formatNumber", () => {
-  it("formats as currecny by default", () => {
+  it("formats as currency by default", () => {
     const actual = formatNumber("0");
     const expected = "$0.00";
     expect(actual).toEqual(expected);

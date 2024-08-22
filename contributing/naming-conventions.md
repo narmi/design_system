@@ -54,7 +54,7 @@ Props that accept more than one thing should be pluralized:
 
 ## CSS
 
-We use BEM-like naming conventions in Narmi Design System. Single hyphens refere to a parent-child relationship. Double hyphens refer to a variant/modifier.
+We use BEM-like naming conventions in Narmi Design System. Single hyphens refer to a parent-child relationship. Double hyphens refer to a variant/modifier.
 
 ```css
 /* <base> */
@@ -65,11 +65,11 @@ We use BEM-like naming conventions in Narmi Design System. Single hyphens refere
 .dialog-content {
 }
 
-/* <base>--<modifer> */
+/* <base>--<modifier> */
 .dialog--extraWide {
 }
 
-/* <base>--<modifer>--<modifier> */
+/* <base>--<modifier>--<modifier> */
 .alignChild--left--center {
 }
 ```

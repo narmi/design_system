@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.48.0](https://github.com/narmi/design_system/compare/v3.47.1...v3.48.0) (2024-08-22)
+
+
+### Features
+
+* **Checkbox:** add condensed Checkbox ([8b1a899](https://github.com/narmi/design_system/commit/8b1a89953a2a373d8a7a04264ee5f606419180c0))
+
+
+### Bug Fixes
+
+* **Checkbox:** better comment ([f73fa7f](https://github.com/narmi/design_system/commit/f73fa7f888e2239ba29f46c37a97d136d2749c4a))
+
 ### [3.47.1](https://github.com/narmi/design_system/compare/v3.47.0...v3.47.1) (2024-08-09)
 
 

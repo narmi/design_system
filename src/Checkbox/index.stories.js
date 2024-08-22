@@ -29,12 +29,12 @@ FullyControlled.parameters = {
   },
 };
 
-export const MultipleCheckboxes = () => (
+export const MultipleCheckboxes = (args) => (
   <>
     <h3 className="margin--bottom">Permissions</h3>
-    <Checkbox label="See statements and documents" name="view" />
-    <Checkbox label="Make deposits" name="deposit" />
-    <Checkbox label="Make withdraws" name="widthdraw" />
+    <Checkbox label="See statements and documents" name="view" {...args} />
+    <Checkbox label="Make deposits" name="deposit" {...args} />
+    <Checkbox label="Make withdrawals" name="withdrawal" {...args} />
   </>
 );
 

@@ -10,7 +10,7 @@ const Arrow = ({ direction, onClick, show }) => {
 
   return (
     isResponsive && (
-      <div className="arrow-responsive">
+      <div className="arrow-reponsive">
         <CSSTransition
           nodeRef={arrowRef}
           in={show}

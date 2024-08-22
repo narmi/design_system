@@ -3,9 +3,9 @@ import React, { useRef } from "react";
 import { VisuallyHidden, mergeProps, useFocusRing, useSliderThumb } from "react-aria";
 import cc from "classcat";
 
-const getRailWidth = (lowerInputThumbProps, higherInputThumbProps) => parseFloat(higherInputThumbProps.style?.left.toString().slice(0, -1)) - parseFloat(lowerInputThumbProps.style?.left.toString().slice(0, -1));
+const getRailWidth = (lowerInputThumbProps: any, higherInputThumbProps: any) => parseFloat(higherInputThumbProps.style?.left.toString().slice(0, -1)) - parseFloat(lowerInputThumbProps.style?.left.toString().slice(0, -1));
 
-const useThumb = (index, trackRef, name, state) => {
+const useThumb = (index: any, trackRef: any, name: any, state: any) => {
   const inputRef = useRef(null);
   const { thumbProps, inputProps } = useSliderThumb({
     index,
@@ -23,7 +23,7 @@ const useThumb = (index, trackRef, name, state) => {
   }
 }
 
-const Thumb = ({ thumbProps, inputRef, inputProps, focusProps, isFocusVisible, ariaLabel }) => {
+const Thumb = ({ thumbProps, inputRef, inputProps, focusProps, isFocusVisible, ariaLabel }: any) => {
   return (
     <div
       {...thumbProps}
@@ -36,7 +36,7 @@ const Thumb = ({ thumbProps, inputRef, inputProps, focusProps, isFocusVisible, a
   )
 };
 
-const Thumbs = (props) => {
+const Thumbs = (props: any) => {
   const { state, trackRef, lowerName, higherName} = props;
 
   const lowerThumb = useThumb(0, trackRef, lowerName, state);

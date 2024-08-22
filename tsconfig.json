@@ -1,16 +1,43 @@
 {
   "compilerOptions": {
-    "outFile": "./dist/types/index",
-    "target": "ES6",
-    "lib": ["ES2022", "dom"],
-    "allowJs": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "jsx": "react-jsx",
+    "alwaysStrict": false,
     "declaration": true,
-    "emitDeclarationOnly": true
+    "declarationMap": true,
+    "importHelpers": true,
+    "inlineSources": true,
+    "isolatedModules": true,
+    "lib": [
+        "ES2022",
+        "dom"
+    ],
+    "moduleResolution": "node10",
+    "sourceMap": true,
+    "strict": true,
+    "target": "ES6",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "emitDeclarationOnly": true,
+    "outDir": "./dist/types",
+    "ignoreDeprecations": "5.0"
   },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "dist"]
+  "files": [
+    "./src/index.ts",
+    "./src/types/Icon.types.ts",
+    "./src/Slider/Thumbs.tsx",
+    "./src/Slider/index.tsx",
+    "./src/SeparatorList/index.tsx"
+  ],
+  "include": [
+    "src/Alert/index.d.ts",
+    "src/index.ts",
+    "src/types/*.ts",
+    "src/Slider/*.tsx",
+    "src/SeparatorList/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.stories.tsx"
+  ]
 }

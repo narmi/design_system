@@ -25,7 +25,7 @@ const SeparatorList: React.FC<SeparatorListProps> = ({
     data-testid={testId}
   >
     {items.map((item, i) => {
-      const itemProps = {};
+      const itemProps: any = {};
       if (i !== items.length - 1) {
         itemProps["data-separator"] = separator;
       }

@@ -164,7 +164,7 @@ Checkbox.propTypes = {
   /**
    * `normal` - visually matches a checkbox input
    *
-   * `condensed` - like `normal`, but without added top margin
+   * `condensed` - like `normal`, but without added top margin when there are multiple checkboxes
    * 
    * `card` - visually present as a toggleable card
    */

@@ -176,7 +176,7 @@ The best way to approach testing unpublished NDS changes in a consumer is to use
 2. Update the `version` field of package.json to be a beta of the next minor.
    For example, you would change `2.35.2` to `2.36.0-beta.0`.
    DO NOT COMMIT THIS CHANGE.
-3. Publish the package (`npm run publish --tag beta`)
+3. Publish the package (`npm publish --tag beta`)
 4. In your consuming application, you can point the `@narmi/design_system`
    version to the beta version you just published.
 

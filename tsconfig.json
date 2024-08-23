@@ -10,7 +10,8 @@
         "ES2022",
         "dom"
     ],
-    "moduleResolution": "node10",
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
     "sourceMap": true,
     "target": "ES6",
     "skipLibCheck": true,
@@ -18,25 +19,8 @@
     "jsx": "react-jsx",
     "emitDeclarationOnly": true,
     "outDir": "./dist/types",
-    "ignoreDeprecations": "5.0"
   },
   "files": [
-    "./src/index.ts",
-    "./src/types/Icon.types.ts",
-    "./src/Slider/Thumbs.tsx",
-    "./src/Slider/index.tsx",
-    "./src/SeparatorList/index.tsx"
-  ],
-  "include": [
-    "src/Alert/index.d.ts",
-    "src/index.ts",
-    "src/types/*.ts",
-    "src/Slider/*.tsx",
-    "src/SeparatorList/*.tsx"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/*.stories.tsx"
+    "src/index.ts"
   ]
 }

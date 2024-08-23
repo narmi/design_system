@@ -34,7 +34,7 @@ export const isSelectable = (component) => {
  * @param {Number} highlightedIndex index of highlighted item from downshift
  * @param {Array} displayedItems list of all items currently displayed
  * @param {Array} categoryChildren list of items in category
- * @returns {Boolean} if the category should be fored open
+ * @returns {Boolean} if the category should be forced open
  */
 export const shouldOpenCategory = (
   inputValue,
@@ -197,7 +197,7 @@ const Combobox = ({
       const { type, changes } = actionAndChanges;
       let inputValue = changes.inputValue;
 
-      // if there's already a selected item when the user revisists the input,
+      // if there's already a selected item when the user revisits the input,
       // wipe away the old input value so they can start typing right away.
       // (selection is preserved until user picks another item)
       if (
@@ -339,7 +339,7 @@ const Combobox = ({
 
   // It is possible that a consumer may have nothing to pass to `children`.
   // For example, if an API response hasn't completed to load in the autocomplete
-  // options. In that case, Cobmobox should render a normal TextInput.
+  // options. In that case, Combobox should render a normal TextInput.
   if (items.length < 1) {
     return (
       <TextInput

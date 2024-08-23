@@ -10,7 +10,7 @@ labels: New Component,UI-Platform
 
 ### Mockup
 
-<!-- insert relevant screenshots or figma/zerohieght links -->
+<!-- insert relevant screenshots or figma/zeroheight links -->
 
 ### Responsibilities
 <!-- what are the functional boundaries of this component? -->

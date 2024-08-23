@@ -97,7 +97,7 @@ WithoutPanels.parameters = {
   docs: {
     description: {
       story:
-        "You can decouple tabs from conent by omitting the panel components. Use the `onTabChange` callback to respond to user events.",
+        "You can decouple tabs from content by omitting the panel components. Use the `onTabChange` callback to respond to user events.",
     },
   },
 };

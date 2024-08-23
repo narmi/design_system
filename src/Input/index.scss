@@ -1,5 +1,5 @@
 // Sass placeholder for styles shared between
-// `textarea` and the psuedo-element that enables CSS auto growing
+// `textarea` and the pseudo-element that enables CSS auto growing
 %shared-multiline-styles {
   line-height: 1.2;
   vertical-align: middle;
@@ -195,7 +195,7 @@ textarea::autofill {
     @extend %shared-multiline-styles;
   }
 
-  // The growth of the psuedo-element will expand the grid container.
+  // The growth of the pseudo-element will expand the grid container.
   // The textarea will grow with it, as it is placed over the entire grid area
   &::after,
   & > textarea {

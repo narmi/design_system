@@ -207,7 +207,7 @@ CollapsibleCard.propTypes = {
   onClose: PropTypes.func,
   /** Disabled cards are greyed out and do not open */
   isDisabled: PropTypes.bool,
-  /** Callback to handle user clickling on disabled card */
+  /** Callback to handle user clicking on disabled card */
   onDisabledClick: PropTypes.func,
   /** Displays a red border on the card. Does not interfere with user interactions */
   hasError: PropTypes.bool,

@@ -42,7 +42,7 @@ export const DebugView = () => (
   `,
       }}
     />
-    <div className="sb-nds-row-debug nds-typogrpahy fontSize--s">
+    <div className="sb-nds-row-debug nds-typography fontSize--s">
       <Row>
         <Row.Item shrink>
           <code>Row.Item shrink</code>

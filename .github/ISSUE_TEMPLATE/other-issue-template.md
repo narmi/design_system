@@ -1,6 +1,6 @@
 ---
 name: Other
-about: Generial issue template
+about: General issue template
 title: ""
 labels: UI-Platform
 ---

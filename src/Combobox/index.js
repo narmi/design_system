@@ -121,7 +121,7 @@ const Combobox = ({
   errorText,
   icon,
   testId,
-  inputEndContent,
+  renderEndContent,
 }) => {
   const allChildren = React.Children.toArray(children);
   const hasCategories = allChildren.some(
@@ -326,6 +326,17 @@ const Combobox = ({
     ) : null;
   };
 
+  // by default, render up/down chevron icon controlled by open state
+  renderEndContent = renderEndContent === undefined ? (
+    (isOpen) => (
+      <span
+        className={`fontSize--l fontColor--primary narmi-icon-${
+          isOpen ? "chevron-up" : "chevron-down"
+        }`}
+      />
+    )
+  ) : renderEndContent;
+
   const handleMenuToggle = () => {
     if (!isOpen) {
       // Reset filtered items every time user refocuses.
@@ -363,14 +374,7 @@ const Combobox = ({
           label={label}
           value={inputValue}
           startIcon={icon}
-          endContent={
-            inputEndContent === undefined ? (
-            <span
-              className={`fontSize--l fontColor--primary narmi-icon-${
-                isOpen ? "chevron-up" : "chevron-down"
-              }`}
-            />) : inputEndContent
-          }
+          endContent={renderEndContent(isOpen)}
           {...getInputProps({
             onFocus: () => {
               if (hasSelectedItem) {
@@ -457,10 +461,11 @@ Combobox.propTypes = {
   icon: PropTypes.oneOf(VALID_ICON_NAMES),
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
-  /** Content to render at the end of the input. By default, a chevron that indicates whether
-   * the dropdown is open or closed.
+  /** Function to render content at the end of the input.
+   * Defaults to a function that renders a chevron icon that toggles based on the open state of the combobox.
+   * Function signature: `(isOpen) => React.ReactNode`
    */
-  inputEndContent: PropTypes.node,
+  renderEndContent: PropTypes.func,
 };
 
 Combobox.Item = ComboboxItem;

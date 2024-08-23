@@ -100,6 +100,20 @@ export const defaultFilterItemsByInput = (items, inputValue) =>
     return query.toLowerCase().startsWith(inputValue);
   });
 
+
+/**
+ * 
+ * @param {Boolean} isOpen whether the combobox is open
+ * @returns {React.ReactNode} chevron icon that toggles based on the open state of the combobox
+ */
+export const defaultRenderEndContent = (isOpen) => (
+  <span
+    className={`fontSize--l fontColor--primary narmi-icon-${
+      isOpen ? "chevron-up" : "chevron-down"
+    }`}
+  />
+);
+
 /**
  * Autocomplete input component following the accessible
  * [ARIA combobox pattern](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/combobox_role).
@@ -121,7 +135,7 @@ const Combobox = ({
   errorText,
   icon,
   testId,
-  renderEndContent,
+  renderEndContent = defaultRenderEndContent,
 }) => {
   const allChildren = React.Children.toArray(children);
   const hasCategories = allChildren.some(
@@ -326,17 +340,6 @@ const Combobox = ({
     ) : null;
   };
 
-  // by default, render up/down chevron icon controlled by open state
-  renderEndContent = renderEndContent === undefined ? (
-    (isOpen) => (
-      <span
-        className={`fontSize--l fontColor--primary narmi-icon-${
-          isOpen ? "chevron-up" : "chevron-down"
-        }`}
-      />
-    )
-  ) : renderEndContent;
-
   const handleMenuToggle = () => {
     if (!isOpen) {
       // Reset filtered items every time user refocuses.
@@ -463,7 +466,8 @@ Combobox.propTypes = {
   testId: PropTypes.string,
   /** Function to render content at the end of the input.
    * Defaults to a function that renders a chevron icon that toggles based on the open state of the combobox.
-   * Function signature: `(isOpen) => React.ReactNode`
+   * 
+   * Signature: `(isOpen) => React.ReactNode`
    */
   renderEndContent: PropTypes.func,
 };

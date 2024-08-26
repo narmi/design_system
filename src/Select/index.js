@@ -271,6 +271,7 @@ const Select = ({
               "rounded--bottom": layerSide === "bottom",
               "rounded--top": layerSide === "top",
               [`nds-select-list--active--${layerSide}`]: showMenu,
+              "nds-select-list--error": !!errorText
             },
           ])}
           {...getMenuProps(layerProps)}

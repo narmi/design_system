@@ -398,6 +398,7 @@ const Combobox = ({
                   isOpen && displayedItems.length > 0,
                 "nds-combobox-list--bottom": layerSide === "bottom",
                 "nds-combobox-list--top": layerSide === "top",
+                "nds-combobox-list--error": !!errorText,
               },
             ])}
             {...getMenuProps(layerProps)}

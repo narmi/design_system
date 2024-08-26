@@ -8,7 +8,7 @@ import { parse } from "css";
  * @returns {Array} full list of helper class strings from NDS
  */
 const getHelperClassNames = () => {
-  // join all scss files in `helper-classes` insto a single scss string
+  // join all scss files in `helper-classes` into a single scss string
   const sassString = glob
     .sync(`${resolve(process.cwd(), "src/helper-classes")}/*.scss`)
     .map((file) => readFileSync(file).toString())

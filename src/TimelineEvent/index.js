@@ -57,7 +57,7 @@ const TimelineEvent = ({ kind = "node", icon, imgUrl, initial, children }) => {
 
 TimelineEvent.propTypes = {
   /**
-   * Timline node variant.
+   * Timeline node variant.
    */
   kind: PropTypes.oneOf(["node", "start", "pending"]),
   /**
@@ -77,7 +77,7 @@ TimelineEvent.propTypes = {
    */
   initial: PropTypes.string,
   /**
-   * Timline event content (any JSX)
+   * Timeline event content (any JSX)
    */
   children: PropTypes.oneOfType([
     PropTypes.node,

@@ -6,7 +6,7 @@ import Row from "../Row";
 const noop = () => {};
 
 /**
- * Inline system message, for a sepcific region of a page.
+ * Inline system message, for a specific region of a page.
  * The `isActive` prop is used to hide and show the Alert to ensure the Alert
  * is always rendered in an [ARIA live region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions)
  * for accessibility.

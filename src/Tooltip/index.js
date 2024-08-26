@@ -92,7 +92,7 @@ Tooltip.propTypes = {
   children: PropTypes.node.isRequired,
   /** Message shown inside the tooltip */
   text: PropTypes.string.isRequired,
-  /** Sets prefferred side of the trigger the tooltip should appear */
+  /** Sets preferred side of the trigger the tooltip should appear */
   side: PropTypes.oneOf(["top", "right", "bottom", "left"]),
   /** CSS `display` value for the element that wraps the Tooltip children */
   wrapperDisplay: PropTypes.oneOf([

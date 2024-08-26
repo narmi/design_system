@@ -1,7 +1,7 @@
 import { getFlexDirection } from "./index";
 
 describe("ResponsiveFlex: getFlexDirection", () => {
-  describe("Handles direction change correcly", () => {
+  describe("Handles direction change correctly", () => {
     const props = {
       direction: "column",
       toColumnAt: undefined,

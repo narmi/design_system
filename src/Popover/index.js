@@ -135,7 +135,7 @@ Popover.propTypes = {
   children: PropTypes.node.isRequired,
   /** Content of popover */
   content: PropTypes.node.isRequired,
-  /** Sets prefferred side of the trigger the tooltip should appear */
+  /** Sets preferred side of the trigger the tooltip should appear */
   side: PropTypes.oneOf(["top", "right", "bottom", "left"]),
   /** Sets preferred alignment of the tooltip relative to the trigger */
   alignment: PropTypes.oneOf(["start", "center", "end"]),

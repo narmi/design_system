@@ -65,7 +65,7 @@ export const _getAttributes = (
  * The component will handle which page numbers to render, next and previous arrows,
  * and conditionally rendering first and last pages.
  *
- * If your pagination setup expectes a fully controlled component, you may set `defaultSelectedPage` on every `onPageChange` call.
+ * If your pagination setup expects a fully controlled component, you may set `defaultSelectedPage` on every `onPageChange` call.
  */
 const Pagination = ({
   onPageChange = noop,

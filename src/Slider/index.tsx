@@ -20,7 +20,7 @@ export interface Props {
   minValue?: number;
   /** upper bound for the input, inclusive */
   maxValue?: number;
-  /** if uncontrolled, intial value for the input */
+  /** if uncontrolled, initial value for the input */
   defaultValue?: number[];
   /** increment number for the range input */
   step?: number;

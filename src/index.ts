@@ -1,6 +1,12 @@
+/**
+ * Typed Components
+ */
 import SeparatorList from "./SeparatorList";
 import Slider from "./Slider";
 
+/**
+ * Untyped Components
+ */
 declare const Alert;
 declare const Button;
 declare const Checkbox;
@@ -13,7 +19,7 @@ declare const Drawer;
 declare const Dropdown;
 declare const DropdownTrigger;
 declare const Error;
-declare const FieldToken
+declare const FieldToken;
 declare const FormSection;
 declare const IconButton;
 declare const Input;
@@ -32,8 +38,8 @@ declare const Select;
 declare const Sidebar;
 declare const Tabs;
 declare const Tag;
-declare const TextInput
-declare const TimelineEvent
+declare const TextInput;
+declare const TimelineEvent;
 declare const Toggle;
 declare const TokenInput;
 declare const Tooltip;
@@ -43,7 +49,7 @@ declare const useLockBodyScroll;
 declare const formatNumber;
 declare const formatDate;
 
-export * from "./types/Icon.types"
+export * from "./types/Icon.types";
 export {
   SeparatorList,
   Slider,
@@ -88,4 +94,4 @@ export {
   useLockBodyScroll,
   formatNumber,
   formatDate,
-}
+};

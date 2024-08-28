@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { useSelect } from "downshift";
 import { useLayer } from "react-laag";
 import cc from "classcat";
+import Row from "../Row";
 import DropdownTrigger from "../DropdownTrigger";
 import SelectItem from "./SelectItem";
 import SelectAction from "./SelectAction";
@@ -224,15 +225,19 @@ const Select = ({
             "nds-select-item--highlighted": highlightedIndex === index,
             "rounded--top": index === 0,
             "rounded--bottom": index === items.length - 1,
-            "nds-select-item--hasGutter": hasSelectedItem || hasCategories,
+            "nds-select-item--hasGutter": hasCategories,
           },
         ])}
         {...getItemProps({ item, index })}
       >
-        {hasSelectedItem && selectedItem.props.value === item.props.value && (
-          <span className="narmi-icon-check fontSize--l fontWeight--bold" />
-        )}
-        {item}
+        <Row as="span">
+          <Row.Item as="span">{item}</Row.Item>
+          {hasSelectedItem && selectedItem.props.value === item.props.value && (
+            <Row.Item as="span" shrink>
+              <span className="narmi-icon-check fontSize--l fontWeight--bold" />
+            </Row.Item>
+          )}
+        </Row>
       </li>
     );
   };

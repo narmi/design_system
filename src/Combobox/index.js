@@ -8,6 +8,8 @@ import ComboboxItem from "./ComboboxItem";
 import ComboboxHeading from "./ComboboxHeading";
 import ComboboxCategory from "./ComboboxCategory";
 import TextInput from "../TextInput";
+import Error from "../Error";
+import Row from "../Row";
 import { getItemIndex } from "../Select";
 
 const noop = () => {};
@@ -272,15 +274,19 @@ const Combobox = ({
               "nds-combobox-item--highlighted": highlightedIndex === index,
               "rounded--top": index === 0,
               "rounded--bottom": index === displayedItems.length - 1,
-              "nds-combobox-item--hasGutter": hasSelectedItem,
             },
           ])}
           {...getItemProps({ item, index })}
         >
-          {hasSelectedItem && selectedItem.props.value === item.props.value && (
-            <span className="narmi-icon-check fontSize--l fontWeight--bold" />
-          )}
-          {item}
+          <Row as="span">
+            <Row.Item as="span">{item}</Row.Item>
+            {hasSelectedItem &&
+              selectedItem.props.value === item.props.value && (
+                <Row.Item as="span" shrink>
+                  <span className="narmi-icon-check fontSize--l fontWeight--bold" />
+                </Row.Item>
+              )}
+          </Row>
         </li>
       );
     }

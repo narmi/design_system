@@ -45,16 +45,16 @@ ConfirmAndCancel.parameters = {
 export const ButtonSizes = () => (
   <Row alignItems="center">
     <Row.Item shrink>
-      <Button kind="plain" label="X-Small Button" size="xs" />
+      <Button label="Size 'm'" size="m" />
     </Row.Item>
     <Row.Item shrink>
-      <Button kind="plain" label="Small Button" size="s" />
+      <Button label="Size 's'" size="s" />
     </Row.Item>
     <Row.Item shrink>
-      <Button kind="plain" label="Medium Button" size="m" />
+      <Button kind="secondary" label="Size 'm'" size="m" />
     </Row.Item>
     <Row.Item shrink>
-      <Button kind="plain" label="Large Button" size="l" />
+      <Button kind="secondary" label="Size 's'" size="s" />
     </Row.Item>
   </Row>
 );

@@ -68,7 +68,7 @@ const Button = ({
         "nds-typography",
         "nds-button",
         `nds-button--${kind}`,
-        `fontSize--${size}`,
+        `nds-button--${size}`,
         {
           resetButton: as === "button",
           "nds-button--disabled": disabled,
@@ -128,7 +128,7 @@ Button.propTypes = {
   /** type attribute of button element */
   type: PropTypes.oneOf(["submit", "button", "reset"]),
   /** size variant of button */
-  size: PropTypes.oneOf(["xs", "s", "m", "l"]),
+  size: PropTypes.oneOf(["s", "m"]),
   /** Click callback, with event object passed as argument */
   onClick: PropTypes.func,
   /** Name of Narmi icon to place at the start of the label */

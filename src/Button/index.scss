@@ -5,28 +5,55 @@
   display: inline-flex;
   position: relative;
   cursor: pointer;
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-default);
+  font-weight: var(--font-weight-semibold);
   line-height: var(--font-lineHeight-bigText);
   text-align: center;
   justify-content: center;
   align-items: center;
-  min-height: rem(40px);
-  border-radius: rem(20px);
 
   /* mobile buttons have slightly taller padding for ease of tapping */
   @media (max-width: #{map.get($breakpoints, "s")}) {
-    min-height: rem(48px);
-    border-radius: rem(24px);
+    min-height: rem(48px) !important;
+    border-radius: rem(24px) !important;
   }
 }
 
+/* Size variants */
+%buttonSizeDefault {
+  font-size: var(--font-size-default);
+  min-height: rem(40px);
+  border-radius: rem(22px);
+}
+.nds-button--xs,
+.nds-button--s {
+  font-size: var(--font-size-s);
+  min-height: rem(24px);
+  border-radius: rem(16px);
+}
+.nds-button--m {
+  @extend %buttonSizeDefault;
+}
+// sizes that have never been implemented should
+// fall back to default, as these were previously documented
+// incorrectly as valid size values.
+.nds-button--l,
+.nds-button--xl {
+  @extend %buttonSizeDefault;
+}
+
+/* Kind variants */
 .nds-button--primary,
 .nds-button--secondary {
   .nds-button-content {
     margin: rem(8px) rem(32px);
     // label constraint should scale evenly with font size
     max-width: rem(240px);
+  }
+  &.nds-button--s {
+    .nds-button-content {
+      margin: rem(4px) rem(16px);
+      max-width: rem(200px);
+    }
   }
 }
 

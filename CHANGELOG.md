@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.49.0](https://github.com/narmi/design_system/compare/v3.48.0...v3.49.0) (2024-08-27)
+
+
+### Features
+
+* **typescript:** enable type hints in consumers ([bd8b949](https://github.com/narmi/design_system/commit/bd8b94975662237c552ebf75eea7f8df54571a81))
+
 ## [3.48.0](https://github.com/narmi/design_system/compare/v3.47.1...v3.48.0) (2024-08-22)
 
 

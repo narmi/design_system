@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.50.0](https://github.com/narmi/design_system/compare/v3.49.0...v3.50.0) (2024-08-29)
+
+
+### Features
+
+* **Combobox:** allow custom endContent ([4fa1192](https://github.com/narmi/design_system/commit/4fa1192d75b66b3b3b8a51e0aa58aef2989536d6))
+
+
+### Bug Fixes
+
+* **Combobox:** better defaulting ([f237d82](https://github.com/narmi/design_system/commit/f237d82068192313f94e5ad6be622d1bcdc0e25a))
+* **Combobox:** use function instead ([5e40a69](https://github.com/narmi/design_system/commit/5e40a69149df85b707457263447e684ad12e6a42))
+
+## [3.49.0](https://github.com/narmi/design_system/compare/v3.48.0...v3.49.0) (2024-08-27)
+
+
+### Features
+
+* **typescript:** enable type hints in consumers ([bd8b949](https://github.com/narmi/design_system/commit/bd8b94975662237c552ebf75eea7f8df54571a81))
+
 ## [3.48.0](https://github.com/narmi/design_system/compare/v3.47.1...v3.48.0) (2024-08-22)
 
 

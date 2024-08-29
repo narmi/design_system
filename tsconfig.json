@@ -1,16 +1,26 @@
 {
   "compilerOptions": {
-    "outFile": "./dist/types/index",
-    "target": "ES6",
-    "lib": ["ES2022", "dom"],
-    "allowJs": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "jsx": "react-jsx",
+    "alwaysStrict": false,
     "declaration": true,
-    "emitDeclarationOnly": true
+    "declarationMap": true,
+    "importHelpers": true,
+    "inlineSources": true,
+    "isolatedModules": true,
+    "lib": [
+        "ES2022",
+        "dom"
+    ],
+    "moduleResolution": "Node16",
+    "module": "Node16",
+    "sourceMap": true,
+    "target": "ES6",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "emitDeclarationOnly": true,
+    "outDir": "./dist/types",
   },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "dist"]
+  "files": [
+    "src/index.ts"
+  ]
 }

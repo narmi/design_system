@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.50.2](https://github.com/narmi/design_system/compare/v3.50.1...v3.50.2) (2024-08-30)
+
+
+### Bug Fixes
+
+* **Tooltip:** use even spacing around tooltip content ([8dc54fa](https://github.com/narmi/design_system/commit/8dc54fac698673229708bd86961c1173da4a339f))
+
 ### [3.50.1](https://github.com/narmi/design_system/compare/v3.50.0...v3.50.1) (2024-08-29)
 
 

@@ -86,7 +86,7 @@
     "jsdoc-to-markdown": "^8.0.1",
     "mini-css-extract-plugin": "^2.2.0",
     "polished": "^4.1.1",
-    "postcss-loader": "^6.1.1",
+    "postcss-loader": "^8.1.1",
     "postcss-preset-env": "^7.0.1",
     "prettier": "^3.2.5",
     "pretty-quick": "^4",

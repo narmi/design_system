@@ -8,7 +8,6 @@ import ComboboxItem from "./ComboboxItem";
 import ComboboxHeading from "./ComboboxHeading";
 import ComboboxCategory from "./ComboboxCategory";
 import TextInput from "../TextInput";
-import Error from "../Error";
 import { getItemIndex } from "../Select";
 
 const noop = () => {};
@@ -374,6 +373,7 @@ const Combobox = ({
         data-testid={testId}
       >
         <TextInput
+          error={errorText}
           label={label}
           value={inputValue}
           startIcon={icon}
@@ -407,11 +407,13 @@ const Combobox = ({
                   isOpen && displayedItems.length > 0,
                 "nds-combobox-list--bottom": layerSide === "bottom",
                 "nds-combobox-list--top": layerSide === "top",
+                "nds-combobox-list--error": !!errorText,
               },
             ])}
             {...getMenuProps(layerProps)}
             style={{
               width: triggerBounds?.width || "auto",
+              transform: `${errorText ? `translateY(${layerSide === "top" ? "0px" : "-22px"} )` : "none"}`,
               ...layerProps.style,
             }}
           >
@@ -422,7 +424,6 @@ const Combobox = ({
           </ul>,
         )}
       </div>
-      <Error error={errorText} />
     </>
   );
 };

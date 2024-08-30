@@ -13,6 +13,10 @@
   max-height: 40vh;
   overflow-y: scroll;
   z-index: 4;
+  
+  &--error {
+    border: 1px solid var(--color-errorDark);
+  }
 
   &--bottom {
     border-top: 1px solid var(--border-color-default);

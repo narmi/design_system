@@ -124,11 +124,18 @@ Button.propTypes = {
   /** disables the button and adds a loading spinner when set to `true` */
   isLoading: PropTypes.bool,
   /** style of button to render */
-  kind: PropTypes.oneOf(["primary", "secondary", "negative", "menu", "plain"]),
+  kind: PropTypes.oneOf([
+    "primary",
+    "secondary",
+    "tonal",
+    "negative",
+    "menu",
+    "plain",
+  ]),
   /** type attribute of button element */
   type: PropTypes.oneOf(["submit", "button", "reset"]),
   /** size variant of button */
-  size: PropTypes.oneOf(["s", "m"]),
+  size: PropTypes.oneOf(["xs", "s", "m"]),
   /** Click callback, with event object passed as argument */
   onClick: PropTypes.func,
   /** Name of Narmi icon to place at the start of the label */

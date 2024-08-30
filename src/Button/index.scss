@@ -5,45 +5,47 @@
   display: inline-flex;
   position: relative;
   cursor: pointer;
-  font-weight: var(--font-weight-semibold);
   line-height: var(--font-lineHeight-bigText);
   text-align: center;
   justify-content: center;
   align-items: center;
+  border-radius: rem(24px);
 
   /* mobile buttons have slightly taller padding for ease of tapping */
   @media (max-width: #{map.get($breakpoints, "s")}) {
     min-height: rem(48px) !important;
-    border-radius: rem(24px) !important;
   }
 }
 
 /* Size variants */
-%buttonSizeDefault {
-  font-size: var(--font-size-default);
-  min-height: rem(40px);
-  border-radius: rem(22px);
+.nds-button--xs {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  min-height: rem(24px);
+  border-radius: rem(12px);
 }
-.nds-button--xs,
 .nds-button--s {
   font-size: var(--font-size-s);
-  min-height: rem(24px);
-  border-radius: rem(16px);
+  font-weight: var(--font-weight-bold);
+  min-height: rem(32px);
+  border-radius: rem(18px);
 }
 .nds-button--m {
-  @extend %buttonSizeDefault;
+  font-size: var(--font-size-default);
+  font-weight: var(--font-weight-bold);
+  min-height: rem(40px);
+  border-radius: rem(24px);
 }
-// sizes that have never been implemented should
-// fall back to default, as these were previously documented
-// incorrectly as valid size values.
 .nds-button--l,
 .nds-button--xl {
-  @extend %buttonSizeDefault;
+  // unimplemented sizes should fall back to "m"
+  @extend .nds-button--m;
 }
 
 /* Kind variants */
 .nds-button--primary,
-.nds-button--secondary {
+.nds-button--secondary,
+.nds-button--tonal {
   .nds-button-content {
     margin: rem(8px) rem(32px);
     // label constraint should scale evenly with font size
@@ -51,7 +53,13 @@
   }
   &.nds-button--s {
     .nds-button-content {
-      margin: rem(4px) rem(16px);
+      margin: rem(3px) rem(24px);
+      max-width: rem(220px);
+    }
+  }
+  &.nds-button--xs {
+    .nds-button-content {
+      margin: rem(3px) rem(16px);
       max-width: rem(200px);
     }
   }
@@ -88,6 +96,17 @@
   }
 
   &:hover {
+    background-color: RGBA(var(--theme-rgb-primary), var(--alpha-10));
+  }
+}
+
+.nds-button--tonal,
+.nds-button--tonal.resetButton {
+  color: var(--theme-primary);
+  background-color: RGBA(var(--theme-rgb-primary), var(--alpha-20));
+
+  &:hover,
+  &:active {
     background-color: RGBA(var(--theme-rgb-primary), var(--alpha-10));
   }
 }
@@ -152,6 +171,10 @@
   &.nds-button--secondary {
     color: var(--color-lightGrey);
     border-color: var(--color-lightGrey);
+  }
+  &.nds-button--tonal {
+    color: var(--color-lightGrey);
+    background-color: rgba(var(--rgb-lightGrey), var(--alpha-20));
   }
 }
 

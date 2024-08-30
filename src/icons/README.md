@@ -8,7 +8,7 @@ when updating our icon set.
 1. Log into icomoon using our narmi engineering account
 2. Upload `selection.json` - this config file holds all shape information and metadata
 3. Modify the icon set in the icomoon UI as needed
-4. Click "Download" in the icomoon UI
+4. Click "Generate font" from the project view in the icomoon UI, then click "Download"
 5. Copy assets (**SEE BELOW**)
 6. `npm run build:types` will regenerate `src/Icon.types.ts`
 7. Commit the changes & submit a PR
@@ -20,6 +20,8 @@ Unzip the icomoon download. Copy all of the following into `src/icons/` in NDS:
 - `fonts/`
 - `selection.json`
 - `style.css`
+
+NOTE: style.css may include multiple urls as the src for @font-face. Please remove all except the woff url.
 
 ### Testing icon changes
 

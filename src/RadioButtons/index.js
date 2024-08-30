@@ -141,7 +141,7 @@ RadioButtons.propTypes = {
   /**
    * selected option by input value (fully controlled)
    * When passing a `value` prop, you must use the `onChange`
-   * hanlder to update the `value`
+   * handler to update the `value`
    */
   value: PropTypes.string,
   /** change callback invoked with input value */

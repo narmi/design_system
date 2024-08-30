@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.50.1](https://github.com/narmi/design_system/compare/v3.50.0...v3.50.1) (2024-08-29)
+
+
+### Bug Fixes
+
+* **Combobox, Select:** apply styling to dropdown border, too ([3549899](https://github.com/narmi/design_system/commit/35498995bfde2dd3457cbd389201cced3c9b2e05))
+* **Combobox:** handle lack of error ([b59df52](https://github.com/narmi/design_system/commit/b59df52228f941f93f153bc142669fde3421f654))
+* **Combobox:** support error highlighting on comboboxes with children ([e75a10a](https://github.com/narmi/design_system/commit/e75a10a84b6fd9f9d4296d0450f749d206f78f53))
+
+## [3.50.0](https://github.com/narmi/design_system/compare/v3.49.0...v3.50.0) (2024-08-29)
+
+
+### Features
+
+* **Combobox:** allow custom endContent ([4fa1192](https://github.com/narmi/design_system/commit/4fa1192d75b66b3b3b8a51e0aa58aef2989536d6))
+
+
+### Bug Fixes
+
+* **Combobox:** better defaulting ([f237d82](https://github.com/narmi/design_system/commit/f237d82068192313f94e5ad6be622d1bcdc0e25a))
+* **Combobox:** use function instead ([5e40a69](https://github.com/narmi/design_system/commit/5e40a69149df85b707457263447e684ad12e6a42))
+
+## [3.49.0](https://github.com/narmi/design_system/compare/v3.48.0...v3.49.0) (2024-08-27)
+
+
+### Features
+
+* **typescript:** enable type hints in consumers ([bd8b949](https://github.com/narmi/design_system/commit/bd8b94975662237c552ebf75eea7f8df54571a81))
+
+## [3.48.0](https://github.com/narmi/design_system/compare/v3.47.1...v3.48.0) (2024-08-22)
+
+
+### Features
+
+* **Checkbox:** add condensed Checkbox ([8b1a899](https://github.com/narmi/design_system/commit/8b1a89953a2a373d8a7a04264ee5f606419180c0))
+
+
+### Bug Fixes
+
+* **Checkbox:** better comment ([f73fa7f](https://github.com/narmi/design_system/commit/f73fa7f888e2239ba29f46c37a97d136d2749c4a))
+
+### [3.47.1](https://github.com/narmi/design_system/compare/v3.47.0...v3.47.1) (2024-08-09)
+
+
+### Bug Fixes
+
+* **Select:** fix text size for Select error ([42faa0b](https://github.com/narmi/design_system/commit/42faa0b6922f94bfba360a576f44ef9e46a3ce68))
+* **TextInput:** remove unwanted padding between input box and error message ([32228c7](https://github.com/narmi/design_system/commit/32228c74b1fe3766d5aee9690d6d02f34796864c))
+
+## [3.47.0](https://github.com/narmi/design_system/compare/v3.46.0...v3.47.0) (2024-08-08)
+
+
+### Features
+
+* **TextInput:** allow component to control native HTML 'required' attribute ([ea95f84](https://github.com/narmi/design_system/commit/ea95f84190aafb3fdbc500d815a30d9a669bf257))
+
+## [3.46.0](https://github.com/narmi/design_system/compare/v3.45.2...v3.46.0) (2024-08-06)
+
+
+### Features
+
+* **icons:** add up-down arrow icon ([7f866c9](https://github.com/narmi/design_system/commit/7f866c94d9ce01e929cd1f99e3c02a8ad0842fb5))
+
 ### [3.45.2](https://github.com/narmi/design_system/compare/v3.45.1...v3.45.2) (2024-07-30)
 
 

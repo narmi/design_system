@@ -119,7 +119,7 @@ TokenInput.propTypes = {
    * This should be the value of the field in the submitted form.
    */
   fieldValue: PropTypes.string.isRequired,
-  /** Input change calback */
+  /** Input change callback */
   onInputChange: PropTypes.func,
   /** Value of input element */
   inputValue: PropTypes.string,

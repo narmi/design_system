@@ -4,10 +4,10 @@ import Row from "../../src/Row";
 
 /**
  * Component used in helper-classes stories to render
- * an interactive exmaple.
+ * an interactive example.
  *
  * A category from the class manifest is passed in to generate
- * options and show a preivew.
+ * options and show a preview.
  */
 
 const ClassSelector = ({ baseName, classCategory, onChange = () => {} }) => {
@@ -92,7 +92,7 @@ ClassExample.propTypes = {
   signature: PropTypes.string.isRequired,
   /**
    * A single child to render as a preview.
-   * The strigified className from the selector will
+   * The stringified className from the selector will
    * be applied to this element.
    */
   children: PropTypes.node.isRequired,
@@ -106,7 +106,7 @@ ClassExample.propTypes = {
       base: PropTypes.string.isRequired,
       variant1: PropTypes.string.isRequired,
       variant2: PropTypes.string,
-    })
+    }),
   ),
   /** optionally hides debug border from example */
   hideBorder: PropTypes.bool,

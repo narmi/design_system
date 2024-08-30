@@ -18,7 +18,7 @@ const itemToString = (item) =>
   !item?.props ? "" : item.props.searchValue || item.props.value;
 
 /**
- * Check an item component against the tokens list to see if it's currentlly selected
+ * Check an item component against the tokens list to see if it's currently selected
  */
 const isSelected = (selectedItems, item) =>
   selectedItems.map(itemToString).includes(itemToString(item));

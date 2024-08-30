@@ -162,11 +162,13 @@ Checkbox.propTypes = {
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
   /**
-   * `normal` - visually matche a checkbox input
+   * `normal` - visually matches a checkbox input
    *
+   * `condensed` - like `normal`, but without added top margin when there are multiple checkboxes
+   * 
    * `card` - visually present as a toggleable card
    */
-  kind: PropTypes.oneOf(["normal", "card", "table"]),
+  kind: PropTypes.oneOf(["normal", "condensed", "card", "table"]),
 };
 
 export default Checkbox;

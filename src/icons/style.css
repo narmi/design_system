@@ -1,6 +1,6 @@
 @font-face {
   font-family: "icomoon";
-  src: url("fonts/icomoon.woff?edoxd9") format("woff");
+  src: url("fonts/icomoon.woff?18z8tb") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -191,6 +191,9 @@
 }
 .narmi-icon-arrow-up-right:before {
   content: "\e927";
+}
+.narmi-icon-arrow-up-down:before {
+  content: "\e900";
 }
 .narmi-icon-at-sign:before {
   content: "\e928";

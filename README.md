@@ -58,7 +58,7 @@ For full documentation of available classes, see [storybook docs](https://narmi.
 ### Design tokens
 
 All available distributions of design tokens can be found in `dist/tokens`.
-All CSS custom properites from design tokens are already included in the base
+All CSS custom properties from design tokens are already included in the base
 stylesheet, `dist/style.css`.
 
 To request a new distribution, please [file an issue](https://github.com/narmi/design_system/issues/new/choose).
@@ -94,7 +94,7 @@ npm run dev
 | `build:jsdoc`      | builds jsDoc documentation to `dist/`                |
 | `build:tokens`     | builds all distributions of design tokens to `dist/` |
 | `build:components` | builds all components and base stylesheet to `dist/` |
-| `build`            | builds everytyhing                                   |
+| `build`            | builds everything                                    |
 | `test`             | runs all jest tests                                  |
 | `storybook`        | starts storybook in dev server mode on `:6006`       |
 | `watch`            | watches `src` dir, triggering `build` on changes     |
@@ -112,7 +112,7 @@ parse recent git tags and commit messages to determine the new version number, t
 
 #### Major releases
 
-All PRs target `main` unless it contains breaking changes. Any branch continaing breaking change commits should target the open major release branch.
+All PRs target `main` unless it contains breaking changes. Any branch containing breaking change commits should target the open major release branch.
 For example, if NDS is on major version `1`, breaking changes should target the branch `major/v2`.
 
 Branches containing breaking change commits should follow the naming convention `breaking/<branch name>`.
@@ -176,7 +176,7 @@ The best way to approach testing unpublished NDS changes in a consumer is to use
 2. Update the `version` field of package.json to be a beta of the next minor.
    For example, you would change `2.35.2` to `2.36.0-beta.0`.
    DO NOT COMMIT THIS CHANGE.
-3. Publish the package (`npm run publish --tag beta`)
+3. Publish the package (`npm publish --tag beta`)
 4. In your consuming application, you can point the `@narmi/design_system`
    version to the beta version you just published.
 

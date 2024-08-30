@@ -42,7 +42,7 @@ ErrorState.args = {
   label: "Account",
   children: [
     <MultiSelect.Item value="checking1234">Checking (1234)</MultiSelect.Item>,
-    <MultiSelect.Item value="checkint4321">Checking (4321)</MultiSelect.Item>,
+    <MultiSelect.Item value="checking4321">Checking (4321)</MultiSelect.Item>,
   ],
   errorText: "Required",
 };

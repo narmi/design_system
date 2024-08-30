@@ -23,7 +23,7 @@ const _getRowStyle = (alignItems, justifyContent, gapSize) => {
  * Basic flexbox helper that arranges content into a non-wrapping row.
  * `Row` will grow to fill the width of its parent container.
  * Items of `Row` will grow to fit remaining space by default.
- * When a `Row.Item` has a boolean prop of `shrink`, it will shirnk to content width.
+ * When a `Row.Item` has a boolean prop of `shrink`, it will shrink to content width.
  */
 const Row = ({
   alignItems = "top",

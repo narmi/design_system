@@ -8,7 +8,6 @@ import ComboboxItem from "./ComboboxItem";
 import ComboboxHeading from "./ComboboxHeading";
 import ComboboxCategory from "./ComboboxCategory";
 import TextInput from "../TextInput";
-import Error from "../Error";
 import Row from "../Row";
 import { getItemIndex } from "../Select";
 
@@ -101,9 +100,8 @@ export const defaultFilterItemsByInput = (items, inputValue) =>
     return query.toLowerCase().startsWith(inputValue);
   });
 
-
 /**
- * 
+ *
  * @param {Boolean} isOpen whether the combobox is open
  * @returns {React.ReactNode} chevron icon that toggles based on the open state of the combobox
  */
@@ -473,7 +471,7 @@ Combobox.propTypes = {
   testId: PropTypes.string,
   /** Function to render content at the end of the input.
    * Defaults to a function that renders a chevron icon that toggles based on the open state of the combobox.
-   * 
+   *
    * Signature: `(isOpen) => React.ReactNode`
    */
   renderEndContent: PropTypes.func,

@@ -155,8 +155,6 @@ const MultiSelect = ({
       possiblePlacements: ["top-start", "bottom-start"],
     });
 
-  const hasSelectedItem = selectedItems.length > 0;
-
   const renderTokens = () =>
     selectedItems.map((itemComponent, i) => {
       const tokenLabel = itemToString(itemComponent);

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.50.1](https://github.com/narmi/design_system/compare/v3.50.0...v3.50.1) (2024-08-29)
+
+
+### Bug Fixes
+
+* **Combobox, Select:** apply styling to dropdown border, too ([3549899](https://github.com/narmi/design_system/commit/35498995bfde2dd3457cbd389201cced3c9b2e05))
+* **Combobox:** handle lack of error ([b59df52](https://github.com/narmi/design_system/commit/b59df52228f941f93f153bc142669fde3421f654))
+* **Combobox:** support error highlighting on comboboxes with children ([e75a10a](https://github.com/narmi/design_system/commit/e75a10a84b6fd9f9d4296d0450f749d206f78f53))
+
+## [3.50.0](https://github.com/narmi/design_system/compare/v3.49.0...v3.50.0) (2024-08-29)
+
+
+### Features
+
+* **Combobox:** allow custom endContent ([4fa1192](https://github.com/narmi/design_system/commit/4fa1192d75b66b3b3b8a51e0aa58aef2989536d6))
+
+
+### Bug Fixes
+
+* **Combobox:** better defaulting ([f237d82](https://github.com/narmi/design_system/commit/f237d82068192313f94e5ad6be622d1bcdc0e25a))
+* **Combobox:** use function instead ([5e40a69](https://github.com/narmi/design_system/commit/5e40a69149df85b707457263447e684ad12e6a42))
+
 ## [3.49.0](https://github.com/narmi/design_system/compare/v3.48.0...v3.49.0) (2024-08-27)
 
 

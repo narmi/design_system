@@ -46,7 +46,7 @@
     "@babel/preset-typescript": "^7.23.2",
     "@commitlint/cli": "^19",
     "@commitlint/config-conventional": "^19.2.2",
-    "@mdx-js/mdx": "^1.6.22",
+    "@mdx-js/mdx": "^3.0.1",
     "@mdx-js/react": "^1.6.22",
     "@semantic-release/changelog": "^6.0.0",
     "@semantic-release/git": "^10.0.0",

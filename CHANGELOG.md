@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.51.1](https://github.com/narmi/design_system/compare/v3.51.0...v3.51.1) (2024-09-04)
+
+
+### Bug Fixes
+
+* **TokenInput:** allow input to shrink to 8 char width ([45d657c](https://github.com/narmi/design_system/commit/45d657c5e8051e1a79d6d21074d3c37501059df5))
+
 ## [3.51.0](https://github.com/narmi/design_system/compare/v3.50.3...v3.51.0) (2024-09-04)
 
 

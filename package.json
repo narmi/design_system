@@ -1,6 +1,6 @@
 {
   "name": "@narmi/design_system",
-  "version": "3.49.0",
+  "version": "3.51.0",
   "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
   "files": [
@@ -73,7 +73,7 @@
     "copy-webpack-plugin": "^12.0.2",
     "core-js": "^3.15.2",
     "css": "^3.0.0",
-    "css-loader": "^6.2.0",
+    "css-loader": "^7.1.2",
     "eslint": "^8.52.0",
     "eslint-plugin-jest": "^27.6.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
@@ -86,7 +86,7 @@
     "jsdoc-to-markdown": "^8.0.1",
     "mini-css-extract-plugin": "^2.2.0",
     "polished": "^4.1.1",
-    "postcss-loader": "^6.1.1",
+    "postcss-loader": "^8.1.1",
     "postcss-preset-env": "^7.0.1",
     "prettier": "^3.2.5",
     "pretty-quick": "^4",

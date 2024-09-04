@@ -8,7 +8,6 @@ import ComboboxItem from "./ComboboxItem";
 import ComboboxHeading from "./ComboboxHeading";
 import ComboboxCategory from "./ComboboxCategory";
 import TextInput from "../TextInput";
-import Error from "../Error";
 import { getItemIndex } from "../Select";
 
 const noop = () => {};
@@ -100,6 +99,20 @@ export const defaultFilterItemsByInput = (items, inputValue) =>
     return query.toLowerCase().startsWith(inputValue);
   });
 
+
+/**
+ * 
+ * @param {Boolean} isOpen whether the combobox is open
+ * @returns {React.ReactNode} chevron icon that toggles based on the open state of the combobox
+ */
+export const defaultRenderEndContent = (isOpen) => (
+  <span
+    className={`fontSize--l fontColor--primary narmi-icon-${
+      isOpen ? "chevron-up" : "chevron-down"
+    }`}
+  />
+);
+
 /**
  * Autocomplete input component following the accessible
  * [ARIA combobox pattern](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/combobox_role).
@@ -121,6 +134,7 @@ const Combobox = ({
   errorText,
   icon,
   testId,
+  renderEndContent = defaultRenderEndContent,
 }) => {
   const allChildren = React.Children.toArray(children);
   const hasCategories = allChildren.some(
@@ -359,16 +373,11 @@ const Combobox = ({
         data-testid={testId}
       >
         <TextInput
+          error={errorText}
           label={label}
           value={inputValue}
           startIcon={icon}
-          endContent={
-            <span
-              className={`fontSize--l fontColor--primary narmi-icon-${
-                isOpen ? "chevron-up" : "chevron-down"
-              }`}
-            />
-          }
+          endContent={renderEndContent(isOpen)}
           {...getInputProps({
             onFocus: () => {
               if (hasSelectedItem) {
@@ -398,11 +407,13 @@ const Combobox = ({
                   isOpen && displayedItems.length > 0,
                 "nds-combobox-list--bottom": layerSide === "bottom",
                 "nds-combobox-list--top": layerSide === "top",
+                "nds-combobox-list--error": !!errorText,
               },
             ])}
             {...getMenuProps(layerProps)}
             style={{
               width: triggerBounds?.width || "auto",
+              transform: `${errorText ? `translateY(${layerSide === "top" ? "0px" : "-22px"} )` : "none"}`,
               ...layerProps.style,
             }}
           >
@@ -413,7 +424,6 @@ const Combobox = ({
           </ul>,
         )}
       </div>
-      <Error error={errorText} />
     </>
   );
 };
@@ -455,6 +465,12 @@ Combobox.propTypes = {
   icon: PropTypes.oneOf(VALID_ICON_NAMES),
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
+  /** Function to render content at the end of the input.
+   * Defaults to a function that renders a chevron icon that toggles based on the open state of the combobox.
+   * 
+   * Signature: `(isOpen) => React.ReactNode`
+   */
+  renderEndContent: PropTypes.func,
 };
 
 Combobox.Item = ComboboxItem;

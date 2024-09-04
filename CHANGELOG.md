@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.51.0](https://github.com/narmi/design_system/compare/v3.50.3...v3.51.0) (2024-09-04)
+
+
+### Features
+
+* **icons:** add plane icon ([7eeb18c](https://github.com/narmi/design_system/commit/7eeb18c3ee86598d2b796dfbec018ab5b90adac9))
+
 ### [3.50.3](https://github.com/narmi/design_system/compare/v3.50.2...v3.50.3) (2024-09-04)
 
 

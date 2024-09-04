@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.51.2](https://github.com/narmi/design_system/compare/v3.51.1...v3.51.2) (2024-09-04)
+
+
+### Bug Fixes
+
+* **TextInput:** render clear button ([9250b21](https://github.com/narmi/design_system/commit/9250b2188d4d39a682f03cd2d7a5472047e54fc8))
+
+### [3.51.1](https://github.com/narmi/design_system/compare/v3.51.0...v3.51.1) (2024-09-04)
+
+
+### Bug Fixes
+
+* **TokenInput:** allow input to shrink to 8 char width ([45d657c](https://github.com/narmi/design_system/commit/45d657c5e8051e1a79d6d21074d3c37501059df5))
+
+## [3.51.0](https://github.com/narmi/design_system/compare/v3.50.3...v3.51.0) (2024-09-04)
+
+
+### Features
+
+* **icons:** add plane icon ([7eeb18c](https://github.com/narmi/design_system/commit/7eeb18c3ee86598d2b796dfbec018ab5b90adac9))
+
+### [3.50.3](https://github.com/narmi/design_system/compare/v3.50.2...v3.50.3) (2024-09-04)
+
+
+### Bug Fixes
+
+* **RadioButtons:** make error text small font size ([5bc4e0c](https://github.com/narmi/design_system/commit/5bc4e0c22970a9e119da205a722b64baadc96a37))
+
 ### [3.50.2](https://github.com/narmi/design_system/compare/v3.50.1...v3.50.2) (2024-08-30)
 
 

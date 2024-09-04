@@ -139,7 +139,7 @@ TextInput.propTypes = {
   startContent: PropTypes.node,
   /** JSX content slot at input end for custom buttons and icons  */
   endContent: PropTypes.node,
-  /** Display an X at the end of label that clears input and calls onChange on click. Takes precedence over endIcon when input is not empty */
+  /** Display an X at the end of label that clears input and calls onChange on click. */
   showClearButton: PropTypes.bool,
   /** Text of error message to display under the input */
   error: PropTypes.string,

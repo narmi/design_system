@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.51.2](https://github.com/narmi/design_system/compare/v3.51.1...v3.51.2) (2024-09-04)
+
+
+### Bug Fixes
+
+* **TextInput:** render clear button ([9250b21](https://github.com/narmi/design_system/commit/9250b2188d4d39a682f03cd2d7a5472047e54fc8))
+
 ### [3.51.1](https://github.com/narmi/design_system/compare/v3.51.0...v3.51.1) (2024-09-04)
 
 

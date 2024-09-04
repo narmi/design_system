@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.50.3](https://github.com/narmi/design_system/compare/v3.50.2...v3.50.3) (2024-09-04)
+
+
+### Bug Fixes
+
+* **RadioButtons:** make error text small font size ([5bc4e0c](https://github.com/narmi/design_system/commit/5bc4e0c22970a9e119da205a722b64baadc96a37))
+
 ### [3.50.2](https://github.com/narmi/design_system/compare/v3.50.1...v3.50.2) (2024-08-30)
 
 

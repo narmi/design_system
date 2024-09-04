@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
+import Error from "../Error";
 
 /**
 The Narmi RadioButtons component expects an "options" Prop, which is an object where the keys are the radiobutton
@@ -121,12 +122,7 @@ const RadioButtons = ({
           </label>
         );
       })}
-      {hasError && (
-        <div className="fontColor--error">
-          <span className="fontSize--s margin--right--xxs narmi-icon-x-circle" />
-          {error}
-        </div>
-      )}
+      <Error error={error} />
     </div>
   );
 };

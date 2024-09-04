@@ -10,6 +10,11 @@
   .nds-input-column {
     justify-content: center;
     height: 32px;
+
+    // Allow the input to shrink down its width to a minimum of 8 visible chars.
+    // This prevents the input from prematurely wrapping to the second line.
+    flex-basis: min-content;
+    min-width: 8ch;
   }
   input {
     padding: 0 !important;

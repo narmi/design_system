@@ -68,7 +68,7 @@ const Button = ({
         "nds-typography",
         "nds-button",
         `nds-button--${kind}`,
-        `fontSize--${size}`,
+        `nds-button--${size}`,
         {
           resetButton: as === "button",
           "nds-button--disabled": disabled,
@@ -88,7 +88,16 @@ const Button = ({
           </div>
         )}
         <div style={{ visibility: isLoading ? "hidden" : "visible" }}>
-          <Row gapSize="s" alignItems="center">
+          <Row
+            gapSize={
+              {
+                xs: "xs",
+                s: "xs",
+                m: "s",
+              }[size]
+            }
+            alignItems="center"
+          >
             {startIcon && (
               <Row.Item shrink>
                 <Icon name={startIcon} />
@@ -124,11 +133,18 @@ Button.propTypes = {
   /** disables the button and adds a loading spinner when set to `true` */
   isLoading: PropTypes.bool,
   /** style of button to render */
-  kind: PropTypes.oneOf(["primary", "secondary", "negative", "menu", "plain"]),
+  kind: PropTypes.oneOf([
+    "primary",
+    "secondary",
+    "tonal",
+    "negative",
+    "menu",
+    "plain",
+  ]),
   /** type attribute of button element */
   type: PropTypes.oneOf(["submit", "button", "reset"]),
   /** size variant of button */
-  size: PropTypes.oneOf(["xs", "s", "m", "l"]),
+  size: PropTypes.oneOf(["xs", "s", "m"]),
   /** Click callback, with event object passed as argument */
   onClick: PropTypes.func,
   /** Name of Narmi icon to place at the start of the label */

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.52.0](https://github.com/narmi/design_system/compare/v3.51.2...v3.52.0) (2024-09-04)
+
+
+### Features
+
+* **Combobox:** mv selection indicator to right ([8198228](https://github.com/narmi/design_system/commit/8198228de0e6d5a9711bb0bd3e17a040f916c3c1))
+* **MultiSelect:** mv selection indicator to right of item ([2412f09](https://github.com/narmi/design_system/commit/2412f09ed592afaa616bed9ffadbe08c2cff00cb))
+* **Select:** mv selection indicator to right side ([f88eca2](https://github.com/narmi/design_system/commit/f88eca28d40d32bcae30114492e33fabbf0b5410))
+
 ### [3.51.2](https://github.com/narmi/design_system/compare/v3.51.1...v3.51.2) (2024-09-04)
 
 

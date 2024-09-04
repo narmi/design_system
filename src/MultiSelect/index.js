@@ -7,6 +7,7 @@ import cc from "classcat";
 import DropdownTrigger from "../DropdownTrigger";
 import MultiSelectItem from "./MultiSelectItem";
 import FieldToken from "../FieldToken";
+import Row from "../Row";
 
 const noop = () => {};
 
@@ -154,8 +155,6 @@ const MultiSelect = ({
       possiblePlacements: ["top-start", "bottom-start"],
     });
 
-  const hasSelectedItem = selectedItems.length > 0;
-
   const renderTokens = () =>
     selectedItems.map((itemComponent, i) => {
       const tokenLabel = itemToString(itemComponent);
@@ -239,17 +238,20 @@ const MultiSelect = ({
                         highlightedIndex === index,
                       "rounded--top": index === 0,
                       "rounded--bottom": index === items.length - 1,
-                      "nds-select-item--hasGutter": hasSelectedItem,
                     },
                   ])}
                   {...getItemProps({ item, index })}
                   role="option"
                   aria-selected={isSelected(selectedItems, item).toString()}
                 >
-                  {isSelected(selectedItems, item) && (
-                    <span className="narmi-icon-check fontSize--l fontWeight--bold" />
-                  )}
-                  {item}
+                  <Row as="span">
+                    <Row.Item as="span">{item}</Row.Item>
+                    {isSelected(selectedItems, item) && (
+                      <Row.Item as="span" shrink>
+                        <span className="narmi-icon-check fontSize--l fontWeight--bold" />
+                      </Row.Item>
+                    )}
+                  </Row>
                 </li>
               ))}
             </ul>

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.53.0](https://github.com/narmi/design_system/compare/v3.52.0...v3.53.0) (2024-09-04)
+
+
+### Features
+
+* **Button:** add tonal kind; add 's' and 'xs' sizes ([6fb6f43](https://github.com/narmi/design_system/commit/6fb6f43c5380ade8284fcadcdba30bffa58635c6))
+* **Button:** update size variants; update weight ([4d0341f](https://github.com/narmi/design_system/commit/4d0341fce3943a89300b840be1ef4406b7d79cdf))
+
 ## [3.52.0](https://github.com/narmi/design_system/compare/v3.51.2...v3.52.0) (2024-09-04)
 
 

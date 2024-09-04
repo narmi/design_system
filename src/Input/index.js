@@ -2,6 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Error from "../Error";
+import IconButton from "../IconButton";
 
 /*
 The Narmi TextInput component is designed for text-based form fields.
@@ -46,20 +47,6 @@ const Input = ({
     search ? "search" : "",
   ].join(" ");
 
-  const endIconJsx = showClearButton ? (
-    <div
-      className={`nds-input-icon nds-input-close narmi-icon-x`}
-      onClick={clearInput}
-      role="button"
-      tabIndex="0"
-      aria-label="Clear Input"
-    ></div>
-  ) : (
-    <div
-      className={`nds-input-icon nds-input-icon--faded ${endIconClass}`}
-    ></div>
-  );
-
   return (
     <div className={className} onClick={onClick} style={style}>
       <div className="nds-input-box">
@@ -78,7 +65,19 @@ const Input = ({
           {decoration}
           {!multiline ? <label htmlFor={id}>{label}</label> : ""}
         </div>
-        {(endIconClass || showClearButton) && endIconJsx}
+        {endIconClass && (
+          <div
+            className={`nds-input-icon nds-input-icon--faded ${endIconClass}`}
+          ></div>
+        )}
+        {showClearButton && (
+          <IconButton
+            label="Clear"
+            onClick={clearInput}
+            name="x"
+            textSize="l"
+          />
+        )}
         {endContent && <div>{endContent}</div>}
       </div>
       <div className="nds-input-subline">

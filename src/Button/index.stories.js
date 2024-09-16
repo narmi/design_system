@@ -43,20 +43,44 @@ ConfirmAndCancel.parameters = {
 };
 
 export const ButtonSizes = () => (
-  <Row alignItems="center">
-    <Row.Item shrink>
-      <Button kind="plain" label="X-Small Button" size="xs" />
-    </Row.Item>
-    <Row.Item shrink>
-      <Button kind="plain" label="Small Button" size="s" />
-    </Row.Item>
-    <Row.Item shrink>
-      <Button kind="plain" label="Medium Button" size="m" />
-    </Row.Item>
-    <Row.Item shrink>
-      <Button kind="plain" label="Large Button" size="l" />
-    </Row.Item>
-  </Row>
+  <>
+    <div className="margin--bottom--l">
+      <Row alignItems="center">
+        {["m", "s", "xs"].map((size) => (
+          <Row.Item key={size}>
+            <Button label={`${size} Button`} size={size} />
+          </Row.Item>
+        ))}
+      </Row>
+    </div>
+    <div className="margin--bottom--l">
+      <Row alignItems="center">
+        {["m", "s", "xs"].map((size) => (
+          <Row.Item key={size}>
+            <Button kind="secondary" label={`${size} Button`} size={size} />
+          </Row.Item>
+        ))}
+      </Row>
+    </div>
+    <div className="margin--bottom--l">
+      <Row alignItems="center">
+        {["m", "s", "xs"].map((size) => (
+          <Row.Item key={size}>
+            <Button kind="tonal" label={`${size} Button`} size={size} />
+          </Row.Item>
+        ))}
+      </Row>
+    </div>
+    <div className="margin--bottom--l">
+      <Row alignItems="center">
+        {["m", "s", "xs"].map((size) => (
+          <Row.Item key={size}>
+            <Button kind="plain" label={`${size} Button`} size={size} />
+          </Row.Item>
+        ))}
+      </Row>
+    </div>
+  </>
 );
 
 export default {

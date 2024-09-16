@@ -51,15 +51,6 @@
   &--highlighted {
     background: RGBA(var(--theme-rgb-primary), var(--alpha-5));
   }
-  &--hasGutter {
-    padding-left: var(--space-xl) !important;
-  }
-  .narmi-icon-check {
-    position: absolute;
-    left: var(--space-s);
-    top: 50%;
-    transform: translateY(-50%);
-  }
 }
 
 .nds-combobox-category {

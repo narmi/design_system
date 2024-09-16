@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.53.0](https://github.com/narmi/design_system/compare/v3.52.0...v3.53.0) (2024-09-04)
+
+
+### Features
+
+* **Button:** add tonal kind; add 's' and 'xs' sizes ([6fb6f43](https://github.com/narmi/design_system/commit/6fb6f43c5380ade8284fcadcdba30bffa58635c6))
+* **Button:** update size variants; update weight ([4d0341f](https://github.com/narmi/design_system/commit/4d0341fce3943a89300b840be1ef4406b7d79cdf))
+
+## [3.52.0](https://github.com/narmi/design_system/compare/v3.51.2...v3.52.0) (2024-09-04)
+
+
+### Features
+
+* **Combobox:** mv selection indicator to right ([8198228](https://github.com/narmi/design_system/commit/8198228de0e6d5a9711bb0bd3e17a040f916c3c1))
+* **MultiSelect:** mv selection indicator to right of item ([2412f09](https://github.com/narmi/design_system/commit/2412f09ed592afaa616bed9ffadbe08c2cff00cb))
+* **Select:** mv selection indicator to right side ([f88eca2](https://github.com/narmi/design_system/commit/f88eca28d40d32bcae30114492e33fabbf0b5410))
+
+### [3.51.2](https://github.com/narmi/design_system/compare/v3.51.1...v3.51.2) (2024-09-04)
+
+
+### Bug Fixes
+
+* **TextInput:** render clear button ([9250b21](https://github.com/narmi/design_system/commit/9250b2188d4d39a682f03cd2d7a5472047e54fc8))
+
+### [3.51.1](https://github.com/narmi/design_system/compare/v3.51.0...v3.51.1) (2024-09-04)
+
+
+### Bug Fixes
+
+* **TokenInput:** allow input to shrink to 8 char width ([45d657c](https://github.com/narmi/design_system/commit/45d657c5e8051e1a79d6d21074d3c37501059df5))
+
+## [3.51.0](https://github.com/narmi/design_system/compare/v3.50.3...v3.51.0) (2024-09-04)
+
+
+### Features
+
+* **icons:** add plane icon ([7eeb18c](https://github.com/narmi/design_system/commit/7eeb18c3ee86598d2b796dfbec018ab5b90adac9))
+
 ### [3.50.3](https://github.com/narmi/design_system/compare/v3.50.2...v3.50.3) (2024-09-04)
 
 

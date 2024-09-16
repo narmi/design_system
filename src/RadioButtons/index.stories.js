@@ -131,6 +131,25 @@ AsRadioButtonsWithDetailsAlwaysShown.parameters = {
   },
 };
 
+export const AsCheckmark = Template.bind({});
+AsCheckmark.args = {
+  options: {
+    OptionA: "A",
+    OptionB: "B",
+    OptionC: "C",
+  },
+  name: "card_options",
+  kind: "checkmark",
+};
+AsCheckmark.parameters = {
+  docs: {
+    description: {
+      story:
+        "Renders a radio group styled as labels with a checkmark indicating selection",
+    },
+  },
+};
+
 export const AsCard = Template.bind({});
 AsCard.args = {
   options: {
@@ -188,8 +207,7 @@ AsRow.args = {
 AsRow.parameters = {
   docs: {
     description: {
-      story:
-        "Renders a radio group styled as a row.",
+      story: "Renders a radio group styled as a row.",
     },
   },
 };

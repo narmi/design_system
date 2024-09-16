@@ -8,15 +8,17 @@ import cc from "classcat";
  * builds style object for `Row`
  * @param {String} alignItems
  * @param {String} gapSize
+ * @param {Boolean} allowWrap
  * @returns {Object} style object for `Row`
  */
-const _getRowStyle = (alignItems, justifyContent, gapSize) => {
+const _getRowStyle = (alignItems, justifyContent, gapSize, allowWrap) => {
   let result = {};
   if (gapSize) {
     result.gap = gapSize === "none" ? "0" : `var(--space-${gapSize})`;
   }
   result.alignItems = alignItems === "top" ? "flex-start" : alignItems;
   result.justifyContent = `flex-${justifyContent}`;
+  result.flexWrap = allowWrap ? "wrap" : "nowrap";
   return result;
 };
 
@@ -34,11 +36,12 @@ const Row = ({
   className = "",
   children,
   testId,
+  allowWrap = false,
 }) => (
   <AsElement
     elementType={as}
     className={cc([className, "nds-row"])}
-    style={_getRowStyle(alignItems, justifyContent, gapSize)}
+    style={_getRowStyle(alignItems, justifyContent, gapSize, allowWrap)}
     data-testid={testId}
   >
     {children}

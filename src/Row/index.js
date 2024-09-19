@@ -67,6 +67,8 @@ Row.propTypes = {
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
+  /** Allows items to wrap when true */
+  allowWrap: PropTypes.bool,
 };
 
 Row.Item = RowItem;

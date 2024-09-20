@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Popover from "./";
 import Button from "../Button";
-import Checkbox from "../Checkbox";
 
 const Template = (args) => (
   <div
@@ -75,21 +74,32 @@ export const Controlled = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <Checkbox
-        label="Show popover"
-        checked={isOpen}
-        onChange={() => setIsOpen(!isOpen)}
+      <Button
+        kind="secondary"
+        size="s"
+        label="show popover"
+        onClick={() => setIsOpen(!isOpen)}
       />
       <div className="margin--top--m">
         <Popover
           content={<div className="padding--all--m">📦 Any content</div>}
           isOpen={isOpen}
+          onUserDismiss={() => setIsOpen(false)}
+          onUserEnable={() => setIsOpen(true)}
         >
-          <div>Arbitrary target</div>
+          <div>Popover trigger and positioning reference</div>
         </Popover>
       </div>
     </>
   );
+};
+Controlled.parameters = {
+  docs: {
+    description: {
+      story:
+        "In this example, the user may click on either the button, or the text below to open the Popover. The `children` (trigger element) of Popover will always be the positioning reference. The `onUserEnable` prop can be used to subscribe to user interactions on the trigger, and `onUserDismiss` is used to subscribe to user events that dismiss the popover.",
+    },
+  },
 };
 
 export default {

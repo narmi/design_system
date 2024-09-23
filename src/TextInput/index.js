@@ -142,7 +142,7 @@ TextInput.propTypes = {
   /** Display an X at the end of label that clears input and calls onChange on click. */
   showClearButton: PropTypes.bool,
   /** Text of error message to display under the input */
-  error: PropTypes.string,
+  error: PropTypes.oneOf([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
   /** Maximum number of characters allowed in the input */
   maxLength: PropTypes.number,
   /** Optional value for `data-testid` attribute */

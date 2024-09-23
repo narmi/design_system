@@ -25,7 +25,13 @@ Compact.args = {
 
 export const Breadcrumbs = Template.bind({});
 Breadcrumbs.args = {
-  breadcrumbs: [<a href="#">Breadcrumb 1</a>, "Current Page"],
+  breadcrumbs: [
+    <a href="#">Breadcrumb 1</a>,
+    <span className="whiteSpace--truncate">
+      We love a long breadcrumb dont we
+    </span>,
+    "Current Page",
+  ],
   actions: [<Button kind="primary" label="Primary Action" />],
 };
 

@@ -26,9 +26,8 @@ export interface PageHeaderProps {
  *
  * This component adds a navigation landmark for accessibility via the `header` HTML element.
  *
- * __Optional but recommended for accessibility:__
- * - Make the main content area a `main` HTML element
- * - Make this component a direct child of a `main` HTML element
+ * __Accessibility:__
+ * Ideally, `PageHeader` should be a child of the `main` element.
  */
 const PageHeader = ({
   kind = "hero",

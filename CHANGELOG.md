@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.57.1](https://github.com/narmi/design_system/compare/v3.57.0...v3.57.1) (2024-09-23)
+
+
+### Bug Fixes
+
+* **Dialog:** prevent overflow gradient text overlap ([d773924](https://github.com/narmi/design_system/commit/d7739248ec05d49ae7399e31a9a565cfbf036aad))
+
 ## [3.57.0](https://github.com/narmi/design_system/compare/v3.56.2...v3.57.0) (2024-09-23)
 
 

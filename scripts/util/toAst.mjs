@@ -2,7 +2,7 @@ import { parse } from "@babel/parser";
 
 const options = {
   sourceType: "module",
-  plugins: ["jsx", "classProperties"],
+  plugins: ["jsx", "classProperties", "typescript"],
 };
 
 /**

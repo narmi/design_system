@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.57.0](https://github.com/narmi/design_system/compare/v3.56.2...v3.57.0) (2024-09-23)
+
+
+### Features
+
+* **timelineEvent:** Add support for a tooltip to TimelineEvent component ([f5f342d](https://github.com/narmi/design_system/commit/f5f342df1b17a22488cfdfa27611b39976a1773f))
+
 ### [3.56.2](https://github.com/narmi/design_system/compare/v3.56.1...v3.56.2) (2024-09-23)
 
 

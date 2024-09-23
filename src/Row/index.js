@@ -60,7 +60,7 @@ Row.propTypes = {
   as: PropTypes.oneOf(["div", "ul"]),
   /** Controls className while maintaining default nds-row styling if left unspecified */
   className: PropTypes.string,
-  /** Children must be of type `Row.Item` */
+  /** Optional: controls must be of type `Row.Item` */
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,

@@ -11,12 +11,13 @@
   background-color: var(--bgColor-scrimDark);
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: flex-end;
   min-height: 100vh;
   z-index: 3;
 
   // create spaces around viewport edges for tablet or larger
   @include atMediaUp("s") {
+    align-items: flex-start;
     padding: var(--space-default);
     padding-top: 120px;
   }
@@ -47,11 +48,13 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  border-top-right-radius: var(--border-radius-m);
+  border-top-left-radius: var(--border-radius-m);
 
   // the modal dialog takes over the whole screen by default
   // (small viewports)
-  height: 100vh; // fall back to 100vh for older mobile browsers
-  height: 100dvh; // prevents toolbar overlap in modern mobile browsers
+  height: 96vh; // fall back to 196vh for older mobile browsers
+  height: 96dvh; // prevents toolbar overlap in modern mobile browsers
   width: 100vw;
 
   // for tablet or larger, display the modal dialog as a floating box.
@@ -65,21 +68,37 @@
 }
 
 .nds-dialog-header {
-  margin: 0 var(--space-xl);
-  padding-top: var(--space-xl);
-  padding-bottom: var(--space-xxs);
+  background-color: var(--bgColor-cloudGrey);
+  border-radius: var(--border-radius-default) var(--border-radius-default) 0 0;
+  padding: var(--space-s);
 
   h4 {
     margin: 0;
     padding: 0;
     font-family: var(--font-family-default);
-    font-size: var(--font-size-l);
+    font-size: var(--font-size-default);
     color: var(--font-color-heading);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  @include atMediaUp("s") {
+    background-color: var(--color-white);
+    margin: 0 var(--space-xl);
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xxs);
+    border-radius: 0;
+
+    h4 {
+      font-size: var(--font-size-l);
+      font-weight: var(--font-weight-bold);
+    }
   }
 }
 
 .nds-dialog-header--bordered {
-  border-bottom: var(--border-size-m) solid var(--theme-primary);
+  @include atMediaUp("s") {
+    border-bottom: var(--border-size-m) solid var(--theme-primary);
+  }
 }
 
 .nds-dialog-header--banner {
@@ -97,7 +116,10 @@
   font-size: var(--font-size-l) !important;
   color: var(--font-color-primary);
   right: var(--space-m);
-  top: var(--space-m);
+  top: var(--space-xs);
+  @include atMediaUp("s") {
+    top: var(--space-m);
+  }
 }
 
 .nds-dialog-closeButton--banner {

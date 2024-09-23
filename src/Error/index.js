@@ -12,16 +12,20 @@ const ErrorLine = ({ errorLine, marginTop = "xxs" }) => {
 };
 ErrorLine.propTypes = {
   errorLine: PropTypes.string,
-  marginTop: PropTypes.oneOf(["xxs", "xs", "s", "m", "l", "xl", "xxl", "none"])
+  marginTop: PropTypes.oneOf(["xxs", "xs", "s", "m", "l", "xl", "xxl", "none"]),
 };
 
 const Error = ({ error, marginTop = "xxs" }) => {
   if (!error) return null;
   if (Array.isArray(error)) {
     return (
-      <div className="nds-input-errorlist">
+      <div className="nds-input-errorlist" aria-live="polite">
         {error.map((errorLine, index) => (
-          <ErrorLine key={errorLine} errorLine={errorLine} marginTop={index ? marginTop : "xxs"} />
+          <ErrorLine
+            key={errorLine}
+            errorLine={errorLine}
+            marginTop={index ? marginTop : "xxs"}
+          />
         ))}
       </div>
     );
@@ -29,9 +33,11 @@ const Error = ({ error, marginTop = "xxs" }) => {
   return <ErrorLine errorLine={error} marginTop={marginTop} />;
 };
 Error.propTypes = {
-  error: PropTypes.oneOf([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-  marginTop: PropTypes.oneOf(["xxs", "xs", "s", "m", "l", "xl", "xxl", "none"])
+  error: PropTypes.oneOf([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
+  marginTop: PropTypes.oneOf(["xxs", "xs", "s", "m", "l", "xl", "xxl", "none"]),
 };
-
 
 export default Error;

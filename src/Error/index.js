@@ -21,7 +21,7 @@ const Error = ({ error, marginTop = "xxs" }) => {
     return (
       <div className="nds-input-errorlist">
         {error.map((errorLine, index) => (
-          <ErrorLine key={index} errorLine={errorLine} marginTop={index ? marginTop : "xxs"} />
+          <ErrorLine key={errorLine} errorLine={errorLine} marginTop={index ? marginTop : "xxs"} />
         ))}
       </div>
     );

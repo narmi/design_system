@@ -10,6 +10,7 @@ module.exports = {
     "plugin:jsx-a11y/recommended",
     "plugin:json/recommended",
     "plugin:storybook/recommended",
+    "plugin:compat/recommended",
   ],
   env: {
     node: true,

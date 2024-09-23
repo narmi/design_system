@@ -58,7 +58,7 @@ IconButton.propTypes = {
   /** disables the icon button when set to `true` */
   disabled: PropTypes.bool,
   /** style of icon button to render */
-  kind: PropTypes.oneOf(["action", "plain"]),
+  kind: PropTypes.oneOf(["action", "plain", "themed"]),
   /** type attribute for underlying HTML button element */
   type: PropTypes.string,
   /** Optional text size of the icon in the icon button defaults different for different kinds (plain/action)*/

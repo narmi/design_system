@@ -1,3 +1,7 @@
+.nds-dialog {
+  --overflow-gradient-height: 20px;
+}
+
 .nds-shim--dark {
   position: fixed;
   top: 0;
@@ -122,6 +126,12 @@
 .nds-dialog-footer--overflowing {
   position: relative;
 
+  // prevent edge case where last line of text is obscured by the overflow
+  // gradient above the dialog footer
+  .nds-dialog-content {
+    padding-bottom: var(--overflow-gradient-height);
+  }
+
   &::before {
     content: "";
     position: absolute;
@@ -129,7 +139,7 @@
     right: 0;
     top: -20px;
     /* stack on top of footer border */
-    height: 20px;
+    height: var(--overflow-gradient-height);
     background-image: linear-gradient(
       to top,
       var(--color-white),

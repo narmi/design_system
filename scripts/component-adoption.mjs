@@ -12,7 +12,7 @@ import ignore from "./util/ignore-patterns.mjs";
 
 if (!process.argv[2]) {
   throw new Error(
-    "Missing target path. Example: `npm run stats:components <TARGET_DIR>`"
+    "Missing target path. Example: `npm run stats:components <TARGET_DIR>`",
   );
 }
 
@@ -27,7 +27,7 @@ const TARGET_DIR = process.argv[2];
 const printResults = (componentCounts, unusedComponents) => {
   const ansi = { bold: "\x1b[1m", reset: "\x1b[0m" };
   const totalImports = Object.values(componentCounts).reduce(
-    (acc, curr) => acc + curr
+    (acc, curr) => acc + curr,
   );
   const countTable = new Table({
     head: ["#", "Component Name"],
@@ -42,7 +42,7 @@ const printResults = (componentCounts, unusedComponents) => {
   console.log(`TOTAL NDS IMPORTS: ${totalImports}`);
 
   console.log(
-    `\n${ansi.bold}${unusedComponents.length} components are NOT used in ${TARGET_DIR}:${ansi.reset}`
+    `\n${ansi.bold}${unusedComponents.length} components are NOT used in ${TARGET_DIR}:${ansi.reset}`,
   );
   console.log(`${unusedComponents.join(", ")}\n`);
 };
@@ -56,49 +56,53 @@ const _toImportedComponentsList = (fileContent) =>
     .program.body.filter((o) => o.type === "ImportDeclaration") // only import statements
     .filter((o) => o.source.value.includes(PACKAGE_NAME)) // only NDS imports
     .flatMap((o) =>
-      o.specifiers.map((s) => (s.imported ? s.imported.name : s))
+      o.specifiers.map((s) => (s.imported ? s.imported.name : s)),
     ); // return a flat array of component names in NDS imports
 
-glob(`${resolve(TARGET_DIR)}/**/*.+(js|jsx)`, { ignore }, (error, files) => {
-  if (error) {
-    throw new Error(error);
-  }
+glob(
+  `${resolve(TARGET_DIR)}/**/*.+(js|jsx|ts|tsx)`,
+  { ignore },
+  (error, files) => {
+    if (error) {
+      throw new Error(error);
+    }
 
-  // initialize a totals object so that unused components are included
-  // in our importCountMap as "0"
-  const totals = getComponentNames().reduce((acc, curr) => {
-    acc[curr] = 0;
-    return acc;
-  }, {});
-
-  // @returns { ComponentName: <importCount>, ... }
-  const importCountMap = files
-    .map((path) => readFileSync(path).toString()) // map filepaths to file content strings
-    .filter((fileContent) => fileContent.includes(PACKAGE_NAME)) // only include files with an NDS import
-    .flatMap(_toImportedComponentsList) // return an array of every NDS component import instance
-    .reduce((acc, curr) => {
-      // tally imports into our totals obj and return the resulting count map
-      acc[curr] = acc[curr] + 1;
-      return acc;
-    }, totals);
-
-  // sorted object of adopted components and their counts
-  /* eslint-disable no-unused-vars */
-  const adoptedComponentCounts = Object.entries(importCountMap)
-    .filter(([key, value]) => value >= 1)
-    .sort(([aKey, aValue], [bKey, bValue]) => bValue - aValue)
-    .reduce((acc, [key, value]) => {
-      acc[key] = value;
+    // initialize a totals object so that unused components are included
+    // in our importCountMap as "0"
+    const totals = getComponentNames().reduce((acc, curr) => {
+      acc[curr] = 0;
       return acc;
     }, {});
-  /* eslint-enable no-unused-vars */
 
-  // list of component names that are not used
-  /* eslint-disable no-unused-vars */
-  const unadoptedComponentNames = Object.entries(importCountMap)
-    .filter(([key, value]) => value === 0)
-    .flatMap(([key]) => key);
-  /* eslint-enable no-unused-vars */
+    // @returns { ComponentName: <importCount>, ... }
+    const importCountMap = files
+      .map((path) => readFileSync(path).toString()) // map filepaths to file content strings
+      .filter((fileContent) => fileContent.includes(PACKAGE_NAME)) // only include files with an NDS import
+      .flatMap(_toImportedComponentsList) // return an array of every NDS component import instance
+      .reduce((acc, curr) => {
+        // tally imports into our totals obj and return the resulting count map
+        acc[curr] = acc[curr] + 1;
+        return acc;
+      }, totals);
 
-  printResults(adoptedComponentCounts, unadoptedComponentNames);
-});
+    // sorted object of adopted components and their counts
+    /* eslint-disable no-unused-vars */
+    const adoptedComponentCounts = Object.entries(importCountMap)
+      .filter(([key, value]) => value >= 1)
+      .sort(([aKey, aValue], [bKey, bValue]) => bValue - aValue)
+      .reduce((acc, [key, value]) => {
+        acc[key] = value;
+        return acc;
+      }, {});
+    /* eslint-enable no-unused-vars */
+
+    // list of component names that are not used
+    /* eslint-disable no-unused-vars */
+    const unadoptedComponentNames = Object.entries(importCountMap)
+      .filter(([key, value]) => value === 0)
+      .flatMap(([key]) => key);
+    /* eslint-enable no-unused-vars */
+
+    printResults(adoptedComponentCounts, unadoptedComponentNames);
+  },
+);

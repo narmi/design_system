@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.57.0](https://github.com/narmi/design_system/compare/v3.56.2...v3.57.0) (2024-09-23)
+
+
+### Features
+
+* **timelineEvent:** Add support for a tooltip to TimelineEvent component ([f5f342d](https://github.com/narmi/design_system/commit/f5f342df1b17a22488cfdfa27611b39976a1773f))
+
+### [3.56.2](https://github.com/narmi/design_system/compare/v3.56.1...v3.56.2) (2024-09-23)
+
+
+### Bug Fixes
+
+* **MenuButton:** restore icon rendering ([9f3541d](https://github.com/narmi/design_system/commit/9f3541d531369ad1591df95e3673c7a76a014395))
+
+### [3.56.1](https://github.com/narmi/design_system/compare/v3.56.0...v3.56.1) (2024-09-23)
+
+
+### Bug Fixes
+
+* **Error:** aria announce errors ([1c65554](https://github.com/narmi/design_system/commit/1c6555414c7e2badef106b479d092d7007eda977))
+
+## [3.56.0](https://github.com/narmi/design_system/compare/v3.55.0...v3.56.0) (2024-09-23)
+
+
+### Features
+
+* **IconButton:** add `themed` variant ([8c81cc5](https://github.com/narmi/design_system/commit/8c81cc57396e32dea13c38fcacfc889c3d486fac))
+
+## [3.55.0](https://github.com/narmi/design_system/compare/v3.54.0...v3.55.0) (2024-09-23)
+
+
+### Features
+
+* **Error:** enable displaying of multiple errors ([dc9d475](https://github.com/narmi/design_system/commit/dc9d47596a5f458fefd8c7081bdc508cc0dd4c09))
+
+## [3.54.0](https://github.com/narmi/design_system/compare/v3.53.0...v3.54.0) (2024-09-20)
+
+
+### Features
+
+* **Popover:** add onUserEnable prop for controlled mode ([e71e697](https://github.com/narmi/design_system/commit/e71e697b8d5b5f69fcc801f74f24362cdb199324))
+
 ## [3.53.0](https://github.com/narmi/design_system/compare/v3.52.0...v3.53.0) (2024-09-04)
 
 

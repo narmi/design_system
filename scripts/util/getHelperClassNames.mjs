@@ -24,7 +24,7 @@ const getHelperClassNames = () => {
     .filter((selector) => !selector.includes("[")) // no attribute selectors
     .filter((selector) => !selector.includes(" ")) // no ancestry selectors
     .filter((selector) => selector.includes("--")) // must have `base--variant` pattern
-    .map((selector) => selector.replace(".", "")); // return classes as they'red used in DOM attributes
+    .map((selector) => selector.replace(".", "")); // return classes as they're used in DOM attributes
 
   return [...new Set(result)];
 };

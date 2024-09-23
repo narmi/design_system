@@ -117,6 +117,6 @@ export default {
   argTypes: {
     name: { options: ["", ...VALID_ICON_NAMES] },
     size: { options: ["xs", "s", "m", "l"] },
-    kind: { options: ["plain", "action"] },
+    kind: { options: ["plain", "action", "themed"] },
   },
 };

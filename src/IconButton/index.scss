@@ -34,6 +34,16 @@
   }
 }
 
+.nds-icon-button--themed {
+  --button-radius: 50%;
+  color: var(--theme-primary);
+
+  &:hover {
+    background-color: rgba(var(--theme-rgb-primary), var(--alpha-5));
+    text-decoration: none;
+  }
+}
+
 .nds-icon-button--plain {
   height: rem(24px);
   width: rem(24px);

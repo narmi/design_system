@@ -29,6 +29,7 @@ const Popover = ({
   closeOnContentClick = false,
   isOpen,
   onUserDismiss = noop,
+  onUserEnable = noop,
 }) => {
   const isControlled = isOpen === true || isOpen === false;
   const [open, setOpen] = useState(false);
@@ -52,12 +53,18 @@ const Popover = ({
 
   const togglePopover = (event) => {
     event.stopPropagation();
-    setOpen(!open);
+    setOpen((open) => {
+      if (!open) {
+        onUserEnable();
+      }
+      return !open;
+    });
   };
 
   const handleKeyDown = ({ key }) => {
     if (key === "Enter") {
       setOpen(true);
+      onUserEnable();
     }
   };
 
@@ -124,7 +131,7 @@ const Popover = ({
               </div>
             </div>
           )}
-        </>
+        </>,
       )}
     </>
   );
@@ -164,10 +171,15 @@ Popover.propTypes = {
   /** If isOpen is set the component becomes a controlled component. Use the `onUserDismiss` callback to update. */
   isOpen: PropTypes.bool,
   /**
-   * Callback to handle user taking an action to dismiss the popover
+   * Callback to handle user taking an action to __dismiss__ the popover
    * (click outside, Escape key)
    */
   onUserDismiss: PropTypes.func,
+  /**
+   * Callback to handle user taking an action to __enable__ the popover
+   * (click or key interaction on the trigger button rendered in Popover)
+   */
+  onUserEnable: PropTypes.func,
 };
 
 export default Popover;

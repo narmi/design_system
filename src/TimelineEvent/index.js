@@ -80,10 +80,10 @@ TimelineEvent.propTypes = {
   /**
    * Timeline event content (any JSX)
    */
-  tooltip: PropTypes.string,
   /**
    * Hover tooltip content for the icon
    */
+  tooltip: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.56.2](https://github.com/narmi/design_system/compare/v3.56.1...v3.56.2) (2024-09-23)
+
+
+### Bug Fixes
+
+* **MenuButton:** restore icon rendering ([9f3541d](https://github.com/narmi/design_system/commit/9f3541d531369ad1591df95e3673c7a76a014395))
+
 ### [3.56.1](https://github.com/narmi/design_system/compare/v3.56.0...v3.56.1) (2024-09-23)
 
 

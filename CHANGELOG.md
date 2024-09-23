@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.56.0](https://github.com/narmi/design_system/compare/v3.55.0...v3.56.0) (2024-09-23)
+
+
+### Features
+
+* **IconButton:** add `themed` variant ([8c81cc5](https://github.com/narmi/design_system/commit/8c81cc57396e32dea13c38fcacfc889c3d486fac))
+
 ## [3.55.0](https://github.com/narmi/design_system/compare/v3.54.0...v3.55.0) (2024-09-23)
 
 

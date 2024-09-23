@@ -58,9 +58,9 @@ Row.propTypes = {
   justifyContent: PropTypes.oneOf(["start", "end"]),
   /** The html element to render as the root node of `Row` */
   as: PropTypes.oneOf(["div", "ul"]),
-  /** Controls className while maintaining default nds-row styling if left unspecified */
+  /** Optional: controls className while maintaining default nds-row styling if left unspecified */
   className: PropTypes.string,
-  /** Optional: controls must be of type `Row.Item` */
+  /** Children must be of type `Row.Item` */
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,

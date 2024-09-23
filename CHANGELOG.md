@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.58.0](https://github.com/narmi/design_system/compare/v3.57.1...v3.58.0) (2024-09-23)
+
+
+### Features
+
+* **Dialog:** use condensed header in mobile viewports ([de8b016](https://github.com/narmi/design_system/commit/de8b016b0aff489c49d03d2e389bb7472d02baa6))
+
 ### [3.57.1](https://github.com/narmi/design_system/compare/v3.57.0...v3.57.1) (2024-09-23)
 
 

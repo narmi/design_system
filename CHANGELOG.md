@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.55.0](https://github.com/narmi/design_system/compare/v3.54.0...v3.55.0) (2024-09-23)
+
+
+### Features
+
+* **Error:** enable displaying of multiple errors ([dc9d475](https://github.com/narmi/design_system/commit/dc9d47596a5f458fefd8c7081bdc508cc0dd4c09))
+
 ## [3.54.0](https://github.com/narmi/design_system/compare/v3.53.0...v3.54.0) (2024-09-20)
 
 

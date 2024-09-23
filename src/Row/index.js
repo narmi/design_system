@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import AsElement from "../util/AsElement";
 import RowItem from "./RowItem";
+import cc from "classcat";
 
 /**
  * builds style object for `Row`
@@ -30,12 +31,13 @@ const Row = ({
   justifyContent = "start",
   gapSize = "l",
   as = "div",
+  className = "",
   children,
   testId,
 }) => (
   <AsElement
     elementType={as}
-    className="nds-row"
+    className={cc([className, "nds-row"])}
     style={_getRowStyle(alignItems, justifyContent, gapSize)}
     data-testid={testId}
   >
@@ -56,6 +58,8 @@ Row.propTypes = {
   justifyContent: PropTypes.oneOf(["start", "end"]),
   /** The html element to render as the root node of `Row` */
   as: PropTypes.oneOf(["div", "ul"]),
+  /** Optional: controls className while maintaining default nds-row styling if left unspecified */
+  className: PropTypes.string,
   /** Children must be of type `Row.Item` */
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
   /** Optional value for `data-testid` attribute */

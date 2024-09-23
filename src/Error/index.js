@@ -11,7 +11,7 @@ const ErrorLine = ({ errorLine, marginTop = "xxs" }) => {
   );
 };
 ErrorLine.propTypes = {
-  error: PropTypes.string,
+  errorLine: PropTypes.string,
   marginTop: PropTypes.oneOf(["xxs", "xs", "s", "m", "l", "xl", "xxl", "none"])
 };
 

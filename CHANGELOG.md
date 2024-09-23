@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.56.1](https://github.com/narmi/design_system/compare/v3.56.0...v3.56.1) (2024-09-23)
+
+
+### Bug Fixes
+
+* **Error:** aria announce errors ([1c65554](https://github.com/narmi/design_system/commit/1c6555414c7e2badef106b479d092d7007eda977))
+
 ## [3.56.0](https://github.com/narmi/design_system/compare/v3.55.0...v3.56.0) (2024-09-23)
 
 

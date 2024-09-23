@@ -2,12 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import iconSelection from "src/icons/selection.json";
 import cc from "classcat";
+import ToolTip from "../Tooltip"
 
 export const VALID_ICON_NAMES = iconSelection.icons.map(
   (icon) => icon.properties.name
 );
 
-const TimelineEvent = ({ kind = "node", icon, imgUrl, initial, children }) => {
+const TimelineEvent = ({ kind = "node", icon, imgUrl, initial, tooltip, children }) => {
   const useInitial = !icon && !imgUrl && initial;
   return (
     <div
@@ -28,8 +29,8 @@ const TimelineEvent = ({ kind = "node", icon, imgUrl, initial, children }) => {
           ])}
           style={{ backgroundImage: imgUrl ? `url(${imgUrl})` : "none" }}
         >
-          {useInitial && <span>{initial}</span>}
-          {icon && <span className={`narmi-icon-${icon}`} />}
+          {useInitial && (tooltip ? <ToolTip text={tooltip}><span>{initial}</span></ToolTip> : <span>{initial}</span>)}
+          {icon && (tooltip ? <ToolTip text={tooltip}><span className={`narmi-icon-${icon}`} /></ToolTip> : <span className={`narmi-icon-${icon}`} />)}
         </div>
         {kind !== "start" && (
           <svg
@@ -79,6 +80,10 @@ TimelineEvent.propTypes = {
   /**
    * Timeline event content (any JSX)
    */
+  /**
+   * Hover tooltip content for the icon
+   */
+  tooltip: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),

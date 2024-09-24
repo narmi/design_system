@@ -5,6 +5,7 @@ import iconSelection from "src/icons/selection.json";
 import AsElement from "src/util/AsElement";
 import Row from "src/Row";
 import Spinner from "./Spinner";
+import useContrastColor from "../hooks/useContrastColor";
 
 export const VALID_ICON_NAMES = iconSelection?.icons.map(
   (icon) => icon.properties.name,
@@ -35,6 +36,10 @@ const Button = ({
   ariaLabel = null,
   ...otherProps
 }) => {
+  const { getTextProps } = useContrastColor({
+    backgroundVar: "--theme-primary",
+  });
+
   const isButtonElement = as === "button";
 
   // support legacy method of passing label as children
@@ -104,7 +109,9 @@ const Button = ({
               </Row.Item>
             )}
             <Row.Item>
-              <span className="nds-button-label">{buttonLabel}</span>
+              <span className="nds-button-label" {...getTextProps()}>
+                {buttonLabel}
+              </span>
             </Row.Item>
             {endIcon && (
               <Row.Item shrink>

@@ -111,6 +111,7 @@
   "license": "SEE LICENSE IN LICSENSE.md, VENDOR_LICENSE.md",
   "dependencies": {
     "classcat": "^5.0.3",
+    "color-parse": "^2.0.2",
     "downshift": "^6.1.7",
     "eslint-plugin-json": "^3.1.0",
     "flatpickr": "^4.6.12",

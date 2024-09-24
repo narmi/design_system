@@ -4,7 +4,11 @@
       "heading": { "value": "{color.narmi.black.value}" },
       "primary": { "value": "{color.narmi.grey.value}" },
       "secondary": { "value": "#6c6c6c" },
-      "hint": { "value": "{color.narmi.lightGrey.value}" }
+      "hint": { "value": "{color.narmi.lightGrey.value}" },
+      "heading-inverted": { "value": "{color.narmi.white.value}" },
+      "primary-inverted": { "value": "rgba(255,255,255,0.854)" },
+      "secondary-inverted": { "value": "rgba(255,255,255,0.423)" },
+      "hint-inverted": { "value": "rgba(255,255,255,0.298)" }
     }
   }
 }

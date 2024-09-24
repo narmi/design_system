@@ -23,6 +23,7 @@ const Drawer = ({
   onPrev = null,
   showClose = true,
   showControls = true,
+  footer,
   children,
   position = "right",
   depth = "70%",
@@ -209,6 +210,7 @@ const Drawer = ({
       />
       {navigationContainerJSX}
       {childrenJSX}
+      {footer && <div className="drawer--footer">{footer}</div>}
     </div>
   );
 
@@ -251,6 +253,10 @@ Drawer.propTypes = {
    * Determines whether the next and prev buttons show.
    */
   showControls: PropTypes.bool,
+  /**
+   * Shows a sticky footer (when provided).
+   */
+  footer: PropTypes.node,
   /**
    * Sets the position from which the drawers open.
    * Valid values are `right`, `left`, `bottom`, `top`.

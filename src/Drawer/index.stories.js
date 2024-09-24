@@ -23,6 +23,72 @@ const CONTENTS = [
   </>,
 ];
 
+const LONG_CONTENT = (
+  <>
+    <h3>
+      This content area will become scrollable whenever the content overflows
+      its container
+    </h3>
+    <p>
+      Lorem ipsum dolor sit amet. Ea fugiat dolore quo possimus adipisci est
+      ipsum libero ab dolores minima ut facere rerum? Aut vitae sint ut nemo
+      nisi ut tempore voluptas. Eum adipisci quasi eum praesentium libero est
+      quidem consequatur At voluptatum debitis et laborum ducimus aut eaque
+      eligendi.
+    </p>
+    <p>
+      Ut alias eligendi ut dolorem eius rem consectetur ullam et natus nihil. Et
+      maiores dolores hic nesciunt quibusdam ut laboriosam earum qui quas
+      sapiente in molestiae accusantium.
+    </p>
+    <p>
+      Ut ducimus amet quo deleniti repellendus in illo eaque 33 nihil quis
+      eveniet deleniti qui sapiente quia At repellendus veritatis. Qui
+      voluptatem culpa et fugit debitis ut fugit quidem sit omnis deserunt qui
+      sequi placeat. Non voluptatem molestiae et explicabo voluptas ut facilis
+      quia?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet. Ea fugiat dolore quo possimus adipisci est
+      ipsum libero ab dolores minima ut facere rerum? Aut vitae sint ut nemo
+      nisi ut tempore voluptas. Eum adipisci quasi eum praesentium libero est
+      quidem consequatur At voluptatum debitis et laborum ducimus aut eaque
+      eligendi.
+    </p>
+    <p>
+      Ut alias eligendi ut dolorem eius rem consectetur ullam et natus nihil. Et
+      maiores dolores hic nesciunt quibusdam ut laboriosam earum qui quas
+      sapiente in molestiae accusantium.
+    </p>
+    <p>
+      Ut ducimus amet quo deleniti repellendus in illo eaque 33 nihil quis
+      eveniet deleniti qui sapiente quia At repellendus veritatis. Qui
+      voluptatem culpa et fugit debitis ut fugit quidem sit omnis deserunt qui
+      sequi placeat. Non voluptatem molestiae et explicabo voluptas ut facilis
+      quia?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet. Ea fugiat dolore quo possimus adipisci est
+      ipsum libero ab dolores minima ut facere rerum? Aut vitae sint ut nemo
+      nisi ut tempore voluptas. Eum adipisci quasi eum praesentium libero est
+      quidem consequatur At voluptatum debitis et laborum ducimus aut eaque
+      eligendi.
+    </p>
+    <p>
+      Ut alias eligendi ut dolorem eius rem consectetur ullam et natus nihil. Et
+      maiores dolores hic nesciunt quibusdam ut laboriosam earum qui quas
+      sapiente in molestiae accusantium.
+    </p>
+    <p>
+      Ut ducimus amet quo deleniti repellendus in illo eaque 33 nihil quis
+      eveniet deleniti qui sapiente quia At repellendus veritatis. Qui
+      voluptatem culpa et fugit debitis ut fugit quidem sit omnis deserunt qui
+      sequi placeat. Non voluptatem molestiae et explicabo voluptas ut facilis
+      quia?
+    </p>
+  </>
+);
+
 const BaseTemplate = (args) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -99,73 +165,34 @@ WithNavigation.parameters = {
 export const ScrollingContentWithoutNavigation = BaseTemplate.bind({});
 ScrollingContentWithoutNavigation.args = {
   showControls: false,
-  children: (
-    <>
-      <h3>
-        This content area will become scrollable whenever the content overflows
-        its container
-      </h3>
-      <p>
-        Lorem ipsum dolor sit amet. Ea fugiat dolore quo possimus adipisci est
-        ipsum libero ab dolores minima ut facere rerum? Aut vitae sint ut nemo
-        nisi ut tempore voluptas. Eum adipisci quasi eum praesentium libero est
-        quidem consequatur At voluptatum debitis et laborum ducimus aut eaque
-        eligendi.
-      </p>
-      <p>
-        Ut alias eligendi ut dolorem eius rem consectetur ullam et natus nihil.
-        Et maiores dolores hic nesciunt quibusdam ut laboriosam earum qui quas
-        sapiente in molestiae accusantium.
-      </p>
-      <p>
-        Ut ducimus amet quo deleniti repellendus in illo eaque 33 nihil quis
-        eveniet deleniti qui sapiente quia At repellendus veritatis. Qui
-        voluptatem culpa et fugit debitis ut fugit quidem sit omnis deserunt qui
-        sequi placeat. Non voluptatem molestiae et explicabo voluptas ut facilis
-        quia?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet. Ea fugiat dolore quo possimus adipisci est
-        ipsum libero ab dolores minima ut facere rerum? Aut vitae sint ut nemo
-        nisi ut tempore voluptas. Eum adipisci quasi eum praesentium libero est
-        quidem consequatur At voluptatum debitis et laborum ducimus aut eaque
-        eligendi.
-      </p>
-      <p>
-        Ut alias eligendi ut dolorem eius rem consectetur ullam et natus nihil.
-        Et maiores dolores hic nesciunt quibusdam ut laboriosam earum qui quas
-        sapiente in molestiae accusantium.
-      </p>
-      <p>
-        Ut ducimus amet quo deleniti repellendus in illo eaque 33 nihil quis
-        eveniet deleniti qui sapiente quia At repellendus veritatis. Qui
-        voluptatem culpa et fugit debitis ut fugit quidem sit omnis deserunt qui
-        sequi placeat. Non voluptatem molestiae et explicabo voluptas ut facilis
-        quia?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet. Ea fugiat dolore quo possimus adipisci est
-        ipsum libero ab dolores minima ut facere rerum? Aut vitae sint ut nemo
-        nisi ut tempore voluptas. Eum adipisci quasi eum praesentium libero est
-        quidem consequatur At voluptatum debitis et laborum ducimus aut eaque
-        eligendi.
-      </p>
-      <p>
-        Ut alias eligendi ut dolorem eius rem consectetur ullam et natus nihil.
-        Et maiores dolores hic nesciunt quibusdam ut laboriosam earum qui quas
-        sapiente in molestiae accusantium.
-      </p>
-      <p>
-        Ut ducimus amet quo deleniti repellendus in illo eaque 33 nihil quis
-        eveniet deleniti qui sapiente quia At repellendus veritatis. Qui
-        voluptatem culpa et fugit debitis ut fugit quidem sit omnis deserunt qui
-        sequi placeat. Non voluptatem molestiae et explicabo voluptas ut facilis
-        quia?
-      </p>
-    </>
-  ),
+  children: LONG_CONTENT,
 };
 ScrollingContentWithoutNavigation.parameters = {
+  docs: {
+    description: {
+      story:
+        "The Drawer will render open or closed based on the isOpen prop passed in. Use the onUserDismiss callback to determine when to change the value of isOpen.",
+    },
+  },
+};
+
+export const ScrollingContentWithFooter = BaseTemplate.bind({});
+ScrollingContentWithFooter.args = {
+  showControls: false,
+  children: (
+    <>
+      {LONG_CONTENT}
+      {LONG_CONTENT}
+    </>
+  ),
+  footer: (
+    <div>
+      FOOTER HERE
+      <Button>Footer</Button>
+    </div>
+  ),
+};
+ScrollingContentWithFooter.parameters = {
   docs: {
     description: {
       story:

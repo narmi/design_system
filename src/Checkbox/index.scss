@@ -4,10 +4,17 @@
   padding-top: var(--space-s);
 }
 
-// normal checkboxes git a bit of extra spacing
+// condensed checkboxes get no extra top spacing;
+// any extra spacing should be applied by the consumer
+.nds-checkbox-container--condensed ~ .nds-checkbox-container--condensed {
+  padding-top: 0;
+}
+
+// normal checkboxes get a bit of extra spacing
 .nds-checkbox-container--normal ~ .nds-checkbox-container--normal {
   margin-top: var(--space-default);
 }
+
 
 // reset paragraph spacing in markdown labels
 .nds-checkbox-label p {

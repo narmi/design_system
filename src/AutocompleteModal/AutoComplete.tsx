@@ -58,10 +58,8 @@ const AutoComplete = ({
     initialInputValue: "",
     onInputValueChange({ inputValue }) {
       setItems(
-        // @ts-expect-error downshift related typing
         inputValue?.length > 0 ? filterItems(allItems, inputValue) : allItems,
       );
-      // @ts-expect-error downshift related typing
       onInputChange(inputValue);
     },
     onSelectedItemChange({ selectedItem }) {

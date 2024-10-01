@@ -64,7 +64,6 @@ const MultiSelect = ({
   /** @see https://www.downshift-js.com/use-multiple-selection/#usage-with-select  */
   const {
     getSelectedItemProps,
-    getDropdownProps,
     addSelectedItem,
     removeSelectedItem,
     selectedItems,
@@ -191,22 +190,20 @@ const MultiSelect = ({
         id={name}
         value={fieldValue || selectedItems.map(itemToString).join(",")}
       />
-      <DropdownTrigger
-        disabled={disabled}
-        isOpen={isOpen}
-        labelText={label}
-        startContent={renderTokens()}
-        errorText={errorText}
-        labelProps={{ ...getLabelProps() }}
-        {...getToggleButtonProps(
-          getDropdownProps({
-            ...triggerProps,
-          }),
-        )}
-        style={{
-          ...triggerProps.style,
-        }}
-      />
+      <div {...triggerProps}>
+        <DropdownTrigger
+          disabled={disabled}
+          isOpen={isOpen}
+          labelText={label}
+          startContent={renderTokens()}
+          errorText={errorText}
+          labelProps={{ ...getLabelProps() }}
+          {...getToggleButtonProps()}
+          style={{
+            ...triggerProps.style,
+          }}
+        />
+      </div>
       {renderLayer(
         <div
           className={cc([

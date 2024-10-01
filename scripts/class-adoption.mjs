@@ -7,7 +7,7 @@ import ignore from "./util/ignore-patterns.mjs";
 
 if (!process.argv[2]) {
   throw new Error(
-    "Missing target path. Example: `npm run stats:classes <TARGET_DIR>`"
+    "Missing target path. Example: `npm run stats:classes <TARGET_DIR>`",
   );
 }
 
@@ -21,7 +21,7 @@ const CLASSES = getHelperClassNames();
 const printResults = (countMap) => {
   const ansi = { bold: "\x1b[1m", reset: "\x1b[0m" };
   const totalClasses = Object.values(countMap).reduce(
-    (acc, curr) => acc + curr
+    (acc, curr) => acc + curr,
   );
   const classTable = new Table({
     head: ["#", "Class Name"],
@@ -31,7 +31,7 @@ const printResults = (countMap) => {
     classTable.push([v, k]);
   });
   console.log(
-    `\n${ansi.bold}Helper class usage in ${TARGET_DIR}:${ansi.reset}`
+    `\n${ansi.bold}Helper class usage in ${TARGET_DIR}:${ansi.reset}`,
   );
   console.log(classTable.toString());
   console.log(`TOTAL CLASSES USED: ${totalClasses}\n`);
@@ -48,36 +48,40 @@ const getNumMatches = (content, className) => {
   return (content.match(rx) || []).length;
 };
 
-glob(`${resolve(TARGET_DIR)}/**/*.+(js|jsx)`, { ignore }, (error, files) => {
-  if (error) {
-    throw new Error(error);
-  }
+glob(
+  `${resolve(TARGET_DIR)}/**/*.+(js|jsx|ts|tsx)`,
+  { ignore },
+  (error, files) => {
+    if (error) {
+      throw new Error(error);
+    }
 
-  // initialize an object with a count of 0 for every helper class
-  const totals = CLASSES.reduce((acc, curr) => {
-    acc[curr] = 0;
-    return acc;
-  }, {});
-
-  const classCountMap = files
-    .map((path) => readFileSync(path).toString())
-    .reduce((acc, curr) => {
-      // check each file for matches on every available helper class
-      // if matches exist, increment totals key by occurrence count
-      CLASSES.forEach((className) => {
-        acc[className] = acc[className] + getNumMatches(curr, className);
-      });
+    // initialize an object with a count of 0 for every helper class
+    const totals = CLASSES.reduce((acc, curr) => {
+      acc[curr] = 0;
       return acc;
-    }, totals);
+    }, {});
 
-  // don't report on classes that are not found
-  const filteredCountMap = Object.entries(classCountMap).reduce(
-    (acc, [k, v]) => {
-      if (v > 0) acc[k] = v;
-      return acc;
-    },
-    {}
-  );
+    const classCountMap = files
+      .map((path) => readFileSync(path).toString())
+      .reduce((acc, curr) => {
+        // check each file for matches on every available helper class
+        // if matches exist, increment totals key by occurrence count
+        CLASSES.forEach((className) => {
+          acc[className] = acc[className] + getNumMatches(curr, className);
+        });
+        return acc;
+      }, totals);
 
-  printResults(filteredCountMap);
-});
+    // don't report on classes that are not found
+    const filteredCountMap = Object.entries(classCountMap).reduce(
+      (acc, [k, v]) => {
+        if (v > 0) acc[k] = v;
+        return acc;
+      },
+      {},
+    );
+
+    printResults(filteredCountMap);
+  },
+);

@@ -196,3 +196,11 @@ button:-moz-focusring,
   -webkit-appearance: button;
   font: inherit;
 }
+
+// Unset user agent definition list styles
+dl,
+dt,
+dd {
+  padding: unset;
+  margin: unset;
+}

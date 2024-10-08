@@ -27,6 +27,7 @@ declare const LoadingShim;
 declare const LoadingSkeleton;
 declare const MenuButton;
 declare const MultiSelect;
+declare const PageHeader;
 declare const Pagination;
 declare const PlainButton;
 declare const ProgressBar;
@@ -73,6 +74,7 @@ export {
   LoadingSkeleton,
   MenuButton,
   MultiSelect,
+  PageHeader,
   Pagination,
   PlainButton,
   ProgressBar,

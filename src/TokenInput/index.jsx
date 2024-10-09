@@ -79,9 +79,6 @@ const TokenInput = ({
         label={label}
         disabled={disabled}
         onChange={onInputChange}
-        onBlur={() => {
-          onInputChange(INPUT_RESET_EVENT);
-        }}
         value={inputValue}
         startContent={
           <div

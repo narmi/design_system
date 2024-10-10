@@ -1,6 +1,7 @@
 /**
  * Typed Components
  */
+import AutocompleteModal from "./AutocompleteModal";
 import SeparatorList from "./SeparatorList";
 import Slider from "./Slider";
 
@@ -51,6 +52,7 @@ declare const formatDate;
 
 export * from "./types/Icon.types";
 export {
+  AutocompleteModal,
   SeparatorList,
   Slider,
   Alert,

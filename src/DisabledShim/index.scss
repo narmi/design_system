@@ -1,0 +1,15 @@
+.nds-disabledShim {
+  position: relative;
+}
+.nds-disabledShim--disabled::after {
+  content: "";
+  user-select: none;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--bgColor-scrimLight);
+  z-index: 2;
+}

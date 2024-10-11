@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.61.0](https://github.com/narmi/design_system/compare/v3.60.0...v3.61.0) (2024-10-11)
+
+
+### Features
+
+* **RadioButtons:** add checkmark variant ([3385811](https://github.com/narmi/design_system/commit/3385811963b4b7de5667b5eef064de6684062c44))
+
 ## [3.60.0](https://github.com/narmi/design_system/compare/v3.59.0...v3.60.0) (2024-10-11)
 
 

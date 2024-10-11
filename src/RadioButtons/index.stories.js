@@ -150,6 +150,32 @@ AsCard.parameters = {
   },
 };
 
+export const AsCardWithInput = Template.bind({});
+AsCardWithInput.args = {
+  alwaysShowDetails: true,
+  options: {
+    ["You will complete the form"]: {
+      value: "A",
+      details: "You'll enter all necessary details for this owner.",
+    },
+    ["Owner will complete the form"]: {
+      value: "B",
+      details:
+        "Enter the owner's name and email and they'll securely input their own information.",
+    },
+  },
+  name: "card_options",
+  kind: "input-card",
+};
+AsCardWithInput.parameters = {
+  docs: {
+    description: {
+      story:
+        "When radio options are displayed as cards on a busier screen, use `input-card` to render a faux radio input inside a card as an extra affordance, helping the user recognize it as an interactive element.",
+    },
+  },
+};
+
 export const AsCardWithDetails = Template.bind({});
 AsCardWithDetails.args = {
   options: {
@@ -188,8 +214,7 @@ AsRow.args = {
 AsRow.parameters = {
   docs: {
     description: {
-      story:
-        "Renders a radio group styled as a row.",
+      story: "Renders a radio group styled as a row.",
     },
   },
 };

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.58.3](https://github.com/narmi/design_system/compare/v3.58.2...v3.58.3) (2024-10-08)
+
+
+### Bug Fixes
+
+* **Dialog:** remove left padding from header in desktop mode ([88453b6](https://github.com/narmi/design_system/commit/88453b6ed05e73047e3657033041ad48d23b7ffb))
+
+### [3.58.2](https://github.com/narmi/design_system/compare/v3.58.1...v3.58.2) (2024-10-01)
+
+
+### Bug Fixes
+
+* **MultiSelect:** prevent field autofocus ([4ce3d16](https://github.com/narmi/design_system/commit/4ce3d168998c215fa23dbb990cb2fec60b8138f9))
+
 ### [3.58.1](https://github.com/narmi/design_system/compare/v3.58.0...v3.58.1) (2024-09-26)
 
 

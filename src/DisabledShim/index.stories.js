@@ -12,7 +12,7 @@ Overview.args = {
   isDisabled: false,
   children: (
     <>
-      <h2>This card conains a DisabledShim</h2>
+      <h2>This card contains a DisabledShim</h2>
       <p>
         Toggle the <code>isDisabled</code> prop below to see the shim appear.
       </p>

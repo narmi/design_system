@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.60.0](https://github.com/narmi/design_system/compare/v3.59.0...v3.60.0) (2024-10-11)
+
+
+### Features
+
+* **DisabledShim:** add component to disable arbitrary areas ([b027b1b](https://github.com/narmi/design_system/commit/b027b1b24e4a32d5918a1a6fb05c35c625864d2d))
+
 ## [3.59.0](https://github.com/narmi/design_system/compare/v3.58.3...v3.59.0) (2024-10-11)
 
 

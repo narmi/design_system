@@ -103,7 +103,7 @@ const RadioButtons = ({
                 role="presentation"
                 className={cc([
                   "nds-radio",
-                  { "narmi-icon-check": kind === "card" },
+                  { "narmi-icon-check": ["card", "checkmark"].includes(kind) },
                 ])}
               />
             </div>
@@ -151,8 +151,10 @@ RadioButtons.propTypes = {
    * `card` - display input and label as a toggleable card
    *
    * `input-card` - display toggleable card with a faux radio input
+   *
+   * `checkmark` - uses a checkmark icon instead of a faux radio
    */
-  kind: PropTypes.oneOf(["normal", "row", "card", "input-card"]),
+  kind: PropTypes.oneOf(["normal", "row", "card", "input-card", "checkmark"]),
   /**
    * Error message. When passed, the `error` prop will
    * render the radio group in an error state.

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.59.0](https://github.com/narmi/design_system/compare/v3.58.3...v3.59.0) (2024-10-11)
+
+
+### Features
+
+* **RadioButtons:** add kind 'input-card' ([6f11219](https://github.com/narmi/design_system/commit/6f112190ebb5f3d66511c59a1aa345a795d65d8d))
+
 ### [3.58.3](https://github.com/narmi/design_system/compare/v3.58.2...v3.58.3) (2024-10-08)
 
 

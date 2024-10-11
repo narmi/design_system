@@ -136,6 +136,48 @@
   }
 }
 
+// checkmark style variant
+.nds-radiobuttons--checkmark {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  .nds-radiobuttons-label-container {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+    gap: var(--space-xs);
+  }
+  .nds-radio {
+    visibility: hidden;
+    font-weight: var(--font-weight-bold);
+    flex-shrink: 1;
+    &:before {
+      font-size: var(--font-size-l);
+      font-weight: var(--font-weight-bold);
+    }
+  }
+  .nds-radiobuttons-option {
+    margin: 0;
+    &:hover .nds-radio,
+    &.nds-radiobuttons-option--focused .nds-radio,
+    &.nds-radiobuttons-option--checked .nds-radio {
+      visibility: visible;
+    }
+    &:hover .nds-radio,
+    &.nds-radiobuttons-option--focused .nds-radio {
+      color: var(--color-lightGrey);
+    }
+    &.nds-radiobuttons-option--checked {
+      color: var(--theme-primary);
+      .nds-radio {
+        &:before {
+          color: var(--theme-primary);
+        }
+      }
+    }
+  }
+}
+
 // card style radiobuttons variant
 .nds-radiobuttons--card {
   display: block;

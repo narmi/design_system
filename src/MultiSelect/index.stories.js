@@ -119,6 +119,36 @@ ControlledSelectedItems.parameters = {
   },
 };
 
+export const CustomTokenValues = () => {
+  const [selectedItems, setSelectedItems] = useState(["film"]);
+  const handleSelectedItemsChange = (selectedItems) => {
+    setSelectedItems(selectedItems);
+  };
+  return (
+    <MultiSelect
+      name="custom-token-labels"
+      label="Favorite Icons"
+      selectedItems={selectedItems}
+      onSelectedItemsChange={handleSelectedItemsChange}
+    >
+      <MultiSelect.Item value="film" tokenLabel="Movies">
+        <span className="narmi-icon-film padding--right--xs" /> Film
+      </MultiSelect.Item>
+      <MultiSelect.Item value="coffee" tokenLabel="Hot Bean Water">
+        <span className="narmi-icon-coffee padding--right--xs" /> Coffee
+      </MultiSelect.Item>
+    </MultiSelect>
+  );
+};
+CustomTokenValues.parameters = {
+  docs: {
+    description: {
+      story:
+        "The `tokenValue` prop may be used on MultiSelect items to declare the string that should render in the token when the item is selected.",
+    },
+  },
+};
+
 export default {
   title: "Components/MultiSelect",
   component: MultiSelect,

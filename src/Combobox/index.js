@@ -7,6 +7,7 @@ import { useLayer } from "react-laag";
 import ComboboxItem from "./ComboboxItem";
 import ComboboxHeading from "./ComboboxHeading";
 import ComboboxCategory from "./ComboboxCategory";
+import ComboboxAction from "./ComboboxAction";
 import TextInput from "../TextInput";
 import Row from "../Row";
 import { getItemIndex } from "../Select";
@@ -18,13 +19,25 @@ export const VALID_ICON_NAMES = iconSelection.icons.map(
 );
 
 /**
+ * @param {Object} item Combobox.{Action|Item|Heading} component
+ * @returns {Boolean} true if the item is a Combobox.Action
+ */
+export const isAction = (item) => {
+  let result = false;
+  if (item && item.props) {
+    result = "label" in item.props;
+  }
+  return result;
+};
+
+/**
  * @param {Object} component a Combobox.Item or Combobox.Heading component
- * @returns {Boolean} true if the item is a selectable Combobox.Item
+ * @returns {Boolean} true if the item is a selectable Combobox.Item or Action
  */
 export const isSelectable = (component) => {
   let result = false;
   if (component) {
-    result = "value" in component.props;
+    result = isAction(component) || "value" in component.props;
   }
   return result;
 };
@@ -173,6 +186,7 @@ const Combobox = ({
     inputValue,
     setInputValue,
     openMenu,
+    closeMenu,
     reset,
   } = useCombobox({
     items: displayedItems,
@@ -182,11 +196,12 @@ const Combobox = ({
       // Typeahead behavior - we adjust the list of available options passed
       // into `useCombobox` by filtering the initial items list from input value
       if (!disableFiltering) {
+        const actionItems = items.filter(isAction);
         const filteredItems = filterItemsByInput(
-          items.filter(isSelectable),
+          items.filter((item) => !isAction(item)).filter(isSelectable),
           inputValue.toLowerCase(),
         );
-        setDisplayedItems(filteredItems);
+        setDisplayedItems([...filteredItems, ...actionItems]);
       }
 
       // reset all downshift state when the input is cleared
@@ -198,12 +213,17 @@ const Combobox = ({
       onInputChange(inputValue);
     },
     onSelectedItemChange: ({ selectedItem }) => {
-      let newSelection = "";
-      if (selectedItem) {
-        newSelection = selectedItem.props.value;
+      if (isAction(selectedItem)) {
+        selectedItem.props.onSelect();
+        closeMenu();
+      } else {
+        let newSelection = "";
+        if (selectedItem) {
+          newSelection = selectedItem.props.value;
+        }
+        onChange(newSelection);
+        onInputChange(newSelection);
       }
-      onChange(newSelection);
-      onInputChange(newSelection);
     },
     // <https://www.downshift-js.com/use-select#state-reducer>
     stateReducer: (state, actionAndChanges) => {
@@ -248,6 +268,7 @@ const Combobox = ({
 
   // renders a single combobox item
   const renderItem = (item, index) => {
+    const isActionItem = isAction(item);
     let itemJsx = (
       <li
         key={`${item}-${index}`}
@@ -268,6 +289,7 @@ const Combobox = ({
             "nds-combobox-item",
             "alignChild--left--center padding--x--s",
             {
+              "nds-combobox-action": isActionItem,
               "padding--y--xs": !hasCategories,
               "nds-combobox-item--highlighted": highlightedIndex === index,
               "rounded--top": index === 0,
@@ -276,15 +298,27 @@ const Combobox = ({
           ])}
           {...getItemProps({ item, index })}
         >
-          <Row as="span">
-            <Row.Item as="span">{item}</Row.Item>
-            {hasSelectedItem &&
-              selectedItem.props.value === item.props.value && (
-                <Row.Item as="span" shrink>
-                  <span className="narmi-icon-check fontSize--l fontWeight--bold" />
-                </Row.Item>
-              )}
-          </Row>
+          {isActionItem && (
+            <Row as="span" gapSize="xxs">
+              <Row.Item as="span" shrink>
+                <span className="narmi-icon-plus fontWeight--bold" />
+              </Row.Item>
+              <Row.Item as="span">
+                <span className="fontWeight--semibold">{item.props.label}</span>
+              </Row.Item>
+            </Row>
+          )}
+          {!isActionItem && (
+            <Row as="span">
+              <Row.Item as="span">{item}</Row.Item>
+              {hasSelectedItem &&
+                selectedItem.props.value === item.props.value && (
+                  <Row.Item as="span" shrink>
+                    <span className="narmi-icon-check fontSize--l fontWeight--bold" />
+                  </Row.Item>
+                )}
+            </Row>
+          )}
         </li>
       );
     }
@@ -480,4 +514,5 @@ Combobox.propTypes = {
 Combobox.Item = ComboboxItem;
 Combobox.Heading = ComboboxHeading;
 Combobox.Category = ComboboxCategory;
+Combobox.Action = ComboboxAction;
 export default Combobox;

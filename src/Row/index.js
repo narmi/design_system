@@ -57,7 +57,7 @@ Row.propTypes = {
   /** Controls horizontal flex justification */
   justifyContent: PropTypes.oneOf(["start", "end"]),
   /** The html element to render as the root node of `Row` */
-  as: PropTypes.oneOf(["div", "ul"]),
+  as: PropTypes.oneOf(["span", "div", "ul"]),
   /** Optional: controls className while maintaining default nds-row styling if left unspecified */
   className: PropTypes.string,
   /** Children must be of type `Row.Item` */

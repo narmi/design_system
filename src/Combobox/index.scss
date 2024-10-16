@@ -13,7 +13,7 @@
   max-height: 40vh;
   overflow-y: scroll;
   z-index: 4;
-  
+
   &--error {
     border: 1px solid var(--color-errorDark);
   }
@@ -51,6 +51,10 @@
   &--highlighted {
     background: RGBA(var(--theme-rgb-primary), var(--alpha-5));
   }
+}
+
+.nds-combobox-action {
+  color: var(--theme-secondary) !important;
 }
 
 .nds-combobox-category {

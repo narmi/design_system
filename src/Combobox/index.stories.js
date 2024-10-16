@@ -226,6 +226,33 @@ CustomFiltering.parameters = {
   },
 };
 
+export const WithActions = (args) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <Combobox label="Select Account" {...args}>
+        <Combobox.Item value="Primary Checking - 4567" />
+        <Combobox.Item value="Secondary Checking - 9876" />
+        <Combobox.Item value="Primary Savings - 1234" />
+        <Combobox.Item value="Cheese Fund - 5432" />
+        <Combobox.Action
+          onSelect={() => {
+            setIsOpen(true);
+          }}
+          label="Do Action"
+        />
+      </Combobox>
+      <Dialog
+        title="You selected an action"
+        isOpen={isOpen}
+        onUserDismiss={() => setIsOpen(false)}
+      >
+        <div className="padding--y--s">🎬 Action!</div>
+      </Dialog>
+    </>
+  );
+};
+
 export default {
   title: "Components/Combobox",
   component: Combobox,

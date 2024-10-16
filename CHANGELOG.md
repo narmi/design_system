@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.63.1](https://github.com/narmi/design_system/compare/v3.63.0...v3.63.1) (2024-10-16)
+
+
+### Bug Fixes
+
+* **MultiSelect:** apply even spacing to tokens; hide label on selection ([cc23142](https://github.com/narmi/design_system/commit/cc23142de233a29f284f5c33e5f4224c0d02f100))
+
 ## [3.63.0](https://github.com/narmi/design_system/compare/v3.62.1...v3.63.0) (2024-10-16)
 
 

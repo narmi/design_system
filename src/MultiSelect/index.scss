@@ -39,3 +39,10 @@
     background: RGBA(var(--theme-rgb-primary), var(--alpha-5));
   }
 }
+
+.nds-multiselect-tokensList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-s);
+  margin-right: var(--space-s); // make room for the right caret
+}

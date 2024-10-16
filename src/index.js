@@ -9,6 +9,7 @@ import CollapsibleCard from "./CollapsibleCard";
 import Combobox from "./Combobox";
 import DateInput from "./DateInput";
 import Dialog from "./Dialog";
+import DisabledShim from "./DisabledShim";
 import Drawer from "./Drawer";
 import Dropdown from "./Dropdown";
 import DropdownTrigger from "./DropdownTrigger";
@@ -55,6 +56,7 @@ export {
   Combobox,
   DateInput,
   Dialog,
+  DisabledShim,
   Drawer,
   Dropdown,
   DropdownTrigger,

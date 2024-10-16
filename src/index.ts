@@ -2,6 +2,7 @@
  * Typed Components
  */
 import AutocompleteModal from "./AutocompleteModal";
+import DisabledShim from "./DisabledShim";
 import SeparatorList from "./SeparatorList";
 import Slider from "./Slider";
 
@@ -52,9 +53,13 @@ declare const formatDate;
 
 export * from "./types/Icon.types";
 export {
+  // typed  
   AutocompleteModal,
+  DisabledShim,
   SeparatorList,
   Slider,
+
+  // untyped
   Alert,
   Button,
   Checkbox,

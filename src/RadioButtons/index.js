@@ -79,7 +79,10 @@ const RadioButtons = ({
                 "nds-radiobuttons-option--checked": checkedValue == inputValue,
                 "nds-radiobuttons-option--focused": focusedValue == inputValue,
                 "nds-radiobuttons-option--error": hasError,
-                "padding--all rounded--all border--all": kind === "card",
+                "padding--all rounded--all border--all": [
+                  "card",
+                  "input-card",
+                ].includes(kind),
               },
             ])}
             key={inputValue}
@@ -100,7 +103,7 @@ const RadioButtons = ({
                 role="presentation"
                 className={cc([
                   "nds-radio",
-                  { "narmi-icon-check": kind === "card" },
+                  { "narmi-icon-check": ["card", "checkmark"].includes(kind) },
                 ])}
               />
             </div>
@@ -146,8 +149,12 @@ RadioButtons.propTypes = {
    * `normal` - display input and label normally
    *
    * `card` - display input and label as a toggleable card
+   *
+   * `input-card` - display toggleable card with a faux radio input
+   *
+   * `checkmark` - uses a checkmark icon instead of a faux radio
    */
-  kind: PropTypes.oneOf(["normal", "row", "card"]),
+  kind: PropTypes.oneOf(["normal", "row", "card", "input-card", "checkmark"]),
   /**
    * Error message. When passed, the `error` prop will
    * render the radio group in an error state.

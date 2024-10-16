@@ -34,7 +34,7 @@ RowItem.propTypes = {
    */
   shrink: PropTypes.bool,
   /** The html element to render as the root node of `Row` */
-  as: PropTypes.oneOf(["span", "div", "li"]),
+  as: PropTypes.oneOf(["div", "span", "li"]),
   /** Optional: controls className while maintaining default nds-row-item styling if left unspecified */
   className: PropTypes.string,
   children: PropTypes.oneOfType([

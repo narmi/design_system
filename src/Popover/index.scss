@@ -1,4 +1,6 @@
 .nds-popover {
   z-index: 999;
-  box-shadow: var(--elevation-middle);
+  &--elevated {
+    box-shadow: var(--elevation-middle);
+  }
 }

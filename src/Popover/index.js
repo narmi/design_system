@@ -1,9 +1,11 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import React, { useState, useEffect } from "react";
+import cc from "classcat";
 import PropTypes from "prop-types";
 import { useLayer } from "react-laag";
 import FocusLock from "react-focus-lock";
-import noop from "lodash";
+
+const noop = () => {};
 
 /**
  * Generic Popover component. Renders a floating element that can contain any content,
@@ -28,6 +30,8 @@ const Popover = ({
   testId,
   closeOnContentClick = false,
   isOpen,
+  autoFocus = false,
+  hasShadow = true,
   onUserDismiss = noop,
   onUserEnable = noop,
 }) => {
@@ -53,12 +57,11 @@ const Popover = ({
 
   const togglePopover = (event) => {
     event.stopPropagation();
-    setOpen((open) => {
-      if (!open) {
-        onUserEnable();
-      }
-      return !open;
-    });
+    if (isControlled) {
+      isOpen ? onUserDismiss() : onUserEnable();
+    } else {
+      setOpen((open) => !open);
+    }
   };
 
   const handleKeyDown = ({ key }) => {
@@ -122,12 +125,18 @@ const Popover = ({
           {shouldRenderPopover && (
             <div
               {...layerProps}
-              className="nds-typography nds-popover rounded--all bgColor--white"
+              className={cc([
+                "nds-typography nds-popover",
+                "rounded--all bgColor--white",
+                {
+                  "nds-popover--elevated": hasShadow,
+                },
+              ])}
               style={layerStyle}
               data-testid={testId}
             >
               <div tabIndex={-1}>
-                <FocusLock autoFocus={false}>{popoverContent}</FocusLock>
+                <FocusLock autoFocus={autoFocus}>{popoverContent}</FocusLock>
               </div>
             </div>
           )}
@@ -180,6 +189,16 @@ Popover.propTypes = {
    * (click or key interaction on the trigger button rendered in Popover)
    */
   onUserEnable: PropTypes.func,
+  /**
+   * When set to `true`, the first focusable element will automatically receive focus
+   * whenever the popover opens
+   */
+  autoFocus: PropTypes.bool,
+  /**
+   * When set to `false` the popover positioned element will not have a box shadow.
+   * Useful for adding a custom box shadow.
+   */
+  hasShadow: PropTypes.bool,
 };
 
 export default Popover;

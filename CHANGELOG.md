@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.63.0](https://github.com/narmi/design_system/compare/v3.62.1...v3.63.0) (2024-10-16)
+
+
+### Features
+
+* **AutocompleteModal:** adds popup autocomplete component ([d8ff0d6](https://github.com/narmi/design_system/commit/d8ff0d63ae09e2c31cb50dbe38eafe2ab9cf90ce))
+
 ### [3.62.1](https://github.com/narmi/design_system/compare/v3.62.0...v3.62.1) (2024-10-16)
 
 

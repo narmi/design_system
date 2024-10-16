@@ -2,8 +2,7 @@
 import React, { useState } from "react";
 import Item from "./Item";
 import Popover from "../Popover";
-import AutoComplete from "./AutoComplete";
-import { AutoCompleteItem } from "./AutoComplete";
+import AutoComplete, { AutoCompleteItem } from "./AutoComplete";
 
 export interface AutocompleteModalProps {
   /** Input label */

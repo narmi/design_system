@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.61.0](https://github.com/narmi/design_system/compare/v3.60.0...v3.61.0) (2024-10-11)
+
+
+### Features
+
+* **RadioButtons:** add checkmark variant ([3385811](https://github.com/narmi/design_system/commit/3385811963b4b7de5667b5eef064de6684062c44))
+
+## [3.60.0](https://github.com/narmi/design_system/compare/v3.59.0...v3.60.0) (2024-10-11)
+
+
+### Features
+
+* **DisabledShim:** add component to disable arbitrary areas ([b027b1b](https://github.com/narmi/design_system/commit/b027b1b24e4a32d5918a1a6fb05c35c625864d2d))
+
+## [3.59.0](https://github.com/narmi/design_system/compare/v3.58.3...v3.59.0) (2024-10-11)
+
+
+### Features
+
+* **RadioButtons:** add kind 'input-card' ([6f11219](https://github.com/narmi/design_system/commit/6f112190ebb5f3d66511c59a1aa345a795d65d8d))
+
+### [3.58.3](https://github.com/narmi/design_system/compare/v3.58.2...v3.58.3) (2024-10-08)
+
+
+### Bug Fixes
+
+* **Dialog:** remove left padding from header in desktop mode ([88453b6](https://github.com/narmi/design_system/commit/88453b6ed05e73047e3657033041ad48d23b7ffb))
+
 ### [3.58.2](https://github.com/narmi/design_system/compare/v3.58.1...v3.58.2) (2024-10-01)
 
 

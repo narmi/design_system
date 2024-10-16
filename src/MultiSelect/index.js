@@ -156,7 +156,9 @@ const MultiSelect = ({
 
   const renderTokens = () =>
     selectedItems.map((itemComponent, i) => {
-      const tokenLabel = itemToString(itemComponent);
+      const tokenLabel = itemComponent.props.tokenLabel
+        ? itemComponent.props.tokenLabel
+        : itemToString(itemComponent);
       const isLastToken = i === selectedItems.length - 1;
       return (
         <span

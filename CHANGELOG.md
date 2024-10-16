@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.62.0](https://github.com/narmi/design_system/compare/v3.61.0...v3.62.0) (2024-10-16)
+
+
+### Features
+
+* **MultiSelect:** add tokenLabel prop to items ([fc5d086](https://github.com/narmi/design_system/commit/fc5d086c1a34379c3bd3dc5dec286aaa7ecdf18d))
+
 ## [3.61.0](https://github.com/narmi/design_system/compare/v3.60.0...v3.61.0) (2024-10-11)
 
 

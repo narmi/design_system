@@ -78,7 +78,7 @@ export const TriggerRenderProp = () => {
   return (
     <div style={{ margin: "8rem" }}>
       <AutocompleteModal
-        inputLabel="Asignee"
+        inputLabel="Assignee"
         trigger={trigger}
         onChange={(val) => setSelectedValue(val)}
         footerContent={

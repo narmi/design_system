@@ -159,18 +159,8 @@ const MultiSelect = ({
       const tokenLabel = itemComponent.props.tokenLabel
         ? itemComponent.props.tokenLabel
         : itemToString(itemComponent);
-      const isLastToken = i === selectedItems.length - 1;
       return (
-        <span
-          key={`${i}-${tokenLabel}`}
-          className={cc([
-            "padding--y--xs",
-            {
-              "padding--right--s": isLastToken,
-              "padding--right--xs": !isLastToken,
-            },
-          ])}
-        >
+        <div key={`${i}-${tokenLabel}`}>
           <FieldToken
             disabled={disabled}
             label={tokenLabel}
@@ -180,9 +170,11 @@ const MultiSelect = ({
               i,
             })}
           />
-        </span>
+        </div>
       );
     });
+
+  const hasSelectedItems = selectedItems.length > 0;
 
   return (
     <div className="nds-multiselect" data-testid={testId}>
@@ -196,8 +188,17 @@ const MultiSelect = ({
         <DropdownTrigger
           disabled={disabled}
           isOpen={isOpen}
-          labelText={label}
-          startContent={renderTokens()}
+          labelText={hasSelectedItems ? undefined : label}
+          startContent={
+            <div
+              className={cc([
+                "nds-multiselect-tokensList",
+                { "padding--y--xs": hasSelectedItems },
+              ])}
+            >
+              {renderTokens()}
+            </div>
+          }
           errorText={errorText}
           labelProps={{ ...getLabelProps() }}
           {...getToggleButtonProps()}

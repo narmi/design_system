@@ -27,7 +27,6 @@ export const UsingWithState = () => {
         </output>
       </div>
       <TokenInput
-        disabled
         label="Favorite Foods"
         fieldName="favorite_foods"
         fieldValue={value}

@@ -21,8 +21,9 @@ const IconButton = ({
   testId = "nds-icon-button",
   label,
   name,
-  onClick = () => {},
-  type,
+  // eslint-disable-next-line no-unused-vars
+  onClick = (e) => {},
+  type = "button",
   as = "button",
   ...otherProps
 }) => {

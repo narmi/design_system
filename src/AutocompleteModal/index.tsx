@@ -57,33 +57,31 @@ const AutocompleteModal = ({
   };
 
   return (
-    <>
-      <Popover
-        isOpen={isOpen}
-        onUserDismiss={closePopover}
-        onUserEnable={togglePopover}
-        alignment="center"
-        side="top"
-        autoFocus={true}
-        hasShadow={false}
-        content={
-          <div className="nds-autocompleteModal-positionedEl">
-            <AutoComplete
-              items={items as AutoCompleteItem[]}
-              label={inputLabel}
-              onChange={handleSelection}
-              onInputChange={onInputChange}
-              footerContent={footerContent}
-              selectedItem={selectedItem as AutoCompleteItem}
-            />
-          </div>
-        }
-      >
-        <span style={{ cursor: "pointer" }}>
-          {typeof trigger === "function" ? trigger(isOpen) : trigger}
-        </span>
-      </Popover>
-    </>
+    <Popover
+      isOpen={isOpen}
+      onUserDismiss={closePopover}
+      onUserEnable={togglePopover}
+      alignment="center"
+      side="top"
+      autoFocus={true}
+      hasShadow={false}
+      content={
+        <div className="nds-autocompleteModal-positionedEl">
+          <AutoComplete
+            items={items as AutoCompleteItem[]}
+            label={inputLabel}
+            onChange={handleSelection}
+            onInputChange={onInputChange}
+            footerContent={footerContent}
+            selectedItem={selectedItem as AutoCompleteItem}
+          />
+        </div>
+      }
+    >
+      <span style={{ cursor: "pointer" }}>
+        {typeof trigger === "function" ? trigger(isOpen) : trigger}
+      </span>
+    </Popover>
   );
 };
 

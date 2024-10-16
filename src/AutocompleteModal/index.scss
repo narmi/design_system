@@ -1,0 +1,58 @@
+.nds-autocompleteModal-trigger {
+  cursor: pointer;
+}
+
+// Invisible element positioned by Popover.
+//
+// Sets constraints for the autocomplete within it and guarantees
+// the positioning engine will keep the positioned element in the same place
+// as the dimensions of the autocomplete change on filtering.
+.nds-autocompleteModal-positionedEl {
+  min-width: rem(248px);
+  max-width: rem(352px);
+  height: rem(312px);
+  display: flex;
+  flex-direction: column;
+
+  // The autocomplete child should shrink upward as items are filtered.
+  justify-content: flex-start;
+}
+
+.nds-autocompleteModal-autocomplete {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--theme-primary);
+  background-color: var(--color-white);
+  box-shadow: var(--elevation-middle);
+
+  .nds-input-box {
+    border: none !important;
+    border-bottom: 1px solid var(--border-color-default) !important;
+    border-radius: var(--border-radius-default) var(--border-radius-default) 0 0 !important;
+  }
+
+  .narmi-icon-check {
+    color: var(--theme-primary);
+  }
+}
+
+.nds-autocompleteModal-menu {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.nds-autocompleteModal-input,
+.nds-autocompleteModal-footer {
+  flex-grow: 0;
+  flex-basis: min-content;
+}
+
+.nds-autocompleteModal-item {
+  cursor: pointer;
+  position: relative;
+  &:hover,
+  &--highlighted {
+    background: RGBA(var(--theme-rgb-primary), var(--alpha-5));
+  }
+}

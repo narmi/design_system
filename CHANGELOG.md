@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.64.0](https://github.com/narmi/design_system/compare/v3.63.1...v3.64.0) (2024-10-16)
+
+
+### Features
+
+* **Combobox:** add Combobox.Action support ([43c8258](https://github.com/narmi/design_system/commit/43c82584c84e501cf56e5288854c171dbb1e3c2e))
+
 ### [3.63.1](https://github.com/narmi/design_system/compare/v3.63.0...v3.63.1) (2024-10-16)
 
 

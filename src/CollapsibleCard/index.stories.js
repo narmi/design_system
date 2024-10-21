@@ -179,6 +179,28 @@ WithError.args = {
   ),
 };
 
+export const WithCustomTitle = Template.bind({});
+WithCustomTitle.args = {
+  renderTitle: (isOpen) => (
+    <div className="padding--all">
+      This card is <strong>{isOpen ? "open" : "closed"}</strong>.
+    </div>
+  ),
+  children: (
+    <>
+      <div>Any content can go in here!</div>
+    </>
+  ),
+};
+DisabledCard.parameters = {
+  docs: {
+    description: {
+      story:
+        "You may also pass your own title content using the `renderTitle` function, allowing for greater customization of the clickable area of `CollapsibleCard`",
+    },
+  },
+};
+
 export const PermanentlyOpenWithDisabledHover = PermanentlyOpen.bind({});
 PermanentlyOpenWithDisabledHover.args = {
   title: "Your title here",

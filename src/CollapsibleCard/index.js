@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import cc from "classcat";
 import Row from "../Row";
 import IconButton from "../IconButton";
+import DisabledShim from "../DisabledShim";
+
+const noop = () => {};
 
 const CollapsibleCard = ({
   title,
@@ -10,10 +13,11 @@ const CollapsibleCard = ({
   statusText,
   isOpen,
   trigger = "header",
-  onOpen = () => {},
-  onClose = () => {},
+  onOpen = noop,
+  onClose = noop,
   isDisabled = false,
-  onDisabledClick = () => {},
+  onDisabledClick = noop,
+  renderTitle,
   hasError = false,
   disableHover = false,
   children,
@@ -70,49 +74,54 @@ const CollapsibleCard = ({
 
   const titleContainerJSX = (
     <div className="collapsible-card--title-container">
-      <Row alignItems="center" gapSize="s">
-        {trigger === "caret-start" && (
-          <Row.Item shrink>{caretTriggerJsx}</Row.Item>
+      <DisabledShim isDisabled={isDisabled}>
+        {typeof renderTitle === "function" ? (
+          renderTitle(isOpen)
+        ) : (
+          <Row alignItems="center" gapSize="s">
+            {trigger === "caret-start" && (
+              <Row.Item shrink>{caretTriggerJsx}</Row.Item>
+            )}
+            <Row.Item>
+              <h4
+                className={cc([
+                  "fontWeight--bold",
+                  "fontSize--l",
+                  "padding--top--l",
+                  "fontFamily--body",
+                  {
+                    "padding--left--l": trigger !== "caret-start",
+                  },
+                ])}
+              >
+                {title}
+              </h4>
+              <div
+                className={cc([
+                  !isDisabled ? "subtitle" : "subtitle--disabled",
+                  "padding--bottom--l",
+                  "margin--top--xxs",
+                  {
+                    "padding--left--l": trigger !== "caret-start",
+                  },
+                ])}
+              >
+                {subtitle}
+              </div>
+            </Row.Item>
+            {trigger === "caret-end" && (
+              <Row.Item shrink>{caretTriggerJsx}</Row.Item>
+            )}
+            {statusText && (
+              <Row.Item shrink>
+                <div className="collapsible-card--statusText padding--right--l fontSize--s alignChild--right--center">
+                  <span>{statusText}</span>
+                </div>
+              </Row.Item>
+            )}
+          </Row>
         )}
-        <Row.Item>
-          <h4
-            className={cc([
-              !isDisabled ? "title" : "title--disabled",
-              "fontWeight--bold",
-              "fontSize--l",
-              "padding--top--l",
-              "fontFamily--body",
-              {
-                "padding--left--l": trigger !== "caret-start",
-              },
-            ])}
-          >
-            {title}
-          </h4>
-          <div
-            className={cc([
-              !isDisabled ? "subtitle" : "subtitle--disabled",
-              "padding--bottom--l",
-              "margin--top--xxs",
-              {
-                "padding--left--l": trigger !== "caret-start",
-              },
-            ])}
-          >
-            {subtitle}
-          </div>
-        </Row.Item>
-        {trigger === "caret-end" && (
-          <Row.Item shrink>{caretTriggerJsx}</Row.Item>
-        )}
-        {statusText && (
-          <Row.Item shrink>
-            <div className="collapsible-card--statusText padding--right--l fontSize--s alignChild--right--center">
-              <span>{statusText}</span>
-            </div>
-          </Row.Item>
-        )}
-      </Row>
+      </DisabledShim>
     </div>
   );
 
@@ -121,6 +130,7 @@ const CollapsibleCard = ({
       className={cc([
         "collapsible-card--content-card",
         {
+          "content-card--disabled": isDisabled,
           "content-card--hasCaretTrigger": trigger.includes("caret"),
           "content-card--error": hasError,
           "content-card--hover": trigger === "header" && !disableHover && hover,
@@ -133,8 +143,8 @@ const CollapsibleCard = ({
     >
       <div
         className="collapsible-card--title-expanded"
-      role={trigger === "header" ? "button" : undefined}
-      tabIndex={trigger === "header" ? 0 : undefined}
+        role={trigger === "header" ? "button" : undefined}
+        tabIndex={trigger === "header" ? 0 : undefined}
         onKeyUp={({ key }) => {
           if (key === "Enter" && trigger === "header")
             onTitleContainerClick(false, "close");
@@ -175,7 +185,6 @@ const CollapsibleCard = ({
           onTitleContainerClick(isDisabled, "open");
       }}
       aria-expanded="false"
-      aria-disabled={isDisabled ? "true" : "false"}
       onClick={() => {
         if (trigger === "header") {
           onTitleContainerClick(isDisabled, "open");
@@ -194,7 +203,7 @@ CollapsibleCard.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
   ]).isRequired,
   /** Card title */
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   /** Card subtitle */
   subtitle: PropTypes.string,
   /** Card status text, placed on the right side of the title container. Can be a JSX fragment. */
@@ -215,6 +224,11 @@ CollapsibleCard.propTypes = {
   disableHover: PropTypes.bool,
   /** Controls which element is used as the open/close trigger */
   trigger: PropTypes.oneOf(["header", "caret-start", "caret-end"]),
+  /**
+   * User-defined render prop that returns JSX.
+   * Called with `(isOpen)` arg you may use for conditional rendering in your custom title JSX.
+   */
+  renderTitle: PropTypes.func,
 };
 
 export default CollapsibleCard;

@@ -22,6 +22,7 @@ import LoadingShim from "./LoadingShim";
 import LoadingSkeleton from "./LoadingSkeleton";
 import MenuButton from "./MenuButton";
 import MultiSelect from "./MultiSelect";
+import PageHeader from "./PageHeader";
 import Pagination from "./Pagination";
 import PlainButton from "./PlainButton";
 import ProgressBar from "./Pagination";
@@ -69,6 +70,7 @@ export {
   LoadingSkeleton,
   MenuButton,
   MultiSelect,
+  PageHeader,
   Pagination,
   PlainButton,
   ProgressBar,

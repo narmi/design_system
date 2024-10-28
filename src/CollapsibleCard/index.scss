@@ -13,10 +13,10 @@
 }
 
 .collapsible-card--content-card.content-card--disabled {
-  background-color: var(--bgColor-smokeGrey) !important;
   border: 1px solid var(--color-lightGrey) !important;
-  cursor: pointer;
+  overflow: hidden;
 }
+
 .collapsible-card--content-card.content-card--error {
   border: 1px solid var(--color-errorDark) !important;
 }
@@ -45,9 +45,6 @@
 .collapsible-card--content-card .title {
   color: var(--theme-primary) !important;
 }
-.collapsible-card--content-card .title--disabled {
-  color: var(--color-mediumGrey) !important;
-}
 
 .collapsible-card--title-expanded {
   background-color: rgba(var(--theme-rgb-primary), var(--alpha-5));
@@ -55,9 +52,6 @@
 
 .collapsible-card--content-card .subtitle {
   color: var(--color-grey) !important;
-}
-.collapsible-card--content-card .subtitle--disabled {
-  color: var(--color-mediumGrey) !important;
 }
 
 .collapsible-card--statusText {

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.65.0](https://github.com/narmi/design_system/compare/v3.64.0...v3.65.0) (2024-10-28)
+
+
+### Features
+
+* **CollapsibleCard:** update disabled state; add renderTitle render func ([5925086](https://github.com/narmi/design_system/commit/5925086696eb03a8cb8ba0d11ca9ec112948171b))
+
 ## [3.64.0](https://github.com/narmi/design_system/compare/v3.63.1...v3.64.0) (2024-10-16)
 
 

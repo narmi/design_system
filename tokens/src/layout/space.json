@@ -8,6 +8,13 @@
       "l": { "value": "20px" },
       "xl": { "value": "40px" },
       "xxl": { "value": "60px"},
+      "xxs-neg": { "value": "-4px" },
+      "xs-neg": { "value": "-8px" },
+      "s-neg": { "value": "-12px" },
+      "m-neg": { "value": "-16px" },
+      "l-neg": { "value": "-20px" },
+      "xl-neg": { "value": "-40px" },
+      "xxl-neg": { "value": "-60px"},
       "default": { "value": "{layout.space.l.value}" }
     }
   }

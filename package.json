@@ -95,7 +95,7 @@
     "react-dom": "^16",
     "sass": "^1.45.0",
     "sass-loader": "^12.1.0",
-    "semantic-release": "^19.0.0",
+    "semantic-release": "^24.2.0",
     "storybook": "^7.5.2",
     "style-dictionary": "^3.9.2",
     "style-loader": "^0.23.1",

@@ -5,7 +5,6 @@
   text-align: left;
   background-color: var(--color-white);
   border: 1px solid var(--color-lightGrey);
-  border-radius: rem(8px);
 }
 
 .collapsible-card-trigger {
@@ -38,6 +37,7 @@
 .collapsible-card--title-container {
   display: flex;
   justify-content: space-between;
+  background-clip: border-box;
 }
 .collapsible-card--no-user-select {
   user-select: none;

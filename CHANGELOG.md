@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.66.0](https://github.com/narmi/design_system/compare/v3.65.0...v3.66.0) (2024-11-07)
+
+
+### Features
+
+* **CollapsibleCard:** add radiusSize prop to configure border radius ([ef688f1](https://github.com/narmi/design_system/commit/ef688f14d088d51d5018efff2144ae42f9e0777a))
+
 ## [3.65.0](https://github.com/narmi/design_system/compare/v3.64.0...v3.65.0) (2024-10-28)
 
 

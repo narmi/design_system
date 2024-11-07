@@ -21,6 +21,7 @@ const CollapsibleCard = ({
   hasError = false,
   disableHover = false,
   children,
+  radiusSize = "m",
 }) => {
   const [hover, setHover] = React.useState(false);
 
@@ -73,7 +74,9 @@ const CollapsibleCard = ({
   );
 
   const titleContainerJSX = (
-    <div className="collapsible-card--title-container">
+    <div
+      className={`collapsible-card--title-container rounded--top--${radiusSize}`}
+    >
       <DisabledShim isDisabled={isDisabled}>
         {typeof renderTitle === "function" ? (
           renderTitle(isOpen)
@@ -137,12 +140,12 @@ const CollapsibleCard = ({
           "collapsible-card--no-user-select":
             !disableHover || trigger === "header",
         },
-        "rounded--bottom",
+        `rounded--all--${radiusSize}`,
         "bgColor--white",
       ])}
     >
       <div
-        className="collapsible-card--title-expanded"
+        className={`collapsible-card--title-expanded rounded--top--${radiusSize}`}
         role={trigger === "header" ? "button" : undefined}
         tabIndex={trigger === "header" ? 0 : undefined}
         onKeyUp={({ key }) => {
@@ -175,7 +178,7 @@ const CollapsibleCard = ({
             !disableHover || trigger === "header",
         },
         "content-card--closed",
-        "rounded--all",
+        `rounded--all--${radiusSize}`,
         "bgColor--white",
       ])}
       role={trigger === "header" ? "button" : undefined}
@@ -229,6 +232,10 @@ CollapsibleCard.propTypes = {
    * Called with `(isOpen)` arg you may use for conditional rendering in your custom title JSX.
    */
   renderTitle: PropTypes.func,
+  /**
+   * Amount of border radius to add on all sides of card.
+   */
+  radiusSize: PropTypes.oneOf(["s", "m", "l"]),
 };
 
 export default CollapsibleCard;

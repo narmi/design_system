@@ -97,7 +97,7 @@
     "sass-loader": "^12.1.0",
     "semantic-release": "^19.0.0",
     "storybook": "^7.5.2",
-    "style-dictionary": "^3.9.2",
+    "style-dictionary": "^4.1.4",
     "style-loader": "^0.23.1",
     "tinycolor2": "^1.4.2",
     "typescript": "^5.2.2",

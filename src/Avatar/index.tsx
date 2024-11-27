@@ -3,45 +3,44 @@ import PropTypes from "prop-types";
 import cc from "classcat";
 import AsElement from "../util/AsElement";
 
-/**
- * Child component of `Row`.
- * When a `Row.Item` has a boolean prop of `shrink`, it will shrink to content width.
- */
-const Avatar = ({
-  label = "",
-  size = "m",
-  initials = "",
-  imgurl = "",
-  linkurl = "",
-  testId,
-}: {
-  label?: string;
-  size?: "xs" | "s" | "m" | "l" | "xl";
+export interface AvatarProps {
+  // aria-label for accessibility
+  label: string;
+  // Fixed height and width of the avatar. Default: "s".
+  size?: "xs" | "s" | "m";
+  // String to display in the avatar. If imgurl is provided, this will be ignored.
   initials?: string;
+  // Optional: URL of the image to display in the avatar. If provided, initials will be ignored.
   imgurl?: string;
+  // Optional: URL to navigate to when the avatar is clicked
   linkurl?: string;
   testId?: string;
-}) => {
-  if (initials && imgurl) {
-    console.warn(
-      "Avatar component received both initials and imgurl props. Defaulting to imgurl.",
-    );
-  }
-  if (!initials && !imgurl) {
-    throw new Error(
-      "Avatar component requires either initials or imgurl prop.",
-    );
-  }
+}
+
+const Avatar = ({
+  label,
+  size = "s",
+  initials,
+  imgurl,
+  linkurl,
+  testId,
+}: AvatarProps) => {
+  const backgroundImage = imgurl
+    ? { backgroundImage: `url(${imgurl})`, backgroundSize: "cover" }
+    : {};
+
   return (
     <AsElement
       elementType={linkurl ? "a" : "div"}
+      href={linkurl}
       className={cc([
         "nds-typography",
         "nds-avatar",
-        // `nds-avatar--${size}`,
+        `nds-avatar--${size}`,
         "alignChild--center--center",
         "bgColor--theme--primary",
       ])}
+      style={backgroundImage}
       aria-label={label}
       data-testid={testId}
     >

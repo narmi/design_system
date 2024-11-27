@@ -1,9 +1,29 @@
 .nds-avatar {
-  width: 32px;
-  height: 32px;
   color: white;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   position: relative;
 }
+
+.nds-avatar--xs {
+  height: 24px;
+  width: 24px;
+  font-size: var(--font-size-s);
+}
+
+.nds-avatar--s {
+  height: 32px;
+  width: 32px;
+}
+
+.nds-avatar--m {
+  height: 40px;
+  width: 40px;
+}
+
+.nds-avatar--l,
+.nds-avatar--xl {
+  @extend .nds-avatar--m;
+}
+

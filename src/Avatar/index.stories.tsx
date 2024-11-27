@@ -1,6 +1,5 @@
-/* eslint-disable react/jsx-key */
 import React from "react";
-import Avatar from "../Avatar";
+import Avatar from "./";
 import Row from "../Row";
 
 export const Overview = () => {

@@ -31,7 +31,6 @@ const Avatar = ({
       elementType={linkurl ? "a" : "div"}
       href={linkurl}
       className={cc([
-        "nds-typography",
         "nds-avatar",
         `nds-avatar--${size}`,
         "alignChild--center--center",

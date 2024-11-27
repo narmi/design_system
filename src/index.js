@@ -2,6 +2,7 @@ require("./index.scss");
 
 import AutocompleteModal from "./AutocompleteModal";
 import Alert from "./Alert";
+import Avatar from "./Avatar";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
 import ContentCard from "./ContentCard";
@@ -49,6 +50,7 @@ import formatDate from "./formatters/formatDate";
 export {
   AutocompleteModal,
   Alert,
+  Avatar,
   Button,
   Checkbox,
   ContentCard,

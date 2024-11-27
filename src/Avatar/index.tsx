@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import AsElement from "../util/AsElement";
@@ -13,16 +13,15 @@ const Avatar = ({
   initials = "",
   imgurl = "",
   linkurl = "",
-  children,
   testId,
-}: PropsWithChildren<{
+}: {
   label?: string;
   size?: "xs" | "s" | "m" | "l" | "xl";
   initials?: string;
   imgurl?: string;
   linkurl?: string;
   testId?: string;
-}>) => {
+}) => {
   if (initials && imgurl) {
     console.warn(
       "Avatar component received both initials and imgurl props. Defaulting to imgurl.",

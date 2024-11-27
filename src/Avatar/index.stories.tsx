@@ -5,6 +5,8 @@ import Avatar from "../Avatar";
 // FIXME: code and story for `footerContent`
 // FIXME: code and story for render prop trigger
 
+const Template = (args) => <Avatar {...args} />;
+
 export const Overview = () => {
   return (
     <div style={{ margin: "8rem" }}>

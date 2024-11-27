@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.67.0](https://github.com/narmi/design_system/compare/v3.66.0...v3.67.0) (2024-11-27)
+
+
+### Features
+
+* **Avatar:** add Avatar component ([398daaa](https://github.com/narmi/design_system/commit/398daaac595e635e0732541ce1e80eb91c7cd26f))
+
 ## [3.66.0](https://github.com/narmi/design_system/compare/v3.65.0...v3.66.0) (2024-11-07)
 
 

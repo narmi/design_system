@@ -9,18 +9,18 @@
 }
 
 .nds-avatar--xs {
-  height: 24px;
+  height: rem(24px);
   width: 24px;
   font-size: var(--font-size-s);
 }
 
 .nds-avatar--s {
-  height: 32px;
+  height: rem(32px);
   width: 32px;
 }
 
 .nds-avatar--m {
-  height: 40px;
+  height: rem(40px);
   width: 40px;
   font-size: var(--font-size-l);
 }

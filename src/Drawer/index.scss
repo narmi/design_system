@@ -7,12 +7,22 @@
 .drawer {
   background: var(--bgColor-neutralGrey);
   height: 100%;
-  overflow: auto;
   position: fixed;
+  display: flex;
+  flex-direction: column;
   transition: transform var(--transition-speed-fast) ease;
   border: var(--border-size-s);
   border-color: var(--border-color-light);
   z-index: 3;
+}
+.drawer-content {
+  overflow: auto;
+  flex-grow: 1;
+}
+.drawer-footer {
+  flex-basis: auto;
+  flex-grow: 0;
+  height: initial;
 }
 .drawer--left {
   top: 0;
@@ -51,7 +61,9 @@ this class only applies to mobile drawers that open from the right or left,
 because we need to replace the left/right controls with controls that are inside the drawer
 */
 .drawer--vertical--mobile {
-  padding: 48px var(--space-l);
+  .drawer-content {
+    padding: 48px var(--space-l);
+  }
   .mobile-navigation-button {
     .narmi-icon-x,
     .narmi-icon-chevron-left,

@@ -3,6 +3,7 @@ import Drawer from "./";
 import Button from "../Button";
 import Popover from "../Popover";
 import Dialog from "../Dialog";
+import Row from "../Row";
 
 const CONTENTS = [
   <>
@@ -238,6 +239,93 @@ export const ContentWithDialog = () => {
         >
           <p>Dialog overlapping a Drawer</p>
         </Dialog>
+      </Drawer>
+    </>
+  );
+};
+
+export const WithFooter = (args) => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setIsDrawerOpen(true)}>Open Drawer</Button>
+      <Drawer
+        isOpen={isDrawerOpen}
+        onUserDismiss={() => setIsDrawerOpen(false)}
+        footer={
+          <Row alignItems="center">
+            <Row.Item shrink>
+              <Button kind="negative" label="Cancel" />
+            </Row.Item>
+            <Row.Item shrink>
+              <Button kind="primary" label="Save" />
+            </Row.Item>
+          </Row>
+        }
+        {...args}
+      >
+        <h3>
+          This content area will become scrollable whenever the content
+          overflows its container
+        </h3>
+        <p>
+          Lorem ipsum dolor sit amet. Ea fugiat dolore quo possimus adipisci est
+          ipsum libero ab dolores minima ut facere rerum? Aut vitae sint ut nemo
+          nisi ut tempore voluptas. Eum adipisci quasi eum praesentium libero
+          est quidem consequatur At voluptatum debitis et laborum ducimus aut
+          eaque eligendi.
+        </p>
+        <p>
+          Ut alias eligendi ut dolorem eius rem consectetur ullam et natus
+          nihil. Et maiores dolores hic nesciunt quibusdam ut laboriosam earum
+          qui quas sapiente in molestiae accusantium.
+        </p>
+        <p>
+          Ut ducimus amet quo deleniti repellendus in illo eaque 33 nihil quis
+          eveniet deleniti qui sapiente quia At repellendus veritatis. Qui
+          voluptatem culpa et fugit debitis ut fugit quidem sit omnis deserunt
+          qui sequi placeat. Non voluptatem molestiae et explicabo voluptas ut
+          facilis quia?
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet. Ea fugiat dolore quo possimus adipisci est
+          ipsum libero ab dolores minima ut facere rerum? Aut vitae sint ut nemo
+          nisi ut tempore voluptas. Eum adipisci quasi eum praesentium libero
+          est quidem consequatur At voluptatum debitis et laborum ducimus aut
+          eaque eligendi.
+        </p>
+        <p>
+          Ut alias eligendi ut dolorem eius rem consectetur ullam et natus
+          nihil. Et maiores dolores hic nesciunt quibusdam ut laboriosam earum
+          qui quas sapiente in molestiae accusantium.
+        </p>
+        <p>
+          Ut ducimus amet quo deleniti repellendus in illo eaque 33 nihil quis
+          eveniet deleniti qui sapiente quia At repellendus veritatis. Qui
+          voluptatem culpa et fugit debitis ut fugit quidem sit omnis deserunt
+          qui sequi placeat. Non voluptatem molestiae et explicabo voluptas ut
+          facilis quia?
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet. Ea fugiat dolore quo possimus adipisci est
+          ipsum libero ab dolores minima ut facere rerum? Aut vitae sint ut nemo
+          nisi ut tempore voluptas. Eum adipisci quasi eum praesentium libero
+          est quidem consequatur At voluptatum debitis et laborum ducimus aut
+          eaque eligendi.
+        </p>
+        <p>
+          Ut alias eligendi ut dolorem eius rem consectetur ullam et natus
+          nihil. Et maiores dolores hic nesciunt quibusdam ut laboriosam earum
+          qui quas sapiente in molestiae accusantium.
+        </p>
+        <p>
+          Ut ducimus amet quo deleniti repellendus in illo eaque 33 nihil quis
+          eveniet deleniti qui sapiente quia At repellendus veritatis. Qui
+          voluptatem culpa et fugit debitis ut fugit quidem sit omnis deserunt
+          qui sequi placeat. Non voluptatem molestiae et explicabo voluptas ut
+          facilis quia?
+        </p>
       </Drawer>
     </>
   );

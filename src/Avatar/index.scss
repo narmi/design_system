@@ -24,9 +24,3 @@
   width: 40px;
   font-size: var(--font-size-l);
 }
-
-.nds-avatar--l,
-.nds-avatar--xl {
-  @extend .nds-avatar--m;
-}
-

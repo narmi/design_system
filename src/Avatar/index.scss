@@ -1,0 +1,26 @@
+.nds-avatar {
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.nds-avatar--xs {
+  height: rem(24px);
+  width: rem(24px);
+  font-size: var(--font-size-s);
+}
+
+.nds-avatar--s {
+  height: rem(32px);
+  width: rem(32px);
+}
+
+.nds-avatar--m {
+  height: rem(40px);
+  width: rem(40px);
+  font-size: var(--font-size-l);
+}

@@ -14,7 +14,6 @@ export interface AvatarProps {
   imgurl?: string;
   // Optional: URL to navigate to when the avatar is clicked
   linkurl?: string;
-  testId?: string;
 }
 
 const Avatar = ({

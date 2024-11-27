@@ -46,7 +46,7 @@ const Avatar = ({
       aria-label={label}
       data-testid={testId}
     >
-      <div className="nds-avatar">{initials}</div>
+      {initials}
     </AsElement>
   );
 };

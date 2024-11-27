@@ -2,6 +2,7 @@
   color: white;
   border-radius: 50%;
   display: flex;
+  align-items: center;
   justify-content: center;
   position: relative;
 }
@@ -20,6 +21,7 @@
 .nds-avatar--m {
   height: 40px;
   width: 40px;
+  font-size: var(--font-size-l);
 }
 
 .nds-avatar--l,

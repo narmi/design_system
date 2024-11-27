@@ -254,7 +254,7 @@ export const WithFooter = (args) => {
         isOpen={isDrawerOpen}
         onUserDismiss={() => setIsDrawerOpen(false)}
         footer={
-          <Row alignItems="center">
+          <Row alignItems="center" justifyContent="space-between">
             <Row.Item shrink>
               <Button kind="negative" label="Cancel" />
             </Row.Item>

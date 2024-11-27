@@ -17,9 +17,7 @@ export const WithImage = () => {
 };
 
 export const WithLink = () => {
-  return (
-    <Avatar initials="CP" label="Christian Paz" linkurl="https://narmi.com" />
-  );
+  return <Avatar initials="NM" label="Narmi" linkurl="https://narmi.com" />;
 };
 
 export const Sizes = () => {

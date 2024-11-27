@@ -40,7 +40,6 @@ const Avatar = ({
       ])}
       style={backgroundImage}
       aria-label={label}
-      data-testid={testId}
     >
       {initials}
     </AsElement>

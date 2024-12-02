@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.68.0](https://github.com/narmi/design_system/compare/v3.67.0...v3.68.0) (2024-12-02)
+
+
+### Features
+
+* **Drawer:** add footer prop for sticky footer ([ab56244](https://github.com/narmi/design_system/commit/ab562445e6d161b7d7284ff100cc94756b98831d))
+* **Row:** add 'space-between' justification option ([7883794](https://github.com/narmi/design_system/commit/78837948f775e123aa927ecfd4349d57e4e2daf2))
+
 ## [3.67.0](https://github.com/narmi/design_system/compare/v3.66.0...v3.67.0) (2024-11-27)
 
 

@@ -17,7 +17,7 @@
     "build:jsdoc": "node ./scripts/jsDoc.mjs",
     "build:classdoc": "node ./scripts/classManifest.mjs",
     "build:tokens": "style-dictionary build --config=./tokens/config.js",
-    "build:components": "webpack --mode=production",
+    "build:components": "/usr/bin/time -h webpack --mode=production",
     "build": "npx tsc && npm run build:tokens && npm run build:jsdoc && npm run build:classdoc && npm run build:components",
     "build:clean": "rm -rf dist/ && npm run build",
     "prepublish": "npm run build",

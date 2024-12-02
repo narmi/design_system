@@ -27,6 +27,7 @@ const Drawer = ({
   position = "right",
   depth = "70%",
   paddingSize = "xxl",
+  footer,
   testId,
 }) => {
   const shimRef = useRef(null);
@@ -162,7 +163,6 @@ const Drawer = ({
       style={depthStyle}
       className={cc([
         "drawer",
-        `padding--all--${paddingSize}`,
         `drawer--${position}`,
         {
           [`drawer--open--${position}`]: isOpen && isTransitioning,
@@ -172,26 +172,40 @@ const Drawer = ({
       role="dialog"
       data-testid={testId}
     >
-      {isVerticalMobileDrawer && (
-        <>
-          {showControls && (
-            <>
-              <div className="mobile-navigation-button" onClick={onPrev}>
-                <span className="narmi-icon-chevron-left fontSize--heading3" />
-              </div>
-              <div className="mobile-navigation-button" onClick={onNext}>
-                <span className="narmi-icon-chevron-right fontSize--heading3" />
-              </div>
-            </>
-          )}
-          <div className="mobile-navigation-button" onClick={onUserDismiss}>
-            <span className="narmi-icon-x clickable fontSize--heading3" />
-          </div>
-        </>
+      <div className={cc(["drawer-content", `padding--all--${paddingSize}`])}>
+        {isVerticalMobileDrawer && (
+          <>
+            {showControls && (
+              <>
+                <div className="mobile-navigation-button" onClick={onPrev}>
+                  <span className="narmi-icon-chevron-left fontSize--heading3" />
+                </div>
+                <div className="mobile-navigation-button" onClick={onNext}>
+                  <span className="narmi-icon-chevron-right fontSize--heading3" />
+                </div>
+              </>
+            )}
+            <div className="mobile-navigation-button" onClick={onUserDismiss}>
+              <span className="narmi-icon-x clickable fontSize--heading3" />
+            </div>
+          </>
+        )}
+        {typeof children === "function"
+          ? children({ isVisible: isTransitioning })
+          : children}
+      </div>
+      {footer && (
+        <div
+          className={cc([
+            "drawer-footer",
+            "border--top",
+            `padding--x--${paddingSize}`,
+            "padding--y--s",
+          ])}
+        >
+          {footer}
+        </div>
       )}
-      {typeof children === "function"
-        ? children({ isVisible: isTransitioning })
-        : children}
     </div>
   );
 
@@ -260,6 +274,8 @@ Drawer.propTypes = {
    * Sets the padding amount, or disable padding by passing "none"
    */
   paddingSize: PropTypes.oneOf(["none", "xs", "s", "m", "l", "xl", "xxl"]),
+  /** Contents of Drawer footer, typically reserved for action buttons */
+  footer: PropTypes.node,
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
 };

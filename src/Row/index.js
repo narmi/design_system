@@ -17,6 +17,9 @@ const _getRowStyle = (alignItems, justifyContent, gapSize) => {
   }
   result.alignItems = alignItems === "top" ? "flex-start" : alignItems;
   result.justifyContent = `flex-${justifyContent}`;
+  if (justifyContent === "space-between") {
+    result.justifyContent = justifyContent;
+  }
   return result;
 };
 
@@ -55,7 +58,7 @@ Row.propTypes = {
   /** Controls vertical alignment of items within the row */
   alignItems: PropTypes.oneOf(["top", "center"]),
   /** Controls horizontal flex justification */
-  justifyContent: PropTypes.oneOf(["start", "end"]),
+  justifyContent: PropTypes.oneOf(["start", "end", "space-between"]),
   /** The html element to render as the root node of `Row` */
   as: PropTypes.oneOf(["span", "div", "ul"]),
   /** Optional: controls className while maintaining default nds-row styling if left unspecified */

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.68.1](https://github.com/narmi/design_system/compare/v3.68.0...v3.68.1) (2024-12-03)
+
+
+### Bug Fixes
+
+* remove fill from feed, security icons ([0f599a2](https://github.com/narmi/design_system/commit/0f599a25b64316ed48056228cc16ebd4f91f58b0))
+
 ## [3.68.0](https://github.com/narmi/design_system/compare/v3.67.0...v3.68.0) (2024-12-02)
 
 

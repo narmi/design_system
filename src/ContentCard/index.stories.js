@@ -19,7 +19,29 @@ Overview.args = {
   ),
 };
 
-export const SelectableCard = () => {
+export const ButtonCard = () => (
+  <ContentCard
+    kind="button"
+    onClick={() => {
+      alert("button card clicked");
+    }}
+  >
+    <h3 className="fontSize--heading4 padding--bottom--xs">Button card</h3>
+    <div className="fontSize--s fontColor--secondary">
+      This card behaves like an html <code>button</code>.
+    </div>
+  </ContentCard>
+);
+ButtonCard.parameters = {
+  docs: {
+    description: {
+      story:
+        "Cards of kind `toggle` support a selected state that can be controlled with the `isSelected` prop.",
+    },
+  },
+};
+
+export const ToggleCard = () => {
   const [isCardSelected, setIsCardSelected] = useState(false);
 
   const handleClick = () => {
@@ -28,13 +50,11 @@ export const SelectableCard = () => {
 
   return (
     <ContentCard
-      kind="interactive"
+      kind="toggle"
       onClick={handleClick}
       isSelected={isCardSelected}
     >
-      <h3 className="fontSize--heading4 padding--bottom--xs">
-        Selectable card
-      </h3>
+      <h3 className="fontSize--heading4 padding--bottom--xs">Toggle card</h3>
       <div className="fontSize--s fontColor--secondary">
         This card is currently{" "}
         <em>{isCardSelected ? "selected" : "not selected"}</em>
@@ -42,11 +62,11 @@ export const SelectableCard = () => {
     </ContentCard>
   );
 };
-SelectableCard.parameters = {
+ToggleCard.parameters = {
   docs: {
     description: {
       story:
-        "Cards of kind `interactive` support a selected state that can be controlled with the `isSelected` prop.",
+        "Cards of kind `toggle` support a selected state that can be controlled with the `isSelected` prop.",
     },
   },
 };

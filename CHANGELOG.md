@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.69.0](https://github.com/narmi/design_system/compare/v3.68.1...v3.69.0) (2024-12-04)
+
+
+### Features
+
+* **ContentCard:** add 'button' and 'toggle' kinds ([c1f2fda](https://github.com/narmi/design_system/commit/c1f2fda3d9d8981fb3d461af62ae613dedf65ec9))
+
 ### [3.68.1](https://github.com/narmi/design_system/compare/v3.68.0...v3.68.1) (2024-12-03)
 
 

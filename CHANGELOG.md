@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.69.1](https://github.com/narmi/design_system/compare/v3.69.0...v3.69.1) (2024-12-04)
+
+
+### Bug Fixes
+
+* **Tooltip:** improve a11y on trigger element ([1f057ab](https://github.com/narmi/design_system/commit/1f057ab4c645c1164e5b214be8f033781098f022))
+
 ## [3.69.0](https://github.com/narmi/design_system/compare/v3.68.1...v3.69.0) (2024-12-04)
 
 

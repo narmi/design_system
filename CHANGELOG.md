@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.69.2](https://github.com/narmi/design_system/compare/v3.69.1...v3.69.2) (2024-12-04)
+
+
+### Bug Fixes
+
+* **RadioButtons:** ensure errors wrap to next line ([a63498c](https://github.com/narmi/design_system/commit/a63498c28ac5bd403302a3c388b69e7220cfec78))
+
 ### [3.69.1](https://github.com/narmi/design_system/compare/v3.69.0...v3.69.1) (2024-12-04)
 
 

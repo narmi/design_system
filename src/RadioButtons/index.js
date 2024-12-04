@@ -61,72 +61,80 @@ const RadioButtons = ({
   };
 
   return (
-    <div
-      className={`nds-radiobuttons nds-radiobuttons--${kind}`}
-      onChange={handleChange}
-      data-testid={testId}
-      {...containerProps}
-    >
-      {Object.entries(options).map(([label, subOptions]) => {
-        const { value: inputValue, details } =
-          typeof subOptions === "object" ? subOptions : { value: subOptions };
-        return (
-          <label
-            className={cc([
-              "nds-radiobuttons-option",
-              "fontWeight--default",
-              {
-                "nds-radiobuttons-option--checked": checkedValue == inputValue,
-                "nds-radiobuttons-option--focused": focusedValue == inputValue,
-                "nds-radiobuttons-option--error": hasError,
-                "padding--all rounded--all border--all": [
-                  "card",
-                  "input-card",
-                ].includes(kind),
-              },
-            ])}
-            key={inputValue}
-          >
-            <div className="nds-radiobuttons-label-container">
-              {label}
-              <input
-                type="radio"
-                aria-label={`Radio ${name} option ${label}`}
-                checked={checkedValue === inputValue}
-                onChange={handleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                value={inputValue}
-                name={name}
-              />
-              <div
-                role="presentation"
-                className={cc([
-                  "nds-radio",
-                  { "narmi-icon-check": ["card", "checkmark"].includes(kind) },
-                ])}
-              />
-            </div>
-            {details && (
-              <div
-                className={cc([
-                  "nds-radiobutton-details",
-                  {
-                    "nds-radiobutton-details--checked":
-                      alwaysShowDetails || checkedValue == inputValue,
-                    "fontColor--secondary": kind != "card",
-                    "fontSize--s": kind != "card",
-                  },
-                ])}
-              >
-                {details}
+    <>
+      <div
+        className={`nds-radiobuttons nds-radiobuttons--${kind}`}
+        onChange={handleChange}
+        data-testid={testId}
+        {...containerProps}
+      >
+        {Object.entries(options).map(([label, subOptions]) => {
+          const { value: inputValue, details } =
+            typeof subOptions === "object" ? subOptions : { value: subOptions };
+          return (
+            <label
+              className={cc([
+                "nds-radiobuttons-option",
+                "fontWeight--default",
+                {
+                  "nds-radiobuttons-option--checked":
+                    checkedValue == inputValue,
+                  "nds-radiobuttons-option--focused":
+                    focusedValue == inputValue,
+                  "nds-radiobuttons-option--error": hasError,
+                  "padding--all rounded--all border--all": [
+                    "card",
+                    "input-card",
+                  ].includes(kind),
+                },
+              ])}
+              key={inputValue}
+            >
+              <div className="nds-radiobuttons-label-container">
+                {label}
+                <input
+                  type="radio"
+                  aria-label={`Radio ${name} option ${label}`}
+                  checked={checkedValue === inputValue}
+                  onChange={handleChange}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                  value={inputValue}
+                  name={name}
+                />
+                <div
+                  role="presentation"
+                  className={cc([
+                    "nds-radio",
+                    {
+                      "narmi-icon-check": ["card", "checkmark"].includes(kind),
+                    },
+                  ])}
+                />
               </div>
-            )}
-          </label>
-        );
-      })}
-      <Error error={error} />
-    </div>
+              {details && (
+                <div
+                  className={cc([
+                    "nds-radiobutton-details",
+                    {
+                      "nds-radiobutton-details--checked":
+                        alwaysShowDetails || checkedValue == inputValue,
+                      "fontColor--secondary": kind != "card",
+                      "fontSize--s": kind != "card",
+                    },
+                  ])}
+                >
+                  {details}
+                </div>
+              )}
+            </label>
+          );
+        })}
+      </div>
+      <div className={cc([{ "margin--top--s": kind !== "row" }])}>
+        <Error error={error} />
+      </div>
+    </>
   );
 };
 

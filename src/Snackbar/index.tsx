@@ -50,7 +50,7 @@ export interface SnackbarProps {
 }
 
 /**
- * A status region for multiple selection in a table.
+ * A status toolbar for multiple selection in a table.
  * Intended to be rendered in fixed position over a table.
  */
 const Snackbar = ({ children, isActive = false }: SnackbarProps) => {

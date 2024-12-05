@@ -14,24 +14,34 @@ const ContentCard = ({
   testId,
   radiusSize = "s",
 }) => {
-  const isInteractive = kind === "interactive";
+  const isInteractive = ["interactive", "toggle", "button"].some(
+    (interactiveKinds) => kind === interactiveKinds,
+  );
+  const isToggle = isInteractive && kind !== "button";
+
+  const getInteractiveProps = () => {
+    let props = {};
+    if (isInteractive) {
+      props.role = "button";
+      props.onClick = onClick;
+      props.tabIndex = "0";
+      props.onKeyUp = ({ key }) => {
+        // space and Enter should be accepted for both
+        // toggle and button types
+        if (key === "Enter" || key === " ") {
+          onClick();
+        }
+      };
+    }
+    if (isToggle) {
+      props["aria-pressed"] = isSelected;
+    }
+    return props;
+  };
 
   return (
     <div
       data-testid={testId || "ndsContentCard"}
-      role={isInteractive ? "button" : undefined}
-      tabIndex={isInteractive ? "0" : undefined}
-      aria-pressed={isInteractive ? isSelected : undefined}
-      onClick={isInteractive ? onClick : undefined}
-      onKeyUp={
-        isInteractive
-          ? ({ key }) => {
-              if (key === "Enter") {
-                onClick();
-              }
-            }
-          : undefined
-      }
       className={cc([
         "nds-contentCard",
         `nds-contentCard--${kind}`,
@@ -39,6 +49,7 @@ const ContentCard = ({
         `rounded--all--${radiusSize} bgColor--white`,
         { "button--reset": isInteractive },
       ])}
+      {...getInteractiveProps()}
     >
       {children}
     </div>
@@ -64,11 +75,13 @@ ContentCard.propTypes = {
    *
    * `elevated`: rounded rect with shadow
    *
-   * `interactive`: rounded rect with border, hover styles, and click handler
+   * `toggle`: toggle button (checkbox-like)
+   *
+   * `button`: action button (button-like)
    *
    * `bordered`: flat, rounded rect with border
    */
-  kind: PropTypes.oneOf(["plain", "elevated", "interactive", "bordered"]),
+  kind: PropTypes.oneOf(["plain", "elevated", "toggle", "button", "bordered"]),
   /**
    * Amount of border radius to add on all sides of card.
    */
@@ -78,26 +91,28 @@ ContentCard.propTypes = {
    * Callback for card click event.
    */
   onClick: (props, propName) => {
-    const isInteractive = props.type === "interactive";
+    const isInteractive = ["interactive", "toggle", "button"].some(
+      (kind) => kind === props.kind,
+    );
     // must be a function
     if (isInteractive && typeof props[propName] != "function") {
       return new Error("ContentCard: `onClick` must be a function");
     }
-    // onClick required for `interactive` type
+    // onClick required for interactive types
     if (isInteractive && props[propName] === undefined) {
       return new Error(
-        "ContentCard: `onClick` is required for `interactive` type"
+        "ContentCard: `onClick` is required for `interactive` type",
       );
     }
     // onClick invalid for non-interactive types
     if (props[propName] == "function" && !isInteractive) {
       return new Error(
-        "ContentCard: `onClick` is only valid for `interactive` type"
+        "ContentCard: `onClick` is only valid for `toggle` and `button` types",
       );
     }
   },
   /**
-   * Only applicable for `interactive` type.
+   * Only applicable for `toggle` type.
    * Renders card in visually selected state with appropriate attributes.
    */
   isSelected: PropTypes.bool,

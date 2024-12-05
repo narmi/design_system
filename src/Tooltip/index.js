@@ -60,9 +60,11 @@ const Tooltip = ({
         onBlur={closePopover}
         onMouseEnter={openPopover}
         onMouseLeave={closePopover}
-        role="button"
+        // Giving this element a "button" role is misleading in practice.
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         tabIndex="0"
         data-testid="nds-tooltip-trigger"
+        aria-expanded={open}
       >
         {children}
       </div>
@@ -81,7 +83,7 @@ const Tooltip = ({
               <Arrow {...arrowProps} />
             </div>
           )}
-        </>
+        </>,
       )}
     </>
   );

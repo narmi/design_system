@@ -34,7 +34,7 @@ const SnackbarText = ({ children }: { children: React.ReactNode[] }) => (
 );
 
 /**
- *
+ * Renders a semantic grouping of buttons within the Snackbar
  */
 const SnackbarButtonGroup = ({ children }: { children: React.ReactNode[] }) => (
   <ul className="list--reset nds-snackbar-buttonGroup" role="group">

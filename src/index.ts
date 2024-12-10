@@ -6,6 +6,7 @@ import Avatar from "./Avatar";
 import DisabledShim from "./DisabledShim";
 import SeparatorList from "./SeparatorList";
 import Slider from "./Slider";
+import Snackbar from "./Snackbar";
 
 /**
  * Untyped Components
@@ -60,6 +61,7 @@ export {
   DisabledShim,
   SeparatorList,
   Slider,
+  Snackbar,
 
   // untyped
   Alert,

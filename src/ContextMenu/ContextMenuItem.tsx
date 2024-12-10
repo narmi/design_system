@@ -17,6 +17,7 @@ export const VALID_ICON_NAMES = iconSelection.icons.map(
   (icon) => icon.properties.name,
 );
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- used for enforcing type checking
 const ContextMenuItem = (props: ContextMenuItemProps) => <></>;
 
 ContextMenuItem.displayName = "MenuButton.Item";

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.69.3](https://github.com/narmi/design_system/compare/v3.69.2...v3.69.3) (2024-12-10)
+
+
+### Bug Fixes
+
+* **Select:** actions count as empty strings for typeahead ([000200a](https://github.com/narmi/design_system/commit/000200a9cea9445488871786794bcc3534cb11b6))
+
 ### [3.69.2](https://github.com/narmi/design_system/compare/v3.69.1...v3.69.2) (2024-12-04)
 
 

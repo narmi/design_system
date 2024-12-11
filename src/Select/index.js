@@ -99,6 +99,7 @@ export const isSelectedItemInCategory = (selectedItem, categoryChildren) => {
  */
 // eslint-disable-next-line no-unused-vars
 const defaultGetTypeAheadString = (userInput = "", selectItem) => {
+  if (isAction(selectItem)) return "";
   return selectItem.props.searchValue || selectItem.props.value;
 };
 
@@ -276,7 +277,7 @@ const Select = ({
               "rounded--bottom": layerSide === "bottom",
               "rounded--top": layerSide === "top",
               [`nds-select-list--active--${layerSide}`]: showMenu,
-              "nds-select-list--error": !!errorText
+              "nds-select-list--error": !!errorText,
             },
           ])}
           {...getMenuProps(layerProps)}

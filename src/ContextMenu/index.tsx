@@ -76,13 +76,23 @@ function ContextMenu({ menuItems, testId, children }: ContextMenuProps) {
     }
   };
 
+  const handleNativeContextMenu = (event: MouseEvent) => {
+    if (!parentRef.current?.contains(event.target as Node)) {
+      setIsOpen(false);
+      setIsMouseOverEventEnabled(true);
+    }
+  };
+
   useEffect(() => {
     window.addEventListener("keyup", handleKeyUp);
+    // Right click event listener
+    window.addEventListener("contextmenu", handleNativeContextMenu);
+
     return () => {
       window.removeEventListener("keyup", handleKeyUp);
+      window.removeEventListener("contextmenu", handleNativeContextMenu);
     };
   }, [handleKeyUp]);
-
   return (
     <MenuTrigger
       isOpen={true}

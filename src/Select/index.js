@@ -58,9 +58,17 @@ export const getItemByValue = (value, items) => {
  * @param {array} items downshift index `items`
  * @returns {Number} index of item
  */
-export const getItemIndex = ({ props }, items) => {
-  const values = items.map(({ props }) => props.value);
-  return values.indexOf(props.value);
+export const getItemIndex = (item, items) => {
+  let result = 0;
+  if (isAction(item)) {
+    result = items
+      .map(({ props }) => props.onSelect)
+      .indexOf(item.props.onSelect);
+  } else {
+    result = items.map(({ props }) => props.value).indexOf(item.props.value);
+  }
+  console.info(result);
+  return result;
 };
 
 /**
@@ -86,7 +94,7 @@ export const isHighlightedInCategory = (
  * @returns {Boolean} if the selected item is in the given category children
  */
 export const isSelectedItemInCategory = (selectedItem, categoryChildren) => {
-  if (!selectedItem) return false;
+  if (!selectedItem || isAction(selectedItem)) return false;
   const selectedValue = selectedItem.props.value;
   const categoryValues = categoryChildren.map((child) => child.props.value);
   return categoryValues.includes(selectedValue);
@@ -123,21 +131,27 @@ const Select = ({
 }) => {
   let items = [];
   let categories = [];
+  let actions = [];
   const [userInput, setUserInput] = useState(""); // most recent val the user typed while focused on this input
 
-  const allChildren = React.Children.toArray(children);
+  const options = React.Children.toArray(children).filter(
+    (item) => !isAction(item),
+  );
+  actions = React.Children.toArray(children).filter(isAction);
 
-  // If categories are being used, extract items from categories
-  if (allChildren.some(({ type }) => type.displayName === "Select.Category")) {
-    items = allChildren.flatMap(({ props }) =>
-      React.Children.toArray(props.children),
-    );
-    categories = allChildren.map(({ props }) => ({
+  // If categories are being used, extract items and actions from categories
+  // FIXME: I fucked up here. I think this is the last bit I need to worry about.
+  if (options.some(({ type }) => type.displayName === "Select.Category")) {
+    items = [
+      ...options.flatMap(({ props }) => React.Children.toArray(props.children)),
+      ...actions,
+    ];
+    categories = options.map(({ props }) => ({
       label: props.label,
       categoryChildren: React.Children.toArray(props.children),
     }));
   } else {
-    items = allChildren;
+    items = [...options, ...actions];
   }
 
   const downshiftOpts = {
@@ -290,27 +304,35 @@ const Select = ({
           {showMenu &&
             hasCategories &&
             categories.map(({ label, categoryChildren }) => (
-              <details
-                key={label}
-                className="nds-select-category"
-                {...getDetailsProps(categoryChildren)} // controls open state
-              >
-                <summary className="fontWeight--bold alignChild--left--center padding--x--s padding--y-xs">
-                  <span id={`select-category-${label}`}>{label}</span>
-                  <span className="nds-category-icon narmi-icon-chevron-down" />
-                  <span className="nds-category-icon narmi-icon-chevron-up" />
-                </summary>
-                <ul
-                  className="list--reset"
-                  aria-labelledby={`select-category-${label}`}
+              <>
+                <details
+                  key={label}
+                  className="nds-select-category"
+                  {...getDetailsProps(categoryChildren)} // controls open state
                 >
-                  {categoryChildren.map((item) => renderItem(item, items))}
-                </ul>
-              </details>
+                  <summary className="fontWeight--bold alignChild--left--center padding--x--s padding--y-xs">
+                    <span id={`select-category-${label}`}>{label}</span>
+                    <span className="nds-category-icon narmi-icon-chevron-down" />
+                    <span className="nds-category-icon narmi-icon-chevron-up" />
+                  </summary>
+                  <ul
+                    className="list--reset"
+                    aria-labelledby={`select-category-${label}`}
+                  >
+                    {categoryChildren.map((item) => renderItem(item, items))}
+                  </ul>
+                </details>
+              </>
             ))}
+          {showMenu && hasCategories && (
+            <ul className="list--reset">
+              {actions.map((action) => renderItem(action, items))}
+            </ul>
+          )}
           {showMenu && !hasCategories && (
             <ul className="list--reset">
-              {items.map((item) => renderItem(item, items))}
+              {options.map((item) => renderItem(item, items))}
+              {actions.map((action) => renderItem(action, items))}
             </ul>
           )}
         </div>,

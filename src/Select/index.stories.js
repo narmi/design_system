@@ -115,6 +115,15 @@ WithCategories.args = {
         <span className="narmi-icon-blob padding--right--xs" /> Blob
       </Select.Item>
     </Select.Category>,
+    <Select.Action
+      onSelect={() => {
+        alert("action taken");
+      }}
+    >
+      <span className="fontColor--pine fontWeight--bold">
+        <span className="narmi-icon-plus padding--right--xs" /> Add new
+      </span>
+    </Select.Action>,
   ],
 };
 WithCategories.parameters = {

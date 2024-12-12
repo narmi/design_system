@@ -3,6 +3,7 @@
  */
 import AutocompleteModal from "./AutocompleteModal";
 import Avatar from "./Avatar";
+import ContextMenu from "./ContextMenu";
 import DisabledShim from "./DisabledShim";
 import SeparatorList from "./SeparatorList";
 import Slider from "./Slider";
@@ -57,6 +58,7 @@ export {
   // typed
   AutocompleteModal,
   Avatar,
+  ContextMenu,
   DisabledShim,
   SeparatorList,
   Slider,

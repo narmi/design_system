@@ -192,4 +192,3 @@ If you need to make additional changes after the beta is published...
 
 Source code is under a custom license based on MIT. The license restricts `@narmi/design_system` usage to applications that integrate or interoperate with Narmi software or services, with additional restrictions for external, stand-alone applications. Please see LICENSE.md for full details.
 
-

@@ -126,6 +126,72 @@ WithCategories.parameters = {
   },
 };
 
+export const ExpandedCategories = Template.bind({});
+ExpandedCategories.args = {
+  id: "expandedCategories",
+  label: "Select an Icon",
+  children: [
+    <Select.Category label="Transportation" isFlat>
+      <Select.Item value="truck">
+        <span className="narmi-icon-truck padding--right--xs" /> Truck
+      </Select.Item>
+      <Select.Item value="anchor">
+        <span className="narmi-icon-anchor padding--right--xs" /> Anchor
+      </Select.Item>
+      <Select.Item value="car-outline">
+        <span className="narmi-icon-car-outline padding--right--xs" /> Car
+      </Select.Item>
+    </Select.Category>,
+    <Select.Category label="Art" isFlat>
+      <Select.Item value="film">
+        <span className="narmi-icon-film padding--right--xs" /> Film
+      </Select.Item>
+      <Select.Item value="aperture">
+        <span className="narmi-icon-aperture padding--right--xs" /> Aperture
+      </Select.Item>
+      <Select.Item value="pen">
+        <span className="narmi-icon-pen-tool padding--right--xs" /> Pen
+      </Select.Item>
+      <Select.Item value="blob">
+        <span className="narmi-icon-blob padding--right--xs" /> Blob
+      </Select.Item>
+    </Select.Category>,
+  ],
+};
+ExpandedCategories.parameters = {
+  docs: {
+    description: {
+      story: "Categories may be set to always be open with the `expand` prop.",
+    },
+  },
+};
+
+export const CategoryLabels = Template.bind({});
+CategoryLabels.args = {
+  id: "categoryLabels",
+  label: "Select an Icon",
+  children: [
+    <Select.Category label="Recently used" isFlat kind="label">
+      <Select.Item value="truck">
+        <span className="narmi-icon-truck padding--right--xs" /> Truck
+      </Select.Item>
+      <Select.Item value="anchor">
+        <span className="narmi-icon-anchor padding--right--xs" /> Anchor
+      </Select.Item>
+      <Select.Item value="car-outline">
+        <span className="narmi-icon-car-outline padding--right--xs" /> Car
+      </Select.Item>
+    </Select.Category>,
+  ],
+};
+ExpandedCategories.parameters = {
+  docs: {
+    description: {
+      story: "Categories may be set to always be open with the `expand` prop.",
+    },
+  },
+};
+
 export const CustomTypeahead = Template.bind({});
 CustomTypeahead.args = {
   id: "customTypeaheadString",

@@ -9,11 +9,17 @@ const SelectCategory = ({ children }) => {
 SelectCategory.displayName = "Select.Category";
 
 SelectCategory.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  /**
+   * heading: default bold heading
+   * label: match input floating label
+   */
+  kind: PropTypes.oneOf(["heading", "label"]),
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  isFlat: PropTypes.bool,
 };
 
 export default SelectCategory;

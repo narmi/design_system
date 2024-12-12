@@ -6,12 +6,12 @@
   &:focus {
     outline: none;
   }
-  
+
   &--active--top,
   &--active--bottom {
     border: 1px solid var(--theme-primary);
   }
-  
+
   &--error {
     border: 1px solid var(--color-errorDark);
   }
@@ -73,4 +73,15 @@
     top: 50%;
     transform: translate(rem(1px), -50%);
   }
+}
+
+.select-category-title--heading {
+  font-weight: var(--font-weight-bold);
+}
+
+.select-category-title--label {
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-xs);
+  color: var(--color-mediumGrey);
 }

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.70.0](https://github.com/narmi/design_system/compare/v3.69.3...v3.70.0) (2024-12-12)
+
+
+### Features
+
+* **ContextMenu:** add ContextMenu component ([f5deb19](https://github.com/narmi/design_system/commit/f5deb1907a4a0a91577970acca201be50f360cab))
+
 ### [3.69.3](https://github.com/narmi/design_system/compare/v3.69.2...v3.69.3) (2024-12-10)
 
 

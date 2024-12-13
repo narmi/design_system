@@ -314,6 +314,7 @@ const Select = ({
                     <h4
                       id={`select-category-${label}`}
                       className={cc([
+                        "fontFamily--default",
                         "padding--x--s padding--y--xs",
                         {
                           [`select-category-title--label`]: kind === "label",

@@ -67,7 +67,6 @@ export const getItemIndex = (item, items) => {
   } else {
     result = items.map(({ props }) => props.value).indexOf(item.props.value);
   }
-  console.info(result);
   return result;
 };
 

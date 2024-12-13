@@ -139,7 +139,6 @@ const Select = ({
   actions = React.Children.toArray(children).filter(isAction);
 
   // If categories are being used, extract items and actions from categories
-  // FIXME: I fucked up here. I think this is the last bit I need to worry about.
   if (options.some(({ type }) => type.displayName === "Select.Category")) {
     items = [
       ...options.flatMap(({ props }) => React.Children.toArray(props.children)),

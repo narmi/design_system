@@ -4,31 +4,51 @@ import Row from "./";
 
 describe("Row", () => {
   it("has correct default styles for alignment and gap size", () => {
-    const { container } = render(<Row />);
+    const { container } = render(
+      <Row>
+        <Row.Item />
+      </Row>,
+    );
     expect(container.firstChild).toHaveStyle("align-items: flex-start");
     expect(container.firstChild).toHaveStyle("justify-content: flex-start");
     expect(container.firstChild).toHaveStyle("gap: var(--space-l)");
   });
 
   it("has correct override styles for center alignment", () => {
-    const { container } = render(<Row alignItems="center" />);
+    const { container } = render(
+      <Row alignItems="center">
+        <Row.Item />
+      </Row>,
+    );
     expect(container.firstChild).toHaveStyle("align-items: center");
   });
 
   it("has correct override styles for 'end' justification", () => {
-    const { container } = render(<Row justifyContent="end" />);
+    const { container } = render(
+      <Row justifyContent="end">
+        <Row.Item />
+      </Row>,
+    );
     expect(container.firstChild).toHaveStyle("justify-content: flex-end");
   });
 
   it("has correct override styles for gap shirt size values", () => {
-    ["xxs", "xs", "s", "m", "l"].forEach((size) => {
-      const { container } = render(<Row gapSize={size} />);
+    (["xxs", "xs", "s", "m", "l", "xl"] as const).forEach((size) => {
+      const { container } = render(
+        <Row gapSize={size}>
+          <Row.Item />
+        </Row>,
+      );
       expect(container.firstChild).toHaveStyle(`gap: var(--space-${size})`);
     });
   });
 
   it("has correct override styles for 'none' gap size", () => {
-    const { container } = render(<Row gapSize="none" />);
+    const { container } = render(
+      <Row gapSize="none">
+        <Row.Item />
+      </Row>,
+    );
     expect(container.firstChild).toHaveStyle("gap: 0");
   });
 });

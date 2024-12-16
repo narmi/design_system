@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.70.1](https://github.com/narmi/design_system/compare/v3.70.0...v3.70.1) (2024-12-16)
+
+
+### Bug Fixes
+
+* **ContextMenu:** fix missing export for ContextMenu in index.js ([5c8feaa](https://github.com/narmi/design_system/commit/5c8feaaaf344a7abcfe85797d6d8f103f3a49bed))
+
 ## [3.70.0](https://github.com/narmi/design_system/compare/v3.69.3...v3.70.0) (2024-12-12)
 
 

@@ -55,6 +55,7 @@ export {
   Button,
   Checkbox,
   ContentCard,
+  ContextMenu,
   CollapsibleCard,
   Combobox,
   DateInput,

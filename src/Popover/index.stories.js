@@ -59,10 +59,10 @@ FocusManagement.args = {
   content: (
     <div className="padding--all">
       Focus will be trapped to{" "}
-      <a _target="blank" href="http://narmi.com" className="fontWeight--bold">
+      <a target="blank" href="http://narmi.com" className="fontWeight--bold">
         focusable
       </a>{" "}
-      <a _target="blank" href="http://narmi.com" className="fontWeight--bold">
+      <a target="blank" href="http://narmi.com" className="fontWeight--bold">
         elements
       </a>{" "}
       within the Popover while it is open.

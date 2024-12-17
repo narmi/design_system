@@ -294,7 +294,6 @@ const Select = ({
           {showMenu &&
             hasCategories &&
             categories.map(({ label, kind, categoryChildren, isFlat }) => {
-              console.info(isFlat);
               return isFlat ? (
                 <>
                   {label && (

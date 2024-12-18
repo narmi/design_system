@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file. See
 
 
 ### ⚠ BREAKING CHANGES
+Marked as a risky change, but should not require updates in consumers.
 
 * **Row:** convert Row and Row.Item to TypeScript
 

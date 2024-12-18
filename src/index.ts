@@ -8,6 +8,7 @@ import DisabledShim from "./DisabledShim";
 import Row from "./Row";
 import SeparatorList from "./SeparatorList";
 import Slider from "./Slider";
+import Snackbar from "./Snackbar";
 
 /**
  * Untyped Components
@@ -63,6 +64,7 @@ export {
   Row,
   SeparatorList,
   Slider,
+  Snackbar,
 
   // untyped
   Alert,

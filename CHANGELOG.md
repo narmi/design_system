@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.0](https://github.com/narmi/design_system/compare/v3.70.1...v4.0.0) (2024-12-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Row:** convert Row and Row.Item to TypeScript
+
+### Code Refactoring
+
+* **Row:** convert Row and Row.Item to TypeScript ([e8b8bd8](https://github.com/narmi/design_system/commit/e8b8bd81c5bbf4f53b31b0185ed992bf539d3cea))
+
 ### [3.70.1](https://github.com/narmi/design_system/compare/v3.70.0...v3.70.1) (2024-12-16)
 
 

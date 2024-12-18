@@ -5,6 +5,7 @@ import AutocompleteModal from "./AutocompleteModal";
 import Avatar from "./Avatar";
 import ContextMenu from "./ContextMenu";
 import DisabledShim from "./DisabledShim";
+import Row from "./Row";
 import SeparatorList from "./SeparatorList";
 import Slider from "./Slider";
 
@@ -37,7 +38,6 @@ declare const ProgressBar;
 declare const Popover;
 declare const RadioButtons;
 declare const ResponsiveFlex;
-declare const Row;
 declare const Select;
 declare const Sidebar;
 declare const Tabs;
@@ -60,6 +60,7 @@ export {
   Avatar,
   ContextMenu,
   DisabledShim,
+  Row,
   SeparatorList,
   Slider,
 
@@ -90,7 +91,6 @@ export {
   Popover,
   RadioButtons,
   ResponsiveFlex,
-  Row,
   Select,
   Sidebar,
   Tabs,

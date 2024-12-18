@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.0.1](https://github.com/narmi/design_system/compare/v4.0.0...v4.0.1) (2024-12-18)
+
+
+### Bug Fixes
+
+* **DisabledShim:** ensure element fills 100% of parent ([284caee](https://github.com/narmi/design_system/commit/284caee894d4d2cd02659834fddcf19144e06f6b))
+
 ## [4.0.0](https://github.com/narmi/design_system/compare/v3.70.1...v4.0.0) (2024-12-18)
 
 

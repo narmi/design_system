@@ -92,7 +92,6 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
             placeholder={props.label}
             aria-label={props.label}
             data-testid={testId}
-            error={inputError}
             {...nativeElementProps}
           />
         </div>
@@ -108,7 +107,6 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
           aria-label={props.label}
           placeholder={props.label}
           data-testid={testId}
-          error={inputError}
           {...nativeElementProps}
         />
       )}
@@ -142,7 +140,10 @@ TextInput.propTypes = {
   /** Display an X at the end of label that clears input and calls onChange on click. */
   showClearButton: PropTypes.bool,
   /** Text of error message to display under the input */
-  error: PropTypes.oneOf([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+  error: PropTypes.oneOf([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
   /** Maximum number of characters allowed in the input */
   maxLength: PropTypes.number,
   /** Optional value for `data-testid` attribute */

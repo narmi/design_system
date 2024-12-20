@@ -49,11 +49,4 @@ describe("TextInput", () => {
     const multilineInput = screen.getByPlaceholderText("Label");
     expect(multilineInput).toBeInTheDocument();
   });
-
-  it.only("passes prop down to native input element", () => {
-    render(<TextInput label={"Label"} error="the cake is a lie" testId="inputEl" />);
-    const inputEl = screen.getByPlaceholderText("Label")
-    const errorAttribute = inputEl.getAttribute("error");
-    expect(errorAttribute).toBe("the cake is a lie");
-  });
 });

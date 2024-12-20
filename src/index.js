@@ -6,6 +6,7 @@ import Avatar from "./Avatar";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
 import ContentCard from "./ContentCard";
+import ContextMenu from "./ContextMenu";
 import CollapsibleCard from "./CollapsibleCard";
 import Combobox from "./Combobox";
 import DateInput from "./DateInput";
@@ -55,6 +56,7 @@ export {
   Button,
   Checkbox,
   ContentCard,
+  ContextMenu,
   CollapsibleCard,
   Combobox,
   DateInput,

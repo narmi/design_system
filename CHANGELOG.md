@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.0.1](https://github.com/narmi/design_system/compare/v4.0.0...v4.0.1) (2024-12-18)
+
+
+### Bug Fixes
+
+* **DisabledShim:** ensure element fills 100% of parent ([284caee](https://github.com/narmi/design_system/commit/284caee894d4d2cd02659834fddcf19144e06f6b))
+
+## [4.0.0](https://github.com/narmi/design_system/compare/v3.70.1...v4.0.0) (2024-12-18)
+
+
+### ⚠ BREAKING CHANGES
+Marked as a risky change, but should not require updates in consumers.
+
+* **Row:** convert Row and Row.Item to TypeScript
+
+### Code Refactoring
+
+* **Row:** convert Row and Row.Item to TypeScript ([e8b8bd8](https://github.com/narmi/design_system/commit/e8b8bd81c5bbf4f53b31b0185ed992bf539d3cea))
+
+### [3.70.1](https://github.com/narmi/design_system/compare/v3.70.0...v3.70.1) (2024-12-16)
+
+
+### Bug Fixes
+
+* **ContextMenu:** fix missing export for ContextMenu in index.js ([5c8feaa](https://github.com/narmi/design_system/commit/5c8feaaaf344a7abcfe85797d6d8f103f3a49bed))
+
+## [3.70.0](https://github.com/narmi/design_system/compare/v3.69.3...v3.70.0) (2024-12-12)
+
+
+### Features
+
+* **ContextMenu:** add ContextMenu component ([f5deb19](https://github.com/narmi/design_system/commit/f5deb1907a4a0a91577970acca201be50f360cab))
+
+### [3.69.3](https://github.com/narmi/design_system/compare/v3.69.2...v3.69.3) (2024-12-10)
+
+
+### Bug Fixes
+
+* **Select:** actions count as empty strings for typeahead ([000200a](https://github.com/narmi/design_system/commit/000200a9cea9445488871786794bcc3534cb11b6))
+
 ### [3.69.2](https://github.com/narmi/design_system/compare/v3.69.1...v3.69.2) (2024-12-04)
 
 

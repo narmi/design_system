@@ -1,0 +1,53 @@
+%trigger-hover {
+  color: var(--theme-primary);
+  background-color: rgba(var(--theme-rgb-primary), var(--alpha-5));
+  text-decoration: none;
+}
+
+.nds-menubutton-trigger {
+  color: var(--font-color-secondary);
+  border-radius: var(--border-radius-s);
+
+  &--useCssHover {
+    &:focus button,
+    &:hover,
+    &:active {
+      @extend %trigger-hover;
+    }
+  }
+
+  // forces hover effect when menu is open
+  &--hovered {
+    @extend %trigger-hover;
+  }
+}
+
+.nds-context-menu-popover {
+  z-index: 4;
+}
+
+.nds-context-menu {
+  white-space: nowrap;
+  background-color: var(--color-white);
+  box-shadow: var(--elevation-high);
+  outline: none;
+}
+
+.nds-context-menu-item {
+  user-select: none;
+  cursor: pointer;
+  display: block;
+  color: inherit;
+  font: inherit;
+  text-decoration: initial;
+  outline: none;
+
+  &--highlighted {
+    background: rgba(var(--theme-rgb-primary), var(--alpha-5));
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

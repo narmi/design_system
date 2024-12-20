@@ -1,6 +1,8 @@
 .nds-disabledShim {
   position: relative;
+  width: 100%;
 }
+
 .nds-disabledShim--disabled::after {
   content: "";
   user-select: none;

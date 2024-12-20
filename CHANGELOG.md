@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.0](https://github.com/narmi/design_system/compare/v4.0.1...v4.1.0) (2024-12-20)
+
+
+### Features
+
+* **Snackbar:** add snackbar table status/toolbar component ([f96b926](https://github.com/narmi/design_system/commit/f96b92626bdf39ef5551eab5734b3df31b452f96))
+
 ### [4.0.1](https://github.com/narmi/design_system/compare/v4.0.0...v4.0.1) (2024-12-18)
 
 

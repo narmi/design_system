@@ -1,5 +1,4 @@
 import React from "react";
-// @ts-expect-error silence json file import error until JSON module can be resolved
 import iconSelection from "src/icons/selection.json";
 
 export interface ContextMenuItemProps {

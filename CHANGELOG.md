@@ -21,7 +21,11 @@ All notable changes to this project will be documented in this file. See
 
 
 ### ⚠ BREAKING CHANGES
-Marked as a risky change, but should not require updates in consumers.
+Marked as a risky change, but should not require updates in consumers unless invalid props are used on `Row.Item`.
+
+These props on `Row.Item` components will now throw a TS error if the consumer type checks.
+- `alignItems`
+- `justifyContent`
 
 * **Row:** convert Row and Row.Item to TypeScript
 

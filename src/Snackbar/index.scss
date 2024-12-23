@@ -1,0 +1,41 @@
+.nds-snackbar {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: var(--space-m);
+  gap: var(--space-m);
+  min-height: rem(64px);
+  border-radius: rem(24px);
+  box-shadow: var(--elevation-high);
+  width: max-content;
+  min-width: 330px;
+  max-width: 80vw;
+  margin: 0 auto;
+
+  @include atMediaUp("m") {
+    flex-wrap: nowrap;
+    border-radius: rem(56px);
+    padding: var(--space-s) var(--space-m);
+  }
+}
+
+.nds-snackbar-divider,
+.nds-snackbar-buttonGroup {
+  flex-basis: 100%;
+  @include atMediaUp("m") {
+    flex-basis: unset;
+  }
+}
+
+.nds-snackbar-buttonGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-m);
+
+  .nds-button {
+    flex-shrink: 1;
+  }
+}

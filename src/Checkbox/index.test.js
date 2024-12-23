@@ -36,6 +36,23 @@ describe("Checkbox", () => {
     expect(label).toHaveClass("nds-checkbox--checked");
   });
 
+  it("shows correct initial state for defaultChecked", () => {
+    render(<Checkbox label={LABEL} defaultChecked />);
+    const { label, input } = getElements();
+    expect(input).toBeChecked();
+    expect(label).toHaveClass("nds-checkbox--checked");
+  });
+
+  it("allows uncontrolled value changes if defaultChecked", () => {
+    render(<Checkbox label={LABEL} defaultChecked />);
+    const { label, input } = getElements();
+    expect(input).toBeChecked();
+    expect(label).toHaveClass("nds-checkbox--checked");
+    fireEvent.click(input);
+    expect(input).not.toBeChecked();
+    expect(label).not.toHaveClass("nds-checkbox--checked");
+  });
+
   it("fires onChange callback", () => {
     const handleChange = jest.fn();
     render(<Checkbox label={LABEL} onChange={handleChange} />);

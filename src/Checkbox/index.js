@@ -14,6 +14,7 @@ const Checkbox = ({
   onChange = () => {},
   id,
   name,
+  defaultChecked,
   checked,
   disabled = false,
   indeterminate = false,
@@ -25,7 +26,10 @@ const Checkbox = ({
   ...rest
 }) => {
   const inputRef = useRef(null);
-  const [isChecked, setIsChecked] = useState(checked);
+  const isControlled = checked !== undefined;
+  const [isChecked, setIsChecked] = useState(
+    isControlled ? checked : defaultChecked || false
+  );
   const [isFocused, setIsFocused] = useState(false);
   const isCard = kind === "card";
 
@@ -43,7 +47,9 @@ const Checkbox = ({
   };
 
   useEffect(() => {
-    setIsChecked(checked);
+    if (isControlled) {
+      setIsChecked(checked);
+    }
     // ensure indeterminate state is reflected in rendered DOM
     if (inputRef.current) {
       inputRef.current.indeterminate = indeterminate;
@@ -51,7 +57,9 @@ const Checkbox = ({
   }, [checked, indeterminate]);
 
   const handleChange = (e) => {
-    setIsChecked((isChecked) => !isChecked);
+    if (!isControlled) {
+      setIsChecked((isChecked) => !isChecked);
+    }
     onChange(e);
   };
 
@@ -100,6 +108,7 @@ const Checkbox = ({
           onBlur={handleBlur}
           onChange={handleChange}
           checked={isChecked}
+          defaultChecked={defaultChecked}
           disabled={disabled}
           name={name}
           id={id}
@@ -125,6 +134,13 @@ Checkbox.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** `name` attribute of `input` */
   name: PropTypes.string,
+  /**
+   * ⚠️ DEPRECATED
+   *
+   * Uncontrolled Checkbox props will be removed in a future release.
+   * Use `checked` instead to use Checkbox as a fully controlled input.
+   */
+  defaultChecked: PropTypes.bool,
   /** Sets the checkbox checked value */
   checked: PropTypes.bool,
   /**
@@ -149,7 +165,7 @@ Checkbox.propTypes = {
    * `normal` - visually matches a checkbox input
    *
    * `condensed` - like `normal`, but without added top margin when there are multiple checkboxes
-   *
+   * 
    * `card` - visually present as a toggleable card
    */
   kind: PropTypes.oneOf(["normal", "condensed", "card", "table"]),

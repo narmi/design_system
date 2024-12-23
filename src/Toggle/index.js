@@ -7,7 +7,6 @@ import LoadingShim from "../LoadingShim";
  * Checkbox behavior with the visual treatment of a physical toggle switch.
  */
 const Toggle = ({
-  defaultActive = false,
   isActive,
   disabled = false,
   isLoading,
@@ -19,7 +18,7 @@ const Toggle = ({
   disabledLabel = "off",
 }) => {
   const isControlled = isActive !== undefined;
-  const [active, setActive] = useState(defaultActive);
+  const [active, setActive] = useState(isActive);
 
   useEffect(() => {
     if (isControlled) {
@@ -87,8 +86,6 @@ Toggle.propTypes = {
    * when user changes the active state of the Toggle
    */
   onChange: PropTypes.func,
-  /** When set to `true`, the toggle will initially render as active */
-  defaultActive: PropTypes.bool,
   /**
    * Sets active state of toggle; makes the component fully controlled.
    * When using `isActive` you **must** use the `onChange` callback

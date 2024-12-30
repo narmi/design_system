@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.1.1](https://github.com/narmi/design_system/compare/v4.1.0...v4.1.1) (2024-12-30)
+
+
+### Bug Fixes
+
+* **TextInput:** add error data attr for e2e tests ([a3b99d4](https://github.com/narmi/design_system/commit/a3b99d463f78a598149879623b0acd3d9f7a8f5d))
+
 ## [4.1.0](https://github.com/narmi/design_system/compare/v4.0.1...v4.1.0) (2024-12-20)
 
 

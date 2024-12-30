@@ -92,6 +92,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
             placeholder={props.label}
             aria-label={props.label}
             data-testid={testId}
+            data-error={inputError}
             {...nativeElementProps}
           />
         </div>
@@ -107,6 +108,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
           aria-label={props.label}
           placeholder={props.label}
           data-testid={testId}
+          data-error={inputError}
           {...nativeElementProps}
         />
       )}

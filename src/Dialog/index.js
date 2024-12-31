@@ -96,7 +96,7 @@ const Dialog = ({
   const dialogJSX = (
     <CSSTransition timeout={1} classNames="nds-dialog-transition" appear in>
       <div className="nds-shim--dark" ref={shimRef} onClick={handleShimClick}>
-        <FocusLock autoFocus={false}>
+        <FocusLock autoFocus={false} className="nds-dialog-focuslock">
           <div
             role="dialog"
             aria-labelledby="aria-dialog-label"

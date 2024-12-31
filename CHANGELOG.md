@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.1.2](https://github.com/narmi/design_system/compare/v4.1.1...v4.1.2) (2024-12-31)
+
+
+### Bug Fixes
+
+* **TypeScript:** add a json.d.ts file to remove [@ts-expect-error](https://github.com/ts-expect-error) when importing JSON file ([63f16ba](https://github.com/narmi/design_system/commit/63f16ba54b6433fae944a2962f545164a7980788))
+
 ### [4.1.1](https://github.com/narmi/design_system/compare/v4.1.0...v4.1.1) (2024-12-30)
 
 

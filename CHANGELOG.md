@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.1.4](https://github.com/narmi/design_system/compare/v4.1.3...v4.1.4) (2025-01-02)
+
+
+### Bug Fixes
+
+* **Tabs:** only add aria attr when panels are present ([870b791](https://github.com/narmi/design_system/commit/870b791c51da468d35cd4ba15c1308c17869f82b))
+
 ### [4.1.3](https://github.com/narmi/design_system/compare/v4.1.2...v4.1.3) (2025-01-02)
 
 

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.1.3](https://github.com/narmi/design_system/compare/v4.1.2...v4.1.3) (2025-01-02)
+
+
+### Bug Fixes
+
+* **DateInput:** apply aria-label to alternate input element ([a41d427](https://github.com/narmi/design_system/commit/a41d4275193d87adfe9cc4e781afedd06287195e))
+
 ### [4.1.2](https://github.com/narmi/design_system/compare/v4.1.1...v4.1.2) (2024-12-31)
 
 

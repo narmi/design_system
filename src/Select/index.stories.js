@@ -126,8 +126,8 @@ WithCategories.parameters = {
   },
 };
 
-export const ExpandedCategories = Template.bind({});
-ExpandedCategories.args = {
+export const FlatCategories = Template.bind({});
+FlatCategories.args = {
   id: "expandedCategories",
   label: "Select an Icon",
   children: [
@@ -158,10 +158,10 @@ ExpandedCategories.args = {
     </Select.Category>,
   ],
 };
-ExpandedCategories.parameters = {
+FlatCategories.parameters = {
   docs: {
     description: {
-      story: "Categories may be set to always be open with the `expand` prop.",
+      story: "Categories may be set to always be open with the `isFlat` prop.",
     },
   },
 };

@@ -305,7 +305,7 @@ const Select = ({
                         {
                           [`select-category-title--label`]: kind === "label",
                           [`select-category-title--heading`]:
-                            kind === "heading" || !kind,
+                            kind === "heading",
                         },
                       ])}
                     >

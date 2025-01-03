@@ -30,6 +30,7 @@ const Drawer = ({
   footer,
   testId,
 }) => {
+  const panelId = `content-panel-${Date.now()}`;
   const shimRef = useRef(null);
   const navRef = useRef(null);
 
@@ -50,22 +51,6 @@ const Drawer = ({
   const handleKeyDown = ({ key }) => {
     if (key === "Escape") {
       onUserDismiss();
-    }
-    if (!showControls) return;
-    if (isHorizontal) {
-      if (key === "ArrowRight") {
-        onNext && onNext();
-      }
-      if (key === "ArrowLeft") {
-        onPrev && onPrev();
-      }
-    } else {
-      if (key === "ArrowDown") {
-        onNext && onNext();
-      }
-      if (key === "ArrowUp") {
-        onPrev && onPrev();
-      }
     }
   };
 
@@ -99,12 +84,13 @@ const Drawer = ({
     >
       <div className={`navigation-container--${position}`}>
         {showClose && (
-          <div
-            className={`navigation-button navigation-button--${position} alignChild--center--center`}
+          <button
+            className={`button--reset navigation-button navigation-button--${position} alignChild--center--center`}
             onClick={onUserDismiss}
+            aria-label="Close"
           >
             <span className="narmi-icon-x clickable fontSize--heading3" />
-          </div>
+          </button>
         )}
         {showClose && showControls && (
           <div
@@ -115,9 +101,9 @@ const Drawer = ({
         )}
         {showControls && (
           <>
-            <div
+            <button
               className={cc([
-                `navigation-button navigation-button--${position} alignChild--center--center`,
+                `button--reset navigation-button navigation-button--${position} alignChild--center--center`,
                 {
                   // Navigation buttons on vertical drawers are the opposite compared to
                   // horizontal ones due to the order of navigation buttons being the opposite
@@ -128,16 +114,18 @@ const Drawer = ({
                 },
               ])}
               onClick={isHorizontal ? onNext : onPrev}
+              aria-controls={panelId}
+              aria-label={isHorizontal ? "Next" : "Previous"}
             >
               <span
                 className={`narmi-icon-chevron-${
                   isHorizontal ? "right" : "up"
                 } fontSize--heading3`}
               />
-            </div>
-            <div
+            </button>
+            <button
               className={cc([
-                `navigation-button navigation-button--${position} alignChild--center--center`,
+                `button--reset navigation-button navigation-button--${position} alignChild--center--center`,
                 {
                   "navigation-button--disabled": isHorizontal
                     ? onPrev == null
@@ -145,13 +133,15 @@ const Drawer = ({
                 },
               ])}
               onClick={isHorizontal ? onPrev : onNext}
+              aria-controls={panelId}
+              aria-label={isHorizontal ? "Previous" : "Next"}
             >
               <span
                 className={`narmi-icon-chevron-${
                   isHorizontal ? "left" : "down"
                 } fontSize--heading3`}
               />
-            </div>
+            </button>
           </>
         )}
       </div>
@@ -177,17 +167,30 @@ const Drawer = ({
           <>
             {showControls && (
               <>
-                <div className="mobile-navigation-button" onClick={onPrev}>
+                <button
+                  className="button--reset mobile-navigation-button"
+                  onClick={onPrev}
+                  aria-controls={panelId}
+                  aria-label="Previous"
+                >
                   <span className="narmi-icon-chevron-left fontSize--heading3" />
-                </div>
-                <div className="mobile-navigation-button" onClick={onNext}>
+                </button>
+                <button
+                  className="button--reset mobile-navigation-button"
+                  onClick={onNext}
+                  aria-controls={panelId}
+                  aria-label="Next"
+                >
                   <span className="narmi-icon-chevron-right fontSize--heading3" />
-                </div>
+                </button>
               </>
             )}
-            <div className="mobile-navigation-button" onClick={onUserDismiss}>
+            <button
+              className="button--reset mobile-navigation-button"
+              onClick={onUserDismiss}
+            >
               <span className="narmi-icon-x clickable fontSize--heading3" />
-            </div>
+            </button>
           </>
         )}
         {typeof children === "function"
@@ -222,7 +225,13 @@ const Drawer = ({
         onClick={handleShimClick}
       />
       {navigationContainerJSX}
-      {childrenJSX}
+      {!showControls ? (
+        childrenJSX
+      ) : (
+        <div aria-live="polite" role="region" id={panelId}>
+          {childrenJSX}
+        </div>
+      )}
     </div>
   );
 

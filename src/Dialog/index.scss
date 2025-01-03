@@ -3,16 +3,13 @@
 }
 
 .nds-shim--dark {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  position: absolute;
+  top: env(safe-area-inset-top, 0px);
+  right: env(safe-area-inset-right, 0px);
+  bottom: env(safe-area-inset-bottom, 0px);
+  left: env(safe-area-inset-left, 0px);
   background-color: var(--bgColor-scrimDark);
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  min-height: 100vh;
+  min-height: 100dvh;
   z-index: 3;
 
   // create spaces around viewport edges for tablet or larger
@@ -41,6 +38,23 @@
   transition: opacity 200ms;
 }
 
+.nds-dialog-focuslock {
+  position: absolute;
+  top: env(safe-area-inset-top, 0px);
+  bottom: env(safe-area-inset-bottom, 0px);
+
+  // bottom align the dialog within the available area
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  // for tablet or larger, display the modal dialog as a floating box.
+  @include atMediaUp("s") {
+    position: static;
+    height: auto !important;
+  }
+}
+
 .nds-dialog {
   position: relative;
   background-color: var(--bgColor-white);
@@ -51,15 +65,10 @@
   border-top-right-radius: var(--border-radius-m);
   border-top-left-radius: var(--border-radius-m);
 
-  // the modal dialog takes over the whole screen by default
-  // (small viewports)
-  height: 96vh; // fall back to 196vh for older mobile browsers
-  height: 96dvh; // prevents toolbar overlap in modern mobile browsers
-  width: 100vw;
+  max-height: 96%; // relative to parent, .nds-dialog-focuslock
 
   // for tablet or larger, display the modal dialog as a floating box.
   @include atMediaUp("s") {
-    height: auto !important;
     border-radius: var(--border-radius-m);
     max-height: 80vh; // prevent modal from being taller than the shim content box
     min-width: 240px; // should be no narrower than this on larger viewports

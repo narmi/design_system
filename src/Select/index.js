@@ -135,6 +135,10 @@ const Select = ({
     categories = allChildren.map(({ props }) => ({
       label: props.label,
       categoryChildren: React.Children.toArray(props.children),
+      // eslint-disable-next-line react/prop-types
+      kind: props.kind,
+      // eslint-disable-next-line react/prop-types
+      isFlat: props.isFlat,
     }));
   } else {
     items = allChildren;
@@ -289,25 +293,62 @@ const Select = ({
         >
           {showMenu &&
             hasCategories &&
-            categories.map(({ label, categoryChildren }) => (
-              <details
-                key={label}
-                className="nds-select-category"
-                {...getDetailsProps(categoryChildren)} // controls open state
-              >
-                <summary className="fontWeight--bold alignChild--left--center padding--x--s padding--y-xs">
-                  <span id={`select-category-${label}`}>{label}</span>
-                  <span className="nds-category-icon narmi-icon-chevron-down" />
-                  <span className="nds-category-icon narmi-icon-chevron-up" />
-                </summary>
-                <ul
-                  className="list--reset"
-                  aria-labelledby={`select-category-${label}`}
+            categories.map(({ label, kind, categoryChildren, isFlat }) => {
+              return isFlat ? (
+                <>
+                  {label && (
+                    <h4
+                      id={`select-category-${label}`}
+                      className={cc([
+                        "fontFamily--default",
+                        "padding--x--s padding--y--xs",
+                        {
+                          [`select-category-title--label`]: kind === "label",
+                          [`select-category-title--heading`]:
+                            kind === "heading",
+                        },
+                      ])}
+                    >
+                      {label}
+                    </h4>
+                  )}
+                  <ul
+                    className="list--reset"
+                    aria-labelledby={`select-category-${label}`}
+                  >
+                    {categoryChildren.map((item) => renderItem(item, items))}
+                  </ul>
+                </>
+              ) : (
+                <details
+                  key={label}
+                  className="nds-select-category"
+                  {...getDetailsProps(categoryChildren)} // controls open state
                 >
-                  {categoryChildren.map((item) => renderItem(item, items))}
-                </ul>
-              </details>
-            ))}
+                  <summary
+                    className={cc([
+                      "alignChild--left--center",
+                      "padding--x--s padding--y--xs",
+                      {
+                        [`select-category-title--label`]: kind === "label",
+                        [`select-category-title--heading`]:
+                          kind === "heading" || !kind,
+                      },
+                    ])}
+                  >
+                    <span id={`select-category-${label}`}>{label}</span>
+                    <span className="nds-category-icon narmi-icon-chevron-down" />
+                    <span className="nds-category-icon narmi-icon-chevron-up" />
+                  </summary>
+                  <ul
+                    className="list--reset"
+                    aria-labelledby={`select-category-${label}`}
+                  >
+                    {categoryChildren.map((item) => renderItem(item, items))}
+                  </ul>
+                </details>
+              );
+            })}
           {showMenu && !hasCategories && (
             <ul className="list--reset">
               {items.map((item) => renderItem(item, items))}

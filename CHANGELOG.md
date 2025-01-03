@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.2.1](https://github.com/narmi/design_system/compare/v4.2.0...v4.2.1) (2025-01-03)
+
+
+### Bug Fixes
+
+* **Dialog:** prevent footer cutoff in ios safari ([70042f5](https://github.com/narmi/design_system/commit/70042f5a83476434688b4cf7cfd369334047f496))
+
 ## [4.2.0](https://github.com/narmi/design_system/compare/v4.1.4...v4.2.0) (2025-01-03)
 
 

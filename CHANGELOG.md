@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.0](https://github.com/narmi/design_system/compare/v4.1.4...v4.2.0) (2025-01-03)
+
+
+### Features
+
+* **Select:** allow flat categories; add label category kind ([c7267ca](https://github.com/narmi/design_system/commit/c7267caa3d277cef2f03d7318abac2e953c8ee61))
+
+
+### Bug Fixes
+
+* lint ([80223ed](https://github.com/narmi/design_system/commit/80223edc7acb16e27c953ffa4a58dfbb5ad93b0c))
+* **Select:** use bold normal family for headings ([cc58b31](https://github.com/narmi/design_system/commit/cc58b31f638f9694ce3fcd17083335fbb5f0e025))
+
+### [4.1.4](https://github.com/narmi/design_system/compare/v4.1.3...v4.1.4) (2025-01-02)
+
+
+### Bug Fixes
+
+* **Tabs:** only add aria attr when panels are present ([870b791](https://github.com/narmi/design_system/commit/870b791c51da468d35cd4ba15c1308c17869f82b))
+
+### [4.1.3](https://github.com/narmi/design_system/compare/v4.1.2...v4.1.3) (2025-01-02)
+
+
+### Bug Fixes
+
+* **DateInput:** apply aria-label to alternate input element ([a41d427](https://github.com/narmi/design_system/commit/a41d4275193d87adfe9cc4e781afedd06287195e))
+
+### [4.1.2](https://github.com/narmi/design_system/compare/v4.1.1...v4.1.2) (2024-12-31)
+
+
+### Bug Fixes
+
+* **TypeScript:** add a json.d.ts file to remove [@ts-expect-error](https://github.com/ts-expect-error) when importing JSON file ([63f16ba](https://github.com/narmi/design_system/commit/63f16ba54b6433fae944a2962f545164a7980788))
+
 ### [4.1.1](https://github.com/narmi/design_system/compare/v4.1.0...v4.1.1) (2024-12-30)
 
 

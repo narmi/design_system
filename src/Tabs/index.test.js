@@ -5,6 +5,7 @@ import Tabs from "./";
 const TAB_NAMES = ["Tab One", "Tab Two", "Tab Three"];
 const TAB_IDS = ["uno", "dos", "tres"];
 const PANEL_CONTENTS = ["Panel One", "Panel Two", "Panel Three"];
+const SELECTED_CLASS = "nds-tabs-tabItem--selected";
 
 /**
  * @returns {Object} panel elements returned by `screen`
@@ -35,7 +36,7 @@ const renderTabsWithPanels = (args) =>
       <Tabs.Panel tabId={TAB_IDS[0]}>{PANEL_CONTENTS[0]}</Tabs.Panel>
       <Tabs.Panel tabId={TAB_IDS[1]}>{PANEL_CONTENTS[1]}</Tabs.Panel>
       <Tabs.Panel tabId={TAB_IDS[2]}>{PANEL_CONTENTS[2]}</Tabs.Panel>
-    </Tabs>
+    </Tabs>,
   );
 
 const renderTabsWithoutPanels = (args) =>
@@ -46,7 +47,7 @@ const renderTabsWithoutPanels = (args) =>
         <Tabs.Tab label={TAB_NAMES[1]} tabId={TAB_IDS[1]} />
         <Tabs.Tab label={TAB_NAMES[2]} tabId={TAB_IDS[2]} />
       </Tabs.List>
-    </Tabs>
+    </Tabs>,
   );
 
 describe("Tabs", () => {
@@ -162,9 +163,9 @@ describe("Tabs", () => {
     fireEvent.keyDown(firstTab, { key: "ArrowRight" });
     expect(handleTabChange).not.toHaveBeenCalled();
 
-    expect(firstTab.parentElement).toHaveAttribute("aria-selected", "true");
+    expect(firstTab.parentElement).toHaveClass(SELECTED_CLASS);
     [secondTab, thirdTab].forEach((tab) => {
-      expect(tab.parentElement).toHaveAttribute("aria-selected", "false");
+      expect(tab.parentElement).not.toHaveClass(SELECTED_CLASS);
     });
   });
 
@@ -191,6 +192,7 @@ describe("Tabs", () => {
     [firstTab, secondTab, thirdTab].forEach((tab) => {
       expect(tab.parentElement).not.toHaveAttribute("role", "tab");
       expect(tab.parentElement).not.toHaveAttribute("aria-controls");
+      expect(tab.parentElement).not.toHaveAttribute("aria-selected");
     });
   });
 
@@ -199,9 +201,9 @@ describe("Tabs", () => {
       renderTabsWithoutPanels({ selectedIndex: 1 });
       const { firstTab, secondTab, thirdTab } = getTabs();
 
-      expect(secondTab.parentElement).toHaveAttribute("aria-selected", "true");
+      expect(secondTab.parentElement).toHaveClass(SELECTED_CLASS);
       [firstTab, thirdTab].forEach((tab) => {
-        expect(tab.parentElement).toHaveAttribute("aria-selected", "false");
+        expect(tab.parentElement).not.toHaveClass(SELECTED_CLASS);
       });
     });
 
@@ -214,9 +216,9 @@ describe("Tabs", () => {
       const { firstTab, secondTab, thirdTab } = getTabs();
 
       // third tab is set as selected initially
-      expect(thirdTab.parentElement).toHaveAttribute("aria-selected", "true");
+      expect(thirdTab.parentElement).toHaveClass(SELECTED_CLASS);
       [firstTab, secondTab].forEach((tab) => {
-        expect(tab.parentElement).toHaveAttribute("aria-selected", "false");
+        expect(tab.parentElement).not.toHaveClass(SELECTED_CLASS);
       });
 
       // callback fired as expected, with the new tab index
@@ -227,9 +229,9 @@ describe("Tabs", () => {
       // because this is in controlled mode and our handler doesn't update the
       // `selectedIndex` prop, the selected tab should NOT update,
       // leaving the third tab in a selected state
-      expect(thirdTab.parentElement).toHaveAttribute("aria-selected", "true");
+      expect(thirdTab.parentElement).toHaveClass(SELECTED_CLASS);
       [firstTab, secondTab].forEach((tab) => {
-        expect(tab.parentElement).toHaveAttribute("aria-selected", "false");
+        expect(tab.parentElement).not.toHaveClass(SELECTED_CLASS);
       });
     });
   });

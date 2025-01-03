@@ -28,7 +28,7 @@ const DateInput = ({
 
   // Shorten "Sun" to "Su", "Mon" to "Mo", etc.
   english.weekdays.shorthand = english.weekdays.shorthand.map((abbrev) =>
-    abbrev.substr(0, 2)
+    abbrev.substr(0, 2),
   );
   const flatpickrOptions = {
     monthSelectorType: "static",
@@ -50,9 +50,20 @@ const DateInput = ({
         return;
       }
       const formattedDate = new Intl.DateTimeFormat(locale).format(
-        selectedDate
+        selectedDate,
       );
       onChangeProp(formattedDate);
+    },
+    // When `altInput` is passed, flatpickr makes the `input` element `type="hidden"`
+    // and creates a separate input to display the alternate date format (altFormat).
+    // When this is the case, we need to hook into the flatpickr ready event to add the attribute.
+    onReady: (dates, dateStr, instance) => {
+      if (altInput && instance.altInput) {
+        instance.altInput.setAttribute(
+          "aria-label",
+          props.label || "Select date",
+        );
+      }
     },
   };
 

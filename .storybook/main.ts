@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   typescript: {
-    reactDocgen: "react-docgen",
+    reactDocgen: "react-docgen-typescript",
   },
 
   stories: [

@@ -3,6 +3,71 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.1.4](https://github.com/narmi/design_system/compare/v4.1.3...v4.1.4) (2025-01-02)
+
+
+### Bug Fixes
+
+* **Tabs:** only add aria attr when panels are present ([870b791](https://github.com/narmi/design_system/commit/870b791c51da468d35cd4ba15c1308c17869f82b))
+
+### [4.1.3](https://github.com/narmi/design_system/compare/v4.1.2...v4.1.3) (2025-01-02)
+
+
+### Bug Fixes
+
+* **DateInput:** apply aria-label to alternate input element ([a41d427](https://github.com/narmi/design_system/commit/a41d4275193d87adfe9cc4e781afedd06287195e))
+
+### [4.1.2](https://github.com/narmi/design_system/compare/v4.1.1...v4.1.2) (2024-12-31)
+
+
+### Bug Fixes
+
+* **TypeScript:** add a json.d.ts file to remove [@ts-expect-error](https://github.com/ts-expect-error) when importing JSON file ([63f16ba](https://github.com/narmi/design_system/commit/63f16ba54b6433fae944a2962f545164a7980788))
+
+### [4.1.1](https://github.com/narmi/design_system/compare/v4.1.0...v4.1.1) (2024-12-30)
+
+
+### Bug Fixes
+
+* **TextInput:** add error data attr for e2e tests ([a3b99d4](https://github.com/narmi/design_system/commit/a3b99d463f78a598149879623b0acd3d9f7a8f5d))
+
+## [4.1.0](https://github.com/narmi/design_system/compare/v4.0.1...v4.1.0) (2024-12-20)
+
+
+### Features
+
+* **Snackbar:** add snackbar table status/toolbar component ([f96b926](https://github.com/narmi/design_system/commit/f96b92626bdf39ef5551eab5734b3df31b452f96))
+
+### [4.0.1](https://github.com/narmi/design_system/compare/v4.0.0...v4.0.1) (2024-12-18)
+
+
+### Bug Fixes
+
+* **DisabledShim:** ensure element fills 100% of parent ([284caee](https://github.com/narmi/design_system/commit/284caee894d4d2cd02659834fddcf19144e06f6b))
+
+## [4.0.0](https://github.com/narmi/design_system/compare/v3.70.1...v4.0.0) (2024-12-18)
+
+
+### ⚠ BREAKING CHANGES
+Marked as a risky change, but should not require updates in consumers unless invalid props are used on `Row.Item`.
+
+These props on `Row.Item` components will now throw a TS error if the consumer type checks.
+- `alignItems`
+- `justifyContent`
+
+* **Row:** convert Row and Row.Item to TypeScript
+
+### Code Refactoring
+
+* **Row:** convert Row and Row.Item to TypeScript ([e8b8bd8](https://github.com/narmi/design_system/commit/e8b8bd81c5bbf4f53b31b0185ed992bf539d3cea))
+
+### [3.70.1](https://github.com/narmi/design_system/compare/v3.70.0...v3.70.1) (2024-12-16)
+
+
+### Bug Fixes
+
+* **ContextMenu:** fix missing export for ContextMenu in index.js ([5c8feaa](https://github.com/narmi/design_system/commit/5c8feaaaf344a7abcfe85797d6d8f103f3a49bed))
+
 ## [3.70.0](https://github.com/narmi/design_system/compare/v3.69.3...v3.70.0) (2024-12-12)
 
 

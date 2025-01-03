@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid,react/jsx-key */
+import { Meta } from "@storybook/react";
 import React from "react";
 import Button from "../Button";
 import Row from "./";
@@ -183,8 +184,10 @@ AsProp.parameters = {
   },
 };
 
-export default {
+const meta: Meta<typeof Row> = {
   title: "Components/Row",
   component: Row,
   subcomponents: { RowItem },
 };
+
+export default meta;

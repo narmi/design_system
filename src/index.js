@@ -6,6 +6,7 @@ import Avatar from "./Avatar";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
 import ContentCard from "./ContentCard";
+import ContextMenu from "./ContextMenu";
 import CollapsibleCard from "./CollapsibleCard";
 import Combobox from "./Combobox";
 import DateInput from "./DateInput";
@@ -34,6 +35,7 @@ import Select from "./Select";
 import SeparatorList from "./SeparatorList";
 import Sidebar from "./Sidebar";
 import Slider from "./Slider";
+import Snackbar from "./Snackbar";
 import Tabs from "./Tabs";
 import Tag from "./Tag";
 import TextInput from "./TextInput";
@@ -54,6 +56,7 @@ export {
   Button,
   Checkbox,
   ContentCard,
+  ContextMenu,
   CollapsibleCard,
   Combobox,
   DateInput,
@@ -82,6 +85,7 @@ export {
   SeparatorList,
   Sidebar,
   Slider,
+  Snackbar,
   Tabs,
   Tag,
   TextInput,

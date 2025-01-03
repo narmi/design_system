@@ -157,7 +157,7 @@ FocusManagement.args = {
   children: (
     <div>
       Focus will be trapped to{" "}
-      <a _target="blank" href="http://narmi.com">
+      <a target="blank" href="http://narmi.com">
         focusable elements
       </a>{" "}
       within the Dialog. Background content is marked as hidden via ARIA

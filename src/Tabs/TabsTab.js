@@ -16,7 +16,7 @@ const TabsTab = ({ label, tabId, testId }) => {
   return (
     <li
       role={hasPanels ? "tab" : undefined}
-      aria-selected={isSelected.toString()}
+      aria-selected={hasPanels ? isSelected.toString() : undefined}
       aria-controls={hasPanels ? `${tabId}-tabpanel` : undefined}
       className={cc([
         "nds-tabs-tabItem",

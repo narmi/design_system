@@ -19,6 +19,18 @@ export const WithLink = () => {
   return <Avatar initials="NM" label="Narmi" linkurl="https://narmi.com" />;
 };
 
+export const WithFallbackIcon = () => {
+  return <Avatar label="Narmi" />;
+};
+WithFallbackIcon.parameters = {
+  docs: {
+    description: {
+      story:
+        "Avatar will render a fallback user icon when `initials` or `imgurl` are not passed.",
+    },
+  },
+};
+
 export const Sizes = () => {
   return (
     <Row>

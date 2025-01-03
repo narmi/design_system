@@ -25,6 +25,8 @@ const Avatar = ({
   const backgroundImage = imgurl
     ? { backgroundImage: `url(${imgurl})`, backgroundSize: "cover" }
     : {};
+  const hasInitials = !imgurl && initials;
+  const hasIcon = !imgurl && !initials;
 
   return (
     <AsElement
@@ -39,7 +41,8 @@ const Avatar = ({
       style={backgroundImage}
       aria-label={label}
     >
-      {initials}
+      {hasInitials && initials}
+      {hasIcon && <span className="narmi-icon-user fontSize--heading3" />}
     </AsElement>
   );
 };

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.0](https://github.com/narmi/design_system/compare/v4.1.4...v4.2.0) (2025-01-03)
+
+
+### Features
+
+* **Select:** allow flat categories; add label category kind ([c7267ca](https://github.com/narmi/design_system/commit/c7267caa3d277cef2f03d7318abac2e953c8ee61))
+
+
+### Bug Fixes
+
+* lint ([80223ed](https://github.com/narmi/design_system/commit/80223edc7acb16e27c953ffa4a58dfbb5ad93b0c))
+* **Select:** use bold normal family for headings ([cc58b31](https://github.com/narmi/design_system/commit/cc58b31f638f9694ce3fcd17083335fbb5f0e025))
+
 ### [4.1.4](https://github.com/narmi/design_system/compare/v4.1.3...v4.1.4) (2025-01-02)
 
 

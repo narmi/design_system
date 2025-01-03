@@ -184,7 +184,7 @@ CategoryLabels.args = {
     </Select.Category>,
   ],
 };
-ExpandedCategories.parameters = {
+FlatCategories.parameters = {
   docs: {
     description: {
       story: "Categories may be set to always be open with the `expand` prop.",

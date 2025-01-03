@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.0](https://github.com/narmi/design_system/compare/v4.2.1...v4.3.0) (2025-01-03)
+
+
+### Features
+
+* **Avatar:** add fallback user icon ([e000f13](https://github.com/narmi/design_system/commit/e000f13eb5bb0ff6afb7fe5e99df883ba244a4fd))
+
 ### [4.2.1](https://github.com/narmi/design_system/compare/v4.2.0...v4.2.1) (2025-01-03)
 
 

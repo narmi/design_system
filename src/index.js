@@ -13,7 +13,6 @@ import DateInput from "./DateInput";
 import Dialog from "./Dialog";
 import DisabledShim from "./DisabledShim";
 import Drawer from "./Drawer";
-import Dropdown from "./Dropdown";
 import DropdownTrigger from "./DropdownTrigger";
 import Error from "./Error";
 import FieldToken from "./FieldToken";
@@ -63,7 +62,6 @@ export {
   Dialog,
   DisabledShim,
   Drawer,
-  Dropdown,
   DropdownTrigger,
   Error,
   FieldToken,

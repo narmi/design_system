@@ -58,9 +58,16 @@ export const getItemByValue = (value, items) => {
  * @param {array} items downshift index `items`
  * @returns {Number} index of item
  */
-export const getItemIndex = ({ props }, items) => {
-  const values = items.map(({ props }) => props.value);
-  return values.indexOf(props.value);
+export const getItemIndex = (item, items) => {
+  let result = 0;
+  if (isAction(item)) {
+    result = items
+      .map(({ props }) => props.onSelect)
+      .indexOf(item.props.onSelect);
+  } else {
+    result = items.map(({ props }) => props.value).indexOf(item.props.value);
+  }
+  return result;
 };
 
 /**
@@ -86,7 +93,7 @@ export const isHighlightedInCategory = (
  * @returns {Boolean} if the selected item is in the given category children
  */
 export const isSelectedItemInCategory = (selectedItem, categoryChildren) => {
-  if (!selectedItem) return false;
+  if (!selectedItem || isAction(selectedItem)) return false;
   const selectedValue = selectedItem.props.value;
   const categoryValues = categoryChildren.map((child) => child.props.value);
   return categoryValues.includes(selectedValue);
@@ -121,18 +128,21 @@ const Select = ({
   errorText,
   testId,
 }) => {
-  let items = [];
-  let categories = [];
+  let items = []; // List of all item types to pass to downshift state management
+  let categories = []; // Categories extracted from Select.Category children
+  const options = React.Children.toArray(children).filter(
+    (item) => !isAction(item),
+  ); // All Select.Item options
+  const actions = React.Children.toArray(children).filter(isAction); // All Select.Action items
   const [userInput, setUserInput] = useState(""); // most recent val the user typed while focused on this input
 
-  const allChildren = React.Children.toArray(children);
-
   // If categories are being used, extract items from categories
-  if (allChildren.some(({ type }) => type.displayName === "Select.Category")) {
-    items = allChildren.flatMap(({ props }) =>
-      React.Children.toArray(props.children),
-    );
-    categories = allChildren.map(({ props }) => ({
+  if (options.some(({ type }) => type.displayName === "Select.Category")) {
+    items = [
+      ...options.flatMap(({ props }) => React.Children.toArray(props.children)),
+      ...actions,
+    ];
+    categories = options.map(({ props }) => ({
       label: props.label,
       categoryChildren: React.Children.toArray(props.children),
       // eslint-disable-next-line react/prop-types
@@ -141,7 +151,7 @@ const Select = ({
       isFlat: props.isFlat,
     }));
   } else {
-    items = allChildren;
+    items = [...options, ...actions];
   }
 
   const downshiftOpts = {
@@ -349,9 +359,15 @@ const Select = ({
                 </details>
               );
             })}
+          {showMenu && hasCategories && (
+            <ul className="list--reset">
+              {actions.map((action) => renderItem(action, items))}
+            </ul>
+          )}
           {showMenu && !hasCategories && (
             <ul className="list--reset">
-              {items.map((item) => renderItem(item, items))}
+              {options.map((option) => renderItem(option, items))}
+              {actions.map((action) => renderItem(action, items))}
             </ul>
           )}
         </div>,

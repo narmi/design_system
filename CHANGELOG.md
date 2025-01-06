@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.3.1](https://github.com/narmi/design_system/compare/v4.3.0...v4.3.1) (2025-01-06)
+
+
+### Bug Fixes
+
+* **Select:** allow actions when using categories ([2a15223](https://github.com/narmi/design_system/commit/2a1522361b8c45765188add1a93f5d5218ae4f50))
+
 ## [4.3.0](https://github.com/narmi/design_system/compare/v4.2.1...v4.3.0) (2025-01-03)
 
 

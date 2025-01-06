@@ -129,13 +129,12 @@ const Select = ({
   testId,
 }) => {
   let items = []; // List of all item types to pass to downshift state management
-  let options = []; // All Select.Item options
   let categories = []; // Categories extracted from Select.Category children
-  let actions = []; // All Select.Action items
+  const options = React.Children.toArray(children).filter(
+    (item) => !isAction(item),
+  ); // All Select.Item options
+  const actions = React.Children.toArray(children).filter(isAction); // All Select.Action items
   const [userInput, setUserInput] = useState(""); // most recent val the user typed while focused on this input
-
-  options = React.Children.toArray(children).filter((item) => !isAction(item));
-  actions = React.Children.toArray(children).filter(isAction);
 
   // If categories are being used, extract items from categories
   if (options.some(({ type }) => type.displayName === "Select.Category")) {

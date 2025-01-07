@@ -38,6 +38,16 @@ const CSS_TRANSFORM_GROUP = [
 const config = {
   source: [`${path.resolve("tokens/src")}/**/*.json`],
   platforms: {
+    json: {
+      buildPath: getBuildPath("json"),
+      files: [
+        {
+          destination: "tokens.json",
+          format: "json/nested",
+        },
+      ],
+    },
+
     /**
      * Custom properties in a CSS file
      */

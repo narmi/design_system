@@ -338,7 +338,7 @@ const Select = ({
                   <summary
                     className={cc([
                       "alignChild--left--center",
-                      "padding--x--s padding--y--xs",
+                      "padding--x--s",
                       {
                         [`select-category-title--label`]: kind === "label",
                         [`select-category-title--heading`]:

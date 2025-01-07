@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.0](https://github.com/narmi/design_system/compare/v4.4.0...v4.5.0) (2025-01-07)
+
+
+### Features
+
+* **RadioButtons:** add kind row-start to radio buttons ([658f738](https://github.com/narmi/design_system/commit/658f7382170fd5a753658557848053274d894e2b))
+
 ## [4.4.0](https://github.com/narmi/design_system/compare/v4.3.1...v4.4.0) (2025-01-06)
 
 

@@ -162,7 +162,7 @@ RadioButtons.propTypes = {
    *
    * `checkmark` - uses a checkmark icon instead of a faux radio
    */
-  kind: PropTypes.oneOf(["normal", "row", "card", "input-card", "checkmark"]),
+  kind: PropTypes.oneOf(["normal", "row", "row-start", "card", "input-card", "checkmark"]),
   /**
    * Error message. When passed, the `error` prop will
    * render the radio group in an error state.

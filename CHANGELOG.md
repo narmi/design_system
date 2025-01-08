@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.5.1](https://github.com/narmi/design_system/compare/v4.5.0...v4.5.1) (2025-01-08)
+
+
+### Bug Fixes
+
+* **Select:** increase cateogry header style specificity ([ba99432](https://github.com/narmi/design_system/commit/ba99432dfd3244e62e64f68bd431d2da4b2fc6f2))
+
 ## [4.5.0](https://github.com/narmi/design_system/compare/v4.4.0...v4.5.0) (2025-01-07)
 
 

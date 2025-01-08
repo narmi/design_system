@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.5.2](https://github.com/narmi/design_system/compare/v4.5.1...v4.5.2) (2025-01-08)
+
+
+### Bug Fixes
+
+* **AutocompleteModal:** make AutocompleteModal height adjust to small amount of items ([987ccee](https://github.com/narmi/design_system/commit/987ccee09fae8e478b4b7c0535f7b7886510ed33))
+
 ### [4.5.1](https://github.com/narmi/design_system/compare/v4.5.0...v4.5.1) (2025-01-08)
 
 

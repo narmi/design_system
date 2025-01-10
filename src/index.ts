@@ -11,6 +11,7 @@ import Row from "./Row";
 import SeparatorList from "./SeparatorList";
 import Slider from "./Slider";
 import Snackbar from "./Snackbar";
+import LoadingSkeleton from "./LoadingSkeleton";
 
 /**
  * Untyped Components
@@ -30,7 +31,6 @@ declare const FormSection;
 declare const IconButton;
 declare const Input;
 declare const LoadingShim;
-declare const LoadingSkeleton;
 declare const MenuButton;
 declare const MultiSelect;
 declare const Pagination;

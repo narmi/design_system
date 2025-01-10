@@ -1,11 +1,25 @@
 import React from "react";
-import PropTypes from "prop-types";
+
+export interface SpinnerProps {
+  /**
+   * Square size of spinner as unitless number
+   */
+  size?: number;
+  /**
+   * Width of animated stroke
+   */
+  strokeWidth?: number;
+  /**
+   * CSS color value
+   */
+  color?: string | undefined;
+}
 
 const Spinner = ({
   size = 28,
   strokeWidth = 3,
   color = "var(--color-white)",
-}) => (
+}: SpinnerProps) => (
   <div className="nds-spinner" style={{ height: size, width: size }}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -28,20 +42,5 @@ const Spinner = ({
     </svg>
   </div>
 );
-
-Spinner.propTypes = {
-  /**
-   * Square size of spinner as unitless number
-   */
-  size: PropTypes.number,
-  /**
-   * Width of animated stroke
-   */
-  strokeWidth: PropTypes.number,
-  /**
-   * CSS color value
-   */
-  color: PropTypes.string,
-}
 
 export default Spinner;

@@ -1,9 +1,24 @@
 import React from "react";
-import PropTypes from "prop-types";
 import cc from "classcat";
 import Row from "../Row";
+import type { IconName } from "../types/Icon.types";
 
 const noop = () => {};
+
+interface AlertProps {
+  /** The alert is only visible when this prop is set to `true` */
+  isActive?: boolean;
+  /** Renders a dismiss button when `true` */
+  isDismissable?: boolean;
+  /** Callback for user dismissal actions */
+  onUserDismiss?: () => void;
+  /** Variant of Alert to use */
+  kind?: "info" | "error" | "success" | "warn";
+  /** Override the default icon of the alert */
+  icon?: IconName | null;
+  /** Message content of the Alert */
+  children?: React.ReactNode | string;
+}
 
 /**
  * Inline system message, for a specific region of a page.
@@ -18,7 +33,7 @@ const Alert = ({
   kind = "info",
   icon = null,
   children,
-}) => {
+}: AlertProps) => {
   const iconName = kind === "success" ? "check" : "info";
 
   return (
@@ -34,7 +49,9 @@ const Alert = ({
         >
           <Row gapSize="s">
             <Row.Item shrink>
-              <span className={`nds-alert-icon narmi-icon-${icon || iconName}`} />
+              <span
+                className={`nds-alert-icon narmi-icon-${icon || iconName}`}
+              />
             </Row.Item>
             <Row.Item>{children}</Row.Item>
             {isDismissable && (
@@ -54,24 +71,6 @@ const Alert = ({
       )}
     </div>
   );
-};
-
-Alert.propTypes = {
-  /** The alert is only visible when this prop is set to `true` */
-  isActive: PropTypes.bool,
-  /** Renders a dismiss button when `true` */
-  isDismissable: PropTypes.bool,
-  /** Callback for user dismissal actions */
-  onUserDismiss: PropTypes.func,
-  /** Variant of Alert to use */
-  kind: PropTypes.oneOf(["info", "error", "success", "warn"]),
-  /** Override the default icon of the alert */
-  icon: PropTypes.string,
-  /** Message content of the Alert */
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
 };
 
 export default Alert;

@@ -1,14 +1,49 @@
 import React from "react";
-import PropTypes from "prop-types";
 import cc from "classcat";
-import iconSelection from "src/icons/selection.json";
-import AsElement from "src/util/AsElement";
-import Row from "src/Row";
+import AsElement from "../util/AsElement";
+import Row from "../Row";
 import Spinner from "./Spinner";
+import type { IconName } from "../types/Icon.types";
 
-export const VALID_ICON_NAMES = iconSelection?.icons.map(
-  (icon) => icon.properties.name,
-);
+interface ButtonProps {
+  /** Renders the button label */
+  label: string;
+  /** style of button to render */
+  kind: "primary" | "secondary" | "tonal" | "negative" | "menu" | "plain";
+  /** Click callback, with event object passed as argument */
+  onClick?: (e: React.MouseEvent) => void;
+  /**
+   * The html element to render as the root node of `Button`.
+   *
+   * When rendering as an "a" you **MUST** pass an `href` attribute
+   * for the anchor to be valid.
+   */
+  as?: "a" | "button";
+  /** disables the button when set to `true` */
+  disabled?: boolean;
+  /** disables the button and adds a loading spinner when set to `true` */
+  isLoading?: boolean;
+  /** type attribute of button element */
+  type?: "submit" | "button" | "reset";
+  /** size variant of button */
+  size?: "xs" | "s" | "m";
+  /** Name of Narmi icon to place at the start of the label */
+  startIcon?: IconName | null;
+  /** Name of Narmi icon to place at the end of the label */
+  endIcon?: IconName | null;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+  /** Optional value for setting the aria-label. If unset label will be used. */
+  ariaLabel?: string | null;
+  /**
+   * **⚠️ DEPRECATED**
+   *
+   * Passing children to render the button label will be removed
+   * in a future release. Use the `label` prop instead.
+   */
+  children?: React.ReactNode | string | undefined;
+  [x: string]: unknown; // spread props
+}
 
 /**
  * Narmi style action buttons.
@@ -34,16 +69,15 @@ const Button = ({
   as = "button",
   ariaLabel = null,
   ...otherProps
-}) => {
+}: ButtonProps) => {
   const isButtonElement = as === "button";
 
-  // support legacy method of passing label as children
-  let buttonLabel = label;
-  if (!buttonLabel) {
-    buttonLabel = children;
-  }
+  // support legacy method of passing label as children for now
+  const buttonLabel = label || children;
 
-  const Icon = ({ name }) => (
+  console.info(buttonLabel);
+
+  const Icon = ({ name }: { name: string }) => (
     <div className="alignChild--center--center">
       <i
         role="img"
@@ -53,9 +87,11 @@ const Button = ({
     </div>
   );
 
-  Icon.propTypes = {
-    name: PropTypes.string.isRequired,
-  };
+  const gapSizeMap = {
+    xs: "xs",
+    s: "xs",
+    m: "s",
+  } as const;
 
   return (
     <AsElement
@@ -88,16 +124,7 @@ const Button = ({
           </div>
         )}
         <div style={{ visibility: isLoading ? "hidden" : "visible" }}>
-          <Row
-            gapSize={
-              {
-                xs: "xs",
-                s: "xs",
-                m: "s",
-              }[size]
-            }
-            alignItems="center"
-          >
+          <Row gapSize={gapSizeMap[size]} alignItems="center">
             {startIcon && (
               <Row.Item shrink>
                 <Icon name={startIcon} />
@@ -116,52 +143,6 @@ const Button = ({
       </div>
     </AsElement>
   );
-};
-
-Button.propTypes = {
-  /**
-   * The html element to render as the root node of `Button`.
-   *
-   * When rendering as an "a" you **MUST** pass an `href` attribute
-   * for the anchor to be valid.
-   */
-  as: PropTypes.oneOf(["a", "button"]),
-  /** Renders the button label */
-  label: PropTypes.string,
-  /** disables the button when set to `true` */
-  disabled: PropTypes.bool,
-  /** disables the button and adds a loading spinner when set to `true` */
-  isLoading: PropTypes.bool,
-  /** style of button to render */
-  kind: PropTypes.oneOf([
-    "primary",
-    "secondary",
-    "tonal",
-    "negative",
-    "menu",
-    "plain",
-  ]),
-  /** type attribute of button element */
-  type: PropTypes.oneOf(["submit", "button", "reset"]),
-  /** size variant of button */
-  size: PropTypes.oneOf(["xs", "s", "m"]),
-  /** Click callback, with event object passed as argument */
-  onClick: PropTypes.func,
-  /** Name of Narmi icon to place at the start of the label */
-  startIcon: PropTypes.oneOf(VALID_ICON_NAMES),
-  /** Name of Narmi icon to place at the end of the label */
-  endIcon: PropTypes.oneOf(VALID_ICON_NAMES),
-  /** Optional value for `data-testid` attribute */
-  testId: PropTypes.string,
-  /** Optional value for setting the aria-label. If unset label will be used. */
-  ariaLabel: PropTypes.string,
-  /**
-   * **⚠️ DEPRECATED**
-   *
-   * Passing children to render the button label will be removed
-   * in a future release. Use the `label` prop instead.
-   */
-  children: PropTypes.node,
 };
 
 export default Button;

@@ -3,6 +3,7 @@
  */
 import AutocompleteModal from "./AutocompleteModal";
 import Avatar from "./Avatar";
+import Button from "./Button";
 import ContextMenu from "./ContextMenu";
 import DisabledShim from "./DisabledShim";
 import Row from "./Row";
@@ -14,7 +15,6 @@ import Snackbar from "./Snackbar";
  * Untyped Components
  */
 declare const Alert;
-declare const Button;
 declare const Checkbox;
 declare const ContentCard;
 declare const CollapsibleCard;
@@ -59,6 +59,7 @@ export {
   // typed
   AutocompleteModal,
   Avatar,
+  Button,
   ContextMenu,
   DisabledShim,
   Row,
@@ -68,7 +69,6 @@ export {
 
   // untyped
   Alert,
-  Button,
   Checkbox,
   ContentCard,
   CollapsibleCard,

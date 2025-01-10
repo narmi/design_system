@@ -136,7 +136,7 @@ const Dialog = ({
               ref={contentRef}
               className={cc([
                 "nds-dialog-content nds-typography padding--top--xs",
-                { "padding--bottom--xl": !footer | isContentOverflowing },
+                { "padding--bottom--xl": !footer || isContentOverflowing },
               ])}
             >
               {children}

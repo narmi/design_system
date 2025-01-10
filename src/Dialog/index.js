@@ -132,10 +132,11 @@ const Dialog = ({
               </div>
             )}
             <div
+              // content padding here
               ref={contentRef}
               className={cc([
                 "nds-dialog-content nds-typography padding--top--xs",
-                { "padding--bottom--xl": !footer },
+                { "padding--bottom--xl": !footer | isContentOverflowing },
               ])}
             >
               {children}

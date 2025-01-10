@@ -1,6 +1,7 @@
 /**
  * Typed Components
  */
+import Alert from "./Alert";
 import AutocompleteModal from "./AutocompleteModal";
 import Avatar from "./Avatar";
 import Button from "./Button";
@@ -14,7 +15,6 @@ import Snackbar from "./Snackbar";
 /**
  * Untyped Components
  */
-declare const Alert;
 declare const Checkbox;
 declare const ContentCard;
 declare const CollapsibleCard;

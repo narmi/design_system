@@ -7,6 +7,7 @@ import Avatar from "./Avatar";
 import Button from "./Button";
 import ContextMenu from "./ContextMenu";
 import DisabledShim from "./DisabledShim";
+import RadioButtons from "./RadioButtons";
 import Row from "./Row";
 import SeparatorList from "./SeparatorList";
 import Slider from "./Slider";
@@ -37,7 +38,6 @@ declare const Pagination;
 declare const PlainButton;
 declare const ProgressBar;
 declare const Popover;
-declare const RadioButtons;
 declare const ResponsiveFlex;
 declare const Select;
 declare const Sidebar;
@@ -62,6 +62,7 @@ export {
   Button,
   ContextMenu,
   DisabledShim,
+  RadioButtons,
   Row,
   SeparatorList,
   Slider,
@@ -91,7 +92,6 @@ export {
   PlainButton,
   ProgressBar,
   Popover,
-  RadioButtons,
   ResponsiveFlex,
   Select,
   Sidebar,

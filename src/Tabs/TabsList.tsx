@@ -1,13 +1,22 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import PropTypes from "prop-types";
 import rafSchd from "raf-schd";
-import React, { useContext, useEffect, useState } from "react";
+import React, { LegacyRef, useContext, useEffect, useState } from "react";
 import Arrow from "./Arrow";
 import TabsContext from "./context";
 
 const noop = () => {};
 
-const TabsList = ({ children, xPadding = "none" }) => {
+export interface TabsListProps {
+  /** Children must be of type `Tabs.Tab` */
+  children: React.ReactNode;
+  /**
+   * Amount of padding to apply on the x axis to indent tabs
+   * from edges of the `Tabs.Panel`
+   * */
+  xPadding?: "xxs" | "xs" | "s" | "m" | "l" | "xl" | "none";
+}
+
+const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
 
@@ -57,7 +66,7 @@ const TabsList = ({ children, xPadding = "none" }) => {
     return () => {
       tabsListRef?.current?.removeEventListener(
         "scroll",
-        scheduleScrollButtonUpdate
+        scheduleScrollButtonUpdate,
       );
     };
   }, [tabsListRef.current]);
@@ -66,7 +75,7 @@ const TabsList = ({ children, xPadding = "none" }) => {
   // with tabId props from `Tabs.Tab` children passed into `Tabs.List`
   useEffect(() => {
     if (tabIds.length !== childArray.length) {
-      setTabIds(childArray.map((t) => t.props.tabId));
+      setTabIds(childArray.map((t: React.ReactElement) => t.props.tabId));
     }
   }, [tabIds, setTabIds, childArray]);
 
@@ -128,11 +137,11 @@ const TabsList = ({ children, xPadding = "none" }) => {
     <div className={isResponsive ? "display-flex" : ""}>
       <Arrow direction="left" onClick={onLeftClick} show={showLeftArrow} />
       <ul
-        ref={tabsListRef}
+        ref={tabsListRef as LegacyRef<HTMLUListElement>}
         role={hasPanels ? "tablist" : undefined}
         className={`nds-tabs-tabsList list--reset padding--x--${xPadding}`}
         onKeyDown={hasPanels ? handleKeyDown : noop}
-        tabIndex={hasPanels ? "0" : undefined}
+        tabIndex={hasPanels ? 0 : undefined}
         data-testid="nds-tablist"
       >
         {children}
@@ -141,17 +150,5 @@ const TabsList = ({ children, xPadding = "none" }) => {
     </div>
   );
 };
-
-TabsList.propTypes = {
-  /** Children must be of type `Tabs.Tab` */
-  children: PropTypes.node.isRequired,
-  /**
-   * Amount of padding to apply on the x axis to indent tabs
-   * from edges of the `Tabs.Panel`
-   * */
-  xPadding: PropTypes.oneOf(["xxs", "xs", "s", "m", "l", "xl", "none"]),
-};
-
-TabsList.displayName = "Tabs.List";
 
 export default TabsList;

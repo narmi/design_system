@@ -11,6 +11,7 @@ import Row from "./Row";
 import SeparatorList from "./SeparatorList";
 import Slider from "./Slider";
 import Snackbar from "./Snackbar";
+import Tabs from "./Tabs";
 
 /**
  * Untyped Components
@@ -41,7 +42,6 @@ declare const RadioButtons;
 declare const ResponsiveFlex;
 declare const Select;
 declare const Sidebar;
-declare const Tabs;
 declare const Tag;
 declare const TextInput;
 declare const TimelineEvent;

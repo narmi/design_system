@@ -59,6 +59,7 @@ export {
   AutocompleteModal,
   Avatar,
   Button,
+  ContentCard,
   ContextMenu,
   DisabledShim,
   Row,

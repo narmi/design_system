@@ -10,6 +10,7 @@ import Checkbox from "./Checkbox";
 import ContextMenu from "./ContextMenu";
 import Dialog from "./Dialog";
 import DisabledShim from "./DisabledShim";
+import RadioButtons from "./RadioButtons";
 import Row from "./Row";
 import SeparatorList from "./SeparatorList";
 import Slider from "./Slider";
@@ -39,7 +40,6 @@ declare const Pagination;
 declare const PlainButton;
 declare const ProgressBar;
 declare const Popover;
-declare const RadioButtons;
 declare const ResponsiveFlex;
 declare const Select;
 declare const Sidebar;
@@ -63,6 +63,7 @@ export {
   ContextMenu,
   Checkbox,
   DisabledShim,
+  RadioButtons,
   Row,
   SeparatorList,
   Slider,
@@ -88,7 +89,6 @@ export {
   PlainButton,
   ProgressBar,
   Popover,
-  RadioButtons,
   ResponsiveFlex,
   Select,
   Sidebar,

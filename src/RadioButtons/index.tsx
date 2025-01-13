@@ -1,7 +1,63 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import cc from "classcat";
 import Error from "../Error";
+
+type OptionType =
+  | {
+      value: string;
+      details?: string;
+    }
+  | string;
+
+interface RadioButtonsProps {
+  /** Map of label strings to input values
+   *
+   * ```
+   * type OptionType = {
+   *       value: string;
+   *       details?: string;
+   *     }
+   *   | string;
+   * ```
+   * */
+  options: Record<string, OptionType>;
+  /** name of radiogroup */
+  name: string;
+  /** initially selected option by input value (uncontrolled) */
+  initialValue?: unknown;
+  /**
+   * selected option by input value (fully controlled)
+   * When passing a `value` prop, you must use the `onChange`
+   * handler to update the `value`
+   */
+  value?: string;
+  /** change callback invoked with input value */
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  /**
+   * `normal` - display input and label normally
+   *
+   * `card` - display input and label as a toggleable card
+   *
+   * `input-card` - display toggleable card with a faux radio input
+   *
+   * `checkmark` - uses a checkmark icon instead of a faux radio
+   */
+  kind?: "normal" | "row" | "row-start" | "card" | "input-card" | "checkmark";
+  /**
+   * Error message. When passed, the `error` prop will
+   * render the radio group in an error state.
+   */
+  error?: string;
+  /**
+   * Always show details. When `true`, the details will
+   * always be shown, regardless of if an radio button is selected.
+   * When `false`, the details will only be shown when a radio
+   * button is selected. Defaults to `false`
+   */
+  alwaysShowDetails?: boolean;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+}
 
 /**
 The Narmi RadioButtons component expects an "options" Prop, which is an object where the keys are the radiobutton
@@ -31,7 +87,7 @@ const RadioButtons = ({
   error,
   alwaysShowDetails = false,
   ...containerProps
-}) => {
+}: RadioButtonsProps) => {
   const isControlled = value !== undefined;
   const hasError = error !== undefined && error.length > 0;
   const [checkedValue, setCheckedValue] = useState(
@@ -69,8 +125,10 @@ const RadioButtons = ({
         {...containerProps}
       >
         {Object.entries(options).map(([label, subOptions]) => {
-          const { value: inputValue, details } =
+          const inputOption =
             typeof subOptions === "object" ? subOptions : { value: subOptions };
+          const inputValue = inputOption.value;
+          const details = inputOption.details;
           return (
             <label
               className={cc([
@@ -136,47 +194,6 @@ const RadioButtons = ({
       </div>
     </>
   );
-};
-
-RadioButtons.propTypes = {
-  /** Map of label strings to input values */
-  options: PropTypes.object,
-  /** name of radiogroup */
-  name: PropTypes.string,
-  /** initially selected option by input value (uncontrolled) */
-  initialValue: PropTypes.any,
-  /**
-   * selected option by input value (fully controlled)
-   * When passing a `value` prop, you must use the `onChange`
-   * handler to update the `value`
-   */
-  value: PropTypes.string,
-  /** change callback invoked with input value */
-  onChange: PropTypes.func,
-  /**
-   * `normal` - display input and label normally
-   *
-   * `card` - display input and label as a toggleable card
-   *
-   * `input-card` - display toggleable card with a faux radio input
-   *
-   * `checkmark` - uses a checkmark icon instead of a faux radio
-   */
-  kind: PropTypes.oneOf(["normal", "row", "row-start", "card", "input-card", "checkmark"]),
-  /**
-   * Error message. When passed, the `error` prop will
-   * render the radio group in an error state.
-   */
-  error: PropTypes.string,
-  /**
-   * Always show details. When `true`, the details will
-   * always be shown, regardless of if an radio button is selected.
-   * When `false`, the details will only be shown when a radio
-   * button is selected. Defaults to `false`
-   */
-  alwaysShowDetails: PropTypes.bool,
-  /** Optional value for `data-testid` attribute */
-  testId: PropTypes.string,
 };
 
 export default RadioButtons;

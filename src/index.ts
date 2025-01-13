@@ -12,6 +12,7 @@ import Row from "./Row";
 import SeparatorList from "./SeparatorList";
 import Slider from "./Slider";
 import Snackbar from "./Snackbar";
+import Tooltip from "./Tooltip";
 
 /**
  * Untyped Components
@@ -47,7 +48,6 @@ declare const TextInput;
 declare const TimelineEvent;
 declare const Toggle;
 declare const TokenInput;
-declare const Tooltip;
 declare const TruncatedAccount;
 declare const useBreakpoints;
 declare const useLockBodyScroll;

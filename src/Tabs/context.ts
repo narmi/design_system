@@ -1,6 +1,21 @@
 import { createContext } from "react";
 
-const TabsContext = createContext({
+interface TabsContextProps {
+  tabIds: string[];
+  setTabIds: (ids: string[]) => void;
+
+  currentIndex: number;
+  hasPanels: boolean;
+  setHasPanels: (hasPanels: boolean) => void;
+
+  changeTabs: (index: string) => void;
+  tabsListRef: React.RefObject<HTMLElement>;
+
+  isResponsive: boolean;
+  setIsResponsive: (isResponsive: boolean) => void;
+}
+
+const TabsContext = createContext<TabsContextProps>({
   // list of tabIds set by TabsList
   tabIds: [],
   setTabIds: () => {},

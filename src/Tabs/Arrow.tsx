@@ -1,10 +1,15 @@
-import PropTypes from "prop-types";
 import React, { useContext, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import IconButton from "../IconButton";
 import TabsContext from "./context";
 
-const Arrow = ({ direction, onClick, show }) => {
+interface ArrowProps {
+  direction: string;
+  onClick?: () => void;
+  show?: boolean;
+}
+
+const Arrow = ({ direction, onClick, show }: ArrowProps) => {
   const { isResponsive } = useContext(TabsContext);
   const arrowRef = useRef();
 
@@ -30,15 +35,5 @@ const Arrow = ({ direction, onClick, show }) => {
     )
   );
 };
-
-Arrow.propTypes = {
-  /** Direction of the arrow button */
-  direction: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
-  show: PropTypes.bool,
-  isResponsive: PropTypes.bool,
-};
-
-Arrow.displayName = "Arrow";
 
 export default Arrow;

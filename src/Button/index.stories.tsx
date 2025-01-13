@@ -1,6 +1,12 @@
 import React from "react";
-import Button, { VALID_ICON_NAMES } from "./";
+import Button from "./";
+import iconSelection from "../icons/selection.json";
 import Row from "../Row";
+import type { IconName } from "../types/Icon.types";
+
+const VALID_ICON_NAMES = iconSelection.icons.map(
+  (icon) => icon.properties.name,
+);
 
 const Template = (args) => <Button {...args} />;
 
@@ -87,7 +93,7 @@ export default {
   title: "Components/Button",
   component: Button,
   argTypes: {
-    startIcon: { options: ["", ...VALID_ICON_NAMES] },
-    endIcon: { options: ["", ...VALID_ICON_NAMES] },
+    startIcon: { options: ["", ...(VALID_ICON_NAMES as IconName)] },
+    endIcon: { options: ["", ...(VALID_ICON_NAMES as IconName)] },
   },
 };

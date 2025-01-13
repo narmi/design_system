@@ -76,12 +76,12 @@
 }
 
 .select-category-title--heading {
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-default);
+  font-weight: var(--font-weight-bold) !important;
+  font-size: var(--font-size-default) !important;
 }
 
 .select-category-title--label {
-  font-weight: var(--font-weight-normal);
-  font-size: var(--font-size-xs);
-  color: var(--color-mediumGrey);
+  font-weight: var(--font-weight-normal) !important;
+  font-size: var(--font-size-xs) !important;
+  color: var(--color-mediumGrey) !important;
 }

@@ -10,7 +10,8 @@
 .nds-autocompleteModal-positionedEl {
   min-width: rem(248px);
   max-width: rem(352px);
-  height: rem(312px);
+  height: auto;
+  max-height: rem(312px);
   display: flex;
   flex-direction: column;
 

@@ -5,6 +5,7 @@ import Alert from "./Alert";
 import AutocompleteModal from "./AutocompleteModal";
 import Avatar from "./Avatar";
 import Button from "./Button";
+import ContentCard from "./ContentCard";
 import Checkbox from "./Checkbox";
 import ContextMenu from "./ContextMenu";
 import Dialog from "./Dialog";
@@ -20,7 +21,6 @@ import Tooltip from "./Tooltip";
 /**
  * Untyped Components
  */
-declare const ContentCard;
 declare const CollapsibleCard;
 declare const Combobox;
 declare const DateInput;
@@ -59,6 +59,7 @@ export {
   AutocompleteModal,
   Avatar,
   Button,
+  ContentCard,
   ContextMenu,
   Checkbox,
   DisabledShim,
@@ -67,7 +68,6 @@ export {
   Slider,
   Snackbar,
   Alert,
-  ContentCard,
   CollapsibleCard,
   Combobox,
   DateInput,

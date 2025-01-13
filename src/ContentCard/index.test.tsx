@@ -9,7 +9,7 @@ describe("ContentCard", () => {
     render(
       <ContentCard>
         <p>Hello world</p>
-      </ContentCard>
+      </ContentCard>,
     );
     expect(screen.getByText("Hello world")).toBeInTheDocument();
     expect(screen.queryByRole("button")).not.toBeInTheDocument();
@@ -22,7 +22,11 @@ describe("ContentCard", () => {
   });
 
   it("sets correct attributes and classes for interactive kind", () => {
-    render(<ContentCard kind="interactive">lol</ContentCard>);
+    render(
+      <ContentCard kind="interactive" onClick={() => {}}>
+        lol
+      </ContentCard>,
+    );
     const card = screen.getByTestId(testId);
     expect(screen.queryByRole("button")).toBeInTheDocument();
     expect(card).toHaveAttribute("aria-pressed", "false");
@@ -35,7 +39,7 @@ describe("ContentCard", () => {
     render(
       <ContentCard kind="interactive" onClick={handleClick}>
         lol
-      </ContentCard>
+      </ContentCard>,
     );
     expect(handleClick).not.toHaveBeenCalled();
     fireEvent.click(screen.getByTestId(testId));
@@ -52,9 +56,9 @@ describe("ContentCard", () => {
 
   it("sets correct attributes for `isSelected`", () => {
     render(
-      <ContentCard kind="interactive" isSelected={true} onCLick={() => {}}>
+      <ContentCard kind="interactive" isSelected={true} onClick={() => {}}>
         lol
-      </ContentCard>
+      </ContentCard>,
     );
     const card = screen.getByTestId(testId);
     expect(card).toHaveAttribute("aria-pressed", "true");

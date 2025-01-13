@@ -1,6 +1,51 @@
 import cc from "classcat";
-import PropTypes from "prop-types";
 import React from "react";
+
+interface ContentCardProps {
+  /** Accepts any content as children */
+  children: React.ReactNode;
+  /**
+   * Amount of padding to add on all sides of card.
+   * For custom padding control, use `none` and compose your own element(s)
+   * in ContentCard children.
+   */
+  paddingSize?: "xs" | "s" | "m" | "l" | "xl" | "none";
+  /**
+   * Kind of card to render.
+   *
+   * `plain`: flat, rounded rect
+   *
+   * `elevated`: rounded rect with shadow
+   *
+   * `toggle`: toggle button (checkbox-like)
+   *
+   * `button`: action button (button-like)
+   *
+   * `bordered`: flat, rounded rect with border
+   */
+  kind?:
+    | "plain"
+    | "elevated"
+    | "toggle"
+    | "button"
+    | "bordered"
+    | "interactive";
+  /**
+   * Amount of border radius to add on all sides of card.
+   */
+  radiusSize?: "s" | "m" | "l";
+  onClick?: () => void;
+  /**
+   * Only applicable for `toggle` type.
+   * Renders card in visually selected state with appropriate attributes.
+   */
+  isSelected?: boolean;
+  /**
+   * Only applicable for `toggle` type.
+   * Renders card in visually selected state with appropriate attributes.
+   */
+  testId?: string;
+}
 
 /**
  * Narmi style content containers, with support for rendering as an interactive button.
@@ -13,14 +58,14 @@ const ContentCard = ({
   children,
   testId,
   radiusSize = "s",
-}) => {
+}: ContentCardProps) => {
   const isInteractive = ["interactive", "toggle", "button"].some(
     (interactiveKinds) => kind === interactiveKinds,
   );
   const isToggle = isInteractive && kind !== "button";
 
   const getInteractiveProps = () => {
-    let props = {};
+    const props: Record<string, unknown> = {};
     if (isInteractive) {
       props.role = "button";
       props.onClick = onClick;
@@ -56,40 +101,9 @@ const ContentCard = ({
   );
 };
 
+// leaving this prop type validation for onClick. It is better than TypeScript
+// at checking for required props and conditional props.
 ContentCard.propTypes = {
-  /** Accepts any content as children */
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]).isRequired,
-  /**
-   * Amount of padding to add on all sides of card.
-   * For custom padding control, use `none` and compose your own element(s)
-   * in ContentCard children.
-   */
-  paddingSize: PropTypes.oneOf(["xs", "s", "m", "l", "xl", "none"]),
-  /**
-   * Kind of card to render.
-   *
-   * `plain`: flat, rounded rect
-   *
-   * `elevated`: rounded rect with shadow
-   *
-   * `toggle`: toggle button (checkbox-like)
-   *
-   * `button`: action button (button-like)
-   *
-   * `bordered`: flat, rounded rect with border
-   */
-  kind: PropTypes.oneOf(["plain", "elevated", "toggle", "button", "bordered"]),
-  /**
-   * Amount of border radius to add on all sides of card.
-   */
-  radiusSize: PropTypes.oneOf(["s", "m", "l"]),
-  /**
-   * Only valid for `interactive` card type.
-   * Callback for card click event.
-   */
   onClick: (props, propName) => {
     const isInteractive = ["interactive", "toggle", "button"].some(
       (kind) => kind === props.kind,
@@ -111,13 +125,6 @@ ContentCard.propTypes = {
       );
     }
   },
-  /**
-   * Only applicable for `toggle` type.
-   * Renders card in visually selected state with appropriate attributes.
-   */
-  isSelected: PropTypes.bool,
-  /** Optional value for `data-testid` attribute */
-  testId: PropTypes.string,
 };
 
 export default ContentCard;

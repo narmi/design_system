@@ -68,8 +68,6 @@ export {
   Slider,
   Snackbar,
   Alert,
-  Checkbox,
-  ContentCard,
   CollapsibleCard,
   Combobox,
   DateInput,

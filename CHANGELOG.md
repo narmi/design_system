@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.5.3](https://github.com/narmi/design_system/compare/v4.5.2...v4.5.3) (2025-01-13)
+
+
+### Bug Fixes
+
+* **Drawer:** improve controls accessibility ([dfffecf](https://github.com/narmi/design_system/commit/dfffecfd14f4d4e29102421e6b8c9f37dc3de5e5))
+
 ### [4.5.2](https://github.com/narmi/design_system/compare/v4.5.1...v4.5.2) (2025-01-08)
 
 

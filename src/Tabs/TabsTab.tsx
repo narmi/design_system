@@ -1,9 +1,17 @@
 import cc from "classcat";
-import PropTypes from "prop-types";
 import React, { useContext, useRef } from "react";
 import TabsContext from "./context";
 
-const TabsTab = ({ label, tabId, testId }) => {
+export interface TabsTabProps {
+  /** Label of the tab button */
+  label: string;
+  /** String ID used to link the `Tabs.Tab` to a `Tabs.Panel` */
+  tabId: string;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+}
+
+const TabsTab = ({ label, tabId, testId }: TabsTabProps) => {
   const { currentIndex, tabIds, hasPanels, changeTabs } =
     useContext(TabsContext);
   const tabRef = useRef();
@@ -14,6 +22,7 @@ const TabsTab = ({ label, tabId, testId }) => {
   };
 
   return (
+    // @ts-expect-error need to extend the type to support aria label
     <li
       role={hasPanels ? "tab" : undefined}
       aria-selected={hasPanels ? isSelected.toString() : undefined}
@@ -35,7 +44,7 @@ const TabsTab = ({ label, tabId, testId }) => {
           },
         ])}
         id={`${tabId}-tab`}
-        tabIndex={hasPanels ? "-1" : "0"}
+        tabIndex={hasPanels ? -1 : 0}
         onClick={onTabClick}
         data-testid={testId}
       >
@@ -44,16 +53,5 @@ const TabsTab = ({ label, tabId, testId }) => {
     </li>
   );
 };
-
-TabsTab.propTypes = {
-  /** Label of the tab button */
-  label: PropTypes.string.isRequired,
-  /** String ID used to link the `Tabs.Tab` to a `Tabs.Panel` */
-  tabId: PropTypes.string.isRequired,
-  /** Optional value for `data-testid` attribute */
-  testId: PropTypes.string,
-};
-
-TabsTab.displayName = "Tabs.Tab";
 
 export default TabsTab;

@@ -5,6 +5,54 @@ import cc from "classcat";
 import ReactMarkdown from "react-markdown";
 import Error from "../Error";
 
+interface CheckboxProps {
+  /** Content of `label` element */
+  label?: string;
+  /** Markdown to use in place of the `label` field */
+  markdownLabel?: string;
+  /** Change callback invoked when the value of the `input` changes */
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  /** `id` attribute of `input` */
+  id?: string | number;
+  /** `name` attribute of `input` */
+  name?: string;
+  /**
+   * ⚠️ DEPRECATED
+   *
+   * Uncontrolled Checkbox props will be removed in a future release.
+   * Use `checked` instead to use Checkbox as a fully controlled input.
+   */
+  defaultChecked?: boolean;
+  /** Sets the checkbox checked value */
+  checked?: boolean;
+  /**
+   * Checkbox renders in
+   * [indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes)
+   * when `true`.
+   */
+  indeterminate?: boolean;
+  /**
+   * Checkbox renders as disabled and ignores click/check events.
+   */
+  disabled?: boolean;
+  /** Sets the `value` attribute of the `input` */
+  value?: string;
+  /** Sets whether the checkbox has an error. To be used with multiple checkboxes */
+  hasError?: boolean;
+  /** Text of error message to display under the checkbox */
+  error?: string;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+  /**
+   * `normal` - visually matches a checkbox input
+   *
+   * `condensed` - like `normal`, but without added top margin when there are multiple checkboxes
+   *
+   * `card` - visually present as a toggleable card
+   */
+  kind?: "normal" | "condensed" | "card" | "table";
+}
+
 /**
  * Narmi styled checkbox with built-in label.
  */
@@ -24,11 +72,11 @@ const Checkbox = ({
   kind = "normal",
   testId,
   ...rest
-}) => {
+}: CheckboxProps) => {
   const inputRef = useRef(null);
   const isControlled = checked !== undefined;
   const [isChecked, setIsChecked] = useState(
-    isControlled ? checked : defaultChecked || false
+    isControlled ? checked : defaultChecked || false,
   );
   const [isFocused, setIsFocused] = useState(false);
   const isCard = kind === "card";
@@ -96,7 +144,16 @@ const Checkbox = ({
         ></span>
         <div className="nds-checkbox-label">
           {markdownLabel && (
-            <ReactMarkdown components={{ a: LinkRenderer }}>
+            <ReactMarkdown
+              components={{
+                a: function ({ href, children }) {
+                  return LinkRenderer({
+                    href,
+                    children,
+                  });
+                },
+              }}
+            >
               {markdownLabel}
             </ReactMarkdown>
           )}
@@ -111,7 +168,7 @@ const Checkbox = ({
           defaultChecked={defaultChecked}
           disabled={disabled}
           name={name}
-          id={id}
+          id={id && id.toString()}
           value={value}
           data-testid={testId}
           {...rest}
@@ -121,54 +178,6 @@ const Checkbox = ({
       <Error marginTop="xs" error={error} />
     </div>
   );
-};
-
-Checkbox.propTypes = {
-  /** Content of `label` element */
-  label: PropTypes.string,
-  /** Markdown to use in place of the `label` field */
-  markdownLabel: PropTypes.string,
-  /** Change callback invoked when the value of the `input` changes */
-  onChange: PropTypes.func,
-  /** `id` attribute of `input` */
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /** `name` attribute of `input` */
-  name: PropTypes.string,
-  /**
-   * ⚠️ DEPRECATED
-   *
-   * Uncontrolled Checkbox props will be removed in a future release.
-   * Use `checked` instead to use Checkbox as a fully controlled input.
-   */
-  defaultChecked: PropTypes.bool,
-  /** Sets the checkbox checked value */
-  checked: PropTypes.bool,
-  /**
-   * Checkbox renders in
-   * [indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes)
-   * when `true`.
-   */
-  indeterminate: PropTypes.bool,
-  /**
-   * Checkbox renders as disabled and ignores click/check events.
-   */
-  disabled: PropTypes.bool,
-  /** Sets the `value` attribute of the `input` */
-  value: PropTypes.string,
-  /** Sets whether the checkbox has an error. To be used with multiple checkboxes */
-  hasError: PropTypes.bool,
-  /** Text of error message to display under the checkbox */
-  error: PropTypes.string,
-  /** Optional value for `data-testid` attribute */
-  testId: PropTypes.string,
-  /**
-   * `normal` - visually matches a checkbox input
-   *
-   * `condensed` - like `normal`, but without added top margin when there are multiple checkboxes
-   * 
-   * `card` - visually present as a toggleable card
-   */
-  kind: PropTypes.oneOf(["normal", "condensed", "card", "table"]),
 };
 
 export default Checkbox;

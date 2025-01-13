@@ -6,12 +6,14 @@ import AutocompleteModal from "./AutocompleteModal";
 import Avatar from "./Avatar";
 import Button from "./Button";
 import ContextMenu from "./ContextMenu";
+import Dialog from "./Dialog";
 import DisabledShim from "./DisabledShim";
 import Row from "./Row";
 import SeparatorList from "./SeparatorList";
 import Slider from "./Slider";
 import Snackbar from "./Snackbar";
 import Tabs from "./Tabs";
+import Tooltip from "./Tooltip";
 
 /**
  * Untyped Components
@@ -21,7 +23,6 @@ declare const ContentCard;
 declare const CollapsibleCard;
 declare const Combobox;
 declare const DateInput;
-declare const Dialog;
 declare const Drawer;
 declare const Dropdown;
 declare const DropdownTrigger;
@@ -47,7 +48,6 @@ declare const TextInput;
 declare const TimelineEvent;
 declare const Toggle;
 declare const TokenInput;
-declare const Tooltip;
 declare const TruncatedAccount;
 declare const useBreakpoints;
 declare const useLockBodyScroll;
@@ -56,7 +56,6 @@ declare const formatDate;
 
 export * from "./types/Icon.types";
 export {
-  // typed
   AutocompleteModal,
   Avatar,
   Button,
@@ -66,8 +65,6 @@ export {
   SeparatorList,
   Slider,
   Snackbar,
-
-  // untyped
   Alert,
   Checkbox,
   ContentCard,

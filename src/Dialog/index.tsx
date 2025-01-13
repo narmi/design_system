@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import React, { useRef, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import PropTypes from "prop-types";
 import rafSchd from "raf-schd";
 import cc from "classcat";
 import useLockBodyScroll from "../hooks/useLockBodyScroll";
@@ -26,6 +25,33 @@ const getIsContentTooLong = (contentRef) => {
   return result;
 };
 
+export interface DialogProps {
+  /** Scrollable contents of the Dialog */
+  children: React.ReactNode;
+  /** Heading in the top of the Dialog */
+  title: string;
+  /** Optional notification content to render pinned under the header */
+  notification?: React.ReactNode;
+  /** Contents of Dialog footer, typically reserved for action buttons */
+  footer?: React.ReactNode;
+  /** Visual style for Dialog header */
+  headerStyle?: "bordered" | "plain" | "banner";
+  /** Controls open/close state of the modal. Use the `onUserDismiss` callback to update. */
+  isOpen?: boolean;
+  /**
+   * Callback to handle user taking an action to dismiss the modal
+   * (click outside, Escape key, click close button)
+   */
+  onUserDismiss: () => void;
+  /**
+   * Sets a custom modal width.
+   * Use the full CSS value with the unit (e.g. "400px")
+   */
+  width?: string;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+}
+
 /**
  * Renders a centered modal dialog with an overlay
  *
@@ -42,7 +68,7 @@ const Dialog = ({
   footer,
   width = "500px",
   testId,
-}) => {
+}: DialogProps) => {
   const [isContentOverflowing, setIsContentOverflowing] = useState(false);
   const contentRef = useRef(null);
   const shimRef = useRef(null);
@@ -102,6 +128,7 @@ const Dialog = ({
             aria-labelledby="aria-dialog-label"
             aria-modal="true"
             className="nds-dialog"
+            // @ts-expect-error DetailedHTMLProps does not specify arbitrary custom properties
             style={{ "--dialog-preferred-width": width }}
             data-testid={testId}
           >
@@ -161,33 +188,6 @@ const Dialog = ({
   return (
     <>{isOpen && document && ReactDOM.createPortal(dialogJSX, document.body)}</>
   );
-};
-
-Dialog.propTypes = {
-  /** Scrollable contents of the Dialog */
-  children: PropTypes.node.isRequired,
-  /** Heading in the top of the Dialog */
-  title: PropTypes.string.isRequired,
-  /** Optional notification content to render pinned under the header */
-  notification: PropTypes.node,
-  /** Contents of Dialog footer, typically reserved for action buttons */
-  footer: PropTypes.node,
-  /** Visual style for Dialog header */
-  headerStyle: PropTypes.oneOf(["bordered", "plain", "banner"]),
-  /** Controls open/close state of the modal. Use the `onUserDismiss` callback to update. */
-  isOpen: PropTypes.bool,
-  /**
-   * Callback to handle user taking an action to dismiss the modal
-   * (click outside, Escape key, click close button)
-   */
-  onUserDismiss: PropTypes.func,
-  /**
-   * Sets a custom modal width.
-   * Use the full CSS value with the unit (e.g. "400px")
-   */
-  width: PropTypes.string,
-  /** Optional value for `data-testid` attribute */
-  testId: PropTypes.string,
 };
 
 export default Dialog;

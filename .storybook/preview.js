@@ -12,9 +12,7 @@ export const parameters = {
   docs: {
     theme: docs,
   },
-  actions: {
-    // argTypesRegex: "^on[A-Z].*",
-  },
+  actions: {},
   controls: {
     sort: "requiredFirst",
     exclude: /children/,

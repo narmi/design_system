@@ -2,6 +2,8 @@ import React from "react";
 
 export default {
   title: "Style/Typography",
+  // Show doc page not individual stories
+  tags: ["autodocs", "!dev"],
 };
 
 export const SettingContext = () => (

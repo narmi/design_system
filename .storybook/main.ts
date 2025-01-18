@@ -20,7 +20,6 @@ module.exports = {
     },
     "@storybook/addon-mdx-gfm",
     "@storybook/addon-webpack5-compiler-babel",
-    "storybook-addon-tag-badges",
   ],
 
   webpackFinal: (config) => {

@@ -1,0 +1,15 @@
+import { Meta, Story, Canvas } from "@storybook/blocks";
+import { overflow as overflowHelpers } from "dist/docs/classManifest";
+import ClassExample from "helpers/ClassExample";
+import * as ScrollStories from './scroll.stories';
+
+<Meta of={ScrollStories} />
+
+# Controlling Overflow
+
+Disable scrolling with `overflow--hidden`.
+Enable scrolling with `overflow--scroll`.
+
+Useful for locking body scroll when modals are open.
+
+<Story of={ScrollStories.ControllingOverflow} />

@@ -1,0 +1,27 @@
+import { Meta, Story, Canvas } from "@storybook/blocks";
+import TokenTable, { toTokenRows } from "helpers/TokenTable";
+import * as FontStories from "./font.stories.js";
+
+<Meta title="Design Tokens/Font" />
+
+# Font Tokens
+
+## Font Color
+
+
+<Canvas of={FontStories.Color} style={{ height: 'auto' }} />
+
+## Font Size
+
+<Canvas of={FontStories.Size} style={{ height: 'auto' }} />
+
+## Font Family
+
+<Canvas of={FontStories.Size} style={{ height: 'auto' }} />
+## Font Weight
+
+<Canvas of={FontStories.Weight} style={{ height: 'auto' }} />
+
+## Font Line Height
+
+<Canvas of={FontStories.LineHeight} style={{ height: 'auto' }} />

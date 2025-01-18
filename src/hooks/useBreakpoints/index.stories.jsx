@@ -39,4 +39,7 @@ export const Overview = () => {
   );
 };
 
-export default { title: "Hooks/useBreakpoints" };
+export default {
+  title: "Hooks/useBreakpoints", // Show doc page not individual stories
+  tags: ["autodocs", "!dev"],
+};

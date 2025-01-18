@@ -1,0 +1,18 @@
+import { Meta, Story, Preview } from "@storybook/blocks";
+import { bgColor, scrim } from "dist/docs/classManifest";
+import ClassExample from "helpers/ClassExample";
+import * as BackgroundStories from './background.stories';
+
+<Meta of={BackgroundStories} />
+
+# Background Color
+
+Applies a standard background color to an element.
+
+<Story of={BackgroundStories.BackgroundColor} />
+
+# Background Scrims
+
+Adds a semi-transparent light or dark scrim. Useful for dimming content for loading states or modal windows.
+
+<Story of={BackgroundStories.BackgroundScrim} />

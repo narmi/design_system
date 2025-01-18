@@ -46,6 +46,7 @@ const previewRenderers = {
  *
  * @param {Object} category - category object from full tokens manifest
  * @param {String} typeKey - type key under the given category
+ * @param {String} categoryKey -  key under the given category
  * @returns {Array} rows to pass into tokens table
  */
 export const toTokenRows = (category, typeKey) =>
@@ -119,5 +120,7 @@ TokenTable.propTypes = {
   ).isRequired,
   previewType: PropTypes.oneOf(Object.keys(previewRenderers)),
 };
+
+export { TokenTable, CopyableCell };
 
 export default TokenTable;

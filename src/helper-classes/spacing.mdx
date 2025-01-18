@@ -1,0 +1,29 @@
+import { Meta, Story, Preview } from "@storybook/blocks";
+import {
+  margin as marginHelpers,
+  padding as paddingHelpers,
+} from "dist/docs/classManifest";
+import ClassExample from "helpers/ClassExample";
+import * as SpacingStories from './spacing.stories';
+
+<Meta of={SpacingStories} />
+
+# Margin
+
+Adds standard margin amount for a given side or axis.
+
+Valid sides/axes are (`all`, `top`, `right`, `bottom`, `left`, `x`, `y`)
+
+Valid amounts are (`xxs`, `xs`, `s`, `m`, `l`, `xl`, `xxl`).
+
+<Story of={SpacingStories.Margin} />
+
+# Padding
+
+Adds standard padding amount for a given side or axis.
+
+Valid sides/axes are (`all`, `top`, `right`, `bottom`, `left`, `x`, `y`)
+
+Valid amounts are (`xxs`, `xs`, `s`, `m`, `l`, `xl`, `xxl`).
+
+<Story of={SpacingStories.Padding} />

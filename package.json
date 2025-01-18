@@ -100,6 +100,7 @@
     "sass-loader": "^12.1.0",
     "semantic-release": "^19.0.0",
     "storybook": "^8.6.0-alpha.0",
+    "storybook-addon-tag-badges": "^1.4.0",
     "style-dictionary": "^3.9.2",
     "style-loader": "^0.23.1",
     "tinycolor2": "^1.4.2",

@@ -7,7 +7,7 @@ module.exports = {
 
   stories: [
     "../src/**/*.@(mdx|stories.@(js|jsx|ts|tsx))",
-    "../tokens/**/*.@(mdx|stories.@(js|jsx|ts|tsx))"
+    "../tokens/**/*.@(mdx|stories.@(js|jsx|ts|tsx))",
   ],
 
   addons: [
@@ -19,7 +19,8 @@ module.exports = {
       options: { transcludeMarkdown: true },
     },
     "@storybook/addon-mdx-gfm",
-    "@storybook/addon-webpack5-compiler-babel"
+    "@storybook/addon-webpack5-compiler-babel",
+    "storybook-addon-tag-badges",
   ],
 
   webpackFinal: (config) => {

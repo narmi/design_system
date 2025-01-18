@@ -1,0 +1,36 @@
+import { Meta, Canvas } from "@storybook/blocks";
+import * as TypographyStories from './Typography.stories.js';
+
+<Meta title="Style/Typography" of={TypographyStories} />
+
+# Typography
+
+## Setting a typography context
+
+Adding the `nds-typography` class to an element enables Narmi typesetting defaults
+on child elements:
+
+<Canvas isExpanded of={TypographyStories.SettingContext} />
+
+
+## Elements styled by typography context
+
+The `nds-typography` context targets heading and paragraph elements:
+
+<Canvas isExpanded of={TypographyStories.StyleElements} />
+
+## Typesetting with helper classes
+
+This design system also provides [Helper Classes](?path=/docs/style-helper-classes--using-helper-classes)
+to tweak style rules of individual elements. **These classes will work regardless of context**.
+
+Font styles can be modified with classes following these signatures:
+
+* `fontFamily--<family>`
+* `fontSize--<size>`
+* `fontColor--<color>`
+* `fontWeight--<weight>`
+
+📖 For a full list of font helper classes, see [Helper Class Documentation](?path=/docs/style-helper-classes--using-helper-classes#font).
+
+<Canvas isExpanded of={TypographyStories.HelperClassesList} />

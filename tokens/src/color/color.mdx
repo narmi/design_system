@@ -1,32 +1,23 @@
-import { Meta, Story } from "@storybook/addon-docs";
-import { color } from "dist/tokens/js/manifest";
+import { Meta, Story, Canvas } from "@storybook/blocks";
 import TokenTable, { toTokenRows } from "helpers/TokenTable";
+import * as ColorStories from "./color.stories.js";
 
 <Meta title="Design Tokens/Color" />
 
 # Color Tokens
 
-## Narmi Base Colors
+## Narmi Base ColorsO
 
-<Story name="Base">
-  <TokenTable
-    previewType="color"
-    rows={toTokenRows(color, "narmi").filter(({ name }) => {
-      // filter out offset brand colors (e.g. `moss100`) from documentation for now
-      const isOffsetColor = new RegExp(/[0-9]/).test(name);
-      return !isOffsetColor;
-    })}
-  />
-</Story>
+<Canvas of={ColorStories.Base} name="Base" style={{ height: 'auto' }} />
 
 ## Theme Colors
 
 Tokens with the prefix `--theme` are dedicated to theming. These CSS custom
 properties are intended to be overridden by institution settings.
 
-<Story name="Theme">
-  <TokenTable previewType="color" rows={toTokenRows(color, "theme")} />
-</Story>
+
+<Canvas of={ColorStories.Theme} style={{ height: 'auto' }}/>
+
 
 ### Enabling theming in your application
 
@@ -53,17 +44,13 @@ this design system for composing transparent colors:
 
 Colors reserved for element backgrounds.
 
-<Story name="Background">
-  <TokenTable previewType="color" rows={toTokenRows(color, "background")} />
-</Story>
+<Canvas of={ColorStories.Background} style={{ height: 'auto' }}/>
 
 ## System Colors
 
 Colors used for system messages and indicators.
 
-<Story name="System">
-  <TokenTable previewType="color" rows={toTokenRows(color, "system")} />
-</Story>
+<Canvas of={ColorStories.System} style={{ height: 'auto' }}/>
 
 ## Transparency
 
@@ -78,9 +65,7 @@ The value `rgb(var(--rgb-pine))` is equivalent to `var(--color-pine)`.
 
 ### Alpha Values
 
-<Story name="Transparency">
-  <TokenTable rows={toTokenRows(color, "alpha")} />
-</Story>
+<Canvas of={ColorStories.Transparency} style={{ height: 'auto' }} />
 
 ### Usage
 

@@ -13,7 +13,7 @@ export const parameters = {
     theme: docs,
   },
   actions: {
-    argTypesRegex: "^on[A-Z].*",
+    // argTypesRegex: "^on[A-Z].*",
   },
   controls: {
     sort: "requiredFirst",
@@ -39,3 +39,4 @@ export const parameters = {
 };
 
 export const decorators = [NdsStyles];
+export const tags = ["autodocs"];

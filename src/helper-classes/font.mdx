@@ -1,0 +1,43 @@
+import { Meta, Story, Preview } from "@storybook/blocks";
+import {
+  fontColor as fontColorHelpers,
+  fontSize as fontSizeHelpers,
+  fontWeight as fontWeightHelpers,
+  fontFamily as fontFamilyHelpers,
+  whiteSpace,
+} from "dist/docs/classManifest";
+import ClassExample from "helpers/ClassExample";
+import * as FontStories from './font.stories';
+
+<Meta of={FontStories} />
+
+# Font Color
+
+Adjusts font color.
+
+<Story of={FontStories.FontColor} />
+
+# Font Size
+
+Adjusts font size.
+
+<Story of={FontStories.FontSize} />
+
+# Font Weight
+
+Adjusts font weight.
+
+<Story of={FontStories.FontWeight} />
+
+# Font Family
+
+Adjusts font family.
+
+<Story of={FontStories.FontFamily} />
+
+# Whitespace control
+
+Whitespace helpers adjust text truncation and wrapping behavior.
+Single line and multiline truncation are both supported.
+
+<Story of={FontStories.WhitespaceControl} />

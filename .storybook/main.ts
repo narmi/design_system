@@ -6,8 +6,8 @@ module.exports = {
   },
 
   stories: [
-    "../src/**/*.stories.@(mdx|js|jsx|ts|tsx)",
-    "../tokens/**/*.stories.@(mdx|js|jsx|ts|tsx)",
+    "../src/**/*.@(mdx|stories.@(js|jsx|ts|tsx))",
+    "../tokens/**/*.@(mdx|stories.@(js|jsx|ts|tsx))"
   ],
 
   addons: [
@@ -19,6 +19,7 @@ module.exports = {
       options: { transcludeMarkdown: true },
     },
     "@storybook/addon-mdx-gfm",
+    "@storybook/addon-webpack5-compiler-babel"
   ],
 
   webpackFinal: (config) => {
@@ -35,7 +36,5 @@ module.exports = {
     options: {},
   },
 
-  docs: {
-    autodocs: true,
-  },
+  docs: {},
 };

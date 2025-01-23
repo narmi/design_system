@@ -1,0 +1,12 @@
+import { Meta, Story, Canvas } from "@storybook/blocks";
+import { button } from "dist/docs/classManifest";
+import ClassExample from "helpers/ClassExample";
+import * as FormsStories from './forms.stories';
+
+<Meta of={FormsStories} />
+
+# Button reset
+
+Resets browser defaults on `button` element.
+
+<Story of={FormsStories.ButtonReset} />

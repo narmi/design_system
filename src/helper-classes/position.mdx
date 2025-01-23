@@ -1,0 +1,16 @@
+import { Meta, Story } from "@storybook/blocks";
+import { alignChild, rotate } from "dist/docs/classManifest";
+import ClassExample from "helpers/ClassExample";
+import * as PositionStories from './position.stories';
+
+<Meta of={PositionStories} />
+
+# Child Alignment
+
+Aligns children of element using flexbox. Useful for quick center alignment.
+
+<Story of={PositionStories.ChildAlignment} />
+
+# Rotation
+
+<Story of={PositionStories.Rotation} />

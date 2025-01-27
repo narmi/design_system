@@ -97,3 +97,17 @@
     transform: translate(rem(1px), -50%);
   }
 }
+
+.nds-combobox-list-heading--bold {
+  font-weight: var(--font-weight-bold) !important;
+  font-size: var(--font-size-default) !important;
+  color: var(--font-color-heading) !important;
+  padding: var(--space-xs) var(--space-s);
+}
+
+.nds-combobox-list-heading--hint {
+  font-weight: var(--font-weight-normal) !important;
+  font-size: var(--font-size-xs) !important;
+  color: var(--color-mediumGrey) !important;
+  padding: var(--space-xs) var(--space-s) var(--space-xxs);
+}

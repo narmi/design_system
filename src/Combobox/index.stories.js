@@ -61,6 +61,17 @@ export const WithHeadings = (args) => (
   </Combobox>
 );
 
+export const WithHintHeadings = (args) => (
+  <Combobox label="Select Account" {...args}>
+    <Combobox.Heading text="Checking" kind="hint" />
+    <Combobox.Item value="Primary Checking - 4567" />
+    <Combobox.Item value="Secondary Checking - 9876" />
+    <Combobox.Heading text="Savings" kind="hint" />
+    <Combobox.Item value="Primary Savings - 1234" />
+    <Combobox.Item value="Cheese Fund - 5432" />
+  </Combobox>
+);
+
 export const WithError = Template.bind({});
 WithError.args = {
   label: "Select your state",

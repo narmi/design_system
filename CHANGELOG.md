@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.6.2](https://github.com/narmi/design_system/compare/v4.6.1...v4.6.2) (2025-01-28)
+
+
+### Bug Fixes
+
+* **Radio:** narrow scope of input selector ([9d8a530](https://github.com/narmi/design_system/commit/9d8a530d02591ad1b52c76eeb817bb895cba5942))
+
 ### [4.6.1](https://github.com/narmi/design_system/compare/v4.6.0...v4.6.1) (2025-01-28)
 
 

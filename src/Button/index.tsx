@@ -75,8 +75,6 @@ const Button = ({
   // support legacy method of passing label as children for now
   const buttonLabel = label || children;
 
-  console.info(buttonLabel);
-
   const Icon = ({ name }: { name: string }) => (
     <div className="alignChild--center--center">
       <i

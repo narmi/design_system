@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.6.1](https://github.com/narmi/design_system/compare/v4.6.0...v4.6.1) (2025-01-28)
+
+
+### Bug Fixes
+
+* **Button:** remove console log ([e85275e](https://github.com/narmi/design_system/commit/e85275e52307b29227adb09bf459b728b8e2afa5))
+
 ## [4.6.0](https://github.com/narmi/design_system/compare/v4.5.3...v4.6.0) (2025-01-28)
 
 

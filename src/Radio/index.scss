@@ -2,7 +2,7 @@
   position: relative;
 }
 
-.nds-singleRadio input {
+.nds-singleRadio input[type="radio"] {
   position: absolute;
   clip: rect(0 0 0 0);
   clip-path: inset(50%);

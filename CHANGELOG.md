@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.6.0](https://github.com/narmi/design_system/compare/v4.5.3...v4.6.0) (2025-01-28)
+
+
+### Features
+
+* **Radio:** add single Radio component ([9a43094](https://github.com/narmi/design_system/commit/9a4309401cb3c9398f8e9c5243e0c194688079d5))
+
 ### [4.5.3](https://github.com/narmi/design_system/compare/v4.5.2...v4.5.3) (2025-01-13)
 
 

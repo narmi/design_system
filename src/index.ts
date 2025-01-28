@@ -10,6 +10,7 @@ import Checkbox from "./Checkbox";
 import ContextMenu from "./ContextMenu";
 import Dialog from "./Dialog";
 import DisabledShim from "./DisabledShim";
+import Radio from "./Radio";
 import RadioButtons from "./RadioButtons";
 import Row from "./Row";
 import SeparatorList from "./SeparatorList";
@@ -63,6 +64,7 @@ export {
   ContextMenu,
   Checkbox,
   DisabledShim,
+  Radio,
   RadioButtons,
   Row,
   SeparatorList,

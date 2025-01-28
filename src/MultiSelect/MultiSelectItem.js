@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const MultiSelectItem = ({ children }) => <>{children}</>;
 
-MultiSelectItem.displayName = "SelectMultiple.Item";
+MultiSelectItem.displayName = "MultiSelect.Item";
 
 MultiSelectItem.propTypes = {
   /**

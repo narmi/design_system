@@ -37,7 +37,7 @@ export const RadioGroups = () => (
 );
 
 export const FullyControlled = () => {
-  const SET_NAME = "frequency";
+  const SET_NAME = "freq";
   const [selectedRadioVal, setSelectedRadioVal] = useState("");
   return (
     <div

@@ -9,7 +9,7 @@ interface ButtonProps {
   /** Renders the button label */
   label: string;
   /** style of button to render */
-  kind: "primary" | "secondary" | "tonal" | "negative" | "menu" | "plain";
+  kind?: "primary" | "secondary" | "tonal" | "negative" | "menu" | "plain";
   /** Click callback, with event object passed as argument */
   onClick?: (e: React.MouseEvent) => void;
   /**

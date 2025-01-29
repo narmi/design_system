@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.6.3](https://github.com/narmi/design_system/compare/v4.6.2...v4.6.3) (2025-01-29)
+
+
+### Bug Fixes
+
+* **Button:** make kind prop optional as it has a default val ([2385187](https://github.com/narmi/design_system/commit/238518779b630372822aa44e908b79e14ed2b8c1))
+
 ### [4.6.2](https://github.com/narmi/design_system/compare/v4.6.1...v4.6.2) (2025-01-28)
 
 

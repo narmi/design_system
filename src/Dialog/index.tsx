@@ -29,7 +29,7 @@ export interface DialogProps {
   /** Scrollable contents of the Dialog */
   children: React.ReactNode;
   /** Heading in the top of the Dialog */
-  title: string;
+  title?: string;
   /** Optional notification content to render pinned under the header */
   notification?: React.ReactNode;
   /** Contents of Dialog footer, typically reserved for action buttons */
@@ -42,7 +42,7 @@ export interface DialogProps {
    * Callback to handle user taking an action to dismiss the modal
    * (click outside, Escape key, click close button)
    */
-  onUserDismiss: () => void;
+  onUserDismiss?: () => void;
   /**
    * Sets a custom modal width.
    * Use the full CSS value with the unit (e.g. "400px")
@@ -50,6 +50,7 @@ export interface DialogProps {
   width?: string;
   /** Optional value for `data-testid` attribute */
   testId?: string;
+  id?: string;
 }
 
 /**
@@ -61,7 +62,7 @@ export interface DialogProps {
 const Dialog = ({
   isOpen = false,
   onUserDismiss = noop,
-  title,
+  title = "",
   headerStyle = "bordered",
   children,
   notification,

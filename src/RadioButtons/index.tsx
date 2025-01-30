@@ -2,16 +2,10 @@ import React, { useState, useEffect } from "react";
 import cc from "classcat";
 import Error from "../Error";
 
-type OptionType =
-  | {
-      value: string;
-      details?: string;
-    }
-  | string;
-
 interface RadioButtonsProps {
   /** Map of label strings to input values
    *
+   * TODO: restore this type when we can do it in a non-breaking way
    * ```
    * type OptionType = {
    *       value: string;
@@ -20,7 +14,7 @@ interface RadioButtonsProps {
    *   | string;
    * ```
    * */
-  options: Record<string, OptionType>;
+  options?: object;
   /** name of radiogroup */
   name: string;
   /** initially selected option by input value (uncontrolled) */

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.6.4](https://github.com/narmi/design_system/compare/v4.6.3...v4.6.4) (2025-01-31)
+
+
+### Bug Fixes
+
+* allow looser types for deprecated props ([d5eca11](https://github.com/narmi/design_system/commit/d5eca118df8d645e5e13040fae9cc933ce9d8126))
+
 ### [4.6.3](https://github.com/narmi/design_system/compare/v4.6.2...v4.6.3) (2025-01-29)
 
 

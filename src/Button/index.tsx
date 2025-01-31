@@ -7,11 +7,11 @@ import type { IconName } from "../types/Icon.types";
 
 interface ButtonProps {
   /** Renders the button label */
-  label: string;
+  label?: string; // must be optional until `children` is removed
   /** style of button to render */
   kind?: "primary" | "secondary" | "tonal" | "negative" | "menu" | "plain";
   /** Click callback, with event object passed as argument */
-  onClick?: (e: React.MouseEvent) => void;
+  onClick?: (e) => void;
   /**
    * The html element to render as the root node of `Button`.
    *

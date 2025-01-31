@@ -15,7 +15,7 @@ interface AlertProps {
   /** Variant of Alert to use */
   kind?: "info" | "error" | "success" | "warn";
   /** Override the default icon of the alert */
-  icon?: IconName | null;
+  icon?: IconName | string | null;
   /** Message content of the Alert */
   children?: React.ReactNode | string;
 }

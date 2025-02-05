@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.7.0](https://github.com/narmi/design_system/compare/v4.6.4...v4.7.0) (2025-02-05)
+
+
+### Features
+
+* **Alert:** add paddingSize prop to control padding ([7191af6](https://github.com/narmi/design_system/commit/7191af69824ab969c7856705298c2ea9c2b24545))
+
 ### [4.6.4](https://github.com/narmi/design_system/compare/v4.6.3...v4.6.4) (2025-01-31)
 
 

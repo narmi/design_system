@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.8.0](https://github.com/narmi/design_system/compare/v4.7.0...v4.8.0) (2025-02-06)
+
+
+### Features
+
+* **Combobox:** add hint variant for heading items ([2f9ab17](https://github.com/narmi/design_system/commit/2f9ab1748cac687bac2bd81c13919510f483bd6b))
+
 ## [4.7.0](https://github.com/narmi/design_system/compare/v4.6.4...v4.7.0) (2025-02-05)
 
 

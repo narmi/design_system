@@ -270,13 +270,7 @@ const Combobox = ({
   const renderItem = (item, index) => {
     const isActionItem = isAction(item);
     let itemJsx = (
-      <li
-        key={`${item}-${index}`}
-        className={cc([
-          "nds-combobox-heading",
-          "alignChild--left--center padding--x--s padding--y--xs",
-        ])}
-      >
+      <li key={`${item}-${index}`} className="alignChild--left--center">
         {item}
       </li>
     );

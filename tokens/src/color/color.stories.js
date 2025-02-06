@@ -20,28 +20,28 @@ Base.args = {
 
 export const Theme = () => (
   <>
-    <h2>Border Size</h2>
+    <h2>Theme Colors</h2>
     <TokenTable previewType="color" rows={toTokenRows(color, "theme")} />
   </>
 );
 
 export const Background = () => (
   <>
-    <h2>Border Size</h2>
+    <h2>Background Colors</h2>
     <TokenTable previewType="color" rows={toTokenRows(color, "background")} />
   </>
 );
 
 export const System = () => (
   <>
-    <h2>Border Size</h2>
+    <h2>System Colors</h2>
     <TokenTable previewType="color" rows={toTokenRows(color, "system")} />
   </>
 );
 
 export const Transparency = () => (
   <>
-    <h2>Border Size</h2>
+    <h2>Alpha Values</h2>
     <TokenTable rows={toTokenRows(color, "alpha")} />
   </>
 );

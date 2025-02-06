@@ -15,7 +15,9 @@ interface AlertProps {
   /** Variant of Alert to use */
   kind?: "info" | "error" | "success" | "warn";
   /** Override the default icon of the alert */
-  icon?: IconName | null;
+  icon?: IconName | string | null;
+  /** Size of padding for Alert */
+  paddingSize?: "xs" | "l";
   /** Message content of the Alert */
   children?: React.ReactNode | string;
 }
@@ -32,6 +34,7 @@ const Alert = ({
   onUserDismiss = noop,
   kind = "info",
   icon = null,
+  paddingSize = "l",
   children,
 }: AlertProps) => {
   const iconName = kind === "success" ? "check" : "info";
@@ -44,7 +47,7 @@ const Alert = ({
             "nds-alert",
             `nds-alert--${kind}`,
             "rounded--all",
-            "padding--all",
+            `padding--all--${paddingSize}`,
           ])}
         >
           <Row gapSize="s">

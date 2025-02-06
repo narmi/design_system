@@ -7,11 +7,11 @@ import type { IconName } from "../types/Icon.types";
 
 interface ButtonProps {
   /** Renders the button label */
-  label: string;
+  label?: string; // must be optional until `children` is removed
   /** style of button to render */
-  kind: "primary" | "secondary" | "tonal" | "negative" | "menu" | "plain";
+  kind?: "primary" | "secondary" | "tonal" | "negative" | "menu" | "plain";
   /** Click callback, with event object passed as argument */
-  onClick?: (e: React.MouseEvent) => void;
+  onClick?: (e) => void;
   /**
    * The html element to render as the root node of `Button`.
    *
@@ -74,8 +74,6 @@ const Button = ({
 
   // support legacy method of passing label as children for now
   const buttonLabel = label || children;
-
-  console.info(buttonLabel);
 
   const Icon = ({ name }: { name: string }) => (
     <div className="alignChild--center--center">

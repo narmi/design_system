@@ -1,0 +1,47 @@
+.nds-singleRadio {
+  position: relative;
+}
+
+.nds-singleRadio input[type="radio"] {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.nds-singleRadio-radio {
+  // outline of the custom radio control
+  position: relative;
+  height: rem(20px);
+  width: rem(20px);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-lightGrey);
+  border-radius: 50%;
+
+  // initially hidden dot
+  &:after {
+    position: absolute;
+    display: none;
+    content: "";
+    top: 50%;
+    left: 50%;
+    width: rem(12px);
+    height: rem(12px);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: var(--theme-primary);
+  }
+}
+
+.nds-singleRadio input:checked + .nds-singleRadio-radio,
+.nds-singleRadio:focus-within .nds-singleRadio-radio {
+  border: 1px solid var(--theme-primary);
+}
+
+.nds-singleRadio input:checked + .nds-singleRadio-radio:after {
+  display: block;
+}

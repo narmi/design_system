@@ -34,7 +34,7 @@ interface ContentCardProps {
    * Amount of border radius to add on all sides of card.
    */
   radiusSize?: "s" | "m" | "l";
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent | React.KeyboardEvent) => void;
   /**
    * Only applicable for `toggle` type.
    * Renders card in visually selected state with appropriate attributes.
@@ -70,11 +70,12 @@ const ContentCard = ({
       props.role = "button";
       props.onClick = onClick;
       props.tabIndex = "0";
-      props.onKeyUp = ({ key }) => {
+      props.onKeyUp = (e) => {
+        const { key } = e;
         // space and Enter should be accepted for both
         // toggle and button types
         if (key === "Enter" || key === " ") {
-          onClick();
+          onClick(e);
         }
       };
     }

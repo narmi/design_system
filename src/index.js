@@ -28,6 +28,7 @@ import Pagination from "./Pagination";
 import PlainButton from "./PlainButton";
 import ProgressBar from "./Pagination";
 import Popover from "./Popover";
+import Radio from "./Radio";
 import RadioButtons from "./RadioButtons";
 import ResponsiveFlex from "./ResponsiveFlex";
 import Row from "./Row";
@@ -78,6 +79,7 @@ export {
   PlainButton,
   ProgressBar,
   Popover,
+  Radio,
   RadioButtons,
   ResponsiveFlex,
   Row,

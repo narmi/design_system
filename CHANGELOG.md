@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.7.0](https://github.com/narmi/design_system/compare/v4.6.4...v4.7.0) (2025-02-05)
+
+
+### Features
+
+* **Alert:** add paddingSize prop to control padding ([7191af6](https://github.com/narmi/design_system/commit/7191af69824ab969c7856705298c2ea9c2b24545))
+
+### [4.6.4](https://github.com/narmi/design_system/compare/v4.6.3...v4.6.4) (2025-01-31)
+
+
+### Bug Fixes
+
+* allow looser types for deprecated props ([d5eca11](https://github.com/narmi/design_system/commit/d5eca118df8d645e5e13040fae9cc933ce9d8126))
+
+### [4.6.3](https://github.com/narmi/design_system/compare/v4.6.2...v4.6.3) (2025-01-29)
+
+
+### Bug Fixes
+
+* **Button:** make kind prop optional as it has a default val ([2385187](https://github.com/narmi/design_system/commit/238518779b630372822aa44e908b79e14ed2b8c1))
+
+### [4.6.2](https://github.com/narmi/design_system/compare/v4.6.1...v4.6.2) (2025-01-28)
+
+
+### Bug Fixes
+
+* **Radio:** narrow scope of input selector ([9d8a530](https://github.com/narmi/design_system/commit/9d8a530d02591ad1b52c76eeb817bb895cba5942))
+
+### [4.6.1](https://github.com/narmi/design_system/compare/v4.6.0...v4.6.1) (2025-01-28)
+
+
+### Bug Fixes
+
+* **Button:** remove console log ([e85275e](https://github.com/narmi/design_system/commit/e85275e52307b29227adb09bf459b728b8e2afa5))
+
+## [4.6.0](https://github.com/narmi/design_system/compare/v4.5.3...v4.6.0) (2025-01-28)
+
+
+### Features
+
+* **Radio:** add single Radio component ([9a43094](https://github.com/narmi/design_system/commit/9a4309401cb3c9398f8e9c5243e0c194688079d5))
+
 ### [4.5.3](https://github.com/narmi/design_system/compare/v4.5.2...v4.5.3) (2025-01-13)
 
 

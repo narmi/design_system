@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const ComboboxHeading = ({ text, kind = "bold" }) => (
   <h5
-    className={`nds-combobox-list-heading--${kind} fontSize--default fontWeight--bold`}
+    className={`nds-combobox-list-heading--${kind}`}
   >
     {text}
   </h5>

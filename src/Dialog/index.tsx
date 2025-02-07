@@ -121,68 +121,70 @@ const Dialog = ({
   // the shim has events for mouse users only; does not require a role
   /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
   const dialogJSX = (
-    <CSSTransition timeout={1} classNames="nds-dialog-transition" appear in>
-      <div className="nds-shim--dark" ref={shimRef} onClick={handleShimClick}>
-        <FocusLock autoFocus={false} className="nds-dialog-focuslock">
-          <div
-            role="dialog"
-            aria-labelledby="aria-dialog-label"
-            aria-modal="true"
-            className="nds-dialog"
-            // @ts-expect-error DetailedHTMLProps does not specify arbitrary custom properties
-            style={{ "--dialog-preferred-width": width }}
-            data-testid={testId}
-          >
+    <div className="nds-dialog-root">
+      <CSSTransition timeout={1} classNames="nds-dialog-transition" appear in>
+        <div className="nds-shim--dark" ref={shimRef} onClick={handleShimClick}>
+          <FocusLock autoFocus={false} className="nds-dialog-focuslock">
             <div
-              className={`nds-dialog-header nds-dialog-header--${headerStyle}`}
+              role="dialog"
+              aria-labelledby="aria-dialog-label"
+              aria-modal="true"
+              className="nds-dialog"
+              // @ts-expect-error DetailedHTMLProps does not specify arbitrary custom properties
+              style={{ "--dialog-preferred-width": width }}
+              data-testid={testId}
             >
-              {isBanner ? (
-                <div className="margin--y--s">
-                  <div
-                    className="padding--y--xxs"
-                    id="aria-dialog-label"
-                    style={{ textAlign: "center" }}
-                  >
-                    {title}
-                  </div>
-                  {closeButtonJSX}
-                </div>
-              ) : (
-                <>
-                  <h4 id="aria-dialog-label">{title}</h4>
-                  {closeButtonJSX}
-                </>
-              )}
-            </div>
-            {notification && (
-              <div className="nds-dialog-notification padding--y padding--x--xl">
-                {notification}
-              </div>
-            )}
-            <div
-              // content padding here
-              ref={contentRef}
-              className={cc([
-                "nds-dialog-content nds-typography padding--top--xs",
-                { "padding--bottom--xl": !footer || isContentOverflowing },
-              ])}
-            >
-              {children}
-            </div>
-            {footer && (
               <div
+                className={`nds-dialog-header nds-dialog-header--${headerStyle}`}
+              >
+                {isBanner ? (
+                  <div className="margin--y--s">
+                    <div
+                      className="padding--y--xxs"
+                      id="aria-dialog-label"
+                      style={{ textAlign: "center" }}
+                    >
+                      {title}
+                    </div>
+                    {closeButtonJSX}
+                  </div>
+                ) : (
+                  <>
+                    <h4 id="aria-dialog-label">{title}</h4>
+                    {closeButtonJSX}
+                  </>
+                )}
+              </div>
+              {notification && (
+                <div className="nds-dialog-notification padding--y padding--x--xl">
+                  {notification}
+                </div>
+              )}
+              <div
+                // content padding here
+                ref={contentRef}
                 className={cc([
-                  "nds-dialog-footer",
-                  { "nds-dialog-footer--overflowing": isContentOverflowing },
+                  "nds-dialog-content nds-typography padding--top--xs",
+                  { "padding--bottom--xl": !footer || isContentOverflowing },
                 ])}
               >
-                {footer}
+                {children}
               </div>
-            )}
-          </div>
-        </FocusLock>
-      </div>
-    </CSSTransition>
+              {footer && (
+                <div
+                  className={cc([
+                    "nds-dialog-footer",
+                    { "nds-dialog-footer--overflowing": isContentOverflowing },
+                  ])}
+                >
+                  {footer}
+                </div>
+              )}
+            </div>
+          </FocusLock>
+        </div>
+      </CSSTransition>
+    </div>
   );
   /* eslint-enable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
 

@@ -132,6 +132,7 @@ ScrollingContent.args = {
         Et maiores dolores hic nesciunt quibusdam ut laboriosam earum qui quas
         sapiente in molestiae accusantium.
       </p>
+      <input type="text" />
       <p>
         Ut ducimus amet quo deleniti repellendus in illo eaque 33 nihil quis
         eveniet deleniti qui sapiente quia At repellendus veritatis. Qui

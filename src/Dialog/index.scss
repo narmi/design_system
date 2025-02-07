@@ -2,6 +2,11 @@
   --overflow-gradient-height: 20px;
 }
 
+.nds-dialog-root {
+  position: fixed;
+  inset: 0;
+}
+
 .nds-shim--dark {
   position: absolute;
   top: env(safe-area-inset-top, 0px);
@@ -66,6 +71,7 @@
   border-top-left-radius: var(--border-radius-m);
 
   max-height: 96%; // relative to parent, .nds-dialog-focuslock
+  min-width: 100dvw;
 
   // for tablet or larger, display the modal dialog as a floating box.
   @include atMediaUp("s") {

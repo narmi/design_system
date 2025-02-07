@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.8.1](https://github.com/narmi/design_system/compare/v4.8.0...v4.8.1) (2025-02-07)
+
+
+### Bug Fixes
+
+* **Dialog:** position shim relative to viewport instead of document ([8cc3b15](https://github.com/narmi/design_system/commit/8cc3b15e8a43b0b0f0d1fec8779a466d1c31d1b6))
+
 ## [4.8.0](https://github.com/narmi/design_system/compare/v4.7.0...v4.8.0) (2025-02-06)
 
 

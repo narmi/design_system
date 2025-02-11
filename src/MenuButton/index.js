@@ -163,7 +163,7 @@ const MenuButton = ({
                         </Row.Item>
                       )}
                       <Row.Item>{child.props.label}</Row.Item>
-                      {child.props.startIcon && (
+                      {child.props.endIcon && (
                         <Row.Item shrink>
                           <span
                             className={`narmi-icon-${child.props.startIcon}`}

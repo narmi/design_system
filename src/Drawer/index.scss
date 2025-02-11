@@ -2,6 +2,8 @@
   --transition-speed-fast: 0.4s;
   --transition-speed-medium: 0.7s;
   --transition-speed-slow: 1s;
+  z-index: 100;
+  position: relative;
 }
 
 .drawer {

@@ -166,7 +166,7 @@ const MenuButton = ({
                       {child.props.endIcon && (
                         <Row.Item shrink>
                           <span
-                            className={`narmi-icon-${child.props.startIcon}`}
+                            className={`narmi-icon-${child.props.endIcon}`}
                           />
                         </Row.Item>
                       )}

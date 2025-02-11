@@ -148,6 +148,35 @@ export const InADialog = () => {
   );
 };
 
+export const WithEndIcons = () => (
+  <MenuButton label="Menu button on right side of viewport">
+    <MenuButton.Item
+      key="edit"
+      endIcon="edit-2"
+      label="Edit"
+      onSelect={() => {
+        alert("edit handler");
+      }}
+    />
+    <MenuButton.Item
+      key="screenshot"
+      endIcon="camera"
+      label="Screenshot"
+      onSelect={() => {
+        alert("screenshot handler");
+      }}
+    />
+    <MenuButton.Item
+      key="deposit"
+      endIcon="bank"
+      label="Deposit"
+      onSelect={() => {
+        alert("deposit handler");
+      }}
+    />
+  </MenuButton>
+);
+
 export default {
   title: "Components/MenuButton",
   component: MenuButton,

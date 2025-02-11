@@ -134,6 +134,7 @@ const MenuButton = ({
                     id={itemId}
                     value={itemId}
                     startIcon={child.props.startIcon}
+                    endIcon={child.props.endIcon}
                     /**
                      * react-aria provides a className interface similar
                      * to render props
@@ -162,6 +163,13 @@ const MenuButton = ({
                         </Row.Item>
                       )}
                       <Row.Item>{child.props.label}</Row.Item>
+                      {child.props.endIcon && (
+                        <Row.Item shrink>
+                          <span
+                            className={`narmi-icon-${child.props.endIcon}`}
+                          />
+                        </Row.Item>
+                      )}
                     </Row>
                   </MenuItem>
                 );

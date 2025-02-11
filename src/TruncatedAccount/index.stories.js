@@ -1,6 +1,6 @@
 import React from "react";
 import TruncatedAccount from "./";
-import Select from "../Select"
+import Select from "../Select";
 
 const Template = (args) => <TruncatedAccount {...args} />;
 
@@ -56,14 +56,39 @@ StylingThisComponent.parameters = {
   },
 };
 
+export const InlineLayout = () => (
+  <p>
+    Would you like to transfer money from{" "}
+    <strong>
+      <TruncatedAccount name="Primary Checking" lastFour={7633} isInline />
+    </strong>{" "}
+    to{" "}
+    <strong>
+      <TruncatedAccount name="Secondary Savings" lastFour={3444} isInline />
+    </strong>
+    ?
+  </p>
+);
+InlineLayout.parameters = {
+  docs: {
+    description: {
+      story:
+        "By default, the root element of `TruncatedAccount` displays block. Passing the `isInline` prop sets it to display inline.",
+    },
+  },
+};
+
 export const AccountSelector = () => (
-  <div style={{width:"500px"}}>
-    <Select label="Loan" >
+  <div style={{ width: "500px" }}>
+    <Select label="Loan">
       <Select.Item value="123">
         <TruncatedAccount name="A Loan" lastFour="1234 ($1,234.24)" />
       </Select.Item>
       <Select.Item value="234">
-        <TruncatedAccount name="My Favorite Loan With A Very Long Name" lastFour="33=0008 ($92,050.95)" />
+        <TruncatedAccount
+          name="My Favorite Loan With A Very Long Name"
+          lastFour="33=0008 ($92,050.95)"
+        />
       </Select.Item>
     </Select>
   </div>
@@ -76,7 +101,6 @@ AccountSelector.parameters = {
     },
   },
 };
-
 
 export default {
   title: "Components/TruncatedAccount",

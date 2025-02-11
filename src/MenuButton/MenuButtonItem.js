@@ -16,7 +16,7 @@ MenuButtonItem.propTypes = {
   onSelect: PropTypes.func.isRequired,
   /** Optional start icon for menu item */
   startIcon: PropTypes.oneOf(VALID_ICON_NAMES),
-  /** Optional start icon for menu item */
+  /** Optional end icon for menu item */
   endIcon: PropTypes.oneOf(VALID_ICON_NAMES),
 };
 

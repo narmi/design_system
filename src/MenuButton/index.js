@@ -170,7 +170,6 @@ const MenuButton = ({
                           />
                         </Row.Item>
                       )}
-
                     </Row>
                   </MenuItem>
                 );

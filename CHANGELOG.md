@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.9.0](https://github.com/narmi/design_system/compare/v4.8.1...v4.9.0) (2025-02-11)
+
+
+### Features
+
+* **MenuButton:** add endIcon ([7a344ba](https://github.com/narmi/design_system/commit/7a344ba522107d7816bd12e440e0bd36da113ccf))
+
 ### [4.8.1](https://github.com/narmi/design_system/compare/v4.8.0...v4.8.1) (2025-02-07)
 
 

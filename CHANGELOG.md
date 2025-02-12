@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.10.0](https://github.com/narmi/design_system/compare/v4.9.0...v4.10.0) (2025-02-12)
+
+
+### Features
+
+* **TruncatedAccount:** add option for inline rendering ([1f0650d](https://github.com/narmi/design_system/commit/1f0650d7089b87c99b97bf04a73b7fcbc0bff950))
+
 ## [4.9.0](https://github.com/narmi/design_system/compare/v4.8.1...v4.9.0) (2025-02-11)
 
 

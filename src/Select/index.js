@@ -210,7 +210,6 @@ const Select = ({
   } = useSelect(downshiftOpts);
 
   const hasCategories = categories.length > 0;
-  console.dir(selectedItem);
   const hasSelectedItem = selectedItem !== null && selectedItem.props;
   const showMenu = isOpen && items.length > 0;
 

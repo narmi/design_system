@@ -179,7 +179,6 @@ const Combobox = ({
     isOpen,
     selectedItem,
     getInputProps,
-    getComboboxProps,
     getMenuProps,
     getItemProps,
     highlightedIndex,
@@ -401,8 +400,8 @@ const Combobox = ({
     <>
       <div
         className={cc(["nds-combobox", { "nds-combobox--active": isOpen }])}
-        {...getComboboxProps(triggerProps)}
         data-testid={testId}
+        {...triggerProps}
       >
         <TextInput
           error={errorText}

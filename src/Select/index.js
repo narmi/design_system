@@ -177,10 +177,7 @@ const Select = ({
       const { type, changes } = actionAndChanges;
       let isOpen = changes.isOpen;
 
-      if (
-        type === useSelect.stateChangeTypes.MenuKeyDownCharacter ||
-        type === useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter
-      ) {
+      if (type === useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter) {
         const { inputValue } = changes;
         setUserInput(inputValue);
         isOpen = true;
@@ -213,7 +210,8 @@ const Select = ({
   } = useSelect(downshiftOpts);
 
   const hasCategories = categories.length > 0;
-  const hasSelectedItem = selectedItem !== undefined && selectedItem.props;
+  console.dir(selectedItem);
+  const hasSelectedItem = selectedItem !== null && selectedItem.props;
   const showMenu = isOpen && items.length > 0;
 
   /** @see https://github.com/everweij/react-laag#api-docs */

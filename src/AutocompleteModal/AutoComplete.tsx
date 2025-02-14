@@ -48,7 +48,6 @@ const AutoComplete = ({
   const {
     selectedItem,
     highlightedIndex,
-    getComboboxProps,
     getMenuProps,
     getInputProps,
     getItemProps,
@@ -74,10 +73,7 @@ const AutoComplete = ({
   });
 
   return (
-    <div
-      className={cc(["nds-autocompleteModal-autocomplete", "rounded--all"])}
-      {...getComboboxProps()}
-    >
+    <div className={cc(["nds-autocompleteModal-autocomplete", "rounded--all"])}>
       <div className="nds-autocompleteModal-input">
         <TextInput label={label} {...getInputProps()} />
       </div>

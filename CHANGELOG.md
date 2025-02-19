@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.10.2](https://github.com/narmi/design_system/compare/v4.10.1...v4.10.2) (2025-02-19)
+
+
+### Bug Fixes
+
+* **Button:** fix secondary background overflow ([11a4cb8](https://github.com/narmi/design_system/commit/11a4cb8c93dbd4e5256ea1342498de6060d15e97))
+
 ### [4.10.1](https://github.com/narmi/design_system/compare/v4.10.0...v4.10.1) (2025-02-19)
 
 

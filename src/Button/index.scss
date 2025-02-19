@@ -10,6 +10,7 @@
   justify-content: center;
   align-items: center;
   border-radius: rem(24px);
+  overflow: hidden;
 
   /* mobile buttons have slightly taller padding for ease of tapping */
   @media (max-width: #{map.get($breakpoints, "s")}) {

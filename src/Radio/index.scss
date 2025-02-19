@@ -42,6 +42,10 @@
   border: 1px solid var(--theme-primary);
 }
 
+.nds-singleRadio:focus-within .nds-singleRadio-radio {
+  outline: 3px solid RGBA(var(--theme-rgb-primary), var(--alpha-10));
+}
+
 .nds-singleRadio input:checked + .nds-singleRadio-radio:after {
   display: block;
 }

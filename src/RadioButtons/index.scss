@@ -70,6 +70,10 @@
       border: 1px solid var(--theme-primary);
     }
 
+    &.nds-radiobuttons-option--focused .nds-radio {
+      outline: 3px solid RGBA(var(--theme-rgb-primary), var(--alpha-10));
+    }
+
     &.nds-radiobuttons-option--error .nds-radio {
       border-color: var(--color-errorDark);
     }

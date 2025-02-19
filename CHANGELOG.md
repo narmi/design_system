@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.10.1](https://github.com/narmi/design_system/compare/v4.10.0...v4.10.1) (2025-02-19)
+
+
+### Bug Fixes
+
+* **Radios:** restore focus ring ([5d627d8](https://github.com/narmi/design_system/commit/5d627d8da55dc05749447015af5bdd311fda6503))
+
 ## [4.10.0](https://github.com/narmi/design_system/compare/v4.9.0...v4.10.0) (2025-02-12)
 
 

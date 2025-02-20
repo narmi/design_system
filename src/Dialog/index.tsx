@@ -188,9 +188,17 @@ const Dialog = ({
   );
   /* eslint-enable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
 
-  return (
-    <>{isOpen && document && ReactDOM.createPortal(dialogJSX, document.body)}</>
-  );
+  function renderDialogInOutlet() {
+    // create a single outlet
+    if (!document.getElementById("outlet")) {
+      const outlet = document.createElement("div");
+      outlet.setAttribute("id", "outlet");
+      document.body.appendChild(outlet);
+    }
+    return ReactDOM.createPortal(dialogJSX, document.getElementById("outlet"));
+  }
+
+  return <>{isOpen && document && renderDialogInOutlet()}</>;
 };
 
 export default Dialog;

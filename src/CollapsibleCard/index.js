@@ -92,6 +92,7 @@ const CollapsibleCard = ({
                   "fontSize--l",
                   "padding--top--l",
                   "fontFamily--body",
+                  "fontColor--theme--primary",
                   {
                     "padding--left--l": trigger !== "caret-start",
                   },

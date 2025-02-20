@@ -235,7 +235,7 @@ const Drawer = ({
     </div>
   );
 
-  function renderDdrawerInOutlet() {
+  function renderDrawerInOutlet() {
     // create a single outlet
     if (!document.getElementById("outlet")) {
       const outlet = document.createElement("div");
@@ -249,7 +249,7 @@ const Drawer = ({
     return null;
   }
 
-  return <>{document && renderDdrawerInOutlet()}</>;
+  return <>{document && renderDrawerInOutlet()}</>;
 };
 
 Drawer.propTypes = {

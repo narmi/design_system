@@ -193,6 +193,7 @@ const Dialog = ({
     if (!document.getElementById("outlet")) {
       const outlet = document.createElement("div");
       outlet.setAttribute("id", "outlet");
+      outlet.setAttribute("class", "outlet");
       document.body.appendChild(outlet);
     }
     return ReactDOM.createPortal(dialogJSX, document.getElementById("outlet"));

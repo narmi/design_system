@@ -48,10 +48,14 @@
   top: env(safe-area-inset-top, 0px);
   bottom: env(safe-area-inset-bottom, 0px);
 
-  // bottom align the dialog within the available area
+  // bottom align the dialog within the available area on small screens
   display: flex;
   justify-content: center;
   align-items: flex-end;
+
+  // "shrink wrap" the focus trap element to the dialog and center it
+  width: fit-content;
+  margin: 0 auto;
 
   // for tablet or larger, display the modal dialog as a floating box.
   @include atMediaUp("s") {

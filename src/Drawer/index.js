@@ -235,10 +235,21 @@ const Drawer = ({
     </div>
   );
 
+  function renderDrawerInOutlet() {
+    // create a single outlet
+    if (!document.getElementById("outlet")) {
+      const outlet = document.createElement("div");
+      outlet.setAttribute("id", "outlet");
+      document.body.appendChild(outlet);
+    }
+    return ReactDOM.createPortal(drawerJSX, document.getElementById("outlet"));
+  }
+
   if (!isTransitioning && !isOpen) {
     return null;
   }
-  return <>{document && ReactDOM.createPortal(drawerJSX, document.body)}</>;
+
+  return <>{document && renderDrawerInOutlet()}</>;
 };
 
 Drawer.propTypes = {

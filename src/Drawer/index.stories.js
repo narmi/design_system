@@ -4,6 +4,9 @@ import Button from "../Button";
 import Popover from "../Popover";
 import Dialog from "../Dialog";
 import Row from "../Row";
+import ContextMenu from "../ContextMenu";
+import MenuButton from "../MenuButton";
+import Select from "../Select";
 
 const CONTENTS = [
   <>
@@ -210,7 +213,9 @@ ContentWithPopover.args = {
 
 export const ContentWithDialog = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isDialogWithContextMenuOpen, setIsDialogWithContextMenuOpen] =
+    useState(false);
+  const [isDialogWithSelectOpen, setIsDialogWithSelectOpen] = useState(false);
 
   return (
     <>
@@ -224,20 +229,79 @@ export const ContentWithDialog = () => {
         isOpen={isDrawerOpen}
         onUserDismiss={() => setIsDrawerOpen(false)}
       >
+        <div style={{ marginBottom: "var(--space-l)" }}>
+          <Button
+            label="Open Dialog with ContextMenu"
+            onClick={() => {
+              setIsDialogWithContextMenuOpen(true);
+            }}
+          />
+        </div>
+
         <Button
-          label="Open Dialog"
+          label="Open Dialog with Select"
           onClick={() => {
-            setIsDialogOpen(true);
+            setIsDialogWithSelectOpen(true);
           }}
         />
+
         <Dialog
           title="Dialog launched from a Drawer"
-          isOpen={isDialogOpen}
+          isOpen={isDialogWithContextMenuOpen}
           onUserDismiss={() => {
-            setIsDialogOpen(false);
+            setIsDialogWithContextMenuOpen(false);
           }}
         >
-          <p>Dialog overlapping a Drawer</p>
+          <p>Dialog with ContextMenu overlapping a Drawer</p>
+          <ContextMenu
+            menuItems={[
+              <MenuButton.Item
+                key="edit"
+                id="random-edit-uuid"
+                label="Edit"
+                onSelect={() => {}}
+                startIcon="edit-2"
+              />,
+              <MenuButton.Item
+                key="screenshot"
+                id="screenshot"
+                label="Screenshot"
+                onSelect={() => {}}
+                startIcon="camera"
+              />,
+            ]}
+          >
+            <h1
+              style={{
+                border: "1px dashed black",
+              }}
+            >
+              Context Menu
+            </h1>
+          </ContextMenu>
+        </Dialog>
+        <Dialog
+          title="Dialog launched from a Drawer"
+          isOpen={isDialogWithSelectOpen}
+          onUserDismiss={() => {
+            setIsDialogWithSelectOpen(false);
+          }}
+        >
+          <p>Dialog with Select overlapping a Drawer</p>
+          <Select id="overviewStory" label="Favorite icon">
+            <Select.Item value="coffee">
+              <span className="narmi-icon-coffee padding--right--xs" /> Coffee
+            </Select.Item>
+            <Select.Item value="film">
+              <span className="narmi-icon-film padding--right--xs" /> Film
+            </Select.Item>
+            <Select.Item value="truck">
+              <span className="narmi-icon-truck padding--right--xs" /> Truck
+            </Select.Item>
+            <Select.Item value="blob">
+              <span className="narmi-icon-blob padding--right--xs" /> Blob
+            </Select.Item>
+          </Select>
         </Dialog>
       </Drawer>
     </>

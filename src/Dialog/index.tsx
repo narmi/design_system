@@ -121,8 +121,8 @@ const Dialog = ({
   // the shim has events for mouse users only; does not require a role
   /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
   const dialogJSX = (
-    <div className="nds-dialog-root">
-      <CSSTransition timeout={1} classNames="nds-dialog-transition" appear in>
+    <CSSTransition timeout={1} classNames="nds-dialog-transition" appear in>
+      <div className="nds-dialog-root">
         <div className="nds-shim--dark" ref={shimRef} onClick={handleShimClick}>
           <FocusLock autoFocus={false} className="nds-dialog-focuslock">
             <div
@@ -183,8 +183,8 @@ const Dialog = ({
             </div>
           </FocusLock>
         </div>
-      </CSSTransition>
-    </div>
+      </div>
+    </CSSTransition>
   );
   /* eslint-enable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
 

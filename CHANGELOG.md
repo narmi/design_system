@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.10.4](https://github.com/narmi/design_system/compare/v4.10.3...v4.10.4) (2025-02-21)
+
+
+### Bug Fixes
+
+* **Drawer,Dialog:** apply position and z-index on portal outlet ([b8c2acf](https://github.com/narmi/design_system/commit/b8c2acf6f86d3e6f3281154d774033e69d0c6316))
+
 ### [4.10.3](https://github.com/narmi/design_system/compare/v4.10.2...v4.10.3) (2025-02-21)
 
 

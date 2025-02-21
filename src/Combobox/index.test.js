@@ -122,7 +122,7 @@ describe("Combobox", () => {
 
     // open the dropdown
     const input = screen.getByPlaceholderText(LABEL);
-    fireEvent.click(input);
+    fireEvent.focus(input);
 
     // dropdown should be open with state options visible
     const nyItem = screen.getByText("New York");
@@ -139,7 +139,7 @@ describe("Combobox", () => {
 
     // open the dropdown and type in the input
     const input = screen.getByPlaceholderText(LABEL);
-    fireEvent.click(input);
+    fireEvent.focus(input);
 
     // all 50 state options should be visible before the user types
     expect(screen.getAllByRole("option")).toHaveLength(50);
@@ -151,7 +151,7 @@ describe("Combobox", () => {
     // if the input is cleared out, and we re-open the dropdown,
     // the original list should be restored
     fireEvent.change(input, { target: { value: "" } });
-    fireEvent.click(input);
+    fireEvent.focus(input);
     expect(screen.getAllByRole("option")).toHaveLength(50);
   });
 
@@ -165,7 +165,7 @@ describe("Combobox", () => {
 
     // open the dropdown
     const input = screen.getByPlaceholderText(LABEL);
-    fireEvent.click(input);
+    fireEvent.focus(input);
 
     // dropdown should be open with state options visible
     const nyItem = screen.getByText("New York");

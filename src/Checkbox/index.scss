@@ -63,6 +63,7 @@
     // - prevent this flex item from shrinking to checkmark width
     // - visually align checkbox icon baseline with label baseline
     flex-shrink: 0;
+    align-self: center;
     &.error {
       border: 1px solid var(--color-errorDark);
     }

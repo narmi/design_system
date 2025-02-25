@@ -80,6 +80,20 @@ Markdown.parameters = {
   },
 };
 
+export const LongLabel = Template.bind({});
+LongLabel.args = {
+  markdownLabel:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  name: "long_label",
+};
+LongLabel.parameters = {
+  docs: {
+    description: {
+      story: "The checkbox element itself is vertically centered when the label overflows to multiple lines",
+    },
+  },
+};
+
 export default {
   title: "Components/Checkbox",
   component: Checkbox,

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLayer, Arrow } from "react-laag";
+import { createUseLayerContainer } from "../util/dom";
 
 export interface TooltipProps {
   /** The root node of JSX passed into Tooltip as children will act as the tooltip trigger */
@@ -63,6 +64,7 @@ const Tooltip = ({
     preferY: "top",
     triggerOffset: 12,
     arrowOffset: 12,
+    container: createUseLayerContainer,
   });
 
   return (

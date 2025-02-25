@@ -4,6 +4,7 @@ import { useLayer, useMousePositionAsTrigger } from "react-laag";
 import cc from "classcat";
 import ContextMenuItem from "./ContextMenuItem";
 import Row from "../Row";
+import { createUseLayerContainer } from "../util/dom";
 
 export interface ContextMenuProps {
   /** Optional value for `data-testid` attribute */
@@ -38,6 +39,7 @@ function ContextMenu({ menuItems, testId, children }: ContextMenuProps) {
     preferY: "bottom",
     placement: "bottom-start",
     trigger,
+    container: createUseLayerContainer,
   });
 
   function handleContextMenuClick(

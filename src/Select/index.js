@@ -9,6 +9,7 @@ import DropdownTrigger from "../DropdownTrigger";
 import SelectItem from "./SelectItem";
 import SelectAction from "./SelectAction";
 import SelectCategory from "./SelectCategory";
+import { createUseLayerContainer } from "src/util/dom";
 
 const noop = () => {};
 
@@ -223,6 +224,7 @@ const Select = ({
       containerOffset: 0,
       placement: "bottom-start",
       possiblePlacements: ["top-start", "bottom-start"],
+      container: createUseLayerContainer,
     });
 
   const renderItem = (item, items) => {

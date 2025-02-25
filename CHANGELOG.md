@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.10.6](https://github.com/narmi/design_system/compare/v4.10.5...v4.10.6) (2025-02-25)
+
+
+### Bug Fixes
+
+* **Dialog:** prevent focus trap el from blocking shim clicks ([3b0fcfd](https://github.com/narmi/design_system/commit/3b0fcfda9e597f4af0b56323def886fd234f97c7))
+
 ### [4.10.5](https://github.com/narmi/design_system/compare/v4.10.4...v4.10.5) (2025-02-25)
 
 

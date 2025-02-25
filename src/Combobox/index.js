@@ -11,6 +11,7 @@ import ComboboxAction from "./ComboboxAction";
 import TextInput from "../TextInput";
 import Row from "../Row";
 import { getItemIndex } from "../Select";
+import { createUseLayerContainer } from "src/util/dom";
 
 const noop = () => {};
 
@@ -263,6 +264,7 @@ const Combobox = ({
       preferY: "bottom",
       triggerOffset: -3,
       containerOffset: 16,
+      container: createUseLayerContainer,
     });
 
   // renders a single combobox item

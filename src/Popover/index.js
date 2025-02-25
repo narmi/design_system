@@ -4,6 +4,7 @@ import cc from "classcat";
 import PropTypes from "prop-types";
 import { useLayer } from "react-laag";
 import FocusLock from "react-focus-lock";
+import { createUseLayerContainer } from "src/util/dom";
 
 const noop = () => {};
 
@@ -86,7 +87,7 @@ const Popover = ({
     placement: `${side}-${alignment}`,
     preferX: "left",
     preferY: "bottom",
-    container: typeof document !== "undefined" ? document.body : undefined,
+    container: createUseLayerContainer,
     triggerOffset: offset,
   });
 

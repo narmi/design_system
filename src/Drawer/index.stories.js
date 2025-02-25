@@ -7,6 +7,8 @@ import Row from "../Row";
 import ContextMenu from "../ContextMenu";
 import MenuButton from "../MenuButton";
 import Select from "../Select";
+import Combobox from "../Combobox";
+import Tooltip from "../Tooltip";
 
 const CONTENTS = [
   <>
@@ -287,7 +289,10 @@ export const ContentWithDialog = () => {
             setIsDialogWithSelectOpen(false);
           }}
         >
-          <p>Dialog with Select overlapping a Drawer</p>
+          <Tooltip text="I am a tooltip, which is a tool for tips">
+            <p>Dialog with Select overlapping a Drawer</p>
+          </Tooltip>
+
           <Select id="overviewStory" label="Favorite icon">
             <Select.Item value="coffee">
               <span className="narmi-icon-coffee padding--right--xs" /> Coffee
@@ -302,6 +307,11 @@ export const ContentWithDialog = () => {
               <span className="narmi-icon-blob padding--right--xs" /> Blob
             </Select.Item>
           </Select>
+          <br />
+          <Combobox label="Select your state">
+            <Combobox.Item value="Alabama">Alabama</Combobox.Item>
+            <Combobox.Item value="Alaska">Alaska</Combobox.Item>
+          </Combobox>
         </Dialog>
       </Drawer>
     </>

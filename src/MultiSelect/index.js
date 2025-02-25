@@ -8,6 +8,7 @@ import DropdownTrigger from "../DropdownTrigger";
 import MultiSelectItem from "./MultiSelectItem";
 import FieldToken from "../FieldToken";
 import Row from "../Row";
+import { createUseLayerContainer } from "src/util/dom";
 
 const noop = () => {};
 
@@ -152,6 +153,7 @@ const MultiSelect = ({
       containerOffset: 0,
       placement: "bottom-start",
       possiblePlacements: ["top-start", "bottom-start"],
+      container: createUseLayerContainer,
     });
 
   const renderTokens = () =>

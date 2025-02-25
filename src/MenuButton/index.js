@@ -11,6 +11,7 @@ import {
 import iconSelection from "src/icons/selection.json";
 import MenuButtonItem from "./MenuButtonItem";
 import Row from "../Row";
+import { createUseLayerContainer } from "src/util/dom";
 
 export const VALID_ICON_NAMES = iconSelection.icons.map(
   (icon) => icon.properties.name,
@@ -42,6 +43,7 @@ const MenuButton = ({
     preferX: "right",
     preferY: "bottom",
     placement: "bottom-start",
+    container: createUseLayerContainer,
   });
 
   const handleKeyUp = ({ key }) => {

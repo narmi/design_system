@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.10.5](https://github.com/narmi/design_system/compare/v4.10.4...v4.10.5) (2025-02-25)
+
+
+### Bug Fixes
+
+* **useLayer:** render components using useLayer within portal div with id "outlet" ([e17fd80](https://github.com/narmi/design_system/commit/e17fd80077021465ba1b77ca57c6d1ab6418547d))
+
 ### [4.10.4](https://github.com/narmi/design_system/compare/v4.10.3...v4.10.4) (2025-02-21)
 
 

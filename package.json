@@ -9,7 +9,7 @@
   "types": "dist/types/index.d.ts",
   "engineStrict": true,
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
   "scripts": {
     "watch": "watch 'npm run build' src",

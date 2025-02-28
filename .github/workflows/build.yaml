@@ -10,13 +10,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 18
+          node-version: 22
           registry-url: https://registry.npmjs.org
 
       - run: |
           npm ci
           npm run build
-          
+
   Check-license:
     runs-on: ubuntu-latest
     steps:
@@ -25,7 +25,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 18
+          node-version: 22
           registry-url: https://registry.npmjs.org
       - run: |
           npm ci

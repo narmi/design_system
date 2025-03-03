@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import iconSelection from "src/icons/selection.json";
@@ -141,7 +141,7 @@ const Combobox = ({
   label,
   onChange = noop,
   onInputChange = noop,
-  inputValue: controlledInputValue,
+  inputValue: inputValueProp,
   filterItemsByInput = defaultFilterItemsByInput,
   children,
   disableFiltering = false,
@@ -150,6 +150,7 @@ const Combobox = ({
   testId,
   renderEndContent = defaultRenderEndContent,
 }) => {
+  const inputRef = useRef(null);
   const allChildren = React.Children.toArray(children);
   const hasCategories = allChildren.some(
     ({ type }) => type.displayName === ComboboxCategory.displayName,
@@ -190,7 +191,7 @@ const Combobox = ({
     reset,
   } = useCombobox({
     items: displayedItems,
-    inputValue: controlledInputValue,
+    inputValue: inputValueProp,
     itemToString: (item) => item.props.searchValue || item.props.value,
     onInputValueChange: ({ inputValue }) => {
       // Typeahead behavior - we adjust the list of available options passed
@@ -216,6 +217,10 @@ const Combobox = ({
       if (isAction(selectedItem)) {
         selectedItem.props.onSelect();
         closeMenu();
+        if (inputRef.current) {
+          // always blur input when an action is selected.
+          inputRef.current.blur();
+        }
       } else {
         let newSelection = "";
         if (selectedItem) {
@@ -426,6 +431,20 @@ const Combobox = ({
                 setInputValue(
                   selectedItem.props.searchValue || selectedItem.props.value,
                 );
+              }
+            },
+            ref: (node) => {
+              // we must capture the ref for the input to blur it
+              // when users select an action
+              inputRef.current = node;
+
+              // merge with downshift ref
+              const { downshiftRef } = getInputProps();
+              if (typeof downshiftRef === "function") {
+                downshiftRef(node);
+              }
+              if (downshiftRef && typeof downshiftRef === "object") {
+                downshiftRef.current = node;
               }
             },
           })}

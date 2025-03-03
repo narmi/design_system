@@ -4,6 +4,7 @@ import Combobox, { VALID_ICON_NAMES } from "./";
 import ComboboxItem from "./ComboboxItem";
 import ComboboxHeading from "./ComboboxHeading";
 import Dialog from "../Dialog";
+import Drawer from "../Drawer";
 import { options_states } from "./util";
 
 const Template = (args) => <Combobox {...args} />;
@@ -237,14 +238,17 @@ CustomFiltering.parameters = {
   },
 };
 
-export const WithActions = (args) => {
+export const WithActions = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [inputValue, setInputValue] = useState("");
   return (
     <>
-      <Combobox label="Select Account" {...args}>
+      <Combobox
+        label="Select Account"
+        inputValue={inputValue}
+        onInputChange={(val) => setInputValue(val)}
+      >
         <Combobox.Item value="Primary Checking - 4567" />
-        <Combobox.Item value="Secondary Checking - 9876" />
-        <Combobox.Item value="Primary Savings - 1234" />
         <Combobox.Item value="Cheese Fund - 5432" />
         <Combobox.Action
           onSelect={() => {
@@ -253,13 +257,9 @@ export const WithActions = (args) => {
           label="Do Action"
         />
       </Combobox>
-      <Dialog
-        title="You selected an action"
-        isOpen={isOpen}
-        onUserDismiss={() => setIsOpen(false)}
-      >
+      <Drawer isOpen={isOpen} onUserDismiss={() => setIsOpen(false)}>
         <div className="padding--y--s">🎬 Action!</div>
-      </Dialog>
+      </Drawer>
     </>
   );
 };

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.11.0](https://github.com/narmi/design_system/compare/v4.10.7...v4.11.0) (2025-03-03)
+
+
+### Features
+
+* **Alert:** expose more padding sizes for Alert ([a2e9995](https://github.com/narmi/design_system/commit/a2e999573e01ec9da0339d20797423dcded5eb48))
+
 ### [4.10.7](https://github.com/narmi/design_system/compare/v4.10.6...v4.10.7) (2025-03-03)
 
 

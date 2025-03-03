@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.10.7](https://github.com/narmi/design_system/compare/v4.10.6...v4.10.7) (2025-03-03)
+
+
+### Bug Fixes
+
+* use correct ProgressBar import ([ea40874](https://github.com/narmi/design_system/commit/ea408749e6320e3ec0c56bc0619ffb9c47e371c7))
+
 ### [4.10.6](https://github.com/narmi/design_system/compare/v4.10.5...v4.10.6) (2025-02-25)
 
 

@@ -16,8 +16,8 @@ interface AlertProps {
   kind?: "info" | "error" | "success" | "warn";
   /** Override the default icon of the alert */
   icon?: IconName | string | null;
-  /** Size of padding for Alert */
-  paddingSize?: "xs" | "l";
+  /** Size of padding for Alert. */
+  paddingSize?: "xxs" | "xs" | "s" | "l" | "xl" | "xxl";
   /** Message content of the Alert */
   children?: React.ReactNode | string;
 }

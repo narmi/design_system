@@ -26,7 +26,7 @@ import MenuButton from "./MenuButton";
 import MultiSelect from "./MultiSelect";
 import Pagination from "./Pagination";
 import PlainButton from "./PlainButton";
-import ProgressBar from "./Pagination";
+import ProgressBar from "./ProgressBar";
 import Popover from "./Popover";
 import Radio from "./Radio";
 import RadioButtons from "./RadioButtons";

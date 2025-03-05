@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.11.1](https://github.com/narmi/design_system/compare/v4.11.0...v4.11.1) (2025-03-05)
+
+
+### Bug Fixes
+
+* **Combobox:** blur input when selecting actions ([45668d5](https://github.com/narmi/design_system/commit/45668d5fc6089d92ef863734c41c1f78b7de12b8))
+
 ## [4.11.0](https://github.com/narmi/design_system/compare/v4.10.7...v4.11.0) (2025-03-03)
 
 

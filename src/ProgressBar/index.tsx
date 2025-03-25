@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
+import cc from "classcat";
 
 interface ProgressBarProps {
   /**
@@ -14,12 +15,18 @@ interface ProgressBarProps {
    * Size (height) of the ProgressBar
    */
   size?: "s" | "m";
+  /**
+   * Flattens left and right sides of ProgressBar
+   * when you want to create a full-bleed effect
+   */
+  fullBleed?: boolean;
 }
 
 const ProgressBar = ({
   totalWidth = "100%",
   percentComplete = 0,
   size = "m",
+  fullBleed = false,
 }: ProgressBarProps) => {
   const [currentPct, setCurrentPct] = useState(0);
   const lineRef = useRef<SVGLineElement>(null);
@@ -39,7 +46,13 @@ const ProgressBar = ({
 
   return (
     <div
-      className={`nds-progressbar nds-progressbar--${size}`}
+      className={cc([
+        "nds-progressbar",
+        `nds-progressbar--${size}`,
+        {
+          "nds-progressbar--fullBleed": fullBleed,
+        },
+      ])}
       style={{ width: `${totalWidth}` }}
     >
       {percentComplete > 0 && (

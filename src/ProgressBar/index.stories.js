@@ -10,6 +10,20 @@ Overview.args = {
   percentComplete: 25,
 };
 
+export const FullBleed = Template.bind({});
+FullBleed.args = {
+  fullBleed: true,
+  percentComplete: 50,
+};
+FullBleed.parameters = {
+  docs: {
+    description: {
+      story:
+        "The ProgressBar will fill 100% of its parent container. We typically pad our containers, but in the event the ProgressBar should span the whole container width, the `fullBleed` prop flattens the edges of the bar.",
+    },
+  },
+};
+
 export const Animation = () => {
   const [pct, setPct] = useState(0);
 

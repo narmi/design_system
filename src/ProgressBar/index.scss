@@ -23,6 +23,10 @@
       stroke-width: rem(4px);
     }
   }
+
+  &--fullBleed {
+    border-radius: 0;
+  }
 }
 
 .nds-progressbar svg {

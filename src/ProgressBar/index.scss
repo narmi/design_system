@@ -2,13 +2,26 @@
   background: rgba(var(--theme-rgb-primary), var(--alpha-10));
   box-sizing: border-box;
   position: relative;
-  height: rem(20px);
-  border-radius: rem(40px);
   overflow: hidden;
 
   line {
     stroke: var(--theme-primary);
-    stroke-width: rem(20px);
+  }
+
+  &--m {
+    height: rem(8px);
+    border-radius: rem(16px);
+    line {
+      stroke-width: rem(8px);
+    }
+  }
+
+  &--s {
+    height: rem(4px);
+    border-radius: rem(8px);
+    line {
+      stroke-width: rem(4px);
+    }
   }
 }
 

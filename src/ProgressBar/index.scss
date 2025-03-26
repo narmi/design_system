@@ -1,8 +1,32 @@
 .nds-progressbar {
-  border: 1px solid var(--theme-primary);
-  border-radius: var(--border-radius-default);
+  background: rgba(var(--theme-rgb-primary), var(--alpha-10));
   box-sizing: border-box;
   position: relative;
+  overflow: hidden;
+
+  line {
+    stroke: var(--theme-primary);
+  }
+
+  &--m {
+    height: rem(8px);
+    border-radius: rem(16px);
+    line {
+      stroke-width: rem(8px);
+    }
+  }
+
+  &--s {
+    height: rem(4px);
+    border-radius: rem(8px);
+    line {
+      stroke-width: rem(4px);
+    }
+  }
+
+  &--fullBleed {
+    border-radius: 0;
+  }
 }
 
 .nds-progressbar svg {
@@ -10,9 +34,4 @@
   height: 100%;
   position: absolute;
   inset: 0;
-}
-
-.nds-progressbar line {
-  stroke: var(--theme-primary);
-  transition: all 0.5s ease-in-out;
 }

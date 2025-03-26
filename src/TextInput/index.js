@@ -51,7 +51,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
   }
 
   const charCount = (nativeElementProps?.value || inputValue).length;
-  const showCharacterCounter = maxLength && charCount > 0;
+  const showCharacterCounter = maxLength;
   const characterCounter = showCharacterCounter ? (
     <div className="nds-input-character-counter">
       {charCount}/{maxLength}

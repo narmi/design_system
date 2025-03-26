@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.12.0](https://github.com/narmi/design_system/compare/v4.11.1...v4.12.0) (2025-03-26)
+
+
+### Features
+
+* **ProgressBar:** update component to match new design sizes and styles ([c78563e](https://github.com/narmi/design_system/commit/c78563e7ca569e2314745d804f9c53a4b2a8a55f))
+
 ### [4.11.1](https://github.com/narmi/design_system/compare/v4.11.0...v4.11.1) (2025-03-05)
 
 

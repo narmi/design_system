@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.12.1](https://github.com/narmi/design_system/compare/v4.12.0...v4.12.1) (2025-03-26)
+
+
+### Bug Fixes
+
+* **TextInput:** show char counter at 0 chars ([da8df87](https://github.com/narmi/design_system/commit/da8df87b1ef912e18b8a25516e694be8ee551c9b))
+
 ## [4.12.0](https://github.com/narmi/design_system/compare/v4.11.1...v4.12.0) (2025-03-26)
 
 

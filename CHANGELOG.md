@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.13.0](https://github.com/narmi/design_system/compare/v4.12.1...v4.13.0) (2025-03-27)
+
+
+### Features
+
+* **MultiSelect:** Adds the new customizable summary mode and clear all button ([1cca51f](https://github.com/narmi/design_system/commit/1cca51f65f9b181b4e1c4e475de838918de95130))
+* **MultiSelect:** Now uses an optional summaryFormatter prop that will default to rendering tokens ([2678424](https://github.com/narmi/design_system/commit/2678424269243b07aed895dcb7473ce2be047137))
+
+
+### Bug Fixes
+
+* **MultiSelect:** Update to use useMemo, change to gender neutral language, and add clearLabel prop ([cbabf5f](https://github.com/narmi/design_system/commit/cbabf5f295d30db2b513141c5c89f8dded73d09e))
+
 ### [4.12.1](https://github.com/narmi/design_system/compare/v4.12.0...v4.12.1) (2025-03-26)
 
 

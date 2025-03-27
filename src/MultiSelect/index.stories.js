@@ -199,7 +199,7 @@ export const CustomSummaryFormatter = () => {
   // and returns a custom summary string.
   const formatter = (count, labels) => {
     if (count === 0) {
-      return "Yo Dude. Select something.";
+      return "Yo. Select something already.";
     }
     return `Selected (${count}): ${labels.join(", ")}`;
   };

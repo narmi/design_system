@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React from "react";
+import React, { useMemo, useEffect, Children } from "react";
 import PropTypes from "prop-types";
 import { useSelect, useMultipleSelection } from "downshift";
 import { useLayer } from "react-laag";
@@ -54,6 +54,7 @@ export const getUpdatedSelection = (newTokenLabels, selectedItems) =>
  *         When kind === "summary", the selected tokens are not rendered; instead
  *         a summary string is displayed.
  * - isClearable: if true, a "Clear all" button is rendered on the right side of the input.
+ * - clearLabel: overridable text for the clear all button.
  * - summaryFormatter: an optional function that receives the number of selected items and an array of labels,
  *         and returns a string summary.
  */
@@ -68,11 +69,12 @@ const MultiSelect = ({
   fieldValue,
   errorText,
   testId,
+  clearLabel = "Clear all",
   kind = "tokens", // "tokens" or "summary"
   isClearable = false,
   summaryFormatter,
 }) => {
-  const items = React.Children.toArray(children);
+  const items = Children.toArray(children);
 
   // Determine if the component is controlled.
   const isControlled = selectedItemsProp !== undefined;
@@ -114,7 +116,7 @@ const MultiSelect = ({
   });
 
   // Only sync internal state if the component is controlled.
-  React.useEffect(() => {
+  useEffect(() => {
     if (isControlled) {
       const newSelectedItems = getSelectedItems(selectedItemsProp, items);
       setSelectedItems(newSelectedItems);
@@ -202,71 +204,96 @@ const MultiSelect = ({
   const hasSelectedItems = selectedItems.length > 0;
 
   // Compute summary text for "summary" kind.
-  let summaryText = "";
-  if (kind === "summary") {
+  const summaryText = useMemo(() => {
+    if (kind !== "summary") {
+      return "";
+    }
     if (typeof summaryFormatter === "function") {
-      const selectedLabels = selectedItems.map(
-        (item) => item.props.tokenLabel || itemToString(item),
-      );
-      summaryText = summaryFormatter(selectedItems.length, selectedLabels);
+      const selectedLabels = selectedItems.map((item) => {
+        if (item.props.tokenLabel) {
+          return item.props.tokenLabel;
+        }
+        return itemToString(item);
+      });
+      return summaryFormatter(selectedItems.length, selectedLabels);
     } else {
       if (selectedItems.length === 0) {
-        summaryText = label;
+        return label;
       } else if (selectedItems.length === items.length) {
-        summaryText = "All selected";
+        return "All selected";
       } else {
-        summaryText = `${selectedItems.length} selected`;
+        return `${selectedItems.length} selected`;
       }
     }
-  }
+  }, [kind, summaryFormatter, selectedItems, label, items, itemToString]);
 
-  let triggerLabelText;
-  let triggerStartContent;
-  if (kind === "summary") {
-    triggerLabelText = (
-      <div
-        className={cc([
-          { "padding--y--xs": hasSelectedItems },
-          { "padding--right--xxl": isClearable },
-        ])}
-      >
-        {summaryText}
-      </div>
-    );
-  } else {
-    triggerLabelText = hasSelectedItems ? undefined : label;
-    triggerStartContent = (
-      <div
-        className={cc([
-          "nds-multiselect-tokensList",
-          { "padding--right--xxl": isClearable },
-        ])}
-      >
-        {renderTokens()}
-      </div>
-    );
-  }
-
-  // Render clear all button if isClearable is true and there are selected items.
-  const triggerEndContent =
-    isClearable && hasSelectedItems ? (
-      <span className="nds-multiselect-clearAll">
-        <Button
-          kind="plain"
-          size="xs"
-          onClick={(e) => {
-            e.stopPropagation();
-            if (isControlled) {
-              onChangeProp([]);
-            } else {
-              setSelectedItems([]);
-            }
-          }}
+  const triggerLabelText = useMemo(() => {
+    if (kind === "summary") {
+      return (
+        <div
+          className={cc([
+            { "padding--y--xs": hasSelectedItems },
+            { "padding--right--xxl": isClearable },
+          ])}
         >
-          Clear all
-        </Button>
-      </span>
-    ) : null;
+          {summaryText}
+        </div>
+      );
+    } else {
+      if (hasSelectedItems) {
+        return undefined;
+      } else {
+        return label;
+      }
+    }
+  }, [kind, hasSelectedItems, isClearable, summaryText, label]);
+
+  const triggerStartContent = useMemo(() => {
+    if (kind !== "summary") {
+      return (
+        <div
+          className={cc([
+            "nds-multiselect-tokensList",
+            { "padding--right--xxl": isClearable },
+          ])}
+        >
+          {renderTokens()}
+        </div>
+      );
+    }
+    return undefined;
+  }, [kind, isClearable, renderTokens]);
+
+  const triggerEndContent = useMemo(() => {
+    if (isClearable && hasSelectedItems) {
+      return (
+        <span className="nds-multiselect-clearAll">
+          <Button
+            kind="plain"
+            size="xs"
+            onClick={(e) => {
+              e.stopPropagation();
+              if (isControlled) {
+                onChangeProp([]);
+              } else {
+                setSelectedItems([]);
+              }
+            }}
+          >
+            {clearLabel}
+          </Button>
+        </span>
+      );
+    }
+    return null;
+  }, [
+    isClearable,
+    hasSelectedItems,
+    isControlled,
+    onChangeProp,
+    setSelectedItems,
+    clearLabel,
+  ]);
 
   return (
     <div className="nds-multiselect" data-testid={testId}>
@@ -392,6 +419,10 @@ MultiSelect.propTypes = {
    * If true, renders a "Clear all" button on the right side of the input.
    */
   isClearable: PropTypes.bool,
+  /**
+   * Optional override for the clear all button label.
+   */
+  clearLabel: PropTypes.string,
   /**
    * Optional function to format the summary text when kind is "summary".
    * The function is passed the total number of selected items and an array of labels,

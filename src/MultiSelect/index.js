@@ -5,6 +5,7 @@ import { useSelect, useMultipleSelection } from "downshift";
 import { useLayer } from "react-laag";
 import cc from "classcat";
 import DropdownTrigger from "../DropdownTrigger";
+import Button from "../Button";
 import MultiSelectItem from "./MultiSelectItem";
 import FieldToken from "../FieldToken";
 import Row from "../Row";
@@ -13,7 +14,7 @@ import { createUseLayerContainer } from "src/util/dom";
 const noop = () => {};
 
 /**
- * @param item JXS node
+ * @param item JSX node
  * @returns string
  */
 const itemToString = (item) =>
@@ -48,19 +49,33 @@ export const getUpdatedSelection = (newTokenLabels, selectedItems) =>
  * Typeahead is enabled based on the `value` prop of `MultiSelect.Item`
  * elements passed in. You may also set a custom `searchValue`
  * on each `MultiSelect.Item` for control over typeahead behavior.
+ *
+ * - kind: determines if the input shows "tokens" (default) or a summary.
+ *         When kind === "summary", the selected tokens are not rendered; instead
+ *         a summary string is displayed.
+ * - isClearable: if true, a "Clear all" button is rendered on the right side of the input.
+ * - summaryFormatter: an optional function that receives the number of selected items and an array of labels,
+ *         and returns a string summary.
  */
 const MultiSelect = ({
   name,
   label,
   children,
-  selectedItems: selectedItemsProp = [],
+  // If selectedItems is defined it is controlled; otherwise uncontrolled.
+  selectedItems: selectedItemsProp,
   onSelectedItemsChange: onChangeProp = noop,
   disabled = false,
   fieldValue,
   errorText,
   testId,
+  kind = "tokens", // "tokens" or "summary"
+  isClearable = false,
+  summaryFormatter,
 }) => {
   const items = React.Children.toArray(children);
+
+  // Determine if the component is controlled.
+  const isControlled = selectedItemsProp !== undefined;
 
   /** @see https://www.downshift-js.com/use-multiple-selection/#usage-with-select  */
   const {
@@ -68,8 +83,9 @@ const MultiSelect = ({
     addSelectedItem,
     removeSelectedItem,
     selectedItems,
+    setSelectedItems,
   } = useMultipleSelection({
-    initialSelectedItems: getSelectedItems(selectedItemsProp, items),
+    initialSelectedItems: getSelectedItems(selectedItemsProp || [], items),
     stateReducer: (state, actionAndChanges) => {
       const { type, changes, selectedItem } = actionAndChanges;
       let newSelectedItems = [...new Set(changes.selectedItems)];
@@ -96,6 +112,14 @@ const MultiSelect = ({
       }
     },
   });
+
+  // Only sync internal state if the component is controlled.
+  React.useEffect(() => {
+    if (isControlled) {
+      const newSelectedItems = getSelectedItems(selectedItemsProp, items);
+      setSelectedItems(newSelectedItems);
+    }
+  }, [isControlled, selectedItemsProp, items, setSelectedItems]);
 
   /** @see https://www.downshift-js.com/use-select */
   const {
@@ -158,9 +182,8 @@ const MultiSelect = ({
 
   const renderTokens = () =>
     selectedItems.map((itemComponent, i) => {
-      const tokenLabel = itemComponent.props.tokenLabel
-        ? itemComponent.props.tokenLabel
-        : itemToString(itemComponent);
+      const tokenLabel =
+        itemComponent.props.tokenLabel || itemToString(itemComponent);
       return (
         <div key={`${i}-${tokenLabel}`}>
           <FieldToken
@@ -178,6 +201,73 @@ const MultiSelect = ({
 
   const hasSelectedItems = selectedItems.length > 0;
 
+  // Compute summary text for "summary" kind.
+  let summaryText = "";
+  if (kind === "summary") {
+    if (typeof summaryFormatter === "function") {
+      const selectedLabels = selectedItems.map(
+        (item) => item.props.tokenLabel || itemToString(item),
+      );
+      summaryText = summaryFormatter(selectedItems.length, selectedLabels);
+    } else {
+      if (selectedItems.length === 0) {
+        summaryText = label;
+      } else if (selectedItems.length === items.length) {
+        summaryText = "All selected";
+      } else {
+        summaryText = `${selectedItems.length} selected`;
+      }
+    }
+  }
+
+  let triggerLabelText;
+  let triggerStartContent;
+  if (kind === "summary") {
+    triggerLabelText = (
+      <div
+        className={cc([
+          { "padding--y--xs": hasSelectedItems },
+          { "padding--right--xxl": isClearable },
+        ])}
+      >
+        {summaryText}
+      </div>
+    );
+  } else {
+    triggerLabelText = hasSelectedItems ? undefined : label;
+    triggerStartContent = (
+      <div
+        className={cc([
+          "nds-multiselect-tokensList",
+          { "padding--right--xxl": isClearable },
+        ])}
+      >
+        {renderTokens()}
+      </div>
+    );
+  }
+
+  // Render clear all button if isClearable is true and there are selected items.
+  const triggerEndContent =
+    isClearable && hasSelectedItems ? (
+      <span className="nds-multiselect-clearAll">
+        <Button
+          kind="plain"
+          size="xs"
+          onClick={(e) => {
+            e.stopPropagation();
+            if (isControlled) {
+              onChangeProp([]);
+            } else {
+              setSelectedItems([]);
+            }
+          }}
+        >
+          Clear all
+        </Button>
+      </span>
+    ) : null;
+
   return (
     <div className="nds-multiselect" data-testid={testId}>
       <input
@@ -190,17 +280,9 @@ const MultiSelect = ({
         <DropdownTrigger
           disabled={disabled}
           isOpen={isOpen}
-          labelText={hasSelectedItems ? undefined : label}
-          startContent={
-            <div
-              className={cc([
-                "nds-multiselect-tokensList",
-                { "padding--y--xs": hasSelectedItems },
-              ])}
-            >
-              {renderTokens()}
-            </div>
-          }
+          labelText={triggerLabelText}
+          startContent={triggerStartContent}
+          endContent={triggerEndContent}
           errorText={errorText}
           labelProps={{ ...getLabelProps() }}
           {...getToggleButtonProps()}
@@ -301,6 +383,21 @@ MultiSelect.propTypes = {
    * when the input is disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * Determines whether the input displays tokens or a summary.
+   * Use "tokens" to render selected items as tokens (default) or "summary" to render a summary string.
+   */
+  kind: PropTypes.oneOf(["tokens", "summary"]),
+  /**
+   * If true, renders a "Clear all" button on the right side of the input.
+   */
+  isClearable: PropTypes.bool,
+  /**
+   * Optional function to format the summary text when kind is "summary".
+   * The function is passed the total number of selected items and an array of labels,
+   * and should return a string.
+   */
+  summaryFormatter: PropTypes.func,
 };
 
 MultiSelect.Item = MultiSelectItem;

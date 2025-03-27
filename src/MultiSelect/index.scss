@@ -46,3 +46,10 @@
   gap: var(--space-xs) var(--space-s);
   margin-right: var(--space-s); // make room for the right caret
 }
+
+.nds-multiselect-clearAll {
+  position: absolute;
+  right: 38px;
+  top: 50%;
+  transform: translateY(-50%);
+}

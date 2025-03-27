@@ -25,6 +25,18 @@ Overview.args = {
   name: "overviewStory",
   label: "Favorite icons",
   children,
+  // tokens mode is default
+  kind: "tokens",
+  isClearable: true,
+};
+
+export const OverviewSummary = Template.bind({});
+OverviewSummary.args = {
+  name: "overviewSummaryStory",
+  label: "Favorite icons",
+  children,
+  kind: "summary", // renders a summary string instead of tokens
+  isClearable: false,
 };
 
 export const Disabled = Template.bind({});
@@ -34,6 +46,7 @@ Disabled.args = {
   label: "Favorite icons",
   selectedItems: ["blob", "coffee"],
   children,
+  kind: "tokens",
 };
 
 export const ErrorState = Template.bind({});
@@ -45,6 +58,7 @@ ErrorState.args = {
     <MultiSelect.Item value="checking4321">Checking (4321)</MultiSelect.Item>,
   ],
   errorText: "Required",
+  kind: "tokens",
 };
 
 export const SettingTheFieldValue = () => {
@@ -58,6 +72,7 @@ export const SettingTheFieldValue = () => {
       fieldValue={fieldValue}
       label="Favorite Icons"
       onSelectedItemsChange={handleSelectedItemsChange}
+      kind="tokens"
     >
       <MultiSelect.Item value="coffee">
         <span className="narmi-icon-coffee padding--right--xs" /> Coffee
@@ -88,12 +103,15 @@ export const ControlledSelectedItems = () => {
   const handleSelectedItemsChange = (selectedItems) => {
     setSelectedItems(selectedItems);
   };
+
   return (
     <MultiSelect
       name="controlled-product-field"
       label="Favorite Icons"
       selectedItems={selectedItems}
       onSelectedItemsChange={handleSelectedItemsChange}
+      kind="summary" // try summary view
+      isClearable // built-in clear all button
     >
       <MultiSelect.Item value="coffee">
         <span className="narmi-icon-coffee padding--right--xs" /> Coffee
@@ -114,7 +132,7 @@ ControlledSelectedItems.parameters = {
   docs: {
     description: {
       story:
-        "By default, the `MultiSelect` component behaves like an uncontrolled component. To make this component fully controlled, pass in `selectedItems` and update the list of values by using `onSelectedItemsChange`",
+        "This story demonstrates a fully controlled MultiSelect using the new 'summary' kind and the built-in 'Clear all' button via the isClearable prop.",
     },
   },
 };
@@ -130,6 +148,7 @@ export const CustomTokenValues = () => {
       label="Favorite Icons"
       selectedItems={selectedItems}
       onSelectedItemsChange={handleSelectedItemsChange}
+      kind="tokens"
     >
       <MultiSelect.Item value="film" tokenLabel="Movies">
         <span className="narmi-icon-film padding--right--xs" /> Film
@@ -144,7 +163,7 @@ CustomTokenValues.parameters = {
   docs: {
     description: {
       story:
-        "The `tokenValue` prop may be used on MultiSelect items to declare the string that should render in the token when the item is selected.",
+        "The `tokenLabel` prop may be used on MultiSelect items to declare the string that should render in the token when the item is selected.",
     },
   },
 };
@@ -155,5 +174,56 @@ export default {
   subcomponents: { MultiSelectItem },
   argTypes: {
     children: { control: false },
+  },
+};
+
+export const CustomSummaryFormatter = () => {
+  const [selectedItems, setSelectedItems] = useState(["coffee", "truck"]);
+  const handleSelectedItemsChange = (selectedItems) => {
+    setSelectedItems(selectedItems);
+  };
+
+  const mainItems = [
+    { label: "Coffee", icon: "coffee", value: "coffee" },
+    { label: "Film", icon: "film", value: "film" },
+    { label: "Truck", icon: "truck", value: "truck" },
+    { label: "Blob", icon: "blob", value: "blob" },
+  ].map(({ label, icon, value }) => (
+    <MultiSelect.Item value={value}>
+      <span className={`narmi-icon-${icon} padding--right--xs`} />
+      {label}
+    </MultiSelect.Item>
+  ));
+
+  // Custom formatter function: receives the count and an array of labels,
+  // and returns a custom summary string.
+  const formatter = (count, labels) => {
+    if (count === 0) {
+      return "Yo Dude. Select something.";
+    }
+    return `Selected (${count}): ${labels.join(", ")}`;
+  };
+
+  return (
+    <MultiSelect
+      name="custom-summary-formatter"
+      label="Favorite Icons"
+      selectedItems={selectedItems}
+      onSelectedItemsChange={handleSelectedItemsChange}
+      kind="summary"
+      isClearable
+      summaryFormatter={formatter}
+    >
+      {mainItems}
+    </MultiSelect>
+  );
+};
+
+CustomSummaryFormatter.parameters = {
+  docs: {
+    description: {
+      story:
+        "This story demonstrates a MultiSelect with a custom summaryFormatter. The formatter receives the number of selected items and an array of their labels, and returns a custom summary string to be displayed in the trigger.",
+    },
   },
 };

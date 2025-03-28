@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.13.1](https://github.com/narmi/design_system/compare/v4.13.0...v4.13.1) (2025-03-28)
+
+
+### Bug Fixes
+
+* **MultiSelect:** Fix infinite loop due to non-memoized dependency for controlled components ([e488868](https://github.com/narmi/design_system/commit/e48886835b2c1b430b449f26e27c44604c42ae1d))
+
 ## [4.13.0](https://github.com/narmi/design_system/compare/v4.12.1...v4.13.0) (2025-03-27)
 
 

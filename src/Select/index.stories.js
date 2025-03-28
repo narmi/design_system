@@ -5,6 +5,7 @@ import SelectItem from "./SelectItem";
 import SelectAction from "./SelectAction";
 import Button from "../Button";
 import Dialog from "../Dialog";
+import TextInput from "../TextInput";
 
 const Template = (args) => <Select {...args} />;
 
@@ -380,6 +381,26 @@ export const OneAction = () => {
         </span>
       </Select.Action>
     </Select>
+  );
+};
+
+export const TestMultipleFields = () => {
+  return (
+    <>
+      <div className="margin--bottom">
+        <TextInput label="Horse name" />
+      </div>
+      <div className="margin--bottom">
+        <Select id="horseSize" label="Horse size">
+          <Select.Item value="l">large</Select.Item>
+          <Select.Item value="med">medium</Select.Item>
+          <Select.Item value="xmed">xmedium</Select.Item>
+        </Select>
+      </div>
+      <div className="margin--bottom">
+        <TextInput label="Describe the color of your horse in Spanish" />
+      </div>
+    </>
   );
 };
 

@@ -109,7 +109,7 @@ const MultiSelect = ({
   summaryFormatter = defaultSummaryFormatter,
 }) => {
   // Convert children to an array for easier processing.
-  const items = Children.toArray(children);
+  const items = useMemo(() => Children.toArray(children), [children]);
 
   // Determine if the component is controlled.
   const isControlled = selectedItemsProp !== undefined;

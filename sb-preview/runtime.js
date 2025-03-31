@@ -2298,11 +2298,9 @@ var Ml = "UNIVERSAL_STORE:", ee = {
       throw new TypeError(
         "UniversalStore is not constructable - use UniversalStore.create() instead"
       );
-    if (w.isInternalConstructing = !1, this.id = e.id, this.actorId = globalThis.crypto ? globalThis.crypto.randomUUID() : (
-      // TODO: remove this fallback in SB 9.0 when we no longer support Node 18
-      Date.now().toString(36) + Math.random().toString(36).substring(2)
-    ), this.actorType = e.leader ? w.ActorType.LEADER : w.ActorType.FOLLOWER, this.state = e.initialState, this.channelEventName = `${Ml}${this.
-    id}`, this.debug("constructor", {
+    if (w.isInternalConstructing = !1, this.id = e.id, this.actorId = Date.now().toString(36) + Math.random().toString(36).substring(2), this.
+    actorType = e.leader ? w.ActorType.LEADER : w.ActorType.FOLLOWER, this.state = e.initialState, this.channelEventName = `${Ml}${this.id}`,
+    this.debug("constructor", {
       options: e,
       environmentOverrides: t,
       channelEventName: this.channelEventName
@@ -5870,10 +5868,10 @@ function eu(r) {
 n(eu, "extractAnnotation");
 function Gi(r) {
   let e = Array.isArray(r) ? r : [r];
-  return globalThis.globalProjectAnnotations = ke(e.map(eu)), ke([
+  return globalThis.globalProjectAnnotations = ke([
     globalThis.defaultProjectAnnotations ?? {},
-    globalThis.globalProjectAnnotations ?? {}
-  ]);
+    ke(e.map(eu))
+  ]), globalThis.globalProjectAnnotations ?? {};
 }
 n(Gi, "setProjectAnnotations");
 var Re = [];
@@ -5887,8 +5885,7 @@ function Pn(r, e, t, o, s) {
     i
   ), l = Ne(
     ke([
-      o && Object.keys(o).length > 0 ? o : globalThis.defaultProjectAnnotations ?? {},
-      globalThis.globalProjectAnnotations ?? {},
+      o ?? globalThis.globalProjectAnnotations ?? {},
       t ?? {}
     ])
   ), p = sr(
@@ -5917,7 +5914,7 @@ function Pn(r, e, t, o, s) {
       context: null,
       mount: null
     });
-    return g.context = g, p.renderToCanvas && (g.renderToCanvas = async () => {
+    return g.parameters.__isPortableStory = !0, g.context = g, p.renderToCanvas && (g.renderToCanvas = async () => {
       let b = await p.renderToCanvas?.(
         {
           componentId: p.componentId,

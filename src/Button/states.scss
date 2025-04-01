@@ -1,0 +1,39 @@
+%_btn-state-disabled-base {
+  pointer-events: none;
+  color: var(--color-white);
+}
+
+// used for all buttons that render without a pill shape
+%btn-state-disabled-plain {
+  @extend %_btn-state-disabled-base;
+  color: var(--font-color-hint);
+}
+
+%btn-state-disabled-primary {
+  @extend %_btn-state-disabled-base;
+  background-color: var(--color-lightGrey);
+}
+
+%btn-state-disabled-secondary {
+  @extend %_btn-state-disabled-base;
+  color: var(--color-lightGrey);
+  border-color: var(--color-lightGrey);
+}
+
+%btn-state-disabled-tonal {
+  @extend %_btn-state-disabled-base;
+  color: var(--color-lightGrey);
+  background-color: rgba(var(--rgb-lightGrey), var(--alpha-20));
+}
+
+%btn-state-loading {
+  .nds-button-content {
+    position: relative;
+  }
+  .nds-button-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

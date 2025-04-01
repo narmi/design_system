@@ -14,6 +14,7 @@
 }
 
 .nds-splitButton-action {
+  cursor: pointer;
   border-left: 1px solid var(--color-white);
   width: rem(40px);
   border-top-left-radius: 0 !important;
@@ -58,14 +59,15 @@
   @extend %btn-state-loading;
 }
 
-.nds-splitButton--disabled {
-  &.nds-splitButton-action-primary {
+.nds-splitButton-action--disabled {
+  cursor: none;
+  &.nds-splitButton-action--primary {
     @extend %btn-state-disabled-primary;
   }
-  &.nds-splitButton-action-secondary {
+  &.nds-splitButton-action--secondary {
     @extend %btn-state-disabled-secondary;
   }
-  &.nds-splitButton-action-tonal {
+  &.nds-splitButton-action--tonal {
     @extend %btn-state-disabled-tonal;
   }
 }

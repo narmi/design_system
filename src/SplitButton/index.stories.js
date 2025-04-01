@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid,react/jsx-key */
 import React from "react";
 import SplitButton from "./";
+import SplitButtonPopover from "./SplitButtonPopover";
+import { SplitButtonMenu, SplitButtonMenuItem } from "./SplitButtonMenu";
 
 const Template = (args) => <SplitButton {...args} />;
 export const Overview = Template.bind({});
@@ -95,4 +97,5 @@ export const KindsAndSizes = () => {
 export default {
   title: "Components/SplitButton",
   component: SplitButton,
+  subcomponents: { SplitButtonPopover, SplitButtonMenu, SplitButtonMenuItem },
 };

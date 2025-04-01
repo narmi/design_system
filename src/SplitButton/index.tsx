@@ -32,10 +32,13 @@ const SplitButton = ({
   kind = "primary",
   size = "m",
   label,
+  disabled,
+  isLoading,
   children,
   ...otherProps
 }: SplitButtonProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const renderStaticTrigger = disabled || isLoading;
 
   const popoverComponent = React.Children.toArray(children).find(
     (child) =>
@@ -48,49 +51,69 @@ const SplitButton = ({
 
   const renderTrigger = (isOpen: boolean) => (
     <div
-      aria-label={`More options for ${label}`}
       className={cc([
         "nds-splitButton-action",
+        "alignChild--center--center",
         `nds-splitButton-action--${kind}`,
         `nds-splitButton-action--${size}`,
-        "alignChild--center--center",
+        {
+          "nds-splitButton-action--disabled": disabled,
+          "nds-splitButton-action--loading": isLoading,
+        },
       ])}
     >
-      <span className={`narmi-icon-chevron-${isOpen ? "up" : "down"}`} />
+      <span
+        aria-label="More"
+        className={`narmi-icon-chevron-${isOpen ? "up" : "down"}`}
+      />
     </div>
   );
 
   return (
     <div className="nds-splitButton">
-      <Button label={label} size={size} kind={kind} {...otherProps} />
+      {/** Main button */}
+      <Button
+        label={label}
+        disabled={disabled}
+        isLoading={isLoading}
+        size={size}
+        kind={kind}
+        {...otherProps}
+      />
+
+      {renderStaticTrigger && renderTrigger(false)}
 
       {/** If a SplitButton.Popover is passed as children */}
-      {popoverComponent && React.isValidElement(popoverComponent) && (
-        <Popover
-          // eslint-disable-next-line jsx-a11y/no-autofocus
-          autoFocus
-          // @ts-expect-error Popover is not TS yet
-          renderTrigger={renderTrigger}
-          isOpen={isOpen}
-          onUserDismiss={() => setIsOpen(false)}
-          onUserEnable={() => setIsOpen(true)}
-          content={popoverComponent.props.children}
-          side="top"
-          alignment="end"
-        />
-      )}
+      {!renderStaticTrigger &&
+        popoverComponent &&
+        React.isValidElement(popoverComponent) && (
+          <Popover
+            // eslint-disable-next-line jsx-a11y/no-autofocus
+            autoFocus
+            // @ts-expect-error Popover is not TS yet
+            renderTrigger={renderTrigger}
+            isOpen={isOpen}
+            onUserDismiss={() => setIsOpen(false)}
+            onUserEnable={() => setIsOpen(true)}
+            content={popoverComponent.props.children}
+            side="top"
+            alignment="end"
+          />
+        )}
 
       {/** If a SplitButton.Menu is passed as children */}
-      {menuComponent && React.isValidElement(menuComponent) && (
-        <MenuButton renderTrigger={renderTrigger}>
-          {React.Children.toArray(menuComponent.props.children).map(
-            (item, i) =>
-              React.isValidElement(item) ? (
-                <MenuButton.Item key={i} {...item.props} />
-              ) : null,
-          )}
-        </MenuButton>
-      )}
+      {!renderStaticTrigger &&
+        menuComponent &&
+        React.isValidElement(menuComponent) && (
+          <MenuButton renderTrigger={renderTrigger}>
+            {React.Children.toArray(menuComponent.props.children).map(
+              (item, i) =>
+                React.isValidElement(item) ? (
+                  <MenuButton.Item key={i} {...item.props} />
+                ) : null,
+            )}
+          </MenuButton>
+        )}
     </div>
   );
 };

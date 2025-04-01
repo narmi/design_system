@@ -24,6 +24,7 @@ const Popover = ({
   alignment = "center",
   content,
   children,
+  renderTrigger = () => <></>,
   wrapperDisplay = "inline-flex",
   offset = 2,
   disableAutoPlacement = false,
@@ -37,6 +38,7 @@ const Popover = ({
   onUserEnable = noop,
 }) => {
   const isControlled = isOpen === true || isOpen === false;
+  const hasChildren = React.Children.count(children) > 0;
   const [open, setOpen] = useState(false);
   const shouldRenderPopover = isControlled ? isOpen : open;
   const popoverContent = closeOnContentClick
@@ -119,7 +121,8 @@ const Popover = ({
         aria-haspopup="true"
         aria-expanded={shouldRenderPopover.toString()}
       >
-        {children}
+        {/* Support both legacy (children) and standard (render prop) triggers */}
+        {hasChildren ? children : renderTrigger(isOpen)}
       </div>
       {renderLayer(
         <>
@@ -148,10 +151,18 @@ const Popover = ({
 };
 
 Popover.propTypes = {
-  /** The root node of JSX passed into Tooltip as children will act as the tooltip trigger */
-  children: PropTypes.node.isRequired,
   /** Content of popover */
   content: PropTypes.node.isRequired,
+  /**
+   * ⚠️ DEPRECATED - use `renderTrigger` instead.
+   * The root node of JSX passed into Tooltip as children will act as the tooltip trigger
+   */
+  children: PropTypes.node,
+  /**
+   * Render function for a custom trigger aware of the open state of the Popover.
+   * Called with `(isOpen) => {}`, the state of the Popover.
+   */
+  renderTrigger: PropTypes.func,
   /** Sets preferred side of the trigger the tooltip should appear */
   side: PropTypes.oneOf(["top", "right", "bottom", "left"]),
   /** Sets preferred alignment of the tooltip relative to the trigger */

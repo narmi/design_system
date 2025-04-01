@@ -26,6 +26,8 @@ export const labelToItemId = (label) =>
  */
 const MenuButton = ({
   label = "Menu",
+  preferX = "right",
+  preferY = "bottom",
   testId,
   trigger,
   renderTrigger,
@@ -41,8 +43,8 @@ const MenuButton = ({
     onOutsideClick: () => {
       setIsOpen(false);
     },
-    preferX: "right",
-    preferY: "bottom",
+    preferX,
+    preferY,
     placement: "bottom-start",
     container: createUseLayerContainer,
   });
@@ -213,6 +215,9 @@ MenuButton.propTypes = {
    * the expanded state of the menulist changes.
    */
   showDropdownIndicator: PropTypes.bool,
+
+  preferX: PropTypes.oneOf(["left", "right", "center"]),
+  preferY: PropTypes.oneOf(["top", "bottom"]),
 };
 
 MenuButton.Item = MenuButtonItem;

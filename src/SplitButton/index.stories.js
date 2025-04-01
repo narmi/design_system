@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid,react/jsx-key */
 import React from "react";
 import SplitButton from "./";
-import Row from "../Row";
 
 const Template = (args) => <SplitButton {...args} />;
 export const Overview = Template.bind({});

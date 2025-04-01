@@ -41,8 +41,8 @@ const MenuButton = ({
     onOutsideClick: () => {
       setIsOpen(false);
     },
-    preferX,
-    preferY,
+    preferX: "bottom",
+    preferY: "right",
     placement: "bottom-start",
     container: createUseLayerContainer,
   });

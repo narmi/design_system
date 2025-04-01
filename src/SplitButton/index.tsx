@@ -82,7 +82,7 @@ const SplitButton = ({
 
       {/** If a SplitButton.Menu is passed as children */}
       {menuComponent && React.isValidElement(menuComponent) && (
-        <MenuButton preferX="right" preferY="top" renderTrigger={renderTrigger}>
+        <MenuButton renderTrigger={renderTrigger}>
           {React.Children.toArray(menuComponent.props.children).map(
             (item, i) =>
               React.isValidElement(item) ? (

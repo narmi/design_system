@@ -88,7 +88,7 @@ const MenuButton = ({
     >
       <AriaButton
         aria-label={label}
-        className="button--reset"
+        className="button--reset nds-menubutton-ariaButton"
         {...triggerProps}
       >
         {typeof renderTrigger === "function" ? (

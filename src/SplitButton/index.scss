@@ -1,0 +1,90 @@
+@import "../Button/variants.scss";
+@import "../Button/sizes.scss";
+@import "../Button/states.scss";
+
+.nds-splitButton {
+  display: inline-flex;
+  min-height: fit-content;
+  align-items: stretch;
+
+  .nds-button {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+}
+
+.nds-splitButton-action {
+  cursor: pointer;
+  height: 100%;
+  border-left: 1px solid var(--color-white);
+  width: rem(40px);
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+// Match the dropdown trigger button to the shape and size of the
+// rendered dropdown trigger to ensure focus ring visually matches
+.nds-popover-trigger:has(> .nds-splitButton-action),
+.nds-menubutton-ariaButton:has(> .nds-splitButton-action) {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.nds-popover-trigger:has(> .nds-splitButton-action--xs),
+.nds-menubutton-ariaButton:has(> .nds-splitButton-action--xs),
+.nds-splitButton-action--xs {
+  @extend %btn-size-xs;
+  width: rem(24px);
+}
+
+.nds-popover-trigger:has(> .nds-splitButton-action--s),
+.nds-menubutton-ariaButton:has(> .nds-splitButton-action--s),
+.nds-splitButton-action--s {
+  @extend %btn-size-s;
+  width: rem(32px);
+}
+
+.nds-popover-trigger:has(> .nds-splitButton-action--m),
+.nds-menubutton-ariaButton:has(> .nds-splitButton-action--m),
+.nds-splitButton-action--m {
+  @extend %btn-size-m;
+  width: rem(40px);
+}
+
+.nds-splitButton-action--primary,
+.nds-splitButton-action--secondary,
+.nds-splitButton-action--tonal {
+  @extend %btn-kind-base;
+}
+
+.nds-splitButton-action--primary,
+.nds-splitButton-action--primary.resetButton {
+  @extend %btn-kind-primary;
+}
+
+.nds-splitButton-action--secondary,
+.nds-splitButton-action--secondary.resetButton {
+  @extend %btn-kind-secondary;
+}
+
+.nds-splitButton-action--tonal,
+.nds-splitButton-action--tonal.resetButton {
+  @extend %btn-kind-tonal;
+}
+
+.nds-splitButton-action--loading {
+  @extend %btn-state-loading;
+}
+
+.nds-splitButton-action--disabled {
+  cursor: none;
+  &.nds-splitButton-action--primary {
+    @extend %btn-state-disabled-primary;
+  }
+  &.nds-splitButton-action--secondary {
+    @extend %btn-state-disabled-secondary;
+  }
+  &.nds-splitButton-action--tonal {
+    @extend %btn-state-disabled-tonal;
+  }
+}

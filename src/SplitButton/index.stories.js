@@ -67,17 +67,30 @@ export const KindsAndSizes = () => {
   );
 
   const exmaples = [
-    ["secondary", "m"],
-    ["tonal", "m"],
+    ["primary", "m"],
+    ["primary", "s"],
     ["primary", "xs"],
+    ["secondary", "m"],
     ["secondary", "s"],
+    ["secondary", "xs"],
+    ["tonal", "m"],
+    ["tonal", "s"],
+    ["tonal", "xs"],
   ];
 
-  return exmaples.map(([kind, size]) => (
-    <div key={`${kind}-${size}`} className="margin--bottom">
-      {renderSplitButton(kind, size)}
+  return (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gap: "var(--space-default)",
+      }}
+    >
+      {exmaples.map(([kind, size]) => (
+        <div key={`${kind}-${size}`}>{renderSplitButton(kind, size)}</div>
+      ))}
     </div>
-  ));
+  );
 };
 
 export default {

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.14.1](https://github.com/narmi/design_system/compare/v4.14.0...v4.14.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* **Combobox:** ensure selecting actions does not change selectedItem ([1b7df35](https://github.com/narmi/design_system/commit/1b7df35c73e8bcf2a07f47c2a3522f163521a302))
+
 ## [4.14.0](https://github.com/narmi/design_system/compare/v4.13.1...v4.14.0) (2025-04-03)
 
 

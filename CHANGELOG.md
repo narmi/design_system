@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.14.0](https://github.com/narmi/design_system/compare/v4.13.1...v4.14.0) (2025-04-03)
+
+
+### Features
+
+* **Popover,MenuButton:** add renderTrigger render props ([603b2f6](https://github.com/narmi/design_system/commit/603b2f696fa3c46e71f45d8142452cf0b5d48a8d))
+
 ### [4.13.1](https://github.com/narmi/design_system/compare/v4.13.0...v4.13.1) (2025-03-28)
 
 

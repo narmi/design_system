@@ -196,4 +196,36 @@ describe("Combobox", () => {
     fireEvent.change(input, { target: { value: "New value" } });
     expect(screen.getByDisplayValue(value)).toBeInTheDocument();
   });
+
+  it("should not clear `selectedItem` when an action is clicked", () => {
+    const LABEL_ACTION = "Add a new state";
+    render(
+      <Combobox label={LABEL}>
+        <Combobox.Item value="New York" />
+        <Combobox.Item value="California" />
+        <Combobox.Action onSelect={() => {}} label={LABEL_ACTION} />
+      </Combobox>,
+    );
+
+    const input = screen.getByPlaceholderText(LABEL);
+
+    // open the dropdown
+    fireEvent.focus(input);
+    const nyItem = screen.getByText("New York");
+    const actionItem = screen.getByText(LABEL_ACTION);
+
+    // Select an item
+    fireEvent.click(nyItem);
+
+    // Blur the input
+    fireEvent.blur(input);
+
+    // On reopneing the input, the selectedItem should still be selected
+    fireEvent.focus(input);
+    expect(input.value).toBe("New York");
+
+    // Now click on an action. The same item should still be selected.
+    fireEvent.click(actionItem);
+    expect(input.value).toBe("New York");
+  });
 });

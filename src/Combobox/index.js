@@ -233,7 +233,14 @@ const Combobox = ({
     // <https://www.downshift-js.com/use-select#state-reducer>
     stateReducer: (state, actionAndChanges) => {
       const { type, changes } = actionAndChanges;
+      const { selectedItem: previousSelectedItem } = state;
+      const { selectedItem: newSelectedItem } = changes;
       let inputValue = changes.inputValue;
+
+      // Items not selectable should not cause the `selectedItem` in state to change.
+      if (!isSelectable(newSelectedItem)) {
+        changes.selectedItem = previousSelectedItem;
+      }
 
       // if there's already a selected item when the user revisits the input,
       // wipe away the old input value so they can start typing right away.
@@ -242,7 +249,7 @@ const Combobox = ({
         type === useCombobox.stateChangeTypes.InputChange &&
         clearOnNextInput &&
         hasSelectedItem &&
-        changes.inputValue.length > state.inputValue.length
+        (changes.inputValue || "").length > (state.inputValue || "").length
       ) {
         inputValue = changes.inputValue.slice(-1); // the last character the user typed
         setClearOnNextInput(false);

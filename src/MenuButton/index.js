@@ -28,6 +28,7 @@ const MenuButton = ({
   label = "Menu",
   testId,
   trigger,
+  renderTrigger,
   triggerIcon = "more-vertical",
   showDropdownIndicator = false,
   children,
@@ -88,34 +89,38 @@ const MenuButton = ({
         className="button--reset"
         {...triggerProps}
       >
-        <div
-          className={cc([
-            "nds-menubutton-trigger",
-            {
-              "nds-menubutton-trigger--useCssHover": !trigger,
-              "nds-menubutton-trigger--hovered": !trigger && isOpen,
-            },
-          ])}
-        >
-          <Row gapSize="xxs">
-            <Row.Item>
-              {trigger ? (
-                trigger
-              ) : (
-                <span className={`narmi-icon-${triggerIcon}`} />
-              )}
-            </Row.Item>
-            {showDropdownIndicator && (
-              <Row.Item shrink>
-                {isOpen ? (
-                  <span className={`narmi-icon-chevron-up`} />
+        {typeof renderTrigger === "function" ? (
+          renderTrigger(isOpen)
+        ) : (
+          <div
+            className={cc([
+              "nds-menubutton-trigger",
+              {
+                "nds-menubutton-trigger--useCssHover": !trigger,
+                "nds-menubutton-trigger--hovered": !trigger && isOpen,
+              },
+            ])}
+          >
+            <Row gapSize="xxs">
+              <Row.Item>
+                {trigger ? (
+                  trigger
                 ) : (
-                  <span className={`narmi-icon-chevron-down`} />
+                  <span className={`narmi-icon-${triggerIcon}`} />
                 )}
               </Row.Item>
-            )}
-          </Row>
-        </div>
+              {showDropdownIndicator && (
+                <Row.Item shrink>
+                  {isOpen ? (
+                    <span className={`narmi-icon-chevron-up`} />
+                  ) : (
+                    <span className={`narmi-icon-chevron-down`} />
+                  )}
+                </Row.Item>
+              )}
+            </Row>
+          </div>
+        )}
       </AriaButton>
       {isOpen &&
         renderLayer(
@@ -190,8 +195,16 @@ MenuButton.propTypes = {
   testId: PropTypes.string,
   /** Name of NDS icon to use as a trigger */
   triggerIcon: PropTypes.oneOf(VALID_ICON_NAMES),
-  /** Custom element for trigger */
+  /**
+   * ⚠️ DEPRECATED - will be removed in a future release.
+   * Use `renderTrigger` instead.
+   */
   trigger: PropTypes.node,
+  /**
+   * Render function for rendering a custom trigger element.
+   * Called with `(isOpen)`, the open state of the menu.
+   */
+  renderTrigger: PropTypes.func,
   /** MenuButton.Item children */
   children: PropTypes.arrayOf(PropTypes.node),
   /**

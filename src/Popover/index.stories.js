@@ -19,7 +19,7 @@ const Template = (args) => (
 export const Overview = Template.bind({});
 Overview.args = {
   content: <div className="padding--all--m">📦 Any content</div>,
-  children: (
+  renderTrigger: () => (
     <Button type="button" kind="secondary">
       Open Popover
     </Button>
@@ -27,6 +27,28 @@ Overview.args = {
 };
 Overview.argTypes = {
   content: { control: false },
+};
+
+export const LegacyTrigger = () => {
+  return (
+    <>
+      <div className="margin--top--m">
+        <Popover
+          content={<div className="padding--all--m">📦 Any content</div>}
+        >
+          <div>Trigger as children</div>
+        </Popover>
+      </div>
+    </>
+  );
+};
+LegacyTrigger.parameters = {
+  docs: {
+    description: {
+      story:
+        "Popover supports accepting children to use as the trigger element. **This feature will be removed in a feature release;** use `renderTrigger` instead.",
+    },
+  },
 };
 
 export const Positioning = Template.bind({});
@@ -37,7 +59,7 @@ Positioning.args = {
       positioning
     </div>
   ),
-  children: (
+  renderTrigger: () => (
     <Button type="button" kind="secondary">
       Top / Start positioned Popover
     </Button>
@@ -51,7 +73,7 @@ Positioning.argTypes = {
 
 export const FocusManagement = Template.bind({});
 FocusManagement.args = {
-  children: (
+  renderTrigger: () => (
     <Button type="button" kind="secondary">
       Click to show Popover
     </Button>
@@ -86,9 +108,10 @@ export const Controlled = () => {
           isOpen={isOpen}
           onUserDismiss={() => setIsOpen(false)}
           onUserEnable={() => setIsOpen(true)}
-        >
-          <div>Popover trigger and positioning reference</div>
-        </Popover>
+          renderTrigger={() => (
+            <div>Popover trigger and positioning reference</div>
+          )}
+        />
       </div>
     </>
   );

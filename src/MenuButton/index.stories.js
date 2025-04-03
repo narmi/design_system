@@ -38,9 +38,12 @@ export const CustomTrigger = Template.bind({});
 CustomTrigger.args = {
   ...Overview.args,
   showDropdownIndicator: true,
-  trigger: (
+  renderTrigger: (isOpen) => (
     <span className="button--reset fontColor--azul fontWeight--semibold">
-      More options...
+      More options...{" "}
+      <span
+        className={`padding--right narmi-icon-corner-${isOpen ? "right-up" : "left-down"}`}
+      />
     </span>
   ),
 };
@@ -48,7 +51,7 @@ CustomTrigger.parameters = {
   docs: {
     description: {
       story:
-        "You may use the `trigger` prop as an alternative to passing in a `triggerIcon`. In this example, we pass in a custom `span` to act as the trigger. The `showDropdownIndicator` prop is enabled, causing `MenuButton` to render the chevron icons indicating menu open state.",
+        "You may use the `renderTrigger` render prop as an alternative to passing in a `triggerIcon`. In this example, we use the `isOpen` argument to conditionally set an icon in the render function.",
     },
   },
 };

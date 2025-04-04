@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import iconSelection from "src/icons/selection.json";

@@ -31,6 +31,9 @@ const MenuButton = ({
   renderTrigger,
   triggerIcon = "more-vertical",
   showDropdownIndicator = false,
+  side = "bottom",
+  alignment = "start",
+  offset = 2,
   children,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,10 +44,9 @@ const MenuButton = ({
     onOutsideClick: () => {
       setIsOpen(false);
     },
-    preferX: "right",
-    preferY: "bottom",
-    placement: "bottom-start",
+    placement: `${side}-${alignment}`,
     container: createUseLayerContainer,
+    triggerOffset: offset,
   });
 
   const handleKeyUp = ({ key }) => {
@@ -213,6 +215,12 @@ MenuButton.propTypes = {
    * the expanded state of the menulist changes.
    */
   showDropdownIndicator: PropTypes.bool,
+  /** Sets preferred side of the trigger the tooltip should appear */
+  side: PropTypes.oneOf(["top", "right", "bottom", "left"]),
+  /** Sets preferred alignment of the tooltip relative to the trigger */
+  alignment: PropTypes.oneOf(["start", "center", "end"]),
+  /** Distance of Popover from trigger element in number of pixels */
+  offset: PropTypes.number,
 };
 
 MenuButton.Item = MenuButtonItem;

@@ -203,18 +203,8 @@ const Combobox = ({
         return;
       }
 
-      const itemMatchingInput = items.find(
-        (item) =>
-          inputValue === item.props.searchValue ||
-          inputValue === item.props.value,
-      );
-
-      // once a selection is made, show all options in the dropdown
-      if (itemMatchingInput) {
-        setDisplayedItems(items);
-
-        // filter by input value if filtering is enabled
-      } else if (!disableFiltering) {
+      // Filtering based on inputValue
+      if (!disableFiltering) {
         const actionItems = items.filter(isAction);
         const filteredItems = filterItemsByInput(
           items.filter((item) => !isAction(item) && isSelectable(item)),
@@ -225,6 +215,7 @@ const Combobox = ({
 
       onInputChange(inputValue);
     },
+
     // <https://www.downshift-js.com/use-select#state-reducer>
     stateReducer: (state, actionAndChanges) => {
       const { type, changes } = actionAndChanges;

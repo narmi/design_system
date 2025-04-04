@@ -250,6 +250,8 @@ export const WithActions = () => {
       >
         <Combobox.Item value="Primary Checking - 4567" />
         <Combobox.Item value="Cheese Fund - 5432" />
+        <Combobox.Item value="Primary Savings - 1234" />
+        <Combobox.Item value="Secondary Checking - 7892" />
         <Combobox.Action
           onSelect={() => {
             setIsOpen(true);

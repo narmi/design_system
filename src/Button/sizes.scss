@@ -1,0 +1,20 @@
+%btn-size-xs {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  min-height: rem(24px);
+  border-radius: rem(12px);
+}
+
+%btn-size-s {
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-bold);
+  min-height: rem(32px);
+  border-radius: rem(18px);
+}
+
+%btn-size-m {
+  font-size: var(--font-size-default);
+  font-weight: var(--font-weight-bold);
+  min-height: rem(40px);
+  border-radius: rem(24px);
+}

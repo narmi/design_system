@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import iconSelection from "src/icons/selection.json";
@@ -150,7 +150,6 @@ const Combobox = ({
   testId,
   renderEndContent = defaultRenderEndContent,
 }) => {
-  const inputRef = useRef(null);
   const allChildren = React.Children.toArray(children);
   const hasCategories = allChildren.some(
     ({ type }) => type.displayName === ComboboxCategory.displayName,
@@ -175,7 +174,9 @@ const Combobox = ({
   }
 
   const [displayedItems, setDisplayedItems] = useState(items);
-  const [clearOnNextInput, setClearOnNextInput] = useState(false);
+
+  const itemToString = (item) =>
+    item?.props?.searchValue || item?.props?.value || "";
 
   const {
     isOpen,
@@ -185,80 +186,76 @@ const Combobox = ({
     getItemProps,
     highlightedIndex,
     inputValue,
-    setInputValue,
     openMenu,
-    closeMenu,
     reset,
   } = useCombobox({
     items: displayedItems,
     inputValue: inputValueProp,
-    itemToString: (item) => item.props.searchValue || item.props.value,
+    itemToString,
+
+    // typeahead behavior is managed by this event callback
     onInputValueChange: ({ inputValue }) => {
-      // Typeahead behavior - we adjust the list of available options passed
-      // into `useCombobox` by filtering the initial items list from input value
+      // If the user has cleared the input reset selection and state.
+      if (inputValue.length === 0) {
+        setDisplayedItems(items);
+        reset();
+        onInputChange("");
+        return;
+      }
+
+      // Filtering based on inputValue
       if (!disableFiltering) {
         const actionItems = items.filter(isAction);
         const filteredItems = filterItemsByInput(
-          items.filter((item) => !isAction(item)).filter(isSelectable),
+          items.filter((item) => !isAction(item) && isSelectable(item)),
           inputValue.toLowerCase(),
         );
         setDisplayedItems([...filteredItems, ...actionItems]);
       }
 
-      // reset all downshift state when the input is cleared
-      if (inputValue.length === 0) {
-        setDisplayedItems(items); // restore original list in dropdown
-        reset(); // clear any active selections
-      }
-
       onInputChange(inputValue);
     },
-    onSelectedItemChange: ({ selectedItem }) => {
-      if (isAction(selectedItem)) {
-        selectedItem.props.onSelect();
-        closeMenu();
-        if (inputRef.current) {
-          // always blur input when an action is selected.
-          inputRef.current.blur();
-        }
-      } else {
-        let newSelection = "";
-        if (selectedItem) {
-          newSelection = selectedItem.props.value;
-        }
-        onChange(newSelection);
-        onInputChange(newSelection);
-      }
-    },
+
     // <https://www.downshift-js.com/use-select#state-reducer>
     stateReducer: (state, actionAndChanges) => {
       const { type, changes } = actionAndChanges;
       const { selectedItem: previousSelectedItem } = state;
       const { selectedItem: newSelectedItem } = changes;
-      let inputValue = changes.inputValue;
 
-      // Items not selectable should not cause the `selectedItem` in state to change.
-      if (!isSelectable(newSelectedItem)) {
-        changes.selectedItem = previousSelectedItem;
+      // When users select an action, the selectedItem should not update.
+      // The dropdown should close and any existing selection should be preserved.
+      if (isAction(newSelectedItem)) {
+        newSelectedItem.props.onSelect();
+        return {
+          ...changes,
+          selectedItem: previousSelectedItem,
+          inputValue: itemToString(previousSelectedItem),
+          isOpen: false,
+        };
       }
 
-      // if there's already a selected item when the user revisits the input,
-      // wipe away the old input value so they can start typing right away.
-      // (selection is preserved until user picks another item)
+      // Clear input on blur if the user hasn't made a selection
+      if (type === useCombobox.stateChangeTypes.InputBlur) {
+        return {
+          ...changes,
+          inputValue: selectedItem ? itemToString(selectedItem) : "",
+        };
+      }
+
+      // Change callback is invoked when the selectedItem changes.
+      // Leave the dropdown open until user blurs the input.
       if (
-        type === useCombobox.stateChangeTypes.InputChange &&
-        clearOnNextInput &&
-        hasSelectedItem &&
-        (changes.inputValue || "").length > (state.inputValue || "").length
+        isSelectable(newSelectedItem) &&
+        previousSelectedItem !== newSelectedItem
       ) {
-        inputValue = changes.inputValue.slice(-1); // the last character the user typed
-        setClearOnNextInput(false);
+        onChange(newSelectedItem.props.value);
+        return {
+          ...changes,
+          isOpen: true,
+        };
       }
 
-      return {
-        ...changes,
-        inputValue,
-      };
+      return changes;
     },
   });
 
@@ -424,36 +421,8 @@ const Combobox = ({
           startIcon={icon}
           endContent={renderEndContent(isOpen)}
           {...getInputProps({
-            onFocus: () => {
-              if (hasSelectedItem) {
-                setClearOnNextInput(true);
-              }
-              handleMenuToggle();
-            },
+            onFocus: handleMenuToggle,
             onClick: handleMenuToggle,
-            onBlur: () => {
-              // If the user has selected an option, we should
-              // always set that as the input value when they leave the input
-              if (hasSelectedItem) {
-                setInputValue(
-                  selectedItem.props.searchValue || selectedItem.props.value,
-                );
-              }
-            },
-            ref: (node) => {
-              // we must capture the ref for the input to blur it
-              // when users select an action
-              inputRef.current = node;
-
-              // merge with downshift ref
-              const { downshiftRef } = getInputProps();
-              if (typeof downshiftRef === "function") {
-                downshiftRef(node);
-              }
-              if (downshiftRef && typeof downshiftRef === "object") {
-                downshiftRef.current = node;
-              }
-            },
           })}
         />
         {renderLayer(

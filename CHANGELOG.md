@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.16.0](https://github.com/narmi/design_system/compare/v4.15.0...v4.16.0) (2025-04-08)
+
+
+### Features
+
+* **tokens:** update 'system' colors for improved contrast ([0960746](https://github.com/narmi/design_system/commit/096074606a23f4515304eb0d1b0059063b5f365f))
+
 ## [4.15.0](https://github.com/narmi/design_system/compare/v4.14.2...v4.15.0) (2025-04-07)
 
 

@@ -1,14 +1,14 @@
 {
   "color": {
     "system": {
-      "successDark": { "value": "#37B374" },
-      "successLight": { "value": "#E3FAE7" },
-      "warnDark": { "value": "#EAC348" },
-      "warnLight": { "value": "#FEF8E3" },
+      "successDark": { "value": "#027A48" },
+      "successLight": { "value": "#ECFDF3" },
+      "warnDark": { "value": "#B54708" },
+      "warnLight": { "value": "#FFFAEB" },
       "infoDark": { "value": "#195274" },
       "infoLight": { "value": "#E8EEF1" },
-      "errorDark": { "value": "#D93B3B" },
-      "errorLight": { "value": "#FDF1F1" }
+      "errorDark": { "value": "#b42318" },
+      "errorLight": { "value": "#fef3f2" }
     }
   }
 }

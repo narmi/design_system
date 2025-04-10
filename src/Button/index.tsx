@@ -2,7 +2,7 @@ import React from "react";
 import cc from "classcat";
 import AsElement from "../util/AsElement";
 import Row from "../Row";
-import Spinner from "./Spinner";
+import Spinner from "../Spinner";
 import type { IconName } from "../types/Icon.types";
 
 interface ButtonProps {

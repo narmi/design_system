@@ -37,7 +37,7 @@ import SeparatorList from "./SeparatorList";
 import Sidebar from "./Sidebar";
 import Slider from "./Slider";
 import Snackbar from "./Snackbar";
-import Spinner from "./Button/Spinner";
+import Spinner from "./Spinner";
 import Tabs from "./Tabs";
 import Tag from "./Tag";
 import TextInput from "./TextInput";

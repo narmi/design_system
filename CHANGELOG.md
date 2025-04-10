@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.17.0](https://github.com/narmi/design_system/compare/v4.16.0...v4.17.0) (2025-04-10)
+
+
+### Features
+
+* **Spinner:** export Spinner ([f33f873](https://github.com/narmi/design_system/commit/f33f8734971c445b76471ee989501b8dd1379898))
+
+
+### Bug Fixes
+
+* **Button:** fix scss import ([41c616b](https://github.com/narmi/design_system/commit/41c616b5b07b0aa9d8103b59ebeba37067af3ceb))
+* **index:** fix import ([722ee60](https://github.com/narmi/design_system/commit/722ee6016277e85490f32881e7efc4f9e570b76e))
+
 ## [4.16.0](https://github.com/narmi/design_system/compare/v4.15.0...v4.16.0) (2025-04-08)
 
 

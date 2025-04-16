@@ -7,7 +7,7 @@ export const VALID_ICON_NAMES = iconSelection.icons.map(
   (icon) => icon.properties.name,
 );
 
-const MenuButtonItem = ({ label, startIcon, endIcon }) => <></>;
+const MenuButtonItem = ({ label, startIcon, endIcon, onSelect }) => <></>;
 
 MenuButtonItem.propTypes = {
   /** Display label for menu item */

@@ -294,6 +294,10 @@ InAForm.parameters = {
 
 export const Controlled = () => {
   const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    { value: "checking1234", label: "Checking (1234)" },
+    { value: "savings4321", label: "Savings (4321)" },
+  ]);
   return (
     <>
       <Select
@@ -302,8 +306,11 @@ export const Controlled = () => {
         value={value}
         onChange={(v) => setValue(v)}
       >
-        <Select.Item value="checking1234">Checking (1234)</Select.Item>
-        <Select.Item value="savings4321">Savings (4321)</Select.Item>
+        {items.map(({ value, label }) => (
+          <Select.Item key={`${value}-${label}`} value={value}>
+            {label}
+          </Select.Item>
+        ))}
       </Select>
       <div className="margin--top">
         <Button
@@ -311,6 +318,18 @@ export const Controlled = () => {
           kind="negative"
           onClick={() => {
             setValue(null);
+          }}
+        />
+      </div>
+      <div className="margin--top">
+        <Button
+          label="Add an item"
+          kind="negative"
+          onClick={() => {
+            setItems((items) => [
+              { value: "extra", label: "Extra Item!" },
+              ...items,
+            ]);
           }}
         />
       </div>

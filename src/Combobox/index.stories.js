@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Combobox, { VALID_ICON_NAMES } from "./";
 import ComboboxItem from "./ComboboxItem";
 import ComboboxHeading from "./ComboboxHeading";
+import Row from "../Row";
 import Dialog from "../Dialog";
 import Drawer from "../Drawer";
 import { options_states } from "./util";
@@ -96,6 +97,13 @@ NoChildren.parameters = {
 
 export const FullyControlled = () => {
   const [inputValue, setInputValue] = useState("");
+  const [allItems, setAllItems] = useState([
+    "Primary Checking - 4567",
+    "Secondary Checking - 9876",
+    "Primary Savings - 1234",
+    "Cheese Fund - 5432",
+  ]);
+
   return (
     <div>
       <Combobox
@@ -103,21 +111,34 @@ export const FullyControlled = () => {
         inputValue={inputValue}
         onInputChange={(val) => setInputValue(val)}
       >
-        <Combobox.Heading text="Checking" />
-        <Combobox.Item value="Primary Checking - 4567" />
-        <Combobox.Item value="Secondary Checking - 9876" />
-        <Combobox.Heading text="Savings" />
-        <Combobox.Item value="Primary Savings - 1234" />
-        <Combobox.Item value="Cheese Fund - 5432" />
+        {allItems.map((item, i) => (
+          <Combobox.Item key={`${i}-${item}`} value={item} />
+        ))}
       </Combobox>
-      <button
-        className="margin--top"
-        onClick={() => {
-          setInputValue("");
-        }}
-      >
-        Clear input value
-      </button>
+      <div className="margin--top">
+        <Row>
+          <Row.Item shrink>
+            <button
+              className="margin--top"
+              onClick={() => {
+                setInputValue("");
+              }}
+            >
+              Clear input value
+            </button>
+          </Row.Item>
+          <Row.Item shrink>
+            <button
+              className="margin--top"
+              onClick={() => {
+                setAllItems((items) => ["Extra Item!", ...items]);
+              }}
+            >
+              Add an item to the top of the list
+            </button>
+          </Row.Item>
+        </Row>
+      </div>
     </div>
   );
 };

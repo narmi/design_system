@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import iconSelection from "src/icons/selection.json";
@@ -150,7 +150,10 @@ const Combobox = ({
   testId,
   renderEndContent = defaultRenderEndContent,
 }) => {
-  const allChildren = React.Children.toArray(children);
+  const allChildren = useMemo(
+    () => React.Children.toArray(children),
+    [children],
+  );
   const hasCategories = allChildren.some(
     ({ type }) => type.displayName === ComboboxCategory.displayName,
   );
@@ -159,6 +162,8 @@ const Combobox = ({
     allChildren.length < 1
       ? []
       : allChildren.filter(({ props }) => "value" in props || "text" in props);
+
+  console.info(items);
 
   // If categories are being used, `items` is populated by the children of each category
   if (hasCategories) {
@@ -258,6 +263,14 @@ const Combobox = ({
       return changes;
     },
   });
+
+  // Update displayed items passed to `useCombobox` when `items` change
+  useEffect(() => {
+    const isNotActivelyFiltering = !inputValue || inputValue.length === 0;
+    if (isNotActivelyFiltering) {
+      setDisplayedItems(items);
+    }
+  }, [items, inputValue]);
 
   const hasSelectedItem = !!selectedItem;
 

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React, { useState } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useSelect } from "downshift";
 import { useLayer } from "react-laag";
@@ -131,9 +131,11 @@ const Select = ({
 }) => {
   let items = []; // List of all item types to pass to downshift state management
   let categories = []; // Categories extracted from Select.Category children
-  const options = React.Children.toArray(children).filter(
-    (item) => !isAction(item),
-  ); // All Select.Item options
+  const options = useMemo(
+    // All Select.Item options
+    () => React.Children.toArray(children).filter((item) => !isAction(item)),
+    [children],
+  );
   const actions = React.Children.toArray(children).filter(isAction); // All Select.Action items
   const [userInput, setUserInput] = useState(""); // most recent val the user typed while focused on this input
 

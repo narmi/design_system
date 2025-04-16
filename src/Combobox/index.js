@@ -163,7 +163,6 @@ const Combobox = ({
       ? []
       : allChildren.filter(({ props }) => "value" in props || "text" in props);
 
-  console.info(items);
 
   // If categories are being used, `items` is populated by the children of each category
   if (hasCategories) {

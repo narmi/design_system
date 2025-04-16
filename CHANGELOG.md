@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.18.0](https://github.com/narmi/design_system/compare/v4.17.0...v4.18.0) (2025-04-16)
+
+
+### Features
+
+* **SplitButton:** add `SplitButton` component ([54812a7](https://github.com/narmi/design_system/commit/54812a7d295825ea7eef36aeaf64c267d6c451db))
+
+
+### Bug Fixes
+
+* address bad merge in button scss ([3115452](https://github.com/narmi/design_system/commit/31154529bb538df006c72b26eed90a5b8864059f))
+
 ## [4.17.0](https://github.com/narmi/design_system/compare/v4.16.0...v4.17.0) (2025-04-10)
 
 

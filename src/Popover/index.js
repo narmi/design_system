@@ -117,6 +117,7 @@ const Popover = ({
         onKeyDown={handleKeyDown}
         role="button"
         tabIndex="0"
+        className="nds-popover-trigger"
         data-testid="nds-popover-trigger"
         aria-haspopup="true"
         aria-expanded={shouldRenderPopover.toString()}

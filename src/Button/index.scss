@@ -1,4 +1,7 @@
 @import "../Spinner/index.scss";
+@import "./variants.scss";
+@import "./sizes.scss";
+@import "./states.scss";
 
 .nds-button,
 .nds-button.resetButton {
@@ -20,175 +23,75 @@
 
 /* Size variants */
 .nds-button--xs {
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
-  min-height: rem(24px);
-  border-radius: rem(12px);
+  @extend %btn-size-xs;
 }
 .nds-button--s {
-  font-size: var(--font-size-s);
-  font-weight: var(--font-weight-bold);
-  min-height: rem(32px);
-  border-radius: rem(18px);
+  @extend %btn-size-s;
 }
 .nds-button--m {
-  font-size: var(--font-size-default);
-  font-weight: var(--font-weight-bold);
-  min-height: rem(40px);
-  border-radius: rem(24px);
+  @extend %btn-size-m;
 }
 .nds-button--l,
 .nds-button--xl {
   // unimplemented sizes should fall back to "m"
-  @extend .nds-button--m;
+  @extend %btn-size-m;
 }
 
 /* Kind variants */
 .nds-button--primary,
 .nds-button--secondary,
 .nds-button--tonal {
-  .nds-button-content {
-    margin: rem(8px) rem(32px);
-    // label constraint should scale evenly with font size
-    max-width: rem(240px);
-  }
-  &.nds-button--s {
-    .nds-button-content {
-      margin: rem(3px) rem(24px);
-      max-width: rem(220px);
-    }
-  }
-  &.nds-button--xs {
-    .nds-button-content {
-      margin: rem(3px) rem(16px);
-      max-width: rem(200px);
-    }
-  }
+  @extend %btn-kind-base;
 }
 
 .nds-button--primary,
 .nds-button--primary.resetButton {
-  color: var(--color-white);
-  background-color: var(--theme-primary);
-
-  &:hover {
-    color: var(--color-white);
-    text-decoration: none;
-    filter: opacity(80%);
-  }
+  @extend %btn-kind-primary;
 }
 
 .nds-button--secondary,
 .nds-button--secondary.resetButton {
-  position: relative;
-  color: var(--theme-primary);
-  background-color: var(--color-white);
-  border: var(--border-size-s) solid var(--theme-primary);
-
-  // adds a white shim behind the button so that the transparent
-  // hover color appears the same regardless of context
-  &::before {
-    content: "";
-    border-radius: var(--button-radius);
-    background-color: var(--color-white);
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-  }
-
-  &:hover {
-    background-color: RGBA(var(--theme-rgb-primary), var(--alpha-10));
-  }
+  @extend %btn-kind-secondary;
 }
 
 .nds-button--tonal,
 .nds-button--tonal.resetButton {
-  color: var(--theme-primary);
-  background-color: RGBA(var(--theme-rgb-primary), var(--alpha-20));
-
-  &:hover,
-  &:active {
-    background-color: RGBA(var(--theme-rgb-primary), var(--alpha-10));
-  }
+  @extend %btn-kind-tonal;
 }
 
+/**
+️* ⚠️ DEPRECATED ⚠️
+* Will be removed in a future release.
+*/
 .nds-button--menu,
 .nds-button--menu.resetButton {
-  text-align: left;
-  color: var(--font-color-primary);
-  display: block;
-  font-size: var(--font-size-l) !important;
-
-  .nds-button-content {
-    margin: rem(10px) 0;
-  }
-
-  @media (min-width: #{map.get($breakpoints, "l")}) {
-    margin: 0 rem(12px);
-    font-weight: var(--font-weight-semibold);
-    display: inline-block;
-    font-size: var(--font-size-default) !important;
-  }
-}
-
-.nds-button--plain,
-.nds-button--plain.resetButton,
-.nds-button--negative,
-.nds-button--negative.resetButton {
-  color: var(--theme-secondary);
-  font-weight: var(--font-weight-semibold);
-  border-radius: 0;
-  justify-content: start;
-  min-height: unset;
-
-  &:hover {
-    color: var(--theme-secondary);
-    .nds-button-label {
-      text-decoration: underline;
-    }
-  }
+  @extend %btn-kind-menu;
 }
 
 .nds-button--negative,
 .nds-button--negative.resetButton {
-  color: var(--theme-primary);
-  &:hover {
-    color: var(--theme-primary);
-  }
+  @extend %btn-kind-negative;
 }
 
 .nds-button--disabled {
-  pointer-events: none;
-  color: var(--color-white);
-
   &.nds-button--menu,
   &.nds-button--plain,
   &.nds-button--negative {
-    color: var(--font-color-hint);
+    @extend %btn-state-disabled-plain;
   }
   &.nds-button--primary {
-    background-color: var(--color-lightGrey);
+    @extend %btn-state-disabled-primary;
   }
   &.nds-button--secondary {
-    color: var(--color-lightGrey);
-    border-color: var(--color-lightGrey);
+    @extend %btn-state-disabled-secondary;
   }
   &.nds-button--tonal {
-    color: var(--color-lightGrey);
-    background-color: rgba(var(--rgb-lightGrey), var(--alpha-20));
+    @extend %btn-state-disabled-tonal;
   }
 }
 
 .nds-button--loading {
-  .nds-button-content {
-    position: relative;
-  }
-  .nds-button-spinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+  @extend %btn-state-loading;
 }
 
 /**
@@ -196,14 +99,5 @@
 * Will be removed in a future release.
 */
 .nds-plain-button {
-  cursor: pointer;
-  color: var(--theme-primary);
-  font-weight: var(--font-weight-semibold);
-
-  &:hover {
-    color: var(--theme-primary);
-    .nds-button-label {
-      text-decoration: underline;
-    }
-  }
+  @extend %btn-kind-plain;
 }

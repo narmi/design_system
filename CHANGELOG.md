@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.18.1](https://github.com/narmi/design_system/compare/v4.18.0...v4.18.1) (2025-04-17)
+
+
+### Bug Fixes
+
+* **Combobox,Select:** force a rerender when children change ([6df1798](https://github.com/narmi/design_system/commit/6df17983130ccd78a3a4e763283888b90b7044e5))
+
 ## [4.18.0](https://github.com/narmi/design_system/compare/v4.17.0...v4.18.0) (2025-04-16)
 
 

@@ -66,19 +66,15 @@ because we need to replace the left/right controls with controls that are inside
     padding: 48px var(--space-l);
   }
   .mobile-navigation-button {
-    .narmi-icon-x,
-    .narmi-icon-chevron-left,
-    .narmi-icon-chevron-right {
-      position: absolute;
-      top: var(--space-s);
-    }
-    .narmi-icon-x {
+    position: absolute;
+    top: var(--space-s);
+    &--close {
       right: var(--space-s);
     }
-    .narmi-icon-chevron-left {
+    &--prev {
       left: var(--space-s);
     }
-    .narmi-icon-chevron-right {
+    &--next {
       left: 45px;
     }
   }

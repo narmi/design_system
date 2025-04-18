@@ -3,6 +3,10 @@
   font-weight: var(--font-weight-semibold);
   min-height: rem(24px);
   border-radius: rem(12px);
+  .nds-button-content {
+    margin: rem(3px) rem(16px);
+    max-width: rem(200px);
+  }
 }
 
 %btn-size-s {
@@ -10,6 +14,10 @@
   font-weight: var(--font-weight-bold);
   min-height: rem(32px);
   border-radius: rem(18px);
+  .nds-button-content {
+    margin: rem(3px) rem(24px);
+    max-width: rem(220px);
+  }
 }
 
 %btn-size-m {
@@ -17,4 +25,8 @@
   font-weight: var(--font-weight-bold);
   min-height: rem(40px);
   border-radius: rem(24px);
+  .nds-button-content {
+    margin: rem(8px) rem(32px);
+    max-width: rem(240px);
+  }
 }

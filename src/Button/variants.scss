@@ -69,13 +69,8 @@
   }
 }
 
-/**
-️* ⚠️ DEPRECATED ⚠️
-* Will be removed in a future release.
-*/
 %_btn-kind-plain-base {
   color: var(--theme-secondary);
-  font-weight: var(--font-weight-semibold);
   border-radius: 0;
   justify-content: start;
   min-height: unset;
@@ -91,8 +86,10 @@
 %btn-kind-plain {
   @extend %_btn-kind-plain-base;
   cursor: pointer;
-  color: var(--theme-primary);
-  font-weight: var(--font-weight-semibold);
+
+  // Plain button gets a special override to make it semibold.
+  // All other buttons inherit their font weight from `sizes` placeholders.
+  font-weight: var(--font-weight-semibold) !important;
 
   &:hover {
     color: var(--theme-primary);
@@ -110,6 +107,7 @@
   text-align: left;
   color: var(--font-color-primary);
   display: block;
+  font-weight: var(--font-weight-semibold);
   font-size: var(--font-size-l) !important;
 
   .nds-button-content {

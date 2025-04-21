@@ -6,6 +6,7 @@ import cc from "classcat";
 import useBreakpoints from "../hooks/useBreakpoints";
 import useMountTransition from "./useMountTransition";
 import useLockBodyScroll from "../hooks/useLockBodyScroll";
+import FocusLock from "react-focus-lock";
 
 const noop = () => {};
 
@@ -168,7 +169,7 @@ const Drawer = ({
             {showControls && (
               <>
                 <button
-                  className="button--reset mobile-navigation-button"
+                  className="button--reset mobile-navigation-button mobile-navigation-button--prev"
                   onClick={onPrev}
                   aria-controls={panelId}
                   aria-label="Previous"
@@ -176,7 +177,7 @@ const Drawer = ({
                   <span className="narmi-icon-chevron-left fontSize--heading3" />
                 </button>
                 <button
-                  className="button--reset mobile-navigation-button"
+                  className="button--reset mobile-navigation-button mobile-navigation-button--next"
                   onClick={onNext}
                   aria-controls={panelId}
                   aria-label="Next"
@@ -186,7 +187,7 @@ const Drawer = ({
               </>
             )}
             <button
-              className="button--reset mobile-navigation-button"
+              className="button--reset mobile-navigation-button mobile-navigation-button--close"
               onClick={onUserDismiss}
             >
               <span className="narmi-icon-x clickable fontSize--heading3" />
@@ -216,22 +217,24 @@ const Drawer = ({
   /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
   const drawerJSX = (
     <div className="drawerContainer">
-      <div
-        ref={shimRef}
-        className={cc([
-          "backdrop",
-          { "backdrop--open": isOpen && isTransitioning },
-        ])}
-        onClick={handleShimClick}
-      />
-      {navigationContainerJSX}
-      {!showControls ? (
-        childrenJSX
-      ) : (
-        <div aria-live="polite" role="region" id={panelId}>
-          {childrenJSX}
-        </div>
-      )}
+      <FocusLock>
+        <div
+          ref={shimRef}
+          className={cc([
+            "backdrop",
+            { "backdrop--open": isOpen && isTransitioning },
+          ])}
+          onClick={handleShimClick}
+        />
+        {navigationContainerJSX}
+        {!showControls ? (
+          childrenJSX
+        ) : (
+          <div aria-live="polite" role="region" id={panelId}>
+            {childrenJSX}
+          </div>
+        )}
+      </FocusLock>
     </div>
   );
 

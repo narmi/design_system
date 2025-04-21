@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.18.2](https://github.com/narmi/design_system/compare/v4.18.1...v4.18.2) (2025-04-18)
+
+
+### Bug Fixes
+
+* **Drawer:** enable focus trap; restore focus rings on mobile controls ([fb59071](https://github.com/narmi/design_system/commit/fb5907159746018c6d8fb62d30331e68c4d699f2))
+
 ### [4.18.1](https://github.com/narmi/design_system/compare/v4.18.0...v4.18.1) (2025-04-17)
 
 

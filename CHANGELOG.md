@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.18.3](https://github.com/narmi/design_system/compare/v4.18.2...v4.18.3) (2025-04-21)
+
+
+### Bug Fixes
+
+* **Button:** style fixes for 'plain' kind ([765f50a](https://github.com/narmi/design_system/commit/765f50a556f7f61ba748f6e48b0467cfed386f65))
+
 ### [4.18.2](https://github.com/narmi/design_system/compare/v4.18.1...v4.18.2) (2025-04-18)
 
 

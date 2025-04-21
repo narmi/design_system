@@ -5,9 +5,9 @@
 
 .nds-button,
 .nds-button.resetButton {
+  cursor: pointer;
   display: inline-flex;
   position: relative;
-  cursor: pointer;
   line-height: var(--font-lineHeight-bigText);
   text-align: center;
   justify-content: center;
@@ -38,12 +38,6 @@
 }
 
 /* Kind variants */
-.nds-button--primary,
-.nds-button--secondary,
-.nds-button--tonal {
-  @extend %btn-kind-base;
-}
-
 .nds-button--primary,
 .nds-button--primary.resetButton {
   @extend %btn-kind-primary;
@@ -92,6 +86,10 @@
 
 .nds-button--loading {
   @extend %btn-state-loading;
+}
+
+.nds-button--plain {
+  @extend %btn-kind-plain;
 }
 
 /**

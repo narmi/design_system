@@ -52,12 +52,6 @@
 }
 
 .nds-splitButton-action--primary,
-.nds-splitButton-action--secondary,
-.nds-splitButton-action--tonal {
-  @extend %btn-kind-base;
-}
-
-.nds-splitButton-action--primary,
 .nds-splitButton-action--primary.resetButton {
   @extend %btn-kind-primary;
 }

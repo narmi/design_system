@@ -98,7 +98,6 @@ const SplitButton = ({
           <Popover
             // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus
-            // @ts-expect-error Popover is not TS yet
             renderTrigger={renderTrigger}
             isOpen={isOpen}
             onUserDismiss={() => setIsOpen(false)}

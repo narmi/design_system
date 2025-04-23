@@ -38,6 +38,7 @@ import Sidebar from "./Sidebar";
 import Slider from "./Slider";
 import Snackbar from "./Snackbar";
 import Spinner from "./Spinner";
+import SplitButton from "./SplitButton";
 import Tabs from "./Tabs";
 import Tag from "./Tag";
 import TextInput from "./TextInput";
@@ -90,6 +91,7 @@ export {
   Slider,
   Snackbar,
   Spinner,
+  SplitButton,
   Tabs,
   Tag,
   TextInput,

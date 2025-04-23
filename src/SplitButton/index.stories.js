@@ -67,7 +67,7 @@ export const KindsAndSizes = () => {
     </SplitButton>
   );
 
-  const exmaples = [
+  const examples = [
     ["primary", "m"],
     ["primary", "s"],
     ["primary", "xs"],
@@ -87,7 +87,7 @@ export const KindsAndSizes = () => {
         gap: "var(--space-default)",
       }}
     >
-      {exmaples.map(([kind, size]) => (
+      {examples.map(([kind, size]) => (
         <div key={`${kind}-${size}`}>{renderSplitButton(kind, size)}</div>
       ))}
     </div>

@@ -18,6 +18,7 @@ import SeparatorList from "./SeparatorList";
 import Slider from "./Slider";
 import Snackbar from "./Snackbar";
 import Spinner from "./Spinner";
+import SplitButton from "./SplitButton";
 import LoadingSkeleton from "./LoadingSkeleton";
 import Tabs from "./Tabs";
 import Tooltip from "./Tooltip";
@@ -96,6 +97,7 @@ export {
   Select,
   Sidebar,
   Spinner,
+  SplitButton,
   Tabs,
   Tag,
   TextInput,

@@ -183,7 +183,7 @@ const RadioButtons = ({
           );
         })}
       </div>
-      <div className={cc([{ "margin--top--s": kind !== "row" }])}>
+      <div className={cc([{ "margin--top--s": kind !== "row" && kind !== "row-start" }])}>
         <Error error={error} />
       </div>
     </>

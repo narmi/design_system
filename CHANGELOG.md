@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.18.7](https://github.com/narmi/design_system/compare/v4.18.6...v4.18.7) (2025-04-24)
+
+
+### Bug Fixes
+
+* **Button:** flow plain variant as text ([0586aa7](https://github.com/narmi/design_system/commit/0586aa781bf70c8dd83b3a224932e03f508be4d4))
+
+### [4.18.6](https://github.com/narmi/design_system/compare/v4.18.5...v4.18.6) (2025-04-24)
+
+
+### Bug Fixes
+
+* **Combobox:** minimize selector upon selection ([e055539](https://github.com/narmi/design_system/commit/e0555393d65f0abc88df733c3d3d653edfdf3d48))
+
+### [4.18.5](https://github.com/narmi/design_system/compare/v4.18.4...v4.18.5) (2025-04-24)
+
+
+### Bug Fixes
+
+* **Button:** menu buttons had gotten extra padding ([c509f7c](https://github.com/narmi/design_system/commit/c509f7cf9161079027192e5fabc9786d3b4265d7))
+
 ### [4.18.4](https://github.com/narmi/design_system/compare/v4.18.3...v4.18.4) (2025-04-23)
 
 

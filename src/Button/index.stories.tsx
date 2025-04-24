@@ -2,6 +2,7 @@ import React from "react";
 import Button from "./";
 import iconSelection from "../icons/selection.json";
 import Row from "../Row";
+import Select from "../Select";
 import type { IconName } from "../types/Icon.types";
 
 const VALID_ICON_NAMES = iconSelection.icons.map(
@@ -15,11 +16,21 @@ Overview.args = {
   label: "Submit",
 };
 
-export const PlainButton = Template.bind({});
-PlainButton.args = {
-  label: "Edit",
-  kind: "plain",
-};
+export const PlainButton = () => (
+  <div style={{ maxWidth: "640px" }}>
+    <Select id="overdraft" label="Use overdraft protection?">
+      <Select.Item value="Yes">Yes</Select.Item>
+      <Select.Item value="No">No</Select.Item>
+    </Select>
+    <Button
+      label="Learn more about overdraft protection"
+      kind="plain"
+      onClick={() => {
+        alert("button click");
+      }}
+    />
+  </div>
+);
 PlainButton.parameters = {
   docs: {
     description: {

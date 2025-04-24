@@ -247,7 +247,7 @@ const Combobox = ({
       }
 
       // Change callback is invoked when the selectedItem changes.
-      // Leave the dropdown open until user blurs the input.
+      // If multiple is not enabled, close the dropdown onChange.
       if (
         isSelectable(newSelectedItem) &&
         previousSelectedItem !== newSelectedItem
@@ -255,7 +255,7 @@ const Combobox = ({
         onChange(newSelectedItem.props.value);
         return {
           ...changes,
-          isOpen: true,
+          isOpen: false,
         };
       }
 
@@ -436,6 +436,7 @@ const Combobox = ({
             onFocus: handleMenuToggle,
             onClick: handleMenuToggle,
           })}
+          onClick={handleMenuToggle}
         />
         {renderLayer(
           <ul

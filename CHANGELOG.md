@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.18.7](https://github.com/narmi/design_system/compare/v4.18.6...v4.18.7) (2025-04-24)
+
+
+### Bug Fixes
+
+* **Button:** flow plain variant as text ([0586aa7](https://github.com/narmi/design_system/commit/0586aa781bf70c8dd83b3a224932e03f508be4d4))
+
 ### [4.18.6](https://github.com/narmi/design_system/compare/v4.18.5...v4.18.6) (2025-04-24)
 
 

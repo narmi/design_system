@@ -69,6 +69,16 @@
 
 %btn-kind-plain {
   @extend %_btn-kind-plain-base;
+  border-radius: 0 !important;
+
+  // The "plain" variant should behave like a text link
+  &.nds-button,
+  &.nds-button .nds-button-content {
+    text-align: start;
+    width: unset;
+    max-width: unset;
+    margin: 0 !important;
+  }
 
   &:hover {
     color: var(--theme-primary);
@@ -89,7 +99,7 @@
   font-size: var(--font-size-l) !important;
 
   .nds-button-content {
-    margin: rem(10px) 0;
+    margin: 0;
   }
 
   @media (min-width: #{map.get($breakpoints, "l")}) {

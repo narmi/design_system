@@ -57,6 +57,9 @@
 ️* ⚠️ DEPRECATED ⚠️
 * Will be removed in a future release.
 */
+.nds-button--m.nds-button--menu .nds-button-content {
+  margin: 0;
+}
 .nds-button--menu,
 .nds-button--menu.resetButton {
   @extend %btn-kind-menu;

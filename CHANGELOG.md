@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.18.9](https://github.com/narmi/design_system/compare/v4.18.8...v4.18.9) (2025-04-25)
+
+
+### Bug Fixes
+
+* **SplitButton:** make props with deaults optional ([5f8d649](https://github.com/narmi/design_system/commit/5f8d649539b6e353f8111132b062f76f490f4d19))
+
 ### [4.18.8](https://github.com/narmi/design_system/compare/v4.18.7...v4.18.8) (2025-04-24)
 
 

@@ -6,7 +6,7 @@ import MenuButton from "../MenuButton";
 
 // SplitButton-specific positioning options
 // passed to `MenuButton` and `Popover`
-const POPOPOVER_POSITION_PROPS = {
+const POPOVER_POSITION_PROPS = {
   side: "top",
   alignment: "start",
   offset: 6,
@@ -25,8 +25,8 @@ interface SplitButtonProps extends ButtonProps {
   children:
     | React.ReactElement<SplitButtonPopoverProps>
     | React.ReactElement<SplitButtonMenuProps>;
-  kind: "primary" | "secondary" | "tonal";
-  size: "xs" | "s" | "m";
+  kind?: "primary" | "secondary" | "tonal";
+  size?: "xs" | "s" | "m";
 }
 
 /**
@@ -103,7 +103,7 @@ const SplitButton = ({
             onUserDismiss={() => setIsOpen(false)}
             onUserEnable={() => setIsOpen(true)}
             content={popoverComponent.props.children}
-            {...POPOPOVER_POSITION_PROPS}
+            {...POPOVER_POSITION_PROPS}
           />
         )}
 
@@ -111,10 +111,7 @@ const SplitButton = ({
       {!renderStaticTrigger &&
         menuComponent &&
         React.isValidElement(menuComponent) && (
-          <MenuButton
-            renderTrigger={renderTrigger}
-            {...POPOPOVER_POSITION_PROPS}
-          >
+          <MenuButton renderTrigger={renderTrigger} {...POPOVER_POSITION_PROPS}>
             {React.Children.toArray(menuComponent.props.children).map(
               (item, i) =>
                 React.isValidElement(item) ? (

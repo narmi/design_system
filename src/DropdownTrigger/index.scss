@@ -30,6 +30,7 @@
 }
 
 .nds-dropdownTrigger-label {
+  pointer-events: none;
   color: var(--color-mediumGrey);
   font-weight: var(--font-weight-default);
   text-rendering: geometricPrecision; // match input placeholder weight

@@ -18,6 +18,7 @@
   .narmi-icon-x {
     cursor: pointer;
     display: inline-flex;
+    pointer-events: all;
     justify-content: center;
     align-items: center;
     height: var(--space-s);

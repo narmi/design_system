@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.18.10](https://github.com/narmi/design_system/compare/v4.18.9...v4.18.10) (2025-04-28)
+
+
+### Bug Fixes
+
+* **Dropdowntrigger:** On firefox the label block the dropdown trigger ([f127567](https://github.com/narmi/design_system/commit/f127567c94c581b9887b85a3dc2eff51b215b550))
+
 ### [4.18.9](https://github.com/narmi/design_system/compare/v4.18.8...v4.18.9) (2025-04-25)
 
 

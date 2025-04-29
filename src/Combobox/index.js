@@ -266,7 +266,7 @@ const Combobox = ({
   // Update displayed items passed to `useCombobox` when `items` change
   useEffect(() => {
     const isNotActivelyFiltering = !inputValue || inputValue.length === 0;
-    if (isNotActivelyFiltering) {
+    if (isNotActivelyFiltering && items.length !== displayedItems.length) {
       setDisplayedItems(items);
     }
   }, [items, inputValue]);

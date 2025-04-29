@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.18.11](https://github.com/narmi/design_system/compare/v4.18.10...v4.18.11) (2025-04-29)
+
+
+### Bug Fixes
+
+* **combobox:** do not infinitely re-render when input is cleared ([5305101](https://github.com/narmi/design_system/commit/5305101176d4de8e1a7bd6044dd9578442646b09))
+
 ### [4.18.10](https://github.com/narmi/design_system/compare/v4.18.9...v4.18.10) (2025-04-28)
 
 

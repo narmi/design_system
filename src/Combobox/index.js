@@ -217,7 +217,6 @@ const Combobox = ({
         );
         setDisplayedItems([...filteredItems, ...actionItems]);
       }
-
       onInputChange(inputValue);
     },
 
@@ -390,11 +389,10 @@ const Combobox = ({
   };
 
   const handleBlur = () => {
-    if (highlightedIndex === -1) {
-      return
-    }
     onInputChange( selectedItem ? itemToString(selectedItem) : "" );
-    closeMenu()
+    if (highlightedIndex !== -1) {
+      closeMenu()
+    }
   }
 
   // It is possible that a consumer may have nothing to pass to `children`.

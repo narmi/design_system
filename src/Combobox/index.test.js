@@ -177,8 +177,6 @@ describe("Combobox", () => {
     expect(handleChange).toHaveBeenCalledWith("New York");
 
     // user backspaces some of the input, but doesn't totally clear selection
-    (input, { target: { value: "New Y" } });
-
     // when the user blurs away from the input, it should fill itself with the
     // last selected value (New York)
     userEvent.type(input, "New Y");

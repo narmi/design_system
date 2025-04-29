@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import Combobox, {
   isSelectable,
   shouldOpenCategory,
@@ -155,7 +156,7 @@ describe("Combobox", () => {
     expect(screen.getAllByRole("option")).toHaveLength(50);
   });
 
-  it("input should auto-fill last selection on blur", () => {
+  it("input should auto-fill last selection on blur", async () => {
     const handleChange = jest.fn();
     render(
       <Combobox label={LABEL} onChange={handleChange}>
@@ -176,11 +177,10 @@ describe("Combobox", () => {
     expect(handleChange).toHaveBeenCalledWith("New York");
 
     // user backspaces some of the input, but doesn't totally clear selection
-    fireEvent.change(input, { target: { value: "New Y" } });
-
     // when the user blurs away from the input, it should fill itself with the
     // last selected value (New York)
-    fireEvent.blur(input);
+    userEvent.type(input, "New Y");
+
     expect(screen.getByDisplayValue("New York")).toBeInTheDocument();
   });
 
@@ -220,7 +220,7 @@ describe("Combobox", () => {
     // Blur the input
     fireEvent.blur(input);
 
-    // On reopneing the input, the selectedItem should still be selected
+    // On reopening the input, the selectedItem should still be selected
     fireEvent.focus(input);
     expect(input.value).toBe("New York");
 

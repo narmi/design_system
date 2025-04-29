@@ -191,6 +191,7 @@ const Combobox = ({
     highlightedIndex,
     inputValue,
     openMenu,
+    closeMenu,
     reset,
   } = useCombobox({
     items: displayedItems,
@@ -216,13 +217,17 @@ const Combobox = ({
         );
         setDisplayedItems([...filteredItems, ...actionItems]);
       }
-
       onInputChange(inputValue);
+    },
+
+    onSelectedItemChange: ({ selectedItem }) => {
+      onChange(selectedItem.props.value);
+      closeMenu();
     },
 
     // <https://www.downshift-js.com/use-select#state-reducer>
     stateReducer: (state, actionAndChanges) => {
-      const { type, changes } = actionAndChanges;
+      const { changes } = actionAndChanges;
       const { selectedItem: previousSelectedItem } = state;
       const { selectedItem: newSelectedItem } = changes;
 
@@ -238,27 +243,6 @@ const Combobox = ({
         };
       }
 
-      // Clear input on blur if the user hasn't made a selection
-      if (type === useCombobox.stateChangeTypes.InputBlur) {
-        return {
-          ...changes,
-          inputValue: selectedItem ? itemToString(selectedItem) : "",
-        };
-      }
-
-      // Change callback is invoked when the selectedItem changes.
-      // If multiple is not enabled, close the dropdown onChange.
-      if (
-        isSelectable(newSelectedItem) &&
-        previousSelectedItem !== newSelectedItem
-      ) {
-        onChange(newSelectedItem.props.value);
-        return {
-          ...changes,
-          isOpen: false,
-        };
-      }
-
       return changes;
     },
   });
@@ -266,7 +250,7 @@ const Combobox = ({
   // Update displayed items passed to `useCombobox` when `items` change
   useEffect(() => {
     const isNotActivelyFiltering = !inputValue || inputValue.length === 0;
-    if (isNotActivelyFiltering) {
+    if (isNotActivelyFiltering && items.length !== displayedItems.length) {
       setDisplayedItems(items);
     }
   }, [items, inputValue]);
@@ -404,6 +388,13 @@ const Combobox = ({
     }
   };
 
+  const handleBlur = () => {
+    onInputChange( selectedItem ? itemToString(selectedItem) : "" );
+    if (highlightedIndex !== -1) {
+      closeMenu()
+    }
+  }
+
   // It is possible that a consumer may have nothing to pass to `children`.
   // For example, if an API response hasn't completed to load in the autocomplete
   // options. In that case, Combobox should render a normal TextInput.
@@ -433,6 +424,7 @@ const Combobox = ({
           startIcon={icon}
           endContent={renderEndContent(isOpen)}
           {...getInputProps({
+            onBlur: handleBlur,
             onFocus: handleMenuToggle,
             onClick: handleMenuToggle,
           })}

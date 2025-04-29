@@ -295,3 +295,62 @@ export default {
     icon: { options: ["", ...VALID_ICON_NAMES] },
   },
 };
+
+export const WithCategoriesInForm = () => {
+
+  const [inputValue, setInputValue] = useState("");
+  const [selectedValue, setSelectedValue] = useState("")
+
+  return (
+    <>
+    <div>selected value {selectedValue}</div>
+    <Combobox
+      label="Select item"
+      inputValue={inputValue}
+      onChange={(selected) => {
+        setSelectedValue(selected)
+      }}
+      filterItemsByInput={(items, inputVal) => {
+        return items.filter((item) => {
+          if (!item) return false;
+          const query = (item.props.searchValue || item.props.value).toLowerCase();
+          return query.includes(inputVal);
+        })
+      }}
+      onInputChange={(selected) => {
+        setInputValue(selected);
+      }}
+    >
+      <Combobox.Category label="Checking">
+        <Combobox.Item searchValue="Business Checking" value="checking1">
+          Business Checking - 11234
+        </Combobox.Item>
+        <Combobox.Item searchValue="Main Checking" value="checking2">
+          Main Checking - 13989
+        </Combobox.Item>
+        <Combobox.Item searchValue="Joint Checking" value="checking3">
+          Joint Checking - 14857
+        </Combobox.Item>
+      </Combobox.Category>
+      <Combobox.Category label="Savings">
+        <Combobox.Item searchValue="Business Checking" value="savings1">
+          Business Savings - 13938
+        </Combobox.Item>
+        <Combobox.Item searchValue="Main Savings" value="savings2">
+          Main Savings - 48274
+        </Combobox.Item>
+        <Combobox.Item searchValue="Joint Savings" value="savings3">
+          Joint Savings - 48284
+        </Combobox.Item>
+      </Combobox.Category>
+      <Combobox.Category label="External Accounts">
+        <Combobox.Item value="Sasha">Sasha - 84839</Combobox.Item>
+        <Combobox.Item value="Joan">Joan - 36183</Combobox.Item>
+        <Combobox.Item value="Benoit">Benoit - 53261</Combobox.Item>
+      </Combobox.Category>
+
+    </Combobox>
+    </>
+  )
+
+};

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.19.1](https://github.com/narmi/design_system/compare/v4.19.0...v4.19.1) (2025-04-30)
+
+
+### Bug Fixes
+
+* **Button:** allow overflow in plain and negative buttons ([24d3ba2](https://github.com/narmi/design_system/commit/24d3ba2e5756ea820c1b07a6255eb05fa1eae10a))
+* **Button:** allow overflow on 'menu' buttons ([48b8ae6](https://github.com/narmi/design_system/commit/48b8ae642962936a3bfd5ee1b2fd8fdfcf7c109f))
+
 ## [4.19.0](https://github.com/narmi/design_system/compare/v4.18.12...v4.19.0) (2025-04-30)
 
 

@@ -71,6 +71,29 @@ ToggleCard.parameters = {
   },
 };
 
+export const ButtonCardWithError = () => (
+  <ContentCard
+    kind="button"
+    onClick={() => {
+      alert("button card clicked");
+    }}
+    error="Something else is required before you can continue"
+  >
+    <h3 className="fontSize--heading4 padding--bottom--xs">Button card</h3>
+    <div className="fontSize--s fontColor--secondary">
+      This card behaves like an html <code>button</code>.
+    </div>
+  </ContentCard>
+);
+ButtonCard.parameters = {
+  docs: {
+    description: {
+      story:
+        "Cards of kind `toggle` support a selected state that can be controlled with the `isSelected` prop.",
+    },
+  },
+};
+
 export default {
   title: "Components/ContentCard",
   component: ContentCard,

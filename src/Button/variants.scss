@@ -62,6 +62,12 @@
 %btn-kind-negative {
   @extend %_btn-kind-plain-base;
   color: var(--theme-primary);
+
+  &.nds-button,
+  &.nds-button .nds-button-content {
+    margin: 0 !important;
+  }
+
   &:hover {
     color: var(--theme-primary);
   }

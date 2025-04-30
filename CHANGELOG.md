@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.18.12](https://github.com/narmi/design_system/compare/v4.18.11...v4.18.12) (2025-04-30)
+
+
+### Bug Fixes
+
+* **Button:** remove extra negative button spacing ([71a48ba](https://github.com/narmi/design_system/commit/71a48bad2e831da3a4ee0524c802e06bd8056926))
+
 ### [4.18.11](https://github.com/narmi/design_system/compare/v4.18.10...v4.18.11) (2025-04-29)
 
 

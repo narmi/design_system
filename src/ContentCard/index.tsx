@@ -1,6 +1,8 @@
 import cc from "classcat";
 import React from "react";
 
+import Error from "../Error";
+
 interface ContentCardProps {
   /** Accepts any content as children */
   children: React.ReactNode;
@@ -45,6 +47,10 @@ interface ContentCardProps {
    * Renders card in visually selected state with appropriate attributes.
    */
   testId?: string;
+  /**
+   * Error state for `toggle` and `button` variants
+   */
+  error?: string;
 }
 
 /**
@@ -58,6 +64,7 @@ const ContentCard = ({
   children,
   testId,
   radiusSize = "s",
+  error,
 }: ContentCardProps) => {
   const isInteractive = ["interactive", "toggle", "button"].some(
     (interactiveKinds) => kind === interactiveKinds,
@@ -68,16 +75,19 @@ const ContentCard = ({
     const props: Record<string, unknown> = {};
     if (isInteractive) {
       props.role = "button";
-      props.onClick = onClick;
       props.tabIndex = "0";
-      props.onKeyUp = (e) => {
-        const { key } = e;
-        // space and Enter should be accepted for both
-        // toggle and button types
-        if (key === "Enter" || key === " ") {
-          onClick(e);
-        }
-      };
+
+      if (!error) {
+        props.onClick = onClick;
+        props.onKeyUp = (e) => {
+          const { key } = e;
+          // space and Enter should be accepted for both
+          // toggle and button types
+          if (key === "Enter" || key === " ") {
+            onClick(e);
+          }
+        };
+      }
     }
     if (isToggle) {
       props["aria-pressed"] = isSelected;
@@ -86,19 +96,25 @@ const ContentCard = ({
   };
 
   return (
-    <div
-      data-testid={testId || "ndsContentCard"}
-      className={cc([
-        "nds-contentCard",
-        `nds-contentCard--${kind}`,
-        `padding--all--${paddingSize}`,
-        `rounded--all--${radiusSize} bgColor--white`,
-        { "button--reset": isInteractive },
-      ])}
-      {...getInteractiveProps()}
-    >
-      {children}
-    </div>
+    <>
+      <div
+        data-testid={testId || "ndsContentCard"}
+        className={cc([
+          "nds-contentCard",
+          `nds-contentCard--${kind}`,
+          `padding--all--${paddingSize}`,
+          `rounded--all--${radiusSize} bgColor--white`,
+          {
+            "button--reset": isInteractive,
+            "nds-contentCard--error": isInteractive && error,
+          },
+        ])}
+        {...getInteractiveProps()}
+      >
+        {children}
+      </div>
+      {error && <Error error={error} marginTop="s" />}
+    </>
   );
 };
 

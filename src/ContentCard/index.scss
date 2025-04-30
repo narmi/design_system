@@ -18,6 +18,7 @@
 .nds-contentCard--button,
 .nds-contentCard--toggle {
   border: 1px solid var(--color-lightGrey) !important;
+
   &:hover,
   &:active,
   &[aria-pressed="true"] {
@@ -31,5 +32,10 @@
       inset: 0;
       background-color: RGBA(var(--theme-rgb-primary), var(--alpha-5));
     }
+  }
+
+  &.nds-contentCard--error {
+    border: 1px solid var(--color-errorDark) !important;
+    cursor: not-allowed;
   }
 }

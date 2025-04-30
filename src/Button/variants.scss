@@ -104,6 +104,7 @@
   color: var(--font-color-primary);
   display: block;
   font-size: var(--font-size-l) !important;
+  overflow: visible !important; // prevent rounded edge cutoff
 
   .nds-button-content {
     margin: 0;

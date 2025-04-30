@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.19.0](https://github.com/narmi/design_system/compare/v4.18.12...v4.19.0) (2025-04-30)
+
+
+### Features
+
+* **ContentCard:** add error prop ([df1dc99](https://github.com/narmi/design_system/commit/df1dc995ae1704166ca7a658fb79a70989deb52d))
+
 ### [4.18.12](https://github.com/narmi/design_system/compare/v4.18.11...v4.18.12) (2025-04-30)
 
 

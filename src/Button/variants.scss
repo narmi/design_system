@@ -46,6 +46,7 @@
   border-radius: 0;
   justify-content: start;
   min-height: unset;
+  overflow: visible !important; // prevent rounded edge cutoff
 
   // Plain and Negative buttons gets a special override to make it semibold.
   // All other buttons inherit their font weight from `sizes` placeholders.

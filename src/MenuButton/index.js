@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import { useLayer } from "react-laag";
@@ -38,12 +38,17 @@ const MenuButton = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuItems = React.Children.toArray(children);
+  const canToggleCloseRef = useRef(isOpen);
+
+  const closeMenu = useCallback(() => {
+    setIsOpen(false);
+    canToggleCloseRef.current = false;
+  }, [canToggleCloseRef]);
+
   const { renderLayer, triggerProps, layerProps } = useLayer({
     isOpen,
     auto: true,
-    onOutsideClick: () => {
-      setIsOpen(false);
-    },
+    onOutsideClick: closeMenu,
     placement: `${side}-${alignment}`,
     container: createUseLayerContainer,
     triggerOffset: offset,
@@ -51,7 +56,7 @@ const MenuButton = ({
 
   const handleKeyUp = ({ key }) => {
     if (key === "Escape" && isOpen) {
-      setIsOpen(false);
+      closeMenu();
     }
   };
 
@@ -72,8 +77,16 @@ const MenuButton = ({
       (item) => labelToItemId(item.props.label) === itemId,
     );
     selectedItem.props.onSelect();
-    setIsOpen(false);
+    closeMenu();
   };
+
+  const pressButton = useCallback(() => {
+    if (canToggleCloseRef.current) {
+      closeMenu();
+    } else {
+      canToggleCloseRef.current = true;
+    }
+  }, [closeMenu]);
 
   return (
     <MenuTrigger
@@ -90,6 +103,7 @@ const MenuButton = ({
         aria-label={label}
         className="button--reset nds-menubutton-ariaButton"
         {...triggerProps}
+        onClick={pressButton}
       >
         {typeof renderTrigger === "function" ? (
           renderTrigger(isOpen)

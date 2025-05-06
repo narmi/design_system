@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.19.2](https://github.com/narmi/design_system/compare/v4.19.1...v4.19.2) (2025-05-06)
+
+
+### Bug Fixes
+
+* **MenuButton:** allow menu toggling ([b75f200](https://github.com/narmi/design_system/commit/b75f20033f49ba5ea90968fa32fae564fc8d6c1e))
+
 ### [4.19.1](https://github.com/narmi/design_system/compare/v4.19.0...v4.19.1) (2025-04-30)
 
 

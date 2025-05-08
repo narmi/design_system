@@ -36,13 +36,19 @@ const config = {
     [
       "semantic-release-npm-deprecate",
       {
-        "deprecations": [
+        deprecations: [
           {
-            "version": "4.18.0 - 4.18.2",
-            "message": "Contains Button component style regression. Please use version 4.18.3 or higher."
-          }
-        ]
-      }
+            version: "4.18.0 - 4.19.1",
+            message:
+              "Contains Button component style regression. Please use version 4.18.3 or higher.",
+          },
+          {
+            version: "4.10.4 - 4.10.6",
+            message:
+              "Contains regressions in portalled, positioned components.",
+          },
+        ],
+      },
     ],
     [
       "@semantic-release/github",

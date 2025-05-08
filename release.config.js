@@ -38,7 +38,7 @@ const config = {
       {
         deprecations: [
           {
-            version: "4.18.0 - 4.19.1",
+            version: "4.18.0 - 4.19.0",
             message:
               "Contains Button component style regression. Please use version 4.19.1 or higher.",
           },

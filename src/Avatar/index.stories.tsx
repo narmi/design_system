@@ -3,8 +3,8 @@ import React from "react";
 import Avatar from "./";
 import Row from "../Row";
 
-export const Overview = ({ initials = "CP", label = "Christian Paz" }) => {
-  return <Avatar initials={initials} label={label} />;
+export const Overview = ({ initials = "CP", label = "Christian Paz", ...otherProps }) => {
+  return <Avatar initials={initials} label={label} {...otherProps} />;
 };
 
 export const WithImage = () => {

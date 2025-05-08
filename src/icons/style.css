@@ -1,6 +1,6 @@
 @font-face {
   font-family: "icomoon";
-  src: url("fonts/icomoon.woff?pfmaat") format("woff");
+  src: url("fonts/icomoon.woff?sjtjsq") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -1034,6 +1034,6 @@
 .narmi-icon-file-text:before {
   content: "\e922";
 }
-.narmi-icon-sparkle:before {
+.narmi-icon-file-text2:before {
   content: "\ea4e";
 }

@@ -1,5 +1,4 @@
 .nds-avatar {
-  color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -23,4 +22,14 @@
   height: rem(40px);
   width: rem(40px);
   font-size: var(--font-size-l);
+}
+
+.nds-avatar--primary {
+  color: white;
+  background-color: var(--theme-primary);
+}
+
+.nds-avatar--tonal {
+  color: var(--theme-primary);
+  background-color: rgba(var(--theme-rgb-primary), var(--alpha-10));
 }

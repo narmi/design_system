@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.20.0](https://github.com/narmi/design_system/compare/v4.19.2...v4.20.0) (2025-05-08)
+
+
+### Features
+
+* **icons:** add Sparkle icon ([d19c5fb](https://github.com/narmi/design_system/commit/d19c5fbca8784d0d8c6118819b68194ad08e3cf3))
+
 ### [4.19.2](https://github.com/narmi/design_system/compare/v4.19.1...v4.19.2) (2025-05-06)
 
 

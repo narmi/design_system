@@ -1,6 +1,6 @@
 @font-face {
   font-family: "icomoon";
-  src: url("fonts/icomoon.woff?xck7wd") format("woff");
+  src: url("fonts/icomoon.woff?hmim6a") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -63,19 +63,15 @@
 }
 .narmi-icon-security:before {
   content: "\ea3b";
-  color: #4c4c4c;
 }
 .narmi-icon-narmi-fat-security:before {
   content: "\ea3b";
-  color: #4c4c4c;
 }
 .narmi-icon-feed:before {
   content: "\ea3c";
-  color: #4c4c4c;
 }
 .narmi-icon-narmi-feed:before {
   content: "\ea3c";
-  color: #4c4c4c;
 }
 .narmi-icon-activity:before {
   content: "\e90d";
@@ -1037,4 +1033,7 @@
 }
 .narmi-icon-file-text:before {
   content: "\e922";
+}
+.narmi-icon-sparkle:before {
+  content: "\ea4e";
 }

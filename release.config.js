@@ -43,7 +43,7 @@ const config = {
               "Contains Button component style regression. Please use version 4.19.1 or higher.",
           },
           {
-            version: "4.10.4 - 4.10.6",
+            version: "4.10.4 - 4.10.5",
             message:
               "Contains regressions in portalled, positioned components.",
           },

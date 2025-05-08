@@ -45,7 +45,7 @@ const config = {
           {
             version: "4.10.4 - 4.10.5",
             message:
-              "Contains regressions in portalled, positioned components.",
+              "Contains stacking context regressions. Use 4.10.6 or higher.",
           },
         ],
       },

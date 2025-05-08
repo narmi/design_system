@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.21.0](https://github.com/narmi/design_system/compare/v4.20.1...v4.21.0) (2025-05-08)
+
+
+### Features
+
+* **colors:** add amethyst, aka AI purple ([d66ce45](https://github.com/narmi/design_system/commit/d66ce451f60acad11d82eef1c5da16a6bd36d1db))
+
 ### [4.20.1](https://github.com/narmi/design_system/compare/v4.20.0...v4.20.1) (2025-05-08)
 
 

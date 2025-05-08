@@ -71,6 +71,8 @@
       "sand800": { "value": "#FCF0E9" },
       "sand": { "value": "{color.narmi.sand500.value}" },
 
+      "amethyst": {"value": "#5514B8"},
+
       "black": { "value": "#333333" },
       "grey": { "value": "#4C4C4C" },
       "mediumGrey": { "value": "#8C8C8C" },

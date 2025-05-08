@@ -40,7 +40,7 @@ const config = {
           {
             version: "4.18.0 - 4.19.1",
             message:
-              "Contains Button component style regression. Please use version 4.18.3 or higher.",
+              "Contains Button component style regression. Please use version 4.19.1 or higher.",
           },
           {
             version: "4.10.4 - 4.10.6",

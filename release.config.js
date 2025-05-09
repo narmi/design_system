@@ -34,17 +34,6 @@ const config = {
       },
     ],
     [
-      "semantic-release-npm-deprecate",
-      {
-        "deprecations": [
-          {
-            "version": "4.18.0 - 4.18.2",
-            "message": "Contains Button component style regression. Please use version 4.18.3 or higher."
-          }
-        ]
-      }
-    ],
-    [
       "@semantic-release/github",
       {
         tarballDir: "pack/*.tgz",

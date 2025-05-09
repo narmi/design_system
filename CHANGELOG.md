@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.22.0](https://github.com/narmi/design_system/compare/v4.21.0...v4.22.0) (2025-05-09)
+
+
+### Features
+
+* **Avatar:** add 'tonal' style variant ([cd36b58](https://github.com/narmi/design_system/commit/cd36b589b74016104d1e884fd6f698054fc788f2))
+
 ## [4.21.0](https://github.com/narmi/design_system/compare/v4.20.1...v4.21.0) (2025-05-08)
 
 

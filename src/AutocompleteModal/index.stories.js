@@ -36,7 +36,28 @@ export const Overview = () => {
 
 export const WithAction = () => {
   const [selectedValue, setSelectedValue] = useState("Unassigned");
+  const [items, setItems] = useState([
+    "Unassigned",
+    "Chris",
+    "Nikhil",
+    "James",
+    "Phil",
+    "Batman",
+    "Reshav",
+    "Ethan",
+    "Xihao",
+    "Alana",
+    "Yaro",
+    "Jeff",
+    "Johnathan",
+  ]);
   const trigger = <span>{selectedValue}</span>;
+
+  const handleAdd = () => {
+    const newItem = "Victor (NEW)";
+    setItems((it) => [...it, newItem]);
+  };
+
   return (
     <div style={{ margin: "8rem" }}>
       <AutocompleteModal
@@ -44,22 +65,17 @@ export const WithAction = () => {
         trigger={trigger}
         onChange={(val) => setSelectedValue(val)}
         footerContent={
-          <Button kind="plain" label="Add a new employee" startIcon="plus" />
+          <Button
+            kind="plain"
+            label="Add a new employee"
+            startIcon="plus"
+            onClick={handleAdd}
+          />
         }
       >
-        <AutocompleteModal.Item value="Unassigned" />
-        <AutocompleteModal.Item value="Chris" />
-        <AutocompleteModal.Item value="Nikhil" />
-        <AutocompleteModal.Item value="James" />
-        <AutocompleteModal.Item value="Phil" />
-        <AutocompleteModal.Item value="Batman" />
-        <AutocompleteModal.Item value="Reshav" />
-        <AutocompleteModal.Item value="Ethan" />
-        <AutocompleteModal.Item value="Xihao" />
-        <AutocompleteModal.Item value="Alana" />
-        <AutocompleteModal.Item value="Yaro" />
-        <AutocompleteModal.Item value="Jeff" />
-        <AutocompleteModal.Item value="Johnathan" />
+        {items.map((it, i) => (
+          <AutocompleteModal.Item key={`${it}-${i}`} value={it} />
+        ))}
       </AutocompleteModal>
     </div>
   );

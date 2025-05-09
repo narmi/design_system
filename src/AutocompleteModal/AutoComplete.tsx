@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import cc from "classcat";
 import { useCombobox } from "downshift";
 import TextInput from "../TextInput";
@@ -45,6 +45,12 @@ const AutoComplete = ({
   footerContent,
 }: AutoCompleteProps) => {
   const [items, setItems] = useState(allItems);
+
+  // update if items change programmatically
+  useEffect(() => {
+    setItems(allItems);
+  }, [setItems, allItems]);
+
   const {
     selectedItem,
     highlightedIndex,

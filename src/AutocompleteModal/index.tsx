@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Item from "./Item";
 import Popover from "../Popover";
 import AutoComplete, { AutoCompleteItem } from "./AutoComplete";
@@ -39,7 +39,7 @@ const AutocompleteModal = ({
   const [selectedItem, setSelectedItem] = useState<React.ReactElement | null>(
     null,
   );
-  const items = React.Children.toArray(children);
+  const items = useMemo(() => React.Children.toArray(children), [children]);
 
   const handleSelection = (item) => {
     setIsOpen(false);

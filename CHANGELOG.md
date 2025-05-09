@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.21.0](https://github.com/narmi/design_system/compare/v4.20.1...v4.21.0) (2025-05-08)
+
+
+### Features
+
+* **colors:** add amethyst, aka AI purple ([d66ce45](https://github.com/narmi/design_system/commit/d66ce451f60acad11d82eef1c5da16a6bd36d1db))
+
+### [4.20.1](https://github.com/narmi/design_system/compare/v4.20.0...v4.20.1) (2025-05-08)
+
+
+### Bug Fixes
+
+* **AutocompleteModal:** rerender list when children change ([073a397](https://github.com/narmi/design_system/commit/073a397d7aa952e69f170094819962082ded4efb))
+
+## [4.20.0](https://github.com/narmi/design_system/compare/v4.19.2...v4.20.0) (2025-05-08)
+
+
+### Features
+
+* **icons:** add Sparkle icon ([d19c5fb](https://github.com/narmi/design_system/commit/d19c5fbca8784d0d8c6118819b68194ad08e3cf3))
+
 ### [4.19.2](https://github.com/narmi/design_system/compare/v4.19.1...v4.19.2) (2025-05-06)
 
 

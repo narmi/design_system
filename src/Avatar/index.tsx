@@ -7,6 +7,8 @@ export interface AvatarProps {
   label: string;
   /** Fixed height and width of the avatar. Default: "s". */
   size?: "xs" | "s" | "m";
+  /** Style variant of avatar */
+  kind?: "primary" | "tonal";
   /** String to display in the avatar. If imgurl is provided, this will be ignored. */
   initials?: string;
   /** Optional: URL of the image to display in the avatar. If provided, initials will be ignored. */
@@ -18,6 +20,7 @@ export interface AvatarProps {
 const Avatar = ({
   label,
   size = "s",
+  kind = "primary",
   initials,
   imgurl,
   linkurl,
@@ -35,8 +38,8 @@ const Avatar = ({
       className={cc([
         "nds-avatar",
         `nds-avatar--${size}`,
+        `nds-avatar--${kind}`,
         "alignChild--center--center",
-        "bgColor--theme--primary",
       ])}
       style={backgroundImage}
       aria-label={label}

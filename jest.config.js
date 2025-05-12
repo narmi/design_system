@@ -1,6 +1,6 @@
 module.exports = {
   moduleFileExtensions: ["js", "json", "jsx", "ts", "tsx"],
-  moduleDirectories: ["node_modules", "src"],
+  moduleDirectories: ["node_modules", "src", "scripts"],
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: ["<rootDir>/setupTests.js"],
   moduleNameMapper: {

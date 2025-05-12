@@ -4,6 +4,8 @@
  *
  * `semantic-release` runs with the following configuration via the `release.yml` github action.
  */
+const { checkVersion } = require("./scripts/manageDeprecations");
+
 const config = {
   branches: ["main"],
   plugins: [
@@ -11,6 +13,12 @@ const config = {
       "@semantic-release/commit-analyzer",
       {
         preset: "conventionalcommits",
+      },
+    ],
+    [
+      "semantic-release-npm-deprecate-old-versions",
+      {
+        rules: [checkVersion],
       },
     ],
     [

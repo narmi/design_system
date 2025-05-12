@@ -102,9 +102,16 @@
 %btn-kind-menu {
   text-align: left;
   color: var(--font-color-primary);
-  display: block;
   font-size: var(--font-size-l) !important;
   overflow: visible !important; // prevent rounded edge cutoff
+  border-radius: 0;
+
+  // We use this button variant in one place, the OLB header.
+  // Legacy styles are also targeting these elements, so the following
+  // flex rules ensure that `a` and `button` buttons are consistent.
+  display: flex !important;
+  align-items: center !important;
+  justify-content: start !important;
 
   .nds-button-content {
     margin: 0;

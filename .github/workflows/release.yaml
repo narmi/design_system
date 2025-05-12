@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - release/NDS-1363-new-plugin
 jobs:
   release:
     name: Release

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.23.1](https://github.com/narmi/design_system/compare/v4.23.0...v4.23.1) (2025-05-12)
+
+
+### Bug Fixes
+
+* **Button:** consistently align 'menu' variant ([67a64d9](https://github.com/narmi/design_system/commit/67a64d9f6e6c5eca849bd45c812cd550491dea80))
+
 ## [4.23.0](https://github.com/narmi/design_system/compare/v4.22.0...v4.23.0) (2025-05-12)
 
 

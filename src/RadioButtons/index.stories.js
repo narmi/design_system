@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import RadioButtons from "./";
+import TextInput from '../TextInput';
 
 const Template = (args) => <RadioButtons {...args} />;
 
@@ -99,6 +100,32 @@ AsRadioButtonsWithDetails.args = {
 };
 
 AsRadioButtonsWithDetails.parameters = {
+  docs: {
+    description: {
+      story:
+        "Renders a radio group styled as a cards. The cards will grow to fill the width of their parent container. Each card can have a `details` property to show additional information when the card is selected.",
+    },
+  },
+};
+
+export const AsRadioButtonsWithChildrenInputDetails = Template.bind({});
+AsRadioButtonsWithChildrenInputDetails.args = {
+  allowChildrenInput: true,
+  options: {
+    OptionA: {
+      value: "A",
+      details: <TextInput label="Option A additional input" />
+    },
+    OptionB: {
+      value: "B",
+      details: <TextInput label="Option B additional input" />
+    },
+    OptionC: { value: "C", details: "Option C details" },
+  },
+  name: "card_options_with_details_input_children",
+};
+
+AsRadioButtonsWithChildrenInputDetails.parameters = {
   docs: {
     description: {
       story:

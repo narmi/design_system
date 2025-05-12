@@ -1,5 +1,5 @@
 // input style shared between variants
-.nds-radiobuttons input {
+.nds-radiobuttons input[type=radio] {
   position: absolute;
   clip: rect(0 0 0 0);
   clip-path: inset(50%);

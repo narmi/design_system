@@ -51,6 +51,11 @@ interface RadioButtonsProps {
   alwaysShowDetails?: boolean;
   /** Optional value for `data-testid` attribute */
   testId?: string;
+  /**
+   * Prevents conflict between the radio option container and children components passed in via `{options: { details }}`.
+   * @default false
+   */
+  allowChildrenInput?: boolean;
 }
 
 /**
@@ -80,6 +85,7 @@ const RadioButtons = ({
   testId,
   error,
   alwaysShowDetails = false,
+  allowChildrenInput = false,
   ...containerProps
 }: RadioButtonsProps) => {
   const isControlled = value !== undefined;
@@ -114,8 +120,8 @@ const RadioButtons = ({
     <>
       <div
         className={`nds-radiobuttons nds-radiobuttons--${kind}`}
-        onChange={handleChange}
         data-testid={testId}
+        {...(allowChildrenInput ? {} : { onChange: handleChange })}
         {...containerProps}
       >
         {Object.entries(options).map(([label, subOptions]) => {
@@ -183,7 +189,11 @@ const RadioButtons = ({
           );
         })}
       </div>
-      <div className={cc([{ "margin--top--s": kind !== "row" && kind !== "row-start" }])}>
+      <div
+        className={cc([
+          { "margin--top--s": kind !== "row" && kind !== "row-start" },
+        ])}
+      >
         <Error error={error} />
       </div>
     </>

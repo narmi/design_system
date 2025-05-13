@@ -16,15 +16,6 @@ const config = {
       },
     ],
     [
-      "semantic-release-npm-deprecate-old-versions",
-      {
-        rules: [
-          checkVersion, // our own custom rule, so we can manage deprecated version ranges
-          "supportAll", // a rule that returns "support" for any version as a fallback
-        ],
-      },
-    ],
-    [
       "@semantic-release/release-notes-generator",
       {
         preset: "conventionalcommits",

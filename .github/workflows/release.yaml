@@ -28,6 +28,13 @@ jobs:
           CI: true
         run: npm run build
 
+      - name: Manage Deprecations
+        if: success()
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm run release:deprecations
+
       - name: Release
         if: success()
         env:

@@ -12,5 +12,17 @@
     "subdued-20-opacity",
     "subdued-10-opacity"
   ],
-  "components": ["Dropdown"]
+  "components": ["Dropdown"],
+  "versions": [
+    {
+      "start": "4.18.0",
+      "end": "4.19.0",
+      "message": "Contains Button component style regression. Please use version 4.19.1 or higher."
+    },
+    {
+      "start": "4.10.4",
+      "end": "4.10.5",
+      "message": "Contains stacking context regressions. Use 4.10.6 or higher."
+    }
+  ]
 }

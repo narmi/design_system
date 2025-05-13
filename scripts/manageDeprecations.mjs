@@ -8,16 +8,20 @@
  */
 import { readFileSync } from "fs";
 import { resolve } from "path";
+import { exec } from "child_process";
 import semver from "semver";
 import checkVersion from "./util/checkVersion.mjs";
 
-const PATH_PKG = resolve(process.cwd(), "./package.json");
+const { name: packageName } = JSON.parse(
+  readFileSync(resolve(process.cwd(), "./package.json")),
+);
 
 const CLI_ARG = process?.argv[2];
-
-/** Current Major version is the only one with "support" */
 let CONFIG = { versions: [] };
-
 if (CLI_ARG) {
   CONFIG = JSON.parse(readFileSync(CLI_ARG));
 }
+
+const main = async () => {};
+
+main();

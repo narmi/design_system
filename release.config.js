@@ -4,8 +4,10 @@
  *
  * `semantic-release` runs with the following configuration via the `release.yml` github action.
  */
+const { checkVersion } = require("./scripts/manageDeprecations");
+
 const config = {
-  branches: ["main"],
+  branches: ["main", "release/NDS-1363-new-plugin"],
   plugins: [
     [
       "@semantic-release/commit-analyzer",

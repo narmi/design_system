@@ -3,6 +3,7 @@ import TableSectionContext from "./util/tableSectionContext";
 import TableLayoutContext from "./util/tableLayoutContext";
 import { isBreakpointSatisfied } from "./util/isBreakpointSatisfied";
 
+// TODO: a lot of this logic belongs in a `./util/hook`
 const Body = ({ children }: { children: React.ReactNode }) => {
   const { currentBreakpoint, colLayout, totalColumns } =
     useContext(TableLayoutContext);
@@ -10,8 +11,9 @@ const Body = ({ children }: { children: React.ReactNode }) => {
   // TODO: find a better fallback via pure fn to determine config key cascade
   let gridTemplateColumns = `repeat(${totalColumns}, 1fr)`;
 
+  // FIXME: we want total number of _visible_ columns for the bp, not all of them
   if (colLayout[currentBreakpoint]) {
-    gridTemplateColumns = colLayout[currentBreakpoint](totalColumns);
+    gridTemplateColumns = colLayout[currentBreakpoint];
   }
 
   // FIXME: we need a pure function that can determine how the keys of the config are resolved against current BP

@@ -4,7 +4,6 @@
 
 .nds-table-body,
 .nds-table-header {
-  outline: 1px dotted pink;
   display: grid;
   grid-auto-rows: auto;
 }
@@ -13,11 +12,13 @@
   border-top: 1px solid black;
   display: grid;
   grid-template-columns: subgrid;
-  column-gap: var(
-    --space-m
-  ); // TODO: probably want this to be small on small screens
+  column-gap: var(--space-s);
   grid-column: 1 / -1; // span entire parent grid
 }
 
 .nds-table-cell {
+  background-color: var(--color-white);
+  color: var(--fontColor-primary);
+  padding: var(--space-xs) var(--space-s);
+  background: lightgoldenrodyellow;
 }

@@ -20,9 +20,9 @@ export type CSSValue = string;
 
 /** For each breakpoint key, a function that returns a valid `grid-template-columns` value */
 export type ColLayoutConfig = {
-  s?: (cols: number) => CSSValue;
-  m?: (cols: number) => CSSValue;
-  l?: (cols: number) => CSSValue;
+  s?: CSSValue;
+  m?: CSSValue;
+  l?: CSSValue;
 };
 
 interface TableProps {
@@ -45,7 +45,7 @@ interface TableProps {
   colLayout?: ColLayoutConfig;
 }
 
-const DEFAULT_COLS = 5;
+export const DEFAULT_COLS = 5;
 
 // By default all columns are shown
 export const defaultColVisibility = [
@@ -63,27 +63,26 @@ const Table = ({
   colLayout = {},
 }: TableProps) => {
   const { m, l } = useBreakpoints();
-  const totalColumns = colVisibility.length;
 
   // This order is important!
   // TODO: extract to `findCurrentFromBreakpoints({}: ViewportBreakpoints )` and unit test
   let currentBreakpoint = "s";
-  if (l) {
-    currentBreakpoint = "l";
-  }
   if (m) {
     currentBreakpoint = "m";
+  }
+  if (l) {
+    currentBreakpoint = "l";
   }
 
   // Invalid CSS passed to any of the breakpoint keys in `colLayout`
   // will fall back to the default `1fr`.
   const validLayouts = Object.fromEntries(
     Object.entries(colLayout).filter(
-      ([, cssValFn]) =>
+      ([, cssVal]) =>
         // In browser environments, the CSS global has a `supports` method intended
         // for feature detection. It also returns false if the property name
         // or value passed in is invalid, acting as a validator.
-        CSS?.supports("grid-template-columns", cssValFn(totalColumns)) ?? true,
+        CSS?.supports("grid-template-columns", cssVal) ?? true,
     ),
   );
 
@@ -92,7 +91,6 @@ const Table = ({
       value={{
         colLayout: validLayouts as ColLayoutConfig,
         colVisibility,
-        totalColumns,
         currentBreakpoint: currentBreakpoint as ViewportBreakpoint,
       }}
     >

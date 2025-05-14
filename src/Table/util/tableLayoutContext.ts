@@ -5,7 +5,6 @@ interface TableLayoutContextProps {
   currentBreakpoint: ViewportBreakpoint;
   colVisibility: ColBreakpoint[];
   colLayout: ColLayoutConfig;
-  totalColumns: number;
 }
 
 /**
@@ -16,11 +15,10 @@ const TableLayoutContext = createContext<TableLayoutContextProps>({
   currentBreakpoint: "l",
   colVisibility: ["*"],
   colLayout: {
-    s: (cols) => `repeat(${cols}, 1fr)`,
-    m: (cols) => `repeat(${cols}, 1fr)`,
-    l: (cols) => `repeat(${cols}, 1fr)`,
+    s: `repeat(auto-fit, 1fr)`,
+    m: `repeat(auto-fit, 1fr)`,
+    l: `repeat(auto-fit, 1fr)`,
   },
-  totalColumns: 1,
 });
 
 export default TableLayoutContext;

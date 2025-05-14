@@ -1,11 +1,11 @@
 import { createContext } from "react";
 import type { ColBreakpoint, ColLayoutConfig, ViewportBreakpoint } from "..";
-import { defaultColLayout, defaultColVisibility } from "..";
 
 interface TableLayoutContextProps {
   currentBreakpoint: ViewportBreakpoint;
-  colVisibility: ColBreakpoint[] | undefined;
+  colVisibility: ColBreakpoint[];
   colLayout: ColLayoutConfig;
+  totalColumns: number;
 }
 
 /**
@@ -14,8 +14,13 @@ interface TableLayoutContextProps {
  */
 const TableLayoutContext = createContext<TableLayoutContextProps>({
   currentBreakpoint: "l",
-  colVisibility: defaultColVisibility,
-  colLayout: defaultColLayout,
+  colVisibility: ["*"],
+  colLayout: {
+    s: (cols) => `repeat(${cols}, 1fr)`,
+    m: (cols) => `repeat(${cols}, 1fr)`,
+    l: (cols) => `repeat(${cols}, 1fr)`,
+  },
+  totalColumns: 1,
 });
 
 export default TableLayoutContext;

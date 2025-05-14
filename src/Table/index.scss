@@ -2,16 +2,19 @@
   // TODO: sensible typographic defaults
 }
 
-.nds-table-row {
+.nds-table-body,
+.nds-table-header {
+  outline: 1px dotted pink;
   display: grid;
+  grid-auto-rows: auto;
+}
 
-  // TODO: should rows expand to fit content?
-  // If not, this should have a fixed value in `rem`
-  grid-template-rows: auto;
+.nds-table-row {
+  border-top: 1px solid black;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1; // span entire parent grid
+}
 
-  // Cells in a row should always flow in columns
-  grid-auto-flow: column;
-
-  // All spacing is inner spacing on Cells
-  gap: 0;
+.nds-table-cell {
 }

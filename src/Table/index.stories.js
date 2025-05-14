@@ -1,69 +1,30 @@
 /* eslint-disable jsx-a11y/anchor-is-valid,react/jsx-key */
-import React, { useState } from "react";
-import Alert from "./";
+import React from "react";
+import Table from "./";
 
-const Template = (args) => <Alert {...args} />;
-
-export const Overview = Template.bind({});
-Overview.args = {
-  isActive: true,
-  children: (
-    <span>
-      I like turtles. Turtles are good. I like turtles. Turtles are good.
-    </span>
-  ),
-};
-
-export const ControllingVisibility = () => {
-  const [isActive, setIsActive] = useState(true);
-  return (
-    <>
-      <div className="margin--bottom">
-        <Alert
-          kind="success"
-          isActive={isActive}
-          onUserDismiss={() => {
-            setIsActive(false);
-          }}
-        >
-          You can dismiss this alert!
-        </Alert>
-      </div>
-      {!isActive && (
-        <button
-          onClick={() => {
-            setIsActive(true);
-          }}
-        >
-          Show alert again
-        </button>
-      )}
-    </>
-  );
-};
-ControllingVisibility.parameters = {
-  docs: {
-    description: {
-      story:
-        "Visibility of an alert should be controlled by the `isActive` prop instead of conditional rendering. This enables every `Alert` to be announced when it becomes active via an `aria-live` region.",
-    },
-  },
-};
-
-export const WithoutDismiss = Template.bind({});
-WithoutDismiss.args = {
-  isActive: true,
-  kind: "error",
-  isDismissable: false,
-  children: (
-    <span>
-      The user can not dismiss this Alert when <code>isDismissable</code> is set
-      to <code>false</code>
-    </span>
-  ),
-};
+export const Overview = () => (
+  <Table colVisibility={[...Array(3).fill("*")]}>
+    <Table.Body>
+      <Table.Row>
+        <Table.Cell>Enzo</Table.Cell>
+        <Table.Cell>$12.45</Table.Cell>
+        <Table.Cell>Orange</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>Basil</Table.Cell>
+        <Table.Cell>$87.23</Table.Cell>
+        <Table.Cell>White</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>Sammy - longer intrinsic width</Table.Cell>
+        <Table.Cell>$12.45</Table.Cell>
+        <Table.Cell>Yellow</Table.Cell>
+      </Table.Row>
+    </Table.Body>
+  </Table>
+);
 
 export default {
-  title: "Components/Alert",
-  component: Alert,
+  title: "Components/Table",
+  component: Table,
 };

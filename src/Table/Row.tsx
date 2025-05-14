@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useContext } from "react";
+import React from "react";
 import type { CellProps } from "./Cell";
-import TableLayoutContext from "./util/tableLayoutContext";
 
 const noop = () => {};
 
@@ -12,13 +11,8 @@ interface TableRowProps {
 }
 
 const Row = ({ children, onRowClick = noop }: TableRowProps) => {
-  const { currentBreakpoint, colLayout } = useContext(TableLayoutContext);
   return (
-    <div
-      role="row"
-      onClick={onRowClick}
-      style={{ gridTemplateColumns: colLayout[currentBreakpoint] }}
-    >
+    <div className="nds-table-row" role="row" onClick={onRowClick}>
       {/**
        * Render children in the order `Row` received them, but inject a
        * `_colIndex` prop so `Cell` can access its visibilty configuration.

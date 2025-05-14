@@ -1,34 +1,32 @@
 import React from "react";
-import cc from "classcat";
-import Row from "../Row";
 
 import useBreakpoints from "../hooks/useBreakpoints";
-
 import Header from "./Header";
 import Body from "./Body";
 import Cell from "./Cell";
 import { default as TableRow } from "./Row";
 import TableLayoutContext from "./util/tableLayoutContext";
 
+/** Minimum size at which to show a column. "*" means "all" */
 export type ColBreakpoint = "*" | "s" | "m" | "l";
+/** Subset of breakpoints that can be returned by `useBreakpoints` hook */
 export type ViewportBreakpoint = "s" | "m" | "l";
-export type ColLayoutConfig = { s: string; m: string; l: string };
 
 /**
  * Valid CSS value for `grid-template-columns`.
+ * TODO: can we use CSS supports validation in a type guard? This provides a documentation hint but no real enforcement
  */
 export type CSSValue = string;
 
+/** For each breakpoint key, a function that returns a valid `grid-template-columns` value */
+export type ColLayoutConfig = {
+  s: (cols: number) => CSSValue;
+  m: (cols: number) => CSSValue;
+  l: (cols: number) => CSSValue;
+};
+
 interface TableProps {
   children: React.ReactNode;
-  /**
-   * Controls column widths by breakpoint.
-   * These are "mobile-first", so "m" means "the browser is at m or larger"
-   *
-   * @usage
-   * Set all cols to 1fr: `{ default: "1fr" }`
-   */
-  colLayout?: ColLayoutConfig;
   /**
    * Array describing when each column should be visible.
    * If omitted, all columns will be visible regardless of viewport size.
@@ -37,40 +35,63 @@ interface TableProps {
    * First and last col always shown, middle col shown at "m" and up:
    * `[ "*", "m", "*" ]`
    */
-  colVisibility?: ColBreakpoint[];
+  colVisibility: ColBreakpoint[];
+  /**
+   * Controls column widths by breakpoint.
+   * These are "mobile-first", so "m" means "the browser is at m or larger"
+   *
+   * @usage
+   * Set all cols to 1fr: `{ default: "1fr" }`
+   */
+  colLayout?: ColLayoutConfig;
 }
+
+const DEFAULT_COLS = 5;
 
 // By default, columns are even at all breakpoints
 export const defaultColLayout = {
-  s: "1fr",
-  m: "1fr",
-  l: "1fr",
+  s: (cols) => `repeat(${cols}, 1fr)`,
+  m: (cols) => `repeat(${cols}, 1fr)`,
+  l: (cols) => `repeat(${cols}, 1fr)`,
 };
 
-// FIXME: is there a better interface for this? This is more of an exploit...
-// By default all columns are shown.
-export const defaultColVisibility = ["*"] as ColBreakpoint[];
+// By default all columns are shown
+export const defaultColVisibility = [
+  ...Array(DEFAULT_COLS).fill("*"),
+] as ColBreakpoint[];
 
+/**
+ * ⚠️ IN ACTIVE DEVELOPMENT ⚠️
+ * Availalbe for import, but not ready for production.
+ * Please leave storybook stories commented out until `@narmi/platform-ui` says so.
+ */
 const Table = ({
   children,
-  colLayout = defaultColLayout,
   colVisibility = defaultColVisibility,
+  colLayout = defaultColLayout,
 }: TableProps) => {
-  // FIXME: find the right place to validate all breakpoints
-  // const hasValidLayout = CSS?.supports("grid-template-columns", colLayout);
   const { m, l } = useBreakpoints();
+  const totalColumns = colVisibility.length;
+
+  // This order is important!
+  // TODO: extract to `findCurrentFromBreakpoints({}: ViewportBreakpoints )` and unit test
   let currentBreakpoint = "s";
   if (l) {
     currentBreakpoint = "l";
-  } else if (m) {
+  }
+  if (m) {
     currentBreakpoint = "m";
   }
 
   // Invalid CSS passed to any of the breakpoint keys in `colLayout`
   // will fall back to the default `1fr`.
   const validLayouts = Object.fromEntries(
-    Object.entries(colLayout).filter(([, cssVal]) =>
-      CSS?.supports("grid-template-columns", cssVal),
+    Object.entries(colLayout).filter(
+      ([, cssValFn]) =>
+        // In browser environments, the CSS global has a `supports` method intended
+        // for feature detection. It also returns false if the property name
+        // or value passed in is invalid, acting as a validator.
+        CSS?.supports("grid-template-columns", cssValFn(totalColumns)) ?? true,
     ),
   );
 
@@ -79,6 +100,7 @@ const Table = ({
       value={{
         colLayout: validLayouts as ColLayoutConfig,
         colVisibility,
+        totalColumns,
         currentBreakpoint: currentBreakpoint as ViewportBreakpoint,
       }}
     >

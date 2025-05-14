@@ -17,10 +17,16 @@ export interface CellProps {
 const Cell = ({ children, _colIndex = 0 }: CellProps) => {
   const { section } = useContext(TableSectionContext);
   const { currentBreakpoint, colVisibility } = useContext(TableLayoutContext);
+
   const role = section === "header" ? "columnheader" : "cell";
   const minBreakpoint = colVisibility[_colIndex];
   const isVisible = isBreakpointSatisfied(minBreakpoint, currentBreakpoint);
-  return isVisible ? <div role={role}>{children}</div> : null;
+
+  return isVisible ? (
+    <div className="nds-table-cell" role={role}>
+      {children}
+    </div>
+  ) : null;
 };
 
 export default Cell;

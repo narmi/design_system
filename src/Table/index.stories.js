@@ -3,22 +3,31 @@ import React from "react";
 import Table from "./";
 
 export const Overview = () => (
-  <Table colVisibility={[...Array(3).fill("*")]}>
+  <Table
+    colVisibility={["*", "m", "*", "m"]}
+    colLayout={{
+      s: () => "2fr 1fr",
+      m: (cols) => `repeat(${cols}, 1fr)`,
+    }}
+  >
     <Table.Body>
       <Table.Row>
         <Table.Cell>Enzo</Table.Cell>
         <Table.Cell>$12.45</Table.Cell>
         <Table.Cell>Orange</Table.Cell>
+        <Table.Cell>Long</Table.Cell>
       </Table.Row>
       <Table.Row>
         <Table.Cell>Basil</Table.Cell>
         <Table.Cell>$87.23</Table.Cell>
         <Table.Cell>White</Table.Cell>
+        <Table.Cell>Compact</Table.Cell>
       </Table.Row>
       <Table.Row>
-        <Table.Cell>Sammy - longer intrinsic width</Table.Cell>
+        <Table.Cell>Cookie - longer intrinsic width</Table.Cell>
         <Table.Cell>$12.45</Table.Cell>
-        <Table.Cell>Yellow</Table.Cell>
+        <Table.Cell>Tan</Table.Cell>
+        <Table.Cell>Wide</Table.Cell>
       </Table.Row>
     </Table.Body>
   </Table>

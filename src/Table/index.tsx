@@ -20,9 +20,9 @@ export type CSSValue = string;
 
 /** For each breakpoint key, a function that returns a valid `grid-template-columns` value */
 export type ColLayoutConfig = {
-  s: (cols: number) => CSSValue;
-  m: (cols: number) => CSSValue;
-  l: (cols: number) => CSSValue;
+  s?: (cols: number) => CSSValue;
+  m?: (cols: number) => CSSValue;
+  l?: (cols: number) => CSSValue;
 };
 
 interface TableProps {
@@ -37,23 +37,15 @@ interface TableProps {
    */
   colVisibility: ColBreakpoint[];
   /**
-   * Controls column widths by breakpoint.
-   * These are "mobile-first", so "m" means "the browser is at m or larger"
+   * Specify a function that returns a `grid-template-columns` CSS value for each breakpoint.
+   * These are "mobile-first", so "m" means "the browser is at m or larger".
    *
-   * @usage
-   * Set all cols to 1fr: `{ default: "1fr" }`
+   * Each function is provided with a `cols` argument.
    */
   colLayout?: ColLayoutConfig;
 }
 
 const DEFAULT_COLS = 5;
-
-// By default, columns are even at all breakpoints
-export const defaultColLayout = {
-  s: (cols) => `repeat(${cols}, 1fr)`,
-  m: (cols) => `repeat(${cols}, 1fr)`,
-  l: (cols) => `repeat(${cols}, 1fr)`,
-};
 
 // By default all columns are shown
 export const defaultColVisibility = [
@@ -68,7 +60,7 @@ export const defaultColVisibility = [
 const Table = ({
   children,
   colVisibility = defaultColVisibility,
-  colLayout = defaultColLayout,
+  colLayout = {},
 }: TableProps) => {
   const { m, l } = useBreakpoints();
   const totalColumns = colVisibility.length;

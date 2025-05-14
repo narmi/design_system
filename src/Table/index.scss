@@ -13,6 +13,9 @@
   border-top: 1px solid black;
   display: grid;
   grid-template-columns: subgrid;
+  column-gap: var(
+    --space-m
+  ); // TODO: probably want this to be small on small screens
   grid-column: 1 / -1; // span entire parent grid
 }
 

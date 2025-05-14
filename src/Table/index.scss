@@ -1,0 +1,17 @@
+.nds-table {
+  // TODO: sensible typographic defaults
+}
+
+.nds-table-row {
+  display: grid;
+
+  // TODO: should rows expand to fit content?
+  // If not, this should have a fixed value in `rem`
+  grid-template-rows: auto;
+
+  // Cells in a row should always flow in columns
+  grid-auto-flow: column;
+
+  // All spacing is inner spacing on Cells
+  gap: 0;
+}

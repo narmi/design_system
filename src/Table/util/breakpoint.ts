@@ -12,8 +12,7 @@ export const isBreakpointSatisfied = (
   minRequired: ColBreakpoint,
   current: OrderedBreakpoint,
 ): boolean => {
-  // For columns set as "*", OR if there's an upstream erorr,
-  // default to always showing the column
+  // For columns set as "*" or undefined, default to showing the column
   if (minRequired === "*" || minRequired === undefined) {
     return true;
   }

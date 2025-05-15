@@ -1,18 +1,35 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from "react";
+import cc from "classcat";
 import type { CellProps } from "./Cell";
-
-const noop = () => {};
 
 interface TableRowProps {
   children: React.ReactNode;
   onRowClick: () => void;
 }
 
-const Row = ({ children, onRowClick = noop }: TableRowProps) => {
+const Row = ({ children, onRowClick }: TableRowProps) => {
+  const isInteractive = typeof onRowClick === "function";
+
+  const handleRowClick = () => {
+    if (isInteractive) {
+      onRowClick();
+    }
+  };
+
   return (
-    <div className="nds-table-row" role="row" onClick={onRowClick}>
+    <div
+      className={cc([
+        "nds-table-row",
+        {
+          "nds-table-row--interactive": isInteractive,
+        },
+      ])}
+      role="row"
+      // FIXME: make this keyboard accessible
+      onClick={handleRowClick}
+    >
       {/**
        * Render children in the order `Row` received them, but inject a
        * `_colIndex` prop so `Cell` can access its visibilty configuration.

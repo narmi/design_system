@@ -1,4 +1,4 @@
-import { isBreakpointSatisfied } from "./isBreakpointSatisfied";
+import { isBreakpointSatisfied } from "./breakpoint";
 
 describe("isBreakpointSatisfied", () => {
   it("should always return true with minRequired is a wildcard", () => {

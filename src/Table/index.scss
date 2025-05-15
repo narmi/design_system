@@ -1,24 +1,40 @@
-.nds-table {
-  // TODO: sensible typographic defaults
-}
-
 .nds-table-body,
 .nds-table-header {
   display: grid;
   grid-auto-rows: auto;
+  row-gap: 0;
+}
+
+.nds-table-body {
+  background-color: var(--color-white);
 }
 
 .nds-table-row {
-  border-top: 1px solid black;
   display: grid;
   grid-template-columns: subgrid;
-  column-gap: var(--space-s);
   grid-column: 1 / -1; // span entire parent grid
+  height: rem(48px);
+  align-items: center;
+
+  & + .nds-table-row {
+    border-top: 1px solid var(--border-color-default);
+  }
+
+  &--interactive:hover,
+  &--interactive:active {
+    cursor: pointer;
+    background-color: rgba(
+      var(--theme-rgb-primary),
+      var(--alpha-10)
+    ) !important;
+  }
 }
 
 .nds-table-cell {
-  background-color: var(--color-white);
-  color: var(--fontColor-primary);
-  padding: var(--space-xs) var(--space-s);
-  background: lightgoldenrodyellow;
+  padding: var(--space-xxs) var(--space-xs);
+  overflow: hidden;
+
+  // TODO: optional - we probably want to leave this to the consumer
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { isBreakpointSatisfied } from "./util/isBreakpointSatisfied";
+import { isBreakpointSatisfied } from "./util/breakpoint";
 import TableSectionContext from "./util/tableSectionContext";
 import TableLayoutContext from "./util/tableLayoutContext";
 

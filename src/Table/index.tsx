@@ -6,7 +6,9 @@ import Body from "./Body";
 import Cell from "./Cell";
 import { default as TableRow } from "./Row";
 import TableLayoutContext from "./util/tableLayoutContext";
+import { isBreakpointSatisfied } from "./util/breakpoint";
 
+// FIXME: rename ColBreakpoint -> ColMinBreakpoint
 /** Minimum size at which to show a column. "*" means "all" */
 export type ColBreakpoint = "*" | "s" | "m" | "l";
 /** Subset of breakpoints that can be returned by `useBreakpoints` hook */
@@ -18,11 +20,12 @@ export type ViewportBreakpoint = "s" | "m" | "l";
  */
 export type CSSValue = string;
 
-/** For each breakpoint key, a function that returns a valid `grid-template-columns` value */
+/** For each breakpoint key, a valid `grid-template-columns` value */
 export type ColLayoutConfig = {
-  s?: CSSValue;
-  m?: CSSValue;
-  l?: CSSValue;
+  // FIXME: we may want a "default" here after all. S to M is quite a big jump
+  s: CSSValue;
+  m: CSSValue;
+  l: CSSValue;
 };
 
 interface TableProps {
@@ -74,9 +77,21 @@ const Table = ({
     currentBreakpoint = "l";
   }
 
-  // Invalid CSS passed to any of the breakpoint keys in `colLayout`
-  // will fall back to the default `1fr`.
-  const validLayouts = Object.fromEntries(
+  const visibleCols: number = colVisibility.filter(
+    (minRequired: ColBreakpoint) =>
+      isBreakpointSatisfied(
+        minRequired,
+        currentBreakpoint as ViewportBreakpoint,
+      ),
+  ).length;
+
+  const defaultLayout = {
+    s: `repeat(${visibleCols}, 1fr)`,
+    m: `repeat(${visibleCols}, 1fr)`,
+    l: `repeat(${visibleCols}, 1fr)`,
+  };
+
+  const validLayoutsFromProps = Object.fromEntries(
     Object.entries(colLayout).filter(
       ([, cssVal]) =>
         // In browser environments, the CSS global has a `supports` method intended
@@ -89,7 +104,10 @@ const Table = ({
   return (
     <TableLayoutContext.Provider
       value={{
-        colLayout: validLayouts as ColLayoutConfig,
+        colLayout: {
+          ...defaultLayout,
+          ...validLayoutsFromProps,
+        } as ColLayoutConfig,
         colVisibility,
         currentBreakpoint: currentBreakpoint as ViewportBreakpoint,
       }}

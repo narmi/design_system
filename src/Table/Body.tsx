@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import TableSectionContext from "./util/tableSectionContext";
 import TableLayoutContext from "./util/tableLayoutContext";
-import { isBreakpointSatisfied } from "./util/isBreakpointSatisfied";
+import { isBreakpointSatisfied } from "./util/breakpoint";
 
 // TODO: a lot of this logic belongs in a `./util/hook`
 const Body = ({ children }: { children: React.ReactNode }) => {

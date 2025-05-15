@@ -63,7 +63,7 @@ export const Overview = () => (
         colLayout={{
           s: "1fr max-content max-content",
           m: "1fr max-content max-content",
-          l: "minmax(300px, 1fr) minmax(min-content, 1fr) max-content",
+          l: "minmax(300px, 1fr) minmax(max-content, 1fr) max-content",
         }}
       >
         <Table.Body>
@@ -130,6 +130,14 @@ export const Overview = () => (
           l: "repeat(4, 1fr) min-content", // [Cat Name (1)] [Amount (2)] [Color (3)] [Shape (4)] [Edit]
         }}
       >
+        <Table.Header>
+          <Table.Row>
+            <Table.Cell>Cat Name</Table.Cell>
+            <Table.Cell>Amount</Table.Cell>
+            <Table.Cell>Color</Table.Cell>
+            <Table.Cell>Shape</Table.Cell>
+          </Table.Row>
+        </Table.Header>
         <Table.Body>
           <Table.Row>
             <Table.Cell>Enzo</Table.Cell>

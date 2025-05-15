@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { isBreakpointSatisfied } from "./util/breakpoint";
 import TableSectionContext from "./util/tableSectionContext";
-import TableLayoutContext from "./util/tableLayoutContext";
+import ColVisibilityContext from "./util/colVisibilityContext";
 
 export interface CellProps {
   children: React.ReactNode;
@@ -18,7 +18,7 @@ export interface CellProps {
 
 const Cell = ({ children, textAlign = "start", _colIndex = 0 }: CellProps) => {
   const { section } = useContext(TableSectionContext);
-  const { currentBreakpoint, colVisibility } = useContext(TableLayoutContext);
+  const { currentBreakpoint, colVisibility } = useContext(ColVisibilityContext);
 
   const role = section === "header" ? "columnheader" : "cell";
   const minBreakpoint = colVisibility[_colIndex];

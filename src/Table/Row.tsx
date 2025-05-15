@@ -27,7 +27,6 @@ const Row = ({ children, onRowClick }: TableRowProps) => {
         },
       ])}
       role="row"
-      // FIXME: make this keyboard accessible
       onClick={handleRowClick}
     >
       {/**

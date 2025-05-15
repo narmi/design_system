@@ -1,4 +1,4 @@
-import type { ColBreakpoint } from "..";
+import type { ColBreakpoint, ViewportBreakpoint } from "..";
 
 const breakpointOrder = ["s", "m", "l"] as const;
 type OrderedBreakpoint = (typeof breakpointOrder)[number];
@@ -21,4 +21,22 @@ export const isBreakpointSatisfied = (
     minRequired as OrderedBreakpoint,
   );
   return currentIndex >= requiredIndex;
+};
+
+/**
+ * Returns a breakpoint name based on current set of truthy/falsy
+ * keys returned from our matchMedia hook, useBreakpoints()
+ */
+export const findCurrentFromBreakpoints = ({
+  m,
+  l,
+}: Record<string, boolean>) => {
+  let currentBreakpoint = "s";
+  if (m) {
+    currentBreakpoint = "m";
+  }
+  if (l) {
+    currentBreakpoint = "l";
+  }
+  return currentBreakpoint;
 };

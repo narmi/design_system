@@ -1,10 +1,15 @@
-// FIXME: we probably want to hoist this to `nds-table`,
-// and use these elements as a "fall through" subgrid to nest
-// rows into
+.nds-table {
+  display: grid;
+  grid-auto-rows: auto;
+  row-gap: 0;
+}
+
 .nds-table-body,
 .nds-table-header {
   display: grid;
-  grid-auto-rows: auto;
+  grid-auto-rows: subgrid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1; // participate in all parent columns
   row-gap: 0;
 }
 
@@ -16,7 +21,7 @@
 .nds-table-row {
   display: grid;
   grid-template-columns: subgrid;
-  grid-column: 1 / -1; // span entire parent grid
+  grid-column: 1 / -1; // participate in all parent columns
   align-items: center;
 
   // rowDensity variants
@@ -51,7 +56,16 @@
   padding: var(--space-xxs) var(--space-xs);
   overflow: hidden;
 
-  // TODO: optional - we probably want to leave this to the consumer
+  // default wrapping behavior
   white-space: nowrap;
   text-overflow: ellipsis;
+
+  // header cells
+  &[role="columnheader"] {
+    font-weight: bold;
+    font-size: var(--font-size-s);
+    text-transform: uppercase;
+    color: var(--font-color-primary);
+    text-overflow: unset;
+  }
 }

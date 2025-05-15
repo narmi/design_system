@@ -6,12 +6,15 @@ import Header from "./Header";
 import Body from "./Body";
 import Cell from "./Cell";
 import { default as TableRow } from "./Row";
-import TableLayoutContext from "./util/tableLayoutContext";
-import { isBreakpointSatisfied } from "./util/breakpoint";
+import ColVisibilityContext from "./util/colVisibilityContext";
+import {
+  findCurrentFromBreakpoints,
+  isBreakpointSatisfied,
+} from "./util/breakpoint";
+import { columnTemplateFromBreakpoints } from "./util/grid";
 
-// FIXME: rename ColBreakpoint -> ColMinBreakpoint
 /** Minimum size at which to show a column. "*" means "all" */
-export type ColBreakpoint = "*" | "s" | "m" | "l";
+export type ColMinBreakpoint = "*" | "s" | "m" | "l";
 /** Subset of breakpoints that can be returned by `useBreakpoints` hook */
 export type ViewportBreakpoint = "s" | "m" | "l";
 
@@ -23,7 +26,7 @@ export type CSSValue = string;
 
 /** For each breakpoint key, a valid `grid-template-columns` value */
 export type ColLayoutConfig = {
-  // FIXME: we may want a "default" here after all. S to M is quite a big jump
+  // TODO: we may want a "default" here after all. S to M is quite a big jump
   s: CSSValue;
   m: CSSValue;
   l: CSSValue;
@@ -39,7 +42,7 @@ interface TableProps {
    * First and last col always shown, middle col shown at "m" and up:
    * `[ "*", "m", "*" ]`
    */
-  colVisibility: ColBreakpoint[];
+  colVisibility: ColMinBreakpoint[];
   /**
    * Specify a function that returns a `grid-template-columns` CSS value for each breakpoint.
    * These are "mobile-first", so "m" means "the browser is at m or larger".
@@ -55,7 +58,7 @@ export const DEFAULT_COLS = 5;
 // By default all columns are shown
 export const defaultColVisibility = [
   ...Array(DEFAULT_COLS).fill("*"),
-] as ColBreakpoint[];
+] as ColMinBreakpoint[];
 
 /**
  * ⚠️ IN ACTIVE DEVELOPMENT ⚠️
@@ -69,19 +72,10 @@ const Table = ({
   rowDensity = "default",
 }: TableProps) => {
   const { m, l } = useBreakpoints();
-
-  // This order is important!
-  // TODO: extract to `findCurrentFromBreakpoints({}: ViewportBreakpoints )` and unit test
-  let currentBreakpoint = "s";
-  if (m) {
-    currentBreakpoint = "m";
-  }
-  if (l) {
-    currentBreakpoint = "l";
-  }
+  const currentBreakpoint = findCurrentFromBreakpoints({ m, l });
 
   const visibleCols: number = colVisibility.filter(
-    (minRequired: ColBreakpoint) =>
+    (minRequired: ColMinBreakpoint) =>
       isBreakpointSatisfied(
         minRequired,
         currentBreakpoint as ViewportBreakpoint,
@@ -104,25 +98,33 @@ const Table = ({
     ),
   );
 
+  const finalLayout = { ...defaultLayout, ...validLayoutsFromProps };
+  const gridTemplateColumns = columnTemplateFromBreakpoints(
+    currentBreakpoint as ViewportBreakpoint,
+    finalLayout,
+    visibleCols,
+  );
+
   return (
-    <TableLayoutContext.Provider
+    <ColVisibilityContext.Provider
       value={{
-        colLayout: {
-          ...defaultLayout,
-          ...validLayoutsFromProps,
-        } as ColLayoutConfig,
         colVisibility,
         currentBreakpoint: currentBreakpoint as ViewportBreakpoint,
-        visibleCols,
       }}
     >
       <div
         role="table"
         className={cc(["nds-table", `nds-table--${rowDensity}`])}
+        /**
+         * We apply a CSS value for grid-tempalte-columns on the root
+         * of this table component, so the grid column tracks may be
+         * shared among all rows via `subgrid`.
+         */
+        style={{ gridTemplateColumns }}
       >
         {children}
       </div>
-    </TableLayoutContext.Provider>
+    </ColVisibilityContext.Provider>
   );
 };
 

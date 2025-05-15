@@ -2,7 +2,7 @@ import type { ColLayoutConfig, CSSValue, ViewportBreakpoint } from "..";
 
 /**
  * Determine the final `grid-template-columns` value to apply
- * to a rowgroup element shit.
+ * to a rowgroup element.
  */
 export const columnTemplateFromBreakpoints = (
   currentBreakpoint: ViewportBreakpoint,

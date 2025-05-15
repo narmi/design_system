@@ -7,8 +7,8 @@ describe("isBreakpointSatisfied", () => {
     expect(isBreakpointSatisfied("*", "l")).toBe(true);
   });
   it("should return false when minRequired is below current breakpoint", () => {
-    expect(isBreakpointSatisfied("s", "m")).toBe(false);
-    expect(isBreakpointSatisfied("m", "l")).toBe(false);
+    expect(isBreakpointSatisfied("m", "s")).toBe(false);
+    expect(isBreakpointSatisfied("l", "m")).toBe(false);
   });
   it("should return true when viewport is larger than minRequired", () => {
     expect(isBreakpointSatisfied("s", "m")).toBe(true);

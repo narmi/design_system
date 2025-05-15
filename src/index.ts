@@ -99,6 +99,7 @@ export {
   Sidebar,
   Spinner,
   SplitButton,
+  Table,
   Tabs,
   Tag,
   TextInput,

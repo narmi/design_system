@@ -1,3 +1,6 @@
+// FIXME: we probably want to hoist this to `nds-table`,
+// and use these elements as a "fall through" subgrid to nest
+// rows into
 .nds-table-body,
 .nds-table-header {
   display: grid;
@@ -7,19 +10,33 @@
 
 .nds-table-body {
   background-color: var(--color-white);
+  border-radius: var(--border-radius-default);
 }
 
 .nds-table-row {
   display: grid;
   grid-template-columns: subgrid;
   grid-column: 1 / -1; // span entire parent grid
-  height: rem(48px);
   align-items: center;
 
+  // rowDensity variants
+  height: rem(64px);
+  .nds-table--compact & {
+    height: rem(48px);
+  }
+
+  // Dividers and rounding
   & + .nds-table-row {
     border-top: 1px solid var(--border-color-default);
   }
+  &:first-of-type {
+    border-radius: var(--border-radius-default) var(--border-radius-default) 0 0;
+  }
+  &:last-of-type {
+    border-radius: 0 0 var(--border-radius-default) var(--border-radius-default);
+  }
 
+  // Clickable rows
   &--interactive:hover,
   &--interactive:active {
     cursor: pointer;

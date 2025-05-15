@@ -10,7 +10,6 @@ import React from "react";
 import Table from "./";
 import MenuButton from "../MenuButton";
 import Checkbox from "../Checkbox";
-import Select from "../Select";
 
 export const Overview = () => (
   <div className="padding--all bgColor--blueGrey">
@@ -200,10 +199,11 @@ export const Specimen = () => (
                 <Table.Cell>{v}</Table.Cell>
               ))}
             <Table.Cell>
-              <Select label="idk">
-                <Select.Item value="something" />
-                <Select.Item value="something else" />
-              </Select>
+              <MenuButton label="Row actions">
+                <MenuButton.Item value="edit" label="Edit" />
+                <MenuButton.Item value="delete" label="Delete" />
+                <MenuButton.Item value="report" label="Report" />
+              </MenuButton>
             </Table.Cell>
           </Table.Row>
         ))}

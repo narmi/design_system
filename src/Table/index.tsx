@@ -1,4 +1,5 @@
 import React from "react";
+import cc from "classcat";
 
 import useBreakpoints from "../hooks/useBreakpoints";
 import Header from "./Header";
@@ -46,6 +47,7 @@ interface TableProps {
    * Each function is provided with a `cols` argument.
    */
   colLayout?: ColLayoutConfig;
+  rowDensity?: "default" | "compact";
 }
 
 export const DEFAULT_COLS = 5;
@@ -63,7 +65,8 @@ export const defaultColVisibility = [
 const Table = ({
   children,
   colVisibility = defaultColVisibility,
-  colLayout = {},
+  colLayout = { s: "auto", m: "auto", l: "auto" },
+  rowDensity = "default",
 }: TableProps) => {
   const { m, l } = useBreakpoints();
 
@@ -110,9 +113,15 @@ const Table = ({
         } as ColLayoutConfig,
         colVisibility,
         currentBreakpoint: currentBreakpoint as ViewportBreakpoint,
+        visibleCols,
       }}
     >
-      <div role="table">{children}</div>
+      <div
+        role="table"
+        className={cc(["nds-table", `nds-table--${rowDensity}`])}
+      >
+        {children}
+      </div>
     </TableLayoutContext.Provider>
   );
 };

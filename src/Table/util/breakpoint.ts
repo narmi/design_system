@@ -1,4 +1,4 @@
-import type { ColBreakpoint, ViewportBreakpoint } from "..";
+import type { ColMinBreakpoint } from "..";
 
 const breakpointOrder = ["s", "m", "l"] as const;
 type OrderedBreakpoint = (typeof breakpointOrder)[number];
@@ -9,7 +9,7 @@ type OrderedBreakpoint = (typeof breakpointOrder)[number];
  * (e.g. "l" satisfies "m")
  */
 export const isBreakpointSatisfied = (
-  minRequired: ColBreakpoint,
+  minRequired: ColMinBreakpoint,
   current: OrderedBreakpoint,
 ): boolean => {
   // For columns set as "*" or undefined, default to showing the column

@@ -4,7 +4,7 @@ import React from "react";
 import cc from "classcat";
 import type { CellProps } from "./Cell";
 
-interface TableRowProps {
+export interface TableRowProps {
   children: React.ReactNode;
   onRowClick: () => void;
 }

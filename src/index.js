@@ -39,6 +39,7 @@ import Slider from "./Slider";
 import Snackbar from "./Snackbar";
 import Spinner from "./Spinner";
 import SplitButton from "./SplitButton";
+import Table from "./Table";
 import Tabs from "./Tabs";
 import Tag from "./Tag";
 import TextInput from "./TextInput";
@@ -92,6 +93,7 @@ export {
   Snackbar,
   Spinner,
   SplitButton,
+  Table,
   Tabs,
   Tag,
   TextInput,

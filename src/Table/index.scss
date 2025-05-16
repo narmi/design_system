@@ -1,0 +1,71 @@
+.nds-table {
+  display: grid;
+  grid-auto-rows: auto;
+  row-gap: 0;
+}
+
+.nds-table-body,
+.nds-table-header {
+  display: grid;
+  grid-auto-rows: subgrid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1; // participate in all parent columns
+  row-gap: 0;
+}
+
+.nds-table-body {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-default);
+}
+
+.nds-table-row {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1; // participate in all parent columns
+  align-items: center;
+
+  // rowDensity variants
+  height: rem(64px);
+  .nds-table--compact & {
+    height: rem(48px);
+  }
+
+  // Dividers and rounding
+  & + .nds-table-row {
+    border-top: 1px solid var(--border-color-default);
+  }
+  &:first-of-type {
+    border-radius: var(--border-radius-default) var(--border-radius-default) 0 0;
+  }
+  &:last-of-type {
+    border-radius: 0 0 var(--border-radius-default) var(--border-radius-default);
+  }
+
+  // Clickable rows
+  &--interactive:hover,
+  &--interactive:active {
+    cursor: pointer;
+    background-color: rgba(
+      var(--theme-rgb-primary),
+      var(--alpha-10)
+    ) !important;
+  }
+}
+
+.nds-table-cell {
+  padding: var(--space-xxs) var(--space-xs);
+  overflow: hidden;
+
+  // default wrapping behavior
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  // header cells
+  &[role="columnheader"] {
+    font-weight: bold;
+    font-size: var(--font-size-s);
+    text-transform: uppercase;
+    color: var(--font-color-primary);
+    text-overflow: unset;
+  }
+}

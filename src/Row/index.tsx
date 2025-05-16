@@ -11,7 +11,7 @@ export interface RowProps {
    */
   alignItems?: "top" | "center";
   /** Controls vertical alignment of items within the row */
-  justifyContent?: "start" | "end" | "space-between";
+  justifyContent?: "start" | "end" | "space-between" | "center";
   /** Controls horizontal flex justification */
   gapSize?: "xxs" | "xs" | "s" | "m" | "l" | "xl" | "none";
   /** The html element to render as the root node of `Row` */
@@ -42,7 +42,7 @@ const _getRowStyle = (
   } = {
     gap: `var(--space-${gapSize})`,
     alignItems: "flex-start",
-    justifyContent: `flex-${justifyContent}`,
+    justifyContent: justifyContent === "center" ? justifyContent : `flex-${justifyContent}`,
   };
   if (gapSize && gapSize === "none") {
     result.gap = "0";

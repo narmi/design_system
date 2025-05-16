@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.24.0](https://github.com/narmi/design_system/compare/v4.23.2...v4.24.0) (2025-05-16)
+
+
+### Features
+
+* **Row:** support  for  prop ([671daed](https://github.com/narmi/design_system/commit/671daed956df0494e6ee95f6e9b58ba9864a13cb))
+
 ### [4.23.2](https://github.com/narmi/design_system/compare/v4.23.1...v4.23.2) (2025-05-14)
 
 

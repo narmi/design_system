@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.23.2](https://github.com/narmi/design_system/compare/v4.23.1...v4.23.2) (2025-05-14)
+
+
+### Bug Fixes
+
+* **icons:** update TS types for icons ([8f58a71](https://github.com/narmi/design_system/commit/8f58a71b3256b8f2d649804e9a9317a0abe744b8))
+
 ### [4.23.1](https://github.com/narmi/design_system/compare/v4.23.0...v4.23.1) (2025-05-12)
 
 

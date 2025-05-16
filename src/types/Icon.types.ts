@@ -338,4 +338,5 @@ export type IconName =
 	| "office"
 	| "file-text"
 	| "sparkle"
+	| "filter-3"
 ;

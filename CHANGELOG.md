@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.24.1](https://github.com/narmi/design_system/compare/v4.24.0...v4.24.1) (2025-05-19)
+
+
+### Bug Fixes
+
+* linting cleanup ([278de70](https://github.com/narmi/design_system/commit/278de70d188c41cabf2cf2d4c618fa4fe60d3bdf))
+
 ## [4.24.0](https://github.com/narmi/design_system/compare/v4.23.2...v4.24.0) (2025-05-16)
 
 

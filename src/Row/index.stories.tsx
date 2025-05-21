@@ -4,6 +4,8 @@ import React from "react";
 import Button from "../Button";
 import Row from "./";
 import RowItem from "./RowItem";
+import TextInput from "../TextInput";
+import IconButton from "../IconButton";
 
 const Template = (args) => (
   <div className="nds-typography">
@@ -114,6 +116,53 @@ DebugView.parameters = {
   },
 };
 
+export const Alignment = () => (
+  <div className="nds-typography">
+    <Row alignItems="center">
+      <Row.Item>
+        <TextInput label="Search" />
+      </Row.Item>
+      <Row.Item shrink>
+        <IconButton
+          type="button"
+          kind="action"
+          label="Default Action Button"
+          name="x"
+        />
+      </Row.Item>
+    </Row>
+  </div>
+);
+Alignment.parameters = {
+  docs: {
+    description: {
+      story:
+        "By default, a Row aligns items to top (flex-start). To center items in a `Row`, pass `alignItems='center'`",
+    },
+  },
+};
+
+export const JustifyingContent = () => (
+  <div className="nds-typography">
+    <Row justifyContent="end" alignItems="center">
+      <Row.Item shrink>
+        <Button kind="plain">Cancel</Button>
+      </Row.Item>
+      <Row.Item shrink>
+        <Button>Continue</Button>
+      </Row.Item>
+    </Row>
+  </div>
+);
+JustifyingContent.parameters = {
+  docs: {
+    description: {
+      story:
+        "If a Row contains only shrink items, they will be justified to `flex-start` by default. To right-align them, set the `justifyContent` prop to `end`.",
+    },
+  },
+};
+
 export const SectionHeaderExample = () => (
   <div className="nds-typography">
     <Row alignItems="center">
@@ -138,27 +187,6 @@ SectionHeaderExample.parameters = {
     description: {
       story:
         "The first `Row.Item` fills the space while the last two shrink to the width of the links. The `alignItems` prop is used to vertically center the row item content.",
-    },
-  },
-};
-
-export const JustifyingContent = () => (
-  <div className="nds-typography">
-    <Row justifyContent="end" alignItems="center">
-      <Row.Item shrink>
-        <Button kind="plain">Cancel</Button>
-      </Row.Item>
-      <Row.Item shrink>
-        <Button>Continue</Button>
-      </Row.Item>
-    </Row>
-  </div>
-);
-JustifyingContent.parameters = {
-  docs: {
-    description: {
-      story:
-        "If a Row contains only shrink items, they will be justified to `flex-start` by default. To right-align them, set the `justifyContent` prop to `end`.",
     },
   },
 };

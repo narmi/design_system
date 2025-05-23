@@ -1,10 +1,10 @@
 
-> @narmi/design_system@4.19.2 build-storybook
-> storybook build --output-dir=/var/folders/x6/hxr3w7yj1rx2qqdppt_fxp4r0000gn/T/chromatic--78586-HYeOgoLKa2VD --webpack-stats-json=/var/folders/x6/hxr3w7yj1rx2qqdppt_fxp4r0000gn/T/chromatic--78586-HYeOgoLKa2VD
+> @narmi/design_system@4.24.1 build-storybook
+> storybook build --output-dir=/var/folders/x6/hxr3w7yj1rx2qqdppt_fxp4r0000gn/T/chromatic--41509-4X7Jcs50FIWC --webpack-stats-json=/var/folders/x6/hxr3w7yj1rx2qqdppt_fxp4r0000gn/T/chromatic--41509-4X7Jcs50FIWC
 
-[1m@storybook/core v8.6.11
+[1m@storybook/core v8.6.12
 [22m
-info => Cleaning outputDir: [36m../../../../var/folders/x6/hxr3w7yj1rx2qqdppt_fxp4r0000gn/T/chromatic--78586-HYeOgoLKa2VD[39m
+info => Cleaning outputDir: [36m../../../../var/folders/x6/hxr3w7yj1rx2qqdppt_fxp4r0000gn/T/chromatic--41509-4X7Jcs50FIWC[39m
 info => Loading presets
 WARN The "@storybook/addon-mdx-gfm" addon is meant as a migration assistant for Storybook 8.0; and will likely be removed in a future version.
 WARN It's recommended you read this document:
@@ -14,7 +14,7 @@ WARN Once you've made the necessary changes, you can remove the addon from your 
 info Found existing addon {"name":"@storybook/addon-docs","options":{"transcludeMarkdown":true}}, skipping.
 info Found existing addon {"name":"@storybook/addon-docs","options":{"transcludeMarkdown":true}}, skipping.
 info => Building manager..
-info => Manager built ([38;2;181;126;229m83 ms[39m)
+info => Manager built ([38;2;181;126;229m103 ms[39m)
 info => Building preview..
 info => Using implicit CSS loaders
 info => Using default Webpack5 setup
@@ -37,19 +37,19 @@ WARN Should not import the named export 'padding' (imported as 'paddingHelpers')
 WARN asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
 WARN This can impact web performance.
 WARN Assets: 
-WARN   main.a87d3f12.iframe.bundle.js (618 KiB)
-WARN   icons-Icons-stories.f311e963.iframe.bundle.js (459 KiB)
+WARN   main.786437ea.iframe.bundle.js (624 KiB)
+WARN   icons-Icons-stories.9c246734.iframe.bundle.js (473 KiB)
 WARN   8609.2b1c56b4.iframe.bundle.js (561 KiB)
-WARN   154.a7676344.iframe.bundle.js (941 KiB)
+WARN   4576.df60a523.iframe.bundle.js (937 KiB)
 WARN   5001.d6b95e31.iframe.bundle.js (644 KiB)
-WARN   5280.d35a665c.iframe.bundle.js (451 KiB)
+WARN   5280.a3f01e59.iframe.bundle.js (464 KiB)
 WARN entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
 WARN Entrypoints:
 WARN   main (1.53 MiB)
-WARN       runtime~main.a0bf9f1b.iframe.bundle.js
-WARN       154.a7676344.iframe.bundle.js
-WARN       main.a87d3f12.iframe.bundle.js
+WARN       runtime~main.a2e06bdb.iframe.bundle.js
+WARN       4576.df60a523.iframe.bundle.js
+WARN       main.786437ea.iframe.bundle.js
 WARN 
-info => Preview built ([38;2;181;126;229m5.06 s[39m)
-info => preview stats written to [36m/var/folders/x6/hxr3w7yj1rx2qqdppt_fxp4r0000gn/T/chromatic--78586-HYeOgoLKa2VD/preview-stats.json[39m
-info => Output directory: /var/folders/x6/hxr3w7yj1rx2qqdppt_fxp4r0000gn/T/chromatic--78586-HYeOgoLKa2VD
+info => Preview built ([38;2;181;126;229m5.16 s[39m)
+info => preview stats written to [36m/var/folders/x6/hxr3w7yj1rx2qqdppt_fxp4r0000gn/T/chromatic--41509-4X7Jcs50FIWC/preview-stats.json[39m
+info => Output directory: /var/folders/x6/hxr3w7yj1rx2qqdppt_fxp4r0000gn/T/chromatic--41509-4X7Jcs50FIWC

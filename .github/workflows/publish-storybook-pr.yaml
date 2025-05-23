@@ -31,7 +31,7 @@ jobs:
 
       - name: Publish to Chromatic
         id: chromatic
-        uses: chromaui/action@v1
+        uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
@@ -46,6 +46,9 @@ jobs:
             ## 📘 Storybook Preview Available 👀
 
             View the Storybook build from this PR in your browser:
-            ${{ steps.chromatic.outputs.storybookUrl }}
+            <${{ steps.chromatic.outputs.storybookUrl }}>
+
+            Detected **${{ steps.chromatic.changeCount }} visual changes**:
+            <${{ steps.chromatic.outputs.buildUrl }}>
 
             <sub>_(This action will publish a new comment and url if this PR is modified)_</sub>

@@ -2,6 +2,7 @@ node_modules
 dist
 .DS_Store
 storybook-static
+build-storybook.log
 
 # IntelliJ IDEA
 .idea

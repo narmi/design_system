@@ -23,6 +23,7 @@ module.exports = {
     },
     "@storybook/addon-mdx-gfm",
     "@storybook/addon-webpack5-compiler-babel",
+    "@chromatic-com/storybook",
   ],
 
   webpackFinal: (config) => {

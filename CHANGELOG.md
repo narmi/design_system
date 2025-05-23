@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.25.0](https://github.com/narmi/design_system/compare/v4.24.1...v4.25.0) (2025-05-23)
+
+
+### Features
+
+* **chromatic:** add storybook integration for ui tests ([1cc875f](https://github.com/narmi/design_system/commit/1cc875f80b9904a5760778199739c2287cbf65c1))
+
 ### [4.24.1](https://github.com/narmi/design_system/compare/v4.24.0...v4.24.1) (2025-05-19)
 
 

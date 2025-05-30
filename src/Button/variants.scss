@@ -1,7 +1,6 @@
 %btn-kind-primary {
   color: var(--color-white);
-  background-color: hotpink;
-  padding: 12px !important;
+  background-color: var(--theme-primary);
 
   &:hover {
     color: var(--color-white);

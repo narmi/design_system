@@ -27,7 +27,7 @@
     "release": "semantic-release",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token $CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes",
+    "chromatic": "chromatic",
     "stats:components": "node ./scripts/component-adoption.mjs",
     "stats:classes": "node ./scripts/class-adoption.mjs",
     "dev": "tmux new-session \"npm i && npm run watch\"\\; split-window 'npm run storybook'"

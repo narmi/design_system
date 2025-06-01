@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.26.0](https://github.com/narmi/design_system/compare/v4.25.0...v4.26.0) (2025-06-01)
+
+
+### Features
+
+* **deps:** support react 19 consumers ([42e55f4](https://github.com/narmi/design_system/commit/42e55f4d8ef0c62c1de742a8bdacbc26974e5085))
+
 ## [4.25.0](https://github.com/narmi/design_system/compare/v4.24.1...v4.25.0) (2025-05-23)
 
 

@@ -23,9 +23,15 @@ jobs:
       - name: Install dependencies
         run: npm ci --loglevel=warn
 
+      # We need to perform a full build so Chromatic has
+      # the complete set of changes when generating snapshots
+      - name: Build Storybook
+        run: npm run build && npm run build-storybook
+
       - name: Auto-accept chromatic snapshots from `main`
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          storybookBuildDir: storybook-static
           autoAcceptChanges: 'main'
           exitZeroOnChanges: false

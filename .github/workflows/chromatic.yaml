@@ -45,7 +45,6 @@ jobs:
           # <https://www.chromatic.com/docs/configure/#options>
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitZeroOnChanges: false
-          autoAcceptChanges: "main"
 
       - name: Debug Chromatic Outputs (Optional)
         if: always()

@@ -26,7 +26,7 @@ jobs:
       # We need to perform a full build so Chromatic has
       # the complete set of changes when generating snapshots
       - name: Build Storybook
-        run: npm run build && npm run build-storybook
+        run: npm run build && npm run build-storybook --stats-json
 
       - name: Auto-accept chromatic snapshots from `main`
         uses: chromaui/action@latest

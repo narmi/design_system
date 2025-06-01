@@ -1,33 +1,22 @@
-name: Chromatic
-permissions:
-  contents: read
-  pull-requests: write
+# Chromatic visual tests to run on PRs targeting `main`
+name: 'Chromatic PR Checks'
 on:
   pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
-      - ready_for_review
+    branches:
+      - main
     paths:
       - 'src/**'
-      - 'tokens/src/**'
+      - 'tokens/**'
 
 jobs:
   run_chromatic:
-    name: Run Chromatic
     runs-on: ubuntu-latest
-    outputs: # required by commenting job below
-      storybookUrl: ${{ steps.chromatic.outputs.storybookUrl }}
-      buildUrl: ${{ steps.chromatic.outputs.buildUrl }}
-      changeCount: ${{ steps.chromatic.outputs.changeCount }}
-      chromatic_url: ${{ steps.chromatic.outputs.url }}
     steps:
-      - name: Check out repository code
+      - name: Checkout PR
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
           ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -38,18 +27,16 @@ jobs:
       - name: Install dependencies
         run: npm ci --loglevel=warn
 
-      - name: Chromatic (build, publish, and run checks)
-        id: chromatic
+      - name: Chromatic
         uses: chromaui/action@latest
         with:
-          # <https://www.chromatic.com/docs/configure/#options>
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          exitZeroOnChanges: false
-
-      - name: Debug Chromatic Outputs (Optional)
-        if: always()
-        run: |
-          echo "Chromatic Outputs: ${{ toJSON(steps.chromatic.outputs) }}"
+          exitZeroOnChanges: false # fail workflow if changes detected
+          autoAcceptChanges: false
+          onlyChanged: true
+        env:
+          CHROMATIC_BRANCH: ${{ github.event.pull_request.head.ref }} # Helps Chromatic identify the correct branch
+          CHROMATIC_SHA: ${{ github.event.pull_request.head.sha }}     # Helps Chromatic identify the correct commit
 
   post_chromatic_comment:
     name: Post Chromatic Comment

@@ -32,16 +32,23 @@ jobs:
       - name: Build Storybook
         run: npm run build && npm run build-storybook
 
+      # TODO: rm this debug step
+      - name: Upload Storybook build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-build
+          path: storybook-static
+          if-no-files-found: error
+          retention-days: 1
+
       - name: Chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          storybookBuildDir: storybook-static
           exitZeroOnChanges: false # fail workflow if changes detected
           autoAcceptChanges: false # visual diffs must be manually resolved in PRs
-        env:
-          CHROMATIC_BRANCH: ${{ github.event.pull_request.head.ref }} # Helps Chromatic identify the correct branch
-          CHROMATIC_SHA: ${{ github.event.pull_request.head.sha }}     # Helps Chromatic identify the correct commit
+          buildScriptName: '' # take our pre-built storybook instead of rebuilding
+          storybookBuildDir: './storybook-static'
 
   post_chromatic_comment:
     name: Post Chromatic Comment

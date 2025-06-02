@@ -160,6 +160,27 @@ Any modification to the design system that requires consumers to update their us
 
 If you are making a breaking change, please [note it in your commit message](https://www.conventionalcommits.org/en/v1.0.0/#commit-message-with-description-and-breaking-change-footer) appropriately.
 
+### Pull Request guide
+
+There are a number of github actions we run automatically for every PR.
+In order for your PR to merge it must:
+
+- Build without failures and/or typescript errors
+- Pass all unit tests
+- Pass Chromatic snapshot tests
+
+#### Working with snapshot tests
+
+If you see a comment on your PR notifying you that visual differences were detected,
+you must manually resolve them by either fixing your code OR accepting the change in
+the Chromatic app if the visual diff was intentional.
+
+You will need to log into [Chromatic]<chromatic.com> using the credentials provided in 1password.
+Links to the snapshot review and the storybook preview build will be provided by narmibot in a PR comment.
+
+Once all changes have been accepted and/or you are confident you've have addressed
+regressions in your code, you must rerun the workflow.
+
 ### Testing unpublished changes in a consumer
 
 **Development of Narmi Design System should be done in isolation within this repo.**
@@ -191,4 +212,3 @@ If you need to make additional changes after the beta is published...
 ## License
 
 Source code is under a custom license based on MIT. The license restricts `@narmi/design_system` usage to applications that integrate or interoperate with Narmi software or services, with additional restrictions for external, stand-alone applications. Please see LICENSE.md for full details.
-

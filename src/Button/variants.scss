@@ -1,6 +1,8 @@
 %btn-kind-primary {
-  color: var(--color-white);
-  background-color: var(--theme-primary);
+  color: cornsilk;
+  background-color: lime;
+  outline: 2px solit papayawhip;
+  padding: 36px;
 
   &:hover {
     color: var(--color-white);

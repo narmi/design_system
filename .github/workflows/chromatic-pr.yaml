@@ -63,8 +63,6 @@ jobs:
           mode: recreate
           comment_tag: chromatic-results
           message: |
-            # Chromatic Checks
-
             ${{ needs.run_chromatic.outputs.changeCount > '0' && format('## 🚨 Found {0} visual changes that require your attention!', needs.run_chromatic.outputs.changeCount) || '' }}
             ${{ needs.run_chromatic.outputs.changeCount <= '0' && format('## ✅ No visual changes detected') || ''}}
             ${{ format('[View Chromatic Build]({0})', needs.run_chromatic.outputs.buildUrl || needs.run_chromatic.outputs.chromatic_url) || '' }}
@@ -72,4 +70,5 @@ jobs:
             ## 📘 Storybook preview
             [View Storybook preview](<${{ needs.run_chromatic.outputs.storybookUrl }}>)
 
+            ---
             <sub>This PR is posted and updated automatically by the `Chromatic` action</sub>

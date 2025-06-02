@@ -7,6 +7,7 @@ on:
 
 jobs:
   chromatic_update_baseline:
+    if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main branch

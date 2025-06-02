@@ -48,6 +48,9 @@ jobs:
     needs: run_chromatic
     if: always()
     steps:
+      - name: Log run_chromatic job outputs
+        run: echo "${{ toJson(needs.run_chromatic.outputs) }}"
+
       - name: Comment Storybook URL and diff status in PR
         uses: thollander/actions-comment-pull-request@fabd468d3a1a0b97feee5f6b9e499eab0dd903f6 # 2.5.0
         with:
@@ -58,8 +61,8 @@ jobs:
             # Chromatic Checks
 
             ${{ needs.run_chromatic.outputs.changeCount > '0' && format('## 🚨 Found {0} visual changes that require your attention!', needs.run_chromatic.outputs.changeCount) || '' }}
-            ${{ needs.run_chromatic.outputs.changeCount > '0' && format('[View changes]({0})', needs.run_chromatic.outputs.buildUrl || needs.run_chromatic.outputs.chromatic_url) || '' }}
             ${{ needs.run_chromatic.outputs.changeCount <= '0' && format('## ✅ No visual changes detected') || ''}}
+            ${{ format('[View Chromatic Build]({0})', needs.run_chromatic.outputs.buildUrl || needs.run_chromatic.outputs.chromatic_url) || '' }}
 
             ## 📘 Storybook preview
             [View Storybook preview](<${{ needs.run_chromatic.outputs.storybookUrl }}>)

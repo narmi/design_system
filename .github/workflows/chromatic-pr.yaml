@@ -27,16 +27,19 @@ jobs:
       - name: Install dependencies
         run: npm ci --loglevel=warn
 
+      - name: Build
+        run: npm run build && npm run build-storybook
+
       - name: Chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitZeroOnChanges: false # fail workflow if changes detected
           autoAcceptChanges: false
-          onlyChanged: true
+          buildScriptName: ''
+          storybookBuildDir: './storybook-static'
         env:
           CHROMATIC_BRANCH: ${{ github.event.pull_request.head.ref }} # Helps Chromatic identify the correct branch
-          CHROMATIC_SHA: ${{ github.event.pull_request.head.sha }}     # Helps Chromatic identify the correct commit
 
   post_chromatic_comment:
     name: Post Chromatic Comment

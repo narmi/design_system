@@ -1,0 +1,36 @@
+.nds-count {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: rem(20px);
+  padding: 0 rem(4px);
+  min-width: var(--font-size-default);
+  border-radius: var(--border-radius-s);
+  font-size: var(--font-size-s);
+  line-height: 1;
+
+  &--theme {
+    background-color: RGBA(var(--theme-rgb-primary), var(--alpha-10));
+    color: var(--theme-primary);
+  }
+  &--info {
+    background-color: rgba(var(--rgb-infoDark), var(--alpha-10));
+    color: var(--color-infoDark);
+  }
+  &--success {
+    background-color: rgba(var(--rgb-successDark), var(--alpha-10));
+    color: var(--color-successDark);
+  }
+  &--warn {
+    background-color: rgba(var(--rgb-warnDark), var(--alpha-10));
+    color: var(--color-warnDark);
+  }
+  &--error {
+    background-color: rgba(var(--rgb-errorDark), var(--alpha-10));
+    color: var(--color-errorDark);
+  }
+  &--neutral {
+    background-color: var(--font-color-hint);
+    color: var(--font-color-primary);
+  }
+}

@@ -8,6 +8,7 @@ import Button from "./Button";
 import ContentCard from "./ContentCard";
 import Checkbox from "./Checkbox";
 import ContextMenu from "./ContextMenu";
+import Count from "./Count";
 import Dialog from "./Dialog";
 import DisabledShim from "./DisabledShim";
 import ProgressBar from "./ProgressBar";
@@ -66,6 +67,7 @@ export {
   ContentCard,
   ContextMenu,
   Checkbox,
+  Count,
   DisabledShim,
   Radio,
   RadioButtons,

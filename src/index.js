@@ -8,6 +8,7 @@ import Checkbox from "./Checkbox";
 import ContentCard from "./ContentCard";
 import ContextMenu from "./ContextMenu";
 import CollapsibleCard from "./CollapsibleCard";
+import Count from "./Count";
 import Combobox from "./Combobox";
 import DateInput from "./DateInput";
 import Dialog from "./Dialog";
@@ -63,6 +64,7 @@ export {
   ContextMenu,
   CollapsibleCard,
   Combobox,
+  Count,
   DateInput,
   Dialog,
   DisabledShim,

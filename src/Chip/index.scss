@@ -1,45 +1,71 @@
-.nds-alert {
-  color: var(--font-color-primary);
+%chipAlignedContent {
+  height: rem(24px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.nds-alert-icon::before {
-  font-weight: bold;
-}
+.nds-chip {
+  @extend %chipAlignedContent;
+  border-radius: rem(24px);
+  font-size: var(--font-size-s);
+  padding: rem(2px) var(--space-s);
+  width: fit-content;
+  max-width: 60ch; // label truncates when max constraint is reached.
 
-.nds-alert--error {
-  background-color: var(--color-errorLight);
-
-  // Rotating the info icon until we have a "!" icon
-  .nds-alert-icon {
-    display: inline-block;
-    transform: rotate(180deg);
+  // Variant where entire chip is clickable
+  &--button {
+    transition: all 60ms ease-out;
+    &:hover {
+      transform: scale(1.033);
+    }
+    &:active {
+      transform: scale(1);
+    }
   }
 
-  .nds-alert-icon::before {
-    color: var(--color-errorDark);
+  // `kind` variants
+  &--info {
+    background-color: var(--color-infoLight);
+  }
+  &--success {
+    background-color: var(--color-successLight);
+  }
+  &--warn {
+    background-color: var(--color-warnLight);
+  }
+  &--error {
+    background-color: var(--color-errorLight);
+  }
+  &--secondary {
+    background-color: var(--color-white);
+    border: 1px solid var(--font-color-primary);
+  }
+  &--primary {
+    background-color: RGBA(var(--theme-rgb-primary), var(--alpha-10));
   }
 }
 
-.nds-alert--warn {
-  background-color: var(--color-warnLight);
-
-  .nds-alert-icon::before {
-    color: var(--color-warnDark);
-  }
+.nds-chip-icon {
+  @extend %chipAlignedContent;
+  width: rem(16px);
+  font-size: var(--font-size-s);
 }
 
-.nds-alert--success {
-  background-color: var(--color-successLight);
+.nds-chip-dismiss {
+  transition: all 100ms ease-out;
+  font-size: var(--font-size-default);
 
-  .nds-alert-icon::before {
-    color: var(--color-successDark);
+  &:focus,
+  &:hover,
+  &:active {
+    font-weight: var(--font-weight-semibold);
   }
-}
-
-.nds-alert--info {
-  background-color: var(--color-infoLight);
-
-  .nds-alert-icon::before {
-    color: var(--color-infoDark);
+  &:focus,
+  &:hover {
+    transform: scale(1.2);
+  }
+  &:active {
+    transform: scale(1);
   }
 }

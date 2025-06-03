@@ -21,7 +21,9 @@ interface CountProps {
  * Used for display counts in navigation, tags, filters, and elsewhere.
  */
 const Count = ({ value, kind = "theme" }: CountProps) => (
-  <div className={cc(["nds-count", `nds-count--${kind}`])}>{value}</div>
+  <div role="status" className={cc(["nds-count", `nds-count--${kind}`])}>
+    {value}
+  </div>
 );
 
 export default Count;

@@ -1,79 +1,111 @@
 import React from "react";
 import cc from "classcat";
 import Row from "../Row";
+import Count from "../Count";
+import AsElement from "../util/AsElement";
 import type { IconName } from "../types/Icon.types";
 
-const noop = () => {};
+export const VALID_KINDS = [
+  "info",
+  "success",
+  "warn",
+  "error",
+  "primary",
+  "secondary",
+] as const;
 
-interface AlertProps {
-  /** The alert is only visible when this prop is set to `true` */
-  isActive?: boolean;
-  /** Renders a dismiss button when `true` */
-  isDismissable?: boolean;
-  /** Callback for user dismissal actions */
-  onUserDismiss?: () => void;
-  /** Variant of Alert to use */
-  kind?: "info" | "error" | "success" | "warn";
-  /** Override the default icon of the alert */
-  icon?: IconName | string | null;
-  /** Size of padding for Alert. */
-  paddingSize?: "xxs" | "xs" | "s" | "l" | "xl" | "xxl";
-  /** Message content of the Alert */
-  children?: React.ReactNode | string;
+interface ChipProps {
+  /** String to render within chip */
+  label: string;
+  /** Variant of Chip */
+  kind?: (typeof VALID_KINDS)[number];
+  /** When an `onDismiss` handler is passed, the Chip will render a close button */
+  onDismiss?: (e: React.MouseEvent | React.KeyboardEvent) => void;
+  /**
+   * When an `onClick` handler is passed, renders the entire Chip as a button.
+   * OVERRIDES `onDismiss` - only one click target per chip is allowed.
+   */
+  onClick?: (e: React.MouseEvent | React.KeyboardEvent) => void;
+  /** Icon by name, rendered at Chip start */
+  startIcon?: IconName;
+  /** Icon by name, rendered at Chip end */
+  endIcon?: IconName;
+  /** Displays a Count after the `label` */
+  count?: string | number;
 }
 
 /**
- * Inline system message, for a specific region of a page.
- * The `isActive` prop is used to hide and show the Alert to ensure the Alert
- * is always rendered in an [ARIA live region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions)
- * for accessibility.
+ * Component for rendering status, filters, selection, and more.
+ * A `Chip` may contain between 0 and 1 click targets - never more.
+ *
+ * Supersedes `Tag`.
  */
-const Alert = ({
-  isActive = false,
-  isDismissable = true,
-  onUserDismiss = noop,
-  kind = "info",
-  icon = null,
-  paddingSize = "l",
-  children,
-}: AlertProps) => {
-  const iconName = kind === "success" ? "check" : "info";
+const Chip = ({
+  label,
+  kind = "primary",
+  count,
+  onDismiss,
+  onClick,
+  startIcon,
+  endIcon,
+}: ChipProps) => {
+  const isDismissable = typeof onDismiss === "function";
+  const isButton = typeof onClick === "function";
+  const countKind = kind === "primary" || kind === "secondary" ? "theme" : kind;
 
   return (
-    <div aria-live="polite">
-      {isActive && (
-        <div
-          className={cc([
-            "nds-alert",
-            `nds-alert--${kind}`,
-            "rounded--all",
-            `padding--all--${paddingSize}`,
-          ])}
-        >
-          <Row gapSize="s">
-            <Row.Item shrink>
-              <span
-                className={`nds-alert-icon narmi-icon-${icon || iconName}`}
-              />
-            </Row.Item>
-            <Row.Item>{children}</Row.Item>
-            {isDismissable && (
-              <Row.Item shrink>
-                <button
-                  className="nds-alert-close resetButton"
-                  aria-label="close"
-                  onClick={onUserDismiss}
-                  data-testid="nds-alert-close"
-                >
-                  <span className="narmi-icon-x"></span>
-                </button>
-              </Row.Item>
-            )}
-          </Row>
-        </div>
-      )}
-    </div>
+    <AsElement
+      elementType={isButton ? "button" : "div"}
+      className={cc([
+        "nds-chip",
+        "fontSize--s",
+        `nds-chip--${kind}`,
+        `fontColor--${kind}`,
+        {
+          "button--reset": isButton,
+          "nds-chip--button": isButton,
+        },
+      ])}
+    >
+      <Row alignItems="center" gapSize="xs">
+        {startIcon && (
+          <Row.Item shrink>
+            <span
+              className={cc(["nds-chip-icon", `narmi-icon-${startIcon}`])}
+            />
+          </Row.Item>
+        )}
+        <Row.Item shrink>
+          <div className="whiteSpace--truncate">{label}</div>
+        </Row.Item>
+        {count && (
+          <Row.Item shrink>
+            <Count kind={countKind} value={count} />
+          </Row.Item>
+        )}
+        {endIcon && (
+          <Row.Item shrink>
+            <span className={cc(["nds-chip-icon", `narmi-icon-${endIcon}`])} />
+          </Row.Item>
+        )}
+        {isDismissable && !isButton && (
+          <Row.Item shrink>
+            <button
+              onClick={onDismiss}
+              className={cc([
+                "nds-chip-dismiss",
+                "nds-chip-icon",
+                "button--reset",
+                `fontColor--${kind}`,
+              ])}
+            >
+              <span className="narmi-icon-x" />
+            </button>
+          </Row.Item>
+        )}
+      </Row>
+    </AsElement>
   );
 };
 
-export default Alert;
+export default Chip;

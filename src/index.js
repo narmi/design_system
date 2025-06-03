@@ -5,6 +5,7 @@ import Alert from "./Alert";
 import Avatar from "./Avatar";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
+import Chip from "./Chip";
 import ContentCard from "./ContentCard";
 import ContextMenu from "./ContextMenu";
 import CollapsibleCard from "./CollapsibleCard";
@@ -60,6 +61,7 @@ export {
   Avatar,
   Button,
   Checkbox,
+  Chip,
   ContentCard,
   ContextMenu,
   CollapsibleCard,

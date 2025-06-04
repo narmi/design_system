@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { isBreakpointSatisfied } from "./util/breakpoint";
-import TableSectionContext from "./util/tableSectionContext";
 import ColVisibilityContext from "./util/colVisibilityContext";
 
 export interface CellProps {
@@ -17,15 +16,12 @@ export interface CellProps {
 }
 
 const Cell = ({ children, textAlign = "start", _colIndex = 0 }: CellProps) => {
-  const { section } = useContext(TableSectionContext);
   const { currentBreakpoint, colVisibility } = useContext(ColVisibilityContext);
-
-  const role = section === "header" ? "columnheader" : "cell";
   const minBreakpoint = colVisibility[_colIndex];
   const isVisible = isBreakpointSatisfied(minBreakpoint, currentBreakpoint);
 
   return isVisible ? (
-    <div className="nds-table-cell" role={role} style={{ textAlign }}>
+    <div className="nds-table-cell" role="cell" style={{ textAlign }}>
       {children}
     </div>
   ) : null;

@@ -5,6 +5,7 @@ import useBreakpoints from "../hooks/useBreakpoints";
 import Header from "./Header";
 import Body from "./Body";
 import Cell from "./Cell";
+import HeaderCell from "./HeaderCell";
 import { default as TableRow } from "./Row";
 import ColVisibilityContext from "./util/colVisibilityContext";
 import {
@@ -132,5 +133,6 @@ Table.Header = Header;
 Table.Body = Body;
 Table.Row = TableRow;
 Table.Cell = Cell;
+Table.HeaderCell = HeaderCell;
 
 export default Table;

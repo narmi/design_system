@@ -3,13 +3,6 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-### [4.26.1](https://github.com/narmi/design_system/compare/v4.26.0...v4.26.1) (2025-06-02)
-
-
-### Reverts
-
-* Revert "chore: break Button styling" ([1e5e28d](https://github.com/narmi/design_system/commit/1e5e28d73141bcecc34823f9a9b763ff6e9ad15f))
-
 ## [4.26.0](https://github.com/narmi/design_system/compare/v4.25.0...v4.26.0) (2025-06-01)
 
 

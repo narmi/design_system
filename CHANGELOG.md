@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.26.2](https://github.com/narmi/design_system/compare/v4.26.1...v4.26.2) (2025-06-04)
+
+
+### Bug Fixes
+
+* **Row:** rm outdated item hight fix for IE ([361c2b8](https://github.com/narmi/design_system/commit/361c2b85a45d1da523922ccae359224ae453dbd9))
+
 ## [4.26.0](https://github.com/narmi/design_system/compare/v4.25.0...v4.26.0) (2025-06-01)
 
 

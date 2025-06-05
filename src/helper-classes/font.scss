@@ -35,6 +35,9 @@
 /**
 * helpers for setting font color to a standard "system" color
 */
+.fontColor--info {
+  color: var(--color-infoDark) !important;
+}
 .fontColor--success {
   color: var(--color-successDark) !important;
 }

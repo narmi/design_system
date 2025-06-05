@@ -5,9 +5,11 @@ import Alert from "./Alert";
 import Avatar from "./Avatar";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
+import Chip from "./Chip";
 import ContentCard from "./ContentCard";
 import ContextMenu from "./ContextMenu";
 import CollapsibleCard from "./CollapsibleCard";
+import Count from "./Count";
 import Combobox from "./Combobox";
 import DateInput from "./DateInput";
 import Dialog from "./Dialog";
@@ -59,10 +61,12 @@ export {
   Avatar,
   Button,
   Checkbox,
+  Chip,
   ContentCard,
   ContextMenu,
   CollapsibleCard,
   Combobox,
+  Count,
   DateInput,
   Dialog,
   DisabledShim,

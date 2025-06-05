@@ -132,10 +132,16 @@ export const Overview = () => (
       >
         <Table.Header>
           <Table.Row>
-            <Table.Cell>Cat Name</Table.Cell>
-            <Table.Cell>Amount</Table.Cell>
-            <Table.Cell>Color</Table.Cell>
-            <Table.Cell>Shape</Table.Cell>
+            <Table.HeaderCell>Cat Name</Table.HeaderCell>
+            <Table.HeaderCell
+              onClick={() => {
+                alert("sort");
+              }}
+            >
+              Amount
+            </Table.HeaderCell>
+            <Table.HeaderCell>Color</Table.HeaderCell>
+            <Table.HeaderCell>Shape</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>

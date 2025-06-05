@@ -49,8 +49,8 @@ const Chip = ({
   startIcon,
   endIcon,
 }: ChipProps) => {
-  const isDismissable = typeof onDismiss === "function";
   const isButton = typeof onClick === "function";
+  const isDismissable = !isButton && typeof onDismiss === "function";
   const countKind = kind === "primary" || kind === "secondary" ? "theme" : kind;
 
   return (
@@ -88,7 +88,7 @@ const Chip = ({
             <span className={cc(["nds-chip-icon", `narmi-icon-${endIcon}`])} />
           </Row.Item>
         )}
-        {isDismissable && !isButton && (
+        {isDismissable && (
           <Row.Item shrink>
             <button
               onClick={onDismiss}

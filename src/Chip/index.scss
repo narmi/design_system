@@ -46,6 +46,10 @@
   }
 }
 
+.nds-chip-label {
+  user-select: none;
+}
+
 .nds-chip-icon {
   @extend %chipAlignedContent;
   width: rem(16px);

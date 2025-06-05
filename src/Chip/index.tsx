@@ -76,7 +76,7 @@ const Chip = ({
           </Row.Item>
         )}
         <Row.Item shrink>
-          <div className="whiteSpace--truncate">{label}</div>
+          <div className="nds-chip-label whiteSpace--truncate">{label}</div>
         </Row.Item>
         {count && (
           <Row.Item shrink>

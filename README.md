@@ -198,7 +198,7 @@ While the Storybook preview is public, you must log into [Chromatic](chromatic.c
 When running Storybook locally, you'll see a floating button on the bottom left of the viewport labelled "Run Tests". If you're authenticated with chromatic, this will compare your current stories being served on `localhost:6006` against baseline snapshots in Chromatic. Results will appear in the addons panel.
 
 **Baselines:**
-Baselines are managed by Chromatic by using the latest _approved_ build (all green), regardless of the PR that triggered it. Once a build is approved, it immediately becomes the new baseline.
+Baselines are managed by Chromatic, using the latest _approved_ build (all green), regardless of the PR that triggered it. Once a build is approved, it immediately becomes the new baseline.
 To keep `main` as the branch that should be tracked as the baseline in Chromatic, we run a workflow on
 merges to `main` that creates an auto-accepted build, designating it as the new baseline.
 

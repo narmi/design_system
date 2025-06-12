@@ -25,7 +25,7 @@ export const Kinds = () => (
             {k}
           </div>
         </Row.Item>
-      </>
+      </React.Fragment>
     ))}
   </Row>
 );

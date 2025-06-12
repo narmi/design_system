@@ -56,6 +56,7 @@ const Chip = ({
   return (
     <AsElement
       elementType={isButton ? "button" : "div"}
+      onClick={isButton ? onClick : undefined}
       type={isButton ? "button" : undefined}
       className={cc([
         "nds-chip",

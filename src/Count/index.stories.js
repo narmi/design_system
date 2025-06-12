@@ -13,7 +13,7 @@ Overview.args = {
 export const Kinds = () => (
   <Row alignItems="center" gapSize="xs">
     {VALID_KINDS.map((k, i) => (
-      <>
+      <React.Fragment key={`${k}-${i}`}>
         <Row.Item key={`${k}-${i}`} shrink>
           <Count kind={k} value={i + 1} />
         </Row.Item>

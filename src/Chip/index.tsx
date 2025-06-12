@@ -56,6 +56,7 @@ const Chip = ({
   return (
     <AsElement
       elementType={isButton ? "button" : "div"}
+      type={isButton ? "button" : undefined}
       className={cc([
         "nds-chip",
         "fontSize--s",

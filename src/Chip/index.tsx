@@ -92,6 +92,7 @@ const Chip = ({
           <Row.Item shrink>
             <button
               onClick={onDismiss}
+              aria-label="Remove chip"
               className={cc([
                 "nds-chip-dismiss",
                 "nds-chip-icon",

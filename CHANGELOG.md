@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.27.0](https://github.com/narmi/design_system/compare/v4.26.2...v4.27.0) (2025-06-13)
+
+
+### Features
+
+* **Chip:** add Chip component ([4cfb42a](https://github.com/narmi/design_system/commit/4cfb42a01b5b020e7d11e6e7fbdd5098dc18ad29))
+* **Count:** add Count component ([3758ba7](https://github.com/narmi/design_system/commit/3758ba7ddeea670c82bf2c84c8b4af27b6dae979))
+
 ### [4.26.2](https://github.com/narmi/design_system/compare/v4.26.1...v4.26.2) (2025-06-04)
 
 

@@ -7,7 +7,9 @@ import Avatar from "./Avatar";
 import Button from "./Button";
 import ContentCard from "./ContentCard";
 import Checkbox from "./Checkbox";
+import Chip from "./Chip";
 import ContextMenu from "./ContextMenu";
+import Count from "./Count";
 import Dialog from "./Dialog";
 import DisabledShim from "./DisabledShim";
 import ProgressBar from "./ProgressBar";
@@ -63,9 +65,11 @@ export {
   AutocompleteModal,
   Avatar,
   Button,
+  Checkbox,
+  Chip,
   ContentCard,
   ContextMenu,
-  Checkbox,
+  Count,
   DisabledShim,
   Radio,
   RadioButtons,

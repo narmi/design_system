@@ -169,17 +169,38 @@ In order for your PR to merge it must:
 - Pass all unit tests
 - Pass Chromatic snapshot tests
 
-#### Working with snapshot tests
+#### 📸 Working with snapshot tests
 
-If you see a comment on your PR notifying you that visual differences were detected,
-you must manually resolve them by either fixing your code OR accepting the change in
-the Chromatic app if the visual diff was intentional.
+The workflow that runs visual snapshot testing is "Chromatic PR Checks"/`run_chromatic`. All pull requests will block merging until this workflow passes.
 
-You will need to log into [Chromatic]<chromatic.com> using the credentials provided in 1password.
-Links to the snapshot review and the storybook preview build will be provided by narmibot in a PR comment.
+Passing conditions for tests:
 
-Once all changes have been accepted and/or you are confident you've have addressed
-regressions in your code, you must rerun the workflow.
+- No visual changes detected
+- Visual changes detected, but approved (indicates an intentional change)
+- Visual changes resolved by a code change to match baseline snapshots
+- New stories added in the PR are approved in the Chromatic build
+
+Failing conditions for tests:
+
+- Chromatic build has unreviewed diffs
+- Chromatic build has denied changes
+- New stories haven't been explicitly approved in the Chromatic build
+
+On every push to a PR, this workflow will run snapshots and report results via a
+comment on the PR. Use the provided links to review diffs in the Chromatic build and/or view the Storybook preview build.
+
+This workflow must be run again to confirm snapshots are passing, triggered by a new push to the PR or by manually running the job.
+
+**🔑 Authentication Required:**
+While the Storybook preview is public, you must log into [Chromatic](chromatic.com/start) with Narmi engineering credentials to view details on the build and approve or deny snapshot changes.
+
+**Local Snapshots:**
+When running Storybook locally, you'll see a floating button on the bottom left of the viewport labelled "Run Tests". If you're authenticated with chromatic, this will compare your current stories being served on `localhost:6006` against baseline snapshots in Chromatic. Results will appear in the addons panel.
+
+**Baselines:**
+Baselines are managed by Chromatic, using the latest _approved_ build, regardless of the PR that triggered it. Once a build is approved, it immediately becomes the new baseline.
+To keep `main` as the branch that should be tracked as the baseline in Chromatic, we run a workflow on
+merges to `main` that creates an auto-accepted build, designating it as the new baseline.
 
 ### Testing unpublished changes in a consumer
 

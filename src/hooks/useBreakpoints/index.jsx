@@ -24,12 +24,13 @@ const useBreakpoints = (
   const l = useMediaQuery(queries.l);
   const xl = useMediaQuery(queries.xl);
 
-  const largestSatisfiedBreakpoint = [
-    { name: "xl", satisfied: xl },
-    { name: "l", satisfied: l },
-    { name: "m", satisfied: m },
-    { name: "s", satisfied: s },
-  ].find((bp) => bp.satisfied).name;
+  const largestSatisfiedBreakpoint =
+    [
+      { name: "xl", satisfied: xl },
+      { name: "l", satisfied: l },
+      { name: "m", satisfied: m },
+      { name: "s", satisfied: s },
+    ].find((bp) => bp.satisfied)?.name ?? "none";
 
   return { s, m, l, xl, largestSatisfiedBreakpoint };
 };

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Tooltip from "./";
 import Button from "../Button";
 import TextInput from "../TextInput";
+import MenuButton from "../MenuButton";
 
 const Template = (args) => (
   <div
@@ -42,6 +43,16 @@ WithTextInput.parameters = {
     },
   },
 };
+
+export const WithMenuButton = () => (
+  <Tooltip text="I am telling you about this menu button">
+    <MenuButton label="Menu button" side="top">
+      <MenuButton.Item label="Do something" />
+      <MenuButton.Item label="Do something else" />
+      <MenuButton.Item label="Do another thing" />
+    </MenuButton>
+  </Tooltip>
+);
 
 export const ControlledTooltip = () => {
   const [isOpen, setIsOpen] = useState(false);

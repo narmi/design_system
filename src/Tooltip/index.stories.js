@@ -54,6 +54,27 @@ export const WithMenuButton = () => (
   </Tooltip>
 );
 
+export const WithMenuButtonWorkaround = () => {
+  // only show the tooltip until the menu button is clicked,
+  // then hide it until component is remounted.
+  const [allowTooltip, setAllowTooltip] = useState(true);
+
+  <Tooltip
+    text="I am telling you about this menu button"
+    isOpen={allowTooltip ? undefined : false}
+  >
+    <MenuButton
+      label="Menu button"
+      side="top"
+      onClick={() => setAllowTooltip(false)}
+    >
+      <MenuButton.Item label="Do something" />
+      <MenuButton.Item label="Do something else" />
+      <MenuButton.Item label="Do another thing" />
+    </MenuButton>
+  </Tooltip>;
+};
+
 export const ControlledTooltip = () => {
   const [isOpen, setIsOpen] = useState(false);
 

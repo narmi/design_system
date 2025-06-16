@@ -84,6 +84,32 @@ export const WithMenuButtonWorkaround = () => {
   );
 };
 
+export const WithTooltipAsMenuButtonTrigger = () => {
+  const [isTooltipOpen, setIsTooltipOpen] = useState(false);
+  return (
+    <MenuButton
+      label="Menu button"
+      side="top"
+      // renderTrigger provides its open state.
+      // The Tooltip now knows when to show or hide.
+      renderTrigger={(isMenuOpen) => (
+        <Tooltip isOpen={isTooltipOpen && !isMenuOpen} text="i am a tip">
+          <IconButton
+            kind="action"
+            onMouseEnter={() => setIsTooltipOpen(true)}
+            onMouseLeave={() => setIsTooltipOpen(false)}
+            name="sparkle"
+          />
+        </Tooltip>
+      )}
+    >
+      <MenuButton.Item label="Do something!" />
+      <MenuButton.Item label="Do something else" />
+      <MenuButton.Item label="Do another thing" />
+    </MenuButton>
+  );
+};
+
 export const ControlledTooltip = () => {
   const [isOpen, setIsOpen] = useState(false);
 

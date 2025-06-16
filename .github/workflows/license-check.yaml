@@ -1,27 +1,11 @@
-name: Check Build
+name: Check License
 on: [pull_request]
 jobs:
-  Build-design_system:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 22
-          registry-url: https://registry.npmjs.org
-
-      - run: |
-          npm ci
-          npm run build
-
   Check-license:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:

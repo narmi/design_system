@@ -3,6 +3,7 @@ import Tooltip from "./";
 import Button from "../Button";
 import TextInput from "../TextInput";
 import MenuButton from "../MenuButton";
+import IconButton from "../IconButton";
 
 const Template = (args) => (
   <div
@@ -59,20 +60,28 @@ export const WithMenuButtonWorkaround = () => {
   // then hide it until component is remounted.
   const [allowTooltip, setAllowTooltip] = useState(true);
 
-  <Tooltip
-    text="I am telling you about this menu button"
-    isOpen={allowTooltip ? undefined : false}
-  >
-    <MenuButton
-      label="Menu button"
-      side="top"
-      onClick={() => setAllowTooltip(false)}
+  return (
+    <Tooltip
+      text="I am telling you about this menu button"
+      isOpen={allowTooltip ? undefined : false}
     >
-      <MenuButton.Item label="Do something" />
-      <MenuButton.Item label="Do something else" />
-      <MenuButton.Item label="Do another thing" />
-    </MenuButton>
-  </Tooltip>;
+      <MenuButton
+        label="Menu button"
+        side="top"
+        renderTrigger={() => (
+          <IconButton
+            kind="action"
+            name="sparkle"
+            onClick={() => setAllowTooltip(false)}
+          />
+        )}
+      >
+        <MenuButton.Item label="Do something!" />
+        <MenuButton.Item label="Do something else" />
+        <MenuButton.Item label="Do another thing" />
+      </MenuButton>
+    </Tooltip>
+  );
 };
 
 export const ControlledTooltip = () => {

@@ -17,13 +17,21 @@ const useBreakpoints = (
     m: getMq(MQ_MAP.m),
     l: getMq(MQ_MAP.l),
     xl: getMq(MQ_MAP.xl),
-  }
+  },
 ) => {
   const s = useMediaQuery(queries.s);
   const m = useMediaQuery(queries.m);
   const l = useMediaQuery(queries.l);
   const xl = useMediaQuery(queries.xl);
-  return { s, m, l, xl };
+
+  const largestSatisfiedBreakpoint = [
+    { name: "xl", satisfied: xl },
+    { name: "l", satisfied: l },
+    { name: "m", satisfied: m },
+    { name: "s", satisfied: s },
+  ].find((bp) => bp.satisfied).name;
+
+  return { s, m, l, xl, largestSatisfiedBreakpoint };
 };
 
 export default useBreakpoints;

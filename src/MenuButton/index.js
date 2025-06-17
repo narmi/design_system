@@ -166,7 +166,7 @@ const MenuButton = ({
               })}
               {footerItem && (
                 <MenuItem
-                  className="padding--all--s border--top"
+                  className="padding--y--s padding--x--s border--top"
                   id={labelToItemId(footerItem.props.label)}
                   value={labelToItemId(footerItem.props.label)}
                   label={footerItem.props.label}

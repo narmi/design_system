@@ -1,5 +1,7 @@
 name: Check License
 on: [pull_request]
+permissions:
+  contents: read
 jobs:
   Check-license:
     runs-on: ubuntu-latest

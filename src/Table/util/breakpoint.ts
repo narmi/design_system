@@ -1,42 +1,23 @@
-import type { ColMinBreakpoint } from "..";
-
-const breakpointOrder = ["s", "m", "l"] as const;
-type OrderedBreakpoint = (typeof breakpointOrder)[number];
+import type { ColMinBreakpoint, ViewportBreakpoint } from "..";
 
 /**
- * We use "mobile-first" breakpoints, meaning that
- * "m" is `true` for medium viewports and larger.
- * (e.g. "l" satisfies "m")
+ * Maps breakpoints to their relative order, where a higher number means a larger viewport.
+ */
+const BREAKPOINT_ORDER = {
+  s: 0,
+  m: 1,
+  l: 2,
+};
+
+/**
+ * Determines if a current viewport breakpoint satisfies a minimum required breakpoint.
+ * Uses "mobile-first" logic where a larger viewport satisfies smaller breakpoint requirements.
+ * For example: `l` viewport satisfies `m` minimum requirement.
  */
 export const isBreakpointSatisfied = (
   minRequired: ColMinBreakpoint,
-  current: OrderedBreakpoint,
-): boolean => {
-  // For columns set as "*" or undefined, default to showing the column
-  if (minRequired === "*" || minRequired === undefined) {
-    return true;
-  }
-  const currentIndex = breakpointOrder.indexOf(current);
-  const requiredIndex = breakpointOrder.indexOf(
-    minRequired as OrderedBreakpoint,
-  );
-  return currentIndex >= requiredIndex;
-};
-
-/**
- * Returns a breakpoint name based on current set of truthy/falsy
- * keys returned from our matchMedia hook, useBreakpoints()
- */
-export const findCurrentFromBreakpoints = ({
-  m,
-  l,
-}: Record<string, boolean>) => {
-  let currentBreakpoint = "s";
-  if (m) {
-    currentBreakpoint = "m";
-  }
-  if (l) {
-    currentBreakpoint = "l";
-  }
-  return currentBreakpoint;
-};
+  current: ViewportBreakpoint,
+): boolean =>
+  minRequired === "*"
+    ? true
+    : BREAKPOINT_ORDER[current] >= BREAKPOINT_ORDER[minRequired];

@@ -1,4 +1,6 @@
 name: Jest
+permissions:
+  contents: read
 on: [pull_request]
 jobs:
   Run-jest-tests:

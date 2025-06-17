@@ -1,5 +1,7 @@
 name: Check License
 on: [pull_request]
+permissions:
+  contents: read
 jobs:
   Check-license:
     runs-on: ubuntu-latest
@@ -7,7 +9,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org

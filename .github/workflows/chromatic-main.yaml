@@ -1,5 +1,7 @@
 # Updates snapshots in chromatic, using latest `main` as basleline
 name: 'Chromatic Snapshot Baseline'
+permissions:
+  contents: read
 on:
   push:
     branches:

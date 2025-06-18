@@ -1,7 +1,7 @@
 import React from "react";
 import cc from "classcat";
 import PropTypes from "prop-types";
-import { MenuItem as AriaMenuItem } from "react-aria-components";
+import { MenuItem } from "react-aria-components";
 import iconSelection from "src/icons/selection.json";
 import Row from "../Row";
 
@@ -9,7 +9,7 @@ export const VALID_ICON_NAMES = iconSelection.icons.map(
   (icon) => icon.properties.name,
 );
 
-const MenuItem = ({
+const AriaMenuItem = ({
   id,
   label,
   startIcon,
@@ -18,7 +18,7 @@ const MenuItem = ({
   roundedBottom,
   className,
 }) => (
-  <AriaMenuItem
+  <MenuItem
     key={id}
     id={id}
     value={id}
@@ -55,10 +55,10 @@ const MenuItem = ({
         </Row.Item>
       )}
     </Row>
-  </AriaMenuItem>
+  </MenuItem>
 );
 
-MenuItem.propTypes = {
+AriaMenuItem.propTypes = {
   /** Unique ID for the menu item */
   id: PropTypes.string.isRequired,
   /** Display label for menu item */
@@ -75,4 +75,4 @@ MenuItem.propTypes = {
   className: PropTypes.string,
 };
 
-export default MenuItem;
+export default AriaMenuItem;

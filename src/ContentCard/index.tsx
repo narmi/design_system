@@ -49,8 +49,13 @@ interface ContentCardProps {
   testId?: string;
   /**
    * Error state for `toggle` and `button` variants
+   * By default, this triggers `disabled` to be true - you may override the disabled property to `false`.
    */
   error?: string;
+  /**
+   * Disables the card, preventing any click events.
+   */
+  disabled?: boolean;
 }
 
 /**
@@ -65,6 +70,7 @@ const ContentCard = ({
   testId,
   radiusSize = "s",
   error,
+  disabled = false,
 }: ContentCardProps) => {
   const isInteractive = ["interactive", "toggle", "button"].some(
     (interactiveKinds) => kind === interactiveKinds,
@@ -107,6 +113,7 @@ const ContentCard = ({
           {
             "button--reset": isInteractive,
             "nds-contentCard--error": isInteractive && error,
+            "nds-contentCard--disabled": disabled,
           },
         ])}
         {...getInteractiveProps()}

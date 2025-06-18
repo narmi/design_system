@@ -49,7 +49,6 @@ interface ContentCardProps {
   testId?: string;
   /**
    * Error state for `toggle` and `button` variants
-   * By default, this triggers `disabled` to be true - you may override the disabled property to `false`.
    */
   error?: string;
   /**

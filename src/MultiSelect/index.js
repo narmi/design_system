@@ -33,6 +33,16 @@ const getSelectedItems = (values, items) =>
   items.filter((item) => values.includes(item.props.value));
 
 /**
+ * @param {Node} selectItem full react element of a select item
+ * @param {String} userInput most recent thing a user typed while focused on input
+ * @returns {String} the string to use for typeahead for each given `selectItem`
+ */
+// eslint-disable-next-line no-unused-vars
+const defaultGetTypeAheadString = (userInput = "", selectItem) => {
+  return selectItem.props.searchValue || selectItem.props.value;
+};
+
+/**
  * Default summary formatter function.
  *
  * Receives an object with:
@@ -107,6 +117,7 @@ const MultiSelect = ({
    * Must return a React node.
    */
   summaryFormatter = defaultSummaryFormatter,
+  getTypeaheadString = defaultGetTypeAheadString,
 }) => {
   // Convert children to an array for easier processing.
   const items = useMemo(() => Children.toArray(children), [children]);
@@ -124,25 +135,13 @@ const MultiSelect = ({
   } = useMultipleSelection({
     initialSelectedItems: getSelectedItems(selectedItemsProp || [], items),
     stateReducer: (state, actionAndChanges) => {
-      const { type, changes, selectedItem } = actionAndChanges;
-      let newSelectedItems = [...new Set(changes.selectedItems)];
+      const { type, changes } = actionAndChanges;
 
       switch (type) {
         case useMultipleSelection.stateChangeTypes.FunctionRemoveSelectedItem:
-          newSelectedItems = newSelectedItems.filter(
-            ({ props: { value } }) => value !== selectedItem.props.value,
-          );
-          onChangeProp(newSelectedItems.map(itemToString));
-          return {
-            ...changes,
-            selectedItems: newSelectedItems,
-          };
         case useMultipleSelection.stateChangeTypes.FunctionAddSelectedItem:
-          onChangeProp(newSelectedItems.map(itemToString));
-          return {
-            ...changes,
-            selectedItems: newSelectedItems,
-          };
+          onChangeProp(changes.selectedItems.map(itemToString));
+          return changes;
         default:
           return changes;
       }
@@ -165,13 +164,12 @@ const MultiSelect = ({
     getMenuProps,
     highlightedIndex,
     getItemProps,
+    inputValue,
   } = useSelect({
     disabled,
-    // Set selectedItem to null because multi-selection is managed separately.
-    selectedItem: null,
     id: name || `nds-multiselect-${label}`,
     items,
-    itemToString,
+    itemToString: (item) => getTypeaheadString(inputValue || "", item),
     stateReducer: (state, actionAndChanges) => {
       const { changes: newChanges, type } = actionAndChanges;
       switch (type) {
@@ -190,9 +188,9 @@ const MultiSelect = ({
     onStateChange: ({ type, selectedItem: newSelectedItem }) => {
       // Toggle selection when an item is clicked or activated via keyboard.
       switch (type) {
-        case useSelect.stateChangeTypes.MenuBlur:
         case useSelect.stateChangeTypes.MenuKeyDownEnter:
         case useSelect.stateChangeTypes.ItemClick:
+        case useSelect.stateChangeTypes.ToggleButtonKeyDownEnter:
           if (isSelected(selectedItems, newSelectedItem)) {
             removeSelectedItem(newSelectedItem);
           } else if (newSelectedItem) {
@@ -408,6 +406,12 @@ MultiSelect.propTypes = {
    * and returns a string summary.
    */
   summaryFormatter: PropTypes.func,
+  /**
+   * Function with signature `(userInputValue, selectItemNode) => {}`,
+   * used to customize typeahead filtering behavior.
+   * See "Changing Typeahead Behavior" story for example.
+   */
+  getTypeaheadString: PropTypes.func,
 };
 
 MultiSelect.Item = MultiSelectItem;

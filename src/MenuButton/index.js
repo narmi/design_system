@@ -2,14 +2,10 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import { useLayer } from "react-laag";
-import {
-  Button as AriaButton,
-  Menu,
-  MenuItem,
-  MenuTrigger,
-} from "react-aria-components";
+import { Button as AriaButton, Menu, MenuTrigger } from "react-aria-components";
 import iconSelection from "src/icons/selection.json";
 import MenuButtonItem from "./MenuButtonItem";
+import MenuItem from "./AriaMenuItem";
 import Row from "../Row";
 import { createUseLayerContainer } from "src/util/dom";
 
@@ -35,9 +31,11 @@ const MenuButton = ({
   alignment = "start",
   offset = 2,
   children,
+  footerItem,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuItems = React.Children.toArray(children);
+  const allItems = footerItem ? menuItems.concat(footerItem) : menuItems;
   const canToggleCloseRef = useRef(isOpen);
 
   const closeMenu = useCallback(() => {
@@ -73,7 +71,7 @@ const MenuButton = ({
    * relevant `MenuButton.Item` and calls it.
    */
   const handleOnSelect = (itemId) => {
-    const selectedItem = menuItems.find(
+    const selectedItem = allItems.find(
       (item) => labelToItemId(item.props.label) === itemId,
     );
     selectedItem.props.onSelect();
@@ -156,47 +154,29 @@ const MenuButton = ({
                     key={itemId}
                     id={itemId}
                     value={itemId}
+                    label={child.props.label}
                     startIcon={child.props.startIcon}
                     endIcon={child.props.endIcon}
-                    /**
-                     * react-aria provides a className interface similar
-                     * to render props
-                     */
-                    className={({ isSelected, isFocused, isDisabled }) =>
-                      cc([
-                        "nds-menubutton-item",
-                        "padding--x--s padding--y--xs",
-                        {
-                          "nds-menubutton-item--highlighted":
-                            isSelected || isFocused,
-                          "nds-menubutton-item--disabled": isDisabled,
-                          "rounded--top": childIndex === 0,
-                          "rounded--bottom":
-                            childIndex === menuItems.length - 1,
-                        },
-                      ])
+                    roundedTop={childIndex === 0}
+                    roundedBottom={
+                      childIndex === menuItems.length - 1 && !footerItem
                     }
-                  >
-                    <Row gapSize="s">
-                      {child.props.startIcon && (
-                        <Row.Item shrink>
-                          <span
-                            className={`narmi-icon-${child.props.startIcon}`}
-                          />
-                        </Row.Item>
-                      )}
-                      <Row.Item>{child.props.label}</Row.Item>
-                      {child.props.endIcon && (
-                        <Row.Item shrink>
-                          <span
-                            className={`narmi-icon-${child.props.endIcon}`}
-                          />
-                        </Row.Item>
-                      )}
-                    </Row>
-                  </MenuItem>
+                  />
                 );
               })}
+              {footerItem && (
+                <MenuItem
+                  className="padding--y--s padding--x--s border--top"
+                  id={labelToItemId(footerItem.props.label)}
+                  value={labelToItemId(footerItem.props.label)}
+                  label={footerItem.props.label}
+                  startIcon={footerItem.props.startIcon}
+                  endIcon={footerItem.props.endIcon}
+                  roundedBottom
+                >
+                  {footerItem}
+                </MenuItem>
+              )}
             </Menu>
           </div>,
         )}
@@ -235,6 +215,8 @@ MenuButton.propTypes = {
   alignment: PropTypes.oneOf(["start", "center", "end"]),
   /** Distance of Popover from trigger element in number of pixels */
   offset: PropTypes.number,
+  /** Optional footer content to render below the menu items */
+  footerItem: PropTypes.node,
 };
 
 MenuButton.Item = MenuButtonItem;

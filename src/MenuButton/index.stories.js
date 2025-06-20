@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MenuButton, { VALID_ICON_NAMES } from "./";
 import Dialog from "../Dialog";
+import IconButton from "../IconButton";
 
 const Template = (args) => <MenuButton {...args} />;
 export const Overview = Template.bind({});
@@ -179,6 +180,26 @@ export const WithEndIcons = () => (
     />
   </MenuButton>
 );
+
+export const WithFooterContent = () => {
+  return (
+    <MenuButton
+      side="right"
+      renderTrigger={() => <IconButton kind="action" name="sparkle" />}
+      footerItem={
+        <MenuButton.Item
+          label="Help me write"
+          onSelect={() => alert("Footer!")}
+        />
+      }
+    >
+      <MenuButton.Item label="Polish" onSelect={() => alert("Polish!")} />
+      <MenuButton.Item label="Formalize" onSelect={() => alert("Formalize!")} />
+      <MenuButton.Item label="Elaborate" onSelect={() => alert("Elaborate!")} />
+      <MenuButton.Item label="Shorten" onSelect={() => alert("Shorten!")} />
+    </MenuButton>
+  );
+};
 
 export default {
   title: "Components/MenuButton",

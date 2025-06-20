@@ -33,6 +33,16 @@ const getSelectedItems = (values, items) =>
   items.filter((item) => values.includes(item.props.value));
 
 /**
+ * @param {Node} selectItem full react element of a select item
+ * @param {String} userInput most recent thing a user typed while focused on input
+ * @returns {String} the string to use for typeahead for each given `selectItem`
+ */
+// eslint-disable-next-line no-unused-vars
+const defaultGetTypeAheadString = (userInput = "", selectItem) => {
+  return selectItem.props.searchValue || selectItem.props.value;
+};
+
+/**
  * Default summary formatter function.
  *
  * Receives an object with:
@@ -107,6 +117,7 @@ const MultiSelect = ({
    * Must return a React node.
    */
   summaryFormatter = defaultSummaryFormatter,
+  getTypeaheadString = defaultGetTypeAheadString,
 }) => {
   // Convert children to an array for easier processing.
   const items = useMemo(() => Children.toArray(children), [children]);
@@ -165,13 +176,14 @@ const MultiSelect = ({
     getMenuProps,
     highlightedIndex,
     getItemProps,
+    inputValue,
   } = useSelect({
     disabled,
     // Set selectedItem to null because multi-selection is managed separately.
     selectedItem: null,
     id: name || `nds-multiselect-${label}`,
     items,
-    itemToString,
+    itemToString: (item) => getTypeaheadString(inputValue || "", item),
     stateReducer: (state, actionAndChanges) => {
       const { changes: newChanges, type } = actionAndChanges;
       switch (type) {
@@ -408,6 +420,12 @@ MultiSelect.propTypes = {
    * and returns a string summary.
    */
   summaryFormatter: PropTypes.func,
+  /**
+   * Function with signature `(userInputValue, selectItemNode) => {}`,
+   * used to customize typeahead filtering behavior.
+   * See "Changing Typeahead Behavior" story for example.
+   */
+  getTypeaheadString: PropTypes.func,
 };
 
 MultiSelect.Item = MultiSelectItem;

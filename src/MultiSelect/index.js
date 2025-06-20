@@ -135,25 +135,13 @@ const MultiSelect = ({
   } = useMultipleSelection({
     initialSelectedItems: getSelectedItems(selectedItemsProp || [], items),
     stateReducer: (state, actionAndChanges) => {
-      const { type, changes, selectedItem } = actionAndChanges;
-      let newSelectedItems = [...new Set(changes.selectedItems)];
+      const { type, changes } = actionAndChanges;
 
       switch (type) {
         case useMultipleSelection.stateChangeTypes.FunctionRemoveSelectedItem:
-          newSelectedItems = newSelectedItems.filter(
-            ({ props: { value } }) => value !== selectedItem.props.value,
-          );
-          onChangeProp(newSelectedItems.map(itemToString));
-          return {
-            ...changes,
-            selectedItems: newSelectedItems,
-          };
         case useMultipleSelection.stateChangeTypes.FunctionAddSelectedItem:
-          onChangeProp(newSelectedItems.map(itemToString));
-          return {
-            ...changes,
-            selectedItems: newSelectedItems,
-          };
+          onChangeProp(changes.selectedItems.map(itemToString));
+          return changes;
         default:
           return changes;
       }
@@ -179,8 +167,6 @@ const MultiSelect = ({
     inputValue,
   } = useSelect({
     disabled,
-    // Set selectedItem to null because multi-selection is managed separately.
-    selectedItem: null,
     id: name || `nds-multiselect-${label}`,
     items,
     itemToString: (item) => getTypeaheadString(inputValue || "", item),
@@ -202,9 +188,9 @@ const MultiSelect = ({
     onStateChange: ({ type, selectedItem: newSelectedItem }) => {
       // Toggle selection when an item is clicked or activated via keyboard.
       switch (type) {
-        case useSelect.stateChangeTypes.MenuBlur:
         case useSelect.stateChangeTypes.MenuKeyDownEnter:
         case useSelect.stateChangeTypes.ItemClick:
+        case useSelect.stateChangeTypes.ToggleButtonKeyDownEnter:
           if (isSelected(selectedItems, newSelectedItem)) {
             removeSelectedItem(newSelectedItem);
           } else if (newSelectedItem) {

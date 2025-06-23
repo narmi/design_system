@@ -228,4 +228,26 @@ describe("Combobox", () => {
     fireEvent.click(actionItem);
     expect(input.value).toBe("New York");
   });
+
+  it("should call onChange with empty string when input is cleared", async () => {
+    const handleChange = jest.fn();
+    render(
+      <Combobox label={LABEL} onChange={handleChange}>
+        {STATE_ITEMS}
+      </Combobox>,
+    );
+
+    // open the dropdown and select New York
+    const input = screen.getByPlaceholderText(LABEL);
+    fireEvent.focus(input);
+    const nyItem = screen.getByText("New York");
+    fireEvent.click(nyItem);
+    expect(handleChange).toHaveBeenLastCalledWith("New York");
+
+    // Clear the input (simulating backspace)
+    await userEvent.clear(input);
+
+    // onChange should be called with empty string
+    expect(handleChange).toHaveBeenLastCalledWith("");
+  });
 });

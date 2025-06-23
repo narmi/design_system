@@ -30,7 +30,7 @@ jobs:
         run: npm run build && npm run build-storybook
 
       - name: Auto-accept chromatic snapshots from `main`
-        uses: chromaui/action@3378c92d26c32353e53166beac732e2edc14213c
+        uses: chromaui/action@b5848056bb67ce5f1cccca8e62a37cbd9dd42871
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           autoAcceptChanges: true

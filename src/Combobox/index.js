@@ -163,7 +163,6 @@ const Combobox = ({
       ? []
       : allChildren.filter(({ props }) => "value" in props || "text" in props);
 
-
   // If categories are being used, `items` is populated by the children of each category
   if (hasCategories) {
     items = allChildren.flatMap(({ props }) =>
@@ -221,7 +220,7 @@ const Combobox = ({
     },
 
     onSelectedItemChange: ({ selectedItem }) => {
-      onChange(selectedItem.props.value);
+      onChange(selectedItem ? selectedItem.props.value : "");
       closeMenu();
     },
 
@@ -389,11 +388,11 @@ const Combobox = ({
   };
 
   const handleBlur = () => {
-    onInputChange( selectedItem ? itemToString(selectedItem) : "" );
+    onInputChange(selectedItem ? itemToString(selectedItem) : "");
     if (highlightedIndex !== -1) {
-      closeMenu()
+      closeMenu();
     }
-  }
+  };
 
   // It is possible that a consumer may have nothing to pass to `children`.
   // For example, if an API response hasn't completed to load in the autocomplete
@@ -468,7 +467,10 @@ Combobox.propTypes = {
   ]).isRequired,
   /** Label for the input */
   label: PropTypes.string.isRequired,
-  /** Change callback. Called when an item is selected, with the `value` of the selected item */
+  /** Change callback.
+   * Called when an item is selected, with the `value` of the selected item.
+   * Called with empty string when the user clears the input.
+   */
   onChange: PropTypes.func,
   /**
    * Sets value of the input in a controlled manner.

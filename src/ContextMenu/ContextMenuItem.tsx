@@ -7,7 +7,7 @@ export interface ContextMenuItemProps {
   /** ID for menu item */
   id: string;
   /** Selection handler */
-  onSelect: (label: string, id: string) => void;
+  onSelect?: (label: string, id: string) => void;
   /** Optional start icon for menu item */
   startIcon?: string;
 }

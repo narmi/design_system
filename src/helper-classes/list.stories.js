@@ -16,6 +16,4 @@ export const ListReset = {
       </ul>
     </ClassExample>
   ),
-
-  name: "List Reset",
 };

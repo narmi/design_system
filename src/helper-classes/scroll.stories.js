@@ -36,6 +36,4 @@ export const ControllingOverflow = {
       </div>
     </ClassExample>
   ),
-
-  name: "Controlling Overflow",
 };

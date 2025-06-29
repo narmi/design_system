@@ -24,8 +24,6 @@ export const ChildAlignment = {
       </div>
     </ClassExample>
   ),
-
-  name: "Child Alignment",
 };
 
 export const Rotation = {
@@ -51,6 +49,4 @@ export const Rotation = {
       </div>
     </ClassExample>
   ),
-
-  name: "Rotation",
 };

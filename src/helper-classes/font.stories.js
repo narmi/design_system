@@ -22,8 +22,6 @@ export const FontColor = {
       <div>The quick brown fox jumps over the lazy dog</div>
     </ClassExample>
   ),
-
-  name: "Font Color",
 };
 
 export const FontSize = {
@@ -36,8 +34,6 @@ export const FontSize = {
       <div>The quick brown fox jumps over the lazy dog</div>
     </ClassExample>
   ),
-
-  name: "Font Size",
 };
 
 export const FontWeight = {
@@ -50,8 +46,6 @@ export const FontWeight = {
       <div>The quick brown fox jumps over the lazy dog</div>
     </ClassExample>
   ),
-
-  name: "Font Weight",
 };
 
 export const FontFamily = {
@@ -64,8 +58,6 @@ export const FontFamily = {
       <div>The quick brown fox jumps over the lazy dog</div>
     </ClassExample>
   ),
-
-  name: "Font Family",
 };
 
 export const WhitespaceControl = {
@@ -91,6 +83,4 @@ export const WhitespaceControl = {
       </p>
     </ClassExample>
   ),
-
-  name: "Whitespace Control",
 };

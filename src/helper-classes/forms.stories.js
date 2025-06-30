@@ -14,6 +14,4 @@ export const ButtonReset = {
       </button>
     </ClassExample>
   ),
-
-  name: "Button Reset",
 };

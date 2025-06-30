@@ -227,6 +227,41 @@ CustomSummaryFormatter.parameters = {
   },
 };
 
+export const ChangingTypeaheadBehavior = Template.bind({});
+ChangingTypeaheadBehavior.args = {
+  id: "customTypeaheadBehavior",
+  label: "Select an Industry",
+  getTypeaheadString: (userInput, selectItem) => {
+    let searchString =
+      selectItem.props.searchValue || selectItem.props.value || "";
+
+    // user is searching by code
+    if (/\d/.test(userInput)) {
+      searchString = selectItem.props.value;
+    }
+
+    return searchString;
+  },
+  children: [
+    { name: "Agriculture", code: "12345" },
+    { name: "Manufacturing", code: "55555" },
+    { name: "Logistics", code: "32144" },
+    { name: "Hospitality", code: "22147" },
+  ].map(({ name, code }) => (
+    <MultiSelect.Item value={code} searchValue={name}>
+      {name} - {code}
+    </MultiSelect.Item>
+  )),
+};
+ChangingTypeaheadBehavior.parameters = {
+  docs: {
+    description: {
+      story:
+        "You may provide a function to the `getTypeaheadString` prop to customize which item props/data should be used for autocomplete. In this example, we autocomplete on `value` when the user input is numeric, and autocomplete on `searchValue` (name) when the input is alpha",
+    },
+  },
+};
+
 export default {
   title: "Components/MultiSelect",
   component: MultiSelect,

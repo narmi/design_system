@@ -24,8 +24,6 @@ export const Margin = {
       </div>
     </ClassExample>
   ),
-
-  name: "Margin",
 };
 
 export const Padding = {
@@ -43,6 +41,4 @@ export const Padding = {
       </div>
     </ClassExample>
   ),
-
-  name: "Padding",
 };

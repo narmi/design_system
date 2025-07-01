@@ -45,4 +45,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.get_app_token.outputs.token }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm run release

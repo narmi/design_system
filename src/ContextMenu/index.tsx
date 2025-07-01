@@ -63,10 +63,12 @@ function ContextMenu({ menuItems, testId, children }: ContextMenuProps) {
   const handleOnSelect = (itemId) => {
     const selectedItem = menuItems.find((item) => item.props.id === itemId);
 
-    selectedItem.props.onSelect(
-      selectedItem.props.label,
-      selectedItem.props.id,
-    );
+    if (selectedItem?.props.onSelect) {
+      selectedItem.props.onSelect(
+        selectedItem.props.label,
+        selectedItem.props.id,
+      );
+    }
     setIsOpen(false);
     setIsMouseOverEventEnabled(true);
   };

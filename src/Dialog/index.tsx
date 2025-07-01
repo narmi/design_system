@@ -73,6 +73,7 @@ const Dialog = ({
   const [isContentOverflowing, setIsContentOverflowing] = useState(false);
   const contentRef = useRef(null);
   const shimRef = useRef(null);
+  const dialogRef = useRef(null);
   const isBanner = headerStyle === "banner";
   useLockBodyScroll(isOpen);
 
@@ -121,8 +122,8 @@ const Dialog = ({
   // the shim has events for mouse users only; does not require a role
   /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
   const dialogJSX = (
-    <CSSTransition timeout={1} classNames="nds-dialog-transition" appear in>
-      <div className="nds-dialog-root">
+    <CSSTransition timeout={1} classNames="nds-dialog-transition" appear in nodeRef={dialogRef}>
+      <div className="nds-dialog-root" ref={dialogRef}>
         <div className="nds-shim--dark" ref={shimRef} onClick={handleShimClick}>
           <FocusLock autoFocus={false} className="nds-dialog-focuslock">
             <div

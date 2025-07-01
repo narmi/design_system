@@ -1,40 +1,48 @@
 name: Release
-permissions:
-  contents: write
-  pull-requests: write
-  id-token: write
 on:
   push:
     branches:
       - main
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write
+
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Setup Node.js
+      - name: Get GitHub App Token
+        id: get_app_token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.SEMANTIC_RELEASE_APP_ID }}
+          private-key: ${{ secrets.SEMANTIC_RELEASE_APP_PRIVATE_KEY }}
+
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: "npm"
           registry-url: https://registry.npmjs.org
 
       - name: Install dependencies
-        env:
-          CI: true
         run: npm ci
 
       - name: Build Dist
-        env:
-          CI: true
         run: npm run build
 
       - name: Release
         if: success()
         env:
-          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.get_app_token.outputs.token }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm run release

@@ -18,7 +18,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          persist-credentials: false
+          token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+
+      - name: Debug Git User
+        run: |
+          echo "Git User Name: $(git config user.name)"
+          echo "Git User Email: $(git config user.email)"
+          # Verify that the remote URL contains the token (it should be masked in logs)
+          echo "Git Remote URL: $(git remote get-url origin)"         fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4

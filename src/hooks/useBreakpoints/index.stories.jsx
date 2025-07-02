@@ -2,7 +2,7 @@ import React from "react";
 import useBreakpoints from ".";
 
 export const Overview = () => {
-  const { s, m, l, xl } = useBreakpoints();
+  const { s, m, l, xl, largestSatisfiedBreakpoint } = useBreakpoints();
 
   return (
     <>
@@ -32,6 +32,12 @@ export const Overview = () => {
           <code>xl or larger:&nbsp;</code>
           <code className={`fontColor--${xl ? "success" : "error"}`}>
             {xl.toString()}
+          </code>
+        </li>
+        <li>
+          <code>largest satisfied bp:&nbsp;</code>
+          <code className="fontColor--primary">
+            {largestSatisfiedBreakpoint.toString()}
           </code>
         </li>
       </ul>

@@ -11,8 +11,6 @@ on:
 jobs:
   check_changes:
     runs-on: ubuntu-latest
-    outputs:
-      has_relevant_changes: ${{ steps.changes.outputs.has_changes }}
     steps:
       - name: Checkout PR
         uses: actions/checkout@v4
@@ -33,44 +31,13 @@ jobs:
             echo "No relevant changes found in src/ or tokens/"
           fi
 
-  run_chromatic:
-    needs: check_changes
-    outputs:
-      changeCount: ${{ steps.chromatic_step.outputs.changeCount }}
-      buildUrl: ${{ steps.chromatic_step.outputs.buildUrl }}
-      storybookUrl: ${{ steps.chromatic_step.outputs.storybookUrl }}
-    if: needs.check_changes.outputs.has_relevant_changes == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout PR
-        uses: actions/checkout@v4
+      - name: Save artifact
+        uses: actions/upload-artifact@v2
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0
+          name: pr-check-results
+          path: $GITHUB_OUTPUT
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci --loglevel=warn
-
-      - name: Build
-        run: npm run build && npm run build-storybook
-
-      - name: Chromatic
-        id: chromatic_step
-        uses: chromaui/action@b5848056bb67ce5f1cccca8e62a37cbd9dd42871
-        with:
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          exitZeroOnChanges: false # fail workflow if changes detected
-          autoAcceptChanges: false
-          buildScriptName: ''
-          storybookBuildDir: './storybook-static'
-        env:
-          CHROMATIC_BRANCH: ${{ github.event.pull_request.head.ref }} # Helps Chromatic identify the correct branch
+# Privileged workflow will be added separately
 
   post_chromatic_comment:
     name: Post Chromatic Comment

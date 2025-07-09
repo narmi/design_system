@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.28.1](https://github.com/narmi/design_system/compare/v4.28.0...v4.28.1) (2025-07-09)
+
+
+### Bug Fixes
+
+* **SeparatorList:** align pseudo elements with fixed height items ([08444e2](https://github.com/narmi/design_system/commit/08444e27b964259c77b0cdc88c2f064624f47205))
+
 ## [4.28.0](https://github.com/narmi/design_system/compare/v4.27.0...v4.28.0) (2025-07-01)
 
 

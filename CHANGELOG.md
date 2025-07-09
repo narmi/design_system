@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.29.0](https://github.com/narmi/design_system/compare/v4.28.1...v4.29.0) (2025-07-09)
+
+
+### Features
+
+* **icons:** add hourglass icon ([acaf5da](https://github.com/narmi/design_system/commit/acaf5daf394bd45b0e0f17f5f48e3d1e086cf14a))
+
 ### [4.28.1](https://github.com/narmi/design_system/compare/v4.28.0...v4.28.1) (2025-07-09)
 
 

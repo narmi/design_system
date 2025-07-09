@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid,react/jsx-key */
 import React from "react";
 import SeparatorList from "./";
+import Button from "../Button";
 
 const Template = (args) => <SeparatorList {...args} />;
 
@@ -65,6 +66,16 @@ export const NoWrap = () => (
     ]}
   />
 );
+
+export const WithPlainButtons = Template.bind({});
+WithPlainButtons.args = {
+  separator: "|",
+  items: [
+    <Button kind="plain" label="Account" />,
+    <Button kind="plain" label="Settings" />,
+    <Button kind="plain" label="Email Preferences" />,
+  ],
+};
 
 export default {
   title: "Components/SeparatorList",

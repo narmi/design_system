@@ -2,13 +2,21 @@ import React from "react";
 import PropTypes from "prop-types";
 import iconSelection from "src/icons/selection.json";
 import cc from "classcat";
-import ToolTip from "../Tooltip"
+import ToolTip from "../Tooltip";
 
 export const VALID_ICON_NAMES = iconSelection.icons.map(
-  (icon) => icon.properties.name
+  (icon) => icon.properties.name,
 );
 
-const TimelineEvent = ({ kind = "node", icon, imgUrl, initial, tooltip, children }) => {
+const TimelineEvent = ({
+  kind = "node",
+  icon,
+  imgUrl,
+  initial,
+  tooltip,
+  children,
+  renderNode,
+}) => {
   const useInitial = !icon && !imgUrl && initial;
   return (
     <div
@@ -20,18 +28,36 @@ const TimelineEvent = ({ kind = "node", icon, imgUrl, initial, tooltip, children
       ])}
     >
       <div className="nds-timeline-track">
-        <div
-          className={cc([
-            "nds-timeline-node",
-            {
-              "nds-timeline-node--hasAvatar": Boolean(imgUrl),
-            },
-          ])}
-          style={{ backgroundImage: imgUrl ? `url(${imgUrl})` : "none" }}
-        >
-          {useInitial && (tooltip ? <ToolTip text={tooltip}><span>{initial}</span></ToolTip> : <span>{initial}</span>)}
-          {icon && (tooltip ? <ToolTip text={tooltip}><span className={`narmi-icon-${icon}`} /></ToolTip> : <span className={`narmi-icon-${icon}`} />)}
-        </div>
+        {typeof renderNode === "function" ? (
+          <div className="nds-timeline-node--custom">{renderNode()}</div>
+        ) : (
+          <div
+            className={cc([
+              "nds-timeline-node",
+              {
+                "nds-timeline-node--hasAvatar": Boolean(imgUrl),
+              },
+            ])}
+            style={{ backgroundImage: imgUrl ? `url(${imgUrl})` : "none" }}
+          >
+            {useInitial &&
+              (tooltip ? (
+                <ToolTip text={tooltip}>
+                  <span>{initial}</span>
+                </ToolTip>
+              ) : (
+                <span>{initial}</span>
+              ))}
+            {icon &&
+              (tooltip ? (
+                <ToolTip text={tooltip}>
+                  <span className={`narmi-icon-${icon}`} />
+                </ToolTip>
+              ) : (
+                <span className={`narmi-icon-${icon}`} />
+              ))}
+          </div>
+        )}
         {kind !== "start" && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -80,14 +106,16 @@ TimelineEvent.propTypes = {
   /**
    * Timeline event content (any JSX)
    */
-  /**
-   * Hover tooltip content for the icon
-   */
-  tooltip: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  /**
+   * Hover tooltip content for the icon
+   */
+  tooltip: PropTypes.string,
+  /** Render a custom circle node on the line */
+  renderNode: PropTypes.func,
 };
 
 export default TimelineEvent;

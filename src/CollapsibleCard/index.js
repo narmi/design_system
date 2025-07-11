@@ -75,7 +75,10 @@ const CollapsibleCard = ({
 
   const titleContainerJSX = (
     <div
-      className={`collapsible-card--title-container rounded--top--${radiusSize}`}
+      className={cc([
+        "collapsible-card-titleBar",
+        `rounded--top--${radiusSize}`,
+      ])}
     >
       <DisabledShim isDisabled={isDisabled}>
         {typeof renderTitle === "function" ? (
@@ -128,73 +131,59 @@ const CollapsibleCard = ({
     </div>
   );
 
-  return isOpen && !isDisabled ? (
-    <div
-      className={cc([
-        "collapsible-card--content-card",
-        {
-          "content-card--disabled": isDisabled,
-          "content-card--hasCaretTrigger": trigger.includes("caret"),
-          "content-card--error": hasError,
-          "content-card--hover": trigger === "header" && !disableHover && hover,
-          "collapsible-card--no-user-select":
-            !disableHover || trigger === "header",
-        },
-        `rounded--all--${radiusSize}`,
-        "bgColor--white",
-      ])}
-    >
-      <div
-        className={`collapsible-card--title-expanded rounded--top--${radiusSize}`}
-        role={trigger === "header" ? "button" : undefined}
-        tabIndex={trigger === "header" ? 0 : undefined}
-        onKeyUp={({ key }) => {
-          if (key === "Enter" && trigger === "header")
-            onTitleContainerClick(false, "close");
-        }}
-        aria-expanded="true"
-        onClick={() => {
-          if (trigger === "header") {
-            onTitleContainerClick(false, "close");
-          }
-        }}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-      >
-        {titleContainerJSX}
-      </div>
-      <div className="padding--all--l">{children}</div>
-    </div>
-  ) : (
-    <div
-      className={cc([
-        "collapsible-card--content-card",
-        {
-          "content-card--hasCaretTrigger": trigger.includes("caret"),
-          "content-card--error": hasError,
-          "content-card--disabled": isDisabled,
-          "content-card--hover": trigger === "header" && !disableHover && hover,
-          "collapsible-card--no-user-select":
-            !disableHover || trigger === "header",
-        },
-        "content-card--closed",
-        `rounded--all--${radiusSize}`,
-        "bgColor--white",
-      ])}
-      role={trigger === "header" ? "button" : undefined}
-      tabIndex={trigger === "header" ? 0 : undefined}
-      onKeyUp={({ key }) => {
-        if (key === "Enter" && trigger === "header")
-          onTitleContainerClick(isDisabled, "open");
-      }}
-      aria-expanded="false"
-      onClick={() => {
-        if (trigger === "header") {
-          onTitleContainerClick(isDisabled, "open");
+  // Common className configuration
+  const cardClassName = cc([
+    "collapsible-card--content-card",
+    {
+      "content-card--hasCaretTrigger": trigger.includes("caret"),
+      "content-card--error": hasError,
+      "content-card--disabled": isDisabled,
+      "content-card--hover": trigger === "header" && !disableHover && hover,
+      "collapsible-card--no-user-select": !disableHover || trigger === "header",
+      "collapsible-card--customTitle": typeof renderTitle === "function",
+    },
+    isOpen && !isDisabled ? undefined : "content-card--closed",
+    `rounded--all--${radiusSize}`,
+    "bgColor--white",
+  ]);
+
+  const headerTriggerProps =
+    trigger === "header"
+      ? {
+          role: "button",
+          tabIndex: 0,
+          onKeyUp: ({ key }) => {
+            if (key === "Enter") {
+              const action = isOpen && !isDisabled ? "close" : "open";
+              const disabled = action === "open" ? isDisabled : false;
+              onTitleContainerClick(disabled, action);
+            }
+          },
+          onClick: () => {
+            const action = isOpen && !isDisabled ? "close" : "open";
+            const disabled = action === "open" ? isDisabled : false;
+            onTitleContainerClick(disabled, action);
+          },
         }
-      }}
-    >
-      {titleContainerJSX}
+      : {};
+
+  return (
+    <div className={cardClassName} {...headerTriggerProps}>
+      {isOpen && !isDisabled ? (
+        <>
+          <div
+            className={`collapsible-card--title-expanded rounded--top--${radiusSize}`}
+            aria-expanded="true"
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+          >
+            {titleContainerJSX}
+          </div>
+          <div className="padding--all--l">{children}</div>
+        </>
+      ) : (
+        <div aria-expanded="false">{titleContainerJSX}</div>
+      )}
     </div>
   );
 };

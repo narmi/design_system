@@ -13,7 +13,7 @@ This project is often referred to as "NDS" and is published to the public NPM re
 
 ## Engineering Principles
 1. This is not a general purpose UI framework. This design system is tailored to the needs of Narmi and its applications.
-2. Use composition for flexibility. This project follows the philosophy of "small, sharp tools".
+2. Use composition for flexibility. This project follows the philosophy of "small, sharp tools". NDS components are not intended to manage or transform data. NDS components should be as "dumb" and purely presentational as possible.
 3. Prioritize accessibility. Use semantic HTML DOM elements where possible, and ensure components are accessible to all users.
 4. Create explicit contracts. Component props interfaces are designed to be simple and explicit. No behavior should be undocumented. We do not allow consumers to arbitrarily change behavior or appearance of components.
 5. Make behavior predictable. Components should not create or rely on side effects. Components should behave the same way no matter where they may appear in the rendered DOM.

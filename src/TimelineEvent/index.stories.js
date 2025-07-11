@@ -38,6 +38,20 @@ export const StackingTimelineEvents = () => (
   </>
 );
 
+export const CustomNode = () => (
+  <>
+    <TimelineEvent kind="pending">
+      We are still waiting on this one
+    </TimelineEvent>
+    <TimelineEvent renderNode={() => <div className="fontSize--l">❤️</div>}>
+      This event has a custom node
+    </TimelineEvent>
+    <TimelineEvent kind="start">
+      Something kicked off this whole process
+    </TimelineEvent>
+  </>
+);
+
 export default {
   title: "Components/TimelineEvent",
   component: TimelineEvent,

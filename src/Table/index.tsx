@@ -70,7 +70,7 @@ const Table = ({
   rowDensity = "default",
 }: TableProps) => {
   const { largestSatisfiedBreakpoint } = useBreakpoints();
-  const currentBreakpoint = largestSatisfiedBreakpoint || "s";
+  const currentBreakpoint = largestSatisfiedBreakpoint === 'none' ? "s" : largestSatisfiedBreakpoint;
 
   const visibleCols: number = colVisibility.filter(
     (minRequired: ColMinBreakpoint) =>

@@ -36,6 +36,16 @@
 
   &.nds-contentCard--error {
     border: 1px solid var(--color-errorDark) !important;
+
+    // When in error state, remove the hover and active styles
+    // but allow click events to pass through normally
+    &::before {
+      display: none !important;
+    }
+  }
+
+  &.nds-contentCard--disabled {
     cursor: not-allowed;
+    pointer-events: none;
   }
 }

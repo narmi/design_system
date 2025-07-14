@@ -1,6 +1,6 @@
 {
   "name": "@narmi/design_system",
-  "version": "4.27.0",
+  "version": "4.29.0",
   "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
   "files": [
@@ -70,7 +70,7 @@
     "@types/react-dom": "^18.2.14",
     "@typescript-eslint/eslint-plugin": "^6.12.0",
     "@typescript-eslint/parser": "^6.12.0",
-    "babel-jest": "^29",
+    "babel-jest": "^30",
     "babel-loader": "^8.2.2",
     "chromatic": "^6",
     "cli-table": "^0.3.11",

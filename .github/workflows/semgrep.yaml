@@ -1,0 +1,54 @@
+name: Semgrep Security Scan
+on:
+  pull_request:
+    branches: main
+  # Allow manual triggers
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  semgrep:
+    name: Run Semgrep Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@bd01e18f51369d5a26f1651c3cb451d3417e3bba # v6.3.1
+
+      - name: Install semgrep using uv
+        run: |
+          echo "Installing semgrep using uv..."
+          uv tool install semgrep
+
+      - name: Run Semgrep scan
+        run: |
+          echo "Running Semgrep security scan..."
+          # Add uv tools to PATH
+          export PATH="$HOME/.local/bin:$PATH"
+
+          # See https://semgrep.dev/r for available rulesets and details
+          semgrep scan \
+            --config=p/cwe-top-25 \
+            --config=p/github-actions \
+            --config=p/gitleaks \
+            --config=p/insecure-transport \
+            --config=p/javascript \
+            --config=p/nodejs \
+            --config=p/owasp-top-ten \
+            --config=p/r2c-bug-scan \
+            --config=p/react \
+            --config=p/secrets \
+            --config=p/secure-defaults \
+            --config=p/security-audit \
+            --config=p/supply-chain \
+            --config=p/typescript \
+            --error \
+            --metrics=off \
+            .

@@ -5,7 +5,7 @@
 
   li {
     display: inline-flex;
-    align-self: center;
+    align-items: center;
   }
 
   li[data-separator]::after {

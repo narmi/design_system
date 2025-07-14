@@ -1,4 +1,6 @@
 name: Github Pages
+permissions:
+  contents: write
 on:
   push:
     branches:
@@ -14,7 +16,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org
@@ -25,7 +27,7 @@ jobs:
           npm run build-storybook
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.7
+        uses: JamesIves/github-pages-deploy-action@6c2d9db40f9296374acc17b90404b6e8864128c8
         with:
           branch: gh-pages
           folder: storybook-static

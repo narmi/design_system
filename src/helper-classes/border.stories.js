@@ -16,8 +16,6 @@ export const Border = {
       <div>Element with a border helper applied</div>
     </ClassExample>
   ),
-
-  name: "Border",
 };
 
 export const BorderRadius = {
@@ -32,6 +30,4 @@ export const BorderRadius = {
       </div>
     </ClassExample>
   ),
-
-  name: "Border Radius",
 };

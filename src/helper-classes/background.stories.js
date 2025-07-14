@@ -12,8 +12,6 @@ export const BackgroundColor = {
       <div>Element with a background helper applied</div>
     </ClassExample>
   ),
-
-  name: "Background Color",
 };
 
 export const BackgroundScrim = {
@@ -22,6 +20,4 @@ export const BackgroundScrim = {
       <div>Element with a scrim helper applied</div>
     </ClassExample>
   ),
-
-  name: "Background Scrim",
 };

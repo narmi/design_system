@@ -3,6 +3,7 @@
 import React from "react";
 import cc from "classcat";
 import type { CellProps } from "./Cell";
+import type { HeaderCellProps } from "./HeaderCell";
 
 export interface TableRowProps {
   children: React.ReactNode;
@@ -35,10 +36,13 @@ const Row = ({ children, onRowClick }: TableRowProps) => {
        */}
       {React.Children.toArray(children).map((child, i) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child as React.ReactElement<CellProps>, {
-            key: i,
-            _colIndex: i,
-          });
+          return React.cloneElement(
+            child as React.ReactElement<CellProps | HeaderCellProps>,
+            {
+              key: i,
+              _colIndex: i,
+            },
+          );
         }
         console.warn("Table.Row ecountered an unknown child");
         return child;

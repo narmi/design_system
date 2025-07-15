@@ -18,13 +18,11 @@ export type ViewportBreakpoint = "s" | "m" | "l";
 
 /**
  * Valid CSS value for `grid-template-columns`.
- * TODO: can we use CSS supports validation in a type guard? This provides a documentation hint but no real enforcement
  */
 export type CSSValue = string;
 
 /** For each breakpoint key, a valid `grid-template-columns` value */
 export type ColLayoutConfig = {
-  // TODO: we may want a "default" here after all. S to M is quite a big jump
   s: CSSValue;
   m: CSSValue;
   l: CSSValue;
@@ -59,9 +57,11 @@ export const defaultColVisibility = [
 ] as ColMinBreakpoint[];
 
 /**
- * ⚠️ IN ACTIVE DEVELOPMENT ⚠️
- * Availalbe for import, but not ready for production.
- * Please leave storybook stories commented out until `@narmi/platform-ui` says so.
+ * Layout helper for building responsive tables.
+ * This component allows you to define the visibility of each column by named breakpoint.
+ * You may also specify a custom `grid-template-columns` CSS value for each breakpoint.
+ *
+ * If a design calls for a different presentation of the data at the smallest viewports, you may use `useBreakpoints` to conditionally render a list view.
  */
 const Table = ({
   children,
@@ -70,7 +70,8 @@ const Table = ({
   rowDensity = "default",
 }: TableProps) => {
   const { largestSatisfiedBreakpoint } = useBreakpoints();
-  const currentBreakpoint = largestSatisfiedBreakpoint === 'none' ? "s" : largestSatisfiedBreakpoint;
+  const currentBreakpoint =
+    largestSatisfiedBreakpoint === "none" ? "s" : largestSatisfiedBreakpoint;
 
   const visibleCols: number = colVisibility.filter(
     (minRequired: ColMinBreakpoint) =>

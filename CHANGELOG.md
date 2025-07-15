@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.30.1 (2025-07-15)</small>
+
+* Merge branch 'main' into NDS-1662/contentcard-header-height ([4779e99](https://github.com/narmi/design_system/commit/4779e99))
+* Merge pull request #1759 from narmi/NDS-1662/contentcard-header-height ([3cd9897](https://github.com/narmi/design_system/commit/3cd9897)), closes [#1759](https://github.com/narmi/design_system/issues/1759)
+* fix(CollapsibleCard): use auto height for closed card when using renderTitle ([4c2ef10](https://github.com/narmi/design_system/commit/4c2ef10))
+
 ## 4.30.0 (2025-07-15)
 
 * Merge branch 'main' into dependabot/npm_and_yarn/semantic-release-24.2.6 ([a3d586c](https://github.com/narmi/design_system/commit/a3d586c))

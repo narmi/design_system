@@ -7,6 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "index.js",
+    library: "NarmiDesignSystem",
     libraryTarget: "umd",
     globalObject: "typeof self !== 'undefined' ? self : this",
   },

@@ -59,9 +59,10 @@ We use a BEM-like naming convention in our CSS. Single hyphens refer to a parent
 - Styling customization should be done via the `kind` prop only. NDS should retain full control over the appearance and behavior of components.
 - Use "additive" CSS classes. For example, `.message` would be an ever-present base className, with optional modifiers like `.message--error` applied
 - We use "prop collector" style subcomponents in NDS to create a cleaner interface for consumers. E.g. `Tabs.Tab`
+- We use "render<Thing>" props to customize rendering of certain parts of a component. This provides flexibility without introducing new props for content slots or variation.
 - Avoid complex data structures in props. Use simple types like `string`, `number`, `boolean`, or arrays of these types.
 - Use `ReactNode` for props that accept React elements, e.g. `children`, `label`, `icon`.
-- Never accept `classNames` or `style` props. NDS must maintain full rendering control.
+- Never accept `classNames` or `style` props. NDS must maintain full rendering control (with `render<Thing>` props as the only exception).
 - Prefer helper classes when possible, e.g. `className="alignChild--left"` instead of adding new scss where possible.
 - Do NOT allow spread props in any component interface. Only a few exceptions to this rule exist, and no new components should allow this.
 - Components MUST NOT accept `ref` props. Use `forwardRef` to create a ref forwarding component if necessary.

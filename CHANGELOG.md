@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.31.0 (2025-07-15)
+
+* Merge branch 'main' into NDS-1605/render-props-audit ([a110212](https://github.com/narmi/design_system/commit/a110212))
+* Merge pull request #1760 from narmi/NDS-1605/render-props-audit ([1d5a3de](https://github.com/narmi/design_system/commit/1d5a3de)), closes [#1760](https://github.com/narmi/design_system/issues/1760)
+* feat(TimelineEvent): add support for custom node rendering ([0e157dc](https://github.com/narmi/design_system/commit/0e157dc))
+
 ## <small>4.30.1 (2025-07-15)</small>
 
 * Merge branch 'main' into NDS-1662/contentcard-header-height ([4779e99](https://github.com/narmi/design_system/commit/4779e99))

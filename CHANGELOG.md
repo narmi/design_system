@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.30.1 (2025-07-15)</small>
+
+* Merge branch 'main' into NDS-1662/contentcard-header-height ([4779e99](https://github.com/narmi/design_system/commit/4779e99))
+* Merge pull request #1759 from narmi/NDS-1662/contentcard-header-height ([3cd9897](https://github.com/narmi/design_system/commit/3cd9897)), closes [#1759](https://github.com/narmi/design_system/issues/1759)
+* fix(CollapsibleCard): use auto height for closed card when using renderTitle ([4c2ef10](https://github.com/narmi/design_system/commit/4c2ef10))
+
+## 4.30.0 (2025-07-15)
+
+* Merge branch 'main' into dependabot/npm_and_yarn/semantic-release-24.2.6 ([a3d586c](https://github.com/narmi/design_system/commit/a3d586c))
+* Merge branch 'main' into feat/current-breakpoint-tables ([00e2a4a](https://github.com/narmi/design_system/commit/00e2a4a))
+* Merge branch 'main' into feat/current-breakpoint-tables ([e059c3b](https://github.com/narmi/design_system/commit/e059c3b))
+* Merge branch 'main' into feat/current-breakpoint-tables ([88a1350](https://github.com/narmi/design_system/commit/88a1350))
+* Merge pull request #1681 from narmi/feat/current-breakpoint-tables ([841014b](https://github.com/narmi/design_system/commit/841014b)), closes [#1681](https://github.com/narmi/design_system/issues/1681)
+* Merge pull request #1723 from narmi/dependabot/npm_and_yarn/semantic-release-24.2.6 ([0635444](https://github.com/narmi/design_system/commit/0635444)), closes [#1723](https://github.com/narmi/design_system/issues/1723)
+* Merge pull request #1758 from narmi/NDS-1661/copilot-instructions ([277d77e](https://github.com/narmi/design_system/commit/277d77e)), closes [#1758](https://github.com/narmi/design_system/issues/1758)
+* Merge pull request #1762 from narmi/dependabot/npm_and_yarn/babel/preset-env-7.28.0 ([58d6b12](https://github.com/narmi/design_system/commit/58d6b12)), closes [#1762](https://github.com/narmi/design_system/issues/1762)
+* Merge pull request #1763 from narmi/dependabot/npm_and_yarn/webpack-dev-server-5.2.2 ([32111da](https://github.com/narmi/design_system/commit/32111da)), closes [#1763](https://github.com/narmi/design_system/issues/1763)
+* Merge pull request #1764 from narmi/dependabot/npm_and_yarn/core-js-3.44.0 ([18d25c7](https://github.com/narmi/design_system/commit/18d25c7)), closes [#1764](https://github.com/narmi/design_system/issues/1764)
+* Update .github/copilot-instructions.md ([41da6fa](https://github.com/narmi/design_system/commit/41da6fa))
+* Update src/Table/index.tsx ([b1d2a6c](https://github.com/narmi/design_system/commit/b1d2a6c))
+* build: add lib name to webpack output ([89d2bb0](https://github.com/narmi/design_system/commit/89d2bb0))
+* build(deps-dev): bump @babel/preset-env from 7.27.2 to 7.28.0 ([0dc93d3](https://github.com/narmi/design_system/commit/0dc93d3))
+* build(deps-dev): bump core-js from 3.40.0 to 3.44.0 ([357af0c](https://github.com/narmi/design_system/commit/357af0c))
+* build(deps-dev): bump semantic-release from 19.0.5 to 24.2.6 ([50bb117](https://github.com/narmi/design_system/commit/50bb117))
+* build(deps-dev): bump webpack-dev-server from 5.2.1 to 5.2.2 ([7253ab0](https://github.com/narmi/design_system/commit/7253ab0))
+* chore: add copilot instructions ([fce7d82](https://github.com/narmi/design_system/commit/fce7d82))
+* chore: add xl breakpoint to Table utils ([91ac694](https://github.com/narmi/design_system/commit/91ac694))
+* chore(Table): remove public stories ([d579e38](https://github.com/narmi/design_system/commit/d579e38))
+* refactor(Table): update Table with improved useBreakpoints hook ([a5a5e77](https://github.com/narmi/design_system/commit/a5a5e77))
+* feat(useBreakpoints): add largestSatisfiedBreakpoint to return ([db429a2](https://github.com/narmi/design_system/commit/db429a2))
+
 ## [4.29.0](https://github.com/narmi/design_system/compare/v4.28.1...v4.29.0) (2025-07-09)
 
 

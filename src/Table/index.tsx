@@ -8,10 +8,7 @@ import Cell from "./Cell";
 import HeaderCell from "./HeaderCell";
 import { default as TableRow } from "./Row";
 import ColVisibilityContext from "./util/colVisibilityContext";
-import {
-  findCurrentFromBreakpoints,
-  isBreakpointSatisfied,
-} from "./util/breakpoint";
+import { isBreakpointSatisfied } from "./util/breakpoint";
 import { columnTemplateFromBreakpoints } from "./util/grid";
 
 /** Minimum size at which to show a column. "*" means "all" */
@@ -72,8 +69,8 @@ const Table = ({
   colLayout = { s: "auto", m: "auto", l: "auto" },
   rowDensity = "default",
 }: TableProps) => {
-  const { m, l } = useBreakpoints();
-  const currentBreakpoint = findCurrentFromBreakpoints({ m, l });
+  const { largestSatisfiedBreakpoint } = useBreakpoints();
+  const currentBreakpoint = largestSatisfiedBreakpoint === 'none' ? "s" : largestSatisfiedBreakpoint;
 
   const visibleCols: number = colVisibility.filter(
     (minRequired: ColMinBreakpoint) =>

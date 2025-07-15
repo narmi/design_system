@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.32.0 (2025-07-15)
+
+* Merge pull request #1766 from narmi/feat/NDS-1576-public-table-component ([ac4ba95](https://github.com/narmi/design_system/commit/ac4ba95)), closes [#1766](https://github.com/narmi/design_system/issues/1766)
+* feat(Table): add Table layout component ([7ee76c9](https://github.com/narmi/design_system/commit/7ee76c9))
+
 ## 4.31.0 (2025-07-15)
 
 * Merge branch 'main' into NDS-1605/render-props-audit ([a110212](https://github.com/narmi/design_system/commit/a110212))

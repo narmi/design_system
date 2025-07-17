@@ -15,7 +15,7 @@ export interface AutocompleteModalProps {
   onChange?: (value: string) => void;
   /** Input change event callback - called with value of selected item */
   onInputChange?: (value: string) => void;
-  /** Optional pinned footer conent; use for action buttons */
+  /** Optional pinned footer content; use for action buttons */
   footerContent?: React.ReactNode;
 }
 

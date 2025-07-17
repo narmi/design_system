@@ -34,6 +34,49 @@ export const Overview = () => {
   );
 };
 
+export const WithSearchValue = () => {
+  return (
+    <div style={{ margin: "8rem" }}>
+      <AutocompleteModal
+        inputLabel="Search"
+        trigger={<Button label="Assign to" />}
+        onChange={(val) => alert(`POST request with UUID ${val}`)}
+      >
+        <AutocompleteModal.Item
+          value="dd0bb6a2-af23-4d5e-a2ae-8c57ecd6bc07"
+          searchValue="Adam D."
+        >
+          Adam D.
+        </AutocompleteModal.Item>
+        <AutocompleteModal.Item
+          value="ac6d94fc-fab2-4670-ae30-a8756955f563"
+          searchValue="Adam U."
+        >
+          Adam U.
+        </AutocompleteModal.Item>
+        <AutocompleteModal.Item
+          value="f24b720d-681d-40e9-bdfc-52a7e807aea5"
+          searchValue="Ayesha"
+        >
+          Ayesha
+        </AutocompleteModal.Item>
+        <AutocompleteModal.Item
+          value="d9f428ee-6287-4ac1-8e05-e7b5874a568d"
+          searchValue="James"
+        >
+          James
+        </AutocompleteModal.Item>
+        <AutocompleteModal.Item
+          value="aad8f0a4-2b2a-4540-8976-54c75e6b23d8"
+          searchValue="Martin"
+        >
+          Martin
+        </AutocompleteModal.Item>
+      </AutocompleteModal>
+    </div>
+  );
+};
+
 export const WithAction = () => {
   const [selectedValue, setSelectedValue] = useState("Unassigned");
   const [items, setItems] = useState([

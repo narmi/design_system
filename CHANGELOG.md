@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.33.0 (2025-07-17)
+
+* Merge pull request #1771 from narmi/elliot/use-searchvalue-autocompletemodal ([e07abf0](https://github.com/narmi/design_system/commit/e07abf0)), closes [#1771](https://github.com/narmi/design_system/issues/1771)
+* feat(AutocompleteModal): allow use of searchValue prop for filtering items ([d2ae373](https://github.com/narmi/design_system/commit/d2ae373))
+
 ## 4.32.0 (2025-07-15)
 
 * Merge pull request #1766 from narmi/feat/NDS-1576-public-table-component ([ac4ba95](https://github.com/narmi/design_system/commit/ac4ba95)), closes [#1766](https://github.com/narmi/design_system/issues/1766)

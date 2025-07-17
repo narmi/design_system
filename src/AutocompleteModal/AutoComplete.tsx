@@ -17,11 +17,12 @@ export interface AutoCompleteProps {
   onChange?: (item: AutoCompleteItem) => void;
   /** Input change event callback */
   onInputChange?: (e: string) => void;
-  /** Optional pinned footer conent; use for action buttons */
+  /** Optional pinned footer content; use for action buttons */
   footerContent?: React.ReactNode;
 }
 
-export const itemToString = (item: AutoCompleteItem) => item.props.value || "";
+export const itemToString = (item: AutoCompleteItem) =>
+  item.props.searchValue || item.props.value || "";
 
 export const filterItems = (items: AutoCompleteItem[], inputValue: string) =>
   items.filter((item) =>

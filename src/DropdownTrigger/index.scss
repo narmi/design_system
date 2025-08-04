@@ -1,6 +1,7 @@
 .nds-dropdownTrigger {
   position: relative;
   min-height: rem(48px);
+  max-width: 100%;
   display: flex;
   align-items: center;
 }
@@ -45,9 +46,6 @@
 .nds-dropdownTrigger-value {
   color: var(--font-color-primary);
   max-width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   padding-right: rem(24px);
 }
 

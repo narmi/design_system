@@ -45,45 +45,6 @@ WithTextInput.parameters = {
   },
 };
 
-export const WithMenuButton = () => (
-  <Tooltip text="I am telling you about this menu button">
-    <MenuButton label="Menu button" side="top">
-      <MenuButton.Item label="Do something" />
-      <MenuButton.Item label="Do something else" />
-      <MenuButton.Item label="Do another thing" />
-    </MenuButton>
-  </Tooltip>
-);
-
-export const WithMenuButtonWorkaround = () => {
-  // only show the tooltip until the menu button is clicked,
-  // then hide it until component is remounted.
-  const [allowTooltip, setAllowTooltip] = useState(true);
-
-  return (
-    <Tooltip
-      text="I am telling you about this menu button"
-      isOpen={allowTooltip ? undefined : false}
-    >
-      <MenuButton
-        label="Menu button"
-        side="top"
-        renderTrigger={() => (
-          <IconButton
-            kind="action"
-            name="sparkle"
-            onClick={() => setAllowTooltip(false)}
-          />
-        )}
-      >
-        <MenuButton.Item label="Do something!" />
-        <MenuButton.Item label="Do something else" />
-        <MenuButton.Item label="Do another thing" />
-      </MenuButton>
-    </Tooltip>
-  );
-};
-
 export const WithTooltipAsMenuButtonTrigger = () => {
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
   return (

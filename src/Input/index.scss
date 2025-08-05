@@ -123,7 +123,7 @@
 
   input[type="text"],
   input[type="tel"],
-  input[type="number"],
+  input[type="number"]:not(.flatpickr-calendar input),
   input[type="email"],
   input[type="date"],
   input[type="password"],

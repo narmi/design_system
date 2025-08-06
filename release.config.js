@@ -11,6 +11,24 @@ const config = {
       "@semantic-release/commit-analyzer",
       {
         preset: "conventionalcommits",
+        releaseRules: [
+          { type: "feat", release: "minor" },
+          { type: "feature", release: "minor" },
+          { type: "fix", release: "patch" },
+          { type: "perf", release: "patch" },
+          { breaking: true, release: "major" },
+          { type: "docs", release: false },
+          { type: "style", release: false },
+          { type: "chore", release: false },
+          { type: "refactor", release: false },
+          { type: "test", release: false },
+          { type: "build", release: false },
+          { type: "ci", release: false },
+          { type: "revert", release: "patch" },
+        ],
+        parserOpts: {
+          noteKeywords: ["BREAKING CHANGE", "BREAKING CHANGES"],
+        },
       },
     ],
     [
@@ -37,6 +55,20 @@ const config = {
           groupBy: "type",
           commitGroupsSort: "title",
           commitsSort: ["subject", "scope"],
+          transform: (commit) => {
+            // Filter out merge commits and commits without proper types
+            if (commit.merge || !commit.type) {
+              return null;
+            }
+
+            // Only include commits that match our defined types
+            const validTypes = ["feat", "feature", "fix", "perf", "revert"];
+            if (!validTypes.includes(commit.type)) {
+              return null;
+            }
+
+            return commit;
+          },
         },
       },
     ],
@@ -66,6 +98,20 @@ const config = {
           groupBy: "type",
           commitGroupsSort: "title",
           commitsSort: ["subject", "scope"],
+          transform: (commit) => {
+            // Filter out merge commits and commits without proper types
+            if (commit.merge || !commit.type) {
+              return null;
+            }
+
+            // Only include commits that match our defined types
+            const validTypes = ["feat", "feature", "fix", "perf", "revert"];
+            if (!validTypes.includes(commit.type)) {
+              return null;
+            }
+
+            return commit;
+          },
         },
       },
     ],

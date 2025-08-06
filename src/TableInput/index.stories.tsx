@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import TableInput from "./";
 import Table from "../Table";
+// Import the TableInputProps type for type safety
+import type { TableInputProps } from "./";
 
-const Template = (args) => {
+const Template = (args: TableInputProps) => {
   const [value, setValue] = useState(args.value || "");
 
   return (

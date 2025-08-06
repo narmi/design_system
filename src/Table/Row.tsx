@@ -7,7 +7,7 @@ import type { HeaderCellProps } from "./HeaderCell";
 
 export interface TableRowProps {
   children: React.ReactNode;
-  onRowClick: () => void;
+  onRowClick?: () => void;
 }
 
 const Row = ({ children, onRowClick }: TableRowProps) => {

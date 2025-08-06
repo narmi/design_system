@@ -1,0 +1,34 @@
+/** TableInput */
+.nds-tableField-input {
+  border-width: 0;
+  width: 100%;
+
+  input {
+    border-radius: rem(4px);
+    padding: var(--space-xs);
+    background: transparent;
+    color: var(--font-color-primary);
+    font-size: inherit;
+    font-weight: inherit;
+    text-rendering: geometricprecision;
+
+    // The 1px of border should always be present, so the
+    // input doesn't "bounce" the layout 2px on focus
+    border: 1px solid transparent;
+
+    // Offset the input to align text to its column, compensating
+    // for the internal padding and 1px border of the input
+    transform: translateX(calc((var(--space-xs) * -1) - 1px));
+
+    &::placeholder {
+      font-style: italic;
+      color: var(--font-color-secondary);
+    }
+
+    &:focus {
+      outline: none;
+      border: 1px solid var(--theme-primary);
+      background: var(--color-white);
+    }
+  }
+}

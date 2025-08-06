@@ -23,10 +23,13 @@
   grid-template-columns: subgrid;
   grid-column: 1 / -1; // participate in all parent columns
   align-items: center;
+  padding: 0 rem(8px);
 
   // rowDensity variants
+  // compact density AND editable kind use 48px
   height: rem(64px);
-  .nds-table--compact & {
+  .nds-table--compact &,
+  .nds-table--editable & {
     height: rem(48px);
   }
 
@@ -50,6 +53,12 @@
       var(--alpha-10)
     ) !important;
   }
+
+  // Editable table header
+  .nds-table--editable &:has([role="columnheader"]) {
+    height: rem(48px) !important;
+    background: rgba(var(--theme-rgb-primary), var(--alpha-5));
+  }
 }
 
 .nds-table-cell {
@@ -59,6 +68,11 @@
   // default wrapping behavior
   white-space: nowrap;
   text-overflow: ellipsis;
+
+  // Allow overflow when containing TableField components
+  &:has([class^="nds-tableField"]) {
+    overflow: visible;
+  }
 
   // header cells
   &[role="columnheader"] {

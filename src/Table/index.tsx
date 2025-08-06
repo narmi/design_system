@@ -47,6 +47,7 @@ interface TableProps {
    */
   colLayout?: ColLayoutConfig;
   rowDensity?: "default" | "compact";
+  kind?: "default" | "editable";
 }
 
 export const DEFAULT_COLS = 5;
@@ -68,6 +69,7 @@ const Table = ({
   colVisibility = defaultColVisibility,
   colLayout = { s: "auto", m: "auto", l: "auto" },
   rowDensity = "default",
+  kind = "default",
 }: TableProps) => {
   const { largestSatisfiedBreakpoint } = useBreakpoints();
   const currentBreakpoint =
@@ -113,7 +115,11 @@ const Table = ({
     >
       <div
         role="table"
-        className={cc(["nds-table", `nds-table--${rowDensity}`])}
+        className={cc([
+          "nds-table",
+          `nds-table--${rowDensity}`,
+          `nds-table--${kind}`,
+        ])}
         /**
          * We apply a CSS value for grid-tempalte-columns on the root
          * of this table component, so the grid column tracks may be

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.33.2 (2025-08-06)</small>
+
+* fix(DateInput): Ignore globally set `input` CSS rules for `portalDisabled` `<DateInput/>` components ([c17839a](https://github.com/narmi/design_system/commit/c17839a)), closes [#1813](https://github.com/narmi/design_system/issues/1813)
+
 ## <small>4.33.1 (2025-08-05)</small>
 
 * chore: try rendering tooltip in render prop of MenuButton ([9756531](https://github.com/narmi/design_system/commit/9756531))

@@ -5,11 +5,6 @@ All notable changes to this project will be documented in this file. See
 
 ## <small>4.33.3 (2025-08-06)</small>
 
-* Merge branch 'main' into fix/NDS-1754-combobox-collapse ([e917b7c](https://github.com/narmi/design_system/commit/e917b7c))
-* Merge pull request #1816 from narmi/fix/NDS-1754-combobox-collapse ([d28e859](https://github.com/narmi/design_system/commit/d28e859)), closes [#1816](https://github.com/narmi/design_system/issues/1816)
-* Merge pull request #1817 from narmi/akdetrick-patch-5 ([2a57fb3](https://github.com/narmi/design_system/commit/2a57fb3)), closes [#1817](https://github.com/narmi/design_system/issues/1817)
-* Update CHANGELOG.md ([9697b10](https://github.com/narmi/design_system/commit/9697b10))
-* chore: update release config ([f838221](https://github.com/narmi/design_system/commit/f838221))
 * fix(CollapsibleCard): prevent collapse on content clicks ([522198e](https://github.com/narmi/design_system/commit/522198e))
 
 ## <small>4.33.2 (2025-08-06)</small>

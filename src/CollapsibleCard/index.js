@@ -168,7 +168,7 @@ const CollapsibleCard = ({
       : {};
 
   return (
-    <div className={cardClassName} {...headerTriggerProps}>
+    <div className={cardClassName}>
       {isOpen && !isDisabled ? (
         <>
           <div
@@ -176,13 +176,16 @@ const CollapsibleCard = ({
             aria-expanded="true"
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
+            {...headerTriggerProps}
           >
             {titleContainerJSX}
           </div>
           <div className="padding--all--l">{children}</div>
         </>
       ) : (
-        <div aria-expanded="false">{titleContainerJSX}</div>
+        <div aria-expanded="false" {...headerTriggerProps}>
+          {titleContainerJSX}
+        </div>
       )}
     </div>
   );

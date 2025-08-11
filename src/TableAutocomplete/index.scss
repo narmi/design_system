@@ -1,0 +1,43 @@
+.nds-tableAutocomplete {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.nds-tableAutocomplete-dropdown {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--theme-primary);
+  background-color: var(--color-white);
+  box-shadow: var(--elevation-middle);
+  max-height: rem(312px);
+  margin-top: var(--spacing-xxs);
+
+  // Align dropdown with offset input
+  transform: translateX(calc((var(--space-xs) * -1) - 1px));
+
+  .narmi-icon-check {
+    color: var(--theme-primary);
+  }
+}
+
+.nds-tableAutocomplete-menu {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.nds-tableAutocomplete-footer {
+  flex-grow: 0;
+  flex-basis: min-content;
+}
+
+.nds-tableAutocomplete-item {
+  cursor: pointer;
+  position: relative;
+
+  &:hover,
+  &--highlighted {
+    background: RGBA(var(--theme-rgb-primary), var(--alpha-5));
+  }
+}

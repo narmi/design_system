@@ -10,9 +10,9 @@ const Template = (args: TableInputProps) => {
     <TableInput
       {...args}
       value={value}
-      onChange={(newValue) => {
-        setValue(newValue);
-        args.onChange?.(newValue);
+      onChange={(event) => {
+        setValue(event.target.value);
+        args.onChange?.(event);
       }}
     />
   );
@@ -21,7 +21,8 @@ const Template = (args: TableInputProps) => {
 export const Overview = Template.bind({});
 Overview.args = {
   value: "Sample value",
-  onChange: (value: string) => console.log("Value changed:", value),
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
+    console.log("Value changed:", event.target.value),
   label: "Editable field",
   placeholder: "Enter text here...",
   isDisabled: false,
@@ -35,8 +36,11 @@ export const InATable = () => {
     email2: "jane@example.com",
   });
 
-  const updateValue = (key: string, newValue: string) => {
-    setValues((prev) => ({ ...prev, [key]: newValue }));
+  const updateValue = (
+    key: string,
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setValues((prev) => ({ ...prev, [key]: event.target.value }));
   };
 
   return (
@@ -61,7 +65,7 @@ export const InATable = () => {
           <Table.Cell>
             <TableInput
               value={values.name1}
-              onChange={(value) => updateValue("name1", value)}
+              onChange={(event) => updateValue("name1", event)}
               label="Edit name"
               placeholder="Enter name"
             />
@@ -70,7 +74,7 @@ export const InATable = () => {
           <Table.Cell>
             <TableInput
               value={values.email1}
-              onChange={(value) => updateValue("email1", value)}
+              onChange={(event) => updateValue("email1", event)}
               label="Edit email"
               placeholder="Enter email"
             />
@@ -80,7 +84,7 @@ export const InATable = () => {
           <Table.Cell>
             <TableInput
               value={values.name2}
-              onChange={(value) => updateValue("name2", value)}
+              onChange={(event) => updateValue("name2", event)}
               label="Edit name"
               placeholder="Enter name"
             />
@@ -89,7 +93,7 @@ export const InATable = () => {
           <Table.Cell>
             <TableInput
               value={values.email2}
-              onChange={(value) => updateValue("email2", value)}
+              onChange={(event) => updateValue("email2", event)}
               label="Edit email"
               placeholder="Enter email"
             />

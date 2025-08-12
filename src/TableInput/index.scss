@@ -31,4 +31,10 @@
       background: var(--color-white);
     }
   }
+
+  &--hasError {
+    input {
+      border-color: var(--color-errorDark) !important;
+    }
+  }
 }

@@ -188,7 +188,7 @@ const TableAutocomplete = ({
                         highlightedIndex === index,
                     },
                   ])}
-                  key={`${item?.props.value}-${index}`}
+                  key={item?.props.value}
                   {...getItemProps({ item, index })}
                 >
                   <Row>

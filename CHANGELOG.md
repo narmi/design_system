@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.34.0 (2025-08-13)
+
+* feat(TableInput): add TableInput component for editable cells ([aacb03070c8ef5ce5d1fb3b47d6c1af414f5d537](https://github.com/narmi/design_system/commit/aacb03070c8ef5ce5d1fb3b47d6c1af414f5d537))
+
 ## <small>4.33.3 (2025-08-06)</small>
 
 * fix(CollapsibleCard): prevent collapse on content clicks ([522198e](https://github.com/narmi/design_system/commit/522198e))

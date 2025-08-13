@@ -23,6 +23,7 @@ import Spinner from "./Spinner";
 import SplitButton from "./SplitButton";
 import LoadingSkeleton from "./LoadingSkeleton";
 import Table from "./Table";
+import TableInput from "./TableInput";
 import Tabs from "./Tabs";
 import Tooltip from "./Tooltip";
 
@@ -104,6 +105,7 @@ export {
   Spinner,
   SplitButton,
   Table,
+  TableInput,
   Tabs,
   Tag,
   TextInput,

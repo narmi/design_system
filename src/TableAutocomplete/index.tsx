@@ -121,7 +121,7 @@ const TableAutocomplete = ({
         onChange(newSelectedItem.props.value);
       }
     },
-    itemToString(item: React.ReactNode) {
+    itemToString(item: TableAutocompleteItem | null) {
       if (React.isValidElement(item)) {
         return itemToString(item as TableAutocompleteItem);
       }

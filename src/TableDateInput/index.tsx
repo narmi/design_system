@@ -29,6 +29,8 @@ export interface TableDateInputProps {
   testId?: string;
   /** When true, appends the calendar popup to the parent of the input instead to document body */
   disablePortal?: boolean;
+  /** Whether the input has an errorj */
+  hasError?: boolean;
 }
 
 /**
@@ -41,6 +43,7 @@ export interface TableDateInputProps {
 const TableDateInput = ({
   placeholder,
   label,
+  hasError = false,
   ...otherProps
 }: TableDateInputProps) => {
   return (
@@ -64,6 +67,7 @@ const TableDateInput = ({
             placeholder={placeholder}
             ref={inputRef}
             data-testid={testId}
+            hasError={hasError}
           />
         );
       }}

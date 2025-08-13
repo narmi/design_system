@@ -73,8 +73,8 @@ const TableAutocomplete = ({
 
   // For controlled mode, compute displayed items from inputValue
   // For uncontrolled mode, let downshift manage the filtering via stateReducer
-  const [filteredItems, setFilteredItems] = React.useState(() => allItems);
-  const [filteredItems, setFilteredItems] = React.useState<TableAutocompleteItem[]>([]);
+  const [filteredItems, setFilteredItems] =
+    React.useState<TableAutocompleteItem[]>(allItems);
 
   // Keep filteredItems in sync with allItems when uncontrolled
   React.useEffect(() => {

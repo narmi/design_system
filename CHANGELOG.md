@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.36.0 (2025-08-14)
+
+* feat(TableDateInput): add date input for table cells ([fda224c93260d65783df805df9b533726c9291d3](https://github.com/narmi/design_system/commit/fda224c93260d65783df805df9b533726c9291d3))
+* feat(DateInput): take render fn for input element ([a51855f526dda56728c441963622283a95540e06](https://github.com/narmi/design_system/commit/a51855f526dda56728c441963622283a95540e06))
+
 ## 4.35.0 (2025-08-14)
 
 * feat(TableAutocomplete): add autocomplete input for tables ([c210bdec525a309862b8a9ac033273bb30f78481](https://github.com/narmi/design_system/commit/c210bdec525a309862b8a9ac033273bb30f78481))

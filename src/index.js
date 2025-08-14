@@ -42,6 +42,9 @@ import Snackbar from "./Snackbar";
 import Spinner from "./Spinner";
 import SplitButton from "./SplitButton";
 import Table from "./Table";
+import TableAutocomplete from "./TableAutocomplete";
+import TableDateInput from "./TableDateInput";
+import TableInput from "./TableInput";
 import Tabs from "./Tabs";
 import Tag from "./Tag";
 import TextInput from "./TextInput";
@@ -98,6 +101,9 @@ export {
   Spinner,
   SplitButton,
   Table,
+  TableAutocomplete,
+  TableDateInput,
+  TableInput,
   Tabs,
   Tag,
   TextInput,

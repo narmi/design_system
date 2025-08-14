@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.35.0 (2025-08-14)
+
+* feat(TableAutocomplete): add autocomplete input for tables ([c210bdec525a309862b8a9ac033273bb30f78481](https://github.com/narmi/design_system/commit/c210bdec525a309862b8a9ac033273bb30f78481))
+
 ## 4.34.0 (2025-08-13)
 
 * feat(TableInput): add TableInput component for editable cells ([aacb03070c8ef5ce5d1fb3b47d6c1af414f5d537](https://github.com/narmi/design_system/commit/aacb03070c8ef5ce5d1fb3b47d6c1af414f5d537))

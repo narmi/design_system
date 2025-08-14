@@ -24,6 +24,7 @@ import SplitButton from "./SplitButton";
 import LoadingSkeleton from "./LoadingSkeleton";
 import Table from "./Table";
 import TableAutocomplete from "./TableAutocomplete";
+import TableDateInput from "./TableDateInput";
 import TableInput from "./TableInput";
 import Tabs from "./Tabs";
 import Tooltip from "./Tooltip";
@@ -107,6 +108,7 @@ export {
   SplitButton,
   Table,
   TableAutocomplete,
+  TableDateInput,
   TableInput,
   Tabs,
   Tag,

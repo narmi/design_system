@@ -47,7 +47,6 @@ const TableDateInput = ({
   ...otherProps
 }: TableDateInputProps) => {
   return (
-    // @ts-expect-error - DateInput is a JS component with loose typing
     <DateInput
       {...otherProps}
       altInput={true}

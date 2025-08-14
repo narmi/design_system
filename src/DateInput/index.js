@@ -6,6 +6,10 @@ import flatpickr from "flatpickr";
 
 const noop = () => {};
 
+const defaultRenderInput = (props, input, testId) => (
+  <TextInput ref={input} type="date" required data-testid={testId} {...props} />
+);
+
 /**
  * Single day picker.
  * Composes NDS input with a [flatpickr](http://flatpickrjs.org) calendar UI.
@@ -22,6 +26,7 @@ const DateInput = ({
   disableMobile = false,
   testId,
   disablePortal,
+  renderInput = defaultRenderInput,
   ...props
 }) => {
   const input = useRef();
@@ -74,19 +79,7 @@ const DateInput = ({
     flatpickr(input.current, flatpickrOptions);
   }, [flatpickrOptions, input, disablePortal]);
 
-  return (
-    <>
-      <TextInput
-        {...props}
-        label={props.label}
-        ref={input}
-        type="date"
-        required
-        data-testid={testId}
-        {...props}
-      />
-    </>
-  );
+  return <>{renderInput(props, input, testId)}</>;
 };
 DateInput.propTypes = {
   /** Placeholder of the input */
@@ -118,6 +111,8 @@ DateInput.propTypes = {
   testId: PropTypes.string,
   /** When true, appends the calendar popup to the parent of the input instead of to document body */
   disablePortal: PropTypes.bool,
+  /** Custom render function for the input element (props, input, testId) => <TextInput {...props} /> */
+  renderInput: PropTypes.func,
 };
 DateInput.defaultProps = {
   onChange: () => {},

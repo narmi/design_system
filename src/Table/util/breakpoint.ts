@@ -7,7 +7,6 @@ const BREAKPOINT_ORDER = {
   s: 0,
   m: 1,
   l: 2,
-  xl: 3,
 };
 
 /**

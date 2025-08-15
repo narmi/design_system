@@ -73,7 +73,11 @@ const Table = ({
 }: TableProps) => {
   const { largestSatisfiedBreakpoint } = useBreakpoints();
   const currentBreakpoint =
-    largestSatisfiedBreakpoint === "none" ? "s" : largestSatisfiedBreakpoint;
+    largestSatisfiedBreakpoint === "none"
+      ? "s"
+      : largestSatisfiedBreakpoint === "xl"
+        ? "l"
+        : largestSatisfiedBreakpoint;
 
   const visibleCols: number = colVisibility.filter(
     (minRequired: ColMinBreakpoint) =>

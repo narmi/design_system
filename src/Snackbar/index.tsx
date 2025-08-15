@@ -29,14 +29,14 @@ const SnackbarDivider = () => {
 /**
  * Wraps text nodes with a dedicated element.
  */
-const SnackbarText = ({ children }: { children: React.ReactNode[] }) => (
+const SnackbarText = ({ children }: { children: React.ReactNode }) => (
   <div className="nds-snackbar-text fontColor--secondary">{children}</div>
 );
 
 /**
  * Renders a semantic grouping of buttons within the Snackbar
  */
-const SnackbarButtonGroup = ({ children }: { children: React.ReactNode[] }) => (
+const SnackbarButtonGroup = ({ children }: { children: React.ReactNode }) => (
   <ul className="list--reset nds-snackbar-buttonGroup">
     {children.map((button, i) => (
       <li key={i}>{button}</li>
@@ -45,7 +45,7 @@ const SnackbarButtonGroup = ({ children }: { children: React.ReactNode[] }) => (
 );
 
 export interface SnackbarProps {
-  children: React.ReactNode[];
+  children: React.ReactNode;
   isActive: boolean;
 }
 

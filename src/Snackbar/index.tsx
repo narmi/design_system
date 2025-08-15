@@ -29,31 +29,35 @@ const SnackbarDivider = () => {
 /**
  * Wraps text nodes with a dedicated element.
  */
-const SnackbarText = ({ children }: { children: React.ReactNode[] }) => (
+const SnackbarText = ({ children }: React.PropsWithChildren) => (
   <div className="nds-snackbar-text fontColor--secondary">{children}</div>
 );
 
 /**
  * Renders a semantic grouping of buttons within the Snackbar
  */
-const SnackbarButtonGroup = ({ children }: { children: React.ReactNode[] }) => (
+const SnackbarButtonGroup = ({ children }: React.PropsWithChildren) => (
   <ul className="list--reset nds-snackbar-buttonGroup">
-    {children.map((button, i) => (
-      <li key={i}>{button}</li>
-    ))}
+    {React.Children.map(
+      // React.Children.map safely handles when children is not a list
+      children,
+      (button, i) => (
+        <li key={i}>{button}</li>
+      ),
+    )}
   </ul>
 );
-
-export interface SnackbarProps {
-  children: React.ReactNode[];
-  isActive: boolean;
-}
 
 /**
  * A status toolbar for multiple selection in a table.
  * Intended to be rendered in fixed position over a table.
  */
-const Snackbar = ({ children, isActive = false }: SnackbarProps) => {
+const Snackbar = ({
+  children,
+  isActive = false,
+}: React.PropsWithChildren<{
+  isActive: boolean;
+}>) => {
   return (
     <div aria-live="polite" role="status">
       {isActive && (

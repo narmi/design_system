@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.36.2 (2025-08-15)</small>
+
+* fix(Snackbar): change children type to React.ReactNode ([867c342c5422223e6481243f836bdc3b731c8826](https://github.com/narmi/design_system/commit/867c342c5422223e6481243f836bdc3b731c8826))
+
 ## <small>4.36.1 (2025-08-14)</small>
 
 * fix: export table input components ([2b487284f7e52547efe5a8bb9d5b6c51d17e62b8](https://github.com/narmi/design_system/commit/2b487284f7e52547efe5a8bb9d5b6c51d17e62b8))

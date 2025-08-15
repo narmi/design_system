@@ -45,7 +45,7 @@ const SnackbarButtonGroup = ({ children }: { children: React.ReactNode[] }) => (
 );
 
 export interface SnackbarProps {
-  children: React.ReactNode[];
+  children: React.ReactNode;
   isActive: boolean;
 }
 

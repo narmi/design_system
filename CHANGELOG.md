@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.36.5 (2025-08-20)</small>
+
+* fix(TableInput): add hover state ([c9cdb1ffdb1fa3151147efba6e37973151fc77c3](https://github.com/narmi/design_system/commit/c9cdb1ffdb1fa3151147efba6e37973151fc77c3))
+
 ## <small>4.36.4 (2025-08-20)</small>
 
 - fix(Button): prevent small buttons from scaling on mobile ([994efd2ca1ed615c869e6f2d86b785d1205cfda5](https://github.com/narmi/design_system/commit/994efd2ca1ed615c869e6f2d86b785d1205cfda5))

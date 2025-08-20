@@ -25,6 +25,10 @@
       color: var(--font-color-secondary);
     }
 
+    &:hover {
+      background: rgba(var(--theme-rgb-primary), var(--alpha-5));
+    }
+
     &:focus {
       outline: none;
       border: 1px solid var(--theme-primary);

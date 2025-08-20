@@ -28,6 +28,17 @@ Overview.args = {
   isDisabled: false,
 };
 
+export const WithMaxLength = Template.bind({});
+WithMaxLength.args = {
+  value: "",
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
+    console.log("Value changed:", event.target.value),
+  label: "Editable field",
+  placeholder: "Enter text here...",
+  isDisabled: false,
+  maxLength: 12,
+};
+
 export const InATable = () => {
   const [values, setValues] = useState({
     name1: "John Doe",

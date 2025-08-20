@@ -1,5 +1,6 @@
 import React from "react";
 import cc from "classcat";
+import Row from "../Row";
 
 export interface TableInputProps {
   /** Current value of the input */
@@ -14,6 +15,8 @@ export interface TableInputProps {
   isDisabled?: boolean;
   /** Whether the input has an error */
   hasError?: boolean;
+  /** Max length for input. When passed, a character counter will display */
+  maxLength?: number;
 }
 
 /**
@@ -29,32 +32,58 @@ const TableInput = React.forwardRef<HTMLInputElement, TableInputProps>(
       isDisabled = false,
       placeholder,
       hasError = false,
+      maxLength,
       ...other
     },
     ref,
-  ) => (
-    <div
-      className={cc([
-        "nds-tableField-input",
-        {
-          "nds-tableField-input--disabled": isDisabled,
-          "nds-tableField-input--hasError": hasError,
-        },
-      ])}
-    >
-      <input
-        ref={ref}
-        type="text"
-        aria-label={label}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        disabled={isDisabled}
-        aria-invalid={hasError}
-        {...other}
-      />
-    </div>
-  ),
+  ) => {
+    const characterCount = (value || "").length;
+    const showCharacterCounter =
+      maxLength !== undefined && maxLength > 0 && characterCount >= 1;
+    const hasCountError = showCharacterCounter && characterCount > maxLength;
+    return (
+      <div
+        className={cc([
+          "nds-tableField-input",
+          {
+            "nds-tableField-input--disabled": isDisabled,
+            "nds-tableField-input--hasError": hasError || hasCountError,
+          },
+        ])}
+      >
+        <Row gapSize="xs" alignItems="center">
+          <Row.Item>
+            <input
+              ref={ref}
+              type="text"
+              aria-label={label}
+              value={value}
+              onChange={onChange}
+              placeholder={placeholder}
+              disabled={isDisabled}
+              aria-invalid={hasError}
+              {...other}
+            />
+          </Row.Item>
+          {showCharacterCounter && (
+            <Row.Item shrink>
+              <div
+                className={cc([
+                  "nds-tableInput-counter",
+                  "fontSize--s",
+                  {
+                    "fontColor--error": hasError || hasCountError,
+                  },
+                ])}
+              >
+                {characterCount}/{maxLength}
+              </div>
+            </Row.Item>
+          )}
+        </Row>
+      </div>
+    );
+  },
 );
 
 TableInput.displayName = "TableInput";

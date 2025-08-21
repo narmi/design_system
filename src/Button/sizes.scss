@@ -29,4 +29,8 @@
     margin: rem(8px) rem(32px);
     max-width: rem(240px);
   }
+  // Medium is our default size. As such, we want it to scale up on smaller viewports.
+  @media (max-width: #{map.get($breakpoints, "s")}) {
+    min-height: rem(48px) !important;
+  }
 }

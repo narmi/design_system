@@ -33,6 +33,10 @@
     border: 1px solid var(--theme-primary);
     background: var(--color-white);
   }
+  
+  &:has(input:hover) {
+    background: rgba(var(--theme-rgb-primary), var(--alpha-5));
+  }
 
   &--hasError {
     border-color: var(--color-errorDark) !important;

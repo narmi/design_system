@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TableInput from "./";
 import Table from "../Table";
 import type { TableInputProps } from "./";
+import { action } from "@storybook/addon-actions";
 
 const Template = (args: TableInputProps) => {
   const [value, setValue] = useState(args.value || "");
@@ -22,7 +23,7 @@ export const Overview = Template.bind({});
 Overview.args = {
   value: "Sample value",
   onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
-    console.log("Value changed:", event.target.value),
+    action("Value changed")(event.target.value),
   label: "Editable field",
   placeholder: "Enter text here...",
   isDisabled: false,
@@ -32,7 +33,7 @@ export const WithMaxLength = Template.bind({});
 WithMaxLength.args = {
   value: "",
   onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
-    console.log("Value changed:", event.target.value),
+    action("Value changed")(event.target.value),
   label: "Editable field",
   placeholder: "Enter text here...",
   isDisabled: false,

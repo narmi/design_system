@@ -31,6 +31,8 @@ export interface ButtonProps {
   startIcon?: IconName | null;
   /** Name of Narmi icon to place at the end of the label */
   endIcon?: IconName | null;
+  /** Spreads icon and text to opposite ends of the button */
+  isSpread?: boolean;
   /** Optional value for `data-testid` attribute */
   testId?: string;
   /** Optional value for setting the aria-label. If unset label will be used. */
@@ -62,6 +64,7 @@ const Button = ({
   size = "m",
   startIcon = null,
   endIcon = null,
+  isSpread = false,
   testId,
   children,
   label,
@@ -107,6 +110,7 @@ const Button = ({
           resetButton: as === "button",
           "nds-button--disabled": disabled,
           "nds-button--loading": isLoading,
+          "nds-button--spread": isSpread,
         },
       ])}
       disabled={(isButtonElement && disabled) || isLoading ? true : undefined}
@@ -122,13 +126,17 @@ const Button = ({
           </div>
         )}
         <div style={{ visibility: isLoading ? "hidden" : "visible" }}>
-          <Row gapSize={gapSizeMap[size]} alignItems="center">
+          <Row
+            gapSize={isSpread ? "xs" : gapSizeMap[size]}
+            alignItems="center"
+            justifyContent={isSpread ? "space-between" : "center"}
+          >
             {startIcon && (
               <Row.Item shrink>
                 <Icon name={startIcon} />
               </Row.Item>
             )}
-            <Row.Item>
+            <Row.Item shrink={isSpread}>
               <span className="nds-button-label">{buttonLabel}</span>
             </Row.Item>
             {endIcon && (

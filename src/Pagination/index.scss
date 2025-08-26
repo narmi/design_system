@@ -18,7 +18,7 @@
     grid-auto-flow: column;
     justify-items: center;
     align-items: center;
-    gap: var(--space-xxs);
+    gap: rem(4px);
 
     // Every column should be the same width as the widest item to prevent
     // UX shifting when paging between single, double, tripple, (or more)

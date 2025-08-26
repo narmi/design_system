@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
-import Row from "../Row";
 import { usePagination } from "./usePagination";
 
 const noop = () => {};
@@ -70,8 +69,8 @@ const Pagination = ({
   const pagination = (
     <div className="nds-typography nds-pagination" data-testid={testId}>
       <nav aria-label="pagination">
-        <Row gapSize="xxs" alignItems="center" as="ul">
-          <Row.Item as="li" shrink>
+        <ul>
+          <li>
             <span
               role="button"
               tabIndex={0}
@@ -93,10 +92,10 @@ const Pagination = ({
             >
               <i role="img" className="narmi-icon-chevron-left fontSize--l"></i>
             </span>
-          </Row.Item>
+          </li>
 
           {showFirstPage && (
-            <Row.Item as="li" shrink>
+            <li>
               <span
                 role="button"
                 tabIndex={0}
@@ -112,16 +111,16 @@ const Pagination = ({
               >
                 1
               </span>
-            </Row.Item>
+            </li>
           )}
           {showFirstPage && (
-            <Row.Item as="li" shrink>
+            <li>
               <div className="nds-pagination-ellipsis">&hellip;</div>
-            </Row.Item>
+            </li>
           )}
 
           {visiblePages.map((page, i) => (
-            <Row.Item as="li" key={page} shrink>
+            <li key={`page-${page}`}>
               <span
                 role="button"
                 tabIndex={0}
@@ -143,16 +142,16 @@ const Pagination = ({
               >
                 {page.toString()}
               </span>
-            </Row.Item>
+            </li>
           ))}
 
           {showLastPage && (
-            <Row.Item as="li" shrink>
+            <li>
               <div className="nds-pagination-ellipsis">&hellip;</div>
-            </Row.Item>
+            </li>
           )}
           {showLastPage && (
-            <Row.Item as="li" shrink>
+            <li>
               <span
                 role="button"
                 tabIndex={0}
@@ -168,10 +167,10 @@ const Pagination = ({
               >
                 {totalPages.toString()}
               </span>
-            </Row.Item>
+            </li>
           )}
 
-          <Row.Item as="li" shrink>
+          <li>
             <span
               role="button"
               tabIndex={0}
@@ -196,8 +195,8 @@ const Pagination = ({
                 className="narmi-icon-chevron-right fontSize--l"
               ></i>
             </span>
-          </Row.Item>
-        </Row>
+          </li>
+        </ul>
       </nav>
     </div>
   );

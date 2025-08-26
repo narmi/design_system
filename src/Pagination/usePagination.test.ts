@@ -63,7 +63,7 @@ describe("usePagination", () => {
     });
   });
 
-  describe("ellipsis adjustment", () => {
+  describe("adjusts ellipsis", () => {
     it("reduces window size for ellipsis space", () => {
       const { result } = renderHook(() =>
         usePagination({
@@ -74,6 +74,30 @@ describe("usePagination", () => {
       );
       expect(result.current.visiblePages).toHaveLength(3);
       expect(result.current.visiblePages).toEqual([9, 10, 11]);
+    });
+
+    it("does NOT adjust window size when first page is in visible range", () => {
+      const { result } = renderHook(() =>
+        usePagination({
+          totalPages: 20,
+          selectedPageNumber: 1,
+          windowSize: 5,
+        }),
+      );
+      expect(result.current.visiblePages).toHaveLength(5);
+      expect(result.current.visiblePages).toEqual([1, 2, 3, 4, 5]);
+    });
+
+    it("does NOT adjust window size when last page is in visible range", () => {
+      const { result } = renderHook(() =>
+        usePagination({
+          totalPages: 20,
+          selectedPageNumber: 20,
+          windowSize: 5,
+        }),
+      );
+      expect(result.current.visiblePages).toHaveLength(5);
+      expect(result.current.visiblePages).toEqual([16, 17, 18, 19, 20]);
     });
   });
 });

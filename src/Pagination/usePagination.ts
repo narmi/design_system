@@ -49,7 +49,7 @@ export const calculateVisiblePages = (
   const showFirst = selectedPage > Math.ceil(windowSize / 2);
   const showLast = selectedPage <= totalPages - Math.floor(windowSize / 2);
   const ellipsisCount = [showFirst, showLast].filter(Boolean).length;
-  const effectiveSize = Math.max(1, windowSize - ellipsisCount);
+  const effectiveSize = ellipsisCount === 2 ? windowSize - 2 : windowSize;
   const halfWindow = Math.floor(effectiveSize / 2);
 
   // Calculate the centered window

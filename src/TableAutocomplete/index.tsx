@@ -150,7 +150,7 @@ const TableAutocomplete = ({
 
   return (
     <div className="nds-tableAutocomplete">
-      <div {...triggerProps} style={{ display: "inline-block" }}>
+      <div {...triggerProps}>
         <TableInput
           label={label}
           placeholder={!isDisabled ? placeholder : undefined}

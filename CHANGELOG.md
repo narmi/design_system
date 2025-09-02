@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.38.0 (2025-08-21)
+
+* feat(TableInput): add maxLength prop with char counter ([537cbf9f279419c000b18974ced987e9d7a56618](https://github.com/narmi/design_system/commit/537cbf9f279419c000b18974ced987e9d7a56618))
+
 ## 4.37.0 (2025-08-21)
 
 * feat(TextAutocomplete): add custom filtering prop ([1d9e93a9f3bb938faea331c21f80217fc03128d7](https://github.com/narmi/design_system/commit/1d9e93a9f3bb938faea331c21f80217fc03128d7))

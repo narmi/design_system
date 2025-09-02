@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.38.1 (2025-09-02)</small>
+
+* fix(TableAutocomplete): allow input to grow to parent width ([15fe95c76a469fa76245924f2c0b51b048fa9b29](https://github.com/narmi/design_system/commit/15fe95c76a469fa76245924f2c0b51b048fa9b29))
+
 ## 4.38.0 (2025-08-21)
 
 * feat(TableInput): add maxLength prop with char counter ([537cbf9f279419c000b18974ced987e9d7a56618](https://github.com/narmi/design_system/commit/537cbf9f279419c000b18974ced987e9d7a56618))

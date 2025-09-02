@@ -23,6 +23,11 @@ export interface TableAutocompleteProps {
   onChange?: (value: string) => void;
   /** Input change event callback */
   onInputChange?: (value: string) => void;
+  /** Optional custom filter function for items. Signature: (items, inputValue) => filteredItems[] */
+  filterItemsByInput?: (
+    items: TableAutocompleteItem[],
+    inputValue: string,
+  ) => TableAutocompleteItem[];
   /** Optional pinned footer content; use for action buttons */
   footerContent?: React.ReactNode;
   /** Input placeholder text */
@@ -58,6 +63,7 @@ const TableAutocomplete = ({
   children,
   onChange = () => {},
   onInputChange = () => {},
+  filterItemsByInput = filterItems,
   footerContent,
   placeholder,
   isDisabled = false,
@@ -84,7 +90,7 @@ const TableAutocomplete = ({
   }, [allItems, isControlled]);
   const itemsToDisplay = isControlled
     ? inputValue?.length > 0
-      ? filterItems(allItems, inputValue)
+      ? filterItemsByInput(allItems, inputValue)
       : allItems
     : filteredItems;
 
@@ -110,7 +116,7 @@ const TableAutocomplete = ({
       if (!isControlled) {
         setFilteredItems(
           downshiftInputValue?.length > 0
-            ? filterItems(allItems, downshiftInputValue)
+            ? filterItemsByInput(allItems, downshiftInputValue)
             : allItems,
         );
       }

@@ -1,3 +1,5 @@
+import { useMemo } from "react";
+
 const MAX_VISIBLE_PAGES = 5;
 
 interface UsePaginationOptions {
@@ -84,10 +86,14 @@ export const usePagination = ({
     Math.min(selectedPageNumber, normalizedTotalPages),
   );
 
-  const visiblePages = calculateVisiblePages(
-    normalizedTotalPages,
-    normalizedSelectedPage,
-    windowSize,
+  const visiblePages = useMemo(
+    () =>
+      calculateVisiblePages(
+        normalizedTotalPages,
+        normalizedSelectedPage,
+        windowSize,
+      ),
+    [normalizedTotalPages, normalizedSelectedPage, windowSize],
   );
 
   return {

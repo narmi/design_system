@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.39.0 (2025-09-03)
+
+* feat(Pagination): use sliding window behavior ([48c4f162239530074921f41c80b4ed41f283ce60](https://github.com/narmi/design_system/commit/48c4f162239530074921f41c80b4ed41f283ce60))
+* fix(Pagination): show all pages when 6 total ([7d93ddf331b8548e6ddbb8cc572bbedb4f00742d](https://github.com/narmi/design_system/commit/7d93ddf331b8548e6ddbb8cc572bbedb4f00742d))
+* perf(Pagination): memoize visible page window calculation ([d7096adf096e1240ef946e1e743975b696d79925](https://github.com/narmi/design_system/commit/d7096adf096e1240ef946e1e743975b696d79925))
+
 ## <small>4.38.1 (2025-09-02)</small>
 
 * fix(TableAutocomplete): allow input to grow to parent width ([15fe95c76a469fa76245924f2c0b51b048fa9b29](https://github.com/narmi/design_system/commit/15fe95c76a469fa76245924f2c0b51b048fa9b29))

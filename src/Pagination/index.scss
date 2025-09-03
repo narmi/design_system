@@ -1,5 +1,4 @@
 .nds-pagination {
-  --page-min-size: 1.5em;
   color: var(--theme-primary);
   display: flex;
   justify-content: center;
@@ -33,9 +32,9 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  height: var(--page-min-size);
-  min-width: var(--page-min-size);
-  border-radius: var(--page-min-size);
+  height: rem(28px);
+  min-width: rem(28px);
+  border-radius: rem(28px);
   padding: 0 var(--space-xs);
 }
 

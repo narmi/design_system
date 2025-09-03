@@ -8,6 +8,13 @@ describe("usePagination", () => {
       expect(result.current.visiblePages).toEqual([1, 2, 3, 4, 5]);
     });
 
+    it("shows all pages when there's only one extra page to avoid ellipsis", () => {
+      const { result } = renderHook(() => usePagination({ totalPages: 6 }));
+      expect(result.current.visiblePages).toEqual([1, 2, 3, 4, 5, 6]);
+      expect(result.current.showFirstPage).toBe(false);
+      expect(result.current.showLastPage).toBe(false);
+    });
+
     it("centers selected page when possible", () => {
       const { result } = renderHook(() =>
         usePagination({ totalPages: 10, selectedPageNumber: 6 }),

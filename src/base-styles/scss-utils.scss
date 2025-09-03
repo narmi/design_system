@@ -24,11 +24,18 @@ $breakpoints: (
 * of the given breakpoint size _and larger_.
 *
 * @include atMediaUp(m) { styles for M size or larger }
+* @include atMediauUp(l, true) to include a min-height as well
 */
-@mixin atMediaUp($breakpointName) {
+@mixin atMediaUp($breakpointName, $includeHeight: false) {
   $minWidth: map.get($breakpoints, $breakpointName);
-  @media only screen and (min-width: #{$minWidth}) {
-    @content;
+  @if $includeHeight {
+    @media only screen and (min-width: #{$minWidth}) and (min-height: #{$minWidth}) {
+      @content;
+    }
+  } @else {
+    @media only screen and (min-width: #{$minWidth}) {
+      @content;
+    }
   }
 }
 

@@ -18,10 +18,10 @@
   z-index: 3;
 
   // create spaces around viewport edges for tablet or larger
-  @include atMediaUp("s") {
+  @include atMediaUp("s", $includeHeight: true) {
     align-items: flex-start;
     padding: var(--space-default);
-    padding-top: 120px;
+    padding-top: clamp(var(--space-default), 10vh, 120px);
   }
 }
 
@@ -58,7 +58,7 @@
   margin: 0 auto;
 
   // for tablet or larger, display the modal dialog as a floating box.
-  @include atMediaUp("s") {
+  @include atMediaUp("s", $includeHeight: true) {
     position: static;
     height: auto !important;
   }
@@ -78,7 +78,7 @@
   min-width: 100dvw;
 
   // for tablet or larger, display the modal dialog as a floating box.
-  @include atMediaUp("s") {
+  @include atMediaUp("s", $includeHeight: true) {
     border-radius: var(--border-radius-m);
     max-height: 80vh; // prevent modal from being taller than the shim content box
     min-width: 240px; // should be no narrower than this on larger viewports
@@ -100,7 +100,7 @@
     font-weight: var(--font-weight-semibold);
   }
 
-  @include atMediaUp("s") {
+  @include atMediaUp("s", $includeHeight: true) {
     background-color: var(--color-white);
     margin: 0 var(--space-xl);
     padding-top: var(--space-xl);
@@ -117,7 +117,7 @@
 }
 
 .nds-dialog-header--bordered {
-  @include atMediaUp("s") {
+  @include atMediaUp("s", $includeHeight: true) {
     border-bottom: var(--border-size-m) solid var(--theme-primary);
   }
 }
@@ -127,7 +127,7 @@
   color: white;
   margin: 0 0;
   padding: 0 var(--space-s) 0 var(--space-s);
-  @include atMediaUp("s") {
+  @include atMediaUp("s", $includeHeight: true) {
     border-radius: var(--border-radius-m) var(--border-radius-m) 0 0;
   }
 }
@@ -138,7 +138,7 @@
   color: var(--font-color-primary);
   right: var(--space-m);
   top: var(--space-xs);
-  @include atMediaUp("s") {
+  @include atMediaUp("s", $includeHeight: true) {
     top: var(--space-m);
   }
 }

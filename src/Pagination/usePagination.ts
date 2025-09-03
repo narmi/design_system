@@ -40,8 +40,9 @@ export const calculateVisiblePages = (
   selectedPage: number,
   windowSize: number,
 ): number[] => {
-  // If all pages fit in the window, show them all
-  if (totalPages <= windowSize) {
+  // If all pages fit in the window, or there's only one extra page,
+  // show them all to avoid unnecessary ellipsis
+  if (totalPages <= windowSize + 1) {
     return range(1, totalPages);
   }
 

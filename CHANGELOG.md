@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.39.1 (2025-09-04)</small>
+
+* fix(MenuButton): limit height of popover to 60vh ([ff0dfaef4bd294c2c458984c63113d172894ead2](https://github.com/narmi/design_system/commit/ff0dfaef4bd294c2c458984c63113d172894ead2))
+
 ## 4.39.0 (2025-09-03)
 
 * feat(Pagination): use sliding window behavior ([48c4f162239530074921f41c80b4ed41f283ce60](https://github.com/narmi/design_system/commit/48c4f162239530074921f41c80b4ed41f283ce60))

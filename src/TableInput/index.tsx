@@ -1,6 +1,5 @@
 import React from "react";
 import cc from "classcat";
-import Row from "../Row";
 
 export interface TableInputProps {
   /** Current value of the input */
@@ -51,36 +50,30 @@ const TableInput = React.forwardRef<HTMLInputElement, TableInputProps>(
           },
         ])}
       >
-        <Row gapSize="xs" alignItems="center">
-          <Row.Item>
-            <input
-              ref={ref}
-              type="text"
-              aria-label={label}
-              value={value}
-              onChange={onChange}
-              placeholder={placeholder}
-              disabled={isDisabled}
-              aria-invalid={hasError}
-              {...other}
-            />
-          </Row.Item>
+        <input
+          ref={ref}
+          type="text"
+          aria-label={label}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          disabled={isDisabled}
+          aria-invalid={hasError}
+          {...other}
+        />
+        <div
+          className={cc([
+            "nds-tableInput-counter",
+            "fontSize--s",
+            { "fontColor--error": hasError || hasCountError },
+          ])}
+        >
           {showCharacterCounter && (
-            <Row.Item shrink>
-              <div
-                className={cc([
-                  "nds-tableInput-counter",
-                  "fontSize--s",
-                  {
-                    "fontColor--error": hasError || hasCountError,
-                  },
-                ])}
-              >
-                {characterCount}/{maxLength}
-              </div>
-            </Row.Item>
+            <span>
+              {characterCount}/{maxLength}
+            </span>
           )}
-        </Row>
+        </div>
       </div>
     );
   },

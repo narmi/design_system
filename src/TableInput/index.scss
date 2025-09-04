@@ -1,9 +1,16 @@
 /** TableInput */
 .nds-tableField-input {
   border-width: 0;
-  display: inline-flex;
   border-radius: rem(4px);
   padding: var(--space-xs);
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr min-content; // [input       ] [counter]
+  gap: var(--space-xxs);
+
+  // Input box should take full width of the parent.
+  width: 100%;
 
   // The 1px of border should always be present, so the
   // input doesn't "bounce" the layout 2px on focus
@@ -22,20 +29,31 @@
     font-size: inherit;
     font-weight: inherit;
     text-rendering: geometricprecision;
+    background: transparent;
+    min-width: 0; // Allow input to shrink below its content width
     &::placeholder {
       font-style: italic;
       color: var(--font-color-secondary);
     }
   }
 
+  // Regardless of what rennders in the DOM, only show the
+  // counter when the input is focused
+  .nds-tableInput-counter {
+    visibility: hidden;
+  }
+  input:focus + .nds-tableInput-counter {
+    visibility: visible;
+  }
+
+  &:has(input:hover) {
+    background: rgba(var(--theme-rgb-primary), var(--alpha-5));
+  }
+
   &:has(input:focus) {
     outline: none;
     border: 1px solid var(--theme-primary);
-    background: var(--color-white);
-  }
-  
-  &:has(input:hover) {
-    background: rgba(var(--theme-rgb-primary), var(--alpha-5));
+    background: var(--color-white) !important;
   }
 
   &--hasError {

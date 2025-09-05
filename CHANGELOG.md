@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.40.0 (2025-09-05)
+
+* feat(Dialog): adapt to all viewport orientations ([cf4c2d8ed494313ead515408095bb2f1f4ab4487](https://github.com/narmi/design_system/commit/cf4c2d8ed494313ead515408095bb2f1f4ab4487))
+
 ## <small>4.39.1 (2025-09-04)</small>
 
 * fix(MenuButton): limit height of popover to 60vh ([ff0dfaef4bd294c2c458984c63113d172894ead2](https://github.com/narmi/design_system/commit/ff0dfaef4bd294c2c458984c63113d172894ead2))

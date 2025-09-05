@@ -1,61 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
-import Row from "../Row";
+import { usePagination } from "./usePagination";
 
 const noop = () => {};
-const MAX_VISIBLE_PAGES = 5;
-
-/**
- * Business logic for pagination; given a total number of pages
- * and the selected page, returns attributes used to render pagination
- *
- * @param {Number} totalPages
- * @param {Number} selectedPage
- * @returns {Object} attributes used to render pagination
- */
-export const _getAttributes = (
-  totalPages,
-  selectedPage,
-  segmentSize = MAX_VISIBLE_PAGES
-) => {
-  // create a list of page segments
-  // each segment is an array of page numbers.
-  const pageSegments = [...new Array(totalPages)]
-    .map((p, i) => i + 1) // [1,2,3,4,5,6,7, ...]
-    .reduce((segments, page, i) => {
-      const segmentIndex = Math.floor(i / segmentSize);
-      if (!segments[segmentIndex]) {
-        segments[segmentIndex] = [];
-      }
-      segments[segmentIndex].push(page);
-      return segments;
-    }, []); // [[1,2,3,4,5], [6,7,8,9,10], ...]
-
-  // Show the segment that has the selected page.
-  // If out of bounds, default to first segment
-  const visiblePages =
-    pageSegments.filter((segment) => segment.includes(selectedPage))[0] ||
-    pageSegments[0];
-  const selectedIndex = visiblePages.indexOf(selectedPage);
-
-  // show prev/next arrows unless we are in the first or last segment
-  const showPrev = !visiblePages.includes(1);
-  const showNext = !visiblePages.includes(totalPages);
-
-  // only populate first/last pages when they are outside the visible segment
-  const firstPage = !visiblePages.includes(1) && 1;
-  const lastPage = !visiblePages.includes(totalPages) && totalPages;
-
-  return {
-    visiblePages,
-    selectedIndex: selectedIndex >= 0 ? selectedIndex : 0,
-    firstPage,
-    lastPage,
-    showPrev,
-    showNext,
-  };
-};
 
 /**
  * Component that allows users to navigate between pages of information.
@@ -75,61 +23,54 @@ const Pagination = ({
   testId,
 }) => {
   const isControlled = selectedPageControlled !== undefined;
-  const [selectedPage, setSelectedPage] = useState(defaultSelectedPage);
-  const [paginationAttributes, setPaginationAttributes] = useState(
-    _getAttributes(totalPages, selectedPage)
-  );
+  const [selectedPageInternal, setSelectedPageInternal] =
+    useState(defaultSelectedPage);
 
-  useEffect(() => {
-    const isOutOfBounds = totalPages < selectedPageControlled;
-    if (isControlled) {
-      setSelectedPage(isOutOfBounds ? 1 : selectedPageControlled);
-      setPaginationAttributes(
-        _getAttributes(totalPages, selectedPageControlled)
-      );
-    } else {
-      setPaginationAttributes(_getAttributes(totalPages, selectedPage));
-    }
-  }, [totalPages, selectedPageControlled, selectedPage]);
+  const selectedPage = isControlled
+    ? selectedPageControlled
+    : selectedPageInternal;
 
   const {
     visiblePages,
     selectedIndex,
     showPrev,
     showNext,
-    firstPage,
-    lastPage,
-  } = paginationAttributes;
+    showFirstPage,
+    showLastPage,
+  } = usePagination({
+    totalPages,
+    selectedPageNumber: selectedPage,
+  });
 
   const handlePageClick = ({ target }) => {
-    const page = parseInt(target.dataset.page, 10);
+    const targetPage = parseInt(target.dataset.page, 10);
     if (!isControlled) {
-      setSelectedPage(page);
+      setSelectedPageInternal(targetPage);
     }
-    onPageChange(page);
+    onPageChange(targetPage);
   };
 
   const handlePrevClick = () => {
-    const newSelectedPage = selectedPage - 1;
+    const previousPage = selectedPage - 1;
     if (!isControlled) {
-      setSelectedPage(newSelectedPage);
+      setSelectedPageInternal(previousPage);
     }
-    onPageChange(newSelectedPage);
+    onPageChange(previousPage);
   };
 
   const handleNextClick = () => {
-    const newSelectedPage = selectedPage + 1;
+    const nextPage = selectedPage + 1;
     if (!isControlled) {
-      setSelectedPage(newSelectedPage);
+      setSelectedPageInternal(nextPage);
     }
-    onPageChange(newSelectedPage);
+    onPageChange(nextPage);
   };
 
   const pagination = (
     <div className="nds-typography nds-pagination" data-testid={testId}>
       <nav aria-label="pagination">
-        <Row gapSize="xxs" alignItems="center" as="ul">
-          <Row.Item as="li" shrink>
+        <ul>
+          <li>
             <span
               role="button"
               tabIndex={0}
@@ -151,10 +92,10 @@ const Pagination = ({
             >
               <i role="img" className="narmi-icon-chevron-left fontSize--l"></i>
             </span>
-          </Row.Item>
+          </li>
 
-          {firstPage && (
-            <Row.Item as="li" shrink>
+          {showFirstPage && (
+            <li>
               <span
                 role="button"
                 tabIndex={0}
@@ -165,21 +106,21 @@ const Pagination = ({
                     handlePageClick(e);
                   }
                 }}
-                data-page={firstPage}
+                data-page={1}
                 className="nds-pagination-page"
               >
-                {firstPage.toString()}
+                1
               </span>
-            </Row.Item>
+            </li>
           )}
-          {firstPage && (
-            <Row.Item as="li" shrink>
+          {showFirstPage && (
+            <li>
               <div className="nds-pagination-ellipsis">&hellip;</div>
-            </Row.Item>
+            </li>
           )}
 
           {visiblePages.map((page, i) => (
-            <Row.Item as="li" key={page} shrink>
+            <li key={`page-${page}`}>
               <span
                 role="button"
                 tabIndex={0}
@@ -201,16 +142,16 @@ const Pagination = ({
               >
                 {page.toString()}
               </span>
-            </Row.Item>
+            </li>
           ))}
 
-          {lastPage && (
-            <Row.Item as="li" shrink>
+          {showLastPage && (
+            <li>
               <div className="nds-pagination-ellipsis">&hellip;</div>
-            </Row.Item>
+            </li>
           )}
-          {lastPage && (
-            <Row.Item as="li" shrink>
+          {showLastPage && (
+            <li>
               <span
                 role="button"
                 tabIndex={0}
@@ -221,15 +162,15 @@ const Pagination = ({
                     handlePageClick(e);
                   }
                 }}
-                data-page={lastPage}
+                data-page={totalPages}
                 className="nds-pagination-page"
               >
-                {lastPage.toString()}
+                {totalPages.toString()}
               </span>
-            </Row.Item>
+            </li>
           )}
 
-          <Row.Item as="li" shrink>
+          <li>
             <span
               role="button"
               tabIndex={0}
@@ -254,8 +195,8 @@ const Pagination = ({
                 className="narmi-icon-chevron-right fontSize--l"
               ></i>
             </span>
-          </Row.Item>
-        </Row>
+          </li>
+        </ul>
       </nav>
     </div>
   );

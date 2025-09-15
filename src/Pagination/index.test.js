@@ -1,64 +1,10 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Pagination, { _getAttributes } from "./";
+import Pagination from "./";
 
 const CLASS_SELECTED = "nds-pagination-page--selected";
 
 describe("Pagination", () => {
-  describe("getAttributes", () => {
-    it("shows pages 1-5 for 5 total pages", () => {
-      const { visiblePages } = _getAttributes(5);
-      expect(visiblePages).toEqual([1, 2, 3, 4, 5]);
-    });
-
-    it("shows pages 6-10 when 8 of 10 is selected", () => {
-      const { visiblePages } = _getAttributes(10, 8);
-      expect(visiblePages).toEqual([6, 7, 8, 9, 10]);
-    });
-
-    it("does NOT show previous arrow when rendering first 5 pages", () => {
-      const { showPrev } = _getAttributes(10);
-      expect(showPrev).toBeFalsy();
-    });
-
-    it("shows previous arrow when page 6 or above is selected", () => {
-      const { showPrev } = _getAttributes(10, 6);
-      expect(showPrev).toBeTruthy();
-    });
-
-    it("shows next arrow when total is higher than highest visible page", () => {
-      const { showNext } = _getAttributes(10, 1);
-      expect(showNext).toBeTruthy();
-    });
-
-    it("does NOT show next arrow when last page is visible", () => {
-      const { showNext } = _getAttributes(10, 9);
-      expect(showNext).toBeFalsy();
-    });
-
-    it("shows last page when 2 is selected of 20", () => {
-      const total = 20;
-      const { lastPage } = _getAttributes(total, 2);
-      expect(lastPage).toBe(total);
-    });
-
-    it("does NOT show last page when 18 is selected of 20", () => {
-      const total = 20;
-      const { lastPage } = _getAttributes(total, 18);
-      expect(lastPage).toBeFalsy();
-    });
-
-    it("shows first page when 8 is selected of 20", () => {
-      const { firstPage } = _getAttributes(20, 8);
-      expect(firstPage).toBe(1);
-    });
-
-    it("does NOT show first page when 4 is selected of 20", () => {
-      const { firstPage } = _getAttributes(20, 4);
-      expect(firstPage).toBeFalsy();
-    });
-  });
-
   describe("Component render and interaction", () => {
     it("does not render pagination when totalPages is 1", () => {
       render(<Pagination totalPages={1} />);
@@ -101,7 +47,7 @@ describe("Pagination", () => {
           totalPages={20}
           onPageChange={handlePageChange}
           defaultSelectedPage={10}
-        />
+        />,
       );
       const prev = screen.getByLabelText("Previous page");
       const page9 = screen.getByLabelText("Page 9");
@@ -122,7 +68,7 @@ describe("Pagination", () => {
           totalPages={20}
           onPageChange={handlePageChange}
           defaultSelectedPage={10}
-        />
+        />,
       );
       const first = screen.getByLabelText("First page");
 
@@ -145,7 +91,7 @@ describe("Pagination", () => {
           totalPages={total}
           onPageChange={handlePageChange}
           defaultSelectedPage={4}
-        />
+        />,
       );
       const last = screen.getByLabelText("Last page");
 

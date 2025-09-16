@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import useLockBodyScroll from ".";
+import useMomentumScrollLock from ".";
 
 export const Overview = () => {
   const [isLocked, setIsLocked] = useState(false);
-  useLockBodyScroll(isLocked);
+  const actuallyLocked = useMomentumScrollLock(isLocked);
 
   return (
     <div>
       <p>
-        Body scroll is locked: <strong>{isLocked ? "Yes" : "No"}</strong>
+        Momentum scroll is locked:{" "}
+        <strong>{actuallyLocked ? "Yes" : "No"}</strong>
+      </p>
+      <p>
+        <em>Only locks scroll for touch devices</em>
       </p>
       <button onClick={() => setIsLocked(!isLocked)}>
         {isLocked ? "Unlock" : "Lock"} scroll
@@ -18,6 +22,6 @@ export const Overview = () => {
 };
 
 export default {
-  title: "Hooks/useLockBodyScroll", // Show doc page not individual stories
+  title: "Hooks/useMomentumScrollLock",
   tags: ["autodocs", "!dev"],
 };

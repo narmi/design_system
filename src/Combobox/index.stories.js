@@ -297,60 +297,115 @@ export default {
 };
 
 export const WithCategoriesInForm = () => {
-
   const [inputValue, setInputValue] = useState("");
-  const [selectedValue, setSelectedValue] = useState("")
+  const [selectedValue, setSelectedValue] = useState("");
 
   return (
     <>
-    <div>selected value {selectedValue}</div>
-    <Combobox
-      label="Select item"
-      inputValue={inputValue}
-      onChange={(selected) => {
-        setSelectedValue(selected)
-      }}
-      filterItemsByInput={(items, inputVal) => {
-        return items.filter((item) => {
-          if (!item) return false;
-          const query = (item.props.searchValue || item.props.value).toLowerCase();
-          return query.includes(inputVal);
-        })
-      }}
-      onInputChange={(selected) => {
-        setInputValue(selected);
-      }}
-    >
-      <Combobox.Category label="Checking">
-        <Combobox.Item searchValue="Business Checking" value="checking1">
-          Business Checking - 11234
-        </Combobox.Item>
-        <Combobox.Item searchValue="Main Checking" value="checking2">
-          Main Checking - 13989
-        </Combobox.Item>
-        <Combobox.Item searchValue="Joint Checking" value="checking3">
-          Joint Checking - 14857
-        </Combobox.Item>
-      </Combobox.Category>
-      <Combobox.Category label="Savings">
-        <Combobox.Item searchValue="Business Checking" value="savings1">
-          Business Savings - 13938
-        </Combobox.Item>
-        <Combobox.Item searchValue="Main Savings" value="savings2">
-          Main Savings - 48274
-        </Combobox.Item>
-        <Combobox.Item searchValue="Joint Savings" value="savings3">
-          Joint Savings - 48284
-        </Combobox.Item>
-      </Combobox.Category>
-      <Combobox.Category label="External Accounts">
-        <Combobox.Item value="Sasha">Sasha - 84839</Combobox.Item>
-        <Combobox.Item value="Joan">Joan - 36183</Combobox.Item>
-        <Combobox.Item value="Benoit">Benoit - 53261</Combobox.Item>
-      </Combobox.Category>
-
-    </Combobox>
+      <div>selected value {selectedValue}</div>
+      <Combobox
+        label="Select item"
+        inputValue={inputValue}
+        onChange={(selected) => {
+          setSelectedValue(selected);
+        }}
+        filterItemsByInput={(items, inputVal) => {
+          return items.filter((item) => {
+            if (!item) return false;
+            const query = (
+              item.props.searchValue || item.props.value
+            ).toLowerCase();
+            return query.includes(inputVal);
+          });
+        }}
+        onInputChange={(selected) => {
+          setInputValue(selected);
+        }}
+      >
+        <Combobox.Category label="Checking">
+          <Combobox.Item searchValue="Business Checking" value="checking1">
+            Business Checking - 11234
+          </Combobox.Item>
+          <Combobox.Item searchValue="Main Checking" value="checking2">
+            Main Checking - 13989
+          </Combobox.Item>
+          <Combobox.Item searchValue="Joint Checking" value="checking3">
+            Joint Checking - 14857
+          </Combobox.Item>
+        </Combobox.Category>
+        <Combobox.Category label="Savings">
+          <Combobox.Item searchValue="Business Checking" value="savings1">
+            Business Savings - 13938
+          </Combobox.Item>
+          <Combobox.Item searchValue="Main Savings" value="savings2">
+            Main Savings - 48274
+          </Combobox.Item>
+          <Combobox.Item searchValue="Joint Savings" value="savings3">
+            Joint Savings - 48284
+          </Combobox.Item>
+        </Combobox.Category>
+        <Combobox.Category label="External Accounts">
+          <Combobox.Item value="Sasha">Sasha - 84839</Combobox.Item>
+          <Combobox.Item value="Joan">Joan - 36183</Combobox.Item>
+          <Combobox.Item value="Benoit">Benoit - 53261</Combobox.Item>
+        </Combobox.Category>
+      </Combobox>
     </>
-  )
+  );
+};
 
+export const InScrollingContext = () => {
+  return (
+    <div style={{ overflow: "auto", border: "1px solid #ccc" }}>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </p>
+      <p>
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+        accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+        illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+        explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
+        odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
+        voluptatem sequi nesciunt.
+      </p>
+
+      <Combobox label="Select your state" id="scrollingCombobox">
+        {options_states.map((state) => (
+          <Combobox.Item key={state} value={state}>
+            {state}
+          </Combobox.Item>
+        ))}
+      </Combobox>
+
+      <p>
+        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+        consectetur, adipisci velit, sed quia non numquam eius modi tempora
+        incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim
+        ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
+        laboriosam, nisi ut aliquid ex ea commodi consequatur.
+      </p>
+      <p>
+        At vero eos et accusamus et iusto odio dignissimos ducimus qui
+        blanditiis praesentium voluptatum deleniti atque corrupti quos dolores
+        et quas molestias excepturi sint occaecati cupiditate non provident,
+        similique sunt in culpa qui officia deserunt mollitia animi, id est
+        laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita
+        distinctio.
+      </p>
+    </div>
+  );
+};
+InScrollingContext.parameters = {
+  docs: {
+    description: {
+      story:
+        "Testing the Combobox component in a scrolling container to verify positioning engine behavior during scroll events.",
+    },
+  },
 };

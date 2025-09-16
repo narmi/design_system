@@ -2,14 +2,13 @@
 import React, { useState, useMemo } from "react";
 import PropTypes from "prop-types";
 import { useSelect } from "downshift";
-import { useLayer } from "react-laag";
+import useProgressiveDropdown from "../hooks/useProgressiveDropdown";
 import cc from "classcat";
 import Row from "../Row";
 import DropdownTrigger from "../DropdownTrigger";
 import SelectItem from "./SelectItem";
 import SelectAction from "./SelectAction";
 import SelectCategory from "./SelectCategory";
-import { createUseLayerContainer } from "src/util/dom";
 
 const noop = () => {};
 
@@ -212,22 +211,11 @@ const Select = ({
     getItemProps,
   } = useSelect(downshiftOpts);
 
+  const { anchorProps, layerProps } = useProgressiveDropdown({ isOpen });
+
   const hasCategories = categories.length > 0;
   const hasSelectedItem = selectedItem !== null && selectedItem.props;
   const showMenu = isOpen && items.length > 0;
-
-  /** @see https://github.com/everweij/react-laag#api-docs */
-  const { renderLayer, triggerProps, triggerBounds, layerProps, layerSide } =
-    useLayer({
-      isOpen: showMenu,
-      auto: true,
-      snap: true,
-      triggerOffset: 0,
-      containerOffset: 0,
-      placement: "bottom-start",
-      possiblePlacements: ["top-start", "bottom-start"],
-      container: createUseLayerContainer,
-    });
 
   const renderItem = (item, items) => {
     const index = getItemIndex(item, items);
@@ -270,7 +258,7 @@ const Select = ({
   };
 
   return (
-    <div className="nds-select" data-testid={testId}>
+    <div className="nds-select" data-testid={testId} {...anchorProps}>
       <DropdownTrigger
         isOpen={showMenu}
         labelText={label}
@@ -278,29 +266,19 @@ const Select = ({
         displayValue={getSelectedItemDisplay(selectedItem) || userInput}
         labelProps={{ ...getLabelProps() }}
         errorText={errorText}
-        {...getToggleButtonProps(triggerProps)}
-        style={{
-          ...triggerProps.style,
-        }}
+        {...getToggleButtonProps()}
       />
-      {renderLayer(
+
+      <div {...layerProps}>
         <div
           className={cc([
             "nds-select-list",
             "bgColor--white",
             {
-              "rounded--bottom": layerSide === "bottom",
-              "rounded--top": layerSide === "top",
-              [`nds-select-list--active--${layerSide}`]: showMenu,
               "nds-select-list--error": !!errorText,
             },
           ])}
-          {...getMenuProps(layerProps)}
-          style={{
-            width: triggerBounds?.width,
-            transform: `translateY(${layerSide == "top" ? "3px" : "-3px"})`,
-            ...layerProps.style,
-          }}
+          {...getMenuProps()}
         >
           {showMenu &&
             hasCategories &&
@@ -371,8 +349,8 @@ const Select = ({
               {actions.map((action) => renderItem(action, items))}
             </ul>
           )}
-        </div>,
-      )}
+        </div>
+      </div>
     </div>
   );
 };

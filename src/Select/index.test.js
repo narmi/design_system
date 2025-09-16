@@ -55,10 +55,10 @@ describe("Select", () => {
     const MOCK_ITEM_FOO = <Select.Item value="foo"></Select.Item>;
     const MOCK_ITEM_BAR = <Select.Item value="bar"></Select.Item>;
     expect(getItemByValue("foo", [MOCK_ITEM_BAR, MOCK_ITEM_FOO])).toBe(
-      MOCK_ITEM_FOO
+      MOCK_ITEM_FOO,
     );
     expect(getItemByValue("doesNotExist", [MOCK_ITEM_BAR, MOCK_ITEM_FOO])).toBe(
-      ""
+      "",
     );
   });
 
@@ -74,23 +74,23 @@ describe("Select", () => {
   it("isHighlightedInCategory: correctly determines which category a highlighted item is in", () => {
     const firstCategoryChildren = MOCK_CATEGORIES[0].categoryChildren;
     expect(isHighlightedInCategory(-1, firstCategoryChildren, MOCK_ITEMS)).toBe(
-      false
+      false,
     ); // no item highlighted
     expect(isHighlightedInCategory(1, firstCategoryChildren, MOCK_ITEMS)).toBe(
-      true
+      true,
     ); // second item is in first category
     expect(isHighlightedInCategory(3, firstCategoryChildren, MOCK_ITEMS)).toBe(
-      false
+      false,
     ); // fourth item is NOT in first category
   });
 
   it("isSelectedItemInCategory: correctly determines if the selected item is in a given category", () => {
     const firstCategoryChildren = MOCK_CATEGORIES[0].categoryChildren;
     expect(isSelectedItemInCategory(MOCK_ITEMS[3], firstCategoryChildren)).toBe(
-      false
+      false,
     );
     expect(isSelectedItemInCategory(MOCK_ITEMS[0], firstCategoryChildren)).toBe(
-      true
+      true,
     );
   });
 
@@ -99,11 +99,20 @@ describe("Select", () => {
       <Select id="accountField" label="Account Type">
         <Select.Item value="checking"></Select.Item>
         <Select.Item value="savings"></Select.Item>
-      </Select>
+      </Select>,
     );
 
     expect(screen.getByText("Account Type")).toBeInTheDocument();
-    expect(screen.getByRole("listbox")).toBeEmptyDOMElement();
+
+    // The listbox is always in the DOM but hidden when closed.
+    // We can't use getByRole when display: none because it's removed from the accessibility tree
+    const listbox = document.querySelector('[role="listbox"]');
+    expect(listbox).toBeInTheDocument();
+    expect(listbox).toBeEmptyDOMElement();
+
+    // The positioning wrapper div should have display: none when closed
+    const wrapper = listbox.parentElement;
+    expect(wrapper).toHaveStyle("display: none");
   });
 
   it("dropdown opens, selection works, and onChange is fired correctly", () => {
@@ -112,7 +121,7 @@ describe("Select", () => {
       <Select label="Account Type" onChange={handleChange}>
         <Select.Item value="checking">Checking</Select.Item>
         <Select.Item value="savings">Savings</Select.Item>
-      </Select>
+      </Select>,
     );
 
     // open the dropdown
@@ -134,7 +143,7 @@ describe("Select", () => {
       <Select label="Account Type" defaultValue="savings">
         <Select.Item value="checking">Checking</Select.Item>
         <Select.Item value="savings">Savings</Select.Item>
-      </Select>
+      </Select>,
     );
     expect(screen.getByText("Savings")).toBeInTheDocument();
   });
@@ -144,7 +153,7 @@ describe("Select", () => {
       <Select label="Account Type" defaultOpen>
         <Select.Item value="checking">Checking</Select.Item>
         <Select.Item value="savings">Savings</Select.Item>
-      </Select>
+      </Select>,
     );
     expect(screen.getByText("Savings")).toBeInTheDocument();
   });
@@ -157,7 +166,7 @@ describe("Select", () => {
         <Select.Item value="checking">Checking</Select.Item>
         <Select.Item value="savings">Savings</Select.Item>
         <Select.Action onSelect={sideEffect}>Action</Select.Action>
-      </Select>
+      </Select>,
     );
 
     // open the dropdown

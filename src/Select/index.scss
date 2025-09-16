@@ -1,28 +1,5 @@
 .nds-select-list {
-  max-height: 50vh;
-  overflow-y: auto;
-  z-index: 4;
-
-  &:focus {
-    outline: none;
-  }
-
-  &--active--top,
-  &--active--bottom {
-    border: 1px solid var(--theme-primary);
-  }
-
-  &--error {
-    border: 1px solid var(--color-errorDark);
-  }
-
-  &--active--top {
-    border-bottom: 1px solid var(--border-color-default);
-  }
-
-  &--active--bottom {
-    border-top: 1px solid var(--border-color-default);
-  }
+  @extend %nds-dropdown-layer;
 }
 
 .nds-select-item {

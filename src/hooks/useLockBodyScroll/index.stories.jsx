@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import useLockBodyScroll from ".";
+import Button from "../../Button";
 
 export const Overview = () => {
   const [isLocked, setIsLocked] = useState(false);
   useLockBodyScroll(isLocked);
 
   return (
-    <div>
-      <p>
-        Body scroll is locked: <strong>{isLocked ? "Yes" : "No"}</strong>
-      </p>
-      <button onClick={() => setIsLocked(!isLocked)}>
-        {isLocked ? "Unlock" : "Lock"} scroll
-      </button>
-    </div>
+    <>
+      <Button
+        kind={"secondary"}
+        onClick={() => {
+          setIsLocked(!isLocked);
+        }}
+      >
+        Click to {isLocked ? "En" : "Dis"}able Scrolling
+      </Button>
+    </>
   );
 };
 

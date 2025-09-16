@@ -356,7 +356,7 @@ export const WithCategoriesInForm = () => {
 
 export const InScrollingContext = () => {
   return (
-    <div style={{ overflow: "auto", border: "1px solid #ccc" }}>
+    <>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -365,14 +365,6 @@ export const InScrollingContext = () => {
         velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
         mollit anim id est laborum.
-      </p>
-      <p>
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-        accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-        illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-        explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
-        odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
-        voluptatem sequi nesciunt.
       </p>
 
       <Combobox label="Select your state" id="scrollingCombobox">
@@ -398,7 +390,15 @@ export const InScrollingContext = () => {
         laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita
         distinctio.
       </p>
-    </div>
+      <p>
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+        accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+        illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+        explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
+        odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
+        voluptatem sequi nesciunt.
+      </p>
+    </>
   );
 };
 InScrollingContext.parameters = {

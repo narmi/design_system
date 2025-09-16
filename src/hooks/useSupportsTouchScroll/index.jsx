@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 /**
  * Checks if the browser supports momentum scrolling (i.e., smooth scrolling on touch devices).
  * @returns {Boolean} true when the browser supports momentum scrolling
  */
-const useSupportsMomentumScroll = () => {
-  const [hasMomentumScroll, setHasMomentumScroll] = useState(false);
+const useSupportsTouchScroll = () => {
+  const [hasTouchScroll, setHasTouchScroll] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     try {
+      const hasTouchEvents = "ontouchstart" in window;
       const testDiv = document.createElement("div");
       document.body.appendChild(testDiv);
 
@@ -32,16 +33,13 @@ const useSupportsMomentumScroll = () => {
 
       document.body.removeChild(testDiv);
 
-      // More evidence this is a touch device
-      const hasTouchEvents = "ontouchstart" in window;
-
-      setHasMomentumScroll(isScrollable && hasTouchEvents);
+      setHasTouchScroll(isScrollable && hasTouchEvents);
     } catch (e) {
-      setHasMomentumScroll(false);
+      setHasTouchScroll(false);
     }
   }, []); // Empty dependency array ensures it runs once on mount.
 
-  return hasMomentumScroll;
+  return hasTouchScroll;
 };
 
-export default useSupportsMomentumScroll;
+export default useSupportsTouchScroll;

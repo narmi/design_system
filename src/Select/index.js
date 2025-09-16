@@ -10,6 +10,7 @@ import SelectItem from "./SelectItem";
 import SelectAction from "./SelectAction";
 import SelectCategory from "./SelectCategory";
 import { createUseLayerContainer } from "src/util/dom";
+import useSupportsTouchScroll from "../hooks/useSupportsTouchScroll";
 
 const noop = () => {};
 
@@ -131,6 +132,7 @@ const Select = ({
 }) => {
   let items = []; // List of all item types to pass to downshift state management
   let categories = []; // Categories extracted from Select.Category children
+  const isTouchDevice = useSupportsTouchScroll();
   const options = useMemo(
     // All Select.Item options
     () => React.Children.toArray(children).filter((item) => !isAction(item)),
@@ -188,10 +190,7 @@ const Select = ({
         setUserInput(""); // reset input after any other event
       }
 
-      return {
-        ...changes,
-        isOpen,
-      };
+      return { ...changes, isOpen };
     },
   };
 
@@ -224,9 +223,10 @@ const Select = ({
       snap: true,
       triggerOffset: 0,
       containerOffset: 0,
+      overflowContainer: !isTouchDevice, // false = fixed position
       placement: "bottom-start",
       possiblePlacements: ["top-start", "bottom-start"],
-      container: createUseLayerContainer,
+      container: isTouchDevice ? document.body : createUseLayerContainer,
     });
 
   const renderItem = (item, items) => {
@@ -279,9 +279,7 @@ const Select = ({
         labelProps={{ ...getLabelProps() }}
         errorText={errorText}
         {...getToggleButtonProps(triggerProps)}
-        style={{
-          ...triggerProps.style,
-        }}
+        style={{ ...triggerProps.style }}
       />
       {renderLayer(
         <div

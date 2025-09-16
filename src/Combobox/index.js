@@ -12,6 +12,7 @@ import TextInput from "../TextInput";
 import Row from "../Row";
 import { getItemIndex } from "../Select";
 import { createUseLayerContainer } from "src/util/dom";
+import useSupportsTouchScroll from "../hooks/useSupportsTouchScroll";
 
 const noop = () => {};
 
@@ -150,6 +151,7 @@ const Combobox = ({
   testId,
   renderEndContent = defaultRenderEndContent,
 }) => {
+  const isTouchDevice = useSupportsTouchScroll();
   const allChildren = useMemo(
     () => React.Children.toArray(children),
     [children],
@@ -260,7 +262,7 @@ const Combobox = ({
   const { renderLayer, triggerProps, layerProps, triggerBounds, layerSide } =
     useLayer({
       isOpen,
-      overflowContainer: true,
+      overflowContainer: !isTouchDevice, // false = fixed position
       auto: true,
       snap: true,
       placement: "bottom-start",
@@ -268,7 +270,7 @@ const Combobox = ({
       preferY: "bottom",
       triggerOffset: -3,
       containerOffset: 16,
-      container: createUseLayerContainer,
+      container: isTouchDevice ? document.body : createUseLayerContainer,
     });
 
   // renders a single combobox item

@@ -3,6 +3,7 @@ dist
 .DS_Store
 storybook-static
 build-storybook.log
+.vscode/
 
 # IntelliJ IDEA
 .idea

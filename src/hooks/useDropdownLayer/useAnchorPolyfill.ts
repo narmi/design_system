@@ -38,7 +38,9 @@ const useAnchorPolyfill = ({
     // Skip positioning if elements haven't been measured yet
     if (anchorRect.width === 0 || layerRect.width === 0) return;
 
-    // `visualViewport` = only the visible part of the document
+    // Using the visualViewport API is the native solution to handle the
+    // scroll-to-focus behavior on iOS Safari, as it tracks only the portion
+    // of the viewport that is not covered by the keyboard.
     const viewportHeight = window.visualViewport?.height || window.innerHeight;
     const spaceBelow = viewportHeight - anchorRect.bottom;
     const spaceAbove = anchorRect.top;

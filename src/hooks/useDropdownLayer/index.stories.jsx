@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import useProgressiveDropdown from ".";
+import useDropdownLayer from ".";
 import Button from "../../Button";
 
 export const Overview = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { anchorProps, layerProps } = useProgressiveDropdown({ isOpen });
+  const { anchorProps, layerProps } = useDropdownLayer({ isOpen });
 
   return (
     <>
@@ -20,6 +20,6 @@ export const Overview = () => {
 };
 
 export default {
-  title: "Hooks/useProgressiveDropdown",
+  title: "Hooks/useDropdownLayer",
   tags: ["autodocs", "!dev"],
 };

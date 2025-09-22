@@ -10,7 +10,7 @@ import ComboboxAction from "./ComboboxAction";
 import TextInput from "../TextInput";
 import Row from "../Row";
 import { getItemIndex } from "../Select";
-import useProgressiveDropdown from "../hooks/useProgressiveDropdown";
+import useDropdownLayer from "../hooks/useDropdownLayer";
 
 const noop = () => {};
 
@@ -244,7 +244,7 @@ const Combobox = ({
       return changes;
     },
   });
-  const { anchorProps, layerProps } = useProgressiveDropdown({
+  const { anchorProps, layerProps } = useDropdownLayer({
     isOpen,
   });
 

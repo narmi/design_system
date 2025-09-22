@@ -1,8 +1,8 @@
 import { renderHook } from "@testing-library/react";
 import type { CSSProperties } from "react";
-import useProgressiveDropdown from "./index";
+import useDropdownLayer from "./index";
 
-describe.skip("useProgressiveDropdown", () => {
+describe.skip("useDropdownLayer", () => {
   let originalCSSSupports: typeof CSS.supports;
 
   beforeAll(() => {
@@ -23,9 +23,7 @@ describe.skip("useProgressiveDropdown", () => {
     });
 
     it("should use CSS anchor positioning properties on layer element when open", () => {
-      const { result } = renderHook(() =>
-        useProgressiveDropdown({ isOpen: true }),
-      );
+      const { result } = renderHook(() => useDropdownLayer({ isOpen: true }));
 
       const layerStyle = result.current.layerProps.style as CSSProperties;
 
@@ -40,9 +38,7 @@ describe.skip("useProgressiveDropdown", () => {
     });
 
     it("should hide layer when closed", () => {
-      const { result } = renderHook(() =>
-        useProgressiveDropdown({ isOpen: false }),
-      );
+      const { result } = renderHook(() => useDropdownLayer({ isOpen: false }));
 
       const layerStyle = result.current.layerProps.style as CSSProperties;
       expect(layerStyle.display).toBe("none");
@@ -55,9 +51,7 @@ describe.skip("useProgressiveDropdown", () => {
     });
 
     it("should use polyfill styles on layer element when open", () => {
-      const { result } = renderHook(() =>
-        useProgressiveDropdown({ isOpen: true }),
-      );
+      const { result } = renderHook(() => useDropdownLayer({ isOpen: true }));
 
       const layerStyle = result.current.layerProps.style;
 
@@ -70,9 +64,7 @@ describe.skip("useProgressiveDropdown", () => {
     });
 
     it("should hide layer when closed", () => {
-      const { result } = renderHook(() =>
-        useProgressiveDropdown({ isOpen: false }),
-      );
+      const { result } = renderHook(() => useDropdownLayer({ isOpen: false }));
 
       const layerStyle = result.current.layerProps.style as CSSProperties;
       expect(layerStyle.display).toBe("none");

@@ -1,7 +1,7 @@
 import { useId, useRef, useMemo } from "react";
 import useAnchorPolyfill from "./useAnchorPolyfill";
 
-export type UseProgressiveDropdownResult = {
+export type UseDropdownLayerResult = {
   /** Props to spread onto the anchor/trigger element */
   anchorProps: {
     ref: React.Ref<HTMLElement>;
@@ -22,7 +22,7 @@ export type UseProgressiveDropdownResult = {
   };
 };
 
-export interface UseProgressiveDropdownOptions {
+export interface UseDropdownLayerOptions {
   /** Whether the dropdown is currently open (required) */
   isOpen: boolean;
   /** Whether the dropdown should match the width of the anchor element */
@@ -36,7 +36,7 @@ export interface UseProgressiveDropdownOptions {
  *
  * @usage
  * ```tsx
- * const { anchorProps, layerProps } = useProgressiveDropdown({ isOpen, matchWidth });
+ * const { anchorProps, layerProps } = useDropdownLayer({ isOpen, matchWidth });
  *
  * return (
  *   <>
@@ -45,10 +45,10 @@ export interface UseProgressiveDropdownOptions {
  *   <>
  * ```
  */
-const useProgressiveDropdown = ({
+const useDropdownLayer = ({
   isOpen,
   matchWidth = true,
-}: UseProgressiveDropdownOptions): UseProgressiveDropdownResult => {
+}: UseDropdownLayerOptions): UseDropdownLayerResult => {
   const anchorRef = useRef<HTMLElement>(null);
   const layerRef = useRef<HTMLElement>(null);
   const cssSafeId = useId().replaceAll(/:/g, "-");
@@ -112,4 +112,4 @@ const useProgressiveDropdown = ({
   };
 };
 
-export default useProgressiveDropdown;
+export default useDropdownLayer;

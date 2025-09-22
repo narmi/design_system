@@ -2,7 +2,7 @@
 import React, { useState, useMemo } from "react";
 import PropTypes from "prop-types";
 import { useSelect } from "downshift";
-import useProgressiveDropdown from "../hooks/useProgressiveDropdown";
+import useDropdownLayer from "../hooks/useDropdownLayer";
 import cc from "classcat";
 import Row from "../Row";
 import DropdownTrigger from "../DropdownTrigger";
@@ -211,7 +211,7 @@ const Select = ({
     getItemProps,
   } = useSelect(downshiftOpts);
 
-  const { anchorProps, layerProps } = useProgressiveDropdown({ isOpen });
+  const { anchorProps, layerProps } = useDropdownLayer({ isOpen });
 
   const hasCategories = categories.length > 0;
   const hasSelectedItem = selectedItem !== null && selectedItem.props;

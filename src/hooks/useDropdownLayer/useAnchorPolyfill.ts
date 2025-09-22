@@ -68,7 +68,7 @@ const useAnchorPolyfill = ({
   }, [calculateFixedPosition]);
 
   // Use fixed positioning with Visual Viewport API, which covers iOS/Safari scrolling
-  // The `visualViewport` api is avilable in all supported browsers as of 2025
+  // The `visualViewport` api is available in all supported browsers as of 2025
   useLayoutEffect(() => {
     if (isAnchorPositionSupported) return;
     calculateFixedPosition();

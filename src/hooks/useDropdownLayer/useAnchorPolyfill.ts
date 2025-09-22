@@ -13,9 +13,8 @@ interface UseAnchorPolyfillParams {
 }
 
 /**
- * Polyfill for CSS anchor positioning dropdown behavior.
- * If anchor positioning is supported, no element observers will be attached.
- *
+ * Polyfill for CSS anchor positioning dropdown behavior, using JS to assign CSS variable values.
+ * If anchor positioning is supported, empty style objects are returned, as we don't need the fallbacks.
  */
 const useAnchorPolyfill = ({
   anchorRef,

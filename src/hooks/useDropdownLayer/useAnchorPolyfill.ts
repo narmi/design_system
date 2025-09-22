@@ -16,9 +16,6 @@ interface UseAnchorPolyfillParams {
  * Polyfill for CSS anchor positioning dropdown behavior.
  * If anchor positioning is supported, no element observers will be attached.
  *
- * This polyfill uses fixed positioning with JavaScript flip detection to position
- * dropdowns relative to their anchor elements. It handles intelligent positioning
- * logic (showing above vs below based on available space).
  */
 const useAnchorPolyfill = ({
   anchorRef,

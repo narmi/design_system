@@ -24,7 +24,7 @@ const useAnchorPolyfill = ({
 }: UseAnchorPolyfillParams) => {
   const isAnchorPositionSupported = useSupportsAnchorPositioning();
 
-  const rafRef = useRef<number>();
+  const rafRef = useRef<number>(); // track scheduled RequestAnimationFrame across renders
 
   const calculateFixedPosition = useCallback(() => {
     const anchorEl = anchorRef.current;
@@ -65,14 +65,11 @@ const useAnchorPolyfill = ({
     rafRef.current = requestAnimationFrame(calculateFixedPosition);
   }, [calculateFixedPosition]);
 
-  // Use fixed positioning with Visual Viewport API for Safari scroll handling
+  // Use fixed positioning with Visual Viewport API, which covers iOS/Safari scrolling
+  // The `visualViewport` api is avilable in all supported browsers as of 2025
   useLayoutEffect(() => {
     if (isAnchorPositionSupported) return;
-
-    // Calculate initial position
     calculateFixedPosition();
-
-    // `visualViewport` api is avilable in all supported browsers as of 2025
     window.visualViewport?.addEventListener("scroll", scheduleUpdate);
     window.visualViewport?.addEventListener("resize", scheduleUpdate);
 
@@ -81,6 +78,7 @@ const useAnchorPolyfill = ({
       window.visualViewport?.removeEventListener("resize", scheduleUpdate);
 
       if (rafRef.current) {
+        // cancel next scheduled update
         cancelAnimationFrame(rafRef.current);
       }
     };
@@ -89,12 +87,9 @@ const useAnchorPolyfill = ({
   // Recalculate position when dropdown opens
   useLayoutEffect(() => {
     if (isAnchorPositionSupported || !isOpen) return;
-
-    // Schedule a position update when the dropdown becomes visible
     scheduleUpdate();
   }, [isOpen, isAnchorPositionSupported, scheduleUpdate]);
 
-  // Return styles based on anchor positioning support
   return {
     isAnchorPositionSupported,
     polyFillLayerStyles: isAnchorPositionSupported

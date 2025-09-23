@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.41.0 (2025-09-23)
+
+* feat(Pagination): use sliding window behavior ([1922d2d859da33944357f7bc153ae501e251caf1](https://github.com/narmi/design_system/commit/1922d2d859da33944357f7bc153ae501e251caf1))
+* fix(MenuButton): limit height of popover to 60vh ([0a110a63125e4c8cee97543ab9fa9f509e605aeb](https://github.com/narmi/design_system/commit/0a110a63125e4c8cee97543ab9fa9f509e605aeb))
+* fix(Pagination): show all pages when 6 total ([fadf944fde3468011c7fca60d58f3103afab3996](https://github.com/narmi/design_system/commit/fadf944fde3468011c7fca60d58f3103afab3996))
+* perf(Pagination): memoize visible page window calculation ([d88cc2d12d76a982b5786907d25f8ed545bf471f](https://github.com/narmi/design_system/commit/d88cc2d12d76a982b5786907d25f8ed545bf471f))
+
 ## 4.40.0 (2025-09-05)
 
 * feat(Dialog): adapt to all viewport orientations ([cf4c2d8ed494313ead515408095bb2f1f4ab4487](https://github.com/narmi/design_system/commit/cf4c2d8ed494313ead515408095bb2f1f4ab4487))

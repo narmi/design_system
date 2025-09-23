@@ -1,5 +1,6 @@
 import { useCallback, useLayoutEffect, useRef } from "react";
 import useSupportsAnchorPositioning from "../useSupportsAnchorPositioning";
+import { is } from "core-js/core/object";
 
 interface UseAnchorPolyfillParams {
   /** Reference to the element that the dropdown should be anchored to */
@@ -27,6 +28,7 @@ const useAnchorPolyfill = ({
   const rafRef = useRef<number>(); // track scheduled RequestAnimationFrame across renders
 
   const calculateFixedPosition = useCallback(() => {
+    if (!isOpen) return;
     const anchorEl = anchorRef.current;
     const layerEl = layerRef.current;
 
@@ -58,7 +60,7 @@ const useAnchorPolyfill = ({
     if (matchWidth) {
       layerEl.style.setProperty("--js-dropdown-width", `${anchorRect.width}px`);
     }
-  }, [anchorRef, layerRef, matchWidth]);
+  }, [anchorRef, layerRef, matchWidth, isOpen]);
 
   const scheduleUpdate = useCallback(() => {
     if (rafRef.current) {

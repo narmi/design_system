@@ -36,6 +36,7 @@ const Input = ({
   search,
   onClick,
   style,
+  renderError = true,
   children,
   ...props
 }) => {
@@ -85,7 +86,7 @@ const Input = ({
         {tailContent && (
           <div className="nds-input-tail margin--top--xxs">{tailContent}</div>
         )}
-        <Error error={error} />
+        {renderError && <Error error={error} />}
       </div>
     </div>
   );
@@ -113,6 +114,8 @@ Input.propTypes = {
   onClick: PropTypes.func,
   style: PropTypes.object,
   error: PropTypes.string,
+  /** Gives consumers control over where to render the error when `false` */
+  renderError: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),

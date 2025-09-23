@@ -7,6 +7,7 @@ import ComboboxItem from "./ComboboxItem";
 import ComboboxHeading from "./ComboboxHeading";
 import ComboboxCategory from "./ComboboxCategory";
 import ComboboxAction from "./ComboboxAction";
+import Error from "../Error";
 import TextInput from "../TextInput";
 import Row from "../Row";
 import { getItemIndex } from "../Select";
@@ -401,21 +402,24 @@ const Combobox = ({
       <div
         className={cc(["nds-combobox", { "nds-combobox--active": isOpen }])}
         data-testid={testId}
-        {...anchorProps}
       >
-        <TextInput
-          error={errorText}
-          label={label}
-          value={inputValue}
-          startIcon={icon}
-          endContent={renderEndContent(isOpen)}
-          {...getInputProps({
-            onBlur: handleBlur,
-            onFocus: handleMenuToggle,
-            onClick: handleMenuToggle,
-          })}
-          onClick={handleMenuToggle}
-        />
+        <div {...anchorProps}>
+          <TextInput
+            error={errorText}
+            renderError={false}
+            label={label}
+            value={inputValue}
+            startIcon={icon}
+            endContent={renderEndContent(isOpen)}
+            {...getInputProps({
+              onBlur: handleBlur,
+              onFocus: handleMenuToggle,
+              onClick: handleMenuToggle,
+            })}
+            onClick={handleMenuToggle}
+          />
+        </div>
+        <Error error={errorText} className="margin--top--xs" />
         <div {...layerProps}>
           <ul
             className={cc([

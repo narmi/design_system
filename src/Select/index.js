@@ -6,6 +6,7 @@ import useDropdownLayer from "../hooks/useDropdownLayer";
 import cc from "classcat";
 import Row from "../Row";
 import DropdownTrigger from "../DropdownTrigger";
+import Error from "../Error";
 import SelectItem from "./SelectItem";
 import SelectAction from "./SelectAction";
 import SelectCategory from "./SelectCategory";
@@ -258,16 +259,19 @@ const Select = ({
   };
 
   return (
-    <div className="nds-select" data-testid={testId} {...anchorProps}>
-      <DropdownTrigger
-        isOpen={showMenu}
-        labelText={label}
-        disabled={disabled}
-        displayValue={getSelectedItemDisplay(selectedItem) || userInput}
-        labelProps={{ ...getLabelProps() }}
-        errorText={errorText}
-        {...getToggleButtonProps()}
-      />
+    <div className="nds-select" data-testid={testId}>
+      <div {...anchorProps}>
+        <DropdownTrigger
+          isOpen={showMenu}
+          labelText={label}
+          disabled={disabled}
+          displayValue={getSelectedItemDisplay(selectedItem) || userInput}
+          labelProps={{ ...getLabelProps() }}
+          hasError={Boolean(errorText)}
+          {...getToggleButtonProps()}
+        />
+      </div>
+      <Error error={errorText} />
 
       <div {...layerProps}>
         <div

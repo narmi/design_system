@@ -26,6 +26,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
     testId,
     type = "text",
     error,
+    renderError = true,
     ...nativeElementProps
   } = props;
 
@@ -68,6 +69,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
     <Input
       {...props}
       error={inputError}
+      renderError={renderError}
       startIconClass={startIcon ? `narmi-icon-${startIcon}` : undefined}
       endIconClass={endIcon ? `narmi-icon-${endIcon}` : undefined}
       startContent={startContent}
@@ -141,6 +143,8 @@ TextInput.propTypes = {
   endContent: PropTypes.node,
   /** Display an X at the end of label that clears input and calls onChange on click. */
   showClearButton: PropTypes.bool,
+  /** When false, the consumer can take full control over where the error renders */
+  renderError: PropTypes.bool,
   /** Text of error message to display under the input */
   error: PropTypes.oneOf([
     PropTypes.string,

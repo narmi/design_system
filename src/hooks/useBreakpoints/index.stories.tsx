@@ -1,8 +1,10 @@
 import React from "react";
-import useBreakpoints from ".";
+import useBreakpoints, { UseBreakpointsResult } from ".";
+import { Meta, StoryObj } from "@storybook/react";
 
-export const Overview = () => {
-  const { s, m, l, xl, largestSatisfiedBreakpoint } = useBreakpoints();
+export const Overview: React.FC = () => {
+  const { s, m, l, xl, largestSatisfiedBreakpoint }: UseBreakpointsResult =
+    useBreakpoints();
 
   return (
     <>
@@ -45,7 +47,12 @@ export const Overview = () => {
   );
 };
 
-export default {
+const meta: Meta = {
   title: "Hooks/useBreakpoints", // Show doc page not individual stories
   tags: ["autodocs", "!dev"],
+  component: Overview,
 };
+
+export default meta;
+
+export type Story = StoryObj<typeof Overview>;

@@ -28,6 +28,7 @@ import TableDateInput from "./TableDateInput";
 import TableInput from "./TableInput";
 import Tabs from "./Tabs";
 import Tooltip from "./Tooltip";
+import useSupportsAnchorPositioning from "./hooks/useSupportsAnchorPositioning";
 import useBreakpoints from "./hooks/useBreakpoints";
 
 /**
@@ -120,6 +121,7 @@ export {
   TruncatedAccount,
   useBreakpoints,
   useLockBodyScroll,
+  useSupportsAnchorPositioning,
   formatNumber,
   formatDate,
 };

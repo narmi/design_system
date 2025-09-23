@@ -36,7 +36,6 @@ const useBreakpoints = (
   const l = useMediaQuery(queries.l!);
   const xl = useMediaQuery(queries.xl!);
 
-
   const found = [
     { name: "xl", satisfied: xl },
     { name: "l", satisfied: l },

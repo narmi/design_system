@@ -287,6 +287,46 @@ export const WithActions = () => {
   );
 };
 
+export const ScrollingBehavior = () => {
+  return (
+    <main style={{ height: "200vh" }}>
+      <div className="margin--bottom" style={{ marginTop: "100vh" }} />
+      <Combobox label="Account">
+        <Combobox.Item value="checking1234">Checking (1234)</Combobox.Item>
+        <Combobox.Item value="savings4321">Savings (4321)</Combobox.Item>
+        <Combobox.Item value="checking5678">Checking (5678)</Combobox.Item>
+        <Combobox.Item value="savings9876">Savings (9876)</Combobox.Item>
+        <Combobox.Item value="money_market2468">
+          Money Market (2468)
+        </Combobox.Item>
+        <Combobox.Item value="cd1357">
+          Certificate of Deposit (1357)
+        </Combobox.Item>
+        <Combobox.Item value="checking9999">Checking (9999)</Combobox.Item>
+        <Combobox.Item value="savings1111">Savings (1111)</Combobox.Item>
+        <Combobox.Item value="ira8642">IRA (8642)</Combobox.Item>
+        <Combobox.Item value="checking7531">Checking (7531)</Combobox.Item>
+        <Combobox.Item value="savings0246">Savings (0246)</Combobox.Item>
+        <Combobox.Item value="money_market8024">
+          Money Market (8024)
+        </Combobox.Item>
+        <Combobox.Item value="checking3698">Checking (3698)</Combobox.Item>
+        <Combobox.Item value="savings7410">Savings (7410)</Combobox.Item>
+        <Combobox.Item value="cd9630">
+          Certificate of Deposit (9630)
+        </Combobox.Item>
+        <Combobox.Item value="checking1593">Checking (1593)</Combobox.Item>
+        <Combobox.Item value="savings7529">Savings (7529)</Combobox.Item>
+        <Combobox.Item value="ira4816">IRA (4816)</Combobox.Item>
+        <Combobox.Item value="money_market3571">
+          Money Market (3571)
+        </Combobox.Item>
+        <Combobox.Item value="checking8642">Checking (8642)</Combobox.Item>
+      </Combobox>
+    </main>
+  );
+};
+
 export default {
   title: "Components/Combobox",
   component: Combobox,
@@ -297,60 +337,59 @@ export default {
 };
 
 export const WithCategoriesInForm = () => {
-
   const [inputValue, setInputValue] = useState("");
-  const [selectedValue, setSelectedValue] = useState("")
+  const [selectedValue, setSelectedValue] = useState("");
 
   return (
     <>
-    <div>selected value {selectedValue}</div>
-    <Combobox
-      label="Select item"
-      inputValue={inputValue}
-      onChange={(selected) => {
-        setSelectedValue(selected)
-      }}
-      filterItemsByInput={(items, inputVal) => {
-        return items.filter((item) => {
-          if (!item) return false;
-          const query = (item.props.searchValue || item.props.value).toLowerCase();
-          return query.includes(inputVal);
-        })
-      }}
-      onInputChange={(selected) => {
-        setInputValue(selected);
-      }}
-    >
-      <Combobox.Category label="Checking">
-        <Combobox.Item searchValue="Business Checking" value="checking1">
-          Business Checking - 11234
-        </Combobox.Item>
-        <Combobox.Item searchValue="Main Checking" value="checking2">
-          Main Checking - 13989
-        </Combobox.Item>
-        <Combobox.Item searchValue="Joint Checking" value="checking3">
-          Joint Checking - 14857
-        </Combobox.Item>
-      </Combobox.Category>
-      <Combobox.Category label="Savings">
-        <Combobox.Item searchValue="Business Checking" value="savings1">
-          Business Savings - 13938
-        </Combobox.Item>
-        <Combobox.Item searchValue="Main Savings" value="savings2">
-          Main Savings - 48274
-        </Combobox.Item>
-        <Combobox.Item searchValue="Joint Savings" value="savings3">
-          Joint Savings - 48284
-        </Combobox.Item>
-      </Combobox.Category>
-      <Combobox.Category label="External Accounts">
-        <Combobox.Item value="Sasha">Sasha - 84839</Combobox.Item>
-        <Combobox.Item value="Joan">Joan - 36183</Combobox.Item>
-        <Combobox.Item value="Benoit">Benoit - 53261</Combobox.Item>
-      </Combobox.Category>
-
-    </Combobox>
+      <div>selected value {selectedValue}</div>
+      <Combobox
+        label="Select item"
+        inputValue={inputValue}
+        onChange={(selected) => {
+          setSelectedValue(selected);
+        }}
+        filterItemsByInput={(items, inputVal) => {
+          return items.filter((item) => {
+            if (!item) return false;
+            const query = (
+              item.props.searchValue || item.props.value
+            ).toLowerCase();
+            return query.includes(inputVal);
+          });
+        }}
+        onInputChange={(selected) => {
+          setInputValue(selected);
+        }}
+      >
+        <Combobox.Category label="Checking">
+          <Combobox.Item searchValue="Business Checking" value="checking1">
+            Business Checking - 11234
+          </Combobox.Item>
+          <Combobox.Item searchValue="Main Checking" value="checking2">
+            Main Checking - 13989
+          </Combobox.Item>
+          <Combobox.Item searchValue="Joint Checking" value="checking3">
+            Joint Checking - 14857
+          </Combobox.Item>
+        </Combobox.Category>
+        <Combobox.Category label="Savings">
+          <Combobox.Item searchValue="Business Checking" value="savings1">
+            Business Savings - 13938
+          </Combobox.Item>
+          <Combobox.Item searchValue="Main Savings" value="savings2">
+            Main Savings - 48274
+          </Combobox.Item>
+          <Combobox.Item searchValue="Joint Savings" value="savings3">
+            Joint Savings - 48284
+          </Combobox.Item>
+        </Combobox.Category>
+        <Combobox.Category label="External Accounts">
+          <Combobox.Item value="Sasha">Sasha - 84839</Combobox.Item>
+          <Combobox.Item value="Joan">Joan - 36183</Combobox.Item>
+          <Combobox.Item value="Benoit">Benoit - 53261</Combobox.Item>
+        </Combobox.Category>
+      </Combobox>
     </>
-  )
-
+  );
 };

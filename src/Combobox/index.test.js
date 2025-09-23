@@ -110,7 +110,12 @@ describe("Combobox", () => {
   it("renders as expected with basic props", () => {
     render(<Combobox label={LABEL}>{STATE_ITEMS}</Combobox>);
     expect(screen.getByText(LABEL)).toBeInTheDocument();
-    expect(screen.getByRole("listbox")).toBeEmptyDOMElement();
+
+    // The listbox is always in the DOM but hidden when closed.
+    // We can't use getByRole when display: none because it's removed from the accessibility tree
+    const listbox = document.querySelector('[role="listbox"]');
+    expect(listbox).toBeInTheDocument();
+    expect(listbox.closest("div")).toHaveStyle("display: none");
   });
 
   it("dropdown opens, selection works, and onChange is fired correctly", () => {

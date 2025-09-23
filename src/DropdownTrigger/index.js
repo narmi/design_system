@@ -21,6 +21,7 @@ const DropdownTrigger = React.forwardRef(
       labelProps,
       displayValue,
       errorText,
+      hasError = false,
       minWidth = "auto",
       testId,
       startContent = <></>,
@@ -41,7 +42,8 @@ const DropdownTrigger = React.forwardRef(
               "padding--x--s rounded--all",
               {
                 "nds-dropdownTrigger-button--hasValue": Boolean(displayValue),
-                "nds-dropdownTrigger-button--hasError": Boolean(errorText),
+                "nds-dropdownTrigger-button--hasError":
+                  Boolean(errorText) || hasError,
                 "nds-dropdownTrigger-button--isActive": isOpen,
                 "nds-dropdownTrigger-button--disabled": disabled,
               },
@@ -72,7 +74,8 @@ const DropdownTrigger = React.forwardRef(
             )}
           </button>
         </div>
-        <Error error={errorText} />
+        {/* Consumers can compose their own error outside the component via hasError */}
+        {errorText && <Error error={errorText} />}
       </>
     );
   },
@@ -95,6 +98,8 @@ DropdownTrigger.propTypes = {
   displayValue: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /** Error message. When this prop is passed, an error state is displayed */
   errorText: PropTypes.string,
+  /** Set to `true` to display error state without providing error text */
+  hasError: PropTypes.bool,
   /**
    * Sets a minimum width.
    * Use the full CSS value with the unit (e.g. "400px")

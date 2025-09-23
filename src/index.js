@@ -55,6 +55,7 @@ import Tooltip from "./Tooltip";
 import TruncatedAccount from "./TruncatedAccount";
 import useBreakpoints from "./hooks/useBreakpoints";
 import useLockBodyScroll from "./hooks/useLockBodyScroll";
+import useSupportsAnchorPositioning from "./hooks/useSupportsAnchorPositioning";
 import formatNumber from "./formatters/formatNumber";
 import formatDate from "./formatters/formatDate";
 
@@ -114,6 +115,7 @@ export {
   TruncatedAccount,
   useBreakpoints,
   useLockBodyScroll,
+  useSupportsAnchorPositioning,
   formatNumber,
   formatDate,
 };

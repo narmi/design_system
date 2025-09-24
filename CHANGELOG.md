@@ -5,40 +5,40 @@ All notable changes to this project will be documented in this file. See
 
 ## 4.41.0 (2025-09-23)
 
-* feat(Pagination): use sliding window behavior ([1922d2d859da33944357f7bc153ae501e251caf1](https://github.com/narmi/design_system/commit/1922d2d859da33944357f7bc153ae501e251caf1))
-* fix(MenuButton): limit height of popover to 60vh ([0a110a63125e4c8cee97543ab9fa9f509e605aeb](https://github.com/narmi/design_system/commit/0a110a63125e4c8cee97543ab9fa9f509e605aeb))
-* fix(Pagination): show all pages when 6 total ([fadf944fde3468011c7fca60d58f3103afab3996](https://github.com/narmi/design_system/commit/fadf944fde3468011c7fca60d58f3103afab3996))
-* perf(Pagination): memoize visible page window calculation ([d88cc2d12d76a982b5786907d25f8ed545bf471f](https://github.com/narmi/design_system/commit/d88cc2d12d76a982b5786907d25f8ed545bf471f))
+- feat(Pagination): use sliding window behavior ([1922d2d859da33944357f7bc153ae501e251caf1](https://github.com/narmi/design_system/commit/1922d2d859da33944357f7bc153ae501e251caf1))
+- fix(MenuButton): limit height of popover to 60vh ([0a110a63125e4c8cee97543ab9fa9f509e605aeb](https://github.com/narmi/design_system/commit/0a110a63125e4c8cee97543ab9fa9f509e605aeb))
+- fix(Pagination): show all pages when 6 total ([fadf944fde3468011c7fca60d58f3103afab3996](https://github.com/narmi/design_system/commit/fadf944fde3468011c7fca60d58f3103afab3996))
+- perf(Pagination): memoize visible page window calculation ([d88cc2d12d76a982b5786907d25f8ed545bf471f](https://github.com/narmi/design_system/commit/d88cc2d12d76a982b5786907d25f8ed545bf471f))
 
 ## 4.40.0 (2025-09-05)
 
-* feat(Dialog): adapt to all viewport orientations ([cf4c2d8ed494313ead515408095bb2f1f4ab4487](https://github.com/narmi/design_system/commit/cf4c2d8ed494313ead515408095bb2f1f4ab4487))
+- feat(Dialog): adapt to all viewport orientations ([cf4c2d8ed494313ead515408095bb2f1f4ab4487](https://github.com/narmi/design_system/commit/cf4c2d8ed494313ead515408095bb2f1f4ab4487))
 
 ## <small>4.39.1 (2025-09-04)</small>
 
-* fix(MenuButton): limit height of popover to 60vh ([ff0dfaef4bd294c2c458984c63113d172894ead2](https://github.com/narmi/design_system/commit/ff0dfaef4bd294c2c458984c63113d172894ead2))
+- fix(MenuButton): limit height of popover to 60vh ([ff0dfaef4bd294c2c458984c63113d172894ead2](https://github.com/narmi/design_system/commit/ff0dfaef4bd294c2c458984c63113d172894ead2))
 
 ## 4.39.0 (2025-09-03)
 
-* feat(Pagination): use sliding window behavior ([48c4f162239530074921f41c80b4ed41f283ce60](https://github.com/narmi/design_system/commit/48c4f162239530074921f41c80b4ed41f283ce60))
-* fix(Pagination): show all pages when 6 total ([7d93ddf331b8548e6ddbb8cc572bbedb4f00742d](https://github.com/narmi/design_system/commit/7d93ddf331b8548e6ddbb8cc572bbedb4f00742d))
-* perf(Pagination): memoize visible page window calculation ([d7096adf096e1240ef946e1e743975b696d79925](https://github.com/narmi/design_system/commit/d7096adf096e1240ef946e1e743975b696d79925))
+- feat(Pagination): use sliding window behavior ([48c4f162239530074921f41c80b4ed41f283ce60](https://github.com/narmi/design_system/commit/48c4f162239530074921f41c80b4ed41f283ce60))
+- fix(Pagination): show all pages when 6 total ([7d93ddf331b8548e6ddbb8cc572bbedb4f00742d](https://github.com/narmi/design_system/commit/7d93ddf331b8548e6ddbb8cc572bbedb4f00742d))
+- perf(Pagination): memoize visible page window calculation ([d7096adf096e1240ef946e1e743975b696d79925](https://github.com/narmi/design_system/commit/d7096adf096e1240ef946e1e743975b696d79925))
 
 ## <small>4.38.1 (2025-09-02)</small>
 
-* fix(TableAutocomplete): allow input to grow to parent width ([15fe95c76a469fa76245924f2c0b51b048fa9b29](https://github.com/narmi/design_system/commit/15fe95c76a469fa76245924f2c0b51b048fa9b29))
+- fix(TableAutocomplete): allow input to grow to parent width ([15fe95c76a469fa76245924f2c0b51b048fa9b29](https://github.com/narmi/design_system/commit/15fe95c76a469fa76245924f2c0b51b048fa9b29))
 
 ## 4.38.0 (2025-08-21)
 
-* feat(TableInput): add maxLength prop with char counter ([537cbf9f279419c000b18974ced987e9d7a56618](https://github.com/narmi/design_system/commit/537cbf9f279419c000b18974ced987e9d7a56618))
+- feat(TableInput): add maxLength prop with char counter ([537cbf9f279419c000b18974ced987e9d7a56618](https://github.com/narmi/design_system/commit/537cbf9f279419c000b18974ced987e9d7a56618))
 
 ## 4.37.0 (2025-08-21)
 
-* feat(TextAutocomplete): add custom filtering prop ([1d9e93a9f3bb938faea331c21f80217fc03128d7](https://github.com/narmi/design_system/commit/1d9e93a9f3bb938faea331c21f80217fc03128d7))
+- feat(TextAutocomplete): add custom filtering prop ([1d9e93a9f3bb938faea331c21f80217fc03128d7](https://github.com/narmi/design_system/commit/1d9e93a9f3bb938faea331c21f80217fc03128d7))
 
 ## <small>4.36.5 (2025-08-20)</small>
 
-* fix(TableInput): add hover state ([c9cdb1ffdb1fa3151147efba6e37973151fc77c3](https://github.com/narmi/design_system/commit/c9cdb1ffdb1fa3151147efba6e37973151fc77c3))
+- fix(TableInput): add hover state ([c9cdb1ffdb1fa3151147efba6e37973151fc77c3](https://github.com/narmi/design_system/commit/c9cdb1ffdb1fa3151147efba6e37973151fc77c3))
 
 ## <small>4.36.4 (2025-08-20)</small>
 

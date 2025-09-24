@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.41.1 (2025-09-24)</small>
+
+* fix(useDropdownLayer): include zindex in positioning ([e0adf2adf288d23c36ec38058438112ce72ad271](https://github.com/narmi/design_system/commit/e0adf2adf288d23c36ec38058438112ce72ad271))
+
 ## 4.41.0 (2025-09-23)
 
 - feat(Pagination): use sliding window behavior ([1922d2d859da33944357f7bc153ae501e251caf1](https://github.com/narmi/design_system/commit/1922d2d859da33944357f7bc153ae501e251caf1))

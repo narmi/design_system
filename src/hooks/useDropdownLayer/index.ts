@@ -89,8 +89,9 @@ const useDropdownLayer = ({
           }
         : polyFillLayerStyles),
 
-      // Always include visibility rule.
+      // Always include visibility and z-index rules.
       display: isOpen ? "block" : "none",
+      zIndex: 4,
     };
 
     return {

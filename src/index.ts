@@ -28,6 +28,8 @@ import TableDateInput from "./TableDateInput";
 import TableInput from "./TableInput";
 import Tabs from "./Tabs";
 import Tooltip from "./Tooltip";
+import useSupportsAnchorPositioning from "./hooks/useSupportsAnchorPositioning";
+import useBreakpoints from "./hooks/useBreakpoints";
 
 /**
  * Untyped Components
@@ -58,7 +60,6 @@ declare const TimelineEvent;
 declare const Toggle;
 declare const TokenInput;
 declare const TruncatedAccount;
-declare const useBreakpoints;
 declare const useLockBodyScroll;
 declare const formatNumber;
 declare const formatDate;
@@ -120,6 +121,7 @@ export {
   TruncatedAccount,
   useBreakpoints,
   useLockBodyScroll,
+  useSupportsAnchorPositioning,
   formatNumber,
   formatDate,
 };

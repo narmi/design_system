@@ -1,42 +1,10 @@
-.nds-combobox {
-  position: relative;
-}
-
 .nds-combobox--active .nds-input-box {
   border-color: var(--theme-primary);
 }
 
 .nds-combobox-list {
-  visibility: hidden;
-  border: 1px solid var(--theme-primary);
-  border-radius: var(--border-radius-default);
-  max-height: 40vh;
-  overflow-y: scroll;
-  z-index: 4;
+  @extend %nds-dropdown-layer;
 
-  &--error {
-    border: 1px solid var(--color-errorDark);
-  }
-
-  &--bottom {
-    border-top: 1px solid var(--border-color-default);
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-  }
-
-  &--top {
-    border-bottom: 1px solid var(--border-color-default);
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  &--active {
-    visibility: visible;
-  }
-
-  &:focus {
-    outline: none;
-  }
 }
 
 .nds-combobox-item,

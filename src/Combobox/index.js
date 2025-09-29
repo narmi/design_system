@@ -3,15 +3,15 @@ import PropTypes from "prop-types";
 import cc from "classcat";
 import iconSelection from "src/icons/selection.json";
 import { useCombobox } from "downshift";
-import { useLayer } from "react-laag";
 import ComboboxItem from "./ComboboxItem";
 import ComboboxHeading from "./ComboboxHeading";
 import ComboboxCategory from "./ComboboxCategory";
 import ComboboxAction from "./ComboboxAction";
+import Error from "../Error";
 import TextInput from "../TextInput";
 import Row from "../Row";
 import { getItemIndex } from "../Select";
-import { createUseLayerContainer } from "src/util/dom";
+import useDropdownLayer from "../hooks/useDropdownLayer";
 
 const noop = () => {};
 
@@ -245,6 +245,9 @@ const Combobox = ({
       return changes;
     },
   });
+  const { anchorProps, layerProps } = useDropdownLayer({
+    isOpen,
+  });
 
   // Update displayed items passed to `useCombobox` when `items` change
   useEffect(() => {
@@ -255,21 +258,6 @@ const Combobox = ({
   }, [items, inputValue]);
 
   const hasSelectedItem = !!selectedItem;
-
-  // react-laag positioning engine for autocomplete popup
-  const { renderLayer, triggerProps, layerProps, triggerBounds, layerSide } =
-    useLayer({
-      isOpen,
-      overflowContainer: true,
-      auto: true,
-      snap: true,
-      placement: "bottom-start",
-      possiblePlacements: ["top-start", "bottom-start"],
-      preferY: "bottom",
-      triggerOffset: -3,
-      containerOffset: 16,
-      container: createUseLayerContainer,
-    });
 
   // renders a single combobox item
   const renderItem = (item, index) => {
@@ -414,47 +402,42 @@ const Combobox = ({
       <div
         className={cc(["nds-combobox", { "nds-combobox--active": isOpen }])}
         data-testid={testId}
-        {...triggerProps}
       >
-        <TextInput
-          error={errorText}
-          label={label}
-          value={inputValue}
-          startIcon={icon}
-          endContent={renderEndContent(isOpen)}
-          {...getInputProps({
-            onBlur: handleBlur,
-            onFocus: handleMenuToggle,
-            onClick: handleMenuToggle,
-          })}
-          onClick={handleMenuToggle}
-        />
-        {renderLayer(
+        <div {...anchorProps}>
+          <TextInput
+            error={errorText}
+            renderError={false}
+            label={label}
+            value={inputValue}
+            startIcon={icon}
+            endContent={renderEndContent(isOpen)}
+            {...getInputProps({
+              onBlur: handleBlur,
+              onFocus: handleMenuToggle,
+              onClick: handleMenuToggle,
+            })}
+            onClick={handleMenuToggle}
+          />
+        </div>
+        <Error error={errorText} className="margin--top--xs" />
+        <div {...layerProps}>
           <ul
             className={cc([
               "nds-combobox-list",
-              "list--reset bgColor--white border--right bottom border--left",
+              "list--reset",
+              "bgColor--white",
               {
-                "nds-combobox-list--active":
-                  isOpen && displayedItems.length > 0,
-                "nds-combobox-list--bottom": layerSide === "bottom",
-                "nds-combobox-list--top": layerSide === "top",
                 "nds-combobox-list--error": !!errorText,
               },
             ])}
-            {...getMenuProps(layerProps)}
-            style={{
-              width: triggerBounds?.width || "auto",
-              transform: `${errorText ? `translateY(${layerSide === "top" ? "0px" : "-22px"} )` : "none"}`,
-              ...layerProps.style,
-            }}
+            {...getMenuProps()}
           >
             {isOpen &&
               (hasCategories
                 ? categories.map(renderCategory)
                 : displayedItems.map(renderItem))}
-          </ul>,
-        )}
+          </ul>
+        </div>
       </div>
     </>
   );

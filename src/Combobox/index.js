@@ -145,6 +145,7 @@ const Combobox = ({
   filterItemsByInput = defaultFilterItemsByInput,
   children,
   disableFiltering = false,
+  clearSelectionOnAction = false,
   errorText,
   icon,
   testId,
@@ -236,8 +237,10 @@ const Combobox = ({
         newSelectedItem.props.onSelect();
         return {
           ...changes,
-          selectedItem: previousSelectedItem,
-          inputValue: itemToString(previousSelectedItem),
+          selectedItem: clearSelectionOnAction ? null : previousSelectedItem,
+          inputValue: clearSelectionOnAction
+            ? ""
+            : itemToString(previousSelectedItem),
           isOpen: false,
         };
       }
@@ -468,6 +471,10 @@ Combobox.propTypes = {
    * as the user types.
    */
   disableFiltering: PropTypes.bool,
+  /**
+   * When `true`, selecting an action will clear any existing selection.
+   */
+  clearSelectionOnAction: PropTypes.bool,
   /**
    * Optionally pass a function to customize filtering behavior
    *

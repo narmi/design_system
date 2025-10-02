@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import cc from "classcat";
 import Error from "../Error";
+import Radio from "../Radio";
+import type { RadioKind } from "../Radio";
+
+type RadioButtonsLayouts = "row" | "row-start";
+type RadioButtonsKind = RadioKind | RadioButtonsLayouts;
 
 interface RadioButtonsProps {
   /** Map of label strings to input values
@@ -36,7 +41,7 @@ interface RadioButtonsProps {
    *
    * `checkmark` - uses a checkmark icon instead of a faux radio
    */
-  kind?: "normal" | "row" | "row-start" | "card" | "input-card" | "checkmark";
+  kind?: RadioButtonsKind;
   /**
    * Error message. When passed, the `error` prop will
    * render the radio group in an error state.
@@ -82,12 +87,13 @@ const RadioButtons = ({
   alwaysShowDetails = false,
   ...containerProps
 }: RadioButtonsProps) => {
+  const layoutKind = ["row", "row-start"].includes(kind) ? kind : "normal";
+  const isLayoutKind = ["row", "row-start"].includes(kind);
   const isControlled = value !== undefined;
   const hasError = error !== undefined && error.length > 0;
   const [checkedValue, setCheckedValue] = useState(
     isControlled ? value : initialValue,
   );
-  const [focusedValue, setFocusedValue] = useState(null);
 
   useEffect(() => {
     if (isControlled) {
@@ -102,18 +108,10 @@ const RadioButtons = ({
     onChange(e);
   };
 
-  const handleFocus = ({ target }) => {
-    setFocusedValue(target.value);
-  };
-
-  const handleBlur = () => {
-    setFocusedValue(null);
-  };
-
   return (
     <>
       <div
-        className={`nds-radiobuttons nds-radiobuttons--${kind}`}
+        className={`nds-radiobuttons nds-radiobuttons--${layoutKind}`}
         onChange={handleChange}
         data-testid={testId}
         {...containerProps}
@@ -124,66 +122,49 @@ const RadioButtons = ({
           const inputValue = inputOption.value;
           const details = inputOption.details;
           return (
-            <label
-              className={cc([
-                "nds-radiobuttons-option",
-                "fontWeight--default",
-                {
-                  "nds-radiobuttons-option--checked":
-                    checkedValue == inputValue,
-                  "nds-radiobuttons-option--focused":
-                    focusedValue == inputValue,
-                  "nds-radiobuttons-option--error": hasError,
-                  "padding--all rounded--all border--all": [
-                    "card",
-                    "input-card",
-                  ].includes(kind),
-                },
-              ])}
-              key={inputValue}
-            >
-              <div className="nds-radiobuttons-label-container">
-                {label}
-                <input
-                  type="radio"
-                  aria-label={`Radio ${name} option ${label}`}
-                  checked={checkedValue === inputValue}
-                  onChange={handleChange}
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                  value={inputValue}
-                  name={name}
-                />
-                <div
-                  role="presentation"
-                  className={cc([
-                    "nds-radio",
-                    {
-                      "narmi-icon-check": ["card", "checkmark"].includes(kind),
-                    },
-                  ])}
-                />
-              </div>
-              {details && (
-                <div
-                  className={cc([
-                    "nds-radiobutton-details",
-                    {
-                      "nds-radiobutton-details--checked":
-                        alwaysShowDetails || checkedValue == inputValue,
-                      "fontColor--secondary": kind != "card",
-                      "fontSize--s": kind != "card",
-                    },
-                  ])}
-                >
-                  {details}
+            <div className="nds-radiobuttons-option" key={inputValue}>
+              <Radio
+                kind={isLayoutKind ? "normal" : (kind as RadioKind)}
+                name={name}
+                checked={checkedValue === inputValue}
+                value={inputValue}
+                hasError={hasError}
+              >
+                <div>
+                  {label}
+                  {/*
+                  The `Radio` component knows nothing about "details", but does accept arbittary JSX.
+                  Here, we compose in the expected details behavior of RadioButtons.
+                  */}
+                  {details &&
+                    (alwaysShowDetails || checkedValue === inputValue) && (
+                      <div
+                        className={cc([
+                          "nds-radiobutton-details",
+                          {
+                            "fontColor--secondary": kind !== "card",
+                            "fontSize--s": kind !== "card",
+                          },
+                        ])}
+                      >
+                        {details}
+                      </div>
+                    )}
                 </div>
-              )}
-            </label>
+              </Radio>
+            </div>
           );
         })}
       </div>
-      <div className={cc([{ "margin--top--s": kind !== "row" && kind !== "row-start" }])}>
+      {/* RadioButtons is expected to display a single error for all options. */}
+      <div
+        className={cc([
+          {
+            "margin--top--s":
+              layoutKind !== "row" && layoutKind !== "row-start",
+          },
+        ])}
+      >
         <Error error={error} />
       </div>
     </>

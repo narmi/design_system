@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.42.0 (2025-10-02)
+
+* feat(Radio): support all style variants on single radio ([91fea8727d63373e73f7382a03afb184521a982b](https://github.com/narmi/design_system/commit/91fea8727d63373e73f7382a03afb184521a982b))
+
 ## <small>4.41.2 (2025-09-30)</small>
 
 * fix(Table.Row): Add border radius to `only-of-type` rows (#1876) ([d6b4969a25dafd0db6f535426891fc5c5bd4bdcc](https://github.com/narmi/design_system/commit/d6b4969a25dafd0db6f535426891fc5c5bd4bdcc)), closes [#1876](https://github.com/narmi/design_system/issues/1876)

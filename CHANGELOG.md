@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.43.0 (2025-10-02)
+
+* feat(Radio): support rating kind ([b22a6d9b2c779fbbb9879c21c7d6056348a74130](https://github.com/narmi/design_system/commit/b22a6d9b2c779fbbb9879c21c7d6056348a74130))
+
 ## 4.42.0 (2025-10-02)
 
 * feat(Radio): support all style variants on single radio ([91fea8727d63373e73f7382a03afb184521a982b](https://github.com/narmi/design_system/commit/91fea8727d63373e73f7382a03afb184521a982b))

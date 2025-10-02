@@ -141,3 +141,30 @@
     color: var(--theme-primary);
   }
 }
+
+// kind="rating"
+.nds-singleRadio--rating {
+  border: 1px solid var(--border-color-default);
+  color: var(--font-color-secondary);
+  border-radius: var(--border-radius-s);
+  width: rem(32px);
+  height: rem(32px);
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  &:hover,
+  &:focus-within {
+    background-color: rgba(var(--theme-rgb-primary), var(--alpha-10));
+  }
+
+  &:focus-within {
+    outline: 3px solid RGBA(var(--theme-rgb-primary), var(--alpha-10));
+  }
+
+  &:has(input:checked) {
+    background-color: rgba(var(--theme-rgb-primary), var(--alpha-10));
+    border-color: var(--theme-primary);
+    color: var(--theme-primary);
+  }
+}

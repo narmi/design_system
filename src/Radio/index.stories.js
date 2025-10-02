@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid,react/jsx-key */
 import React, { useState } from "react";
 import Radio from "./";
+import Row from "../Row";
 
 const Template = (args) => <Radio {...args} />;
 
@@ -166,6 +167,24 @@ AsCheckmark.parameters = {
         "Checkmark variant displays with a simple checkmark icon that appears on hover and selection. The layout is reversed with the checkmark on the right side.",
     },
   },
+};
+
+export const AsRating = () => {
+  return (
+    <Row gapSize="xs">
+      {[...Array(10)].map((_, index) => (
+        <Row.Item key={index} shrink>
+          <Radio
+            name="rating-demo"
+            value={(index + 1).toString()}
+            kind="rating"
+          >
+            {index + 1}
+          </Radio>
+        </Row.Item>
+      ))}
+    </Row>
+  );
 };
 
 export const ErrorStates = () => {

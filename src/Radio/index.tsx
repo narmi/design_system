@@ -5,7 +5,12 @@ import Error from "../Error";
 
 const noop = () => {};
 
-export type RadioKind = "normal" | "card" | "input-card" | "checkmark";
+export type RadioKind =
+  | "normal"
+  | "card"
+  | "input-card"
+  | "checkmark"
+  | "rating";
 
 interface RadioProps {
   /** The `name` attribute for radio input. Use this to group radio sets. */
@@ -51,6 +56,7 @@ const Radio = ({
   const isCardKind = kind === "card";
   const isInputCardKind = kind === "input-card";
   const isCheckmarkKind = kind === "checkmark";
+  const isRatingKind = kind === "rating";
   const inputId = `${name}-${value}`;
 
   const handleChange = ({ target }) => {
@@ -94,7 +100,7 @@ const Radio = ({
         ])}
         htmlFor={inputId}
       >
-        <Row gapSize="s">
+        <Row gapSize={isRatingKind ? "none" : "s"}>
           {isCardKind && <Row.Item>{children}</Row.Item>}
           <Row.Item shrink>
             {inputElement}

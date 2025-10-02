@@ -43,6 +43,9 @@
   &:last-of-type {
     border-radius: 0 0 var(--border-radius-default) var(--border-radius-default);
   }
+  &:only-of-type {
+    border-radius: var(--border-radius-default);
+  }
 
   // Clickable rows
   &--interactive:hover,

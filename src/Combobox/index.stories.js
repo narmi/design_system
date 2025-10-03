@@ -327,6 +327,35 @@ export const ScrollingBehavior = () => {
   );
 };
 
+export const ClearingSelctionWithAction = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  return (
+    <>
+      <Combobox
+        label="Select Account"
+        inputValue={inputValue}
+        onInputChange={(val) => setInputValue(val)}
+        clearSelectionOnAction={true}
+      >
+        <Combobox.Item value="Primary Checking - 4567" />
+        <Combobox.Item value="Cheese Fund - 5432" />
+        <Combobox.Item value="Primary Savings - 1234" />
+        <Combobox.Item value="Secondary Checking - 7892" />
+        <Combobox.Action
+          onSelect={() => {
+            setIsOpen(true);
+          }}
+          label="Do Action"
+        />
+      </Combobox>
+      <Drawer isOpen={isOpen} onUserDismiss={() => setIsOpen(false)}>
+        <div className="padding--y--s">🎬 Action!</div>
+      </Drawer>
+    </>
+  );
+};
+
 export default {
   title: "Components/Combobox",
   component: Combobox,

@@ -126,6 +126,7 @@ const Select = ({
   defaultOpen = false,
   disabled = false,
   getTypeaheadString = defaultGetTypeAheadString,
+  clearSelectionOnAction = false,
   errorText,
   testId,
 }) => {
@@ -165,10 +166,8 @@ const Select = ({
     initialIsOpen: defaultOpen,
     itemToString: (item) => getTypeaheadString(userInput, item),
     onSelectedItemChange: ({ selectedItem }) => {
-      // for Select.Action items, we only fire the side effect
-      if (isAction(selectedItem)) {
-        selectedItem.props.onSelect();
-      } else {
+      // Actions are handled in the state reducer, so this only handles regular items
+      if (selectedItem && !isAction(selectedItem)) {
         onChange(selectedItem.props ? selectedItem.props.value : "");
       }
     },
@@ -178,6 +177,8 @@ const Select = ({
     // <https://www.downshift-js.com/use-select#state-reducer>
     stateReducer: (state, actionAndChanges) => {
       const { type, changes } = actionAndChanges;
+      const { selectedItem: previousSelectedItem } = state;
+      const { selectedItem: newSelectedItem } = changes;
       let isOpen = changes.isOpen;
 
       if (type === useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter) {
@@ -186,6 +187,19 @@ const Select = ({
         isOpen = true;
       } else {
         setUserInput(""); // reset input after any other event
+      }
+
+      // When an action is selected, execute it and handle clearing if needed
+      if (isAction(newSelectedItem)) {
+        newSelectedItem.props.onSelect();
+        if (clearSelectionOnAction) {
+          onChange(""); // allows controlled 'value' to be cleared
+        }
+        return {
+          ...changes,
+          selectedItem: clearSelectionOnAction ? null : previousSelectedItem,
+          isOpen: false,
+        };
       }
 
       return {
@@ -378,6 +392,10 @@ Select.propTypes = {
    * See "Changing Typeahead Behavior" story for example.
    */
   getTypeaheadString: PropTypes.func,
+  /**
+   * When `true`, selecting an action will clear any existing selection.
+   */
+  clearSelectionOnAction: PropTypes.bool,
   /**
    * Use to set a default selection by passing the `value` prop
    * of one of the `<Select.Item>` children.

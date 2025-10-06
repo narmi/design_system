@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.44.0 (2025-10-06)
+
+* feat(Combobox): allow clearing selection on action ([c92bfd514bb98b6cb43520d01cf5b074ffb53e42](https://github.com/narmi/design_system/commit/c92bfd514bb98b6cb43520d01cf5b074ffb53e42))
+
 ## 4.43.0 (2025-10-02)
 
 - feat(Radio): support rating kind ([b22a6d9b2c779fbbb9879c21c7d6056348a74130](https://github.com/narmi/design_system/commit/b22a6d9b2c779fbbb9879c21c7d6056348a74130))

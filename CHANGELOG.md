@@ -5,19 +5,19 @@ All notable changes to this project will be documented in this file. See
 
 ## 4.43.0 (2025-10-02)
 
-* feat(Radio): support rating kind ([b22a6d9b2c779fbbb9879c21c7d6056348a74130](https://github.com/narmi/design_system/commit/b22a6d9b2c779fbbb9879c21c7d6056348a74130))
+- feat(Radio): support rating kind ([b22a6d9b2c779fbbb9879c21c7d6056348a74130](https://github.com/narmi/design_system/commit/b22a6d9b2c779fbbb9879c21c7d6056348a74130))
 
 ## 4.42.0 (2025-10-02)
 
-* feat(Radio): support all style variants on single radio ([91fea8727d63373e73f7382a03afb184521a982b](https://github.com/narmi/design_system/commit/91fea8727d63373e73f7382a03afb184521a982b))
+- feat(Radio): support all style variants on single radio ([91fea8727d63373e73f7382a03afb184521a982b](https://github.com/narmi/design_system/commit/91fea8727d63373e73f7382a03afb184521a982b))
 
 ## <small>4.41.2 (2025-09-30)</small>
 
-* fix(Table.Row): Add border radius to `only-of-type` rows (#1876) ([d6b4969a25dafd0db6f535426891fc5c5bd4bdcc](https://github.com/narmi/design_system/commit/d6b4969a25dafd0db6f535426891fc5c5bd4bdcc)), closes [#1876](https://github.com/narmi/design_system/issues/1876)
+- fix(Table.Row): Add border radius to `only-of-type` rows (#1876) ([d6b4969a25dafd0db6f535426891fc5c5bd4bdcc](https://github.com/narmi/design_system/commit/d6b4969a25dafd0db6f535426891fc5c5bd4bdcc)), closes [#1876](https://github.com/narmi/design_system/issues/1876)
 
 ## <small>4.41.1 (2025-09-24)</small>
 
-* fix(useDropdownLayer): include zindex in positioning ([e0adf2adf288d23c36ec38058438112ce72ad271](https://github.com/narmi/design_system/commit/e0adf2adf288d23c36ec38058438112ce72ad271))
+- fix(useDropdownLayer): include zindex in positioning ([e0adf2adf288d23c36ec38058438112ce72ad271](https://github.com/narmi/design_system/commit/e0adf2adf288d23c36ec38058438112ce72ad271))
 
 ## 4.41.0 (2025-09-23)
 

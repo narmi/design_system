@@ -85,8 +85,8 @@ WithAction.parameters = {
   },
 };
 
-export const ClearingSelctionWithAction = Template.bind({});
-ClearingSelctionWithAction.args = {
+export const ClearingSelectionWithAction = Template.bind({});
+ClearingSelectionWithAction.args = {
   label: "Account",
   id: "account-field",
   clearSelectionOnAction: true,

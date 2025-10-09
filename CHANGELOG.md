@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.44.1 (2025-10-09)</small>
+
+* fix(Select): `ClearingSelctionWithAction` -> `ClearingSelectionWithAction` (#1881) ([e9b97c4ca6cbc8fdec5a5cb1a335d32582ba8fbf](https://github.com/narmi/design_system/commit/e9b97c4ca6cbc8fdec5a5cb1a335d32582ba8fbf)), closes [#1881](https://github.com/narmi/design_system/issues/1881)
+
 ## 4.44.0 (2025-10-06)
 
 * feat(Combobox): allow clearing selection on action ([c92bfd514bb98b6cb43520d01cf5b074ffb53e42](https://github.com/narmi/design_system/commit/c92bfd514bb98b6cb43520d01cf5b074ffb53e42))

@@ -9,7 +9,7 @@ export interface ButtonProps {
   /** Renders the button label */
   label?: string; // must be optional until `children` is removed
   /** style of button to render */
-  kind?: "primary" | "secondary" | "tonal" | "negative" | "menu" | "plain";
+  kind?: "primary" | "secondary" | "tonal" | "negative" | "plain";
   /** Click callback, with event object passed as argument */
   onClick?: (e) => void;
   /**

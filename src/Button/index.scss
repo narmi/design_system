@@ -54,25 +54,12 @@
   @extend %btn-kind-tonal;
 }
 
-/**
-️* ⚠️ DEPRECATED ⚠️
-* Will be removed in a future release.
-*/
-.nds-button--m.nds-button--menu .nds-button-content {
-  margin: 0;
-}
-.nds-button--menu,
-.nds-button--menu.resetButton {
-  @extend %btn-kind-menu;
-}
-
 .nds-button--negative,
 .nds-button--negative.resetButton {
   @extend %btn-kind-negative;
 }
 
 .nds-button--disabled {
-  &.nds-button--menu,
   &.nds-button--plain,
   &.nds-button--negative {
     @extend %btn-state-disabled-plain;

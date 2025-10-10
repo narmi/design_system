@@ -10,7 +10,6 @@ export type ButtonKind =
   | "secondary"
   | "tonal"
   | "negative"
-  | "menu"
   | "plain";
 
 export interface ButtonProps {

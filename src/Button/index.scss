@@ -95,11 +95,3 @@
 .nds-button--plain {
   @extend %btn-kind-plain;
 }
-
-/**
-️* ⚠️ DEPRECATED ⚠️
-* Will be removed in a future release.
-*/
-.nds-plain-button {
-  @extend %btn-kind-plain;
-}

@@ -27,7 +27,6 @@ import LoadingSkeleton from "./LoadingSkeleton";
 import MenuButton from "./MenuButton";
 import MultiSelect from "./MultiSelect";
 import Pagination from "./Pagination";
-import PlainButton from "./PlainButton";
 import ProgressBar from "./ProgressBar";
 import Popover from "./Popover";
 import Radio from "./Radio";
@@ -89,7 +88,6 @@ export {
   MenuButton,
   MultiSelect,
   Pagination,
-  PlainButton,
   ProgressBar,
   Popover,
   Radio,

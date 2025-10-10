@@ -49,7 +49,6 @@ declare const LoadingShim;
 declare const MenuButton;
 declare const MultiSelect;
 declare const Pagination;
-declare const PlainButton;
 declare const Popover;
 declare const ResponsiveFlex;
 declare const Select;
@@ -99,7 +98,6 @@ export {
   MenuButton,
   MultiSelect,
   Pagination,
-  PlainButton,
   ProgressBar,
   Popover,
   ResponsiveFlex,

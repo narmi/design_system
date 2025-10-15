@@ -150,6 +150,7 @@ const Combobox = ({
   icon,
   testId,
   renderEndContent = defaultRenderEndContent,
+  maxMenuHeight = "40vh",
 }) => {
   const allChildren = useMemo(
     () => React.Children.toArray(children),
@@ -434,6 +435,7 @@ const Combobox = ({
               },
             ])}
             {...getMenuProps()}
+            style={{ maxHeight: maxMenuHeight }}
           >
             {isOpen &&
               (hasCategories
@@ -496,6 +498,8 @@ Combobox.propTypes = {
    * Signature: `(isOpen) => React.ReactNode`
    */
   renderEndContent: PropTypes.func,
+  /** Optional override to set CSS value for max height of menu */
+  maxMenuHeight: PropTypes.string,
 };
 
 Combobox.Item = ComboboxItem;

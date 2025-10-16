@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.45.0 (2025-10-16)
+
+* fix(release): update release process ([7831ea4ff74761e32e47bf5512a27664495bf198](https://github.com/narmi/design_system/commit/7831ea4ff74761e32e47bf5512a27664495bf198))
+
 ## <small>4.44.1 (2025-10-09)</small>
 
 * fix(Select): `ClearingSelctionWithAction` -> `ClearingSelectionWithAction` (#1881) ([e9b97c4ca6cbc8fdec5a5cb1a335d32582ba8fbf](https://github.com/narmi/design_system/commit/e9b97c4ca6cbc8fdec5a5cb1a335d32582ba8fbf)), closes [#1881](https://github.com/narmi/design_system/issues/1881)

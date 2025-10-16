@@ -10,7 +10,6 @@ const config = {
     [
       "@semantic-release/commit-analyzer",
       {
-        preset: "conventionalcommits",
         releaseRules: [
           { type: "feat", release: "minor" },
           { type: "feature", release: "minor" },

@@ -5,7 +5,7 @@ import {
   Subtitle,
   Primary,
   Stories,
-} from '@storybook/addon-docs';
+} from "@storybook/addon-docs/blocks";
 import iconSelection from "dist/icons/selection.json";
 import compatIcons from "./compat-icons";
 

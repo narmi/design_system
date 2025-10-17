@@ -1,4 +1,4 @@
-import { create } from "@storybook/theming";
+import { create } from "storybook/theming";
 import {
   ColorNarmiSand800 as lightSand,
   ColorNarmiCove200 as darkCove,

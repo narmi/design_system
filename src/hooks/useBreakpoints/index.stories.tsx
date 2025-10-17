@@ -1,6 +1,6 @@
 import React from "react";
 import useBreakpoints, { UseBreakpointsResult } from ".";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-webpack5";
 
 export const Overview: React.FC = () => {
   const { s, m, l, xl, largestSatisfiedBreakpoint }: UseBreakpointsResult =

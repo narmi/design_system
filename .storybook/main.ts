@@ -11,17 +11,12 @@ module.exports = {
   ],
 
   addons: [
-    {
-      name: "@storybook/addon-essentials",
-      options: { strict: true },
-    },
     "@storybook/addon-links",
     "@storybook/addon-a11y",
     {
       name: "@storybook/addon-docs",
       options: { transcludeMarkdown: true },
     },
-    "@storybook/addon-mdx-gfm",
     "@storybook/addon-webpack5-compiler-babel",
     "@chromatic-com/storybook",
   ],
@@ -41,4 +36,8 @@ module.exports = {
   },
 
   docs: {},
+
+  features: {
+    strict: true,
+  },
 };

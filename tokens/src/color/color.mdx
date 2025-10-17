@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas } from "@storybook/blocks";
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
 import TokenTable, { toTokenRows } from "helpers/TokenTable";
 import * as ColorStories from "./color.stories.js";
 
@@ -8,16 +8,14 @@ import * as ColorStories from "./color.stories.js";
 
 ## Narmi Base Colors
 
-<Canvas of={ColorStories.Base} name="Base" style={{ height: 'auto' }} />
+<Canvas of={ColorStories.Base} name="Base" style={{ height: "auto" }} />
 
 ## Theme Colors
 
 Tokens with the prefix `--theme` are dedicated to theming. These CSS custom
 properties are intended to be overridden by institution settings.
 
-
-<Canvas of={ColorStories.Theme} style={{ height: 'auto' }}/>
-
+<Canvas of={ColorStories.Theme} style={{ height: "auto" }} />
 
 ### Enabling theming in your application
 
@@ -44,13 +42,13 @@ this design system for composing transparent colors:
 
 Colors reserved for element backgrounds.
 
-<Canvas of={ColorStories.Background} style={{ height: 'auto' }}/>
+<Canvas of={ColorStories.Background} style={{ height: "auto" }} />
 
 ## System Colors
 
 Colors used for system messages and indicators.
 
-<Canvas of={ColorStories.System} style={{ height: 'auto' }}/>
+<Canvas of={ColorStories.System} style={{ height: "auto" }} />
 
 ## Transparency
 
@@ -65,7 +63,7 @@ The value `rgb(var(--rgb-pine))` is equivalent to `var(--color-pine)`.
 
 ### Alpha Values
 
-<Canvas of={ColorStories.Transparency} style={{ height: 'auto' }} />
+<Canvas of={ColorStories.Transparency} style={{ height: "auto" }} />
 
 ### Usage
 

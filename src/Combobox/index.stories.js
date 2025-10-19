@@ -11,7 +11,9 @@ import { options_states } from "./util";
 const Template = (args) => <Combobox {...args} />;
 
 const children = options_states.map((state) => (
-  <Combobox.Item value={state}>{state}</Combobox.Item>
+  <Combobox.Item key={state} value={state}>
+    {state}
+  </Combobox.Item>
 ));
 
 export const Overview = Template.bind({});

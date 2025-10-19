@@ -238,7 +238,7 @@ CustomTypeahead.args = {
     { name: "Logistics", code: "32144" },
     { name: "Hospitality", code: "22147" },
   ].map(({ name, code }) => (
-    <Select.Item value={code} searchValue={name}>
+    <Select.Item key={code} value={code} searchValue={name}>
       {name}
     </Select.Item>
   )),
@@ -275,7 +275,7 @@ ChangingTypeaheadBehavior.args = {
     { name: "Logistics", code: "32144" },
     { name: "Hospitality", code: "22147" },
   ].map(({ name, code }) => (
-    <Select.Item value={code} searchValue={name}>
+    <Select.Item key={code} value={code} searchValue={name}>
       {name} - {code}
     </Select.Item>
   )),

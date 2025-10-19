@@ -50,6 +50,7 @@ export const FullyControlled = () => {
     >
       {["daily", "weekly"].map((value) => (
         <Radio
+          key={value}
           name={SET_NAME}
           value={value}
           onCheck={setSelectedRadioVal}

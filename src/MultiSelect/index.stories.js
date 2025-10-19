@@ -248,7 +248,7 @@ ChangingTypeaheadBehavior.args = {
     { name: "Logistics", code: "32144" },
     { name: "Hospitality", code: "22147" },
   ].map(({ name, code }) => (
-    <MultiSelect.Item value={code} searchValue={name}>
+    <MultiSelect.Item key={code} value={code} searchValue={name}>
       {name} - {code}
     </MultiSelect.Item>
   )),

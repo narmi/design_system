@@ -1,6 +1,6 @@
 import React from "react";
 import "./story-styles.css";
-import "dist/style.css";
+import "../src/index.scss";
 import { NdsStyles } from "./decorators";
 import { docs } from "./theme/narmi";
 

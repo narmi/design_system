@@ -17,21 +17,11 @@ module.exports = {
       name: "@storybook/addon-docs",
       options: { transcludeMarkdown: true },
     },
-    "@storybook/addon-webpack5-compiler-babel",
     "@chromatic-com/storybook",
   ],
 
-  webpackFinal: (config) => {
-    config.resolve.alias = {
-      src: path.resolve(__dirname, "../src"),
-      dist: path.resolve(__dirname, "../dist"),
-      helpers: path.resolve(__dirname, "helpers"),
-    };
-    return config;
-  },
-
   framework: {
-    name: "@storybook/react-webpack5",
+    name: "@storybook/react-vite",
     options: {},
   },
 

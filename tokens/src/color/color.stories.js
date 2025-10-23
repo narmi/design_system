@@ -21,7 +21,6 @@ Base.args = {
 export const Theme = () => (
   <>
     <h2>Theme Colors</h2>
-    <pre>{JSON.stringify(color, null, 2)}</pre>
     <TokenTable previewType="color" rows={toTokenRows(color, "theme")} />
   </>
 );

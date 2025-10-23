@@ -1,5 +1,5 @@
 import React from "react";
-import { border as borderHelpers, rounded } from "dist/docs/classManifest";
+import { border as borderHelpers, rounded } from "dist/docs/classManifest.json";
 import ClassExample from "helpers/ClassExample";
 
 export default {

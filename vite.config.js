@@ -4,6 +4,7 @@ import { resolve } from "path";
 import dts from "vite-plugin-dts";
 
 export default defineConfig({
+  assetsInclude: ["**/*.md"],
   plugins: [
     react({
       include: "**/*.{jsx,tsx,js,ts}",
@@ -30,6 +31,7 @@ export default defineConfig({
   ],
 
   build: {
+    emptyOutDir: false, // Don't clear dist directory - use build:clean for that
     lib: {
       entry: resolve(__dirname, "src/index.js"),
       name: "NarmiDesignSystem",

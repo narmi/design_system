@@ -1,8 +1,8 @@
-import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
 import {
   margin as marginHelpers,
   padding as paddingHelpers,
-} from "dist/docs/classManifest";
+} from "dist/docs/classManifest.json";
 import ClassExample from "helpers/ClassExample";
 import * as SpacingStories from "./spacing.stories";
 
@@ -16,7 +16,7 @@ Valid sides/axes are (`all`, `top`, `right`, `bottom`, `left`, `x`, `y`)
 
 Valid amounts are (`xxs`, `xs`, `s`, `m`, `l`, `xl`, `xxl`).
 
-<Story of={SpacingStories.Margin} />
+<Canvas of={SpacingStories.Margin} />
 
 # Padding
 
@@ -26,4 +26,4 @@ Valid sides/axes are (`all`, `top`, `right`, `bottom`, `left`, `x`, `y`)
 
 Valid amounts are (`xxs`, `xs`, `s`, `m`, `l`, `xl`, `xxl`).
 
-<Story of={SpacingStories.Padding} />
+<Canvas of={SpacingStories.Padding} />

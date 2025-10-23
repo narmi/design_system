@@ -38,7 +38,6 @@ export default defineConfig({
           "react-dom": "ReactDOM",
         },
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name === "style.css") return "style.css";
           if (
             assetInfo.name &&
             assetInfo.name.match(/\.(woff2?|ttf|eot|svg)$/)
@@ -51,7 +50,6 @@ export default defineConfig({
     },
     sourcemap: true,
     outDir: "dist",
-    cssCodeSplit: false,
   },
 
   css: {

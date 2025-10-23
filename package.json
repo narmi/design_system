@@ -13,8 +13,6 @@
     "node": ">=22"
   },
   "scripts": {
-    "watch": "watch 'npm run build:components && npm run build:css' src",
-    "watch:css": "sass src/index.scss dist/style.css --style=compressed --source-map --watch",
     "build:types": "node ./scripts/buildTypes.mjs",
     "build:jsdoc": "node ./scripts/jsDoc.mjs",
     "build:classdoc": "node ./scripts/classManifest.mjs",
@@ -33,7 +31,7 @@
     "chromatic": "npx chromatic --project-token $CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes",
     "stats:components": "node ./scripts/component-adoption.mjs",
     "stats:classes": "node ./scripts/class-adoption.mjs",
-    "dev": "tmux new-session \"npm i && npm run watch\"\\; split-window 'npm run storybook'"
+    "dev": "npm run storybook"
   },
   "peerDependencies": {
     "react": "^16 || ^17 || ^18 || ^19",
@@ -109,7 +107,6 @@
     "vite-plugin-css-injected-by-js": "^3.5.2",
     "vite-plugin-dts": "^4.5.4",
     "vite-plugin-libcss": "^1.1.2",
-    "watch": "^1.0.2",
     "webpack": "^5.50.0",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^5"

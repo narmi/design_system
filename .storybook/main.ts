@@ -30,4 +30,22 @@ module.exports = {
   features: {
     strict: true,
   },
+
+  async viteFinal(config, { configType }) {
+    // Handle JSX in .js files
+    config.esbuild = {
+      ...config.esbuild,
+      loader: "jsx",
+      include: /src\/.*\.js$/,
+    };
+
+    // Add aliases for imports to resolve correctly in Vite
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      helpers: path.resolve(__dirname, "helpers"),
+      dist: path.resolve(__dirname, "../dist"),
+    };
+
+    return config;
+  },
 };

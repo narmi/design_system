@@ -1,5 +1,5 @@
 import React from "react";
-import { border } from "dist/tokens/js/manifest";
+import { border } from "dist/tokens/js/manifest.esm.js";
 import TokenTable, { toTokenRows } from "helpers/TokenTable";
 
 // Meta information for Storybook

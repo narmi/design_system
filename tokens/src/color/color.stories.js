@@ -1,5 +1,5 @@
 import React from "react";
-import { color } from "dist/tokens/js/manifest";
+import { color } from "dist/tokens/js/manifest.esm.js";
 import TokenTable, { toTokenRows } from "helpers/TokenTable";
 
 export default {
@@ -21,6 +21,7 @@ Base.args = {
 export const Theme = () => (
   <>
     <h2>Theme Colors</h2>
+    <pre>{JSON.stringify(color, null, 2)}</pre>
     <TokenTable previewType="color" rows={toTokenRows(color, "theme")} />
   </>
 );

@@ -6,6 +6,7 @@ import dts from "vite-plugin-dts";
 export default defineConfig({
   plugins: [
     react({
+      include: "**/*.{jsx,tsx,js,ts}",
       babel: {
         presets: [
           ["@babel/preset-env", { modules: false }],
@@ -19,7 +20,12 @@ export default defineConfig({
       insertTypesEntry: true,
       outDir: "dist/types",
       include: ["src/**/*"],
-      exclude: ["src/**/*.test.*", "src/**/*.stories.*"],
+      exclude: [
+        "src/**/*.test.*",
+        "src/**/*.stories.*",
+        "tokens/**/*.stories.*",
+        "**/*.stories.*",
+      ],
     }),
   ],
 
@@ -64,5 +70,11 @@ export default defineConfig({
     alias: {
       src: resolve(__dirname, "src"),
     },
+  },
+
+  // treat .js files as jsx, always
+  esbuild: {
+    loader: "jsx",
+    include: /src\/.*\.js$/,
   },
 });

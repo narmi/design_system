@@ -3,6 +3,7 @@
   "version": "4.46.0",
   "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
+  "style": "dist/style.css",
   "files": [
     "dist/*"
   ],
@@ -12,7 +13,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "watch": "watch 'npm run build:components && npm run build:css' src",
+    "watch": "npm-watch",
     "watch:css": "sass src/index.scss dist/style.css --style=compressed --source-map --watch",
     "build:types": "node ./scripts/buildTypes.mjs",
     "build:jsdoc": "node ./scripts/jsDoc.mjs",
@@ -27,7 +28,7 @@
     "test:watch": "jest --watch",
     "lint": "eslint \"./src/**\" \"./scripts/**\" \"./tokens/**\" --no-error-on-unmatched-pattern",
     "release": "semantic-release",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "npm run build:tokens && storybook dev -p 6006",
     "build-storybook": "storybook build --stats-json",
     "chromatic": "npx chromatic --project-token $CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes",
     "stats:components": "node ./scripts/component-adoption.mjs",

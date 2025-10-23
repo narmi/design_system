@@ -1,5 +1,5 @@
 import React from "react";
-import { button } from "dist/docs/classManifest";
+import { button } from "dist/docs/classManifest.json";
 import ClassExample from "helpers/ClassExample";
 
 export default {

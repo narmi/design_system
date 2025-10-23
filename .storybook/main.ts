@@ -44,6 +44,7 @@ module.exports = {
       ...config.resolve.alias,
       helpers: path.resolve(__dirname, "helpers"),
       dist: path.resolve(__dirname, "../dist"),
+      src: path.resolve(__dirname, "../src"),
     };
 
     return config;

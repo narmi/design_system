@@ -50,7 +50,7 @@ const previewRenderers = {
  * @returns {Array} rows to pass into tokens table
  */
 export const toTokenRows = (category, typeKey) =>
-  Object.values(category[typeKey]).map(({ name, value }) => ({
+  Object.entries(category[typeKey]).map(([name, value]) => ({
     name: `--${name}`,
     value,
   }));

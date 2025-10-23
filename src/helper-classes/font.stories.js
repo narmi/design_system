@@ -5,7 +5,7 @@ import {
   fontWeight as fontWeightHelpers,
   fontFamily as fontFamilyHelpers,
   whiteSpace,
-} from "dist/docs/classManifest";
+} from "dist/docs/classManifest.json";
 import ClassExample from "helpers/ClassExample";
 
 export default {

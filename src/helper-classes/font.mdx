@@ -1,11 +1,11 @@
-import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
 import {
   fontColor as fontColorHelpers,
   fontSize as fontSizeHelpers,
   fontWeight as fontWeightHelpers,
   fontFamily as fontFamilyHelpers,
   whiteSpace,
-} from "dist/docs/classManifest";
+} from "dist/docs/classManifest.json";
 import ClassExample from "helpers/ClassExample";
 import * as FontStories from "./font.stories";
 
@@ -15,29 +15,29 @@ import * as FontStories from "./font.stories";
 
 Adjusts font color.
 
-<Story of={FontStories.FontColor} />
+<Canvas of={FontStories.FontColor} />
 
 # Font Size
 
 Adjusts font size.
 
-<Story of={FontStories.FontSize} />
+<Canvas of={FontStories.FontSize} />
 
 # Font Weight
 
 Adjusts font weight.
 
-<Story of={FontStories.FontWeight} />
+<Canvas of={FontStories.FontWeight} />
 
 # Font Family
 
 Adjusts font family.
 
-<Story of={FontStories.FontFamily} />
+<Canvas of={FontStories.FontFamily} />
 
 # Whitespace control
 
 Whitespace helpers adjust text truncation and wrapping behavior.
 Single line and multiline truncation are both supported.
 
-<Story of={FontStories.WhitespaceControl} />
+<Canvas of={FontStories.WhitespaceControl} />

@@ -1,5 +1,5 @@
-import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import { border as borderHelpers, rounded } from "dist/docs/classManifest";
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
+import { border as borderHelpers, rounded } from "dist/docs/classManifest.json";
 import ClassExample from "helpers/ClassExample";
 import * as BorderStories from "./border.stories";
 
@@ -11,7 +11,7 @@ Adds a border to a given side of an element.
 
 Valid sides are (`top`, `right`, `bottom`, `left`, `all`, `none`)
 
-<Story of={BorderStories.Border} />
+<Canvas of={BorderStories.Border} />
 
 # Border Radius
 
@@ -21,4 +21,4 @@ Valid sides are (`top`, `right`, `bottom`, `left`, `all`, `none`)
 
 Valid amounts are (`s`, `m`, `l`)
 
-<Story of={BorderStories.BorderRadius} />
+<Canvas of={BorderStories.BorderRadius} />

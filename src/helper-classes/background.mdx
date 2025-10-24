@@ -1,5 +1,5 @@
-import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import { bgColor, scrim } from "dist/docs/classManifest";
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
+import { bgColor, scrim } from "dist/docs/classManifest.json";
 import ClassExample from "helpers/ClassExample";
 import * as BackgroundStories from "./background.stories";
 
@@ -9,10 +9,10 @@ import * as BackgroundStories from "./background.stories";
 
 Applies a standard background color to an element.
 
-<Story of={BackgroundStories.BackgroundColor} />
+<Canvas of={BackgroundStories.BackgroundColor} />
 
 # Background Scrims
 
 Adds a semi-transparent light or dark scrim. Useful for dimming content for loading states or modal windows.
 
-<Story of={BackgroundStories.BackgroundScrim} />
+<Canvas of={BackgroundStories.BackgroundScrim} />

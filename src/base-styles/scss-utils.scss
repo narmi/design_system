@@ -104,7 +104,7 @@ $breakpoints: (
   background-image: linear-gradient(
     to right,
     var(--color-amethyst),
-    var(--color-tan)
+    var(--color-sand)
   ) !important;
   background-origin: border-box !important;
   background-clip: border-box !important;
@@ -113,7 +113,7 @@ $breakpoints: (
   // clip to the padding box so only the border has the gradient.
   background-image:
     linear-gradient(white, white),
-    linear-gradient(to right, var(--color-amethyst), var(--color-tan)) !important;
+    linear-gradient(to right, var(--color-amethyst), var(--color-sand)) !important;
   background-clip: padding-box, border-box !important;
   background-origin: border-box !important;
 }

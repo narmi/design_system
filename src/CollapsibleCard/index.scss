@@ -1,3 +1,5 @@
+@import "../base-styles/scss-utils.scss";
+
 .collapsible-card--content-card {
   position: relative;
   display: block;
@@ -60,4 +62,8 @@
 .collapsible-card--statusText {
   color: var(--color-mediumGrey);
   height: 100%;
+}
+
+.collapisble-card--ai {
+  @extend %ai-card-border;
 }

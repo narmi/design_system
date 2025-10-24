@@ -36,7 +36,7 @@ module.exports = {
     config.esbuild = {
       ...config.esbuild,
       loader: "jsx",
-      include: /src\/.*\.js$/,
+      include: /(src|tokens)\/.*\.js$/,
     };
 
     // Add aliases for imports to resolve correctly in Vite

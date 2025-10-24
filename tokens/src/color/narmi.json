@@ -65,13 +65,14 @@
       "sand200": { "value": "#684D41" },
       "sand300": { "value": "#947564" },
       "sand400": { "value": "#C4A08A" },
-      "sand500": { "value": "#DCC1A2" },
+      "sand500": { "value": "#DCC1A3" },
       "sand600": { "value": "#EED6C3" },
       "sand700": { "value": "#F4E3D6" },
       "sand800": { "value": "#FCF0E9" },
       "sand": { "value": "{color.narmi.sand500.value}" },
 
-      "amethyst": {"value": "#5514B8"},
+      "amethyst": { "value": "#5514B8" },
+      "tan": { "value": "{color.narmi.sand500.value}" },
 
       "black": { "value": "#333333" },
       "grey": { "value": "#4C4C4C" },

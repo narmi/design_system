@@ -91,3 +91,29 @@ $breakpoints: (
     border: 1px solid var(--color-errorDark);
   }
 }
+
+/**
+* This placeholder applies a gradient border with masking,
+* which enables support for rounded corners on the border.
+*/
+%ai-card-border {
+  border-radius: var(--border-radius-default);
+  // Create a gradient over the whole box,
+  // clip at the border.
+  border: 1px solid transparent !important;
+  background-image: linear-gradient(
+    to right,
+    var(--color-amethyst),
+    var(--color-tan)
+  ) !important;
+  background-origin: border-box !important;
+  background-clip: border-box !important;
+
+  // Create a white box inside the border,
+  // clip to the padding box so only the border has the gradient.
+  background-image:
+    linear-gradient(white, white),
+    linear-gradient(to right, var(--color-amethyst), var(--color-tan)) !important;
+  background-clip: padding-box, border-box !important;
+  background-origin: border-box !important;
+}

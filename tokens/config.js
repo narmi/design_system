@@ -93,7 +93,7 @@ const config = {
       files: [
         {
           destination: "manifest.js",
-          format: "javascript/module",
+          format: "custom/es6-nested",
         },
       ],
     },

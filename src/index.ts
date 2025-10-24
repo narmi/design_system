@@ -41,7 +41,6 @@ declare const CollapsibleCard;
 declare const Combobox;
 declare const DateInput;
 declare const Drawer;
-declare const Dropdown;
 declare const DropdownTrigger;
 declare const Error;
 declare const FieldToken;
@@ -91,7 +90,6 @@ export {
   DateInput,
   Dialog,
   Drawer,
-  Dropdown,
   DropdownTrigger,
   Error,
   FieldToken,

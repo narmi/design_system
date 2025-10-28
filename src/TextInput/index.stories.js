@@ -5,9 +5,7 @@ import Button from "../Button";
 const Template = (args) => <TextInput {...args} />;
 
 export const Overview = Template.bind({});
-Overview.args = {
-  label: "TextInput Label",
-};
+Overview.args = { label: "TextInput Label" };
 
 export const Example = () => {
   return (
@@ -71,10 +69,7 @@ export const MultiLine = () => {
 };
 
 export const WithIcon = Template.bind({});
-WithIcon.args = {
-  label: "Search",
-  startIcon: "search",
-};
+WithIcon.args = { label: "Search", startIcon: "search" };
 
 export const CustomStartAndEndContent = Template.bind({});
 CustomStartAndEndContent.args = {
@@ -190,6 +185,89 @@ export const WithMaxLength = () => {
         }}
       />
     </>
+  );
+};
+
+export const LargeMultiline = () => {
+  return (
+    <TextInput
+      multiline
+      defaultValue={`{
+        account_membership: true,
+        ach_manager_display: ["V2_DB", "V2_AO", "V1_DB"],
+        ach_payments: true,
+        ach_payments_staff_management: true,
+        address_change: true,
+        alerts: true,
+        allpoint_locator_atm: true,
+        ao_internal_funding: true,
+        aoiob: true,
+        automatic_savings: "OPT_IN",
+        beneficiaries: true,
+        bill_pay: "ipay",
+        billshark: true,
+        business_account_opening: true,
+        business_banking: true,
+        cao_beneficiaries: true,
+        cards: true,
+        card_max_request_limits: {
+          atm: 500,
+          pos: 1000,
+          user_requests_per_month: 5,
+        },
+        coop_locator_atm: true,
+        coop_locator_branch: true,
+        core_based_alerts: false,
+        deposit_sso: true,
+        edit_scheduled_transfers: true,
+        evaluate_using_journeys: true,
+        existing_user_account_opening: true,
+        fednow_receive: true,
+        fednow_send: true,
+        instant_account_verification: "mx",
+        insurance: "lemonade",
+        international_wires: true,
+        international_wires_staff_management: true,
+        mobile_banking: true,
+        mobile_login_switcher: true,
+        moneypass_locator_atm: true,
+        naf_app_management: true,
+        new_account_opening: true,
+        offline_verification: true,
+        online_banking: true,
+        organization_profile: true,
+        p2p: ["m2m"],
+        paperless_statement_enrollment: true,
+        paperless_statement_unenrollment: false,
+        personal_banking: true,
+        phone_change: true,
+        profile_switcher: true,
+        push_notifications: true,
+        rdc: true,
+        refer_a_member: true,
+        secure_messages_ai: true,
+        secure_messages_redesign: false,
+        show_transaction_contact_support: true,
+        staff_portal_password_login: true,
+        staffer_led_ao_consumer: true,
+        staffer_led_ao_business: true,
+        statements: true,
+        stop_payment: true,
+        transfers: true,
+        trends: "mx",
+        user_message_uploads: true,
+        username: true,
+        wire_templates: ["fedwire"],
+        wire_manager_display: ["wire_manager_v2", "wire_manager_v1"],
+        staff_portal_user_profile_beta: true,
+        existing_user_dao: true,
+        inbound: true,
+        offers: true,
+        wires: true,
+        bao_new_existing_flow: true,
+        staffer_led_use_private_api: true,
+      }`}
+    />
   );
 };
 

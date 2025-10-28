@@ -5,7 +5,9 @@ import Button from "../Button";
 const Template = (args) => <TextInput {...args} />;
 
 export const Overview = Template.bind({});
-Overview.args = { label: "TextInput Label" };
+Overview.args = {
+  label: "TextInput Label",
+};
 
 export const Example = () => {
   return (
@@ -69,7 +71,10 @@ export const MultiLine = () => {
 };
 
 export const WithIcon = Template.bind({});
-WithIcon.args = { label: "Search", startIcon: "search" };
+WithIcon.args = {
+  label: "Search",
+  startIcon: "search",
+};
 
 export const CustomStartAndEndContent = Template.bind({});
 CustomStartAndEndContent.args = {

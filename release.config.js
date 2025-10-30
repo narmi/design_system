@@ -10,7 +10,6 @@ const config = {
     [
       "@semantic-release/commit-analyzer",
       {
-        preset: "conventionalcommits",
         releaseRules: [
           { type: "feat", release: "minor" },
           { type: "feature", release: "minor" },
@@ -57,16 +56,9 @@ const config = {
           commitsSort: ["subject", "scope"],
           transform: (commit) => {
             // Filter out merge commits and commits without proper types
-            if (commit.merge || !commit.type) {
+            if (!commit.type) {
               return null;
             }
-
-            // Only include commits that match our defined types
-            const validTypes = ["feat", "feature", "fix", "perf", "revert"];
-            if (!validTypes.includes(commit.type)) {
-              return null;
-            }
-
             return commit;
           },
         },

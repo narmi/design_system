@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TableInput from "./";
 import Table from "../Table";
 import type { TableInputProps } from "./";
-import { action } from "@storybook/addon-actions";
+import { action } from "storybook/actions";
 
 const Template = (args: TableInputProps) => {
   const [value, setValue] = useState(args.value || "");

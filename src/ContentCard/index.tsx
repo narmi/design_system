@@ -31,7 +31,8 @@ interface ContentCardProps {
     | "toggle"
     | "button"
     | "bordered"
-    | "interactive";
+    | "interactive"
+    | "ai";
   /**
    * Amount of border radius to add on all sides of card.
    */

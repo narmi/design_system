@@ -3,9 +3,43 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.46.0 (2025-10-24)
+
+* chore: devDep order ([2502d4c5b248a92dba69f06e0de2ac9e980fef1c](https://github.com/narmi/design_system/commit/2502d4c5b248a92dba69f06e0de2ac9e980fef1c))
+* chore(release): rm scrict commit filtering from log writer ([8fcd4b3d572cc1b92562363c9d24a23545b089fb](https://github.com/narmi/design_system/commit/8fcd4b3d572cc1b92562363c9d24a23545b089fb))
+* chore: update storybook via npx script ([a6aa0b544975e6d19e31bbc33ce4e837c5f30844](https://github.com/narmi/design_system/commit/a6aa0b544975e6d19e31bbc33ce4e837c5f30844))
+* chore: use sand instead of adding new alias ([1c8ddd919be8c03969fc307fc51acb42fdb4c4b4](https://github.com/narmi/design_system/commit/1c8ddd919be8c03969fc307fc51acb42fdb4c4b4))
+* docs: add keys to all maps in stories ([ee4aaea76513235aeda156251d71744d07ce8ff1](https://github.com/narmi/design_system/commit/ee4aaea76513235aeda156251d71744d07ce8ff1))
+* docs: fix fonts story ([5b7fe5a04affaf3ed06aeeb181af50071aba3d5f](https://github.com/narmi/design_system/commit/5b7fe5a04affaf3ed06aeeb181af50071aba3d5f))
+* docs: fix icons story for v9 ([936087914b577b42bc092b26360b63e0857eb971](https://github.com/narmi/design_system/commit/936087914b577b42bc092b26360b63e0857eb971))
+
+## 4.45.0 (2025-10-16)
+
+* fix(release): update release process ([7831ea4ff74761e32e47bf5512a27664495bf198](https://github.com/narmi/design_system/commit/7831ea4ff74761e32e47bf5512a27664495bf198))
+
+## <small>4.44.1 (2025-10-09)</small>
+
+* fix(Select): `ClearingSelctionWithAction` -> `ClearingSelectionWithAction` (#1881) ([e9b97c4ca6cbc8fdec5a5cb1a335d32582ba8fbf](https://github.com/narmi/design_system/commit/e9b97c4ca6cbc8fdec5a5cb1a335d32582ba8fbf)), closes [#1881](https://github.com/narmi/design_system/issues/1881)
+
+## 4.44.0 (2025-10-06)
+
+* feat(Combobox): allow clearing selection on action ([c92bfd514bb98b6cb43520d01cf5b074ffb53e42](https://github.com/narmi/design_system/commit/c92bfd514bb98b6cb43520d01cf5b074ffb53e42))
+
+## 4.43.0 (2025-10-02)
+
+- feat(Radio): support rating kind ([b22a6d9b2c779fbbb9879c21c7d6056348a74130](https://github.com/narmi/design_system/commit/b22a6d9b2c779fbbb9879c21c7d6056348a74130))
+
+## 4.42.0 (2025-10-02)
+
+- feat(Radio): support all style variants on single radio ([91fea8727d63373e73f7382a03afb184521a982b](https://github.com/narmi/design_system/commit/91fea8727d63373e73f7382a03afb184521a982b))
+
+## <small>4.41.2 (2025-09-30)</small>
+
+- fix(Table.Row): Add border radius to `only-of-type` rows (#1876) ([d6b4969a25dafd0db6f535426891fc5c5bd4bdcc](https://github.com/narmi/design_system/commit/d6b4969a25dafd0db6f535426891fc5c5bd4bdcc)), closes [#1876](https://github.com/narmi/design_system/issues/1876)
+
 ## <small>4.41.1 (2025-09-24)</small>
 
-* fix(useDropdownLayer): include zindex in positioning ([e0adf2adf288d23c36ec38058438112ce72ad271](https://github.com/narmi/design_system/commit/e0adf2adf288d23c36ec38058438112ce72ad271))
+- fix(useDropdownLayer): include zindex in positioning ([e0adf2adf288d23c36ec38058438112ce72ad271](https://github.com/narmi/design_system/commit/e0adf2adf288d23c36ec38058438112ce72ad271))
 
 ## 4.41.0 (2025-09-23)
 

@@ -1,5 +1,5 @@
-import { Meta, Canvas } from "@storybook/blocks";
-import * as TypographyStories from './Typography.stories.js';
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
+import * as TypographyStories from "./Typography.stories.js";
 
 <Meta title="Style/Typography" of={TypographyStories} />
 
@@ -10,8 +10,11 @@ import * as TypographyStories from './Typography.stories.js';
 Adding the `nds-typography` class to an element enables Narmi typesetting defaults
 on child elements:
 
-<Canvas isExpanded of={TypographyStories.SettingContext} style={{height: "auto"}} />
-
+<Canvas
+  isExpanded
+  of={TypographyStories.SettingContext}
+  style={{ height: "auto" }}
+/>
 
 ## Elements styled by typography context
 
@@ -26,11 +29,15 @@ to tweak style rules of individual elements. **These classes will work regardles
 
 Font styles can be modified with classes following these signatures:
 
-* `fontFamily--<family>`
-* `fontSize--<size>`
-* `fontColor--<color>`
-* `fontWeight--<weight>`
+- `fontFamily--<family>`
+- `fontSize--<size>`
+- `fontColor--<color>`
+- `fontWeight--<weight>`
 
 📖 For a full list of font helper classes, see [Helper Class Documentation](?path=/docs/style-helper-classes--using-helper-classes#font).
 
-<Canvas isExpanded of={TypographyStories.HelperClassesList} style={{height: "auto"}} />
+<Canvas
+  isExpanded
+  of={TypographyStories.HelperClassesList}
+  style={{ height: "auto" }}
+/>

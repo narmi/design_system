@@ -1,7 +1,15 @@
 .nds-singleRadio {
   position: relative;
+  display: block;
+
+  &,
+  label {
+    cursor: pointer;
+  }
 }
 
+// Hide actual input element in all cases.
+// These styles visually hide it without removing it from the accessibility tree
 .nds-singleRadio input[type="radio"] {
   position: absolute;
   clip: rect(0 0 0 0);
@@ -13,8 +21,8 @@
   width: 1px;
 }
 
+// Faux radio styles
 .nds-singleRadio-radio {
-  // outline of the custom radio control
   position: relative;
   height: rem(20px);
   width: rem(20px);
@@ -37,15 +45,126 @@
   }
 }
 
-.nds-singleRadio input:checked + .nds-singleRadio-radio,
-.nds-singleRadio:focus-within .nds-singleRadio-radio {
+// Checked state for faux radio
+.nds-singleRadio:has(input:checked) .nds-singleRadio-radio {
   border: 1px solid var(--theme-primary);
+
+  &:after {
+    display: block;
+  }
 }
 
+// Focused state for faux radio
 .nds-singleRadio:focus-within .nds-singleRadio-radio {
+  border: 1px solid var(--theme-primary);
   outline: 3px solid RGBA(var(--theme-rgb-primary), var(--alpha-10));
 }
 
-.nds-singleRadio input:checked + .nds-singleRadio-radio:after {
-  display: block;
+// Error state for faux radio
+.nds-singleRadio--error .nds-singleRadio-radio {
+  border: 1px solid var(--color-errorDark);
+}
+
+// Kind variant styles extracted from RadioButtons
+// -------------------------------------
+%_card-radio-variant {
+  // used for all card-like radios
+  position: relative;
+  border: 1px solid var(--border-color-default);
+  padding: var(--space-default);
+  border-radius: var(--border-radius-default);
+  background-color: var(--color-white);
+  width: 100%;
+  color: var(--theme-primary);
+  font-weight: var(--font-weight-bold) !important;
+
+  &.nds-singleRadio--error {
+    border: 1px solid var(--color-errorDark);
+  }
+
+  &:hover,
+  &:has(input:checked) {
+    border: 1px solid var(--theme-primary);
+  }
+}
+
+// kind="card"
+.nds-singleRadio--card {
+  @extend %_card-radio-variant;
+
+  .narmi-icon-check {
+    visibility: hidden; // initially hidden
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: rem(20px); // the circle should rem-scale with the icon
+    height: rem(20px);
+    border-radius: 100%;
+    background-color: var(--theme-primary);
+    color: var(--color-white);
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-default);
+  }
+
+  &:has(input:checked) {
+    background-color: rgba(var(--theme-rgb-primary), var(--alpha-5));
+
+    .narmi-icon-check {
+      visibility: visible;
+    }
+  }
+}
+
+// kind="input-card"
+.nds-singleRadio--input-card {
+  @extend %_card-radio-variant;
+}
+
+// kind="checkmark"
+.nds-singleRadio--checkmark {
+  .narmi-icon-check {
+    color: transparent; // initially hidden
+    font-size: var(--font-size-l);
+    font-weight: var(--font-weight-bold);
+  }
+
+  &:hover .narmi-icon-check:before {
+    color: var(--color-lightGrey);
+  }
+
+  &:has(input:checked) {
+    color: var(--theme-primary);
+  }
+
+  &:focus-within .narmi-icon-check:before,
+  &:has(input:checked) .narmi-icon-check:before {
+    color: var(--theme-primary);
+  }
+}
+
+// kind="rating"
+.nds-singleRadio--rating {
+  border: 1px solid var(--border-color-default);
+  color: var(--font-color-secondary);
+  border-radius: var(--border-radius-s);
+  width: rem(32px);
+  height: rem(32px);
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  &:hover,
+  &:focus-within {
+    background-color: rgba(var(--theme-rgb-primary), var(--alpha-10));
+  }
+
+  &:focus-within {
+    outline: 3px solid RGBA(var(--theme-rgb-primary), var(--alpha-10));
+  }
+
+  &:has(input:checked) {
+    background-color: rgba(var(--theme-rgb-primary), var(--alpha-10));
+    border-color: var(--theme-primary);
+    color: var(--theme-primary);
+  }
 }

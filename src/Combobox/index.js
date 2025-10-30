@@ -145,10 +145,12 @@ const Combobox = ({
   filterItemsByInput = defaultFilterItemsByInput,
   children,
   disableFiltering = false,
+  clearSelectionOnAction = false,
   errorText,
   icon,
   testId,
   renderEndContent = defaultRenderEndContent,
+  maxMenuHeight = "40vh",
 }) => {
   const allChildren = useMemo(
     () => React.Children.toArray(children),
@@ -236,8 +238,10 @@ const Combobox = ({
         newSelectedItem.props.onSelect();
         return {
           ...changes,
-          selectedItem: previousSelectedItem,
-          inputValue: itemToString(previousSelectedItem),
+          selectedItem: clearSelectionOnAction ? null : previousSelectedItem,
+          inputValue: clearSelectionOnAction
+            ? ""
+            : itemToString(previousSelectedItem),
           isOpen: false,
         };
       }
@@ -431,6 +435,7 @@ const Combobox = ({
               },
             ])}
             {...getMenuProps()}
+            style={{ maxHeight: maxMenuHeight }}
           >
             {isOpen &&
               (hasCategories
@@ -469,6 +474,10 @@ Combobox.propTypes = {
    */
   disableFiltering: PropTypes.bool,
   /**
+   * When `true`, selecting an action will clear any existing selection.
+   */
+  clearSelectionOnAction: PropTypes.bool,
+  /**
    * Optionally pass a function to customize filtering behavior
    *
    * Signature: `(items, inputValue) => [...filteredItems]`
@@ -489,6 +498,8 @@ Combobox.propTypes = {
    * Signature: `(isOpen) => React.ReactNode`
    */
   renderEndContent: PropTypes.func,
+  /** Optional override to set CSS value for max height of menu */
+  maxMenuHeight: PropTypes.string,
 };
 
 Combobox.Item = ComboboxItem;

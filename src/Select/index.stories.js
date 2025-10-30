@@ -85,6 +85,33 @@ WithAction.parameters = {
   },
 };
 
+export const ClearingSelectionWithAction = Template.bind({});
+ClearingSelectionWithAction.args = {
+  label: "Account",
+  id: "account-field",
+  clearSelectionOnAction: true,
+  children: [
+    ...children,
+    <Select.Action
+      onSelect={() => {
+        alert("side effect triggered");
+      }}
+    >
+      <span className="fontColor--pine fontWeight--bold">
+        <span className="narmi-icon-plus padding--right--xs" /> Add new icon
+      </span>
+    </Select.Action>,
+  ],
+};
+WithAction.parameters = {
+  docs: {
+    description: {
+      story:
+        "Use `clearSelectionOnAction` to clear any existing selection when any action is selected.",
+    },
+  },
+};
+
 export const WithCategories = Template.bind({});
 WithCategories.args = {
   id: "withCategories",
@@ -211,7 +238,7 @@ CustomTypeahead.args = {
     { name: "Logistics", code: "32144" },
     { name: "Hospitality", code: "22147" },
   ].map(({ name, code }) => (
-    <Select.Item value={code} searchValue={name}>
+    <Select.Item key={code} value={code} searchValue={name}>
       {name}
     </Select.Item>
   )),
@@ -248,7 +275,7 @@ ChangingTypeaheadBehavior.args = {
     { name: "Logistics", code: "32144" },
     { name: "Hospitality", code: "22147" },
   ].map(({ name, code }) => (
-    <Select.Item value={code} searchValue={name}>
+    <Select.Item key={code} value={code} searchValue={name}>
       {name} - {code}
     </Select.Item>
   )),
@@ -457,4 +484,12 @@ export default {
   argTypes: {
     children: { control: false },
   },
+};
+
+export const OverridingMenuHeight = Template.bind({});
+OverridingMenuHeight.args = {
+  id: "overviewStory",
+  label: "Favorite icon (short menu)",
+  maxMenuHeight: "10vh",
+  children,
 };

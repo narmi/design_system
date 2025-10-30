@@ -48,7 +48,7 @@ export const WithTokensAsStartContent = () => {
         <span className="nds-dropdownTrigger-tokens padding--y--xs">
           {tokens.map((label) => (
             <FieldToken
-              key="label"
+              key={label}
               label={label}
               onDismiss={handleTokenDismiss}
             />

@@ -22,6 +22,7 @@ const CollapsibleCard = ({
   disableHover = false,
   children,
   radiusSize = "m",
+  kind = "default",
 }) => {
   const [hover, setHover] = React.useState(false);
 
@@ -77,7 +78,11 @@ const CollapsibleCard = ({
     <div
       className={cc([
         "collapsible-card-titleBar",
-        `rounded--top--${radiusSize}`,
+        /**
+         * Radius is not customizable for "ai" kind, which relies on a fixed
+         * radius to mask the gradient.
+         */
+        `rounded--top--${kind === "ai" ? "m" : radiusSize}`,
       ])}
     >
       <DisabledShim isDisabled={isDisabled}>
@@ -134,6 +139,7 @@ const CollapsibleCard = ({
   // Common className configuration
   const cardClassName = cc([
     "collapsible-card--content-card",
+    `collapisble-card--${kind}`,
     {
       "content-card--hasCaretTrigger": trigger.includes("caret"),
       "content-card--error": hasError,
@@ -228,6 +234,10 @@ CollapsibleCard.propTypes = {
    * Amount of border radius to add on all sides of card.
    */
   radiusSize: PropTypes.oneOf(["s", "m", "l"]),
+  /**
+   * Visual variant of the Collapsible card.
+   */
+  kind: PropTypes.oneOf(["ai", "default"]),
 };
 
 export default CollapsibleCard;

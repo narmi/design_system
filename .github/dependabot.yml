@@ -10,8 +10,16 @@ updates:
     schedule:
       interval: "weekly"
       day: "sunday"
+    cooldown:
+      default-days: 7
+      semver-major-days: 30
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "sunday"
+    cooldown:
+      # github-actions doesn't support semver,
+      # so `semver-major-days` will be ignored.
+      # using biweekly updates as a compromise.
+      default-days: 14

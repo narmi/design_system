@@ -11,7 +11,9 @@ import { options_states } from "./util";
 const Template = (args) => <Combobox {...args} />;
 
 const children = options_states.map((state) => (
-  <Combobox.Item value={state}>{state}</Combobox.Item>
+  <Combobox.Item key={state} value={state}>
+    {state}
+  </Combobox.Item>
 ));
 
 export const Overview = Template.bind({});
@@ -327,6 +329,35 @@ export const ScrollingBehavior = () => {
   );
 };
 
+export const ClearingSelctionWithAction = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  return (
+    <>
+      <Combobox
+        label="Select Account"
+        inputValue={inputValue}
+        onInputChange={(val) => setInputValue(val)}
+        clearSelectionOnAction={true}
+      >
+        <Combobox.Item value="Primary Checking - 4567" />
+        <Combobox.Item value="Cheese Fund - 5432" />
+        <Combobox.Item value="Primary Savings - 1234" />
+        <Combobox.Item value="Secondary Checking - 7892" />
+        <Combobox.Action
+          onSelect={() => {
+            setIsOpen(true);
+          }}
+          label="Do Action"
+        />
+      </Combobox>
+      <Drawer isOpen={isOpen} onUserDismiss={() => setIsOpen(false)}>
+        <div className="padding--y--s">🎬 Action!</div>
+      </Drawer>
+    </>
+  );
+};
+
 export default {
   title: "Components/Combobox",
   component: Combobox,
@@ -392,4 +423,12 @@ export const WithCategoriesInForm = () => {
       </Combobox>
     </>
   );
+};
+
+export const OverridingMenuHeight = Template.bind({});
+OverridingMenuHeight.args = {
+  label: "Select your state (10vh menu)",
+  icon: "search",
+  maxMenuHeight: "10vh",
+  children,
 };

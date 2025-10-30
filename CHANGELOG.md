@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.46.0 (2025-10-24)
+
+* chore: devDep order ([2502d4c5b248a92dba69f06e0de2ac9e980fef1c](https://github.com/narmi/design_system/commit/2502d4c5b248a92dba69f06e0de2ac9e980fef1c))
+* chore(release): rm scrict commit filtering from log writer ([8fcd4b3d572cc1b92562363c9d24a23545b089fb](https://github.com/narmi/design_system/commit/8fcd4b3d572cc1b92562363c9d24a23545b089fb))
+* chore: update storybook via npx script ([a6aa0b544975e6d19e31bbc33ce4e837c5f30844](https://github.com/narmi/design_system/commit/a6aa0b544975e6d19e31bbc33ce4e837c5f30844))
+* chore: use sand instead of adding new alias ([1c8ddd919be8c03969fc307fc51acb42fdb4c4b4](https://github.com/narmi/design_system/commit/1c8ddd919be8c03969fc307fc51acb42fdb4c4b4))
+* docs: add keys to all maps in stories ([ee4aaea76513235aeda156251d71744d07ce8ff1](https://github.com/narmi/design_system/commit/ee4aaea76513235aeda156251d71744d07ce8ff1))
+* docs: fix fonts story ([5b7fe5a04affaf3ed06aeeb181af50071aba3d5f](https://github.com/narmi/design_system/commit/5b7fe5a04affaf3ed06aeeb181af50071aba3d5f))
+* docs: fix icons story for v9 ([936087914b577b42bc092b26360b63e0857eb971](https://github.com/narmi/design_system/commit/936087914b577b42bc092b26360b63e0857eb971))
+
 ## 4.45.0 (2025-10-16)
 
 * fix(release): update release process ([7831ea4ff74761e32e47bf5512a27664495bf198](https://github.com/narmi/design_system/commit/7831ea4ff74761e32e47bf5512a27664495bf198))

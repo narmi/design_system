@@ -235,6 +235,20 @@ PermanentlyOpenWithDisabledHover.args = {
   ),
 };
 
+export const AIVariant = Template.bind({});
+AIVariant.args = {
+  title: "Your title here",
+  subtitle: "Hover over and click anywhere",
+  kind: "ai",
+  onOpen: () => {},
+  onClose: () => {},
+  children: (
+    <>
+      <div>Any content can go in here!</div>
+    </>
+  ),
+};
+
 export default {
   title: "Components/CollapsibleCard",
   component: CollapsibleCard,

@@ -101,3 +101,16 @@ export default {
     type: { table: { disable: true } },
   },
 };
+
+export const AIVariant = Template.bind({});
+AIVariant.args = {
+  kind: "ai",
+  children: (
+    <>
+      <h3 className="fontSize--heading4 padding--bottom--s">
+        Anything can go in here
+      </h3>
+      <div>The card will grow to fit the width of its parent container</div>
+    </>
+  ),
+};

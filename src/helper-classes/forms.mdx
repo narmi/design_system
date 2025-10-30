@@ -1,5 +1,5 @@
-import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
-import { button } from "dist/docs/classManifest";
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
+import { button } from "dist/docs/classManifest.json";
 import ClassExample from "helpers/ClassExample";
 import * as FormsStories from "./forms.stories";
 
@@ -9,4 +9,4 @@ import * as FormsStories from "./forms.stories";
 
 Resets browser defaults on `button` element.
 
-<Story of={FormsStories.ButtonReset} />
+<Canvas of={FormsStories.ButtonReset} />

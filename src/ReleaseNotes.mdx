@@ -1,6 +1,23 @@
 import { Meta, Markdown } from "@storybook/addon-docs/blocks";
-import changelog from "../CHANGELOG.md";
+import { useEffect, useState } from "react";
+import changelogUrl from "../CHANGELOG.md";
 
 <Meta title="Introduction/Release Notes" />
 
-<Markdown>{changelog}</Markdown>
+export const ChangelogContent = () => {
+  const [changelog, setChangelog] = useState("");
+
+useEffect(() => {
+fetch(changelogUrl)
+.then(response => response.text())
+.then(text => setChangelog(text))
+.catch(error => {
+console.error("Failed to load changelog:", error);
+setChangelog("Failed to load changelog");
+});
+}, []);
+
+return <Markdown>{changelog}</Markdown>;
+};
+
+<ChangelogContent />

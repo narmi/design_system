@@ -1,5 +1,5 @@
 import React from "react";
-import { overflow as overflowHelpers } from "dist/docs/classManifest";
+import { overflow as overflowHelpers } from "dist/docs/classManifest.json";
 import ClassExample from "helpers/ClassExample";
 
 export default {

@@ -46,16 +46,15 @@ const previewRenderers = {
  *
  * @param {Object} category - category object from full tokens manifest
  * @param {String} typeKey - type key under the given category
- * @param {String} categoryKey -  key under the given category
+ * @param {String} categoryName - category name to determine CSS variable naming
  * @returns {Array} rows to pass into tokens table
  */
-export const toTokenRows = (category, typeKey) =>
-  Object.values(category[typeKey]).map(({ name, value }) => ({
-    name: `--${name}`,
+export const toTokenRows = (category, typeKey, prefix) => {
+  return Object.entries(category[typeKey]).map(([name, value]) => ({
+    name: `--${prefix}-${name}`,
     value,
   }));
-
-/**
+}; /**
  * component with clipboard functionality to render copyable cells
  */
 const CopyableCell = ({ text }) => {

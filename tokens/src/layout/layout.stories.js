@@ -11,5 +11,5 @@ const Template = (args) => <TokenTable {...args} />;
 export const Spacing = Template.bind({});
 Spacing.args = {
   previewType: "spacing",
-  rows: toTokenRows(layout, "space"),
+  rows: toTokenRows(layout, "space", "space"),
 };

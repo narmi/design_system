@@ -12,5 +12,5 @@ const Template = (args) => <TokenTable {...args} />;
 export const Elevation = Template.bind({});
 Elevation.args = {
   previewType: "shadow",
-  rows: toTokenRows(shadow, "elevation"),
+  rows: toTokenRows(shadow, "elevation", "elevation"),
 };

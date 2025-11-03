@@ -9,7 +9,7 @@ Overview.args = {
   name: "spam",
 };
 
-export const FullyControlled = () => {
+export const FullyControlledExample = () => {
   const [isChecked, setIsChecked] = useState(false);
   return (
     <Checkbox
@@ -20,7 +20,7 @@ export const FullyControlled = () => {
     />
   );
 };
-FullyControlled.parameters = {
+FullyControlledExample.parameters = {
   docs: {
     description: {
       story:

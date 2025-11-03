@@ -16,13 +16,6 @@ interface CheckboxProps {
   id?: string | number;
   /** `name` attribute of `input` */
   name?: string;
-  /**
-   * ⚠️ DEPRECATED
-   *
-   * Uncontrolled Checkbox props will be removed in a future release.
-   * Use `checked` instead to use Checkbox as a fully controlled input.
-   */
-  defaultChecked?: boolean;
   /** Sets the checkbox checked value */
   checked?: boolean;
   /**
@@ -62,7 +55,6 @@ const Checkbox = ({
   onChange = () => {},
   id,
   name,
-  defaultChecked,
   checked,
   disabled = false,
   indeterminate = false,
@@ -74,10 +66,7 @@ const Checkbox = ({
   ...rest
 }: CheckboxProps) => {
   const inputRef = useRef(null);
-  const isControlled = checked !== undefined;
-  const [isChecked, setIsChecked] = useState(
-    isControlled ? checked : defaultChecked || false,
-  );
+  const [isChecked, setIsChecked] = useState(checked);
   const [isFocused, setIsFocused] = useState(false);
   const isCard = kind === "card";
 
@@ -95,9 +84,7 @@ const Checkbox = ({
   };
 
   useEffect(() => {
-    if (isControlled) {
-      setIsChecked(checked);
-    }
+    setIsChecked(checked);
     // ensure indeterminate state is reflected in rendered DOM
     if (inputRef.current) {
       inputRef.current.indeterminate = indeterminate;
@@ -105,9 +92,7 @@ const Checkbox = ({
   }, [checked, indeterminate]);
 
   const handleChange = (e) => {
-    if (!isControlled) {
-      setIsChecked((isChecked) => !isChecked);
-    }
+    setIsChecked((isChecked) => !isChecked);
     onChange(e);
   };
 
@@ -165,7 +150,6 @@ const Checkbox = ({
           onBlur={handleBlur}
           onChange={handleChange}
           checked={isChecked}
-          defaultChecked={defaultChecked}
           disabled={disabled}
           name={name}
           id={id && id.toString()}

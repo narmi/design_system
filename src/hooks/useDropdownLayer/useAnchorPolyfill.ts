@@ -1,4 +1,5 @@
-import { useCallback, useLayoutEffect, useRef } from "react";
+import { useLayoutEffect } from "react";
+import rafSchd from "raf-schd";
 import useSupportsAnchorPositioning from "../useSupportsAnchorPositioning";
 
 interface UseAnchorPolyfillParams {
@@ -10,88 +11,99 @@ interface UseAnchorPolyfillParams {
   matchWidth?: boolean;
   /** Whether the dropdown is currently open */
   isOpen: boolean;
+  /** Function to close the dropdown */
+  setIsOpen: (isOpen: boolean) => void;
 }
 
 /**
- * Polyfill for CSS anchor positioning dropdown behavior, using JS to assign CSS variable values.
- * If anchor positioning is supported, empty style objects are returned, as we don't need the fallbacks.
+ * Polyfill for CSS anchor positioning dropdown behavior.
+ * Calculates position on mount, then hides dropdown on scroll/resize.
  */
 const useAnchorPolyfill = ({
   anchorRef,
   layerRef,
   matchWidth = false,
   isOpen,
+  setIsOpen,
 }: UseAnchorPolyfillParams) => {
   const isAnchorPositionSupported = useSupportsAnchorPositioning();
 
-  const rafRef = useRef<number>(); // track scheduled RequestAnimationFrame across renders
+  useLayoutEffect(() => {
+    if (isAnchorPositionSupported || !isOpen) return;
 
-  const calculateFixedPosition = useCallback(() => {
-    if (!isOpen) return;
     const anchorEl = anchorRef.current;
     const layerEl = layerRef.current;
-
     if (!anchorEl || !layerEl) return;
 
     const anchorRect = anchorEl.getBoundingClientRect();
     const layerRect = layerEl.getBoundingClientRect();
-
-    // Skip positioning if elements haven't been measured yet
     if (anchorRect.width === 0 || layerRect.width === 0) return;
 
-    // Using the visualViewport API is the native solution to handle the
-    // scroll-to-focus behavior on iOS Safari, as it tracks only the portion
-    // of the viewport that is not covered by the keyboard.
+    // Use visualViewport API to account for virtual keyboards and safe areas
     const viewportHeight = window.visualViewport?.height || window.innerHeight;
-    const spaceBelow = viewportHeight - anchorRect.bottom;
-    const spaceAbove = anchorRect.top;
+    const viewportOffsetTop = window.visualViewport?.offsetTop || 0;
+
+    // Calculate available space above and below anchor
+    const spaceBelow = viewportHeight - (anchorRect.bottom - viewportOffsetTop);
+    const spaceAbove = anchorRect.top - viewportOffsetTop;
+
+    // Flip if there's not enough space below and more space above
     const shouldFlip = layerRect.height > spaceBelow && spaceAbove > spaceBelow;
-    const visualViewportOffset = window.visualViewport?.offsetTop || 0;
 
-    // Get position in `px` for CSS `top` value based on shouldFlip result
-    const topPosition = shouldFlip
-      ? anchorRect.top - layerRect.height + visualViewportOffset
-      : anchorRect.bottom + visualViewportOffset;
+    // Calculate positions accounting for offsetParent
+    let leftPosition = anchorRect.left;
+    let topPosition = shouldFlip
+      ? anchorRect.top - layerRect.height
+      : anchorRect.bottom;
 
-    // Store results as CSS variables scoped to layerEl for positioning on the dropdown element
+    // Firefox has made a decision to be wrong about how fixed position is
+    // calculated on elements in an offsetParent other than the viewport,
+    // so we need to set the initial position of the nearest offsetParent.
+    const layerOffsetParent = layerEl.offsetParent;
+    if (layerOffsetParent && layerOffsetParent !== document.body) {
+      const parentRect = layerOffsetParent.getBoundingClientRect();
+      leftPosition = anchorRect.left - parentRect.left;
+      topPosition = topPosition - parentRect.top;
+    }
+
+    // Set CSS vars
     layerEl.style.setProperty("--js-dropdown-top", `${topPosition}px`);
-    layerEl.style.setProperty("--js-dropdown-left", `${anchorRect.left}px`);
+    layerEl.style.setProperty("--js-dropdown-left", `${leftPosition}px`);
     if (matchWidth) {
       layerEl.style.setProperty("--js-dropdown-width", `${anchorRect.width}px`);
     }
-  }, [anchorRef, layerRef, matchWidth, isOpen]);
 
-  const scheduleUpdate = useCallback(() => {
-    if (rafRef.current) {
-      cancelAnimationFrame(rafRef.current);
-    }
-    rafRef.current = requestAnimationFrame(calculateFixedPosition);
-  }, [calculateFixedPosition]);
+    // Close on scroll (with threshold) or resize
+    const initialAnchorTop = anchorRect.top;
+    const handleClose = rafSchd(() => {
+      const scrollDistance = Math.abs(
+        anchorEl.getBoundingClientRect().top - initialAnchorTop,
+      );
+      if (scrollDistance > 20) {
+        setIsOpen(false);
+      }
+    });
 
-  // Use fixed positioning with Visual Viewport API, which covers iOS/Safari scrolling
-  // The `visualViewport` api is available in all supported browsers as of 2025
-  useLayoutEffect(() => {
-    if (isAnchorPositionSupported) return;
-    calculateFixedPosition();
-    window.visualViewport?.addEventListener("scroll", scheduleUpdate);
-    window.visualViewport?.addEventListener("resize", scheduleUpdate);
+    const handleResize = () => setIsOpen(false);
+
+    window.addEventListener("scroll", handleClose, true);
+    window.addEventListener("resize", handleResize);
+    window.visualViewport?.addEventListener("resize", handleResize);
 
     return () => {
-      window.visualViewport?.removeEventListener("scroll", scheduleUpdate);
-      window.visualViewport?.removeEventListener("resize", scheduleUpdate);
-
-      if (rafRef.current) {
-        // cancel next scheduled update
-        cancelAnimationFrame(rafRef.current);
-      }
+      handleClose.cancel();
+      window.removeEventListener("scroll", handleClose, true);
+      window.removeEventListener("resize", handleResize);
+      window.visualViewport?.removeEventListener("resize", handleResize);
     };
-  }, [isAnchorPositionSupported, calculateFixedPosition, scheduleUpdate]);
-
-  // Recalculate position when dropdown opens
-  useLayoutEffect(() => {
-    if (isAnchorPositionSupported || !isOpen) return;
-    scheduleUpdate();
-  }, [isOpen, isAnchorPositionSupported, scheduleUpdate]);
+  }, [
+    isAnchorPositionSupported,
+    anchorRef,
+    layerRef,
+    matchWidth,
+    isOpen,
+    setIsOpen,
+  ]);
 
   return {
     isAnchorPositionSupported,

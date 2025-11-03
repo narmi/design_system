@@ -4,7 +4,7 @@ import Button from "../../Button";
 
 export const Overview = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { anchorProps, layerProps } = useDropdownLayer({ isOpen });
+  const { anchorProps, layerProps } = useDropdownLayer({ isOpen, setIsOpen });
 
   return (
     <>

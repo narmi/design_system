@@ -25,6 +25,8 @@ export type UseDropdownLayerResult = {
 export interface UseDropdownLayerOptions {
   /** Whether the dropdown is currently open (required) */
   isOpen: boolean;
+  /** Function to update the dropdown open state */
+  setIsOpen: (isOpen: boolean) => void;
   /** Whether the dropdown should match the width of the anchor element */
   matchWidth?: boolean;
 }
@@ -36,7 +38,7 @@ export interface UseDropdownLayerOptions {
  *
  * @usage
  * ```tsx
- * const { anchorProps, layerProps } = useDropdownLayer({ isOpen, matchWidth });
+ * const { anchorProps, layerProps } = useDropdownLayer({ isOpen, setIsOpen, matchWidth });
  *
  * return (
  *   <>
@@ -47,6 +49,7 @@ export interface UseDropdownLayerOptions {
  */
 const useDropdownLayer = ({
   isOpen,
+  setIsOpen,
   matchWidth = true,
 }: UseDropdownLayerOptions): UseDropdownLayerResult => {
   const anchorRef = useRef<HTMLElement>(null);
@@ -63,6 +66,7 @@ const useDropdownLayer = ({
     layerRef,
     matchWidth,
     isOpen,
+    setIsOpen,
   });
 
   // Memoized props to spread onto the anchor (positioning reference) element

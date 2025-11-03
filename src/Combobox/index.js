@@ -251,6 +251,9 @@ const Combobox = ({
   });
   const { anchorProps, layerProps } = useDropdownLayer({
     isOpen,
+    setIsOpen: (open) => {
+      if (!open) closeMenu();
+    },
   });
 
   // Update displayed items passed to `useCombobox` when `items` change

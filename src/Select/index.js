@@ -225,9 +225,15 @@ const Select = ({
     getMenuProps,
     highlightedIndex,
     getItemProps,
+    closeMenu,
   } = useSelect(downshiftOpts);
 
-  const { anchorProps, layerProps } = useDropdownLayer({ isOpen });
+  const { anchorProps, layerProps } = useDropdownLayer({
+    isOpen,
+    setIsOpen: (open) => {
+      if (!open) closeMenu();
+    },
+  });
 
   const hasCategories = categories.length > 0;
   const hasSelectedItem = selectedItem !== null && selectedItem.props;

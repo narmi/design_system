@@ -10,6 +10,10 @@ const getGeneratedFileWarning = () =>
     "*/\n\n",
   ].join("\n");
 
+/**
+ * Each one of these `formats` items describes a file output for design tokens.
+ * Additional items may be added if a consumer requires a new format.
+ */
 const formats = [
   {
     name: "custom/es6-nested",
@@ -31,7 +35,7 @@ const formats = [
 
           return result;
         },
-        {}
+        {},
       );
 
       return [
@@ -39,6 +43,49 @@ const formats = [
         `const tokens = ${JSON.stringify(nestedProperties, null, 2)};`,
         "\nmodule.exports = tokens;",
       ].join("\n");
+    },
+  },
+  {
+    name: "javascript/es6-exports",
+    formatter: ({ dictionary }) => {
+      return [
+        getGeneratedFileWarning(),
+        ...dictionary.allProperties.map((token) => {
+          let value = JSON.stringify(token.value);
+          return `export const ${token.name} = ${value};`;
+        }),
+      ].join("\n");
+    },
+  },
+  {
+    name: "custom/es6-nested-exports",
+    formatter: ({ dictionary }) => {
+      const nestedProperties = dictionary.allProperties.reduce(
+        (result, property) => {
+          const { attributes, value } = property;
+          const { category, type, item } = attributes;
+
+          if (!(category in result)) {
+            result[category] = {};
+          }
+
+          if (!(type in result[category])) {
+            result[category][type] = {};
+          }
+
+          result[category][type][item] = value;
+
+          return result;
+        },
+        {},
+      );
+
+      const exports = Object.keys(nestedProperties).map(
+        (category) =>
+          `export const ${category} = ${JSON.stringify(nestedProperties[category], null, 2)};`,
+      );
+
+      return [getGeneratedFileWarning(), ...exports].join("\n");
     },
   },
 ];

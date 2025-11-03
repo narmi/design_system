@@ -2,7 +2,7 @@ import React from "react";
 import {
   margin as marginHelpers,
   padding as paddingHelpers,
-} from "dist/docs/classManifest";
+} from "dist/docs/classManifest.json";
 import ClassExample from "helpers/ClassExample";
 
 export default {

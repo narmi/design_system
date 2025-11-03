@@ -1,5 +1,5 @@
 import React from "react";
-import { layout } from "dist/tokens/js/manifest";
+import { layout } from "dist/tokens/js/manifest.esm.js";
 import TokenTable, { toTokenRows } from "helpers/TokenTable";
 
 export default {
@@ -11,5 +11,5 @@ const Template = (args) => <TokenTable {...args} />;
 export const Spacing = Template.bind({});
 Spacing.args = {
   previewType: "spacing",
-  rows: toTokenRows(layout, "space"),
+  rows: toTokenRows(layout, "space", "space"),
 };

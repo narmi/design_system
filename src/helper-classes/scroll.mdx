@@ -1,5 +1,5 @@
-import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
-import { overflow as overflowHelpers } from "dist/docs/classManifest";
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
+import { overflow as overflowHelpers } from "dist/docs/classManifest.json";
 import ClassExample from "helpers/ClassExample";
 import * as ScrollStories from "./scroll.stories";
 
@@ -12,4 +12,4 @@ Enable scrolling with `overflow--scroll`.
 
 Useful for locking body scroll when modals are open.
 
-<Story of={ScrollStories.ControllingOverflow} />
+<Canvas of={ScrollStories.ControllingOverflow} />

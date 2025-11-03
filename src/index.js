@@ -1,5 +1,3 @@
-require("./index.scss");
-
 import AutocompleteModal from "./AutocompleteModal";
 import Alert from "./Alert";
 import Avatar from "./Avatar";

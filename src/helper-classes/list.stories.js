@@ -1,5 +1,5 @@
 import React from "react";
-import { list } from "dist/docs/classManifest";
+import { list } from "dist/docs/classManifest.json";
 import ClassExample from "helpers/ClassExample";
 
 export default {

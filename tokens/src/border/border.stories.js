@@ -1,5 +1,5 @@
 import React from "react";
-import { border } from "dist/tokens/js/manifest";
+import { border } from "dist/tokens/js/manifest.esm.js";
 import TokenTable, { toTokenRows } from "helpers/TokenTable";
 
 // Meta information for Storybook
@@ -13,14 +13,14 @@ const Template = (args) => <TokenTable {...args} />;
 export const BorderColor = Template.bind({});
 BorderColor.args = {
   previewType: "color",
-  rows: toTokenRows(border, "color"),
+  rows: toTokenRows(border, "color", "border-color"),
 };
 
 // Story for Border Size
 export const BorderSize = () => (
   <>
     <h2>Border Size</h2>
-    <TokenTable rows={toTokenRows(border, "size")} />
+    <TokenTable rows={toTokenRows(border, "size", "border-size")} />
   </>
 );
 
@@ -28,6 +28,6 @@ export const BorderSize = () => (
 export const BorderRadius = () => (
   <>
     <h2>Border Radius</h2>
-    <TokenTable rows={toTokenRows(border, "radius")} />
+    <TokenTable rows={toTokenRows(border, "radius", "border-radius")} />
   </>
 );

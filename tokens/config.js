@@ -93,7 +93,21 @@ const config = {
       files: [
         {
           destination: "manifest.js",
-          format: "javascript/module",
+          format: "custom/es6-nested",
+        },
+      ],
+    },
+
+    /**
+     * manifest of all tokens in ES6 format, used for documentation
+     */
+    manifestES6: {
+      transforms: CSS_TRANSFORM_GROUP,
+      buildPath: getBuildPath("js"),
+      files: [
+        {
+          destination: "manifest.esm.js",
+          format: "custom/es6-nested-exports",
         },
       ],
     },
@@ -109,6 +123,21 @@ const config = {
           filter: "isColor",
           destination: "colors.js",
           format: "javascript/module-flat",
+        },
+      ],
+    },
+
+    /**
+     * Color tokens as ES6 exports, PascalCase
+     */
+    jsColorsES6: {
+      transforms: [...CSS_TRANSFORM_GROUP, "name/cti/pascal"],
+      buildPath: getBuildPath("js"),
+      files: [
+        {
+          filter: "isColor",
+          destination: "colors.esm.js",
+          format: "javascript/es6-exports",
         },
       ],
     },

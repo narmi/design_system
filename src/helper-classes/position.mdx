@@ -1,5 +1,5 @@
-import { Meta, Story } from "@storybook/addon-docs/blocks";
-import { alignChild, rotate } from "dist/docs/classManifest";
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
+import { alignChild, rotate } from "dist/docs/classManifest.json";
 import ClassExample from "helpers/ClassExample";
 import * as PositionStories from "./position.stories";
 
@@ -9,8 +9,8 @@ import * as PositionStories from "./position.stories";
 
 Aligns children of element using flexbox. Useful for quick center alignment.
 
-<Story of={PositionStories.ChildAlignment} />
+<Canvas of={PositionStories.ChildAlignment} />
 
 # Rotation
 
-<Story of={PositionStories.Rotation} />
+<Canvas of={PositionStories.Rotation} />

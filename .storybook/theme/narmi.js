@@ -3,7 +3,7 @@ import {
   ColorNarmiSand800 as lightSand,
   ColorNarmiCove200 as darkCove,
   ColorNarmiAzul as azul,
-} from "../../dist/tokens/js/colors";
+} from "../../dist/tokens/js/colors.esm.js";
 import logo from "./narmi-logo.png";
 
 const shared = {

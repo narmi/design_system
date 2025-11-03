@@ -1,5 +1,5 @@
 import React from "react";
-import { shadow } from "dist/tokens/js/manifest";
+import { shadow } from "dist/tokens/js/manifest.esm.js";
 import TokenTable, { toTokenRows } from "helpers/TokenTable";
 
 // Meta information for Storybook
@@ -12,5 +12,5 @@ const Template = (args) => <TokenTable {...args} />;
 export const Elevation = Template.bind({});
 Elevation.args = {
   previewType: "shadow",
-  rows: toTokenRows(shadow, "elevation"),
+  rows: toTokenRows(shadow, "elevation", "elevation"),
 };

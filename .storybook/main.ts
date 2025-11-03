@@ -17,21 +17,11 @@ module.exports = {
       name: "@storybook/addon-docs",
       options: { transcludeMarkdown: true },
     },
-    "@storybook/addon-webpack5-compiler-babel",
     "@chromatic-com/storybook",
   ],
 
-  webpackFinal: (config) => {
-    config.resolve.alias = {
-      src: path.resolve(__dirname, "../src"),
-      dist: path.resolve(__dirname, "../dist"),
-      helpers: path.resolve(__dirname, "helpers"),
-    };
-    return config;
-  },
-
   framework: {
-    name: "@storybook/react-webpack5",
+    name: "@storybook/react-vite",
     options: {},
   },
 
@@ -39,5 +29,24 @@ module.exports = {
 
   features: {
     strict: true,
+  },
+
+  async viteFinal(config, { configType }) {
+    // Handle JSX in .js files
+    config.esbuild = {
+      ...config.esbuild,
+      loader: "jsx",
+      include: /(src|tokens)\/.*\.js$/,
+    };
+
+    // Add aliases for imports to resolve correctly in Vite
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      helpers: path.resolve(__dirname, "helpers"),
+      dist: path.resolve(__dirname, "../dist"),
+      src: path.resolve(__dirname, "../src"),
+    };
+
+    return config;
   },
 };

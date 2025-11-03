@@ -100,7 +100,7 @@ export {
   TableDateInput,
   TableInput,
   Tabs,
-  Tag,
+  Tag, // ⚠️ DEPRECATED - Will be removed in a future release. Use `Chip` instead.
   TextInput,
   TimelineEvent,
   Toggle,

@@ -5,6 +5,8 @@ import cc from "classcat";
 const noop = () => {};
 
 /**
+ * ⚠️ DEPRECATED - Will be removed in a future release. Use `Chip` instead.
+ *
  * A rounded rectangle inline label.
  * The user has the option of firing a callback for 'dismissible' Tags.
  */

@@ -52,7 +52,7 @@ declare const Popover;
 declare const ResponsiveFlex;
 declare const Select;
 declare const Sidebar;
-declare const Tag;
+declare const Tag; // ⚠️ DEPRECATED - Will be removed in a future release. Use `Chip` instead.
 declare const TextInput;
 declare const TimelineEvent;
 declare const Toggle;

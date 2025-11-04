@@ -3,50 +3,52 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## <small>4.46.1 (2025-11-04)</small>
+## <small>4.46.1 (2025-11-04)</small> [DEPRECATED]
 
-* build(deps-dev): bump @babel/cli from 7.27.2 to 7.28.3 ([1c8fd7033636f0b8ac4c3426522205a69d235185](https://github.com/narmi/design_system/commit/1c8fd7033636f0b8ac4c3426522205a69d235185))
-* build(deps-dev): bump @babel/core from 7.28.0 to 7.28.4 ([ff541380c769fe0ffd10cd4f021b731d1465f2f2](https://github.com/narmi/design_system/commit/ff541380c769fe0ffd10cd4f021b731d1465f2f2))
-* build(deps-dev): bump @storybook/addon-docs from 9.1.13 to 9.1.15 ([e633432e696e5eae484b1adca1f944f8b165510b](https://github.com/narmi/design_system/commit/e633432e696e5eae484b1adca1f944f8b165510b))
-* build(deps): bump actions/setup-node from 4.4.0 to 5.0.0 ([600b3a9cb25f8d8ad4f30680b61af7ef0bc17f84](https://github.com/narmi/design_system/commit/600b3a9cb25f8d8ad4f30680b61af7ef0bc17f84))
-* build(deps): bump actions/stale from 10.0.0 to 10.1.0 ([1d8251ae21dfdb4f623243a30020fae496af8a21](https://github.com/narmi/design_system/commit/1d8251ae21dfdb4f623243a30020fae496af8a21))
-* build(deps): bump chromaui/action from 13.1.4 to 13.2.1 ([5c87e62ac99e7db12b90947b89c951ed8070533c](https://github.com/narmi/design_system/commit/5c87e62ac99e7db12b90947b89c951ed8070533c))
-* build(deps-dev): bump core-js from 3.44.0 to 3.46.0 ([9553d537b5c5a76230968247afec47e3a37b6494](https://github.com/narmi/design_system/commit/9553d537b5c5a76230968247afec47e3a37b6494))
-* build(deps-dev): bump jest and @types/jest ([f66b4297cbea71a35029a0a68159f908788fc59f](https://github.com/narmi/design_system/commit/f66b4297cbea71a35029a0a68159f908788fc59f))
-* build: switch production build to vite ([d9181e44b17bb0e8d6578d7c88e90f618704071f](https://github.com/narmi/design_system/commit/d9181e44b17bb0e8d6578d7c88e90f618704071f))
-* build: use vite ([6ce9698da44c955d039c3fc356423f242ce78877](https://github.com/narmi/design_system/commit/6ce9698da44c955d039c3fc356423f242ce78877))
-* chore: checkpoint - all stories working w/vite ([7beaaf24646f66c32a229481d67644cf38b3eae5](https://github.com/narmi/design_system/commit/7beaaf24646f66c32a229481d67644cf38b3eae5))
-* chore: fix layout stories ([42ed3f514b753f692c85c2955c4a6e0a56460d02](https://github.com/narmi/design_system/commit/42ed3f514b753f692c85c2955c4a6e0a56460d02))
-* chore: fix tokens manifest esm config ([e984150b05e2fd9ff9fe4b19fdb3154ff3558af1](https://github.com/narmi/design_system/commit/e984150b05e2fd9ff9fe4b19fdb3154ff3558af1))
-* chore: rm chromatic plugin ([55e9632808cfe3c848eca6171afe3f2e871461b0](https://github.com/narmi/design_system/commit/55e9632808cfe3c848eca6171afe3f2e871461b0))
-* chore: set up esm exports for tokens in storybook ([483cc82649b59f2745acbd06541cb8ba4dcb1a79](https://github.com/narmi/design_system/commit/483cc82649b59f2745acbd06541cb8ba4dcb1a79))
-* chore: simplify watch ([402998d65af3bcf5f3344c446753b8c6b4f1b7db](https://github.com/narmi/design_system/commit/402998d65af3bcf5f3344c446753b8c6b4f1b7db))
-* chore: update package lockfile ([613dcd8e841a4c2b760186de2fec1d2f662074a6](https://github.com/narmi/design_system/commit/613dcd8e841a4c2b760186de2fec1d2f662074a6))
-* chore: wip scss config ([c03c231ba61138f76888073fce569e5760252899](https://github.com/narmi/design_system/commit/c03c231ba61138f76888073fce569e5760252899))
-* docs: fix token docs for esm ([a1b12b47708f40ff4647f67193771006f06c1a20](https://github.com/narmi/design_system/commit/a1b12b47708f40ff4647f67193771006f06c1a20))
-* fix(useDropdownLayer): update fallback positioning strategy ([2500fbcc56cad73cd9ad104585ae0e9b7a6cc25a](https://github.com/narmi/design_system/commit/2500fbcc56cad73cd9ad104585ae0e9b7a6cc25a))
+Deprecated due to a missing asset in the published `dist`, `dist/fonts/`.
+
+- build(deps-dev): bump @babel/cli from 7.27.2 to 7.28.3 ([1c8fd7033636f0b8ac4c3426522205a69d235185](https://github.com/narmi/design_system/commit/1c8fd7033636f0b8ac4c3426522205a69d235185))
+- build(deps-dev): bump @babel/core from 7.28.0 to 7.28.4 ([ff541380c769fe0ffd10cd4f021b731d1465f2f2](https://github.com/narmi/design_system/commit/ff541380c769fe0ffd10cd4f021b731d1465f2f2))
+- build(deps-dev): bump @storybook/addon-docs from 9.1.13 to 9.1.15 ([e633432e696e5eae484b1adca1f944f8b165510b](https://github.com/narmi/design_system/commit/e633432e696e5eae484b1adca1f944f8b165510b))
+- build(deps): bump actions/setup-node from 4.4.0 to 5.0.0 ([600b3a9cb25f8d8ad4f30680b61af7ef0bc17f84](https://github.com/narmi/design_system/commit/600b3a9cb25f8d8ad4f30680b61af7ef0bc17f84))
+- build(deps): bump actions/stale from 10.0.0 to 10.1.0 ([1d8251ae21dfdb4f623243a30020fae496af8a21](https://github.com/narmi/design_system/commit/1d8251ae21dfdb4f623243a30020fae496af8a21))
+- build(deps): bump chromaui/action from 13.1.4 to 13.2.1 ([5c87e62ac99e7db12b90947b89c951ed8070533c](https://github.com/narmi/design_system/commit/5c87e62ac99e7db12b90947b89c951ed8070533c))
+- build(deps-dev): bump core-js from 3.44.0 to 3.46.0 ([9553d537b5c5a76230968247afec47e3a37b6494](https://github.com/narmi/design_system/commit/9553d537b5c5a76230968247afec47e3a37b6494))
+- build(deps-dev): bump jest and @types/jest ([f66b4297cbea71a35029a0a68159f908788fc59f](https://github.com/narmi/design_system/commit/f66b4297cbea71a35029a0a68159f908788fc59f))
+- build: switch production build to vite ([d9181e44b17bb0e8d6578d7c88e90f618704071f](https://github.com/narmi/design_system/commit/d9181e44b17bb0e8d6578d7c88e90f618704071f))
+- build: use vite ([6ce9698da44c955d039c3fc356423f242ce78877](https://github.com/narmi/design_system/commit/6ce9698da44c955d039c3fc356423f242ce78877))
+- chore: checkpoint - all stories working w/vite ([7beaaf24646f66c32a229481d67644cf38b3eae5](https://github.com/narmi/design_system/commit/7beaaf24646f66c32a229481d67644cf38b3eae5))
+- chore: fix layout stories ([42ed3f514b753f692c85c2955c4a6e0a56460d02](https://github.com/narmi/design_system/commit/42ed3f514b753f692c85c2955c4a6e0a56460d02))
+- chore: fix tokens manifest esm config ([e984150b05e2fd9ff9fe4b19fdb3154ff3558af1](https://github.com/narmi/design_system/commit/e984150b05e2fd9ff9fe4b19fdb3154ff3558af1))
+- chore: rm chromatic plugin ([55e9632808cfe3c848eca6171afe3f2e871461b0](https://github.com/narmi/design_system/commit/55e9632808cfe3c848eca6171afe3f2e871461b0))
+- chore: set up esm exports for tokens in storybook ([483cc82649b59f2745acbd06541cb8ba4dcb1a79](https://github.com/narmi/design_system/commit/483cc82649b59f2745acbd06541cb8ba4dcb1a79))
+- chore: simplify watch ([402998d65af3bcf5f3344c446753b8c6b4f1b7db](https://github.com/narmi/design_system/commit/402998d65af3bcf5f3344c446753b8c6b4f1b7db))
+- chore: update package lockfile ([613dcd8e841a4c2b760186de2fec1d2f662074a6](https://github.com/narmi/design_system/commit/613dcd8e841a4c2b760186de2fec1d2f662074a6))
+- chore: wip scss config ([c03c231ba61138f76888073fce569e5760252899](https://github.com/narmi/design_system/commit/c03c231ba61138f76888073fce569e5760252899))
+- docs: fix token docs for esm ([a1b12b47708f40ff4647f67193771006f06c1a20](https://github.com/narmi/design_system/commit/a1b12b47708f40ff4647f67193771006f06c1a20))
+- fix(useDropdownLayer): update fallback positioning strategy ([2500fbcc56cad73cd9ad104585ae0e9b7a6cc25a](https://github.com/narmi/design_system/commit/2500fbcc56cad73cd9ad104585ae0e9b7a6cc25a))
 
 ## 4.46.0 (2025-10-24)
 
-* chore: devDep order ([2502d4c5b248a92dba69f06e0de2ac9e980fef1c](https://github.com/narmi/design_system/commit/2502d4c5b248a92dba69f06e0de2ac9e980fef1c))
-* chore(release): rm scrict commit filtering from log writer ([8fcd4b3d572cc1b92562363c9d24a23545b089fb](https://github.com/narmi/design_system/commit/8fcd4b3d572cc1b92562363c9d24a23545b089fb))
-* chore: update storybook via npx script ([a6aa0b544975e6d19e31bbc33ce4e837c5f30844](https://github.com/narmi/design_system/commit/a6aa0b544975e6d19e31bbc33ce4e837c5f30844))
-* chore: use sand instead of adding new alias ([1c8ddd919be8c03969fc307fc51acb42fdb4c4b4](https://github.com/narmi/design_system/commit/1c8ddd919be8c03969fc307fc51acb42fdb4c4b4))
-* docs: add keys to all maps in stories ([ee4aaea76513235aeda156251d71744d07ce8ff1](https://github.com/narmi/design_system/commit/ee4aaea76513235aeda156251d71744d07ce8ff1))
-* docs: fix fonts story ([5b7fe5a04affaf3ed06aeeb181af50071aba3d5f](https://github.com/narmi/design_system/commit/5b7fe5a04affaf3ed06aeeb181af50071aba3d5f))
-* docs: fix icons story for v9 ([936087914b577b42bc092b26360b63e0857eb971](https://github.com/narmi/design_system/commit/936087914b577b42bc092b26360b63e0857eb971))
+- chore: devDep order ([2502d4c5b248a92dba69f06e0de2ac9e980fef1c](https://github.com/narmi/design_system/commit/2502d4c5b248a92dba69f06e0de2ac9e980fef1c))
+- chore(release): rm scrict commit filtering from log writer ([8fcd4b3d572cc1b92562363c9d24a23545b089fb](https://github.com/narmi/design_system/commit/8fcd4b3d572cc1b92562363c9d24a23545b089fb))
+- chore: update storybook via npx script ([a6aa0b544975e6d19e31bbc33ce4e837c5f30844](https://github.com/narmi/design_system/commit/a6aa0b544975e6d19e31bbc33ce4e837c5f30844))
+- chore: use sand instead of adding new alias ([1c8ddd919be8c03969fc307fc51acb42fdb4c4b4](https://github.com/narmi/design_system/commit/1c8ddd919be8c03969fc307fc51acb42fdb4c4b4))
+- docs: add keys to all maps in stories ([ee4aaea76513235aeda156251d71744d07ce8ff1](https://github.com/narmi/design_system/commit/ee4aaea76513235aeda156251d71744d07ce8ff1))
+- docs: fix fonts story ([5b7fe5a04affaf3ed06aeeb181af50071aba3d5f](https://github.com/narmi/design_system/commit/5b7fe5a04affaf3ed06aeeb181af50071aba3d5f))
+- docs: fix icons story for v9 ([936087914b577b42bc092b26360b63e0857eb971](https://github.com/narmi/design_system/commit/936087914b577b42bc092b26360b63e0857eb971))
 
 ## 4.45.0 (2025-10-16)
 
-* fix(release): update release process ([7831ea4ff74761e32e47bf5512a27664495bf198](https://github.com/narmi/design_system/commit/7831ea4ff74761e32e47bf5512a27664495bf198))
+- fix(release): update release process ([7831ea4ff74761e32e47bf5512a27664495bf198](https://github.com/narmi/design_system/commit/7831ea4ff74761e32e47bf5512a27664495bf198))
 
 ## <small>4.44.1 (2025-10-09)</small>
 
-* fix(Select): `ClearingSelctionWithAction` -> `ClearingSelectionWithAction` (#1881) ([e9b97c4ca6cbc8fdec5a5cb1a335d32582ba8fbf](https://github.com/narmi/design_system/commit/e9b97c4ca6cbc8fdec5a5cb1a335d32582ba8fbf)), closes [#1881](https://github.com/narmi/design_system/issues/1881)
+- fix(Select): `ClearingSelctionWithAction` -> `ClearingSelectionWithAction` (#1881) ([e9b97c4ca6cbc8fdec5a5cb1a335d32582ba8fbf](https://github.com/narmi/design_system/commit/e9b97c4ca6cbc8fdec5a5cb1a335d32582ba8fbf)), closes [#1881](https://github.com/narmi/design_system/issues/1881)
 
 ## 4.44.0 (2025-10-06)
 
-* feat(Combobox): allow clearing selection on action ([c92bfd514bb98b6cb43520d01cf5b074ffb53e42](https://github.com/narmi/design_system/commit/c92bfd514bb98b6cb43520d01cf5b074ffb53e42))
+- feat(Combobox): allow clearing selection on action ([c92bfd514bb98b6cb43520d01cf5b074ffb53e42](https://github.com/narmi/design_system/commit/c92bfd514bb98b6cb43520d01cf5b074ffb53e42))
 
 ## 4.43.0 (2025-10-02)
 

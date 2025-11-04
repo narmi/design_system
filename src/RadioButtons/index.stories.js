@@ -14,23 +14,32 @@ Overview.args = {
 };
 
 export const Example = () => {
-  const [color, setColor] = useState();
   return (
     <div className="nds-typography">
-      <h3 className="margin--bottom--l"> What is your favourite colour? </h3>
+      <h3 className="margin--bottom--l">Question 1</h3>
       <RadioButtons
         options={{
-          Red: "red",
-          Blue: "blue",
-          Green: "green",
-          Yellow: "yellow",
+          Yes: "yes",
+          No: "no",
         }}
-        name="colours"
-        onChange={(e) => {
-          setColor(e.target.value);
-        }}
+        name="question1"
       />
-      <div>{color && `You have selected ${color}`}</div>
+      <h3 className="margin--bottom--l margin--top--l">Question 2</h3>
+      <RadioButtons
+        options={{
+          Yes: "yes",
+          No: "no",
+        }}
+        name="question2"
+      />
+      <h3 className="margin--bottom--l margin--top--l">Question 3</h3>
+      <RadioButtons
+        options={{
+          Yes: "yes",
+          No: "no",
+        }}
+        name="question3"
+      />
     </div>
   );
 };

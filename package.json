@@ -18,7 +18,7 @@
     "build:classdoc": "node ./scripts/classManifest.mjs",
     "build:tokens": "style-dictionary build --config=./tokens/config.js",
     "build:css": "sass src/index.scss dist/style.css --style=compressed --source-map",
-    "build:components": "vite build && node ./scripts/copyIcons.mjs",
+    "build:components": "vite build && node ./scripts/copyAssets.mjs",
     "build": "npm run build:tokens && npx tsc && npm run build:css && npm run build:jsdoc && npm run build:components && npm run build:classdoc",
     "build:clean": "rm -rf dist/ && npm run build",
     "prepublish": "npm run build",

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.46.2 (2025-11-04)</small>
+
+* chore: rename script ([bc0b6845bd660315e5fe5648462d512387324368](https://github.com/narmi/design_system/commit/bc0b6845bd660315e5fe5648462d512387324368))
+* chore: update changlog ([3907c7d7641d5dd82870b7dac67fc3bc3cde8c9e](https://github.com/narmi/design_system/commit/3907c7d7641d5dd82870b7dac67fc3bc3cde8c9e))
+* fix(build): ensure fonts dir ends up in dist ([83fbbb5b8e5afbfe5906f74bed747c7966ffdb61](https://github.com/narmi/design_system/commit/83fbbb5b8e5afbfe5906f74bed747c7966ffdb61))
+
 ## <small>4.46.1 (2025-11-04)</small> [DEPRECATED]
 
 Deprecated due to a missing asset in the published `dist`, `dist/fonts/`.

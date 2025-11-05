@@ -24,6 +24,8 @@ interface ContentCardProps {
    * `button`: action button (button-like)
    *
    * `bordered`: flat, rounded rect with border
+   *
+   * `ai`: card variant styled for AI-related content or features
    */
   kind?: "plain" | "elevated" | "toggle" | "button" | "bordered" | "ai";
   /**

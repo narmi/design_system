@@ -7,10 +7,20 @@
 //    than base styles, so that selectors of the same specificity will
 //    resolve based on source order (last wins).
 
+// Webfonts
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,400;0,600;0,700;1,200;1,400;1,600;1,700&display=swap");
+@font-face {
+  font-family: "Narmi Matiere";
+  src:
+    url("./fonts/narmi-matiere-bold-webfont.woff2") format("woff2"),
+    url("./fonts/narmi-matiere-bold-webfont.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
 // Concat build artifacts and third party CSS
 @include meta.load-css("../dist/tokens/css/tokens.scss");
 @include meta.load-css("../dist/tokens/css/rgbColors.scss");
-@include meta.load-css("fonts/fonts.css");
 @include meta.load-css("icons/style.css");
 @include meta.load-css("../node_modules/flatpickr/dist/themes/airbnb.css");
 

@@ -4,11 +4,6 @@
 Helper intended to copy icon and font assets to dist
 as needed. There may be a more direct, vite-friendly
 way to accomplish this.
-
-⚠️ DEPRECATED ⚠️
-These files will no longer be copied to dist/ in an upcoming major release.
-Fonts and icons are now included into the main dist/style.css file.
-<https://linear.app/narmi/issue/NDS-2002/breaking-remove-copyassets-script>
 */
 
 import { promises as fs } from "fs";
@@ -22,6 +17,7 @@ const __dirname = dirname(__filename);
 
 const iconsSourceDir = resolve(__dirname, "../src/icons");
 const iconsDestDir = resolve(__dirname, "../dist/icons");
+const iconFontsSourceDir = resolve(__dirname, "../src/icons/fonts");
 const fontsSourceDir = resolve(__dirname, "../src/fonts");
 const fontsDestDir = resolve(__dirname, "../dist/fonts");
 
@@ -62,6 +58,10 @@ async function copyAssets() {
 
     await copyDirectory(fontsSourceDir, fontsDestDir, "dist/fonts");
     console.log("✅ Fonts copied successfully");
+
+    // Copy icomoon fonts to dist/fonts for easier CSS path resolution
+    await copyDirectory(iconFontsSourceDir, fontsDestDir, "dist/fonts");
+    console.log("✅ Icon fonts copied to dist/fonts");
   } catch (error) {
     console.error("❌ Error copying assets:", error);
     process.exit(1);

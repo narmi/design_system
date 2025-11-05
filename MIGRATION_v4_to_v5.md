@@ -2,7 +2,7 @@
 
 ## Breaking changes
 
-### Legacy CSS vars prefixed with `nds-` (e.g. `nds-black`) removed
+### Removed legacy CSS vars prefixed with `nds-` (e.g. `nds-black`)
 
 If your code still relies on these variables, please map them to standard variables documented in design tokens.
 
@@ -18,11 +18,11 @@ Use `kind="plain"` instead.
 
 This file is unmaintained.
 
-### Remove `.nds-plain-button` legacy class
+### Removed `.nds-plain-button` legacy class
 
 Use the `kind` prop on Button instead to pick a pre-defined style. In this case, `kind="plain"`.
 
-### Remove `ContentCard` `kind="interactive"`
+### Removed `ContentCard` `kind="interactive"`
 
 Moving forward, use `kind="toggle"` or `kind="button"`
 according to the interactive behavior required.

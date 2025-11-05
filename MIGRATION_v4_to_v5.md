@@ -2,11 +2,11 @@
 
 ## Breaking changes
 
-#### Legacy CSS vars prefixed with `nds-` (e.g. `nds-black`) removed
+### Legacy CSS vars prefixed with `nds-` (e.g. `nds-black`) removed
 
 If your code still relies on these variables, please map them to standard variables documented in design tokens.
 
-#### Deprecated `Dropdown` component removed
+### Deprecated `Dropdown` component removed
 
 Use `Select`, `Multiselect`, `Combobox`, or `Popover` instead.
 
@@ -26,6 +26,8 @@ Use the `kind` prop on Button instead to pick a pre-defined style. In this case,
 
 Moving forward, use `kind="toggle"` or `kind="button"`
 according to the interactive behavior required.
+
+------
 
 ## Non-breaking changes
 

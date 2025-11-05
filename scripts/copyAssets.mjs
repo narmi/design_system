@@ -4,6 +4,11 @@
 Helper intended to copy icon and font assets to dist
 as needed. There may be a more direct, vite-friendly
 way to accomplish this.
+
+⚠️ DEPRECATED ⚠️
+These files will no longer be copied to dist/ in an upcoming major release.
+Fonts and icons are now included into the main dist/style.css file.
+<https://linear.app/narmi/issue/NDS-2002/breaking-remove-copyassets-script>
 */
 
 import { promises as fs } from "fs";

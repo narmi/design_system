@@ -1,14 +1,18 @@
 // Sass language features
 @use "sass:map";
+@use "sass:meta";
 
 // 💁 Imports are ordered by least specific to most specific.
 //    For example, helper classes should be further down in the cascade
 //    than base styles, so that selectors of the same specificity will
 //    resolve based on source order (last wins).
 
-// NDS Tokens
-@import "../dist/tokens/css/tokens.css";
-@import "../dist/tokens/css/rgbColors.css";
+// Concat build artifacts and third party CSS
+@include meta.load-css("../dist/tokens/css/tokens.scss");
+@include meta.load-css("../dist/tokens/css/rgbColors.scss");
+@include meta.load-css("fonts/fonts.css");
+@include meta.load-css("icons/style.css");
+@include meta.load-css("../node_modules/flatpickr/dist/themes/airbnb.css");
 
 // ⚠️ DEPRECATED ⚠️
 // These custom properties will be removed in a future release.
@@ -27,12 +31,6 @@
   --subdued-10-opacity: var(--alpha-10);
   --subdued-5-opacity: var(--alpha-5);
 }
-
-// webfont
-@import "fonts/fonts.css";
-
-// icons
-@import "icons/style.css";
 
 // base styles
 @import "base-styles/scss-utils"; // this must come first

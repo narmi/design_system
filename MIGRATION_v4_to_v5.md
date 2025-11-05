@@ -27,7 +27,11 @@ Use the `kind` prop on Button instead to pick a pre-defined style. In this case,
 Moving forward, use `kind="toggle"` or `kind="button"`
 according to the interactive behavior required.
 
-------
+### Dropped support for React v16 and v17
+
+Consumers must supply React at v18 or v19 moving forward.
+
+---
 
 ## Non-breaking changes
 

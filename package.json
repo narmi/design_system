@@ -34,8 +34,8 @@
     "dev": "npm run storybook"
   },
   "peerDependencies": {
-    "react": "^16 || ^17 || ^18 || ^19",
-    "react-dom": "^16 || ^17 || ^18 || ^19"
+    "react": "^18 || ^19",
+    "react-dom": "^18 || ^19"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",

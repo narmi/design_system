@@ -1,0 +1,7 @@
+import{e}from"./iframe-C3nPEcQ0.js";import{T as a,t,b as d}from"./TokenTable-BgkC9yah.js";const c={title:"Design Tokens/Border"},i=n=>e.createElement(a,n),r=i.bind({});r.args={previewType:"color",rows:t(d,"color","border-color")};const o=()=>e.createElement(e.Fragment,null,e.createElement("h2",null,"Border Size"),e.createElement(a,{rows:t(d,"size","border-size")})),s=()=>e.createElement(e.Fragment,null,e.createElement("h2",null,"Border Radius"),e.createElement(a,{rows:t(d,"radius","border-radius")}));o.__docgenInfo={description:"",methods:[],displayName:"BorderSize"};s.__docgenInfo={description:"",methods:[],displayName:"BorderRadius"};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:"args => <TokenTable {...args} />",...r.parameters?.docs?.source}}};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`() => <>
+    <h2>Border Size</h2>
+    <TokenTable rows={toTokenRows(border, "size", "border-size")} />
+  </>`,...o.parameters?.docs?.source}}};s.parameters={...s.parameters,docs:{...s.parameters?.docs,source:{originalSource:`() => <>
+    <h2>Border Radius</h2>
+    <TokenTable rows={toTokenRows(border, "radius", "border-radius")} />
+  </>`,...s.parameters?.docs?.source}}};const l=["BorderColor","BorderSize","BorderRadius"],p=Object.freeze(Object.defineProperty({__proto__:null,BorderColor:r,BorderRadius:s,BorderSize:o,__namedExportsOrder:l,default:c},Symbol.toStringTag,{value:"Module"}));export{p as B,r as a,o as b,s as c};

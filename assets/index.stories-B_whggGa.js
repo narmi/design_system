@@ -1,3 +1,0 @@
-import{e}from"./iframe-BBFkYpee.js";import{E as o}from"./index-Dos-RCSj.js";import"./preload-helper-PPVm8Dsz.js";import"./index-CA1B0jeb.js";const s=t=>e.createElement("div",{className:"border--top alignChild--left--top"},e.createElement(o,t)),r=s.bind({});r.args={error:"Required."};const p={title:"Components/Error",component:o};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`args => <div className="border--top alignChild--left--top">
-    <Error {...args} />
-  </div>`,...r.parameters?.docs?.source}}};const d=["Overview"];export{r as Overview,d as __namedExportsOrder,p as default};

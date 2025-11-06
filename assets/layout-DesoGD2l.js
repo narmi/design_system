@@ -1,4 +1,0 @@
-import{j as t,M as i,C as r}from"./blocks-DQz56y-o.js";import{useMDXComponents as s}from"./index-BqWcgNRV.js";import{L as a,S as m}from"./layout.stories-B7UOwiQ9.js";import"./preload-helper-PPVm8Dsz.js";import"./iframe-du4X1prS.js";import"./index-D6hM7Sim.js";import"./index-BcDK1_tn.js";import"./TokenTable-DnNRT0-n.js";import"./index-_3s9vH5v.js";import"./index-RvS1aOr8.js";function e(o){const n={h1:"h1",h2:"h2",...s(),...o.components};return t.jsxs(t.Fragment,{children:[t.jsx(i,{title:"Design Tokens/Layout",of:a}),`
-`,t.jsx(n.h1,{id:"layout-tokens",children:"Layout Tokens"}),`
-`,t.jsx(n.h2,{id:"spacing",children:"Spacing"}),`
-`,t.jsx(r,{of:m,style:{height:"auto"}})]})}function y(o={}){const{wrapper:n}={...s(),...o.components};return n?t.jsx(n,{...o,children:t.jsx(e,{...o})}):e(o)}export{y as default};

@@ -160,14 +160,15 @@ Any modification to the design system that requires consumers to update their us
 
 If you are making a breaking change, please [note it in your commit message](https://www.conventionalcommits.org/en/v1.0.0/#commit-message-with-description-and-breaking-change-footer) appropriately.
 
-### Pull Request guide
+### Publishing a patch over a previous version (Narmi only)
 
-There are a number of github actions we run automatically for every PR.
-In order for your PR to merge it must:
+In rare cases, you may need to publish a patch over a previous version (e.g., patching `2.35.2` when the current version is `2.36.0`).
 
-- Build without failures and/or typescript errors
-- Pass all unit tests
-- Pass Chromatic snapshot tests
+Follow the same steps as [publishing a beta version](#publishing-a-beta-version-narmi-only), but without the `--tag beta` flag:
+
+1. Rebuild NDS (`npm run build`)
+2. Update the `version` field of package.json to the desired patch version (e.g., `2.35.3`). DO NOT COMMIT THIS CHANGE.
+3. Publish the package (`npm publish`)
 
 #### 📸 Working with snapshot tests
 
@@ -210,17 +211,14 @@ There are however, some rare circumstances where you may need to test NDS change
 The best way to approach testing unpublished NDS changes in a consumer is to use
 **beta versions**.
 
-#### Publishing a beta version
-
-⚠️ Only do this if absolutely necessary
+#### Publishing a beta version (Narmi only)
 
 1. Rebuild NDS (`npm run build`)
 2. Update the `version` field of package.json to be a beta of the next minor.
    For example, you would change `2.35.2` to `2.36.0-beta.0`.
    DO NOT COMMIT THIS CHANGE.
 3. Publish the package (`npm publish --tag beta`)
-4. In your consuming application, you can point the `@narmi/design_system`
-   version to the beta version you just published.
+4. In your consuming application, you can point the `@narmi/design_system@2.36.0-beta`
 
 If you need to make additional changes after the beta is published...
 

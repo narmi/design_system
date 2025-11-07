@@ -60,6 +60,10 @@ const config = {
           destination: "tokens.css",
           format: "css/variables",
         },
+        {
+          destination: "tokens.scss",
+          format: "css/variables",
+        },
       ],
       options: { outputReferences: true },
     },
@@ -79,6 +83,11 @@ const config = {
         {
           filter: "rgbColorFilter",
           destination: "rgbColors.css",
+          format: "css/variables",
+        },
+        {
+          filter: "rgbColorFilter",
+          destination: "rgbColors.scss",
           format: "css/variables",
         },
       ],

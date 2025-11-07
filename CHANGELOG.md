@@ -3,11 +3,11 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## <small>4.46.3 (2025-11-04)</small>
+## <small>4.46.3 (2025-11-04)</small> [DEPRECATED]
 
 - fix: font paths ([cb720236fd928d3cca8efbe957e5c904d7677969](https://github.com/narmi/design_system/commit/cb720236fd928d3cca8efbe957e5c904d7677969))
 
-## <small>4.46.2 (2025-11-04)</small>
+## <small>4.46.2 (2025-11-04)</small> [DEPRECATED]
 
 - chore: rename script ([bc0b6845bd660315e5fe5648462d512387324368](https://github.com/narmi/design_system/commit/bc0b6845bd660315e5fe5648462d512387324368))
 - chore: update changlog ([3907c7d7641d5dd82870b7dac67fc3bc3cde8c9e](https://github.com/narmi/design_system/commit/3907c7d7641d5dd82870b7dac67fc3bc3cde8c9e))

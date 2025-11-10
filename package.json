@@ -66,6 +66,7 @@
     "@vitejs/plugin-react": "^5.0.4",
     "babel-jest": "^30",
     "babel-loader": "^8.2.2",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "chromatic": "^6",
     "cli-table": "^0.3.11",
     "conventional-changelog-conventionalcommits": "^4.6.1",

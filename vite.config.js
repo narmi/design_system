@@ -14,7 +14,10 @@ export default defineConfig({
           "@babel/preset-react",
           "@babel/preset-typescript",
         ],
-        plugins: ["@babel/plugin-proposal-class-properties"],
+        plugins: [
+          "@babel/plugin-proposal-class-properties",
+          "babel-plugin-transform-react-remove-prop-types",
+        ],
       },
     }),
     dts({

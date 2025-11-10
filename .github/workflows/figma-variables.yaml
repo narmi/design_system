@@ -33,4 +33,4 @@ jobs:
         env:
           FIGMA_TOKEN: ${{ secrets.NDS_FIGMA_TOKEN }}
         run: |
-          node ./scripts/figma-variables.mjs "$FIGMA_TOKEN" "${{ github.event.inputs.file_key }}"
+          node ./scripts/figma-variables.mjs "${{ github.event.inputs.file_key }}"

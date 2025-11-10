@@ -2,17 +2,24 @@
  * Reads published variables from Figma using the Variables REST API.
  *
  * Usage:
- *   node ./scripts/figma-variables.mjs <FIGMA_TOKEN> [FILE_KEY]
+ *   FIGMA_TOKEN=<token> node ./scripts/figma-variables.mjs [FILE_KEY]
+ *
+ * If FILE_KEY is not provided, defaults to: nCjdO761StnkwNZHFmcrUu
  *
  * @see https://developers.figma.com/docs/rest-api/variables-endpoints/
  */
 
-const [token, fileKey] = process.argv.slice(2);
+const token = process.env.FIGMA_TOKEN;
+const [fileKey] = process.argv.slice(2);
 
 const fallbackFileKey = "nCjdO761StnkwNZHFmcrUu";
 
 if (!token) {
-  console.error("Usage: node figma-variables.mjs <FIGMA_TOKEN> [FILE_KEY]");
+  console.error("Error: FIGMA_TOKEN environment variable is required");
+  console.error(
+    "Usage: FIGMA_TOKEN=<token> node figma-variables.mjs [FILE_KEY]",
+  );
+  console.error(`FILE_KEY defaults to: ${fallbackFileKey}`);
   process.exit(1);
 }
 

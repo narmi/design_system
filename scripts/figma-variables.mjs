@@ -12,7 +12,7 @@
 const token = process.env.FIGMA_TOKEN;
 const [fileKey] = process.argv.slice(2);
 
-const fallbackFileKey = "nCjdO761StnkwNZHFmcrUu";
+const fallbackFileKey = "vQRSHiaJMtSapS8O2hZSso";
 
 if (!token) {
   console.error("Error: FIGMA_TOKEN environment variable is required");

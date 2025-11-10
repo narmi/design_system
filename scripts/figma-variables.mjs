@@ -1,10 +1,10 @@
 /**
- * Reads published variables from Figma using the Variables REST API.
+ * Reads local variables from Figma using the Variables REST API.
  *
  * Usage:
  *   FIGMA_TOKEN=<token> node ./scripts/figma-variables.mjs [FILE_KEY]
  *
- * If FILE_KEY is not provided, defaults to: nCjdO761StnkwNZHFmcrUu
+ * If FILE_KEY is not provided, defaults to: vQRSHiaJMtSapS8O2hZSso
  *
  * @see https://developers.figma.com/docs/rest-api/variables-endpoints/
  */
@@ -12,7 +12,7 @@
 const token = process.env.FIGMA_TOKEN;
 const [fileKey] = process.argv.slice(2);
 
-const fallbackFileKey = "vQRSHiaJMtSapS8O2hZSso";
+const fallbackFileKey = "nCjdO761StnkwNZHFmcrUu";
 
 if (!token) {
   console.error("Error: FIGMA_TOKEN environment variable is required");
@@ -27,7 +27,7 @@ if (!token) {
 const actualFileKey = fileKey && fileKey.trim() ? fileKey : fallbackFileKey;
 
 const response = await fetch(
-  `https://api.figma.com/v1/files/${actualFileKey}/variables/published`,
+  `https://api.figma.com/v1/files/${actualFileKey}/variables/local`,
   {
     headers: { "X-Figma-Token": token },
   },
@@ -46,8 +46,6 @@ if (!response.ok) {
 
 const data = await response.json();
 
-console.log(
-  `\nFetched published variables from Figma file: ${actualFileKey}\n`,
-);
-console.log("=== Published Variables ===");
+console.log(`\nFetched local variables from Figma file: ${actualFileKey}\n`);
+console.log("=== Local Variables ===");
 console.log(JSON.stringify(data, null, 2));

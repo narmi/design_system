@@ -5,7 +5,7 @@ on:
     inputs:
       file_key:
         description: 'Figma file key (from the file URL)'
-        required: true
+        required: false
         type: string
 
 permissions:
@@ -25,9 +25,6 @@ jobs:
         with:
           node-version: 22
           cache: "npm"
-
-      - name: Install dependencies
-        run: npm ci
 
       - name: Fetch Figma variables
         env:

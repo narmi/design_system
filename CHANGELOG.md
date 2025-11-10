@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.46.5 (2025-11-10)</small>
+
+* fix(MultiSelect): fix missing dropdown border ([dd5b8f03396f9671d08760feb5b6c431a4594a41](https://github.com/narmi/design_system/commit/dd5b8f03396f9671d08760feb5b6c431a4594a41))
+* fix(build): strip propTypes as expeceted from webpack build ([1af1dcff8848ae685b218fe769fac7e370889ec9](https://github.com/narmi/design_system/commit/1af1dcff8848ae685b218fe769fac7e370889ec9))
+
 ## <small>4.46.4 (2025-11-07)</small>
 
 * chore(release): 4.46.2 [skip ci] ([789d5e0aab22cb81d5c1325627519c7c90cac181](https://github.com/narmi/design_system/commit/789d5e0aab22cb81d5c1325627519c7c90cac181))

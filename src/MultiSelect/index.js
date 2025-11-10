@@ -2,14 +2,13 @@
 import React, { useMemo, useEffect, Children } from "react";
 import PropTypes from "prop-types";
 import { useSelect, useMultipleSelection } from "downshift";
-import { useLayer } from "react-laag";
+import useDropdownLayer from "../hooks/useDropdownLayer";
 import cc from "classcat";
 import DropdownTrigger from "../DropdownTrigger";
 import Button from "../Button";
 import MultiSelectItem from "./MultiSelectItem";
 import FieldToken from "../FieldToken";
 import Row from "../Row";
-import { createUseLayerContainer } from "src/util/dom";
 
 const noop = () => {};
 
@@ -165,6 +164,7 @@ const MultiSelect = ({
     highlightedIndex,
     getItemProps,
     inputValue,
+    closeMenu,
   } = useSelect({
     disabled,
     id: name || `nds-multiselect-${label}`,
@@ -203,18 +203,12 @@ const MultiSelect = ({
     },
   });
 
-  /** @see https://github.com/everweij/react-laag#api-docs */
-  const { renderLayer, triggerProps, triggerBounds, layerProps, layerSide } =
-    useLayer({
-      isOpen,
-      auto: true,
-      snap: true,
-      triggerOffset: 0,
-      containerOffset: 0,
-      placement: "bottom-start",
-      possiblePlacements: ["top-start", "bottom-start"],
-      container: createUseLayerContainer,
-    });
+  const { anchorProps, layerProps } = useDropdownLayer({
+    isOpen,
+    setIsOpen: (open) => {
+      if (!open) closeMenu();
+    },
+  });
 
   /**
    * Render the Clear All button if clearable and there are selected items.
@@ -252,10 +246,6 @@ const MultiSelect = ({
     clearLabel,
   ]);
 
-  // Remove dynamic padding because the flex layout now handles spacing.
-  // We simply use triggerProps.style as provided.
-  const triggerStyle = triggerProps.style;
-
   /**
    * Generate the content for the trigger using the summaryFormatter.
    * The formatter receives an object with the relevant arguments.
@@ -286,7 +276,7 @@ const MultiSelect = ({
         id={name}
         value={fieldValue || selectedItems.map(itemToString).join(",")}
       />
-      <div {...triggerProps}>
+      <div {...anchorProps}>
         <DropdownTrigger
           disabled={disabled}
           isOpen={isOpen}
@@ -301,26 +291,18 @@ const MultiSelect = ({
             },
           }}
           {...getToggleButtonProps()}
-          style={{ ...triggerStyle, padding: "4px 90px 4px 8px" }}
         />
       </div>
-      {renderLayer(
+      <div {...layerProps}>
         <div
           className={cc([
             "nds-multiselect-list",
             "bgColor--white",
             {
-              "rounded--bottom": layerSide === "bottom",
-              "rounded--top": layerSide === "top",
-              [`nds-select-list--active--${layerSide}`]: isOpen,
+              "nds-multiselect-list--error": !!errorText,
             },
           ])}
-          {...getMenuProps(layerProps)}
-          style={{
-            width: triggerBounds?.width,
-            transform: `translateY(${layerSide === "top" ? "3px" : "-3px"})`,
-            ...layerProps.style,
-          }}
+          {...getMenuProps()}
         >
           {isOpen && (
             <ul className="list--reset">
@@ -353,8 +335,8 @@ const MultiSelect = ({
               ))}
             </ul>
           )}
-        </div>,
-      )}
+        </div>
+      </div>
     </div>
   );
 };

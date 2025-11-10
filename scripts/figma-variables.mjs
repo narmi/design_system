@@ -23,8 +23,11 @@ if (!token) {
   process.exit(1);
 }
 
+// Use fallback if fileKey is empty or not provided
+const actualFileKey = fileKey && fileKey.trim() ? fileKey : fallbackFileKey;
+
 const response = await fetch(
-  `https://api.figma.com/v1/files/${fileKey || fallbackFileKey}/variables/published`,
+  `https://api.figma.com/v1/files/${actualFileKey}/variables/published`,
   {
     headers: { "X-Figma-Token": token },
   },
@@ -32,11 +35,19 @@ const response = await fetch(
 
 if (!response.ok) {
   console.error(`Error: ${response.status} ${response.statusText}`);
+  console.error(`File key used: ${actualFileKey}`);
+  if (response.status === 403) {
+    console.error(
+      "Check that the FIGMA_TOKEN has access to this file and has the required scopes",
+    );
+  }
   process.exit(1);
 }
 
 const data = await response.json();
 
-console.log(`\nFetched published variables from Figma file: ${fileKey}\n`);
+console.log(
+  `\nFetched published variables from Figma file: ${actualFileKey}\n`,
+);
 console.log("=== Published Variables ===");
 console.log(JSON.stringify(data, null, 2));

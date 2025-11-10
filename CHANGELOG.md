@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.46.4 (2025-11-07)</small>
+
+* chore(release): 4.46.2 [skip ci] ([789d5e0aab22cb81d5c1325627519c7c90cac181](https://github.com/narmi/design_system/commit/789d5e0aab22cb81d5c1325627519c7c90cac181))
+* chore: stabilize asset imports in dist/style css ([b0dbc9497d081e4a38ebae3d2a3f1c3536006ee6](https://github.com/narmi/design_system/commit/b0dbc9497d081e4a38ebae3d2a3f1c3536006ee6))
+* chore: update README ([a8d90a68c7437911742f91be51dc42a5658f3417](https://github.com/narmi/design_system/commit/a8d90a68c7437911742f91be51dc42a5658f3417))
+* chore: update README ([3d31b00bae85f794bbe6a353d74ddb618c23a9b6](https://github.com/narmi/design_system/commit/3d31b00bae85f794bbe6a353d74ddb618c23a9b6))
+* fix(dist): release with concat CSS ([384193b65e6d142e22b7352a78ac743680d6723a](https://github.com/narmi/design_system/commit/384193b65e6d142e22b7352a78ac743680d6723a))
+* refactor(build): use native sass features to concat all CSS ([675867a9d11e600aa01a0f4f0b4277bc9600afc9](https://github.com/narmi/design_system/commit/675867a9d11e600aa01a0f4f0b4277bc9600afc9))
+
 ## <small>4.46.3 (2025-11-04)</small> [DEPRECATED]
 
 - fix: font paths ([cb720236fd928d3cca8efbe957e5c904d7677969](https://github.com/narmi/design_system/commit/cb720236fd928d3cca8efbe957e5c904d7677969))

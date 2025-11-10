@@ -111,7 +111,7 @@ export const getVisibleChildrenByCategory = (
 export const defaultFilterItemsByInput = (items, inputValue) =>
   items.filter((item) => {
     const query = item.props.searchValue || item.props.value;
-    return query.toLowerCase().startsWith(inputValue);
+    return query.match(new RegExp(RegExp.escape(inputValue), "i"));
   });
 
 /**

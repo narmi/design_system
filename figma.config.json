@@ -1,0 +1,7 @@
+{
+  "codeConnect": {
+    "include": ["src/**/*.{tsx,jsx}"],
+    "label": "React",
+    "interactiveSetupFigmaFileUrl": "https://www.figma.com/design/nCjdO761StnkwNZHFmcrUu/Narmi-Design-System-v2?node-id=1-49&m=dev"
+  }
+}

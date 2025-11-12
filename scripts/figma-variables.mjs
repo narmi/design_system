@@ -21,7 +21,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const token = process.env.FIGMA_TOKEN;
 const [fileKey, outputDir = "tokens_figma"] = process.argv.slice(2);
 
-const fallbackFileKey = "vQRSHiaJMtSapS8O2hZSso";
+const fallbackFileKey = "nCjdO761StnkwNZHFmcrUu";
 
 if (!token) {
   console.error("Error: FIGMA_TOKEN environment variable is required");

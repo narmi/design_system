@@ -1,5 +1,5 @@
 import React from "react";
-import Checkbox from "./index";
+import Checkbox from "./";
 import figma from "@figma/code-connect";
 
 /**

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.47.0 (2025-11-18)
+
+* chore(figma): add unused beta workflow with manual trigger ([4b88fb5495567c4fe5edd5ff9b3fba09b618126e](https://github.com/narmi/design_system/commit/4b88fb5495567c4fe5edd5ff9b3fba09b618126e))
+* chore: update readme ([141c0bca08d0f84b95f28d17364cfab1d95fd4ea](https://github.com/narmi/design_system/commit/141c0bca08d0f84b95f28d17364cfab1d95fd4ea))
+* chore: use env in debug action ([c80ad02930082697c9cf2939ee635a21f52b54b6](https://github.com/narmi/design_system/commit/c80ad02930082697c9cf2939ee635a21f52b54b6))
+* chore: use SHA to pin gh actions ([2d2f95c17c5408c1d3b06c4774f62dd11421aabf](https://github.com/narmi/design_system/commit/2d2f95c17c5408c1d3b06c4774f62dd11421aabf))
+* feat(Alert): add primary kind ([c5f541677fa1f388e826f1c6ef9f158ec7258a01](https://github.com/narmi/design_system/commit/c5f541677fa1f388e826f1c6ef9f158ec7258a01))
+
 ## <small>4.46.5 (2025-11-10)</small>
 
 - fix(MultiSelect): fix missing dropdown border ([dd5b8f03396f9671d08760feb5b6c431a4594a41](https://github.com/narmi/design_system/commit/dd5b8f03396f9671d08760feb5b6c431a4594a41))

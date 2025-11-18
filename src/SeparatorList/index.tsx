@@ -24,9 +24,9 @@ const SeparatorList: React.FC<SeparatorListProps> = ({
     ])}
     data-testid={testId}
   >
-    {(() => {
-      const filteredItems = items.filter((item) => item !== null && item !== undefined);
-      return filteredItems.map((item, i) => {
+    {items
+      .filter((item) => item !== null && item !== undefined)
+      .map((item, i, filteredItems) => {
         const itemProps = {};
         if (i !== filteredItems.length - 1) {
           itemProps["data-separator"] = separator;
@@ -36,8 +36,7 @@ const SeparatorList: React.FC<SeparatorListProps> = ({
             {item}
           </li>
         );
-      });
-    })()}
+      })}
   </ul>
 );
 

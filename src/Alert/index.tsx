@@ -13,7 +13,7 @@ interface AlertProps {
   /** Callback for user dismissal actions */
   onUserDismiss?: () => void;
   /** Variant of Alert to use */
-  kind?: "info" | "error" | "success" | "warn";
+  kind?: "info" | "error" | "success" | "warn" | "primary";
   /** Override the default icon of the alert */
   icon?: IconName | string | null;
   /** Size of padding for Alert. */

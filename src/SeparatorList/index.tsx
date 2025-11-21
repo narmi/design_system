@@ -24,17 +24,19 @@ const SeparatorList: React.FC<SeparatorListProps> = ({
     ])}
     data-testid={testId}
   >
-    {items.map((item, i) => {
-      const itemProps = {};
-      if (i !== items.length - 1) {
-        itemProps["data-separator"] = separator;
-      }
-      return (
-        <li key={`${i}-${separator}`} {...itemProps}>
-          {item}
-        </li>
-      );
-    })}
+    {items
+      .filter((item) => item !== null && item !== undefined)
+      .map((item, i, filteredItems) => {
+        const itemProps = {};
+        if (i !== filteredItems.length - 1) {
+          itemProps["data-separator"] = separator;
+        }
+        return (
+          <li key={`${i}-${separator}`} {...itemProps}>
+            {item}
+          </li>
+        );
+      })}
   </ul>
 );
 

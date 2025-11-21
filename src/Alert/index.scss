@@ -43,3 +43,11 @@
     color: var(--color-infoDark);
   }
 }
+
+.nds-alert--primary {
+  background-color: RGBA(var(--theme-rgb-primary), var(--alpha-10));
+
+  .nds-alert-icon::before {
+    color: var(--theme-primary);
+  }
+}

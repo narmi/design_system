@@ -6,10 +6,7 @@
     "importHelpers": true,
     "inlineSources": true,
     "isolatedModules": true,
-    "lib": [
-        "ES2022",
-        "dom"
-    ],
+    "lib": ["ES2022", "dom"],
     "moduleResolution": "Node16",
     "module": "Node16",
     "sourceMap": true,
@@ -21,8 +18,6 @@
     "outDir": "./dist/types",
     "resolveJsonModule": true
   },
-  "files": [
-    "src/index.ts",
-    "src/json.d.ts"
-  ]
+  "files": ["src/index.ts", "src/json.d.ts"],
+  "exclude": ["**/*.figma.tsx"]
 }

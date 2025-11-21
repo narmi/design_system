@@ -17,3 +17,4 @@ src/base-styles/
 *.ttf
 *.woff
 *.woff2
+*.figma.tsx

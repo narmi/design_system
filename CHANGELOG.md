@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.47.1 (2025-11-21)</small>
+
+* chore: update linting ignores ([92bc935e4869db8ebc8304a08743890b49a364f9](https://github.com/narmi/design_system/commit/92bc935e4869db8ebc8304a08743890b49a364f9))
+* docs(figma): add code connect setup for button ([60f2cd1406c818dec668c8f51fa0f668561c7284](https://github.com/narmi/design_system/commit/60f2cd1406c818dec668c8f51fa0f668561c7284))
+* fix(SeparatorList): filter out null and undefined items ([f77b7db136bd615f445c357ae6ddeacae29b7f3b](https://github.com/narmi/design_system/commit/f77b7db136bd615f445c357ae6ddeacae29b7f3b))
+
 ## 4.47.0 (2025-11-18)
 
 * chore(figma): add unused beta workflow with manual trigger ([4b88fb5495567c4fe5edd5ff9b3fba09b618126e](https://github.com/narmi/design_system/commit/4b88fb5495567c4fe5edd5ff9b3fba09b618126e))

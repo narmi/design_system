@@ -18,6 +18,5 @@
     "outDir": "./dist/types",
     "resolveJsonModule": true
   },
-  "files": ["src/index.ts", "src/json.d.ts"],
-  "exclude": ["**/*.figma.tsx"]
+  "files": ["src/index.ts", "src/json.d.ts"]
 }

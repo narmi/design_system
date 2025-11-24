@@ -10,7 +10,7 @@ figma.connect(
     props: {
       // In code, we only allow control over the left icon
       icon: figma.boolean("Show left icon", {
-        true: figma.instance<string>("Left icon"),
+        true: figma.instance("Left icon style"),
         false: undefined,
       }),
 

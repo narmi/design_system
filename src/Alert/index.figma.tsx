@@ -24,9 +24,9 @@ figma.connect(
         Danger: "error",
       }),
     },
-    example: ({ icon, kind }) => (
+    example: ({ icon, kind, isDismissable }) => (
       // Alert takes any JSX children to compose content
-      <Alert icon={icon} kind={kind} />
+      <Alert icon={icon} kind={kind} isDismissable={isDismissable} />
     ),
   },
 );

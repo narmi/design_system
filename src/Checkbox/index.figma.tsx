@@ -21,12 +21,26 @@ figma.connect(
       disabled: figma.enum("Property 1", {
         Disabled: true,
       }),
-      // No matching props could be found for these Figma properties:
-      // "helperText": figma.boolean('Helper Text'),
-      // "card": figma.boolean('Card')
+      kind: figma.boolean("Card", {
+        true: "card",
+        false: "normal",
+      }),
+      hasError: figma.enum("Property 1", {
+        Error: true,
+        Checked: false,
+        Disabled: false,
+        Default: false,
+      }),
     },
-    example: (props) => (
-      <Checkbox checked={props.checked} disabled={props.disabled} />
+    example: ({ checked, disabled, kind, hasError }) => (
+      // Checkbox does not currently support Helper Text
+      // Support may be added in the future via a `renderLabel` prop
+      <Checkbox
+        checked={checked}
+        disabled={disabled}
+        kind={kind}
+        hasError={hasError}
+      />
     ),
   },
 );

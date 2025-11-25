@@ -97,3 +97,13 @@
 .nds-plain-button {
   @extend %btn-kind-plain;
 }
+
+.nds-button--spread {
+  justify-content: stretch !important;
+
+  &.nds-button--xs .nds-button-content,
+  &.nds-button--s .nds-button-content,
+  &.nds-button--m .nds-button-content {
+    width: 100% !important;
+  }
+}

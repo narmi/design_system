@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.48.0 (2025-11-25)
+
+* build(deps-dev): bump js-yaml from 3.14.1 to 3.14.2 ([b54482a86d2fafeb4cc6893905ad201502bc9a95](https://github.com/narmi/design_system/commit/b54482a86d2fafeb4cc6893905ad201502bc9a95))
+* chore: update figma instance name for icon ([75696aba95b40ca65acc76e9ecee87aa3ef47289](https://github.com/narmi/design_system/commit/75696aba95b40ca65acc76e9ecee87aa3ef47289))
+* docs(Alert): add figma code connect ([a367f71584cac20d309d58d3d01da159e1043961](https://github.com/narmi/design_system/commit/a367f71584cac20d309d58d3d01da159e1043961))
+* docs(Checkbox): add figma connect ([05473b3574c2b67e9decfd6a1cffa7c33041415c](https://github.com/narmi/design_system/commit/05473b3574c2b67e9decfd6a1cffa7c33041415c))
+* docs(Checkbox): add figma connect ([13caf04fce496091e9721b7a2e68392ffa700227](https://github.com/narmi/design_system/commit/13caf04fce496091e9721b7a2e68392ffa700227))
+* docs(Avatar): create code connect docfile ([b72cccb8862e759de0b00a6be672046c371497e1](https://github.com/narmi/design_system/commit/b72cccb8862e759de0b00a6be672046c371497e1))
+* feat(Button): ensure click originator is root anchor or button ([a5f663e9934e561b28c4cd87867e5c69152da712](https://github.com/narmi/design_system/commit/a5f663e9934e561b28c4cd87867e5c69152da712))
+
 ## <small>4.47.1 (2025-11-21)</small>
 
 * chore: update linting ignores ([92bc935e4869db8ebc8304a08743890b49a364f9](https://github.com/narmi/design_system/commit/92bc935e4869db8ebc8304a08743890b49a364f9))

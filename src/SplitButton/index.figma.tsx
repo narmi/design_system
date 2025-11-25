@@ -1,5 +1,5 @@
 import React from "react";
-import Index from "./index";
+import SplitButton from "./index";
 import figma from "@figma/code-connect";
 
 /**
@@ -11,10 +11,29 @@ import figma from "@figma/code-connect";
  */
 
 figma.connect(
-  Index,
+  SplitButton,
   "https://www.figma.com/design/nCjdO761StnkwNZHFmcrUu/Narmi-Design-System-v2?node-id=356%3A22006",
   {
-    props: {},
-    example: (props) => <Index />,
+    props: {
+      kind: figma.enum("Color", {
+        Primary: "primary",
+        Secondary: "secondary",
+        Tonal: "tonal",
+      }),
+      size: figma.enum("Size", {
+        s: "s",
+        base: "m",
+        m: "m",
+        l: "m",
+      }),
+    },
+    example: ({ kind, size }) => (
+      <SplitButton kind={kind} size={size} label="Button text">
+        {/* SplitButton.Menu also available */}
+        <SplitButton.Popover>
+          <div>Popover content</div>
+        </SplitButton.Popover>
+      </SplitButton>
+    ),
   },
 );

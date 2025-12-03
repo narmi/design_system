@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.48.1 (2025-12-03)</small>
+
+* fix(iconButton): corrects argType prop name to match component props ([3a6d257ea323f520dba3c0bda99a5ed635d0bbe4](https://github.com/narmi/design_system/commit/3a6d257ea323f520dba3c0bda99a5ed635d0bbe4))
+
 ## 4.48.0 (2025-11-25)
 
 * build(deps-dev): bump js-yaml from 3.14.1 to 3.14.2 ([b54482a86d2fafeb4cc6893905ad201502bc9a95](https://github.com/narmi/design_system/commit/b54482a86d2fafeb4cc6893905ad201502bc9a95))

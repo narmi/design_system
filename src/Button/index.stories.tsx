@@ -100,11 +100,33 @@ export const ButtonSizes = () => (
   </>
 );
 
+export const SpreadLayoutWithIcon = () => (
+  <div
+    style={{
+      width: "240px",
+      padding: "22px",
+      display: "flex",
+      flexDirection: "column",
+      gap: "16px",
+    }}
+  >
+    <Button
+      label="Get started"
+      type="submit"
+      endIcon="arrow-right"
+      size="s"
+      isSpread={true}
+    />
+  </div>
+);
+
+
 export default {
   title: "Components/Button",
   component: Button,
   argTypes: {
     startIcon: { options: ["", ...(VALID_ICON_NAMES as IconName)] },
     endIcon: { options: ["", ...(VALID_ICON_NAMES as IconName)] },
+    isSpread: { control: "boolean" },
   },
 };

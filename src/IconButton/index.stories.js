@@ -116,7 +116,7 @@ export default {
   component: IconButton,
   argTypes: {
     name: { options: ["", ...VALID_ICON_NAMES] },
-    size: { options: ["xs", "s", "m", "l"] },
+    textSize: { options: ["xs", "s", "m", "l"] },
     kind: { options: ["plain", "action", "themed"] },
   },
 };

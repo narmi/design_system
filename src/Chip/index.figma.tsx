@@ -25,23 +25,32 @@ figma.connect(
         Success: "success",
         Error: "error",
       }) as (typeof VALID_KINDS)[number],
-      label: "Button text",
-      /*
-      startIcon: figma.boolean("Show left icon", {
-        true: figma.instance<string>("Left icon"),
+      label: figma.boolean("Label", {
+        true: "Label Text",
+        false: "",
+      }),
+      startIcon: figma.boolean("Show StartIcon", {
+        true: figma.instance<string>("StartIcon"),
         false: undefined,
       }),
-      startIcon: figma.boolean("Show right icon", {
-        true: figma.instance<string>("Right icon"),
+      endIcon: figma.boolean("Show EndIcon", {
+        true: figma.instance<string>("EndIcon"),
         false: undefined,
       }),
-      */
-      // number + showNumber
-      count: 5,
-      // TODO: size unimplemented
+      count: figma.boolean("Show Count", {
+        true: 5,
+        false: undefined,
+      }),
+      isDismissible: figma.boolean("CloseButton"),
+      onDismiss: figma.boolean("CloseButton", {
+        true: () => {},
+        false: undefined,
+      }),
+      // [UI REFRESH] We must implement "Size" props in code.
+      // <https://linear.app/narmi/issue/NDS-2218/chipbadge-add-size-support-and-map-new-prop-names>
     },
-    example: (props) => (
-      <Chip kind={props.kind} label={props.label} count={props.count} />
+    example: ({ kind, count, label }) => (
+      <Chip kind={kind} label={label} count={count} />
     ),
   },
 );

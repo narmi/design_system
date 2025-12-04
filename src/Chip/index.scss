@@ -27,15 +27,19 @@
   // `kind` variants
   &--info {
     background-color: var(--color-infoLight);
+    border-color: var(--color-infoLight);
   }
   &--success {
     background-color: var(--color-successLight);
+    border-color: var(--color-successLight);
   }
   &--warn {
     background-color: var(--color-warnLight);
+    border-color: var(--color-warnLight);
   }
   &--error {
     background-color: var(--color-errorLight);
+    border-color: var(--color-errorLight);
   }
   &--secondary {
     background-color: var(--color-white);
@@ -43,6 +47,12 @@
   }
   &--primary {
     background-color: RGBA(var(--theme-rgb-primary), var(--alpha-10));
+  }
+
+  // Individual style controls/props
+  // <https://www.figma.com/design/nCjdO761StnkwNZHFmcrUu/Narmi-Design-System-v2?node-id=370-5171&m=dev>
+  &--hasBorder {
+    border: 1px solid;
   }
 }
 

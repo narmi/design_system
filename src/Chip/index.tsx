@@ -32,6 +32,8 @@ interface ChipProps {
   endIcon?: IconName;
   /** Displays a Count after the `label` */
   count?: string | number;
+  /** Adds a border to the badege when `true` */
+  hasBorder?: boolean;
 }
 
 /**
@@ -48,6 +50,7 @@ const Chip = ({
   onClick,
   startIcon,
   endIcon,
+  hasBorder = false,
 }: ChipProps) => {
   const isButton = typeof onClick === "function";
   const isDismissable = !isButton && typeof onDismiss === "function";
@@ -66,6 +69,7 @@ const Chip = ({
         {
           "button--reset": isButton,
           "nds-chip--button": isButton,
+          "nds-chip--hasBorder": hasBorder,
         },
       ])}
     >

@@ -32,6 +32,16 @@ export const AsButton = () => (
   </>
 );
 
+export const WithBorder = () => (
+  <>
+    <p>
+      When the <code>hasBorder</code> prop is set to true, a border will be
+      rendered based on the `kind` of the Chip.
+    </p>
+    <Chip kind="warn" label="Bordered" hasBorder={true} />
+  </>
+);
+
 export const CustomIcon = () => (
   <>
     <p>

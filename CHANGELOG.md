@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.49.0 (2025-12-04)
+
+* chore(ci): cache npm run build and reuse it for Chromatic PR checks ([b5b7b396ba0df9914ef8a92b3a723116f2d85b8a](https://github.com/narmi/design_system/commit/b5b7b396ba0df9914ef8a92b3a723116f2d85b8a))
+* docs(Chip): add figma connect ([a28bfc22f0963899cf6e4f3a1d27e2d7052d4252](https://github.com/narmi/design_system/commit/a28bfc22f0963899cf6e4f3a1d27e2d7052d4252))
+* feat(Chip): add hasBorder prop ([6ee319424c4acfb1f3ca04b6e9dee687a290b6f6](https://github.com/narmi/design_system/commit/6ee319424c4acfb1f3ca04b6e9dee687a290b6f6))
+
 ## <small>4.48.1 (2025-12-03)</small>
 
 * fix(iconButton): corrects argType prop name to match component props ([3a6d257ea323f520dba3c0bda99a5ed635d0bbe4](https://github.com/narmi/design_system/commit/3a6d257ea323f520dba3c0bda99a5ed635d0bbe4))

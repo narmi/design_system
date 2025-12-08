@@ -56,8 +56,10 @@ import useLockBodyScroll from "./hooks/useLockBodyScroll";
 import useSupportsAnchorPositioning from "./hooks/useSupportsAnchorPositioning";
 import formatNumber from "./formatters/formatNumber";
 import formatDate from "./formatters/formatDate";
+import Accordion from './Accordion';
 
 export {
+  Accordion,
   AutocompleteModal,
   Alert,
   Avatar,

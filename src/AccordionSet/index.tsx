@@ -54,7 +54,7 @@ const AccordionSet = ({
         };
 
         return React.cloneElement(child, {
-          key: index,
+          key: child.key ?? index,
           ...(shouldControlAccordion && {
             isOpen: isThisAccordionOpen,
             onUserToggle: handleToggle,

@@ -2,6 +2,7 @@
  * Typed Components
  */
 import Accordion from "./Accordion";
+import AccordionSet from "./AccordionSet";
 import Alert from "./Alert";
 import AutocompleteModal from "./AutocompleteModal";
 import Avatar from "./Avatar";
@@ -68,6 +69,7 @@ declare const formatDate;
 export * from "./types/Icon.types";
 export {
   Accordion,
+  AccordionSet,
   AutocompleteModal,
   Avatar,
   Button,

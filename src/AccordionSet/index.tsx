@@ -20,8 +20,8 @@ export interface AccordionSetProps {
  * May be used to wrap `Accordion` components to control how their open/closed state
  * affects each other.
  *
- * "native": Any number of accordions can be open at once (default).
- * "exclusive": Open accordions are mutually exclusive; opening one closes others.
+ * "native": Any number of accordions can be open at once
+ * "exclusive": Open accordions are mutually exclusive; opening one closes others (default)
  */
 const AccordionSet = ({
   behavior = "exclusive",

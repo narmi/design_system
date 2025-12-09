@@ -1,7 +1,7 @@
 @import "../base-styles/scss-utils.scss";
 
 .nds-accordion {
-  // Allows `max-height` to be an intermpolatable size value for the transition.
+  // Allows `max-height` to be an interpolatable size value for the transition.
   interpolate-size: allow-keywords;
 }
 

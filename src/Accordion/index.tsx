@@ -41,7 +41,9 @@ const Accordion = ({
 }: AccordionProps) => {
   const [internalIsOpen, setInternalIsOpen] = useState(isOpenProp ?? false);
   const isOpen = isOpenProp ?? internalIsOpen;
-  const contentId = useId();
+  const id = useId();
+  const buttonId = `${id}-button`;
+  const contentId = `${id}-content`;
 
   const handleClick = () => {
     const newIsOpen = !isOpen;
@@ -54,6 +56,7 @@ const Accordion = ({
   return (
     <div className="nds-accordion" data-testid={testId}>
       <button
+        id={buttonId}
         className="nds-accordion-summary-button button--reset"
         onClick={handleClick}
         aria-expanded={isOpen}
@@ -67,6 +70,7 @@ const Accordion = ({
         className="nds-accordion-details"
         role="region"
         aria-hidden={!isOpen}
+        aria-labelledby={buttonId}
       >
         {children}
       </div>

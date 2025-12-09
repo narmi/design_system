@@ -1,0 +1,23 @@
+@import "../base-styles/scss-utils.scss";
+
+.nds-accordion {
+  // Allows `max-height` to be an intermpolatable size value for the transition.
+  interpolate-size: allow-keywords;
+}
+
+.nds-accordion-summary-button {
+  display: block;
+  text-align: start;
+  width: 100%;
+}
+
+.nds-accordion-details {
+  max-height: 0; // hidden
+  overflow: hidden;
+  transition: max-height 0.2s ease-in-out;
+
+  // expand to _natural_ height when not hidden.
+  &:not([aria-hidden="true"]) {
+    max-height: max-content; // visible
+  }
+}

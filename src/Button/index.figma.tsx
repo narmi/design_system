@@ -17,9 +17,8 @@ figma.connect(
         Tertiary: "tonal",
       }),
       size: figma.enum("Size", {
-        s: "s",
-        base: "m",
-        m: "m",
+        s: "xs",
+        base: "s",
         l: "m",
       }),
       startIcon: figma.boolean("Show start icon", {

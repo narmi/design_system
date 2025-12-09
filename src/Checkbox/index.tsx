@@ -58,7 +58,7 @@ interface CheckboxProps {
  */
 const Checkbox = ({
   label,
-  markdownLabel,
+  markdownLabel, // DEPRECATED
   onChange = () => {},
   id,
   name,

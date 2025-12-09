@@ -16,10 +16,23 @@ jobs:
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Cache build
+        id: build-cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: dist
+          key: build-${{ hashFiles('src/**', 'package-lock.json') }}
+
+      - name: Build
+        if: steps.build-cache.outputs.cache-hit != 'true'
+        run: npm run build
 
       - name: Jest
         run: |
           echo "The job was automatically triggered by a ${{ github.event_name }} event."
-          npm install
-          npm run build
           npm run test

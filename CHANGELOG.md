@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.49.0 (2025-12-04)
+
+* chore(ci): cache npm run build and reuse it for Chromatic PR checks ([b5b7b396ba0df9914ef8a92b3a723116f2d85b8a](https://github.com/narmi/design_system/commit/b5b7b396ba0df9914ef8a92b3a723116f2d85b8a))
+* docs(Chip): add figma connect ([a28bfc22f0963899cf6e4f3a1d27e2d7052d4252](https://github.com/narmi/design_system/commit/a28bfc22f0963899cf6e4f3a1d27e2d7052d4252))
+* feat(Chip): add hasBorder prop ([6ee319424c4acfb1f3ca04b6e9dee687a290b6f6](https://github.com/narmi/design_system/commit/6ee319424c4acfb1f3ca04b6e9dee687a290b6f6))
+
+## <small>4.48.1 (2025-12-03)</small>
+
+* fix(iconButton): corrects argType prop name to match component props ([3a6d257ea323f520dba3c0bda99a5ed635d0bbe4](https://github.com/narmi/design_system/commit/3a6d257ea323f520dba3c0bda99a5ed635d0bbe4))
+
+## 4.48.0 (2025-11-25)
+
+* build(deps-dev): bump js-yaml from 3.14.1 to 3.14.2 ([b54482a86d2fafeb4cc6893905ad201502bc9a95](https://github.com/narmi/design_system/commit/b54482a86d2fafeb4cc6893905ad201502bc9a95))
+* chore: update figma instance name for icon ([75696aba95b40ca65acc76e9ecee87aa3ef47289](https://github.com/narmi/design_system/commit/75696aba95b40ca65acc76e9ecee87aa3ef47289))
+* docs(Alert): add figma code connect ([a367f71584cac20d309d58d3d01da159e1043961](https://github.com/narmi/design_system/commit/a367f71584cac20d309d58d3d01da159e1043961))
+* docs(Checkbox): add figma connect ([05473b3574c2b67e9decfd6a1cffa7c33041415c](https://github.com/narmi/design_system/commit/05473b3574c2b67e9decfd6a1cffa7c33041415c))
+* docs(Checkbox): add figma connect ([13caf04fce496091e9721b7a2e68392ffa700227](https://github.com/narmi/design_system/commit/13caf04fce496091e9721b7a2e68392ffa700227))
+* docs(Avatar): create code connect docfile ([b72cccb8862e759de0b00a6be672046c371497e1](https://github.com/narmi/design_system/commit/b72cccb8862e759de0b00a6be672046c371497e1))
+* feat(Button): ensure click originator is root anchor or button ([a5f663e9934e561b28c4cd87867e5c69152da712](https://github.com/narmi/design_system/commit/a5f663e9934e561b28c4cd87867e5c69152da712))
+
+## <small>4.47.1 (2025-11-21)</small>
+
+* chore: update linting ignores ([92bc935e4869db8ebc8304a08743890b49a364f9](https://github.com/narmi/design_system/commit/92bc935e4869db8ebc8304a08743890b49a364f9))
+* docs(figma): add code connect setup for button ([60f2cd1406c818dec668c8f51fa0f668561c7284](https://github.com/narmi/design_system/commit/60f2cd1406c818dec668c8f51fa0f668561c7284))
+* fix(SeparatorList): filter out null and undefined items ([f77b7db136bd615f445c357ae6ddeacae29b7f3b](https://github.com/narmi/design_system/commit/f77b7db136bd615f445c357ae6ddeacae29b7f3b))
+
 ## 4.47.0 (2025-11-18)
 
 * chore(figma): add unused beta workflow with manual trigger ([4b88fb5495567c4fe5edd5ff9b3fba09b618126e](https://github.com/narmi/design_system/commit/4b88fb5495567c4fe5edd5ff9b3fba09b618126e))

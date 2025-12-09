@@ -33,7 +33,7 @@ const sampleAccordions = [
 export const ExclusiveMode = () => {
   return (
     <AccordionSet behavior="exclusive">
-      {sampleAccordions.map((item, index) => (
+      {sampleAccordions.map((item) => (
         <Accordion
           key={item.id}
           renderSummary={(isOpen) => (
@@ -67,7 +67,7 @@ ExclusiveMode.parameters = {
 export const NativeMode = () => {
   return (
     <AccordionSet behavior="native">
-      {sampleAccordions.map((item, index) => (
+      {sampleAccordions.map((item) => (
         <Accordion
           key={item.id}
           renderSummary={(isOpen) => (
@@ -101,7 +101,7 @@ NativeMode.parameters = {
 export const WithCustomStyling = () => {
   return (
     <AccordionSet behavior="exclusive">
-      {sampleAccordions.map((item, index) => (
+      {sampleAccordions.map((item) => (
         <Accordion
           key={item.id}
           renderSummary={(isOpen) => (

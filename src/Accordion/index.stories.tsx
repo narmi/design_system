@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
 import Accordion from "./";
 import Row from "../Row";
@@ -113,7 +114,7 @@ export const ControlledMode = () => {
         )}
       >
         <div className="padding--all">
-          This accordion's state is controlled by the parent component. You can
+          This accordion state is controlled by the parent component. You can
           toggle it using the button above or by clicking this summary.
         </div>
       </Accordion>

@@ -1,4 +1,6 @@
 import AutocompleteModal from "./AutocompleteModal";
+import Accordion from "./Accordion";
+import AccordionSet from "./AccordionSet";
 import Alert from "./Alert";
 import Avatar from "./Avatar";
 import Button from "./Button";
@@ -59,6 +61,8 @@ import formatDate from "./formatters/formatDate";
 
 export {
   AutocompleteModal,
+  Accordion,
+  AccordionSet,
   Alert,
   Avatar,
   Button,

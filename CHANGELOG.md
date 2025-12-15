@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## 4.50.0 (2025-12-15)
+## 4.50.1 (2025-12-15)
 
 * build(deps-dev): bump @commitlint/config-conventional ([fbf405e63d483f78c50e3c3469763c690c0cc12b](https://github.com/narmi/design_system/commit/fbf405e63d483f78c50e3c3469763c690c0cc12b))
 * build(deps-dev): bump @storybook/addon-links from 9.1.13 to 9.1.16 ([fd9e25bec4779df9af84afaca4f57c7d1e953a8b](https://github.com/narmi/design_system/commit/fd9e25bec4779df9af84afaca4f57c7d1e953a8b))

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.50.1 (2025-12-15)</small>
+
+* fix(nds): bump version to 4.50.1 to trigger release ([c85986b18ca49654ac98cc380d02440386039017](https://github.com/narmi/design_system/commit/c85986b18ca49654ac98cc380d02440386039017))
+
 ## 4.50.1 (2025-12-15)
 
 * build(deps-dev): bump @commitlint/config-conventional ([fbf405e63d483f78c50e3c3469763c690c0cc12b](https://github.com/narmi/design_system/commit/fbf405e63d483f78c50e3c3469763c690c0cc12b))

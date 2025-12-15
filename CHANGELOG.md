@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.50.0 (2025-12-15)
+
+* build(deps-dev): bump @commitlint/config-conventional ([fbf405e63d483f78c50e3c3469763c690c0cc12b](https://github.com/narmi/design_system/commit/fbf405e63d483f78c50e3c3469763c690c0cc12b))
+* build(deps-dev): bump @storybook/addon-links from 9.1.13 to 9.1.16 ([fd9e25bec4779df9af84afaca4f57c7d1e953a8b](https://github.com/narmi/design_system/commit/fd9e25bec4779df9af84afaca4f57c7d1e953a8b))
+* build(deps): bump chromaui/action from 13.2.1 to 13.3.4 ([310e7e53db4d920a4724fcba4d2e2bdf9d1b6aff](https://github.com/narmi/design_system/commit/310e7e53db4d920a4724fcba4d2e2bdf9d1b6aff))
+* build(deps): bump mdast-util-to-hast from 13.2.0 to 13.2.1 ([76632851e0075cfa1e8f282c37ccd251d8aa88c9](https://github.com/narmi/design_system/commit/76632851e0075cfa1e8f282c37ccd251d8aa88c9))
+* build(deps-dev): bump node-forge from 1.3.1 to 1.3.2 ([24b73899cf4728ce05d6c874688e9c539d62cee5](https://github.com/narmi/design_system/commit/24b73899cf4728ce05d6c874688e9c539d62cee5))
+* build(deps-dev): bump semantic-release from 24.2.7 to 24.2.9 ([7b125425b024e20ecd71a79e0166fcb21b29de53](https://github.com/narmi/design_system/commit/7b125425b024e20ecd71a79e0166fcb21b29de53))
+* chore: lint ([0317220520aace78a15c431b989ceacb08bc2603](https://github.com/narmi/design_system/commit/0317220520aace78a15c431b989ceacb08bc2603))
+* chore: stub figma file ([c31c0b6db62069baf225932f15c1af4b09f23006](https://github.com/narmi/design_system/commit/c31c0b6db62069baf225932f15c1af4b09f23006))
+* chore: wip dialog figma file ([3e4499ada114871d798930e1a631d91623d0d676](https://github.com/narmi/design_system/commit/3e4499ada114871d798930e1a631d91623d0d676))
+* docs(SplitButton): add figma code connect ([261d8e8a22102e1aea13e93cdb2ac724cb239e8a](https://github.com/narmi/design_system/commit/261d8e8a22102e1aea13e93cdb2ac724cb239e8a))
+* docs(CollapsibleCard): add figma connect file ([771d81bdda02e0c9ecaecd62e867b6efaad9a6cd](https://github.com/narmi/design_system/commit/771d81bdda02e0c9ecaecd62e867b6efaad9a6cd))
+* docs(Count): add figma connect file ([4dc72e03c37106ab17023f77883d62e6b095cd95](https://github.com/narmi/design_system/commit/4dc72e03c37106ab17023f77883d62e6b095cd95))
+* docs(AutocompleteModal): add figma connect ([97799fb50306590fd19560e54489236015dc380d](https://github.com/narmi/design_system/commit/97799fb50306590fd19560e54489236015dc380d))
+* docs(Dialog): add figma connect ([95a97fc06df9e02004a002249143bff84da2f8e1](https://github.com/narmi/design_system/commit/95a97fc06df9e02004a002249143bff84da2f8e1))
+* docs(Pagination): add figma connect ([8a0d115c8f2476971a0181f3242438bbe2d73a47](https://github.com/narmi/design_system/commit/8a0d115c8f2476971a0181f3242438bbe2d73a47))
+* docs(Dialog): map figma connect to Header/Footer ([ba95cd9915883c31ab0678909425c499c02cf099](https://github.com/narmi/design_system/commit/ba95cd9915883c31ab0678909425c499c02cf099))
+* docs: update comment ([94f42804dc345a03fe886b288a2ff2aa7ec29aee](https://github.com/narmi/design_system/commit/94f42804dc345a03fe886b288a2ff2aa7ec29aee))
+* feat(AccordionSet): add AccordionSet component ([dd323be79d1cd25515a86da7c8db4a7bad725dbc](https://github.com/narmi/design_system/commit/dd323be79d1cd25515a86da7c8db4a7bad725dbc))
+* feat: add aria-labelledby to accordion region using same useId result ([a8887c7169341adeb571ff842b37a95174dd8517](https://github.com/narmi/design_system/commit/a8887c7169341adeb571ff842b37a95174dd8517))
+* feat(Accordion): add single accordion component ([6d65e36451158e305e2dfa337985f54737d341b4](https://github.com/narmi/design_system/commit/6d65e36451158e305e2dfa337985f54737d341b4))
+
 ## 4.49.0 (2025-12-04)
 
 * chore(ci): cache npm run build and reuse it for Chromatic PR checks ([b5b7b396ba0df9914ef8a92b3a723116f2d85b8a](https://github.com/narmi/design_system/commit/b5b7b396ba0df9914ef8a92b3a723116f2d85b8a))

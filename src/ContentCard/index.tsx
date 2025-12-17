@@ -2,6 +2,7 @@ import cc from "classcat";
 import React from "react";
 
 import Error from "../Error";
+import DisabledShim from "../DisabledShim";
 
 interface ContentCardProps {
   /** Accepts any content as children */
@@ -55,6 +56,8 @@ interface ContentCardProps {
   /**
    * Disables the card, preventing any click events.
    */
+  isDisabled?: boolean;
+  /** @deprecated Use `isDisabled` instead */
   disabled?: boolean;
 }
 
@@ -70,8 +73,10 @@ const ContentCard = ({
   testId,
   radiusSize = "s",
   error,
-  disabled = false,
+  isDisabled: isDisabledProp,
+  disabled: disabledProp,
 }: ContentCardProps) => {
+  const isDisabled = isDisabledProp ?? disabledProp ?? false;
   const isInteractive = ["interactive", "toggle", "button"].some(
     (interactiveKinds) => kind === interactiveKinds,
   );
@@ -101,25 +106,33 @@ const ContentCard = ({
     return props;
   };
 
+  const cardContent = (
+    <div
+      data-testid={testId || "ndsContentCard"}
+      className={cc([
+        "nds-contentCard",
+        `nds-contentCard--${kind}`,
+        `padding--all--${paddingSize}`,
+        `rounded--all--${radiusSize} bgColor--white`,
+        {
+          "button--reset": isInteractive,
+          "nds-contentCard--error": isInteractive && error,
+          "nds-contentCard--disabled": isDisabled,
+        },
+      ])}
+      {...getInteractiveProps()}
+    >
+      {children}
+    </div>
+  );
+
   return (
     <>
-      <div
-        data-testid={testId || "ndsContentCard"}
-        className={cc([
-          "nds-contentCard",
-          `nds-contentCard--${kind}`,
-          `padding--all--${paddingSize}`,
-          `rounded--all--${radiusSize} bgColor--white`,
-          {
-            "button--reset": isInteractive,
-            "nds-contentCard--error": isInteractive && error,
-            "nds-contentCard--disabled": disabled,
-          },
-        ])}
-        {...getInteractiveProps()}
-      >
-        {children}
-      </div>
+      {isInteractive ? (
+        <DisabledShim isDisabled={isDisabled}>{cardContent}</DisabledShim>
+      ) : (
+        cardContent
+      )}
       {error && <Error error={error} marginTop="s" />}
     </>
   );

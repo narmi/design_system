@@ -42,7 +42,7 @@ export interface DialogProps {
    * Callback to handle user taking an action to dismiss the modal
    * (click outside, Escape key, click close button)
    */
-  onUserDismiss?: () => void;
+  onUserDismiss?: (event?: React.MouseEvent<HTMLButtonElement>) => void
   /**
    * Sets a custom modal width.
    * Use the full CSS value with the unit (e.g. "400px")

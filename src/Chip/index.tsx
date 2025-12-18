@@ -14,7 +14,7 @@ export const VALID_KINDS = [
   "secondary",
 ] as const;
 
-interface ChipProps {
+export interface ChipProps {
   /** String to render within chip */
   label: string;
   /** Variant of Chip */

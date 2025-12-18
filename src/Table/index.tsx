@@ -28,7 +28,7 @@ export type ColLayoutConfig = {
   l: CSSValue;
 };
 
-interface TableProps {
+export interface TableProps {
   children: React.ReactNode;
   /**
    * Array describing when each column should be visible.

@@ -2,6 +2,7 @@ import React from "react";
 import cc from "classcat";
 import Row from "../Row";
 import Error from "../Error";
+import DisabledShim from "../DisabledShim";
 
 const noop = () => {};
 
@@ -33,6 +34,8 @@ interface RadioProps {
   checked?: boolean;
   /** Disables the input when `true` */
   isDisabled?: boolean;
+  /** @deprecated Use `isDisabled` instead */
+  disabled?: boolean;
   /** Error text */
   error?: string;
   /** Applies error style without a message */
@@ -46,6 +49,7 @@ const Radio = ({
   name,
   value,
   isDisabled = false,
+  disabled = false,
   onCheck = noop,
   checked,
   children,
@@ -53,6 +57,7 @@ const Radio = ({
   hasError = false,
   kind = "normal",
 }: RadioProps) => {
+  const resolvedIsDisabled = isDisabled || disabled;
   const isCardKind = kind === "card";
   const isInputCardKind = kind === "input-card";
   const isCheckmarkKind = kind === "checkmark";
@@ -82,10 +87,18 @@ const Radio = ({
       value={value}
       name={name}
       id={inputId}
-      disabled={isDisabled}
+      disabled={resolvedIsDisabled}
       onChange={handleChange}
       checked={checked}
     />
+  );
+
+  const labelContent = (
+    <Row gapSize={isRatingKind ? "none" : "s"}>
+      {isCardKind && <Row.Item>{children}</Row.Item>}
+      <Row.Item shrink>{radioDisplay}</Row.Item>
+      {!isCardKind && <Row.Item>{children}</Row.Item>}
+    </Row>
   );
 
   return (
@@ -96,18 +109,15 @@ const Radio = ({
           `nds-singleRadio--${kind}`,
           {
             "nds-singleRadio--error": Boolean(error) || hasError,
+            "nds-singleRadio--disabled": resolvedIsDisabled,
           },
         ])}
         htmlFor={inputId}
       >
-        <Row gapSize={isRatingKind ? "none" : "s"}>
-          {isCardKind && <Row.Item>{children}</Row.Item>}
-          <Row.Item shrink>
-            {inputElement}
-            {radioDisplay}
-          </Row.Item>
-          {!isCardKind && <Row.Item>{children}</Row.Item>}
-        </Row>
+        {inputElement}
+        <DisabledShim isDisabled={resolvedIsDisabled}>
+          {labelContent}
+        </DisabledShim>
       </label>
       {error && <Error error={error} />}
     </>

@@ -86,6 +86,24 @@
   &:has(input:checked) {
     border: 1px solid var(--theme-primary);
   }
+
+  // override border for disabled card kinds
+  .nds-singleRadio--disabled {
+    &:hover,
+    &:has(input:checked) .nds-singleRadio-radio:after {
+      border-color: var(--border-color-default) !important;
+    }
+  }
+}
+
+.nds-singleRadio--disabled {
+  cursor: not-allowed;
+  .nds-singleRadio-radio {
+    border-color: var(--border-color-disabled);
+  }
+  &.nds-singleRadio--error {
+    border-color: var(--border-color-disabled);
+  }
 }
 
 // kind="card"

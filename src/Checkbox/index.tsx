@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import cc from "classcat";
 import ReactMarkdown from "react-markdown";
 import Error from "../Error";
+import DisabledShim from "../DisabledShim";
 
 interface CheckboxProps {
   /** Content of `label` element */
@@ -35,6 +36,8 @@ interface CheckboxProps {
    * Checkbox renders as disabled and ignores click/check events.
    */
   disabled?: boolean;
+  /** @deprecated Use `isDisabled` instead */
+  isDisabled?: boolean;
   /** Sets the `value` attribute of the `input` */
   value?: string;
   /** Sets whether the checkbox has an error. To be used with multiple checkboxes */
@@ -65,6 +68,7 @@ const Checkbox = ({
   defaultChecked,
   checked,
   disabled = false,
+  isDisabled = false,
   indeterminate = false,
   value,
   hasError,
@@ -73,6 +77,7 @@ const Checkbox = ({
   testId,
   ...rest
 }: CheckboxProps) => {
+  const resolvedIsDisabled = isDisabled || disabled;
   const inputRef = useRef(null);
   const isControlled = checked !== undefined;
   const [isChecked, setIsChecked] = useState(
@@ -121,60 +126,62 @@ const Checkbox = ({
 
   return (
     <div className={`nds-checkbox-container nds-checkbox-container--${kind}`}>
-      <label
-        className={cc([
-          `nds-checkbox nds-checkbox--${kind}`,
-          "fontWeight--default",
-          {
-            "nds-checkbox--checked": isChecked || indeterminate,
-            "nds-checkbox--disabled": disabled,
-            "nds-checkbox--focused": isFocused,
-            "padding--y--xl padding--x rounded--all border--all": isCard,
-          },
-        ])}
-      >
-        <span
+      <DisabledShim isDisabled={resolvedIsDisabled}>
+        <label
           className={cc([
+            `nds-checkbox nds-checkbox--${kind}`,
+            "fontWeight--default",
             {
-              "narmi-icon-check": !indeterminate,
-              "narmi-icon-minus": indeterminate,
-              error: hasError || !!error,
+              "nds-checkbox--checked": isChecked || indeterminate,
+              "nds-checkbox--disabled": resolvedIsDisabled,
+              "nds-checkbox--focused": isFocused,
+              "padding--y--xl padding--x rounded--all border--all": isCard,
             },
           ])}
-        ></span>
-        <div className="nds-checkbox-label">
-          {markdownLabel && (
-            <ReactMarkdown
-              components={{
-                a: function ({ href, children }) {
-                  return LinkRenderer({
-                    href,
-                    children,
-                  });
-                },
-              }}
-            >
-              {markdownLabel}
-            </ReactMarkdown>
-          )}
-          {!markdownLabel && <>{label}</>}
-        </div>
-        <input
-          ref={inputRef}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          checked={isChecked}
-          defaultChecked={defaultChecked}
-          disabled={disabled}
-          name={name}
-          id={id && id.toString()}
-          value={value}
-          data-testid={testId}
-          {...rest}
-          type="checkbox"
-        />
-      </label>
+        >
+          <span
+            className={cc([
+              {
+                "narmi-icon-check": !indeterminate,
+                "narmi-icon-minus": indeterminate,
+                error: hasError || !!error,
+              },
+            ])}
+          ></span>
+          <div className="nds-checkbox-label">
+            {markdownLabel && (
+              <ReactMarkdown
+                components={{
+                  a: function ({ href, children }) {
+                    return LinkRenderer({
+                      href,
+                      children,
+                    });
+                  },
+                }}
+              >
+                {markdownLabel}
+              </ReactMarkdown>
+            )}
+            {!markdownLabel && <>{label}</>}
+          </div>
+          <input
+            ref={inputRef}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            checked={isChecked}
+            defaultChecked={defaultChecked}
+            disabled={resolvedIsDisabled}
+            name={name}
+            id={id && id.toString()}
+            value={value}
+            data-testid={testId}
+            {...rest}
+            type="checkbox"
+          />
+        </label>
+      </DisabledShim>
       <Error marginTop="xs" error={error} />
     </div>
   );

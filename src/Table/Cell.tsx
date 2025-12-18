@@ -5,7 +5,7 @@ import ColVisibilityContext from "./util/colVisibilityContext";
 export interface CellProps {
   children: React.ReactNode;
 
-  textAlign?: "start" | "end" | "center";
+  textAlign?: "start" | "end" | "center" | "left" | "right";
 
   /**
    * PRIVATE

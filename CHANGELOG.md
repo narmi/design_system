@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.50.2 (2025-12-18)</small>
+
+* build(deps-dev): bump prettier from 3.6.2 to 3.7.4 ([3032110034a9de98c9d9ee81ec10bb8c381affeb](https://github.com/narmi/design_system/commit/3032110034a9de98c9d9ee81ec10bb8c381affeb))
+* build(deps): bump react-focus-lock from 2.13.6 to 2.13.7 ([f335af1d4d00edbf22588631f61f2909dd03110d](https://github.com/narmi/design_system/commit/f335af1d4d00edbf22588631f61f2909dd03110d))
+* style(Avatar): explicitly set Avatar word-break property ([da3c974cf5f5de4c566596ddd16c382a9a69dd4d](https://github.com/narmi/design_system/commit/da3c974cf5f5de4c566596ddd16c382a9a69dd4d))
+
 ## <small>4.50.1 (2025-12-15)</small>
 
 * fix(nds): bump version to 4.50.1 to trigger release ([c85986b18ca49654ac98cc380d02440386039017](https://github.com/narmi/design_system/commit/c85986b18ca49654ac98cc380d02440386039017))

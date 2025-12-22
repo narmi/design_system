@@ -12,6 +12,9 @@
 const token = process.env.FIGMA_TOKEN;
 const [fileKey] = process.argv.slice(2);
 
+// This is NOT a secret. This is a url segment that represents a file id.
+// Without the rest of the url, it's useless, and even with the whole url,
+// you still need a token or manual auth to see the figma file.
 const fallbackFileKey = "nCjdO761StnkwNZHFmcrUu";
 
 if (!token) {

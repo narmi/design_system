@@ -1,0 +1,15 @@
+import{e}from"./iframe-Z-3NV075.js";import{u as i}from"./index-Dn3yBr0X.js";import{B as s}from"./index-CT9Tq52H.js";import"./preload-helper-PPVm8Dsz.js";import"./index-RvS1aOr8.js";import"./AsElement-CXFOkMpI.js";import"./index-Dv6lvqiM.js";import"./index-Bz1kau5X.js";const l=()=>{const{m:t}=i();return e.createElement("svg",{className:"nds-snackbar-divider fontColor--hint",xmlns:"http://www.w3.org/2000/svg",width:t?"1px":"100%",height:t?"40px":"1px"},e.createElement("line",{x1:t?"50%":"0%",y1:t?"0%":"50%",x2:t?"50%":"100%",y2:t?"100%":"50%",stroke:"currentColor",strokeWidth:"1"}))},m=({children:t})=>e.createElement("div",{className:"nds-snackbar-text fontColor--secondary"},t),p=({children:t})=>e.createElement("ul",{className:"list--reset nds-snackbar-buttonGroup"},e.Children.map(t,(o,c)=>e.createElement("li",{key:c},o))),r=({children:t,isActive:o=!1})=>e.createElement("div",{"aria-live":"polite",role:"status"},o&&e.createElement("div",{className:"nds-snackbar bgColor--white",role:"toolbar","aria-label":"Your selection"},t));r.ButtonGroup=p;r.Divider=l;r.Text=m;try{r.displayName="Snackbar",r.__docgenInfo={description:`A status toolbar for multiple selection in a table.
+Intended to be rendered in fixed position over a table.`,displayName:"Snackbar",props:{isActive:{defaultValue:{value:"false"},description:"",name:"isActive",required:!1,type:{name:"boolean"}}}}}catch{}const d=t=>e.createElement(r,t),n=d.bind({});n.args={isActive:!0,children:e.createElement(r.Text,null,"Use Snackbar subcomponents to compose content")};const a=()=>e.createElement(r,{isActive:"true"},e.createElement(r.Text,null,e.createElement("span",{className:"fontWeight--semibold fontColor--primary"},"3 payments")),e.createElement(r.Text,null,"$10,150.00 total"),e.createElement("span",{className:"narmi-icon-users"}),e.createElement(r.Divider,null),e.createElement(r.ButtonGroup,null,e.createElement(s,{kind:"secondary",label:"Reject"}),e.createElement(s,{kind:"primary",label:"Approve"})));a.parameters={docs:{description:{story:"You may also include custom components in Snackbar children if the provided subcomponents don't cover your use case. In this example, an arbitrary icon is rendered before the divider."}}};const f={title:"Components/Snackbar",component:r};a.__docgenInfo={description:"",methods:[],displayName:"Example"};n.parameters={...n.parameters,docs:{...n.parameters?.docs,source:{originalSource:"args => <Snackbar {...args} />",...n.parameters?.docs?.source}}};a.parameters={...a.parameters,docs:{...a.parameters?.docs,source:{originalSource:`() => <Snackbar isActive="true">
+    <Snackbar.Text>
+      <span className="fontWeight--semibold fontColor--primary">
+        3 payments
+      </span>
+    </Snackbar.Text>
+    <Snackbar.Text>$10,150.00 total</Snackbar.Text>
+    <span className="narmi-icon-users" />
+    <Snackbar.Divider />
+    <Snackbar.ButtonGroup>
+      <Button kind="secondary" label="Reject" />
+      <Button kind="primary" label="Approve" />
+    </Snackbar.ButtonGroup>
+  </Snackbar>`,...a.parameters?.docs?.source}}};const h=["Overview","Example"];export{a as Example,n as Overview,h as __namedExportsOrder,f as default};

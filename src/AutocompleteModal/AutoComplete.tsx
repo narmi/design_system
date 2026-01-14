@@ -26,7 +26,7 @@ export const itemToString = (item: AutoCompleteItem) =>
 
 export const filterItems = (items: AutoCompleteItem[], inputValue: string) =>
   items.filter((item) =>
-    itemToString(item).toLowerCase().startsWith(inputValue.toLowerCase()),
+    itemToString(item).toLowerCase().includes(inputValue.toLowerCase()),
   );
 
 /**

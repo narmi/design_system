@@ -13,16 +13,16 @@ const Template = (args) => <MultiSelect {...args} />;
  * Each item uses a tokenLabel that will be used for both tokens and summary.
  */
 const children = [
-  <MultiSelect.Item value="coffee" tokenLabel="Coffee">
+  <MultiSelect.Item value="coffee" tokenLabel="Coffee" searchValue="coffee">
     <span className="narmi-icon-coffee padding--right--xs" /> Coffee
   </MultiSelect.Item>,
-  <MultiSelect.Item value="film" tokenLabel="Film">
+  <MultiSelect.Item value="film" tokenLabel="Film" searchValue="film">
     <span className="narmi-icon-film padding--right--xs" /> Film
   </MultiSelect.Item>,
-  <MultiSelect.Item value="truck" tokenLabel="Truck">
+  <MultiSelect.Item value="truck" tokenLabel="Truck" searchValue="truck">
     <span className="narmi-icon-truck padding--right--xs" /> Truck
   </MultiSelect.Item>,
-  <MultiSelect.Item value="blob" tokenLabel="Blob">
+  <MultiSelect.Item value="blob" tokenLabel="Blob" searchValue="blob">
     <span className="narmi-icon-blob padding--right--xs" /> Blob
   </MultiSelect.Item>,
 ];
@@ -73,10 +73,18 @@ ErrorState.args = {
   name: "errorState",
   label: "Account",
   children: [
-    <MultiSelect.Item value="checking1234" tokenLabel="Checking (1234)">
+    <MultiSelect.Item
+      value="checking1234"
+      tokenLabel="Checking (1234)"
+      searchValue="checking1234"
+    >
       Checking (1234)
     </MultiSelect.Item>,
-    <MultiSelect.Item value="checking4321" tokenLabel="Checking (4321)">
+    <MultiSelect.Item
+      value="checking4321"
+      tokenLabel="Checking (4321)"
+      searchValue="checking4321"
+    >
       Checking (4321)
     </MultiSelect.Item>,
   ],
@@ -96,16 +104,16 @@ export const SettingTheFieldValue = () => {
       label="Favorite Icons"
       onSelectedItemsChange={handleSelectedItemsChange}
     >
-      <MultiSelect.Item value="coffee" tokenLabel="Coffee">
+      <MultiSelect.Item value="coffee" tokenLabel="Coffee" searchValue="coffee">
         <span className="narmi-icon-coffee padding--right--xs" /> Coffee
       </MultiSelect.Item>
-      <MultiSelect.Item value="film" tokenLabel="Film">
+      <MultiSelect.Item value="film" tokenLabel="Film" searchValue="film">
         <span className="narmi-icon-film padding--right--xs" /> Film
       </MultiSelect.Item>
-      <MultiSelect.Item value="truck" tokenLabel="Truck">
+      <MultiSelect.Item value="truck" tokenLabel="Truck" searchValue="truck">
         <span className="narmi-icon-truck padding--right--xs" /> Truck
       </MultiSelect.Item>
-      <MultiSelect.Item value="blob" tokenLabel="Blob">
+      <MultiSelect.Item value="blob" tokenLabel="Blob" searchValue="blob">
         <span className="narmi-icon-blob padding--right--xs" /> Blob
       </MultiSelect.Item>
     </MultiSelect>
@@ -135,16 +143,16 @@ export const ControlledSelectedItems = () => {
       onSelectedItemsChange={handleSelectedItemsChange}
       isClearable
     >
-      <MultiSelect.Item value="coffee" tokenLabel="Coffee">
+      <MultiSelect.Item value="coffee" tokenLabel="Coffee" searchValue="coffee">
         <span className="narmi-icon-coffee padding--right--xs" /> Coffee
       </MultiSelect.Item>
-      <MultiSelect.Item value="film" tokenLabel="Film">
+      <MultiSelect.Item value="film" tokenLabel="Film" searchValue="film">
         <span className="narmi-icon-film padding--right--xs" /> Film
       </MultiSelect.Item>
-      <MultiSelect.Item value="truck" tokenLabel="Truck">
+      <MultiSelect.Item value="truck" tokenLabel="Truck" searchValue="truck">
         <span className="narmi-icon-truck padding--right--xs" /> Truck
       </MultiSelect.Item>
-      <MultiSelect.Item value="blob" tokenLabel="Blob">
+      <MultiSelect.Item value="blob" tokenLabel="Blob" searchValue="blob">
         <span className="narmi-icon-blob padding--right--xs" /> Blob
       </MultiSelect.Item>
     </MultiSelect>
@@ -164,10 +172,14 @@ export const CustomTokenValues = () => {
       selectedItems={selectedItems}
       onSelectedItemsChange={handleSelectedItemsChange}
     >
-      <MultiSelect.Item value="film" tokenLabel="Movies">
+      <MultiSelect.Item value="film" tokenLabel="Movies" searchValue="film">
         <span className="narmi-icon-film padding--right--xs" /> Film
       </MultiSelect.Item>
-      <MultiSelect.Item value="coffee" tokenLabel="Hot Bean Water">
+      <MultiSelect.Item
+        value="coffee"
+        tokenLabel="Hot Bean Water"
+        searchValue="coffee"
+      >
         <span className="narmi-icon-coffee padding--right--xs" /> Coffee
       </MultiSelect.Item>
     </MultiSelect>
@@ -187,7 +199,12 @@ export const CustomSummaryFormatter = () => {
     { label: "Truck", icon: "truck", value: "truck" },
     { label: "Blob", icon: "blob", value: "blob" },
   ].map(({ label, icon, value }) => (
-    <MultiSelect.Item key={value} value={value} tokenLabel={label}>
+    <MultiSelect.Item
+      key={value}
+      value={value}
+      tokenLabel={label}
+      searchValue={value}
+    >
       <span className={`narmi-icon-${icon} padding--right--xs`} />
       {label}
     </MultiSelect.Item>

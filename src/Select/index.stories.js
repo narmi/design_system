@@ -10,16 +10,16 @@ import Drawer from "../Drawer";
 const Template = (args) => <Select {...args} />;
 
 const children = [
-  <Select.Item value="coffee">
+  <Select.Item value="coffee" searchValue="coffee">
     <span className="narmi-icon-coffee padding--right--xs" /> Coffee
   </Select.Item>,
-  <Select.Item value="film">
+  <Select.Item value="film" searchValue="film">
     <span className="narmi-icon-film padding--right--xs" /> Film
   </Select.Item>,
-  <Select.Item value="truck">
+  <Select.Item value="truck" searchValue="truck">
     <span className="narmi-icon-truck padding--right--xs" /> Truck
   </Select.Item>,
-  <Select.Item value="blob">
+  <Select.Item value="blob" searchValue="blob">
     <span className="narmi-icon-blob padding--right--xs" /> Blob
   </Select.Item>,
 ];
@@ -44,7 +44,11 @@ DisabledSelection.args = {
   disabled: true,
   id: "disabledSelection",
   label: "Account",
-  children: [<Select.Item value="checking0001">Checking - 0001</Select.Item>],
+  children: [
+    <Select.Item value="checking0001" searchValue="checking0001">
+      Checking - 0001
+    </Select.Item>,
+  ],
   value: "checking0001",
 };
 
@@ -53,8 +57,12 @@ ErrorState.args = {
   id: "errorState",
   label: "Account",
   children: [
-    <Select.Item value="checking1234">Checking (1234)</Select.Item>,
-    <Select.Item value="checking4321">Checking (4321)</Select.Item>,
+    <Select.Item value="checking1234" searchValue="checking1234">
+      Checking (1234)
+    </Select.Item>,
+    <Select.Item value="checking4321" searchValue="checking4321">
+      Checking (4321)
+    </Select.Item>,
   ],
   defaultValue: "checking1234",
   errorText: "Checking (1234) is not eligible",
@@ -119,27 +127,27 @@ WithCategories.args = {
   label: "Select an Icon",
   children: [
     <Select.Category label="Transportation">
-      <Select.Item value="truck">
+      <Select.Item value="truck" searchValue="truck">
         <span className="narmi-icon-truck padding--right--xs" /> Truck
       </Select.Item>
-      <Select.Item value="anchor">
+      <Select.Item value="anchor" searchValue="anchor">
         <span className="narmi-icon-anchor padding--right--xs" /> Anchor
       </Select.Item>
-      <Select.Item value="car-outline">
+      <Select.Item value="car-outline" searchValue="car-outline">
         <span className="narmi-icon-car-outline padding--right--xs" /> Car
       </Select.Item>
     </Select.Category>,
     <Select.Category label="Art">
-      <Select.Item value="film">
+      <Select.Item value="film" searchValue="film">
         <span className="narmi-icon-film padding--right--xs" /> Film
       </Select.Item>
-      <Select.Item value="aperture">
+      <Select.Item value="aperture" searchValue="aperture">
         <span className="narmi-icon-aperture padding--right--xs" /> Aperture
       </Select.Item>
-      <Select.Item value="pen">
+      <Select.Item value="pen" searchValue="pen">
         <span className="narmi-icon-pen-tool padding--right--xs" /> Pen
       </Select.Item>
-      <Select.Item value="blob">
+      <Select.Item value="blob" searchValue="blob">
         <span className="narmi-icon-blob padding--right--xs" /> Blob
       </Select.Item>
     </Select.Category>,
@@ -160,27 +168,27 @@ FlatCategories.args = {
   label: "Select an Icon",
   children: [
     <Select.Category label="Transportation" isFlat>
-      <Select.Item value="truck">
+      <Select.Item value="truck" searchValue="truck">
         <span className="narmi-icon-truck padding--right--xs" /> Truck
       </Select.Item>
-      <Select.Item value="anchor">
+      <Select.Item value="anchor" searchValue="anchor">
         <span className="narmi-icon-anchor padding--right--xs" /> Anchor
       </Select.Item>
-      <Select.Item value="car-outline">
+      <Select.Item value="car-outline" searchValue="car-outline">
         <span className="narmi-icon-car-outline padding--right--xs" /> Car
       </Select.Item>
     </Select.Category>,
     <Select.Category label="Art" isFlat>
-      <Select.Item value="film">
+      <Select.Item value="film" searchValue="film">
         <span className="narmi-icon-film padding--right--xs" /> Film
       </Select.Item>
-      <Select.Item value="aperture">
+      <Select.Item value="aperture" searchValue="aperture">
         <span className="narmi-icon-aperture padding--right--xs" /> Aperture
       </Select.Item>
-      <Select.Item value="pen">
+      <Select.Item value="pen" searchValue="pen">
         <span className="narmi-icon-pen-tool padding--right--xs" /> Pen
       </Select.Item>
-      <Select.Item value="blob">
+      <Select.Item value="blob" searchValue="blob">
         <span className="narmi-icon-blob padding--right--xs" /> Blob
       </Select.Item>
     </Select.Category>,
@@ -209,13 +217,13 @@ CategoryLabels.args = {
   label: "Select an Icon",
   children: [
     <Select.Category label="Recently used" isFlat kind="label">
-      <Select.Item value="truck">
+      <Select.Item value="truck" searchValue="truck">
         <span className="narmi-icon-truck padding--right--xs" /> Truck
       </Select.Item>
-      <Select.Item value="anchor">
+      <Select.Item value="anchor" searchValue="anchor">
         <span className="narmi-icon-anchor padding--right--xs" /> Anchor
       </Select.Item>
-      <Select.Item value="car-outline">
+      <Select.Item value="car-outline" searchValue="car-outline">
         <span className="narmi-icon-car-outline padding--right--xs" /> Car
       </Select.Item>
     </Select.Category>,
@@ -295,26 +303,66 @@ export const ScrollingBehavior = () => {
     <main style={{ height: "200vh" }}>
       <div className="margin--bottom" style={{ marginTop: "100vh" }} />
       <Select id="product-field" label="Account">
-        <Select.Item value="checking1234">Checking (1234)</Select.Item>
-        <Select.Item value="savings4321">Savings (4321)</Select.Item>
-        <Select.Item value="checking5678">Checking (5678)</Select.Item>
-        <Select.Item value="savings9876">Savings (9876)</Select.Item>
-        <Select.Item value="money_market2468">Money Market (2468)</Select.Item>
-        <Select.Item value="cd1357">Certificate of Deposit (1357)</Select.Item>
-        <Select.Item value="checking9999">Checking (9999)</Select.Item>
-        <Select.Item value="savings1111">Savings (1111)</Select.Item>
-        <Select.Item value="ira8642">IRA (8642)</Select.Item>
-        <Select.Item value="checking7531">Checking (7531)</Select.Item>
-        <Select.Item value="savings0246">Savings (0246)</Select.Item>
-        <Select.Item value="money_market8024">Money Market (8024)</Select.Item>
-        <Select.Item value="checking3698">Checking (3698)</Select.Item>
-        <Select.Item value="savings7410">Savings (7410)</Select.Item>
-        <Select.Item value="cd9630">Certificate of Deposit (9630)</Select.Item>
-        <Select.Item value="checking1593">Checking (1593)</Select.Item>
-        <Select.Item value="savings7529">Savings (7529)</Select.Item>
-        <Select.Item value="ira4816">IRA (4816)</Select.Item>
-        <Select.Item value="money_market3571">Money Market (3571)</Select.Item>
-        <Select.Item value="checking8642">Checking (8642)</Select.Item>
+        <Select.Item value="checking1234" searchValue="checking1234">
+          Checking (1234)
+        </Select.Item>
+        <Select.Item value="savings4321" searchValue="savings4321">
+          Savings (4321)
+        </Select.Item>
+        <Select.Item value="checking5678" searchValue="checking5678">
+          Checking (5678)
+        </Select.Item>
+        <Select.Item value="savings9876" searchValue="savings9876">
+          Savings (9876)
+        </Select.Item>
+        <Select.Item value="money_market2468" searchValue="money_market2468">
+          Money Market (2468)
+        </Select.Item>
+        <Select.Item value="cd1357" searchValue="cd1357">
+          Certificate of Deposit (1357)
+        </Select.Item>
+        <Select.Item value="checking9999" searchValue="checking9999">
+          Checking (9999)
+        </Select.Item>
+        <Select.Item value="savings1111" searchValue="savings1111">
+          Savings (1111)
+        </Select.Item>
+        <Select.Item value="ira8642" searchValue="ira8642">
+          IRA (8642)
+        </Select.Item>
+        <Select.Item value="checking7531" searchValue="checking7531">
+          Checking (7531)
+        </Select.Item>
+        <Select.Item value="savings0246" searchValue="savings0246">
+          Savings (0246)
+        </Select.Item>
+        <Select.Item value="money_market8024" searchValue="money_market8024">
+          Money Market (8024)
+        </Select.Item>
+        <Select.Item value="checking3698" searchValue="checking3698">
+          Checking (3698)
+        </Select.Item>
+        <Select.Item value="savings7410" searchValue="savings7410">
+          Savings (7410)
+        </Select.Item>
+        <Select.Item value="cd9630" searchValue="cd9630">
+          Certificate of Deposit (9630)
+        </Select.Item>
+        <Select.Item value="checking1593" searchValue="checking1593">
+          Checking (1593)
+        </Select.Item>
+        <Select.Item value="savings7529" searchValue="savings7529">
+          Savings (7529)
+        </Select.Item>
+        <Select.Item value="ira4816" searchValue="ira4816">
+          IRA (4816)
+        </Select.Item>
+        <Select.Item value="money_market3571" searchValue="money_market3571">
+          Money Market (3571)
+        </Select.Item>
+        <Select.Item value="checking8642" searchValue="checking8642">
+          Checking (8642)
+        </Select.Item>
       </Select>
     </main>
   );
@@ -335,26 +383,66 @@ export const InAForm = () => {
         </p>
       </div>
       <Select id="product-field" label="Account" onChange={setInputValue}>
-        <Select.Item value="checking1234">Checking (1234)</Select.Item>
-        <Select.Item value="savings4321">Savings (4321)</Select.Item>
-        <Select.Item value="checking5678">Checking (5678)</Select.Item>
-        <Select.Item value="savings9876">Savings (9876)</Select.Item>
-        <Select.Item value="money_market2468">Money Market (2468)</Select.Item>
-        <Select.Item value="cd1357">Certificate of Deposit (1357)</Select.Item>
-        <Select.Item value="checking9999">Checking (9999)</Select.Item>
-        <Select.Item value="savings1111">Savings (1111)</Select.Item>
-        <Select.Item value="ira8642">IRA (8642)</Select.Item>
-        <Select.Item value="checking7531">Checking (7531)</Select.Item>
-        <Select.Item value="savings0246">Savings (0246)</Select.Item>
-        <Select.Item value="money_market8024">Money Market (8024)</Select.Item>
-        <Select.Item value="checking3698">Checking (3698)</Select.Item>
-        <Select.Item value="savings7410">Savings (7410)</Select.Item>
-        <Select.Item value="cd9630">Certificate of Deposit (9630)</Select.Item>
-        <Select.Item value="checking1593">Checking (1593)</Select.Item>
-        <Select.Item value="savings7529">Savings (7529)</Select.Item>
-        <Select.Item value="ira4816">IRA (4816)</Select.Item>
-        <Select.Item value="money_market3571">Money Market (3571)</Select.Item>
-        <Select.Item value="checking8642">Checking (8642)</Select.Item>
+        <Select.Item value="checking1234" searchValue="checking1234">
+          Checking (1234)
+        </Select.Item>
+        <Select.Item value="savings4321" searchValue="savings4321">
+          Savings (4321)
+        </Select.Item>
+        <Select.Item value="checking5678" searchValue="checking5678">
+          Checking (5678)
+        </Select.Item>
+        <Select.Item value="savings9876" searchValue="savings9876">
+          Savings (9876)
+        </Select.Item>
+        <Select.Item value="money_market2468" searchValue="money_market2468">
+          Money Market (2468)
+        </Select.Item>
+        <Select.Item value="cd1357" searchValue="cd1357">
+          Certificate of Deposit (1357)
+        </Select.Item>
+        <Select.Item value="checking9999" searchValue="checking9999">
+          Checking (9999)
+        </Select.Item>
+        <Select.Item value="savings1111" searchValue="savings1111">
+          Savings (1111)
+        </Select.Item>
+        <Select.Item value="ira8642" searchValue="ira8642">
+          IRA (8642)
+        </Select.Item>
+        <Select.Item value="checking7531" searchValue="checking7531">
+          Checking (7531)
+        </Select.Item>
+        <Select.Item value="savings0246" searchValue="savings0246">
+          Savings (0246)
+        </Select.Item>
+        <Select.Item value="money_market8024" searchValue="money_market8024">
+          Money Market (8024)
+        </Select.Item>
+        <Select.Item value="checking3698" searchValue="checking3698">
+          Checking (3698)
+        </Select.Item>
+        <Select.Item value="savings7410" searchValue="savings7410">
+          Savings (7410)
+        </Select.Item>
+        <Select.Item value="cd9630" searchValue="cd9630">
+          Certificate of Deposit (9630)
+        </Select.Item>
+        <Select.Item value="checking1593" searchValue="checking1593">
+          Checking (1593)
+        </Select.Item>
+        <Select.Item value="savings7529" searchValue="savings7529">
+          Savings (7529)
+        </Select.Item>
+        <Select.Item value="ira4816" searchValue="ira4816">
+          IRA (4816)
+        </Select.Item>
+        <Select.Item value="money_market3571" searchValue="money_market3571">
+          Money Market (3571)
+        </Select.Item>
+        <Select.Item value="checking8642" searchValue="checking8642">
+          Checking (8642)
+        </Select.Item>
       </Select>
     </>
   );
@@ -383,7 +471,11 @@ export const Controlled = () => {
         onChange={(v) => setValue(v)}
       >
         {items.map(({ value, label }) => (
-          <Select.Item key={`${value}-${label}`} value={value}>
+          <Select.Item
+            key={`${value}-${label}`}
+            value={value}
+            searchValue={value}
+          >
             {label}
           </Select.Item>
         ))}
@@ -475,7 +567,9 @@ export const SmallWidthLongItem = () => {
 export const OneItem = () => {
   return (
     <Select label="Account">
-      <Select.Item value="checking1234">Checking (1234)</Select.Item>
+      <Select.Item value="checking1234" searchValue="checking1234">
+        Checking (1234)
+      </Select.Item>
     </Select>
   );
 };
@@ -529,36 +623,75 @@ export const InADrawer = (args) => {
       >
         <div style={{ marginTop: "600px", width: "300px" }}>
           <Select id="product-field" label="Account">
-            <Select.Item value="checking1234">Checking (1234)</Select.Item>
-            <Select.Item value="savings4321">Savings (4321)</Select.Item>
-            <Select.Item value="checking5678">Checking (5678)</Select.Item>
-            <Select.Item value="savings9876">Savings (9876)</Select.Item>
-            <Select.Item value="money_market2468">
+            <Select.Item value="checking1234" searchValue="checking1234">
+              Checking (1234)
+            </Select.Item>
+            <Select.Item value="savings4321" searchValue="savings4321">
+              Savings (4321)
+            </Select.Item>
+            <Select.Item value="checking5678" searchValue="checking5678">
+              Checking (5678)
+            </Select.Item>
+            <Select.Item value="savings9876" searchValue="savings9876">
+              Savings (9876)
+            </Select.Item>
+            <Select.Item
+              value="money_market2468"
+              searchValue="money_market2468"
+            >
               Money Market (2468)
             </Select.Item>
-            <Select.Item value="cd1357">
+            <Select.Item value="cd1357" searchValue="cd1357">
               Certificate of Deposit (1357)
             </Select.Item>
-            <Select.Item value="checking9999">Checking (9999)</Select.Item>
-            <Select.Item value="savings1111">Savings (1111)</Select.Item>
-            <Select.Item value="ira8642">IRA (8642)</Select.Item>
-            <Select.Item value="checking7531">Checking (7531)</Select.Item>
-            <Select.Item value="savings0246">Savings (0246)</Select.Item>
-            <Select.Item value="money_market8024">
+            <Select.Item value="checking9999" searchValue="checking9999">
+              Checking (9999)
+            </Select.Item>
+            <Select.Item value="savings1111" searchValue="savings1111">
+              Savings (1111)
+            </Select.Item>
+            <Select.Item value="ira8642" searchValue="ira8642">
+              IRA (8642)
+            </Select.Item>
+            <Select.Item value="checking7531" searchValue="checking7531">
+              Checking (7531)
+            </Select.Item>
+            <Select.Item value="savings0246" searchValue="savings0246">
+              Savings (0246)
+            </Select.Item>
+            <Select.Item
+              value="money_market8024"
+              searchValue="money_market8024"
+            >
               Money Market (8024)
             </Select.Item>
-            <Select.Item value="checking3698">Checking (3698)</Select.Item>
-            <Select.Item value="savings7410">Savings (7410)</Select.Item>
-            <Select.Item value="cd9630">
+            <Select.Item value="checking3698" searchValue="checking3698">
+              Checking (3698)
+            </Select.Item>
+            <Select.Item value="savings7410" searchValue="savings7410">
+              Savings (7410)
+            </Select.Item>
+            <Select.Item value="cd9630" searchValue="cd9630">
               Certificate of Deposit (9630)
             </Select.Item>
-            <Select.Item value="checking1593">Checking (1593)</Select.Item>
-            <Select.Item value="savings7529">Savings (7529)</Select.Item>
-            <Select.Item value="ira4816">IRA (4816)</Select.Item>
-            <Select.Item value="money_market3571">
+            <Select.Item value="checking1593" searchValue="checking1593">
+              Checking (1593)
+            </Select.Item>
+            <Select.Item value="savings7529" searchValue="savings7529">
+              Savings (7529)
+            </Select.Item>
+            <Select.Item value="ira4816" searchValue="ira4816">
+              IRA (4816)
+            </Select.Item>
+            <Select.Item
+              value="money_market3571"
+              searchValue="money_market3571"
+            >
               Money Market (3571)
             </Select.Item>
-            <Select.Item value="checking8642">Checking (8642)</Select.Item>
+            <Select.Item value="checking8642" searchValue="checking8642">
+              Checking (8642)
+            </Select.Item>
           </Select>
         </div>
       </Drawer>

@@ -14,8 +14,8 @@ MultiSelectItem.propTypes = {
    * value starting with `n`.
    */
   value: PropTypes.string.isRequired,
-  /** Optional prop that takes a string to use for typeahead behavior */
-  searchValue: PropTypes.string,
+  /** String to use for typeahead behavior */
+  searchValue: PropTypes.string.isRequired,
   /** JSX representation of item */
   children: PropTypes.oneOfType([
     PropTypes.node,

@@ -11,7 +11,7 @@ import { options_states } from "./util";
 const Template = (args) => <Combobox {...args} />;
 
 const children = options_states.map((state) => (
-  <Combobox.Item key={state} value={state}>
+  <Combobox.Item key={state} value={state} searchValue={state}>
     {state}
   </Combobox.Item>
 ));
@@ -57,22 +57,46 @@ CustomSearchStrings.parameters = {
 export const WithHeadings = (args) => (
   <Combobox label="Select Account" {...args}>
     <Combobox.Heading text="Checking" />
-    <Combobox.Item value="Primary Checking - 4567" />
-    <Combobox.Item value="Secondary Checking - 9876" />
+    <Combobox.Item
+      value="Primary Checking - 4567"
+      searchValue="Primary Checking - 4567"
+    />
+    <Combobox.Item
+      value="Secondary Checking - 9876"
+      searchValue="Secondary Checking - 9876"
+    />
     <Combobox.Heading text="Savings" />
-    <Combobox.Item value="Primary Savings - 1234" />
-    <Combobox.Item value="Cheese Fund - 5432" />
+    <Combobox.Item
+      value="Primary Savings - 1234"
+      searchValue="Primary Savings - 1234"
+    />
+    <Combobox.Item
+      value="Cheese Fund - 5432"
+      searchValue="Cheese Fund - 5432"
+    />
   </Combobox>
 );
 
 export const WithHintHeadings = (args) => (
   <Combobox label="Select Account" {...args}>
     <Combobox.Heading text="Checking" kind="hint" />
-    <Combobox.Item value="Primary Checking - 4567" />
-    <Combobox.Item value="Secondary Checking - 9876" />
+    <Combobox.Item
+      value="Primary Checking - 4567"
+      searchValue="Primary Checking - 4567"
+    />
+    <Combobox.Item
+      value="Secondary Checking - 9876"
+      searchValue="Secondary Checking - 9876"
+    />
     <Combobox.Heading text="Savings" kind="hint" />
-    <Combobox.Item value="Primary Savings - 1234" />
-    <Combobox.Item value="Cheese Fund - 5432" />
+    <Combobox.Item
+      value="Primary Savings - 1234"
+      searchValue="Primary Savings - 1234"
+    />
+    <Combobox.Item
+      value="Cheese Fund - 5432"
+      searchValue="Cheese Fund - 5432"
+    />
   </Combobox>
 );
 
@@ -114,7 +138,7 @@ export const FullyControlled = () => {
         onInputChange={(val) => setInputValue(val)}
       >
         {allItems.map((item, i) => (
-          <Combobox.Item key={`${i}-${item}`} value={item} />
+          <Combobox.Item key={`${i}-${item}`} value={item} searchValue={item} />
         ))}
       </Combobox>
       <div className="margin--top">
@@ -172,13 +196,31 @@ export const InADialog = () => {
       >
         <Combobox label="Select Account">
           <Combobox.Heading text="Checking" />
-          <Combobox.Item value="Primary Checking - 4567" />
-          <Combobox.Item value="Secondary Checking - 9876" />
-          <Combobox.Item value="Other Checking - 1112" />
-          <Combobox.Item value="Wow, more Checking - 3112" />
+          <Combobox.Item
+            value="Primary Checking - 4567"
+            searchValue="Primary Checking - 4567"
+          />
+          <Combobox.Item
+            value="Secondary Checking - 9876"
+            searchValue="Secondary Checking - 9876"
+          />
+          <Combobox.Item
+            value="Other Checking - 1112"
+            searchValue="Other Checking - 1112"
+          />
+          <Combobox.Item
+            value="Wow, more Checking - 3112"
+            searchValue="Wow, more Checking - 3112"
+          />
           <Combobox.Heading text="Savings" />
-          <Combobox.Item value="Primary Savings - 1234" />
-          <Combobox.Item value="Cheese Fund - 5432" />
+          <Combobox.Item
+            value="Primary Savings - 1234"
+            searchValue="Primary Savings - 1234"
+          />
+          <Combobox.Item
+            value="Cheese Fund - 5432"
+            searchValue="Cheese Fund - 5432"
+          />
         </Combobox>
       </Dialog>
     </>
@@ -213,9 +255,15 @@ WithCategories.args = {
       </Combobox.Item>
     </Combobox.Category>,
     <Combobox.Category label="External Accounts">
-      <Combobox.Item value="Sasha">Sasha - 84839</Combobox.Item>
-      <Combobox.Item value="Joan">Joan - 36183</Combobox.Item>
-      <Combobox.Item value="Benoit">Benoit - 53261</Combobox.Item>
+      <Combobox.Item value="Sasha" searchValue="Sasha">
+        Sasha - 84839
+      </Combobox.Item>
+      <Combobox.Item value="Joan" searchValue="Joan">
+        Joan - 36183
+      </Combobox.Item>
+      <Combobox.Item value="Benoit" searchValue="Benoit">
+        Benoit - 53261
+      </Combobox.Item>
     </Combobox.Category>,
   ],
 };
@@ -271,10 +319,22 @@ export const WithActions = () => {
         inputValue={inputValue}
         onInputChange={(val) => setInputValue(val)}
       >
-        <Combobox.Item value="Primary Checking - 4567" />
-        <Combobox.Item value="Cheese Fund - 5432" />
-        <Combobox.Item value="Primary Savings - 1234" />
-        <Combobox.Item value="Secondary Checking - 7892" />
+        <Combobox.Item
+          value="Primary Checking - 4567"
+          searchValue="Primary Checking - 4567"
+        />
+        <Combobox.Item
+          value="Cheese Fund - 5432"
+          searchValue="Cheese Fund - 5432"
+        />
+        <Combobox.Item
+          value="Primary Savings - 1234"
+          searchValue="Primary Savings - 1234"
+        />
+        <Combobox.Item
+          value="Secondary Checking - 7892"
+          searchValue="Secondary Checking - 7892"
+        />
         <Combobox.Action
           onSelect={() => {
             setIsOpen(true);
@@ -294,36 +354,66 @@ export const ScrollingBehavior = () => {
     <main style={{ height: "200vh" }}>
       <div className="margin--bottom" style={{ marginTop: "100vh" }} />
       <Combobox label="Account">
-        <Combobox.Item value="checking1234">Checking (1234)</Combobox.Item>
-        <Combobox.Item value="savings4321">Savings (4321)</Combobox.Item>
-        <Combobox.Item value="checking5678">Checking (5678)</Combobox.Item>
-        <Combobox.Item value="savings9876">Savings (9876)</Combobox.Item>
-        <Combobox.Item value="money_market2468">
+        <Combobox.Item value="checking1234" searchValue="checking1234">
+          Checking (1234)
+        </Combobox.Item>
+        <Combobox.Item value="savings4321" searchValue="savings4321">
+          Savings (4321)
+        </Combobox.Item>
+        <Combobox.Item value="checking5678" searchValue="checking5678">
+          Checking (5678)
+        </Combobox.Item>
+        <Combobox.Item value="savings9876" searchValue="savings9876">
+          Savings (9876)
+        </Combobox.Item>
+        <Combobox.Item value="money_market2468" searchValue="money_market2468">
           Money Market (2468)
         </Combobox.Item>
-        <Combobox.Item value="cd1357">
+        <Combobox.Item value="cd1357" searchValue="cd1357">
           Certificate of Deposit (1357)
         </Combobox.Item>
-        <Combobox.Item value="checking9999">Checking (9999)</Combobox.Item>
-        <Combobox.Item value="savings1111">Savings (1111)</Combobox.Item>
-        <Combobox.Item value="ira8642">IRA (8642)</Combobox.Item>
-        <Combobox.Item value="checking7531">Checking (7531)</Combobox.Item>
-        <Combobox.Item value="savings0246">Savings (0246)</Combobox.Item>
-        <Combobox.Item value="money_market8024">
+        <Combobox.Item value="checking9999" searchValue="checking9999">
+          Checking (9999)
+        </Combobox.Item>
+        <Combobox.Item value="savings1111" searchValue="savings1111">
+          Savings (1111)
+        </Combobox.Item>
+        <Combobox.Item value="ira8642" searchValue="ira8642">
+          IRA (8642)
+        </Combobox.Item>
+        <Combobox.Item value="checking7531" searchValue="checking7531">
+          Checking (7531)
+        </Combobox.Item>
+        <Combobox.Item value="savings0246" searchValue="savings0246">
+          Savings (0246)
+        </Combobox.Item>
+        <Combobox.Item value="money_market8024" searchValue="money_market8024">
           Money Market (8024)
         </Combobox.Item>
-        <Combobox.Item value="checking3698">Checking (3698)</Combobox.Item>
-        <Combobox.Item value="savings7410">Savings (7410)</Combobox.Item>
-        <Combobox.Item value="cd9630">
+        <Combobox.Item value="checking3698" searchValue="checking3698">
+          Checking (3698)
+        </Combobox.Item>
+        <Combobox.Item value="savings7410" searchValue="savings7410">
+          Savings (7410)
+        </Combobox.Item>
+        <Combobox.Item value="cd9630" searchValue="cd9630">
           Certificate of Deposit (9630)
         </Combobox.Item>
-        <Combobox.Item value="checking1593">Checking (1593)</Combobox.Item>
-        <Combobox.Item value="savings7529">Savings (7529)</Combobox.Item>
-        <Combobox.Item value="ira4816">IRA (4816)</Combobox.Item>
-        <Combobox.Item value="money_market3571">
+        <Combobox.Item value="checking1593" searchValue="checking1593">
+          Checking (1593)
+        </Combobox.Item>
+        <Combobox.Item value="savings7529" searchValue="savings7529">
+          Savings (7529)
+        </Combobox.Item>
+        <Combobox.Item value="ira4816" searchValue="ira4816">
+          IRA (4816)
+        </Combobox.Item>
+        <Combobox.Item value="money_market3571" searchValue="money_market3571">
           Money Market (3571)
         </Combobox.Item>
-        <Combobox.Item value="checking8642">Checking (8642)</Combobox.Item>
+        <Combobox.Item value="checking8642" searchValue="checking8642">
+          Checking (8642)
+        </Combobox.Item>
       </Combobox>
     </main>
   );
@@ -340,10 +430,22 @@ export const ClearingSelctionWithAction = () => {
         onInputChange={(val) => setInputValue(val)}
         clearSelectionOnAction={true}
       >
-        <Combobox.Item value="Primary Checking - 4567" />
-        <Combobox.Item value="Cheese Fund - 5432" />
-        <Combobox.Item value="Primary Savings - 1234" />
-        <Combobox.Item value="Secondary Checking - 7892" />
+        <Combobox.Item
+          value="Primary Checking - 4567"
+          searchValue="Primary Checking - 4567"
+        />
+        <Combobox.Item
+          value="Cheese Fund - 5432"
+          searchValue="Cheese Fund - 5432"
+        />
+        <Combobox.Item
+          value="Primary Savings - 1234"
+          searchValue="Primary Savings - 1234"
+        />
+        <Combobox.Item
+          value="Secondary Checking - 7892"
+          searchValue="Secondary Checking - 7892"
+        />
         <Combobox.Action
           onSelect={() => {
             setIsOpen(true);
@@ -416,9 +518,15 @@ export const WithCategoriesInForm = () => {
           </Combobox.Item>
         </Combobox.Category>
         <Combobox.Category label="External Accounts">
-          <Combobox.Item value="Sasha">Sasha - 84839</Combobox.Item>
-          <Combobox.Item value="Joan">Joan - 36183</Combobox.Item>
-          <Combobox.Item value="Benoit">Benoit - 53261</Combobox.Item>
+          <Combobox.Item value="Sasha" searchValue="Sasha">
+            Sasha - 84839
+          </Combobox.Item>
+          <Combobox.Item value="Joan" searchValue="Joan">
+            Joan - 36183
+          </Combobox.Item>
+          <Combobox.Item value="Benoit" searchValue="Benoit">
+            Benoit - 53261
+          </Combobox.Item>
         </Combobox.Category>
       </Combobox>
     </>

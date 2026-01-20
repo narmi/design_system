@@ -16,12 +16,6 @@
   overflow: hidden;
 }
 
-// The click should always originate from the root button or anchor element
-.nds-button *,
-.nds-button.resetButton * {
-  pointer-events: none;
-}
-
 /* Size variants */
 .nds-button--xs {
   @extend %btn-size-xs;

@@ -163,8 +163,10 @@ The `kind="interactive"` variant has been removed from ContentCard.
 
 #### Migration Guide
 
-- Use `kind="button"` when the card triggers an action on click (e.g., navigating to a new page, opening a dialog)
-- Use `kind="toggle"` when the card has a selected/unselected state (e.g., choosing between options, selecting items)
+| Use Case                                 | Replacement Kind | Notes                                          |
+| ---------------------------------------- | ---------------- | ---------------------------------------------- |
+| Card triggers an action on click         | `kind="button"`  | For navigation, opening dialogs, etc.          |
+| Card has selected/unselected state       | `kind="toggle"`  | For choosing between options, selecting items  |
 
 #### Example
 

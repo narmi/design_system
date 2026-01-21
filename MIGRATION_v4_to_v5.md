@@ -14,13 +14,13 @@ All legacy CSS variables prefixed with `nds-` have been removed from the design 
 
 | Legacy var                  | Standard var                 | Value                           |
 | --------------------------- | ---------------------------- | ------------------------------- |
-| `var(--nds-black)`          | `var(--rgb-black)`           | `#333333`                       |
-| `var(--nds-grey)`           | `var(--rgb-grey)`            | `#4C4C4C`                       |
-| `var(--nds-medium-grey)`    | `var(--rgb-mediumGrey)`      | `#8C8C8C`                       |
-| `var(--nds-lightest-grey)`  | `var(--rgb-lightGrey)`       | `#D9D9D9`                       |
-| `var(--nds-smoke-grey)`     | `var(--rgb-smokeGrey)`       | `#F3F3F3`                       |
-| `var(--nds-red)`            | `var(--rgb-errorDark)`       | `#D93B3B`                       |
-| `var(--nds-white)`          | `var(--rgb-white)`           | `#FFFFFF`                       |
+| `var(--nds-black)`          | `var(--color-black)`           | `#333333`                       |
+| `var(--nds-grey)`           | `var(--color-grey)`            | `#4C4C4C`                       |
+| `var(--nds-medium-grey)`    | `var(--color-mediumGrey)`      | `#8C8C8C`                       |
+| `var(--nds-lightest-grey)`  | `var(--color-lightGrey)`       | `#D9D9D9`                       |
+| `var(--nds-smoke-grey)`     | `var(--bgColor-smokeGrey)`       | `#F3F3F3`                       |
+| `var(--nds-red)`            | `var(--color-errorDark)`       | `#D93B3B`                       |
+| `var(--nds-white)`          | `var(--color-white)`           | `#FFFFFF`                       |
 | `var(--nds-font-family)`    | `var(--font-family-body)`    | `Mulish, Helvetica, sans-serif` |
 | `var(--nds-header-font)`    | `var(--font-family-heading)` | `'Narmi Matiere', serif`        |
 | `var(--subdued-20-opacity)` | `var(--alpha-20)`            | `0.2`                           |

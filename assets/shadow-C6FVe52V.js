@@ -1,0 +1,3 @@
+import{j as t,M as i,C as r}from"./blocks-BVYthGUp.js";import{useMDXComponents as s}from"./index-__1OeIux.js";import{S as a,E as m}from"./shadow.stories-BFlCO2yn.js";import"./preload-helper-PPVm8Dsz.js";import"./iframe-BLGOjkO0.js";import"./index-CDsQLQ7N.js";import"./index-_dVAmmsA.js";import"./TokenTable-CjG46xl4.js";import"./index-RvS1aOr8.js";function e(o){const n={h2:"h2",...s(),...o.components};return t.jsxs(t.Fragment,{children:[t.jsx(i,{title:"Design Tokens/Shadow",of:a}),`
+`,t.jsx(n.h2,{id:"elevation",children:"Elevation"}),`
+`,t.jsx(r,{of:m,style:{height:"auto"}})]})}function M(o={}){const{wrapper:n}={...s(),...o.components};return n?t.jsx(n,{...o,children:t.jsx(e,{...o})}):e(o)}export{M as default};

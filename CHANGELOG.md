@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 5.0.0 (2026-01-21)
+
+* chore(nds): Export more prop types for use in Azul ([4d3348135e674f36e1d22a50add25e1c018e08e5](https://github.com/narmi/design_system/commit/4d3348135e674f36e1d22a50add25e1c018e08e5))
+* feat(AutocompleteModal): filter items with 'includes' instead of 'startsWith' ([3c333e8662fc0e79cc1e493717bd47c2ed9bb63d](https://github.com/narmi/design_system/commit/3c333e8662fc0e79cc1e493717bd47c2ed9bb63d))
+
+
+### BREAKING CHANGE
+
+* Loosening the match requirements for a search may return more results for a given search + items combination
+
 ## <small>4.50.2 (2025-12-18)</small>
 
 * build(deps-dev): bump prettier from 3.6.2 to 3.7.4 ([3032110034a9de98c9d9ee81ec10bb8c381affeb](https://github.com/narmi/design_system/commit/3032110034a9de98c9d9ee81ec10bb8c381affeb))

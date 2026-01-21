@@ -168,36 +168,6 @@ The `kind="interactive"` variant has been removed from ContentCard.
 | Card triggers an action on click         | `kind="button"`  | For navigation, opening dialogs, etc.          |
 | Card has selected/unselected state       | `kind="toggle"`  | For choosing between options, selecting items  |
 
-#### Example
-
-**Before (v4):**
-
-```jsx
-<ContentCard kind="interactive" onClick={handleClick}>
-  Card content
-</ContentCard>
-```
-
-**After (v5) - For action buttons:**
-
-```jsx
-<ContentCard kind="button" onClick={handleNavigate}>
-  Card content
-</ContentCard>
-```
-
-**After (v5) - For toggle/selection:**
-
-```jsx
-<ContentCard 
-  kind="toggle" 
-  isSelected={isSelected}
-  onClick={handleToggle}
->
-  Card content
-</ContentCard>
-```
-
 ### Dropped support for React v16 and v17
 
 NDS v5 requires React v18 or v19. You must upgrade your React version to use this release.
@@ -243,24 +213,6 @@ The `searchValue` prop is now **required** on all item components for `Select`, 
     California
   </Select.Item>
 </Select>
-```
-
-**Complex example with icons:**
-
-```jsx
-// Before (v4) - search behavior was unpredictable
-<Combobox label="Select account">
-  <Combobox.Item value="checking">
-    <Icon name="bank" /> Checking Account
-  </Combobox.Item>
-</Combobox>
-
-// After (v5) - search behavior is explicit
-<Combobox label="Select account">
-  <Combobox.Item value="checking" searchValue="Checking Account">
-    <Icon name="bank" /> Checking Account
-  </Combobox.Item>
-</Combobox>
 ```
 
 ---

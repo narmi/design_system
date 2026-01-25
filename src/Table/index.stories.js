@@ -6,8 +6,11 @@
  */
 
 /* eslint-disable jsx-a11y/anchor-is-valid,react/jsx-key */
-import React from "react";
+import React, { useState } from "react";
 import Table from "./";
+import TableInput from "../TableInput";
+import TableAutocomplete from "../TableAutocomplete";
+import TableDateInput from "../TableDateInput";
 
 export const Overview = (args) => (
   <Table
@@ -221,6 +224,122 @@ ClickableHeaders.parameters = {
     description: {
       story:
         "Header cells can be made interactive by passing an `onClick` handler. When clicked, they render as buttons and are announced by screen readers. Consumers are responsible for implementing any sorting or filtering behavior in the data passed to `Table`.",
+    },
+  },
+};
+
+export const AllEditableInputTypes = () => {
+  const [data, setData] = useState([
+    {
+      id: 1,
+      name: "John Doe",
+      email: "john@example.com",
+      department: "Engineering",
+      startDate: "2023-01-15",
+    },
+    {
+      id: 2,
+      name: "",
+      email: "jane@example.com",
+      department: "Marketing",
+      startDate: "",
+    },
+    {
+      id: 3,
+      name: "Bob Johnson",
+      email: "",
+      department: "",
+      startDate: "2022-06-01",
+    },
+  ]);
+
+  const updateData = (id, key, value) => {
+    setData((prev) =>
+      prev.map((row) => (row.id === id ? { ...row, [key]: value } : row)),
+    );
+  };
+
+  const departments = ["Engineering", "Marketing", "Sales", "Design", "HR"];
+
+  return (
+    <Table
+      kind="editable"
+      colVisibility={["*", "*", "*", "*", "*"]}
+      colLayout={{
+        s: "1fr 1fr 1fr min-content",
+        m: "1fr 1fr 1fr 1fr min-content",
+        l: "1fr 1fr 1fr 1fr min-content",
+      }}
+    >
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell>Name (Input)</Table.HeaderCell>
+          <Table.HeaderCell>Email (Input)</Table.HeaderCell>
+          <Table.HeaderCell>Department (Autocomplete)</Table.HeaderCell>
+          <Table.HeaderCell>Start Date (DateInput)</Table.HeaderCell>
+          <Table.HeaderCell>ID</Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        {data.map((row) => (
+          <Table.Row key={row.id}>
+            <Table.Cell>
+              <TableInput
+                label="Employee name"
+                value={row.name}
+                onChange={(event) =>
+                  updateData(row.id, "name", event.target.value)
+                }
+                placeholder="Enter name"
+              />
+            </Table.Cell>
+            <Table.Cell>
+              <TableInput
+                label="Email address"
+                value={row.email}
+                onChange={(event) =>
+                  updateData(row.id, "email", event.target.value)
+                }
+                placeholder="Enter email"
+                type="email"
+              />
+            </Table.Cell>
+            <Table.Cell>
+              <TableAutocomplete
+                label="Department"
+                inputValue={row.department}
+                onInputChange={(value) =>
+                  updateData(row.id, "department", value)
+                }
+                onChange={(value) => updateData(row.id, "department", value)}
+              >
+                {departments.map((dept) => (
+                  <TableAutocomplete.Item key={dept} value={dept}>
+                    {dept}
+                  </TableAutocomplete.Item>
+                ))}
+              </TableAutocomplete>
+            </Table.Cell>
+            <Table.Cell>
+              <TableDateInput
+                label="Start date"
+                value={row.startDate}
+                onChange={(value) => updateData(row.id, "startDate", value)}
+                placeholder="YYYY-MM-DD"
+              />
+            </Table.Cell>
+            <Table.Cell>{row.id}</Table.Cell>
+          </Table.Row>
+        ))}
+      </Table.Body>
+    </Table>
+  );
+};
+AllEditableInputTypes.parameters = {
+  docs: {
+    description: {
+      story:
+        "This table demonstrates all available editable input types: `TableInput` for text fields, `TableAutocomplete` for searchable selections, and `TableDateInput` for date picking. The table includes rows with partially filled data to show empty state behavior.",
     },
   },
 };

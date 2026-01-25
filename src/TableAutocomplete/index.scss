@@ -4,6 +4,7 @@
 }
 
 .nds-tableAutocomplete-dropdown {
+  @extend %tableField-offset;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -12,9 +13,6 @@
   box-shadow: var(--elevation-middle);
   max-height: rem(312px);
   margin-top: var(--spacing-xxs);
-
-  // Align dropdown with offset input
-  transform: translateX(calc((var(--space-xs) * -1) - 1px));
 
   .narmi-icon-check {
     color: var(--theme-primary);

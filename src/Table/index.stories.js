@@ -11,6 +11,7 @@ import Table from "./";
 import TableInput from "../TableInput";
 import TableAutocomplete from "../TableAutocomplete";
 import TableDateInput from "../TableDateInput";
+import TableSelect from "../TableSelect";
 
 export const Overview = (args) => (
   <Table
@@ -234,8 +235,9 @@ export const AllEditableInputTypes = () => {
       id: 1,
       name: "John Doe",
       email: "john@example.com",
-      department: "Engineering",
+      department: "",
       startDate: "2023-01-15",
+      status: "Active",
     },
     {
       id: 2,
@@ -243,6 +245,7 @@ export const AllEditableInputTypes = () => {
       email: "jane@example.com",
       department: "Marketing",
       startDate: "",
+      status: "",
     },
     {
       id: 3,
@@ -250,6 +253,7 @@ export const AllEditableInputTypes = () => {
       email: "",
       department: "",
       startDate: "2022-06-01",
+      status: "Active",
     },
   ]);
 
@@ -267,8 +271,8 @@ export const AllEditableInputTypes = () => {
       colVisibility={["*", "*", "*", "*", "*"]}
       colLayout={{
         s: "1fr 1fr 1fr min-content",
-        m: "1fr 1fr 1fr 1fr min-content",
-        l: "1fr 1fr 1fr 1fr min-content",
+        m: "1fr 1fr 1fr 1fr 1fr",
+        l: "1fr 1fr 1fr 1fr 1fr",
       }}
     >
       <Table.Header>
@@ -277,7 +281,7 @@ export const AllEditableInputTypes = () => {
           <Table.HeaderCell>Email (Input)</Table.HeaderCell>
           <Table.HeaderCell>Department (Autocomplete)</Table.HeaderCell>
           <Table.HeaderCell>Start Date (DateInput)</Table.HeaderCell>
-          <Table.HeaderCell>ID</Table.HeaderCell>
+          <Table.HeaderCell>Status (Select)</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
@@ -328,7 +332,18 @@ export const AllEditableInputTypes = () => {
                 placeholder="YYYY-MM-DD"
               />
             </Table.Cell>
-            <Table.Cell>{row.id}</Table.Cell>
+            <Table.Cell>
+              <TableSelect
+                id={`status-${row.id}`}
+                label="Status"
+                value={row.status}
+                onChange={(value) => updateData(row.id, "status", value)}
+              >
+                <TableSelect.Item value="Active">Active</TableSelect.Item>
+                <TableSelect.Item value="Inactive">Inactive</TableSelect.Item>
+                <TableSelect.Item value="Pending">Pending</TableSelect.Item>
+              </TableSelect>
+            </Table.Cell>
           </Table.Row>
         ))}
       </Table.Body>
@@ -339,7 +354,7 @@ AllEditableInputTypes.parameters = {
   docs: {
     description: {
       story:
-        "This table demonstrates all available editable input types: `TableInput` for text fields, `TableAutocomplete` for searchable selections, and `TableDateInput` for date picking. The table includes rows with partially filled data to show empty state behavior.",
+        "This table demonstrates all available editable input types: `TableInput` for text fields, `TableAutocomplete` for searchable selections, `TableDateInput` for date picking, and `TableSelect` for dropdown selections. The table includes rows with partially filled data to show empty state behavior.",
     },
   },
 };

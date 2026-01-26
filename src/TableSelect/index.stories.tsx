@@ -1,7 +1,6 @@
 import React from "react";
 import { action } from "storybook/actions";
 import TableSelect from ".";
-import Button from "../Button";
 
 export default {
   title: "Components/TableSelect",

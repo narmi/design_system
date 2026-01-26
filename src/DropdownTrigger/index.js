@@ -45,6 +45,7 @@ const DropdownTrigger = React.forwardRef(
               "nds-dropdownTrigger-button button--reset",
               "padding--x--s rounded--all",
               {
+                "nds-dropdownTrigger-button--hasValue": Boolean(displayValue),
                 "nds-dropdownTrigger-button--hasError":
                   Boolean(errorText) || hasError,
                 "nds-dropdownTrigger-button--isActive": isOpen,

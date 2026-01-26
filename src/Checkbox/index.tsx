@@ -32,11 +32,11 @@ interface CheckboxProps {
    * when `true`.
    */
   indeterminate?: boolean;
+  /** @deprecated Use `isDisabled` instead */
+  disabled?: boolean;
   /**
    * Checkbox renders as disabled and ignores click/check events.
    */
-  disabled?: boolean;
-  /** @deprecated Use `isDisabled` instead */
   isDisabled?: boolean;
   /** Sets the `value` attribute of the `input` */
   value?: string;
@@ -126,7 +126,7 @@ const Checkbox = ({
 
   return (
     <div className={`nds-checkbox-container nds-checkbox-container--${kind}`}>
-      <DisabledShim isDisabled={resolvedIsDisabled}>
+      <DisabledShim isDisabled={resolvedIsDisabled && kind === "card"}>
         <label
           className={cc([
             `nds-checkbox nds-checkbox--${kind}`,

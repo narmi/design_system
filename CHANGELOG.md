@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>5.1.1 (2026-01-26)</small>
+
+* fix(Checkbox): apply disabled shim only for card kind ([fba202cb33f5d89773c9dc5171f35ca6f4343dfb](https://github.com/narmi/design_system/commit/fba202cb33f5d89773c9dc5171f35ca6f4343dfb))
+
 ## 5.1.0 (2026-01-26)
 
 * build(deps): bump qs and body-parser ([9907b06990b782b6f223d45b1c6745de7f5f45cb](https://github.com/narmi/design_system/commit/9907b06990b782b6f223d45b1c6745de7f5f45cb))

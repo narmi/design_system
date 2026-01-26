@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 5.1.0 (2026-01-26)
+
+* build(deps): bump qs and body-parser ([9907b06990b782b6f223d45b1c6745de7f5f45cb](https://github.com/narmi/design_system/commit/9907b06990b782b6f223d45b1c6745de7f5f45cb))
+* build(deps): bump qs and express ([edf0b0ec94d2e617b8d3a1392a63646a5a190e09](https://github.com/narmi/design_system/commit/edf0b0ec94d2e617b8d3a1392a63646a5a190e09))
+* chore: sq ([597f174d61a14b5b70819bcefd25459ab63634d1](https://github.com/narmi/design_system/commit/597f174d61a14b5b70819bcefd25459ab63634d1))
+* chore(deps): upgrade node; force update tar ([644e71e105412dcb958bfb755073398d60d5b10c](https://github.com/narmi/design_system/commit/644e71e105412dcb958bfb755073398d60d5b10c))
+* docs: convert ContentCard migration guide to table format ([05d0dc821a939d396154b94232c5b14b90387c75](https://github.com/narmi/design_system/commit/05d0dc821a939d396154b94232c5b14b90387c75))
+* docs: editable table story ([d56c6c6f2da43e24f63ef5aedeea668ca8d4333a](https://github.com/narmi/design_system/commit/d56c6c6f2da43e24f63ef5aedeea668ca8d4333a))
+* docs: enhance MIGRATION_v4_to_v5.md with detailed breaking change notes ([2f1d3dee5d04d527dfeca87bd20a5de6eac014a0](https://github.com/narmi/design_system/commit/2f1d3dee5d04d527dfeca87bd20a5de6eac014a0))
+* docs: simplify migration guide by removing redundant examples ([700923547e882c63dea659e82fe39ceef68b60ec](https://github.com/narmi/design_system/commit/700923547e882c63dea659e82fe39ceef68b60ec))
+* feat(TableSelect): add select table field ([881032d0af168d70d095f8cc4fe00405d642ef09](https://github.com/narmi/design_system/commit/881032d0af168d70d095f8cc4fe00405d642ef09))
+
 ## 5.0.0 (2026-01-21)
 
 * chore(nds): Export more prop types for use in Azul ([4d3348135e674f36e1d22a50add25e1c018e08e5](https://github.com/narmi/design_system/commit/4d3348135e674f36e1d22a50add25e1c018e08e5))

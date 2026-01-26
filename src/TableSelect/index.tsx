@@ -44,7 +44,6 @@ interface TableSelectComponent extends React.ForwardRefExoticComponent<
  * Table Field in the form of a select dropdown.
  * This component forward `ref` to the underlying hidden input.
  */
-// eslint-disable-next-line react/display-name
 const TableSelect = React.forwardRef<HTMLInputElement, TableSelectProps>(
   (
     {

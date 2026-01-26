@@ -23,6 +23,7 @@ const DropdownTrigger = React.forwardRef(
       errorText,
       hasError = false,
       minWidth = "auto",
+      kind = "default",
       testId,
       startContent = <></>,
       endContent = <></>,
@@ -32,7 +33,10 @@ const DropdownTrigger = React.forwardRef(
   ) => {
     return (
       <>
-        <div className="nds-dropdownTrigger" style={{ minWidth }}>
+        <div
+          className={`nds-dropdownTrigger nds-dropdownTrigger--${kind}`}
+          style={{ minWidth }}
+        >
           <button
             disabled={disabled}
             ref={ref}
@@ -87,6 +91,8 @@ DropdownTrigger.propTypes = {
   isOpen: PropTypes.bool,
   /** Set to `false` to hide the chevron icon indicating open state */
   showOpenIndicator: PropTypes.bool,
+  /** Variant of the trigger. Use "table" when used inside table cells */
+  kind: PropTypes.oneOf(["default", "table"]),
   /** Text of `label` element */
   labelText: PropTypes.string,
   /** Props to spread onto the `label` element */

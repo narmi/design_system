@@ -117,3 +117,42 @@ $breakpoints: (
   background-clip: padding-box, border-box !important;
   background-origin: border-box !important;
 }
+
+/**
+* Editable table cells
+*/
+
+// Offset the input to align text to its column, compensating
+// for the internal padding and 1px border of the input
+%tableField-offset {
+  transform: translateX(calc((var(--space-xs) * -1) - 1px));
+}
+
+%tableField {
+  @extend %tableField-offset;
+  border-radius: rem(4px);
+  padding: var(--space-xs);
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min-content;
+  align-items: center;
+  gap: var(--space-xxs);
+
+  // Input box should take full width of the parent.
+  width: 100%;
+
+  // The 1px of border should always be present, so the
+  // input doesn't "bounce" the layout 2px on focus
+  border: 1px solid transparent !important;
+}
+
+%tableField-hover {
+  background: rgba(var(--theme-rgb-primary), var(--alpha-5));
+}
+
+%tableField-active {
+  outline: none;
+  border: 1px solid var(--theme-primary) !important;
+  background: var(--color-white) !important;
+}

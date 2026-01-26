@@ -28,6 +28,7 @@ import Table from "./Table";
 import TableAutocomplete from "./TableAutocomplete";
 import TableDateInput from "./TableDateInput";
 import TableInput from "./TableInput";
+import TableSelect from "./TableSelect";
 import Tabs from "./Tabs";
 import Tooltip from "./Tooltip";
 import useSupportsAnchorPositioning from "./hooks/useSupportsAnchorPositioning";
@@ -115,6 +116,7 @@ export {
   TableAutocomplete,
   TableDateInput,
   TableInput,
+  TableSelect,
   Tabs,
   Tag,
   TextInput,

@@ -15,5 +15,5 @@ if (!existsSync(TARGET_DIR)) {
 }
 
 // Formatters
-const formatterDocs = j2m.renderSync({ files: "src/formatters/*.js" });
+const formatterDocs = await j2m.render({ files: "src/formatters/*.js" });
 writeFileSync(`${TARGET_DIR}/Formatters.md`, formatterDocs);

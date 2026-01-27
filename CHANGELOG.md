@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>5.1.3 (2026-01-27)</small>
+
+* build(deps-dev): bump lodash-es from 4.17.21 to 4.17.23 ([142d72798f7b965d0947ff298b9f1224a8f81738](https://github.com/narmi/design_system/commit/142d72798f7b965d0947ff298b9f1224a8f81738))
+
 ## <small>5.1.2 (2026-01-26)</small>
 
 * fix(TableSelect): fix types for subcomponent export ([a65f9315d712809eec7fbd112f3f8faf39bf5681](https://github.com/narmi/design_system/commit/a65f9315d712809eec7fbd112f3f8faf39bf5681))

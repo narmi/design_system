@@ -59,6 +59,7 @@ describe.skip("useDropdownLayer", () => {
         position: "fixed",
         top: "var(--js-dropdown-top)",
         left: "var(--js-dropdown-left)",
+        minWidth: "var(--js-dropdown-minWidth)",
         display: "block",
       });
     });

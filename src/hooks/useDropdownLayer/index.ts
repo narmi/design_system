@@ -13,7 +13,7 @@ export type UseDropdownLayerResult = {
   layerProps: {
     ref: React.Ref<HTMLElement>;
     style: // union of new CSS properties and React CSSProperties
-    | {
+      | {
           positionAnchor?: string;
           positionArea?: string;
           positionTryFallbacks?: string;
@@ -87,9 +87,10 @@ const useDropdownLayer = ({
         ? {
             position: "absolute" as const,
             positionAnchor: anchorName,
-            positionArea: "bottom center",
+            positionArea: "bottom start",
             positionTryFallbacks: "flip-block",
-            width: matchWidth ? "anchor-size(width)" : "max-content",
+            width: "max-content",
+            minWidth: matchWidth ? "anchor-size(width)" : undefined,
           }
         : polyFillLayerStyles),
 

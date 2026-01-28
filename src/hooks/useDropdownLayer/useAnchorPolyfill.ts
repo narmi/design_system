@@ -69,6 +69,7 @@ const useAnchorPolyfill = ({
     // Set CSS vars
     layerEl.style.setProperty("--js-dropdown-top", `${topPosition}px`);
     layerEl.style.setProperty("--js-dropdown-left", `${leftPosition}px`);
+    layerEl.style.setProperty("--js-dropdown-minWidth", `max-content`);
     if (matchWidth) {
       layerEl.style.setProperty("--js-dropdown-width", `${anchorRect.width}px`);
     }
@@ -113,6 +114,7 @@ const useAnchorPolyfill = ({
           position: "fixed",
           top: "var(--js-dropdown-top)",
           left: "var(--js-dropdown-left)",
+          minWidth: "var(--js-dropdown-minWidth)",
           ...(matchWidth && { width: "var(--js-dropdown-width)" }),
         },
   };

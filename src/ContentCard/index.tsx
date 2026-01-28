@@ -25,15 +25,10 @@ interface ContentCardProps {
    * `button`: action button (button-like)
    *
    * `bordered`: flat, rounded rect with border
+   *
+   * `ai`: card variant styled for AI-related content or features
    */
-  kind?:
-    | "plain"
-    | "elevated"
-    | "toggle"
-    | "button"
-    | "bordered"
-    | "interactive"
-    | "ai";
+  kind?: "plain" | "elevated" | "toggle" | "button" | "bordered" | "ai";
   /**
    * Amount of border radius to add on all sides of card.
    */
@@ -77,7 +72,7 @@ const ContentCard = ({
   disabled: disabledProp,
 }: ContentCardProps) => {
   const isDisabled = isDisabledProp ?? disabledProp ?? false;
-  const isInteractive = ["interactive", "toggle", "button"].some(
+  const isInteractive = ["toggle", "button"].some(
     (interactiveKinds) => kind === interactiveKinds,
   );
   const isToggle = isInteractive && kind !== "button";
@@ -142,7 +137,7 @@ const ContentCard = ({
 // at checking for required props and conditional props.
 ContentCard.propTypes = {
   onClick: (props, propName) => {
-    const isInteractive = ["interactive", "toggle", "button"].some(
+    const isInteractive = ["toggle", "button"].some(
       (kind) => kind === props.kind,
     );
     // must be a function
@@ -152,7 +147,7 @@ ContentCard.propTypes = {
     // onClick required for interactive types
     if (isInteractive && props[propName] === undefined) {
       return new Error(
-        "ContentCard: `onClick` is required for `interactive` type",
+        "ContentCard: `onClick` is required for buttons and toggles.",
       );
     }
     // onClick invalid for non-interactive types

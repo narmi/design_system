@@ -10,16 +10,16 @@ import Select, {
 } from "./";
 
 const MOCK_ITEMS = [
-  <Select.Item key=".0" value="uno">
+  <Select.Item key=".0" value="uno" searchValue="uno">
     one
   </Select.Item>,
-  <Select.Item key=".1" value="dos">
+  <Select.Item key=".1" value="dos" searchValue="dos">
     two
   </Select.Item>,
-  <Select.Item key=".2" value="tres">
+  <Select.Item key=".2" value="tres" searchValue="tres">
     three
   </Select.Item>,
-  <Select.Item key=".3" value="quatro">
+  <Select.Item key=".3" value="quatro" searchValue="quatro">
     four
   </Select.Item>,
 ];
@@ -36,7 +36,7 @@ describe("Select", () => {
    */
 
   it("isAction: detects action items correctly", () => {
-    expect(isAction(<Select.Item value="foo" />)).toBe(false);
+    expect(isAction(<Select.Item value="foo" searchValue="foo" />)).toBe(false);
     expect(isAction(<Select.Action onSelect={() => {}} />)).toBe(true);
     expect(isAction(null)).toBe(false);
     expect(isAction(undefined)).toBe(false);
@@ -45,15 +45,23 @@ describe("Select", () => {
 
   it("getSelectedItemDisplay: only returns non-action items", () => {
     const kids = "test";
-    const item = <Select.Item value="foo">{kids}</Select.Item>;
+    const item = (
+      <Select.Item value="foo" searchValue="foo">
+        {kids}
+      </Select.Item>
+    );
     const action = <Select.Action onSelect={() => {}}>{kids}</Select.Action>;
     expect(getSelectedItemDisplay(item)).toBeTruthy();
     expect(getSelectedItemDisplay(action)).toBeFalsy();
   });
 
   it("getItemByValue: gets correct item from list by value or an empty string", () => {
-    const MOCK_ITEM_FOO = <Select.Item value="foo"></Select.Item>;
-    const MOCK_ITEM_BAR = <Select.Item value="bar"></Select.Item>;
+    const MOCK_ITEM_FOO = (
+      <Select.Item value="foo" searchValue="foo"></Select.Item>
+    );
+    const MOCK_ITEM_BAR = (
+      <Select.Item value="bar" searchValue="bar"></Select.Item>
+    );
     expect(getItemByValue("foo", [MOCK_ITEM_BAR, MOCK_ITEM_FOO])).toBe(
       MOCK_ITEM_FOO,
     );
@@ -64,7 +72,7 @@ describe("Select", () => {
 
   it("getItemIndex: gets expected index of item by its value", () => {
     const item = (
-      <Select.Item key=".2" value="tres">
+      <Select.Item key=".2" value="tres" searchValue="tres">
         three
       </Select.Item>
     );
@@ -97,8 +105,8 @@ describe("Select", () => {
   it("renders as expected with basic props", () => {
     render(
       <Select id="accountField" label="Account Type">
-        <Select.Item value="checking"></Select.Item>
-        <Select.Item value="savings"></Select.Item>
+        <Select.Item value="checking" searchValue="checking"></Select.Item>
+        <Select.Item value="savings" searchValue="savings"></Select.Item>
       </Select>,
     );
 
@@ -119,8 +127,12 @@ describe("Select", () => {
     const handleChange = jest.fn();
     render(
       <Select label="Account Type" onChange={handleChange}>
-        <Select.Item value="checking">Checking</Select.Item>
-        <Select.Item value="savings">Savings</Select.Item>
+        <Select.Item value="checking" searchValue="checking">
+          Checking
+        </Select.Item>
+        <Select.Item value="savings" searchValue="savings">
+          Savings
+        </Select.Item>
       </Select>,
     );
 
@@ -141,8 +153,12 @@ describe("Select", () => {
   it("defaultValue sets selection in trigger correctly", () => {
     render(
       <Select label="Account Type" defaultValue="savings">
-        <Select.Item value="checking">Checking</Select.Item>
-        <Select.Item value="savings">Savings</Select.Item>
+        <Select.Item value="checking" searchValue="checking">
+          Checking
+        </Select.Item>
+        <Select.Item value="savings" searchValue="savings">
+          Savings
+        </Select.Item>
       </Select>,
     );
     expect(screen.getByText("Savings")).toBeInTheDocument();
@@ -151,8 +167,12 @@ describe("Select", () => {
   it("default open works", () => {
     render(
       <Select label="Account Type" defaultOpen>
-        <Select.Item value="checking">Checking</Select.Item>
-        <Select.Item value="savings">Savings</Select.Item>
+        <Select.Item value="checking" searchValue="checking">
+          Checking
+        </Select.Item>
+        <Select.Item value="savings" searchValue="savings">
+          Savings
+        </Select.Item>
       </Select>,
     );
     expect(screen.getByText("Savings")).toBeInTheDocument();
@@ -163,8 +183,12 @@ describe("Select", () => {
     const sideEffect = jest.fn();
     render(
       <Select id="accountField" label="Account Type" onChange={handleChange}>
-        <Select.Item value="checking">Checking</Select.Item>
-        <Select.Item value="savings">Savings</Select.Item>
+        <Select.Item value="checking" searchValue="checking">
+          Checking
+        </Select.Item>
+        <Select.Item value="savings" searchValue="savings">
+          Savings
+        </Select.Item>
         <Select.Action onSelect={sideEffect}>Action</Select.Action>
       </Select>,
     );

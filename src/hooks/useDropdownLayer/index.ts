@@ -12,7 +12,7 @@ export type UseDropdownLayerResult = {
   /** Props to spread onto the dropdown menu element */
   layerProps: {
     ref: React.Ref<HTMLElement>;
-    style: // union of new CSS properties and React CSSProperties
+    style:
       | {
           positionAnchor?: string;
           positionArea?: string;
@@ -29,28 +29,23 @@ export interface UseDropdownLayerOptions {
   setIsOpen: (isOpen: boolean) => void;
   /** Whether the dropdown should match the width of the anchor element */
   matchWidth?: boolean;
+  /** * Whether the dropdown is rendered in a Portal.
+   * If true, forces 'fixed' positioning and higher z-index.
+   * @default false
+   */
+  isPortalled?: boolean;
 }
 
 /**
  * Progressive enhancement driven layout helper for dropdowns/menus.
  * Uses CSS anchor positioning if supported, otherwise falls back to
  * a JS-supported fixed positioning strategy.
- *
- * @usage
- * ```tsx
- * const { anchorProps, layerProps } = useDropdownLayer({ isOpen, setIsOpen, matchWidth });
- *
- * return (
- *   <>
- *     <input {...anchorProps}>Open Menu</input>
- *     <div {...layerProps}>...</div>
- *   <>
- * ```
  */
 const useDropdownLayer = ({
   isOpen,
   setIsOpen,
   matchWidth = true,
+  isPortalled = false, // Default to false
 }: UseDropdownLayerOptions): UseDropdownLayerResult => {
   const anchorRef = useRef<HTMLElement>(null);
   const layerRef = useRef<HTMLElement>(null);
@@ -67,6 +62,7 @@ const useDropdownLayer = ({
     matchWidth,
     isOpen,
     setIsOpen,
+    isPortalled,
   });
 
   // Memoized props to spread onto the anchor (positioning reference) element
@@ -85,9 +81,10 @@ const useDropdownLayer = ({
     const layerStyle = {
       ...(isAnchorPositionSupported
         ? {
-            position: "absolute" as const,
+            position: isPortalled ? ("fixed" as const) : ("absolute" as const),
             positionAnchor: anchorName,
-            positionArea: "bottom start",
+            top: "anchor(bottom)",
+            left: "anchor(start)",
             positionTryFallbacks: "flip-block",
             width: "max-content",
             minWidth: matchWidth ? "anchor-size(width)" : undefined,
@@ -96,7 +93,7 @@ const useDropdownLayer = ({
 
       // Always include visibility and z-index rules.
       display: isOpen ? "block" : "none",
-      zIndex: 4,
+      zIndex: isPortalled ? 9 : 4,
     };
 
     return {
@@ -110,6 +107,7 @@ const useDropdownLayer = ({
     matchWidth,
     polyFillLayerStyles,
     layerRef,
+    isPortalled,
   ]);
 
   return {

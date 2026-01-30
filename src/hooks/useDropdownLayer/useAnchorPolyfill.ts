@@ -13,6 +13,8 @@ interface UseAnchorPolyfillParams {
   isOpen: boolean;
   /** Function to close the dropdown */
   setIsOpen: (isOpen: boolean) => void;
+  /** Whether the layer will be portaled (affects positioning strategy) */
+  isPortalled?: boolean;
 }
 
 /**
@@ -25,6 +27,7 @@ const useAnchorPolyfill = ({
   matchWidth = false,
   isOpen,
   setIsOpen,
+  isPortalled = false,
 }: UseAnchorPolyfillParams) => {
   const isAnchorPositionSupported = useSupportsAnchorPositioning();
 
@@ -56,14 +59,17 @@ const useAnchorPolyfill = ({
       ? anchorRect.top - layerRect.height
       : anchorRect.bottom;
 
-    // Firefox has made a decision to be wrong about how fixed position is
-    // calculated on elements in an offsetParent other than the viewport,
-    // so we need to set the initial position of the nearest offsetParent.
-    const layerOffsetParent = layerEl.offsetParent;
-    if (layerOffsetParent && layerOffsetParent !== document.body) {
-      const parentRect = layerOffsetParent.getBoundingClientRect();
-      leftPosition = anchorRect.left - parentRect.left;
-      topPosition = topPosition - parentRect.top;
+    // If portalled, we want pure Viewport coords (anchorRect) for `fixed` position
+    // If not portalled, we need to adjust for offsetParent `absolute` positioning context
+    if (!isPortalled) {
+      const layerOffsetParent = layerEl.offsetParent;
+      if (layerOffsetParent && layerOffsetParent !== document.body) {
+        const parentRect = layerOffsetParent.getBoundingClientRect();
+        leftPosition =
+          anchorRect.left - parentRect.left - layerOffsetParent.clientLeft;
+        topPosition =
+          topPosition - parentRect.top - layerOffsetParent.clientTop;
+      }
     }
 
     // Set CSS vars
@@ -104,6 +110,7 @@ const useAnchorPolyfill = ({
     matchWidth,
     isOpen,
     setIsOpen,
+    isPortalled,
   ]);
 
   return {
@@ -111,7 +118,7 @@ const useAnchorPolyfill = ({
     polyFillLayerStyles: isAnchorPositionSupported
       ? {}
       : {
-          position: "fixed",
+          position: isPortalled ? "fixed" : "absolute",
           top: "var(--js-dropdown-top)",
           left: "var(--js-dropdown-left)",
           minWidth: "var(--js-dropdown-minWidth)",

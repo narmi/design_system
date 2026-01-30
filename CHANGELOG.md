@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>5.2.1 (2026-01-30)</small>
+
+* fix(TableSelect): render Item children when selected ([3cee43a91790c462b3c354d0b088fb7a495bdc7a](https://github.com/narmi/design_system/commit/3cee43a91790c462b3c354d0b088fb7a495bdc7a))
+
 ## 5.2.0 (2026-01-30)
 
 * feat(useDropdownLayer): accept isPortalled for dropdowns ([961aaea189cef4aa0e7f501e667609492369aef7](https://github.com/narmi/design_system/commit/961aaea189cef4aa0e7f501e667609492369aef7))

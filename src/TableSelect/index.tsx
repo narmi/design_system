@@ -137,8 +137,6 @@ const TableSelect = React.forwardRef<HTMLInputElement, TableSelectProps>(
       </div>
     );
 
-    console.info(selectedItem);
-
     return (
       <div
         className={cc([

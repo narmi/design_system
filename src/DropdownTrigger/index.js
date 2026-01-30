@@ -20,6 +20,7 @@ const DropdownTrigger = React.forwardRef(
       labelText,
       labelProps,
       displayValue,
+      renderDisplayValue,
       errorText,
       hasError = false,
       minWidth = "auto",
@@ -62,9 +63,13 @@ const DropdownTrigger = React.forwardRef(
                 {labelText}
               </label>
             )}
-            {displayValue && (
-              <span className="nds-dropdownTrigger-value">{displayValue}</span>
-            )}
+            {renderDisplayValue
+              ? renderDisplayValue()
+              : displayValue && (
+                  <span className="nds-dropdownTrigger-value">
+                    {displayValue}
+                  </span>
+                )}
             {endContent}
             {showOpenIndicator && !disabled && (
               <span
@@ -102,6 +107,8 @@ DropdownTrigger.propTypes = {
    * Usually, this represents the name of a selected option
    */
   displayValue: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  /** Render function that returns JSX to display as the value */
+  renderDisplayValue: PropTypes.func,
   /** Error message. When this prop is passed, an error state is displayed */
   errorText: PropTypes.string,
   /** Set to `true` to display error state without providing error text */

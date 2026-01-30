@@ -161,7 +161,12 @@ const TableSelect = React.forwardRef<HTMLInputElement, TableSelectProps>(
             disabled={isDisabled}
             // The easist way to ensure consistent height is to always have one char rendering.
             // We allow the text size to determine sizing for all table fields.
-            displayValue={selectedItem ? itemToString(selectedItem) : "\u00A0"}
+            renderDisplayValue={
+              selectedItem
+                ? () =>
+                    selectedItem.props.children || itemToString(selectedItem)
+                : () => "\u00A0"
+            }
             labelProps={{ ...getLabelProps() }}
             {...getToggleButtonProps()}
             aria-label={label}

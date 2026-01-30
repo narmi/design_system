@@ -16,6 +16,8 @@ export interface DropdownTriggerProps extends React.ButtonHTMLAttributes<HTMLBut
    * Usually, this represents the name of a selected option
    */
   displayValue?: string | ReactNode;
+  /** Render function that returns JSX to display as the value */
+  renderDisplayValue?: (() => ReactNode) | undefined;
   /** Error message. When this prop is passed, an error state is displayed */
   errorText?: string;
   /** Set to `true` to display error state without providing error text */

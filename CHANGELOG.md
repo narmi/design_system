@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 5.2.0 (2026-01-30)
+
+* feat(useDropdownLayer): accept isPortalled for dropdowns ([961aaea189cef4aa0e7f501e667609492369aef7](https://github.com/narmi/design_system/commit/961aaea189cef4aa0e7f501e667609492369aef7))
+
 ## <small>5.1.4 (2026-01-28)</small>
 
 * chore: use same approach for polyfil ([7e0977d20bc1e2271e82d04f677fc74d9a139842](https://github.com/narmi/design_system/commit/7e0977d20bc1e2271e82d04f677fc74d9a139842))

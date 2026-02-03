@@ -6,8 +6,12 @@
  */
 
 /* eslint-disable jsx-a11y/anchor-is-valid,react/jsx-key */
-import React from "react";
+import React, { useState } from "react";
 import Table from "./";
+import TableInput from "../TableInput";
+import TableAutocomplete from "../TableAutocomplete";
+import TableDateInput from "../TableDateInput";
+import TableSelect from "../TableSelect";
 
 export const Overview = (args) => (
   <Table
@@ -221,6 +225,248 @@ ClickableHeaders.parameters = {
     description: {
       story:
         "Header cells can be made interactive by passing an `onClick` handler. When clicked, they render as buttons and are announced by screen readers. Consumers are responsible for implementing any sorting or filtering behavior in the data passed to `Table`.",
+    },
+  },
+};
+
+export const AllEditableInputTypes = () => {
+  const [data, setData] = useState([
+    {
+      id: 1,
+      name: "John Doe",
+      email: "john@example.com",
+      department: "",
+      startDate: "2023-01-15",
+      status: "Active",
+    },
+    {
+      id: 2,
+      name: "",
+      email: "jane@example.com",
+      department: "Marketing",
+      startDate: "",
+      status: "",
+    },
+    {
+      id: 3,
+      name: "Bob Johnson",
+      email: "",
+      department: "",
+      startDate: "2022-06-01",
+      status: "Active",
+    },
+  ]);
+
+  const updateData = (id, key, value) => {
+    setData((prev) =>
+      prev.map((row) => (row.id === id ? { ...row, [key]: value } : row)),
+    );
+  };
+
+  const departments = ["Engineering", "Marketing", "Sales", "Design", "HR"];
+
+  return (
+    <Table
+      kind="editable"
+      colVisibility={["*", "*", "*", "*", "*"]}
+      colLayout={{
+        s: "1fr 1fr 1fr min-content",
+        m: "1fr 1fr 1fr 1fr 1fr",
+        l: "1fr 1fr 1fr 1fr 1fr",
+      }}
+    >
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell>Name (Input)</Table.HeaderCell>
+          <Table.HeaderCell>Email (Input)</Table.HeaderCell>
+          <Table.HeaderCell>Department (Autocomplete)</Table.HeaderCell>
+          <Table.HeaderCell>Start Date (DateInput)</Table.HeaderCell>
+          <Table.HeaderCell>Status (Select)</Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        {data.map((row) => (
+          <Table.Row key={row.id}>
+            <Table.Cell>
+              <TableInput
+                label="Employee name"
+                value={row.name}
+                onChange={(event) =>
+                  updateData(row.id, "name", event.target.value)
+                }
+                placeholder="Enter name"
+              />
+            </Table.Cell>
+            <Table.Cell>
+              <TableInput
+                label="Email address"
+                value={row.email}
+                onChange={(event) =>
+                  updateData(row.id, "email", event.target.value)
+                }
+                placeholder="Enter email"
+                type="email"
+              />
+            </Table.Cell>
+            <Table.Cell>
+              <TableAutocomplete
+                label="Department"
+                inputValue={row.department}
+                onInputChange={(value) =>
+                  updateData(row.id, "department", value)
+                }
+                onChange={(value) => updateData(row.id, "department", value)}
+              >
+                {departments.map((dept) => (
+                  <TableAutocomplete.Item key={dept} value={dept}>
+                    {dept}
+                  </TableAutocomplete.Item>
+                ))}
+              </TableAutocomplete>
+            </Table.Cell>
+            <Table.Cell>
+              <TableDateInput
+                label="Start date"
+                value={row.startDate}
+                onChange={(value) => updateData(row.id, "startDate", value)}
+                placeholder="YYYY-MM-DD"
+              />
+            </Table.Cell>
+            <Table.Cell>
+              <TableSelect
+                id={`status-${row.id}`}
+                label="Status"
+                value={row.status}
+                onChange={(value) => updateData(row.id, "status", value)}
+              >
+                <TableSelect.Item value="Active">Active</TableSelect.Item>
+                <TableSelect.Item value="Inactive">Inactive</TableSelect.Item>
+                <TableSelect.Item value="Pending">Pending</TableSelect.Item>
+              </TableSelect>
+            </Table.Cell>
+          </Table.Row>
+        ))}
+      </Table.Body>
+    </Table>
+  );
+};
+AllEditableInputTypes.parameters = {
+  docs: {
+    description: {
+      story:
+        "This table demonstrates all available editable input types: `TableInput` for text fields, `TableAutocomplete` for searchable selections, `TableDateInput` for date picking, and `TableSelect` for dropdown selections. The table includes rows with partially filled data to show empty state behavior.",
+    },
+  },
+};
+
+export const TableWithOverflow = () => {
+  const [data, setData] = useState({
+    id: 1,
+    name: "John Doe",
+    email: "john@example.com",
+    department: "",
+    startDate: "2023-01-15",
+    status: "Active",
+  });
+
+  const updateData = (key, value) => {
+    setData((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const departments = ["Engineering", "Marketing", "Sales", "Design", "HR"];
+
+  return (
+    <div
+      style={{
+        width: "600px",
+        height: "auto",
+        overflow: "scroll",
+        border: "2px solid #ddd",
+        padding: "16px",
+      }}
+    >
+      <Table
+        kind="editable"
+        colVisibility={["*", "*", "*", "*", "*"]}
+        colLayout={{
+          s: "1fr 1fr 1fr min-content",
+          m: "1fr 1fr 1fr 1fr 1fr",
+          l: "1fr 1fr 1fr 1fr 1fr",
+        }}
+      >
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Name (Input)</Table.HeaderCell>
+            <Table.HeaderCell>Email (Input)</Table.HeaderCell>
+            <Table.HeaderCell>Department (Autocomplete)</Table.HeaderCell>
+            <Table.HeaderCell>Start Date (DateInput)</Table.HeaderCell>
+            <Table.HeaderCell>Status (Select)</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>
+              <TableInput
+                label="Employee name"
+                value={data.name}
+                onChange={(event) => updateData("name", event.target.value)}
+                placeholder="Enter name"
+              />
+            </Table.Cell>
+            <Table.Cell>
+              <TableInput
+                label="Email address"
+                value={data.email}
+                onChange={(event) => updateData("email", event.target.value)}
+                placeholder="Enter email"
+                type="email"
+              />
+            </Table.Cell>
+            <Table.Cell>
+              <TableAutocomplete
+                label="Department"
+                inputValue={data.department}
+                onInputChange={(value) => updateData("department", value)}
+                onChange={(value) => updateData("department", value)}
+              >
+                {departments.map((dept) => (
+                  <TableAutocomplete.Item key={dept} value={dept}>
+                    {dept}
+                  </TableAutocomplete.Item>
+                ))}
+              </TableAutocomplete>
+            </Table.Cell>
+            <Table.Cell>
+              <TableDateInput
+                label="Start date"
+                value={data.startDate}
+                onChange={(value) => updateData("startDate", value)}
+                placeholder="YYYY-MM-DD"
+              />
+            </Table.Cell>
+            <Table.Cell>
+              <TableSelect
+                id="status-select"
+                label="Status"
+                value={data.status}
+                onChange={(value) => updateData("status", value)}
+              >
+                <TableSelect.Item value="Active">Active</TableSelect.Item>
+                <TableSelect.Item value="Inactive">Inactive</TableSelect.Item>
+                <TableSelect.Item value="Pending">Pending</TableSelect.Item>
+              </TableSelect>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+    </div>
+  );
+};
+TableWithOverflow.parameters = {
+  docs: {
+    description: {
+      story:
+        "This table is wrapped in an `overflow: scroll` container to test that dropdowns (like `TableSelect`) escape the overflow boundary and remain visible. This is important when tables are horizontally scrollable or constrained.",
     },
   },
 };

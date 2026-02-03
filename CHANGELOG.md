@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>5.2.1 (2026-01-30)</small>
+
+* fix(TableSelect): render Item children when selected ([3cee43a91790c462b3c354d0b088fb7a495bdc7a](https://github.com/narmi/design_system/commit/3cee43a91790c462b3c354d0b088fb7a495bdc7a))
+
+## 5.2.0 (2026-01-30)
+
+* feat(useDropdownLayer): accept isPortalled for dropdowns ([961aaea189cef4aa0e7f501e667609492369aef7](https://github.com/narmi/design_system/commit/961aaea189cef4aa0e7f501e667609492369aef7))
+
+## <small>5.1.4 (2026-01-28)</small>
+
+* chore: use same approach for polyfil ([7e0977d20bc1e2271e82d04f677fc74d9a139842](https://github.com/narmi/design_system/commit/7e0977d20bc1e2271e82d04f677fc74d9a139842))
+* fix: set min width for nds dropdown layer ([dde7757a39a181f18d54acb0c71ddf73b12bba60](https://github.com/narmi/design_system/commit/dde7757a39a181f18d54acb0c71ddf73b12bba60))
+
+## <small>5.1.3 (2026-01-27)</small>
+
+* build(deps-dev): bump lodash-es from 4.17.21 to 4.17.23 ([142d72798f7b965d0947ff298b9f1224a8f81738](https://github.com/narmi/design_system/commit/142d72798f7b965d0947ff298b9f1224a8f81738))
+
+## <small>5.1.2 (2026-01-26)</small>
+
+* fix(TableSelect): fix types for subcomponent export ([a65f9315d712809eec7fbd112f3f8faf39bf5681](https://github.com/narmi/design_system/commit/a65f9315d712809eec7fbd112f3f8faf39bf5681))
+
+## <small>5.1.1 (2026-01-26)</small>
+
+* fix(Checkbox): apply disabled shim only for card kind ([fba202cb33f5d89773c9dc5171f35ca6f4343dfb](https://github.com/narmi/design_system/commit/fba202cb33f5d89773c9dc5171f35ca6f4343dfb))
+
+## 5.1.0 (2026-01-26)
+
+* build(deps): bump qs and body-parser ([9907b06990b782b6f223d45b1c6745de7f5f45cb](https://github.com/narmi/design_system/commit/9907b06990b782b6f223d45b1c6745de7f5f45cb))
+* build(deps): bump qs and express ([edf0b0ec94d2e617b8d3a1392a63646a5a190e09](https://github.com/narmi/design_system/commit/edf0b0ec94d2e617b8d3a1392a63646a5a190e09))
+* chore: sq ([597f174d61a14b5b70819bcefd25459ab63634d1](https://github.com/narmi/design_system/commit/597f174d61a14b5b70819bcefd25459ab63634d1))
+* chore(deps): upgrade node; force update tar ([644e71e105412dcb958bfb755073398d60d5b10c](https://github.com/narmi/design_system/commit/644e71e105412dcb958bfb755073398d60d5b10c))
+* docs: convert ContentCard migration guide to table format ([05d0dc821a939d396154b94232c5b14b90387c75](https://github.com/narmi/design_system/commit/05d0dc821a939d396154b94232c5b14b90387c75))
+* docs: editable table story ([d56c6c6f2da43e24f63ef5aedeea668ca8d4333a](https://github.com/narmi/design_system/commit/d56c6c6f2da43e24f63ef5aedeea668ca8d4333a))
+* docs: enhance MIGRATION_v4_to_v5.md with detailed breaking change notes ([2f1d3dee5d04d527dfeca87bd20a5de6eac014a0](https://github.com/narmi/design_system/commit/2f1d3dee5d04d527dfeca87bd20a5de6eac014a0))
+* docs: simplify migration guide by removing redundant examples ([700923547e882c63dea659e82fe39ceef68b60ec](https://github.com/narmi/design_system/commit/700923547e882c63dea659e82fe39ceef68b60ec))
+* feat(TableSelect): add select table field ([881032d0af168d70d095f8cc4fe00405d642ef09](https://github.com/narmi/design_system/commit/881032d0af168d70d095f8cc4fe00405d642ef09))
+
+## 5.0.0 (2026-01-21)
+
+* chore(nds): Export more prop types for use in Azul ([4d3348135e674f36e1d22a50add25e1c018e08e5](https://github.com/narmi/design_system/commit/4d3348135e674f36e1d22a50add25e1c018e08e5))
+* feat(AutocompleteModal): filter items with 'includes' instead of 'startsWith' ([3c333e8662fc0e79cc1e493717bd47c2ed9bb63d](https://github.com/narmi/design_system/commit/3c333e8662fc0e79cc1e493717bd47c2ed9bb63d))
+
+
+### BREAKING CHANGE
+
+* Loosening the match requirements for a search may return more results for a given search + items combination
+
 ## <small>4.50.2 (2025-12-18)</small>
 
 * build(deps-dev): bump prettier from 3.6.2 to 3.7.4 ([3032110034a9de98c9d9ee81ec10bb8c381affeb](https://github.com/narmi/design_system/commit/3032110034a9de98c9d9ee81ec10bb8c381affeb))

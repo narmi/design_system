@@ -21,7 +21,7 @@ export const Overview = () => {
         <AutocompleteModal.Item value="Nikhil" />
         <AutocompleteModal.Item value="James" />
         <AutocompleteModal.Item value="Phil" />
-        <AutocompleteModal.Item value="Batman" />
+        <AutocompleteModal.Item value="Batman Robin" />
         <AutocompleteModal.Item value="Reshav" />
         <AutocompleteModal.Item value="Ethan" />
         <AutocompleteModal.Item value="Xihao" />

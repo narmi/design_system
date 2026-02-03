@@ -1,7 +1,0 @@
-import{j as o,M as i,C as t}from"./blocks-CNkl9co1.js";import{useMDXComponents as a}from"./index-kfa6RJj3.js";import"./ClassExample-DGRw-MhR.js";import{B as e,a as c,b as m}from"./background.stories-owW1GhD2.js";import"./preload-helper-PPVm8Dsz.js";import"./iframe-BGKFfZvn.js";import"./index-CG2lBYBD.js";import"./index-t4v8ycKX.js";import"./index-B7XMBRln.js";import"./AsElement-Nku_HKKk.js";import"./index-RvS1aOr8.js";function s(r){const n={h1:"h1",p:"p",...a(),...r.components};return o.jsxs(o.Fragment,{children:[o.jsx(i,{of:e}),`
-`,o.jsx(n.h1,{id:"background-color",children:"Background Color"}),`
-`,o.jsx(n.p,{children:"Applies a standard background color to an element."}),`
-`,o.jsx(t,{of:c}),`
-`,o.jsx(n.h1,{id:"background-scrims",children:"Background Scrims"}),`
-`,o.jsx(n.p,{children:"Adds a semi-transparent light or dark scrim. Useful for dimming content for loading states or modal windows."}),`
-`,o.jsx(t,{of:m})]})}function B(r={}){const{wrapper:n}={...a(),...r.components};return n?o.jsx(n,{...r,children:o.jsx(s,{...r})}):s(r)}export{B as default};

@@ -1,0 +1,29 @@
+/**
+* TableSelect
+* The `DropdownTrigger kind="table"` variant is used to style the trigger itself.
+* We only need styles for the dropdown list and items here.
+*/
+
+.nds-tableField-select {
+  position: relative;
+  display: block;
+}
+
+.nds-tableField-select-list {
+  @extend %nds-dropdown-layer;
+  @extend %tableField-offset;
+}
+
+.nds-tableField-select-item {
+  min-height: var(--space-xl);
+}
+
+.nds-tableField-select-item {
+  cursor: pointer;
+  position: relative;
+  padding: var(--space-xs) var(--space-s);
+  &:hover,
+  &--highlighted {
+    background: RGBA(var(--theme-rgb-primary), var(--alpha-5));
+  }
+}

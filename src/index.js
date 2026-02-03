@@ -45,6 +45,7 @@ import Table from "./Table";
 import TableAutocomplete from "./TableAutocomplete";
 import TableDateInput from "./TableDateInput";
 import TableInput from "./TableInput";
+import TableSelect from "./TableSelect";
 import Tabs from "./Tabs";
 import Tag from "./Tag";
 import TextInput from "./TextInput";
@@ -107,6 +108,7 @@ export {
   TableAutocomplete,
   TableDateInput,
   TableInput,
+  TableSelect,
   Tabs,
   Tag,
   TextInput,

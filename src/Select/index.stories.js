@@ -457,6 +457,21 @@ InADialog.args = {
   children,
 };
 
+export const SmallWidthLongItem = () => {
+  return (
+    <div style={{ width: "80px" }}>
+      <Select label="Age">
+        <Select.Item value="checking1234">
+          Checking (1234) alol haha what{" "}
+        </Select.Item>
+        <Select.Item value="checking1224">
+          Checking (1234) alol haha what{" "}
+        </Select.Item>
+      </Select>
+    </div>
+  );
+};
+
 export const OneItem = () => {
   return (
     <Select label="Account">

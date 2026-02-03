@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import React, { useMemo } from "react";
+import ReactDOM from "react-dom";
 import cc from "classcat";
 import { useSelect } from "downshift";
 import useDropdownLayer from "../hooks/useDropdownLayer";
@@ -92,9 +93,49 @@ const TableSelect = React.forwardRef<HTMLInputElement, TableSelectProps>(
       isOpen,
       setIsOpen: () => {},
       matchWidth: true,
+      isPortalled: true,
     });
 
     const hasSelectedItem = selectedItem !== null && selectedItem.props;
+
+    const layerContent = (
+      <div {...(layerProps as React.HTMLAttributes<HTMLDivElement>)}>
+        <ul
+          {...getMenuProps()}
+          className={cc([
+            "nds-tableField-select-list",
+            "list--reset",
+            "bgColor--white",
+          ])}
+        >
+          {items.map((item, index) => (
+            <li
+              key={`${item.props.value}-${index}`}
+              className={cc([
+                "nds-tableField-select-item",
+                "alignChild--left--center padding--x--s padding--y--xs",
+                {
+                  "nds-tableField-select-item--highlighted":
+                    highlightedIndex === index,
+                  "nds-tableField-select-item--selected": selectedItem === item,
+                },
+              ])}
+              {...getItemProps({ item, index })}
+            >
+              <Row as="span">
+                <Row.Item as="span">{item}</Row.Item>
+                {hasSelectedItem &&
+                  selectedItem.props.value === item.props.value && (
+                    <Row.Item as="span" shrink>
+                      <span className="narmi-icon-check fontSize--l fontWeight--bold" />
+                    </Row.Item>
+                  )}
+              </Row>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
 
     return (
       <div
@@ -120,49 +161,18 @@ const TableSelect = React.forwardRef<HTMLInputElement, TableSelectProps>(
             disabled={isDisabled}
             // The easist way to ensure consistent height is to always have one char rendering.
             // We allow the text size to determine sizing for all table fields.
-            displayValue={selectedItem ? itemToString(selectedItem) : "\u00A0"}
+            renderDisplayValue={
+              selectedItem
+                ? () =>
+                    selectedItem.props.children || itemToString(selectedItem)
+                : () => "\u00A0"
+            }
             labelProps={{ ...getLabelProps() }}
             {...getToggleButtonProps()}
             aria-label={label}
           />
         </div>
-        <div {...(layerProps as React.HTMLAttributes<HTMLDivElement>)}>
-          <ul
-            {...getMenuProps()}
-            className={cc([
-              "nds-tableField-select-list",
-              "list--reset",
-              "bgColor--white",
-            ])}
-          >
-            {items.map((item, index) => (
-              <li
-                key={`${item.props.value}-${index}`}
-                className={cc([
-                  "nds-tableField-select-item",
-                  "alignChild--left--center padding--x--s padding--y--xs",
-                  {
-                    "nds-tableField-select-item--highlighted":
-                      highlightedIndex === index,
-                    "nds-tableField-select-item--selected":
-                      selectedItem === item,
-                  },
-                ])}
-                {...getItemProps({ item, index })}
-              >
-                <Row as="span">
-                  <Row.Item as="span">{item}</Row.Item>
-                  {hasSelectedItem &&
-                    selectedItem.props.value === item.props.value && (
-                      <Row.Item as="span" shrink>
-                        <span className="narmi-icon-check fontSize--l fontWeight--bold" />
-                      </Row.Item>
-                    )}
-                </Row>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {ReactDOM.createPortal(layerContent, document.body)}
       </div>
     );
   },

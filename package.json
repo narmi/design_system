@@ -1,6 +1,6 @@
 {
   "name": "@narmi/design_system",
-  "version": "6.0.0-beta.0",
+  "version": "5.2.1",
   "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
   "style": "dist/style.css",
@@ -128,7 +128,7 @@
     "usehooks-ts": "^2.9.1"
   },
   "overrides": {
-    "tar": "7.5.4"
+    "tar": "7.5.7"
   },
   "repository": {
     "type": "git",

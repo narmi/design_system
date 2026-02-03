@@ -359,6 +359,118 @@ AllEditableInputTypes.parameters = {
   },
 };
 
+export const TableWithOverflow = () => {
+  const [data, setData] = useState({
+    id: 1,
+    name: "John Doe",
+    email: "john@example.com",
+    department: "",
+    startDate: "2023-01-15",
+    status: "Active",
+  });
+
+  const updateData = (key, value) => {
+    setData((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const departments = ["Engineering", "Marketing", "Sales", "Design", "HR"];
+
+  return (
+    <div
+      style={{
+        width: "600px",
+        height: "auto",
+        overflow: "scroll",
+        border: "2px solid #ddd",
+        padding: "16px",
+      }}
+    >
+      <Table
+        kind="editable"
+        colVisibility={["*", "*", "*", "*", "*"]}
+        colLayout={{
+          s: "1fr 1fr 1fr min-content",
+          m: "1fr 1fr 1fr 1fr 1fr",
+          l: "1fr 1fr 1fr 1fr 1fr",
+        }}
+      >
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Name (Input)</Table.HeaderCell>
+            <Table.HeaderCell>Email (Input)</Table.HeaderCell>
+            <Table.HeaderCell>Department (Autocomplete)</Table.HeaderCell>
+            <Table.HeaderCell>Start Date (DateInput)</Table.HeaderCell>
+            <Table.HeaderCell>Status (Select)</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>
+              <TableInput
+                label="Employee name"
+                value={data.name}
+                onChange={(event) => updateData("name", event.target.value)}
+                placeholder="Enter name"
+              />
+            </Table.Cell>
+            <Table.Cell>
+              <TableInput
+                label="Email address"
+                value={data.email}
+                onChange={(event) => updateData("email", event.target.value)}
+                placeholder="Enter email"
+                type="email"
+              />
+            </Table.Cell>
+            <Table.Cell>
+              <TableAutocomplete
+                label="Department"
+                inputValue={data.department}
+                onInputChange={(value) => updateData("department", value)}
+                onChange={(value) => updateData("department", value)}
+              >
+                {departments.map((dept) => (
+                  <TableAutocomplete.Item key={dept} value={dept}>
+                    {dept}
+                  </TableAutocomplete.Item>
+                ))}
+              </TableAutocomplete>
+            </Table.Cell>
+            <Table.Cell>
+              <TableDateInput
+                label="Start date"
+                value={data.startDate}
+                onChange={(value) => updateData("startDate", value)}
+                placeholder="YYYY-MM-DD"
+              />
+            </Table.Cell>
+            <Table.Cell>
+              <TableSelect
+                id="status-select"
+                label="Status"
+                value={data.status}
+                onChange={(value) => updateData("status", value)}
+              >
+                <TableSelect.Item value="Active">Active</TableSelect.Item>
+                <TableSelect.Item value="Inactive">Inactive</TableSelect.Item>
+                <TableSelect.Item value="Pending">Pending</TableSelect.Item>
+              </TableSelect>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+    </div>
+  );
+};
+TableWithOverflow.parameters = {
+  docs: {
+    description: {
+      story:
+        "This table is wrapped in an `overflow: scroll` container to test that dropdowns (like `TableSelect`) escape the overflow boundary and remain visible. This is important when tables are horizontally scrollable or constrained.",
+    },
+  },
+};
+
 export default {
   title: "Components/Table",
   component: Table,

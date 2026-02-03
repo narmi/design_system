@@ -3,111 +3,118 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>5.2.1 (2026-01-30)</small>
+
+- fix(TableSelect): render Item children when selected ([3cee43a91790c462b3c354d0b088fb7a495bdc7a](https://github.com/narmi/design_system/commit/3cee43a91790c462b3c354d0b088fb7a495bdc7a))
+
+## 5.2.0 (2026-01-30)
+
+- feat(useDropdownLayer): accept isPortalled for dropdowns ([961aaea189cef4aa0e7f501e667609492369aef7](https://github.com/narmi/design_system/commit/961aaea189cef4aa0e7f501e667609492369aef7))
+
 ## <small>5.1.4 (2026-01-28)</small>
 
-* chore: use same approach for polyfil ([7e0977d20bc1e2271e82d04f677fc74d9a139842](https://github.com/narmi/design_system/commit/7e0977d20bc1e2271e82d04f677fc74d9a139842))
-* fix: set min width for nds dropdown layer ([dde7757a39a181f18d54acb0c71ddf73b12bba60](https://github.com/narmi/design_system/commit/dde7757a39a181f18d54acb0c71ddf73b12bba60))
+- chore: use same approach for polyfil ([7e0977d20bc1e2271e82d04f677fc74d9a139842](https://github.com/narmi/design_system/commit/7e0977d20bc1e2271e82d04f677fc74d9a139842))
+- fix: set min width for nds dropdown layer ([dde7757a39a181f18d54acb0c71ddf73b12bba60](https://github.com/narmi/design_system/commit/dde7757a39a181f18d54acb0c71ddf73b12bba60))
 
 ## <small>5.1.3 (2026-01-27)</small>
 
-* build(deps-dev): bump lodash-es from 4.17.21 to 4.17.23 ([142d72798f7b965d0947ff298b9f1224a8f81738](https://github.com/narmi/design_system/commit/142d72798f7b965d0947ff298b9f1224a8f81738))
+- build(deps-dev): bump lodash-es from 4.17.21 to 4.17.23 ([142d72798f7b965d0947ff298b9f1224a8f81738](https://github.com/narmi/design_system/commit/142d72798f7b965d0947ff298b9f1224a8f81738))
 
 ## <small>5.1.2 (2026-01-26)</small>
 
-* fix(TableSelect): fix types for subcomponent export ([a65f9315d712809eec7fbd112f3f8faf39bf5681](https://github.com/narmi/design_system/commit/a65f9315d712809eec7fbd112f3f8faf39bf5681))
+- fix(TableSelect): fix types for subcomponent export ([a65f9315d712809eec7fbd112f3f8faf39bf5681](https://github.com/narmi/design_system/commit/a65f9315d712809eec7fbd112f3f8faf39bf5681))
 
 ## <small>5.1.1 (2026-01-26)</small>
 
-* fix(Checkbox): apply disabled shim only for card kind ([fba202cb33f5d89773c9dc5171f35ca6f4343dfb](https://github.com/narmi/design_system/commit/fba202cb33f5d89773c9dc5171f35ca6f4343dfb))
+- fix(Checkbox): apply disabled shim only for card kind ([fba202cb33f5d89773c9dc5171f35ca6f4343dfb](https://github.com/narmi/design_system/commit/fba202cb33f5d89773c9dc5171f35ca6f4343dfb))
 
 ## 5.1.0 (2026-01-26)
 
-* build(deps): bump qs and body-parser ([9907b06990b782b6f223d45b1c6745de7f5f45cb](https://github.com/narmi/design_system/commit/9907b06990b782b6f223d45b1c6745de7f5f45cb))
-* build(deps): bump qs and express ([edf0b0ec94d2e617b8d3a1392a63646a5a190e09](https://github.com/narmi/design_system/commit/edf0b0ec94d2e617b8d3a1392a63646a5a190e09))
-* chore: sq ([597f174d61a14b5b70819bcefd25459ab63634d1](https://github.com/narmi/design_system/commit/597f174d61a14b5b70819bcefd25459ab63634d1))
-* chore(deps): upgrade node; force update tar ([644e71e105412dcb958bfb755073398d60d5b10c](https://github.com/narmi/design_system/commit/644e71e105412dcb958bfb755073398d60d5b10c))
-* docs: convert ContentCard migration guide to table format ([05d0dc821a939d396154b94232c5b14b90387c75](https://github.com/narmi/design_system/commit/05d0dc821a939d396154b94232c5b14b90387c75))
-* docs: editable table story ([d56c6c6f2da43e24f63ef5aedeea668ca8d4333a](https://github.com/narmi/design_system/commit/d56c6c6f2da43e24f63ef5aedeea668ca8d4333a))
-* docs: enhance MIGRATION_v4_to_v5.md with detailed breaking change notes ([2f1d3dee5d04d527dfeca87bd20a5de6eac014a0](https://github.com/narmi/design_system/commit/2f1d3dee5d04d527dfeca87bd20a5de6eac014a0))
-* docs: simplify migration guide by removing redundant examples ([700923547e882c63dea659e82fe39ceef68b60ec](https://github.com/narmi/design_system/commit/700923547e882c63dea659e82fe39ceef68b60ec))
-* feat(TableSelect): add select table field ([881032d0af168d70d095f8cc4fe00405d642ef09](https://github.com/narmi/design_system/commit/881032d0af168d70d095f8cc4fe00405d642ef09))
+- build(deps): bump qs and body-parser ([9907b06990b782b6f223d45b1c6745de7f5f45cb](https://github.com/narmi/design_system/commit/9907b06990b782b6f223d45b1c6745de7f5f45cb))
+- build(deps): bump qs and express ([edf0b0ec94d2e617b8d3a1392a63646a5a190e09](https://github.com/narmi/design_system/commit/edf0b0ec94d2e617b8d3a1392a63646a5a190e09))
+- chore: sq ([597f174d61a14b5b70819bcefd25459ab63634d1](https://github.com/narmi/design_system/commit/597f174d61a14b5b70819bcefd25459ab63634d1))
+- chore(deps): upgrade node; force update tar ([644e71e105412dcb958bfb755073398d60d5b10c](https://github.com/narmi/design_system/commit/644e71e105412dcb958bfb755073398d60d5b10c))
+- docs: convert ContentCard migration guide to table format ([05d0dc821a939d396154b94232c5b14b90387c75](https://github.com/narmi/design_system/commit/05d0dc821a939d396154b94232c5b14b90387c75))
+- docs: editable table story ([d56c6c6f2da43e24f63ef5aedeea668ca8d4333a](https://github.com/narmi/design_system/commit/d56c6c6f2da43e24f63ef5aedeea668ca8d4333a))
+- docs: enhance MIGRATION_v4_to_v5.md with detailed breaking change notes ([2f1d3dee5d04d527dfeca87bd20a5de6eac014a0](https://github.com/narmi/design_system/commit/2f1d3dee5d04d527dfeca87bd20a5de6eac014a0))
+- docs: simplify migration guide by removing redundant examples ([700923547e882c63dea659e82fe39ceef68b60ec](https://github.com/narmi/design_system/commit/700923547e882c63dea659e82fe39ceef68b60ec))
+- feat(TableSelect): add select table field ([881032d0af168d70d095f8cc4fe00405d642ef09](https://github.com/narmi/design_system/commit/881032d0af168d70d095f8cc4fe00405d642ef09))
 
 ## 5.0.0 (2026-01-21)
 
-* chore(nds): Export more prop types for use in Azul ([4d3348135e674f36e1d22a50add25e1c018e08e5](https://github.com/narmi/design_system/commit/4d3348135e674f36e1d22a50add25e1c018e08e5))
-* feat(AutocompleteModal): filter items with 'includes' instead of 'startsWith' ([3c333e8662fc0e79cc1e493717bd47c2ed9bb63d](https://github.com/narmi/design_system/commit/3c333e8662fc0e79cc1e493717bd47c2ed9bb63d))
-
+- chore(nds): Export more prop types for use in Azul ([4d3348135e674f36e1d22a50add25e1c018e08e5](https://github.com/narmi/design_system/commit/4d3348135e674f36e1d22a50add25e1c018e08e5))
+- feat(AutocompleteModal): filter items with 'includes' instead of 'startsWith' ([3c333e8662fc0e79cc1e493717bd47c2ed9bb63d](https://github.com/narmi/design_system/commit/3c333e8662fc0e79cc1e493717bd47c2ed9bb63d))
 
 ### BREAKING CHANGE
 
-* Loosening the match requirements for a search may return more results for a given search + items combination
+- Loosening the match requirements for a search may return more results for a given search + items combination
 
 ## <small>4.50.2 (2025-12-18)</small>
 
-* build(deps-dev): bump prettier from 3.6.2 to 3.7.4 ([3032110034a9de98c9d9ee81ec10bb8c381affeb](https://github.com/narmi/design_system/commit/3032110034a9de98c9d9ee81ec10bb8c381affeb))
-* build(deps): bump react-focus-lock from 2.13.6 to 2.13.7 ([f335af1d4d00edbf22588631f61f2909dd03110d](https://github.com/narmi/design_system/commit/f335af1d4d00edbf22588631f61f2909dd03110d))
-* style(Avatar): explicitly set Avatar word-break property ([da3c974cf5f5de4c566596ddd16c382a9a69dd4d](https://github.com/narmi/design_system/commit/da3c974cf5f5de4c566596ddd16c382a9a69dd4d))
+- build(deps-dev): bump prettier from 3.6.2 to 3.7.4 ([3032110034a9de98c9d9ee81ec10bb8c381affeb](https://github.com/narmi/design_system/commit/3032110034a9de98c9d9ee81ec10bb8c381affeb))
+- build(deps): bump react-focus-lock from 2.13.6 to 2.13.7 ([f335af1d4d00edbf22588631f61f2909dd03110d](https://github.com/narmi/design_system/commit/f335af1d4d00edbf22588631f61f2909dd03110d))
+- style(Avatar): explicitly set Avatar word-break property ([da3c974cf5f5de4c566596ddd16c382a9a69dd4d](https://github.com/narmi/design_system/commit/da3c974cf5f5de4c566596ddd16c382a9a69dd4d))
 
 ## <small>4.50.1 (2025-12-15)</small>
 
-* fix(nds): bump version to 4.50.1 to trigger release ([c85986b18ca49654ac98cc380d02440386039017](https://github.com/narmi/design_system/commit/c85986b18ca49654ac98cc380d02440386039017))
+- fix(nds): bump version to 4.50.1 to trigger release ([c85986b18ca49654ac98cc380d02440386039017](https://github.com/narmi/design_system/commit/c85986b18ca49654ac98cc380d02440386039017))
 
 ## 4.50.1 (2025-12-15)
 
-* build(deps-dev): bump @commitlint/config-conventional ([fbf405e63d483f78c50e3c3469763c690c0cc12b](https://github.com/narmi/design_system/commit/fbf405e63d483f78c50e3c3469763c690c0cc12b))
-* build(deps-dev): bump @storybook/addon-links from 9.1.13 to 9.1.16 ([fd9e25bec4779df9af84afaca4f57c7d1e953a8b](https://github.com/narmi/design_system/commit/fd9e25bec4779df9af84afaca4f57c7d1e953a8b))
-* build(deps): bump chromaui/action from 13.2.1 to 13.3.4 ([310e7e53db4d920a4724fcba4d2e2bdf9d1b6aff](https://github.com/narmi/design_system/commit/310e7e53db4d920a4724fcba4d2e2bdf9d1b6aff))
-* build(deps): bump mdast-util-to-hast from 13.2.0 to 13.2.1 ([76632851e0075cfa1e8f282c37ccd251d8aa88c9](https://github.com/narmi/design_system/commit/76632851e0075cfa1e8f282c37ccd251d8aa88c9))
-* build(deps-dev): bump node-forge from 1.3.1 to 1.3.2 ([24b73899cf4728ce05d6c874688e9c539d62cee5](https://github.com/narmi/design_system/commit/24b73899cf4728ce05d6c874688e9c539d62cee5))
-* build(deps-dev): bump semantic-release from 24.2.7 to 24.2.9 ([7b125425b024e20ecd71a79e0166fcb21b29de53](https://github.com/narmi/design_system/commit/7b125425b024e20ecd71a79e0166fcb21b29de53))
-* chore: lint ([0317220520aace78a15c431b989ceacb08bc2603](https://github.com/narmi/design_system/commit/0317220520aace78a15c431b989ceacb08bc2603))
-* chore: stub figma file ([c31c0b6db62069baf225932f15c1af4b09f23006](https://github.com/narmi/design_system/commit/c31c0b6db62069baf225932f15c1af4b09f23006))
-* chore: wip dialog figma file ([3e4499ada114871d798930e1a631d91623d0d676](https://github.com/narmi/design_system/commit/3e4499ada114871d798930e1a631d91623d0d676))
-* docs(SplitButton): add figma code connect ([261d8e8a22102e1aea13e93cdb2ac724cb239e8a](https://github.com/narmi/design_system/commit/261d8e8a22102e1aea13e93cdb2ac724cb239e8a))
-* docs(CollapsibleCard): add figma connect file ([771d81bdda02e0c9ecaecd62e867b6efaad9a6cd](https://github.com/narmi/design_system/commit/771d81bdda02e0c9ecaecd62e867b6efaad9a6cd))
-* docs(Count): add figma connect file ([4dc72e03c37106ab17023f77883d62e6b095cd95](https://github.com/narmi/design_system/commit/4dc72e03c37106ab17023f77883d62e6b095cd95))
-* docs(AutocompleteModal): add figma connect ([97799fb50306590fd19560e54489236015dc380d](https://github.com/narmi/design_system/commit/97799fb50306590fd19560e54489236015dc380d))
-* docs(Dialog): add figma connect ([95a97fc06df9e02004a002249143bff84da2f8e1](https://github.com/narmi/design_system/commit/95a97fc06df9e02004a002249143bff84da2f8e1))
-* docs(Pagination): add figma connect ([8a0d115c8f2476971a0181f3242438bbe2d73a47](https://github.com/narmi/design_system/commit/8a0d115c8f2476971a0181f3242438bbe2d73a47))
-* docs(Dialog): map figma connect to Header/Footer ([ba95cd9915883c31ab0678909425c499c02cf099](https://github.com/narmi/design_system/commit/ba95cd9915883c31ab0678909425c499c02cf099))
-* docs: update comment ([94f42804dc345a03fe886b288a2ff2aa7ec29aee](https://github.com/narmi/design_system/commit/94f42804dc345a03fe886b288a2ff2aa7ec29aee))
-* feat(AccordionSet): add AccordionSet component ([dd323be79d1cd25515a86da7c8db4a7bad725dbc](https://github.com/narmi/design_system/commit/dd323be79d1cd25515a86da7c8db4a7bad725dbc))
-* feat: add aria-labelledby to accordion region using same useId result ([a8887c7169341adeb571ff842b37a95174dd8517](https://github.com/narmi/design_system/commit/a8887c7169341adeb571ff842b37a95174dd8517))
-* feat(Accordion): add single accordion component ([6d65e36451158e305e2dfa337985f54737d341b4](https://github.com/narmi/design_system/commit/6d65e36451158e305e2dfa337985f54737d341b4))
+- build(deps-dev): bump @commitlint/config-conventional ([fbf405e63d483f78c50e3c3469763c690c0cc12b](https://github.com/narmi/design_system/commit/fbf405e63d483f78c50e3c3469763c690c0cc12b))
+- build(deps-dev): bump @storybook/addon-links from 9.1.13 to 9.1.16 ([fd9e25bec4779df9af84afaca4f57c7d1e953a8b](https://github.com/narmi/design_system/commit/fd9e25bec4779df9af84afaca4f57c7d1e953a8b))
+- build(deps): bump chromaui/action from 13.2.1 to 13.3.4 ([310e7e53db4d920a4724fcba4d2e2bdf9d1b6aff](https://github.com/narmi/design_system/commit/310e7e53db4d920a4724fcba4d2e2bdf9d1b6aff))
+- build(deps): bump mdast-util-to-hast from 13.2.0 to 13.2.1 ([76632851e0075cfa1e8f282c37ccd251d8aa88c9](https://github.com/narmi/design_system/commit/76632851e0075cfa1e8f282c37ccd251d8aa88c9))
+- build(deps-dev): bump node-forge from 1.3.1 to 1.3.2 ([24b73899cf4728ce05d6c874688e9c539d62cee5](https://github.com/narmi/design_system/commit/24b73899cf4728ce05d6c874688e9c539d62cee5))
+- build(deps-dev): bump semantic-release from 24.2.7 to 24.2.9 ([7b125425b024e20ecd71a79e0166fcb21b29de53](https://github.com/narmi/design_system/commit/7b125425b024e20ecd71a79e0166fcb21b29de53))
+- chore: lint ([0317220520aace78a15c431b989ceacb08bc2603](https://github.com/narmi/design_system/commit/0317220520aace78a15c431b989ceacb08bc2603))
+- chore: stub figma file ([c31c0b6db62069baf225932f15c1af4b09f23006](https://github.com/narmi/design_system/commit/c31c0b6db62069baf225932f15c1af4b09f23006))
+- chore: wip dialog figma file ([3e4499ada114871d798930e1a631d91623d0d676](https://github.com/narmi/design_system/commit/3e4499ada114871d798930e1a631d91623d0d676))
+- docs(SplitButton): add figma code connect ([261d8e8a22102e1aea13e93cdb2ac724cb239e8a](https://github.com/narmi/design_system/commit/261d8e8a22102e1aea13e93cdb2ac724cb239e8a))
+- docs(CollapsibleCard): add figma connect file ([771d81bdda02e0c9ecaecd62e867b6efaad9a6cd](https://github.com/narmi/design_system/commit/771d81bdda02e0c9ecaecd62e867b6efaad9a6cd))
+- docs(Count): add figma connect file ([4dc72e03c37106ab17023f77883d62e6b095cd95](https://github.com/narmi/design_system/commit/4dc72e03c37106ab17023f77883d62e6b095cd95))
+- docs(AutocompleteModal): add figma connect ([97799fb50306590fd19560e54489236015dc380d](https://github.com/narmi/design_system/commit/97799fb50306590fd19560e54489236015dc380d))
+- docs(Dialog): add figma connect ([95a97fc06df9e02004a002249143bff84da2f8e1](https://github.com/narmi/design_system/commit/95a97fc06df9e02004a002249143bff84da2f8e1))
+- docs(Pagination): add figma connect ([8a0d115c8f2476971a0181f3242438bbe2d73a47](https://github.com/narmi/design_system/commit/8a0d115c8f2476971a0181f3242438bbe2d73a47))
+- docs(Dialog): map figma connect to Header/Footer ([ba95cd9915883c31ab0678909425c499c02cf099](https://github.com/narmi/design_system/commit/ba95cd9915883c31ab0678909425c499c02cf099))
+- docs: update comment ([94f42804dc345a03fe886b288a2ff2aa7ec29aee](https://github.com/narmi/design_system/commit/94f42804dc345a03fe886b288a2ff2aa7ec29aee))
+- feat(AccordionSet): add AccordionSet component ([dd323be79d1cd25515a86da7c8db4a7bad725dbc](https://github.com/narmi/design_system/commit/dd323be79d1cd25515a86da7c8db4a7bad725dbc))
+- feat: add aria-labelledby to accordion region using same useId result ([a8887c7169341adeb571ff842b37a95174dd8517](https://github.com/narmi/design_system/commit/a8887c7169341adeb571ff842b37a95174dd8517))
+- feat(Accordion): add single accordion component ([6d65e36451158e305e2dfa337985f54737d341b4](https://github.com/narmi/design_system/commit/6d65e36451158e305e2dfa337985f54737d341b4))
 
 ## 4.49.0 (2025-12-04)
 
-* chore(ci): cache npm run build and reuse it for Chromatic PR checks ([b5b7b396ba0df9914ef8a92b3a723116f2d85b8a](https://github.com/narmi/design_system/commit/b5b7b396ba0df9914ef8a92b3a723116f2d85b8a))
-* docs(Chip): add figma connect ([a28bfc22f0963899cf6e4f3a1d27e2d7052d4252](https://github.com/narmi/design_system/commit/a28bfc22f0963899cf6e4f3a1d27e2d7052d4252))
-* feat(Chip): add hasBorder prop ([6ee319424c4acfb1f3ca04b6e9dee687a290b6f6](https://github.com/narmi/design_system/commit/6ee319424c4acfb1f3ca04b6e9dee687a290b6f6))
+- chore(ci): cache npm run build and reuse it for Chromatic PR checks ([b5b7b396ba0df9914ef8a92b3a723116f2d85b8a](https://github.com/narmi/design_system/commit/b5b7b396ba0df9914ef8a92b3a723116f2d85b8a))
+- docs(Chip): add figma connect ([a28bfc22f0963899cf6e4f3a1d27e2d7052d4252](https://github.com/narmi/design_system/commit/a28bfc22f0963899cf6e4f3a1d27e2d7052d4252))
+- feat(Chip): add hasBorder prop ([6ee319424c4acfb1f3ca04b6e9dee687a290b6f6](https://github.com/narmi/design_system/commit/6ee319424c4acfb1f3ca04b6e9dee687a290b6f6))
 
 ## <small>4.48.1 (2025-12-03)</small>
 
-* fix(iconButton): corrects argType prop name to match component props ([3a6d257ea323f520dba3c0bda99a5ed635d0bbe4](https://github.com/narmi/design_system/commit/3a6d257ea323f520dba3c0bda99a5ed635d0bbe4))
+- fix(iconButton): corrects argType prop name to match component props ([3a6d257ea323f520dba3c0bda99a5ed635d0bbe4](https://github.com/narmi/design_system/commit/3a6d257ea323f520dba3c0bda99a5ed635d0bbe4))
 
 ## 4.48.0 (2025-11-25)
 
-* build(deps-dev): bump js-yaml from 3.14.1 to 3.14.2 ([b54482a86d2fafeb4cc6893905ad201502bc9a95](https://github.com/narmi/design_system/commit/b54482a86d2fafeb4cc6893905ad201502bc9a95))
-* chore: update figma instance name for icon ([75696aba95b40ca65acc76e9ecee87aa3ef47289](https://github.com/narmi/design_system/commit/75696aba95b40ca65acc76e9ecee87aa3ef47289))
-* docs(Alert): add figma code connect ([a367f71584cac20d309d58d3d01da159e1043961](https://github.com/narmi/design_system/commit/a367f71584cac20d309d58d3d01da159e1043961))
-* docs(Checkbox): add figma connect ([05473b3574c2b67e9decfd6a1cffa7c33041415c](https://github.com/narmi/design_system/commit/05473b3574c2b67e9decfd6a1cffa7c33041415c))
-* docs(Checkbox): add figma connect ([13caf04fce496091e9721b7a2e68392ffa700227](https://github.com/narmi/design_system/commit/13caf04fce496091e9721b7a2e68392ffa700227))
-* docs(Avatar): create code connect docfile ([b72cccb8862e759de0b00a6be672046c371497e1](https://github.com/narmi/design_system/commit/b72cccb8862e759de0b00a6be672046c371497e1))
-* feat(Button): ensure click originator is root anchor or button ([a5f663e9934e561b28c4cd87867e5c69152da712](https://github.com/narmi/design_system/commit/a5f663e9934e561b28c4cd87867e5c69152da712))
+- build(deps-dev): bump js-yaml from 3.14.1 to 3.14.2 ([b54482a86d2fafeb4cc6893905ad201502bc9a95](https://github.com/narmi/design_system/commit/b54482a86d2fafeb4cc6893905ad201502bc9a95))
+- chore: update figma instance name for icon ([75696aba95b40ca65acc76e9ecee87aa3ef47289](https://github.com/narmi/design_system/commit/75696aba95b40ca65acc76e9ecee87aa3ef47289))
+- docs(Alert): add figma code connect ([a367f71584cac20d309d58d3d01da159e1043961](https://github.com/narmi/design_system/commit/a367f71584cac20d309d58d3d01da159e1043961))
+- docs(Checkbox): add figma connect ([05473b3574c2b67e9decfd6a1cffa7c33041415c](https://github.com/narmi/design_system/commit/05473b3574c2b67e9decfd6a1cffa7c33041415c))
+- docs(Checkbox): add figma connect ([13caf04fce496091e9721b7a2e68392ffa700227](https://github.com/narmi/design_system/commit/13caf04fce496091e9721b7a2e68392ffa700227))
+- docs(Avatar): create code connect docfile ([b72cccb8862e759de0b00a6be672046c371497e1](https://github.com/narmi/design_system/commit/b72cccb8862e759de0b00a6be672046c371497e1))
+- feat(Button): ensure click originator is root anchor or button ([a5f663e9934e561b28c4cd87867e5c69152da712](https://github.com/narmi/design_system/commit/a5f663e9934e561b28c4cd87867e5c69152da712))
 
 ## <small>4.47.1 (2025-11-21)</small>
 
-* chore: update linting ignores ([92bc935e4869db8ebc8304a08743890b49a364f9](https://github.com/narmi/design_system/commit/92bc935e4869db8ebc8304a08743890b49a364f9))
-* docs(figma): add code connect setup for button ([60f2cd1406c818dec668c8f51fa0f668561c7284](https://github.com/narmi/design_system/commit/60f2cd1406c818dec668c8f51fa0f668561c7284))
-* fix(SeparatorList): filter out null and undefined items ([f77b7db136bd615f445c357ae6ddeacae29b7f3b](https://github.com/narmi/design_system/commit/f77b7db136bd615f445c357ae6ddeacae29b7f3b))
+- chore: update linting ignores ([92bc935e4869db8ebc8304a08743890b49a364f9](https://github.com/narmi/design_system/commit/92bc935e4869db8ebc8304a08743890b49a364f9))
+- docs(figma): add code connect setup for button ([60f2cd1406c818dec668c8f51fa0f668561c7284](https://github.com/narmi/design_system/commit/60f2cd1406c818dec668c8f51fa0f668561c7284))
+- fix(SeparatorList): filter out null and undefined items ([f77b7db136bd615f445c357ae6ddeacae29b7f3b](https://github.com/narmi/design_system/commit/f77b7db136bd615f445c357ae6ddeacae29b7f3b))
 
 ## 4.47.0 (2025-11-18)
 
-* chore(figma): add unused beta workflow with manual trigger ([4b88fb5495567c4fe5edd5ff9b3fba09b618126e](https://github.com/narmi/design_system/commit/4b88fb5495567c4fe5edd5ff9b3fba09b618126e))
-* chore: update readme ([141c0bca08d0f84b95f28d17364cfab1d95fd4ea](https://github.com/narmi/design_system/commit/141c0bca08d0f84b95f28d17364cfab1d95fd4ea))
-* chore: use env in debug action ([c80ad02930082697c9cf2939ee635a21f52b54b6](https://github.com/narmi/design_system/commit/c80ad02930082697c9cf2939ee635a21f52b54b6))
-* chore: use SHA to pin gh actions ([2d2f95c17c5408c1d3b06c4774f62dd11421aabf](https://github.com/narmi/design_system/commit/2d2f95c17c5408c1d3b06c4774f62dd11421aabf))
-* feat(Alert): add primary kind ([c5f541677fa1f388e826f1c6ef9f158ec7258a01](https://github.com/narmi/design_system/commit/c5f541677fa1f388e826f1c6ef9f158ec7258a01))
+- chore(figma): add unused beta workflow with manual trigger ([4b88fb5495567c4fe5edd5ff9b3fba09b618126e](https://github.com/narmi/design_system/commit/4b88fb5495567c4fe5edd5ff9b3fba09b618126e))
+- chore: update readme ([141c0bca08d0f84b95f28d17364cfab1d95fd4ea](https://github.com/narmi/design_system/commit/141c0bca08d0f84b95f28d17364cfab1d95fd4ea))
+- chore: use env in debug action ([c80ad02930082697c9cf2939ee635a21f52b54b6](https://github.com/narmi/design_system/commit/c80ad02930082697c9cf2939ee635a21f52b54b6))
+- chore: use SHA to pin gh actions ([2d2f95c17c5408c1d3b06c4774f62dd11421aabf](https://github.com/narmi/design_system/commit/2d2f95c17c5408c1d3b06c4774f62dd11421aabf))
+- feat(Alert): add primary kind ([c5f541677fa1f388e826f1c6ef9f158ec7258a01](https://github.com/narmi/design_system/commit/c5f541677fa1f388e826f1c6ef9f158ec7258a01))
 
 ## <small>4.46.5 (2025-11-10)</small>
 

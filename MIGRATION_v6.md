@@ -1,4 +1,4 @@
-# Migration Guide v4 -> v5
+# Migration Guide to NDS v6
 
 ## Breaking changes
 
@@ -14,13 +14,13 @@ All legacy CSS variables prefixed with `nds-` have been removed from the design 
 
 | Legacy var                  | Standard var                 | Value                           |
 | --------------------------- | ---------------------------- | ------------------------------- |
-| `var(--nds-black)`          | `var(--color-black)`           | `#333333`                       |
-| `var(--nds-grey)`           | `var(--color-grey)`            | `#4C4C4C`                       |
-| `var(--nds-medium-grey)`    | `var(--color-mediumGrey)`      | `#8C8C8C`                       |
-| `var(--nds-lightest-grey)`  | `var(--color-lightGrey)`       | `#D9D9D9`                       |
-| `var(--nds-smoke-grey)`     | `var(--bgColor-smokeGrey)`       | `#F3F3F3`                       |
-| `var(--nds-red)`            | `var(--color-errorDark)`       | `#D93B3B`                       |
-| `var(--nds-white)`          | `var(--color-white)`           | `#FFFFFF`                       |
+| `var(--nds-black)`          | `var(--color-black)`         | `#333333`                       |
+| `var(--nds-grey)`           | `var(--color-grey)`          | `#4C4C4C`                       |
+| `var(--nds-medium-grey)`    | `var(--color-mediumGrey)`    | `#8C8C8C`                       |
+| `var(--nds-lightest-grey)`  | `var(--color-lightGrey)`     | `#D9D9D9`                       |
+| `var(--nds-smoke-grey)`     | `var(--bgColor-smokeGrey)`   | `#F3F3F3`                       |
+| `var(--nds-red)`            | `var(--color-errorDark)`     | `#D93B3B`                       |
+| `var(--nds-white)`          | `var(--color-white)`         | `#FFFFFF`                       |
 | `var(--nds-font-family)`    | `var(--font-family-body)`    | `Mulish, Helvetica, sans-serif` |
 | `var(--nds-header-font)`    | `var(--font-family-heading)` | `'Narmi Matiere', serif`        |
 | `var(--subdued-20-opacity)` | `var(--alpha-20)`            | `0.2`                           |
@@ -29,7 +29,7 @@ All legacy CSS variables prefixed with `nds-` have been removed from the design 
 
 #### Example
 
-**Before (v4):**
+**Before:**
 
 ```css
 .my-component {
@@ -38,7 +38,7 @@ All legacy CSS variables prefixed with `nds-` have been removed from the design 
 }
 ```
 
-**After (v5):**
+**After (v6):**
 
 ```css
 .my-component {
@@ -49,7 +49,7 @@ All legacy CSS variables prefixed with `nds-` have been removed from the design 
 
 ### Deprecated `Dropdown` component removed
 
-The `Dropdown` component has been completely removed from the library. This component was deprecated in v4 and has now been removed in v5.
+The `Dropdown` component has been completely removed from the library. This component was deprecated in v4 and has now been removed in v6.
 
 **Impact:** Applications using `Dropdown` will need to migrate to one of the modern replacement components based on their specific use case.
 
@@ -57,44 +57,50 @@ The `Dropdown` component has been completely removed from the library. This comp
 
 #### Migration Guide
 
-| Use Case                                          | Replacement Component | Notes                                          |
-| ------------------------------------------------- | --------------------- | ---------------------------------------------- |
-| Single selection from a list                      | `Select`              | Standard dropdown with single selection        |
-| Multiple selections from a list                   | `MultiSelect`         | Dropdown with checkboxes for multiple items    |
-| Single selection with search/filtering            | `Combobox`            | Dropdown with built-in search/filter           |
-| Custom popover content (tooltips, overflow menus) | `Popover`             | For custom content beyond simple list items    |
+| Use Case                                          | Replacement Component | Notes                                       |
+| ------------------------------------------------- | --------------------- | ------------------------------------------- |
+| Single selection from a list                      | `Select`              | Standard dropdown with single selection     |
+| Multiple selections from a list                   | `MultiSelect`         | Dropdown with checkboxes for multiple items |
+| Single selection with search/filtering            | `Combobox`            | Dropdown with built-in search/filter        |
+| Custom popover content (tooltips, overflow menus) | `Popover`             | For custom content beyond simple list items |
 
 #### Example
 
-**Before (v4):**
+**Before:**
 
 ```jsx
 import { Dropdown } from "@narmi/design_system";
 
-<Dropdown 
-  triggerLabel="Select an option" 
+<Dropdown
+  triggerLabel="Select an option"
   onChange={(value) => handleChange(value)}
 >
   <div>Option 1</div>
   <div>Option 2</div>
   <div>Option 3</div>
-</Dropdown>
+</Dropdown>;
 ```
 
-**After (v5):**
+**After (v6):**
 
 ```jsx
 import { Select } from "@narmi/design_system";
 
-<Select 
-  label="Select an option" 
+<Select
+  label="Select an option"
   value={selectedValue}
   onChange={(value) => handleChange(value)}
 >
-  <Select.Item value="option1" searchValue="Option 1">Option 1</Select.Item>
-  <Select.Item value="option2" searchValue="Option 2">Option 2</Select.Item>
-  <Select.Item value="option3" searchValue="Option 3">Option 3</Select.Item>
-</Select>
+  <Select.Item value="option1" searchValue="Option 1">
+    Option 1
+  </Select.Item>
+  <Select.Item value="option2" searchValue="Option 2">
+    Option 2
+  </Select.Item>
+  <Select.Item value="option3" searchValue="Option 3">
+    Option 3
+  </Select.Item>
+</Select>;
 ```
 
 ### Deprecated `Button` kind `menu` removed
@@ -107,13 +113,13 @@ The `kind="menu"` variant has been removed from the Button component.
 
 #### Example
 
-**Before (v4):**
+**Before:**
 
 ```jsx
 <Button kind="menu" label="Menu action" onClick={handleClick} />
 ```
 
-**After (v5):**
+**After (v6):**
 
 ```jsx
 <Button kind="plain" label="Menu action" onClick={handleClick} />
@@ -137,7 +143,7 @@ The `.nds-plain-button` CSS class has been removed from the design system.
 
 #### Example
 
-**Before (v4):**
+**Before:**
 
 ```jsx
 <button className="nds-plain-button" onClick={handleClick}>
@@ -145,7 +151,7 @@ The `.nds-plain-button` CSS class has been removed from the design system.
 </button>
 ```
 
-**After (v5):**
+**After (v6):**
 
 ```jsx
 import { Button } from "@narmi/design_system";
@@ -163,16 +169,16 @@ The `kind="interactive"` variant has been removed from ContentCard.
 
 #### Migration Guide
 
-| Use Case                                 | Replacement Kind | Notes                                          |
-| ---------------------------------------- | ---------------- | ---------------------------------------------- |
-| Card triggers an action on click         | `kind="button"`  | For navigation, opening dialogs, etc.          |
-| Card has selected/unselected state       | `kind="toggle"`  | For choosing between options, selecting items  |
+| Use Case                           | Replacement Kind | Notes                                         |
+| ---------------------------------- | ---------------- | --------------------------------------------- |
+| Card triggers an action on click   | `kind="button"`  | For navigation, opening dialogs, etc.         |
+| Card has selected/unselected state | `kind="toggle"`  | For choosing between options, selecting items |
 
 ### Dropped support for React v16 and v17
 
-NDS v5 requires React v18 or v19. You must upgrade your React version to use this release.
+NDS v6 requires React v18 or v19. You must upgrade your React version to use this release.
 
-**Impact:** Applications using React v16 or v17 must upgrade to React v18 or v19 before adopting NDS v5.
+**Impact:** Applications using React v16 or v17 must upgrade to React v18 or v19 before adopting NDS v6.
 
 **Why this change:** React 18 and 19 provide significant improvements in concurrent rendering, automatic batching, and modern APIs. Dropping support for older versions allows NDS to leverage these improvements and simplifies maintenance.
 
@@ -193,7 +199,7 @@ The `searchValue` prop is now **required** on all item components for `Select`, 
 
 #### Example
 
-**Before (v4):**
+**Before:**
 
 ```jsx
 <Select label="Choose a state">
@@ -202,7 +208,7 @@ The `searchValue` prop is now **required** on all item components for `Select`, 
 </Select>
 ```
 
-**After (v5):**
+**After (v6):**
 
 ```jsx
 <Select label="Choose a state">
@@ -225,7 +231,7 @@ These changes are non-breaking but represent deprecations or improvements you sh
 
 The `Tag` component is deprecated and will be removed in v6 of NDS. Use `Chip` instead.
 
-**Impact:** While `Tag` still works in v5, you should plan to migrate to `Chip` to avoid breaking changes in v6.
+**Impact:** The `Tag` component is being deprecated in favor of `Chip` with improved functionality.
 
 **Why this change:** `Chip` provides a more modern API with better separation of concerns. Visual styling (kind) is independent of behavior (dismissibility, clickability), making it more flexible and easier to use.
 
@@ -249,26 +255,26 @@ The key difference is that behaviors like dismissibility are now decoupled from 
 **Simple Tag → Chip:**
 
 ```jsx
-// Before (v4)
+// Before
 <Tag label="Status" kind="success" />
 
-// After (v5)
+// After
 <Chip label="Status" kind="success" />
 ```
 
 **Clickable Tag → Chip:**
 
 ```jsx
-// Before (v4)
-<Tag 
-  label="View details" 
+// Before
+<Tag
+  label="View details"
   kind="info"
   onClick={() => showDetails()}
 />
 
-// After (v5)
-<Chip 
-  label="View details" 
+// After
+<Chip
+  label="View details"
   kind="info"
   onClick={() => showDetails()}
 />
@@ -278,16 +284,16 @@ The key difference is that behaviors like dismissibility are now decoupled from 
 
 ```jsx
 // Chip with icon and count
-<Chip 
-  label="Notifications" 
+<Chip
+  label="Notifications"
   kind="primary"
   startIcon={<Icon name="bell" />}
   count={5}
 />
 
 // Chip with custom end icon
-<Chip 
-  label="Important" 
+<Chip
+  label="Important"
   kind="error"
   endIcon={<Icon name="warning" />}
 />
@@ -312,7 +318,7 @@ No action required for consumers. This change only affects the NDS build process
 
 ### Removed webpack builds
 
-NDS v5 no longer uses webpack for builds. Vite is now the only build tool used by this project.
+NDS v6 no longer uses webpack for builds. Vite is now the only build tool used by this project.
 
 #### What Changed
 

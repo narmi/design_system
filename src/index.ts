@@ -41,7 +41,6 @@ declare const CollapsibleCard;
 declare const Combobox;
 declare const DateInput;
 declare const Drawer;
-declare const Dropdown;
 declare const DropdownTrigger;
 declare const Error;
 declare const FieldToken;
@@ -52,12 +51,11 @@ declare const LoadingShim;
 declare const MenuButton;
 declare const MultiSelect;
 declare const Pagination;
-declare const PlainButton;
 declare const Popover;
 declare const ResponsiveFlex;
 declare const Select;
 declare const Sidebar;
-declare const Tag;
+declare const Tag; // ⚠️ DEPRECATED - Will be removed in a future release. Use `Chip` instead.
 declare const TextInput;
 declare const TimelineEvent;
 declare const Toggle;
@@ -92,7 +90,6 @@ export {
   DateInput,
   Dialog,
   Drawer,
-  Dropdown,
   DropdownTrigger,
   Error,
   FieldToken,
@@ -104,7 +101,6 @@ export {
   MenuButton,
   MultiSelect,
   Pagination,
-  PlainButton,
   ProgressBar,
   Popover,
   ResponsiveFlex,

@@ -15,7 +15,6 @@ import DateInput from "./DateInput";
 import Dialog from "./Dialog";
 import DisabledShim from "./DisabledShim";
 import Drawer from "./Drawer";
-import Dropdown from "./Dropdown";
 import DropdownTrigger from "./DropdownTrigger";
 import Error from "./Error";
 import FieldToken from "./FieldToken";
@@ -27,7 +26,6 @@ import LoadingSkeleton from "./LoadingSkeleton";
 import MenuButton from "./MenuButton";
 import MultiSelect from "./MultiSelect";
 import Pagination from "./Pagination";
-import PlainButton from "./PlainButton";
 import ProgressBar from "./ProgressBar";
 import Popover from "./Popover";
 import Radio from "./Radio";
@@ -78,7 +76,6 @@ export {
   Dialog,
   DisabledShim,
   Drawer,
-  Dropdown,
   DropdownTrigger,
   Error,
   FieldToken,
@@ -90,7 +87,6 @@ export {
   MenuButton,
   MultiSelect,
   Pagination,
-  PlainButton,
   ProgressBar,
   Popover,
   Radio,
@@ -110,7 +106,7 @@ export {
   TableInput,
   TableSelect,
   Tabs,
-  Tag,
+  Tag, // ⚠️ DEPRECATED - Will be removed in a future release. Use `Chip` instead.
   TextInput,
   TimelineEvent,
   Toggle,

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 6.0.0 (2026-02-3)
+
+### BREAKING CHANGE
+
+See `MIGRATION_v6.md` in this repo for a full list of breaking changes.
+
 ## <small>5.2.1 (2026-01-30)</small>
 
 - fix(TableSelect): render Item children when selected ([3cee43a91790c462b3c354d0b088fb7a495bdc7a](https://github.com/narmi/design_system/commit/3cee43a91790c462b3c354d0b088fb7a495bdc7a))

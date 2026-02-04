@@ -233,7 +233,7 @@ The `Tag` component is deprecated and will be removed in v6 of NDS. Use `Chip` i
 
 **Impact:** The `Tag` component is being deprecated in favor of `Chip` with improved functionality.
 
-**Why this change:** `Chip` provides a more modern API with better separation of concerns. Visual styling (kind) is independent of behavior (dismissibility, clickability), making it more flexible and easier to use.
+**Why this change:** `Chip` provides a more modern API with better separation of concerns. Visual styling (kind) is independent of behavior (dismissibility, clickability), making it more flexible and easier to use. Most importantly, it aligns with the NDSv2 Figma library.
 
 #### Migration Guide
 
@@ -246,9 +246,9 @@ The key difference is that behaviors like dismissibility are now decoupled from 
 | `kind`      | `kind`            | `Chip` supports: `"info"`, `"success"`, `"warn"`, `"error"`, `"primary"`, `"secondary"` |
 | `onDismiss` | `onDismiss`       | Same usage - renders close button                                                       |
 | `onClick`   | `onClick`         | Same usage - makes entire chip clickable                                                |
-| -           | `startIcon`       | NEW: Add icon at start of label                                                         |
-| -           | `endIcon`         | NEW: Add icon at end of label                                                           |
-| -           | `count`           | NEW: Display a count badge                                                              |
+| -           | `startIcon`       | 🆕 NEW: Add icon at start of label                                                         |
+| -           | `endIcon`         | 🆕 NEW: Add icon at end of label                                                           |
+| -           | `count`           | 🆕 NEW: Display a count badge                                                              |
 
 #### Examples
 
@@ -305,10 +305,8 @@ Storybook has been upgraded to v9. This upgrade includes improved performance, u
 
 #### What Changed
 
-- Better build tooling for a faster startup
-- Improved documentation rendering
-- Enhanced component preview features
-- Better accessibility testing tools
+- Faster Storybook Startup
+- New development features
 
 #### No Action Required
 
@@ -323,7 +321,9 @@ NDS v6 no longer uses webpack for builds. Vite is now the only build tool used b
 #### What Changed
 
 - All webpack configuration has been removed
-- Modern ESM is prioritized
+- Modern ESM modules
+- FAST Builds
+- Live refresh on CSS in storybook is now actually useful
 
 #### No Action Required
 

@@ -1,6 +1,6 @@
 # Migration Guide to NDS v6
 
-This release is focused on shedding legacy code and laying the foundations for our "UI Refresh" project, aligning code with our NDSv2 Figma library.
+This release is focused on shedding legacy code and laying the foundation for our "UI Refresh" project, aligning code with our NDSv2 Figma library.
 
 ---
 

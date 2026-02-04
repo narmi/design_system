@@ -1,6 +1,6 @@
 # Migration Guide to NDS v6
 
-## Breaking changes
+## v6.0.0 Breaking changes
 
 ### Removed legacy CSS vars prefixed with `nds-` (e.g. `nds-black`)
 
@@ -109,7 +109,7 @@ The `kind="menu"` variant has been removed from the Button component.
 
 **Impact:** Any buttons using `kind="menu"` will need to be updated to use `kind="plain"`.
 
-**Why this change:** The `menu` kind was a specialized variant used in only one location (the OLB header) and had complex, legacy-specific styling rules. The `plain` kind provides equivalent functionality with cleaner, more maintainable styles.
+**Why this change:** The `menu` kind was a specialized variant used in only one location (the OLB header) and had complex, legacy-specific styling rules. The `plain` kind of `Button` is the standard variant per design.
 
 #### Example
 
@@ -129,7 +129,7 @@ The `kind="menu"` variant has been removed from the Button component.
 
 The `deprecations.json` file has been removed from the published `dist/` directory.
 
-**Impact:** If your build process or tooling relied on this file, you'll need to find alternative approaches.
+**Impact:** If your build process or tooling relied on this file, this may be breaking.
 
 **Why this change:** This file was unmaintained and outdated. Deprecation warnings are now handled through TypeScript types, JSDoc comments, and proper semantic versioning practices.
 
@@ -139,7 +139,7 @@ The `.nds-plain-button` CSS class has been removed from the design system.
 
 **Impact:** If you have custom HTML elements using this class for styling, you'll need to migrate to the proper Button component.
 
-**Why this change:** Using the Button component instead of raw CSS classes ensures proper accessibility, consistent behavior, and easier maintenance. The class-based approach bypassed important button semantics and event handling.
+**Why this change:** This has never been publicly exposed, but known to be in used in some consumers.
 
 #### Example
 
@@ -165,14 +165,14 @@ The `kind="interactive"` variant has been removed from ContentCard.
 
 **Impact:** Cards using `kind="interactive"` need to be updated to use either `kind="button"` or `kind="toggle"` based on their behavior.
 
-**Why this change:** The `interactive` kind was ambiguous about its purpose. The new approach uses more semantically correct variants that better communicate the card's behavior and improve accessibility. The distinction between `button` (action-oriented) and `toggle` (stateful selection) makes the intent clearer.
+**Why this change:** The `interactive` kind was ambiguous about its purpose. The new approach uses more semantically correct variants that better communicate the card's behavior and improve accessibility.
 
 #### Migration Guide
 
 | Use Case                           | Replacement Kind | Notes                                         |
 | ---------------------------------- | ---------------- | --------------------------------------------- |
-| Card triggers an action on click   | `kind="button"`  | For navigation, opening dialogs, etc.         |
-| Card has selected/unselected state | `kind="toggle"`  | For choosing between options, selecting items |
+| Card triggers an action on click   | `kind="button"`  | For actions that only need an `onClick`; renders as a `button`        |
+| Card has selected/unselected state | `kind="toggle"`  | For toggling selected state; renders as a `checkbox` |
 
 ### Dropped support for React v16 and v17
 

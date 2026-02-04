@@ -1,5 +1,9 @@
 # Migration Guide to NDS v6
 
+This release is focused on shedding legacy code and laying the foundations for our "UI Refresh" project, aligning code with our NDSv2 Figma library.
+
+---
+
 ## v6.0.0 Breaking changes
 
 ### Removed legacy CSS vars prefixed with `nds-` (e.g. `nds-black`)

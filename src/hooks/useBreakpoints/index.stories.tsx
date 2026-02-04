@@ -11,7 +11,7 @@ export const Overview: React.FC = () => {
       <h1 className="fontColor--heading fontFamily--heading margin--bottom--l">
         Resize your browser
       </h1>
-      <ul className="list--reset padding--all rounded--all bgColor--blueGrey fontColor--azul fontSize--l">
+      <ul className="list--reset padding--all rounded--all bgColor--blueGrey fontColor--azul fontSize--xl">
         <li>
           <code>s or larger:&nbsp;</code>
           <code className={`fontColor--${s ? "success" : "error"}`}>

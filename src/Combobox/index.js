@@ -121,7 +121,7 @@ export const defaultFilterItemsByInput = (items, inputValue) =>
  */
 export const defaultRenderEndContent = (isOpen) => (
   <span
-    className={`fontSize--l fontColor--primary narmi-icon-${
+    className={`fontSize--xl fontColor--primary narmi-icon-${
       isOpen ? "chevron-up" : "chevron-down"
     }`}
   />
@@ -308,7 +308,7 @@ const Combobox = ({
               {hasSelectedItem &&
                 selectedItem.props.value === item.props.value && (
                   <Row.Item as="span" shrink>
-                    <span className="narmi-icon-check fontSize--l fontWeight--bold" />
+                    <span className="narmi-icon-check fontSize--xl fontWeight--bold" />
                   </Row.Item>
                 )}
             </Row>

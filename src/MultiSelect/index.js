@@ -327,7 +327,7 @@ const MultiSelect = ({
                     <Row.Item as="span">{item}</Row.Item>
                     {isSelected(selectedItems, item) && (
                       <Row.Item as="span" shrink>
-                        <span className="narmi-icon-check fontSize--l fontWeight--bold" />
+                        <span className="narmi-icon-check fontSize--xl fontWeight--bold" />
                       </Row.Item>
                     )}
                   </Row>

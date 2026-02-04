@@ -76,7 +76,7 @@ const DropdownTrigger = React.forwardRef(
                 role="img"
                 aria-label={isOpen ? "popup open" : "popup closed"}
                 className={cc([
-                  "nds-dropdownTrigger-chevron fontSize--l fontColor--secondary",
+                  "nds-dropdownTrigger-chevron fontSize--xl fontColor--secondary",
                   `narmi-icon-chevron-${isOpen ? "up" : "down"}`,
                 ])}
               />

@@ -111,7 +111,7 @@ const AutoComplete = ({
               {selectedItem &&
                 selectedItem.props.value === item.props.value && (
                   <Row.Item as="span" shrink>
-                    <span className="narmi-icon-check fontSize--l fontWeight--bold" />
+                    <span className="narmi-icon-check fontSize--xl fontWeight--bold" />
                   </Row.Item>
                 )}
             </Row>

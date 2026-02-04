@@ -193,7 +193,7 @@ The `searchValue` prop is now **required** on all item components for `Select`, 
 
 **Impact:** All usages of `.Item` components within these selection components must now explicitly provide a `searchValue` prop.
 
-**Why this change:** Previously, the `searchValue` prop was optional and would fall back to using the item's children for search filtering. This caused issues when items had complex children (icons, formatted text, etc.) or when the visual display differed from the search term. Making it required ensures predictable search behavior and prevents runtime errors.
+**Why this change:** Previously, the `searchValue` prop was optional and would fall back to using the item's value for search filtering. This caused issues when items had complex children (icons, formatted text, etc.) or when the visual display differed from the search term. Making it required ensures predictable search behavior and prevents runtime errors.
 
 #### Components Affected
 

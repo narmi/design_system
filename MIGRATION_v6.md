@@ -85,6 +85,7 @@ import { Dropdown } from "@narmi/design_system";
 
 ```jsx
 import { Select } from "@narmi/design_system";
+// Choose from: Select, MultiSelect, Combobox, or AutocompleteModa
 
 <Select
   label="Select an option"
@@ -323,7 +324,7 @@ NDS v6 no longer uses webpack for builds. Vite is now the only build tool used b
 - All webpack configuration has been removed
 - Modern ESM modules
 - FAST Builds
-- Live refresh on CSS in storybook is now actually useful
+- Speedy Sass build via `vite`, making live refresh actually useful for CSS changes
 
 #### No Action Required
 

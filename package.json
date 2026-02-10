@@ -115,6 +115,9 @@
   "author": "@narmi",
   "license": "SEE LICENSE IN LICSENSE.md, VENDOR_LICENSE.md",
   "dependencies": {
+    "@maskito/core": "^5.1.0",
+    "@maskito/kit": "^5.1.0",
+    "@maskito/react": "^5.1.0",
     "classcat": "^5.0.3",
     "downshift": "^9",
     "eslint-plugin-json": "^3.1.0",

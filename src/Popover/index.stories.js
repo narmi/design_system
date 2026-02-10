@@ -1,6 +1,33 @@
 import React, { useState } from "react";
 import Popover from "./";
 import Button from "../Button";
+import Checkbox from "../Checkbox";
+
+const items = [
+  { label: "Option 1", value: "option-1" },
+  { label: "Option 2", value: "option-2" },
+  { label: "Option 3", value: "option-3" },
+  { label: "Option 4", value: "option-4" },
+  { label: "Option 5", value: "option-5" },
+  { label: "Option 6", value: "option-6" },
+  { label: "Option 7", value: "option-7" },
+  { label: "Option 8", value: "option-8" },
+  { label: "Option 9", value: "option-9" },
+  { label: "Option 10", value: "option-10" },
+  { label: "Option 11", value: "option-11" },
+  { label: "Option 12", value: "option-12" },
+  { label: "Option 13", value: "option-13" },
+  { label: "Option 14", value: "option-14" },
+  { label: "Option 15", value: "option-15" },
+  { label: "Option 16", value: "option-16" },
+  { label: "Option 17", value: "option-17" },
+  { label: "Option 18", value: "option-18" },
+  { label: "Option 19", value: "option-19" },
+  { label: "Option 20", value: "option-20" },
+  { label: "Option 21", value: "option-21" },
+  { label: "Option 22", value: "option-22" },
+  { label: "Option 23", value: "option-23" },
+];
 
 const Template = (args) => (
   <div
@@ -79,15 +106,24 @@ FocusManagement.args = {
     </Button>
   ),
   content: (
-    <div className="padding--all">
-      Focus will be trapped to{" "}
-      <a target="blank" href="http://narmi.com" className="fontWeight--bold">
-        focusable
-      </a>{" "}
-      <a target="blank" href="http://narmi.com" className="fontWeight--bold">
-        elements
-      </a>{" "}
-      within the Popover while it is open.
+    <div
+      className="padding--all"
+      style={{ maxHeight: "50vh", display: "flex", flexDirection: "column" }}
+    >
+      <div>header stuff</div>
+      <div style={{ overflowY: "scroll" }}>
+        {items.map((item) => (
+          <Checkbox
+            key={item.value}
+            label={item.label}
+            value={item.value}
+            onChange={(lol) => {
+              console.info(lol);
+            }}
+          />
+        ))}
+      </div>
+      <div>footer stuff</div>
     </div>
   ),
 };

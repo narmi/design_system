@@ -17,6 +17,7 @@ import DisabledShim from "./DisabledShim";
 import Drawer from "./Drawer";
 import DropdownTrigger from "./DropdownTrigger";
 import Error from "./Error";
+import Field from "./Field";
 import FieldToken from "./FieldToken";
 import FormSection from "./FormSection";
 import IconButton from "./IconButton";
@@ -78,6 +79,7 @@ export {
   Drawer,
   DropdownTrigger,
   Error,
+  Field,
   FieldToken,
   FormSection,
   IconButton,

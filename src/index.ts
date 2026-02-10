@@ -14,6 +14,7 @@ import ContextMenu from "./ContextMenu";
 import Count from "./Count";
 import Dialog from "./Dialog";
 import DisabledShim from "./DisabledShim";
+import Field from "./Field";
 import ProgressBar from "./ProgressBar";
 import Radio from "./Radio";
 import RadioButtons from "./RadioButtons";
@@ -92,6 +93,7 @@ export {
   Drawer,
   DropdownTrigger,
   Error,
+  Field,
   FieldToken,
   FormSection,
   IconButton,

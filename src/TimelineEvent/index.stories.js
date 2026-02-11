@@ -43,7 +43,7 @@ export const CustomNode = () => (
     <TimelineEvent kind="pending">
       We are still waiting on this one
     </TimelineEvent>
-    <TimelineEvent renderNode={() => <div className="fontSize--l">❤️</div>}>
+    <TimelineEvent renderNode={() => <div className="fontSize--xl">❤️</div>}>
       This event has a custom node
     </TimelineEvent>
     <TimelineEvent kind="start">

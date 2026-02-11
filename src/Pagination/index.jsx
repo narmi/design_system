@@ -90,7 +90,10 @@ const Pagination = ({
                 },
               ])}
             >
-              <i role="img" className="narmi-icon-chevron-left fontSize--l"></i>
+              <i
+                role="img"
+                className="narmi-icon-chevron-left fontSize--xl"
+              ></i>
             </span>
           </li>
 
@@ -192,7 +195,7 @@ const Pagination = ({
             >
               <i
                 role="img"
-                className="narmi-icon-chevron-right fontSize--l"
+                className="narmi-icon-chevron-right fontSize--xl"
               ></i>
             </span>
           </li>

@@ -110,7 +110,7 @@
     padding-right: 0;
 
     h4 {
-      font-size: var(--font-size-l);
+      font-size: var(--font-size-xl);
       font-weight: var(--font-weight-bold);
     }
   }
@@ -134,7 +134,7 @@
 
 .nds-dialog-closeButton {
   position: absolute;
-  font-size: var(--font-size-l) !important;
+  font-size: var(--font-size-xl) !important;
   color: var(--font-color-primary);
   right: var(--space-m);
   top: var(--space-xs);

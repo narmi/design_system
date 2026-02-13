@@ -1,6 +1,6 @@
 import React from "react";
 import cc from "classcat";
-import Row from "../Row";
+import Row, { RowProps } from "../Row";
 import type { IconName } from "../types/Icon.types";
 
 const noop = () => {};
@@ -18,6 +18,10 @@ interface AlertProps {
   icon?: IconName | string | null;
   /** Size of padding for Alert. */
   paddingSize?: "xxs" | "xs" | "s" | "l" | "xl" | "xxl";
+  /** The alignItems value for the underlying row */
+  alignItems?: RowProps["alignItems"];
+  /** The justifyContent value for the underlying row */
+  justifyContent?: RowProps["justifyContent"];
   /** Message content of the Alert */
   children?: React.ReactNode | string;
 }
@@ -35,6 +39,8 @@ const Alert = ({
   kind = "info",
   icon = null,
   paddingSize = "l",
+  alignItems = "top",
+  justifyContent = "start",
   children,
 }: AlertProps) => {
   const iconName = kind === "success" ? "check" : "info";
@@ -50,7 +56,11 @@ const Alert = ({
             `padding--all--${paddingSize}`,
           ])}
         >
-          <Row gapSize="s">
+          <Row
+            gapSize="s"
+            alignItems={alignItems}
+            justifyContent={justifyContent}
+          >
             <Row.Item shrink>
               <span
                 className={`nds-alert-icon narmi-icon-${icon || iconName}`}

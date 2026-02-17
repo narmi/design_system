@@ -8,6 +8,8 @@ export type UseDropdownLayerResult = {
     style: {
       anchorName?: string;
     };
+    "aria-haspopup": string;
+    "aria-expanded": string;
   };
   /** Props to spread onto the dropdown menu element */
   layerProps: {
@@ -34,6 +36,10 @@ export interface UseDropdownLayerOptions {
    * @default false
    */
   isPortalled?: boolean;
+  /** Type of popup for aria-haspopup attribute
+   * @default "menu"
+   */
+  ariaPopupType?: string;
 }
 
 /**
@@ -46,6 +52,7 @@ const useDropdownLayer = ({
   setIsOpen,
   matchWidth = true,
   isPortalled = false, // Default to false
+  ariaPopupType = "menu",
 }: UseDropdownLayerOptions): UseDropdownLayerResult => {
   const anchorRef = useRef<HTMLElement>(null);
   const layerRef = useRef<HTMLElement>(null);
@@ -72,8 +79,10 @@ const useDropdownLayer = ({
       style: {
         anchorName: isAnchorPositionSupported ? anchorName : undefined,
       },
+      "aria-haspopup": ariaPopupType,
+      "aria-expanded": isOpen.toString(),
     }),
-    [anchorRef, isAnchorPositionSupported, anchorName],
+    [anchorRef, isAnchorPositionSupported, anchorName, isOpen, ariaPopupType],
   );
 
   // Memoized props to spread onto the positioned layer element

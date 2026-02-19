@@ -2,6 +2,7 @@ import AutocompleteModal from "./AutocompleteModal";
 import Accordion from "./Accordion";
 import AccordionSet from "./AccordionSet";
 import Alert from "./Alert";
+import AnchoredDialog from "./AnchoredDialog";
 import Avatar from "./Avatar";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
@@ -64,6 +65,7 @@ export {
   Accordion,
   AccordionSet,
   Alert,
+  AnchoredDialog,
   Avatar,
   Button,
   Checkbox,

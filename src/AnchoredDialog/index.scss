@@ -1,0 +1,20 @@
+/* AnchoredDialog component styles */
+.nds-anchoredDialog {
+  @extend %nds-dropdown-layer;
+  outline: 1px solid lime;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.nds-anchoredDialog-header {
+  outline: 1px solid yellow;
+}
+
+.nds-anchoredDialog-content {
+  overflow-y: auto;
+  outline: 1px solid red;
+}
+
+.nds-anchoredDialog-footer {
+  outline: 1px solid blue;
+}

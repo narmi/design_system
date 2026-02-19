@@ -4,6 +4,7 @@
 import Accordion from "./Accordion";
 import AccordionSet from "./AccordionSet";
 import Alert from "./Alert";
+import AnchoredDialog from "./AnchoredDialog";
 import AutocompleteModal from "./AutocompleteModal";
 import Avatar from "./Avatar";
 import Button from "./Button";
@@ -86,6 +87,7 @@ export {
   Slider,
   Snackbar,
   Alert,
+  AnchoredDialog,
   CollapsibleCard,
   Combobox,
   DateInput,

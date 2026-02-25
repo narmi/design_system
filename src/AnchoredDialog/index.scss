@@ -3,9 +3,14 @@
   @extend %nds-dropdown-layer;
   // this will scroll within the content area instead.
   overflow-y: unset !important;
-  width: clamp(200px, max-content, 80vw);
-  max-width: 80vw;
   box-shadow: var(--elevation-middle);
+
+  // The `width` property will be a value calculated by the browser
+  // based on the width of the content, not exceeding half the viewport.
+  width: clamp(200px, max-content, 50vw);
+  // This `max-width` sets a constraint that prevents the modal from
+  // overflowing the viewport if `max-content` is larger than 100vw.
+  max-width: 80vw;
 }
 
 .nds-anchoredDialog-inner {

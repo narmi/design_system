@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import React, { useEffect } from "react";
 import { useOnClickOutside } from "usehooks-ts";
+import FocusLock from "react-focus-lock";
 import useDropdownLayer from "../hooks/useDropdownLayer";
 
 export interface AnchoredDialogProps {
@@ -91,7 +93,11 @@ const AnchoredDialog = ({
           data-testid={testId}
           style={layerProps.style as React.CSSProperties}
         >
-          <div className="nds-anchoredDialog-inner">
+          <FocusLock
+            returnFocus={true}
+            autoFocus={true}
+            className="nds-anchoredDialog-inner"
+          >
             {renderHeader && (
               <div className="nds-anchoredDialog-header border--bottom">
                 {renderHeader()}
@@ -103,7 +109,7 @@ const AnchoredDialog = ({
                 {renderFooter()}
               </div>
             )}
-          </div>
+          </FocusLock>
         </div>
       )}
     </>

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 6.2.0 (2026-02-25)
+
+* chore(release): 6.1.0 [skip ci] ([eb31f3e14f640d06b5dccd320ec2f4571aed49b3](https://github.com/narmi/design_system/commit/eb31f3e14f640d06b5dccd320ec2f4571aed49b3))
+* chore: add focus lock to anchored dialog ([06da21bde5ed18e9a9ca30bfc251c76a403dd820](https://github.com/narmi/design_system/commit/06da21bde5ed18e9a9ca30bfc251c76a403dd820))
+* chore: add shadow ([f307543ab7805918ab9a54132dcc1af3872afaea](https://github.com/narmi/design_system/commit/f307543ab7805918ab9a54132dcc1af3872afaea))
+* chore: annotate ([4841d8312bba38b18eaa6ef92db896726d89e8eb](https://github.com/narmi/design_system/commit/4841d8312bba38b18eaa6ef92db896726d89e8eb))
+* chore: set dialog max width ([c9453ed68072ed79ce5bdc6a5d9744bbb02f5166](https://github.com/narmi/design_system/commit/c9453ed68072ed79ce5bdc6a5d9744bbb02f5166))
+* feat(useDropdownLayer): add aria properties to return ([3a4d29ade42b7da2510026076683438e0820adb5](https://github.com/narmi/design_system/commit/3a4d29ade42b7da2510026076683438e0820adb5))
+* feat(AnchoredDialog): add component ([b770bc52a05b9e81050d0cf8b228b5c81cd2d5b6](https://github.com/narmi/design_system/commit/b770bc52a05b9e81050d0cf8b228b5c81cd2d5b6))
+* feat(Field): add Field.Text component ([0bdc434316cf0298dc873d3a57780a6c651481ed](https://github.com/narmi/design_system/commit/0bdc434316cf0298dc873d3a57780a6c651481ed))
+* feat(Field): add Field.Text component ([6caebdb16a414f921a888a285b56f7f728c1ae88](https://github.com/narmi/design_system/commit/6caebdb16a414f921a888a285b56f7f728c1ae88))
+* fix(useDropdownLayer): set inline position fallback ([591b91c80498cf5d33fe961810a22c9691cb5970](https://github.com/narmi/design_system/commit/591b91c80498cf5d33fe961810a22c9691cb5970))
+* fix(release): update workflow for new npm tokens ([01357505c80527525370511993ebec34e6df46f6](https://github.com/narmi/design_system/commit/01357505c80527525370511993ebec34e6df46f6))
+
 ## 6.1.0 (2026-02-11)
 
 * feat(typography): add 18px size as 'l'; mv 'l' to 'xl' ([f227b1c94d9c7ddf81e26818de8e2be61f78f405](https://github.com/narmi/design_system/commit/f227b1c94d9c7ddf81e26818de8e2be61f78f405))

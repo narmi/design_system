@@ -24,7 +24,7 @@ interface UseAnchorPolyfillParams {
 const useAnchorPolyfill = ({
   anchorRef,
   layerRef,
-  matchWidth = false,
+  matchWidth = true,
   isOpen,
   setIsOpen,
   isPortalled = false,
@@ -76,9 +76,7 @@ const useAnchorPolyfill = ({
     layerEl.style.setProperty("--js-dropdown-top", `${topPosition}px`);
     layerEl.style.setProperty("--js-dropdown-left", `${leftPosition}px`);
     layerEl.style.setProperty("--js-dropdown-minWidth", `max-content`);
-    if (matchWidth) {
-      layerEl.style.setProperty("--js-dropdown-width", `${anchorRect.width}px`);
-    }
+    layerEl.style.setProperty("--js-dropdown-width", `${anchorRect.width}px`);
 
     // Close on scroll (with threshold) or resize
     const initialAnchorTop = anchorRect.top;
@@ -107,7 +105,6 @@ const useAnchorPolyfill = ({
     isAnchorPositionSupported,
     anchorRef,
     layerRef,
-    matchWidth,
     isOpen,
     setIsOpen,
     isPortalled,

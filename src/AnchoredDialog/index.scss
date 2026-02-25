@@ -1,0 +1,32 @@
+/* AnchoredDialog component styles */
+.nds-anchoredDialog {
+  @extend %nds-dropdown-layer;
+  // this will scroll within the content area instead.
+  overflow-y: unset !important;
+  box-shadow: var(--elevation-middle);
+
+  // The `width` property will be a value calculated by the browser
+  // based on the width of the content, not exceeding half the viewport.
+  width: clamp(200px, max-content, 50vw);
+  // This `max-width` sets a constraint that prevents the modal from
+  // overflowing the viewport if `max-content` is larger than 100vw.
+  max-width: 80vw;
+}
+
+.nds-anchoredDialog-inner {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  max-height: 70vh;
+}
+
+.nds-anchoredDialog-header,
+.nds-anchoredDialog-footer {
+  padding: var(--space-xs) var(--space-default);
+}
+
+.nds-anchoredDialog-content {
+  // right side gets extra padding for scroll gutter.
+  padding: var(--space-xs) var(--space-xl) var(--space-xs) var(--space-default);
+  overflow-y: auto;
+  min-height: 0;
+}

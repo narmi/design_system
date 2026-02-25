@@ -4,6 +4,7 @@
   // this will scroll within the content area instead.
   overflow-y: unset !important;
   width: clamp(200px, max-content, 50vw);
+  box-shadow: var(--elevation-middle);
 }
 
 .nds-anchoredDialog-inner {

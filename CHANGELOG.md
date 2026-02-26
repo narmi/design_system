@@ -3,22 +3,6 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## <small>6.2.5 (2026-02-26)</small>
-
-* fix: force release with dropdown fixes ([2a7ea719a30b390ae2537b2219ae631c9696a9a9](https://github.com/narmi/design_system/commit/2a7ea719a30b390ae2537b2219ae631c9696a9a9))
-
-## <small>6.2.4 (2026-02-26)</small>
-
-* fix: rm manual npm auth from build/publish ([7e038d0b5d41bad1fd22959b64c95087e91d81a3](https://github.com/narmi/design_system/commit/7e038d0b5d41bad1fd22959b64c95087e91d81a3))
-
-## <small>6.2.3 (2026-02-26)</small>
-
-* fix: set up necessary entry for oidc trusted publishing ([56f78b48a1eead5d1019ce3298cc34dbb4a86e7f](https://github.com/narmi/design_system/commit/56f78b48a1eead5d1019ce3298cc34dbb4a86e7f))
-
-## <small>6.2.2 (2026-02-26)</small>
-
-* fix: force patch release on v6 range ([a4fbbe04a233216f352364fb825de2625ef198f4](https://github.com/narmi/design_system/commit/a4fbbe04a233216f352364fb825de2625ef198f4))
-
 ## 6.2.0 (2026-02-25)
 
 * chore(release): 6.1.0 [skip ci] ([eb31f3e14f640d06b5dccd320ec2f4571aed49b3](https://github.com/narmi/design_system/commit/eb31f3e14f640d06b5dccd320ec2f4571aed49b3))

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>6.2.5 (2026-02-26)</small>
+
+* fix: force release with dropdown fixes ([2a7ea719a30b390ae2537b2219ae631c9696a9a9](https://github.com/narmi/design_system/commit/2a7ea719a30b390ae2537b2219ae631c9696a9a9))
+
 ## <small>6.2.4 (2026-02-26)</small>
 
 * fix: rm manual npm auth from build/publish ([7e038d0b5d41bad1fd22959b64c95087e91d81a3](https://github.com/narmi/design_system/commit/7e038d0b5d41bad1fd22959b64c95087e91d81a3))

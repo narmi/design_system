@@ -13,6 +13,7 @@
     "node": ">=22"
   },
   "publishConfig": {
+    "access": "public",
     "provenance": true
   },
   "scripts": {

@@ -40,4 +40,5 @@ jobs:
         if: success()
         env:
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+          NPM_TOKEN: "oidc-template-token" # semantic release requires this, but it will be replaced by the OIDC token at runtime
         run: npm run release

@@ -12,6 +12,9 @@
   "engines": {
     "node": ">=22"
   },
+  "publishConfig": {
+    "provenance": true
+  },
   "scripts": {
     "build:types": "node ./scripts/buildTypes.mjs",
     "build:jsdoc": "node ./scripts/jsDoc.mjs",

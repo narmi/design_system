@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>6.2.3 (2026-02-26)</small>
+
+* fix: set up necessary entry for oidc trusted publishing ([56f78b48a1eead5d1019ce3298cc34dbb4a86e7f](https://github.com/narmi/design_system/commit/56f78b48a1eead5d1019ce3298cc34dbb4a86e7f))
+
 ## <small>6.2.2 (2026-02-26)</small>
 
 * fix: force patch release on v6 range ([a4fbbe04a233216f352364fb825de2625ef198f4](https://github.com/narmi/design_system/commit/a4fbbe04a233216f352364fb825de2625ef198f4))

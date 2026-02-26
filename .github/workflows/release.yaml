@@ -38,4 +38,6 @@ jobs:
         if: success()
         env:
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
-        run: npx semantic-release
+        run: |
+          echo "//registry.npmjs.org/:aud=https://self-serve.npmjs.com" > .npmrc
+          npx semantic-release

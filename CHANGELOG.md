@@ -3,12 +3,6 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## <small>6.2.1 (2026-02-26)</small>
-
-* build: enable trusted publishing ([cf727721797eace8b2b942da05ec6d8f1401e4ca](https://github.com/narmi/design_system/commit/cf727721797eace8b2b942da05ec6d8f1401e4ca))
-* chore: add auth to release workflow ([e10f4085d759486e5f7f3c855615f9fbaaf0c7cd](https://github.com/narmi/design_system/commit/e10f4085d759486e5f7f3c855615f9fbaaf0c7cd))
-* fix: force release for dropdown fixes ([06a565c5ca36b3275964889ea4245fe141bfe670](https://github.com/narmi/design_system/commit/06a565c5ca36b3275964889ea4245fe141bfe670))
-
 ## 6.2.0 (2026-02-25)
 
 * chore(release): 6.1.0 [skip ci] ([eb31f3e14f640d06b5dccd320ec2f4571aed49b3](https://github.com/narmi/design_system/commit/eb31f3e14f640d06b5dccd320ec2f4571aed49b3))

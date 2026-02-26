@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>6.2.2 (2026-02-26)</small>
+
+* fix: force patch release on v6 range ([a4fbbe04a233216f352364fb825de2625ef198f4](https://github.com/narmi/design_system/commit/a4fbbe04a233216f352364fb825de2625ef198f4))
+
 ## 6.2.0 (2026-02-25)
 
 * chore(release): 6.1.0 [skip ci] ([eb31f3e14f640d06b5dccd320ec2f4571aed49b3](https://github.com/narmi/design_system/commit/eb31f3e14f640d06b5dccd320ec2f4571aed49b3))

@@ -533,6 +533,49 @@ export const WithCategoriesInForm = () => {
   );
 };
 
+export const WithLongLabels = () => (
+  <div style={{ width: "300px" }}>
+    <Combobox label="Select an account with a very long label">
+      <Combobox.Item
+        value="business_checking_12345"
+        searchValue="Business Checking - 12345678901234567890"
+      >
+        This is a very long business checking account name that might wrap to
+        multiple lines - 12345678901234567890
+      </Combobox.Item>
+      <Combobox.Item
+        value="personal_savings_abcde"
+        searchValue="Personal Savings - ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      >
+        A personal savings account with an exceptionally long descriptive label
+        for testing width constraints and text wrapping behavior
+      </Combobox.Item>
+      <Combobox.Item
+        value="joint_account_xyz"
+        searchValue="Joint Account - XYZ"
+      >
+        Joint Family Account - Main Household Banking with Extended Description
+        for Financial Planning
+      </Combobox.Item>
+      <Combobox.Item
+        value="investment_portfolio"
+        searchValue="Investment Portfolio - Retirement Planning 2050"
+      >
+        Investment Portfolio & Retirement Planning Account with Very Long Name
+        for Testing Dropdown Width Constraints
+      </Combobox.Item>
+    </Combobox>
+  </div>
+);
+WithLongLabels.parameters = {
+  docs: {
+    description: {
+      story:
+        "Test how the dropdown handles very long display labels and values. This story verifies width constraints and text wrapping behavior.",
+    },
+  },
+};
+
 export const OverridingMenuHeight = Template.bind({});
 OverridingMenuHeight.args = {
   label: "Select your state (10vh menu)",

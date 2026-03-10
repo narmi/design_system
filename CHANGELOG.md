@@ -17,6 +17,10 @@ See `MIGRATION_v6.md` in this repo for a full list of breaking changes.
 
 - fix(TableSelect): render Item children when selected ([3cee43a91790c462b3c354d0b088fb7a495bdc7a](https://github.com/narmi/design_system/commit/3cee43a91790c462b3c354d0b088fb7a495bdc7a))
 
+## 5.2.0 (2026-03-10)
+
+- Backport `useDropdownLayer` fixes to v5 release channel.
+
 ## 5.2.0 (2026-01-30)
 
 - feat(useDropdownLayer): accept isPortalled for dropdowns ([961aaea189cef4aa0e7f501e667609492369aef7](https://github.com/narmi/design_system/commit/961aaea189cef4aa0e7f501e667609492369aef7))

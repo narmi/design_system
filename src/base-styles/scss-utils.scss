@@ -82,6 +82,7 @@ $breakpoints: (
   border-radius: var(--border-radius-default);
   margin-top: var(--space-xxs) !important;
   margin-bottom: var(--space-xxs) !important;
+  max-width: 80vw;
 
   &:focus {
     outline: none;

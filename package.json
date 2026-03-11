@@ -13,8 +13,7 @@
     "node": ">=22"
   },
   "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "access": "public"
   },
   "scripts": {
     "build:types": "node ./scripts/buildTypes.mjs",
@@ -85,7 +84,6 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-storybook": "^9.1.13",
-    "glob": "^7.2.0",
     "html-webpack-plugin": "^5.3.1",
     "husky": "^8.0.3",
     "jest": "^30.0.5",

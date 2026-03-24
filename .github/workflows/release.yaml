@@ -33,18 +33,6 @@ jobs:
       - name: Build Dist
         run: npm run build
 
-      - name: Generate npm token via OIDC
-        run: |
-          OIDC_TOKEN=$(curl -s \
-            -H "Authorization: bearer $ACTIONS_RUNTIME_TOKEN" \
-            -H "Accept: application/vnd.github+json" \
-            "$ACTIONS_ID_TOKEN_REQUEST_URL?audience=npm:registry.npmjs.org" \
-            | jq -r '.token')
-          cat > .npmrc <<EOF
-          registry=https://registry.npmjs.org/
-          //registry.npmjs.org/:_authToken=${OIDC_TOKEN}
-          EOF
-
       - name: Release
         if: success()
         env:

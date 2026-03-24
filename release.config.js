@@ -110,17 +110,11 @@ const config = {
     [
       "@semantic-release/npm",
       {
-        tarballDir: "pack",
         pkgRoot: ".",
         provenance: true,
       },
     ],
-    [
-      "@semantic-release/github",
-      {
-        tarballDir: "pack/*.tgz",
-      },
-    ],
+    ["@semantic-release/github", {}],
     [
       "@semantic-release/git",
       {

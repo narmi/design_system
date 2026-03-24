@@ -26,14 +26,22 @@ jobs:
         uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v4
         with:
           node-version: 22
-          registry-url: https://registry.npmjs.org/
-          scope: "@narmi"
 
       - name: Install dependencies
         run: npm ci
 
       - name: Build Dist
         run: npm run build
+
+      - name: Generate npm token via OIDC
+        run: |
+          OIDC_TOKEN=$(curl -s \
+            -H "Authorization: bearer $ACTIONS_RUNTIME_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL?audience=npm:registry.npmjs.org" \
+            | jq -r '.token')
+          npm config set //registry.npmjs.org/:_authToken=$OIDC_TOKEN
+          npm config set registry https://registry.npmjs.org/
 
       - name: Release
         if: success()

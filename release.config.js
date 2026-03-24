@@ -111,6 +111,8 @@ const config = {
       "@semantic-release/npm",
       {
         tarballDir: "pack",
+        pkgRoot: ".",
+        provenance: true,
       },
     ],
     [

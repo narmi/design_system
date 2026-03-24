@@ -3,7 +3,8 @@
     "radius": {
       "s": { "value": "4px" },
       "m": { "value": "8px" },
-      "l": { "value": "20px" },
+      "l": { "value": "12px" },
+      "xl": { "value": "20px" },
       "default": { "value": "{border.radius.s.value}" }
     }
   }

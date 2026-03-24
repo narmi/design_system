@@ -13,7 +13,8 @@
     "node": ">=22"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "scripts": {
     "build:types": "node ./scripts/buildTypes.mjs",

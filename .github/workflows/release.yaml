@@ -40,8 +40,10 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             "$ACTIONS_ID_TOKEN_REQUEST_URL?audience=npm:registry.npmjs.org" \
             | jq -r '.token')
-          npm config set //registry.npmjs.org/:_authToken=$OIDC_TOKEN
-          npm config set registry https://registry.npmjs.org/
+          cat > .npmrc <<EOF
+          registry=https://registry.npmjs.org/
+          //registry.npmjs.org/:_authToken=${OIDC_TOKEN}
+          EOF
 
       - name: Release
         if: success()

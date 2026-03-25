@@ -35,6 +35,13 @@ jobs:
       - name: Build Dist
         run: npm run build
 
+      - name: Configure npm for OIDC authentication
+        run: |
+          echo "=== Configuring npm for OIDC ==="
+          npm config set registry=https://registry.npmjs.org
+          npm config list
+          echo "npm configuration complete"
+
       - name: Debug - Log GitHub Actions Context
         run: |
           echo "=== GitHub Actions Context ==="
@@ -57,12 +64,16 @@ jobs:
           ACTIONS_ID_TOKEN_REQUEST_URL: ${{ env.ACTIONS_ID_TOKEN_REQUEST_URL }}
           ACTIONS_ID_TOKEN_REQUEST_TOKEN: ${{ env.ACTIONS_ID_TOKEN_REQUEST_TOKEN }}
 
-      - name: Debug - Log npm Configuration
+      - name: Debug - Log npm Configuration before publish
         run: |
           echo "=== npm Configuration ==="
           npm config get registry
-          npm config get scope
+          npm config get @narmi:registry
+          npm config list --location=project
+          echo "=== npm Auth Check ==="
           npm whoami || echo "Not authenticated yet"
+          echo "=== npm view @narmi/design-system ==="
+          npm view @narmi/design-system version
 
       - name: Release
         if: success()

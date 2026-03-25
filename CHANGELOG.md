@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.9](https://github.com/narmi/design_system/compare/v6.2.8...v6.2.9) (2026-03-25)
+
+### chore
+
+* sync lockfile ([](https://github.com/narmi/design_system/commit/599c90d98e873e60d45056a2ed5ba4007821f6df))
+* sync lockfiles ([](https://github.com/narmi/design_system/commit/094c241fdc3071c9ebe48c31b6a505db6e0b3b00))
+* sync lockfiles ([](https://github.com/narmi/design_system/commit/023e40972e2d14243273f9035f993e4438e4195a))
+
+### fix
+
+* **publish:** force release for OIDC npm publish ([](https://github.com/narmi/design_system/commit/ba3f7cc4716e2eba8c3531ea6b885c70e482407b))
+
 ## 6.1.0 (2026-02-11)
 
 * feat(typography): add 18px size as 'l'; mv 'l' to 'xl' ([f227b1c94d9c7ddf81e26818de8e2be61f78f405](https://github.com/narmi/design_system/commit/f227b1c94d9c7ddf81e26818de8e2be61f78f405))
@@ -3156,4 +3168,3 @@ These props on `Row.Item` components will now throw a TS error if the consumer t
 - force first release ([e9d223d](https://github.com/narmi/design_system/commit/e9d223d019e4da380f2aa3739628b85933993973))
 - update release github token ([b5f932f](https://github.com/narmi/design_system/commit/b5f932ff5a8258b4144b5b228078a059ca03915d))
 - use workflow dispatch for releases for now ([7b99b70](https://github.com/narmi/design_system/commit/7b99b700cf2f275aa1725bc6ddcf0c34cad727db))
-

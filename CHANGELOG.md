@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.10](https://github.com/narmi/design_system/compare/v6.2.9...v6.2.10) (2026-03-25)
+
+### fix
+
+* **Tooltip:** prevent flicker on trigger edge ([](https://github.com/narmi/design_system/commit/f0a66e8f0d3b16372816837189e40bcb1c2ee875))
+
 ## [6.2.9](https://github.com/narmi/design_system/compare/v6.2.8...v6.2.9) (2026-03-25)
 
 ### chore

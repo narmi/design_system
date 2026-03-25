@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>6.2.7 (2026-03-25)</small>
+
+* fix: remove NODE_AUTH_TOKEN override to allow OIDC authentication ([4839843db237d7658f3ff046dd766917bb0143d8](https://github.com/narmi/design_system/commit/4839843db237d7658f3ff046dd766917bb0143d8))
+
 ## <small>6.2.6 (2026-03-25)</small>
 
 * build(deps): bump immutable from 5.1.2 to 5.1.5 ([afa77d03733b9583c8220a76d8aef7a70e6e44e8](https://github.com/narmi/design_system/commit/afa77d03733b9583c8220a76d8aef7a70e6e44e8))

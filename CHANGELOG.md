@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>6.2.8 (2026-03-25)</small>
+
+* ci: remove registry-url from setup-node to unblock OIDC publishing ([f62571bf3a7ad9c7c6a0a500c57c58e211871c48](https://github.com/narmi/design_system/commit/f62571bf3a7ad9c7c6a0a500c57c58e211871c48))
+* fix: configure npm OIDC authentication for trusted publishing ([bf4658a48b62b94fbe8f81e3497b6770f93e8e4e](https://github.com/narmi/design_system/commit/bf4658a48b62b94fbe8f81e3497b6770f93e8e4e))
+
 ## <small>6.2.7 (2026-03-25)</small>
 
 * fix: remove NODE_AUTH_TOKEN override to allow OIDC authentication ([4839843db237d7658f3ff046dd766917bb0143d8](https://github.com/narmi/design_system/commit/4839843db237d7658f3ff046dd766917bb0143d8))

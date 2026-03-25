@@ -64,6 +64,17 @@ jobs:
           npm config get scope
           npm whoami || echo "Not authenticated yet"
 
+      - name: Configure git for GitHub CLI pushing
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
+
+      - name: Authenticate GitHub CLI
+        run: gh auth setup-git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Release
         if: success()
         env:

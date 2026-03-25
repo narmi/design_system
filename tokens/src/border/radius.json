@@ -5,7 +5,7 @@
       "m": { "value": "8px" },
       "l": { "value": "12px" },
       "xl": { "value": "20px" },
-      "default": { "value": "{border.radius.s.value}" }
+      "default": { "value": "{border.radius.l.value}" }
     }
   }
 }

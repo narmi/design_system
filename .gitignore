@@ -4,6 +4,7 @@ dist
 storybook-static
 build-storybook.log
 .vscode/
+.npmrc
 
 # IntelliJ IDEA
 .idea

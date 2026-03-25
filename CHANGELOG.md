@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.10](https://github.com/narmi/design_system/compare/v6.2.9...v6.2.10) (2026-03-25)
+
+### fix
+
+* **Tooltip:** prevent flicker on trigger edge ([](https://github.com/narmi/design_system/commit/f0a66e8f0d3b16372816837189e40bcb1c2ee875))
+
+## [6.2.9](https://github.com/narmi/design_system/compare/v6.2.8...v6.2.9) (2026-03-25)
+
+### chore
+
+* sync lockfile ([](https://github.com/narmi/design_system/commit/599c90d98e873e60d45056a2ed5ba4007821f6df))
+* sync lockfiles ([](https://github.com/narmi/design_system/commit/094c241fdc3071c9ebe48c31b6a505db6e0b3b00))
+* sync lockfiles ([](https://github.com/narmi/design_system/commit/023e40972e2d14243273f9035f993e4438e4195a))
+
+### fix
+
+* **publish:** force release for OIDC npm publish ([](https://github.com/narmi/design_system/commit/ba3f7cc4716e2eba8c3531ea6b885c70e482407b))
+
 ## 6.1.0 (2026-02-11)
 
 * feat(typography): add 18px size as 'l'; mv 'l' to 'xl' ([f227b1c94d9c7ddf81e26818de8e2be61f78f405](https://github.com/narmi/design_system/commit/f227b1c94d9c7ddf81e26818de8e2be61f78f405))

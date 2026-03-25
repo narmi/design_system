@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>6.2.6 (2026-03-25)</small>
+
+* build(deps): bump immutable from 5.1.2 to 5.1.5 ([afa77d03733b9583c8220a76d8aef7a70e6e44e8](https://github.com/narmi/design_system/commit/afa77d03733b9583c8220a76d8aef7a70e6e44e8))
+* build(deps): bump rollup from 4.52.5 to 4.59.0 ([63af4bb1eca28ec4760f680a21fa01b2cdb13bc6](https://github.com/narmi/design_system/commit/63af4bb1eca28ec4760f680a21fa01b2cdb13bc6))
+* build(deps-dev): bump storybook from 9.1.16 to 9.1.19 ([da7d6face04f2969767c9b49feacc11e4d68f79e](https://github.com/narmi/design_system/commit/da7d6face04f2969767c9b49feacc11e4d68f79e))
+* chore: fix conflict ([d3ee48a0a0c38f808eea9675ad2760c4b392a357](https://github.com/narmi/design_system/commit/d3ee48a0a0c38f808eea9675ad2760c4b392a357))
+* chore: rm trusted publishing properties until fixed ([6d10e5f0d3b147c05781ba9d6745169111235807](https://github.com/narmi/design_system/commit/6d10e5f0d3b147c05781ba9d6745169111235807))
+* chore: update usage stat scripts ([586044c7cea85a47098fd7f318bfba8dd4c057da](https://github.com/narmi/design_system/commit/586044c7cea85a47098fd7f318bfba8dd4c057da))
+* ci(release): add OIDC token and npm config logging for troubleshooting ([6643a17b09d811062c52bb8ce8e7ad24e5d7a81c](https://github.com/narmi/design_system/commit/6643a17b09d811062c52bb8ce8e7ad24e5d7a81c))
+* docs: add agent skill for main branch push protection ([56651ef979b632e6406d339133405ca252264052](https://github.com/narmi/design_system/commit/56651ef979b632e6406d339133405ca252264052))
+* docs(skills): strengthen main branch protection enforcement ([150a1888ad58b74dbb8e7b5cb9f985f93a515a44](https://github.com/narmi/design_system/commit/150a1888ad58b74dbb8e7b5cb9f985f93a515a44))
+* fix(release): add environment Publish to enable OIDC Trusted Publishing ([24801c6fe8b85820aaa9a6a202214ff54734f524](https://github.com/narmi/design_system/commit/24801c6fe8b85820aaa9a6a202214ff54734f524))
+* fix(useDropdownLayer): add universal width constraint ([98ae68cbac6de3592033db0b98118f8bfc126b2f](https://github.com/narmi/design_system/commit/98ae68cbac6de3592033db0b98118f8bfc126b2f))
+* fix(release): enable OIDC authentication for npm trusted publishing ([bf1c136e200831cd0e45563f6ab0d6743e57d1cb](https://github.com/narmi/design_system/commit/bf1c136e200831cd0e45563f6ab0d6743e57d1cb))
+* fix(release): enable OIDC authentication for npm trusted publishing ([c2b616b79d438c716312d3fb7ba19be0d2655f95](https://github.com/narmi/design_system/commit/c2b616b79d438c716312d3fb7ba19be0d2655f95))
+* fix(semantic-release): enable provenance for NPM trusted publishing ([52d7a076c7928dc93194b3bd12279fff4d6dd3d0](https://github.com/narmi/design_system/commit/52d7a076c7928dc93194b3bd12279fff4d6dd3d0))
+* fix(publish): fetch OIDC token in release workflow ([c7cb7a2a74584df2d77aa2fcaa66d5608fb95639](https://github.com/narmi/design_system/commit/c7cb7a2a74584df2d77aa2fcaa66d5608fb95639))
+* fix(release): let semantic-release handle OIDC natively ([7556cface4301aad96778a792a5ce8fd483c2c7f](https://github.com/narmi/design_system/commit/7556cface4301aad96778a792a5ce8fd483c2c7f))
+* fix: remove legacy NPM tokens from release workflow ([fd4f790f78c7997f8e4a00d75332d273cee0ce35](https://github.com/narmi/design_system/commit/fd4f790f78c7997f8e4a00d75332d273cee0ce35))
+* fix(release): remove tarballDir config for OIDC and trusted publishing ([64f0c8c471f698265ac70ae2694c6de42672cd31](https://github.com/narmi/design_system/commit/64f0c8c471f698265ac70ae2694c6de42672cd31))
+* fix(publish): rm legacy npm auth from release workflow ([7dc84ff06e9da7590c052a3284577acb93df3e70](https://github.com/narmi/design_system/commit/7dc84ff06e9da7590c052a3284577acb93df3e70))
+* fix(release): set template token for semantic-relase ([7a664989cb359976bc98cbe5e978c3e4dbe13de4](https://github.com/narmi/design_system/commit/7a664989cb359976bc98cbe5e978c3e4dbe13de4))
+* fix: unset NODE_AUTH_TOKEN to force OIDC-only authentication ([40eab1d5033d70d5a13014b6a0e3decfad4b315f](https://github.com/narmi/design_system/commit/40eab1d5033d70d5a13014b6a0e3decfad4b315f))
+* fix(release): update workflow ([09081f219248e7a0b2292ac428876abfdae6d860](https://github.com/narmi/design_system/commit/09081f219248e7a0b2292ac428876abfdae6d860))
+* fix(release): use dotfile in release action for semantic-release ([a116d8dec0f38d3e584c829515a8e018bdd5993f](https://github.com/narmi/design_system/commit/a116d8dec0f38d3e584c829515a8e018bdd5993f))
+* fix(release): use GitHub CLI for pushing to protected branches ([adb74a850e91ff2bd5d0bd8ca592509cc76881ad](https://github.com/narmi/design_system/commit/adb74a850e91ff2bd5d0bd8ca592509cc76881ad))
+* fix(release): use SEMANTIC_RELEASE_TOKEN for git operations ([8b698f82e27578705343716fafa8860171d8daac](https://github.com/narmi/design_system/commit/8b698f82e27578705343716fafa8860171d8daac))
+
 ## 6.1.0 (2026-02-11)
 
 * feat(typography): add 18px size as 'l'; mv 'l' to 'xl' ([f227b1c94d9c7ddf81e26818de8e2be61f78f405](https://github.com/narmi/design_system/commit/f227b1c94d9c7ddf81e26818de8e2be61f78f405))

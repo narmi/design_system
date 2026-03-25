@@ -34,39 +34,6 @@ jobs:
       - name: Build Dist
         run: npm run build
 
-      - name: Debug - Log GitHub Actions Context
-        run: |
-          echo "=== GitHub Actions Context ==="
-          echo "Job Environment: ${{ job.environment }}"
-          echo "Runner OS: ${{ runner.os }}"
-          echo "Ref: ${{ github.ref }}"
-          echo "Workflow: ${{ github.workflow }}"
-
-      - name: Debug - Decode and Log OIDC Token Claims
-        run: |
-          echo "=== OIDC Token Claims ==="
-          TOKEN=$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | jq -r '.token')
-          if [ ! -z "$TOKEN" ]; then
-            echo "Token payload (decoded):"
-            echo "$TOKEN" | cut -d. -f2 | base64 -d | jq '.' || echo "Failed to decode token"
-          else
-            echo "Failed to retrieve OIDC token"
-          fi
-        env:
-          ACTIONS_ID_TOKEN_REQUEST_URL: ${{ env.ACTIONS_ID_TOKEN_REQUEST_URL }}
-          ACTIONS_ID_TOKEN_REQUEST_TOKEN: ${{ env.ACTIONS_ID_TOKEN_REQUEST_TOKEN }}
-
-      - name: Debug - Log npm Configuration before publish
-        run: |
-          echo "=== npm Configuration ==="
-          npm config get registry
-          npm config get @narmi:registry
-          npm config list --location=project
-          echo "=== npm Auth Check ==="
-          npm whoami || echo "Not authenticated yet"
-          echo "=== npm view @narmi/design_system ==="
-          npm view @narmi/design_system version
-
       - name: Release
         if: success()
         env:

@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.3.0](https://github.com/narmi/design_system/compare/v6.2.10...v6.3.0) (2026-03-26)
+
+### chore
+
+* fix font weights for headings ([](https://github.com/narmi/design_system/commit/03e687e658c918fd10d0321a9e80b8d288818968))
+* wip ([](https://github.com/narmi/design_system/commit/7db5df9075c936cbc7fa0b69e6d545aec4c871b1))
+
+### feat
+
+* **tokens:** sync all tokens to NDSv2 lib values ([](https://github.com/narmi/design_system/commit/0044cec038bd8e1d3c0c2a5bf05063f092805173))
+
+### fix
+
+* update faux and real input radius to match standard ([](https://github.com/narmi/design_system/commit/551d91ad8ea5a0c52ccc01ca49d289fc0745dbcb))
+
 ## [6.2.10](https://github.com/narmi/design_system/compare/v6.2.9...v6.2.10) (2026-03-25)
 
 ### fix

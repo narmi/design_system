@@ -93,30 +93,40 @@ $breakpoints: (
   }
 }
 
+@property --animatable-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes ai-border-rotate {
+  to {
+    --animatable-angle: 360deg;
+  }
+}
+
 /**
 * This placeholder applies a gradient border with masking,
 * which enables support for rounded corners on the border.
+* The conic-gradient rotates via --animatable-angle for a subtle shimmer effect.
 */
 %ai-card-border {
   border-radius: var(--border-radius-default);
-  // Create a gradient over the whole box,
-  // clip at the border.
   border: 1px solid transparent !important;
-  background-image: linear-gradient(
-    to right,
-    var(--color-amethyst),
-    var(--color-sand)
-  ) !important;
-  background-origin: border-box !important;
-  background-clip: border-box !important;
 
-  // Create a white box inside the border,
-  // clip to the padding box so only the border has the gradient.
+  // Layer 1: solid white fill clipped to padding-box (content area).
+  // Layer 2: rotating conic-gradient clipped to border-box (border area only).
   background-image:
     linear-gradient(white, white),
-    linear-gradient(to right, var(--color-amethyst), var(--color-sand)) !important;
+    conic-gradient(
+      from var(--animatable-angle),
+      var(--color-amethyst),
+      var(--color-sand),
+      var(--color-amethyst)
+    ) !important;
   background-clip: padding-box, border-box !important;
   background-origin: border-box !important;
+  animation: ai-border-rotate 6s linear infinite;
 }
 
 /**

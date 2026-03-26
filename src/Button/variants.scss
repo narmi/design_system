@@ -74,6 +74,25 @@
   }
 }
 
+%btn-kind-ai {
+  @extend %ai-card-border;
+
+  --transition-ms: 130ms;
+
+  border-radius: rem(24px);
+  color: var(--color-amethyst);
+  transition:
+    transform var(--transition-ms) ease,
+    box-shadow var(--transition-ms) ease;
+
+  &:hover {
+    border-color: var(--color-amethyst) !important;
+    box-shadow: 0 0 var(--space-m) 1px hsl(264 80% 60% / 20%);
+    background: rgba(var(--rgb-amythyst), var(--alpha-10)) !important;
+    transform: scale(1.006);
+  }
+}
+
 %btn-kind-plain {
   @extend %_btn-kind-plain-base;
   border-radius: 0 !important;

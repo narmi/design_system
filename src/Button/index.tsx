@@ -10,7 +10,8 @@ export type ButtonKind =
   | "secondary"
   | "tonal"
   | "negative"
-  | "plain";
+  | "plain"
+  | "ai";
 
 export interface ButtonProps {
   /** Renders the button label */

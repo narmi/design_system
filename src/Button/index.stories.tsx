@@ -40,6 +40,18 @@ PlainButton.parameters = {
   },
 };
 
+export const AiButton = () => (
+  <Button kind="ai" label="Ask Anything" startIcon="sparkle" />
+);
+AiButton.parameters = {
+  docs: {
+    description: {
+      story:
+        'A Button of `kind="ai"` is used for AI-related actions. It renders with a white background, amethyst text, and an animated rotating gradient border.',
+    },
+  },
+};
+
 export const ConfirmAndCancel = () => (
   <Row alignItems="center" justifyContent="end">
     <Row.Item shrink>
@@ -93,6 +105,15 @@ export const ButtonSizes = () => (
         {["m", "s", "xs"].map((size) => (
           <Row.Item key={size}>
             <Button kind="plain" label={`${size} Button`} size={size} />
+          </Row.Item>
+        ))}
+      </Row>
+    </div>
+    <div className="margin--bottom--l">
+      <Row alignItems="center">
+        {["m", "s", "xs"].map((size) => (
+          <Row.Item key={size}>
+            <Button kind="ai" label={`${size} Button`} size={size} />
           </Row.Item>
         ))}
       </Row>

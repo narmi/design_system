@@ -1,0 +1,17 @@
+{
+  "font": {
+    "letterSpacing": {
+      "trackingTighter": { "value": "-0.08" },
+      "trackingTight": { "value": "-0.04" },
+      "trackingNormal": { "value": "0" },
+      "trackingWide": { "value": "0.4" },
+      "trackingWider": { "value": "0.8" },
+      "trackingWidest": { "value": "1.6" },
+      "heading0": { "value": "{font.letterSpacing.trackingNormal.value}" },
+      "heading1": { "value": "{font.letterSpacing.trackingNormal.value}" },
+      "heading2": { "value": "{font.letterSpacing.trackingNormal.value}" },
+      "heading3": { "value": "{font.letterSpacing.trackingNormal.value}" },
+      "default": { "value": "{font.letterSpacing.trackingNormal.value}" }
+    }
+  }
+}

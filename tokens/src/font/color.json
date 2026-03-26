@@ -1,10 +1,14 @@
 {
   "font": {
     "color": {
-      "heading": { "value": "{color.narmi.black.value}" },
-      "primary": { "value": "{color.narmi.grey.value}" },
-      "secondary": { "value": "#6c6c6c" },
-      "hint": { "value": "{color.narmi.lightGrey.value}" }
+      "heading": { "value": "{color.grey.black.value}" },
+      "heading0": { "value": "{font.color.heading.value}" },
+      "heading1": { "value": "{font.color.heading.value}" },
+      "heading2": { "value": "{font.color.heading.value}" },
+      "heading3": { "value": "{font.color.heading.value}" },
+      "primary": { "value": "{color.grey.black.value}" },
+      "secondary": { "value": "{color.grey.mediumGrey.value}" },
+      "hint": { "value": "{color.grey.lightGrey.value}" }
     }
   }
 }

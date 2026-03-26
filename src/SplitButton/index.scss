@@ -20,6 +20,8 @@
   width: rem(40px);
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
+  border-top-right-radius: var(--border-radius-m) !important;
+  border-bottom-right-radius: var(--border-radius-m) !important;
 }
 
 // Match the dropdown trigger button to the shape and size of the
@@ -61,6 +63,11 @@
   @extend %btn-kind-secondary;
 }
 
+.nds-splitButton-action--tertiary,
+.nds-splitButton-action--tertiary.resetButton {
+  @extend %btn-kind-tertiary;
+}
+
 .nds-splitButton-action--tonal,
 .nds-splitButton-action--tonal.resetButton {
   @extend %btn-kind-tonal;
@@ -77,6 +84,9 @@
   }
   &.nds-splitButton-action--secondary {
     @extend %btn-state-disabled-secondary;
+  }
+  &.nds-splitButton-action--tertiary {
+    @extend %btn-state-disabled-tertiary;
   }
   &.nds-splitButton-action--tonal {
     @extend %btn-state-disabled-tonal;

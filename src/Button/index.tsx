@@ -8,6 +8,7 @@ import type { IconName } from "../types/Icon.types";
 export type ButtonKind =
   | "primary"
   | "secondary"
+  | "tertiary"
   | "tonal"
   | "negative"
   | "plain";

@@ -1,28 +1,28 @@
 %_btn-state-disabled-base {
   pointer-events: none;
-  color: var(--color-white);
+  user-select: none;
+  color: var(--color-mediumGrey);
+  border: var(--border-size-default) solid var(--border-color-default);
 }
 
 // used for all buttons that render without a pill shape
 %btn-state-disabled-plain {
   @extend %_btn-state-disabled-base;
+  border-width: 0 !important;
   color: var(--font-color-hint);
 }
 
 %btn-state-disabled-primary {
   @extend %_btn-state-disabled-base;
-  background-color: var(--color-lightGrey);
+  background-color: rgba(var(--rgb-lightGrey), var(--alpha-20));
 }
 
 %btn-state-disabled-secondary {
   @extend %_btn-state-disabled-base;
-  color: var(--color-lightGrey);
-  border-color: var(--color-lightGrey);
 }
 
 %btn-state-disabled-tonal {
   @extend %_btn-state-disabled-base;
-  color: var(--color-lightGrey);
   background-color: rgba(var(--rgb-lightGrey), var(--alpha-20));
 }
 

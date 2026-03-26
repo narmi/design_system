@@ -9,10 +9,11 @@
   display: inline-flex;
   position: relative;
   line-height: var(--font-lineHeight-bigText);
+  font-weight: var(--font-weight-semibold);
   text-align: center;
   justify-content: center;
   align-items: center;
-  border-radius: rem(24px);
+  border-radius: var(--border-radius-m);
   overflow: hidden;
 }
 

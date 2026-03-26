@@ -19,7 +19,7 @@
   // hover color appears the same regardless of context
   &::before {
     content: "";
-    border-radius: var(--button-radius);
+    border-radius: var(--border-radius-m);
     background-color: var(--color-white);
     position: absolute;
     inset: 0;
@@ -47,10 +47,6 @@
   justify-content: start;
   min-height: unset;
   overflow: visible !important; // prevent rounded edge cutoff
-
-  // Plain and Negative buttons gets a special override to make it semibold.
-  // All other buttons inherit their font weight from `sizes` placeholders.
-  font-weight: var(--font-weight-semibold) !important;
 
   &:hover {
     color: var(--theme-secondary);

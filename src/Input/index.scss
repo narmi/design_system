@@ -26,7 +26,7 @@
     position: relative;
     width: 100%;
     padding: rem(7px) 0.8em;
-    border-radius: rem(4px);
+    border-radius: var(--border-radius-default);
     display: flex;
     align-items: center;
 

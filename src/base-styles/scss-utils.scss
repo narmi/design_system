@@ -141,7 +141,7 @@ $breakpoints: (
 
 %tableField {
   @extend %tableField-offset;
-  border-radius: rem(4px);
+  border-radius: var(--border-radius-default);
   padding: var(--space-xs);
 
   display: grid;

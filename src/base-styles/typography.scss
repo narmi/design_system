@@ -3,10 +3,6 @@
   h2,
   h3,
   h4 {
-    font-family: var(--font-family-heading);
-    color: var(--font-color-heading);
-    font-weight: var(--font-weight-bold);
-
     &::first-letter {
       text-transform: capitalize;
     }
@@ -19,13 +15,26 @@
     margin-bottom: 0;
   }
   h1 {
+    color: var(--font-color-heading1);
     font-size: var(--font-size-heading1);
+    font-weight: var(--font-weight-heading1);
+    font-family: var(--font-family-heading1);
+    letter-spacing: var(--font-letterSpacing-heading1);
+    line-height: var(--font-lineHeight-heading1);
   }
   h2 {
     font-size: var(--font-size-heading2);
+    font-weight: var(--font-weight-heading2);
+    font-family: var(--font-family-heading2);
+    letter-spacing: var(--font-letterSpacing-heading2);
+    line-height: var(--font-lineHeight-heading2);
   }
   h3 {
     font-size: var(--font-size-heading3);
+    font-weight: var(--font-weight-heading3);
+    font-family: var(--font-family-heading3);
+    letter-spacing: var(--font-letterSpacing-heading3);
+    line-height: var(--font-lineHeight-heading3);
 
     &.nds-sans {
       font-family: var(--font-family-body);

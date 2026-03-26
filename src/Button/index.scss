@@ -50,6 +50,11 @@
   @extend %btn-kind-secondary;
 }
 
+.nds-button--tertiary,
+.nds-button--tertiary.resetButton {
+  @extend %btn-kind-tertiary;
+}
+
 .nds-button--tonal,
 .nds-button--tonal.resetButton {
   @extend %btn-kind-tonal;
@@ -70,6 +75,9 @@
   }
   &.nds-button--secondary {
     @extend %btn-state-disabled-secondary;
+  }
+  &.nds-button--tertiary {
+    @extend %btn-state-disabled-tertiary;
   }
   &.nds-button--tonal {
     @extend %btn-state-disabled-tonal;

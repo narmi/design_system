@@ -31,6 +31,28 @@
   }
 }
 
+%btn-kind-tertiary {
+  position: relative;
+  color: var(--color-darkGrey);
+  background-color: var(--color-white);
+  border: var(--border-size-default) solid var(--border-color-default);
+
+  // adds a white shim behind the button so that the transparent
+  // hover color appears the same regardless of context
+  &::before {
+    content: "";
+    border-radius: var(--border-radius-s);
+    background-color: var(--color-white);
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+
+  &:hover {
+    background-color: var(--bgColor-neutralGrey);
+  }
+}
+
 %btn-kind-tonal {
   color: var(--theme-primary);
   background-color: RGBA(var(--theme-rgb-primary), var(--alpha-20));

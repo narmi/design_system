@@ -21,6 +21,10 @@
   @extend %_btn-state-disabled-base;
 }
 
+%btn-state-disabled-tertiary {
+  @extend %_btn-state-disabled-base;
+}
+
 %btn-state-disabled-tonal {
   @extend %_btn-state-disabled-base;
   background-color: rgba(var(--rgb-lightGrey), var(--alpha-20));

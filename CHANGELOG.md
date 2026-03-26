@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.0](https://github.com/narmi/design_system/compare/v6.3.0...v6.4.0) (2026-03-26)
+
+### feat
+
+* **Button,SplitButton:** add tertiary variant ([](https://github.com/narmi/design_system/commit/9af48418bd5009e58ca48905f32d33583b8887f1))
+* **Button:** adjust spacing, weight, radius to match v2 lib ([](https://github.com/narmi/design_system/commit/38754f6569315b9f231c7fde49b781f791d714b4))
+* **Button:** update disabled states to match v2 lib ([](https://github.com/narmi/design_system/commit/8c129be8df242712995acf128c3dec4456e57076))
+
 ## [6.3.0](https://github.com/narmi/design_system/compare/v6.2.10...v6.3.0) (2026-03-26)
 
 ### chore

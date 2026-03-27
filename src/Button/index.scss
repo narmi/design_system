@@ -1,3 +1,4 @@
+@import "../base-styles/scss-utils.scss";
 @import "../Spinner/index.scss";
 @import "./variants.scss";
 @import "./sizes.scss";
@@ -90,4 +91,9 @@
 
 .nds-button--plain {
   @extend %btn-kind-plain;
+}
+
+.nds-button--ai,
+.nds-button--ai.resetButton {
+  @extend %btn-kind-ai;
 }

@@ -11,7 +11,8 @@ export type ButtonKind =
   | "tertiary"
   | "tonal"
   | "negative"
-  | "plain";
+  | "plain"
+  | "ai";
 
 export interface ButtonProps {
   /** Renders the button label */

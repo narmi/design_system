@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.5.1](https://github.com/narmi/design_system/compare/v6.5.0...v6.5.1) (2026-03-31)
+
+### build
+
+* **deps-dev:** bump flatted from 3.2.5 to 3.4.2 ([](https://github.com/narmi/design_system/commit/ed9057524e1776d4778bda4824a816eb088b727b))
+* **deps-dev:** bump node-forge from 1.3.3 to 1.4.0 ([](https://github.com/narmi/design_system/commit/5896786e6067d5e0cff8b2a087c88197a032beb9))
+* **deps-dev:** bump picomatch from 2.3.1 to 2.3.2 ([](https://github.com/narmi/design_system/commit/efcbf0e2f64efbf6ade3fb912023606609bdb28d))
+* **deps:** bump serialize-javascript, terser-webpack-plugin and copy-webpack-plugin ([](https://github.com/narmi/design_system/commit/23256d3344819df23d15815f5f9a577bee3c5f86))
+
+### chore
+
+* cleanup ([](https://github.com/narmi/design_system/commit/7eef6e99df7e395524e760dc604a58c948df8c85))
+* **security:** regen lockfile; bump handlebars ([](https://github.com/narmi/design_system/commit/ebdb732fab6d4517dd2566f331049d7c44942cca))
+
+### fix
+
+* **useAnchorPolyfill:** fix safari iOS > 26 fallback positioning ([](https://github.com/narmi/design_system/commit/c31a8a90584baa6daa71c9bc55646e3c77972826))
+
 ## [6.5.0](https://github.com/narmi/design_system/compare/v6.4.0...v6.5.0) (2026-03-27)
 
 ### feat

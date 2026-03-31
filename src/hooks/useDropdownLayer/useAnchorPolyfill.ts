@@ -51,13 +51,6 @@ const useAnchorPolyfill = ({
 
       const vv = window.visualViewport;
       const viewportHeight = vv?.height ?? window.innerHeight;
-      // On iOS Safari with the virtual keyboard open, visualViewport.offsetTop/Left
-      // is the distance between the layout viewport and the visual viewport.
-      // getBoundingClientRect() returns layout viewport coords, but position:fixed
-      // is relative to the visual viewport — subtract offsets to convert.
-      // For position:absolute (non-portalled), offsetParent subtraction below
-      // uses two getBoundingClientRect() calls that are both layout-viewport-relative,
-      // so the offsets cancel out and are not applied there.
       const offsetTop = vv?.offsetTop ?? 0;
       const offsetLeft = vv?.offsetLeft ?? 0;
 
@@ -77,8 +70,7 @@ const useAnchorPolyfill = ({
 
       if (shouldFlip) {
         // Flip: pin the dropdown's bottom edge to the anchor's top edge.
-        // Use `bottom` instead of `top` so the dropdown grows upward from the
-        // anchor regardless of content height, without measuring layerRect.
+        // Use `bottom` instead of `top` so the dropdown grows upward
         const bottom = viewportHeight - (anchorRect.top - offsetTop);
         layerEl.style.setProperty("--js-dropdown-bottom", `${bottom}px`);
         layerEl.style.removeProperty("--js-dropdown-top");
@@ -110,8 +102,6 @@ const useAnchorPolyfill = ({
     // to one recalculation per animation frame so we don't thrash layout.
     const handleScroll = rafSchd(calculate);
     window.addEventListener("scroll", handleScroll, true);
-
-    // Recalculate when the keyboard fully opens or closes (safe area height changes).
     window.visualViewport?.addEventListener("resize", calculate);
 
     // Close on window resize only (orientation change, desktop resize).

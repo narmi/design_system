@@ -9,3 +9,5 @@ build-storybook.log
 # IntelliJ IDEA
 .idea
 .env
+
+*.swp

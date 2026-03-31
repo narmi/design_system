@@ -62,7 +62,6 @@ const useDropdownLayer = ({
     matchWidth,
     isOpen,
     setIsOpen,
-    isPortalled,
   });
 
   // Memoized props to spread onto the anchor (positioning reference) element
@@ -91,9 +90,11 @@ const useDropdownLayer = ({
           }
         : polyFillLayerStyles),
 
-      // Always include visibility and z-index rules.
+      // Always include display and z-index.
+      // In the polyfill path the layer is always position:fixed, so always
+      // use the higher z-index regardless of isPortalled.
       display: isOpen ? "block" : "none",
-      zIndex: isPortalled ? 9 : 4,
+      zIndex: isAnchorPositionSupported && !isPortalled ? 4 : 9,
     };
 
     return {

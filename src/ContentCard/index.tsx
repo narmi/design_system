@@ -66,7 +66,7 @@ const ContentCard = ({
   isSelected = false,
   children,
   testId,
-  radiusSize = "s",
+  radiusSize = "l",
   error,
   isDisabled: isDisabledProp,
   disabled: disabledProp,

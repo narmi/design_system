@@ -21,7 +21,7 @@ const CollapsibleCard = ({
   hasError = false,
   disableHover = false,
   children,
-  radiusSize = "m",
+  radiusSize = "l",
   kind = "default",
 }) => {
   const [hover, setHover] = React.useState(false);

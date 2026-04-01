@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.5.3](https://github.com/narmi/design_system/compare/v6.5.2...v6.5.3) (2026-04-01)
+
+### fix
+
+* **style:** update heading family; set default radius on cards ([](https://github.com/narmi/design_system/commit/e2e29a2151da8b1277fad81c1f83e4bdb73a36dc))
+
 ## [6.5.2](https://github.com/narmi/design_system/compare/v6.5.1...v6.5.2) (2026-04-01)
 
 ### fix

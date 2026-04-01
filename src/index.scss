@@ -24,9 +24,6 @@
 @include meta.load-css("icons/style.css");
 @include meta.load-css("../node_modules/flatpickr/dist/themes/airbnb.css");
 
-// icons
-@import "icons/style.css";
-
 // scss helpers
 @import "base-styles/scss-utils";
 

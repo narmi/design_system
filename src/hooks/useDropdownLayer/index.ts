@@ -94,7 +94,8 @@ const useDropdownLayer = ({
             top: "anchor(bottom)",
             left: "anchor(start)",
             positionTryFallbacks: "flip-block, flip-inline",
-            width: "max-content",
+            width: matchWidth ? "anchor-size(width)" : "max-content",
+            maxWidth: matchWidth ? "anchor-size(width)" : undefined,
             minWidth: matchWidth ? "anchor-size(width)" : undefined,
           }
         : polyFillLayerStyles),

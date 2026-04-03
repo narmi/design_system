@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.5.4](https://github.com/narmi/design_system/compare/v6.5.3...v6.5.4) (2026-04-03)
+
+### fix
+
+* **useDropdownLayer:** honor matchWidth option in all constraints ([](https://github.com/narmi/design_system/commit/f1dd23e070eac9e9c1ef4eaef39b65d2bb057fbc))
+
 ## [6.5.3](https://github.com/narmi/design_system/compare/v6.5.2...v6.5.3) (2026-04-01)
 
 ### fix

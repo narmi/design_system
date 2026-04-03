@@ -1,6 +1,6 @@
 {
   "name": "@narmi/design_system",
-  "version": "5.2.0",
+  "version": "5.2.5",
   "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
   "style": "dist/style.css",

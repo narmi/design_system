@@ -565,3 +565,27 @@ export const InADrawer = (args) => {
     </>
   );
 };
+
+export const WithLongOptionLabels = Template.bind({});
+WithLongOptionLabels.args = {
+  id: "withLongOptionLabels",
+  label: "Select an Account",
+  children: [
+    <Select.Item value="checking1234" searchValue="checking1234">
+      Checking Account - 1234 - Primary account for daily transactions and bill
+      payments
+    </Select.Item>,
+    <Select.Item value="savings5678" searchValue="savings5678">
+      High-Yield Savings Account - 5678 - Earns interest on deposits with
+      competitive rates
+    </Select.Item>,
+    <Select.Item value="money_market9012" searchValue="money_market9012">
+      Money Market Account - 9012 - Flexible access with check-writing
+      privileges
+    </Select.Item>,
+    <Select.Item value="cd3456" searchValue="cd3456">
+      Certificate of Deposit - 3456 - Fixed-term investment with guaranteed
+      returns
+    </Select.Item>,
+  ],
+};

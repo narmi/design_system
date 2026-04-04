@@ -71,23 +71,21 @@ describe("Dialog", () => {
   describe("Header styles", () => {
     it("renders bordered header by default", () => {
       renderDialog();
-      expect(
-        screen.getByText("Test Dialog").closest(".nds-dialog-header"),
-      ).toHaveClass("nds-dialog-header--bordered");
+      expect(screen.getByText("Test Dialog").closest(".nds-dialog-header")).toHaveClass(
+        "nds-dialog-header--bordered"
+      );
     });
 
     it("renders plain header", () => {
       renderDialog({ headerStyle: "plain" });
-      expect(
-        screen.getByText("Test Dialog").closest(".nds-dialog-header"),
-      ).toHaveClass("nds-dialog-header--plain");
+      expect(screen.getByText("Test Dialog").closest(".nds-dialog-header")).toHaveClass(
+        "nds-dialog-header--plain"
+      );
     });
 
     it("renders banner header with centered title", () => {
       renderDialog({ headerStyle: "banner" });
-      const header = screen
-        .getByText("Test Dialog")
-        .closest(".nds-dialog-header");
+      const header = screen.getByText("Test Dialog").closest(".nds-dialog-header");
       expect(header).toHaveClass("nds-dialog-header--banner");
       expect(screen.getByText("Test Dialog")).toHaveStyle("text-align: center");
     });
@@ -102,50 +100,48 @@ describe("Dialog", () => {
     it("calls onUserDismiss when close button is clicked", async () => {
       const onUserDismiss = vi.fn();
       renderDialog({ onUserDismiss });
-
+      
       const closeButton = screen.getByRole("button", { name: "close" });
       await userEvent.click(closeButton);
-
+      
       expect(onUserDismiss).toHaveBeenCalledTimes(1);
     });
 
     it("calls onUserDismiss when Escape key is pressed", () => {
       const onUserDismiss = vi.fn();
       renderDialog({ onUserDismiss });
-
+      
       fireEvent.keyDown(window, { key: "Escape" });
-
+      
       expect(onUserDismiss).toHaveBeenCalledTimes(1);
     });
 
     it("calls onUserDismiss when clicking on backdrop", async () => {
       const onUserDismiss = vi.fn();
       renderDialog({ onUserDismiss });
-
+      
       const backdrop = document.querySelector(".nds-shim--dark");
       await userEvent.click(backdrop);
-
+      
       expect(onUserDismiss).toHaveBeenCalledTimes(1);
     });
 
     it("does not call onUserDismiss when clicking on dialog content", async () => {
       const onUserDismiss = vi.fn();
       renderDialog({ onUserDismiss });
-
+      
       const dialog = screen.getByRole("dialog");
       await userEvent.click(dialog);
-
+      
       expect(onUserDismiss).not.toHaveBeenCalled();
     });
   });
 
   describe("Content sections", () => {
     it("renders notification section when provided", () => {
-      const notification = (
-        <div data-testid="notification">Important notice</div>
-      );
+      const notification = <div data-testid="notification">Important notice</div>;
       renderDialog({ notification });
-
+      
       expect(screen.getByTestId("notification")).toBeInTheDocument();
       expect(screen.getByText("Important notice")).toBeInTheDocument();
     });
@@ -158,25 +154,23 @@ describe("Dialog", () => {
         </div>
       );
       renderDialog({ footer });
-
+      
       expect(screen.getByTestId("footer")).toBeInTheDocument();
-      expect(
-        screen.getByRole("button", { name: "Cancel" }),
-      ).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "Cancel" })).toBeInTheDocument();
       expect(screen.getByRole("button", { name: "Save" })).toBeInTheDocument();
     });
 
     it("applies correct content padding when footer is present", () => {
       const footer = <div>Footer content</div>;
       renderDialog({ footer });
-
+      
       const content = document.querySelector(".nds-dialog-content");
       expect(content).not.toHaveClass("padding--bottom--xl");
     });
 
     it("applies correct content padding when no footer", () => {
       renderDialog();
-
+      
       const content = document.querySelector(".nds-dialog-content");
       expect(content).toHaveClass("padding--bottom--xl");
     });
@@ -186,7 +180,7 @@ describe("Dialog", () => {
     it("has correct ARIA attributes", () => {
       renderDialog();
       const dialog = screen.getByRole("dialog");
-
+      
       expect(dialog).toHaveAttribute("aria-labelledby", "aria-dialog-label");
       expect(dialog).toHaveAttribute("aria-modal", "true");
     });
@@ -194,18 +188,16 @@ describe("Dialog", () => {
     it("has title linked to dialog via aria-labelledby", () => {
       renderDialog();
       const titleElement = document.getElementById("aria-dialog-label");
-
+      
       expect(titleElement).toBeInTheDocument();
       expect(titleElement).toHaveTextContent("Test Dialog");
     });
 
     it("focuses the dialog when opened", async () => {
       renderDialog();
-
+      
       await waitFor(() => {
-        expect(
-          document.querySelector(".nds-dialog-focuslock"),
-        ).toBeInTheDocument();
+        expect(document.querySelector(".nds-dialog-focuslock")).toBeInTheDocument();
       });
     });
   });
@@ -213,17 +205,17 @@ describe("Dialog", () => {
   describe("Overflow detection", () => {
     it("applies correct classes when content is not overflowing", async () => {
       const footer = <div data-testid="footer">Footer content</div>;
-
+      
       // Mock scrollHeight and clientHeight to simulate no overflow
-      Object.defineProperty(HTMLElement.prototype, "scrollHeight", {
+      Object.defineProperty(HTMLElement.prototype, 'scrollHeight', {
         configurable: true,
         value: 300,
       });
-      Object.defineProperty(HTMLElement.prototype, "clientHeight", {
+      Object.defineProperty(HTMLElement.prototype, 'clientHeight', {
         configurable: true,
         value: 400,
       });
-
+      
       renderDialog({ footer });
 
       await waitFor(() => {
@@ -241,11 +233,11 @@ describe("Dialog", () => {
       const footer = <div data-testid="footer">Footer content</div>;
 
       // Mock scrollHeight and clientHeight to simulate overflow
-      Object.defineProperty(HTMLElement.prototype, "scrollHeight", {
+      Object.defineProperty(HTMLElement.prototype, 'scrollHeight', {
         configurable: true,
         value: 600,
       });
-      Object.defineProperty(HTMLElement.prototype, "clientHeight", {
+      Object.defineProperty(HTMLElement.prototype, 'clientHeight', {
         configurable: true,
         value: 400,
       });
@@ -265,15 +257,15 @@ describe("Dialog", () => {
 
     it("applies bottom padding when no footer is present", () => {
       // Mock no overflow scenario
-      Object.defineProperty(HTMLElement.prototype, "scrollHeight", {
+      Object.defineProperty(HTMLElement.prototype, 'scrollHeight', {
         configurable: true,
         value: 300,
       });
-      Object.defineProperty(HTMLElement.prototype, "clientHeight", {
+      Object.defineProperty(HTMLElement.prototype, 'clientHeight', {
         configurable: true,
         value: 400,
       });
-
+      
       renderDialog(); // No footer
 
       const content = document.querySelector(".nds-dialog-content");
@@ -286,18 +278,12 @@ describe("Dialog", () => {
     it("removes event listeners when unmounted", () => {
       const removeEventListenerSpy = vi.spyOn(window, "removeEventListener");
       const { unmount } = renderDialog();
-
+      
       unmount();
-
-      expect(removeEventListenerSpy).toHaveBeenCalledWith(
-        "keydown",
-        expect.any(Function),
-      );
-      expect(removeEventListenerSpy).toHaveBeenCalledWith(
-        "resize",
-        expect.any(Function),
-      );
-
+      
+      expect(removeEventListenerSpy).toHaveBeenCalledWith("keydown", expect.any(Function));
+      expect(removeEventListenerSpy).toHaveBeenCalledWith("resize", expect.any(Function));
+      
       removeEventListenerSpy.mockRestore();
     });
   });
@@ -305,7 +291,7 @@ describe("Dialog", () => {
   describe("Edge cases", () => {
     it("handles missing onUserDismiss gracefully", () => {
       renderDialog({ onUserDismiss: undefined });
-
+      
       const closeButton = screen.getByRole("button", { name: "close" });
       expect(() => fireEvent.click(closeButton)).not.toThrow();
     });
@@ -329,14 +315,12 @@ describe("Dialog", () => {
           </ul>
         </div>
       );
-
+      
       renderDialog({ children: complexChildren });
 
       expect(screen.getByText("Complex Content")).toBeInTheDocument();
       expect(screen.getByText("Paragraph content")).toBeInTheDocument();
-      expect(
-        screen.getByRole("button", { name: "Action Button" }),
-      ).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "Action Button" })).toBeInTheDocument();
       expect(screen.getByText("List item 1")).toBeInTheDocument();
     });
   });

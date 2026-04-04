@@ -1,19 +1,14 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-
 import ContextMenu, { ContextMenuProps } from "./";
 
 // Mock react-aria-components
 vi.mock("react-aria-components", () => {
   let mockMenuOnAction: ((value: string) => void) | undefined;
-
+  
   return {
-    MenuTrigger: ({
-      children,
-      "data-testid": testId,
-      ...props
-    }: {
+    MenuTrigger: ({ children, "data-testid": testId, ...props }: {
       children: React.ReactNode;
       "data-testid"?: string;
       [key: string]: unknown;
@@ -21,49 +16,32 @@ vi.mock("react-aria-components", () => {
       // Filter out React-specific props that shouldn't be passed to DOM
       const { ...domProps } = props;
       return (
-        <div data-testid={testId || "menu-trigger"} {...domProps}>
-          {children}
-        </div>
+        <div data-testid={testId || "menu-trigger"} {...domProps}>{children}</div>
       );
     },
-    Menu: ({
-      children,
-      onAction,
-    }: {
+    Menu: ({ children, onAction }: {
       children: React.ReactNode;
       onAction?: (value: string) => void;
     }) => {
       // Store the onAction so MenuItems can access it
       mockMenuOnAction = onAction;
-      return <div data-testid="menu">{children}</div>;
+      return (
+        <div data-testid="menu">
+          {children}
+        </div>
+      );
     },
-    MenuItem: ({
-      children,
-      id,
-      value,
-      className,
-    }: {
+    MenuItem: ({ children, id, value, className }: {
       children: React.ReactNode;
       id?: string;
       value?: string;
-      className?:
-        | string
-        | ((state: {
-            isSelected: boolean;
-            isFocused: boolean;
-            isDisabled: boolean;
-          }) => string);
+      className?: string | ((state: { isSelected: boolean; isFocused: boolean; isDisabled: boolean }) => string);
     }) => {
       // Handle className function for react-aria-components
-      const classNameString =
-        typeof className === "function"
-          ? className({
-              isSelected: false,
-              isFocused: false,
-              isDisabled: false,
-            })
-          : className;
-
+      const classNameString = typeof className === 'function' 
+        ? className({ isSelected: false, isFocused: false, isDisabled: false })
+        : className;
+      
       return (
         <div
           data-testid={`menu-item-${id || value}`}
@@ -71,7 +49,7 @@ vi.mock("react-aria-components", () => {
           className={classNameString}
           onClick={() => mockMenuOnAction && value && mockMenuOnAction(value)}
           onKeyDown={(e) => {
-            if ((e.key === "Enter" || e.key === " ") && value) {
+            if ((e.key === 'Enter' || e.key === ' ') && value) {
               mockMenuOnAction && mockMenuOnAction(value);
             }
           }}
@@ -166,10 +144,10 @@ describe("ContextMenu", () => {
     it("opens menu on right-click", async () => {
       const user = userEvent.setup();
       renderContextMenu();
-
+      
       const triggerElement = screen.getByText("Right-click me");
       await user.pointer({ keys: "[MouseRight]", target: triggerElement });
-
+      
       await waitFor(() => {
         expect(screen.getByTestId("menu")).toBeInTheDocument();
       });
@@ -177,51 +155,51 @@ describe("ContextMenu", () => {
 
     it("opens menu with Control + F12", () => {
       renderContextMenu();
-
+      
       const triggerElement = screen.getByText("Right-click me");
-      fireEvent.keyDown(triggerElement, {
-        key: "F12",
+      fireEvent.keyDown(triggerElement, { 
+        key: "F12", 
         ctrlKey: true,
-        code: "F12",
+        code: "F12" 
       });
-
+      
       expect(screen.getByTestId("menu")).toBeInTheDocument();
     });
 
     it("prevents default context menu on right-click", async () => {
       renderContextMenu();
-
+      
       const triggerElement = screen.getByText("Right-click me");
       const rightClickEvent = new MouseEvent("contextmenu", {
         bubbles: true,
         cancelable: true,
         button: 2,
       });
-
+      
       const preventDefaultSpy = vi.spyOn(rightClickEvent, "preventDefault");
       fireEvent(triggerElement, rightClickEvent);
-
+      
       expect(preventDefaultSpy).toHaveBeenCalled();
     });
 
     it("does not open menu on regular left-click", async () => {
       const user = userEvent.setup();
       renderContextMenu();
-
+      
       const triggerElement = screen.getByText("Right-click me");
       await user.click(triggerElement);
-
+      
       expect(screen.queryByTestId("menu")).not.toBeInTheDocument();
     });
 
     it("does not open menu on other keyboard keys", () => {
       renderContextMenu();
-
+      
       const triggerElement = screen.getByText("Right-click me");
       fireEvent.keyDown(triggerElement, { key: "Enter" });
       fireEvent.keyDown(triggerElement, { key: "Space" });
       fireEvent.keyDown(triggerElement, { key: "Escape" });
-
+      
       expect(screen.queryByTestId("menu")).not.toBeInTheDocument();
     });
   });
@@ -230,10 +208,10 @@ describe("ContextMenu", () => {
     beforeEach(async () => {
       const user = userEvent.setup();
       renderContextMenu();
-
+      
       const triggerElement = screen.getByText("Right-click me");
       await user.pointer({ keys: "[MouseRight]", target: triggerElement });
-
+      
       await waitFor(() => {
         expect(screen.getByTestId("menu")).toBeInTheDocument();
       });
@@ -267,7 +245,7 @@ describe("ContextMenu", () => {
     it("applies rounded corners to first and last items", () => {
       const editItem = screen.getByTestId("menu-item-edit");
       const copyItem = screen.getByTestId("menu-item-copy");
-
+      
       expect(editItem).toHaveClass("rounded--top");
       expect(copyItem).toHaveClass("rounded--bottom");
     });
@@ -278,7 +256,7 @@ describe("ContextMenu", () => {
       const onSelectEdit = vi.fn();
       const onSelectDelete = vi.fn();
       const user = userEvent.setup();
-
+      
       const customMenuItems = [
         <ContextMenu.Item
           key="edit"
@@ -293,28 +271,28 @@ describe("ContextMenu", () => {
           onSelect={onSelectDelete}
         />,
       ];
-
+      
       renderContextMenu({ menuItems: customMenuItems });
-
+      
       // Open menu
       const triggerElement = screen.getByText("Right-click me");
       await user.pointer({ keys: "[MouseRight]", target: triggerElement });
-
+      
       await waitFor(() => {
         expect(screen.getByTestId("menu")).toBeInTheDocument();
       });
-
+      
       // Click edit item
       const editItem = screen.getByTestId("menu-item-edit");
       await user.click(editItem);
-
+      
       expect(onSelectEdit).toHaveBeenCalledWith("Edit", "edit");
     });
 
     it("passes correct parameters to onSelect", async () => {
       const onSelect = vi.fn();
       const user = userEvent.setup();
-
+      
       const customMenuItems = [
         <ContextMenu.Item
           key="custom"
@@ -323,26 +301,26 @@ describe("ContextMenu", () => {
           onSelect={onSelect}
         />,
       ];
-
+      
       renderContextMenu({ menuItems: customMenuItems });
-
+      
       // Open menu and click item
       const triggerElement = screen.getByText("Right-click me");
       await user.pointer({ keys: "[MouseRight]", target: triggerElement });
-
+      
       await waitFor(() => {
         expect(screen.getByTestId("menu")).toBeInTheDocument();
       });
-
+      
       const customItem = screen.getByTestId("menu-item-custom-id");
       await user.click(customItem);
-
+      
       expect(onSelect).toHaveBeenCalledWith("Custom Action", "custom-id");
     });
 
     it("handles menu items without onSelect gracefully", async () => {
       const user = userEvent.setup();
-
+      
       const customMenuItems = [
         <ContextMenu.Item
           key="no-handler"
@@ -350,16 +328,16 @@ describe("ContextMenu", () => {
           label="No Handler"
         />,
       ];
-
+      
       renderContextMenu({ menuItems: customMenuItems });
-
+      
       const triggerElement = screen.getByText("Right-click me");
       await user.pointer({ keys: "[MouseRight]", target: triggerElement });
-
+      
       await waitFor(() => {
         expect(screen.getByTestId("menu")).toBeInTheDocument();
       });
-
+      
       const item = screen.getByTestId("menu-item-no-handler");
       expect(() => user.click(item)).not.toThrow();
     });
@@ -369,18 +347,18 @@ describe("ContextMenu", () => {
     it("closes menu when pressing Escape", async () => {
       const user = userEvent.setup();
       renderContextMenu();
-
+      
       // Open menu
       const triggerElement = screen.getByText("Right-click me");
       await user.pointer({ keys: "[MouseRight]", target: triggerElement });
-
+      
       await waitFor(() => {
         expect(screen.getByTestId("menu")).toBeInTheDocument();
       });
-
+      
       // Press Escape
       fireEvent.keyUp(window, { key: "Escape" });
-
+      
       await waitFor(() => {
         expect(screen.queryByTestId("menu")).not.toBeInTheDocument();
       });
@@ -388,9 +366,9 @@ describe("ContextMenu", () => {
 
     it("handles mouse events correctly", () => {
       renderContextMenu();
-
+      
       const triggerElement = screen.getByText("Right-click me");
-
+      
       // Mouse move should not cause issues
       fireEvent.mouseMove(triggerElement);
       expect(screen.queryByTestId("menu")).not.toBeInTheDocument();
@@ -399,16 +377,16 @@ describe("ContextMenu", () => {
     it("enables and disables mouse position tracking", async () => {
       const user = userEvent.setup();
       renderContextMenu();
-
+      
       const triggerElement = screen.getByText("Right-click me");
-
+      
       // Open menu
       await user.pointer({ keys: "[MouseRight]", target: triggerElement });
-
+      
       await waitFor(() => {
         expect(screen.getByTestId("menu")).toBeInTheDocument();
       });
-
+      
       // Mouse position tracking should be disabled when menu is open
       // (This is mostly testing the internal state management)
       expect(screen.getByTestId("menu")).toBeInTheDocument();
@@ -418,17 +396,14 @@ describe("ContextMenu", () => {
   describe("Accessibility", () => {
     it("provides keyboard support for menu activation", () => {
       renderContextMenu();
-
+      
       const triggerElement = screen.getByRole("button");
-      expect(triggerElement).toHaveAttribute(
-        "aria-label",
-        "Press Control + F12 to open the context menu",
-      );
+      expect(triggerElement).toHaveAttribute("aria-label", "Press Control + F12 to open the context menu");
     });
 
     it("handles focus correctly", () => {
       renderContextMenu();
-
+      
       const triggerElement = screen.getByRole("button");
       expect(triggerElement).toHaveAttribute("tabIndex", "0");
     });
@@ -436,10 +411,10 @@ describe("ContextMenu", () => {
     it("maintains proper ARIA structure when menu is open", async () => {
       const user = userEvent.setup();
       renderContextMenu();
-
+      
       const triggerElement = screen.getByText("Right-click me");
       await user.pointer({ keys: "[MouseRight]", target: triggerElement });
-
+      
       await waitFor(() => {
         const menu = screen.getByTestId("menu");
         expect(menu).toBeInTheDocument();
@@ -451,7 +426,7 @@ describe("ContextMenu", () => {
     it("handles menu items with various props", async () => {
       const user = userEvent.setup();
       const onSelect = vi.fn();
-
+      
       const complexMenuItems = [
         <ContextMenu.Item
           key="1"
@@ -474,18 +449,18 @@ describe("ContextMenu", () => {
           onSelect={onSelect}
         />,
       ];
-
+      
       renderContextMenu({ menuItems: complexMenuItems });
-
+      
       const triggerElement = screen.getByText("Right-click me");
       await user.pointer({ keys: "[MouseRight]", target: triggerElement });
-
+      
       await waitFor(() => {
         expect(screen.getByText("Action with Icon")).toBeInTheDocument();
         expect(screen.getByText("Another Action")).toBeInTheDocument();
         expect(screen.getByText("Third Action")).toBeInTheDocument();
       });
-
+      
       // Icons should be rendered
       expect(document.querySelector(".narmi-icon-star")).toBeInTheDocument();
       expect(document.querySelector(".narmi-icon-heart")).toBeInTheDocument();
@@ -494,14 +469,14 @@ describe("ContextMenu", () => {
     it("handles empty menu items array", async () => {
       const user = userEvent.setup();
       renderContextMenu({ menuItems: [] });
-
+      
       const triggerElement = screen.getByText("Right-click me");
       await user.pointer({ keys: "[MouseRight]", target: triggerElement });
-
+      
       await waitFor(() => {
         expect(screen.getByTestId("menu")).toBeInTheDocument();
       });
-
+      
       // Menu should be empty but not crash
       expect(screen.queryByText("Edit")).not.toBeInTheDocument();
     });
@@ -516,16 +491,16 @@ describe("ContextMenu", () => {
           onSelect={vi.fn()}
         />,
       ];
-
+      
       renderContextMenu({ menuItems: singleItem });
-
+      
       const triggerElement = screen.getByText("Right-click me");
       await user.pointer({ keys: "[MouseRight]", target: triggerElement });
-
+      
       await waitFor(() => {
         expect(screen.getByText("Only Action")).toBeInTheDocument();
       });
-
+      
       // Single item should have both rounded top and bottom
       const item = screen.getByTestId("menu-item-single");
       expect(item).toHaveClass("rounded--top");
@@ -537,15 +512,15 @@ describe("ContextMenu", () => {
     it("handles rapid context menu open/close", async () => {
       const user = userEvent.setup();
       renderContextMenu();
-
+      
       const triggerElement = screen.getByText("Right-click me");
-
+      
       // Rapidly trigger context menu multiple times
       for (let i = 0; i < 5; i++) {
         await user.pointer({ keys: "[MouseRight]", target: triggerElement });
         await user.click(document.body);
       }
-
+      
       // Should not crash
       expect(screen.getByText("Right-click me")).toBeInTheDocument();
     });
@@ -558,14 +533,12 @@ describe("ContextMenu", () => {
           <button>And interactive elements</button>
         </div>
       );
-
+      
       renderContextMenu({ children: complexChildren });
-
+      
       expect(screen.getByText("Complex Element")).toBeInTheDocument();
       expect(screen.getByText("With multiple children")).toBeInTheDocument();
-      expect(
-        screen.getByRole("button", { name: "And interactive elements" }),
-      ).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "And interactive elements" })).toBeInTheDocument();
     });
 
     it("handles menu items with long labels", async () => {
@@ -578,18 +551,14 @@ describe("ContextMenu", () => {
           onSelect={vi.fn()}
         />,
       ];
-
+      
       renderContextMenu({ menuItems: longLabelItems });
-
+      
       const triggerElement = screen.getByText("Right-click me");
       await user.pointer({ keys: "[MouseRight]", target: triggerElement });
-
+      
       await waitFor(() => {
-        expect(
-          screen.getByText(
-            "This is a very long menu item label that might cause layout issues",
-          ),
-        ).toBeInTheDocument();
+        expect(screen.getByText("This is a very long menu item label that might cause layout issues")).toBeInTheDocument();
       });
     });
 
@@ -609,12 +578,12 @@ describe("ContextMenu", () => {
           onSelect={vi.fn()}
         />,
       ];
-
+      
       renderContextMenu({ menuItems: specialCharItems });
-
+      
       const triggerElement = screen.getByText("Right-click me");
       await user.pointer({ keys: "[MouseRight]", target: triggerElement });
-
+      
       await waitFor(() => {
         expect(screen.getByText("Copy & Paste")).toBeInTheDocument();
         expect(screen.getByText("🔥 Hot Action")).toBeInTheDocument();

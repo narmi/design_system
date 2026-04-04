@@ -121,7 +121,7 @@ describe("Combobox", () => {
   });
 
   it("dropdown opens, selection works, and onChange is fired correctly", () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(
       <Combobox label={LABEL} onChange={handleChange}>
         {STATE_ITEMS}
@@ -164,7 +164,7 @@ describe("Combobox", () => {
   });
 
   it("input should auto-fill last selection on blur", async () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(
       <Combobox label={LABEL} onChange={handleChange}>
         {STATE_ITEMS}
@@ -237,7 +237,7 @@ describe("Combobox", () => {
   });
 
   it("should call onChange with empty string when input is cleared", async () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(
       <Combobox label={LABEL} onChange={handleChange}>
         {STATE_ITEMS}

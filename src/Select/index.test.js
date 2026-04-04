@@ -124,7 +124,7 @@ describe("Select", () => {
   });
 
   it("dropdown opens, selection works, and onChange is fired correctly", () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(
       <Select label="Account Type" onChange={handleChange}>
         <Select.Item value="checking" searchValue="checking">
@@ -179,8 +179,8 @@ describe("Select", () => {
   });
 
   it("does not treat action items as selected; fires side effect for action", () => {
-    const handleChange = jest.fn();
-    const sideEffect = jest.fn();
+    const handleChange = vi.fn();
+    const sideEffect = vi.fn();
     render(
       <Select id="accountField" label="Account Type" onChange={handleChange}>
         <Select.Item value="checking" searchValue="checking">

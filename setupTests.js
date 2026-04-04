@@ -1,5 +1,5 @@
-// extend jest's `expect` matchers
-import "@testing-library/jest-dom";
+// extend vitest's `expect` matchers
+import "@testing-library/jest-dom/vitest";
 
 class MockResizeObserver {
   observe() {}

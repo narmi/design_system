@@ -10,7 +10,7 @@ describe.skip("useDropdownLayer", () => {
   });
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   afterAll(() => {
@@ -19,7 +19,7 @@ describe.skip("useDropdownLayer", () => {
 
   describe("when anchor positioning is SUPPORTED", () => {
     beforeEach(() => {
-      CSS.supports = jest.fn().mockReturnValue(true);
+      CSS.supports = vi.fn().mockReturnValue(true);
     });
 
     it("should use CSS anchor positioning properties on layer element when open", () => {
@@ -47,7 +47,7 @@ describe.skip("useDropdownLayer", () => {
 
   describe("when anchor positioning is NOT SUPPORTED", () => {
     beforeEach(() => {
-      CSS.supports = jest.fn().mockReturnValue(false);
+      CSS.supports = vi.fn().mockReturnValue(false);
     });
 
     it("should use polyfill styles on layer element when open", () => {

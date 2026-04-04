@@ -24,5 +24,19 @@ module.exports = {
       plugins: ["@typescript-eslint"],
       extends: ["plugin:@typescript-eslint/recommended"],
     },
+    {
+      files: ["*.test.*", "*.spec.*"],
+      globals: {
+        describe: "readonly",
+        it: "readonly",
+        expect: "readonly",
+        test: "readonly",
+        vi: "readonly",
+        beforeEach: "readonly",
+        afterEach: "readonly",
+        beforeAll: "readonly",
+        afterAll: "readonly",
+      },
+    },
   ],
 };

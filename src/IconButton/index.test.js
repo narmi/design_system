@@ -15,7 +15,7 @@ describe("IconButton", () => {
   });
 
   it("fires click callback", () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     render(<IconButton label={LABEL} name="info" onClick={handleClick} />);
     const iconButton = getIconButton();
     expect(handleClick).not.toHaveBeenCalled();
@@ -35,7 +35,7 @@ describe("IconButton", () => {
       render(<IconButton label={LABEL} name="info" textSize={textSize} />);
       const iconButton = getIconButton();
       expect(iconButton).toHaveClass(`fontSize--${textSize}`);
-    }
+    },
   );
 
   it.each(["plain", "action"])("has expected classes for %s button", (kind) => {

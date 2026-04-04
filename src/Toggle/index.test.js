@@ -14,7 +14,7 @@ describe("Toggle", () => {
   });
 
   it("fires change callback with expected state", () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<Toggle onChange={handleChange} />);
     fireEvent.click(screen.getByRole("switch"));
     expect(handleChange).toHaveBeenLastCalledWith(true);

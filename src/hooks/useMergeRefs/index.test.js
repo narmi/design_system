@@ -8,8 +8,8 @@ describe("useMergeRefs", () => {
   });
 
   it("should call function refs with the provided value", () => {
-    const ref1 = jest.fn();
-    const ref2 = jest.fn();
+    const ref1 = vi.fn();
+    const ref2 = vi.fn();
     const testValue = "test";
 
     const { result } = renderHook(() => useMergeRefs(ref1, ref2));
@@ -38,7 +38,7 @@ describe("useMergeRefs", () => {
   });
 
   it("should handle mixed function and object refs", () => {
-    const funcRef = jest.fn();
+    const funcRef = vi.fn();
     const objRef = { current: null };
     const testValue = "test";
 
@@ -53,8 +53,8 @@ describe("useMergeRefs", () => {
   });
 
   it("should skip null/undefined refs in the middle", () => {
-    const ref1 = jest.fn();
-    const ref2 = jest.fn();
+    const ref1 = vi.fn();
+    const ref2 = vi.fn();
     const testValue = "test";
 
     const { result } = renderHook(() =>

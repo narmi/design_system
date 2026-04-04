@@ -35,7 +35,7 @@ describe("ContentCard", () => {
   });
 
   it("fires onClick handler for `button` kind", () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     render(
       <ContentCard kind="button" onClick={handleClick}>
         lol
@@ -47,7 +47,7 @@ describe("ContentCard", () => {
   });
 
   it("does NOT fire onClick handler for non-interactive kind", () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     render(<ContentCard onClick={handleClick}>lol</ContentCard>);
     expect(handleClick).not.toHaveBeenCalled();
     fireEvent.click(screen.getByTestId(testId));

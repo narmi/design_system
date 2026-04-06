@@ -1,6 +1,6 @@
 module.exports = {
   parser: "@babel/eslint-parser",
-  plugins: ["jest", "jsx-a11y"],
+  plugins: ["jsx-a11y"],
   settings: {
     react: { version: "detect" },
   },
@@ -16,7 +16,6 @@ module.exports = {
     node: true,
     es6: true,
     browser: true,
-    "jest/globals": true,
   },
   overrides: [
     {
@@ -24,6 +23,20 @@ module.exports = {
       parser: "@typescript-eslint/parser",
       plugins: ["@typescript-eslint"],
       extends: ["plugin:@typescript-eslint/recommended"],
+    },
+    {
+      files: ["*.test.*", "*.spec.*"],
+      globals: {
+        describe: "readonly",
+        it: "readonly",
+        expect: "readonly",
+        test: "readonly",
+        vi: "readonly",
+        beforeEach: "readonly",
+        afterEach: "readonly",
+        beforeAll: "readonly",
+        afterAll: "readonly",
+      },
     },
   ],
 };

@@ -12,7 +12,7 @@ describe("Pagination", () => {
     });
 
     it("Clicking on page 3 changes selected page", () => {
-      const handlePageChange = jest.fn();
+      const handlePageChange = vi.fn();
       render(<Pagination totalPages={20} onPageChange={handlePageChange} />);
       const page3 = screen.getByLabelText("Page 3");
 
@@ -26,7 +26,7 @@ describe("Pagination", () => {
     });
 
     it("Clicking on next arrow changes selected page", () => {
-      const handlePageChange = jest.fn();
+      const handlePageChange = vi.fn();
       render(<Pagination totalPages={20} onPageChange={handlePageChange} />);
       const next = screen.getByLabelText("Next page");
       const page2 = screen.getByLabelText("Page 2");
@@ -41,7 +41,7 @@ describe("Pagination", () => {
     });
 
     it("Clicking on previous arrow changes selected page", () => {
-      const handlePageChange = jest.fn();
+      const handlePageChange = vi.fn();
       render(
         <Pagination
           totalPages={20}
@@ -62,7 +62,7 @@ describe("Pagination", () => {
     });
 
     it("Clicking on first page changes selected page", () => {
-      const handlePageChange = jest.fn();
+      const handlePageChange = vi.fn();
       render(
         <Pagination
           totalPages={20}
@@ -84,7 +84,7 @@ describe("Pagination", () => {
     });
 
     it("Clicking on last page changes selected page", () => {
-      const handlePageChange = jest.fn();
+      const handlePageChange = vi.fn();
       const total = 20;
       render(
         <Pagination

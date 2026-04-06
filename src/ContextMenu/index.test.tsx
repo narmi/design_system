@@ -1,11 +1,10 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import "@testing-library/jest-dom";
 import ContextMenu, { ContextMenuProps } from "./";
 
 // Mock react-aria-components
-jest.mock("react-aria-components", () => {
+vi.mock("react-aria-components", () => {
   let mockMenuOnAction: ((value: string) => void) | undefined;
   
   return {
@@ -65,22 +64,22 @@ jest.mock("react-aria-components", () => {
 });
 
 // Mock react-laag
-jest.mock("react-laag", () => ({
-  useLayer: jest.fn(() => ({
+vi.mock("react-laag", () => ({
+  useLayer: vi.fn(() => ({
     renderLayer: (content) => content,
     triggerProps: {},
     layerProps: {},
   })),
   useMousePositionAsTrigger: () => ({
-    handleMouseEvent: jest.fn(),
+    handleMouseEvent: vi.fn(),
     trigger: { current: null },
     parentRef: { current: null },
   }),
 }));
 
 // Mock DOM utility
-jest.mock("../util/dom", () => ({
-  createUseLayerContainer: jest.fn(),
+vi.mock("../util/dom", () => ({
+  createUseLayerContainer: vi.fn(),
 }));
 
 const defaultProps: ContextMenuProps = {
@@ -91,21 +90,21 @@ const defaultProps: ContextMenuProps = {
       id="edit"
       label="Edit"
       startIcon="edit-2"
-      onSelect={jest.fn()}
+      onSelect={vi.fn()}
     />,
     <ContextMenu.Item
       key="delete"
       id="delete"
       label="Delete"
       startIcon="trash"
-      onSelect={jest.fn()}
+      onSelect={vi.fn()}
     />,
     <ContextMenu.Item
       key="copy"
       id="copy"
       label="Copy"
       startIcon="copy"
-      onSelect={jest.fn()}
+      onSelect={vi.fn()}
     />,
   ],
 };
@@ -116,7 +115,7 @@ const renderContextMenu = (props: Partial<ContextMenuProps> = {}) => {
 
 describe("ContextMenu", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe("Basic rendering", () => {
@@ -177,7 +176,7 @@ describe("ContextMenu", () => {
         button: 2,
       });
       
-      const preventDefaultSpy = jest.spyOn(rightClickEvent, "preventDefault");
+      const preventDefaultSpy = vi.spyOn(rightClickEvent, "preventDefault");
       fireEvent(triggerElement, rightClickEvent);
       
       expect(preventDefaultSpy).toHaveBeenCalled();
@@ -254,8 +253,8 @@ describe("ContextMenu", () => {
 
   describe("Menu item interactions", () => {
     it("calls onSelect when menu item is clicked", async () => {
-      const onSelectEdit = jest.fn();
-      const onSelectDelete = jest.fn();
+      const onSelectEdit = vi.fn();
+      const onSelectDelete = vi.fn();
       const user = userEvent.setup();
       
       const customMenuItems = [
@@ -291,7 +290,7 @@ describe("ContextMenu", () => {
     });
 
     it("passes correct parameters to onSelect", async () => {
-      const onSelect = jest.fn();
+      const onSelect = vi.fn();
       const user = userEvent.setup();
       
       const customMenuItems = [
@@ -426,7 +425,7 @@ describe("ContextMenu", () => {
   describe("Complex menu items", () => {
     it("handles menu items with various props", async () => {
       const user = userEvent.setup();
-      const onSelect = jest.fn();
+      const onSelect = vi.fn();
       
       const complexMenuItems = [
         <ContextMenu.Item
@@ -489,7 +488,7 @@ describe("ContextMenu", () => {
           key="single"
           id="single"
           label="Only Action"
-          onSelect={jest.fn()}
+          onSelect={vi.fn()}
         />,
       ];
       
@@ -549,7 +548,7 @@ describe("ContextMenu", () => {
           key="long"
           id="long"
           label="This is a very long menu item label that might cause layout issues"
-          onSelect={jest.fn()}
+          onSelect={vi.fn()}
         />,
       ];
       
@@ -570,13 +569,13 @@ describe("ContextMenu", () => {
           key="special"
           id="special"
           label="Copy & Paste"
-          onSelect={jest.fn()}
+          onSelect={vi.fn()}
         />,
         <ContextMenu.Item
           key="unicode"
           id="unicode"
           label="🔥 Hot Action"
-          onSelect={jest.fn()}
+          onSelect={vi.fn()}
         />,
       ];
       

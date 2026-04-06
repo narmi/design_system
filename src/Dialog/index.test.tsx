@@ -4,22 +4,22 @@ import userEvent from "@testing-library/user-event";
 import Dialog from "./";
 
 // Mock ReactDOM.createPortal since Dialog uses portals
-jest.mock("react-dom", () => ({
-  ...jest.requireActual("react-dom"),
+vi.mock("react-dom", async () => ({
+  ...(await vi.importActual("react-dom")),
   createPortal: (children) => children,
 }));
 
 // Mock useLockBodyScroll hook
-jest.mock("../hooks/useLockBodyScroll", () => jest.fn());
+vi.mock("../hooks/useLockBodyScroll", () => ({ default: vi.fn() }));
 
 // Mock rafSchd
-jest.mock("raf-schd", () => (fn) => fn);
+vi.mock("raf-schd", () => ({ default: (fn) => fn }));
 
 const defaultProps = {
   isOpen: true,
   title: "Test Dialog",
   children: <div>Dialog content</div>,
-  onUserDismiss: jest.fn(),
+  onUserDismiss: vi.fn(),
 };
 
 const renderDialog = (props = {}) => {
@@ -28,7 +28,7 @@ const renderDialog = (props = {}) => {
 
 describe("Dialog", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     // Create outlet div for portal
     const outlet = document.createElement("div");
     outlet.setAttribute("id", "outlet");
@@ -98,7 +98,7 @@ describe("Dialog", () => {
     });
 
     it("calls onUserDismiss when close button is clicked", async () => {
-      const onUserDismiss = jest.fn();
+      const onUserDismiss = vi.fn();
       renderDialog({ onUserDismiss });
       
       const closeButton = screen.getByRole("button", { name: "close" });
@@ -108,7 +108,7 @@ describe("Dialog", () => {
     });
 
     it("calls onUserDismiss when Escape key is pressed", () => {
-      const onUserDismiss = jest.fn();
+      const onUserDismiss = vi.fn();
       renderDialog({ onUserDismiss });
       
       fireEvent.keyDown(window, { key: "Escape" });
@@ -117,7 +117,7 @@ describe("Dialog", () => {
     });
 
     it("calls onUserDismiss when clicking on backdrop", async () => {
-      const onUserDismiss = jest.fn();
+      const onUserDismiss = vi.fn();
       renderDialog({ onUserDismiss });
       
       const backdrop = document.querySelector(".nds-shim--dark");
@@ -127,7 +127,7 @@ describe("Dialog", () => {
     });
 
     it("does not call onUserDismiss when clicking on dialog content", async () => {
-      const onUserDismiss = jest.fn();
+      const onUserDismiss = vi.fn();
       renderDialog({ onUserDismiss });
       
       const dialog = screen.getByRole("dialog");
@@ -276,7 +276,7 @@ describe("Dialog", () => {
 
   describe("Event cleanup", () => {
     it("removes event listeners when unmounted", () => {
-      const removeEventListenerSpy = jest.spyOn(window, "removeEventListener");
+      const removeEventListenerSpy = vi.spyOn(window, "removeEventListener");
       const { unmount } = renderDialog();
       
       unmount();

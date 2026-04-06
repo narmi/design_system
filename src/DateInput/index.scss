@@ -78,7 +78,9 @@ body {
     user-select: none;
   }
 
-  span.flatpickr-day {
+  span.flatpickr-day,
+  .flatpickr-day.prevMonthDay,
+  .flatpickr-day.nextMonthDay {
     display: flex;
     align-items: center;
     justify-content: center;

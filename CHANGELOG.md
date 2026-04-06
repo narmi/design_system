@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.5.5](https://github.com/narmi/design_system/compare/v6.5.4...v6.5.5) (2026-04-06)
+
+### build
+
+* **deps:** bump actions/stale from 10.1.1 to 10.2.0 ([](https://github.com/narmi/design_system/commit/c730de038dae55f5a6bc4cfcb4efeb48f74db0ad))
+
+### fix
+
+* **DateInput:** style prev/next month days the same as current month ([](https://github.com/narmi/design_system/commit/e3e31a961957fa2b2a0791011a23208c81c57bce))
+
+### refactor
+
+* **test:** Migrate to Vitest (#2033) ([](https://github.com/narmi/design_system/commit/6394fe07907adbe0eb520417be6417b654044b1b)), closes [#2033](https://github.com/narmi/design_system/issues/2033)
+
 ## [6.5.4](https://github.com/narmi/design_system/compare/v6.5.3...v6.5.4) (2026-04-03)
 
 ### fix

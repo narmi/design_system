@@ -7,7 +7,7 @@
 
 .nds-chip {
   @extend %chipAlignedContent;
-  border-radius: rem(24px);
+  border-radius: var(--border-radius-m);
   font-size: var(--font-size-s);
   padding: rem(2px) var(--space-s);
   width: fit-content;

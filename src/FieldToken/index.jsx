@@ -21,7 +21,7 @@ const FieldToken = React.forwardRef(function FieldToken(
         "padding--y--none",
         "padding--left--s",
         "padding--right--xs",
-        "rounded--all--l",
+        "rounded--all--m",
         "fontSize--xs",
         "fontWeight--semibold",
         {

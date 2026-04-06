@@ -6,24 +6,10 @@ import cc from "classcat";
 import useLockBodyScroll from "../hooks/useLockBodyScroll";
 import { CSSTransition } from "react-transition-group";
 import FocusLock from "react-focus-lock";
+import Row from "../Row";
+import useBreakpoints from "../hooks/useBreakpoints";
 
 const noop = () => {};
-
-/**
- * Checks if content in content area is overflowing
- * @param {Object} contentRef ref of the element to check
- * @returns {Boolean}
- */
-const getIsContentTooLong = (contentRef) => {
-  const threshold = 1; // Scrollheight in firefox is reported as 1px taller
-  let result = false;
-  if (contentRef.current) {
-    result =
-      contentRef.current.scrollHeight >
-      contentRef.current.clientHeight + threshold;
-  }
-  return result;
-};
 
 export interface DialogProps {
   /** Scrollable contents of the Dialog */
@@ -35,14 +21,14 @@ export interface DialogProps {
   /** Contents of Dialog footer, typically reserved for action buttons */
   footer?: React.ReactNode;
   /** Visual style for Dialog header */
-  headerStyle?: "bordered" | "plain" | "banner";
+  headerStyle?: "bordered" | "plain" | "banner"; // @deprecated "bordered". Maps to "plain".
   /** Controls open/close state of the modal. Use the `onUserDismiss` callback to update. */
   isOpen?: boolean;
   /**
    * Callback to handle user taking an action to dismiss the modal
    * (click outside, Escape key, click close button)
    */
-  onUserDismiss?: (event?: React.MouseEvent<HTMLButtonElement>) => void
+  onUserDismiss?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
   /**
    * Sets a custom modal width.
    * Use the full CSS value with the unit (e.g. "400px")
@@ -63,25 +49,19 @@ const Dialog = ({
   isOpen = false,
   onUserDismiss = noop,
   title = "",
-  headerStyle = "bordered",
+  headerStyle = "plain",
   children,
   notification,
   footer,
   width = "500px",
   testId,
 }: DialogProps) => {
-  const [isContentOverflowing, setIsContentOverflowing] = useState(false);
+  const { s: minScreenSize } = useBreakpoints();
   const contentRef = useRef(null);
   const shimRef = useRef(null);
   const dialogRef = useRef(null);
   const isBanner = headerStyle === "banner";
   useLockBodyScroll(isOpen);
-
-  // `rafSchd` uses `requestAnimationFrame` to schedule the state update
-  // for the next frame the browser draws - good for performance
-  const checkContentOverflow = () => {
-    rafSchd(setIsContentOverflowing(getIsContentTooLong(contentRef)));
-  };
 
   const handleKeyDown = ({ key }) => {
     if (key === "Escape") {
@@ -90,14 +70,11 @@ const Dialog = ({
   };
 
   useEffect(() => {
-    if (isOpen) checkContentOverflow(); // run when the dialog initially opens
     window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("resize", checkContentOverflow);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("resize", checkContentOverflow);
     };
-  }, [handleKeyDown, checkContentOverflow, isOpen]);
+  }, [handleKeyDown, isOpen]);
 
   const handleShimClick = ({ target }) => {
     if (shimRef.current && target === shimRef.current) {
@@ -122,7 +99,13 @@ const Dialog = ({
   // the shim has events for mouse users only; does not require a role
   /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
   const dialogJSX = (
-    <CSSTransition timeout={1} classNames="nds-dialog-transition" appear in nodeRef={dialogRef}>
+    <CSSTransition
+      timeout={1}
+      classNames="nds-dialog-transition"
+      appear
+      in
+      nodeRef={dialogRef}
+    >
       <div className="nds-dialog-root" ref={dialogRef}>
         <div className="nds-shim--dark" ref={shimRef} onClick={handleShimClick}>
           <FocusLock autoFocus={false} className="nds-dialog-focuslock">
@@ -138,23 +121,12 @@ const Dialog = ({
               <div
                 className={`nds-dialog-header nds-dialog-header--${headerStyle}`}
               >
-                {isBanner ? (
-                  <div className="margin--y--s">
-                    <div
-                      className="padding--y--xxs"
-                      id="aria-dialog-label"
-                      style={{ textAlign: "center" }}
-                    >
-                      {title}
-                    </div>
-                    {closeButtonJSX}
-                  </div>
-                ) : (
-                  <>
+                <Row alignItems={minScreenSize ? "start" : "center"}>
+                  <Row.Item>
                     <h4 id="aria-dialog-label">{title}</h4>
-                    {closeButtonJSX}
-                  </>
-                )}
+                  </Row.Item>
+                  <Row.Item shrink>{closeButtonJSX}</Row.Item>
+                </Row>
               </div>
               {notification && (
                 <div className="nds-dialog-notification padding--y padding--x--xl">
@@ -166,21 +138,12 @@ const Dialog = ({
                 ref={contentRef}
                 className={cc([
                   "nds-dialog-content nds-typography padding--top--xs",
-                  { "padding--bottom--xl": !footer || isContentOverflowing },
+                  { "padding--bottom--l": !footer },
                 ])}
               >
                 {children}
               </div>
-              {footer && (
-                <div
-                  className={cc([
-                    "nds-dialog-footer",
-                    { "nds-dialog-footer--overflowing": isContentOverflowing },
-                  ])}
-                >
-                  {footer}
-                </div>
-              )}
+              {footer && <div className="nds-dialog-footer">{footer}</div>}
             </div>
           </FocusLock>
         </div>

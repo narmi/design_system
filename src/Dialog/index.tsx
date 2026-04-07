@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
-import rafSchd from "raf-schd";
 import cc from "classcat";
 import useLockBodyScroll from "../hooks/useLockBodyScroll";
 import { CSSTransition } from "react-transition-group";

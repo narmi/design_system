@@ -4,10 +4,10 @@ import Error from "../Error";
 import Radio from "../Radio";
 import type { RadioKind } from "../Radio";
 
-type RadioButtonsLayouts = "row" | "row-start";
-type RadioButtonsKind = RadioKind | RadioButtonsLayouts;
+export type RadioButtonsLayouts = "row" | "row-start";
+export type RadioButtonsKind = RadioKind | RadioButtonsLayouts;
 
-interface RadioButtonsProps {
+export interface RadioButtonsProps {
   /** Map of label strings to input values
    *
    * TODO: restore this type when we can do it in a non-breaking way
@@ -56,6 +56,8 @@ interface RadioButtonsProps {
   alwaysShowDetails?: boolean;
   /** Optional value for `data-testid` attribute */
   testId?: string;
+  /** Supports arbitrary HTML attributes spread onto the root element */
+  [x: string]: unknown;
 }
 
 /**

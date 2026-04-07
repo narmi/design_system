@@ -1,0 +1,11 @@
+import{j as e}from"./jsx-runtime-BVOGMELX.js";import{useMDXComponents as o}from"./index-CcfWbeG3.js";import{M as r,C as s}from"./blocks-g0JWmtLw.js";import"./ClassExample-CS1aodUk.js";import{S as c,M as x,P as l}from"./spacing.stories-DpTyUJOR.js";import"./iframe-CnqQYYwo.js";import"./preload-helper-PPVm8Dsz.js";import"./index-DsFLfaN1.js";import"./index-Dte3Z0NP.js";import"./index-DJ-MzwuH.js";import"./AsElement-DyOWH7-l.js";import"./index-RvS1aOr8.js";function i(n){const d={code:"code",h1:"h1",p:"p",...o(),...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(r,{of:c}),`
+`,e.jsx(d.h1,{id:"margin",children:"Margin"}),`
+`,e.jsx(d.p,{children:"Adds standard margin amount for a given side or axis."}),`
+`,e.jsxs(d.p,{children:["Valid sides/axes are (",e.jsx(d.code,{children:"all"}),", ",e.jsx(d.code,{children:"top"}),", ",e.jsx(d.code,{children:"right"}),", ",e.jsx(d.code,{children:"bottom"}),", ",e.jsx(d.code,{children:"left"}),", ",e.jsx(d.code,{children:"x"}),", ",e.jsx(d.code,{children:"y"}),")"]}),`
+`,e.jsxs(d.p,{children:["Valid amounts are (",e.jsx(d.code,{children:"xxs"}),", ",e.jsx(d.code,{children:"xs"}),", ",e.jsx(d.code,{children:"s"}),", ",e.jsx(d.code,{children:"m"}),", ",e.jsx(d.code,{children:"l"}),", ",e.jsx(d.code,{children:"xl"}),", ",e.jsx(d.code,{children:"xxl"}),")."]}),`
+`,e.jsx(s,{of:x}),`
+`,e.jsx(d.h1,{id:"padding",children:"Padding"}),`
+`,e.jsx(d.p,{children:"Adds standard padding amount for a given side or axis."}),`
+`,e.jsxs(d.p,{children:["Valid sides/axes are (",e.jsx(d.code,{children:"all"}),", ",e.jsx(d.code,{children:"top"}),", ",e.jsx(d.code,{children:"right"}),", ",e.jsx(d.code,{children:"bottom"}),", ",e.jsx(d.code,{children:"left"}),", ",e.jsx(d.code,{children:"x"}),", ",e.jsx(d.code,{children:"y"}),")"]}),`
+`,e.jsxs(d.p,{children:["Valid amounts are (",e.jsx(d.code,{children:"xxs"}),", ",e.jsx(d.code,{children:"xs"}),", ",e.jsx(d.code,{children:"s"}),", ",e.jsx(d.code,{children:"m"}),", ",e.jsx(d.code,{children:"l"}),", ",e.jsx(d.code,{children:"xl"}),", ",e.jsx(d.code,{children:"xxl"}),")."]}),`
+`,e.jsx(s,{of:l})]})}function v(n={}){const{wrapper:d}={...o(),...n.components};return d?e.jsx(d,{...n,children:e.jsx(i,{...n})}):i(n)}export{v as default};

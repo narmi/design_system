@@ -1,4 +1,0 @@
-import{j as t}from"./jsx-runtime-_nEaBwwZ.js";import{useMDXComponents as r}from"./index-CTIUsnhD.js";import{M as n,C as i}from"./blocks-ChuZ1hCC.js";import"./ClassExample-C1oYeBIX.js";import{L as m,a as p}from"./list.stories-CMIGr3hZ.js";import"./iframe-0_z4hahK.js";import"./preload-helper-PPVm8Dsz.js";import"./index-w2GtKpQ9.js";import"./index-BShfyIDP.js";import"./index-BuvC3j0v.js";import"./AsElement-CArtqI0g.js";import"./index-RvS1aOr8.js";function e(o){const s={h1:"h1",p:"p",...r(),...o.components};return t.jsxs(t.Fragment,{children:[t.jsx(n,{of:m}),`
-`,t.jsx(s.h1,{id:"list-reset",children:"List reset"}),`
-`,t.jsx(s.p,{children:"Resets browser defaults on lists"}),`
-`,t.jsx(i,{of:p})]})}function D(o={}){const{wrapper:s}={...r(),...o.components};return s?t.jsx(s,{...o,children:t.jsx(e,{...o})}):e(o)}export{D as default};

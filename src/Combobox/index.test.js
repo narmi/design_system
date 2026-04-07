@@ -11,22 +11,22 @@ import { options_states } from "./util";
 const LABEL = "Select your state";
 
 const STATE_ITEMS = options_states.map((state) => (
-  <Combobox.Item value={state} key={state}>
+  <Combobox.Item key={state} value={state} searchValue={state}>
     {state}
   </Combobox.Item>
 ));
 
 const MOCK_ITEMS = [
-  <Combobox.Item key=".0" value="uno">
+  <Combobox.Item key=".0" value="uno" searchValue="uno">
     one
   </Combobox.Item>,
-  <Combobox.Item key=".1" value="dos">
+  <Combobox.Item key=".1" value="dos" searchValue="dos">
     two
   </Combobox.Item>,
-  <Combobox.Item key=".2" value="tres">
+  <Combobox.Item key=".2" value="tres" searchValue="tres">
     three
   </Combobox.Item>,
-  <Combobox.Item key=".3" value="quatro">
+  <Combobox.Item key=".3" value="quatro" searchValue="quatro">
     four
   </Combobox.Item>,
 ];
@@ -102,7 +102,9 @@ describe("Combobox", () => {
     );
     expect(
       isSelectable(
-        <Combobox.Item value="selectable item">selectable item</Combobox.Item>,
+        <Combobox.Item value="selectable item" searchValue="selectable item">
+          selectable item
+        </Combobox.Item>,
       ),
     ).toBe(true);
   });
@@ -119,7 +121,7 @@ describe("Combobox", () => {
   });
 
   it("dropdown opens, selection works, and onChange is fired correctly", () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(
       <Combobox label={LABEL} onChange={handleChange}>
         {STATE_ITEMS}
@@ -162,7 +164,7 @@ describe("Combobox", () => {
   });
 
   it("input should auto-fill last selection on blur", async () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(
       <Combobox label={LABEL} onChange={handleChange}>
         {STATE_ITEMS}
@@ -206,8 +208,8 @@ describe("Combobox", () => {
     const LABEL_ACTION = "Add a new state";
     render(
       <Combobox label={LABEL}>
-        <Combobox.Item value="New York" />
-        <Combobox.Item value="California" />
+        <Combobox.Item value="New York" searchValue="New York" />
+        <Combobox.Item value="California" searchValue="California" />
         <Combobox.Action onSelect={() => {}} label={LABEL_ACTION} />
       </Combobox>,
     );
@@ -235,7 +237,7 @@ describe("Combobox", () => {
   });
 
   it("should call onChange with empty string when input is cleared", async () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(
       <Combobox label={LABEL} onChange={handleChange}>
         {STATE_ITEMS}

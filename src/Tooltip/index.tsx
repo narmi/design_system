@@ -96,6 +96,8 @@ const Tooltip = ({
               {...layerProps}
               style={{ maxWidth: maxWidth, ...layerProps.style }}
               data-testid={testId}
+              onMouseEnter={openPopover}
+              onMouseLeave={closePopover}
             >
               {text}
               <Arrow {...arrowProps} />

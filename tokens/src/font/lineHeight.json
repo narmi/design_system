@@ -4,7 +4,11 @@
       "smallText": { "value": "1.6" },
       "bodyText": { "value": "1.25" },
       "bigText": { "value": "1.1" },
-      "default": { "value": "{font.lineHeight.bodyText.value}" }
+      "default": { "value": "{font.lineHeight.bodyText.value}" },
+      "heading0": { "value": "{font.lineHeight.bigText.value}" },
+      "heading1": { "value": "{font.lineHeight.bigText.value}" },
+      "heading2": { "value": "{font.lineHeight.bigText.value}" },
+      "heading3": { "value": "{font.lineHeight.bodyText.value}" }
     }
   }
 }

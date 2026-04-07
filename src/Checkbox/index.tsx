@@ -1,6 +1,5 @@
 // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_checkbox
 import React, { useRef, useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import cc from "classcat";
 import ReactMarkdown from "react-markdown";
 import Error from "../Error";
@@ -32,11 +31,11 @@ interface CheckboxProps {
    * when `true`.
    */
   indeterminate?: boolean;
+  /** @deprecated Use `isDisabled` instead */
+  disabled?: boolean;
   /**
    * Checkbox renders as disabled and ignores click/check events.
    */
-  disabled?: boolean;
-  /** @deprecated Use `isDisabled` instead */
   isDisabled?: boolean;
   /** Sets the `value` attribute of the `input` */
   value?: string;
@@ -86,19 +85,6 @@ const Checkbox = ({
   const [isFocused, setIsFocused] = useState(false);
   const isCard = kind === "card";
 
-  const LinkRenderer = ({ href, children }) => {
-    return (
-      <a href={href} target="_blank" rel="noreferrer">
-        {children}
-      </a>
-    );
-  };
-
-  LinkRenderer.propTypes = {
-    href: PropTypes.string.isRequired,
-    children: PropTypes.array.isRequired,
-  };
-
   useEffect(() => {
     if (isControlled) {
       setIsChecked(checked);
@@ -126,7 +112,7 @@ const Checkbox = ({
 
   return (
     <div className={`nds-checkbox-container nds-checkbox-container--${kind}`}>
-      <DisabledShim isDisabled={resolvedIsDisabled}>
+      <DisabledShim isDisabled={resolvedIsDisabled && kind === "card"}>
         <label
           className={cc([
             `nds-checkbox nds-checkbox--${kind}`,
@@ -152,12 +138,11 @@ const Checkbox = ({
             {markdownLabel && (
               <ReactMarkdown
                 components={{
-                  a: function ({ href, children }) {
-                    return LinkRenderer({
-                      href,
-                      children,
-                    });
-                  },
+                  a: ({ href, children }) => (
+                    <a href={href} target="_blank" rel="noreferrer">
+                      {children}
+                    </a>
+                  ),
                 }}
               >
                 {markdownLabel}

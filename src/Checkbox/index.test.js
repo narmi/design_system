@@ -54,7 +54,7 @@ describe("Checkbox", () => {
   });
 
   it("fires onChange callback", () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<Checkbox label={LABEL} onChange={handleChange} />);
     const { input } = getElements();
     expect(handleChange).not.toHaveBeenCalled();

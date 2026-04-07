@@ -98,7 +98,7 @@ describe("Tabs", () => {
   });
 
   it("changes tab selection and tabpanel with click", () => {
-    const handleTabChange = jest.fn();
+    const handleTabChange = vi.fn();
     renderTabsWithPanels({ onTabChange: handleTabChange });
     const { firstTab, secondTab, thirdTab } = getTabs();
     const { firstPanel, secondPanel, thirdPanel } = getPanels();
@@ -119,7 +119,7 @@ describe("Tabs", () => {
   });
 
   it("changes selected tab and active tabpanel with arrow key", () => {
-    const handleTabChange = jest.fn();
+    const handleTabChange = vi.fn();
     renderTabsWithPanels({ onTabChange: handleTabChange });
     const { firstTab, secondTab, thirdTab } = getTabs();
     const { firstPanel, secondPanel, thirdPanel } = getPanels();
@@ -155,7 +155,7 @@ describe("Tabs", () => {
   });
 
   it("does NOT change selected tab with arrow key when panels are NOT present", () => {
-    const handleTabChange = jest.fn();
+    const handleTabChange = vi.fn();
     renderTabsWithoutPanels({ onTabChange: handleTabChange });
     const { firstTab, secondTab, thirdTab } = getTabs();
 
@@ -208,7 +208,7 @@ describe("Tabs", () => {
     });
 
     it("does NOT change tab selection in uncontrolled manner when `selectedIndex` is passed", () => {
-      const handleTabChange = jest.fn();
+      const handleTabChange = vi.fn();
       renderTabsWithoutPanels({
         selectedIndex: 2,
         onTabChange: handleTabChange,

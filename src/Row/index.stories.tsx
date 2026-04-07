@@ -118,7 +118,7 @@ export const SectionHeaderExample = () => (
   <div className="nds-typography">
     <Row alignItems="center">
       <Row.Item>
-        <h3 className="fontFamily--body fontSize--l">Account details</h3>
+        <h3 className="fontFamily--body fontSize--xl">Account details</h3>
       </Row.Item>
       <Row.Item shrink>
         <a className="fontColor--pine" href="#">

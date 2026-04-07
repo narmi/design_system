@@ -24,7 +24,7 @@ describe("Button", () => {
   });
 
   it("fires click callback as anchor", () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     render(<Button label={LABEL} onClick={handleClick} />);
     const button = getButton();
     expect(handleClick).not.toHaveBeenCalled();
@@ -61,12 +61,6 @@ describe("Button", () => {
     render(<Button label={LABEL} kind="secondary" />);
     const button = getButton();
     expect(button).toHaveClass("nds-button--secondary");
-  });
-
-  it("has expected classes for menu button", () => {
-    render(<Button label={LABEL} kind="menu" />);
-    const button = getButton();
-    expect(button).toHaveClass("nds-button--menu");
   });
 
   it("has expected classes for plain button", () => {

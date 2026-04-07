@@ -1,3 +1,4 @@
+@import "../base-styles/scss-utils.scss";
 @import "../Spinner/index.scss";
 @import "./variants.scss";
 @import "./sizes.scss";
@@ -9,10 +10,11 @@
   display: inline-flex;
   position: relative;
   line-height: var(--font-lineHeight-bigText);
+  font-weight: var(--font-weight-semibold);
   text-align: center;
   justify-content: center;
   align-items: center;
-  border-radius: rem(24px);
+  border-radius: var(--border-radius-m);
   overflow: hidden;
 }
 
@@ -49,21 +51,14 @@
   @extend %btn-kind-secondary;
 }
 
+.nds-button--tertiary,
+.nds-button--tertiary.resetButton {
+  @extend %btn-kind-tertiary;
+}
+
 .nds-button--tonal,
 .nds-button--tonal.resetButton {
   @extend %btn-kind-tonal;
-}
-
-/**
-️* ⚠️ DEPRECATED ⚠️
-* Will be removed in a future release.
-*/
-.nds-button--m.nds-button--menu .nds-button-content {
-  margin: 0;
-}
-.nds-button--menu,
-.nds-button--menu.resetButton {
-  @extend %btn-kind-menu;
 }
 
 .nds-button--negative,
@@ -72,7 +67,6 @@
 }
 
 .nds-button--disabled {
-  &.nds-button--menu,
   &.nds-button--plain,
   &.nds-button--negative {
     @extend %btn-state-disabled-plain;
@@ -82,6 +76,9 @@
   }
   &.nds-button--secondary {
     @extend %btn-state-disabled-secondary;
+  }
+  &.nds-button--tertiary {
+    @extend %btn-state-disabled-tertiary;
   }
   &.nds-button--tonal {
     @extend %btn-state-disabled-tonal;
@@ -96,10 +93,7 @@
   @extend %btn-kind-plain;
 }
 
-/**
-️* ⚠️ DEPRECATED ⚠️
-* Will be removed in a future release.
-*/
-.nds-plain-button {
-  @extend %btn-kind-plain;
+.nds-button--ai,
+.nds-button--ai.resetButton {
+  @extend %btn-kind-ai;
 }

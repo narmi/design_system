@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
 }
+
 .nds-dropdownTrigger-button {
   min-height: rem(48px);
   width: 100%;
@@ -74,5 +75,42 @@
   // only overlap popovers if in an open state
   &.narmi-icon-chevron-up {
     z-index: 4;
+  }
+}
+
+/**
+* VARIANTS
+*/
+
+// Table field variant, for non-native inputs inside table cells
+.nds-dropdownTrigger--table {
+  min-height: unset;
+  border: none !important;
+
+  .nds-dropdownTrigger-button {
+    @extend %tableField;
+    min-height: unset;
+    grid-template-columns: 1fr min-content; // [value] [chevron]
+
+    &:hover {
+      @extend %tableField-hover;
+    }
+
+    &:focus {
+      @extend %tableField-active;
+    }
+
+    // hide chevron when inactive
+    .nds-dropdownTrigger-chevron {
+      display: none !important;
+    }
+    &:hover .nds-dropdownTrigger-chevron,
+    &:focus .nds-dropdownTrigger-chevron {
+      display: block !important;
+    }
+
+    &--hasError {
+      border-color: var(--color-errorDark) !important;
+    }
   }
 }

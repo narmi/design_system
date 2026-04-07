@@ -1,24 +1,7 @@
 /** TableInput */
 .nds-tableField-input {
-  border-width: 0;
-  border-radius: rem(4px);
-  padding: var(--space-xs);
-
-  display: grid;
-  grid-auto-flow: column;
+  @extend %tableField;
   grid-template-columns: 1fr min-content; // [input       ] [counter]
-  gap: var(--space-xxs);
-
-  // Input box should take full width of the parent.
-  width: 100%;
-
-  // The 1px of border should always be present, so the
-  // input doesn't "bounce" the layout 2px on focus
-  border: 1px solid transparent;
-
-  // Offset the input to align text to its column, compensating
-  // for the internal padding and 1px border of the input
-  transform: translateX(calc((var(--space-xs) * -1) - 1px));
 
   input {
     padding: 0;
@@ -47,13 +30,11 @@
   }
 
   &:has(input:hover) {
-    background: rgba(var(--theme-rgb-primary), var(--alpha-5));
+    @extend %tableField-hover;
   }
 
   &:has(input:focus) {
-    outline: none;
-    border: 1px solid var(--theme-primary);
-    background: var(--color-white) !important;
+    @extend %tableField-active;
   }
 
   &--hasError {

@@ -9,7 +9,7 @@ const renderPopover = () => {
   render(
     <Popover content={<p>{CONTENT_TEXT}</p>}>
       <button>{TRIGGER_TEXT}</button>
-    </Popover>
+    </Popover>,
   );
 };
 
@@ -63,13 +63,13 @@ describe("Popover", () => {
     render(
       <Popover content={<p>{CONTENT_TEXT}</p>} isOpen={true}>
         <button>{TRIGGER_TEXT}</button>
-      </Popover>
+      </Popover>,
     );
     expect(screen.queryByText(CONTENT_TEXT)).toBeInTheDocument();
   });
 
   it("calls onUserDismiss on escape key", () => {
-    const onUserDismiss = jest.fn();
+    const onUserDismiss = vi.fn();
     render(
       <Popover
         content={<p>{CONTENT_TEXT}</p>}
@@ -77,7 +77,7 @@ describe("Popover", () => {
         onUserDismiss={onUserDismiss}
       >
         <button>{TRIGGER_TEXT}</button>
-      </Popover>
+      </Popover>,
     );
     const trigger = getTrigger();
     expect(screen.queryByText(CONTENT_TEXT)).toBeInTheDocument();
@@ -88,11 +88,11 @@ describe("Popover", () => {
   });
 
   it("calls onUserDismiss on outside click", () => {
-    const onUserDismiss = jest.fn();
+    const onUserDismiss = vi.fn();
     render(
       <Popover content={<p>{CONTENT_TEXT}</p>} onUserDismiss={onUserDismiss}>
         <button>{TRIGGER_TEXT}</button>
-      </Popover>
+      </Popover>,
     );
     const trigger = getTrigger();
     expect(screen.queryByText(CONTENT_TEXT)).not.toBeInTheDocument();

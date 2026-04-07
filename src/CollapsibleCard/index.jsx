@@ -21,7 +21,7 @@ const CollapsibleCard = ({
   hasError = false,
   disableHover = false,
   children,
-  radiusSize = "m",
+  radiusSize = "l",
   kind = "default",
 }) => {
   const [hover, setHover] = React.useState(false);
@@ -97,7 +97,7 @@ const CollapsibleCard = ({
               <h4
                 className={cc([
                   "fontWeight--bold",
-                  "fontSize--l",
+                  "fontSize--xl",
                   "padding--top--l",
                   "fontFamily--body",
                   {

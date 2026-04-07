@@ -19,7 +19,7 @@ ComboboxItem.propTypes = {
    * Use this prop to pass in a custom string you'd like the user to search
    * against when using typeahead.
    */
-  searchValue: PropTypes.string,
+  searchValue: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),

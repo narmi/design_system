@@ -19,7 +19,7 @@ export const AsControlled = () => {
   const [value, setValue] = useState([20, 50]);
   return (
     <>
-      <div className="fontSize--l margin--bottom--xl">{`State in controlling component: ${value.join(" - ")}`}</div>
+      <div className="fontSize--xl margin--bottom--xl">{`State in controlling component: ${value.join(" - ")}`}</div>
       <Slider
         lowerName="lower_age"
         higherName="higher_age"
@@ -30,10 +30,10 @@ export const AsControlled = () => {
         onChange={setValue}
       />
     </>
-  )
-}
+  );
+};
 
 export default {
   title: "Components/Slider",
   component: Slider,
-}
+};

@@ -8,10 +8,11 @@ import type { IconName } from "../types/Icon.types";
 export type ButtonKind =
   | "primary"
   | "secondary"
+  | "tertiary"
   | "tonal"
   | "negative"
-  | "menu"
-  | "plain";
+  | "plain"
+  | "ai";
 
 export interface ButtonProps {
   /** Renders the button label */

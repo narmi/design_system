@@ -2,6 +2,7 @@ import AutocompleteModal from "./AutocompleteModal";
 import Accordion from "./Accordion";
 import AccordionSet from "./AccordionSet";
 import Alert from "./Alert";
+import AnchoredDialog from "./AnchoredDialog";
 import Avatar from "./Avatar";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
@@ -15,9 +16,9 @@ import DateInput from "./DateInput";
 import Dialog from "./Dialog";
 import DisabledShim from "./DisabledShim";
 import Drawer from "./Drawer";
-import Dropdown from "./Dropdown";
 import DropdownTrigger from "./DropdownTrigger";
 import Error from "./Error";
+import Field from "./Field";
 import FieldToken from "./FieldToken";
 import FormSection from "./FormSection";
 import IconButton from "./IconButton";
@@ -27,7 +28,6 @@ import LoadingSkeleton from "./LoadingSkeleton";
 import MenuButton from "./MenuButton";
 import MultiSelect from "./MultiSelect";
 import Pagination from "./Pagination";
-import PlainButton from "./PlainButton";
 import ProgressBar from "./ProgressBar";
 import Popover from "./Popover";
 import Radio from "./Radio";
@@ -45,6 +45,7 @@ import Table from "./Table";
 import TableAutocomplete from "./TableAutocomplete";
 import TableDateInput from "./TableDateInput";
 import TableInput from "./TableInput";
+import TableSelect from "./TableSelect";
 import Tabs from "./Tabs";
 import Tag from "./Tag";
 import TextInput from "./TextInput";
@@ -64,6 +65,7 @@ export {
   Accordion,
   AccordionSet,
   Alert,
+  AnchoredDialog,
   Avatar,
   Button,
   Checkbox,
@@ -77,9 +79,9 @@ export {
   Dialog,
   DisabledShim,
   Drawer,
-  Dropdown,
   DropdownTrigger,
   Error,
+  Field,
   FieldToken,
   FormSection,
   IconButton,
@@ -89,7 +91,6 @@ export {
   MenuButton,
   MultiSelect,
   Pagination,
-  PlainButton,
   ProgressBar,
   Popover,
   Radio,
@@ -107,8 +108,9 @@ export {
   TableAutocomplete,
   TableDateInput,
   TableInput,
+  TableSelect,
   Tabs,
-  Tag,
+  Tag, // ⚠️ DEPRECATED - Will be removed in a future release. Use `Chip` instead.
   TextInput,
   TimelineEvent,
   Toggle,

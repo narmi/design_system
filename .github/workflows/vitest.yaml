@@ -1,4 +1,4 @@
-name: Jest
+name: Vitest
 permissions:
   contents: read
 on: [pull_request]
@@ -32,7 +32,7 @@ jobs:
         if: steps.build-cache.outputs.cache-hit != 'true'
         run: npm run build
 
-      - name: Jest
+      - name: Vitest
         run: |
           echo "The job was automatically triggered by a ${{ github.event_name }} event."
           npm run test

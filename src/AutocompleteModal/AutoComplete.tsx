@@ -26,7 +26,7 @@ export const itemToString = (item: AutoCompleteItem) =>
 
 export const filterItems = (items: AutoCompleteItem[], inputValue: string) =>
   items.filter((item) =>
-    itemToString(item).toLowerCase().startsWith(inputValue.toLowerCase()),
+    itemToString(item).toLowerCase().includes(inputValue.toLowerCase()),
   );
 
 /**
@@ -111,7 +111,7 @@ const AutoComplete = ({
               {selectedItem &&
                 selectedItem.props.value === item.props.value && (
                   <Row.Item as="span" shrink>
-                    <span className="narmi-icon-check fontSize--l fontWeight--bold" />
+                    <span className="narmi-icon-check fontSize--xl fontWeight--bold" />
                   </Row.Item>
                 )}
             </Row>

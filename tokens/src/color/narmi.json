@@ -73,11 +73,11 @@
 
       "amethyst": { "value": "#5514B8" },
 
-      "black": { "value": "#333333" },
-      "grey": { "value": "#4C4C4C" },
-      "mediumGrey": { "value": "#8C8C8C" },
-      "lightGrey": { "value": "#D9D9D9" },
-      "white": { "value": "#FFFFFF" }
+      "black": { "value": "{color.grey.black.value}" },
+      "grey": { "value": "{color.grey.mediumGrey.value}" },
+      "mediumGrey": { "value": "{color.grey.mediumGrey.value}" },
+      "lightGrey": { "value": "{color.grey.lightGrey.value}" },
+      "white": { "value": "{color.grey.white.value}" }
     }
   }
 }

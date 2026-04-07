@@ -8,12 +8,14 @@ export type UseDropdownLayerResult = {
     style: {
       anchorName?: string;
     };
+    "aria-haspopup": string;
+    "aria-expanded": string;
   };
   /** Props to spread onto the dropdown menu element */
   layerProps: {
     ref: React.Ref<HTMLElement>;
-    style: // union of new CSS properties and React CSSProperties
-    | {
+    style:
+      | {
           positionAnchor?: string;
           positionArea?: string;
           positionTryFallbacks?: string;
@@ -29,28 +31,28 @@ export interface UseDropdownLayerOptions {
   setIsOpen: (isOpen: boolean) => void;
   /** Whether the dropdown should match the width of the anchor element */
   matchWidth?: boolean;
+  /** * Whether the dropdown is rendered in a Portal.
+   * If true, forces 'fixed' positioning and higher z-index.
+   * @default false
+   */
+  isPortalled?: boolean;
+  /** Type of popup for aria-haspopup attribute
+   * @default "menu"
+   */
+  ariaPopupType?: string;
 }
 
 /**
  * Progressive enhancement driven layout helper for dropdowns/menus.
  * Uses CSS anchor positioning if supported, otherwise falls back to
  * a JS-supported fixed positioning strategy.
- *
- * @usage
- * ```tsx
- * const { anchorProps, layerProps } = useDropdownLayer({ isOpen, setIsOpen, matchWidth });
- *
- * return (
- *   <>
- *     <input {...anchorProps}>Open Menu</input>
- *     <div {...layerProps}>...</div>
- *   <>
- * ```
  */
 const useDropdownLayer = ({
   isOpen,
   setIsOpen,
   matchWidth = true,
+  isPortalled = false, // Default to false
+  ariaPopupType = "menu",
 }: UseDropdownLayerOptions): UseDropdownLayerResult => {
   const anchorRef = useRef<HTMLElement>(null);
   const layerRef = useRef<HTMLElement>(null);
@@ -76,8 +78,10 @@ const useDropdownLayer = ({
       style: {
         anchorName: isAnchorPositionSupported ? anchorName : undefined,
       },
+      "aria-haspopup": ariaPopupType,
+      "aria-expanded": isOpen.toString(),
     }),
-    [anchorRef, isAnchorPositionSupported, anchorName],
+    [anchorRef, isAnchorPositionSupported, anchorName, isOpen, ariaPopupType],
   );
 
   // Memoized props to spread onto the positioned layer element
@@ -85,17 +89,22 @@ const useDropdownLayer = ({
     const layerStyle = {
       ...(isAnchorPositionSupported
         ? {
-            position: "absolute" as const,
+            position: isPortalled ? ("fixed" as const) : ("absolute" as const),
             positionAnchor: anchorName,
-            positionArea: "bottom center",
-            positionTryFallbacks: "flip-block",
+            top: "anchor(bottom)",
+            left: "anchor(start)",
+            positionTryFallbacks: "flip-block, flip-inline",
             width: matchWidth ? "anchor-size(width)" : "max-content",
+            maxWidth: matchWidth ? "anchor-size(width)" : undefined,
+            minWidth: matchWidth ? "anchor-size(width)" : undefined,
           }
         : polyFillLayerStyles),
 
-      // Always include visibility and z-index rules.
+      // Always include display and z-index.
+      // In the polyfill path the layer is always position:fixed, so always
+      // use the higher z-index regardless of isPortalled.
       display: isOpen ? "block" : "none",
-      zIndex: 4,
+      zIndex: isAnchorPositionSupported && !isPortalled ? 4 : 9,
     };
 
     return {
@@ -109,6 +118,7 @@ const useDropdownLayer = ({
     matchWidth,
     polyFillLayerStyles,
     layerRef,
+    isPortalled,
   ]);
 
   return {

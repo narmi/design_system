@@ -4,6 +4,7 @@
 import Accordion from "./Accordion";
 import AccordionSet from "./AccordionSet";
 import Alert from "./Alert";
+import AnchoredDialog from "./AnchoredDialog";
 import AutocompleteModal from "./AutocompleteModal";
 import Avatar from "./Avatar";
 import Button from "./Button";
@@ -14,6 +15,7 @@ import ContextMenu from "./ContextMenu";
 import Count from "./Count";
 import Dialog from "./Dialog";
 import DisabledShim from "./DisabledShim";
+import Field from "./Field";
 import ProgressBar from "./ProgressBar";
 import Radio from "./Radio";
 import RadioButtons from "./RadioButtons";
@@ -28,6 +30,7 @@ import Table from "./Table";
 import TableAutocomplete from "./TableAutocomplete";
 import TableDateInput from "./TableDateInput";
 import TableInput from "./TableInput";
+import TableSelect from "./TableSelect";
 import Tabs from "./Tabs";
 import Tooltip from "./Tooltip";
 import useSupportsAnchorPositioning from "./hooks/useSupportsAnchorPositioning";
@@ -40,7 +43,6 @@ declare const CollapsibleCard;
 declare const Combobox;
 declare const DateInput;
 declare const Drawer;
-declare const Dropdown;
 declare const DropdownTrigger;
 declare const Error;
 declare const FieldToken;
@@ -51,12 +53,11 @@ declare const LoadingShim;
 declare const MenuButton;
 declare const MultiSelect;
 declare const Pagination;
-declare const PlainButton;
 declare const Popover;
 declare const ResponsiveFlex;
 declare const Select;
 declare const Sidebar;
-declare const Tag;
+declare const Tag; // ⚠️ DEPRECATED - Will be removed in a future release. Use `Chip` instead.
 declare const TextInput;
 declare const TimelineEvent;
 declare const Toggle;
@@ -86,14 +87,15 @@ export {
   Slider,
   Snackbar,
   Alert,
+  AnchoredDialog,
   CollapsibleCard,
   Combobox,
   DateInput,
   Dialog,
   Drawer,
-  Dropdown,
   DropdownTrigger,
   Error,
+  Field,
   FieldToken,
   FormSection,
   IconButton,
@@ -103,7 +105,6 @@ export {
   MenuButton,
   MultiSelect,
   Pagination,
-  PlainButton,
   ProgressBar,
   Popover,
   ResponsiveFlex,
@@ -115,6 +116,7 @@ export {
   TableAutocomplete,
   TableDateInput,
   TableInput,
+  TableSelect,
   Tabs,
   Tag,
   TextInput,

@@ -63,6 +63,7 @@
     // - prevent this flex item from shrinking to checkmark width
     // - visually align checkbox icon baseline with label baseline
     flex-shrink: 0;
+
     &.error {
       border: 1px solid var(--color-errorDark);
     }
@@ -76,12 +77,16 @@
 
   // disabled states
   &.nds-checkbox--disabled {
+    cursor: unset;
+
     .narmi-icon-minus,
     .narmi-icon-check,
     .narmi-icon-minus:hover,
     .narmi-icon-check:hover {
-      background-color: var(--font-color-hint);
-      border-color: var(--color-mediumGrey);
+      pointer-events: none;
+      background-color: var(--bgColor-smokeGrey);
+      border-color: var(--font-color-hint);
+
       &::before {
         color: transparent;
       }
@@ -94,6 +99,7 @@
       .narmi-icon-check:hover {
         background-color: var(--color-mediumGrey);
         border-color: var(--color-mediumGrey);
+
         &::before {
           color: var(--color-white);
         }
@@ -114,6 +120,7 @@
     .narmi-icon-check {
       background-color: var(--theme-primary);
       border-color: var(--theme-primary);
+
       &:after {
         display: block;
       }
@@ -203,5 +210,10 @@
       font-size: var(--font-size-s);
       font-weight: var(--font-weight-default);
     }
+  }
+
+  &.nds-checkbox--disabled {
+    border-color: var(--theme-primary); // the shim will compensate
+    background-color: var(--bgColor-smokeGrey);
   }
 }

@@ -20,9 +20,11 @@ const DropdownTrigger = React.forwardRef(
       labelText,
       labelProps,
       displayValue,
+      renderDisplayValue,
       errorText,
       hasError = false,
       minWidth = "auto",
+      kind = "default",
       testId,
       startContent = <></>,
       endContent = <></>,
@@ -32,7 +34,10 @@ const DropdownTrigger = React.forwardRef(
   ) => {
     return (
       <>
-        <div className="nds-dropdownTrigger" style={{ minWidth }}>
+        <div
+          className={`nds-dropdownTrigger nds-dropdownTrigger--${kind}`}
+          style={{ minWidth }}
+        >
           <button
             disabled={disabled}
             ref={ref}
@@ -58,16 +63,20 @@ const DropdownTrigger = React.forwardRef(
                 {labelText}
               </label>
             )}
-            {displayValue && (
-              <span className="nds-dropdownTrigger-value">{displayValue}</span>
-            )}
+            {renderDisplayValue
+              ? renderDisplayValue()
+              : displayValue && (
+                  <span className="nds-dropdownTrigger-value">
+                    {displayValue}
+                  </span>
+                )}
             {endContent}
             {showOpenIndicator && !disabled && (
               <span
                 role="img"
                 aria-label={isOpen ? "popup open" : "popup closed"}
                 className={cc([
-                  "nds-dropdownTrigger-chevron fontSize--l fontColor--secondary",
+                  "nds-dropdownTrigger-chevron fontSize--xl fontColor--secondary",
                   `narmi-icon-chevron-${isOpen ? "up" : "down"}`,
                 ])}
               />
@@ -87,6 +96,8 @@ DropdownTrigger.propTypes = {
   isOpen: PropTypes.bool,
   /** Set to `false` to hide the chevron icon indicating open state */
   showOpenIndicator: PropTypes.bool,
+  /** Variant of the trigger. Use "table" when used inside table cells */
+  kind: PropTypes.oneOf(["default", "table"]),
   /** Text of `label` element */
   labelText: PropTypes.string,
   /** Props to spread onto the `label` element */
@@ -96,6 +107,8 @@ DropdownTrigger.propTypes = {
    * Usually, this represents the name of a selected option
    */
   displayValue: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  /** Render function that returns JSX to display as the value */
+  renderDisplayValue: PropTypes.func,
   /** Error message. When this prop is passed, an error state is displayed */
   errorText: PropTypes.string,
   /** Set to `true` to display error state without providing error text */

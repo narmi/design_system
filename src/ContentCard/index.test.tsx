@@ -21,23 +21,23 @@ describe("ContentCard", () => {
     expect(screen.getByTestId(testId)).toHaveClass("nds-contentCard--elevated");
   });
 
-  it("sets correct attributes and classes for interactive kind", () => {
+  it("sets correct attributes and classes for button kind", () => {
     render(
-      <ContentCard kind="interactive" onClick={() => {}}>
+      <ContentCard kind="button" onClick={() => {}}>
         lol
       </ContentCard>,
     );
     const card = screen.getByTestId(testId);
     expect(screen.queryByRole("button")).toBeInTheDocument();
-    expect(card).toHaveAttribute("aria-pressed", "false");
+    expect(card).not.toHaveAttribute("aria-pressed");
     expect(card).toHaveAttribute("tabIndex", "0");
-    expect(card).toHaveClass("nds-contentCard--interactive");
+    expect(card).toHaveClass("nds-contentCard--button");
   });
 
-  it("fires onClick handler for `interactive` kind", () => {
-    const handleClick = jest.fn();
+  it("fires onClick handler for `button` kind", () => {
+    const handleClick = vi.fn();
     render(
-      <ContentCard kind="interactive" onClick={handleClick}>
+      <ContentCard kind="button" onClick={handleClick}>
         lol
       </ContentCard>,
     );
@@ -47,7 +47,7 @@ describe("ContentCard", () => {
   });
 
   it("does NOT fire onClick handler for non-interactive kind", () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     render(<ContentCard onClick={handleClick}>lol</ContentCard>);
     expect(handleClick).not.toHaveBeenCalled();
     fireEvent.click(screen.getByTestId(testId));
@@ -56,7 +56,7 @@ describe("ContentCard", () => {
 
   it("sets correct attributes for `isSelected`", () => {
     render(
-      <ContentCard kind="interactive" isSelected={true} onClick={() => {}}>
+      <ContentCard kind="toggle" isSelected={true} onClick={() => {}}>
         lol
       </ContentCard>,
     );

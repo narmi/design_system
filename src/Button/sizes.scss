@@ -1,36 +1,26 @@
 %btn-size-xs {
   font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
   min-height: rem(24px);
-  border-radius: rem(12px);
   .nds-button-content {
-    margin: rem(3px) rem(16px);
+    margin: 0 rem(12px);
     max-width: rem(200px);
   }
 }
 
 %btn-size-s {
-  font-size: var(--font-size-s);
-  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-default);
   min-height: rem(32px);
-  border-radius: rem(18px);
   .nds-button-content {
-    margin: rem(3px) rem(24px);
+    margin: 0 rem(16px);
     max-width: rem(220px);
   }
 }
 
 %btn-size-m {
   font-size: var(--font-size-default);
-  font-weight: var(--font-weight-bold);
   min-height: rem(40px);
-  border-radius: rem(24px);
   .nds-button-content {
-    margin: rem(8px) rem(32px);
+    margin: 0 rem(16px);
     max-width: rem(240px);
-  }
-  // Medium is our default size. As such, we want it to scale up on smaller viewports.
-  @media (max-width: #{map.get($breakpoints, "s")}) {
-    min-height: rem(48px) !important;
   }
 }

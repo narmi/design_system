@@ -25,7 +25,7 @@ interface SplitButtonProps extends ButtonProps {
   children:
     | React.ReactElement<SplitButtonPopoverProps>
     | React.ReactElement<SplitButtonMenuProps>;
-  kind?: "primary" | "secondary" | "tonal";
+  kind?: "primary" | "secondary" | "tertiary" | "tonal";
   size?: "xs" | "s" | "m";
 }
 

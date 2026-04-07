@@ -1,0 +1,4 @@
+import{j as t}from"./jsx-runtime-CH4U7dVk.js";import{useMDXComponents as s}from"./index-CV5z2Yzu.js";import{M as i,C as r}from"./blocks-COX_Uobg.js";import{L as a,S as m}from"./layout.stories-BrYbFcjv.js";import"./iframe-Cc3d-DV_.js";import"./preload-helper-PPVm8Dsz.js";import"./index-CyZ1Tqff.js";import"./index-DPAKHY6p.js";import"./TokenTable-95YdNNwK.js";import"./index-RvS1aOr8.js";function e(o){const n={h1:"h1",h2:"h2",...s(),...o.components};return t.jsxs(t.Fragment,{children:[t.jsx(i,{title:"Design Tokens/Layout",of:a}),`
+`,t.jsx(n.h1,{id:"layout-tokens",children:"Layout Tokens"}),`
+`,t.jsx(n.h2,{id:"spacing",children:"Spacing"}),`
+`,t.jsx(r,{of:m,style:{height:"auto"}})]})}function y(o={}){const{wrapper:n}={...s(),...o.components};return n?t.jsx(n,{...o,children:t.jsx(e,{...o})}):e(o)}export{y as default};

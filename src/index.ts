@@ -33,6 +33,7 @@ import TableInput from "./TableInput";
 import TableSelect from "./TableSelect";
 import Tabs from "./Tabs";
 import Tooltip from "./Tooltip";
+import TruncatedAccount from "./TruncatedAccount";
 import useSupportsAnchorPositioning from "./hooks/useSupportsAnchorPositioning";
 import useBreakpoints from "./hooks/useBreakpoints";
 
@@ -62,7 +63,6 @@ declare const TextInput;
 declare const TimelineEvent;
 declare const Toggle;
 declare const TokenInput;
-declare const TruncatedAccount;
 declare const useLockBodyScroll;
 declare const formatNumber;
 declare const formatDate;

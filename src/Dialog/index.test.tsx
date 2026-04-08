@@ -205,7 +205,82 @@ describe("Dialog", () => {
         expect(
           document.querySelector(".nds-dialog-focuslock"),
         ).toBeInTheDocument();
+        expect(
+          document.querySelector(".nds-dialog-focuslock"),
+        ).toBeInTheDocument();
       });
+    });
+  });
+
+  describe("Overflow detection", () => {
+    it("applies correct classes when content is not overflowing", async () => {
+      const footer = <div data-testid="footer">Footer content</div>;
+
+      // Mock scrollHeight and clientHeight to simulate no overflow
+      Object.defineProperty(HTMLElement.prototype, "scrollHeight", {
+        configurable: true,
+        value: 300,
+      });
+      Object.defineProperty(HTMLElement.prototype, "clientHeight", {
+        configurable: true,
+        value: 400,
+      });
+
+      renderDialog({ footer });
+
+      await waitFor(() => {
+        const content = document.querySelector(".nds-dialog-content");
+        const footer = document.querySelector(".nds-dialog-footer");
+
+        // When not overflowing, content should not have bottom padding
+        expect(content).not.toHaveClass("padding--bottom--xl");
+        // Footer should not have overflowing class
+        expect(footer).not.toHaveClass("nds-dialog-footer--overflowing");
+      });
+    });
+
+    it("applies correct classes when content is overflowing", async () => {
+      const footer = <div data-testid="footer">Footer content</div>;
+
+      // Mock scrollHeight and clientHeight to simulate overflow
+      Object.defineProperty(HTMLElement.prototype, "scrollHeight", {
+        configurable: true,
+        value: 600,
+      });
+      Object.defineProperty(HTMLElement.prototype, "clientHeight", {
+        configurable: true,
+        value: 400,
+      });
+
+      renderDialog({ footer });
+
+      await waitFor(() => {
+        const content = document.querySelector(".nds-dialog-content");
+        const footer = document.querySelector(".nds-dialog-footer");
+
+        // When overflowing, content should have bottom padding
+        expect(content).toHaveClass("padding--bottom--xl");
+        // Footer should have overflowing class
+        expect(footer).toHaveClass("nds-dialog-footer--overflowing");
+      });
+    });
+
+    it("applies bottom padding when no footer is present", () => {
+      // Mock no overflow scenario
+      Object.defineProperty(HTMLElement.prototype, "scrollHeight", {
+        configurable: true,
+        value: 300,
+      });
+      Object.defineProperty(HTMLElement.prototype, "clientHeight", {
+        configurable: true,
+        value: 400,
+      });
+
+      renderDialog(); // No footer
+
+      const content = document.querySelector(".nds-dialog-content");
+      // When no footer, content should always have bottom padding
+      expect(content).toHaveClass("padding--bottom--xl");
     });
   });
 
@@ -218,6 +293,10 @@ describe("Dialog", () => {
 
       expect(removeEventListenerSpy).toHaveBeenCalledWith(
         "keydown",
+        expect.any(Function),
+      );
+      expect(removeEventListenerSpy).toHaveBeenCalledWith(
+        "resize",
         expect.any(Function),
       );
 

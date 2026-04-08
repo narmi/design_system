@@ -3,106 +3,141 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.7.0](https://github.com/narmi/design_system/compare/v6.6.0...v6.7.0) (2026-04-08)
+
+### feat
+
+- **Table:** all table input types auto-truncate on blur ([](https://github.com/narmi/design_system/commit/bd129536d1f3781912a943f39288db35c145988b))
+
+### fix
+
+- **TableInput:** show counter when has count error ([](https://github.com/narmi/design_system/commit/5bbbb0c43d50a86c5bee8ac4d42a292d476ac12e))
+
+## [6.6.0](https://github.com/narmi/design_system/compare/v6.5.5...v6.6.0) (2026-04-08)
+
+### build
+
+- **deps-dev:** bump @babel/core from 7.28.4 to 7.29.0 ([](https://github.com/narmi/design_system/commit/edf9edf38570c321f965522485204df2aa7ac116))
+- **deps-dev:** bump @babel/preset-typescript from 7.27.1 to 7.28.5 ([](https://github.com/narmi/design_system/commit/6e49c81f10f8992503dc9e32aaab4b16eaf05232))
+- **deps:** bump @maskito/core from 5.1.0 to 5.1.1 ([](https://github.com/narmi/design_system/commit/c87390e8e881a2366651b676a1d852a214a0e523))
+- **deps-dev:** bump lodash-es from 4.17.23 to 4.18.1 ([](https://github.com/narmi/design_system/commit/597af6ba0109d32c236ee7c2a60a17deee187d2a))
+- **deps-dev:** bump vite from 7.1.11 to 7.3.2 ([](https://github.com/narmi/design_system/commit/f69e33602d14d0f7f416c8e8e4f36a04ec1cadee))
+
+### chore
+
+- **deps:** Bump `usehooks-ts` to v3.1.1 to support React 19 (#2041) ([](https://github.com/narmi/design_system/commit/53a0722073cee88f3db319cf78594b72a2ebb2ba)), closes [#2041](https://github.com/narmi/design_system/issues/2041)
+- **types:** Export RadioButtons Props (#2042) ([](https://github.com/narmi/design_system/commit/fd46c88b12666ca9245f2d0ba9cdb9c2b6ef187e)), closes [#2042](https://github.com/narmi/design_system/issues/2042)
+- force resolution for lodash ([](https://github.com/narmi/design_system/commit/55ad5763c12cd6e47aa7bedfcacd5e14142b5b69))
+- force resolution for undici ([](https://github.com/narmi/design_system/commit/029f1f1de7924d6a7cc5ab4bedaa275ffd98291c))
+
+### feat
+
+- update chip and tag radius and spacing ([](https://github.com/narmi/design_system/commit/10d5de0db101c0438ae73a9b7bcbeca32b10cd09))
+
+### test
+
+- **Combobox:** update test for vitest ([](https://github.com/narmi/design_system/commit/e5ec18a8d3b8f5eb92775c7dfde229c03af2cfa3))
+
 ## [6.5.5](https://github.com/narmi/design_system/compare/v6.5.4...v6.5.5) (2026-04-06)
 
 ### build
 
-* **deps:** bump actions/stale from 10.1.1 to 10.2.0 ([](https://github.com/narmi/design_system/commit/c730de038dae55f5a6bc4cfcb4efeb48f74db0ad))
+- **deps:** bump actions/stale from 10.1.1 to 10.2.0 ([](https://github.com/narmi/design_system/commit/c730de038dae55f5a6bc4cfcb4efeb48f74db0ad))
 
 ### fix
 
-* **DateInput:** style prev/next month days the same as current month ([](https://github.com/narmi/design_system/commit/e3e31a961957fa2b2a0791011a23208c81c57bce))
+- **DateInput:** style prev/next month days the same as current month ([](https://github.com/narmi/design_system/commit/e3e31a961957fa2b2a0791011a23208c81c57bce))
 
 ### refactor
 
-* **test:** Migrate to Vitest (#2033) ([](https://github.com/narmi/design_system/commit/6394fe07907adbe0eb520417be6417b654044b1b)), closes [#2033](https://github.com/narmi/design_system/issues/2033)
+- **test:** Migrate to Vitest (#2033) ([](https://github.com/narmi/design_system/commit/6394fe07907adbe0eb520417be6417b654044b1b)), closes [#2033](https://github.com/narmi/design_system/issues/2033)
 
 ## [6.5.4](https://github.com/narmi/design_system/compare/v6.5.3...v6.5.4) (2026-04-03)
 
 ### fix
 
-* **useDropdownLayer:** honor matchWidth option in all constraints ([](https://github.com/narmi/design_system/commit/f1dd23e070eac9e9c1ef4eaef39b65d2bb057fbc))
+- **useDropdownLayer:** honor matchWidth option in all constraints ([](https://github.com/narmi/design_system/commit/f1dd23e070eac9e9c1ef4eaef39b65d2bb057fbc))
 
 ## [6.5.3](https://github.com/narmi/design_system/compare/v6.5.2...v6.5.3) (2026-04-01)
 
 ### fix
 
-* **style:** update heading family; set default radius on cards ([](https://github.com/narmi/design_system/commit/e2e29a2151da8b1277fad81c1f83e4bdb73a36dc))
+- **style:** update heading family; set default radius on cards ([](https://github.com/narmi/design_system/commit/e2e29a2151da8b1277fad81c1f83e4bdb73a36dc))
 
 ## [6.5.2](https://github.com/narmi/design_system/compare/v6.5.1...v6.5.2) (2026-04-01)
 
 ### fix
 
-* **dist:** update style imports for consumers that rewrite urls ([](https://github.com/narmi/design_system/commit/9e1ab9e176ce7b8214cff1429b16edfd72723d25))
+- **dist:** update style imports for consumers that rewrite urls ([](https://github.com/narmi/design_system/commit/9e1ab9e176ce7b8214cff1429b16edfd72723d25))
 
 ## [6.5.1](https://github.com/narmi/design_system/compare/v6.5.0...v6.5.1) (2026-03-31)
 
 ### build
 
-* **deps-dev:** bump flatted from 3.2.5 to 3.4.2 ([](https://github.com/narmi/design_system/commit/ed9057524e1776d4778bda4824a816eb088b727b))
-* **deps-dev:** bump node-forge from 1.3.3 to 1.4.0 ([](https://github.com/narmi/design_system/commit/5896786e6067d5e0cff8b2a087c88197a032beb9))
-* **deps-dev:** bump picomatch from 2.3.1 to 2.3.2 ([](https://github.com/narmi/design_system/commit/efcbf0e2f64efbf6ade3fb912023606609bdb28d))
-* **deps:** bump serialize-javascript, terser-webpack-plugin and copy-webpack-plugin ([](https://github.com/narmi/design_system/commit/23256d3344819df23d15815f5f9a577bee3c5f86))
+- **deps-dev:** bump flatted from 3.2.5 to 3.4.2 ([](https://github.com/narmi/design_system/commit/ed9057524e1776d4778bda4824a816eb088b727b))
+- **deps-dev:** bump node-forge from 1.3.3 to 1.4.0 ([](https://github.com/narmi/design_system/commit/5896786e6067d5e0cff8b2a087c88197a032beb9))
+- **deps-dev:** bump picomatch from 2.3.1 to 2.3.2 ([](https://github.com/narmi/design_system/commit/efcbf0e2f64efbf6ade3fb912023606609bdb28d))
+- **deps:** bump serialize-javascript, terser-webpack-plugin and copy-webpack-plugin ([](https://github.com/narmi/design_system/commit/23256d3344819df23d15815f5f9a577bee3c5f86))
 
 ### chore
 
-* cleanup ([](https://github.com/narmi/design_system/commit/7eef6e99df7e395524e760dc604a58c948df8c85))
-* **security:** regen lockfile; bump handlebars ([](https://github.com/narmi/design_system/commit/ebdb732fab6d4517dd2566f331049d7c44942cca))
+- cleanup ([](https://github.com/narmi/design_system/commit/7eef6e99df7e395524e760dc604a58c948df8c85))
+- **security:** regen lockfile; bump handlebars ([](https://github.com/narmi/design_system/commit/ebdb732fab6d4517dd2566f331049d7c44942cca))
 
 ### fix
 
-* **useAnchorPolyfill:** fix safari iOS > 26 fallback positioning ([](https://github.com/narmi/design_system/commit/c31a8a90584baa6daa71c9bc55646e3c77972826))
+- **useAnchorPolyfill:** fix safari iOS > 26 fallback positioning ([](https://github.com/narmi/design_system/commit/c31a8a90584baa6daa71c9bc55646e3c77972826))
 
 ## [6.5.0](https://github.com/narmi/design_system/compare/v6.4.0...v6.5.0) (2026-03-27)
 
 ### feat
 
-* **Button,CollapsibleCard:** add AI variants; animate AI border ([](https://github.com/narmi/design_system/commit/9079c3f02f32698d0372303a1661ce7209b9124b))
+- **Button,CollapsibleCard:** add AI variants; animate AI border ([](https://github.com/narmi/design_system/commit/9079c3f02f32698d0372303a1661ce7209b9124b))
 
 ## [6.4.0](https://github.com/narmi/design_system/compare/v6.3.0...v6.4.0) (2026-03-26)
 
 ### feat
 
-* **Button,SplitButton:** add tertiary variant ([](https://github.com/narmi/design_system/commit/9af48418bd5009e58ca48905f32d33583b8887f1))
-* **Button:** adjust spacing, weight, radius to match v2 lib ([](https://github.com/narmi/design_system/commit/38754f6569315b9f231c7fde49b781f791d714b4))
-* **Button:** update disabled states to match v2 lib ([](https://github.com/narmi/design_system/commit/8c129be8df242712995acf128c3dec4456e57076))
+- **Button,SplitButton:** add tertiary variant ([](https://github.com/narmi/design_system/commit/9af48418bd5009e58ca48905f32d33583b8887f1))
+- **Button:** adjust spacing, weight, radius to match v2 lib ([](https://github.com/narmi/design_system/commit/38754f6569315b9f231c7fde49b781f791d714b4))
+- **Button:** update disabled states to match v2 lib ([](https://github.com/narmi/design_system/commit/8c129be8df242712995acf128c3dec4456e57076))
 
 ## [6.3.0](https://github.com/narmi/design_system/compare/v6.2.10...v6.3.0) (2026-03-26)
 
 ### chore
 
-* fix font weights for headings ([](https://github.com/narmi/design_system/commit/03e687e658c918fd10d0321a9e80b8d288818968))
-* wip ([](https://github.com/narmi/design_system/commit/7db5df9075c936cbc7fa0b69e6d545aec4c871b1))
+- fix font weights for headings ([](https://github.com/narmi/design_system/commit/03e687e658c918fd10d0321a9e80b8d288818968))
+- wip ([](https://github.com/narmi/design_system/commit/7db5df9075c936cbc7fa0b69e6d545aec4c871b1))
 
 ### feat
 
-* **tokens:** sync all tokens to NDSv2 lib values ([](https://github.com/narmi/design_system/commit/0044cec038bd8e1d3c0c2a5bf05063f092805173))
+- **tokens:** sync all tokens to NDSv2 lib values ([](https://github.com/narmi/design_system/commit/0044cec038bd8e1d3c0c2a5bf05063f092805173))
 
 ### fix
 
-* update faux and real input radius to match standard ([](https://github.com/narmi/design_system/commit/551d91ad8ea5a0c52ccc01ca49d289fc0745dbcb))
+- update faux and real input radius to match standard ([](https://github.com/narmi/design_system/commit/551d91ad8ea5a0c52ccc01ca49d289fc0745dbcb))
 
 ## [6.2.10](https://github.com/narmi/design_system/compare/v6.2.9...v6.2.10) (2026-03-25)
 
 ### fix
 
-* **Tooltip:** prevent flicker on trigger edge ([](https://github.com/narmi/design_system/commit/f0a66e8f0d3b16372816837189e40bcb1c2ee875))
+- **Tooltip:** prevent flicker on trigger edge ([](https://github.com/narmi/design_system/commit/f0a66e8f0d3b16372816837189e40bcb1c2ee875))
 
 ## [6.2.9](https://github.com/narmi/design_system/compare/v6.2.8...v6.2.9) (2026-03-25)
 
 ### chore
 
-* sync lockfile ([](https://github.com/narmi/design_system/commit/599c90d98e873e60d45056a2ed5ba4007821f6df))
-* sync lockfiles ([](https://github.com/narmi/design_system/commit/094c241fdc3071c9ebe48c31b6a505db6e0b3b00))
-* sync lockfiles ([](https://github.com/narmi/design_system/commit/023e40972e2d14243273f9035f993e4438e4195a))
+- sync lockfile ([](https://github.com/narmi/design_system/commit/599c90d98e873e60d45056a2ed5ba4007821f6df))
+- sync lockfiles ([](https://github.com/narmi/design_system/commit/094c241fdc3071c9ebe48c31b6a505db6e0b3b00))
+- sync lockfiles ([](https://github.com/narmi/design_system/commit/023e40972e2d14243273f9035f993e4438e4195a))
 
 ### fix
 
-* **publish:** force release for OIDC npm publish ([](https://github.com/narmi/design_system/commit/ba3f7cc4716e2eba8c3531ea6b885c70e482407b))
+- **publish:** force release for OIDC npm publish ([](https://github.com/narmi/design_system/commit/ba3f7cc4716e2eba8c3531ea6b885c70e482407b))
 
 ## 6.1.0 (2026-02-11)
 
-* feat(typography): add 18px size as 'l'; mv 'l' to 'xl' ([f227b1c94d9c7ddf81e26818de8e2be61f78f405](https://github.com/narmi/design_system/commit/f227b1c94d9c7ddf81e26818de8e2be61f78f405))
+- feat(typography): add 18px size as 'l'; mv 'l' to 'xl' ([f227b1c94d9c7ddf81e26818de8e2be61f78f405](https://github.com/narmi/design_system/commit/f227b1c94d9c7ddf81e26818de8e2be61f78f405))
 
 ## 6.0.0 (2026-02-3)
 

@@ -157,6 +157,11 @@ $breakpoints: (
   // The 1px of border should always be present, so the
   // input doesn't "bounce" the layout 2px on focus
   border: 1px solid transparent !important;
+
+  input {
+    text-overflow: ellipsis;
+    overflow: ellipsis;
+  }
 }
 
 %tableField-hover {

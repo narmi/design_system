@@ -20,15 +20,6 @@
     }
   }
 
-  // Regardless of what rennders in the DOM, only show the
-  // counter when the input is focused
-  .nds-tableInput-counter {
-    visibility: hidden;
-  }
-  input:focus + .nds-tableInput-counter {
-    visibility: visible;
-  }
-
   &:has(input:hover) {
     @extend %tableField-hover;
   }

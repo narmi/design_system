@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.7.0](https://github.com/narmi/design_system/compare/v6.6.0...v6.7.0) (2026-04-08)
+
+### feat
+
+* **Table:** all table input types auto-truncate on blur ([](https://github.com/narmi/design_system/commit/bd129536d1f3781912a943f39288db35c145988b))
+
+### fix
+
+* **TableInput:** show counter when has count error ([](https://github.com/narmi/design_system/commit/5bbbb0c43d50a86c5bee8ac4d42a292d476ac12e))
+
 ## [6.6.0](https://github.com/narmi/design_system/compare/v6.5.5...v6.6.0) (2026-04-08)
 
 ### build

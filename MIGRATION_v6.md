@@ -174,10 +174,10 @@ The `kind="interactive"` variant has been removed from ContentCard.
 
 #### Migration Guide
 
-| Use Case                           | Replacement Kind | Notes                                         |
-| ---------------------------------- | ---------------- | --------------------------------------------- |
-| Card triggers an action on click   | `kind="button"`  | For actions that only need an `onClick`; renders as a `button`        |
-| Card has selected/unselected state | `kind="toggle"`  | For toggling selected state; renders as a `checkbox` |
+| Use Case                           | Replacement Kind | Notes                                                          |
+| ---------------------------------- | ---------------- | -------------------------------------------------------------- |
+| Card triggers an action on click   | `kind="button"`  | For actions that only need an `onClick`; renders as a `button` |
+| Card has selected/unselected state | `kind="toggle"`  | For toggling selected state; renders as a `checkbox`           |
 
 ### Dropped support for React v16 and v17
 
@@ -251,9 +251,9 @@ The key difference is that behaviors like dismissibility are now decoupled from 
 | `kind`      | `kind`            | `Chip` supports: `"info"`, `"success"`, `"warn"`, `"error"`, `"primary"`, `"secondary"` |
 | `onDismiss` | `onDismiss`       | Same usage - renders close button                                                       |
 | `onClick`   | `onClick`         | Same usage - makes entire chip clickable                                                |
-| -           | `startIcon`       | 🆕 NEW: Add icon at start of label                                                         |
-| -           | `endIcon`         | 🆕 NEW: Add icon at end of label                                                           |
-| -           | `count`           | 🆕 NEW: Display a count badge                                                              |
+| -           | `startIcon`       | 🆕 NEW: Add icon at start of label                                                      |
+| -           | `endIcon`         | 🆕 NEW: Add icon at end of label                                                        |
+| -           | `count`           | 🆕 NEW: Display a count badge                                                           |
 
 #### Examples
 

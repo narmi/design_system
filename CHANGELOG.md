@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.7.0](https://github.com/narmi/design_system/compare/v6.6.0...v6.7.0) (2026-04-08)
+
+### feat
+
+* **Table:** all table input types auto-truncate on blur ([](https://github.com/narmi/design_system/commit/bd129536d1f3781912a943f39288db35c145988b))
+
+### fix
+
+* **TableInput:** show counter when has count error ([](https://github.com/narmi/design_system/commit/5bbbb0c43d50a86c5bee8ac4d42a292d476ac12e))
+
+## [6.6.0](https://github.com/narmi/design_system/compare/v6.5.5...v6.6.0) (2026-04-08)
+
+### build
+
+* **deps-dev:** bump @babel/core from 7.28.4 to 7.29.0 ([](https://github.com/narmi/design_system/commit/edf9edf38570c321f965522485204df2aa7ac116))
+* **deps-dev:** bump @babel/preset-typescript from 7.27.1 to 7.28.5 ([](https://github.com/narmi/design_system/commit/6e49c81f10f8992503dc9e32aaab4b16eaf05232))
+* **deps:** bump @maskito/core from 5.1.0 to 5.1.1 ([](https://github.com/narmi/design_system/commit/c87390e8e881a2366651b676a1d852a214a0e523))
+* **deps-dev:** bump lodash-es from 4.17.23 to 4.18.1 ([](https://github.com/narmi/design_system/commit/597af6ba0109d32c236ee7c2a60a17deee187d2a))
+* **deps-dev:** bump vite from 7.1.11 to 7.3.2 ([](https://github.com/narmi/design_system/commit/f69e33602d14d0f7f416c8e8e4f36a04ec1cadee))
+
+### chore
+
+* **deps:** Bump `usehooks-ts` to v3.1.1 to support React 19 (#2041) ([](https://github.com/narmi/design_system/commit/53a0722073cee88f3db319cf78594b72a2ebb2ba)), closes [#2041](https://github.com/narmi/design_system/issues/2041)
+* **types:** Export RadioButtons Props (#2042) ([](https://github.com/narmi/design_system/commit/fd46c88b12666ca9245f2d0ba9cdb9c2b6ef187e)), closes [#2042](https://github.com/narmi/design_system/issues/2042)
+* force resolution for lodash ([](https://github.com/narmi/design_system/commit/55ad5763c12cd6e47aa7bedfcacd5e14142b5b69))
+* force resolution for undici ([](https://github.com/narmi/design_system/commit/029f1f1de7924d6a7cc5ab4bedaa275ffd98291c))
+
+### feat
+
+* update chip and tag radius and spacing ([](https://github.com/narmi/design_system/commit/10d5de0db101c0438ae73a9b7bcbeca32b10cd09))
+
+### test
+
+* **Combobox:** update test for vitest ([](https://github.com/narmi/design_system/commit/e5ec18a8d3b8f5eb92775c7dfde229c03af2cfa3))
+
 ## [6.5.5](https://github.com/narmi/design_system/compare/v6.5.4...v6.5.5) (2026-04-06)
 
 ### build

@@ -164,30 +164,38 @@ describe("Combobox", () => {
   });
 
   it("input should auto-fill last selection on blur", async () => {
-    const handleChange = vi.fn();
-    render(
-      <Combobox label={LABEL} onChange={handleChange}>
-        {STATE_ITEMS}
-      </Combobox>,
-    );
+    const user = userEvent.setup();
 
-    // open the dropdown
+    // The auto-fill behavior requires a controlled inputValue + onInputChange
+    // pattern — handleBlur calls onInputChange(selectedItem) which the parent
+    // must wire back into inputValue to actually restore the displayed value.
+    const ControlledCombobox = () => {
+      const [inputValue, setInputValue] = React.useState("");
+      return (
+        <Combobox
+          label={LABEL}
+          inputValue={inputValue}
+          onInputChange={setInputValue}
+        >
+          {STATE_ITEMS}
+        </Combobox>
+      );
+    };
+
+    render(<ControlledCombobox />);
+
+    // open the dropdown and select New York
     const input = screen.getByPlaceholderText(LABEL);
     fireEvent.focus(input);
+    fireEvent.click(screen.getByText("New York"));
 
-    // dropdown should be open with state options visible
-    const nyItem = screen.getByText("New York");
+    // user backspaces some of the input, but doesn't totally clear the selection
+    await user.type(input, "{Backspace>4}");
+    expect(input.value).toBe("New ");
 
-    // clicking the item will make `useCombobox` update the selected item,
-    // and our onChange handler should fire with the new value
-    fireEvent.click(nyItem);
-    expect(handleChange).toHaveBeenCalledWith("New York");
-
-    // user backspaces some of the input, but doesn't totally clear selection
-    // when the user blurs away from the input, it should fill itself with the
+    // when the user blurs away from the input, it should auto-fill with the
     // last selected value (New York)
-    userEvent.type(input, "New Y");
-
+    fireEvent.blur(input);
     expect(screen.getByDisplayValue("New York")).toBeInTheDocument();
   });
 
@@ -237,6 +245,7 @@ describe("Combobox", () => {
   });
 
   it("should call onChange with empty string when input is cleared", async () => {
+    const user = userEvent.setup();
     const handleChange = vi.fn();
     render(
       <Combobox label={LABEL} onChange={handleChange}>
@@ -252,7 +261,7 @@ describe("Combobox", () => {
     expect(handleChange).toHaveBeenLastCalledWith("New York");
 
     // Clear the input (simulating backspace)
-    await userEvent.clear(input);
+    await user.clear(input);
 
     // onChange should be called with empty string
     expect(handleChange).toHaveBeenLastCalledWith("");

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.7.1](https://github.com/narmi/design_system/compare/v6.7.0...v6.7.1) (2026-04-09)
+
+### build
+
+* **deps:** bump actions/cache from 4.3.0 to 5.0.4 ([](https://github.com/narmi/design_system/commit/c2ab1f7798a76d433713da2c73cc2bb5346674e8))
+
+### fix
+
+* **AnchoredDialog:** set background to white ([](https://github.com/narmi/design_system/commit/413259b112725aeda56573836c1156153b2a1aef))
+
+### refactor
+
+* **TruncatedAccount:** convert to typescript for prop protection ([](https://github.com/narmi/design_system/commit/bb1521040b931e5a7e5c87127a98fe1d326fbed2))
+
 ## [6.7.0](https://github.com/narmi/design_system/compare/v6.6.0...v6.7.0) (2026-04-08)
 
 ### feat

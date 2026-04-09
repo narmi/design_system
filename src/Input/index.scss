@@ -67,10 +67,6 @@
     pointer-events: none;
     user-select: none;
     background-color: var(--bgColor-smokeGrey) !important;
-
-    input {
-      color: var(--color-mediumGrey);
-    }
   }
 
   &.error {
@@ -108,15 +104,11 @@
   input,
   textarea {
     background: transparent;
-  }
-
-  input {
-    color: var(--color-grey);
+    color: var(--font-color-primary);
   }
 
   textarea {
     @extend %shared-multiline-styles;
-    color: var(--color-grey);
     width: 100%;
     resize: none;
   }
@@ -164,7 +156,7 @@
 
 input::placeholder,
 textarea::placeholder {
-  color: var(--color-mediumGrey);
+  color: var(--font-color-secondary);
   font-weight: var(--font-weight-default);
   text-rendering: geometricPrecision;
 }
@@ -172,7 +164,7 @@ textarea::placeholder {
 input::autofill,
 textarea::autofill {
   background: transparent;
-  color: var(--color-mediumGrey);
+  color: var(--font-color-secondary);
 }
 
 .nds-input-multiline-grid {

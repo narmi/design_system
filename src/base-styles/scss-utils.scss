@@ -76,14 +76,53 @@ $breakpoints: (
 * Dropdown Placeholder
 * Apply to element that holds the dropdown `listbox`/`ul`
 */
+
+/**
+* Register --nds-layer-max-height as a typed custom property.
+* syntax: "<length>" causes the browser to resolve anchor() references at the
+* element where the property is set (the anchor-positioned layer wrapper), so
+* children inherit the already-resolved pixel value rather than the raw
+* anchor() token string — which would be invalid in a child's max-height.
+* initial-value: 100svh is a safe fallback when the property hasn't been set.
+*/
+@property --nds-layer-max-height {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 100svh;
+}
+
+/**
+* Named @position-try rule for the above-anchor flip fallback (native CSS anchor path).
+* Referenced by `position-try-fallbacks: --nds-dropdown-above` in useDropdownLayer/index.ts.
+* Overrides position-area and --nds-layer-max-height for the case where the dropdown
+* opens above the anchor. anchor(bottom) = distance from viewport top to anchor bottom
+* = the space available above for the dropdown. safe-area-inset-top guards the notch.
+*/
+/* stylelint-disable-next-line at-rule-no-unknown */
+@position-try --nds-dropdown-above {
+  position-area: top;
+  /* stylelint-disable-next-line custom-property-pattern */
+  --nds-layer-max-height: calc(
+    anchor(top) - env(safe-area-inset-top, 0px) - 8px
+  );
+  max-height: var(--nds-layer-max-height);
+}
+
 %nds-dropdown-layer {
   overflow-y: auto;
-  max-height: var(--js-dropdown-maxHeight);
+  // Polyfill path: --js-dropdown-maxHeight is set by JS to the raw available
+  // visual-viewport space. Subtract safe-area-inset-bottom here because JS
+  // cannot read env() values directly.
+  // Native path: max-height is set inline via --nds-layer-max-height (which
+  // already includes the safe-area subtraction) and overrides this rule.
+  /* stylelint-disable-next-line custom-property-pattern */
+  max-height: calc(
+    var(--js-dropdown-maxHeight) - env(safe-area-inset-bottom, 0px)
+  );
   border: 1px solid var(--theme-primary);
   border-radius: var(--border-radius-default);
   margin-top: var(--space-xxs) !important;
   margin-bottom: var(--space-xxs) !important;
-  max-width: 80vw;
 
   &:focus {
     outline: none;

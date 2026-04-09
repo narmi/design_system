@@ -8,7 +8,14 @@
 
 .nds-multiselect-list {
   @extend %nds-dropdown-layer;
-  max-height: 46vh;
+  // Prefer 46vh but let the hook's --nds-layer-max-height constraint win when
+  // space is tight (e.g. virtual keyboard open). env(safe-area-inset-bottom)
+  // is subtracted here because --nds-layer-max-height does not include it.
+  /* stylelint-disable-next-line custom-property-pattern */
+  max-height: min(
+    46vh,
+    calc(var(--nds-layer-max-height, 46vh) - env(safe-area-inset-bottom, 0px))
+  );
 }
 
 .nds-multiselect-item {

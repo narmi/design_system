@@ -304,7 +304,14 @@ const Select = ({
             },
           ])}
           {...getMenuProps()}
-          style={{ maxHeight: maxMenuHeight }}
+          style={{
+            // Prefer the consumer's maxMenuHeight, but let the hook's
+            // --nds-layer-max-height constraint win when space is tight
+            // (e.g. virtual keyboard open). env(safe-area-inset-bottom)
+            // is subtracted here because this is a child of layerProps
+            // and the custom property value does not include it.
+            maxHeight: `min(${maxMenuHeight}, calc(var(--nds-layer-max-height, ${maxMenuHeight}) - env(safe-area-inset-bottom, 0px)))`,
+          }}
         >
           {showMenu &&
             hasCategories &&

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.7.2](https://github.com/narmi/design_system/compare/v6.7.1...v6.7.2) (2026-04-09)
+
+### fix
+
+* **TextInput,Field:** set input value color to primary ([](https://github.com/narmi/design_system/commit/107c67796b4f4f8b37bcb2229f2fa217f29a8176))
+
 ## [6.7.1](https://github.com/narmi/design_system/compare/v6.7.0...v6.7.1) (2026-04-09)
 
 ### build

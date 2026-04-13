@@ -15,7 +15,7 @@
 .nds-anchoredDialog-inner {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  @include nds-layer-max-height(70vh);
+  @include nds-layer-max-height-with-fallback(70vh);
 }
 
 .nds-anchoredDialog-header,

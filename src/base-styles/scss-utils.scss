@@ -73,27 +73,23 @@ $breakpoints: (
 }
 
 /**
-* Dropdown Placeholder
-* Apply to element that holds the dropdown `listbox`/`ul`
+* Defines a custom `position-try` value.
+*
+* Sets --nds-layer-max-height to the space available above the anchor:
+*   anchor(top) = distance from viewport top to anchor's top edge
+*   minus safe-area-inset-top (notch) and a small gap.
+*
+* Because --nds-layer-max-height is a typed inherited custom property (@property),
+* child elements that call @include nds-layer-max-height-with-fallback() will receive this
+* computed value and constrain themselves accordingly.
+* (Do not replace max-height here with the mixin — this block is the producer
+* of --nds-layer-max-height, not a consumer of it.)
 */
 
 /**
-* Named @position-try rule for the above-anchor flip fallback (native CSS anchor path).
-* Referenced by `position-try-fallbacks: --nds-dropdown-above` in useDropdownLayer/index.ts.
-* Overrides position-area and --nds-layer-max-height for the case where the dropdown
-* opens above the anchor. anchor(bottom) = distance from viewport top to anchor bottom
-* = the space available above for the dropdown. safe-area-inset-top guards the notch.
+* Dropdown Placeholder
+* Apply to element that holds the dropdown `listbox`/`ul`
 */
-/* stylelint-disable-next-line at-rule-no-unknown */
-@position-try --nds-dropdown-above {
-  position-area: top;
-  /* stylelint-disable-next-line custom-property-pattern */
-  --nds-layer-max-height: calc(
-    anchor(top) - env(safe-area-inset-top, 0px) - 8px
-  );
-  max-height: var(--nds-layer-max-height);
-}
-
 %nds-dropdown-layer {
   overflow-y: auto;
   max-height: calc(
@@ -127,10 +123,10 @@ $breakpoints: (
 *
 * @usage
 * ```scss
-* .dropdown-height-constraining-el { @include nds-layer-max-height(70vh); }
+* .dropdown-height-constraining-el { @include nds-layer-max-height-with-fallback(70vh); }
 * ```
 */
-@mixin nds-layer-max-height($fallback: 70vh) {
+@mixin nds-layer-max-height-with-fallback($fallback: 70vh) {
   max-height: min(
     #{$fallback},
     calc(

@@ -91,9 +91,6 @@ const useDropdownLayer = ({
     const anchorPositionStyles = {
       position: "fixed" as const,
       positionAnchor: anchorName,
-      // --nds-dropdown-above is a named @position-try rule defined in scss-utils.scss.
-      // It overrides position-area and --nds-layer-max-height for the above-anchor fallback.
-      // flip-inline remains as a final fallback for horizontal overflow.
       positionTryFallbacks: "--nds-dropdown-above, flip-inline",
       width: matchWidth ? "anchor-size(width)" : "max-content",
       maxWidth: matchWidth ? "anchor-size(width)" : "80svh",

@@ -21,3 +21,17 @@
   inherits: true;
   initial-value: 100svh;
 }
+
+/**
+* Defines a `position-try` ruleset used by `useDropdownLayer`.
+* This is the default strategy for placing dropdowns, and we also
+* use this ruleset to calculate the max height of the dropdown based
+* on visible viewport space.
+*/
+@position-try --nds-dropdown-above {
+  position-area: top;
+  --nds-layer-max-height: calc(
+    anchor(top) - env(safe-area-inset-top, 0px) - var(--space-s)
+  );
+  max-height: var(--nds-layer-max-height);
+}

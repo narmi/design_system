@@ -73,20 +73,6 @@ $breakpoints: (
 }
 
 /**
-* Defines a custom `position-try` value.
-*
-* Sets --nds-layer-max-height to the space available above the anchor:
-*   anchor(top) = distance from viewport top to anchor's top edge
-*   minus safe-area-inset-top (notch) and a small gap.
-*
-* Because --nds-layer-max-height is a typed inherited custom property (@property),
-* child elements that call @include nds-layer-max-height-with-fallback() will receive this
-* computed value and constrain themselves accordingly.
-* (Do not replace max-height here with the mixin — this block is the producer
-* of --nds-layer-max-height, not a consumer of it.)
-*/
-
-/**
 * Dropdown Placeholder
 * Apply to element that holds the dropdown `listbox`/`ul`
 */

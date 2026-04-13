@@ -97,7 +97,7 @@ const useDropdownLayer = ({
       positionTryFallbacks: "--nds-dropdown-above, flip-inline",
       marginTop: "var(--space-xxs)",
       width: matchWidth ? "anchor-size(width)" : "min(80vw, max-content)",
-      maxWidth: matchWidth ? "anchor-size(width)" : "80svh",
+      maxWidth: matchWidth ? "anchor-size(width)" : "80vw",
       minWidth: matchWidth ? "anchor-size(width)" : "auto",
     };
 

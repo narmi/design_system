@@ -73,18 +73,14 @@ $breakpoints: (
 }
 
 /**
-* Dropdown Placeholder
-* Apply to element that holds the dropdown `listbox`/`ul`
-*/
+ * Dropdown Placeholder
+ * Apply to element that holds the dropdown `listbox`/`ul`
+ */
 %nds-dropdown-layer {
   overflow-y: auto;
-  max-height: calc(
-    var(--js-dropdown-maxHeight) - env(safe-area-inset-bottom, 0px)
-  );
+  max-height: var(--js-dropdown-max-height);
   border: 1px solid var(--theme-primary);
   border-radius: var(--border-radius-default);
-  margin-top: var(--space-xxs) !important;
-  margin-bottom: var(--space-xxs) !important;
 
   &:focus {
     outline: none;
@@ -93,35 +89,6 @@ $breakpoints: (
   &--error {
     border: 1px solid var(--color-errorDark);
   }
-}
-
-/**
-* Some of our dropdown/popover components allow the developer to pass
-* a height or max height prop. For those components, this mixin may be used
-* to pass through the preferred height to a `min()` function value against
-* the `--nds-layer-max-height` computed property from `useDropdownLayer`.
-*
-* This allows the dropdown to respect the preferred height while maintaining
-* viewport and safe area awareness.
-*
-* @param {length} $fallback - viewport-relative max-height used when the
-*   custom property has not been set. Defaults to 70vh.
-*
-* @usage
-* ```scss
-* .dropdown-height-constraining-el { @include nds-layer-max-height-with-fallback(70vh); }
-* ```
-*/
-@mixin nds-layer-max-height-with-fallback($fallback: 70vh) {
-  max-height: min(
-    #{$fallback},
-    calc(
-      var(--nds-layer-max-height, #{$fallback}) - env(
-          safe-area-inset-bottom,
-          0px
-        )
-    )
-  );
 }
 
 @keyframes ai-border-rotate {

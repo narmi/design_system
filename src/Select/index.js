@@ -129,7 +129,6 @@ const Select = ({
   clearSelectionOnAction = false,
   errorText,
   testId,
-  maxMenuHeight = "40vh",
 }) => {
   let items = []; // List of all item types to pass to downshift state management
   let categories = []; // Categories extracted from Select.Category children
@@ -304,14 +303,6 @@ const Select = ({
             },
           ])}
           {...getMenuProps()}
-          style={{
-            // Prefer the consumer's maxMenuHeight, but let the hook's
-            // --nds-layer-max-height constraint win when space is tight
-            // (e.g. virtual keyboard open). env(safe-area-inset-bottom)
-            // is subtracted here because this is a child of layerProps
-            // and the custom property value does not include it.
-            maxHeight: `min(${maxMenuHeight}, calc(var(--nds-layer-max-height, ${maxMenuHeight}) - env(safe-area-inset-bottom, 0px)))`,
-          }}
         >
           {showMenu &&
             hasCategories &&
@@ -435,8 +426,6 @@ Select.propTypes = {
    * of a disabled input. User interaction is disabled.
    */
   disabled: PropTypes.bool,
-  /** Optional override to set CSS value for max height of menu */
-  maxMenuHeight: PropTypes.string,
 };
 
 Select.Item = SelectItem;

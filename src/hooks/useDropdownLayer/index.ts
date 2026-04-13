@@ -1,5 +1,6 @@
 import { useId, useRef, useMemo } from "react";
 import useAnchorPolyfill from "./useAnchorPolyfill";
+import useDropdownMaxHeight from "./useDropdownMaxHeight";
 
 export type UseDropdownLayerResult = {
   /** Props to spread onto the anchor/trigger element */
@@ -71,6 +72,8 @@ const useDropdownLayer = ({
     setIsOpen,
   });
 
+  useDropdownMaxHeight({ anchorRef, layerRef, isOpen });
+
   // Memoized props to spread onto the anchor (positioning reference) element
   const anchorProps = useMemo(
     () => ({
@@ -86,23 +89,16 @@ const useDropdownLayer = ({
 
   // Memoized props to spread onto the positioned layer element
   const layerProps = useMemo(() => {
-    // We used fixed position 100% of the time anchor positioning is supported.
-    // Width and positioning strategy differs based on the `matchWidth` and `isPortalled` options
+    // The anchor uses position fixed regardless of code path.
     const anchorPositionStyles = {
       position: "fixed" as const,
       positionAnchor: anchorName,
+      positionArea: "bottom",
       positionTryFallbacks: "--nds-dropdown-above, flip-inline",
-      width: matchWidth ? "anchor-size(width)" : "max-content",
+      marginTop: "var(--space-xxs)",
+      width: matchWidth ? "anchor-size(width)" : "min(80vw, max-content)",
       maxWidth: matchWidth ? "anchor-size(width)" : "80svh",
       minWidth: matchWidth ? "anchor-size(width)" : "auto",
-      positionArea: "bottom",
-      // Safe-area-aware max-height for the default below-anchor position.
-      // anchor(top) = distance from viewport top to anchor's top edge (space consumed above).
-      // 100svh = small viewport height, which shrinks when the virtual keyboard opens on iOS.
-      // --nds-layer-max-height is inherited by child elements so they can consume it via min().
-      "--nds-layer-max-height":
-        "calc(100svh - anchor(bottom) - env(safe-area-inset-bottom, 0px) - 8px)",
-      maxHeight: "var(--nds-layer-max-height)",
     };
 
     const layerStyle = {
@@ -111,10 +107,6 @@ const useDropdownLayer = ({
         : polyFillLayerStyles),
 
       // Always include display and z-index.
-      // In the polyfill path the layer is always position:fixed with a higher
-      // z-index. In the native path, fixed positioning is also used (required
-      // for position-try-fallbacks to work against the viewport), so a lower
-      // z-index is sufficient.
       display: isOpen ? "block" : "none",
       zIndex: isAnchorPositionSupported ? 4 : 9,
     };

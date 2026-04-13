@@ -10,28 +10,15 @@
 }
 
 /**
-* Set by `useDropdownLayer` to dynamically constrain the
-* height of dropdown layers based on available visual viewport.
-*
-* The `svh` unit refers to "small viewport height". On mobile devices,
-* "small" means the keyboard is open. `lvh` is keyboard closed.
-*/
-@property --nds-layer-max-height {
-  syntax: "<length>";
-  inherits: true;
-  initial-value: 100svh;
-}
-
-/**
 * Defines a `position-try` ruleset used by `useDropdownLayer`.
-* This is the default strategy for placing dropdowns, and we also
-* use this ruleset to calculate the max height of the dropdown based
-* on visible viewport space.
+* When the dropdown overflows below the anchor, the browser tries this
+* ruleset to flip the layer above the anchor.
+*
+* Max-height is handled separately via `--js-dropdown-max-height`, set by
+* the `useDropdownMaxHeight` hook on both the native and polyfill paths.
 */
 @position-try --nds-dropdown-above {
   position-area: top;
-  --nds-layer-max-height: calc(
-    anchor(top) - env(safe-area-inset-top, 0px) - var(--space-s)
-  );
-  max-height: var(--nds-layer-max-height);
+  margin-top: 0;
+  margin-bottom: var(--space-xxs);
 }

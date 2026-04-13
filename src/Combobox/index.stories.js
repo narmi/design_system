@@ -580,6 +580,5 @@ export const OverridingMenuHeight = Template.bind({});
 OverridingMenuHeight.args = {
   label: "Select your state (10vh menu)",
   icon: "search",
-  maxMenuHeight: "10vh",
   children,
 };

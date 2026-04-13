@@ -8,7 +8,6 @@
 
 .nds-multiselect-list {
   @extend %nds-dropdown-layer;
-  @include nds-layer-max-height-with-fallback(46vh);
 }
 
 .nds-multiselect-item {

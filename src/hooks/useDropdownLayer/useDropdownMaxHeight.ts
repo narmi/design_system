@@ -25,11 +25,6 @@ export const resolveSpaceToken = (
  * Measures available space above and below the anchor element and writes
  * `--js-dropdown-max-height` to the layer element as a pixel value.
  *
- * Sets the value to `max(spaceAbove, spaceBelow)` so it is correct regardless
- * of which side the dropdown ends up on — both the native CSS anchor
- * positioning path (via `position-try-order: most-height`) and the JS polyfill
- * path always choose the side with more space.
- *
  * Re-runs on `visualViewport` resize to handle virtual keyboard changes.
  */
 const useDropdownMaxHeight = ({

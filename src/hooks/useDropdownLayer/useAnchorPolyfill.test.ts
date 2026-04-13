@@ -1,4 +1,4 @@
-import { calculatePosition, computeTightRootMargin } from "./useAnchorPolyfill";
+import { calculatePosition, computeRootMargin } from "./useAnchorPolyfill";
 
 const VIEWPORT_WIDTH = 1024;
 const VIEWPORT_HEIGHT = 768;
@@ -28,10 +28,6 @@ const getProps = (el: HTMLElement): Record<string, string | null> => ({
   "--js-dropdown-bottom":
     el.style.getPropertyValue("--js-dropdown-bottom") || null,
   "--js-dropdown-left": el.style.getPropertyValue("--js-dropdown-left") || null,
-  "--js-dropdown-maxHeight":
-    el.style.getPropertyValue("--js-dropdown-maxHeight") || null,
-  "--nds-layer-max-height":
-    el.style.getPropertyValue("--nds-layer-max-height") || null,
   "--js-dropdown-width":
     el.style.getPropertyValue("--js-dropdown-width") || null,
 });
@@ -59,7 +55,8 @@ describe("calculatePosition", () => {
   describe("positioning below anchor (enough space below)", () => {
     it("sets --js-dropdown-top relative to layer offset", () => {
       // Anchor near the top → lots of space below; layer starts at top: 0.
-      // --js-dropdown-top = anchorRect.bottom - layerRect.top = 150 - 0 = 150px
+      // anchorGap falls back to 4px in jsdom (CSS token unresolvable).
+      // --js-dropdown-top = anchorRect.bottom - layerRect.top + anchorGap = 150 - 0 + 4 = 154px
       const anchor = makeEl({
         top: 100,
         bottom: 150,
@@ -80,12 +77,11 @@ describe("calculatePosition", () => {
       calculatePosition(anchor, layer, false);
 
       const props = getProps(layer);
-      expect(props["--js-dropdown-top"]).toBe("150px");
+      expect(props["--js-dropdown-top"]).toBe("154px");
       expect(props["--js-dropdown-bottom"]).toBeNull();
     });
 
-    it("sets height custom properties to space below minus margin", () => {
-      // spaceBelow = 768 - 150 - 8 = 610
+    it("does not set max-height properties (owned by useDropdownMaxHeight)", () => {
       const anchor = makeEl({
         top: 100,
         bottom: 150,
@@ -105,16 +101,20 @@ describe("calculatePosition", () => {
 
       calculatePosition(anchor, layer, false);
 
-      const props = getProps(layer);
-      expect(props["--js-dropdown-maxHeight"]).toBe("610px");
-      expect(props["--nds-layer-max-height"]).toBe("610px");
+      expect(
+        layer.style.getPropertyValue("--js-dropdown-maxHeight"),
+      ).toBeFalsy();
+      expect(
+        layer.style.getPropertyValue("--nds-layer-max-height"),
+      ).toBeFalsy();
     });
   });
 
   describe("positioning above anchor (more space above)", () => {
     it("sets --js-dropdown-bottom and clears --js-dropdown-top", () => {
       // Anchor near the bottom → more space above.
-      // --js-dropdown-bottom = vvHeight - anchorRect.top = 768 - 568 = 200px
+      // anchorGap falls back to 4px in jsdom (CSS token unresolvable).
+      // --js-dropdown-bottom = vvHeight - anchorRect.top + anchorGap = 768 - 568 + 4 = 204px
       const anchor = makeEl({
         top: 568,
         bottom: 608,
@@ -135,34 +135,8 @@ describe("calculatePosition", () => {
       calculatePosition(anchor, layer, false);
 
       const props = getProps(layer);
-      expect(props["--js-dropdown-bottom"]).toBe("200px");
+      expect(props["--js-dropdown-bottom"]).toBe("204px");
       expect(props["--js-dropdown-top"]).toBeNull();
-    });
-
-    it("sets height custom properties to space above minus margin", () => {
-      // spaceAbove = 568 - 8 = 560
-      const anchor = makeEl({
-        top: 568,
-        bottom: 608,
-        left: 0,
-        right: 200,
-        width: 200,
-        height: 40,
-      });
-      const layer = makeEl({
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 200,
-        width: 200,
-        height: 0,
-      });
-
-      calculatePosition(anchor, layer, false);
-
-      const props = getProps(layer);
-      expect(props["--js-dropdown-maxHeight"]).toBe("560px");
-      expect(props["--nds-layer-max-height"]).toBe("560px");
     });
   });
 
@@ -242,7 +216,9 @@ describe("calculatePosition", () => {
 
   describe("available space floor", () => {
     it("clamps availableSpace to 0 when anchor spans the full viewport", () => {
-      // Anchor spans the full viewport: spaceAbove = -50 - 8 < 0, spaceBelow = 768 - 820 - 8 < 0.
+      // Anchor spans the full viewport — spaceAbove and spaceBelow are both negative.
+      // calculatePosition should still run without errors; max-height is handled
+      // by useDropdownMaxHeight which clamps to 0.
       const anchor = makeEl({
         top: -50,
         bottom: 820,
@@ -260,14 +236,12 @@ describe("calculatePosition", () => {
         height: 0,
       });
 
-      calculatePosition(anchor, layer, false);
-
-      expect(getProps(layer)["--js-dropdown-maxHeight"]).toBe("0px");
+      expect(() => calculatePosition(anchor, layer, false)).not.toThrow();
     });
   });
 });
 
-describe("computeTightRootMargin", () => {
+describe("computeRootMargin", () => {
   it("returns a rootMargin string that insets flush with the rect", () => {
     const rect = {
       top: 100,
@@ -281,7 +255,7 @@ describe("computeTightRootMargin", () => {
       toJSON: () => {},
     } as DOMRect;
 
-    const result = computeTightRootMargin(rect);
+    const result = computeRootMargin(rect);
 
     // top=-100, right=-(1024-300)=-724, bottom=-(768-200)=-568, left=-50
     expect(result).toBe("-100px -724px -568px -50px");
@@ -300,7 +274,7 @@ describe("computeTightRootMargin", () => {
       toJSON: () => {},
     } as DOMRect;
 
-    const result = computeTightRootMargin(rect);
+    const result = computeRootMargin(rect);
 
     // top=floor(100.9)=100, right=floor(1024-300.6)=floor(723.4)=723
     // bottom=floor(768-200.1)=floor(567.9)=567, left=floor(50.8)=50
@@ -333,6 +307,6 @@ describe("computeTightRootMargin", () => {
       toJSON: () => {},
     } as DOMRect;
 
-    expect(computeTightRootMargin(rect)).toBe("0px 0px 0px 0px");
+    expect(computeRootMargin(rect)).toBe("0px 0px 0px 0px");
   });
 });

@@ -1,0 +1,23 @@
+// Typed native CSS custom properties
+
+/**
+* Allows degrees to be animatiable/interpolable
+*/
+@property --animatable-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/**
+* Set by `useDropdownLayer` to dynamically constrain the
+* height of dropdown layers based on available visual viewport.
+*
+* The `svh` unit refers to "small viewport height". On mobile devices,
+* "small" means the keyboard is open. `lvh` is keyboard closed.
+*/
+@property --nds-layer-max-height {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 100svh;
+}

@@ -108,7 +108,7 @@ const useDropdownLayer = ({
 
       // Always include display and z-index.
       display: isOpen ? "block" : "none",
-      zIndex: isAnchorPositionSupported ? 4 : 9,
+      zIndex: isPortalled ? 9 : 4,
     };
 
     return {

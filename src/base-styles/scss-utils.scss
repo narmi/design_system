@@ -133,6 +133,35 @@ $breakpoints: (
   }
 }
 
+/**
+* Some of our dropdown/popover components allow the developer to pass
+* a height or max height prop. For those components, this mixin may be used
+* to pass through the preferred height to a `min()` function value against
+* the `--nds-layer-max-height` computed property from `useDropdownLayer`.
+*
+* This allows the dropdown to respect the preferred height while maintaining
+* viewport and safe area awareness.
+*
+* @param {length} $fallback - viewport-relative max-height used when the
+*   custom property has not been set. Defaults to 70vh.
+*
+* @usage
+* ```scss
+* .dropdown-height-constraining-el { @include nds-layer-max-height(70vh); }
+* ```
+*/
+@mixin nds-layer-max-height($fallback: 70vh) {
+  max-height: min(
+    #{$fallback},
+    calc(
+      var(--nds-layer-max-height, #{$fallback}) - env(
+          safe-area-inset-bottom,
+          0px
+        )
+    )
+  );
+}
+
 @property --animatable-angle {
   syntax: "<angle>";
   initial-value: 0deg;

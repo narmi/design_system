@@ -578,7 +578,7 @@ WithLongLabels.parameters = {
 
 export const OverridingMenuHeight = Template.bind({});
 OverridingMenuHeight.args = {
-  label: "Select your state (10vh menu)",
+  label: "Select your state",
   icon: "search",
   children,
 };

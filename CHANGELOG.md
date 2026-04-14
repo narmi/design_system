@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.8.1](https://github.com/narmi/design_system/compare/v6.8.0...v6.8.1) (2026-04-14)
+
+### fix
+
+* guard window methods for SSR consumers ([](https://github.com/narmi/design_system/commit/22556dfc2c68bae4639c30c1cd2c6134b04064c4))
+
 ## [6.8.0](https://github.com/narmi/design_system/compare/v6.7.2...v6.8.0) (2026-04-14)
 
 ### feat

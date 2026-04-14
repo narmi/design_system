@@ -85,7 +85,7 @@ export const computeRootMargin = (rect: DOMRect): string => {
 
 /**
  * Polyfill for CSS anchor positioning: `position-area: bottom` with
- * `position-try-fallbacks: flip-block`.
+ * `positionTryFallbacks: "--nds-dropdown-above, flip-inline"`.
  */
 const useAnchorPolyfill = ({
   anchorRef,

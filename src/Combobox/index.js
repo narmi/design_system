@@ -150,7 +150,6 @@ const Combobox = ({
   icon,
   testId,
   renderEndContent = defaultRenderEndContent,
-  maxMenuHeight = "40vh",
 }) => {
   const allChildren = useMemo(
     () => React.Children.toArray(children),
@@ -438,7 +437,6 @@ const Combobox = ({
               },
             ])}
             {...getMenuProps()}
-            style={{ maxHeight: maxMenuHeight }}
           >
             {isOpen &&
               (hasCategories

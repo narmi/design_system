@@ -1,0 +1,24 @@
+// Typed native CSS custom properties
+
+/**
+* Allows degrees to be animatable/interpolable
+*/
+@property --animatable-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/**
+* Defines a `position-try` ruleset used by `useDropdownLayer`.
+* When the dropdown overflows below the anchor, the browser tries this
+* ruleset to flip the layer above the anchor.
+*
+* Max-height is handled separately via `--js-dropdown-max-height`, set by
+* the `useDropdownMaxHeight` hook on both the native and polyfill paths.
+*/
+@position-try --nds-dropdown-above {
+  position-area: top;
+  margin-top: 0;
+  margin-bottom: var(--space-xxs);
+}

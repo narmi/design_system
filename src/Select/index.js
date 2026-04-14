@@ -129,7 +129,6 @@ const Select = ({
   clearSelectionOnAction = false,
   errorText,
   testId,
-  maxMenuHeight = "40vh",
 }) => {
   let items = []; // List of all item types to pass to downshift state management
   let categories = []; // Categories extracted from Select.Category children
@@ -304,7 +303,6 @@ const Select = ({
             },
           ])}
           {...getMenuProps()}
-          style={{ maxHeight: maxMenuHeight }}
         >
           {showMenu &&
             hasCategories &&
@@ -428,8 +426,6 @@ Select.propTypes = {
    * of a disabled input. User interaction is disabled.
    */
   disabled: PropTypes.bool,
-  /** Optional override to set CSS value for max height of menu */
-  maxMenuHeight: PropTypes.string,
 };
 
 Select.Item = SelectItem;

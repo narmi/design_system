@@ -1,5 +1,6 @@
 import { useId, useRef, useMemo } from "react";
 import useAnchorPolyfill from "./useAnchorPolyfill";
+import useDropdownMaxHeight from "./useDropdownMaxHeight";
 
 export type UseDropdownLayerResult = {
   /** Props to spread onto the anchor/trigger element */
@@ -51,7 +52,7 @@ const useDropdownLayer = ({
   isOpen,
   setIsOpen,
   matchWidth = true,
-  isPortalled = false, // Default to false
+  isPortalled = false,
   ariaPopupType = "menu",
 }: UseDropdownLayerOptions): UseDropdownLayerResult => {
   const anchorRef = useRef<HTMLElement>(null);
@@ -71,6 +72,8 @@ const useDropdownLayer = ({
     setIsOpen,
   });
 
+  useDropdownMaxHeight({ anchorRef, layerRef, isOpen });
+
   // Memoized props to spread onto the anchor (positioning reference) element
   const anchorProps = useMemo(
     () => ({
@@ -86,25 +89,26 @@ const useDropdownLayer = ({
 
   // Memoized props to spread onto the positioned layer element
   const layerProps = useMemo(() => {
+    // The anchor uses position fixed regardless of code path.
+    const anchorPositionStyles = {
+      position: "fixed" as const,
+      positionAnchor: anchorName,
+      positionArea: "bottom",
+      positionTryFallbacks: "--nds-dropdown-above, flip-inline",
+      marginTop: "var(--space-xxs)",
+      width: matchWidth ? "anchor-size(width)" : "min(80vw, max-content)",
+      maxWidth: matchWidth ? "anchor-size(width)" : "80vw",
+      minWidth: matchWidth ? "anchor-size(width)" : "auto",
+    };
+
     const layerStyle = {
       ...(isAnchorPositionSupported
-        ? {
-            position: isPortalled ? ("fixed" as const) : ("absolute" as const),
-            positionAnchor: anchorName,
-            top: "anchor(bottom)",
-            left: "anchor(start)",
-            positionTryFallbacks: "flip-block, flip-inline",
-            width: matchWidth ? "anchor-size(width)" : "max-content",
-            maxWidth: matchWidth ? "anchor-size(width)" : undefined,
-            minWidth: matchWidth ? "anchor-size(width)" : undefined,
-          }
+        ? anchorPositionStyles
         : polyFillLayerStyles),
 
       // Always include display and z-index.
-      // In the polyfill path the layer is always position:fixed, so always
-      // use the higher z-index regardless of isPortalled.
       display: isOpen ? "block" : "none",
-      zIndex: isAnchorPositionSupported && !isPortalled ? 4 : 9,
+      zIndex: isPortalled ? 9 : 4,
     };
 
     return {
@@ -114,11 +118,11 @@ const useDropdownLayer = ({
   }, [
     isOpen,
     isAnchorPositionSupported,
+    isPortalled,
     anchorName,
     matchWidth,
     polyFillLayerStyles,
     layerRef,
-    isPortalled,
   ]);
 
   return {

@@ -10,13 +10,13 @@
   width: clamp(200px, max-content, 50vw);
 
   background: var(--color-white);
+  height: 60vh;
 }
 
 .nds-anchoredDialog-inner {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  max-height: 100%;
-  min-height: 0;
+  height: 100%;
 }
 
 .nds-anchoredDialog-header,

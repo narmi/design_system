@@ -14,6 +14,7 @@ export const resolveSpaceToken = (
   property: string,
   fallback: number,
 ): number => {
+  if (typeof document === "undefined") return fallback;
   const raw = getComputedStyle(document.documentElement)
     .getPropertyValue(property)
     .trim();

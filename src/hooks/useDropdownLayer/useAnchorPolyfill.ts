@@ -24,6 +24,7 @@ export const calculatePosition = (
   layerEl: HTMLElement,
   matchWidth: boolean,
 ): void => {
+  if (typeof window === "undefined") return;
   const anchorRect = anchorEl.getBoundingClientRect();
   if (anchorRect.width === 0) return;
 
@@ -74,8 +75,14 @@ export const calculatePosition = (
 export const computeRootMargin = (rect: DOMRect): string => {
   // Use visual viewport dimensions — getBoundingClientRect() returns coords
   // relative to the visual viewport, so the IO root margin must match.
-  const vw = window.visualViewport?.width ?? window.innerWidth;
-  const vh = window.visualViewport?.height ?? window.innerHeight;
+  const vw =
+    (typeof window !== "undefined" &&
+      (window.visualViewport?.width ?? window.innerWidth)) ||
+    0;
+  const vh =
+    (typeof window !== "undefined" &&
+      (window.visualViewport?.height ?? window.innerHeight)) ||
+    0;
   const top = Math.floor(rect.top);
   const left = Math.floor(rect.left);
   const right = Math.floor(vw - rect.right);

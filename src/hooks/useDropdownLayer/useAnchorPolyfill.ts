@@ -99,6 +99,7 @@ const useAnchorPolyfill = ({
   useLayoutEffect(() => {
     if (isAnchorPositionSupported || !isOpen) return;
 
+    let disposed = false;
     let currentObserver: IntersectionObserver | undefined;
     const anchorEl = anchorRef.current;
     const layerEl = layerRef.current;
@@ -107,6 +108,7 @@ const useAnchorPolyfill = ({
     const calculateArgs = [anchorEl, layerEl, matchWidth] as const;
 
     const armObserver = () => {
+      if (disposed) return;
       currentObserver?.disconnect();
 
       const currentRect = anchorEl.getBoundingClientRect();
@@ -119,6 +121,7 @@ const useAnchorPolyfill = ({
             layerEl.style.visibility = "hidden";
             io.disconnect();
             requestAnimationFrame(() => {
+              if (disposed) return;
               armObserver();
             });
           } else {
@@ -147,6 +150,7 @@ const useAnchorPolyfill = ({
     const handleViewportResize = () => {
       layerEl.style.visibility = "hidden";
       requestAnimationFrame(() => {
+        if (disposed) return;
         calculatePosition(...calculateArgs);
         layerEl.style.visibility = "";
         armObserver();
@@ -160,6 +164,7 @@ const useAnchorPolyfill = ({
     window.addEventListener("resize", handleWindowResize);
 
     return () => {
+      disposed = true;
       currentObserver?.disconnect();
       window.visualViewport?.removeEventListener(
         "resize",

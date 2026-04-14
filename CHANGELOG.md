@@ -5,17 +5,6 @@ All notable changes to this project will be documented in this file. See
 
 ## [6.8.0](https://github.com/narmi/design_system/compare/v6.7.2...v6.8.0) (2026-04-14)
 
-### chore
-
-* **release:** 6.7.1 [skip ci] ([](https://github.com/narmi/design_system/commit/7efcd0c7344e0c11439c9aa088a03eb85b4aaba2))
-* **release:** 6.7.2 [skip ci] ([](https://github.com/narmi/design_system/commit/cc5331cd567cfbe6aa216d00b0055382a88d9f0d))
-* cleanup ([](https://github.com/narmi/design_system/commit/43a3df7de8d7fad76d3d421c4633d6a86f2c3b24))
-* cleanup docs ([](https://github.com/narmi/design_system/commit/ae19cc7dbc8faf364aec8b4772127544d40318cf))
-* fix semgrep ([](https://github.com/narmi/design_system/commit/08f6a04223d09952e70b7111887468fb0dc67659))
-* lint ([](https://github.com/narmi/design_system/commit/ad9c8c488c7b55d24e245f5b3658974b0a5defae))
-* move min() calculation to scss util ([](https://github.com/narmi/design_system/commit/2e2914043cc7372faae91ddd56306dc9d0955357))
-* rename ([](https://github.com/narmi/design_system/commit/b4b8e87ac12042419825c6d34858ff6c7846c144))
-
 ### feat
 
 * **base-styles:** add typed custom properties ([](https://github.com/narmi/design_system/commit/f5c273ff41d1a64015c60922d2659aac72f6c51f))

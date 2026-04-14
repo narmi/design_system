@@ -59,6 +59,10 @@ const config = {
             if (!commit.type) {
               return null;
             }
+            // Omit noisy commit types from release notes
+            if (["chore", "build"].includes(commit.type)) {
+              return null;
+            }
             return commit;
           },
         },

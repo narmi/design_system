@@ -1,7 +1,11 @@
 // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_checkbox
 import React, { useRef, useState, useEffect } from "react";
 import cc from "classcat";
-import ReactMarkdown from "react-markdown";
+import { marked, Renderer } from "marked";
+
+const markdownRenderer = new Renderer();
+markdownRenderer.link = ({ href, text }) =>
+  `<a href="${href}" target="_blank" rel="noreferrer">${text}</a>`;
 import Error from "../Error";
 import DisabledShim from "../DisabledShim";
 
@@ -136,17 +140,13 @@ const Checkbox = ({
           ></span>
           <div className="nds-checkbox-label">
             {markdownLabel && (
-              <ReactMarkdown
-                components={{
-                  a: ({ href, children }) => (
-                    <a href={href} target="_blank" rel="noreferrer">
-                      {children}
-                    </a>
-                  ),
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: marked.parse(markdownLabel, {
+                    renderer: markdownRenderer,
+                  }) as string,
                 }}
-              >
-                {markdownLabel}
-              </ReactMarkdown>
+              />
             )}
             {!markdownLabel && <>{label}</>}
           </div>

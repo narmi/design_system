@@ -32,5 +32,6 @@ jobs:
       - name: Fetch Figma variables
         env:
           FIGMA_TOKEN: ${{ secrets.NDS_FIGMA_TOKEN }}
+          FILE_KEY: ${{ github.event.inputs.file_key }}
         run: |
-          node ./scripts/figma-variables.mjs "${{ github.event.inputs.file_key }}"
+          node ./scripts/figma-variables.mjs "$FILE_KEY"

@@ -600,7 +600,6 @@ export const OverridingMenuHeight = Template.bind({});
 OverridingMenuHeight.args = {
   id: "overviewStory",
   label: "Favorite icon (short menu)",
-  maxMenuHeight: "10vh",
   children,
 };
 

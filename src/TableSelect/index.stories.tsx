@@ -134,3 +134,22 @@ PreSelectedValue.parameters = {
     },
   },
 };
+
+export const ScrollingBehavior = () => {
+  return (
+    <main style={{ height: "200vh" }}>
+      <div className="margin--bottom" style={{ marginTop: "100vh" }} />
+      <TableSelect
+        id="fruit-select-scrolling"
+        label="Select a fruit"
+        onChange={action("onChange")}
+      >
+        {mockItems.map((item) => (
+          <TableSelect.Item key={item} value={item}>
+            {item}
+          </TableSelect.Item>
+        ))}
+      </TableSelect>
+    </main>
+  );
+};

@@ -42,11 +42,12 @@ export default defineConfig({
       fileName: () => "index.js",
     },
     rollupOptions: {
-      external: ["react", "react-dom"],
+      external: ["react", "react-dom", "react-markdown"],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
+          "react-markdown": "ReactMarkdown",
         },
         assetFileNames: (assetInfo) => {
           if (

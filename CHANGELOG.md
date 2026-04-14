@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.8.3](https://github.com/narmi/design_system/compare/v6.8.2...v6.8.3) (2026-04-14)
+
+### fix
+
+* replace react-markdown dep ([](https://github.com/narmi/design_system/commit/cb11f294aa47adc869bcf4ff7825a98acec57767))
+
 ## [6.8.2](https://github.com/narmi/design_system/compare/v6.8.1...v6.8.2) (2026-04-14)
 
 ### fix

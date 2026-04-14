@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.8.2](https://github.com/narmi/design_system/compare/v6.8.1...v6.8.2) (2026-04-14)
+
+### fix
+
+* **build:** mark react-markdown as external for nextjs consumers ([](https://github.com/narmi/design_system/commit/a7370cd1018b275a3639a00373463618c54e68cc))
+
 ## [6.8.1](https://github.com/narmi/design_system/compare/v6.8.0...v6.8.1) (2026-04-14)
 
 ### fix

@@ -102,6 +102,7 @@ jobs:
             ${{ needs.run_chromatic.outputs.changeCount > '0' && format('## 🚨 Found {0} visual changes that require your attention!', needs.run_chromatic.outputs.changeCount) || '' }}
             ${{ needs.run_chromatic.outputs.changeCount <= '0' && format('## ✅ No visual changes detected') || ''}}
             ${{ format('[View Chromatic Build]({0})', needs.run_chromatic.outputs.buildUrl || needs.run_chromatic.outputs.chromatic_url) || '' }}
+            ${{ needs.run_chromatic.outputs.changeCount > '0' && format('📖 [How to resolve failing Chromatic checks](https://github.com/narmi/design_system/blob/main/contributing/visual-regression-tests.md)') || '' }}
 
             ## 📘 Storybook preview
             [View Storybook preview](<${{ needs.run_chromatic.outputs.storybookUrl }}>)

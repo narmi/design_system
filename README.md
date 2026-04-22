@@ -163,34 +163,12 @@ If you are making a breaking change, please [note it in your commit message](htt
 
 The workflow that runs visual snapshot testing is "Chromatic PR Checks"/`run_chromatic`. All pull requests will block merging until this workflow passes.
 
-Passing conditions for tests:
+On every push to a PR, this workflow will run snapshots and report results via a comment on the PR. Use the provided links to review diffs in the Chromatic build and/or view the Storybook preview build.
 
-- No visual changes detected
-- Visual changes detected, but approved (indicates an intentional change)
-- Visual changes resolved by a code change to match baseline snapshots
-- New stories added in the PR are approved in the Chromatic build
-
-Failing conditions for tests:
-
-- Chromatic build has unreviewed diffs
-- Chromatic build has denied changes
-- New stories haven't been explicitly approved in the Chromatic build
-
-On every push to a PR, this workflow will run snapshots and report results via a
-comment on the PR. Use the provided links to review diffs in the Chromatic build and/or view the Storybook preview build.
-
-This workflow must be run again to confirm snapshots are passing, triggered by a new push to the PR or by manually running the job.
+For a detailed step-by-step guide on resolving failing Chromatic checks, see the [Visual Regression Tests](//github.com/narmi/design_system/tree/main/contributing/visual-regression-tests.md) contributing guide.
 
 **🔑 Authentication Required:**
 While the Storybook preview is public, you must log into [Chromatic](chromatic.com/start) with Narmi engineering credentials to view details on the build and approve or deny snapshot changes.
-
-**Local Snapshots:**
-When running Storybook locally, you'll see a floating button on the bottom left of the viewport labelled "Run Tests". If you're authenticated with chromatic, this will compare your current stories being served on `localhost:6006` against baseline snapshots in Chromatic. Results will appear in the addons panel.
-
-**Baselines:**
-Baselines are managed by Chromatic, using the latest _approved_ build, regardless of the PR that triggered it. Once a build is approved, it immediately becomes the new baseline.
-To keep `main` as the branch that should be tracked as the baseline in Chromatic, we run a workflow on
-merges to `main` that creates an auto-accepted build, designating it as the new baseline.
 
 ### Manual publishing (Narmi only)
 

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.8.4](https://github.com/narmi/design_system/compare/v6.8.3...v6.8.4) (2026-04-22)
+
+### docs
+
+* add visual regression test troubleshooting guide for Chromatic ([](https://github.com/narmi/design_system/commit/15a806291a68847454c0edaffa936699efa516db))
+
+### fix
+
+* **Alert:** use alert icon for error kind instead of rotating ([](https://github.com/narmi/design_system/commit/ab5d7032bd0c6b1484c4c367fc96f7664d0593ed))
+
 ## [6.8.3](https://github.com/narmi/design_system/compare/v6.8.2...v6.8.3) (2026-04-14)
 
 ### fix

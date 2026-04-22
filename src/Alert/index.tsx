@@ -37,7 +37,7 @@ const Alert = ({
   paddingSize = "l",
   children,
 }: AlertProps) => {
-  const iconName = kind === "success" ? "check" : "info";
+  const iconName = getIconName(kind);
 
   return (
     <div aria-live="polite">
@@ -74,6 +74,17 @@ const Alert = ({
       )}
     </div>
   );
+};
+
+const getIconName = (kind: AlertProps["kind"]): IconName => {
+  switch (kind) {
+    case "success":
+      return "check";
+    case "error":
+      return "alert-circle";
+    default:
+      return "info";
+  }
 };
 
 export default Alert;

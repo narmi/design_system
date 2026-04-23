@@ -123,6 +123,7 @@
     "@maskito/kit": "^5.1.0",
     "@maskito/react": "^5.1.0",
     "classcat": "^5.0.3",
+    "dompurify": "^3.4.1",
     "downshift": "^9",
     "eslint-plugin-json": "^3.1.0",
     "flatpickr": "^4.6.12",

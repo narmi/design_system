@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.8.5](https://github.com/narmi/design_system/compare/v6.8.4...v6.8.5) (2026-04-23)
+
+### fix
+
+* **Button:** use readable color for disabled plain button ([](https://github.com/narmi/design_system/commit/1861a31e3b20b375c1d1b4a72e3b8f279a9a5de2))
+
 ## [6.8.4](https://github.com/narmi/design_system/compare/v6.8.3...v6.8.4) (2026-04-22)
 
 ### docs

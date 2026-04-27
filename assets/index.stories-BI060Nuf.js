@@ -1,0 +1,54 @@
+import{e}from"./iframe-Dhoj1syY.js";import{B as a}from"./index-CMrIKgvu.js";import{i as d}from"./selection-CAkQuomx.js";import{R as n}from"./index-BVQ3SiQ5.js";import{S as l}from"./index-C8KQHeb9.js";import"./preload-helper-PPVm8Dsz.js";import"./index-RvS1aOr8.js";import"./AsElement-CzX8gQNo.js";import"./index-CPCq37cu.js";import"./downshift.esm-N-3Cqtui.js";import"./extends-DDykod_l.js";import"./index-B3jV7CD-.js";import"./tslib.es6-rrx6G-_s.js";import"./index-oJ5wORTV.js";import"./index-BxgZ304W.js";import"./index-BXDOeHJT.js";const c=d.icons.map(t=>t.properties.name),p=t=>e.createElement(a,t),o=p.bind({});o.args={label:"Submit"};const r=()=>e.createElement("div",{style:{maxWidth:"640px"}},e.createElement(l,{id:"overdraft",label:"Use overdraft protection?"},e.createElement(l.Item,{value:"Yes"},"Yes"),e.createElement(l.Item,{value:"No"},"No")),e.createElement(a,{label:"Learn more about overdraft protection",kind:"plain",onClick:()=>{alert("button click")}}));r.parameters={docs:{description:{story:'A Button of `kind="plain"` is a button styled to look like a link.'}}};const s=()=>e.createElement(a,{kind:"ai",label:"Ask Anything",startIcon:"sparkle"});s.parameters={docs:{description:{story:'A Button of `kind="ai"` is used for AI-related actions. It renders with a white background, amethyst text, and an animated rotating gradient border.'}}};const i=()=>e.createElement(n,{alignItems:"center",justifyContent:"end"},e.createElement(n.Item,{shrink:!0},e.createElement(a,{kind:"negative",label:"Cancel"})),e.createElement(n.Item,{shrink:!0},e.createElement(a,{kind:"primary",label:"Confirm"})));i.parameters={docs:{description:{story:"When presenting the user with positive/negative options, use the `negative` button for the negating action and `primary` for confirm. The confirming action should always be on the right."}}};const m=()=>e.createElement(e.Fragment,null,e.createElement("div",{className:"margin--bottom--l"},e.createElement(n,{alignItems:"center"},["m","s","xs"].map(t=>e.createElement(n.Item,{key:t},e.createElement(a,{label:`${t} Button`,size:t}))))),e.createElement("div",{className:"margin--bottom--l"},e.createElement(n,{alignItems:"center"},["m","s","xs"].map(t=>e.createElement(n.Item,{key:t},e.createElement(a,{kind:"secondary",label:`${t} Button`,size:t}))))),e.createElement("div",{className:"margin--bottom--l"},e.createElement(n,{alignItems:"center"},["m","s","xs"].map(t=>e.createElement(n.Item,{key:t},e.createElement(a,{kind:"tonal",label:`${t} Button`,size:t}))))),e.createElement("div",{className:"margin--bottom--l"},e.createElement(n,{alignItems:"center"},["m","s","xs"].map(t=>e.createElement(n.Item,{key:t},e.createElement(a,{kind:"plain",label:`${t} Button`,size:t}))))),e.createElement("div",{className:"margin--bottom--l"},e.createElement(n,{alignItems:"center"},["m","s","xs"].map(t=>e.createElement(n.Item,{key:t},e.createElement(a,{kind:"ai",label:`${t} Button`,size:t})))))),N={title:"Components/Button",component:a,argTypes:{startIcon:{options:["",...c]},endIcon:{options:["",...c]}}};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:"args => <Button {...args} />",...o.parameters?.docs?.source}}};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`() => <div style={{
+  maxWidth: "640px"
+}}>
+    <Select id="overdraft" label="Use overdraft protection?">
+      <Select.Item value="Yes">Yes</Select.Item>
+      <Select.Item value="No">No</Select.Item>
+    </Select>
+    <Button label="Learn more about overdraft protection" kind="plain" onClick={() => {
+    alert("button click");
+  }} />
+  </div>`,...r.parameters?.docs?.source}}};s.parameters={...s.parameters,docs:{...s.parameters?.docs,source:{originalSource:'() => <Button kind="ai" label="Ask Anything" startIcon="sparkle" />',...s.parameters?.docs?.source}}};i.parameters={...i.parameters,docs:{...i.parameters?.docs,source:{originalSource:`() => <Row alignItems="center" justifyContent="end">
+    <Row.Item shrink>
+      <Button kind="negative" label="Cancel" />
+    </Row.Item>
+    <Row.Item shrink>
+      <Button kind="primary" label="Confirm" />
+    </Row.Item>
+  </Row>`,...i.parameters?.docs?.source}}};m.parameters={...m.parameters,docs:{...m.parameters?.docs,source:{originalSource:`() => <>
+    <div className="margin--bottom--l">
+      <Row alignItems="center">
+        {["m", "s", "xs"].map(size => <Row.Item key={size}>
+            <Button label={\`\${size} Button\`} size={size} />
+          </Row.Item>)}
+      </Row>
+    </div>
+    <div className="margin--bottom--l">
+      <Row alignItems="center">
+        {["m", "s", "xs"].map(size => <Row.Item key={size}>
+            <Button kind="secondary" label={\`\${size} Button\`} size={size} />
+          </Row.Item>)}
+      </Row>
+    </div>
+    <div className="margin--bottom--l">
+      <Row alignItems="center">
+        {["m", "s", "xs"].map(size => <Row.Item key={size}>
+            <Button kind="tonal" label={\`\${size} Button\`} size={size} />
+          </Row.Item>)}
+      </Row>
+    </div>
+    <div className="margin--bottom--l">
+      <Row alignItems="center">
+        {["m", "s", "xs"].map(size => <Row.Item key={size}>
+            <Button kind="plain" label={\`\${size} Button\`} size={size} />
+          </Row.Item>)}
+      </Row>
+    </div>
+    <div className="margin--bottom--l">
+      <Row alignItems="center">
+        {["m", "s", "xs"].map(size => <Row.Item key={size}>
+            <Button kind="ai" label={\`\${size} Button\`} size={size} />
+          </Row.Item>)}
+      </Row>
+    </div>
+  </>`,...m.parameters?.docs?.source}}};const C=["Overview","PlainButton","AiButton","ConfirmAndCancel","ButtonSizes"];export{s as AiButton,m as ButtonSizes,i as ConfirmAndCancel,o as Overview,r as PlainButton,C as __namedExportsOrder,N as default};

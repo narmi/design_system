@@ -17,8 +17,8 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
     startContent,
     endContent,
     showClearButton,
-    formatter,
-    multiline,
+    formatter = (x) => x,
+    multiline = false,
     defaultValue,
     onChange,
     onBlur,
@@ -27,6 +27,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
     type = "text",
     error,
     renderError = true,
+    required = true,
     ...nativeElementProps
   } = props;
 
@@ -90,7 +91,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
             value={inputValue}
             onChange={_onChange}
             onBlur={_onBlur}
-            required={props.required}
+            required={required}
             placeholder={props.label}
             aria-label={props.label}
             data-testid={testId}
@@ -106,7 +107,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
           onBlur={_onBlur}
           ref={forwardedRef}
           type={type}
-          required={props.required}
+          required={required}
           aria-label={props.label}
           placeholder={props.label}
           data-testid={testId}
@@ -166,12 +167,6 @@ TextInput.propTypes = {
   ]),
   /** Native element prop passed to the underlying input/textarea element. Defaults to true. */
   required: PropTypes.bool,
-};
-
-TextInput.defaultProps = {
-  multiline: false,
-  formatter: (x) => x,
-  required: true,
 };
 
 export default TextInput;

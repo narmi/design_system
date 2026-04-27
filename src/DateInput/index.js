@@ -15,9 +15,9 @@ const defaultRenderInput = (props, input, testId) => (
  * Composes NDS input with a [flatpickr](http://flatpickrjs.org) calendar UI.
  */
 const DateInput = ({
-  disableDates,
+  disableDates = [],
   minDate,
-  dateFormat,
+  dateFormat = "Y-m-d",
   altInput,
   altFormat,
   defaultDate,
@@ -113,11 +113,6 @@ DateInput.propTypes = {
   disablePortal: PropTypes.bool,
   /** Custom render function for the input element (props, input, testId) => <TextInput {...props} /> */
   renderInput: PropTypes.func,
-};
-DateInput.defaultProps = {
-  onChange: () => {},
-  disableDates: [],
-  dateFormat: "Y-m-d",
 };
 
 export default DateInput;

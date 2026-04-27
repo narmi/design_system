@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.8.7](https://github.com/narmi/design_system/compare/v6.8.6...v6.8.7) (2026-04-27)
+
+### fix
+
+* **AnchoredDialog:** remove fixed min height ([](https://github.com/narmi/design_system/commit/a80f2728d403c328d8f79d195f4208071d8b1d17))
+
 ## [6.8.6](https://github.com/narmi/design_system/compare/v6.8.5...v6.8.6) (2026-04-27)
 
 ### fix

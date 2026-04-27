@@ -1,6 +1,7 @@
 // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_checkbox
 import React, { useRef, useState, useEffect } from "react";
 import cc from "classcat";
+import DOMPurify from "dompurify";
 import { marked, Renderer } from "marked";
 
 const markdownRenderer = new Renderer();
@@ -142,9 +143,12 @@ const Checkbox = ({
             {markdownLabel && (
               <div
                 dangerouslySetInnerHTML={{
-                  __html: marked.parse(markdownLabel, {
-                    renderer: markdownRenderer,
-                  }) as string,
+                  // nosemgrep: react-dangerouslysetinnerhtml -- sanitized by DOMPurify
+                  __html: DOMPurify.sanitize(
+                    marked.parse(markdownLabel, {
+                      renderer: markdownRenderer,
+                    }) as string,
+                  ),
                 }}
               />
             )}

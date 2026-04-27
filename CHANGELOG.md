@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.8.8](https://github.com/narmi/design_system/compare/v6.8.7...v6.8.8) (2026-04-27)
+
+### fix
+
+* **React 19:** Remove remaining `defaultProps` (#2069) ([](https://github.com/narmi/design_system/commit/04c6549bdaae11e43625e93bf853f0d3c43abcaf)), closes [#2069](https://github.com/narmi/design_system/issues/2069)
+
 ## [6.8.7](https://github.com/narmi/design_system/compare/v6.8.6...v6.8.7) (2026-04-27)
 
 ### fix

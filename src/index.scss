@@ -50,6 +50,7 @@
 @import "base-styles/grid";
 @import "base-styles/portal";
 @import "base-styles/reach-ui"; // :FIXME: We may be able to remove this
+@import "base-styles/custom-properties";
 
 // Helper classes
 @import "helper-classes/position";
@@ -112,4 +113,5 @@
 @import "FormSection/";
 @import "FieldToken/";
 @import "TokenInput/";
+@import "AnchoredDialog/";
 @import "Slider/";

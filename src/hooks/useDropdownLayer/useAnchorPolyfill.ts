@@ -1,6 +1,6 @@
 import { useLayoutEffect } from "react";
-import rafSchd from "raf-schd";
 import useSupportsAnchorPositioning from "../useSupportsAnchorPositioning";
+import { resolveSpaceToken } from "./useDropdownMaxHeight";
 
 interface UseAnchorPolyfillParams {
   /** Reference to the element that the dropdown should be anchored to */
@@ -15,19 +15,84 @@ interface UseAnchorPolyfillParams {
   setIsOpen: (isOpen: boolean) => void;
 }
 
-const MARGIN = 8;
+/**
+ * Calculates and applies CSS custom properties for dropdown positioning.
+ * Exported for unit testing.
+ */
+export const calculatePosition = (
+  anchorEl: HTMLElement,
+  layerEl: HTMLElement,
+  matchWidth: boolean,
+): void => {
+  if (typeof window === "undefined") return;
+  const anchorRect = anchorEl.getBoundingClientRect();
+  if (anchorRect.width === 0) return;
+
+  // read from CSS custom properties
+  const anchorGap = resolveSpaceToken("--space-xxs", 4);
+  const edgeClearance = resolveSpaceToken("--space-l", 20);
+
+  const vvHeight = window.visualViewport?.height ?? window.innerHeight;
+
+  // Reset to a known baseline before measuring layer position.
+  layerEl.style.setProperty("--js-dropdown-top", "0px");
+  layerEl.style.removeProperty("--js-dropdown-bottom");
+  layerEl.style.setProperty("--js-dropdown-left", "0px");
+
+  const layerRect = layerEl.getBoundingClientRect();
+  const spaceBelow = vvHeight - anchorRect.bottom - anchorGap - edgeClearance;
+  const spaceAbove = anchorRect.top - anchorGap - edgeClearance;
+  const shouldFlip = spaceAbove > spaceBelow;
+
+  if (shouldFlip) {
+    layerEl.style.setProperty(
+      "--js-dropdown-bottom",
+      `${vvHeight - anchorRect.top + anchorGap}px`,
+    );
+    layerEl.style.removeProperty("--js-dropdown-top");
+  } else {
+    layerEl.style.setProperty(
+      "--js-dropdown-top",
+      `${anchorRect.bottom - layerRect.top + anchorGap}px`,
+    );
+    layerEl.style.removeProperty("--js-dropdown-bottom");
+  }
+
+  layerEl.style.setProperty(
+    "--js-dropdown-left",
+    `${anchorRect.left - layerRect.left}px`,
+  );
+
+  if (matchWidth) {
+    layerEl.style.setProperty("--js-dropdown-width", `${anchorRect.width}px`);
+  }
+};
 
 /**
- * Polyfill for CSS anchor positioning dropdown behavior.
- *
- * Calculates and continuously updates position on scroll and viewport resize.
- * This correctly handles iOS Safari's auto-scroll-to-input behavior when the
- * keyboard opens — position is recalculated on every scroll frame and on every
- * visualViewport resize, so it converges to the correct position as Safari
- * animates the keyboard in and scrolls the page to center the input.
- *
- * Scroll does not close the dropdown. Only a window resize (orientation change)
- * closes it — blur/focus handling in the consuming component handles the rest.
+ * Computes an IntersectionObserver rootMargin flush with the element's bounding
+ * rect. Uses visualViewport dimensions to account for virtual keyboard adjustments.
+ */
+export const computeRootMargin = (rect: DOMRect): string => {
+  // Use visual viewport dimensions — getBoundingClientRect() returns coords
+  // relative to the visual viewport, so the IO root margin must match.
+  const vw =
+    (typeof window !== "undefined" &&
+      (window.visualViewport?.width ?? window.innerWidth)) ||
+    0;
+  const vh =
+    (typeof window !== "undefined" &&
+      (window.visualViewport?.height ?? window.innerHeight)) ||
+    0;
+  const top = Math.floor(rect.top);
+  const left = Math.floor(rect.left);
+  const right = Math.floor(vw - rect.right);
+  const bottom = Math.floor(vh - rect.bottom);
+  return `${-top}px ${-right}px ${-bottom}px ${-left}px`;
+};
+
+/**
+ * Polyfill for CSS anchor positioning: `position-area: bottom` with
+ * `positionTryFallbacks: "--nds-dropdown-above, flip-inline"`.
  */
 const useAnchorPolyfill = ({
   anchorRef,
@@ -41,78 +106,78 @@ const useAnchorPolyfill = ({
   useLayoutEffect(() => {
     if (isAnchorPositionSupported || !isOpen) return;
 
+    let disposed = false;
+    let currentObserver: IntersectionObserver | undefined;
     const anchorEl = anchorRef.current;
     const layerEl = layerRef.current;
     if (!anchorEl || !layerEl) return;
 
-    const calculate = () => {
-      const anchorRect = anchorEl.getBoundingClientRect();
-      if (anchorRect.width === 0) return;
+    const calculateArgs = [anchorEl, layerEl, matchWidth] as const;
 
-      const vv = window.visualViewport;
-      const viewportHeight = vv?.height ?? window.innerHeight;
-      const offsetTop = vv?.offsetTop ?? 0;
-      const offsetLeft = vv?.offsetLeft ?? 0;
+    const armObserver = () => {
+      if (disposed) return;
+      currentObserver?.disconnect();
 
-      // All space calculations in visual viewport coords
-      const spaceBelow = viewportHeight - (anchorRect.bottom - offsetTop);
-      const spaceAbove = anchorRect.top - offsetTop;
+      const currentRect = anchorEl.getBoundingClientRect();
+      if (currentRect.width === 0 || currentRect.height === 0) return;
 
-      const shouldFlip = spaceAbove > spaceBelow;
-      // Clamp to 0 in case anchor is scrolled outside the visual viewport
-      const availableSpace =
-        Math.max(shouldFlip ? spaceAbove : spaceBelow, 0) - MARGIN;
-
-      // Always use visual-viewport-relative coords (position:fixed).
-      // This avoids offsetParent coordinate math which is unreliable on iOS
-      // Safari while the page is mid-scroll during keyboard open/auto-center.
-      const left = anchorRect.left - offsetLeft;
-
-      if (shouldFlip) {
-        // Flip: pin the dropdown's bottom edge to the anchor's top edge.
-        // Use `bottom` instead of `top` so the dropdown grows upward
-        const bottom = viewportHeight - (anchorRect.top - offsetTop);
-        layerEl.style.setProperty("--js-dropdown-bottom", `${bottom}px`);
-        layerEl.style.removeProperty("--js-dropdown-top");
-      } else {
-        // Normal: pin the dropdown's top edge to the anchor's bottom edge.
-        const top = anchorRect.bottom - offsetTop;
-        layerEl.style.setProperty("--js-dropdown-top", `${top}px`);
-        layerEl.style.removeProperty("--js-dropdown-bottom");
-      }
-
-      layerEl.style.setProperty("--js-dropdown-left", `${left}px`);
-      layerEl.style.setProperty(
-        "--js-dropdown-maxHeight",
-        `${availableSpace}px`,
+      const io = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.intersectionRatio < 1) {
+            // Anchor has moved. Hide and schedule a re-arm.
+            layerEl.style.visibility = "hidden";
+            io.disconnect();
+            requestAnimationFrame(() => {
+              if (disposed) return;
+              armObserver();
+            });
+          } else {
+            // Anchor is stable at this position. Calculate and reveal.
+            calculatePosition(...calculateArgs);
+            layerEl.style.visibility = "";
+          }
+        },
+        {
+          threshold: 1,
+          rootMargin: computeRootMargin(currentRect),
+        },
       );
-      layerEl.style.setProperty("--js-dropdown-minWidth", `max-content`);
-      if (matchWidth) {
-        layerEl.style.setProperty(
-          "--js-dropdown-width",
-          `${anchorRect.width}px`,
-        );
-      }
+
+      io.observe(anchorEl);
+      currentObserver = io;
     };
 
-    calculate();
+    // Initial calculate + arm
+    calculatePosition(...calculateArgs);
+    layerEl.style.visibility = "";
+    armObserver();
 
-    // Recalculate on every scroll frame. On iOS Safari this covers both the
-    // keyboard-open auto-scroll and any subsequent page scroll. rafSchd throttles
-    // to one recalculation per animation frame so we don't thrash layout.
-    const handleScroll = rafSchd(calculate);
-    window.addEventListener("scroll", handleScroll, true);
-    window.visualViewport?.addEventListener("resize", calculate);
+    // Allow the keyboard animation to settle before recalculating.
+    // This solves for animated virtual keyboards.
+    const handleViewportResize = () => {
+      layerEl.style.visibility = "hidden";
+      requestAnimationFrame(() => {
+        if (disposed) return;
+        calculatePosition(...calculateArgs);
+        layerEl.style.visibility = "";
+        armObserver();
+      });
+    };
 
-    // Close on window resize only (orientation change, desktop resize).
-    const handleResize = () => setIsOpen(false);
-    window.addEventListener("resize", handleResize);
+    window.visualViewport?.addEventListener("resize", handleViewportResize);
+
+    // close on resize or orientation change
+    const handleWindowResize = () => setIsOpen(false);
+    window.addEventListener("resize", handleWindowResize);
 
     return () => {
-      handleScroll.cancel();
-      window.removeEventListener("scroll", handleScroll, true);
-      window.visualViewport?.removeEventListener("resize", calculate);
-      window.removeEventListener("resize", handleResize);
+      disposed = true;
+      currentObserver?.disconnect();
+      window.visualViewport?.removeEventListener(
+        "resize",
+        handleViewportResize,
+      );
+      window.removeEventListener("resize", handleWindowResize);
     };
   }, [
     isAnchorPositionSupported,
@@ -132,7 +197,7 @@ const useAnchorPolyfill = ({
           top: "var(--js-dropdown-top, auto)",
           bottom: "var(--js-dropdown-bottom, auto)",
           left: "var(--js-dropdown-left)",
-          minWidth: "var(--js-dropdown-minWidth)",
+          minWidth: "max-content",
           ...(matchWidth && { width: "var(--js-dropdown-width)" }),
         },
   };

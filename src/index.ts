@@ -6,6 +6,7 @@ import AccordionSet from "./AccordionSet";
 import Alert from "./Alert";
 import AutocompleteModal from "./AutocompleteModal";
 import Avatar from "./Avatar";
+import AnchoredDialog from "./AnchoredDialog";
 import Button from "./Button";
 import ContentCard from "./ContentCard";
 import Checkbox from "./Checkbox";
@@ -71,6 +72,7 @@ export * from "./types/Icon.types";
 export {
   Accordion,
   AccordionSet,
+  AnchoredDialog,
   AutocompleteModal,
   Avatar,
   Button,

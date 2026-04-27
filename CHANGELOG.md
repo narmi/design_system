@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.8.6](https://github.com/narmi/design_system/compare/v6.8.5...v6.8.6) (2026-04-27)
+
+### fix
+
+* **Checkbox:** sanitize injected markdown ([](https://github.com/narmi/design_system/commit/2a26f6d933de386016b4c4e4ca9d23510c8c21d8))
+
 ## [6.8.5](https://github.com/narmi/design_system/compare/v6.8.4...v6.8.5) (2026-04-23)
 
 ### fix

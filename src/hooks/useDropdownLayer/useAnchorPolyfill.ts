@@ -1,6 +1,7 @@
 import { useLayoutEffect } from "react";
 import useSupportsAnchorPositioning from "../useSupportsAnchorPositioning";
 import { resolveSpaceToken } from "./useDropdownMaxHeight";
+import type { Placement } from "./index";
 
 interface UseAnchorPolyfillParams {
   /** Reference to the element that the dropdown should be anchored to */
@@ -13,6 +14,10 @@ interface UseAnchorPolyfillParams {
   isOpen: boolean;
   /** Function to close the dropdown */
   setIsOpen: (isOpen: boolean) => void;
+  /** Preferred placement of the layer relative to the anchor
+   * @default "bottom"
+   */
+  placement?: Placement;
 }
 
 /**
@@ -23,6 +28,7 @@ export const calculatePosition = (
   anchorEl: HTMLElement,
   layerEl: HTMLElement,
   matchWidth: boolean,
+  placement: Placement = "bottom",
 ): void => {
   if (typeof window === "undefined") return;
   const anchorRect = anchorEl.getBoundingClientRect();
@@ -33,6 +39,7 @@ export const calculatePosition = (
   const edgeClearance = resolveSpaceToken("--space-l", 20);
 
   const vvHeight = window.visualViewport?.height ?? window.innerHeight;
+  const vvWidth = window.visualViewport?.width ?? window.innerWidth;
 
   // Reset to a known baseline before measuring layer position.
   layerEl.style.setProperty("--js-dropdown-top", "0px");
@@ -40,28 +47,66 @@ export const calculatePosition = (
   layerEl.style.setProperty("--js-dropdown-left", "0px");
 
   const layerRect = layerEl.getBoundingClientRect();
-  const spaceBelow = vvHeight - anchorRect.bottom - anchorGap - edgeClearance;
-  const spaceAbove = anchorRect.top - anchorGap - edgeClearance;
-  const shouldFlip = spaceAbove > spaceBelow;
 
-  if (shouldFlip) {
-    layerEl.style.setProperty(
-      "--js-dropdown-bottom",
-      `${vvHeight - anchorRect.top + anchorGap}px`,
-    );
-    layerEl.style.removeProperty("--js-dropdown-top");
-  } else {
+  if (placement === "left" || placement === "right") {
+    const spaceRight = vvWidth - anchorRect.right - anchorGap - edgeClearance;
+    const spaceLeft = anchorRect.left - anchorGap - edgeClearance;
+    const shouldFlip =
+      placement === "right" ? spaceLeft > spaceRight : spaceRight > spaceLeft;
+    const useRight =
+      (placement === "right" && !shouldFlip) ||
+      (placement === "left" && shouldFlip);
+
+    if (useRight) {
+      layerEl.style.setProperty(
+        "--js-dropdown-left",
+        `${anchorRect.right - layerRect.left + anchorGap}px`,
+      );
+    } else {
+      layerEl.style.setProperty(
+        "--js-dropdown-left",
+        `${anchorRect.left - layerRect.left - layerRect.width - anchorGap}px`,
+      );
+    }
+
+    // Vertically center relative to anchor
+    const anchorMid = anchorRect.top + anchorRect.height / 2;
     layerEl.style.setProperty(
       "--js-dropdown-top",
-      `${anchorRect.bottom - layerRect.top + anchorGap}px`,
+      `${anchorMid - layerRect.top - layerRect.height / 2}px`,
     );
     layerEl.style.removeProperty("--js-dropdown-bottom");
-  }
+  } else {
+    // top/bottom placement
+    const spaceBelow = vvHeight - anchorRect.bottom - anchorGap - edgeClearance;
+    const spaceAbove = anchorRect.top - anchorGap - edgeClearance;
+    const shouldFlip =
+      placement === "bottom"
+        ? spaceAbove > spaceBelow
+        : spaceBelow > spaceAbove;
+    const useAbove =
+      (placement === "top" && !shouldFlip) ||
+      (placement === "bottom" && shouldFlip);
 
-  layerEl.style.setProperty(
-    "--js-dropdown-left",
-    `${anchorRect.left - layerRect.left}px`,
-  );
+    if (useAbove) {
+      layerEl.style.setProperty(
+        "--js-dropdown-bottom",
+        `${vvHeight - anchorRect.top + anchorGap}px`,
+      );
+      layerEl.style.removeProperty("--js-dropdown-top");
+    } else {
+      layerEl.style.setProperty(
+        "--js-dropdown-top",
+        `${anchorRect.bottom - layerRect.top + anchorGap}px`,
+      );
+      layerEl.style.removeProperty("--js-dropdown-bottom");
+    }
+
+    layerEl.style.setProperty(
+      "--js-dropdown-left",
+      `${anchorRect.left - layerRect.left}px`,
+    );
+  }
 
   if (matchWidth) {
     layerEl.style.setProperty("--js-dropdown-width", `${anchorRect.width}px`);
@@ -100,6 +145,7 @@ const useAnchorPolyfill = ({
   matchWidth = false,
   isOpen,
   setIsOpen,
+  placement = "bottom",
 }: UseAnchorPolyfillParams) => {
   const isAnchorPositionSupported = useSupportsAnchorPositioning();
 
@@ -112,7 +158,7 @@ const useAnchorPolyfill = ({
     const layerEl = layerRef.current;
     if (!anchorEl || !layerEl) return;
 
-    const calculateArgs = [anchorEl, layerEl, matchWidth] as const;
+    const calculateArgs = [anchorEl, layerEl, matchWidth, placement] as const;
 
     const armObserver = () => {
       if (disposed) return;
@@ -186,6 +232,7 @@ const useAnchorPolyfill = ({
     matchWidth,
     isOpen,
     setIsOpen,
+    placement,
   ]);
 
   return {

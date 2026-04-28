@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useLayer, Arrow } from "react-laag";
-import { createUseLayerContainer } from "../util/dom";
+import React, { useState, useCallback } from "react";
+import useDropdownLayer from "../hooks/useDropdownLayer";
+import useSupportsAnchoredContainerQueries from "../hooks/useSupportsAnchoredContainerQueries";
 
 export interface TooltipProps {
   /** The root node of JSX passed into Tooltip as children will act as the tooltip trigger */
@@ -20,6 +20,23 @@ export interface TooltipProps {
 }
 
 /**
+ * Small SVG triangle used as the tooltip arrow.
+ * Rendered only when CSS anchored container queries are supported;
+ * positioned and flipped purely via CSS (see Tooltip/index.scss).
+ */
+const TooltipArrow = () => (
+  <svg
+    className="nds-tooltip-arrow"
+    width="14"
+    height="7"
+    viewBox="0 0 14 7"
+    aria-hidden="true"
+  >
+    <path d="M1,7 L6,1 Q7,0 8,1 L13,7 Z" />
+  </svg>
+);
+
+/**
  * Renders a text-only tooltip on hover or focus of a trigger.
  *
  * The tooltip will position itself based on the `side` prop, but will
@@ -36,11 +53,13 @@ const Tooltip = ({
 }: TooltipProps) => {
   const isControlled = isOpen === true || isOpen === false;
   const [open, setOpen] = useState(false);
+  const supportsAnchoredContainerQueries =
+    useSupportsAnchoredContainerQueries();
   const delays = {
     open: 500,
     close: 100,
   };
-  let activeTimer;
+  let activeTimer: ReturnType<typeof setTimeout>;
 
   const shouldRenderTooltip = isControlled ? isOpen : open;
 
@@ -49,31 +68,36 @@ const Tooltip = ({
     activeTimer = setTimeout(setOpen, delays.open, true);
   };
 
-  const closePopover = () => {
+  const closePopover = useCallback(() => {
     clearTimeout(activeTimer);
     activeTimer = setTimeout(setOpen, delays.close, false);
-  };
+  }, []);
 
-  const { renderLayer, triggerProps, layerProps, arrowProps } = useLayer({
-    isOpen: shouldRenderTooltip,
-    onOutsideClick: closePopover,
-    onDisappear: closePopover,
-    auto: true,
-    placement: `${side}-center`,
-    preferX: "left",
-    preferY: "top",
-    triggerOffset: 12,
-    arrowOffset: 12,
-    container: createUseLayerContainer,
+  const { anchorProps, layerProps } = useDropdownLayer({
+    isOpen: !!shouldRenderTooltip,
+    setIsOpen: (v) => {
+      if (!v) closePopover();
+    },
+    matchWidth: false,
+    ariaPopupType: "false",
+    placement: side,
   });
+
+  const {
+    ref: anchorRef,
+    style: anchorStyle,
+    "aria-expanded": anchorExpanded,
+  } = anchorProps;
+  const { ref: layerRef, ...layerRest } = layerProps;
 
   return (
     <>
       <div
-        {...triggerProps}
+        ref={anchorRef as React.Ref<HTMLDivElement>}
         aria-describedby="nds-tooltip"
         aria-label={text}
-        style={{ display: wrapperDisplay }}
+        aria-expanded={anchorExpanded}
+        style={{ ...anchorStyle, display: wrapperDisplay }}
         onFocus={openPopover}
         onBlur={closePopover}
         onMouseEnter={openPopover}
@@ -82,29 +106,26 @@ const Tooltip = ({
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         tabIndex={0}
         data-testid="nds-tooltip-trigger"
-        aria-expanded={open}
       >
         {children}
       </div>
-      {renderLayer(
-        <>
-          {shouldRenderTooltip && (
-            <div
-              id="nds-tooltip"
-              role="tooltip"
-              className="nds-typography nds-tooltip elevation--middle"
-              {...layerProps}
-              style={{ maxWidth: maxWidth, ...layerProps.style }}
-              data-testid={testId}
-              onMouseEnter={openPopover}
-              onMouseLeave={closePopover}
-            >
-              {text}
-              <Arrow {...arrowProps} />
-            </div>
-          )}
-        </>,
-      )}
+      <div
+        ref={layerRef as React.Ref<HTMLDivElement>}
+        id="nds-tooltip"
+        role="tooltip"
+        className="nds-typography nds-tooltip elevation--middle"
+        {...layerRest}
+        style={{
+          maxWidth: maxWidth,
+          ...layerRest.style,
+        }}
+        data-testid={testId}
+        onMouseEnter={openPopover}
+        onMouseLeave={closePopover}
+      >
+        {shouldRenderTooltip ? text : null}
+        {supportsAnchoredContainerQueries && <TooltipArrow />}
+      </div>
     </>
   );
 };

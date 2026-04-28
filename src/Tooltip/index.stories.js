@@ -107,6 +107,34 @@ ControlledTooltip.parameters = {
   },
 };
 
+export const ScrollingBehavior = () => (
+  <div
+    style={{
+      height: "300vh",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      paddingTop: "120vh",
+    }}
+  >
+    <Tooltip
+      isOpen={true}
+      text="This tooltip flips when scrolled to the top of the viewport"
+    >
+      <Button>Scroll down to see me flip</Button>
+    </Tooltip>
+  </div>
+);
+
+ScrollingBehavior.parameters = {
+  docs: {
+    description: {
+      story:
+        "Scroll the page so the trigger is near the top of the viewport. The tooltip will flip from top to bottom when there isn't enough space above.",
+    },
+  },
+};
+
 export default {
   title: "Components/Tooltip",
   component: Tooltip,

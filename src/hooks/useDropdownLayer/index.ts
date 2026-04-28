@@ -106,7 +106,6 @@ const useDropdownLayer = ({
     matchWidth,
     isOpen,
     setIsOpen,
-    placement,
   });
 
   useDropdownMaxHeight({ anchorRef, layerRef, isOpen });

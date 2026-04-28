@@ -27,7 +27,6 @@
 * Position-try fallbacks for tooltip placements.
 * These allow the browser to flip the tooltip to the opposite side
 * when there isn't enough space in the preferred direction.
-* The margin includes --tooltip-arrow-gap (arrow height + 2px breathing room).
 */
 @position-try --nds-tooltip-below {
   position-area: bottom;

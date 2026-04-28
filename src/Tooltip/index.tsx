@@ -19,11 +19,6 @@ export interface TooltipProps {
   testId?: string;
 }
 
-/**
- * Small SVG triangle used as the tooltip arrow.
- * Rendered only when CSS anchored container queries are supported;
- * positioned and flipped purely via CSS (see Tooltip/index.scss).
- */
 const TooltipArrow = () => (
   <svg
     className="nds-tooltip-arrow"

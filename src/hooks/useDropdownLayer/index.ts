@@ -118,7 +118,6 @@ const useDropdownLayer = ({
         anchorName: isAnchorPositionSupported ? anchorName : undefined,
       },
       "aria-haspopup": ariaPopupType,
-      "aria-expanded": isOpen,
     }),
     [anchorRef, isAnchorPositionSupported, anchorName, isOpen, ariaPopupType],
   );

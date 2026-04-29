@@ -90,7 +90,6 @@ const Tooltip = ({
       <div
         ref={anchorRef as React.Ref<HTMLDivElement>}
         aria-describedby="nds-tooltip"
-        aria-label={text}
         aria-expanded={anchorExpanded}
         style={{ ...anchorStyle, display: wrapperDisplay }}
         onFocus={openPopover}

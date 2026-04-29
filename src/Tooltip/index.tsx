@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from "react";
 import useDropdownLayer from "../hooks/useDropdownLayer";
-import useSupportsAnchoredContainerQueries from "../hooks/useSupportsAnchoredContainerQueries";
 
 export interface TooltipProps {
   /** The root node of JSX passed into Tooltip as children will act as the tooltip trigger */
@@ -19,18 +18,6 @@ export interface TooltipProps {
   testId?: string;
 }
 
-const TooltipArrow = () => (
-  <svg
-    className="nds-tooltip-arrow"
-    width="14"
-    height="7"
-    viewBox="0 0 14 7"
-    aria-hidden="true"
-  >
-    <path d="M1,7 L6,1 Q7,0 8,1 L13,7 Z" />
-  </svg>
-);
-
 /**
  * Renders a text-only tooltip on hover or focus of a trigger.
  *
@@ -48,8 +35,6 @@ const Tooltip = ({
 }: TooltipProps) => {
   const isControlled = isOpen === true || isOpen === false;
   const [open, setOpen] = useState(false);
-  const supportsAnchoredContainerQueries =
-    useSupportsAnchoredContainerQueries();
   const delays = {
     open: 500,
     close: 100,
@@ -118,7 +103,6 @@ const Tooltip = ({
         onMouseLeave={closePopover}
       >
         {shouldRenderTooltip ? text : null}
-        {supportsAnchoredContainerQueries && <TooltipArrow />}
       </div>
     </>
   );

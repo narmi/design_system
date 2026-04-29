@@ -9,58 +9,74 @@
   position: relative;
   container-type: anchored;
 
-  // Override the hook's default gap to accommodate the arrow (7px) + 2px breathing room
+  // Gap between tooltip and anchor; also used as the arrow height
   --nds-layer-gap: 9px;
 }
 
 /**
- * SVG triangle arrow inside the tooltip.
- * Only rendered when anchored container queries are supported.
- * Default position: tooltip is above the anchor, arrow at bottom pointing down.
- * Flips via @container anchored() rules when position-try fallbacks activate.
+ * CSS-only triangle arrow using a fixed-positioned ::before pseudo-element.
+ * Uses anchor() to track the anchor element's center directly,
+ * independent of where the browser places the tooltip.
+ * Only rendered when CSS anchor positioning is supported.
+ *
+ * The arrow height equals --nds-layer-gap, filling the space between
+ * the tooltip and the anchor exactly.
  */
-.nds-tooltip-arrow {
-  position: absolute;
-  fill: var(--color-black);
-  display: block;
-  width: 14px;
-  height: 7px;
+@supports (position-anchor: --a) {
+  .nds-tooltip::before {
+    content: "";
+    position: fixed;
+    position-anchor: var(--nds-anchor-name);
+    width: calc(var(--nds-layer-gap) * 2);
+    height: var(--nds-layer-gap);
+    background: var(--color-black);
 
-  // Default: tooltip above anchor → arrow at bottom, pointing down
-  bottom: -7px;
-  left: 50%;
-  transform: translateX(-50%) rotate(180deg);
-}
-
-// Tooltip flipped to below anchor → arrow at top, pointing up
-@container anchored(fallback: --nds-tooltip-below) {
-  .nds-tooltip-arrow {
-    top: -7px;
-    bottom: auto;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%) rotate(0deg);
+    // Default: tooltip above anchor → arrow below tooltip, pointing down
+    left: anchor(var(--nds-anchor-name) center);
+    transform: translateX(-50%);
+    top: calc(anchor(var(--nds-anchor-name) top) - var(--nds-layer-gap));
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
   }
-}
 
-// Tooltip flipped to right of anchor → arrow at left, pointing left
-@container anchored(fallback: --nds-tooltip-right) {
-  .nds-tooltip-arrow {
-    left: -7px;
-    right: auto;
-    top: 50%;
-    bottom: auto;
-    transform: translateY(-50%) rotate(90deg);
+  // Tooltip flipped to below anchor → arrow above tooltip, pointing up
+  @container anchored(fallback: --nds-tooltip-below) {
+    .nds-tooltip::before {
+      top: auto;
+      bottom: calc(
+        anchor(var(--nds-anchor-name) bottom) - var(--nds-layer-gap)
+      );
+      left: anchor(var(--nds-anchor-name) center);
+      right: auto;
+      transform: translateX(-50%);
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
   }
-}
 
-// Tooltip flipped to left of anchor → arrow at right, pointing right
-@container anchored(fallback: --nds-tooltip-left) {
-  .nds-tooltip-arrow {
-    right: -7px;
-    left: auto;
-    top: 50%;
-    bottom: auto;
-    transform: translateY(-50%) rotate(270deg);
+  // Tooltip flipped to right of anchor → arrow left of tooltip, pointing left
+  @container anchored(fallback: --nds-tooltip-right) {
+    .nds-tooltip::before {
+      left: auto;
+      right: calc(
+        anchor(var(--nds-anchor-name) right) - calc(var(--nds-layer-gap) * 2)
+      );
+      top: anchor(var(--nds-anchor-name) center);
+      bottom: auto;
+      transform: translateY(-50%);
+      clip-path: polygon(0 50%, 100% 0, 100% 100%);
+    }
+  }
+
+  // Tooltip flipped to left of anchor → arrow right of tooltip, pointing right
+  @container anchored(fallback: --nds-tooltip-left) {
+    .nds-tooltip::before {
+      right: auto;
+      left: calc(
+        anchor(var(--nds-anchor-name) left) - calc(var(--nds-layer-gap) * 2)
+      );
+      top: anchor(var(--nds-anchor-name) center);
+      bottom: auto;
+      transform: translateY(-50%);
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+    }
   }
 }

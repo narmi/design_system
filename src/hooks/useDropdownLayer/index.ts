@@ -135,6 +135,8 @@ const useDropdownLayer = ({
       width: matchWidth ? "anchor-size(width)" : "min(80vw, max-content)",
       maxWidth: matchWidth ? "anchor-size(width)" : "80vw",
       minWidth: matchWidth ? "anchor-size(width)" : "auto",
+      // Expose anchor name to CSS descendants (e.g. tooltip arrow)
+      "--nds-anchor-name": anchorName,
     };
 
     const layerStyle = {

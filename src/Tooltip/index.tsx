@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useId } from "react";
 import useDropdownLayer from "../hooks/useDropdownLayer";
 
 export interface TooltipProps {
@@ -35,6 +35,7 @@ const Tooltip = ({
 }: TooltipProps) => {
   const isControlled = isOpen === true || isOpen === false;
   const [open, setOpen] = useState(false);
+  const tooltipId = useId();
   const delays = {
     open: 500,
     close: 100,
@@ -74,7 +75,7 @@ const Tooltip = ({
     <>
       <div
         ref={anchorRef as React.Ref<HTMLDivElement>}
-        aria-describedby="nds-tooltip"
+        aria-describedby={shouldRenderTooltip ? tooltipId : undefined}
         aria-expanded={anchorExpanded}
         style={{ ...anchorStyle, display: wrapperDisplay }}
         onFocus={openPopover}
@@ -90,7 +91,7 @@ const Tooltip = ({
       </div>
       <div
         ref={layerRef as React.Ref<HTMLDivElement>}
-        id="nds-tooltip"
+        id={tooltipId}
         role="tooltip"
         className="nds-typography nds-tooltip elevation--middle"
         {...layerRest}

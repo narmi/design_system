@@ -63,17 +63,17 @@ const PLACEMENT_CONFIG: Record<
   },
   top: {
     positionArea: "top",
-    positionTryFallbacks: "--nds-tooltip-below, flip-inline",
+    positionTryFallbacks: "--nds-try-below, flip-inline",
     margin: "marginBottom",
   },
   left: {
     positionArea: "left",
-    positionTryFallbacks: "--nds-tooltip-right, flip-block",
+    positionTryFallbacks: "--nds-try-right, flip-block",
     margin: "marginRight",
   },
   right: {
     positionArea: "right",
-    positionTryFallbacks: "--nds-tooltip-left, flip-block",
+    positionTryFallbacks: "--nds-try-left, flip-block",
     margin: "marginLeft",
   },
 };

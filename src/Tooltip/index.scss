@@ -39,7 +39,7 @@
   }
 
   // Tooltip flipped to below anchor → arrow above tooltip, pointing up
-  @container anchored(fallback: --nds-tooltip-below) {
+  @container anchored(fallback: --nds-try-below) {
     .nds-tooltip::before {
       top: auto;
       bottom: calc(
@@ -53,7 +53,7 @@
   }
 
   // Tooltip flipped to right of anchor → arrow left of tooltip, pointing left
-  @container anchored(fallback: --nds-tooltip-right) {
+  @container anchored(fallback: --nds-try-right) {
     .nds-tooltip::before {
       left: auto;
       right: calc(
@@ -67,7 +67,7 @@
   }
 
   // Tooltip flipped to left of anchor → arrow right of tooltip, pointing right
-  @container anchored(fallback: --nds-tooltip-left) {
+  @container anchored(fallback: --nds-try-left) {
     .nds-tooltip::before {
       right: auto;
       left: calc(

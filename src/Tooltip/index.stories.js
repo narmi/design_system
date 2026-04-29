@@ -135,6 +135,39 @@ ScrollingBehavior.parameters = {
   },
 };
 
+export const ArrowTracking = () => (
+  <div
+    style={{
+      resize: "horizontal",
+      overflow: "hidden",
+      display: "flex",
+      justifyContent: "flex-end",
+      alignItems: "center",
+      outline: "1px dashed hotpink",
+      padding: "var(--space-l)",
+      width: "100%",
+      minWidth: "200px",
+      height: "200px",
+    }}
+  >
+    <Tooltip
+      isOpen={true}
+      text="This tooltip has enough text to cause a collision with the right edge of the viewport"
+    >
+      <Button>Trigger</Button>
+    </Tooltip>
+  </div>
+);
+
+ArrowTracking.parameters = {
+  docs: {
+    description: {
+      story:
+        "Demonstrates arrow tracking behavior near viewport edges. Drag the bottom-right resize handle to move the trigger away from the right edge and observe how the arrow does (or does not) stay aligned with the anchor.",
+    },
+  },
+};
+
 export default {
   title: "Components/Tooltip",
   component: Tooltip,

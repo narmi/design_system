@@ -27,8 +27,8 @@ const MenuButton = ({
   triggerIcon = "more-vertical",
   showDropdownIndicator = false,
   side = "bottom",
-  alignment = "start",
-  offset = 2,
+  alignment = "start", // eslint-disable-line no-unused-vars
+  offset = 2, // eslint-disable-line no-unused-vars
   children,
   footerItem,
 }) => {
@@ -83,11 +83,7 @@ const MenuButton = ({
     }
   }, [closeMenu]);
 
-  const {
-    ref: anchorRef,
-    style: anchorStyle,
-    ...restAnchorProps
-  } = anchorProps;
+  const { ref: anchorRef, style: anchorStyle } = anchorProps;
 
   return (
     <MenuTrigger

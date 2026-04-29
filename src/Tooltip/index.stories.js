@@ -130,7 +130,7 @@ ScrollingBehavior.parameters = {
   docs: {
     description: {
       story:
-        "Scroll the page so the trigger is near the top of the viewport. The tooltip will flip from top to bottom when there isn't enough space above.",
+        "(Must be viewed as a standalone page) Scroll the page so the trigger is near the top of the viewport. The tooltip will flip from top to bottom when there isn't enough space above.",
     },
   },
 };

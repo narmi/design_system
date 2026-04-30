@@ -20,13 +20,10 @@ const noop = () => {};
  */
 const Popover = ({
   side = "bottom",
-  alignment = "center",
   content,
   children,
   renderTrigger = () => <></>,
   wrapperDisplay = "inline-flex",
-  offset = 2,
-  disableAutoPlacement = false,
   matchTriggerWidth = false,
   testId,
   closeOnContentClick = false,
@@ -169,11 +166,7 @@ Popover.propTypes = {
   renderTrigger: PropTypes.func,
   /** Sets preferred side of the trigger the tooltip should appear */
   side: PropTypes.oneOf(["top", "right", "bottom", "left"]),
-  /**
-   * ⚠️ DEPRECATED - this prop is no longer used.
-   * Sets preferred alignment of the tooltip relative to the trigger
-   */
-  alignment: PropTypes.oneOf(["start", "center", "end"]),
+
   /** CSS `display` value for the element that wraps the Tooltip children */
   wrapperDisplay: PropTypes.oneOf([
     "inline-flex",
@@ -182,17 +175,10 @@ Popover.propTypes = {
     "block",
     "flex",
   ]),
-  /** Distance of Popover from trigger element in number of pixels */
-  offset: PropTypes.number,
+
   /** When `true`, the Popover container will match the width of its triggering element */
   matchTriggerWidth: PropTypes.bool,
-  /**
-   * ⚠️ DEPRECATED - this prop is no longer used.
-   * By default, the Popover will automatically reposition itself to avoid viewport edges.
-   * Setting this prop to `true` will disable this behavior so that the Popover will
-   * always be placed on the given `side` prop.
-   */
-  disableAutoPlacement: PropTypes.bool,
+
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
   /** Close the popover if the User clicks on the content */

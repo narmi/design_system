@@ -43,6 +43,14 @@ Overview.args = {
     />,
   ],
 };
+Overview.parameters = {
+  docs: {
+    description: {
+      story:
+        "Right-click on the element to open the context menu. Best viewed in Canvas view or as a standalone page.",
+    },
+  },
+};
 
 export default {
   title: "Components/ContextMenu",

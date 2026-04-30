@@ -45,7 +45,7 @@ describe("Popover", () => {
     expect(screen.queryByText(CONTENT_TEXT)).not.toBeInTheDocument();
     fireEvent.click(trigger);
     expect(screen.queryByText(CONTENT_TEXT)).toBeInTheDocument();
-    fireEvent.click(document.body);
+    fireEvent.mouseDown(document.body);
     expect(screen.queryByText(CONTENT_TEXT)).not.toBeInTheDocument();
   });
 
@@ -98,7 +98,7 @@ describe("Popover", () => {
     expect(screen.queryByText(CONTENT_TEXT)).not.toBeInTheDocument();
     act(() => fireEvent.click(trigger));
     expect(screen.queryByText(CONTENT_TEXT)).toBeInTheDocument();
-    act(() => fireEvent.click(document.body));
+    act(() => fireEvent.mouseDown(document.body));
     expect(screen.queryByText(CONTENT_TEXT)).not.toBeInTheDocument();
 
     expect(onUserDismiss).toHaveBeenCalledTimes(1);

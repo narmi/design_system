@@ -73,13 +73,6 @@ const Popover = ({
     }
   };
 
-  const handleKeyUp = ({ key }) => {
-    if (key === "Escape" && shouldRenderPopover) {
-      setOpen(false);
-      onUserDismiss();
-    }
-  };
-
   const { anchorProps, layerProps } = useDropdownLayer({
     isOpen: shouldRenderPopover,
     setIsOpen: (v) => {
@@ -94,6 +87,7 @@ const Popover = ({
 
   useEffect(() => {
     if (!shouldRenderPopover) return;
+
     const handleOutsideClick = (event) => {
       const anchor = typeof anchorRef === "object" ? anchorRef?.current : null;
       const layer = typeof layerRef === "object" ? layerRef?.current : null;
@@ -106,16 +100,18 @@ const Popover = ({
         closePopover();
       }
     };
-    document.addEventListener("click", handleOutsideClick);
-    return () => document.removeEventListener("click", handleOutsideClick);
-  }, [shouldRenderPopover]);
 
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyUp);
-    return () => {
-      window.removeEventListener("keydown", handleKeyUp);
+    const handleEscape = ({ key }) => {
+      if (key === "Escape") closePopover();
     };
-  }, [handleKeyUp]);
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    window.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [shouldRenderPopover]);
 
   return (
     <>

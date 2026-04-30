@@ -123,6 +123,8 @@ function ContextMenu({ menuItems, testId, children }: ContextMenuProps) {
         role="button"
         tabIndex={0}
         aria-label="Press Control + F12 to open the context menu"
+        aria-haspopup="menu"
+        aria-expanded={isOpen}
         onContextMenu={handleContextMenuClick}
         onKeyDown={handleContextMenuKeyDown}
       >

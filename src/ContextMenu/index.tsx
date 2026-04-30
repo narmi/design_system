@@ -33,7 +33,6 @@ function ContextMenu({ menuItems, testId, children }: ContextMenuProps) {
     placement: "bottom",
   });
 
-  const { ref: _anchorRef, ...anchorRest } = anchorProps;
   const { ref: layerRef, ...layerRest } = layerProps;
 
   function handleContextMenuClick(
@@ -107,18 +106,9 @@ function ContextMenu({ menuItems, testId, children }: ContextMenuProps) {
     >
       {/* 1x1px invisible element positioned at mouse cursor, used as CSS anchor */}
       <div
-        ref={(el) => {
-          if (typeof anchorProps.ref === "function") {
-            anchorProps.ref(el);
-          } else if (anchorProps.ref) {
-            (
-              anchorProps.ref as React.MutableRefObject<HTMLElement | null>
-            ).current = el;
-          }
-        }}
-        {...(anchorRest as React.HTMLAttributes<HTMLDivElement>)}
+        ref={anchorProps.ref as React.Ref<HTMLDivElement>}
         style={{
-          ...anchorRest.style,
+          ...anchorProps.style,
           position: "fixed",
           top: anchorPosition.top,
           left: anchorPosition.left,

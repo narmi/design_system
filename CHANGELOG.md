@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.9.0](https://github.com/narmi/design_system/compare/v6.8.8...v6.9.0) (2026-04-30)
+
+### feat
+
+* **Tooltip:** add arrow tracking ([](https://github.com/narmi/design_system/commit/7e25ba97ed90412d2476a522c797defbc13a01c1))
+* **Tooltip:** use CSS native positioning ([](https://github.com/narmi/design_system/commit/bf28699b6aef1f1d21231a474d1aac1feacc3f02))
+
+### fix
+
+* **Tooltip:** adjust arrow for left and right placements ([](https://github.com/narmi/design_system/commit/cff3a3dd0cf323e206f5c51fc2281077493970fc))
+* **Tooltip:** make arrow follow the anchor on its axis ([](https://github.com/narmi/design_system/commit/0d3a0f72e1046032a0bd65d5fb4863d5ab3360d9))
+* **useDropdownLayer:** remove unused aria-expanded attr ([](https://github.com/narmi/design_system/commit/28845a3085282843561f88cc8d107470fabc942a))
+* **MenuButton:** support new tooltip as trigger ([](https://github.com/narmi/design_system/commit/eb54f430980bb80e59e9cfb3889954aed4989eda))
+* **Tooltip:** use useId for unique instance IDs and conditionally set aria-describedby ([](https://github.com/narmi/design_system/commit/9f8c2eb7adecb7e93476eec34ac44328ba0302f4))
+
 ## [6.8.8](https://github.com/narmi/design_system/compare/v6.8.7...v6.8.8) (2026-04-27)
 
 ### fix

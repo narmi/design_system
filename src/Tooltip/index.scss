@@ -23,6 +23,7 @@
  * the tooltip and the anchor exactly.
  */
 @supports (position-anchor: --a) {
+  // Shared base styles for the arrow pseudo-element
   .nds-tooltip::before {
     content: "";
     position: fixed;
@@ -30,17 +31,63 @@
     width: calc(var(--nds-layer-gap) * 2);
     height: var(--nds-layer-gap);
     background: var(--color-black);
+  }
 
-    // Default: tooltip above anchor → arrow below tooltip, pointing down
+  // -------------------------------------------------------
+  // Default arrow directions based on initial placement
+  // -------------------------------------------------------
+
+  // placement="top": tooltip above anchor → arrow pointing down
+  .nds-tooltip[data-placement="top"]::before {
     left: anchor(var(--nds-anchor-name) center);
     transform: translateX(-50%);
     top: calc(anchor(var(--nds-anchor-name) top) - var(--nds-layer-gap));
     clip-path: polygon(50% 100%, 0 0, 100% 0);
   }
 
-  // Tooltip flipped to below anchor → arrow above tooltip, pointing up
+  // placement="bottom": tooltip below anchor → arrow pointing up
+  .nds-tooltip[data-placement="bottom"]::before {
+    top: auto;
+    bottom: calc(anchor(var(--nds-anchor-name) bottom) - var(--nds-layer-gap));
+    left: anchor(var(--nds-anchor-name) center);
+    right: auto;
+    transform: translateX(-50%);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+
+  // placement="right": tooltip right of anchor → arrow pointing left
+  .nds-tooltip[data-placement="right"]::before {
+    width: var(--nds-layer-gap);
+    height: calc(var(--nds-layer-gap) * 2);
+    left: auto;
+    right: calc(anchor(var(--nds-anchor-name) right) - var(--nds-layer-gap));
+    top: anchor(var(--nds-anchor-name) center);
+    bottom: auto;
+    transform: translateY(-50%);
+    clip-path: polygon(0 50%, 100% 0, 100% 100%);
+  }
+
+  // placement="left": tooltip left of anchor → arrow pointing right
+  .nds-tooltip[data-placement="left"]::before {
+    width: var(--nds-layer-gap);
+    height: calc(var(--nds-layer-gap) * 2);
+    right: auto;
+    left: calc(anchor(var(--nds-anchor-name) left) - var(--nds-layer-gap));
+    top: anchor(var(--nds-anchor-name) center);
+    bottom: auto;
+    transform: translateY(-50%);
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+  }
+
+  // -------------------------------------------------------
+  // Fallback overrides when the browser flips placement
+  // -------------------------------------------------------
+
+  // Flipped to below anchor → arrow pointing up
   @container anchored(fallback: --nds-try-below) {
     .nds-tooltip::before {
+      width: calc(var(--nds-layer-gap) * 2);
+      height: var(--nds-layer-gap);
       top: auto;
       bottom: calc(
         anchor(var(--nds-anchor-name) bottom) - var(--nds-layer-gap)
@@ -52,13 +99,27 @@
     }
   }
 
-  // Tooltip flipped to right of anchor → arrow left of tooltip, pointing left
+  // Flipped to above anchor → arrow pointing down
+  @container anchored(fallback: --nds-dropdown-above) {
+    .nds-tooltip::before {
+      width: calc(var(--nds-layer-gap) * 2);
+      height: var(--nds-layer-gap);
+      left: anchor(var(--nds-anchor-name) center);
+      right: auto;
+      top: calc(anchor(var(--nds-anchor-name) top) - var(--nds-layer-gap));
+      bottom: auto;
+      transform: translateX(-50%);
+      clip-path: polygon(50% 100%, 0 0, 100% 0);
+    }
+  }
+
+  // Flipped to right of anchor → arrow pointing left
   @container anchored(fallback: --nds-try-right) {
     .nds-tooltip::before {
+      width: var(--nds-layer-gap);
+      height: calc(var(--nds-layer-gap) * 2);
       left: auto;
-      right: calc(
-        anchor(var(--nds-anchor-name) right) - calc(var(--nds-layer-gap) * 2)
-      );
+      right: calc(anchor(var(--nds-anchor-name) right) - var(--nds-layer-gap));
       top: anchor(var(--nds-anchor-name) center);
       bottom: auto;
       transform: translateY(-50%);
@@ -66,13 +127,13 @@
     }
   }
 
-  // Tooltip flipped to left of anchor → arrow right of tooltip, pointing right
+  // Flipped to left of anchor → arrow pointing right
   @container anchored(fallback: --nds-try-left) {
     .nds-tooltip::before {
+      width: var(--nds-layer-gap);
+      height: calc(var(--nds-layer-gap) * 2);
       right: auto;
-      left: calc(
-        anchor(var(--nds-anchor-name) left) - calc(var(--nds-layer-gap) * 2)
-      );
+      left: calc(anchor(var(--nds-anchor-name) left) - var(--nds-layer-gap));
       top: anchor(var(--nds-anchor-name) center);
       bottom: auto;
       transform: translateY(-50%);

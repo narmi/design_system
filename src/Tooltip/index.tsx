@@ -94,6 +94,7 @@ const Tooltip = ({
         id={tooltipId}
         role="tooltip"
         className="nds-typography nds-tooltip elevation--middle"
+        data-placement={side}
         {...layerRest}
         style={{
           maxWidth: maxWidth,

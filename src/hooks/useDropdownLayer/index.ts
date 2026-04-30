@@ -10,7 +10,7 @@ export type UseDropdownLayerResult = {
       anchorName?: string;
     };
     "aria-haspopup": string;
-    "aria-expanded": boolean;
+    "aria-expanded"?: boolean;
   };
   /** Props to spread onto the dropdown menu element */
   layerProps: {

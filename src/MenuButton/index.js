@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
-import { useLayer } from "react-laag";
 import { Button as AriaButton, Menu, MenuTrigger } from "react-aria-components";
 import iconSelection from "src/icons/selection.json";
 import MenuButtonItem from "./MenuButtonItem";
 import MenuItem from "./AriaMenuItem";
 import Row from "../Row";
-import { createUseLayerContainer } from "src/util/dom";
+import useDropdownLayer from "../hooks/useDropdownLayer";
 
 export const VALID_ICON_NAMES = iconSelection.icons.map(
   (icon) => icon.properties.name,
@@ -28,8 +27,8 @@ const MenuButton = ({
   triggerIcon = "more-vertical",
   showDropdownIndicator = false,
   side = "bottom",
-  alignment = "start",
-  offset = 2,
+  alignment = "start", // eslint-disable-line no-unused-vars
+  offset = 2, // eslint-disable-line no-unused-vars
   children,
   footerItem,
 }) => {
@@ -43,13 +42,11 @@ const MenuButton = ({
     canToggleCloseRef.current = false;
   }, [canToggleCloseRef]);
 
-  const { renderLayer, triggerProps, layerProps } = useLayer({
+  const { anchorProps, layerProps } = useDropdownLayer({
     isOpen,
-    auto: true,
-    onOutsideClick: closeMenu,
-    placement: `${side}-${alignment}`,
-    container: createUseLayerContainer,
-    triggerOffset: offset,
+    setIsOpen,
+    matchWidth: false,
+    placement: side,
   });
 
   const handleKeyUp = ({ key }) => {
@@ -86,6 +83,8 @@ const MenuButton = ({
     }
   }, [closeMenu]);
 
+  const { ref: anchorRef, style: anchorStyle } = anchorProps;
+
   return (
     <MenuTrigger
       isOpen={isOpen}
@@ -98,9 +97,10 @@ const MenuButton = ({
       className="nds-menubutton"
     >
       <AriaButton
+        ref={anchorRef}
         aria-label={label}
         className="button--reset nds-menubutton-ariaButton"
-        {...triggerProps}
+        style={anchorStyle}
         onClick={pressButton}
       >
         {typeof renderTrigger === "function" ? (
@@ -136,50 +136,49 @@ const MenuButton = ({
           </div>
         )}
       </AriaButton>
-      {isOpen &&
-        renderLayer(
-          <div className="nds-menubutton-popover" {...layerProps}>
-            <Menu
-              onAction={handleOnSelect}
-              className="nds-menubutton-menu rounded--all elevation--high"
-              // autoFocus is required to enter the menu focus trap when
-              // the menu popover opens
-              // eslint-disable-next-line jsx-a11y/no-autofocus
-              autoFocus={true}
-            >
-              {menuItems.map((child, childIndex) => {
-                const itemId = labelToItemId(child.props.label);
-                return (
-                  <MenuItem
-                    key={itemId}
-                    id={itemId}
-                    value={itemId}
-                    label={child.props.label}
-                    startIcon={child.props.startIcon}
-                    endIcon={child.props.endIcon}
-                    roundedTop={childIndex === 0}
-                    roundedBottom={
-                      childIndex === menuItems.length - 1 && !footerItem
-                    }
-                  />
-                );
-              })}
-              {footerItem && (
+      <div className="nds-menubutton-popover" {...layerProps}>
+        {isOpen && (
+          <Menu
+            onAction={handleOnSelect}
+            className="nds-menubutton-menu rounded--all elevation--high"
+            // autoFocus is required to enter the menu focus trap when
+            // the menu popover opens
+            // eslint-disable-next-line jsx-a11y/no-autofocus
+            autoFocus={true}
+          >
+            {menuItems.map((child, childIndex) => {
+              const itemId = labelToItemId(child.props.label);
+              return (
                 <MenuItem
-                  className="padding--y--s padding--x--s border--top"
-                  id={labelToItemId(footerItem.props.label)}
-                  value={labelToItemId(footerItem.props.label)}
-                  label={footerItem.props.label}
-                  startIcon={footerItem.props.startIcon}
-                  endIcon={footerItem.props.endIcon}
-                  roundedBottom
-                >
-                  {footerItem}
-                </MenuItem>
-              )}
-            </Menu>
-          </div>,
+                  key={itemId}
+                  id={itemId}
+                  value={itemId}
+                  label={child.props.label}
+                  startIcon={child.props.startIcon}
+                  endIcon={child.props.endIcon}
+                  roundedTop={childIndex === 0}
+                  roundedBottom={
+                    childIndex === menuItems.length - 1 && !footerItem
+                  }
+                />
+              );
+            })}
+            {footerItem && (
+              <MenuItem
+                className="padding--y--s padding--x--s border--top"
+                id={labelToItemId(footerItem.props.label)}
+                value={labelToItemId(footerItem.props.label)}
+                label={footerItem.props.label}
+                startIcon={footerItem.props.startIcon}
+                endIcon={footerItem.props.endIcon}
+                roundedBottom
+              >
+                {footerItem}
+              </MenuItem>
+            )}
+          </Menu>
         )}
+      </div>
     </MenuTrigger>
   );
 };

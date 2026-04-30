@@ -6,9 +6,138 @@
   color: var(--color-white);
   text-align: center;
   z-index: 999;
+  position: relative;
+  container-type: anchored;
 
-  // The arrow SVG path
-  path {
-    fill: var(--color-black);
+  // Gap between tooltip and anchor; also used as the arrow height
+  --nds-layer-gap: 9px;
+}
+
+/**
+ * CSS-only triangle arrow using a fixed-positioned ::before pseudo-element.
+ * Uses anchor() to track the anchor element's center directly,
+ * independent of where the browser places the tooltip.
+ * Only rendered when CSS anchor positioning is supported.
+ *
+ * The arrow height equals --nds-layer-gap, filling the space between
+ * the tooltip and the anchor exactly.
+ */
+@supports (position-anchor: --a) {
+  // Shared base styles for the arrow pseudo-element
+  .nds-tooltip::before {
+    content: "";
+    position: fixed;
+    position-anchor: var(--nds-anchor-name);
+    width: calc(var(--nds-layer-gap) * 2);
+    height: var(--nds-layer-gap);
+    background: var(--color-black);
+  }
+
+  // -------------------------------------------------------
+  // Default arrow directions based on initial placement
+  // -------------------------------------------------------
+
+  // placement="top": tooltip above anchor → arrow pointing down
+  .nds-tooltip[data-placement="top"]::before {
+    left: anchor(var(--nds-anchor-name) center);
+    transform: translateX(-50%);
+    top: calc(anchor(var(--nds-anchor-name) top) - var(--nds-layer-gap));
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+  }
+
+  // placement="bottom": tooltip below anchor → arrow pointing up
+  .nds-tooltip[data-placement="bottom"]::before {
+    top: auto;
+    bottom: calc(anchor(var(--nds-anchor-name) bottom) - var(--nds-layer-gap));
+    left: anchor(var(--nds-anchor-name) center);
+    right: auto;
+    transform: translateX(-50%);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+
+  // placement="right": tooltip right of anchor → arrow pointing left
+  .nds-tooltip[data-placement="right"]::before {
+    width: var(--nds-layer-gap);
+    height: calc(var(--nds-layer-gap) * 2);
+    left: auto;
+    right: calc(anchor(var(--nds-anchor-name) right) - var(--nds-layer-gap));
+    top: anchor(var(--nds-anchor-name) center);
+    bottom: auto;
+    transform: translateY(-50%);
+    clip-path: polygon(0 50%, 100% 0, 100% 100%);
+  }
+
+  // placement="left": tooltip left of anchor → arrow pointing right
+  .nds-tooltip[data-placement="left"]::before {
+    width: var(--nds-layer-gap);
+    height: calc(var(--nds-layer-gap) * 2);
+    right: auto;
+    left: calc(anchor(var(--nds-anchor-name) left) - var(--nds-layer-gap));
+    top: anchor(var(--nds-anchor-name) center);
+    bottom: auto;
+    transform: translateY(-50%);
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+  }
+
+  // -------------------------------------------------------
+  // Fallback overrides when the browser flips placement
+  // -------------------------------------------------------
+
+  // Flipped to below anchor → arrow pointing up
+  @container anchored(fallback: --nds-try-below) {
+    .nds-tooltip::before {
+      width: calc(var(--nds-layer-gap) * 2);
+      height: var(--nds-layer-gap);
+      top: auto;
+      bottom: calc(
+        anchor(var(--nds-anchor-name) bottom) - var(--nds-layer-gap)
+      );
+      left: anchor(var(--nds-anchor-name) center);
+      right: auto;
+      transform: translateX(-50%);
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+  }
+
+  // Flipped to above anchor → arrow pointing down
+  @container anchored(fallback: --nds-dropdown-above) {
+    .nds-tooltip::before {
+      width: calc(var(--nds-layer-gap) * 2);
+      height: var(--nds-layer-gap);
+      left: anchor(var(--nds-anchor-name) center);
+      right: auto;
+      top: calc(anchor(var(--nds-anchor-name) top) - var(--nds-layer-gap));
+      bottom: auto;
+      transform: translateX(-50%);
+      clip-path: polygon(50% 100%, 0 0, 100% 0);
+    }
+  }
+
+  // Flipped to right of anchor → arrow pointing left
+  @container anchored(fallback: --nds-try-right) {
+    .nds-tooltip::before {
+      width: var(--nds-layer-gap);
+      height: calc(var(--nds-layer-gap) * 2);
+      left: auto;
+      right: calc(anchor(var(--nds-anchor-name) right) - var(--nds-layer-gap));
+      top: anchor(var(--nds-anchor-name) center);
+      bottom: auto;
+      transform: translateY(-50%);
+      clip-path: polygon(0 50%, 100% 0, 100% 100%);
+    }
+  }
+
+  // Flipped to left of anchor → arrow pointing right
+  @container anchored(fallback: --nds-try-left) {
+    .nds-tooltip::before {
+      width: var(--nds-layer-gap);
+      height: calc(var(--nds-layer-gap) * 2);
+      right: auto;
+      left: calc(anchor(var(--nds-anchor-name) left) - var(--nds-layer-gap));
+      top: anchor(var(--nds-anchor-name) center);
+      bottom: auto;
+      transform: translateY(-50%);
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+    }
   }
 }

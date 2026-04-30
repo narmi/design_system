@@ -10,7 +10,7 @@ export type UseDropdownLayerResult = {
       anchorName?: string;
     };
     "aria-haspopup": string;
-    "aria-expanded": string;
+    "aria-expanded"?: boolean;
   };
   /** Props to spread onto the dropdown menu element */
   layerProps: {
@@ -23,7 +23,11 @@ export type UseDropdownLayerResult = {
         }
       | React.CSSProperties;
   };
+  /** Whether the browser supports native CSS anchor positioning */
+  isAnchorPositionSupported: boolean;
 };
+
+export type Placement = "bottom" | "top" | "left" | "right";
 
 export interface UseDropdownLayerOptions {
   /** Whether the dropdown is currently open (required) */
@@ -41,7 +45,38 @@ export interface UseDropdownLayerOptions {
    * @default "menu"
    */
   ariaPopupType?: string;
+  /** Preferred placement of the layer relative to the anchor.
+   * @default "bottom"
+   */
+  placement?: Placement;
 }
+
+/** Maps placement to CSS anchor positioning values */
+const PLACEMENT_CONFIG: Record<
+  Placement,
+  { positionArea: string; positionTryFallbacks: string; margin: string }
+> = {
+  bottom: {
+    positionArea: "bottom",
+    positionTryFallbacks: "--nds-dropdown-above, flip-inline",
+    margin: "marginTop",
+  },
+  top: {
+    positionArea: "top",
+    positionTryFallbacks: "--nds-try-below, flip-inline",
+    margin: "marginBottom",
+  },
+  left: {
+    positionArea: "left",
+    positionTryFallbacks: "--nds-try-right, flip-block",
+    margin: "marginRight",
+  },
+  right: {
+    positionArea: "right",
+    positionTryFallbacks: "--nds-try-left, flip-block",
+    margin: "marginLeft",
+  },
+};
 
 /**
  * Progressive enhancement driven layout helper for dropdowns/menus.
@@ -54,6 +89,7 @@ const useDropdownLayer = ({
   matchWidth = true,
   isPortalled = false,
   ariaPopupType = "menu",
+  placement = "bottom",
 }: UseDropdownLayerOptions): UseDropdownLayerResult => {
   const anchorRef = useRef<HTMLElement>(null);
   const layerRef = useRef<HTMLElement>(null);
@@ -82,23 +118,25 @@ const useDropdownLayer = ({
         anchorName: isAnchorPositionSupported ? anchorName : undefined,
       },
       "aria-haspopup": ariaPopupType,
-      "aria-expanded": isOpen.toString(),
     }),
     [anchorRef, isAnchorPositionSupported, anchorName, isOpen, ariaPopupType],
   );
 
   // Memoized props to spread onto the positioned layer element
   const layerProps = useMemo(() => {
+    const config = PLACEMENT_CONFIG[placement];
     // The anchor uses position fixed regardless of code path.
     const anchorPositionStyles = {
       position: "fixed" as const,
       positionAnchor: anchorName,
-      positionArea: "bottom",
-      positionTryFallbacks: "--nds-dropdown-above, flip-inline",
-      marginTop: "var(--space-xxs)",
+      positionArea: config.positionArea,
+      positionTryFallbacks: config.positionTryFallbacks,
+      [config.margin]: "var(--nds-layer-gap, var(--space-xxs))",
       width: matchWidth ? "anchor-size(width)" : "min(80vw, max-content)",
       maxWidth: matchWidth ? "anchor-size(width)" : "80vw",
       minWidth: matchWidth ? "anchor-size(width)" : "auto",
+      // Expose anchor name to CSS descendants (e.g. tooltip arrow)
+      "--nds-anchor-name": anchorName,
     };
 
     const layerStyle = {
@@ -121,6 +159,7 @@ const useDropdownLayer = ({
     isPortalled,
     anchorName,
     matchWidth,
+    placement,
     polyFillLayerStyles,
     layerRef,
   ]);
@@ -128,6 +167,7 @@ const useDropdownLayer = ({
   return {
     anchorProps,
     layerProps,
+    isAnchorPositionSupported,
   };
 };
 

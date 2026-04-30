@@ -20,5 +20,28 @@
 @position-try --nds-dropdown-above {
   position-area: top;
   margin-top: 0;
-  margin-bottom: var(--space-xxs);
+  margin-bottom: var(--nds-layer-gap, var(--space-xxs));
+}
+
+/**
+* Position-try fallbacks for anchor-positioned layers.
+* These allow the browser to flip the layer to the opposite side
+* when there isn't enough space in the preferred direction.
+*/
+@position-try --nds-try-below {
+  position-area: bottom;
+  margin-top: var(--nds-layer-gap, var(--space-xxs));
+  margin-bottom: 0;
+}
+
+@position-try --nds-try-right {
+  position-area: right;
+  margin-left: var(--nds-layer-gap, var(--space-xxs));
+  margin-right: 0;
+}
+
+@position-try --nds-try-left {
+  position-area: left;
+  margin-right: var(--nds-layer-gap, var(--space-xxs));
+  margin-left: 0;
 }

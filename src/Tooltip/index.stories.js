@@ -107,6 +107,67 @@ ControlledTooltip.parameters = {
   },
 };
 
+export const ScrollingBehavior = () => (
+  <div
+    style={{
+      height: "300vh",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      paddingTop: "120vh",
+    }}
+  >
+    <Tooltip
+      isOpen={true}
+      text="This tooltip flips when scrolled to the top of the viewport"
+    >
+      <Button>Scroll down to see me flip</Button>
+    </Tooltip>
+  </div>
+);
+
+ScrollingBehavior.parameters = {
+  docs: {
+    description: {
+      story:
+        "(Must be viewed as a standalone page) Scroll the page so the trigger is near the top of the viewport. The tooltip will flip from top to bottom when there isn't enough space above.",
+    },
+  },
+};
+
+export const ArrowTracking = () => (
+  <div
+    style={{
+      resize: "horizontal",
+      overflow: "hidden",
+      display: "flex",
+      justifyContent: "flex-end",
+      alignItems: "center",
+      outline: "1px dashed hotpink",
+      padding: "var(--space-l)",
+      width: "100%",
+      minWidth: "200px",
+      height: "200px",
+    }}
+  >
+    <Tooltip
+      isOpen={true}
+      text="This tooltip has enough text to cause a collision with the right edge of the viewport"
+    >
+      <Button>Trigger</Button>
+    </Tooltip>
+  </div>
+);
+
+ArrowTracking.parameters = {
+  docs: {
+    description: {
+      story:
+        "Demonstrates arrow tracking behavior near viewport edges. Drag the bottom-right resize handle to move the trigger away from the right edge and observe how the arrow does (or does not) stay aligned with the anchor.",
+    },
+  },
+};
+
 export default {
   title: "Components/Tooltip",
   component: Tooltip,

@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import { MenuTrigger, Menu, MenuItem } from "react-aria-components";
-import { useLayer, useMousePositionAsTrigger } from "react-laag";
 import cc from "classcat";
 import ContextMenuItem from "./ContextMenuItem";
 import Row from "../Row";
-import { createUseLayerContainer } from "../util/dom";
+import useDropdownLayer from "../hooks/useDropdownLayer";
 
 export interface ContextMenuProps {
   /** Optional value for `data-testid` attribute */
@@ -22,32 +21,30 @@ export interface ContextMenuProps {
  */
 function ContextMenu({ menuItems, testId, children }: ContextMenuProps) {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [isMouseOverEventEnabled, setIsMouseOverEventEnabled] =
-    React.useState(true);
-  const { handleMouseEvent, trigger, parentRef } = useMousePositionAsTrigger({
-    enabled: isMouseOverEventEnabled,
+  const parentRef = useRef<HTMLDivElement>(null);
+  const virtualAnchorRef = useRef<HTMLDivElement>(null);
+
+  const { anchorProps, layerProps } = useDropdownLayer({
+    isOpen,
+    setIsOpen,
+    matchWidth: false,
+    placement: "bottom",
   });
 
-  const { renderLayer, triggerProps, layerProps } = useLayer({
-    isOpen,
-    auto: true,
-    onOutsideClick: () => {
-      setIsOpen(false);
-      setIsMouseOverEventEnabled(true);
-    },
-    preferX: "right",
-    preferY: "bottom",
-    placement: "bottom-start",
-    trigger,
-    container: createUseLayerContainer,
-  });
+  // Override the anchor ref to point to our virtual anchor element
+  const { ref: _anchorRef, ...anchorRest } = anchorProps;
+  const { ref: layerRef, ...layerRest } = layerProps;
 
   function handleContextMenuClick(
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) {
     event.preventDefault();
+    // Position the virtual anchor at the mouse cursor
+    if (virtualAnchorRef.current) {
+      virtualAnchorRef.current.style.top = `${event.clientY}px`;
+      virtualAnchorRef.current.style.left = `${event.clientX}px`;
+    }
     setIsOpen(true);
-    setIsMouseOverEventEnabled(false);
   }
 
   function handleContextMenuKeyDown(
@@ -55,12 +52,17 @@ function ContextMenu({ menuItems, testId, children }: ContextMenuProps) {
   ) {
     event.preventDefault();
     if (event.key === "F12" && event.ctrlKey) {
+      // Position virtual anchor near the target element center
+      if (virtualAnchorRef.current && parentRef.current) {
+        const rect = parentRef.current.getBoundingClientRect();
+        virtualAnchorRef.current.style.top = `${rect.top + rect.height / 2}px`;
+        virtualAnchorRef.current.style.left = `${rect.left + rect.width / 2}px`;
+      }
       setIsOpen(true);
-      setIsMouseOverEventEnabled(false);
     }
   }
 
-  const handleOnSelect = (itemId) => {
+  const handleOnSelect = (itemId: React.Key) => {
     const selectedItem = menuItems.find((item) => item.props.id === itemId);
 
     if (selectedItem?.props.onSelect) {
@@ -70,43 +72,69 @@ function ContextMenu({ menuItems, testId, children }: ContextMenuProps) {
       );
     }
     setIsOpen(false);
-    setIsMouseOverEventEnabled(true);
   };
 
-  const handleKeyUp = ({ key }) => {
-    if (key === "Escape" && isOpen) {
-      setIsOpen(false);
-      setIsMouseOverEventEnabled(true);
-    }
-  };
+  const handleKeyUp = useCallback(
+    ({ key }: KeyboardEvent) => {
+      if (key === "Escape" && isOpen) {
+        setIsOpen(false);
+      }
+    },
+    [isOpen],
+  );
 
-  const handleNativeContextMenu = (event: MouseEvent) => {
+  const handleNativeContextMenu = useCallback((event: MouseEvent) => {
     if (!parentRef.current?.contains(event.target as Node)) {
       setIsOpen(false);
-      setIsMouseOverEventEnabled(true);
     }
-  };
+  }, []);
 
   useEffect(() => {
     window.addEventListener("keyup", handleKeyUp);
-    // Right click event listener
     window.addEventListener("contextmenu", handleNativeContextMenu);
 
     return () => {
       window.removeEventListener("keyup", handleKeyUp);
       window.removeEventListener("contextmenu", handleNativeContextMenu);
     };
-  }, [handleKeyUp]);
+  }, [handleKeyUp, handleNativeContextMenu]);
+
   return (
     <MenuTrigger
       isOpen={true}
-      onOpenChange={(isOpen) => {
-        if (isOpen) {
-          setIsOpen(isOpen);
+      onOpenChange={(open) => {
+        if (open) {
+          setIsOpen(open);
         }
       }}
       data-testid={testId}
     >
+      {/* Hidden zero-size element positioned at mouse cursor, used as CSS anchor */}
+      <div
+        ref={(el) => {
+          (
+            virtualAnchorRef as React.MutableRefObject<HTMLDivElement | null>
+          ).current = el;
+          // Also assign to the anchorProps ref so useDropdownLayer tracks this element
+          if (typeof anchorProps.ref === "function") {
+            anchorProps.ref(el);
+          } else if (anchorProps.ref) {
+            (
+              anchorProps.ref as React.MutableRefObject<HTMLElement | null>
+            ).current = el;
+          }
+        }}
+        {...(anchorRest as React.HTMLAttributes<HTMLDivElement>)}
+        style={{
+          ...anchorRest.style,
+          position: "fixed",
+          width: 0,
+          height: 0,
+          pointerEvents: "none" as const,
+          overflow: "hidden",
+        }}
+        aria-hidden="true"
+      />
       <div
         ref={parentRef}
         role="button"
@@ -114,55 +142,56 @@ function ContextMenu({ menuItems, testId, children }: ContextMenuProps) {
         aria-label="Press Control + F12 to open the context menu"
         onContextMenu={handleContextMenuClick}
         onKeyDown={handleContextMenuKeyDown}
-        onMouseMove={handleMouseEvent}
-        {...triggerProps}
       >
         {children}
       </div>
-      {isOpen &&
-        renderLayer(
-          <div className="nds-context-menu-popover" {...layerProps}>
-            <Menu
-              onAction={handleOnSelect}
-              className="nds-context-menu rounded--all elevation--high"
-            >
-              {menuItems.map((menuItem, menuItemIndex) => {
-                return (
-                  <MenuItem
-                    key={menuItem.props.id}
-                    id={menuItem.props.id}
-                    value={menuItem.props.id}
-                    className={({ isSelected, isFocused, isDisabled }) =>
-                      cc([
-                        "nds-context-menu-item",
-                        "padding--x--s padding--y--xs",
-                        {
-                          "nds-context-menu-item--highlighted":
-                            isSelected || isFocused,
-                          "nds-context-menu-item--disabled": isDisabled,
-                          "rounded--top": menuItemIndex === 0,
-                          "rounded--bottom":
-                            menuItemIndex === menuItems.length - 1,
-                        },
-                      ])
-                    }
-                  >
-                    <Row gapSize="s">
-                      {menuItem.props.startIcon && (
-                        <Row.Item shrink>
-                          <span
-                            className={`narmi-icon-${menuItem.props.startIcon}`}
-                          />
-                        </Row.Item>
-                      )}
-                      <Row.Item>{menuItem.props.label}</Row.Item>
-                    </Row>
-                  </MenuItem>
-                );
-              })}
-            </Menu>
-          </div>,
+      <div
+        ref={layerRef as React.Ref<HTMLDivElement>}
+        className="nds-context-menu-popover"
+        {...(layerRest as React.HTMLAttributes<HTMLDivElement>)}
+      >
+        {isOpen && (
+          <Menu
+            onAction={handleOnSelect}
+            className="nds-context-menu rounded--all elevation--high"
+          >
+            {menuItems.map((menuItem, menuItemIndex) => {
+              return (
+                <MenuItem
+                  key={menuItem.props.id}
+                  id={menuItem.props.id}
+                  value={menuItem.props.id}
+                  className={({ isSelected, isFocused, isDisabled }) =>
+                    cc([
+                      "nds-context-menu-item",
+                      "padding--x--s padding--y--xs",
+                      {
+                        "nds-context-menu-item--highlighted":
+                          isSelected || isFocused,
+                        "nds-context-menu-item--disabled": isDisabled,
+                        "rounded--top": menuItemIndex === 0,
+                        "rounded--bottom":
+                          menuItemIndex === menuItems.length - 1,
+                      },
+                    ])
+                  }
+                >
+                  <Row gapSize="s">
+                    {menuItem.props.startIcon && (
+                      <Row.Item shrink>
+                        <span
+                          className={`narmi-icon-${menuItem.props.startIcon}`}
+                        />
+                      </Row.Item>
+                    )}
+                    <Row.Item>{menuItem.props.label}</Row.Item>
+                  </Row>
+                </MenuItem>
+              );
+            })}
+          </Menu>
         )}
+      </div>
     </MenuTrigger>
   );
 }

@@ -2,12 +2,11 @@
 import React, { useMemo } from "react";
 import cc from "classcat";
 import { useCombobox } from "downshift";
-import { useLayer } from "react-laag";
+import useDropdownLayer from "../hooks/useDropdownLayer";
 import Row from "../Row";
 import TableInput from "../TableInput";
 import Item from "./Item";
 export type { TableAutocompleteItemProps } from "./Item";
-import { createUseLayerContainer } from "../util/dom";
 
 export type TableAutocompleteItem = React.ReactElement;
 
@@ -135,22 +134,22 @@ const TableAutocomplete = ({
     },
   });
 
-  /** @see https://github.com/everweij/react-laag#api-docs */
-  const { renderLayer, triggerProps, layerProps, triggerBounds } = useLayer({
+  const { anchorProps, layerProps } = useDropdownLayer({
     isOpen,
-    overflowContainer: true,
-    auto: true,
-    snap: true,
-    placement: "bottom-start",
-    possiblePlacements: ["top-start", "bottom-start"],
-    preferY: "bottom",
-    triggerOffset: 2,
-    container: createUseLayerContainer,
+    setIsOpen: () => {},
+    matchWidth: true,
+    placement: "bottom",
   });
+
+  const { ref: anchorRef, ...anchorRest } = anchorProps;
+  const { ref: layerRef, ...layerRest } = layerProps;
 
   return (
     <div className="nds-tableAutocomplete">
-      <div {...triggerProps}>
+      <div
+        ref={anchorRef as React.Ref<HTMLDivElement>}
+        {...(anchorRest as React.HTMLAttributes<HTMLDivElement>)}
+      >
         <TableInput
           label={label}
           placeholder={!isDisabled ? placeholder : undefined}
@@ -161,16 +160,13 @@ const TableAutocomplete = ({
           })}
         />
       </div>
-      {isOpen &&
-        renderLayer(
-          <div
-            className={cc(["nds-tableAutocomplete-dropdown", "rounded--all"])}
-            {...layerProps}
-            style={{
-              ...layerProps.style,
-              width: triggerBounds?.width || "max-content",
-            }}
-          >
+      <div
+        className={cc(["nds-tableAutocomplete-dropdown", "rounded--all"])}
+        ref={layerRef as React.Ref<HTMLDivElement>}
+        {...(layerRest as React.HTMLAttributes<HTMLDivElement>)}
+      >
+        {isOpen && (
+          <>
             <ul
               className="nds-tableAutocomplete-menu list--reset rounded--all"
               {...getMenuProps()}
@@ -214,8 +210,9 @@ const TableAutocomplete = ({
                 {footerContent}
               </div>
             )}
-          </div>,
+          </>
         )}
+      </div>
     </div>
   );
 };

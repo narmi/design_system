@@ -84,25 +84,6 @@ vi.mock("react-aria-components", () => {
   };
 });
 
-// Mock react-laag
-vi.mock("react-laag", () => ({
-  useLayer: vi.fn(() => ({
-    renderLayer: (content) => content,
-    triggerProps: {},
-    layerProps: {},
-  })),
-  useMousePositionAsTrigger: () => ({
-    handleMouseEvent: vi.fn(),
-    trigger: { current: null },
-    parentRef: { current: null },
-  }),
-}));
-
-// Mock DOM utility
-vi.mock("../util/dom", () => ({
-  createUseLayerContainer: vi.fn(),
-}));
-
 const defaultProps: ContextMenuProps = {
   children: <div>Right-click me</div>,
   menuItems: [

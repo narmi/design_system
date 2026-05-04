@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { MenuTrigger, Menu, MenuItem } from "react-aria-components";
 import cc from "classcat";
 import ContextMenuItem from "./ContextMenuItem";
@@ -20,6 +20,7 @@ export interface ContextMenuProps {
  * The menu can be trigger by right-clicking on the element or by pressing Control + F12.
  */
 function ContextMenu({ menuItems, testId, children }: ContextMenuProps) {
+  const triggerRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const [anchorPosition, setAnchorPosition] = React.useState({
     top: 0,
@@ -86,7 +87,15 @@ function ContextMenu({ menuItems, testId, children }: ContextMenuProps) {
       if (key === "Escape") setIsOpen(false);
     };
 
-    const handleNativeContextMenu = () => setIsOpen(false);
+    const handleNativeContextMenu = (event: MouseEvent) => {
+      if (
+        triggerRef.current &&
+        triggerRef.current.contains(event.target as Node)
+      ) {
+        return;
+      }
+      setIsOpen(false);
+    };
 
     document.addEventListener("mousedown", handleDismiss);
     window.addEventListener("keyup", handleEscape);
@@ -124,6 +133,7 @@ function ContextMenu({ menuItems, testId, children }: ContextMenuProps) {
         aria-hidden="true"
       />
       <div
+        ref={triggerRef}
         role="button"
         tabIndex={0}
         aria-label="Press Control + F12 to open the context menu"

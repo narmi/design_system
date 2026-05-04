@@ -46,8 +46,8 @@ function ContextMenu({ menuItems, testId, children }: ContextMenuProps) {
   function handleContextMenuKeyDown(
     event: React.KeyboardEvent<HTMLDivElement>,
   ) {
-    event.preventDefault();
     if (event.key === "F12" && event.ctrlKey) {
+      event.preventDefault();
       const rect = event.currentTarget.getBoundingClientRect();
       setAnchorPosition({
         top: rect.top + rect.height / 2,

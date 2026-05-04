@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import cc from "classcat";
 import PropTypes from "prop-types";
 import FocusLock from "react-focus-lock";
@@ -49,10 +49,10 @@ const Popover = ({
       })
     : content;
 
-  const closePopover = () => {
+  const closePopover = useCallback(() => {
     setOpen(false);
     onUserDismiss();
-  };
+  }, [onUserDismiss]);
 
   const togglePopover = (event) => {
     event.stopPropagation();
@@ -108,7 +108,7 @@ const Popover = ({
       document.removeEventListener("mousedown", handleOutsideClick);
       window.removeEventListener("keydown", handleEscape);
     };
-  }, [shouldRenderPopover]);
+  }, [shouldRenderPopover, closePopover, anchorRef, layerRef]);
 
   return (
     <>

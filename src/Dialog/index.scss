@@ -1,7 +1,3 @@
-.nds-dialog {
-  --overflow-gradient-height: 20px;
-}
-
 .nds-dialog-root {
   position: fixed;
   inset: 0;
@@ -71,15 +67,15 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  border-top-right-radius: var(--border-radius-m);
-  border-top-left-radius: var(--border-radius-m);
+  border-top-right-radius: var(--border-radius-default);
+  border-top-left-radius: var(--border-radius-default);
 
   max-height: 96%; // relative to parent, .nds-dialog-focuslock
   min-width: 100dvw;
 
   // for tablet or larger, display the modal dialog as a floating box.
   @include atMediaUp("s", $includeHeight: true) {
-    border-radius: var(--border-radius-m);
+    border-radius: var(--border-radius-default);
     max-height: 80vh; // prevent modal from being taller than the shim content box
     min-width: 240px; // should be no narrower than this on larger viewports
     width: var(--dialog-preferred-width);
@@ -88,12 +84,10 @@
 
 .nds-dialog-header {
   background-color: var(--bgColor-cloudGrey);
-  border-radius: var(--border-radius-default) var(--border-radius-default) 0 0;
-  padding: var(--space-s);
+  padding-inline: var(--space-m);
+  padding-block: var(--space-s);
 
   h4 {
-    margin: 0;
-    padding: 0;
     font-family: var(--font-family-default);
     font-size: var(--font-size-default);
     color: var(--font-color-heading);
@@ -102,49 +96,55 @@
 
   @include atMediaUp("s", $includeHeight: true) {
     background-color: var(--color-white);
-    margin: 0 var(--space-xl);
-    padding-top: var(--space-xl);
-    padding-bottom: var(--space-xxs);
-    border-radius: 0;
-    padding-left: 0;
-    padding-right: 0;
+    padding-inline: unset;
+    padding-block: unset;
+    margin-inline: var(--space-l);
+    margin-top: var(--space-l);
+    border-bottom: 1px solid var(--border-color-default);
 
     h4 {
-      font-size: var(--font-size-xl);
-      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-l);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-l);
     }
-  }
-}
-
-.nds-dialog-header--bordered {
-  @include atMediaUp("s", $includeHeight: true) {
-    border-bottom: var(--border-size-m) solid var(--theme-primary);
   }
 }
 
 .nds-dialog-header--banner {
   background-color: var(--theme-primary);
-  color: white;
-  margin: 0 0;
-  padding: 0 var(--space-s) 0 var(--space-s);
+
+  h4,
+  .nds-dialog-closeButton {
+    color: var(--color-white) !important;
+  }
+
+  h4 {
+    margin-bottom: unset;
+  }
+
   @include atMediaUp("s", $includeHeight: true) {
-    border-radius: var(--border-radius-m) var(--border-radius-m) 0 0;
+    margin: 0;
+    padding-inline: var(--space-l);
+    padding-block: var(--space-m);
+    border-top-left-radius: var(--border-radius-default);
+    border-top-right-radius: var(--border-radius-default);
   }
 }
 
 .nds-dialog-closeButton {
-  position: absolute;
   font-size: var(--font-size-xl) !important;
   color: var(--font-color-primary);
-  right: var(--space-m);
-  top: var(--space-xs);
-  @include atMediaUp("s", $includeHeight: true) {
-    top: var(--space-m);
-  }
-}
 
-.nds-dialog-closeButton--banner {
-  color: white !important;
+  // Scale effect on hover.
+  transition: scale 150ms ease;
+  &:focus,
+  &:hover {
+    scale: 1.1;
+  }
+
+  @include atMediaUp("s", $includeHeight: true) {
+    transform: translateY(-0.18em);
+  }
 }
 
 .nds-dialog-header,
@@ -156,37 +156,14 @@
 }
 
 .nds-dialog-content {
-  padding: 0 var(--space-xl);
+  padding-inline: var(--space-l);
+  padding-block: var(--space-s);
   overflow-y: auto;
   flex-grow: 1;
 }
 
 .nds-dialog-footer {
-  margin: 0 var(--space-xl) var(--space-xl);
-  padding-top: var(--space-default);
-}
-
-.nds-dialog-footer--overflowing {
-  position: relative;
-
-  // prevent edge case where last line of text is obscured by the overflow
-  // gradient above the dialog footer
-  .nds-dialog-content {
-    padding-bottom: var(--overflow-gradient-height);
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: -20px;
-    /* stack on top of footer border */
-    height: var(--overflow-gradient-height);
-    background-image: linear-gradient(
-      to top,
-      var(--color-white),
-      RGBA(var(--rgb-white), 0.33)
-    );
-  }
+  margin: 0 var(--space-l) var(--space-l);
+  border-top: 1px solid var(--border-color-default);
+  padding-top: var(--space-l);
 }

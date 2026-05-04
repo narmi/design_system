@@ -69,11 +69,11 @@ describe("Dialog", () => {
   });
 
   describe("Header styles", () => {
-    it("renders bordered header by default", () => {
+    it("renders plain header by default", () => {
       renderDialog();
       expect(
         screen.getByText("Test Dialog").closest(".nds-dialog-header"),
-      ).toHaveClass("nds-dialog-header--bordered");
+      ).toHaveClass("nds-dialog-header--plain");
     });
 
     it("renders plain header", () => {
@@ -89,7 +89,6 @@ describe("Dialog", () => {
         .getByText("Test Dialog")
         .closest(".nds-dialog-header");
       expect(header).toHaveClass("nds-dialog-header--banner");
-      expect(screen.getByText("Test Dialog")).toHaveStyle("text-align: center");
     });
   });
 
@@ -171,14 +170,14 @@ describe("Dialog", () => {
       renderDialog({ footer });
 
       const content = document.querySelector(".nds-dialog-content");
-      expect(content).not.toHaveClass("padding--bottom--xl");
+      expect(content).not.toHaveClass("padding--bottom--l");
     });
 
     it("applies correct content padding when no footer", () => {
       renderDialog();
 
       const content = document.querySelector(".nds-dialog-content");
-      expect(content).toHaveClass("padding--bottom--xl");
+      expect(content).toHaveClass("padding--bottom--l");
     });
   });
 
@@ -203,6 +202,9 @@ describe("Dialog", () => {
       renderDialog();
 
       await waitFor(() => {
+        expect(
+          document.querySelector(".nds-dialog-focuslock"),
+        ).toBeInTheDocument();
         expect(
           document.querySelector(".nds-dialog-focuslock"),
         ).toBeInTheDocument();

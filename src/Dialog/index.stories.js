@@ -50,7 +50,6 @@ Overview.args = {
       <Button>Accept</Button>
     </div>
   ),
-  headerStyle: "bordered",
   onUserDismiss: () => {},
   width: "500px",
 };
@@ -270,4 +269,9 @@ WithNotification.args = {
 export default {
   title: "Components/Dialog",
   component: Dialog,
+  argTypes: {
+    headerStyle: {
+      options: ["plain", "banner"],
+    },
+  },
 };

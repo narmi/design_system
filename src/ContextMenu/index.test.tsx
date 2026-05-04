@@ -366,6 +366,26 @@ describe("ContextMenu", () => {
       });
     });
 
+    it("closes menu when clicking outside the menu layer", async () => {
+      const user = userEvent.setup();
+      renderContextMenu();
+
+      // Open menu
+      const triggerElement = screen.getByText("Right-click me");
+      await user.pointer({ keys: "[MouseRight]", target: triggerElement });
+
+      await waitFor(() => {
+        expect(screen.getByTestId("menu")).toBeInTheDocument();
+      });
+
+      // Simulate mousedown outside the layer element
+      fireEvent.mouseDown(document.body);
+
+      await waitFor(() => {
+        expect(screen.queryByTestId("menu")).not.toBeInTheDocument();
+      });
+    });
+
     it("handles mouse events correctly", () => {
       renderContextMenu();
 

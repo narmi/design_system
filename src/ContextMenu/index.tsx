@@ -30,7 +30,7 @@ function ContextMenu({ menuItems, testId, children }: ContextMenuProps) {
     isOpen,
     setIsOpen,
     matchWidth: false,
-    placement: "bottom-start",
+    placement: "bottom",
   });
 
   const { ref: layerRef, ...layerRest } = layerProps;

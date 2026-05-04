@@ -106,6 +106,7 @@ const TableAutocomplete = ({
     getInputProps,
     getItemProps,
     isOpen,
+    closeMenu,
   } = useCombobox({
     items: itemsToDisplay,
     selectedItem,
@@ -136,7 +137,9 @@ const TableAutocomplete = ({
 
   const { anchorProps, layerProps } = useDropdownLayer({
     isOpen,
-    setIsOpen: () => {},
+    setIsOpen: (open: boolean) => {
+      if (!open) closeMenu();
+    },
     matchWidth: true,
     placement: "bottom",
   });

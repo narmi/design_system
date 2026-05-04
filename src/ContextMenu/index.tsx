@@ -86,11 +86,15 @@ function ContextMenu({ menuItems, testId, children }: ContextMenuProps) {
       if (key === "Escape") setIsOpen(false);
     };
 
+    const handleNativeContextMenu = () => setIsOpen(false);
+
     document.addEventListener("mousedown", handleDismiss);
     window.addEventListener("keyup", handleEscape);
+    document.addEventListener("contextmenu", handleNativeContextMenu);
     return () => {
       document.removeEventListener("mousedown", handleDismiss);
       window.removeEventListener("keyup", handleEscape);
+      document.removeEventListener("contextmenu", handleNativeContextMenu);
     };
   }, [isOpen]);
 

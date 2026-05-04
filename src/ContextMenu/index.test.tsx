@@ -386,6 +386,26 @@ describe("ContextMenu", () => {
       });
     });
 
+    it("closes menu when a native contextmenu event fires on the document", async () => {
+      const user = userEvent.setup();
+      renderContextMenu();
+
+      // Open menu
+      const triggerElement = screen.getByText("Right-click me");
+      await user.pointer({ keys: "[MouseRight]", target: triggerElement });
+
+      await waitFor(() => {
+        expect(screen.getByTestId("menu")).toBeInTheDocument();
+      });
+
+      // Simulate native contextmenu event (e.g. Shift+F10 or right-click elsewhere)
+      fireEvent.contextMenu(document.body);
+
+      await waitFor(() => {
+        expect(screen.queryByTestId("menu")).not.toBeInTheDocument();
+      });
+    });
+
     it("handles mouse events correctly", () => {
       renderContextMenu();
 

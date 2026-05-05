@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.10.0](https://github.com/narmi/design_system/compare/v6.9.0...v6.10.0) (2026-05-05)
+
+### feat
+
+* **popovers:** remove react-laag; useDropdownlayer in all popups ([](https://github.com/narmi/design_system/commit/5dc71e329fb6f7a801bc97701dc30b9894ec371d))
+
+### fix
+
+* **ContextMenu:** close menu on native contextmenu event (Shift+F10 etc.) ([](https://github.com/narmi/design_system/commit/d39c6f5a10d488c687c5c65520c6d1ddd745f20c))
+* **Popover:** handle onClickOutside with new position engine ([](https://github.com/narmi/design_system/commit/33fc2d2a25ec5a1eefbcf08320a57ba06b7251e6))
+* **AnchoredDialog:** set max height for inner content ([](https://github.com/narmi/design_system/commit/e162a13deedfd37b588b158ab5b3ddf75e32ef95))
+* **Popover:** stabilize closePopover with useCallback to prevent stale callback ([](https://github.com/narmi/design_system/commit/c97169e4cb13b990b6317fb624f78b0def3e80aa))
+* **TableAutocomplete:** wire setIsOpen to Downshift closeMenu ([](https://github.com/narmi/design_system/commit/a40db0e8e4e8c686b3a1d81a1878d838f1fc2e4b))
+
+### refactor
+
+* **ContextMenu:** simplify virtual anchor ([](https://github.com/narmi/design_system/commit/b58800a91b4aebdac5ef80da159740c07480a479))
+
+### test
+
+* **ContextMenu:** add regression test for outside-click dismiss ([](https://github.com/narmi/design_system/commit/eea73c1ad7794315e8ab07c7f8997eaadebe85aa))
+
 ## [6.9.0](https://github.com/narmi/design_system/compare/v6.8.8...v6.9.0) (2026-04-30)
 
 ### feat

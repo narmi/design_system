@@ -55,17 +55,15 @@ export const Positioning = Template.bind({});
 Positioning.args = {
   content: (
     <div className="padding--all--m">
-      Use <code>side</code> and <code>alignment</code> to set your preferred
-      positioning
+      Use <code>side</code> to set your preferred positioning
     </div>
   ),
   renderTrigger: () => (
     <Button type="button" kind="secondary">
-      Top / Start positioned Popover
+      Top positioned Popover
     </Button>
   ),
   side: "top",
-  alignment: "start",
 };
 Positioning.argTypes = {
   content: { control: false },
@@ -128,4 +126,8 @@ Controlled.parameters = {
 export default {
   title: "Components/Popover",
   component: Popover,
+  argTypes: {
+    alignment: { table: { disable: true } },
+    disableAutoPlacement: { table: { disable: true } },
+  },
 };

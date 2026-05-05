@@ -84,25 +84,6 @@ vi.mock("react-aria-components", () => {
   };
 });
 
-// Mock react-laag
-vi.mock("react-laag", () => ({
-  useLayer: vi.fn(() => ({
-    renderLayer: (content) => content,
-    triggerProps: {},
-    layerProps: {},
-  })),
-  useMousePositionAsTrigger: () => ({
-    handleMouseEvent: vi.fn(),
-    trigger: { current: null },
-    parentRef: { current: null },
-  }),
-}));
-
-// Mock DOM utility
-vi.mock("../util/dom", () => ({
-  createUseLayerContainer: vi.fn(),
-}));
-
 const defaultProps: ContextMenuProps = {
   children: <div>Right-click me</div>,
   menuItems: [
@@ -379,6 +360,46 @@ describe("ContextMenu", () => {
 
       // Press Escape
       fireEvent.keyUp(window, { key: "Escape" });
+
+      await waitFor(() => {
+        expect(screen.queryByTestId("menu")).not.toBeInTheDocument();
+      });
+    });
+
+    it("closes menu when clicking outside the menu layer", async () => {
+      const user = userEvent.setup();
+      renderContextMenu();
+
+      // Open menu
+      const triggerElement = screen.getByText("Right-click me");
+      await user.pointer({ keys: "[MouseRight]", target: triggerElement });
+
+      await waitFor(() => {
+        expect(screen.getByTestId("menu")).toBeInTheDocument();
+      });
+
+      // Simulate mousedown outside the layer element
+      fireEvent.mouseDown(document.body);
+
+      await waitFor(() => {
+        expect(screen.queryByTestId("menu")).not.toBeInTheDocument();
+      });
+    });
+
+    it("closes menu when a native contextmenu event fires on the document", async () => {
+      const user = userEvent.setup();
+      renderContextMenu();
+
+      // Open menu
+      const triggerElement = screen.getByText("Right-click me");
+      await user.pointer({ keys: "[MouseRight]", target: triggerElement });
+
+      await waitFor(() => {
+        expect(screen.getByTestId("menu")).toBeInTheDocument();
+      });
+
+      // Simulate native contextmenu event (e.g. Shift+F10 or right-click elsewhere)
+      fireEvent.contextMenu(document.body);
 
       await waitFor(() => {
         expect(screen.queryByTestId("menu")).not.toBeInTheDocument();

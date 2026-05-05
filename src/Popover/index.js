@@ -1,10 +1,9 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import cc from "classcat";
 import PropTypes from "prop-types";
-import { useLayer } from "react-laag";
 import FocusLock from "react-focus-lock";
-import { createUseLayerContainer } from "src/util/dom";
+import useDropdownLayer from "../hooks/useDropdownLayer";
 
 const noop = () => {};
 
@@ -21,13 +20,10 @@ const noop = () => {};
  */
 const Popover = ({
   side = "bottom",
-  alignment = "center",
   content,
   children,
   renderTrigger = () => <></>,
   wrapperDisplay = "inline-flex",
-  offset = 2,
-  disableAutoPlacement = false,
   matchTriggerWidth = false,
   testId,
   closeOnContentClick = false,
@@ -53,10 +49,10 @@ const Popover = ({
       })
     : content;
 
-  const closePopover = () => {
+  const closePopover = useCallback(() => {
     setOpen(false);
     onUserDismiss();
-  };
+  }, [onUserDismiss]);
 
   const togglePopover = (event) => {
     event.stopPropagation();
@@ -74,45 +70,52 @@ const Popover = ({
     }
   };
 
-  const handleKeyUp = ({ key }) => {
-    if (key === "Escape" && shouldRenderPopover) {
-      setOpen(false);
-      onUserDismiss();
-    }
-  };
-
-  const { renderLayer, triggerProps, triggerBounds, layerProps } = useLayer({
+  const { anchorProps, layerProps } = useDropdownLayer({
     isOpen: shouldRenderPopover,
-    onOutsideClick: closePopover,
-    onDisappear: closePopover,
-    auto: !disableAutoPlacement,
-    placement: `${side}-${alignment}`,
-    preferX: "left",
-    preferY: "bottom",
-    container: createUseLayerContainer,
-    triggerOffset: offset,
+    setIsOpen: (v) => {
+      if (!v) closePopover();
+    },
+    matchWidth: matchTriggerWidth,
+    placement: side,
   });
 
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyUp);
-    return () => {
-      window.removeEventListener("keydown", handleKeyUp);
-    };
-  }, [handleKeyUp]);
+  const { ref: anchorRef, style: anchorStyle, ...anchorRest } = anchorProps;
+  const { ref: layerRef, ...layerRest } = layerProps;
 
-  let layerStyle = layerProps.style;
-  if (triggerBounds && matchTriggerWidth) {
-    layerStyle = {
-      width: triggerBounds.width,
-      ...layerProps.style,
+  useEffect(() => {
+    if (!shouldRenderPopover) return;
+
+    const handleOutsideClick = (event) => {
+      const anchor = typeof anchorRef === "object" ? anchorRef?.current : null;
+      const layer = typeof layerRef === "object" ? layerRef?.current : null;
+      if (
+        anchor &&
+        !anchor.contains(event.target) &&
+        layer &&
+        !layer.contains(event.target)
+      ) {
+        closePopover();
+      }
     };
-  }
+
+    const handleEscape = ({ key }) => {
+      if (key === "Escape") closePopover();
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    window.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [shouldRenderPopover, closePopover, anchorRef, layerRef]);
 
   return (
     <>
       <div
-        {...triggerProps}
-        style={{ display: wrapperDisplay }}
+        ref={anchorRef}
+        {...anchorRest}
+        style={{ ...anchorStyle, display: wrapperDisplay }}
         onClick={togglePopover}
         onKeyDown={handleKeyDown}
         role="button"
@@ -125,28 +128,25 @@ const Popover = ({
         {/* Support both legacy (children) and standard (render prop) triggers */}
         {hasChildren ? children : renderTrigger(isOpen)}
       </div>
-      {renderLayer(
-        <>
-          {shouldRenderPopover && (
-            <div
-              {...layerProps}
-              className={cc([
-                "nds-typography nds-popover",
-                "rounded--all bgColor--white",
-                {
-                  "nds-popover--elevated": hasShadow,
-                },
-              ])}
-              style={layerStyle}
-              data-testid={testId}
-            >
-              <div tabIndex={-1}>
-                <FocusLock autoFocus={autoFocus}>{popoverContent}</FocusLock>
-              </div>
-            </div>
-          )}
-        </>,
-      )}
+      <div
+        ref={layerRef}
+        {...layerRest}
+        className={cc([
+          "nds-typography nds-popover",
+          "rounded--all bgColor--white",
+          {
+            "nds-popover--elevated": hasShadow,
+          },
+        ])}
+        style={layerRest.style}
+        data-testid={testId}
+      >
+        {shouldRenderPopover && (
+          <div tabIndex={-1}>
+            <FocusLock autoFocus={autoFocus}>{popoverContent}</FocusLock>
+          </div>
+        )}
+      </div>
     </>
   );
 };
@@ -166,8 +166,7 @@ Popover.propTypes = {
   renderTrigger: PropTypes.func,
   /** Sets preferred side of the trigger the tooltip should appear */
   side: PropTypes.oneOf(["top", "right", "bottom", "left"]),
-  /** Sets preferred alignment of the tooltip relative to the trigger */
-  alignment: PropTypes.oneOf(["start", "center", "end"]),
+
   /** CSS `display` value for the element that wraps the Tooltip children */
   wrapperDisplay: PropTypes.oneOf([
     "inline-flex",
@@ -176,16 +175,10 @@ Popover.propTypes = {
     "block",
     "flex",
   ]),
-  /** Distance of Popover from trigger element in number of pixels */
-  offset: PropTypes.number,
+
   /** When `true`, the Popover container will match the width of its triggering element */
   matchTriggerWidth: PropTypes.bool,
-  /**
-   * By default, the Popover will automatically reposition itself to avoid viewport edges.
-   * Setting this prop to `true` will disable this behavior so that the Popover will
-   * always be placed on the given `side` prop.
-   */
-  disableAutoPlacement: PropTypes.bool,
+
   /** Optional value for `data-testid` attribute */
   testId: PropTypes.string,
   /** Close the popover if the User clicks on the content */

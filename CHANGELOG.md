@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.10.1](https://github.com/narmi/design_system/compare/v6.10.0...v6.10.1) (2026-05-11)
+
+### fix
+
+* **Button:** ai variant radius fix ([](https://github.com/narmi/design_system/commit/571e6051688fc3dd640e0a1a4b73efaeda113440))
+
 ## [6.10.0](https://github.com/narmi/design_system/compare/v6.9.0...v6.10.0) (2026-05-05)
 
 ### feat

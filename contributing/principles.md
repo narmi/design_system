@@ -37,3 +37,6 @@ documentation from code as much as possible to ensure docs remain accurate and u
 
 As new features and enhancements are added to Narmi core products, changes will be codified in the design system.
 Components in the design system are built to anticipate change.
+
+### Use modern web standards
+Prefer native browser APIs and native CSS over libraries and JS-only solutions. The modern web provides better solutions out of the box than anything we can build ourselves.

@@ -6,7 +6,7 @@
       "heading1": { "value": "{font.color.heading.value}" },
       "heading2": { "value": "{font.color.heading.value}" },
       "heading3": { "value": "{font.color.heading.value}" },
-      "primary": { "value": "{color.grey.black.value}" },
+      "primary": { "value": "{color.grey.darkGrey.value}" },
       "secondary": { "value": "{color.grey.mediumGrey.value}" },
       "hint": { "value": "{color.grey.lightGrey.value}" }
     }

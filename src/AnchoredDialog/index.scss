@@ -1,5 +1,6 @@
 /* AnchoredDialog component styles */
 .nds-anchoredDialog {
+  --nds-layer-gap: var(--space-s);
   @extend %nds-dropdown-layer;
   // this will scroll within the content area instead.
   overflow-y: unset !important;

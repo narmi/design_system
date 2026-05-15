@@ -43,6 +43,7 @@ const AnchoredDialog = ({
     matchWidth: false,
     isPortalled,
     ariaPopupType: "dialog",
+    alignment: "start",
   });
 
   useOnClickOutside(layerProps.ref as React.RefObject<HTMLDivElement>, () => {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.10.5](https://github.com/narmi/design_system/compare/v6.10.4...v6.10.5) (2026-05-15)
+
+### fix
+
+* **AnchoredDialog:** alignment parity with react-laag ([](https://github.com/narmi/design_system/commit/714b040d24feb36ea2819f54db00b89036371112))
+* **typography:** all but h3 should use heading family ([](https://github.com/narmi/design_system/commit/c0e7865f970dfb8f59bce40baee8b961a20976bf))
+* **AnchoredDialog:** keep popup ARIA attributes on trigger element ([](https://github.com/narmi/design_system/commit/e961039fffd21ddb38bfc7fb8b1339c332b71a0b))
+* **tokens:** restore primary font color ([](https://github.com/narmi/design_system/commit/54b83f8d3ddc65f8cf590004983930944907424b))
+* **AnchoredDialog:** use dedicated element for hook ref ([](https://github.com/narmi/design_system/commit/f6bdd43adadcfb63ef9ee6a3168bdfdd48f64346))
+* **Radio,Checkbox:** use higher contrast color for faux input ([](https://github.com/narmi/design_system/commit/a22803086bd7e94a2b8f12de072997f8b71c532b))
+
 ## [6.10.4](https://github.com/narmi/design_system/compare/v6.10.3...v6.10.4) (2026-05-15)
 
 ### fix

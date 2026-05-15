@@ -13,3 +13,12 @@ export const NdsStyles = (Story) => (
     <Story />
   </div>
 );
+
+export const ExamplesBackground = (Story, context) => {
+  if (!context.title?.startsWith("Examples/")) return <Story />;
+  return (
+    <div className="bgColor--blueGrey" style={{ padding: "2rem" }}>
+      <Story />
+    </div>
+  );
+};

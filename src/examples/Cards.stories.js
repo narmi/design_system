@@ -4,34 +4,31 @@ import Checkbox from "../Checkbox";
 import Row from "../Row";
 import "./Cards.scss";
 
-// TODO: convert wrapping div to decorator
 // TODO: add helper classes to copyable token tables where applicable
 export const ProductCard = () => (
-  <div className="bgColor--blueGrey" style={{ padding: "2rem" }}>
-    <div className="productCard bgColor--cloudGrey rounded--all--l">
-      <div className="productCard-content bgColor--white rounded--top--l padding--all--s border--top border--left border--right">
-        <Row>
-          <Row.Item>Content area</Row.Item>
-          <Row.Item shrink>
-            <Checkbox label="" kind="table" />
-          </Row.Item>
-        </Row>
-        <div>Any content can go in here.</div>
-      </div>
-      <Accordion
-        renderSummary={(isOpen) => (
-          <div style={{ background: "transparent" }}>
-            <div className="productCard-summary bgColor--white rounded--bottom--l padding--all--s border--bottom border--left border--right">
-              <span>{isOpen ? "Close accordion" : "Open accordion"}</span>
-            </div>
-          </div>
-        )}
-      >
-        <div className="rounded--bottom--l padding--top--l bgColor--cloudGrey padding--all--s">
-          Surprise!
-        </div>
-      </Accordion>
+  <div className="productCard bgColor--cloudGrey rounded--all--l">
+    <div className="productCard-content bgColor--white rounded--top--l padding--all--s border--top border--left border--right">
+      <Row>
+        <Row.Item>Content area</Row.Item>
+        <Row.Item shrink>
+          <Checkbox label="" kind="table" />
+        </Row.Item>
+      </Row>
+      <div>Any content can go in here.</div>
     </div>
+    <Accordion
+      renderSummary={(isOpen) => (
+        <div style={{ background: "transparent" }}>
+          <div className="productCard-summary bgColor--white rounded--bottom--l padding--all--s border--bottom border--left border--right">
+            <span>{isOpen ? "Close accordion" : "Open accordion"}</span>
+          </div>
+        </div>
+      )}
+    >
+      <div className="rounded--bottom--l padding--top--l bgColor--cloudGrey padding--all--s">
+        Surprise!
+      </div>
+    </Accordion>
   </div>
 );
 ProductCard.parameters = {

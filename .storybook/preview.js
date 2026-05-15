@@ -1,7 +1,7 @@
 import React from "react";
 import "./story-styles.css";
 import "../src/index.scss";
-import { NdsStyles } from "./decorators";
+import { NdsStyles, ExamplesBackground } from "./decorators";
 import { docs } from "./theme/narmi";
 
 export const parameters = {
@@ -36,5 +36,5 @@ export const parameters = {
   },
 };
 
-export const decorators = [NdsStyles];
+export const decorators = [NdsStyles, ExamplesBackground];
 export const tags = ["autodocs"];

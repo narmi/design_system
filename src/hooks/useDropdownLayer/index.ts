@@ -28,6 +28,7 @@ export type UseDropdownLayerResult = {
 };
 
 export type Placement = "bottom" | "top" | "left" | "right";
+export type Alignment = "start" | "center" | "end";
 
 export interface UseDropdownLayerOptions {
   /** Whether the dropdown is currently open (required) */
@@ -49,6 +50,14 @@ export interface UseDropdownLayerOptions {
    * @default "bottom"
    */
   placement?: Placement;
+  /**
+   * Alignment of the layer along the cross-axis of the placement direction.
+   *
+   * This option is only applied when the browser supports native CSS anchor
+   * positioning. In the non-anchor-positioning polyfill path, the layer falls
+   * back to start alignment.
+   */
+  alignment?: Alignment;
 }
 
 /** Maps placement to CSS anchor positioning values */
@@ -90,6 +99,7 @@ const useDropdownLayer = ({
   isPortalled = false,
   ariaPopupType = "menu",
   placement = "bottom",
+  alignment,
 }: UseDropdownLayerOptions): UseDropdownLayerResult => {
   const anchorRef = useRef<HTMLElement>(null);
   const layerRef = useRef<HTMLElement>(null);
@@ -125,12 +135,26 @@ const useDropdownLayer = ({
   // Memoized props to spread onto the positioned layer element
   const layerProps = useMemo(() => {
     const config = PLACEMENT_CONFIG[placement];
-    // The anchor uses position fixed regardless of code path.
+
+    // do not set a cross axis unless `alignment` option is defined
+    const positionArea = alignment
+      ? `${config.positionArea} ${alignment}`
+      : config.positionArea;
+    const positionTryFallbacks = alignment
+      ? placement === "left" || placement === "right"
+        ? "flip-inline"
+        : "flip-block"
+      : config.positionTryFallbacks;
+
     const anchorPositionStyles = {
       position: "fixed" as const,
       positionAnchor: anchorName,
-      positionArea: config.positionArea,
-      positionTryFallbacks: config.positionTryFallbacks,
+      positionArea,
+      positionTryFallbacks,
+      marginTop: 0,
+      marginBottom: 0,
+      marginLeft: 0,
+      marginRight: 0,
       [config.margin]: "var(--nds-layer-gap, var(--space-xxs))",
       width: matchWidth ? "anchor-size(width)" : "min(80vw, max-content)",
       maxWidth: matchWidth ? "anchor-size(width)" : "80vw",
@@ -160,6 +184,7 @@ const useDropdownLayer = ({
     anchorName,
     matchWidth,
     placement,
+    alignment,
     polyFillLayerStyles,
     layerRef,
   ]);

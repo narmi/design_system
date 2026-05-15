@@ -1,0 +1,1 @@
+.productCard:has(:checked) :is(.productCard-content,.productCard-summary){border-color:var(--theme-primary)}

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.10.7](https://github.com/narmi/design_system/compare/v6.10.6...v6.10.7) (2026-05-15)
+
+### fix
+
+* **useDropdownLayer:** export for consumer use ([](https://github.com/narmi/design_system/commit/f660e6c372bbec7ed7a3fa48cb3d0d2f1c99504c))
+
 ## [6.10.6](https://github.com/narmi/design_system/compare/v6.10.5...v6.10.6) (2026-05-15)
 
 ### fix

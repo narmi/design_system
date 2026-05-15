@@ -1,0 +1,46 @@
+import{e}from"./iframe-BBWiFKEy.js";import{A as a}from"./index-DzTe9RHl.js";import{C as n}from"./index-BFvnSxqB.js";import{B as d}from"./index-DbRmrM-U.js";import{R as r}from"./index-DpJj-5Vm.js";import"./preload-helper-PPVm8Dsz.js";import"./index-RvS1aOr8.js";import"./index-BcmXgAS5.js";import"./index-_q2gWAWB.js";import"./AsElement-CLyLN9vS.js";import"./index-Cdl-DYNT.js";const o=()=>e.createElement("div",{className:"bgColor--blueGrey",style:{padding:"2rem"}},e.createElement("div",{className:"productCard bgColor--cloudGrey rounded--all--l"},e.createElement("div",{className:"productCard-content bgColor--white rounded--top--l padding--all--s border--top border--left border--right"},e.createElement(r,null,e.createElement(r.Item,null,"Content area"),e.createElement(r.Item,{shrink:!0},e.createElement(n,{label:"",kind:"table"}))),e.createElement("div",null,"Any content can go in here.")),e.createElement(a,{renderSummary:t=>e.createElement("div",{style:{background:"transparent"}},e.createElement("div",{className:"productCard-summary bgColor--white rounded--bottom--l padding--all--s border--bottom border--left border--right"},e.createElement(d,{label:t?"Close accordion":"Open accordion",size:"xs",isActive:t})))},e.createElement("div",{className:"rounded--bottom--l padding--top--l bgColor--cloudGrey padding--all--s"},"Surprise!"))));o.parameters={docs:{description:{story:`
+## Faking a single card with multiple elements
+This is a complex card containing multiple interactive elements within, but responds
+as a single visual unit. Helper classes are used to visually attach an \`Accordion\` to the bottom of the card.
+
+- The top of the card is a div with a flat bottom.
+- The bottom of the card is an \`Accordion\` summary with a flat top.
+- The wrapping container has the same background color as the accordion content to create the overlap effect.
+
+#### Custom CSS for selection-aware outline
+\`\`\`css
+.productCard:has(:checked) :is(.productCard-content, .productCard-summary) {
+  border-color: var(--theme-primary);
+}
+\`\`\`
+`}}};const v={title:"Examples/Cards",parameters:{docs:{description:{component:`
+Most content in the Narmi UI is contained within a "card" of some kind. Some are toggles,
+some are buttons, some expand, and some are just rounded rectagles that simply hold content.
+
+It's important to know which card to use, and when.
+`}}}};o.__docgenInfo={description:"",methods:[],displayName:"ProductCard"};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`() => <div className="bgColor--blueGrey" style={{
+  padding: "2rem"
+}}>
+    <div className="productCard bgColor--cloudGrey rounded--all--l">
+      <div className="productCard-content bgColor--white rounded--top--l padding--all--s border--top border--left border--right">
+        <Row>
+          <Row.Item>Content area</Row.Item>
+          <Row.Item shrink>
+            <Checkbox label="" kind="table" />
+          </Row.Item>
+        </Row>
+        <div>Any content can go in here.</div>
+      </div>
+      <Accordion renderSummary={isOpen => <div style={{
+      background: "transparent"
+    }}>
+            <div className="productCard-summary bgColor--white rounded--bottom--l padding--all--s border--bottom border--left border--right">
+              <Button label={isOpen ? "Close accordion" : "Open accordion"} size="xs" isActive={isOpen} />
+            </div>
+          </div>}>
+        <div className="rounded--bottom--l padding--top--l bgColor--cloudGrey padding--all--s">
+          Surprise!
+        </div>
+      </Accordion>
+    </div>
+  </div>`,...o.parameters?.docs?.source}}};const y=["ProductCard"];export{o as ProductCard,y as __namedExportsOrder,v as default};

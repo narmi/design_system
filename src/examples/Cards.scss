@@ -1,0 +1,8 @@
+// Selector translation:
+// "If productCard has a checked descendant, then apply the following to children
+// that are (\`:is\`) of these two classes.
+//
+// Override the borders when checked.
+.productCard:has(:checked) :is(.productCard-content, .productCard-summary) {
+  border-color: var(--theme-primary);
+}

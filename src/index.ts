@@ -36,6 +36,7 @@ import Tooltip from "./Tooltip";
 import TruncatedAccount from "./TruncatedAccount";
 import useSupportsAnchorPositioning from "./hooks/useSupportsAnchorPositioning";
 import useBreakpoints from "./hooks/useBreakpoints";
+import useDropdownLayer from "./hooks/useDropdownLayer";
 
 /**
  * Untyped Components
@@ -126,6 +127,7 @@ export {
   Tooltip,
   TruncatedAccount,
   useBreakpoints,
+  useDropdownLayer,
   useLockBodyScroll,
   useSupportsAnchorPositioning,
   formatNumber,

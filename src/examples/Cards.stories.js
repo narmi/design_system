@@ -42,6 +42,11 @@ ProductCard.parameters = {
 This is a complex card containing multiple interactive elements within, but responds
 as a single visual unit. Helper classes are used to visually attach an \`Accordion\` to the bottom of the card.
 
+#### Why do this?
+If the entire card were clickable as one unit, interactive controls would become nested, which is invalid.
+A key principle of accessibility is keeping interactive elements valid in the navigation tree.
+
+#### How does it work?
 - The top of the card is a div with a flat bottom.
 - The bottom of the card is an \`Accordion\` summary with a flat top.
 - The wrapping container has the same background color as the accordion content to create the overlap effect.

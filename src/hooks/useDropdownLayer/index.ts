@@ -52,6 +52,10 @@ export interface UseDropdownLayerOptions {
   placement?: Placement;
   /**
    * Alignment of the layer along the cross-axis of the placement direction.
+   *
+   * This option is only applied when the browser supports native CSS anchor
+   * positioning. In the non-anchor-positioning polyfill path, the layer falls
+   * back to start alignment.
    */
   alignment?: Alignment;
 }

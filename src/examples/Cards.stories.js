@@ -43,12 +43,12 @@ ProductCard.parameters = {
   docs: {
     description: {
       story: `
-## Complex Cards
+## Faking a single card with multiple elements
 This is a complex card containing multiple interactive elements within, but responds
 as a single visual unit. Helper classes are used to visually attach an \`Accordion\` to the bottom of the card.
 
 - The top of the card is a div with a flat bottom.
-- The bottom of the card is actually an \`Accordion\` summary with a flat top.
+- The bottom of the card is an \`Accordion\` summary with a flat top.
 - The wrapping container has the same background color as the accordion content to create the overlap effect.
 
 #### Custom CSS for selection-aware outline

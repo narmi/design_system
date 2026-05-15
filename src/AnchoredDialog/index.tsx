@@ -81,12 +81,12 @@ const AnchoredDialog = ({
   return (
     <>
       {trigger && (
-        <span
-          ref={anchorProps.ref as React.RefObject<HTMLSpanElement>}
+        <div
+          ref={anchorProps.ref as React.RefObject<HTMLDivElement>}
           style={anchorProps.style as React.CSSProperties}
         >
           {triggerWithAria}
-        </span>
+        </div>
       )}
       {isOpen && (
         <div

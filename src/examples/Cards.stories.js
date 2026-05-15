@@ -43,7 +43,7 @@ ProductCard.parameters = {
   docs: {
     description: {
       story: `
-## Faking a single card with multiple elements
+## Making multiple elements look like part of the same card
 This is a complex card containing multiple interactive elements within, but responds
 as a single visual unit. Helper classes are used to visually attach an \`Accordion\` to the bottom of the card.
 

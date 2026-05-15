@@ -1,7 +1,6 @@
 import React from "react";
 import Accordion from "../Accordion";
 import Checkbox from "../Checkbox";
-import Button from "../Button";
 import Row from "../Row";
 import "./Cards.scss";
 
@@ -23,11 +22,7 @@ export const ProductCard = () => (
         renderSummary={(isOpen) => (
           <div style={{ background: "transparent" }}>
             <div className="productCard-summary bgColor--white rounded--bottom--l padding--all--s border--bottom border--left border--right">
-              <Button
-                label={isOpen ? "Close accordion" : "Open accordion"}
-                size="xs"
-                isActive={isOpen}
-              />
+              <span>{isOpen ? "Close accordion" : "Open accordion"}</span>
             </div>
           </div>
         )}

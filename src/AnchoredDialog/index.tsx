@@ -70,22 +70,22 @@ const AnchoredDialog = ({
     return null;
   }
 
-  // Clone trigger element and attach anchor props if provided
-  const triggerElement = trigger
-    ? React.cloneElement(trigger, {
-        ref: anchorProps.ref,
-        style: {
-          ...trigger.props.style,
-          ...anchorProps.style,
-        },
-        "aria-haspopup": anchorProps["aria-haspopup"],
-        "aria-expanded": anchorProps["aria-expanded"],
-      })
-    : null;
-
   return (
     <>
-      {triggerElement}
+      {trigger && (
+        <span
+          ref={anchorProps.ref as React.RefObject<HTMLSpanElement>}
+          style={anchorProps.style as React.CSSProperties}
+          aria-haspopup={
+            anchorProps[
+              "aria-haspopup"
+            ] as React.AriaAttributes["aria-haspopup"]
+          }
+          aria-expanded={anchorProps["aria-expanded"]}
+        >
+          {trigger}
+        </span>
+      )}
       {isOpen && (
         <div
           ref={layerProps.ref as React.RefObject<HTMLDivElement>}

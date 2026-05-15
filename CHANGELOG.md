@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.10.6](https://github.com/narmi/design_system/compare/v6.10.5...v6.10.6) (2026-05-15)
+
+### fix
+
+* move example wrapper to decorators ([](https://github.com/narmi/design_system/commit/0fd1eb5317c98e43ecfe1f864f4843cef74bd5d6))
+
 ## [6.10.5](https://github.com/narmi/design_system/compare/v6.10.4...v6.10.5) (2026-05-15)
 
 ### fix

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.11.0](https://github.com/narmi/design_system/compare/v6.10.7...v6.11.0) (2026-05-18)
+
+### feat
+
+* **Chip:** add isLabelVisible prop ([](https://github.com/narmi/design_system/commit/68821c20a55bb2d12c3dc0c31619d584a2f15901))
+
 ## [6.10.7](https://github.com/narmi/design_system/compare/v6.10.6...v6.10.7) (2026-05-15)
 
 ### fix

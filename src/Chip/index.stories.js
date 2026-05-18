@@ -56,6 +56,15 @@ export const CustomIcon = () => (
   </>
 );
 
+export const IconOnly = () => (
+  <>
+    <p>
+      Chip accepts both a <code>startIcon</code> and <code>endIcon</code> prop.
+    </p>
+    <Chip kind="info" isLabelVisible={false} onClick={() => {}} endIcon="zap" />
+  </>
+);
+
 const storyIcons = ["anchor", "wifi", "sun", "phone-off", "moon", "music"];
 export const Kinds = () => (
   <ul className="list--reset">

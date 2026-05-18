@@ -34,6 +34,8 @@ export interface ChipProps {
   count?: string | number;
   /** Adds a border to the badege when `true` */
   hasBorder?: boolean;
+  /** Defines if the label is visible */
+  isLabelVisible?: boolean;
 }
 
 /**
@@ -51,6 +53,7 @@ const Chip = ({
   startIcon,
   endIcon,
   hasBorder = false,
+  isLabelVisible = true,
 }: ChipProps) => {
   const isButton = typeof onClick === "function";
   const isDismissable = !isButton && typeof onDismiss === "function";
@@ -61,6 +64,7 @@ const Chip = ({
       elementType={isButton ? "button" : "div"}
       onClick={isButton ? onClick : undefined}
       type={isButton ? "button" : undefined}
+      aria-label={isLabelVisible ? undefined : label}
       className={cc([
         "nds-chip",
         "fontSize--s",
@@ -70,6 +74,7 @@ const Chip = ({
           "button--reset": isButton,
           "nds-chip--button": isButton,
           "nds-chip--hasBorder": hasBorder,
+          "padding--x--xxs": !isLabelVisible,
         },
       ])}
     >
@@ -81,9 +86,11 @@ const Chip = ({
             />
           </Row.Item>
         )}
-        <Row.Item shrink>
-          <div className="nds-chip-label whiteSpace--truncate">{label}</div>
-        </Row.Item>
+        {isLabelVisible && (
+          <Row.Item shrink>
+            <div className="nds-chip-label whiteSpace--truncate">{label}</div>
+          </Row.Item>
+        )}
         {count && (
           <Row.Item shrink>
             <Count kind={countKind} value={count} />

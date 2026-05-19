@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.11.1](https://github.com/narmi/design_system/compare/v6.11.0...v6.11.1) (2026-05-19)
+
+### fix
+
+* **Checkbox:** avoid sanitizing target attr in links ([](https://github.com/narmi/design_system/commit/10bfe711f46b178b95ad2add4f87c7feb6333d25))
+
 ## [6.11.0](https://github.com/narmi/design_system/compare/v6.10.7...v6.11.0) (2026-05-18)
 
 ### feat

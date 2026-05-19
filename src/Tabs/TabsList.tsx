@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import cc from "classcat";
 import React, { LegacyRef, useContext, useEffect, useState } from "react";
 import Arrow from "./Arrow";
 import TabsContext from "./context";
@@ -28,6 +29,7 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
     tabsListRef,
     setIsResponsive,
     isResponsive,
+    kind,
   } = useContext(TabsContext);
   const childArray = React.Children.toArray(children);
 
@@ -104,12 +106,21 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
   };
 
   return (
-    <div className={isResponsive ? "display-flex" : ""}>
+    <div style={isResponsive ? { display: "flex" } : undefined}>
       <Arrow direction="left" onClick={onLeftClick} show={showLeftArrow} />
       <ul
         ref={tabsListRef as LegacyRef<HTMLUListElement>}
         role={hasPanels ? "tablist" : undefined}
-        className={`nds-tabs-tabsList list--reset padding--x--${xPadding}`}
+        className={cc([
+          "nds-tabs-tabsList",
+          `nds-tabs-tabsList--${kind}`,
+          "list--reset",
+          `padding--x--${xPadding}`,
+          {
+            "nds-tabs-tabsList--overflowLeft": showLeftArrow,
+            "nds-tabs-tabsList--overflowRight": showRightArrow,
+          },
+        ])}
         onKeyDown={hasPanels ? handleKeyDown : noop}
         tabIndex={hasPanels ? 0 : undefined}
         data-testid="nds-tablist"

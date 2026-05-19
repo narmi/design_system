@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import TabsList from "./TabsList";
 import TabsPanel from "./TabsPanel";
 import TabsTab from "./TabsTab";
-import TabsContext from "./context";
+import TabsContext, { TabsKind } from "./context";
 
 const noop = () => {};
 
@@ -23,8 +23,14 @@ interface TabsProps {
   selectedIndex?: number;
   /** Callback invoked with the index of the tab the user is moving selection to */
   onTabChange?: (index: number) => void;
-  /** Shows bottom border when `true` */
+  /**
+   * Shows bottom border when `true`.
+   * Only applies to `kind="default"`.
+   * @deprecated Will be removed in a future release.
+   */
   hasBorder?: boolean;
+  /** Visual style variant of the tabs */
+  kind?: TabsKind;
   /** Optional value for `data-testid` attribute */
   testId?: string;
 }
@@ -42,6 +48,7 @@ const Tabs = ({
   selectedIndex = null,
   onTabChange = noop,
   hasBorder = true,
+  kind = "default",
   testId,
 }: TabsProps) => {
   const tabsListRef = useRef<HTMLUListElement>();
@@ -101,10 +108,15 @@ const Tabs = ({
         tabsListRef,
         isResponsive,
         setIsResponsive,
+        kind,
       }}
     >
       <div
-        className={cc(["nds-tabs", { "nds-tabs--bordered": hasBorder }])}
+        className={cc([
+          "nds-tabs",
+          `nds-tabs--${kind}`,
+          { "nds-tabs--bordered": hasBorder && kind === "default" },
+        ])}
         data-testid={testId}
       >
         {children}

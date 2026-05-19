@@ -1,46 +1,58 @@
+/**
+* Root element shared styles
+*/
 .nds-tabs-tabsList {
+  --nds-tabs-mask-width: var(--space-l);
+  --nds-tabs-selected-bg: rgba(var(--theme-rgb-primary), var(--alpha-20));
+
   display: flex;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: center;
   overflow-x: auto;
   scrollbar-width: none; // Firefox
+
+  // by default, the edges of the scroll container are not masked
+  mask-image: none;
 
   &::-webkit-scrollbar {
     display: none; // Safari + Chrome
   }
 
-  .nds-tabs--bordered & {
-    border-bottom: var(--border-size-s) solid var(--border-color-light);
+  // fade the left side when overflowing left
+  // only the alpha channel from `black` is taken to create the mask
+  &--overflowLeft {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black var(--nds-tabs-mask-width)
+    );
+  }
+
+  // fade the right side when overflowing right
+  &--overflowRight {
+    mask-image: linear-gradient(
+      to left,
+      transparent,
+      black var(--nds-tabs-mask-width)
+    );
+  }
+
+  // fade both sides when overflowing in both directions.
+  // this sass selector parses to `.leftClass.rightClass`
+  &--overflowLeft#{&}--overflowRight {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black var(--nds-tabs-mask-width),
+      black calc(100% - var(--nds-tabs-mask-width)),
+      transparent
+    );
   }
 }
 
-.nds-tabs-tabItem {
-  border-bottom: 3px solid transparent;
-  &:not(:last-child) {
-    margin-right: var(--space-xl);
-  }
-  &--selected {
-    border-color: var(--theme-primary);
-  }
-}
-
-.nds-tabs-button {
-  padding: var(--space-xs) 0 !important;
-  color: var(--font-color-primary) !important;
-  font-size: var(--font-size-default);
-  font-family: var(--font-family-default);
-  white-space: nowrap;
-
-  &--selected,
-  &:hover {
-    color: var(--theme-primary) !important;
-  }
-
-  &--selected {
-    font-weight: var(--font-weight-semibold);
-  }
-}
-
+/**
+* Shared styles for responsive behavior
+*/
 .nds-tabs-arrow {
   padding-top: 6px;
   max-width: 0;
@@ -65,6 +77,117 @@
   padding-right: 32px;
 }
 
-.display-flex {
-  display: flex;
+/**
+* Status dot
+*/
+.nds-tabs-statusIndicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: var(--space-xxs);
+}
+
+/**
+* Variants
+*/
+
+// Default variant
+.nds-tabs--default {
+  &.nds-tabs--bordered .nds-tabs-tabsList {
+    border-bottom: var(--border-size-s) solid var(--border-color-light);
+  }
+
+  .nds-tabs-tabItem {
+    border-bottom: 3px solid transparent;
+
+    &:not(:last-child) {
+      margin-right: var(--space-xl);
+    }
+
+    &[data-selected] {
+      border-color: var(--theme-primary);
+    }
+  }
+
+  .nds-tabs-button {
+    padding-block: var(--space-xs);
+    color: var(--font-color-primary);
+    font-size: var(--font-size-default);
+    font-family: var(--font-family-default);
+    white-space: nowrap;
+
+    &:hover {
+      color: var(--theme-primary);
+    }
+  }
+
+  &[data-selected] .nds-tabs-button {
+    color: var(--theme-primary);
+    font-weight: var(--font-weight-semibold);
+  }
+}
+
+// Segmented variant
+.nds-tabs--segmented {
+  // faking the actual math to bridge the radius gap for the nested pill within the track
+  --pill-radius: calc(var(--border-radius-m) * 1.1);
+  --transition-duration: 0.3s;
+
+  .nds-tabs-tabsList {
+    position: relative;
+    background: rgba(var(--theme-rgb-primary), var(--alpha-5));
+    display: flex;
+    gap: var(--space-xxs);
+    border: 1px solid var(--border-color-default);
+
+    border-radius: var(--pill-radius);
+
+    // The pill shape defined here will move to whichever element
+    // has the anchor name `--active`. The `anchor()` functions
+    // used here allow us to match the values of the anchor to
+    // match height and width exactly.
+    &::before {
+      content: "";
+      position: absolute;
+      position-anchor: --active;
+      left: anchor(left);
+      top: anchor(top);
+      width: anchor-size(width);
+      height: anchor-size(height);
+      transition:
+        left var(--transition-duration),
+        top var(--transition-duration),
+        width var(--transition-duration),
+        height var(--transition-duration);
+      border-radius: var(--pill-radius);
+      background-color: var(--nds-tabs-selected-bg);
+      z-index: 0;
+    }
+  }
+
+  .nds-tabs-tabItem {
+    position: relative;
+    z-index: 1;
+
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.5rem;
+      padding-inline: var(--space-m);
+      border-radius: var(--border-radius-m);
+      color: var(--font-color-primary);
+      min-width: max-content;
+
+      &:hover {
+        background-color: rgba(var(--theme-rgb-primary), var(--alpha-5));
+      }
+    }
+
+    &[data-selected] button {
+      anchor-name: --active;
+      font-weight: var(--font-weight-semibold);
+      color: var(--theme-primary);
+    }
+  }
 }

@@ -10,7 +10,15 @@ interface ArrowProps {
 }
 
 const Arrow = ({ direction, onClick, show }: ArrowProps) => {
-  const { isResponsive } = useContext(TabsContext);
+  const { isResponsive, kind } = useContext(TabsContext);
+  const iconName =
+    direction === "left"
+      ? kind === "segmented"
+        ? "chevron-left"
+        : "arrow-left"
+      : kind === "segmented"
+        ? "chevron-right"
+        : "arrow-right";
 
   return (
     isResponsive && (
@@ -21,11 +29,7 @@ const Arrow = ({ direction, onClick, show }: ArrowProps) => {
             { "nds-tabs-arrow--visible": show },
           ])}
         >
-          <IconButton
-            onClick={onClick}
-            name={direction === "left" ? "arrow-left" : "arrow-right"}
-            kind="action"
-          />
+          <IconButton onClick={onClick} name={iconName} kind="action" />
         </div>
       </div>
     )

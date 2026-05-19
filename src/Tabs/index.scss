@@ -2,11 +2,11 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
-  overflow-x: hidden;
-  scrollbar-width: "none"; // Firefox
+  overflow-x: auto;
+  scrollbar-width: none; // Firefox
 
-  &:webkit-scrollbar {
-    display: "none"; // Safari + Chrome
+  &::-webkit-scrollbar {
+    display: none; // Safari + Chrome
   }
 
   .nds-tabs--bordered & {
@@ -43,28 +43,17 @@
 
 .nds-tabs-arrow {
   padding-top: 6px;
-}
-
-.nds-tabs-arrow-enter {
-  max-width: 0px;
-  opacity: 0;
-}
-
-.nds-tabs-arrow-enter-active {
-  max-width: 32px;
-  opacity: 1;
-  transition: max-width 300ms, opacity 300ms;
-}
-
-.nds-tabs-arrow-exit {
-  max-width: 32px;
-  opacity: 1;
-}
-
-.nds-tabs-arrow-exit-active {
   max-width: 0;
   opacity: 0;
-  transition: max-width 300ms, opacity 300ms;
+  overflow: hidden;
+  transition:
+    max-width 300ms,
+    opacity 300ms;
+
+  &--visible {
+    max-width: 32px;
+    opacity: 1;
+  }
 }
 
 .arrow-reponsive {

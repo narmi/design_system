@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.12.0](https://github.com/narmi/design_system/compare/v6.11.1...v6.12.0) (2026-05-20)
+
+### feat
+
+* **Tabs:** modernize scroll listeners for performance ([](https://github.com/narmi/design_system/commit/b15f833d367a7d695613dc2e3dd1143ab9ab25b4))
+
 ## [6.11.1](https://github.com/narmi/design_system/compare/v6.11.0...v6.11.1) (2026-05-19)
 
 ### fix

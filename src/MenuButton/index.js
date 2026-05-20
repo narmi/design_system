@@ -47,6 +47,7 @@ const MenuButton = ({
     setIsOpen,
     matchWidth: false,
     placement: side,
+    alignment: alignment,
   });
 
   const handleKeyUp = ({ key }) => {

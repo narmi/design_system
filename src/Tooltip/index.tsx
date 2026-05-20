@@ -97,8 +97,8 @@ const Tooltip = ({
         data-placement={side}
         {...layerRest}
         style={{
-          maxWidth: maxWidth,
           ...layerRest.style,
+          maxWidth: maxWidth,
         }}
         data-testid={testId}
         onMouseEnter={openPopover}

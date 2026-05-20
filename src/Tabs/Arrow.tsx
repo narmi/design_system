@@ -1,5 +1,5 @@
-import React, { useContext, useRef } from "react";
-import { CSSTransition } from "react-transition-group";
+import cc from "classcat";
+import React, { useContext } from "react";
 import IconButton from "../IconButton";
 import TabsContext from "./context";
 
@@ -11,26 +11,22 @@ interface ArrowProps {
 
 const Arrow = ({ direction, onClick, show }: ArrowProps) => {
   const { isResponsive } = useContext(TabsContext);
-  const arrowRef = useRef();
 
   return (
     isResponsive && (
       <div className="arrow-reponsive">
-        <CSSTransition
-          nodeRef={arrowRef}
-          in={show}
-          timeout={300}
-          unmountOnExit
-          classNames="nds-tabs-arrow"
+        <div
+          className={cc([
+            "nds-tabs-arrow",
+            { "nds-tabs-arrow--visible": show },
+          ])}
         >
-          <div ref={arrowRef} className="nds-tabs-arrow">
-            <IconButton
-              onClick={onClick}
-              name={direction === "left" ? "arrow-left" : "arrow-right"}
-              kind="action"
-            />
-          </div>
-        </CSSTransition>
+          <IconButton
+            onClick={onClick}
+            name={direction === "left" ? "arrow-left" : "arrow-right"}
+            kind="action"
+          />
+        </div>
       </div>
     )
   );

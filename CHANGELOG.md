@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.12.2](https://github.com/narmi/design_system/compare/v6.12.1...v6.12.2) (2026-05-20)
+
+### fix
+
+* **Tooltip:** apply maxWidth to styles ([](https://github.com/narmi/design_system/commit/228e5a1ae56141a4a167e9bc001cc3a11b3cb5ae))
+
 ## [6.12.1](https://github.com/narmi/design_system/compare/v6.12.0...v6.12.1) (2026-05-20)
 
 ### fix

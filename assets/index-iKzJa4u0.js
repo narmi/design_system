@@ -1,0 +1,1 @@
+import{r as e}from"./iframe-xZmb_G6w.js";const d=o=>{e.useEffect(()=>(o&&document.body.classList.add("overflow--hidden"),()=>{document.body.classList.remove("overflow--hidden")}),[o])};export{d as u};

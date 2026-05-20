@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.12.1](https://github.com/narmi/design_system/compare/v6.12.0...v6.12.1) (2026-05-20)
+
+### fix
+
+* **MenuButton:** patch react-aria event with timestamp guard ([](https://github.com/narmi/design_system/commit/436d4cad7dbbca66fe7b3247b649e9e1ce7a6dfa))
+* **MenuButton:** set alignment to avoid click through bugs ([](https://github.com/narmi/design_system/commit/5f57e5a45083fd42d9c42c918f4adcf11ed57f05))
+
 ## [6.12.0](https://github.com/narmi/design_system/compare/v6.11.1...v6.12.0) (2026-05-20)
 
 ### feat

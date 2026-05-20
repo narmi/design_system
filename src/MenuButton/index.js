@@ -52,7 +52,7 @@ const MenuButton = ({
     setIsOpen,
     matchWidth: false,
     placement: side,
-    isPortalled: true,
+    isPortalled: false,
   });
 
   const handleKeyUp = ({ key }) => {

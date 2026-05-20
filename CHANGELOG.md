@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.12.1](https://github.com/narmi/design_system/compare/v6.12.0...v6.12.1) (2026-05-20)
+
+### fix
+
+* **MenuButton:** patch react-aria event with timestamp guard ([](https://github.com/narmi/design_system/commit/436d4cad7dbbca66fe7b3247b649e9e1ce7a6dfa))
+* **MenuButton:** set alignment to avoid click through bugs ([](https://github.com/narmi/design_system/commit/5f57e5a45083fd42d9c42c918f4adcf11ed57f05))
+
+## [6.12.0](https://github.com/narmi/design_system/compare/v6.11.1...v6.12.0) (2026-05-20)
+
+### feat
+
+* **Tabs:** modernize scroll listeners for performance ([](https://github.com/narmi/design_system/commit/b15f833d367a7d695613dc2e3dd1143ab9ab25b4))
+
+## [6.11.1](https://github.com/narmi/design_system/compare/v6.11.0...v6.11.1) (2026-05-19)
+
+### fix
+
+* **Checkbox:** avoid sanitizing target attr in links ([](https://github.com/narmi/design_system/commit/10bfe711f46b178b95ad2add4f87c7feb6333d25))
+
+## [6.11.0](https://github.com/narmi/design_system/compare/v6.10.7...v6.11.0) (2026-05-18)
+
+### feat
+
+* **Chip:** add isLabelVisible prop ([](https://github.com/narmi/design_system/commit/68821c20a55bb2d12c3dc0c31619d584a2f15901))
+
 ## [6.10.7](https://github.com/narmi/design_system/compare/v6.10.6...v6.10.7) (2026-05-15)
 
 ### fix

@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import rafSchd from "raf-schd";
 import React, { LegacyRef, useContext, useEffect, useState } from "react";
 import Arrow from "./Arrow";
 import TabsContext from "./context";
@@ -33,6 +32,7 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
   const childArray = React.Children.toArray(children);
 
   const updateScrollButtonState = () => {
+    if (!tabsListRef.current) return;
     const { scrollWidth, clientWidth, scrollLeft } = tabsListRef.current;
     const nextShowLeftArrow = scrollLeft > 1;
     const nextShowRightArrow = scrollLeft < scrollWidth - clientWidth - 1;
@@ -42,34 +42,26 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
     setIsResponsive(nextShowLeftArrow || nextShowRightArrow);
   };
 
-  const scheduleScrollButtonUpdate = () => {
-    if (tabsListRef.current) {
-      rafSchd(updateScrollButtonState());
-    }
-  };
-
+  // ResizeObserver to detect when container size changes
   useEffect(() => {
-    scheduleScrollButtonUpdate();
+    if (!tabsListRef.current) return;
+    const observer = new ResizeObserver(updateScrollButtonState);
+    observer.observe(tabsListRef.current);
+    return () => observer.disconnect();
   }, []);
 
+  // Scroll listener for touch/programmatic scroll updates
   useEffect(() => {
-    window.addEventListener("resize", scheduleScrollButtonUpdate);
-
-    return () => {
-      window.removeEventListener("resize", scheduleScrollButtonUpdate);
-    };
+    const el = tabsListRef.current;
+    if (!el) return;
+    el.addEventListener("scroll", updateScrollButtonState);
+    return () => el.removeEventListener("scroll", updateScrollButtonState);
   }, []);
 
+  // Initial check
   useEffect(() => {
-    tabsListRef.current.addEventListener("scroll", scheduleScrollButtonUpdate);
-
-    return () => {
-      tabsListRef?.current?.removeEventListener(
-        "scroll",
-        scheduleScrollButtonUpdate,
-      );
-    };
-  }, [tabsListRef.current]);
+    updateScrollButtonState();
+  }, []);
 
   // populate tabIds state variable in root component
   // with tabId props from `Tabs.Tab` children passed into `Tabs.List`
@@ -97,38 +89,16 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
     }
   };
 
-  // Heavily inspired from https://github.com/mui/material-ui/blob/master/packages/mui-material-next/src/Tabs/Tabs.js#L395
-  const getScrollSize = () => {
-    const containerSize = tabsListRef.current.clientWidth;
-    let totalSize = 0;
-    const children = Array.from(tabsListRef.current.children);
-
-    for (let i = 0; i < children.length; i += 1) {
-      const tab = children[i];
-      if (totalSize + tab.clientWidth > containerSize) {
-        // If the first item is longer than the container size, then only scroll
-        // by the container size.
-        if (i === 0) {
-          totalSize = containerSize;
-        }
-        break;
-      }
-      totalSize += tab.clientWidth;
-    }
-
-    return totalSize;
-  };
-
   const onLeftClick = () => {
     tabsListRef.current.scroll({
-      left: tabsListRef.current.scrollLeft - getScrollSize(),
+      left: tabsListRef.current.scrollLeft - tabsListRef.current.clientWidth,
       behavior: "smooth",
     });
   };
 
   const onRightClick = () => {
     tabsListRef.current.scroll({
-      left: tabsListRef.current.scrollLeft + getScrollSize(),
+      left: tabsListRef.current.scrollLeft + tabsListRef.current.clientWidth,
       behavior: "smooth",
     });
   };

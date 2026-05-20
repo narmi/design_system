@@ -36,17 +36,23 @@ const MenuButton = ({
   const menuItems = React.Children.toArray(children);
   const allItems = footerItem ? menuItems.concat(footerItem) : menuItems;
   const canToggleCloseRef = useRef(isOpen);
+  const openedAtRef = useRef(0);
 
   const closeMenu = useCallback(() => {
     setIsOpen(false);
     canToggleCloseRef.current = false;
   }, [canToggleCloseRef]);
 
+  useEffect(() => {
+    if (isOpen) openedAtRef.current = Date.now();
+  }, [isOpen]);
+
   const { anchorProps, layerProps } = useDropdownLayer({
     isOpen,
     setIsOpen,
     matchWidth: false,
     placement: side,
+    isPortalled: false,
   });
 
   const handleKeyUp = ({ key }) => {
@@ -68,6 +74,14 @@ const MenuButton = ({
    * relevant `MenuButton.Item` and calls it.
    */
   const handleOnSelect = (itemId) => {
+    // `react-aria` uses mouse down to track open state of the menu.
+    // If the menu is positioned over the anchor in any way, the mouse up
+    // event will be captured by an item in the menu.
+    //
+    // In the long term, we should consider replacing `react-aria`
+    // with our own hooks for managing menu states.
+    if (Date.now() - openedAtRef.current < 150) return;
+
     const selectedItem = allItems.find(
       (item) => labelToItemId(item.props.label) === itemId,
     );

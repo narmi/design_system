@@ -168,6 +168,58 @@ ArrowTracking.parameters = {
   },
 };
 
+export const MultipleTooltips = () => (
+  <div
+    style={{
+      height: "400px",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      gap: "var(--space-xl)",
+    }}
+  >
+    <div style={{ display: "flex", gap: "var(--space-l)" }}>
+      <Tooltip text="Tooltip on top" side="top">
+        <Button>Top</Button>
+      </Tooltip>
+      <Tooltip text="Tooltip on the right" side="right">
+        <Button>Right</Button>
+      </Tooltip>
+      <Tooltip text="Tooltip on the bottom" side="bottom">
+        <Button>Bottom</Button>
+      </Tooltip>
+      <Tooltip text="Tooltip on the left" side="left">
+        <Button>Left</Button>
+      </Tooltip>
+    </div>
+    <div
+      style={{ display: "flex", gap: "var(--space-l)", alignItems: "center" }}
+    >
+      <Tooltip text="Icon button tooltip">
+        <IconButton kind="action" name="info" />
+      </Tooltip>
+      <Tooltip text="This tooltip has a longer message to demonstrate text wrapping behavior within the tooltip container">
+        <Button kind="secondary">Long text</Button>
+      </Tooltip>
+      <Tooltip text="Inline tooltip">
+        <span style={{ textDecoration: "underline dotted", cursor: "help" }}>
+          hover this text
+        </span>
+      </Tooltip>
+    </div>
+  </div>
+);
+
+MultipleTooltips.parameters = {
+  docs: {
+    description: {
+      story:
+        "Multiple tooltips can coexist on the same page. Each tooltip operates independently, showing on hover/focus of its own trigger element.",
+    },
+  },
+};
+
 export default {
   title: "Components/Tooltip",
   component: Tooltip,

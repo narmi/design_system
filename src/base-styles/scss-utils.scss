@@ -82,6 +82,21 @@ $breakpoints: (
   border: 1px solid var(--theme-primary);
   border-radius: var(--border-radius-default);
 
+  // Override leaking styles for overly broad selectors like
+  // `.balance-options * { display: flex; }` which can select
+  // children in a dropdown when unportalled.
+  //
+  // Long term fix is to require a cascade layer in the consumer:
+  // <https://linear.app/narmi/issue/NDS-2718/breaking-require-consumers-to-use-a-cascade-layer>
+  display: block;
+  font-size: var(--font-size-default);
+  color: var(--font-color-default);
+  text-align: start;
+  text-transform: none;
+  letter-spacing: normal;
+  line-height: var(--line-height-default);
+  padding: 0;
+
   &:focus {
     outline: none;
   }

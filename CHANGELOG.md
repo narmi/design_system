@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.12.4](https://github.com/narmi/design_system/compare/v6.12.3...v6.12.4) (2026-05-22)
+
+### fix
+
+* **MenuButton:** restore downshift ([](https://github.com/narmi/design_system/commit/78af6d0ad64dd6023c20e87ef5c039c2db1dbeba))
+
 ## [6.12.3](https://github.com/narmi/design_system/compare/v6.12.2...v6.12.3) (2026-05-22)
 
 ### fix

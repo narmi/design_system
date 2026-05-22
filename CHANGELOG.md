@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.12.3](https://github.com/narmi/design_system/compare/v6.12.2...v6.12.3) (2026-05-22)
+
+### fix
+
+* **useDropdownLayer:** reset leaking styles from broad selectors as stopgap fix ([](https://github.com/narmi/design_system/commit/08a2246f1722737b4d5d4e897befb26a47e4e354))
+* **DisabledShim:** use new default radius (NDS-2701) ([](https://github.com/narmi/design_system/commit/09c48f9206f60975b87377189b939ef94c90cf73))
+* **Tooltip:** use ref to persist timers for each instance ([](https://github.com/narmi/design_system/commit/fb9ccc8de043ee7c439e29ba0ed2a5675878f8b7))
+
 ## [6.12.2](https://github.com/narmi/design_system/compare/v6.12.1...v6.12.2) (2026-05-20)
 
 ### fix

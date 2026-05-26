@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.12.5](https://github.com/narmi/design_system/compare/v6.12.4...v6.12.5) (2026-05-26)
+
+### fix
+
+* **AsElement:** sanitize href to block javascript:/data:/vbscript: URLs ([](https://github.com/narmi/design_system/commit/3cb695523d4af77f869d05f0de00a7dc46c16a60))
+
 ## [6.12.4](https://github.com/narmi/design_system/compare/v6.12.3...v6.12.4) (2026-05-22)
 
 ### fix

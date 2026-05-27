@@ -5,15 +5,15 @@ import Tabs from "./";
 const TAB_NAMES = ["Tab One", "Tab Two", "Tab Three"];
 const TAB_IDS = ["uno", "dos", "tres"];
 const PANEL_CONTENTS = ["Panel One", "Panel Two", "Panel Three"];
-const SELECTED_CLASS = "nds-tabs-tabItem--selected";
+const SELECTED_ATTR = "data-selected";
 
 /**
  * @returns {Object} panel elements returned by `screen`
  */
 const getPanels = () => ({
-  firstPanel: screen.getByText(PANEL_CONTENTS[0]),
-  secondPanel: screen.getByText(PANEL_CONTENTS[1]),
-  thirdPanel: screen.getByText(PANEL_CONTENTS[2]),
+  firstPanel: screen.getByText(PANEL_CONTENTS[0]).closest(".nds-tabs-panel"),
+  secondPanel: screen.getByText(PANEL_CONTENTS[1]).closest(".nds-tabs-panel"),
+  thirdPanel: screen.getByText(PANEL_CONTENTS[2]).closest(".nds-tabs-panel"),
 });
 
 /**
@@ -72,7 +72,7 @@ describe("Tabs", () => {
     renderTabsWithPanels();
     const { firstTab } = getTabs();
     const { firstPanel, secondPanel, thirdPanel } = getPanels();
-    expect(firstTab.parentElement).toHaveAttribute("aria-selected", "true");
+    expect(firstTab.closest("li")).toHaveAttribute("aria-selected", "true");
     expect(firstPanel).not.toHaveAttribute("hidden");
 
     // make sure other panels are hidden
@@ -86,9 +86,9 @@ describe("Tabs", () => {
     const { firstTab, secondTab, thirdTab } = getTabs();
     const { firstPanel, secondPanel, thirdPanel } = getPanels();
 
-    expect(secondTab.parentElement).toHaveAttribute("aria-selected", "true");
+    expect(secondTab.closest("li")).toHaveAttribute("aria-selected", "true");
     [firstTab, thirdTab].forEach((tab) => {
-      expect(tab.parentElement).toHaveAttribute("aria-selected", "false");
+      expect(tab.closest("li")).toHaveAttribute("aria-selected", "false");
     });
 
     expect(secondPanel).not.toHaveAttribute("hidden");
@@ -107,9 +107,9 @@ describe("Tabs", () => {
     fireEvent.click(secondTab);
     expect(handleTabChange).toHaveBeenCalledWith(1);
 
-    expect(secondTab.parentElement).toHaveAttribute("aria-selected", "true");
+    expect(secondTab.closest("li")).toHaveAttribute("aria-selected", "true");
     [firstTab, thirdTab].forEach((tab) => {
-      expect(tab.parentElement).toHaveAttribute("aria-selected", "false");
+      expect(tab.closest("li")).toHaveAttribute("aria-selected", "false");
     });
 
     expect(secondPanel).not.toHaveAttribute("hidden");
@@ -129,9 +129,9 @@ describe("Tabs", () => {
     fireEvent.keyDown(firstTab, { key: "ArrowRight" });
     expect(handleTabChange).toHaveBeenCalledWith(1);
 
-    expect(secondTab.parentElement).toHaveAttribute("aria-selected", "true");
+    expect(secondTab.closest("li")).toHaveAttribute("aria-selected", "true");
     [firstTab, thirdTab].forEach((tab) => {
-      expect(tab.parentElement).toHaveAttribute("aria-selected", "false");
+      expect(tab.closest("li")).toHaveAttribute("aria-selected", "false");
     });
 
     expect(secondPanel).not.toHaveAttribute("hidden");
@@ -143,9 +143,9 @@ describe("Tabs", () => {
     fireEvent.keyDown(secondTab, { key: "ArrowLeft" });
     expect(handleTabChange).toHaveBeenCalledWith(0);
 
-    expect(firstTab.parentElement).toHaveAttribute("aria-selected", "true");
+    expect(firstTab.closest("li")).toHaveAttribute("aria-selected", "true");
     [secondTab, thirdTab].forEach((tab) => {
-      expect(tab.parentElement).toHaveAttribute("aria-selected", "false");
+      expect(tab.closest("li")).toHaveAttribute("aria-selected", "false");
     });
 
     expect(firstTab).not.toHaveAttribute("hidden");
@@ -163,9 +163,9 @@ describe("Tabs", () => {
     fireEvent.keyDown(firstTab, { key: "ArrowRight" });
     expect(handleTabChange).not.toHaveBeenCalled();
 
-    expect(firstTab.parentElement).toHaveClass(SELECTED_CLASS);
+    expect(firstTab.closest("li")).toHaveAttribute(SELECTED_ATTR);
     [secondTab, thirdTab].forEach((tab) => {
-      expect(tab.parentElement).not.toHaveClass(SELECTED_CLASS);
+      expect(tab.closest("li")).not.toHaveAttribute(SELECTED_ATTR);
     });
   });
 
@@ -177,8 +177,8 @@ describe("Tabs", () => {
     expect(tabList).toHaveAttribute("role", "tablist");
     expect(tabList).toHaveAttribute("tabIndex", "0");
 
-    expect(firstTab.parentElement).toHaveAttribute("role", "tab");
-    expect(firstTab.parentElement).toHaveAttribute("aria-controls");
+    expect(firstTab.closest("li")).toHaveAttribute("role", "tab");
+    expect(firstTab.closest("li")).toHaveAttribute("aria-controls");
   });
 
   it("does NOT apply tabs design pattern aria attributes when panels are NOT present", () => {
@@ -190,9 +190,9 @@ describe("Tabs", () => {
     expect(tabList).not.toHaveAttribute("tabIndex", "0");
 
     [firstTab, secondTab, thirdTab].forEach((tab) => {
-      expect(tab.parentElement).not.toHaveAttribute("role", "tab");
-      expect(tab.parentElement).not.toHaveAttribute("aria-controls");
-      expect(tab.parentElement).not.toHaveAttribute("aria-selected");
+      expect(tab.closest("li")).not.toHaveAttribute("role", "tab");
+      expect(tab.closest("li")).not.toHaveAttribute("aria-controls");
+      expect(tab.closest("li")).not.toHaveAttribute("aria-selected");
     });
   });
 
@@ -201,9 +201,9 @@ describe("Tabs", () => {
       renderTabsWithoutPanels({ selectedIndex: 1 });
       const { firstTab, secondTab, thirdTab } = getTabs();
 
-      expect(secondTab.parentElement).toHaveClass(SELECTED_CLASS);
+      expect(secondTab.closest("li")).toHaveAttribute(SELECTED_ATTR);
       [firstTab, thirdTab].forEach((tab) => {
-        expect(tab.parentElement).not.toHaveClass(SELECTED_CLASS);
+        expect(tab.closest("li")).not.toHaveAttribute(SELECTED_ATTR);
       });
     });
 
@@ -216,9 +216,9 @@ describe("Tabs", () => {
       const { firstTab, secondTab, thirdTab } = getTabs();
 
       // third tab is set as selected initially
-      expect(thirdTab.parentElement).toHaveClass(SELECTED_CLASS);
+      expect(thirdTab.closest("li")).toHaveAttribute(SELECTED_ATTR);
       [firstTab, secondTab].forEach((tab) => {
-        expect(tab.parentElement).not.toHaveClass(SELECTED_CLASS);
+        expect(tab.closest("li")).not.toHaveAttribute(SELECTED_ATTR);
       });
 
       // callback fired as expected, with the new tab index
@@ -229,9 +229,9 @@ describe("Tabs", () => {
       // because this is in controlled mode and our handler doesn't update the
       // `selectedIndex` prop, the selected tab should NOT update,
       // leaving the third tab in a selected state
-      expect(thirdTab.parentElement).toHaveClass(SELECTED_CLASS);
+      expect(thirdTab.closest("li")).toHaveAttribute(SELECTED_ATTR);
       [firstTab, secondTab].forEach((tab) => {
-        expect(tab.parentElement).not.toHaveClass(SELECTED_CLASS);
+        expect(tab.closest("li")).not.toHaveAttribute(SELECTED_ATTR);
       });
     });
   });

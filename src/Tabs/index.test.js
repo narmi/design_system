@@ -6,6 +6,7 @@ const TAB_NAMES = ["Tab One", "Tab Two", "Tab Three"];
 const TAB_IDS = ["uno", "dos", "tres"];
 const PANEL_CONTENTS = ["Panel One", "Panel Two", "Panel Three"];
 const SELECTED_ATTR = "data-selected";
+const SELECTED_CLASS = "nds-tabs-tabItem--selected";
 
 /**
  * @returns {Object} panel elements returned by `screen`
@@ -202,8 +203,10 @@ describe("Tabs", () => {
       const { firstTab, secondTab, thirdTab } = getTabs();
 
       expect(secondTab.closest("li")).toHaveAttribute(SELECTED_ATTR);
+      expect(secondTab.closest("li")).toHaveClass(SELECTED_CLASS);
       [firstTab, thirdTab].forEach((tab) => {
         expect(tab.closest("li")).not.toHaveAttribute(SELECTED_ATTR);
+        expect(tab.closest("li")).not.toHaveClass(SELECTED_CLASS);
       });
     });
 

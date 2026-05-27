@@ -34,7 +34,7 @@ const TabsTab = ({
       aria-selected={hasPanels ? isSelected.toString() : undefined}
       aria-controls={hasPanels ? `${tabId}-tabpanel` : undefined}
       data-selected={isSelected || undefined}
-      className={`nds-tabs-tabItem nds-tabs-tabItem--${kind}`}
+      className={`nds-tabs-tabItem nds-tabs-tabItem--${kind}${isSelected ? " nds-tabs-tabItem--selected" : ""}`}
       ref={tabRef}
     >
       <button

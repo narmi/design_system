@@ -116,7 +116,7 @@
     }
   }
 
-  &[data-selected] .nds-tabs-button {
+  .nds-tabs-tabItem[data-selected] .nds-tabs-button {
     color: var(--theme-primary);
     font-weight: var(--font-weight-semibold);
   }

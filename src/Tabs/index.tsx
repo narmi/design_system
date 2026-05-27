@@ -1,5 +1,5 @@
 import cc from "classcat";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import TabsList from "./TabsList";
 import TabsPanel from "./TabsPanel";
 import TabsTab from "./TabsTab";
@@ -58,40 +58,11 @@ const Tabs = ({
   const [currentIndex, setCurrentIndex] = useState(defaultSelectedIndex);
   const isControlledComponent = selectedIndex !== null;
 
-  const getScrollToIndexSize = (currentSelectedIndex) => {
-    let totalSize = 0;
-    if (!tabsListRef.current) {
-      return totalSize;
-    }
-    const children = Array.from(tabsListRef.current.children);
-
-    for (let i = 0; i < currentSelectedIndex; i += 1) {
-      const tab = children[i] as HTMLElement;
-
-      totalSize += tab.clientWidth + 40;
-    }
-
-    return totalSize;
-  };
-
-  useEffect(() => {
-    if (isControlledComponent) {
-      tabsListRef.current.scroll({
-        left: getScrollToIndexSize(selectedIndex),
-        behavior: "smooth",
-      });
-    }
-  }, [selectedIndex]);
-
   const changeTabs = (tabId) => {
     const tabIndex = tabIds.indexOf(tabId);
     onTabChange(tabIndex);
 
     if (!isControlledComponent) {
-      tabsListRef.current.scroll({
-        left: getScrollToIndexSize(tabIndex),
-        behavior: "smooth",
-      });
       setCurrentIndex(tabIndex);
     }
   };

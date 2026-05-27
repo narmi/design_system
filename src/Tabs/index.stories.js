@@ -251,6 +251,11 @@ export const SegmentedWithStatusIndicator = () => (
       <Tabs.Tab label="Apples" tabId="apple" hasStatusIndicator />
       <Tabs.Tab label="Oranges" tabId="orange" />
       <Tabs.Tab label="Pineapples" tabId="pineapple" hasStatusIndicator />
+      <Tabs.Tab
+        label="Very long label with indicator"
+        tabId="test"
+        hasStatusIndicator
+      />
     </Tabs.List>
     <Tabs.Panel tabId="apple">
       <div className="padding--all--s">🍎🍎🍎</div>
@@ -261,6 +266,9 @@ export const SegmentedWithStatusIndicator = () => (
     <Tabs.Panel tabId="pineapple">
       <div className="padding--all--s">🍍🍍🍍</div>
     </Tabs.Panel>
+    <Tabs.Panel tabId="test">
+      <div className="padding--all--s">Test Content</div>
+    </Tabs.Panel>
   </Tabs>
 );
 SegmentedWithStatusIndicator.parameters = {
@@ -268,6 +276,73 @@ SegmentedWithStatusIndicator.parameters = {
     description: {
       story:
         "Segmented tabs with `hasStatusIndicator` on select tabs to show an update notification dot.",
+    },
+  },
+};
+
+export const MultipleSegmentedTabs = () => (
+  <div className="padding--all--m" style={{ display: "grid", gap: "1.5rem" }}>
+    <Tabs kind="segmented">
+      <Tabs.List>
+        <Tabs.Tab label="Apples" tabId="apple" />
+        <Tabs.Tab label="Oranges" tabId="orange" />
+        <Tabs.Tab label="Pineapples" tabId="pineapple" />
+      </Tabs.List>
+      <Tabs.Panel tabId="apple">
+        <div className="padding--all--s">🍎🍎🍎</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="orange">
+        <div className="padding--all--s">🍊🍊🍊</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="pineapple">
+        <div className="padding--all--s">🍍🍍🍍</div>
+      </Tabs.Panel>
+    </Tabs>
+
+    <Tabs kind="segmented" defaultSelectedIndex={1}>
+      <Tabs.List>
+        <Tabs.Tab label="Birds" tabId="bird" />
+        <Tabs.Tab label="Cats" tabId="cat" />
+        <Tabs.Tab label="Dogs" tabId="dog" />
+        <Tabs.Tab label="Snow leopards" tabId="snowLeopard" />
+      </Tabs.List>
+      <Tabs.Panel tabId="bird">
+        <div className="padding--all--s">🐦🐦🐦</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="cat">
+        <div className="padding--all--s">🐈🐈🐈</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="dog">
+        <div className="padding--all--s">🐕🐕🐕</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="snowLeopard">
+        <div className="padding--all--s">❄️🐆</div>
+      </Tabs.Panel>
+    </Tabs>
+
+    <Tabs kind="segmented" defaultSelectedIndex={2}>
+      <Tabs.List>
+        <Tabs.Tab label="One" tabId="one" />
+        <Tabs.Tab label="Two" tabId="two" />
+        <Tabs.Tab label="Three" tabId="three" />
+      </Tabs.List>
+      <Tabs.Panel tabId="one">
+        <div className="padding--all--s">1️⃣</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="two">
+        <div className="padding--all--s">2️⃣</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="three">
+        <div className="padding--all--s">3️⃣</div>
+      </Tabs.Panel>
+    </Tabs>
+  </div>
+);
+MultipleSegmentedTabs.parameters = {
+  docs: {
+    description: {
+      story:
+        "Renders multiple `segmented` Tabs on the same page to verify that each instance's sliding pill resolves to its own selected tab. Since `anchor-name: --active` is declared at document scope, this story exists to confirm there is no cross-instance interference in practice (try changing the selected tab in each set and observe the pill).",
     },
   },
 };

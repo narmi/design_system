@@ -1,10 +1,25 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import cc from "classcat";
-import React, { LegacyRef, useContext, useEffect, useState } from "react";
+import React, {
+  LegacyRef,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import Arrow from "./Arrow";
+import Row from "../Row";
 import TabsContext from "./context";
 
 const noop = () => {};
+
+// Width reserved for each arrow column (see `.arrow-reponsive` in index.scss).
+// We always subtract space for both arrows when deciding whether content
+// overflows, even when the arrows aren't currently rendered. This keeps the
+// overflow decision monotonic in container size and avoids a feedback loop
+// where showing/hiding the arrows changes `ul.clientWidth`, which in turn
+// changes the overflow decision.
+const ARROW_RESERVE_PX = 32 * 2;
 
 export interface TabsListProps {
   /** Children must be of type `Tabs.Tab` */
@@ -19,6 +34,7 @@ export interface TabsListProps {
 const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const {
     tabIds,
@@ -28,27 +44,48 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
     hasPanels,
     tabsListRef,
     setIsResponsive,
-    isResponsive,
     kind,
   } = useContext(TabsContext);
   const childArray = React.Children.toArray(children);
 
   const updateScrollButtonState = () => {
-    if (!tabsListRef.current) return;
-    const { scrollWidth, clientWidth, scrollLeft } = tabsListRef.current;
-    const nextShowLeftArrow = scrollLeft > 1;
-    const nextShowRightArrow = scrollLeft < scrollWidth - clientWidth - 1;
+    if (!tabsListRef.current || !wrapperRef.current) return;
+    const el = tabsListRef.current;
+    const { scrollLeft } = el;
+
+    // Measure intrinsic content width from in-flow children only, so the
+    // absolutely-positioned pill pseudo-element can't skew the result.
+    // Include flex `gap` between items so the comparison is exact.
+    const items = Array.from(el.children) as HTMLElement[];
+    const gap = parseFloat(getComputedStyle(el).columnGap) || 0;
+    const contentWidth =
+      items.reduce((sum, item) => sum + item.offsetWidth, 0) +
+      Math.max(0, items.length - 1) * gap;
+
+    // Compare against wrapper width with arrow space always reserved, even
+    // when arrows aren't currently shown. This breaks the feedback loop
+    // between arrow visibility and the overflow decision.
+    const available = wrapperRef.current.clientWidth - ARROW_RESERVE_PX;
+    const isOverflowing = contentWidth > available;
+
+    // Use the same `available` width for arrow visibility, not the current
+    // `ul.clientWidth`. Otherwise on the first overflowing frame the arrows
+    // aren't shown yet, the `ul` has full wrapper width, isn't actually
+    // overflowing, and we'd never flip the arrows on.
+    const nextShowLeftArrow = isOverflowing && scrollLeft > 1;
+    const nextShowRightArrow =
+      isOverflowing && scrollLeft < contentWidth - available - 1;
 
     setShowLeftArrow(nextShowLeftArrow);
     setShowRightArrow(nextShowRightArrow);
-    setIsResponsive(nextShowLeftArrow || nextShowRightArrow);
+    setIsResponsive(isOverflowing);
   };
 
   // ResizeObserver to detect when container size changes
   useEffect(() => {
-    if (!tabsListRef.current) return;
+    if (!wrapperRef.current) return;
     const observer = new ResizeObserver(updateScrollButtonState);
-    observer.observe(tabsListRef.current);
+    observer.observe(wrapperRef.current);
     return () => observer.disconnect();
   }, []);
 
@@ -106,28 +143,48 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
   };
 
   return (
-    <div style={isResponsive ? { display: "flex" } : undefined}>
-      <Arrow direction="left" onClick={onLeftClick} show={showLeftArrow} />
-      <ul
-        ref={tabsListRef as LegacyRef<HTMLUListElement>}
-        role={hasPanels ? "tablist" : undefined}
-        className={cc([
-          "nds-tabs-tabsList",
-          `nds-tabs-tabsList--${kind}`,
-          "list--reset",
-          `padding--x--${xPadding}`,
-          {
-            "nds-tabs-tabsList--overflowLeft": showLeftArrow,
-            "nds-tabs-tabsList--overflowRight": showRightArrow,
-          },
-        ])}
-        onKeyDown={hasPanels ? handleKeyDown : noop}
-        tabIndex={hasPanels ? 0 : undefined}
-        data-testid="nds-tablist"
-      >
-        {children}
-      </ul>
-      <Arrow direction="right" onClick={onRightClick} show={showRightArrow} />
+    <div ref={wrapperRef}>
+      <Row gapSize="none" alignItems="center">
+        {showLeftArrow && (
+          <Row.Item shrink>
+            <Arrow
+              direction="left"
+              onClick={onLeftClick}
+              show={showLeftArrow}
+            />
+          </Row.Item>
+        )}
+        <Row.Item>
+          <ul
+            ref={tabsListRef as LegacyRef<HTMLUListElement>}
+            role={hasPanels ? "tablist" : undefined}
+            className={cc([
+              "nds-tabs-tabsList",
+              `nds-tabs-tabsList--${kind}`,
+              "list--reset",
+              `padding--x--${xPadding}`,
+              {
+                "nds-tabs-tabsList--overflowLeft": showLeftArrow,
+                "nds-tabs-tabsList--overflowRight": showRightArrow,
+              },
+            ])}
+            onKeyDown={hasPanels ? handleKeyDown : noop}
+            tabIndex={hasPanels ? 0 : undefined}
+            data-testid="nds-tablist"
+          >
+            {children}
+          </ul>
+        </Row.Item>
+        {showRightArrow && (
+          <Row.Item shrink>
+            <Arrow
+              direction="right"
+              onClick={onRightClick}
+              show={showRightArrow}
+            />
+          </Row.Item>
+        )}
+      </Row>
     </div>
   );
 };

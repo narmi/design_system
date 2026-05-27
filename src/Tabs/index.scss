@@ -2,14 +2,18 @@
 * Root element shared styles
 */
 .nds-tabs-tabsList {
-  --nds-tabs-mask-width: var(--space-l);
-  --nds-tabs-selected-bg: rgba(var(--theme-rgb-primary), var(--alpha-20));
+  --mask-width: var(--space-l);
 
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  overflow-x: auto;
   scrollbar-width: none; // Firefox
+  overflow-x: auto;
+  min-width: 0;
+  scroll-behavior: smooth;
+  // keep focused tabs clear of the fade mask when the browser
+  // auto-scrolls them into view
+  scroll-padding-inline: var(--mask-width);
 
   // by default, the edges of the scroll container are not masked
   mask-image: none;
@@ -19,22 +23,13 @@
   }
 
   // fade the left side when overflowing left
-  // only the alpha channel from `black` is taken to create the mask
   &--overflowLeft {
-    mask-image: linear-gradient(
-      to right,
-      transparent,
-      black var(--nds-tabs-mask-width)
-    );
+    mask-image: linear-gradient(to right, transparent, black var(--mask-width));
   }
 
   // fade the right side when overflowing right
   &--overflowRight {
-    mask-image: linear-gradient(
-      to left,
-      transparent,
-      black var(--nds-tabs-mask-width)
-    );
+    mask-image: linear-gradient(to left, transparent, black var(--mask-width));
   }
 
   // fade both sides when overflowing in both directions.
@@ -43,8 +38,8 @@
     mask-image: linear-gradient(
       to right,
       transparent,
-      black var(--nds-tabs-mask-width),
-      black calc(100% - var(--nds-tabs-mask-width)),
+      black var(--mask-width),
+      black calc(100% - var(--mask-width)),
       transparent
     );
   }
@@ -129,39 +124,48 @@
 
 // Segmented variant
 .nds-tabs--segmented {
-  // faking the actual math to bridge the radius gap for the nested pill within the track
-  --pill-radius: calc(var(--border-radius-m) * 1.1);
-  --transition-duration: 0.3s;
+  --selected-bg: rgba(var(--theme-rgb-primary), var(--alpha-20));
+  --transition-duration-width: 0.2s;
+  --transition-duration-x: 0.3s;
+
+  // all children have semi-transparent backgrounds;
+  // this component should visually resolve to the same color
+  // regardless of where it is placed
+  background: var(--bgColor-white);
+  border-radius: var(--border-radius-m);
 
   .nds-tabs-tabsList {
     position: relative;
     background: rgba(var(--theme-rgb-primary), var(--alpha-5));
     display: flex;
-    gap: var(--space-xxs);
+    gap: rem(2px);
     border: 1px solid var(--border-color-default);
-
-    border-radius: var(--pill-radius);
+    border-radius: var(--border-radius-m);
 
     // The pill shape defined here will move to whichever element
     // has the anchor name `--active`. The `anchor()` functions
     // used here allow us to match the values of the anchor to
     // match height and width exactly.
-    &::before {
-      content: "";
-      position: absolute;
-      position-anchor: --active;
-      left: anchor(left);
-      top: anchor(top);
-      width: anchor-size(width);
-      height: anchor-size(height);
-      transition:
-        left var(--transition-duration),
-        top var(--transition-duration),
-        width var(--transition-duration),
-        height var(--transition-duration);
-      border-radius: var(--pill-radius);
-      background-color: var(--nds-tabs-selected-bg);
-      z-index: 0;
+    // Only rendered in browsers that support CSS anchor positioning;
+    // older browsers won't get a sliding pill; only a selected state.
+    @supports (anchor-name: --a) {
+      &::before {
+        content: "";
+        position: absolute;
+        position-anchor: --active;
+        top: anchor(top);
+        left: anchor(left);
+        width: anchor-size(width);
+        height: anchor-size(height);
+        transition:
+          top var(--transition-duration-x),
+          left var(--transition-duration-x),
+          width var(--transition-duration-width),
+          height var(--transition-duration-width);
+        border-radius: var(--border-radius-m);
+        background-color: var(--selected-bg);
+        box-shadow: var(--elevation-middle);
+      }
     }
   }
 
@@ -173,10 +177,11 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 2.5rem;
-      padding-inline: var(--space-m);
+      min-height: 2.5rem; // scale with user font settings
+      padding-inline: var(--space-s);
       border-radius: var(--border-radius-m);
-      color: var(--font-color-primary);
+      font-weight: var(--font-weight-semibold);
+      color: var(--font-color-secondary);
       min-width: max-content;
 
       &:hover {
@@ -186,8 +191,23 @@
 
     &[data-selected] button {
       anchor-name: --active;
-      font-weight: var(--font-weight-semibold);
+      font-weight: var(--font-weight-bold);
       color: var(--theme-primary);
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      // If we hide the pill for an older browser,
+      // use the button bg instead to show selection
+      @supports not (anchor-name: --a) {
+        background-color: var(--selected-bg);
+        box-shadow: var(--elevation-middle);
+
+        &:hover {
+          background-color: var(--selected-bg);
+        }
+      }
     }
   }
 }

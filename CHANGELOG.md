@@ -7,34 +7,34 @@ All notable changes to this project will be documented in this file. See
 
 ### fix
 
-* **AsElement:** sanitize href to block javascript:/data:/vbscript: URLs ([](https://github.com/narmi/design_system/commit/3cb695523d4af77f869d05f0de00a7dc46c16a60))
+- **AsElement:** sanitize href to block javascript:/data:/vbscript: URLs ([](https://github.com/narmi/design_system/commit/3cb695523d4af77f869d05f0de00a7dc46c16a60))
 
 ## [6.12.4](https://github.com/narmi/design_system/compare/v6.12.3...v6.12.4) (2026-05-22)
 
 ### fix
 
-* **MenuButton:** restore downshift ([](https://github.com/narmi/design_system/commit/78af6d0ad64dd6023c20e87ef5c039c2db1dbeba))
+- **MenuButton:** restore downshift ([](https://github.com/narmi/design_system/commit/78af6d0ad64dd6023c20e87ef5c039c2db1dbeba))
 
 ## [6.12.3](https://github.com/narmi/design_system/compare/v6.12.2...v6.12.3) (2026-05-22)
 
 ### fix
 
-* **useDropdownLayer:** reset leaking styles from broad selectors as stopgap fix ([](https://github.com/narmi/design_system/commit/08a2246f1722737b4d5d4e897befb26a47e4e354))
-* **DisabledShim:** use new default radius (NDS-2701) ([](https://github.com/narmi/design_system/commit/09c48f9206f60975b87377189b939ef94c90cf73))
-* **Tooltip:** use ref to persist timers for each instance ([](https://github.com/narmi/design_system/commit/fb9ccc8de043ee7c439e29ba0ed2a5675878f8b7))
+- **useDropdownLayer:** reset leaking styles from broad selectors as stopgap fix ([](https://github.com/narmi/design_system/commit/08a2246f1722737b4d5d4e897befb26a47e4e354))
+- **DisabledShim:** use new default radius (NDS-2701) ([](https://github.com/narmi/design_system/commit/09c48f9206f60975b87377189b939ef94c90cf73))
+- **Tooltip:** use ref to persist timers for each instance ([](https://github.com/narmi/design_system/commit/fb9ccc8de043ee7c439e29ba0ed2a5675878f8b7))
 
 ## [6.12.2](https://github.com/narmi/design_system/compare/v6.12.1...v6.12.2) (2026-05-20)
 
 ### fix
 
-* **Tooltip:** apply maxWidth to styles ([](https://github.com/narmi/design_system/commit/228e5a1ae56141a4a167e9bc001cc3a11b3cb5ae))
+- **Tooltip:** apply maxWidth to styles ([](https://github.com/narmi/design_system/commit/228e5a1ae56141a4a167e9bc001cc3a11b3cb5ae))
 
 ## [6.12.1](https://github.com/narmi/design_system/compare/v6.12.0...v6.12.1) (2026-05-20)
 
 ### fix
 
-* **MenuButton:** patch react-aria event with timestamp guard ([](https://github.com/narmi/design_system/commit/436d4cad7dbbca66fe7b3247b649e9e1ce7a6dfa))
-* **MenuButton:** set alignment to avoid click through bugs ([](https://github.com/narmi/design_system/commit/5f57e5a45083fd42d9c42c918f4adcf11ed57f05))
+- **MenuButton:** patch react-aria event with timestamp guard ([](https://github.com/narmi/design_system/commit/436d4cad7dbbca66fe7b3247b649e9e1ce7a6dfa))
+- **MenuButton:** set alignment to avoid click through bugs ([](https://github.com/narmi/design_system/commit/5f57e5a45083fd42d9c42c918f4adcf11ed57f05))
 
 ## [6.12.0](https://github.com/narmi/design_system/compare/v6.11.1...v6.12.0) (2026-05-20)
 

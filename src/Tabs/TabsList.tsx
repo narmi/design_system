@@ -36,6 +36,11 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
   const [showRightArrow, setShowRightArrow] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
+  // Cached layout measurements - recomputed on resize/children/selection changes,
+  // not on every scroll tick.
+  const contentWidthRef = useRef(0);
+  const availableRef = useRef(0);
+
   const {
     tabIds,
     setTabIds,
@@ -48,24 +53,35 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
   } = useContext(TabsContext);
   const childArray = React.Children.toArray(children);
 
-  const updateScrollButtonState = () => {
+  // Recomputes the cached layout measurements and updates arrow/overflow state.
+  // Should be called whenever the container is resized or children/selection change.
+  const updateLayoutCache = () => {
     if (!tabsListRef.current || !wrapperRef.current) return;
     const el = tabsListRef.current;
-    const { scrollLeft } = el;
 
     // Measure intrinsic content width from in-flow children only, so the
     // absolutely-positioned pill pseudo-element can't skew the result.
     // Include flex `gap` between items so the comparison is exact.
     const items = Array.from(el.children) as HTMLElement[];
     const gap = parseFloat(getComputedStyle(el).columnGap) || 0;
-    const contentWidth =
+    contentWidthRef.current =
       items.reduce((sum, item) => sum + item.offsetWidth, 0) +
       Math.max(0, items.length - 1) * gap;
 
     // Compare against wrapper width with arrow space always reserved, even
     // when arrows aren't currently shown. This breaks the feedback loop
     // between arrow visibility and the overflow decision.
-    const available = wrapperRef.current.clientWidth - ARROW_RESERVE_PX;
+    availableRef.current = wrapperRef.current.clientWidth - ARROW_RESERVE_PX;
+
+    updateScrollButtonState();
+  };
+
+  // Uses cached layout measurements — only reads `scrollLeft` from the DOM.
+  const updateScrollButtonState = () => {
+    if (!tabsListRef.current) return;
+    const { scrollLeft } = tabsListRef.current;
+    const contentWidth = contentWidthRef.current;
+    const available = availableRef.current;
     const isOverflowing = contentWidth > available;
 
     // Use the same `available` width for arrow visibility, not the current
@@ -84,12 +100,12 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
   // ResizeObserver to detect when container size changes
   useEffect(() => {
     if (!wrapperRef.current) return;
-    const observer = new ResizeObserver(updateScrollButtonState);
+    const observer = new ResizeObserver(updateLayoutCache);
     observer.observe(wrapperRef.current);
     return () => observer.disconnect();
   }, []);
 
-  // Scroll listener for touch/programmatic scroll updates
+  // Scroll listener for touch/programmatic scroll updates — only reads scrollLeft.
   useEffect(() => {
     const el = tabsListRef.current;
     if (!el) return;
@@ -99,8 +115,14 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
 
   // Initial check
   useEffect(() => {
-    updateScrollButtonState();
+    updateLayoutCache();
   }, []);
+
+  // Re-cache layout measurements when children or selection change, since tab
+  // widths may change (e.g. bold weight on selected tab).
+  useEffect(() => {
+    updateLayoutCache();
+  }, [childArray.length, currentIndex]);
 
   // populate tabIds state variable in root component
   // with tabId props from `Tabs.Tab` children passed into `Tabs.List`

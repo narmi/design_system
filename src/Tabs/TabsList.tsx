@@ -100,7 +100,7 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
   // ResizeObserver to detect when container size changes
   useEffect(() => {
     if (!wrapperRef.current) return;
-    const observer = new ResizeObserver();
+    const observer = new ResizeObserver(updateLayoutCache);
     observer.observe(wrapperRef.current);
     updateLayoutCache();
     return () => observer.disconnect();

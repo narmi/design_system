@@ -97,6 +97,40 @@ export const KindsAndSizes = () => {
   );
 };
 
+export const FullWidth = () => (
+  <div style={{ maxWidth: "320px" }}>
+    <SplitButton
+      label="Send"
+      kind="secondary"
+      isFullWidth
+      onClick={() => alert("Send button clicked")}
+    >
+      <SplitButton.Menu>
+        <SplitButton.MenuItem
+          label="Schedule"
+          onSelect={() => {
+            alert("Scheduling");
+          }}
+        />
+        <SplitButton.MenuItem
+          label="Save as draft"
+          onSelect={() => {
+            alert("Saving draft");
+          }}
+        />
+      </SplitButton.Menu>
+    </SplitButton>
+  </div>
+);
+FullWidth.parameters = {
+  docs: {
+    description: {
+      story:
+        "When `isFullWidth` is `true`, the main action button expands to fill the available width of its container, while the dropdown trigger retains its fixed width. Useful for narrow layouts such as mobile views or sidebars.",
+    },
+  },
+};
+
 export default {
   title: "Components/SplitButton",
   component: SplitButton,

@@ -42,6 +42,7 @@ const SplitButton = ({
   label,
   disabled,
   isLoading,
+  isFullWidth = false,
   children,
   ...otherProps
 }: SplitButtonProps) => {
@@ -78,7 +79,12 @@ const SplitButton = ({
   );
 
   return (
-    <div className="nds-splitButton">
+    <div
+      className={cc([
+        "nds-splitButton",
+        { "nds-splitButton--fullWidth": isFullWidth },
+      ])}
+    >
       {/** Main button */}
       <Button
         label={label}
@@ -86,6 +92,7 @@ const SplitButton = ({
         isLoading={isLoading}
         size={size}
         kind={kind}
+        isFullWidth={isFullWidth}
         {...otherProps}
       />
 

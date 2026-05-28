@@ -1,9 +1,9 @@
 import cc from "classcat";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import TabsList from "./TabsList";
 import TabsPanel from "./TabsPanel";
 import TabsTab from "./TabsTab";
-import TabsContext from "./context";
+import TabsContext, { TabsKind } from "./context";
 
 const noop = () => {};
 
@@ -23,8 +23,14 @@ interface TabsProps {
   selectedIndex?: number;
   /** Callback invoked with the index of the tab the user is moving selection to */
   onTabChange?: (index: number) => void;
-  /** Shows bottom border when `true` */
+  /**
+   * Shows bottom border when `true`.
+   * Only applies to `kind="default"`.
+   * @deprecated Will be removed in a future release.
+   */
   hasBorder?: boolean;
+  /** Visual style variant of the tabs */
+  kind?: TabsKind;
   /** Optional value for `data-testid` attribute */
   testId?: string;
 }
@@ -42,6 +48,7 @@ const Tabs = ({
   selectedIndex = null,
   onTabChange = noop,
   hasBorder = true,
+  kind = "default",
   testId,
 }: TabsProps) => {
   const tabsListRef = useRef<HTMLUListElement>();
@@ -51,40 +58,11 @@ const Tabs = ({
   const [currentIndex, setCurrentIndex] = useState(defaultSelectedIndex);
   const isControlledComponent = selectedIndex !== null;
 
-  const getScrollToIndexSize = (currentSelectedIndex) => {
-    let totalSize = 0;
-    if (!tabsListRef.current) {
-      return totalSize;
-    }
-    const children = Array.from(tabsListRef.current.children);
-
-    for (let i = 0; i < currentSelectedIndex; i += 1) {
-      const tab = children[i] as HTMLElement;
-
-      totalSize += tab.clientWidth + 40;
-    }
-
-    return totalSize;
-  };
-
-  useEffect(() => {
-    if (isControlledComponent) {
-      tabsListRef.current.scroll({
-        left: getScrollToIndexSize(selectedIndex),
-        behavior: "smooth",
-      });
-    }
-  }, [selectedIndex]);
-
   const changeTabs = (tabId) => {
     const tabIndex = tabIds.indexOf(tabId);
     onTabChange(tabIndex);
 
     if (!isControlledComponent) {
-      tabsListRef.current.scroll({
-        left: getScrollToIndexSize(tabIndex),
-        behavior: "smooth",
-      });
       setCurrentIndex(tabIndex);
     }
   };
@@ -101,10 +79,15 @@ const Tabs = ({
         tabsListRef,
         isResponsive,
         setIsResponsive,
+        kind,
       }}
     >
       <div
-        className={cc(["nds-tabs", { "nds-tabs--bordered": hasBorder }])}
+        className={cc([
+          "nds-tabs",
+          `nds-tabs--${kind}`,
+          { "nds-tabs--bordered": hasBorder && kind === "default" },
+        ])}
         data-testid={testId}
       >
         {children}

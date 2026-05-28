@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.13.0](https://github.com/narmi/design_system/compare/v6.12.5...v6.13.0) (2026-05-28)
+
+### feat
+
+* **Tabs:** add 'segmented' kind; fade overflow edges ([](https://github.com/narmi/design_system/commit/9864f83c3a2c4ffd324456bdd368141d41dc8da6))
+* **Chip:** add isLabelVisible prop ([](https://github.com/narmi/design_system/commit/1d25f2b4083115595bff6c2c50a379d7cf3c6c7e))
+* **Tabs:** modernize scroll listeners for performance ([](https://github.com/narmi/design_system/commit/451c3d9b6886b4c3e37b8d699a699e0b954321c1))
+
+### fix
+
+* add aria-label="new updates" to status indicator SVG ([](https://github.com/narmi/design_system/commit/99026ab294e51e54085beef85c8445037b221026))
+* **Tabs:** add fallback for older browsers ([](https://github.com/narmi/design_system/commit/e87c8615ba81924a4634dcf7ee5db22baf59a52f))
+* **AnchoredDialog:** alignment parity with react-laag ([](https://github.com/narmi/design_system/commit/a58dbd4c6a609dbfc5d0a443f868e333414694f7))
+* **typography:** all but h3 should use heading family ([](https://github.com/narmi/design_system/commit/128da04a5165fb5d52123ed1e332c1827ab196b5))
+* **Checkbox:** avoid sanitizing target attr in links ([](https://github.com/narmi/design_system/commit/e8dd279e1734abec1e33a2a97f2c6dd2a7118cb1))
+* **useDropdownLayer:** export for consumer use ([](https://github.com/narmi/design_system/commit/315f5319e2b10930f728bff5b84acfe520d7d32d))
+* **AnchoredDialog:** keep popup ARIA attributes on trigger element ([](https://github.com/narmi/design_system/commit/2d5a4df2bfcc7c44c52ec2de45ba722118f5cb83))
+* move example wrapper to decorators ([](https://github.com/narmi/design_system/commit/c61e1600fb7a52e38890cf89848e5358e1501897))
+* **tokens:** restore primary font color ([](https://github.com/narmi/design_system/commit/35f37f2fa09b891548b4227154b202a9f9ed6723))
+* restore selected tabs class for compatibility ([](https://github.com/narmi/design_system/commit/f45c940bcf40760c7f347427fe38d25b59f88a80))
+* **AnchoredDialog:** use dedicated element for hook ref ([](https://github.com/narmi/design_system/commit/e4b78fe8009ba247fac809c77dc1cabacc645f4e))
+* **Radio,Checkbox:** use higher contrast color for faux input ([](https://github.com/narmi/design_system/commit/b12976b38bc56e60499fb8b6b33ebeaec8b59a52))
+
+### perf
+
+* **Tabs:** cache layout reads to avoid jank on scroll ([](https://github.com/narmi/design_system/commit/33677324435c0912d8dec7f7e6d58fa5e738dbf4))
+
+### test
+
+* update tests for button attrs in tabs ([](https://github.com/narmi/design_system/commit/627f93e2c9c0fee5ae9667983e5b49453f9a5875))
+
 ## [6.12.5](https://github.com/narmi/design_system/compare/v6.12.4...v6.12.5) (2026-05-26)
 
 ### fix

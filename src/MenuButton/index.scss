@@ -27,12 +27,10 @@
 }
 
 .nds-menubutton-menu {
+  @extend %nds-dropdown-layer;
   white-space: nowrap;
   background-color: var(--color-white);
   box-shadow: var(--elevation-high);
-  outline: none;
-  max-height: 60vh;
-  overflow-y: auto;
 }
 
 .nds-menubutton-item {

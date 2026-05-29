@@ -126,7 +126,7 @@ FullWidth.parameters = {
   docs: {
     description: {
       story:
-        "When `isFullWidth` is `true`, the main action button expands to fill the available width of its container, while the dropdown trigger retains its fixed width. Useful for narrow layouts such as mobile views or sidebars.",
+        "When `isFullWidth` is `true`, the split button expands to fill the available width of its container. Useful for narrow layouts such as mobile views or sidebars.",
     },
   },
 };

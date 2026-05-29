@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.13.1](https://github.com/narmi/design_system/compare/v6.13.0...v6.13.1) (2026-05-29)
+
+### fix
+
+* **TableSelect:** correct font color (NDS-2699) ([](https://github.com/narmi/design_system/commit/9fabdc0d1a57b045c48805c704853e793d5399ae))
+* **TableAutocomplete:** make popover scrollable (NDS-2741) ([](https://github.com/narmi/design_system/commit/260791f18a9c8e9285b0099b651f99344e3c036b))
+* **MenuButton:** prevent popover from inheriting hostile styles ([](https://github.com/narmi/design_system/commit/abb1ef92eeb34dfa9ba5c0103535e0e90d2c575b))
+
 ## [6.13.0](https://github.com/narmi/design_system/compare/v6.12.5...v6.13.0) (2026-05-28)
 
 ### feat

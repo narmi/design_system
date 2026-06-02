@@ -140,11 +140,6 @@
 
   .nds-tabs-tabsList {
     position: relative;
-    background: color-mix(
-      in srgb,
-      rgb(var(--theme-rgb-primary)) var(--alpha-5),
-      white
-    );
     display: flex;
     gap: rem(2px);
     border: 1px solid var(--border-color-default);

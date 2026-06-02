@@ -177,6 +177,7 @@ const getSnapBuffer = (el: HTMLElement) => {
 
   const onRightClick = () => {
     const el = tabsListRef.current;
+    if (!el) return;
     const maxScroll = el.scrollWidth - el.clientWidth;
     const naive = el.scrollLeft + el.clientWidth;
     const buffer = getSnapBuffer(el);

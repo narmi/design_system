@@ -151,16 +151,38 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
     }
   };
 
+// When the next paged scroll would land near a scroll limit, snap exactly
+// to the limit. Otherwise the trailing/leading tab can come to rest under
+// the fade mask (`--mask-width`) and read as cut off mid-word.
+const getSnapBuffer = (el: HTMLElement) => {
+  // `--mask-width` is a custom property (often `var(--space-...)`) and won't
+  // resolve via `getPropertyValue("--mask-width")`. Read a real computed length
+  // that uses the variable instead.
+  const raw = getComputedStyle(el)
+    .getPropertyValue("scroll-padding-inline-start")
+    .trim();
+  const parsed = parseFloat(raw);
+  return Number.isFinite(parsed) ? parsed : 0;
+};
+
   const onLeftClick = () => {
-    tabsListRef.current.scroll({
-      left: tabsListRef.current.scrollLeft - tabsListRef.current.clientWidth,
+    const el = tabsListRef.current;
+    const naive = el.scrollLeft - el.clientWidth;
+    const buffer = getSnapBuffer(el);
+    el.scroll({
+      left: naive <= buffer ? 0 : naive,
       behavior: "smooth",
     });
   };
 
   const onRightClick = () => {
-    tabsListRef.current.scroll({
-      left: tabsListRef.current.scrollLeft + tabsListRef.current.clientWidth,
+    const el = tabsListRef.current;
+    if (!el) return;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    const naive = el.scrollLeft + el.clientWidth;
+    const buffer = getSnapBuffer(el);
+    el.scroll({
+      left: naive >= maxScroll - buffer ? maxScroll : naive,
       behavior: "smooth",
     });
   };

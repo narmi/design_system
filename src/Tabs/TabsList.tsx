@@ -151,14 +151,19 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
     }
   };
 
-  // When the next paged scroll would land near a scroll limit, snap exactly
-  // to the limit. Otherwise the trailing/leading tab can come to rest under
-  // the fade mask (`--mask-width`) and read as cut off mid-word.
-  const getSnapBuffer = (el: HTMLElement) => {
-    const raw = getComputedStyle(el).getPropertyValue("--mask-width").trim();
-    const parsed = parseFloat(raw);
-    return Number.isFinite(parsed) ? parsed : 0;
-  };
+// When the next paged scroll would land near a scroll limit, snap exactly
+// to the limit. Otherwise the trailing/leading tab can come to rest under
+// the fade mask (`--mask-width`) and read as cut off mid-word.
+const getSnapBuffer = (el: HTMLElement) => {
+  // `--mask-width` is a custom property (often `var(--space-...)`) and won't
+  // resolve via `getPropertyValue("--mask-width")`. Read a real computed length
+  // that uses the variable instead.
+  const raw = getComputedStyle(el)
+    .getPropertyValue("scroll-padding-inline-start")
+    .trim();
+  const parsed = parseFloat(raw);
+  return Number.isFinite(parsed) ? parsed : 0;
+};
 
   const onLeftClick = () => {
     const el = tabsListRef.current;

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.13.2](https://github.com/narmi/design_system/compare/v6.13.1...v6.13.2) (2026-06-02)
+
+### fix
+
+* **TabsList:** guard missing ref in right arrow handler ([](https://github.com/narmi/design_system/commit/aacf6fb04cae2c75743b07c3099a513ba8b29b83))
+* **Tabs:** update segmented controls for NDS-2808 patches ([](https://github.com/narmi/design_system/commit/737fd9b38f3ed4770fc48b85a3a1e9afbaec009b))
+
 ## [6.13.1](https://github.com/narmi/design_system/compare/v6.13.0...v6.13.1) (2026-05-29)
 
 ### fix

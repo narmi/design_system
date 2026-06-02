@@ -151,16 +151,32 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
     }
   };
 
+  // When the next paged scroll would land near a scroll limit, snap exactly
+  // to the limit. Otherwise the trailing/leading tab can come to rest under
+  // the fade mask (`--mask-width`) and read as cut off mid-word.
+  const getSnapBuffer = (el: HTMLElement) => {
+    const raw = getComputedStyle(el).getPropertyValue("--mask-width").trim();
+    const parsed = parseFloat(raw);
+    return Number.isFinite(parsed) ? parsed : 0;
+  };
+
   const onLeftClick = () => {
-    tabsListRef.current.scroll({
-      left: tabsListRef.current.scrollLeft - tabsListRef.current.clientWidth,
+    const el = tabsListRef.current;
+    const naive = el.scrollLeft - el.clientWidth;
+    const buffer = getSnapBuffer(el);
+    el.scroll({
+      left: naive <= buffer ? 0 : naive,
       behavior: "smooth",
     });
   };
 
   const onRightClick = () => {
-    tabsListRef.current.scroll({
-      left: tabsListRef.current.scrollLeft + tabsListRef.current.clientWidth,
+    const el = tabsListRef.current;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    const naive = el.scrollLeft + el.clientWidth;
+    const buffer = getSnapBuffer(el);
+    el.scroll({
+      left: naive >= maxScroll - buffer ? maxScroll : naive,
       behavior: "smooth",
     });
   };

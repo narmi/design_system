@@ -86,7 +86,10 @@ const Tabs = ({
         className={cc([
           "nds-tabs",
           `nds-tabs--${kind}`,
-          { "nds-tabs--bordered": hasBorder && kind === "default" },
+          {
+            "nds-tabs--isResponsive": isResponsive,
+            "nds-tabs--bordered": hasBorder && kind === "default",
+          },
         ])}
         data-testid={testId}
       >

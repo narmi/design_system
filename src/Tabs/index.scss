@@ -2,7 +2,7 @@
 * Root element shared styles
 */
 .nds-tabs-tabsList {
-  --mask-width: var(--space-l);
+  --mask-width: var(--space-m);
 
   display: flex;
   justify-content: flex-start;
@@ -64,7 +64,7 @@
 }
 
 .arrow-reponsive {
-  flex: 0 0 32px;
+  flex: 0 0 min-content;
 }
 
 .panel-responsive {
@@ -128,19 +128,31 @@
   --transition-duration-width: 0.2s;
   --transition-duration-x: 0.3s;
 
-  // all children have semi-transparent backgrounds;
-  // this component should visually resolve to the same color
-  // regardless of where it is placed
-  background: var(--bgColor-white);
-  border-radius: var(--border-radius-m);
+  // When the user uses the arrow to scroll to the last tab,
+  // the mask covers a bit too much, so we use this padding to
+  // push the text at least 3 characters away from the fade.
+  //
+  // This is a workaround for an issue where the arrow scroll behavior
+  // will not unclip the last item when scrolled to the end.
+  &.nds-tabs--isResponsive .nds-tabs-tabItem:last-child button {
+    padding-right: calc(var(--mask-width) + 3ch);
+  }
 
   .nds-tabs-tabsList {
     position: relative;
-    background: rgba(var(--theme-rgb-primary), var(--alpha-5));
     display: flex;
     gap: rem(2px);
     border: 1px solid var(--border-color-default);
     border-radius: var(--border-radius-m);
+
+    // Multiple backgrounds, with white on the bottom to ensure
+    // rgba theme color resolves the same way regardless of where it's used.
+    background-image:
+      linear-gradient(
+        rgba(var(--theme-rgb-primary), var(--alpha-5)),
+        rgba(var(--theme-rgb-primary), var(--alpha-5))
+      ),
+      linear-gradient(white, white);
 
     // The pill shape defined here will move to whichever element
     // has the anchor name `--active`. The `anchor()` functions

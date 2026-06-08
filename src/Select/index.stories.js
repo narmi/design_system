@@ -151,6 +151,44 @@ WithCategories.args = {
         <span className="narmi-icon-blob padding--right--xs" /> Blob
       </Select.Item>
     </Select.Category>,
+    <Select.Category label="Communication & Messaging">
+      <Select.Item value="mail" searchValue="mail">
+        <span className="narmi-icon-mail padding--right--xs" /> Mail
+      </Select.Item>
+      <Select.Item value="phone" searchValue="phone">
+        <span className="narmi-icon-phone padding--right--xs" /> Phone
+      </Select.Item>
+      <Select.Item value="send" searchValue="send">
+        <span className="narmi-icon-send padding--right--xs" /> Send
+      </Select.Item>
+    </Select.Category>,
+    <Select.Category label="Weather & Natural Phenomena">
+      <Select.Item value="cloud" searchValue="cloud">
+        <span className="narmi-icon-cloud padding--right--xs" /> Cloud
+      </Select.Item>
+      <Select.Item value="sun" searchValue="sun">
+        <span className="narmi-icon-sun padding--right--xs" /> Sun
+      </Select.Item>
+      <Select.Item value="wind" searchValue="wind">
+        <span className="narmi-icon-wind padding--right--xs" /> Wind
+      </Select.Item>
+      <Select.Item value="umbrella" searchValue="umbrella">
+        <span className="narmi-icon-umbrella padding--right--xs" /> Umbrella
+      </Select.Item>
+    </Select.Category>,
+    <Select.Category label="Financial Services & Banking">
+      <Select.Item value="credit-card" searchValue="credit-card">
+        <span className="narmi-icon-credit-card padding--right--xs" /> Credit
+        Card
+      </Select.Item>
+      <Select.Item value="dollar-sign" searchValue="dollar-sign">
+        <span className="narmi-icon-dollar-sign padding--right--xs" /> Dollar
+        Sign
+      </Select.Item>
+      <Select.Item value="piggy-bank" searchValue="piggy-bank">
+        <span className="narmi-icon-piggy-bank padding--right--xs" /> Piggy Bank
+      </Select.Item>
+    </Select.Category>,
   ],
 };
 WithCategories.parameters = {

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.14.0](https://github.com/narmi/design_system/compare/v6.13.3...v6.14.0) (2026-06-09)
+
+### feat
+
+* **Button,SplitButton:** add isFullWidth option ([](https://github.com/narmi/design_system/commit/ea9aa5379e6767625e19df072829677098b2e4fa))
+
 ## [6.13.3](https://github.com/narmi/design_system/compare/v6.13.2...v6.13.3) (2026-06-08)
 
 ### fix

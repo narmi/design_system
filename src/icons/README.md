@@ -6,8 +6,11 @@ when updating our icon set.
 ## Updating icons
 
 1. Log into icomoon using our narmi engineering account
+  a. Visit https://icomoon.io/, credentials are in 1password vault
 2. Upload `selection.json` - this config file holds all shape information and metadata
+  a. Create new project and then select import icons on top left, select 'selection.json' from project
 3. Modify the icon set in the icomoon UI as needed
+  a. When adding a new icon, duplicate existing icon, and then upload new SVG, modify tags and name, saves automatically
 4. Click "Generate font" from the project view in the icomoon UI, then click "Download"
 5. Copy assets (**SEE BELOW**)
 6. `npm run build:types` will regenerate `src/Icon.types.ts`
@@ -21,7 +24,7 @@ Unzip the icomoon download. Copy all of the following into `src/icons/` in NDS:
 - `selection.json`
 - `style.css`
 
-NOTE: style.css may include multiple urls as the src for @font-face. Please remove all except the woff url.
+NOTE: style.css may include multiple urls as the src for @font-face. Please remove all except the woff url (delete the woff2 url as well)
 
 ### Testing icon changes
 

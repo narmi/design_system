@@ -5,15 +5,15 @@ when updating our icon set.
 
 ## Updating icons
 
-1. Log into icomoon using our narmi engineering account
-  a. Visit https://icomoon.io/, credentials are in 1password vault
+1. Log into IcoMoon using our Narmi engineering account
+   - Visit https://icomoon.io (credentials are in the 1Password vault)
 2. Upload `selection.json` - this config file holds all shape information and metadata
-  a. Create new project and then select import icons on top left, select 'selection.json' from project
-3. Modify the icon set in the icomoon UI as needed
-  a. When adding a new icon, duplicate existing icon, and then upload new SVG, modify tags and name, saves automatically
+   - Create a new project and then select "Import Icons" (top left), selecting `selection.json` from the project
+3. Modify the icon set in the IcoMoon UI as needed
+   - When adding a new icon, duplicate an existing icon, upload the new SVG, and modify tags and name (auto-saves)
 4. Click "Generate font" from the project view in the icomoon UI, then click "Download"
 5. Copy assets (**SEE BELOW**)
-6. `npm run build:types` will regenerate `src/Icon.types.ts`
+6. `npm run build:types` will regenerate `src/types/Icon.types.ts`
 7. Commit the changes & submit a PR
 
 ### Copying assets into NDS

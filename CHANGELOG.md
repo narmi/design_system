@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.13.3](https://github.com/narmi/design_system/compare/v6.13.2...v6.13.3) (2026-06-08)
+
+### fix
+
+* **Select:** improve text wrapping on category labels ([](https://github.com/narmi/design_system/commit/bc5fb9eeb0836f8ac28525f17b55238dbace6673))
+
 ## [6.13.2](https://github.com/narmi/design_system/compare/v6.13.1...v6.13.2) (2026-06-02)
 
 ### fix

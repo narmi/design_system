@@ -54,7 +54,10 @@ export const ResponsiveTabs = (args) => (
         <Tabs.Tab label="Cat" tabId="cat" />
         <Tabs.Tab label="Dog" tabId="dog" />
         <Tabs.Tab label="Snow leopard" tabId="snowLeopard" />
-        <Tabs.Tab label="My absolute favorite animal of all time" tabId="penguin" />
+        <Tabs.Tab
+          label="My absolute favorite animal of all time"
+          tabId="penguin"
+        />
       </Tabs.List>
       <Tabs.Panel tabId="apple">
         <div className="padding--all--s">🍎🍎🍎</div>
@@ -79,6 +82,49 @@ export const ResponsiveTabs = (args) => (
       </Tabs.Panel>
       <Tabs.Panel tabId="penguin">
         <div className="padding--all--s">️🐧🐧🐧</div>
+      </Tabs.Panel>
+    </Tabs>
+  </div>
+);
+
+export const ResponsiveSegmentedTabs = (args) => (
+  <div
+    style={{
+      display: "flex",
+      width: 300,
+      flexDirection: "column",
+    }}
+  >
+    <Tabs kind="segmented" {...args}>
+      <Tabs.List>
+        <Tabs.Tab label="Apples" tabId="apple" />
+        <Tabs.Tab label="Oranges" tabId="orange" />
+        <Tabs.Tab label="Pineapples" tabId="pineapple" />
+        <Tabs.Tab label="Bird" tabId="bird" />
+        <Tabs.Tab label="Cat" tabId="cat" />
+        <Tabs.Tab label="Dog" tabId="dog" />
+        <Tabs.Tab label="Snow leopard" tabId="snowLeopard" />
+      </Tabs.List>
+      <Tabs.Panel tabId="apple">
+        <div className="padding--all--s">🍎🍎🍎</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="orange">
+        <div className="padding--all--s">🍊🍊🍊</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="pineapple">
+        <div className="padding--all--s">🍍🍍🍍</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="bird">
+        <div className="padding--all--s">🐦🐦🐦</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="cat">
+        <div className="padding--all--s">🐈🐈🐈</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="dog">
+        <div className="padding--all--s">🐕🐕🐕</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="snowLeopard">
+        <div className="padding--all--s">️❄️🐆</div>
       </Tabs.Panel>
     </Tabs>
   </div>
@@ -168,6 +214,135 @@ FullyControlledTabs.parameters = {
     description: {
       story:
         "Using the `selectedIndex` prop will make Tabs fully controlled. When using this prop, you **must** use the `onTabChange` callback to respond to user events and update the selected tab.",
+    },
+  },
+};
+
+export const Segmented = () => (
+  <Tabs kind="segmented">
+    <Tabs.List>
+      <Tabs.Tab label="Apples" tabId="apple" />
+      <Tabs.Tab label="Oranges" tabId="orange" />
+      <Tabs.Tab label="Pineapples" tabId="pineapple" />
+    </Tabs.List>
+    <Tabs.Panel tabId="apple">
+      <div className="padding--all--s">🍎🍎🍎</div>
+    </Tabs.Panel>
+    <Tabs.Panel tabId="orange">
+      <div className="padding--all--s">🍊🍊🍊</div>
+    </Tabs.Panel>
+    <Tabs.Panel tabId="pineapple">
+      <div className="padding--all--s">🍍🍍🍍</div>
+    </Tabs.Panel>
+  </Tabs>
+);
+Segmented.parameters = {
+  docs: {
+    description: {
+      story:
+        "The `segmented` kind renders tabs as a segmented control, useful for toggling between views within the same context.",
+    },
+  },
+};
+
+export const SegmentedWithStatusIndicator = () => (
+  <Tabs kind="segmented">
+    <Tabs.List>
+      <Tabs.Tab label="Apples" tabId="apple" hasStatusIndicator />
+      <Tabs.Tab label="Oranges" tabId="orange" />
+      <Tabs.Tab label="Pineapples" tabId="pineapple" hasStatusIndicator />
+      <Tabs.Tab
+        label="Very long label with indicator"
+        tabId="test"
+        hasStatusIndicator
+      />
+    </Tabs.List>
+    <Tabs.Panel tabId="apple">
+      <div className="padding--all--s">🍎🍎🍎</div>
+    </Tabs.Panel>
+    <Tabs.Panel tabId="orange">
+      <div className="padding--all--s">🍊🍊🍊</div>
+    </Tabs.Panel>
+    <Tabs.Panel tabId="pineapple">
+      <div className="padding--all--s">🍍🍍🍍</div>
+    </Tabs.Panel>
+    <Tabs.Panel tabId="test">
+      <div className="padding--all--s">Test Content</div>
+    </Tabs.Panel>
+  </Tabs>
+);
+SegmentedWithStatusIndicator.parameters = {
+  docs: {
+    description: {
+      story:
+        "Segmented tabs with `hasStatusIndicator` on select tabs to show an update notification dot.",
+    },
+  },
+};
+
+export const MultipleSegmentedTabs = () => (
+  <div className="padding--all--m" style={{ display: "grid", gap: "1.5rem" }}>
+    <Tabs kind="segmented">
+      <Tabs.List>
+        <Tabs.Tab label="Apples" tabId="apple" />
+        <Tabs.Tab label="Oranges" tabId="orange" />
+        <Tabs.Tab label="Pineapples" tabId="pineapple" />
+      </Tabs.List>
+      <Tabs.Panel tabId="apple">
+        <div className="padding--all--s">🍎🍎🍎</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="orange">
+        <div className="padding--all--s">🍊🍊🍊</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="pineapple">
+        <div className="padding--all--s">🍍🍍🍍</div>
+      </Tabs.Panel>
+    </Tabs>
+
+    <Tabs kind="segmented" defaultSelectedIndex={1}>
+      <Tabs.List>
+        <Tabs.Tab label="Birds" tabId="bird" />
+        <Tabs.Tab label="Cats" tabId="cat" />
+        <Tabs.Tab label="Dogs" tabId="dog" />
+        <Tabs.Tab label="Snow leopards" tabId="snowLeopard" />
+      </Tabs.List>
+      <Tabs.Panel tabId="bird">
+        <div className="padding--all--s">🐦🐦🐦</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="cat">
+        <div className="padding--all--s">🐈🐈🐈</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="dog">
+        <div className="padding--all--s">🐕🐕🐕</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="snowLeopard">
+        <div className="padding--all--s">❄️🐆</div>
+      </Tabs.Panel>
+    </Tabs>
+
+    <Tabs kind="segmented" defaultSelectedIndex={2}>
+      <Tabs.List>
+        <Tabs.Tab label="One" tabId="one" />
+        <Tabs.Tab label="Two" tabId="two" />
+        <Tabs.Tab label="Three" tabId="three" />
+      </Tabs.List>
+      <Tabs.Panel tabId="one">
+        <div className="padding--all--s">1️⃣</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="two">
+        <div className="padding--all--s">2️⃣</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="three">
+        <div className="padding--all--s">3️⃣</div>
+      </Tabs.Panel>
+    </Tabs>
+  </div>
+);
+MultipleSegmentedTabs.parameters = {
+  docs: {
+    description: {
+      story:
+        "Renders multiple `segmented` Tabs on the same page to verify that each instance's sliding pill resolves to its own selected tab. Since `anchor-name: --active` is declared at document scope, this story exists to confirm there is no cross-instance interference in practice (try changing the selected tab in each set and observe the pill).",
     },
   },
 };

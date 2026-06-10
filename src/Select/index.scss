@@ -36,6 +36,8 @@
     display: flex;
     cursor: pointer;
     position: relative;
+    padding-block: var(--space-xxs);
+    line-height: 1 !important;
     min-height: rem(40px);
 
     span {

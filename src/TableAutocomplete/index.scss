@@ -5,10 +5,9 @@
 
 .nds-tableAutocomplete-dropdown {
   @extend %tableField-offset;
+  @extend %nds-dropdown-layer;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  border: 1px solid var(--theme-primary);
   background-color: var(--color-white);
   box-shadow: var(--elevation-middle);
   max-height: rem(312px);

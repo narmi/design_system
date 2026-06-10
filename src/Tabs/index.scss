@@ -1,46 +1,53 @@
+/**
+* Root element shared styles
+*/
 .nds-tabs-tabsList {
+  --mask-width: var(--space-m);
+
   display: flex;
   justify-content: flex-start;
-  align-items: flex-end;
-  overflow-x: auto;
+  align-items: center;
   scrollbar-width: none; // Firefox
+  overflow-x: auto;
+  min-width: 0;
+  scroll-behavior: smooth;
+  // keep focused tabs clear of the fade mask when the browser
+  // auto-scrolls them into view
+  scroll-padding-inline: var(--mask-width);
+
+  // by default, the edges of the scroll container are not masked
+  mask-image: none;
 
   &::-webkit-scrollbar {
     display: none; // Safari + Chrome
   }
 
-  .nds-tabs--bordered & {
-    border-bottom: var(--border-size-s) solid var(--border-color-light);
+  // fade the left side when overflowing left
+  &--overflowLeft {
+    mask-image: linear-gradient(to right, transparent, black var(--mask-width));
+  }
+
+  // fade the right side when overflowing right
+  &--overflowRight {
+    mask-image: linear-gradient(to left, transparent, black var(--mask-width));
+  }
+
+  // fade both sides when overflowing in both directions.
+  // this sass selector parses to `.leftClass.rightClass`
+  &--overflowLeft#{&}--overflowRight {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black var(--mask-width),
+      black calc(100% - var(--mask-width)),
+      transparent
+    );
   }
 }
 
-.nds-tabs-tabItem {
-  border-bottom: 3px solid transparent;
-  &:not(:last-child) {
-    margin-right: var(--space-xl);
-  }
-  &--selected {
-    border-color: var(--theme-primary);
-  }
-}
-
-.nds-tabs-button {
-  padding: var(--space-xs) 0 !important;
-  color: var(--font-color-primary) !important;
-  font-size: var(--font-size-default);
-  font-family: var(--font-family-default);
-  white-space: nowrap;
-
-  &--selected,
-  &:hover {
-    color: var(--theme-primary) !important;
-  }
-
-  &--selected {
-    font-weight: var(--font-weight-semibold);
-  }
-}
-
+/**
+* Shared styles for responsive behavior
+*/
 .nds-tabs-arrow {
   padding-top: 6px;
   max-width: 0;
@@ -57,7 +64,7 @@
 }
 
 .arrow-reponsive {
-  flex: 0 0 32px;
+  flex: 0 0 min-content;
 }
 
 .panel-responsive {
@@ -65,6 +72,154 @@
   padding-right: 32px;
 }
 
-.display-flex {
-  display: flex;
+/**
+* Status dot
+*/
+.nds-tabs-statusIndicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: var(--space-xxs);
+}
+
+/**
+* Variants
+*/
+
+// Default variant
+.nds-tabs--default {
+  &.nds-tabs--bordered .nds-tabs-tabsList {
+    border-bottom: var(--border-size-s) solid var(--border-color-light);
+  }
+
+  .nds-tabs-tabItem {
+    border-bottom: 3px solid transparent;
+
+    &:not(:last-child) {
+      margin-right: var(--space-xl);
+    }
+
+    &[data-selected] {
+      border-color: var(--theme-primary);
+    }
+  }
+
+  .nds-tabs-button {
+    padding-block: var(--space-xs);
+    color: var(--font-color-primary);
+    font-size: var(--font-size-default);
+    font-family: var(--font-family-default);
+    white-space: nowrap;
+
+    &:hover {
+      color: var(--theme-primary);
+    }
+  }
+
+  .nds-tabs-tabItem[data-selected] .nds-tabs-button {
+    color: var(--theme-primary);
+    font-weight: var(--font-weight-semibold);
+  }
+}
+
+// Segmented variant
+.nds-tabs--segmented {
+  --selected-bg: rgba(var(--theme-rgb-primary), var(--alpha-20));
+  --transition-duration-width: 0.2s;
+  --transition-duration-x: 0.3s;
+
+  // When the user uses the arrow to scroll to the last tab,
+  // the mask covers a bit too much, so we use this padding to
+  // push the text at least 3 characters away from the fade.
+  //
+  // This is a workaround for an issue where the arrow scroll behavior
+  // will not unclip the last item when scrolled to the end.
+  &.nds-tabs--isResponsive .nds-tabs-tabItem:last-child button {
+    padding-right: calc(var(--mask-width) + 3ch);
+  }
+
+  .nds-tabs-tabsList {
+    position: relative;
+    display: flex;
+    gap: rem(2px);
+    border: 1px solid var(--border-color-default);
+    border-radius: var(--border-radius-m);
+
+    // Multiple backgrounds, with white on the bottom to ensure
+    // rgba theme color resolves the same way regardless of where it's used.
+    background-image:
+      linear-gradient(
+        rgba(var(--theme-rgb-primary), var(--alpha-5)),
+        rgba(var(--theme-rgb-primary), var(--alpha-5))
+      ),
+      linear-gradient(white, white);
+
+    // The pill shape defined here will move to whichever element
+    // has the anchor name `--active`. The `anchor()` functions
+    // used here allow us to match the values of the anchor to
+    // match height and width exactly.
+    // Only rendered in browsers that support CSS anchor positioning;
+    // older browsers won't get a sliding pill; only a selected state.
+    @supports (anchor-name: --a) {
+      &::before {
+        content: "";
+        position: absolute;
+        position-anchor: --active;
+        top: anchor(top);
+        left: anchor(left);
+        width: anchor-size(width);
+        height: anchor-size(height);
+        transition:
+          top var(--transition-duration-x),
+          left var(--transition-duration-x),
+          width var(--transition-duration-width),
+          height var(--transition-duration-width);
+        border-radius: var(--border-radius-m);
+        background-color: var(--selected-bg);
+        box-shadow: var(--elevation-middle);
+      }
+    }
+  }
+
+  .nds-tabs-tabItem {
+    position: relative;
+    z-index: 1;
+
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.5rem; // scale with user font settings
+      padding-inline: var(--space-s);
+      border-radius: var(--border-radius-m);
+      font-weight: var(--font-weight-semibold);
+      color: var(--font-color-secondary);
+      min-width: max-content;
+
+      &:hover {
+        background-color: rgba(var(--theme-rgb-primary), var(--alpha-5));
+      }
+    }
+
+    &[data-selected] button {
+      anchor-name: --active;
+      font-weight: var(--font-weight-bold);
+      color: var(--theme-primary);
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      // If we hide the pill for an older browser,
+      // use the button bg instead to show selection
+      @supports not (anchor-name: --a) {
+        background-color: var(--selected-bg);
+        box-shadow: var(--elevation-middle);
+
+        &:hover {
+          background-color: var(--selected-bg);
+        }
+      }
+    }
+  }
 }

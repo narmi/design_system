@@ -232,6 +232,7 @@ const Select = ({
     setIsOpen: (open) => {
       if (!open) closeMenu();
     },
+    polyfillScrollBug: true,
   });
 
   const hasCategories = categories.length > 0;

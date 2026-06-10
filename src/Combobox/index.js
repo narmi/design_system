@@ -253,6 +253,7 @@ const Combobox = ({
     setIsOpen: (open) => {
       if (!open) closeMenu();
     },
+    polyfillScrollBug: true,
   });
 
   // Update displayed items passed to `useCombobox` when `items` change

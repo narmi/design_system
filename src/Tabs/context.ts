@@ -1,5 +1,7 @@
 import { createContext } from "react";
 
+export type TabsKind = "default" | "segmented";
+
 interface TabsContextProps {
   tabIds: string[];
   setTabIds: (ids: string[]) => void;
@@ -13,6 +15,8 @@ interface TabsContextProps {
 
   isResponsive: boolean;
   setIsResponsive: (isResponsive: boolean) => void;
+
+  kind: TabsKind;
 }
 
 const TabsContext = createContext<TabsContextProps>({
@@ -34,6 +38,8 @@ const TabsContext = createContext<TabsContextProps>({
 
   isResponsive: false,
   setIsResponsive: () => {},
+
+  kind: "default",
 });
 
 export default TabsContext;

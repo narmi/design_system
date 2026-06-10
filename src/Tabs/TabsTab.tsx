@@ -1,4 +1,3 @@
-import cc from "classcat";
 import React, { useContext, useRef } from "react";
 import TabsContext from "./context";
 
@@ -9,12 +8,19 @@ export interface TabsTabProps {
   tabId: string;
   /** Optional value for `data-testid` attribute */
   testId?: string;
+  /** Optional prop to show an "update" notification dot in the tab */
+  hasStatusIndicator?: boolean;
 }
 
-const TabsTab = ({ label, tabId, testId }: TabsTabProps) => {
-  const { currentIndex, tabIds, hasPanels, changeTabs } =
+const TabsTab = ({
+  label,
+  tabId,
+  testId,
+  hasStatusIndicator,
+}: TabsTabProps) => {
+  const { currentIndex, tabIds, hasPanels, changeTabs, kind } =
     useContext(TabsContext);
-  const tabRef = useRef();
+  const tabRef = useRef<HTMLLIElement>(null);
   const isSelected = tabId === tabIds[currentIndex];
 
   const onTabClick = () => {
@@ -27,28 +33,33 @@ const TabsTab = ({ label, tabId, testId }: TabsTabProps) => {
       role={hasPanels ? "tab" : undefined}
       aria-selected={hasPanels ? isSelected.toString() : undefined}
       aria-controls={hasPanels ? `${tabId}-tabpanel` : undefined}
-      className={cc([
-        "nds-tabs-tabItem",
-        {
-          "nds-tabs-tabItem--selected": isSelected,
-        },
-      ])}
+      data-selected={isSelected || undefined}
+      className={`nds-tabs-tabItem nds-tabs-tabItem--${kind}${isSelected ? " nds-tabs-tabItem--selected" : ""}`}
       ref={tabRef}
     >
       <button
-        className={cc([
-          "resetButton",
-          "nds-tabs-button",
-          {
-            "nds-tabs-button--selected": isSelected,
-          },
-        ])}
+        className="resetButton nds-tabs-button"
         id={`${tabId}-tab`}
         tabIndex={hasPanels ? -1 : 0}
         onClick={onTabClick}
         data-testid={testId}
       >
-        {label}
+        {hasStatusIndicator && (
+          <span className="nds-tabs-statusIndicator">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="6"
+              height="6"
+              viewBox="0 0 6 6"
+              fill="none"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <circle cx="3" cy="3" r="3" fill="var(--color-successDark)" />
+            </svg>
+          </span>
+        )}
+        <span>{label}</span>
       </button>
     </li>
   );

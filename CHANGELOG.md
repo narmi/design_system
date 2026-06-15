@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.15.0](https://github.com/narmi/design_system/compare/v6.14.0...v6.15.0) (2026-06-10)
+
+### feat
+
+* **Button,SplitButton:** add isFullWidth option ([](https://github.com/narmi/design_system/commit/3fe1aa35ca53ed1fece8f38f750a15f84df627b0))
+
+### fix
+
+* **Select,Combobox:** force JS polyfill when in scroll containers ([](https://github.com/narmi/design_system/commit/f2544e6981a84028963509af80ea027868bb64d3))
+
 ## [6.14.0](https://github.com/narmi/design_system/compare/v6.13.3...v6.14.0) (2026-06-09)
 
 ### feat

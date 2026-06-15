@@ -121,6 +121,30 @@ export const ButtonSizes = () => (
   </>
 );
 
+export const FullWidthButton = () => (
+  <div style={{ maxWidth: "400px" }}>
+    <div className="margin--bottom--m">
+      <Button endIcon="arrow-right" label="Continue" isFullWidth />
+    </div>
+    <div className="margin--bottom--m">
+      <Button
+        kind="tonal"
+        startIcon="camera"
+        label="Take a picture"
+        isFullWidth
+      />
+    </div>
+  </div>
+);
+FullWidthButton.parameters = {
+  docs: {
+    description: {
+      story:
+        "When `isFullWidth` is `true`, the button expands to fill the width of its container. Useful for stacked actions in narrow layouts such as mobile views or sidebars.",
+    },
+  },
+};
+
 export default {
   title: "Components/Button",
   component: Button,

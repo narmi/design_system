@@ -89,6 +89,7 @@
 
   .nds-dropdownTrigger-button {
     @extend %tableField;
+    color: var(--font-color-primary);
     min-height: unset;
     grid-template-columns: 1fr min-content; // [value] [chevron]
 
@@ -104,6 +105,7 @@
     .nds-dropdownTrigger-chevron {
       display: none !important;
     }
+
     &:hover .nds-dropdownTrigger-chevron,
     &:focus .nds-dropdownTrigger-chevron {
       display: block !important;

@@ -1,15 +1,15 @@
 @font-face {
-  font-family: "icomoon";
-  src: url("./fonts/icomoon.woff") format("woff");
+  font-family: 'icomoon';
+  src:
+    url('fonts/icomoon.woff?occl8o') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="narmi-icon-"],
-[class*=" narmi-icon-"] {
+[class^="narmi-icon-"], [class*=" narmi-icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "icomoon" !important;
+  font-family: 'icomoon' !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -22,9 +22,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.narmi-icon-hourglass:before {
-  content: "\ea50";
-}
 .narmi-icon-bank:before {
   content: "\ea4c";
 }
@@ -70,6 +67,9 @@
 }
 .narmi-icon-profile:before {
   content: "\e923";
+}
+.narmi-icon-hourglass:before {
+  content: "\ea50";
 }
 .narmi-icon-plane:before {
   content: "\ea4d";
@@ -1030,6 +1030,9 @@
 }
 .narmi-icon-credit-card:before {
   content: "\e93f";
+}
+.narmi-icon-admin-user-2:before {
+  content: "\ea51";
 }
 .narmi-icon-office:before {
   content: "\e904";

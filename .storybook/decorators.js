@@ -1,18 +1,32 @@
 import React from "react";
 
-export const NdsStyles = (Story) => (
-  <div style={{ margin: "3em" }}>
-    <style>
-      {`
-      :root {
-        --nds-primary-color: 26, 67, 56;
-        --nds-secondary-color: 0, 101, 83;
-        };
-      `}
-    </style>
-    <Story />
-  </div>
+const ndsStyleTag = (
+  <style>
+    {`
+    :root {
+      --nds-primary-color: 26, 67, 56;
+      --nds-secondary-color: 0, 101, 83;
+    };
+    `}
+  </style>
 );
+
+export const NdsStyles = (Story, context) => {
+  if (context.title?.startsWith("Issue Test Cases/")) {
+    return (
+      <>
+        {ndsStyleTag}
+        <Story />
+      </>
+    );
+  }
+  return (
+    <div style={{ margin: "3em" }}>
+      {ndsStyleTag}
+      <Story />
+    </div>
+  );
+};
 
 export const ExamplesBackground = (Story, context) => {
   if (!context.title?.startsWith("Examples/")) return <Story />;

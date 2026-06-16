@@ -3,6 +3,7 @@ import React, { useState, useMemo } from "react";
 import PropTypes from "prop-types";
 import { useSelect } from "downshift";
 import useDropdownLayer from "../hooks/useDropdownLayer";
+import useBreakpoints from "../hooks/useBreakpoints";
 import cc from "classcat";
 import Row from "../Row";
 import DropdownTrigger from "../DropdownTrigger";
@@ -227,12 +228,14 @@ const Select = ({
     closeMenu,
   } = useSelect(downshiftOpts);
 
+  const { m } = useBreakpoints();
   const { anchorProps, layerProps } = useDropdownLayer({
     isOpen,
     setIsOpen: (open) => {
       if (!open) closeMenu();
     },
     polyfillScrollBug: true,
+    matchWidth: !m, // mobile-only
   });
 
   const hasCategories = categories.length > 0;

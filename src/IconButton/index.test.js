@@ -43,4 +43,20 @@ describe("IconButton", () => {
     const iconButton = getIconButton();
     expect(iconButton).toHaveClass(`nds-icon-button--${kind}`);
   });
+
+  it("strips unsafe href when rendered as anchor", () => {
+    render(
+      <IconButton as="a" name="info" label="Help" href="javascript:alert(1)" />,
+    );
+    const iconButton = getIconButton();
+    expect(iconButton).not.toHaveAttribute("href");
+  });
+
+  it("preserves safe href when rendered as anchor", () => {
+    render(
+      <IconButton as="a" name="info" label="Help" href="/safe-path" />,
+    );
+    const iconButton = getIconButton();
+    expect(iconButton).toHaveAttribute("href", "/safe-path");
+  });
 });

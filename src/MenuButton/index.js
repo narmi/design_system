@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
-import { Button as AriaButton, Menu, MenuTrigger } from "react-aria-components";
+import { useSelect } from "downshift";
 import iconSelection from "src/icons/selection.json";
 import MenuButtonItem from "./MenuButtonItem";
-import MenuItem from "./AriaMenuItem";
 import Row from "../Row";
 import useDropdownLayer from "../hooks/useDropdownLayer";
 
@@ -32,76 +31,47 @@ const MenuButton = ({
   children,
   footerItem,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const menuItems = React.Children.toArray(children);
   const allItems = footerItem ? menuItems.concat(footerItem) : menuItems;
-  const canToggleCloseRef = useRef(isOpen);
 
-  const closeMenu = useCallback(() => {
-    setIsOpen(false);
-    canToggleCloseRef.current = false;
-  }, [canToggleCloseRef]);
+  const {
+    isOpen,
+    getToggleButtonProps,
+    getMenuProps,
+    getItemProps,
+    highlightedIndex,
+    closeMenu,
+  } = useSelect({
+    items: allItems,
+    itemToString: (item) => item?.props?.label ?? "",
+    onSelectedItemChange: ({ selectedItem }) => {
+      if (selectedItem) {
+        selectedItem.props.onSelect();
+      }
+    },
+  });
 
   const { anchorProps, layerProps } = useDropdownLayer({
     isOpen,
-    setIsOpen,
+    setIsOpen: (open) => {
+      if (!open) closeMenu();
+    },
     matchWidth: false,
     placement: side,
+    isPortalled: false,
   });
-
-  const handleKeyUp = ({ key }) => {
-    if (key === "Escape" && isOpen) {
-      closeMenu();
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyUp);
-    return () => {
-      window.removeEventListener("keydown", handleKeyUp);
-    };
-  }, [handleKeyUp]);
-
-  /**
-   * react-aria only supports `onAction` at the `Menu` level.
-   * This handler finds the corresponding `onSelect` of the
-   * relevant `MenuButton.Item` and calls it.
-   */
-  const handleOnSelect = (itemId) => {
-    const selectedItem = allItems.find(
-      (item) => labelToItemId(item.props.label) === itemId,
-    );
-    selectedItem.props.onSelect();
-    closeMenu();
-  };
-
-  const pressButton = useCallback(() => {
-    if (canToggleCloseRef.current) {
-      closeMenu();
-    } else {
-      canToggleCloseRef.current = true;
-    }
-  }, [closeMenu]);
 
   const { ref: anchorRef, style: anchorStyle } = anchorProps;
 
   return (
-    <MenuTrigger
-      isOpen={isOpen}
-      onOpenChange={(o) => {
-        if (o) {
-          setIsOpen(true);
-        }
-      }}
-      data-testid={testId}
-      className="nds-menubutton"
-    >
-      <AriaButton
-        ref={anchorRef}
-        aria-label={label}
-        className="button--reset nds-menubutton-ariaButton"
-        style={anchorStyle}
-        onClick={pressButton}
+    <div data-testid={testId} className="nds-menubutton">
+      <button
+        {...getToggleButtonProps({
+          ref: anchorRef,
+          style: anchorStyle,
+          "aria-label": label,
+          className: "button--reset nds-menubutton-ariaButton",
+        })}
       >
         {typeof renderTrigger === "function" ? (
           renderTrigger(isOpen)
@@ -135,51 +105,52 @@ const MenuButton = ({
             </Row>
           </div>
         )}
-      </AriaButton>
-      <div className="nds-menubutton-popover" {...layerProps}>
-        {isOpen && (
-          <Menu
-            onAction={handleOnSelect}
-            className="nds-menubutton-menu rounded--all elevation--high"
-            // autoFocus is required to enter the menu focus trap when
-            // the menu popover opens
-            // eslint-disable-next-line jsx-a11y/no-autofocus
-            autoFocus={true}
-          >
-            {menuItems.map((child, childIndex) => {
-              const itemId = labelToItemId(child.props.label);
-              return (
-                <MenuItem
-                  key={itemId}
-                  id={itemId}
-                  value={itemId}
-                  label={child.props.label}
-                  startIcon={child.props.startIcon}
-                  endIcon={child.props.endIcon}
-                  roundedTop={childIndex === 0}
-                  roundedBottom={
-                    childIndex === menuItems.length - 1 && !footerItem
-                  }
-                />
-              );
-            })}
-            {footerItem && (
-              <MenuItem
-                className="padding--y--s padding--x--s border--top"
-                id={labelToItemId(footerItem.props.label)}
-                value={labelToItemId(footerItem.props.label)}
-                label={footerItem.props.label}
-                startIcon={footerItem.props.startIcon}
-                endIcon={footerItem.props.endIcon}
-                roundedBottom
+      </button>
+      <ul
+        {...getMenuProps({ ...layerProps })}
+        className={cc([
+          "list--reset",
+          "nds-menubutton-popover",
+          { "nds-menubutton-menu rounded--all elevation--high": isOpen },
+        ])}
+      >
+        {isOpen &&
+          allItems.map((item, index) => {
+            const isFooter = footerItem && index === allItems.length - 1;
+            return (
+              <li
+                key={labelToItemId(item.props.label)}
+                {...getItemProps({ item, index })}
+                className={cc([
+                  "nds-menubutton-item",
+                  "padding--x--s padding--y--xs",
+                  {
+                    "nds-menubutton-item--highlighted":
+                      highlightedIndex === index,
+                    "rounded--top": index === 0,
+                    "rounded--bottom": index === allItems.length - 1,
+                    "padding--y--s padding--x--s border--top": isFooter,
+                  },
+                ])}
               >
-                {footerItem}
-              </MenuItem>
-            )}
-          </Menu>
-        )}
-      </div>
-    </MenuTrigger>
+                <Row gapSize="s">
+                  {item.props.startIcon && (
+                    <Row.Item shrink>
+                      <span className={`narmi-icon-${item.props.startIcon}`} />
+                    </Row.Item>
+                  )}
+                  <Row.Item>{item.props.label}</Row.Item>
+                  {item.props.endIcon && (
+                    <Row.Item shrink>
+                      <span className={`narmi-icon-${item.props.endIcon}`} />
+                    </Row.Item>
+                  )}
+                </Row>
+              </li>
+            );
+          })}
+      </ul>
+    </div>
   );
 };
 

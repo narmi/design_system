@@ -82,6 +82,32 @@ $breakpoints: (
   border: 1px solid var(--theme-primary);
   border-radius: var(--border-radius-default);
 
+  // Defend against broad consumer selectors like `.parent * { display: flex; }`
+  // !important wins regardless of specificity or source order.
+  //
+  // In an upcoming major release, we will require consumers to wrap their styles
+  // in their own @app-{app name} CSS layer and these overrides may be removed.
+  // See: https://linear.app/narmi/issue/NDS-2718
+  font-size: var(--font-size-default) !important;
+  color: var(--font-color-primary) !important;
+  text-align: start !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  line-height: var(--line-height-default) !important;
+  font-weight: normal !important;
+  padding: 0 !important;
+
+  // Force all descendants to inherit from this protected container
+  & * {
+    font-size: unset !important;
+    color: unset !important;
+    text-align: unset !important;
+    text-transform: unset !important;
+    letter-spacing: unset !important;
+    line-height: unset !important;
+    font-weight: unset !important;
+  }
+
   &:focus {
     outline: none;
   }

@@ -84,4 +84,16 @@ describe("Button", () => {
     expect(icon).toBeInTheDocument();
     expect(icon).toHaveClass(`narmi-icon-${iconName}`);
   });
+
+  it("strips unsafe href when rendered as anchor", () => {
+    render(<Button as="a" label={LABEL} href="javascript:alert(1)" />);
+    const button = getButton();
+    expect(button).not.toHaveAttribute("href");
+  });
+
+  it("preserves safe href when rendered as anchor", () => {
+    render(<Button as="a" label={LABEL} href="/safe-path" />);
+    const button = getButton();
+    expect(button).toHaveAttribute("href", "/safe-path");
+  });
 });

@@ -180,6 +180,7 @@ const Combobox = ({
 
   const [displayedItems, setDisplayedItems] = useState(items);
   const inputRef = useRef(null);
+  const isInternalFocusChange = useRef(false);
 
   const itemToString = (item) =>
     item?.props?.searchValue || item?.props?.value || "";
@@ -227,10 +228,12 @@ const Combobox = ({
       // Mobile browsers scroll the viewport when a focused input's value
       // changes to a long string. Removing focus first eliminates the trigger,
       // then we restore focus without scrolling.
+      isInternalFocusChange.current = true;
       inputRef.current?.blur();
       onChange(selectedItem ? selectedItem.props.value : "");
       closeMenu();
       inputRef.current?.focus({ preventScroll: true });
+      isInternalFocusChange.current = false;
     },
 
     // <https://www.downshift-js.com/use-select#state-reducer>
@@ -383,6 +386,7 @@ const Combobox = ({
   };
 
   const handleMenuToggle = () => {
+    if (isInternalFocusChange.current) return;
     if (!isOpen) {
       // Reset filtered items every time user refocuses.
       // Subsequent changes in the input will re-filter the list.
@@ -394,6 +398,7 @@ const Combobox = ({
   };
 
   const handleBlur = () => {
+    if (isInternalFocusChange.current) return;
     onInputChange(selectedItem ? itemToString(selectedItem) : "");
     if (highlightedIndex !== -1) {
       closeMenu();

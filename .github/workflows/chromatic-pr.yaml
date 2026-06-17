@@ -2,7 +2,6 @@
 name: 'Chromatic PR Checks'
 permissions:
   contents: read
-  pull-requests: write
 on:
   pull_request:
     branches:
@@ -19,6 +18,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Check for relevant changes
         id: changes
@@ -47,9 +47,10 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Setup Node.js
-        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v4
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v4
         with:
           node-version: 22
           cache: 'npm'
@@ -59,7 +60,7 @@ jobs:
 
       - name: Cache build
         id: build-cache
-        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
           path: dist
           key: build-${{ hashFiles('src/**', 'package-lock.json') }}
@@ -73,7 +74,7 @@ jobs:
 
       - name: Chromatic
         id: chromatic_step
-        uses: chromaui/action@4c20b95e9d3209ecfdf9cd6aace6bbde71ba1694 # v13
+        uses: chromaui/action@e3eb8ec36101d8f0253c7c3ae66e5a2b4e2197ba # v13
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitZeroOnChanges: false # fail workflow if changes detected
@@ -88,10 +89,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [check_changes, run_chromatic]
     if: needs.check_changes.outputs.has_relevant_changes == 'true'
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
-      - name: Log run_chromatic job outputs
-        run: echo "${{ toJson(needs.run_chromatic.outputs) }}"
-
       - name: Comment Storybook URL and diff status in PR
         uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b # 3.0.1
         with:
@@ -118,7 +119,7 @@ jobs:
     steps:
       - name: Set status based on changes
         run: |
-          if [ "${{ needs.check_changes.outputs.has_relevant_changes }}" = "true" ]; then
+          if [ "${NEEDS_CHECK_CHANGES_OUTPUTS_HAS_RELEVANT_CHANGES}" = "true" ]; then
             if [ "${{ needs.run_chromatic.result }}" = "success" ]; then
               echo "Chromatic checks passed"
               exit 0
@@ -130,3 +131,5 @@ jobs:
             echo "No relevant changes detected, skipping Chromatic checks"
             exit 0
           fi
+        env:
+          NEEDS_CHECK_CHANGES_OUTPUTS_HAS_RELEVANT_CHANGES: ${{ needs.check_changes.outputs.has_relevant_changes }}

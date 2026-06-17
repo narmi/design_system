@@ -148,6 +148,7 @@ const Checkbox = ({
                     marked.parse(markdownLabel, {
                       renderer: markdownRenderer,
                     }) as string,
+                    { ADD_ATTR: ["target"] },
                   ),
                 }}
               />

@@ -201,6 +201,47 @@ export const WithFooterContent = () => {
   );
 };
 
+export const StyleIsolation = () => (
+  <div className="style-isolation-parent">
+    <style>{`
+      .style-isolation-parent * {
+        display: flex;
+        font-size: 24px;
+        font-weight: 900;
+        color: purple;
+      }
+    `}</style>
+    <MenuButton label="Should render normally">
+      <MenuButton.Item
+        key="edit"
+        startIcon="edit-2"
+        label="Edit"
+        onSelect={() => alert("edit")}
+      />
+      <MenuButton.Item
+        key="screenshot"
+        startIcon="camera"
+        label="Screenshot"
+        onSelect={() => alert("screenshot")}
+      />
+      <MenuButton.Item
+        key="deposit"
+        startIcon="bank"
+        label="Deposit"
+        onSelect={() => alert("deposit")}
+      />
+    </MenuButton>
+  </div>
+);
+StyleIsolation.parameters = {
+  docs: {
+    description: {
+      story:
+        "Demonstrates that the dropdown menu is visually isolated from broad parent selectors (e.g. `.parent * { ... }`). Menu items should render with standard design system styles.",
+    },
+  },
+};
+
 export default {
   title: "Components/MenuButton",
   component: MenuButton,

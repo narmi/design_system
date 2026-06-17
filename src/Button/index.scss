@@ -24,6 +24,19 @@
   pointer-events: none;
 }
 
+/* Boolean Flags */
+.nds-button--fullWidth {
+  width: 100%;
+  justify-content: space-between;
+  padding-inline: var(--space-m);
+
+  .nds-button-content {
+    text-align: start;
+    margin: 0 !important;
+    min-width: 100% !important;
+  }
+}
+
 /* Size variants */
 .nds-button--xs {
   @extend %btn-size-xs;

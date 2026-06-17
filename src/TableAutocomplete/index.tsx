@@ -142,6 +142,7 @@ const TableAutocomplete = ({
     },
     matchWidth: true,
     placement: "bottom",
+    polyfillScrollBug: true,
   });
 
   const { ref: anchorRef, ...anchorRest } = anchorProps;

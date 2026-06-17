@@ -43,6 +43,7 @@ const AnchoredDialog = ({
     matchWidth: false,
     isPortalled,
     ariaPopupType: "dialog",
+    alignment: "start",
   });
 
   useOnClickOutside(layerProps.ref as React.RefObject<HTMLDivElement>, () => {
@@ -70,22 +71,23 @@ const AnchoredDialog = ({
     return null;
   }
 
-  // Clone trigger element and attach anchor props if provided
-  const triggerElement = trigger
-    ? React.cloneElement(trigger, {
-        ref: anchorProps.ref,
-        style: {
-          ...trigger.props.style,
-          ...anchorProps.style,
-        },
-        "aria-haspopup": anchorProps["aria-haspopup"],
-        "aria-expanded": anchorProps["aria-expanded"],
-      })
-    : null;
+  const triggerWithAria =
+    trigger &&
+    React.cloneElement(trigger, {
+      "aria-haspopup": anchorProps["aria-haspopup"],
+      "aria-expanded": anchorProps["aria-expanded"],
+    });
 
   return (
     <>
-      {triggerElement}
+      {trigger && (
+        <div
+          ref={anchorProps.ref as React.RefObject<HTMLDivElement>}
+          style={anchorProps.style as React.CSSProperties}
+        >
+          {triggerWithAria}
+        </div>
+      )}
       {isOpen && (
         <div
           ref={layerProps.ref as React.RefObject<HTMLDivElement>}

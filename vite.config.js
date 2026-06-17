@@ -42,7 +42,7 @@ export default defineConfig({
   plugins: [
     jsonModulePlugin(),
     react({
-      include: "**/*.{jsx,tsx,js,ts}",
+      include: /\.[tj]sx?$/,
       babel: {
         presets: [
           ["@babel/preset-env", { modules: false }],

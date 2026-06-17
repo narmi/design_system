@@ -197,6 +197,35 @@ export const WithTextInputAndFocus = () => {
 };
 WithTextInputAndFocus.decorators = [MobileOverflowLayout];
 
+/**
+ * Control: Combobox without the positioned-background layout.
+ * If this DOES reproduce the bug, the layout is not a factor.
+ * If this does NOT, the positioned backgrounds are a necessary condition.
+ */
+export const WithComboboxNoDecorator = () => (
+  <Combobox label="Select answer">
+    <Combobox.Item
+      value="Yes, I am a current member of this financial institution"
+      searchValue="Yes, I am a current member of this financial institution"
+    >
+      Yes, I am a current member of this financial institution
+    </Combobox.Item>
+    <Combobox.Item
+      value="No, I have never been a member of this financial institution and would like to apply"
+      searchValue="No, I have never been a member of this financial institution and would like to apply"
+    >
+      No, I have never been a member of this financial institution and would
+      like to apply
+    </Combobox.Item>
+    <Combobox.Item
+      value="I previously had an account but it has been closed"
+      searchValue="I previously had an account but it has been closed"
+    >
+      I previously had an account but it has been closed
+    </Combobox.Item>
+  </Combobox>
+);
+
 export default {
   title: "NDS-2906 Animated Background Mobile Overflow",
   tags: ["!autodocs", "NDS-2906"],

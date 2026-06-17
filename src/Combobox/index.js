@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useRef, useMemo, useEffect } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import iconSelection from "src/icons/selection.json";
@@ -179,6 +179,7 @@ const Combobox = ({
   }
 
   const [displayedItems, setDisplayedItems] = useState(items);
+  const inputRef = useRef(null);
 
   const itemToString = (item) =>
     item?.props?.searchValue || item?.props?.value || "";
@@ -222,8 +223,14 @@ const Combobox = ({
     },
 
     onSelectedItemChange: ({ selectedItem }) => {
+      // Blur before value change to prevent mobile scroll-into-view (NDS-2906).
+      // Mobile browsers scroll the viewport when a focused input's value
+      // changes to a long string. Removing focus first eliminates the trigger,
+      // then we restore focus without scrolling.
+      inputRef.current?.blur();
       onChange(selectedItem ? selectedItem.props.value : "");
       closeMenu();
+      inputRef.current?.focus({ preventScroll: true });
     },
 
     // <https://www.downshift-js.com/use-select#state-reducer>
@@ -423,6 +430,7 @@ const Combobox = ({
             startIcon={icon}
             endContent={renderEndContent(isOpen)}
             {...getInputProps({
+              ref: inputRef,
               onBlur: handleBlur,
               onFocus: handleMenuToggle,
               onClick: handleMenuToggle,

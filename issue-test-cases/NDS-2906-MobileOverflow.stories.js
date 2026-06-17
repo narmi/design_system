@@ -2,6 +2,8 @@ import React from "react";
 import Combobox from "src/Combobox";
 import TextInput from "src/TextInput";
 
+const LONG_VALUE = "Yes, I am a current member of this financial institution";
+
 /**
  * Replicates the AO consumer eligibility layout where
  * a few psuedo elements animate around the viewport but exit
@@ -108,8 +110,6 @@ const MobileOverflowLayout = (Story) => (
   </div>
 );
 
-const LONG_VALUE = "Yes, I am a current member of this financial institution";
-
 const storyDescription =
   "Regression test for mobile horizontal overflow. " +
   "Must be tested on a real mobile device - open in its own tab. " +
@@ -141,10 +141,61 @@ export const WithCombobox = () => (
 );
 WithCombobox.decorators = [MobileOverflowLayout];
 
-export const WithTextInput = () => (
-  <TextInput label="Select answer" defaultValue={LONG_VALUE} />
-);
+/**
+ * Control: TextInput with value set programmatically, no focus change.
+ * If this does NOT reproduce the bug, focus-after-selection is a factor.
+ */
+export const WithTextInput = () => {
+  const [value, setValue] = React.useState("");
+  return (
+    <>
+      <TextInput
+        label="Select answer"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <button
+        type="button"
+        onClick={() => setValue(LONG_VALUE)}
+        style={{ marginTop: "var(--space-s, 8px)" }}
+      >
+        Simulate selection
+      </button>
+    </>
+  );
+};
 WithTextInput.decorators = [MobileOverflowLayout];
+
+/**
+ * Tests theory: programmatic focus return after value change triggers
+ * mobile browser scroll-into-view at the text caret position.
+ * If this DOES reproduce the bug, it's the focus + long value combo.
+ */
+export const WithTextInputAndFocus = () => {
+  const [value, setValue] = React.useState("");
+  const inputRef = React.useRef(null);
+  return (
+    <>
+      <TextInput
+        ref={inputRef}
+        label="Select answer"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <button
+        type="button"
+        onClick={() => {
+          setValue(LONG_VALUE);
+          inputRef.current?.focus();
+        }}
+        style={{ marginTop: "var(--space-s, 8px)" }}
+      >
+        Simulate selection with focus
+      </button>
+    </>
+  );
+};
+WithTextInputAndFocus.decorators = [MobileOverflowLayout];
 
 export default {
   title: "NDS-2906 Animated Background Mobile Overflow",

@@ -1,0 +1,1 @@
+import{i as e,s as t}from"./preload-helper-xPQekRTU.js";import{X as n}from"./iframe-x8KF2Ae3.js";import{n as r,t as i}from"./classcat-BMx3V7o4.js";var a,o,s=e((()=>{a=t(n()),r(),o=({isDisabled:e=!1,children:t})=>a.createElement(`div`,{className:i([`nds-disabledShim`,{"nds-disabledShim--disabled":e}]),"aria-disabled":e?`true`:`false`},t)}));export{s as n,o as t};

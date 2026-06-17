@@ -1,4 +1,0 @@
-import{i as e}from"./preload-helper-xPQekRTU.js";import{f as t,n,s as r,w as i}from"./blocks-vsv4ezzh.js";import{s as a}from"./chunk-LITCR56V-j0U7XSvu.js";import{t as o}from"./mdx-react-shim-C9sF9Cno.js";import{Spacing as s,n as c,t as l}from"./layout.stories-CB3aIhXk.js";function u(e){let t={h1:`h1`,h2:`h2`,...i(),...e.components};return(0,f.jsxs)(f.Fragment,{children:[(0,f.jsx)(r,{title:`Design Tokens/Layout`,of:c}),`
-`,(0,f.jsx)(t.h1,{id:`layout-tokens`,children:`Layout Tokens`}),`
-`,(0,f.jsx)(t.h2,{id:`spacing`,children:`Spacing`}),`
-`,(0,f.jsx)(n,{of:s,style:{height:`auto`}})]})}function d(e={}){let{wrapper:t}={...i(),...e.components};return t?(0,f.jsx)(t,{...e,children:(0,f.jsx)(u,{...e})}):u(e)}var f;e((()=>{f=a(),o(),t(),l()}))();export{d as default};

@@ -1,0 +1,13 @@
+import{i as e,s as t}from"./preload-helper-xPQekRTU.js";import{X as n}from"./iframe-x8KF2Ae3.js";import{a as r,n as i,r as a,s as o,t as s}from"./TokenTable-D_KRnmIa.js";var c,l,u,d,f,p,m,h,g,_=e((()=>{c=t(n()),o(),i(),l={title:`Design Tokens/Color`},u=e=>c.createElement(s,e),d=u.bind({}),d.args={previewType:`color`,rows:a(r,`narmi`,`color`).filter(({name:e})=>!new RegExp(/[0-9]/).test(e))},f=()=>c.createElement(c.Fragment,null,c.createElement(`h2`,null,`Theme Colors`),c.createElement(s,{previewType:`color`,rows:a(r,`theme`,`theme`)})),p=()=>c.createElement(c.Fragment,null,c.createElement(`h2`,null,`Background Colors`),c.createElement(s,{previewType:`color`,rows:a(r,`background`,`bgColor`)})),m=()=>c.createElement(c.Fragment,null,c.createElement(`h2`,null,`System Colors`),c.createElement(s,{previewType:`color`,rows:a(r,`system`,`color`)})),h=()=>c.createElement(c.Fragment,null,c.createElement(`h2`,null,`Alpha Values`),c.createElement(s,{rows:a(r,`alpha`,`alpha`)})),f.__docgenInfo={description:``,methods:[],displayName:`Theme`},p.__docgenInfo={description:``,methods:[],displayName:`Background`},m.__docgenInfo={description:``,methods:[],displayName:`System`},h.__docgenInfo={description:``,methods:[],displayName:`Transparency`},d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`args => <TokenTable {...args} />`,...d.parameters?.docs?.source}}},f.parameters={...f.parameters,docs:{...f.parameters?.docs,source:{originalSource:`() => <>
+    <h2>Theme Colors</h2>
+    <TokenTable previewType="color" rows={toTokenRows(color, "theme", "theme")} />
+  </>`,...f.parameters?.docs?.source}}},p.parameters={...p.parameters,docs:{...p.parameters?.docs,source:{originalSource:`() => <>
+    <h2>Background Colors</h2>
+    <TokenTable previewType="color" rows={toTokenRows(color, "background", "bgColor")} />
+  </>`,...p.parameters?.docs?.source}}},m.parameters={...m.parameters,docs:{...m.parameters?.docs,source:{originalSource:`() => <>
+    <h2>System Colors</h2>
+    <TokenTable previewType="color" rows={toTokenRows(color, "system", "color")} />
+  </>`,...m.parameters?.docs?.source}}},h.parameters={...h.parameters,docs:{...h.parameters?.docs,source:{originalSource:`() => <>
+    <h2>Alpha Values</h2>
+    <TokenTable rows={toTokenRows(color, "alpha", "alpha")} />
+  </>`,...h.parameters?.docs?.source}}},g=[`Base`,`Theme`,`Background`,`System`,`Transparency`]}));_();export{p as Background,d as Base,m as System,f as Theme,h as Transparency,g as __namedExportsOrder,l as default,_ as t};

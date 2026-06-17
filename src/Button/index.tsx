@@ -51,6 +51,11 @@ export interface ButtonProps {
    * in a future release. Use the `label` prop instead.
    */
   children?: React.ReactNode | string | undefined;
+  /**
+   * Will take up full width of its parent container when `true`.
+   * The label will align start with flex grow.
+   */
+  isFullWidth?: boolean;
   [x: string]: unknown; // spread props
 }
 
@@ -77,6 +82,7 @@ const Button = ({
   onClick = () => {},
   as = "button",
   ariaLabel = null,
+  isFullWidth = false,
   ...otherProps
 }: ButtonProps) => {
   const isButtonElement = as === "button";
@@ -116,6 +122,7 @@ const Button = ({
           resetButton: as === "button",
           "nds-button--disabled": disabled,
           "nds-button--loading": isLoading,
+          "nds-button--fullWidth": isFullWidth,
         },
       ])}
       disabled={(isButtonElement && disabled) || isLoading ? true : undefined}

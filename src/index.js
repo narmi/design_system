@@ -55,6 +55,7 @@ import TokenInput from "./TokenInput";
 import Tooltip from "./Tooltip";
 import TruncatedAccount from "./TruncatedAccount";
 import useBreakpoints from "./hooks/useBreakpoints";
+import useDropdownLayer from "./hooks/useDropdownLayer";
 import useLockBodyScroll from "./hooks/useLockBodyScroll";
 import useSupportsAnchorPositioning from "./hooks/useSupportsAnchorPositioning";
 import formatNumber from "./formatters/formatNumber";
@@ -118,6 +119,7 @@ export {
   Tooltip,
   TruncatedAccount,
   useBreakpoints,
+  useDropdownLayer,
   useLockBodyScroll,
   useSupportsAnchorPositioning,
   formatNumber,

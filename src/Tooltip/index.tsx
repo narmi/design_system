@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useId } from "react";
+import React, { useState, useCallback, useId, useRef } from "react";
 import useDropdownLayer from "../hooks/useDropdownLayer";
 
 export interface TooltipProps {
@@ -40,18 +40,18 @@ const Tooltip = ({
     open: 500,
     close: 100,
   };
-  let activeTimer: ReturnType<typeof setTimeout>;
+  const activeTimer = useRef<ReturnType<typeof setTimeout>>();
 
   const shouldRenderTooltip = isControlled ? isOpen : open;
 
   const openPopover = () => {
-    clearTimeout(activeTimer);
-    activeTimer = setTimeout(setOpen, delays.open, true);
+    clearTimeout(activeTimer.current);
+    activeTimer.current = setTimeout(setOpen, delays.open, true);
   };
 
   const closePopover = useCallback(() => {
-    clearTimeout(activeTimer);
-    activeTimer = setTimeout(setOpen, delays.close, false);
+    clearTimeout(activeTimer.current);
+    activeTimer.current = setTimeout(setOpen, delays.close, false);
   }, []);
 
   const { anchorProps, layerProps } = useDropdownLayer({
@@ -97,8 +97,8 @@ const Tooltip = ({
         data-placement={side}
         {...layerRest}
         style={{
-          maxWidth: maxWidth,
           ...layerRest.style,
+          maxWidth: maxWidth,
         }}
         data-testid={testId}
         onMouseEnter={openPopover}

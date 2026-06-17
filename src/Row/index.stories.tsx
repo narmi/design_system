@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid,react/jsx-key */
-import { Meta } from "@storybook/react-webpack5";
+import { Meta } from "@storybook/react-vite";
 import React from "react";
 import Button from "../Button";
 import Row from "./";

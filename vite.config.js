@@ -42,17 +42,14 @@ export default defineConfig({
   plugins: [
     jsonModulePlugin(),
     react({
-      include: "**/*.{jsx,tsx,js,ts}",
+      include: /\.[tj]sx?$/,
       babel: {
         presets: [
           ["@babel/preset-env", { modules: false }],
           "@babel/preset-react",
           "@babel/preset-typescript",
         ],
-        plugins: [
-          "@babel/plugin-proposal-class-properties",
-          "babel-plugin-transform-react-remove-prop-types",
-        ],
+        plugins: ["babel-plugin-transform-react-remove-prop-types"],
       },
     }),
     dts({

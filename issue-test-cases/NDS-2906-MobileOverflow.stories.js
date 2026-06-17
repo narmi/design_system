@@ -6,7 +6,7 @@ const LONG_VALUE = "Yes, I am a current member of this financial institution";
 
 /**
  * Replicates the AO consumer eligibility layout where
- * a few psuedo elements animate around the viewport but exit
+ * a few pseudo elements animate around the viewport but exit
  * the content area
  */
 const MobileOverflowLayout = (Story) => (

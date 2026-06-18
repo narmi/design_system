@@ -62,6 +62,7 @@ const Tooltip = ({
     matchWidth: false,
     ariaPopupType: "false",
     placement: side,
+    isPortalled: true,
   });
 
   const {

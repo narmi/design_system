@@ -205,8 +205,15 @@ const useAnchorPolyfill = ({
           top: "var(--js-dropdown-top, auto)",
           bottom: "var(--js-dropdown-bottom, auto)",
           left: "var(--js-dropdown-left)",
-          minWidth: "max-content",
-          ...(matchWidth && { width: "var(--js-dropdown-width)" }),
+          ...(matchWidth
+            ? {
+                width: "var(--js-dropdown-width)",
+                minWidth: "var(--js-dropdown-width)",
+                maxWidth: "var(--js-dropdown-width)",
+              }
+            : {
+                minWidth: "max-content",
+              }),
         },
   };
 };

@@ -11,6 +11,17 @@ export default {
   stories: [
     "../src/**/*.@(mdx|stories.@(js|jsx|ts|tsx))",
     "../tokens/**/*.@(mdx|stories.@(js|jsx|ts|tsx))",
+    // Dev-only issue test case stories, excluded from production builds
+    // (storybook build sets NODE_ENV=production)
+    ...(process.env.NODE_ENV !== "production"
+      ? [
+          {
+            directory: "../issue-test-cases",
+            files: "**/*.stories.@(js|jsx|ts|tsx)",
+            titlePrefix: "Issue Test Cases",
+          },
+        ]
+      : []),
   ],
 
   addons: [

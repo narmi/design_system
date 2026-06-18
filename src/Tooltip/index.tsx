@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useId, useRef } from "react";
+import ReactDOM from "react-dom";
 import useDropdownLayer from "../hooks/useDropdownLayer";
 
 export interface TooltipProps {
@@ -62,6 +63,7 @@ const Tooltip = ({
     matchWidth: false,
     ariaPopupType: "false",
     placement: side,
+    isPortalled: true,
   });
 
   const {
@@ -70,6 +72,25 @@ const Tooltip = ({
     "aria-expanded": anchorExpanded,
   } = anchorProps;
   const { ref: layerRef, ...layerRest } = layerProps;
+  const layerContent = (
+    <div
+      ref={layerRef as React.Ref<HTMLDivElement>}
+      id={tooltipId}
+      role="tooltip"
+      className="nds-typography nds-tooltip elevation--middle"
+      data-placement={side}
+      {...layerRest}
+      style={{
+        ...layerRest.style,
+        maxWidth: maxWidth,
+      }}
+      data-testid={testId}
+      onMouseEnter={openPopover}
+      onMouseLeave={closePopover}
+    >
+      {shouldRenderTooltip ? text : null}
+    </div>
+  );
 
   return (
     <>
@@ -89,23 +110,7 @@ const Tooltip = ({
       >
         {children}
       </div>
-      <div
-        ref={layerRef as React.Ref<HTMLDivElement>}
-        id={tooltipId}
-        role="tooltip"
-        className="nds-typography nds-tooltip elevation--middle"
-        data-placement={side}
-        {...layerRest}
-        style={{
-          maxWidth: maxWidth,
-          ...layerRest.style,
-        }}
-        data-testid={testId}
-        onMouseEnter={openPopover}
-        onMouseLeave={closePopover}
-      >
-        {shouldRenderTooltip ? text : null}
-      </div>
+      {ReactDOM.createPortal(layerContent, document.body)}
     </>
   );
 };

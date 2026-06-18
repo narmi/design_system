@@ -48,6 +48,7 @@
     display: flex;
     flex-direction: column-reverse;
     flex-grow: 1;
+    min-width: 0; // allow shrinking below content intrinsic width in flex layouts
   }
 
   .nds-input-subline {

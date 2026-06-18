@@ -37,8 +37,8 @@ const TableInput = React.forwardRef<HTMLInputElement, TableInputProps>(
     ref,
   ) => {
     const characterCount = (value || "").length;
-    const showCharacterCounter = maxLength !== undefined;
-    const hasCountError = showCharacterCounter && characterCount > maxLength;
+const showCharacterCounter = maxLength !== undefined && maxLength > 0;
+const hasCountError = showCharacterCounter && characterCount > maxLength;
     return (
       <div
         className={cc([

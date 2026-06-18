@@ -7,7 +7,6 @@ export const options_states = [
   "California",
   "Colorado",
   "Connecticut",
-  "A really long state name that doesn't exist but is long enough to trigger the bug",
   "Delaware",
   "Florida",
   "Georgia",

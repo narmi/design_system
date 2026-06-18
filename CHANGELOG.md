@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.2](https://github.com/narmi/design_system/compare/v6.16.1...v6.16.2) (2026-06-18)
+
+### fix
+
+* **Tooltip:** portal tooltip always ([](https://github.com/narmi/design_system/commit/5438e648cb87a90c6a9082236f9c1313e5d13984))
+* **Tooltip:** render dropdown layer in document.body portal ([](https://github.com/narmi/design_system/commit/b44018402a4d5d912deda2d152fc5f28c087ebb8))
+
 ## [6.16.1](https://github.com/narmi/design_system/compare/v6.16.0...v6.16.1) (2026-06-18)
 
 ### docs

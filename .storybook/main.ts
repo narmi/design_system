@@ -1,6 +1,9 @@
-const path = require("path");
+import path from "path";
+import { fileURLToPath } from "url";
 
-module.exports = {
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export default {
   typescript: {
     reactDocgen: "react-docgen-typescript",
   },
@@ -11,7 +14,6 @@ module.exports = {
   ],
 
   addons: [
-    "@storybook/addon-links",
     "@storybook/addon-a11y",
     {
       name: "@storybook/addon-docs",
@@ -32,19 +34,23 @@ module.exports = {
   },
 
   async viteFinal(config, { configType }) {
-    // Handle JSX in .js files
-    config.esbuild = {
-      ...config.esbuild,
-      loader: "jsx",
-      include: /(src|tokens)\/.*\.js$/,
-    };
-
     // Add aliases for imports to resolve correctly in Vite
     config.resolve.alias = {
       ...config.resolve.alias,
       helpers: path.resolve(__dirname, "helpers"),
       dist: path.resolve(__dirname, "../dist"),
       src: path.resolve(__dirname, "../src"),
+    };
+
+    // Vite 8 uses LightningCSS for CSS minification. Enable error
+    // recovery to strip invalid CSS hacks from third-party deps
+    // (e.g. flatpickr's `@media (min-width: 0\0)` IE hack).
+    config.css = {
+      ...config.css,
+      lightningcss: {
+        ...config.css?.lightningcss,
+        errorRecovery: true,
+      },
     };
 
     return config;

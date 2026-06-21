@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.3](https://github.com/narmi/design_system/compare/v6.16.2...v6.16.3) (2026-06-21)
+
+### fix
+
+* **TextInput:** only show char counter on focus or error ([](https://github.com/narmi/design_system/commit/5885ed1b557320093d1af6521615895d856a1204))
+
 ## [6.16.2](https://github.com/narmi/design_system/compare/v6.16.1...v6.16.2) (2026-06-18)
 
 ### fix

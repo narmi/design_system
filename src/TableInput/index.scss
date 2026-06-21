@@ -20,15 +20,28 @@
     }
   }
 
+  .nds-tableInput-counter {
+    font-size: var(--font-size-xs);
+    visibility: hidden;
+  }
+
   &:has(input:hover) {
     @extend %tableField-hover;
   }
 
   &:has(input:focus) {
     @extend %tableField-active;
+
+    .nds-tableInput-counter {
+      visibility: visible;
+    }
   }
 
   &--hasError {
     border-color: var(--color-errorDark) !important;
+
+    .nds-tableInput-counter {
+      visibility: visible;
+    }
   }
 }

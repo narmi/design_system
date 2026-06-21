@@ -52,16 +52,29 @@
   }
 
   .nds-input-subline {
-    font-size: var(--font-size-s);
+    font-size: var(--font-size-xs);
     color: var(--color-mediumGrey);
     display: flex;
     justify-content: space-between;
     flex-direction: row-reverse;
     width: 100%;
 
+    .nds-input-error {
+      font-size: inherit;
+    }
+
+    .nds-input-tail {
+      visibility: hidden;
+    }
+
     &:has(.nds-input-error) .nds-input-tail {
       color: var(--color-errorDark);
     }
+  }
+
+  &:focus-within .nds-input-subline .nds-input-tail,
+  &.error .nds-input-subline .nds-input-tail {
+    visibility: visible;
   }
 
   &.disabled .nds-input-box {

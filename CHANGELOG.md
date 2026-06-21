@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.3](https://github.com/narmi/design_system/compare/v6.16.2...v6.16.3) (2026-06-21)
+
+### fix
+
+* **TextInput:** only show char counter on focus or error ([](https://github.com/narmi/design_system/commit/5885ed1b557320093d1af6521615895d856a1204))
+
+## [6.16.2](https://github.com/narmi/design_system/compare/v6.16.1...v6.16.2) (2026-06-18)
+
+### fix
+
+* **Tooltip:** portal tooltip always ([](https://github.com/narmi/design_system/commit/5438e648cb87a90c6a9082236f9c1313e5d13984))
+* **Tooltip:** render dropdown layer in document.body portal ([](https://github.com/narmi/design_system/commit/b44018402a4d5d912deda2d152fc5f28c087ebb8))
+
+## [6.16.1](https://github.com/narmi/design_system/compare/v6.16.0...v6.16.1) (2026-06-18)
+
+### docs
+
+* **issues:** add story with input in isolation ([](https://github.com/narmi/design_system/commit/22529346e882fa067f630c13619fdd1a651c4a4a))
+* add test cases dev-only dir ([](https://github.com/narmi/design_system/commit/3040aad0e21b520ae9243fa3b046741be2d6b192))
+
+### fix
+
+* correct grammar in mock option string in Combobox util.js ([](https://github.com/narmi/design_system/commit/371420299e598998a159aa3188bda8d9ef11c3b0))
+* **Select,Combobox:** match width at mobile sizes ([](https://github.com/narmi/design_system/commit/424330b256000042687093af7abb4d422f110319))
+* **Combobox:** prevent input overflow issue in AO mobile web ([](https://github.com/narmi/design_system/commit/25c3d1d2575ea2ab05135db64205a3e02f72e03b))
+
+### test
+
+* globally mock matchMedia ([](https://github.com/narmi/design_system/commit/f8344d83d2cffba2f5b55d6f4d52feff2e1d4225))
+* revert combobox test data ([](https://github.com/narmi/design_system/commit/6ab5142a577b7bbccd951948b69a39c2313c3b5a))
+
+## [6.16.0](https://github.com/narmi/design_system/compare/v6.15.0...v6.16.0) (2026-06-15)
+
+### feat
+
+* **icons:** add new user admin icon to match nds icon style ([](https://github.com/narmi/design_system/commit/2f0f3fea2d8186e9f06d103187eadaae4eccc4b4))
+
+## [6.15.0](https://github.com/narmi/design_system/compare/v6.14.0...v6.15.0) (2026-06-10)
+
+### feat
+
+* **Button,SplitButton:** add isFullWidth option ([](https://github.com/narmi/design_system/commit/3fe1aa35ca53ed1fece8f38f750a15f84df627b0))
+
+### fix
+
+* **Select,Combobox:** force JS polyfill when in scroll containers ([](https://github.com/narmi/design_system/commit/f2544e6981a84028963509af80ea027868bb64d3))
+
 ## [6.14.0](https://github.com/narmi/design_system/compare/v6.13.3...v6.14.0) (2026-06-09)
 
 ### feat

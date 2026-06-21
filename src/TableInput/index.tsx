@@ -37,9 +37,8 @@ const TableInput = React.forwardRef<HTMLInputElement, TableInputProps>(
     ref,
   ) => {
     const characterCount = (value || "").length;
-    const showCharacterCounter =
-      maxLength !== undefined && maxLength > 0 && characterCount >= 1;
-    const hasCountError = showCharacterCounter && characterCount > maxLength;
+const showCharacterCounter = maxLength !== undefined && maxLength > 0;
+const hasCountError = showCharacterCounter && characterCount > maxLength;
     return (
       <div
         className={cc([
@@ -64,7 +63,6 @@ const TableInput = React.forwardRef<HTMLInputElement, TableInputProps>(
         <div
           className={cc([
             "nds-tableInput-counter",
-            "fontSize--s",
             { "fontColor--error": hasError || hasCountError },
           ])}
         >

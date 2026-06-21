@@ -1,23 +1,55 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
+import { readFileSync } from "fs";
 import dts from "vite-plugin-dts";
+
+// Workaround: Rolldown (Vite 8) fails to auto-detect module type for
+// JSON files imported via path aliases. This plugin explicitly loads
+// project JSON files as JS modules with both default and named exports.
+// https://vite.dev/guide/migration.html#module-type-support-and-auto-detection
+function jsonModulePlugin() {
+  return {
+    name: "force-json-module",
+    enforce: "pre",
+    load: {
+      filter: { id: /\.json$/ },
+      handler(id) {
+        if (id.includes("node_modules")) return;
+        const content = readFileSync(id, "utf-8");
+        const data = JSON.parse(content);
+        // Generate named exports for object keys that are valid identifiers
+        let namedExports = "";
+        if (typeof data === "object" && data !== null && !Array.isArray(data)) {
+          namedExports = Object.keys(data)
+            .filter((key) => /^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(key))
+            .map(
+              (key) => `export const ${key} = _json[${JSON.stringify(key)}];`,
+            )
+            .join("\n");
+        }
+        return {
+          code: `const _json = ${content};\nexport default _json;\n${namedExports}`,
+          moduleType: "js",
+        };
+      },
+    },
+  };
+}
 
 export default defineConfig({
   assetsInclude: ["**/*.md"],
   plugins: [
+    jsonModulePlugin(),
     react({
-      include: "**/*.{jsx,tsx,js,ts}",
+      include: /\.[tj]sx?$/,
       babel: {
         presets: [
           ["@babel/preset-env", { modules: false }],
           "@babel/preset-react",
           "@babel/preset-typescript",
         ],
-        plugins: [
-          "@babel/plugin-proposal-class-properties",
-          "babel-plugin-transform-react-remove-prop-types",
-        ],
+        plugins: ["babel-plugin-transform-react-remove-prop-types"],
       },
     }),
     dts({
@@ -41,7 +73,7 @@ export default defineConfig({
       formats: ["umd"],
       fileName: () => "index.js",
     },
-    rollupOptions: {
+    rolldownOptions: {
       external: ["react", "react-dom"],
       output: {
         globals: {
@@ -75,11 +107,5 @@ export default defineConfig({
     alias: {
       src: resolve(__dirname, "src"),
     },
-  },
-
-  // treat .js files as jsx, always
-  esbuild: {
-    loader: "jsx",
-    include: /src\/.*\.js$/,
   },
 });

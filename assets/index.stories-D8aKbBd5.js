@@ -1,0 +1,14 @@
+import{i as e,s as t}from"./preload-helper-xPQekRTU.js";import{X as n}from"./iframe-93_V_zNP.js";import{n as r,t as i}from"./Button-DN4fP17W.js";import{n as a,t as o}from"./useBreakpoints-D5D-Z6iY.js";var s,c,l,u,d,f=e((()=>{s=t(n()),o(),c=()=>{let{m:e}=a();return s.createElement(`svg`,{className:`nds-snackbar-divider fontColor--hint`,xmlns:`http://www.w3.org/2000/svg`,width:e?`1px`:`100%`,height:e?`40px`:`1px`},s.createElement(`line`,{x1:e?`50%`:`0%`,y1:e?`0%`:`50%`,x2:e?`50%`:`100%`,y2:e?`100%`:`50%`,stroke:`currentColor`,strokeWidth:`1`}))},l=({children:e})=>s.createElement(`div`,{className:`nds-snackbar-text fontColor--secondary`},e),u=({children:e})=>s.createElement(`ul`,{className:`list--reset nds-snackbar-buttonGroup`},s.Children.map(e,(e,t)=>s.createElement(`li`,{key:t},e))),d=({children:e,isActive:t=!1})=>s.createElement(`div`,{"aria-live":`polite`,role:`status`},t&&s.createElement(`div`,{className:`nds-snackbar bgColor--white`,role:`toolbar`,"aria-label":`Your selection`},e)),d.ButtonGroup=u,d.Divider=c,d.Text=l})),p,m,h,g,_,v;e((()=>{p=t(n()),f(),r(),m=e=>p.createElement(d,e),h=m.bind({}),h.args={isActive:!0,children:p.createElement(d.Text,null,`Use Snackbar subcomponents to compose content`)},g=()=>p.createElement(d,{isActive:`true`},p.createElement(d.Text,null,p.createElement(`span`,{className:`fontWeight--semibold fontColor--primary`},`3 payments`)),p.createElement(d.Text,null,`$10,150.00 total`),p.createElement(`span`,{className:`narmi-icon-users`}),p.createElement(d.Divider,null),p.createElement(d.ButtonGroup,null,p.createElement(i,{kind:`secondary`,label:`Reject`}),p.createElement(i,{kind:`primary`,label:`Approve`}))),g.parameters={docs:{description:{story:`You may also include custom components in Snackbar children if the provided subcomponents don't cover your use case. In this example, an arbitrary icon is rendered before the divider.`}}},_={title:`Components/Snackbar`,component:d},g.__docgenInfo={description:``,methods:[],displayName:`Example`},h.parameters={...h.parameters,docs:{...h.parameters?.docs,source:{originalSource:`args => <Snackbar {...args} />`,...h.parameters?.docs?.source}}},g.parameters={...g.parameters,docs:{...g.parameters?.docs,source:{originalSource:`() => <Snackbar isActive="true">
+    <Snackbar.Text>
+      <span className="fontWeight--semibold fontColor--primary">
+        3 payments
+      </span>
+    </Snackbar.Text>
+    <Snackbar.Text>$10,150.00 total</Snackbar.Text>
+    <span className="narmi-icon-users" />
+    <Snackbar.Divider />
+    <Snackbar.ButtonGroup>
+      <Button kind="secondary" label="Reject" />
+      <Button kind="primary" label="Approve" />
+    </Snackbar.ButtonGroup>
+  </Snackbar>`,...g.parameters?.docs?.source}}},v=[`Overview`,`Example`]}))();export{g as Example,h as Overview,v as __namedExportsOrder,_ as default};

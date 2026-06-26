@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.4](https://github.com/narmi/design_system/compare/v6.16.3...v6.16.4) (2026-06-26)
+
+### fix
+
+* **AnchoredDialog:** remove problematic unsetting in placeholder ([](https://github.com/narmi/design_system/commit/7a71b3cb8ec2cbc85579ced213c1987c2805b95c))
+
 ## [6.16.3](https://github.com/narmi/design_system/compare/v6.16.2...v6.16.3) (2026-06-21)
 
 ### fix

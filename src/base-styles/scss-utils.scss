@@ -97,17 +97,6 @@ $breakpoints: (
   font-weight: normal !important;
   padding: 0 !important;
 
-  // Force all descendants to inherit from this protected container
-  & * {
-    font-size: unset !important;
-    color: unset !important;
-    text-align: unset !important;
-    text-transform: unset !important;
-    letter-spacing: unset !important;
-    line-height: unset !important;
-    font-weight: unset !important;
-  }
-
   &:focus {
     outline: none;
   }

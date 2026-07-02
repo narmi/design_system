@@ -128,7 +128,7 @@
     "tar": "7.5.10",
     "handlebars": "^4.7.9",
     "lodash": "^4.18.0",
-    "undici": "^7.24.0"
+    "undici": ">=6.27.0"
   },
   "repository": {
     "type": "git",

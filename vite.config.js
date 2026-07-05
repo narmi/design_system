@@ -8,7 +8,7 @@ import dts from "vite-plugin-dts";
 // JSON files imported via path aliases. This plugin explicitly loads
 // project JSON files as JS modules with both default and named exports.
 // https://vite.dev/guide/migration.html#module-type-support-and-auto-detection
-function jsonModulePlugin() {
+export function jsonModulePlugin() {
   return {
     name: "force-json-module",
     enforce: "pre",

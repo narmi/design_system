@@ -21,7 +21,8 @@ npm install @narmi/design_system --save
 
 Your project must provide the following packages as peer dependencies:
 
-- React (>=16.9, supports Hooks)
+- React (`^18 || ^19`)
+- ReactDOM (`^18 || ^19`)
 
 ### Documentation
 

@@ -34,7 +34,8 @@
     "chromatic": "npx chromatic --project-token $CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes",
     "stats:components": "node ./scripts/component-adoption.mjs",
     "stats:classes": "node ./scripts/class-adoption.mjs",
-    "dev": "npm run storybook"
+    "dev": "npm run storybook",
+    "test:coverage": "vitest run --coverage"
   },
   "peerDependencies": {
     "react": "^18 || ^19",

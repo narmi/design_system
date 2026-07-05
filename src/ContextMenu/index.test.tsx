@@ -71,7 +71,7 @@ vi.mock("react-aria-components", () => {
           onClick={() => mockMenuOnAction && value && mockMenuOnAction(value)}
           onKeyDown={(e) => {
             if ((e.key === "Enter" || e.key === " ") && value) {
-              mockMenuOnAction && mockMenuOnAction(value);
+              mockMenuOnAction?.(value);
             }
           }}
           role="menuitem"

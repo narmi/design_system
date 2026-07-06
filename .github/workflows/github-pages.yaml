@@ -25,6 +25,7 @@ jobs:
       - name: Build static storybook
         run: |
           npm ci --ignore-scripts --loglevel=warn
+          npm run build
           npm run build-storybook
 
       - name: Deploy

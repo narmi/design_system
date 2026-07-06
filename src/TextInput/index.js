@@ -27,7 +27,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
     type = "text",
     error,
     renderError = true,
-    required = true,
+    required = false,
     ...nativeElementProps
   } = props;
 

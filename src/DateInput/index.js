@@ -7,7 +7,7 @@ import flatpickr from "flatpickr";
 const noop = () => {};
 
 const defaultRenderInput = (props, input, testId) => (
-  <TextInput ref={input} type="date" required data-testid={testId} {...props} />
+  <TextInput ref={input} type="date" data-testid={testId} {...props} />
 );
 
 /**

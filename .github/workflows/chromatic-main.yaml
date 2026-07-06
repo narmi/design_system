@@ -25,7 +25,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci --loglevel=warn
+        run: npm ci --ignore-scripts --loglevel=warn
 
       - name: Build
         run: npm run build && npm run build-storybook

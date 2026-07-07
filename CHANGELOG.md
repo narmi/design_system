@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.5](https://github.com/narmi/design_system/compare/v6.16.4...v6.16.5) (2026-07-07)
+
+### ci
+
+* **npm:** Add min release age to npm ([](https://github.com/narmi/design_system/commit/5970fd837f23efd9c0928c3c564a0a79fbddc696))
+* read node version from .nvmrc in all workflows ([](https://github.com/narmi/design_system/commit/5eabdbe24854b70e44b3e46c01cee63c5580fa3c))
+
+### docs
+
+* **TextInput:** correct required default in prop docs ([](https://github.com/narmi/design_system/commit/bf74b6371d7f10b4dada862b7d354c90a71b3d5c))
+* fix stale README peer deps; remove outdated deprecations.json ([](https://github.com/narmi/design_system/commit/c0b5b079ad88669c704957e2f545d225065acbeb))
+
+### fix
+
+* **deps:** move eslint-plugin-json to devDependencies ([](https://github.com/narmi/design_system/commit/5c6d69e72c1a7a4a6f16283ecaffa0d59d000f6f))
+* **TextInput,DateInput:** prevent required attr on optional inputs ([](https://github.com/narmi/design_system/commit/545ee6ecee6b4210de8dbf5f8df10ee4091547b7))
+
 ## [6.16.4](https://github.com/narmi/design_system/compare/v6.16.3...v6.16.4) (2026-06-26)
 
 ### fix

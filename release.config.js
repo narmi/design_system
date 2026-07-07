@@ -63,6 +63,10 @@ const config = {
             if (["chore", "build"].includes(commit.type)) {
               return null;
             }
+            // Set shortHash for commit link text in changelog
+            if (commit.hash) {
+              commit.shortHash = commit.hash.substring(0, 7);
+            }
             return commit;
           },
         },
@@ -104,6 +108,11 @@ const config = {
             const validTypes = ["feat", "feature", "fix", "perf", "revert"];
             if (!validTypes.includes(commit.type)) {
               return null;
+            }
+
+            // Set shortHash for commit link text in changelog
+            if (commit.hash) {
+              commit.shortHash = commit.hash.substring(0, 7);
             }
 
             return commit;

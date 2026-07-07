@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       pr_number:
-        description: "Merged PR number on main"
+        description: "Merged PR number"
         required: true
         type: string
       target_version:

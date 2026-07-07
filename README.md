@@ -124,7 +124,7 @@ still in production:
 
 1. Merge the fix PR to `main` as usual (this releases the fix on the `@latest` release channel)
 2. Go to **Actions → Backport → Run workflow**
-3. Enter the **PR number** (the fix you'd like to backport). Enter the **target version range** (e.g. `6.12`)
+3. Enter the **PR number** of the fix you'd like to backport. Enter the **target major.minor** (e.g. `6.12`).
 4. The workflow will:
    - Create `maintenance/6.12.x` from the latest `v6.12.*` tag (if it doesn't exist yet)
    - Cherry-pick the fix onto that branch

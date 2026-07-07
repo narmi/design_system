@@ -122,7 +122,7 @@ Branches containing breaking change commits should follow the naming convention 
 When a fix merged to `main` needs to be applied to an older Major.Minor version
 still in production:
 
-1. Merge the fix PR to `main` as usual (this releases the fix on `@latest`)
+1. Merge the fix PR to `main` as usual (this releases the fix on the `@latest` release channel)
 2. Go to **Actions → Backport → Run workflow**
 3. Enter the **PR number** and the **target version** (e.g., `6.12`)
 4. The workflow will:

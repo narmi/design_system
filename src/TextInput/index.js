@@ -27,7 +27,7 @@ const TextInput = React.forwardRef((props, forwardedRef) => {
     type = "text",
     error,
     renderError = true,
-    required = true,
+    required = false,
     ...nativeElementProps
   } = props;
 
@@ -165,7 +165,7 @@ TextInput.propTypes = {
     "time",
     "datetime-local",
   ]),
-  /** Native element prop passed to the underlying input/textarea element. Defaults to true. */
+  /** Native element prop passed to the underlying input/textarea element. Defaults to false. */
   required: PropTypes.bool,
 };
 

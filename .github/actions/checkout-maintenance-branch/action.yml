@@ -1,5 +1,5 @@
 name: "Checkout Maintenance Branch"
-description: "Creates a maintenance branch from the latest tag if it doesn't exist, then checks it out"
+description: "Creates or checks out a maintenance branch from a given ~Major.Minor range"
 inputs:
   target_version:
     description: "Major.Minor version (e.g., 6.12)"

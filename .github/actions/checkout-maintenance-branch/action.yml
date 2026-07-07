@@ -1,0 +1,34 @@
+name: "Checkout Maintenance Branch"
+description: "Creates a maintenance branch from the latest tag if it doesn't exist, then checks it out"
+inputs:
+  target_version:
+    description: "Major.Minor version (e.g., 6.12)"
+    required: true
+outputs:
+  branch:
+    description: "The maintenance branch name"
+    value: ${{ steps.branch.outputs.branch }}
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout maintenance branch
+      id: branch
+      shell: bash
+      run: |
+        BRANCH="maintenance/${{ inputs.target_version }}.x"
+        echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+
+        if git ls-remote --exit-code --heads origin "$BRANCH" > /dev/null 2>&1; then
+          echo "Branch $BRANCH already exists, checking out"
+          git checkout "$BRANCH"
+        else
+          echo "Branch $BRANCH does not exist, creating from latest tag"
+          LATEST_TAG=$(git tag --sort=-v:refname --list "v${{ inputs.target_version }}.*" | head -n 1)
+          if [ -z "$LATEST_TAG" ]; then
+            echo "::error::No tag found matching v${{ inputs.target_version }}.* — cannot create maintenance branch"
+            exit 1
+          fi
+          echo "Creating $BRANCH from $LATEST_TAG"
+          git checkout -b "$BRANCH" "$LATEST_TAG"
+          git push origin "$BRANCH"
+        fi

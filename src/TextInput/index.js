@@ -165,7 +165,7 @@ TextInput.propTypes = {
     "time",
     "datetime-local",
   ]),
-  /** Native element prop passed to the underlying input/textarea element. Defaults to true. */
+  /** Native element prop passed to the underlying input/textarea element. Defaults to false. */
   required: PropTypes.bool,
 };
 

@@ -15,14 +15,24 @@ permissions:
   contents: write
   pull-requests: write
 
+# Backports are cut from the latest patch of the given Major.Minor:
+# the tip of maintenance/X.Y.x, or the highest vX.Y.* tag when the
+# branch is first created (see actions/checkout-maintenance-branch).
+#
+# Maintenance branches are created on demand, so we only support the
+# Major.Minor lines that banking releases actually pin to.
+#
+# See "Version support policy" in the README for the full rationale.
 jobs:
   backport:
     name: Backport to maintenance/${{ inputs.target_version }}.x
     runs-on: ubuntu-latest
     steps:
       - name: Validate inputs
+        env:
+          TARGET_VERSION: ${{ inputs.target_version }}
         run: |
-          if ! echo "${{ inputs.target_version }}" | grep -qE '^[0-9]+\.[0-9]+$'; then
+          if ! echo "$TARGET_VERSION" | grep -qE '^[0-9]+\.[0-9]+$'; then
             echo "::error::target_version must be in Major.Minor format (e.g., 6.12)"
             exit 1
           fi
@@ -40,10 +50,17 @@ jobs:
 
       - name: Resolve merge commit from PR
         id: resolve
-        uses: ./.github/actions/resolve-pr-commit
-        with:
-          pr_number: ${{ inputs.pr_number }}
-          token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+        env:
+          GH_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+          PR_NUMBER: ${{ inputs.pr_number }}
+        run: |
+          MERGE_SHA=$(gh pr view "$PR_NUMBER" --json mergeCommit --jq '.mergeCommit.oid')
+          if [ -z "$MERGE_SHA" ]; then
+            echo "::error::Could not resolve merge commit for PR #${PR_NUMBER}. Is it merged?"
+            exit 1
+          fi
+          echo "merge_sha=$MERGE_SHA" >> "$GITHUB_OUTPUT"
+          echo "Resolved PR #${PR_NUMBER} to merge commit $MERGE_SHA"
 
       - name: Checkout maintenance branch
         id: branch
@@ -51,11 +68,30 @@ jobs:
         with:
           target_version: ${{ inputs.target_version }}
 
-      - name: Cherry-pick or create conflict PR
-        uses: ./.github/actions/cherry-pick-or-conflict-pr
+      - name: Cherry-pick
+        id: cherry_pick
+        uses: ./.github/actions/cherry-pick
         with:
           merge_sha: ${{ steps.resolve.outputs.merge_sha }}
-          short_sha: ${{ steps.resolve.outputs.short_sha }}
+          branch: ${{ steps.branch.outputs.branch }}
+
+      - name: Report clean backport
+        if: steps.cherry_pick.outputs.result == 'clean'
+        env:
+          MERGE_SHA: ${{ steps.resolve.outputs.merge_sha }}
+          BRANCH: ${{ steps.branch.outputs.branch }}
+          PR_NUMBER: ${{ inputs.pr_number }}
+        run: |
+          SHORT_SHA="${MERGE_SHA:0:7}"
+          echo "### Backport successful" >> "$GITHUB_STEP_SUMMARY"
+          echo "Cherry-picked PR #${PR_NUMBER} (${SHORT_SHA}) onto \`${BRANCH}\`." >> "$GITHUB_STEP_SUMMARY"
+          echo "A release will be published automatically." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Create conflict PR
+        if: steps.cherry_pick.outputs.result == 'conflict'
+        uses: ./.github/actions/create-conflict-pr
+        with:
+          merge_sha: ${{ steps.resolve.outputs.merge_sha }}
           branch: ${{ steps.branch.outputs.branch }}
           target_version: ${{ inputs.target_version }}
           pr_number: ${{ inputs.pr_number }}

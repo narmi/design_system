@@ -1,0 +1,61 @@
+name: "Create Conflict PR"
+description: "Creates a draft PR for a cherry-pick that could not be applied cleanly, so conflicts can be resolved manually."
+inputs:
+  merge_sha:
+    description: "Commit SHA that failed to cherry-pick cleanly"
+    required: true
+  branch:
+    description: "Target maintenance branch the PR should merge into"
+    required: true
+  target_version:
+    description: "Major.Minor version (for naming)"
+    required: true
+  pr_number:
+    description: "Original PR number (for references)"
+    required: true
+  token:
+    description: "GitHub token for creating PRs"
+    required: true
+outputs:
+  pr_url:
+    description: "URL of the created draft PR"
+    value: ${{ steps.conflict_pr.outputs.pr_url }}
+runs:
+  using: "composite"
+  steps:
+    - name: Create conflict PR
+      id: conflict_pr
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.token }}
+        MERGE_SHA: ${{ inputs.merge_sha }}
+        BRANCH: ${{ inputs.branch }}
+        TARGET_VERSION: ${{ inputs.target_version }}
+        PR_NUMBER: ${{ inputs.pr_number }}
+      run: |
+        SHORT_SHA="${MERGE_SHA:0:7}"
+        CONFLICT_BRANCH="backport/${TARGET_VERSION}.x/${SHORT_SHA}"
+        git checkout -b "$CONFLICT_BRANCH"
+
+        git cherry-pick "$MERGE_SHA" -m 1 --no-commit || true
+        git add -A
+        git commit -m "fix: backport PR #${PR_NUMBER} (conflicts need resolution)"
+        git push origin "$CONFLICT_BRANCH"
+
+        PR_URL=$(gh pr create \
+          --base "$BRANCH" \
+          --head "$CONFLICT_BRANCH" \
+          --title "fix: backport PR #${PR_NUMBER} to ${TARGET_VERSION}.x" \
+          --body "Automated backport of PR #${PR_NUMBER} to \`${BRANCH}\`.
+
+        The cherry-pick had conflicts that need manual resolution.
+
+        Original PR: #${PR_NUMBER}
+        Commit: ${MERGE_SHA}" \
+          --draft)
+
+        echo "pr_url=$PR_URL" >> "$GITHUB_OUTPUT"
+
+        echo "### Backport needs manual resolution" >> "$GITHUB_STEP_SUMMARY"
+        echo "Cherry-pick of PR #${PR_NUMBER} onto \`${BRANCH}\` had conflicts." >> "$GITHUB_STEP_SUMMARY"
+        echo "Draft PR created: $PR_URL" >> "$GITHUB_STEP_SUMMARY"

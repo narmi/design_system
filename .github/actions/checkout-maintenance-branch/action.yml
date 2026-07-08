@@ -9,7 +9,7 @@ outputs:
     description: "The maintenance branch name"
     value: ${{ steps.branch.outputs.branch }}
 runs:
-  using: "composite"
+  using: "composite" # no runtime necessary
   steps:
     - name: Checkout maintenance branch
       id: branch

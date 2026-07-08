@@ -117,7 +117,26 @@ For example, if NDS is on major version `1`, breaking changes should target the 
 
 Branches containing breaking change commits should follow the naming convention `breaking/<branch name>`.
 
-#### Releasing backports
+#### Version support policy
+
+- The latest minor release (`@latest`) is the actively developed version and
+  always contains every fix.
+- Older minor versions receive patches **only on demand** — not every published
+  version is maintained.
+- Backports target a single Major.Minor (e.g. `6.12`). They are **not**
+  forwarded to other minor versions. If `6.13` and `6.14` also need the fix,
+  each must be backported separately.
+- Fixes always land on `main` first and are selectively applied to older
+  versions — never the reverse.
+
+**For consumers:**
+
+| Goal                            | Version specifier             | Example                                     |
+| ------------------------------- | ----------------------------- | ------------------------------------------- |
+| Track latest within your major  | `^6`                          | Always resolves to the newest `6.x`         |
+| Stay pinned to a specific minor | `~6.12` or `@6.12.x` dist-tag | Only receive patch-level updates for `6.12` |
+
+#### Releasing backports (maintainers)
 
 When a fix merged to `main` needs to be applied to an older Major.Minor version
 still in production:

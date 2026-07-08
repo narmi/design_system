@@ -1,0 +1,35 @@
+name: "Cherry-pick"
+description: "Cherry-picks a commit onto the current branch and pushes it. Reports whether the result was clean or had conflicts."
+inputs:
+  merge_sha:
+    description: "Commit SHA to cherry-pick"
+    required: true
+  branch:
+    description: "Target branch to push the clean cherry-pick to"
+    required: true
+outputs:
+  result:
+    description: "Outcome: 'clean' or 'conflict'"
+    value: ${{ steps.cherry_pick.outputs.result }}
+runs:
+  using: "composite"
+  steps:
+    - name: Cherry-pick commit
+      id: cherry_pick
+      shell: bash
+      env:
+        MERGE_SHA: ${{ inputs.merge_sha }}
+      run: |
+        if git cherry-pick "$MERGE_SHA" -m 1; then
+          echo "result=clean" >> "$GITHUB_OUTPUT"
+        else
+          echo "result=conflict" >> "$GITHUB_OUTPUT"
+          git cherry-pick --abort
+        fi
+
+    - name: Push clean cherry-pick
+      if: steps.cherry_pick.outputs.result == 'clean'
+      shell: bash
+      env:
+        BRANCH: ${{ inputs.branch }}
+      run: git push origin "$BRANCH"

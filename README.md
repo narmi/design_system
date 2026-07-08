@@ -128,6 +128,9 @@ Branches containing breaking change commits should follow the naming convention 
   each must be backported separately.
 - Fixes always land on `main` first and are selectively applied to older
   versions — never the reverse.
+- If you are on an intermediate minor that does not have the fix,
+  [request a backport](../../issues/new?template=backport-request.md) or
+  upgrade to `@latest`.
 
 **For consumers:**
 

@@ -63,6 +63,17 @@
   }
 }
 
+%btn-kind-inverted {
+  color: rgba(0, 0, 0, 0.86);
+  background-color: rgba(255, 255, 255, 0.86);
+
+  &:hover,
+  &:active {
+    color: var(--theme-primary);
+    background-color: var(--color-white);
+  }
+}
+
 %_btn-kind-plain-base {
   color: var(--theme-secondary);
   border-radius: 0;

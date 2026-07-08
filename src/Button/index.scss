@@ -74,6 +74,11 @@
   @extend %btn-kind-tonal;
 }
 
+.nds-button--inverted,
+.nds-button--inverted.resetButton {
+  @extend %btn-kind-inverted;
+}
+
 .nds-button--negative,
 .nds-button--negative.resetButton {
   @extend %btn-kind-negative;

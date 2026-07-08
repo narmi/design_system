@@ -12,7 +12,8 @@ export type ButtonKind =
   | "tonal"
   | "negative"
   | "plain"
-  | "ai";
+  | "ai"
+  | "inverted";
 
 export interface ButtonProps {
   /** Renders the button label */

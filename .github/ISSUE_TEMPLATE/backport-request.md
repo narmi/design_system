@@ -18,9 +18,6 @@ labels: backport
 <!-- Can we help you upgrade to @latest instead? Let us know if there are
      blockers preventing an upgrade and we can assist. -->
 
-### Environment
-
-<!-- Which environment(s) are affected? (e.g. staging, production) -->
 
 ### Urgency
 

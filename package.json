@@ -116,7 +116,6 @@
     "downshift": "^9",
     "flatpickr": "^4.6.12",
     "marked": "^15.0.12",
-    "raf-schd": "^4.0.3",
     "react-aria-components": "^1.0.0",
     "react-focus-lock": "^2.9.4",
     "react-transition-group": "^4.4.5",

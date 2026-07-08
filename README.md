@@ -137,7 +137,7 @@ Branches containing breaking change commits should follow the naming convention 
 | Goal                            | Version specifier             | Example                                     |
 | ------------------------------- | ----------------------------- | ------------------------------------------- |
 | Track latest within your major  | `^6`                          | Always resolves to the newest `6.x`         |
-| Stay pinned to a specific minor | `~6.12` or `@6.12.x` dist-tag | Only receive patch-level updates for `6.12` |
+| Stay pinned to a specific minor | `~6.12` or `6.12.x` dist-tag | Only receive patch-level updates for `6.12` |
 
 #### Releasing backports (maintainers)
 

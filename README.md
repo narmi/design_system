@@ -150,7 +150,7 @@ still in production:
 4. The workflow will:
    - Create `maintenance/6.12.x` from the latest `v6.12.*` tag (if it doesn't exist yet)
    - Cherry-pick the fix onto that branch
-   - Trigger an automated release to the `@6.12.x` npm dist-tag
+   - Trigger an automated release to the `6.12.x` npm dist-tag
 5. If the cherry-pick has conflicts, a draft PR is opened for manual resolution
 
 Consumers on the older version install the patch via:

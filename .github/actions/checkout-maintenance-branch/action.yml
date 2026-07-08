@@ -14,8 +14,10 @@ runs:
     - name: Checkout maintenance branch
       id: branch
       shell: bash
+      env:
+        TARGET_VERSION: ${{ inputs.target_version }}
       run: |
-        BRANCH="maintenance/${{ inputs.target_version }}.x"
+        BRANCH="maintenance/${TARGET_VERSION}.x"
         echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
 
         if git ls-remote --exit-code --heads origin "$BRANCH" > /dev/null 2>&1; then
@@ -23,9 +25,9 @@ runs:
           git checkout "$BRANCH"
         else
           echo "Branch $BRANCH does not exist, creating from latest tag"
-          LATEST_TAG=$(git tag --sort=-v:refname --list "v${{ inputs.target_version }}.*" | head -n 1)
+          LATEST_TAG=$(git tag --sort=-v:refname --list "v${TARGET_VERSION}.*" | head -n 1)
           if [ -z "$LATEST_TAG" ]; then
-            echo "::error::No tag found matching v${{ inputs.target_version }}.* — cannot create maintenance branch"
+            echo "::error::No tag found matching v${TARGET_VERSION}.* — cannot create maintenance branch"
             exit 1
           fi
           echo "Creating $BRANCH from $LATEST_TAG"

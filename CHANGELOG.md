@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.6](https://github.com/narmi/design_system/compare/v6.16.5...v6.16.6) (2026-07-08)
+
+### ci
+
+* build dist explicitly before storybook in github-pages workflow ([](https://github.com/narmi/design_system/commit/ba1d661c6a3de13897606e259e4640fb431036fb))
+* install dependencies with --ignore-scripts in all workflows ([](https://github.com/narmi/design_system/commit/3c3f06dda740e85f1fab6432493aa9f5daacf990))
+* pin license-checker and ignore scripts in its npx install ([](https://github.com/narmi/design_system/commit/a06086422de44bc4a8cbba9d9b45390418bc9611))
+
+### fix
+
+* **Chip:** use theme primary border for secondary chip ([](https://github.com/narmi/design_system/commit/e85fdb131f054bc93305b6c9980b20a380ab60c0))
+
 ## [6.16.5](https://github.com/narmi/design_system/compare/v6.16.4...v6.16.5) (2026-07-07)
 
 ### ci

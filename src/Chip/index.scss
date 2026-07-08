@@ -43,7 +43,7 @@
   }
   &--secondary {
     background-color: var(--color-white);
-    border: 1px solid var(--font-color-primary);
+    border: 1px solid var(--theme-primary);
   }
   &--primary {
     background-color: RGBA(var(--theme-rgb-primary), var(--alpha-10));

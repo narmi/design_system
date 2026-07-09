@@ -16,6 +16,7 @@
     "access": "public"
   },
   "scripts": {
+    "prepare": "husky install",
     "build:icon-names": "node ./scripts/buildIconNames.mjs",
     "build:types": "node ./scripts/buildTypes.mjs",
     "build:jsdoc": "node ./scripts/jsDoc.mjs",

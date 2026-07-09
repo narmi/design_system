@@ -89,7 +89,7 @@ DateInput.propTypes = {
   /** Disables dates. See [flatpickr docs](https://flatpickr.js.org/examples/#disabling-dates) for usage instructions */
   disableDates: PropTypes.array,
   /** Sets the minimum selectable date (inclusive) */
-  minDate: PropTypes.bool,
+  minDate: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
   /** Alternate date format to show in input when a date is selected (e.g. 'm/d/Y')*/
   altFormat: PropTypes.string,
   /**

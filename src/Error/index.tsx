@@ -49,7 +49,7 @@ const Error = ({ error, marginTop = "xxs" }: ErrorProps) => {
   return <ErrorLine errorLine={error} marginTop={marginTop} />;
 };
 Error.propTypes = {
-  error: PropTypes.oneOf([
+  error: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),

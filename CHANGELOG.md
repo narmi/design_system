@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.8](https://github.com/narmi/design_system/compare/v6.16.7...v6.16.8) (2026-07-09)
+
+### fix
+
+* **Drawer:** give panel a stable id via useId ([](https://github.com/narmi/design_system/commit/cc1e5b793c290c02db269d25a304b32c3fa2f272))
+
+## [6.16.7](https://github.com/narmi/design_system/compare/v6.16.6...v6.16.7) (2026-07-09)
+
+### fix
+
+* **Tooltip:** fix block axis tooltip arrow position ([](https://github.com/narmi/design_system/commit/99a318f6693aebbc34b3042f0226fa1454098bfd))
+
+## [6.16.6](https://github.com/narmi/design_system/compare/v6.16.5...v6.16.6) (2026-07-08)
+
+### ci
+
+* build dist explicitly before storybook in github-pages workflow ([](https://github.com/narmi/design_system/commit/ba1d661c6a3de13897606e259e4640fb431036fb))
+* install dependencies with --ignore-scripts in all workflows ([](https://github.com/narmi/design_system/commit/3c3f06dda740e85f1fab6432493aa9f5daacf990))
+* pin license-checker and ignore scripts in its npx install ([](https://github.com/narmi/design_system/commit/a06086422de44bc4a8cbba9d9b45390418bc9611))
+
+### fix
+
+* **Chip:** use theme primary border for secondary chip ([](https://github.com/narmi/design_system/commit/e85fdb131f054bc93305b6c9980b20a380ab60c0))
+
+## [6.16.5](https://github.com/narmi/design_system/compare/v6.16.4...v6.16.5) (2026-07-07)
+
+### ci
+
+* **npm:** Add min release age to npm ([](https://github.com/narmi/design_system/commit/5970fd837f23efd9c0928c3c564a0a79fbddc696))
+* read node version from .nvmrc in all workflows ([](https://github.com/narmi/design_system/commit/5eabdbe24854b70e44b3e46c01cee63c5580fa3c))
+
+### docs
+
+* **TextInput:** correct required default in prop docs ([](https://github.com/narmi/design_system/commit/bf74b6371d7f10b4dada862b7d354c90a71b3d5c))
+* fix stale README peer deps; remove outdated deprecations.json ([](https://github.com/narmi/design_system/commit/c0b5b079ad88669c704957e2f545d225065acbeb))
+
+### fix
+
+* **deps:** move eslint-plugin-json to devDependencies ([](https://github.com/narmi/design_system/commit/5c6d69e72c1a7a4a6f16283ecaffa0d59d000f6f))
+* **TextInput,DateInput:** prevent required attr on optional inputs ([](https://github.com/narmi/design_system/commit/545ee6ecee6b4210de8dbf5f8df10ee4091547b7))
+
+## [6.16.4](https://github.com/narmi/design_system/compare/v6.16.3...v6.16.4) (2026-06-26)
+
+### fix
+
+* **AnchoredDialog:** remove problematic unsetting in placeholder ([](https://github.com/narmi/design_system/commit/7a71b3cb8ec2cbc85579ced213c1987c2805b95c))
+
 ## [6.16.3](https://github.com/narmi/design_system/compare/v6.16.2...v6.16.3) (2026-06-21)
 
 ### fix

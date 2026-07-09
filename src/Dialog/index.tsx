@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import React, { useRef, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import rafSchd from "raf-schd";
 import cc from "classcat";
 import useLockBodyScroll from "../hooks/useLockBodyScroll";
 import { CSSTransition } from "react-transition-group";
@@ -77,10 +76,8 @@ const Dialog = ({
   const isBanner = headerStyle === "banner";
   useLockBodyScroll(isOpen);
 
-  // `rafSchd` uses `requestAnimationFrame` to schedule the state update
-  // for the next frame the browser draws - good for performance
   const checkContentOverflow = () => {
-    rafSchd(setIsContentOverflowing(getIsContentTooLong(contentRef)));
+    setIsContentOverflowing(getIsContentTooLong(contentRef));
   };
 
   const handleKeyDown = ({ key }) => {

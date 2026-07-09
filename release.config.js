@@ -5,7 +5,14 @@
  * `semantic-release` runs with the following configuration via the `release.yml` github action.
  */
 const config = {
-  branches: ["main"],
+  branches: [
+    {
+      name: "maintenance/+([0-9]).+([0-9]).x",
+      channel: "${name.replace(/^maintenance\\//g, '')}",
+      range: "${name.replace(/^maintenance\\//g, '')}",
+    },
+    "main",
+  ],
   plugins: [
     [
       "@semantic-release/commit-analyzer",
@@ -63,6 +70,10 @@ const config = {
             if (["chore", "build"].includes(commit.type)) {
               return null;
             }
+            // Set shortHash for commit link text in changelog
+            if (commit.hash) {
+              commit.shortHash = commit.hash.substring(0, 7);
+            }
             return commit;
           },
         },
@@ -104,6 +115,11 @@ const config = {
             const validTypes = ["feat", "feature", "fix", "perf", "revert"];
             if (!validTypes.includes(commit.type)) {
               return null;
+            }
+
+            // Set shortHash for commit link text in changelog
+            if (commit.hash) {
+              commit.shortHash = commit.hash.substring(0, 7);
             }
 
             return commit;

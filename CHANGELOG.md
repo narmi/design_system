@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.9](https://github.com/narmi/design_system/compare/v6.16.8...v6.16.9) (2026-07-09)
+
+### fix
+
+* **Dialog:** only listen for Escape while open (#2148) ([](https://github.com/narmi/design_system/commit/1896b68e2f78bcd0e6a062341c44cbe1b8938916)), closes [#2148](https://github.com/narmi/design_system/issues/2148)
+
 ## [6.16.8](https://github.com/narmi/design_system/compare/v6.16.7...v6.16.8) (2026-07-09)
 
 ### fix

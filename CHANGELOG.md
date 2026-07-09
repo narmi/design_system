@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.8](https://github.com/narmi/design_system/compare/v6.16.7...v6.16.8) (2026-07-09)
+
+### fix
+
+* **Drawer:** give panel a stable id via useId ([](https://github.com/narmi/design_system/commit/cc1e5b793c290c02db269d25a304b32c3fa2f272))
+
 ## [6.16.7](https://github.com/narmi/design_system/compare/v6.16.6...v6.16.7) (2026-07-09)
 
 ### fix

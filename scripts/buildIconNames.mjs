@@ -24,7 +24,17 @@ const selectionPath = resolve(__dirname, "../src/icons/selection.json");
 const outPath = resolve(__dirname, "../src/icons/iconNames.ts");
 
 const { icons } = JSON.parse(readFileSync(selectionPath, "utf-8"));
-const names = icons.map((icon) => icon.properties.name);
+
+// `properties.name` may hold comma-separated aliases
+// (e.g. "security, narmi-fat-security") — each alias is a valid icon name
+const names = [
+  ...new Set(
+    icons
+      .flatMap((icon) => icon.properties.name.split(","))
+      .map((name) => name.trim())
+      .filter(Boolean),
+  ),
+];
 
 const output = `// AUTO-GENERATED FILE — do not edit.
 // Generated from src/icons/selection.json by scripts/buildIconNames.mjs

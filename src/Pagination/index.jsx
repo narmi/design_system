@@ -51,6 +51,7 @@ const Pagination = ({
   };
 
   const handlePrevClick = () => {
+    if (!showPrev) return;
     const previousPage = selectedPage - 1;
     if (!isControlled) {
       setSelectedPageInternal(previousPage);
@@ -59,6 +60,7 @@ const Pagination = ({
   };
 
   const handleNextClick = () => {
+    if (!showNext) return;
     const nextPage = selectedPage + 1;
     if (!isControlled) {
       setSelectedPageInternal(nextPage);

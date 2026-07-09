@@ -1,14 +1,14 @@
 import React, { forwardRef, useRef } from "react";
 import cc from "classcat";
 import { useMaskito } from "@maskito/react";
-import { useField } from "./useField";
-import { useMergeRefs } from "../hooks/useMergeRefs";
-import { FIELD_MASKS } from "./masks";
-import Row from "../Row";
-import Error from "../Error";
+import { useField } from "../useField";
+import { useMergeRefs } from "../../hooks/useMergeRefs";
+import { FIELD_MASKS } from "../masks";
+import Row from "../../Row";
+import Error from "../../Error";
 
 import type { MaskitoOptions } from "@maskito/core";
-import type { FieldProps } from "./types";
+import type { FieldProps } from "../types";
 
 export interface FieldTextProps
   extends

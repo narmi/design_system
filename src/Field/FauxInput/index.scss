@@ -1,0 +1,30 @@
+.nds-field-faux-input {
+  // Reset button appearance — inherit .nds-field-input-box chrome
+  appearance: none;
+  background: var(--color-white);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xs);
+
+  &--active {
+    border-color: var(--theme-primary);
+  }
+
+  &--hasError {
+    border-color: var(--color-errorDark) !important;
+  }
+
+  &:disabled {
+    pointer-events: none;
+    user-select: none;
+    background-color: var(--bgColor-smokeGrey);
+    color: var(--font-color-secondary);
+    cursor: default;
+  }
+}

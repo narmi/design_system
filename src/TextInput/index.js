@@ -147,7 +147,7 @@ TextInput.propTypes = {
   /** When false, the consumer can take full control over where the error renders */
   renderError: PropTypes.bool,
   /** Text of error message to display under the input */
-  error: PropTypes.oneOf([
+  error: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),

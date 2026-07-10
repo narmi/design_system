@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import TextInput from "../TextInput";
-import { english } from "flatpickr/dist/l10n/default";
+import { english } from "flatpickr/dist/l10n/default.js";
 import flatpickr from "flatpickr";
 
 const noop = () => {};

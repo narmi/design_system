@@ -3,7 +3,37 @@
   "version": "6.16.9",
   "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
+  "module": "dist/esm/index.js",
   "style": "dist/style.css",
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./style.css": "./dist/style.css",
+    "./package.json": "./package.json",
+    "./dist/*": "./dist/*",
+    "./hooks/*": {
+      "types": "./dist/types/hooks/*/index.d.ts",
+      "import": "./dist/esm/hooks/*/index.js",
+      "default": "./dist/esm/hooks/*/index.js"
+    },
+    "./formatters/*": {
+      "import": "./dist/esm/formatters/*.js",
+      "default": "./dist/esm/formatters/*.js"
+    },
+    "./*": {
+      "types": "./dist/types/*/index.d.ts",
+      "import": "./dist/esm/*/index.js",
+      "default": "./dist/esm/*/index.js"
+    }
+  },
   "files": [
     "dist/*"
   ],
@@ -21,7 +51,7 @@
     "build:classdoc": "node ./scripts/classManifest.mjs",
     "build:tokens": "style-dictionary build --config=./tokens/config.js",
     "build:css": "sass src/index.scss dist/style.css --style=compressed --source-map",
-    "build:components": "vite build && node ./scripts/copyAssets.mjs",
+    "build:components": "vite build && vite build --config vite.config.esm.js && node ./scripts/copyAssets.mjs",
     "build": "npm run build:tokens && npx tsc && npm run build:css && npm run build:jsdoc && npm run build:components && npm run build:classdoc",
     "build:clean": "rm -rf dist/ && npm run build",
     "prepublish": "npm run build",

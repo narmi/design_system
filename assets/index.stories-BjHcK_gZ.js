@@ -1,0 +1,3 @@
+import{i as e,s as t}from"./preload-helper-xPQekRTU.js";import{X as n}from"./iframe-Bq-TlzUC.js";import{n as r,t as i}from"./Error-aXe0Vet8.js";var a,o,s,c,l;e((()=>{a=t(n()),r(),o=e=>a.createElement(`div`,{className:`border--top alignChild--left--top`},a.createElement(i,e)),s=o.bind({}),s.args={error:`Required.`},c={title:`Components/Error`,component:i},s.parameters={...s.parameters,docs:{...s.parameters?.docs,source:{originalSource:`args => <div className="border--top alignChild--left--top">
+    <Error {...args} />
+  </div>`,...s.parameters?.docs?.source}}},l=[`Overview`]}))();export{s as Overview,l as __namedExportsOrder,c as default};

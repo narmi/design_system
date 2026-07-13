@@ -1,0 +1,32 @@
+import{i as e,s as t}from"./preload-helper-xPQekRTU.js";import{X as n}from"./iframe-Bq-TlzUC.js";import{n as r,t as i}from"./classcat-BMx3V7o4.js";var a,o,s,c,l,u=e((()=>{a=t(n()),o=5,s=(e,t)=>[...Array(t-e+1)].map((t,n)=>e+n),c=(e,t,n)=>{if(e<=n+1)return s(1,e);let r=[t>Math.ceil(n/2),t<=e-Math.floor(n/2)].filter(Boolean).length===2?n-2:n,i=t-Math.floor(r/2),a=i+r-1;return i<1?(i=1,a=r):a>e&&(a=e,i=e-r+1),s(i,a)},l=({totalPages:e,selectedPageNumber:t=1,windowSize:n=o})=>{let r=Math.max(1,e),i=Math.max(1,Math.min(t,r)),s=(0,a.useMemo)(()=>c(r,i,n),[r,i,n]);return{visiblePages:s,selectedPage:i,selectedIndex:s.indexOf(i),showFirstPage:s[0]>1,showLastPage:s[s.length-1]<r,showPrev:i>1,showNext:i<r}}})),d,f,p,m=e((()=>{d=t(n()),r(),u(),f=()=>{},p=({onPageChange:e=f,totalPages:t=1,defaultSelectedPage:n=1,selectedPage:r,testId:a})=>{let o=r!==void 0,[s,c]=(0,d.useState)(n),u=o?r:s,{visiblePages:p,selectedIndex:m,showPrev:h,showNext:g,showFirstPage:_,showLastPage:v}=l({totalPages:t,selectedPageNumber:u}),y=({target:t})=>{let n=parseInt(t.dataset.page,10);o||c(n),e(n)},b=()=>{let t=u-1;o||c(t),e(t)},x=()=>{let t=u+1;o||c(t),e(t)},S=d.createElement(`div`,{className:`nds-typography nds-pagination`,"data-testid":a},d.createElement(`nav`,{"aria-label":`pagination`},d.createElement(`ul`,null,d.createElement(`li`,null,d.createElement(`span`,{role:`button`,tabIndex:0,"aria-disabled":!h,"aria-label":`Previous page`,onClick:b,onKeyUp:({key:e})=>{e===`Enter`&&b()},className:i([`nds-pagination-page`,`padding--none`,{"nds-pagination-page--disabled":!h}])},d.createElement(`i`,{role:`img`,className:`narmi-icon-chevron-left fontSize--xl`}))),_&&d.createElement(`li`,null,d.createElement(`span`,{role:`button`,tabIndex:0,"aria-label":`First page`,onClick:y,onKeyUp:e=>{e.key===`Enter`&&y(e)},"data-page":1,className:`nds-pagination-page`},`1`)),_&&d.createElement(`li`,null,d.createElement(`div`,{className:`nds-pagination-ellipsis`},`…`)),p.map((e,t)=>d.createElement(`li`,{key:`page-${e}`},d.createElement(`span`,{role:`button`,tabIndex:0,className:i([`nds-pagination-page`,{"nds-pagination-page--selected":t===m}]),"data-page":e,onClick:y,onKeyUp:e=>{e.key===`Enter`&&y(e)},"aria-label":`Page ${e}`,"aria-current":t===m&&`page`},e.toString()))),v&&d.createElement(`li`,null,d.createElement(`div`,{className:`nds-pagination-ellipsis`},`…`)),v&&d.createElement(`li`,null,d.createElement(`span`,{role:`button`,tabIndex:0,"aria-label":`Last page`,onClick:y,onKeyUp:e=>{e.key===`Enter`&&y(e)},"data-page":t,className:`nds-pagination-page`},t.toString())),d.createElement(`li`,null,d.createElement(`span`,{role:`button`,tabIndex:0,"aria-disabled":!g,"aria-label":`Next page`,onClick:x,onKeyUp:({key:e})=>{e===`Enter`&&x()},className:i([`nds-pagination-page`,`padding--none`,{"nds-pagination-page--disabled":!g}])},d.createElement(`i`,{role:`img`,className:`narmi-icon-chevron-right fontSize--xl`}))))));return t>1?S:d.createElement(d.Fragment,null)},p.__docgenInfo={description:`Component that allows users to navigate between pages of information.
+Your application is responsible for setting the total number of pages and
+responding to the \`onPageChange\` callback.
+
+The component will handle which page numbers to render, next and previous arrows,
+and conditionally rendering first and last pages.
+
+If your pagination setup expects a fully controlled component, you may set \`defaultSelectedPage\` on every \`onPageChange\` call.`,methods:[],displayName:`Pagination`,props:{onPageChange:{defaultValue:{value:`() => {}`,computed:!1},description:`Callback invoked when user selects a new page via page numbers or
+previous/next arrows.
+
+Invoked with selected page number as the argument.`,type:{name:`func`},required:!1},totalPages:{defaultValue:{value:`1`,computed:!1},description:`Total number of pages
+If the number of pages is 1, pagination will not render`,type:{name:`number`},required:!1},defaultSelectedPage:{defaultValue:{value:`1`,computed:!1},description:`Default selected page by page number (uncontrolled)`,type:{name:`number`},required:!1},selectedPage:{description:"Selected page by page number (controlled).\nIn fully controlled mode, you **must** define an `onPageChange`\nhandler to update the value of the `selectedPage` prop.",type:{name:`number`},required:!1},testId:{description:"Optional value for `data-testid` attribute",type:{name:`string`},required:!1}}}})),h,g,_,v,y,b;e((()=>{h=t(n()),m(),g=e=>h.createElement(p,e),_=g.bind({}),_.args={totalPages:40,defaultSelectedPage:3},v=()=>{let[e,t]=(0,h.useState)(1),[n,r]=(0,h.useState)(40);return h.createElement(h.Fragment,null,h.createElement(p,{totalPages:n,selectedPage:e,onPageChange:e=>{t(parseInt(e,10))}}),h.createElement(`div`,{className:`padding--all border--top margin--top`},h.createElement(`label`,{htmlFor:`totalPages`},`Total pages`),h.createElement(`select`,{className:`margin--left`,id:`totalPages`,onChange:e=>r(parseInt(e.target.value),10)},h.createElement(`option`,{value:`1`},`1`),h.createElement(`option`,{value:`3`},`3`),h.createElement(`option`,{value:`25`},`25`),h.createElement(`option`,{value:`40`,selected:!0},`40`))))},y={title:`Components/Pagination`,component:p},v.__docgenInfo={description:``,methods:[],displayName:`FullyControlled`},_.parameters={..._.parameters,docs:{..._.parameters?.docs,source:{originalSource:`args => <Pagination {...args} />`,..._.parameters?.docs?.source}}},v.parameters={...v.parameters,docs:{...v.parameters?.docs,source:{originalSource:`() => {
+  const [selectedPage, setSelectedPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(40);
+  const handlePageChange = page => {
+    setSelectedPage(parseInt(page, 10));
+  };
+  return <>
+      <Pagination totalPages={totalPages} selectedPage={selectedPage} onPageChange={handlePageChange} />
+      <div className="padding--all border--top margin--top">
+        <label htmlFor="totalPages">Total pages</label>
+        <select className="margin--left" id="totalPages" onChange={e => setTotalPages(parseInt(e.target.value), 10)}>
+          <option value="1">1</option>
+          <option value="3">3</option>
+          <option value="25">25</option>
+          <option value="40" selected>
+            40
+          </option>
+        </select>
+      </div>
+    </>;
+}`,...v.parameters?.docs?.source}}},b=[`Overview`,`FullyControlled`]}))();export{v as FullyControlled,_ as Overview,b as __namedExportsOrder,y as default};

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions,react/require-default-props */
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useId } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import cc from "classcat";
@@ -31,7 +31,7 @@ const Drawer = ({
   footer,
   testId,
 }) => {
-  const panelId = `content-panel-${Date.now()}`;
+  const panelId = `content-panel-${useId()}`;
   const shimRef = useRef(null);
   const navRef = useRef(null);
 

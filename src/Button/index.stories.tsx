@@ -1,13 +1,9 @@
 import React from "react";
 import Button from "./";
-import iconSelection from "../icons/selection.json";
+import { VALID_ICON_NAMES } from "../icons/iconNames";
 import Row from "../Row";
 import Select from "../Select";
 import type { IconName } from "../types/Icon.types";
-
-const VALID_ICON_NAMES = iconSelection.icons.map(
-  (icon) => icon.properties.name,
-);
 
 const Template = (args) => <Button {...args} />;
 

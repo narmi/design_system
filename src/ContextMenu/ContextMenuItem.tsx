@@ -1,5 +1,5 @@
 import React from "react";
-import iconSelection from "src/icons/selection.json";
+import { VALID_ICON_NAMES } from "../icons/iconNames";
 
 export interface ContextMenuItemProps {
   /** Display label for menu item */
@@ -12,9 +12,7 @@ export interface ContextMenuItemProps {
   startIcon?: string;
 }
 
-export const VALID_ICON_NAMES = iconSelection.icons.map(
-  (icon) => icon.properties.name,
-);
+export { VALID_ICON_NAMES };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- used for enforcing type checking
 const ContextMenuItem = (props: ContextMenuItemProps) => <></>;

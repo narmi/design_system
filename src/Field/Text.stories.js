@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import { FieldText } from "./Text";
 import { FIELD_MASKS } from "./masks";
-import iconSelection from "../icons/selection.json";
-
-const VALID_ICON_NAMES = iconSelection.icons
-  .map((icon) => icon.properties.name)
-  .filter(Boolean);
+import { VALID_ICON_NAMES } from "../icons/iconNames";
 
 export default {
   title: "Components/Field/Field.Text",

@@ -1,12 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import iconSelection from "src/icons/selection.json";
+import { VALID_ICON_NAMES } from "src/icons/iconNames";
 import cc from "classcat";
 import ToolTip from "../Tooltip";
 
-export const VALID_ICON_NAMES = iconSelection.icons.map(
-  (icon) => icon.properties.name,
-);
+export { VALID_ICON_NAMES };
 
 const TimelineEvent = ({
   kind = "node",

@@ -1,12 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
-import iconSelection from "src/icons/selection.json";
+import { VALID_ICON_NAMES } from "src/icons/iconNames";
 import AsElement from "../util/AsElement";
 
-export const VALID_ICON_NAMES = iconSelection.icons.map(
-  (icon) => icon.properties.name,
-);
+export { VALID_ICON_NAMES };
 
 /**
  * Narmi style Icon Button.

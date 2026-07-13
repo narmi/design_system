@@ -1,14 +1,10 @@
 import PropTypes from "prop-types";
-import iconSelection from "src/icons/selection.json";
+import { VALID_ICON_NAMES } from "src/icons/iconNames";
 import React from "react";
 
-export const VALID_ICON_NAMES = iconSelection.icons.map(
-  (icon) => icon.properties.name
-);
+export { VALID_ICON_NAMES };
 
-const SidebarItem = () => (
-  <></>
-);
+const SidebarItem = () => <></>;
 
 SidebarItem.propTypes = {
   /** Click callback, with event object passed as argument */

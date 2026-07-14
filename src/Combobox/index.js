@@ -12,7 +12,6 @@ import TextInput from "../TextInput";
 import Row from "../Row";
 import { getItemIndex } from "../Select";
 import useDropdownLayer from "../hooks/useDropdownLayer";
-import useBreakpoints from "../hooks/useBreakpoints";
 
 const noop = () => {};
 
@@ -258,14 +257,12 @@ const Combobox = ({
     },
   });
 
-  const { m } = useBreakpoints();
   const { anchorProps, layerProps } = useDropdownLayer({
     isOpen,
     setIsOpen: (open) => {
       if (!open) closeMenu();
     },
     polyfillScrollBug: true,
-    matchWidth: !m, // mobile-only
   });
 
   // Update displayed items passed to `useCombobox` when `items` change

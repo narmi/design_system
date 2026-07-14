@@ -72,7 +72,7 @@ const config = {
             }
             // Set shortHash for commit link text in changelog
             if (commit.hash) {
-              commit.shortHash = commit.hash.substring(0, 7);
+              return { ...commit, shortHash: commit.hash.substring(0, 7) };
             }
             return commit;
           },
@@ -119,7 +119,7 @@ const config = {
 
             // Set shortHash for commit link text in changelog
             if (commit.hash) {
-              commit.shortHash = commit.hash.substring(0, 7);
+              return { ...commit, shortHash: commit.hash.substring(0, 7) };
             }
 
             return commit;

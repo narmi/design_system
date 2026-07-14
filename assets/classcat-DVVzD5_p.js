@@ -1,0 +1,1 @@
+import{o as e}from"./preload-helper-CHxnduP2.js";function t(e){if(typeof e==`string`||typeof e==`number`)return``+e;let n=``;if(Array.isArray(e))for(let r=0,i;r<e.length;r++)(i=t(e[r]))!==``&&(n+=(n&&` `)+i);else for(let t in e)e[t]&&(n+=(n&&` `)+t);return n}var n=e((()=>{}));export{n,t};

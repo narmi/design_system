@@ -2,6 +2,7 @@
  * Custom formats for style-dictionary.
  * Keys are format names, values are format functions.
  */
+import { fileHeader, formattedVariables } from "style-dictionary/utils";
 
 function buildNestedObject(tokens) {
   return tokens.reduce((result, { attributes, value }) => {
@@ -33,5 +34,25 @@ export const formats = {
         )
         .join("\n\n") + "\n"
     );
+  },
+  "custom/css-variables": async ({ dictionary, file, options = {} }) => {
+    const {
+      outputReferences,
+      outputReferenceFallbacks,
+      usesDtcg,
+      formatting,
+      colorScheme,
+    } = options;
+    const header = await fileHeader({ file, options });
+    const vars = formattedVariables({
+      format: "css",
+      dictionary,
+      outputReferences,
+      outputReferenceFallbacks,
+      formatting,
+      usesDtcg,
+    });
+    const colorSchemeRule = colorScheme ? "  color-scheme: light dark;\n" : "";
+    return `${header}:root {\n${colorSchemeRule}${vars}\n}\n`;
   },
 };

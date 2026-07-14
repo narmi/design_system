@@ -61,7 +61,11 @@ const baseConfig: Config = {
       transforms: [...CSS_TRANSFORMS, "custom/value/pxToRem"],
       buildPath: getBuildPath("css"),
       files: [
-        { destination: "tokens.css", format: sdFormats.cssVariables },
+        {
+          destination: "tokens.css",
+          format: "custom/css-variables",
+          options: { colorScheme: false },
+        },
         { destination: "tokens.scss", format: sdFormats.cssVariables },
       ],
       options: { outputReferences: true },

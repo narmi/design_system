@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.10](https://github.com/narmi/design_system/compare/v6.16.9...v6.16.10) (2026-07-14)
+
+### fix
+
+* prevent immutable object mutation in release.config.js transform ([41c2931](https://github.com/narmi/design_system/commit/41c29317d5029d78b49d6f9aee2e7361476b334f))
+* **Select,Combobox:** restore forced maxedWidth on dropdowns without breaking mobile ([43d8b6f](https://github.com/narmi/design_system/commit/43d8b6fcb797a960d42ed97f827500426e59d7e1))
+* split comma-separated icon aliases into individual names ([7cf88de](https://github.com/narmi/design_system/commit/7cf88de712206494f4195c08241d812adaacc685))
+* update ignore script ([eb37803](https://github.com/narmi/design_system/commit/eb37803f691c79de892ea7edde44116067203ffc))
+
+### perf
+
+* Do not bundle selection.json ([a851665](https://github.com/narmi/design_system/commit/a85166551077fa81be9526066856ff3eb2d9b573))
+
 ## [6.16.9](https://github.com/narmi/design_system/compare/v6.16.8...v6.16.9) (2026-07-09)
 
 ### fix

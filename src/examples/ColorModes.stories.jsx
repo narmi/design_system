@@ -73,7 +73,7 @@ const borderTokens = [
 ];
 
 export const Specimen = () => (
-  <div style={{ fontFamily: "var(--font-family-sans, sans-serif)" }}>
+  <div style={{ fontFamily: "var(--font-family-default, sans-serif)" }}>
     <p
       style={{
         fontSize: "14px",

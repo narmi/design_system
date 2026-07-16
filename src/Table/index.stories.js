@@ -471,6 +471,7 @@ TableWithOverflow.parameters = {
   },
 };
 
+// eslint-disable-next-line react/prop-types
 export const ScrollableWithPinnedColumns = ({ pinColumns }) => (
   <div
     style={{

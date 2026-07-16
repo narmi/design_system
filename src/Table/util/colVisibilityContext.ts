@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import type { ColMinBreakpoint, ViewportBreakpoint } from "..";
 
-interface ColVisibilityContextProps {
+export interface ColVisibilityContextProps {
   currentBreakpoint: ViewportBreakpoint;
   colVisibility: ColMinBreakpoint[];
 }

@@ -21,8 +21,8 @@ export interface HeaderCellProps {
  * A cell unique to the table header.
  * This component renders as a button when an `onClick` handler is passed.
  *
- * This component is wrapped in an ARIA live region so the header cell content
- * is re-announced if it changes as the result of user interaction.
+ * This component is an ARIA live region so the header cell content is
+ * re-announced if it changes as the result of user interaction.
  */
 const HeaderCell = ({
   children,
@@ -37,26 +37,24 @@ const HeaderCell = ({
 
   if (!isVisible) return null;
 
-  return (
-    <div aria-live="polite">
-      {isButton ? (
-        <button
-          onClick={onClick}
-          className="nds-table-cell button--reset"
-          role="columnheader"
-          style={{ textAlign }}
-        >
-          {children}
-        </button>
-      ) : (
-        <div
-          className="nds-table-cell"
-          role="columnheader"
-          style={{ textAlign }}
-        >
-          {children}
-        </div>
-      )}
+  return isButton ? (
+    <button
+      aria-live="polite"
+      onClick={onClick}
+      className="nds-table-cell button--reset"
+      role="columnheader"
+      style={{ textAlign }}
+    >
+      {children}
+    </button>
+  ) : (
+    <div
+      aria-live="polite"
+      className="nds-table-cell"
+      role="columnheader"
+      style={{ textAlign }}
+    >
+      {children}
     </div>
   );
 };

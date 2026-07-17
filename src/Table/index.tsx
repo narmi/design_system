@@ -48,6 +48,16 @@ export interface TableProps {
   colLayout?: ColLayoutConfig;
   rowDensity?: "default" | "compact";
   kind?: "default" | "editable";
+  /**
+   * Pin edge columns while middle columns scroll horizontally.
+   * - `"none"` (default): no pinning, no horizontal scroll
+   * - `"start"` — pin the first column
+   * - `"end"` — pin the last column
+   * - `"both"` — pin both first and last columns
+   *
+   * When set to a value other than `"none"`, the table becomes horizontally scrollable.
+   */
+  pinColumns?: "none" | "start" | "end" | "both";
 }
 
 export const DEFAULT_COLS = 5;
@@ -70,6 +80,7 @@ const Table = ({
   colLayout = { s: "auto", m: "auto", l: "auto" },
   rowDensity = "default",
   kind = "default",
+  pinColumns = "none",
 }: TableProps) => {
   const { largestSatisfiedBreakpoint } = useBreakpoints();
   const currentBreakpoint =
@@ -110,7 +121,11 @@ const Table = ({
     visibleCols,
   );
 
-  return (
+  const isPinnedStart = pinColumns === "start" || pinColumns === "both";
+  const isPinnedEnd = pinColumns === "end" || pinColumns === "both";
+  const isScrollable = isPinnedStart || isPinnedEnd;
+
+  const tableEl = (
     <ColVisibilityContext.Provider
       value={{
         colVisibility,
@@ -123,6 +138,10 @@ const Table = ({
           "nds-table",
           `nds-table--${rowDensity}`,
           `nds-table--${kind}`,
+          {
+            "nds-table--pinned-start": isPinnedStart,
+            "nds-table--pinned-end": isPinnedEnd,
+          },
         ])}
         /**
          * We apply a CSS value for grid-tempalte-columns on the root
@@ -135,6 +154,12 @@ const Table = ({
       </div>
     </ColVisibilityContext.Provider>
   );
+
+  if (isScrollable) {
+    return <div className="nds-table-scroll-container">{tableEl}</div>;
+  }
+
+  return tableEl;
 };
 
 Table.Header = Header;

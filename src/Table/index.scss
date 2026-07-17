@@ -1,7 +1,13 @@
 .nds-table {
+  --pinned-column-border: oklch(0% 0 0 / 0.06);
   display: grid;
   grid-auto-rows: auto;
   row-gap: 0;
+}
+
+.nds-table-scroll-container {
+  overflow-x: auto;
+  border-radius: var(--border-radius-default);
 }
 
 .nds-table-body,
@@ -22,14 +28,12 @@
   display: grid;
   grid-template-columns: subgrid;
   grid-column: 1 / -1; // participate in all parent columns
-  align-items: center;
-  padding: 0 rem(8px);
+  align-items: stretch;
 
   // rowDensity variants
   // compact density AND editable kind use 48px
   height: rem(64px);
-  .nds-table--compact &,
-  .nds-table--editable & {
+  .nds-table--compact & {
     height: rem(48px);
   }
 
@@ -56,21 +60,27 @@
       var(--alpha-10)
     ) !important;
   }
-
-  // Editable table header
-  .nds-table--editable &:has([role="columnheader"]) {
-    height: rem(48px) !important;
-    background: rgba(var(--theme-rgb-primary), var(--alpha-5));
-  }
 }
 
 .nds-table-cell {
+  display: flex;
+  align-items: center;
   padding: var(--space-xxs) var(--space-xs);
   overflow: hidden;
 
   // default wrapping behavior
   white-space: nowrap;
   text-overflow: ellipsis;
+
+  // Padding for edge cells
+  .nds-table-row > &:first-child,
+  .nds-table-row > .nds-table-cell-wrapper:first-child & {
+    padding-inline-start: rem(8px);
+  }
+  .nds-table-row > &:last-child,
+  .nds-table-row > .nds-table-cell-wrapper:last-child & {
+    padding-inline-end: rem(8px);
+  }
 
   // Allow overflow when containing TableField components
   &:has([class^="nds-tableField"]) {
@@ -84,5 +94,87 @@
     text-transform: uppercase;
     color: var(--font-color-primary);
     text-overflow: unset;
+  }
+}
+
+// Pinned start column
+.nds-table--pinned-start {
+  .nds-table-row > :is(.nds-table-cell, .nds-table-cell-wrapper):first-child {
+    position: sticky;
+    inset-inline-start: 0;
+    z-index: 2;
+    border-inline-end: 1px solid var(--pinned-column-border);
+    box-shadow: var(--elevation-middle);
+  }
+  .nds-table-body
+    .nds-table-row
+    > :is(.nds-table-cell, .nds-table-cell-wrapper):first-child {
+    background-color: var(--color-white);
+  }
+}
+
+// Pinned end column
+.nds-table--pinned-end {
+  .nds-table-row > :is(.nds-table-cell, .nds-table-cell-wrapper):last-child {
+    position: sticky;
+    inset-inline-end: 0;
+    z-index: 2;
+    border-inline-start: 1px solid var(--pinned-column-border);
+    box-shadow: var(--elevation-middle);
+  }
+  .nds-table-body
+    .nds-table-row
+    > :is(.nds-table-cell, .nds-table-cell-wrapper):last-child {
+    background-color: var(--color-white);
+  }
+}
+
+// HeaderCell wrapper — stretches to fill row, centers content
+.nds-table-cell-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+// Editable variant overrides
+.nds-table--editable {
+  .nds-table-row {
+    height: rem(48px);
+  }
+
+  // Editable table header appears "attached" to the body with flat edges
+  .nds-table-row:has([role="columnheader"]) {
+    background: rgba(var(--theme-rgb-primary), var(--alpha-5));
+    border-radius: var(--border-radius-default) var(--border-radius-default) 0 0;
+  }
+  .nds-table-body {
+    border-radius: 0 0 var(--border-radius-default) var(--border-radius-default);
+  }
+  .nds-table-body .nds-table-row:first-of-type {
+    border-radius: 0;
+  }
+  .nds-table-body .nds-table-row:only-of-type {
+    border-radius: 0 0 var(--border-radius-default) var(--border-radius-default);
+  }
+
+  // Pinned cells allow overflow to reveal shadows
+  &.nds-table--pinned-start .nds-table-header,
+  &.nds-table--pinned-end .nds-table-header {
+    overflow: visible;
+  }
+
+  // Header cells for the editable table use a semi-transparent color.
+  // When a column is sticky, its header cell needs to be composited with white.
+  &.nds-table--pinned-start
+    .nds-table-row:has([role="columnheader"])
+    > :is(.nds-table-cell, .nds-table-cell-wrapper):first-child,
+  &.nds-table--pinned-end
+    .nds-table-row:has([role="columnheader"])
+    > :is(.nds-table-cell, .nds-table-cell-wrapper):last-child {
+    background:
+      linear-gradient(
+        rgba(var(--theme-rgb-primary), var(--alpha-5)),
+        rgba(var(--theme-rgb-primary), var(--alpha-5))
+      ),
+      linear-gradient(var(--color-white), var(--color-white));
   }
 }

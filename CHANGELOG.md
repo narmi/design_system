@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.17.0](https://github.com/narmi/design_system/compare/v6.16.10...v6.17.0) (2026-07-17)
+
+### feat
+
+* **Table:** add scroll behavior and pinning ([d50c41a](https://github.com/narmi/design_system/commit/d50c41a35c957181f1469c30b3b4def6e039617b))
+
 ## [6.16.10](https://github.com/narmi/design_system/compare/v6.16.9...v6.16.10) (2026-07-14)
 
 ### fix

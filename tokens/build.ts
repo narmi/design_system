@@ -179,5 +179,7 @@ async function main() {
   const sdMode = new StyleDictionary(modeConfig);
   await sdMode.buildAllPlatforms();
 }
-
-main();
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});

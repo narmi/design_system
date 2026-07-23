@@ -1,1 +1,0 @@
-import{l as e,o as t}from"./preload-helper-CHxnduP2.js";import{X as n}from"./iframe-B5brrW0I.js";var r,i,a=t((()=>{r=e(n()),i=e=>{(0,r.useEffect)(()=>(e&&document.body.classList.add(`overflow--hidden`),()=>{document.body.classList.remove(`overflow--hidden`)}),[e])}}));export{i as n,a as t};

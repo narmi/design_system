@@ -7,8 +7,8 @@
       "m": { "value": "16px" },
       "l": { "value": "20px" },
       "xl": { "value": "40px" },
-      "xxl": { "value": "60px"},
-      "default": { "value": "{layout.space.l.value}" }
+      "xxl": { "value": "60px" },
+      "default": { "value": "{layout.space.l}" }
     }
   }
 }

@@ -1,0 +1,60 @@
+{
+  "font": {
+    "family": {
+      "heading": { "value": "'Narmi Matiere', serif" },
+      "heading0": { "value": "{font.family.heading}" },
+      "heading1": { "value": "{font.family.heading}" },
+      "heading2": { "value": "{font.family.heading}" },
+      "heading3": { "value": "{font.family.body}" },
+      "body": { "value": "Mulish, Helvetica, sans-serif" },
+      "default": { "value": "{font.family.body}" }
+    },
+    "size": {
+      "xxs": { "value": "10px" },
+      "xs": { "value": "12px" },
+      "s": { "value": "14px" },
+      "m": { "value": "16px" },
+      "l": { "value": "18px" },
+      "xl": { "value": "20px" },
+      "heading3": { "value": "24px" },
+      "heading2": { "value": "28px" },
+      "heading1": { "value": "32px" },
+      "heading0": { "value": "40px" },
+      "default": { "value": "{font.size.m}" }
+    },
+    "weight": {
+      "thin": { "value": "200" },
+      "normal": { "value": "400" },
+      "semibold": { "value": "600" },
+      "bold": { "value": "700" },
+      "heading0": { "value": "{font.weight.bold}" },
+      "heading1": { "value": "{font.weight.bold}" },
+      "heading2": { "value": "{font.weight.bold}" },
+      "heading3": { "value": "{font.weight.semibold}" },
+      "default": { "value": "{font.weight.normal}" }
+    },
+    "lineHeight": {
+      "smallText": { "value": "1.6" },
+      "bodyText": { "value": "1.25" },
+      "bigText": { "value": "1.1" },
+      "default": { "value": "{font.lineHeight.bodyText}" },
+      "heading0": { "value": "{font.lineHeight.bigText}" },
+      "heading1": { "value": "{font.lineHeight.bigText}" },
+      "heading2": { "value": "{font.lineHeight.bigText}" },
+      "heading3": { "value": "{font.lineHeight.bodyText}" }
+    },
+    "letterSpacing": {
+      "trackingTighter": { "value": "-0.08" },
+      "trackingTight": { "value": "-0.04" },
+      "trackingNormal": { "value": "0" },
+      "trackingWide": { "value": "0.4" },
+      "trackingWider": { "value": "0.8" },
+      "trackingWidest": { "value": "1.6" },
+      "heading0": { "value": "{font.letterSpacing.trackingNormal}" },
+      "heading1": { "value": "{font.letterSpacing.trackingNormal}" },
+      "heading2": { "value": "{font.letterSpacing.trackingNormal}" },
+      "heading3": { "value": "{font.letterSpacing.trackingNormal}" },
+      "default": { "value": "{font.letterSpacing.trackingNormal}" }
+    }
+  }
+}

@@ -36,5 +36,19 @@ export const parameters = {
   },
 };
 
+export const globalTypes = {
+  contrast: {
+    description: "Color contrast mode",
+    toolbar: {
+      title: "Contrast",
+      items: [
+        { value: "", title: "Default" },
+        { value: "more", title: "High Contrast" },
+      ],
+      dynamicTitle: true,
+    },
+  },
+};
+
 export const decorators = [NdsStyles, ExamplesBackground];
 export const tags = ["autodocs"];

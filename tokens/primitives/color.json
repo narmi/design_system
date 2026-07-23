@@ -1,5 +1,17 @@
 {
   "color": {
+    "grey": {
+      "snowGrey": { "value": "#fbfbfb" },
+      "neutralGrey": { "value": "#f9f9f9" },
+      "blueGrey": { "value": "#F4F6FA" },
+      "smokeGrey": { "value": "#f3f3f3" },
+      "cloudGrey": { "value": "#e9e9e9" },
+      "lightGrey": { "value": "#d9d9d9" },
+      "mediumGrey": { "value": "#6c6c6c" },
+      "darkGrey": { "value": "#4c4c4c" },
+      "black": { "value": "#333333" },
+      "white": { "value": "#ffffff" }
+    },
     "narmi": {
       "moss100": { "value": "#002921" },
       "moss200": { "value": "#0F3C32" },
@@ -9,7 +21,7 @@
       "moss600": { "value": "#6EA193" },
       "moss700": { "value": "#9DC0B6" },
       "moss800": { "value": "#CDDED9" },
-      "moss": { "value": "{color.narmi.moss400.value}" },
+      "moss": { "value": "{color.narmi.moss400}" },
 
       "pine100": { "value": "#041A14" },
       "pine200": { "value": "#062821" },
@@ -19,7 +31,7 @@
       "pine600": { "value": "#708981" },
       "pine700": { "value": "#708981" },
       "pine800": { "value": "#CDD6D3" },
-      "pine": { "value": "{color.narmi.pine400.value}" },
+      "pine": { "value": "{color.narmi.pine400}" },
 
       "cove100": { "value": "#002547" },
       "cove200": { "value": "#00376A" },
@@ -29,7 +41,7 @@
       "cove600": { "value": "#66A2D6" },
       "cove700": { "value": "#A6CFF0" },
       "cove800": { "value": "#D4EDFF" },
-      "cove": { "value": "{color.narmi.cove400.value}" },
+      "cove": { "value": "{color.narmi.cove400}" },
 
       "azul100": { "value": "#001340" },
       "azul200": { "value": "#00205E" },
@@ -39,7 +51,7 @@
       "azul600": { "value": "#6B89C7" },
       "azul700": { "value": "#9CB1DE" },
       "azul800": { "value": "#C9D8F2" },
-      "azul": { "value": "{color.narmi.azul400.value}" },
+      "azul": { "value": "{color.narmi.azul400}" },
 
       "pistachio100": { "value": "#485E3D" },
       "pistachio200": { "value": "#6B8C5A" },
@@ -49,7 +61,7 @@
       "pistachio600": { "value": "#DAF4C8" },
       "pistachio700": { "value": "#E9F8DE" },
       "pistachio800": { "value": "#F7FCF3" },
-      "pistachio": { "value": "{color.narmi.pistachio400.value}" },
+      "pistachio": { "value": "{color.narmi.pistachio400}" },
 
       "cactus100": { "value": "#324C23" },
       "cactus200": { "value": "#4B7137" },
@@ -59,7 +71,7 @@
       "cactus600": { "value": "#B3D79A" },
       "cactus700": { "value": "#CCE4BA" },
       "cactus800": { "value": "#E5F1DC" },
-      "cactus": { "value": "{color.narmi.cactus400.value}" },
+      "cactus": { "value": "{color.narmi.cactus400}" },
 
       "sand100": { "value": "#423329" },
       "sand200": { "value": "#684D41" },
@@ -69,15 +81,30 @@
       "sand600": { "value": "#EED6C3" },
       "sand700": { "value": "#F4E3D6" },
       "sand800": { "value": "#FCF0E9" },
-      "sand": { "value": "{color.narmi.sand500.value}" },
+      "sand": { "value": "{color.narmi.sand500}" },
 
       "amethyst": { "value": "#5514B8" },
 
-      "black": { "value": "{color.grey.black.value}" },
-      "grey": { "value": "{color.grey.mediumGrey.value}" },
-      "mediumGrey": { "value": "{color.grey.mediumGrey.value}" },
-      "lightGrey": { "value": "{color.grey.lightGrey.value}" },
-      "white": { "value": "{color.grey.white.value}" }
+      "black": { "value": "{color.grey.black}" },
+      "grey": { "value": "{color.grey.mediumGrey}" },
+      "mediumGrey": { "value": "{color.grey.mediumGrey}" },
+      "lightGrey": { "value": "{color.grey.lightGrey}" },
+      "white": { "value": "{color.grey.white}" }
+    },
+    "system": {
+      "successDark": { "value": "#027A48" },
+      "successLight": { "value": "#ECFDF3" },
+      "warnDark": { "value": "#B54708" },
+      "warnLight": { "value": "#FEF8E3" },
+      "infoDark": { "value": "#195274" },
+      "infoLight": { "value": "#E8EEF1" },
+      "errorDark": { "value": "#b42318" },
+      "errorLight": { "value": "#FEF3F2" }
+    },
+    "alpha": {
+      "5": { "value": "0.05" },
+      "10": { "value": "0.1" },
+      "20": { "value": "0.2" }
     }
   }
 }

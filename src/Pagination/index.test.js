@@ -178,6 +178,23 @@ describe("Pagination", () => {
       expect(handlePageChange).not.toHaveBeenCalled();
     });
 
+    it("Clicking previous arrow with an out-of-range controlled selectedPage emits the clamped page", () => {
+      const handlePageChange = vi.fn();
+      const total = 20;
+      render(
+        <Pagination
+          totalPages={total}
+          selectedPage={999}
+          onPageChange={handlePageChange}
+        />,
+      );
+      const prev = screen.getByLabelText("Previous page");
+
+      fireEvent.click(prev);
+
+      expect(handlePageChange).toHaveBeenCalledWith(total - 1);
+    });
+
     it("Clicking on last page changes selected page", () => {
       const handlePageChange = vi.fn();
       const total = 20;

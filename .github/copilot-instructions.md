@@ -72,6 +72,7 @@ We use a BEM-like naming convention in our CSS. Single hyphens refer to a parent
 - Use existing stories as a guide for creating new components.
 - Add any additional documentation for a story to story parameter `docs.description`.
 
-## NPM
+## pnpm
+- This project uses [pnpm](https://pnpm.io/) as its package manager.
 - Do not install new libraries or dependencies. A human engineer must do this.
-- Do not run any `npm` commands in this repo. A human engineer must do this.
+- Do not run any `pnpm` commands in this repo. A human engineer must do this.

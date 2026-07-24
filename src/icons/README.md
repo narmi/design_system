@@ -13,7 +13,7 @@ when updating our icon set.
    - When adding a new icon, duplicate an existing icon, upload the new SVG, and modify tags and name (auto-saves)
 4. Click "Generate font" from the project view in the icomoon UI, then click "Download"
 5. Copy assets (**SEE BELOW**)
-6. `npm run build:types` will regenerate `src/types/Icon.types.ts`
+6. `pnpm run build:types` will regenerate `src/types/Icon.types.ts`
 7. Commit the changes & submit a PR
 
 ### Copying assets into NDS
@@ -28,5 +28,5 @@ NOTE: style.css may include multiple urls as the src for @font-face. Please remo
 
 ### Testing icon changes
 
-Run storybook with `npm run dev` and navigate to the icons page. Icon additions
+Run storybook with `pnpm dev` and navigate to the icons page. Icon additions
 and changes should be visible in the story.

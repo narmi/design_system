@@ -1,0 +1,24 @@
+# pnpm settings. pnpm >= 11 reads project settings from this file rather than
+# the "pnpm" field in package.json. No workspace packages are defined; this
+# repo is a single package.
+
+# Security pins, migrated from the npm `overrides` field in package.json.
+overrides:
+  tar: 7.5.10
+  handlebars: ^4.7.9
+  lodash: ^4.18.0
+  undici: ">=6.27.0"
+
+# Dependencies allowed to run install/build scripts. pnpm blocks these by
+# default; esbuild fetches its platform binary here and is required by Vite,
+# and @parcel/watcher backs Storybook's file watching.
+allowBuilds:
+  "@parcel/watcher": true
+  core-js: true
+  esbuild: true
+
+# Hoist all dependencies to the root node_modules, matching npm's flat layout.
+# The source relies on transitively-installed packages (e.g. react-aria,
+# react-stately, tslib) resolving from the top level. Declaring those as direct
+# dependencies so this can be removed is a possible follow-up.
+shamefullyHoist: true

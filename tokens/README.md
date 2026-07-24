@@ -25,7 +25,7 @@ for a full list of CSS custom properties.
 ### Adding or updating a token
 
 1. Modify a JSON file in `tokens/src/`.
-2. Run `npm run build:tokens` in repo root
+2. Run `pnpm run build:tokens` in repo root
 3. Check `dist/tokens/` output to verify your change
 4. Commit changes to `tokens/src/`
 

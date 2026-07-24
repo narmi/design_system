@@ -12,14 +12,18 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+
       - name: Setup Node.js
         uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v4
         with:
           node-version-file: ".nvmrc"
           registry-url: https://registry.npmjs.org
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: npm ci --ignore-scripts
+        run: pnpm install --frozen-lockfile --ignore-scripts
 
       - name: Check generated icon names are in sync
         run: |
@@ -29,4 +33,4 @@ jobs:
       - name: eslint
         run: |
           echo "The job was automatically triggered by a ${{ github.event_name }} event."
-          npm run lint
+          pnpm run lint

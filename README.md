@@ -71,7 +71,7 @@ Refer to the [**Changelog**](https://github.com/narmi/design_system/blob/main/CH
 ### Browser Support
 
 See [`.browserslistrc`](https://github.com/narmi/design_system/blob/main/.editorconfig) for officially supported browsers or
-run `npx browserslist` in this project locally to see a full list of targeted browsers.
+run `pnpm exec browserslist` in this project locally to see a full list of targeted browsers.
 
 This project does not support any version of Internet Explorer.
 
@@ -81,15 +81,19 @@ This project does not support any version of Internet Explorer.
 
 To run project locally:
 
+This project uses [pnpm](https://pnpm.io/). With [corepack](https://nodejs.org/api/corepack.html)
+enabled (`corepack enable`), the pinned pnpm version is provisioned automatically.
+
 ```
 git clone git@github.com:narmi/design_system.git
 cd design_system
-npm run dev
+pnpm install
+pnpm dev
 ```
 
-### NPM scripts
+### pnpm scripts
 
-| `npm run` command  | Description                                          |
+| `pnpm run` command | Description                                          |
 | ------------------ | ---------------------------------------------------- |
 | `build:jsdoc`      | builds jsDoc documentation to `dist/`                |
 | `build:tokens`     | builds all distributions of design tokens to `dist/` |
@@ -134,9 +138,9 @@ Branches containing breaking change commits should follow the naming convention 
 
 **For consumers:**
 
-| Goal                            | Version specifier             | Example                                     |
-| ------------------------------- | ----------------------------- | ------------------------------------------- |
-| Track latest within your major  | `^6`                          | Always resolves to the newest `6.x`         |
+| Goal                            | Version specifier            | Example                                     |
+| ------------------------------- | ---------------------------- | ------------------------------------------- |
+| Track latest within your major  | `^6`                         | Always resolves to the newest `6.x`         |
 | Stay pinned to a specific minor | `~6.12` or `6.12.x` dist-tag | Only receive patch-level updates for `6.12` |
 
 #### Releasing backports (maintainers)
@@ -219,7 +223,7 @@ In rare circumstances, you may need to manually publish a version of NDS outside
 
 #### Publishing a beta version
 
-1. Rebuild NDS (`npm run build`)
+1. Rebuild NDS (`pnpm run build`)
 2. Update the `version` field of package.json to be a beta of the next minor.
    For example, you would change `2.35.2` to `2.36.0-beta.0`.
    DO NOT COMMIT THIS CHANGE.
@@ -228,7 +232,7 @@ In rare circumstances, you may need to manually publish a version of NDS outside
 
 If you need to make additional changes after the beta is published...
 
-1. Rebuild NDS (`npm run build`)
+1. Rebuild NDS (`pnpm run build`)
 2. Bump the beta version number in package.json (`2.36.0-beta.0` -> `2.36.0-beta.1`)
 3. Install the new beta version in your consuming application.
 

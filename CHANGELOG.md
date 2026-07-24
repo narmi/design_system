@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.17.1](https://github.com/narmi/design_system/compare/v6.17.0...v6.17.1) (2026-07-23)
+
+### fix
+
+* **Pagination:** clamp selectedPage before computing arrow targets ([c820a9f](https://github.com/narmi/design_system/commit/c820a9f547f1395a7d6f2d24126bb24c46598511))
+* **Pagination:** don't emit out-of-range pages from arrows ([4477843](https://github.com/narmi/design_system/commit/44778439d884e52ab1dbbafb70026938dec847f6))
+
+### test
+
+* **Pagination:** cover arrow bounds at first/last page ([693179e](https://github.com/narmi/design_system/commit/693179e80d6d24c2d40799b8611f18631272f621))
+
+## [6.17.0](https://github.com/narmi/design_system/compare/v6.16.10...v6.17.0) (2026-07-17)
+
+### feat
+
+* **Table:** add scroll behavior and pinning ([d50c41a](https://github.com/narmi/design_system/commit/d50c41a35c957181f1469c30b3b4def6e039617b))
+
+## [6.16.10](https://github.com/narmi/design_system/compare/v6.16.9...v6.16.10) (2026-07-14)
+
+### fix
+
+* prevent immutable object mutation in release.config.js transform ([41c2931](https://github.com/narmi/design_system/commit/41c29317d5029d78b49d6f9aee2e7361476b334f))
+* **Select,Combobox:** restore forced maxedWidth on dropdowns without breaking mobile ([43d8b6f](https://github.com/narmi/design_system/commit/43d8b6fcb797a960d42ed97f827500426e59d7e1))
+* split comma-separated icon aliases into individual names ([7cf88de](https://github.com/narmi/design_system/commit/7cf88de712206494f4195c08241d812adaacc685))
+* update ignore script ([eb37803](https://github.com/narmi/design_system/commit/eb37803f691c79de892ea7edde44116067203ffc))
+
+### perf
+
+* Do not bundle selection.json ([a851665](https://github.com/narmi/design_system/commit/a85166551077fa81be9526066856ff3eb2d9b573))
+
+## [6.16.9](https://github.com/narmi/design_system/compare/v6.16.8...v6.16.9) (2026-07-09)
+
+### fix
+
+* **Dialog:** only listen for Escape while open (#2148) ([](https://github.com/narmi/design_system/commit/1896b68e2f78bcd0e6a062341c44cbe1b8938916)), closes [#2148](https://github.com/narmi/design_system/issues/2148)
+
 ## [6.16.8](https://github.com/narmi/design_system/compare/v6.16.7...v6.16.8) (2026-07-09)
 
 ### fix

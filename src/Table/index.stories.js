@@ -471,6 +471,105 @@ TableWithOverflow.parameters = {
   },
 };
 
+// eslint-disable-next-line react/prop-types
+export const ScrollableWithPinnedColumns = ({ pinColumns }) => (
+  <div
+    style={{
+      background: "var(--bgColor-blueGrey)",
+      padding: "16px",
+    }}
+  >
+    <Table
+      colVisibility={["*", "*", "*", "*", "*", "*", "*", "*", "*", "*"]}
+      colLayout={{
+        s: "max-content 200px 180px 180px 150px max-content 180px 150px 180px max-content",
+        m: "max-content 220px 200px 200px 180px max-content 200px 180px 200px max-content",
+        l: "max-content 240px 220px 220px 200px max-content 220px 200px 220px max-content",
+      }}
+      pinColumns={pinColumns}
+      kind="editable"
+    >
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell>Name</Table.HeaderCell>
+          <Table.HeaderCell>Email</Table.HeaderCell>
+          <Table.HeaderCell>Phone</Table.HeaderCell>
+          <Table.HeaderCell>Department</Table.HeaderCell>
+          <Table.HeaderCell>Location</Table.HeaderCell>
+          <Table.HeaderCell>Status</Table.HeaderCell>
+          <Table.HeaderCell>Start Date</Table.HeaderCell>
+          <Table.HeaderCell>Salary</Table.HeaderCell>
+          <Table.HeaderCell>Manager</Table.HeaderCell>
+          <Table.HeaderCell>Actions</Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        <Table.Row>
+          <Table.Cell>John Doe</Table.Cell>
+          <Table.Cell>john@example.com</Table.Cell>
+          <Table.Cell>(555) 123-4567</Table.Cell>
+          <Table.Cell>Engineering</Table.Cell>
+          <Table.Cell>New York</Table.Cell>
+          <Table.Cell>Active</Table.Cell>
+          <Table.Cell>Jan 15, 2022</Table.Cell>
+          <Table.Cell>$120,000</Table.Cell>
+          <Table.Cell>Sarah Connor</Table.Cell>
+          <Table.Cell>
+            <button>Edit</button>
+          </Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>Jane Smith</Table.Cell>
+          <Table.Cell>jane@example.com</Table.Cell>
+          <Table.Cell>(555) 987-6543</Table.Cell>
+          <Table.Cell>Marketing</Table.Cell>
+          <Table.Cell>San Francisco</Table.Cell>
+          <Table.Cell>Active</Table.Cell>
+          <Table.Cell>Mar 3, 2021</Table.Cell>
+          <Table.Cell>$105,000</Table.Cell>
+          <Table.Cell>Tom Bradley</Table.Cell>
+          <Table.Cell>
+            <button>Edit</button>
+          </Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>Bob Johnson</Table.Cell>
+          <Table.Cell>bob@example.com</Table.Cell>
+          <Table.Cell>(555) 456-7890</Table.Cell>
+          <Table.Cell>Sales</Table.Cell>
+          <Table.Cell>Chicago</Table.Cell>
+          <Table.Cell>On Leave</Table.Cell>
+          <Table.Cell>Nov 20, 2023</Table.Cell>
+          <Table.Cell>$95,000</Table.Cell>
+          <Table.Cell>Lisa Park</Table.Cell>
+          <Table.Cell>
+            <button>Edit</button>
+          </Table.Cell>
+        </Table.Row>
+      </Table.Body>
+    </Table>
+  </div>
+);
+ScrollableWithPinnedColumns.args = {
+  pinColumns: "both",
+};
+ScrollableWithPinnedColumns.argTypes = {
+  pinColumns: {
+    control: { type: "inline-radio" },
+    options: ["none", "start", "end", "both"],
+  },
+};
+ScrollableWithPinnedColumns.parameters = {
+  docs: {
+    description: {
+      story:
+        "A scrollable table with the first column (Name) pinned to the start and the last column (Actions) pinned to the end. " +
+        'Middle columns scroll horizontally. Use `columnOverflow="scroll"` with `pinnedStart` and `pinnedEnd` to configure. ' +
+        "Pinned columns require fixed widths in `colLayout` (not `fr` units).",
+    },
+  },
+};
+
 export default {
   title: "Components/Table",
   component: Table,

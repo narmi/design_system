@@ -2,14 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 import { useSelect } from "downshift";
-import iconSelection from "src/icons/selection.json";
+import { VALID_ICON_NAMES } from "src/icons/iconNames";
 import MenuButtonItem from "./MenuButtonItem";
 import Row from "../Row";
 import useDropdownLayer from "../hooks/useDropdownLayer";
 
-export const VALID_ICON_NAMES = iconSelection.icons.map(
-  (icon) => icon.properties.name,
-);
+export { VALID_ICON_NAMES };
 
 export const labelToItemId = (label) =>
   label.replace(/\s+/g, "-").toLowerCase();

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useMemo, useEffect } from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
-import iconSelection from "src/icons/selection.json";
+import { VALID_ICON_NAMES } from "src/icons/iconNames";
 import { useCombobox } from "downshift";
 import ComboboxItem from "./ComboboxItem";
 import ComboboxHeading from "./ComboboxHeading";
@@ -12,13 +12,10 @@ import TextInput from "../TextInput";
 import Row from "../Row";
 import { getItemIndex } from "../Select";
 import useDropdownLayer from "../hooks/useDropdownLayer";
-import useBreakpoints from "../hooks/useBreakpoints";
 
 const noop = () => {};
 
-export const VALID_ICON_NAMES = iconSelection.icons.map(
-  (icon) => icon.properties.name,
-);
+export { VALID_ICON_NAMES };
 
 /**
  * @param {Object} item Combobox.{Action|Item|Heading} component
@@ -260,14 +257,12 @@ const Combobox = ({
     },
   });
 
-  const { m } = useBreakpoints();
   const { anchorProps, layerProps } = useDropdownLayer({
     isOpen,
     setIsOpen: (open) => {
       if (!open) closeMenu();
     },
     polyfillScrollBug: true,
-    matchWidth: !m, // mobile-only
   });
 
   // Update displayed items passed to `useCombobox` when `items` change

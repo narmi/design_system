@@ -117,6 +117,48 @@ For example, if NDS is on major version `1`, breaking changes should target the 
 
 Branches containing breaking change commits should follow the naming convention `breaking/<branch name>`.
 
+#### Version support policy
+
+- The latest minor release (`@latest`) is the actively developed version and
+  always contains every fix.
+- Older minor versions receive patches **only on demand** — not every published
+  version is maintained.
+- Backports target a single Major.Minor (e.g. `6.12`). They are **not**
+  forwarded to other minor versions. If `6.13` and `6.14` also need the fix,
+  each must be backported separately.
+- Fixes always land on `main` first and are selectively applied to older
+  versions — never the reverse.
+- If you are on an intermediate minor that does not have the fix,
+  [request a backport](../../issues/new?template=backport-request.md) or
+  upgrade to `@latest`.
+
+**For consumers:**
+
+| Goal                            | Version specifier             | Example                                     |
+| ------------------------------- | ----------------------------- | ------------------------------------------- |
+| Track latest within your major  | `^6`                          | Always resolves to the newest `6.x`         |
+| Stay pinned to a specific minor | `~6.12` or `6.12.x` dist-tag | Only receive patch-level updates for `6.12` |
+
+#### Releasing backports (maintainers)
+
+When a fix merged to `main` needs to be applied to an older Major.Minor version
+still in production:
+
+1. Merge the fix PR to `main` as usual (this releases the fix on the `@latest` release channel)
+2. Go to **Actions → Release Backport → Run workflow**
+3. Enter the **PR number** of the fix you'd like to backport. Enter the **target major.minor** (e.g. `6.12`).
+4. The workflow will:
+   - Create `maintenance/6.12.x` from the latest `v6.12.*` tag (if it doesn't exist yet)
+   - Cherry-pick the fix onto that branch
+   - Trigger an automated release to the `6.12.x` npm dist-tag
+5. If the cherry-pick has conflicts, a draft PR is opened for manual resolution
+
+Consumers on the older version install the patch via:
+
+```
+npm install @narmi/design_system@6.12.x
+```
+
 ### Commit Guidelines
 
 This project requires structured commit messages in the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format:
@@ -189,16 +231,6 @@ If you need to make additional changes after the beta is published...
 1. Rebuild NDS (`npm run build`)
 2. Bump the beta version number in package.json (`2.36.0-beta.0` -> `2.36.0-beta.1`)
 3. Install the new beta version in your consuming application.
-
-#### Publishing a patch over a previous version
-
-In rare cases, you may need to publish a patch over a previous version (e.g., patching `2.35.2` when the current version is `2.36.0`).
-
-Follow the same steps as [publishing a beta version](#publishing-a-beta-version), but without the `--tag beta` flag:
-
-1. Rebuild NDS (`npm run build`)
-2. Update the `version` field of package.json to the desired patch version (e.g., `2.35.3`). DO NOT COMMIT THIS CHANGE.
-3. Publish the package (`npm publish`)
 
 ### Testing unpublished changes in a consumer
 

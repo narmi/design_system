@@ -41,7 +41,7 @@ export interface DialogProps {
    * Callback to handle user taking an action to dismiss the modal
    * (click outside, Escape key, click close button)
    */
-  onUserDismiss?: (event?: React.MouseEvent<HTMLButtonElement>) => void
+  onUserDismiss?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
   /**
    * Sets a custom modal width.
    * Use the full CSS value with the unit (e.g. "400px")
@@ -87,7 +87,8 @@ const Dialog = ({
   };
 
   useEffect(() => {
-    if (isOpen) checkContentOverflow(); // run when the dialog initially opens
+    if (!isOpen) return undefined;
+    checkContentOverflow(); // run when the dialog initially opens
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("resize", checkContentOverflow);
     return () => {
@@ -119,7 +120,13 @@ const Dialog = ({
   // the shim has events for mouse users only; does not require a role
   /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
   const dialogJSX = (
-    <CSSTransition timeout={1} classNames="nds-dialog-transition" appear in nodeRef={dialogRef}>
+    <CSSTransition
+      timeout={1}
+      classNames="nds-dialog-transition"
+      appear
+      in
+      nodeRef={dialogRef}
+    >
       <div className="nds-dialog-root" ref={dialogRef}>
         <div className="nds-shim--dark" ref={shimRef} onClick={handleShimClick}>
           <FocusLock autoFocus={false} className="nds-dialog-focuslock">

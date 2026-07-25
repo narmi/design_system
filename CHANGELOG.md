@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.17.1](https://github.com/narmi/design_system/compare/v6.17.0...v6.17.1) (2026-07-23)
+
+### fix
+
+* **Pagination:** clamp selectedPage before computing arrow targets ([c820a9f](https://github.com/narmi/design_system/commit/c820a9f547f1395a7d6f2d24126bb24c46598511))
+* **Pagination:** don't emit out-of-range pages from arrows ([4477843](https://github.com/narmi/design_system/commit/44778439d884e52ab1dbbafb70026938dec847f6))
+
+### test
+
+* **Pagination:** cover arrow bounds at first/last page ([693179e](https://github.com/narmi/design_system/commit/693179e80d6d24c2d40799b8611f18631272f621))
+
 ## [6.17.0](https://github.com/narmi/design_system/compare/v6.16.10...v6.17.0) (2026-07-17)
 
 ### feat

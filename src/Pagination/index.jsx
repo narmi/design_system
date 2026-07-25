@@ -32,6 +32,7 @@ const Pagination = ({
 
   const {
     visiblePages,
+    selectedPage: normalizedSelectedPage,
     selectedIndex,
     showPrev,
     showNext,
@@ -51,7 +52,8 @@ const Pagination = ({
   };
 
   const handlePrevClick = () => {
-    const previousPage = selectedPage - 1;
+    if (!showPrev) return;
+    const previousPage = normalizedSelectedPage - 1;
     if (!isControlled) {
       setSelectedPageInternal(previousPage);
     }
@@ -59,7 +61,8 @@ const Pagination = ({
   };
 
   const handleNextClick = () => {
-    const nextPage = selectedPage + 1;
+    if (!showNext) return;
+    const nextPage = normalizedSelectedPage + 1;
     if (!isControlled) {
       setSelectedPageInternal(nextPage);
     }

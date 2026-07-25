@@ -83,6 +83,118 @@ describe("Pagination", () => {
       expect(page1).toHaveClass(CLASS_SELECTED);
     });
 
+    it("Clicking previous arrow on the first page does not change selected page", () => {
+      const handlePageChange = vi.fn();
+      render(<Pagination totalPages={20} onPageChange={handlePageChange} />);
+      const prev = screen.getByLabelText("Previous page");
+
+      fireEvent.click(prev);
+
+      expect(handlePageChange).not.toHaveBeenCalled();
+      expect(screen.getByLabelText("Page 1")).toHaveClass(CLASS_SELECTED);
+    });
+
+    it("Clicking next arrow on the last page does not change selected page", () => {
+      const handlePageChange = vi.fn();
+      const total = 20;
+      render(
+        <Pagination
+          totalPages={total}
+          onPageChange={handlePageChange}
+          defaultSelectedPage={total}
+        />,
+      );
+      const next = screen.getByLabelText("Next page");
+
+      fireEvent.click(next);
+
+      expect(handlePageChange).not.toHaveBeenCalled();
+      expect(screen.getByLabelText(`Page ${total}`)).toHaveClass(
+        CLASS_SELECTED,
+      );
+    });
+
+    it("Pressing Enter on the disabled previous arrow does not change selected page", () => {
+      const handlePageChange = vi.fn();
+      render(<Pagination totalPages={20} onPageChange={handlePageChange} />);
+      const prev = screen.getByLabelText("Previous page");
+
+      fireEvent.keyUp(prev, { key: "Enter" });
+
+      expect(handlePageChange).not.toHaveBeenCalled();
+      expect(screen.getByLabelText("Page 1")).toHaveClass(CLASS_SELECTED);
+    });
+
+    it("Pressing Enter on the disabled next arrow does not change selected page", () => {
+      const handlePageChange = vi.fn();
+      const total = 20;
+      render(
+        <Pagination
+          totalPages={total}
+          onPageChange={handlePageChange}
+          defaultSelectedPage={total}
+        />,
+      );
+      const next = screen.getByLabelText("Next page");
+
+      fireEvent.keyUp(next, { key: "Enter" });
+
+      expect(handlePageChange).not.toHaveBeenCalled();
+      expect(screen.getByLabelText(`Page ${total}`)).toHaveClass(
+        CLASS_SELECTED,
+      );
+    });
+
+    it("Clicking previous arrow on the first page in controlled mode does not call onPageChange", () => {
+      const handlePageChange = vi.fn();
+      render(
+        <Pagination
+          totalPages={20}
+          selectedPage={1}
+          onPageChange={handlePageChange}
+        />,
+      );
+      const prev = screen.getByLabelText("Previous page");
+
+      fireEvent.click(prev);
+
+      expect(handlePageChange).not.toHaveBeenCalled();
+    });
+
+    it("Clicking next arrow on the last page in controlled mode does not call onPageChange", () => {
+      const handlePageChange = vi.fn();
+      const total = 20;
+      render(
+        <Pagination
+          totalPages={total}
+          selectedPage={total}
+          onPageChange={handlePageChange}
+        />,
+      );
+      const next = screen.getByLabelText("Next page");
+
+      fireEvent.click(next);
+
+      expect(handlePageChange).not.toHaveBeenCalled();
+    });
+
+    it("Clicking previous arrow with an out-of-range controlled selectedPage emits the clamped page", () => {
+      const handlePageChange = vi.fn();
+      const total = 20;
+      render(
+        <Pagination
+          totalPages={total}
+          selectedPage={999}
+          onPageChange={handlePageChange}
+        />,
+      );
+      const prev = screen.getByLabelText("Previous page");
+
+      fireEvent.click(prev);
+
+      expect(handlePageChange).toHaveBeenCalledWith(total - 1);
+    });
+
     it("Clicking on last page changes selected page", () => {
       const handlePageChange = vi.fn();
       const total = 20;

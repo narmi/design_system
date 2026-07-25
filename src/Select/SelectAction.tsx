@@ -1,7 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SelectAction = ({ children }) => <>{children}</>;
+interface SelectActionProps {
+  /** Side effect to run on selection */
+  onSelect?: () => void;
+  children?: React.ReactNode;
+}
+
+const SelectAction = ({ children }: SelectActionProps) => <>{children}</>;
 
 SelectAction.displayName = "Select.Action";
 

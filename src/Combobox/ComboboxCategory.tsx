@@ -1,7 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ComboboxCategory = ({ children }) => <>{children}</>;
+interface ComboboxCategoryProps {
+  label: string;
+  children?: React.ReactNode;
+}
+
+const ComboboxCategory = ({ children }: ComboboxCategoryProps) => <>{children}</>;
 
 ComboboxCategory.displayName = "Combobox.Category";
 

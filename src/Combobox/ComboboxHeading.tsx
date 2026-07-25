@@ -1,7 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ComboboxHeading = ({ text, kind = "bold" }) => (
+interface ComboboxHeadingProps {
+  /**
+   * Text of the heading
+   */
+  text: string;
+  /**
+   * Display variant of heading
+   * `bold` - Dark, large headings
+   * `hint` - Light, small headings
+   */
+  kind?: "bold" | "hint";
+}
+
+const ComboboxHeading = ({ text, kind = "bold" }: ComboboxHeadingProps) => (
   <h5
     className={`nds-combobox-list-heading--${kind}`}
   >

@@ -4,7 +4,21 @@ import React from "react";
 
 export { VALID_ICON_NAMES };
 
-const SidebarItem = () => <></>;
+interface SidebarItemProps {
+  /** Click callback, with event object passed as argument */
+  onClick?: (event: React.MouseEvent) => void;
+  /** Whether the tab is currently selected */
+  isActive?: boolean;
+  /** Label for the tab */
+  label: string;
+  /** Name of Narmi icon to place at the start of the label */
+  startIcon?: string;
+  /** Name of Narmi icon to place at the end of the label */
+  endIcon?: string;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const SidebarItem = (_props: SidebarItemProps) => <></>;
 
 SidebarItem.propTypes = {
   /** Click callback, with event object passed as argument */

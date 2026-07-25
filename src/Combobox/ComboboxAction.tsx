@@ -2,9 +2,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+interface ComboboxActionProps {
+  /** Side effect to run on selection */
+  onSelect?: () => void;
+  /** Label for action */
+  label: string;
+}
+
 const noop = () => {};
 
-const ComboboxAction = ({ onSelect = noop }) => <></>;
+const ComboboxAction = ({ onSelect = noop }: ComboboxActionProps) => <></>;
 
 ComboboxAction.displayName = "Combobox.Action";
 

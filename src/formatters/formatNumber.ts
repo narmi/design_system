@@ -28,8 +28,7 @@ const formatNumber = (
   signDisplay: FormatNumberSignDisplay = "auto",
   showCents: boolean = true
 ): string => {
-  // @ts-expect-error - preserved original signature; parseFloat ignores extra args
-  const number: number = parseFloat(input, 10);
+  const number: number = parseFloat(input as string);
   const formatterOpts: Intl.NumberFormatOptions = {
     style,
     currencyDisplay: "narrowSymbol",

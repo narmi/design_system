@@ -5,6 +5,33 @@ import { usePagination } from "./usePagination";
 
 const noop = () => {};
 
+interface PaginationProps {
+  /**
+   * Total number of pages
+   * If the number of pages is 1, pagination will not render
+   */
+  totalPages?: number;
+  /**
+   * Default selected page by page number (uncontrolled)
+   */
+  defaultSelectedPage?: number;
+  /**
+   * Selected page by page number (controlled).
+   * In fully controlled mode, you **must** define an `onPageChange`
+   * handler to update the value of the `selectedPage` prop.
+   */
+  selectedPage?: number;
+  /**
+   * Callback invoked when user selects a new page via page numbers or
+   * previous/next arrows.
+   *
+   * Invoked with selected page number as the argument.
+   */
+  onPageChange?: (page: number) => void;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+}
+
 /**
  * Component that allows users to navigate between pages of information.
  * Your application is responsible for setting the total number of pages and
@@ -21,7 +48,7 @@ const Pagination = ({
   defaultSelectedPage = 1,
   selectedPage: selectedPageControlled,
   testId,
-}) => {
+}: PaginationProps) => {
   const isControlled = selectedPageControlled !== undefined;
   const [selectedPageInternal, setSelectedPageInternal] =
     useState(defaultSelectedPage);
@@ -43,8 +70,13 @@ const Pagination = ({
     selectedPageNumber: selectedPage,
   });
 
-  const handlePageClick = ({ target }) => {
-    const targetPage = parseInt(target.dataset.page, 10);
+  const handlePageClick = ({
+    target,
+  }: React.MouseEvent | React.KeyboardEvent) => {
+    const targetPage = parseInt(
+      (target as HTMLElement).dataset.page as string,
+      10,
+    );
     if (!isControlled) {
       setSelectedPageInternal(targetPage);
     }
@@ -144,7 +176,7 @@ const Pagination = ({
                   }
                 }}
                 aria-label={`Page ${page}`}
-                aria-current={i === selectedIndex && "page"}
+                aria-current={i === selectedIndex ? "page" : false}
               >
                 {page.toString()}
               </span>
@@ -215,7 +247,7 @@ Pagination.propTypes = {
    * Total number of pages
    * If the number of pages is 1, pagination will not render
    */
-  totalPages: PropTypes.number.isRequired,
+  totalPages: PropTypes.number,
   /**
    * Default selected page by page number (uncontrolled)
    */

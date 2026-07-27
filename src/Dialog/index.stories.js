@@ -8,8 +8,6 @@ const BaseTemplate = (args) => <Dialog {...args} />;
 
 const InteractiveTemplate = (args) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  console.log("args", args);
   return (
     <>
       <Button

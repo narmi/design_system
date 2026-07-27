@@ -48,10 +48,10 @@ export interface DialogProps {
    */
   width?: string;
   /**
-   * Sets a custom modal height.
-   * Use the full CSS value with the unit (e.g. "400px, 80vh")
+   * Sets a custom modal max height.
+   * Use the full CSS value with the unit (e.g. "400px" or "80vh")
    */
-  height?: string;
+  maxHeight?: string;
   /** Optional value for `data-testid` attribute */
   testId?: string;
   id?: string;
@@ -72,7 +72,7 @@ const Dialog = ({
   notification,
   footer,
   width = "500px",
-  height = "80vh",
+  maxHeight = "80vh",
   testId,
 }: DialogProps) => {
   const [isContentOverflowing, setIsContentOverflowing] = useState(false);
@@ -142,7 +142,7 @@ const Dialog = ({
               aria-modal="true"
               className="nds-dialog"
               // @ts-expect-error DetailedHTMLProps does not specify arbitrary custom properties
-              style={{ "--dialog-preferred-width": width, "max-height": height }}
+              style={{ "--dialog-preferred-width": width, "max-height": maxHeight }}
               data-testid={testId}
             >
               <div

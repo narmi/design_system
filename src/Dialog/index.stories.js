@@ -8,7 +8,7 @@ const BaseTemplate = (args) => <Dialog {...args} />;
 
 const InteractiveTemplate = (args) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  
+
   return (
     <>
       <Button
@@ -53,7 +53,7 @@ Overview.args = {
   headerStyle: "bordered",
   onUserDismiss: () => {},
   width: "500px",
-  height: "80vh",
+  maxHeight: "80vh",
 };
 Overview.argTypes = {
   footer: { control: false }, // hide control for `footer` prop

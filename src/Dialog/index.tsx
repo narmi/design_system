@@ -142,7 +142,7 @@ const Dialog = ({
               aria-modal="true"
               className="nds-dialog"
               // @ts-expect-error DetailedHTMLProps does not specify arbitrary custom properties
-              style={{ "--dialog-preferred-width": width, "height": height }}
+              style={{ "--dialog-preferred-width": width, "max-height": height }}
               data-testid={testId}
             >
               <div

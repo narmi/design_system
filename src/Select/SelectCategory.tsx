@@ -2,7 +2,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SelectCategory = ({ children }) => {
+interface SelectCategoryProps {
+  label?: string;
+  /**
+   * heading: default bold heading
+   * label: match input floating label
+   */
+  kind?: "heading" | "label";
+  children?: React.ReactNode;
+  isFlat?: boolean;
+}
+
+const SelectCategory = ({ children }: SelectCategoryProps) => {
   return <>{children}</>;
 };
 

@@ -11,19 +11,31 @@
  * formatNumber(0.0023, 'percent');   // '0.23%'
  * formatNumber(0.215555, 'percent'); // '21.56%'
  *
- * @param {String|Number} input string or number to format into a number string
- * @param {String} style format style (`currency` or `percent`)
- * @returns {String} number string formatted for display
+ * @param input string or number to format into a number string
+ * @param style format style (`currency` or `percent`)
+ * @returns number string formatted for display
  */
-const formatNumber = (input, style = "currency", signDisplay = "auto", showCents = true) => {
-  let number = parseFloat(input, 10);
-  let formatterOpts = {
+export type FormatNumberStyle = "currency" | "percent";
+export type FormatNumberSignDisplay =
+  | "auto"
+  | "never"
+  | "always"
+  | "exceptZero";
+
+const formatNumber = (
+  input: string | number,
+  style: FormatNumberStyle = "currency",
+  signDisplay: FormatNumberSignDisplay = "auto",
+  showCents: boolean = true
+): string => {
+  const number: number = parseFloat(input as string);
+  const formatterOpts: Intl.NumberFormatOptions = {
     style,
     currencyDisplay: "narrowSymbol",
   };
 
   // only allow currency and percentage types for now
-  const validStyles = ["currency", "percent"];
+  const validStyles: FormatNumberStyle[] = ["currency", "percent"];
   if (!validStyles.includes(style)) {
     throw new Error(
       `formatNumber: invalid style argument. Must be one of: ${JSON.stringify(
@@ -32,7 +44,12 @@ const formatNumber = (input, style = "currency", signDisplay = "auto", showCents
     );
   }
 
-  const validSignDisplays = ["auto", "never", "always", "exceptZero"];
+  const validSignDisplays: FormatNumberSignDisplay[] = [
+    "auto",
+    "never",
+    "always",
+    "exceptZero",
+  ];
   if (!validSignDisplays.includes(signDisplay)) {
     throw new Error(
       `formatNumber: invalid signDisplay argument. Must be one of: ${JSON.stringify(
@@ -51,10 +68,11 @@ const formatNumber = (input, style = "currency", signDisplay = "auto", showCents
   formatterOpts.signDisplay = signDisplay;
   try {
     return new Intl.NumberFormat("en-US", formatterOpts).format(number);
-  }
-  catch {
+  } catch {
     // Failover for browsers that do not support Intl.NumberFormat
-    return style === "currency" ? '$' + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') : (number*100).toFixed(2) + '%';
+    return style === "currency"
+      ? "$" + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")
+      : (number * 100).toFixed(2) + "%";
   }
 };
 

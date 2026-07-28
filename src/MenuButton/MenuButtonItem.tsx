@@ -1,11 +1,22 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import PropTypes from "prop-types";
 import { VALID_ICON_NAMES } from "src/icons/iconNames";
 
 export { VALID_ICON_NAMES };
 
-const MenuButtonItem = ({ label, startIcon, endIcon, onSelect }) => <></>;
+interface MenuButtonItemProps {
+  /** Display label for menu item */
+  label: string;
+  /** Selection handler */
+  onSelect: () => void;
+  /** Optional start icon for menu item */
+  startIcon?: string;
+  /** Optional end icon for menu item */
+  endIcon?: string;
+}
+
+const MenuButtonItem = ({ label, startIcon, endIcon, onSelect }: MenuButtonItemProps) => <></>;
 
 MenuButtonItem.propTypes = {
   /** Display label for menu item */

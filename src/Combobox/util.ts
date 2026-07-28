@@ -1,5 +1,5 @@
 // Mock data for tests and stories
-export const options_states = [
+export const options_states: string[] = [
   "Alabama",
   "Alaska",
   "Arizona",

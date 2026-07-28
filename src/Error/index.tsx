@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 type MarginTop = "xxs" | "xs" | "s" | "m" | "l" | "xl" | "xxl" | "none";
 
 interface ErrorLineProps {
-  errorLine?: string;
+  errorLine?: string | null;
   marginTop?: MarginTop;
 }
 
@@ -23,7 +23,11 @@ ErrorLine.propTypes = {
 };
 
 interface ErrorProps {
-  error?: string | string[];
+  /**
+   * Error message(s) to display. Falsy values (including `null`) render
+   * nothing, which lets callers pass nullable state directly.
+   */
+  error?: string | string[] | null;
   marginTop?: MarginTop;
 }
 

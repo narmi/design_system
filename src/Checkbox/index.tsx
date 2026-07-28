@@ -12,7 +12,7 @@ import DisabledShim from "../DisabledShim";
 
 export interface CheckboxProps {
   /** Content of `label` element */
-  label?: React.ReactElement;
+  label?: React.ReactNode;
   /** Markdown to use in place of the `label` field */
   markdownLabel?: string;
   /** Change callback invoked when the value of the `input` changes */

@@ -29,7 +29,7 @@ export const FullyControlled = () => {
         <select
           className="margin--left"
           id="totalPages"
-          onChange={(e) => setTotalPages(parseInt(e.target.value), 10)}
+          onChange={(e) => setTotalPages(parseInt(e.target.value, 10))}
         >
           <option value="1">1</option>
           <option value="3">3</option>

@@ -38,6 +38,7 @@ import TruncatedAccount from "./TruncatedAccount";
 import useSupportsAnchorPositioning from "./hooks/useSupportsAnchorPositioning";
 import useBreakpoints from "./hooks/useBreakpoints";
 import useDropdownLayer from "./hooks/useDropdownLayer";
+import formatDate from "./formatters/formatDate";
 
 /**
  * Untyped Components
@@ -66,7 +67,6 @@ declare const Toggle;
 declare const TokenInput;
 declare const useLockBodyScroll;
 declare const formatNumber;
-declare const formatDate;
 
 export * from "./types/Icon.types";
 export {

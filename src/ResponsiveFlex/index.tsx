@@ -6,30 +6,62 @@ const VALID_GAPS = ["xs", "s", "m", "l", "xl"];
 const VALID_SIZES = ["s", "m", "l", "xl"];
 const VALID_DIRECTIONS = ["row", "column"];
 
+/** Standard Narmi breakpoint names */
+export type ResponsiveFlexSize = "s" | "m" | "l" | "xl";
+export type ResponsiveFlexGap = "xs" | "s" | "m" | "l" | "xl";
+export type ResponsiveFlexDirection = "row" | "column";
+export type FlexDirection =
+  | ResponsiveFlexDirection
+  | "row-reverse"
+  | "column-reverse";
+
+export interface GetFlexDirectionArgs {
+  viewportMatches: Record<ResponsiveFlexSize, boolean>;
+  direction: ResponsiveFlexDirection;
+  toColumnAt?: ResponsiveFlexSize;
+  toRowAt?: ResponsiveFlexSize;
+  reverseAt?: ResponsiveFlexSize;
+}
+
 export const getFlexDirection = ({
   viewportMatches,
   direction,
   toColumnAt,
   toRowAt,
   reverseAt,
-}) => {
-  let flexDirection = direction; // use initial direction as the default
+}: GetFlexDirectionArgs): FlexDirection => {
+  let flexDirection: FlexDirection = direction; // use initial direction as the default
 
-  if (viewportMatches[toRowAt]) {
+  if (toRowAt && viewportMatches[toRowAt]) {
     flexDirection = "row";
   }
 
-  if (viewportMatches[toColumnAt]) {
+  if (toColumnAt && viewportMatches[toColumnAt]) {
     flexDirection = "column";
   }
 
   // must be the final override, as we treat reverse as a separate concept from row/column
-  if (viewportMatches[reverseAt]) {
-    flexDirection = `${flexDirection}-reverse`;
+  if (reverseAt && viewportMatches[reverseAt]) {
+    flexDirection = `${flexDirection}-reverse` as FlexDirection;
   }
 
   return flexDirection;
 };
+
+export interface ResponsiveFlexProps {
+  /** Implicit flex children */
+  children?: React.ReactNode;
+  /** Size of flex gap by token size (e.g. "xl") */
+  gapSize?: ResponsiveFlexGap;
+  /** Initial flex direction  */
+  direction?: ResponsiveFlexDirection;
+  /** Breakpoint at which to reverse order of flex items */
+  reverseAt?: ResponsiveFlexSize;
+  /** Breakpoint at which to change flex direction to column */
+  toColumnAt?: ResponsiveFlexSize;
+  /** Breakpoint at which to change flex direction to row */
+  toRowAt?: ResponsiveFlexSize;
+}
 
 /**
  * Responsive layout helper that allows developers to declaratively control
@@ -42,7 +74,7 @@ const ResponsiveFlex = ({
   reverseAt,
   toColumnAt,
   toRowAt,
-}) => {
+}: ResponsiveFlexProps) => {
   const viewportMatches = useBreakpoints();
   const flexDirection = getFlexDirection({
     viewportMatches,
@@ -51,7 +83,7 @@ const ResponsiveFlex = ({
     toRowAt,
     reverseAt,
   });
-  const style = {
+  const style: React.CSSProperties = {
     display: "flex",
     flexDirection,
     gap: `var(--space-${gapSize})`,

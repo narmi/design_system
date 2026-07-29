@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.17.7](https://github.com/narmi/design_system/compare/v6.17.6...v6.17.7) (2026-07-29)
+
+### fix
+
+* **types:** export real types for 5 already-converted components (#2189) ([3cae43a](https://github.com/narmi/design_system/commit/3cae43a086fcf3432aa279082a699179f8e6a128)), closes [#2189](https://github.com/narmi/design_system/issues/2189)
+
 ## [6.17.6](https://github.com/narmi/design_system/compare/v6.17.5...v6.17.6) (2026-07-29)
 
 ### fix

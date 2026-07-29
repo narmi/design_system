@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.17.5](https://github.com/narmi/design_system/compare/v6.17.4...v6.17.5) (2026-07-29)
+
+### fix
+
+* **types:** export real types for Error, and allow nullable error prop (#2178) ([66dbfa8](https://github.com/narmi/design_system/commit/66dbfa80416d2a070cc2be80129c3c1a288a48af)), closes [#2178](https://github.com/narmi/design_system/issues/2178)
+
 ## [6.17.4](https://github.com/narmi/design_system/compare/v6.17.3...v6.17.4) (2026-07-29)
 
 ### fix

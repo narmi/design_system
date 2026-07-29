@@ -42,13 +42,16 @@ export const globalTypes = {
     toolbar: {
       title: "Contrast",
       items: [
-        { value: "", title: "Default" },
+        { value: "system", title: "System" },
+        { value: "standard", title: "Standard" },
         { value: "more", title: "High Contrast" },
       ],
       dynamicTitle: true,
     },
   },
 };
+
+export const initialGlobals = { contrast: "system" };
 
 export const decorators = [NdsStyles, ExamplesBackground];
 export const tags = ["autodocs"];

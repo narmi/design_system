@@ -16,13 +16,16 @@ export const NdsStyles = (Story, context) => {
   const contrast = context.globals?.contrast;
 
   useEffect(() => {
-    if (contrast) {
-      document.body.setAttribute(
-        COLOR_MODES.highContrast.attribute,
-        COLOR_MODES.highContrast.value,
-      );
+    const root = document.documentElement;
+    const { attribute } = COLOR_MODES.highContrast;
+
+    if (contrast === "more") {
+      root.setAttribute(attribute, COLOR_MODES.highContrast.value);
+    } else if (contrast === "standard") {
+      root.setAttribute(attribute, COLOR_MODES.standardContrast.value);
     } else {
-      document.body.removeAttribute(COLOR_MODES.highContrast.attribute);
+      // "system" (or any unset/legacy value): follow the OS media query.
+      root.removeAttribute(attribute);
     }
   }, [contrast]);
 

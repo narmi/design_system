@@ -7,10 +7,15 @@ export default {
       description: {
         component: `
 Color modes allow the design system to adapt to user preferences like high contrast.
-Tokens are overridden via a \`data-prefers-contrast\` attribute on an ancestor element,
-or automatically via the \`prefers-contrast: more\` media query.
+Contrast is a three-state user preference stored on the \`<html>\` element as a
+\`data-prefers-contrast\` attribute:
 
-**Use the "Contrast" toolbar button to toggle high contrast mode and see the changes below.**
+- _no attribute_ → **System**: follow the OS via the \`prefers-contrast: more\` media query
+- \`data-prefers-contrast="no-preference"\` → **Standard**: force the default palette even
+  when the OS reports increased contrast
+- \`data-prefers-contrast="more"\` → **High Contrast**: force the high-contrast palette
+
+**Use the "Contrast" toolbar button to switch between the three states and see the changes below.**
         `,
       },
     },

@@ -31,10 +31,18 @@ tokens/
 Modes are managed as additive CSS overrides appended to `tokens.css`:
 
 - **Light/Dark** (future): will use `color-scheme` and `light-dark()` CSS functions
-- **High contrast**: uses `@media (prefers-contrast: more)` and `[data-prefers-contrast="more"]` selector
+- **Contrast**: a three-state user preference model, driven by a `data-prefers-contrast`
+  attribute on the `<html>` element:
+  - _No attribute_ → follow the OS: `@media (prefers-contrast: more)` applies when the OS
+    reports increased contrast.
+  - `data-prefers-contrast="more"` → force high contrast regardless of OS setting.
+  - `data-prefers-contrast="no-preference"` → force the standard palette, suppressing the
+    OS-driven media query. The emitted media-query rule is scoped to
+    `:root:not([data-prefers-contrast="no-preference"])` so this sentinel opts out cleanly.
 
-To activate high contrast programmatically, set `data-prefers-contrast="more"` on any ancestor element.
-Users with OS-level high contrast preferences will get it automatically via the media query.
+To activate a specific contrast mode programmatically, set `data-prefers-contrast` on the
+`<html>` element (or any ancestor, for the `"more"` case). Consumer apps typically wire this
+to a stored user preference.
 
 ## Usage
 

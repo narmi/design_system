@@ -149,6 +149,7 @@ const modeConfig: Config = {
           const modeBlock = buildModeCSS({
             mediaQuery: COLOR_MODES.highContrast.mediaQuery,
             selector: COLOR_MODES.highContrast.selector,
+            excludeSelector: COLOR_MODES.standardContrast.selector,
             tokens: dictionary.allTokens,
           });
           const cssDir = getBuildPath("css");

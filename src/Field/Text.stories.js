@@ -149,7 +149,9 @@ export const WithEndContent = () => {
       label="Discount"
       value={value}
       onChange={setValue}
-      endContent={<span style={{ color: "var(--text--secondary)" }}>%</span>}
+      endContent={
+        <span style={{ color: "var(--font-color-secondary)" }}>%</span>
+      }
       placeholder="0"
     />
   );

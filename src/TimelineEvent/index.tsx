@@ -1,10 +1,46 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { VALID_ICON_NAMES } from "src/icons/iconNames";
+import { VALID_ICON_NAMES } from "../icons/iconNames";
 import cc from "classcat";
 import ToolTip from "../Tooltip";
+import type { IconName } from "../types/Icon.types";
 
 export { VALID_ICON_NAMES };
+
+export type TimelineEventKind = "node" | "start" | "pending";
+
+export interface TimelineEventProps {
+  /**
+   * Timeline node variant.
+   */
+  kind?: TimelineEventKind;
+  /**
+   * Name of NDS icon to render inside the timeline node
+   */
+  icon?: IconName;
+  /**
+   * Pass an image url to render the timeline node
+   * as an avatar
+   */
+  imgUrl?: string;
+  /**
+   * Initial to render in the timeline node
+   * Overridden by:
+   * - icon
+   * - imgUrl
+   */
+  initial?: string;
+  /**
+   * Timeline event content (any JSX)
+   */
+  children?: React.ReactNode;
+  /**
+   * Hover tooltip content for the icon
+   */
+  tooltip?: string;
+  /** Render a custom circle node on the line */
+  renderNode?: () => React.ReactNode;
+}
 
 const TimelineEvent = ({
   kind = "node",
@@ -14,7 +50,7 @@ const TimelineEvent = ({
   tooltip,
   children,
   renderNode,
-}) => {
+}: TimelineEventProps) => {
   const useInitial = !icon && !imgUrl && initial;
   return (
     <div

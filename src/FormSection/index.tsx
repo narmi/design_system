@@ -5,7 +5,8 @@ import Row from "../Row";
 interface FormSectionProps {
   /** Title of form section */
   title: string;
-  children: React.ReactNode;
+  /** Optional content rendered below the section heading */
+  children?: React.ReactNode;
 }
 
 /**
@@ -47,7 +48,7 @@ const FormSection = ({ title, children }: FormSectionProps) => (
 FormSection.propTypes = {
   /** Title of form section */
   title: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 export default FormSection;

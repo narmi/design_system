@@ -13,8 +13,8 @@ export const COLOR_MODES = {
     value: "more",
   },
   standardContrast: {
-    selector: '[data-prefers-contrast="no-preference"]',
+    selector: '[data-prefers-contrast="less"]',
     attribute: "data-prefers-contrast",
-    value: "no-preference",
+    value: "less",
   },
 } as const satisfies Record<string, ColorMode>;

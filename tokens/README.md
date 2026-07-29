@@ -36,9 +36,9 @@ Modes are managed as additive CSS overrides appended to `tokens.css`:
   - _No attribute_ → follow the OS: `@media (prefers-contrast: more)` applies when the OS
     reports increased contrast.
   - `data-prefers-contrast="more"` → force high contrast regardless of OS setting.
-  - `data-prefers-contrast="no-preference"` → force the standard palette, suppressing the
-    OS-driven media query. The emitted media-query rule is scoped to
-    `:root:not([data-prefers-contrast="no-preference"])` so this sentinel opts out cleanly.
+  - `data-prefers-contrast="less"` → force the standard palette, suppressing the OS-driven
+    media query. The emitted media-query rule is scoped to
+    `:root:not([data-prefers-contrast="less"])` so this sentinel opts out cleanly.
 
 To activate a specific contrast mode programmatically, set `data-prefers-contrast` on the
 `<html>` element (or any ancestor, for the `"more"` case). Consumer apps typically wire this

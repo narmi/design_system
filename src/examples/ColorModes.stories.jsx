@@ -11,7 +11,7 @@ Contrast is a three-state user preference stored on the \`<html>\` element as a
 \`data-prefers-contrast\` attribute:
 
 - _no attribute_ → **System**: follow the OS via the \`prefers-contrast: more\` media query
-- \`data-prefers-contrast="no-preference"\` → **Standard**: force the default palette even
+- \`data-prefers-contrast="less"\` → **Standard**: force the default palette even
   when the OS reports increased contrast
 - \`data-prefers-contrast="more"\` → **High Contrast**: force the high-contrast palette
 

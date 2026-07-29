@@ -11,6 +11,7 @@ import Button from "./Button";
 import ContentCard from "./ContentCard";
 import Checkbox from "./Checkbox";
 import Chip from "./Chip";
+import CollapsibleCard from "./CollapsibleCard";
 import ContextMenu from "./ContextMenu";
 import Count from "./Count";
 import Dialog from "./Dialog";
@@ -55,7 +56,6 @@ import formatNumber from "./formatters/formatNumber";
 /**
  * Untyped Components
  */
-declare const CollapsibleCard;
 declare const Combobox;
 declare const DateInput;
 declare const Drawer;
@@ -92,6 +92,12 @@ export type { AvatarProps } from "./Avatar";
 export type { ButtonProps, ButtonKind } from "./Button";
 export type { CheckboxProps } from "./Checkbox";
 export type { ChipProps } from "./Chip";
+export type {
+  CollapsibleCardProps,
+  CollapsibleCardTrigger,
+  CollapsibleCardKind,
+  CollapsibleCardRadiusSize,
+} from "./CollapsibleCard";
 export type { ContentCardProps } from "./ContentCard";
 export type { ContextMenuProps } from "./ContextMenu";
 export type { ContextMenuItemProps } from "./ContextMenu/ContextMenuItem";

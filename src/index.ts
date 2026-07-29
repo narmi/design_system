@@ -39,6 +39,7 @@ import TruncatedAccount from "./TruncatedAccount";
 import useSupportsAnchorPositioning from "./hooks/useSupportsAnchorPositioning";
 import useBreakpoints from "./hooks/useBreakpoints";
 import useDropdownLayer from "./hooks/useDropdownLayer";
+import formatDate from "./formatters/formatDate";
 import useLockBodyScroll from "./hooks/useLockBodyScroll";
 import formatNumber from "./formatters/formatNumber";
 
@@ -66,7 +67,6 @@ declare const TextInput;
 declare const TimelineEvent;
 declare const Toggle;
 declare const TokenInput;
-declare const formatDate;
 
 export * from "./types/Icon.types";
 export {

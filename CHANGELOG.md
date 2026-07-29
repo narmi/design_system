@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.1](https://github.com/narmi/design_system/compare/v6.19.0...v6.19.1) (2026-07-29)
+
+### fix
+
+* **types:** convert CollapsibleCard to TypeScript (#2194) ([6de0f2f](https://github.com/narmi/design_system/commit/6de0f2fc454c733209c2cfebfc38473f3c4a482c)), closes [#2194](https://github.com/narmi/design_system/issues/2194)
+
 ## [6.19.0](https://github.com/narmi/design_system/compare/v6.18.2...v6.19.0) (2026-07-29)
 
 ### feat

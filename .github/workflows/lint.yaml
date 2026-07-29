@@ -54,3 +54,9 @@ jobs:
       # every file in `src/` rather than just the `src/index.ts` entry graph.
       - name: tsc
         run: npm run typecheck
+
+      # Storybook's react-docgen-typescript pipeline fails silently when its
+      # tsconfig stops covering `src/`, leaving every TS component without
+      # controls or prop descriptions. See scripts/checkDocgen.mjs.
+      - name: Storybook docgen
+        run: npm run check:docgen

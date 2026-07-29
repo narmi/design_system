@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.17.4](https://github.com/narmi/design_system/compare/v6.17.3...v6.17.4) (2026-07-29)
+
+### fix
+
+* **types:** export real types for DropdownTrigger (#2177) ([e91fdd4](https://github.com/narmi/design_system/commit/e91fdd4ee4daad21bc78d2e68561ebc2c8cca865)), closes [#2177](https://github.com/narmi/design_system/issues/2177)
+
 ## [6.17.3](https://github.com/narmi/design_system/compare/v6.17.2...v6.17.3) (2026-07-29)
 
 ### fix

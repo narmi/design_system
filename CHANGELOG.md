@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.17.6](https://github.com/narmi/design_system/compare/v6.17.5...v6.17.6) (2026-07-29)
+
+### fix
+
+* **types:** make FormSection title and children optional (#2188) ([9208fb7](https://github.com/narmi/design_system/commit/9208fb7e60300e6ac95e023c5fce35d56d353328)), closes [#2188](https://github.com/narmi/design_system/issues/2188)
+
+### test
+
+* **Input:** add unit test coverage ahead of TS conversion (#2187) ([a6233f9](https://github.com/narmi/design_system/commit/a6233f94fdb3999893145c82afa986e950ad618e)), closes [#2187](https://github.com/narmi/design_system/issues/2187)
+
 ## [6.17.5](https://github.com/narmi/design_system/compare/v6.17.4...v6.17.5) (2026-07-29)
 
 ### fix

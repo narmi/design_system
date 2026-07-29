@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.1](https://github.com/narmi/design_system/compare/v6.19.0...v6.19.1) (2026-07-29)
+
+### fix
+
+* **types:** convert CollapsibleCard to TypeScript (#2194) ([6de0f2f](https://github.com/narmi/design_system/commit/6de0f2fc454c733209c2cfebfc38473f3c4a482c)), closes [#2194](https://github.com/narmi/design_system/issues/2194)
+
+## [6.19.0](https://github.com/narmi/design_system/compare/v6.18.2...v6.19.0) (2026-07-29)
+
+### feat
+
+* **tokens:** enable color schemes and modes ([d1d6969](https://github.com/narmi/design_system/commit/d1d69691b44386a0d8aba79421516f3a9e86d12f))
+* **tokens:** enable color schemes and modes ([380a426](https://github.com/narmi/design_system/commit/380a426a5869ed0c8bbac326f16eb30ec7216c11))
+
+### fix
+
+* **Pagination:** clamp selectedPage before computing arrow targets ([73e635c](https://github.com/narmi/design_system/commit/73e635c671e5222342844a917b021315739e85c1))
+* **Pagination:** don't emit out-of-range pages from arrows ([0fde2df](https://github.com/narmi/design_system/commit/0fde2dfc66022e9d712de2267e78820d649d32be))
+
+### test
+
+* **Pagination:** cover arrow bounds at first/last page ([9fe6e7d](https://github.com/narmi/design_system/commit/9fe6e7d6317304916118da61ca798b9deaf382fb))
+
 ## [6.18.2](https://github.com/narmi/design_system/compare/v6.18.1...v6.18.2) (2026-07-29)
 
 ### fix

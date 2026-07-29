@@ -4,7 +4,7 @@ import React from "react";
 import ErrorMessage from "../Error";
 import DisabledShim from "../DisabledShim";
 
-interface ContentCardProps {
+export interface ContentCardProps {
   /** Accepts any content as children */
   children: React.ReactNode;
   /**

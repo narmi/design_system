@@ -10,7 +10,7 @@ markdownRenderer.link = ({ href, text }) =>
 import Error from "../Error";
 import DisabledShim from "../DisabledShim";
 
-interface CheckboxProps {
+export interface CheckboxProps {
   /** Content of `label` element */
   label?: string;
   /** Markdown to use in place of the `label` field */

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 
-interface DisabledShimProps {
+export interface DisabledShimProps {
   children: React.ReactNode;
   isDisabled?: boolean;
 }

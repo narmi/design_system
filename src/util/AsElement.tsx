@@ -6,9 +6,14 @@ const SAFE_HREF_PROTOCOLS = ["http:", "https:", "mailto:", "tel:"];
 /**
  * Returns the href if it uses a safe protocol, or undefined if it
  * uses a potentially dangerous scheme (javascript:, data:, etc).
+ *
+ * Accepts `unknown` rather than `string` on purpose: this is a security
+ * guard, and it must keep rejecting non-string input that reaches it from
+ * untyped call sites at runtime.
  */
-export const getSafeHref = (href) => {
-  if (href == null) return href;
+export const getSafeHref = (href?: unknown): string | null | undefined => {
+  if (href === null) return null;
+  if (href === undefined) return undefined;
   if (typeof href !== "string") return undefined;
   // eslint-disable-next-line no-control-regex
   const normalized = href.trim().replace(/[\u0000-\u001F\u007F\s]+/g, "");
@@ -42,6 +47,17 @@ export const VALID_ELEMENTS = [
   "a",
 ];
 
+export interface AsElementProps {
+  /** element to render  */
+  elementType?: React.ElementType;
+  children?: React.ReactNode;
+  /**
+   * Any additional props are spread onto the rendered element.
+   * `AsElement` is a passthrough, so this is intentionally open-ended.
+   */
+  [key: string]: unknown;
+}
+
 /**
  * Utility to conditionally render different HTML elements
  * in our components. Useful for exposing `as` props:
@@ -50,24 +66,32 @@ export const VALID_ELEMENTS = [
  *
  * @usage <AsElement elementName="ul" otherProp="this gets passed through">
  */
-const AsElement = ({ elementType = "div", children, ...rest }) => {
+const AsElement = ({
+  elementType = "div",
+  children,
+  ...rest
+}: AsElementProps) => {
   const safeRest = Object.prototype.hasOwnProperty.call(rest, "href")
     ? { ...rest, href: getSafeHref(rest.href) }
     : rest;
 
   if (
     typeof elementType === "function" ||
-    typeof elementType.type === "function"
+    typeof (elementType as { type?: unknown }).type === "function"
   ) {
     // this is a react component so render it directly
-    return React.createElement(elementType, safeRest, children);
+    return React.createElement(
+      elementType,
+      safeRest as React.Attributes,
+      children,
+    );
   }
 
-  let Element = "div"; // always fall back to div if something is wrong
+  let Element: React.ElementType = "div"; // always fall back to div if something is wrong
 
   // extra layer of validation; only set the element name to
   // the given `elementName` if it is in our valid elements list
-  if (VALID_ELEMENTS.includes(elementType)) {
+  if (typeof elementType === "string" && VALID_ELEMENTS.includes(elementType)) {
     Element = elementType;
   }
 

@@ -15,6 +15,27 @@ Contrast is a three-state user preference stored on the \`<html>\` element as a
   when the OS reports increased contrast
 - \`data-prefers-contrast="more"\` → **High Contrast**: force the high-contrast palette
 
+### Authoring high-contrast overrides in components
+
+Use the \`contrastMore\` Sass mixin (from \`src/base-styles/scss-utils.scss\`,
+already available in every component \`.scss\`) to fence styles that should
+only apply when the user prefers more contrast. It expands into the same
+two selectors emitted by the token pipeline: a \`prefers-contrast: more\`
+media query (scoped so \`data-prefers-contrast="less"\` opts out) and a
+\`[data-prefers-contrast="more"]\` block. The parent selector at the call
+site is preserved in both blocks via \`&\`.
+
+\`\`\`scss
+.nds-card {
+  border: 1px solid var(--border-color-default);
+
+  @include contrastMore {
+    border-color: #000;
+    background: #fff;
+  }
+}
+\`\`\`
+
 **Use the "Contrast" toolbar button to switch between the three states and see the changes below.**
         `,
       },

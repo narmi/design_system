@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import PropTypes from "prop-types";
-import { VALID_ICON_NAMES } from "src/icons/iconNames";
+import { VALID_ICON_NAMES } from "../icons/iconNames";
 
 export { VALID_ICON_NAMES };
 

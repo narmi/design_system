@@ -1,6 +1,6 @@
 {
   "name": "@narmi/design_system",
-  "version": "6.19.2",
+  "version": "6.19.3",
   "description": "⚡ A consistent look-and-feel and extensible interface for Narmi experiences 🔥",
   "main": "dist/index.js",
   "style": "dist/style.css",
@@ -31,6 +31,7 @@
     "test:watch": "vitest",
     "lint": "eslint \"./src/**\" \"./scripts/**\" \"./tokens/**\" --no-error-on-unmatched-pattern",
     "typecheck": "tsc -p tsconfig.check.json",
+    "check:docgen": "tsx ./scripts/checkDocgen.mjs",
     "release": "semantic-release",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build --stats-json",

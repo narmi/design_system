@@ -1,10 +1,10 @@
-import PropTypes from "prop-types";
 import { VALID_ICON_NAMES } from "../icons/iconNames";
 import React from "react";
+import type { IconName } from "../types/Icon.types";
 
 export { VALID_ICON_NAMES };
 
-interface SidebarItemProps {
+export interface SidebarItemProps {
   /** Click callback, with event object passed as argument */
   onClick?: (event: React.MouseEvent) => void;
   /** Whether the tab is currently selected */
@@ -12,26 +12,13 @@ interface SidebarItemProps {
   /** Label for the tab */
   label: string;
   /** Name of Narmi icon to place at the start of the label */
-  startIcon?: string;
+  startIcon?: IconName;
   /** Name of Narmi icon to place at the end of the label */
-  endIcon?: string;
+  endIcon?: IconName;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const SidebarItem = (_props: SidebarItemProps) => <></>;
-
-SidebarItem.propTypes = {
-  /** Click callback, with event object passed as argument */
-  onClick: PropTypes.func,
-  /** Whether the tab is currently selected */
-  isActive: PropTypes.bool,
-  /** Label for the tab */
-  label: PropTypes.string.isRequired,
-  /** Name of Narmi icon to place at the start of the label */
-  startIcon: PropTypes.oneOf(VALID_ICON_NAMES),
-  /** Name of Narmi icon to place at the end of the label */
-  endIcon: PropTypes.oneOf(VALID_ICON_NAMES),
-};
 
 SidebarItem.displayName = "Sidebar.Item";
 

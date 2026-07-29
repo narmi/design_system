@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.18.0](https://github.com/narmi/design_system/compare/v6.17.7...v6.18.0) (2026-07-29)
+
+### ci
+
+* **typecheck:** add dedicated type checking job (#2190) ([a69685d](https://github.com/narmi/design_system/commit/a69685de3b61a531a9c1dfca3de95bf623879db0)), closes [#2190](https://github.com/narmi/design_system/issues/2190)
+
+### feat
+
+* **types:** export prop types from the package root (#2191) ([310a3db](https://github.com/narmi/design_system/commit/310a3db95fd97cefd40566e01e9b9c538c4ce272)), closes [#2191](https://github.com/narmi/design_system/issues/2191)
+
 ## [6.17.7](https://github.com/narmi/design_system/compare/v6.17.6...v6.17.7) (2026-07-29)
 
 ### fix

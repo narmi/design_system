@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { VALID_ICON_NAMES } from "src/icons/iconNames";
+import { VALID_ICON_NAMES } from "../icons/iconNames";
 import React from "react";
 
 export { VALID_ICON_NAMES };

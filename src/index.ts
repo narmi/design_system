@@ -28,6 +28,7 @@ import RadioButtons from "./RadioButtons";
 import ResponsiveFlex from "./ResponsiveFlex";
 import Row from "./Row";
 import SeparatorList from "./SeparatorList";
+import Sidebar from "./Sidebar";
 import Slider from "./Slider";
 import Snackbar from "./Snackbar";
 import Spinner from "./Spinner";
@@ -63,7 +64,6 @@ declare const MenuButton;
 declare const MultiSelect;
 declare const Popover;
 declare const Select;
-declare const Sidebar;
 declare const Tag; // ⚠️ DEPRECATED - Will be removed in a future release. Use `Chip` instead.
 declare const TextInput;
 declare const TokenInput;
@@ -125,6 +125,8 @@ export type {
 export type { RowProps } from "./Row";
 export type { RowItemProps } from "./Row/RowItem";
 export type { SeparatorListProps } from "./SeparatorList";
+export type { SidebarProps, SidebarItemElement } from "./Sidebar";
+export type { SidebarItemProps } from "./Sidebar/SidebarItem";
 export type { SliderProps } from "./Slider";
 export type { SnackbarProps } from "./Snackbar";
 export type { SpinnerProps } from "./Spinner";

@@ -65,7 +65,11 @@ const main = async () => {
   });
   const pluginContext = {
     warn: (message) => warnings.push(String(message)),
-    error: (message) => warnings.push(String(message)),
+    error: (message) => {
+      const err = new Error(String(message));
+      warnings.push(err.message);
+      throw err;
+    },
     getModuleInfo: () => null,
     meta: {},
   };

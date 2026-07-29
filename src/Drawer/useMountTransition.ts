@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
  */
 const useMountTransition = (
   isMounted: boolean,
-  unmountDelay: number
+  unmountDelay: number,
 ): boolean => {
   const [isTransitioning, setIsTransitioning] = useState(false);
 

@@ -15,11 +15,7 @@ interface ComboboxHeadingProps {
 }
 
 const ComboboxHeading = ({ text, kind = "bold" }: ComboboxHeadingProps) => (
-  <h5
-    className={`nds-combobox-list-heading--${kind}`}
-  >
-    {text}
-  </h5>
+  <h5 className={`nds-combobox-list-heading--${kind}`}>{text}</h5>
 );
 
 ComboboxHeading.displayName = "Combobox.Heading";

@@ -22,8 +22,8 @@ const formatDate = (date: Date, style: FormatDateStyle = "short"): string => {
   if (!validStyles.includes(style)) {
     throw new Error(
       `formatDate: invalid style argument. Must be one of: ${JSON.stringify(
-        validStyles
-      )}`
+        validStyles,
+      )}`,
     );
   }
 

@@ -6,7 +6,9 @@ interface ComboboxCategoryProps {
   children?: React.ReactNode;
 }
 
-const ComboboxCategory = ({ children }: ComboboxCategoryProps) => <>{children}</>;
+const ComboboxCategory = ({ children }: ComboboxCategoryProps) => (
+  <>{children}</>
+);
 
 ComboboxCategory.displayName = "Combobox.Category";
 

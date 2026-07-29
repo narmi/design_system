@@ -16,7 +16,12 @@ interface MenuButtonItemProps {
   endIcon?: string;
 }
 
-const MenuButtonItem = ({ label, startIcon, endIcon, onSelect }: MenuButtonItemProps) => <></>;
+const MenuButtonItem = ({
+  label,
+  startIcon,
+  endIcon,
+  onSelect,
+}: MenuButtonItemProps) => <></>;
 
 MenuButtonItem.propTypes = {
   /** Display label for menu item */

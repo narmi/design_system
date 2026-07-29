@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { COLOR_MODES } from "../tokens/constants";
 
 const ndsStyleTag = (
   <style>
@@ -12,6 +13,22 @@ const ndsStyleTag = (
 );
 
 export const NdsStyles = (Story, context) => {
+  const contrast = context.globals?.contrast;
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const { attribute } = COLOR_MODES.highContrast;
+
+    if (contrast === "more") {
+      root.setAttribute(attribute, COLOR_MODES.highContrast.value);
+    } else if (contrast === "standard") {
+      root.setAttribute(attribute, COLOR_MODES.standardContrast.value);
+    } else {
+      // "system" (or any unset/legacy value): follow the OS media query.
+      root.removeAttribute(attribute);
+    }
+  }, [contrast]);
+
   if (context.title?.startsWith("Issue Test Cases/")) {
     return (
       <>

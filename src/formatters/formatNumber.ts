@@ -26,7 +26,7 @@ const formatNumber = (
   input: string | number,
   style: FormatNumberStyle = "currency",
   signDisplay: FormatNumberSignDisplay = "auto",
-  showCents: boolean = true
+  showCents: boolean = true,
 ): string => {
   const number: number = parseFloat(input as string);
   const formatterOpts: Intl.NumberFormatOptions = {
@@ -39,8 +39,8 @@ const formatNumber = (
   if (!validStyles.includes(style)) {
     throw new Error(
       `formatNumber: invalid style argument. Must be one of: ${JSON.stringify(
-        validStyles
-      )}`
+        validStyles,
+      )}`,
     );
   }
 
@@ -53,8 +53,8 @@ const formatNumber = (
   if (!validSignDisplays.includes(signDisplay)) {
     throw new Error(
       `formatNumber: invalid signDisplay argument. Must be one of: ${JSON.stringify(
-        validSignDisplays
-      )}`
+        validSignDisplays,
+      )}`,
     );
   }
 

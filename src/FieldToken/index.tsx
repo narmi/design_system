@@ -61,7 +61,7 @@ const FieldToken = React.forwardRef<HTMLDivElement, FieldTokenProps>(
               onDismiss(label);
             }}
             onKeyUp={({ key }) => {
-              if (key === "Enter" || key == " ") {
+              if (key === "Enter" || key === " ") {
                 onDismiss(label);
               }
             }}

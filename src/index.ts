@@ -16,7 +16,9 @@ import Count from "./Count";
 import Dialog from "./Dialog";
 import DisabledShim from "./DisabledShim";
 import Error from "./Error";
+import DropdownTrigger from "./DropdownTrigger";
 import Field from "./Field";
+import FormSection from "./FormSection";
 import Pagination from "./Pagination";
 import ProgressBar from "./ProgressBar";
 import Radio from "./Radio";
@@ -39,6 +41,9 @@ import TruncatedAccount from "./TruncatedAccount";
 import useSupportsAnchorPositioning from "./hooks/useSupportsAnchorPositioning";
 import useBreakpoints from "./hooks/useBreakpoints";
 import useDropdownLayer from "./hooks/useDropdownLayer";
+import formatDate from "./formatters/formatDate";
+import useLockBodyScroll from "./hooks/useLockBodyScroll";
+import formatNumber from "./formatters/formatNumber";
 
 /**
  * Untyped Components
@@ -47,9 +52,7 @@ declare const CollapsibleCard;
 declare const Combobox;
 declare const DateInput;
 declare const Drawer;
-declare const DropdownTrigger;
 declare const FieldToken;
-declare const FormSection;
 declare const IconButton;
 declare const Input;
 declare const LoadingShim;
@@ -64,9 +67,6 @@ declare const TextInput;
 declare const TimelineEvent;
 declare const Toggle;
 declare const TokenInput;
-declare const useLockBodyScroll;
-declare const formatNumber;
-declare const formatDate;
 
 export * from "./types/Icon.types";
 export {

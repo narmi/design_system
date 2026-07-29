@@ -22,7 +22,7 @@ ErrorLine.propTypes = {
   marginTop: PropTypes.oneOf(["xxs", "xs", "s", "m", "l", "xl", "xxl", "none"]),
 };
 
-interface ErrorProps {
+export interface ErrorProps {
   /**
    * Error message(s) to display. Falsy values (including `null`) render
    * nothing, which lets callers pass nullable state directly.

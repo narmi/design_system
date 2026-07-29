@@ -69,6 +69,98 @@ declare const Toggle;
 declare const TokenInput;
 
 export * from "./types/Icon.types";
+
+/**
+ * Public types
+ *
+ * Prop types for every exported component, so consumers can name them when
+ * writing wrappers. `export type` is required here: `isolatedModules` is on.
+ *
+ * Components still in the untyped block above have no prop types to export
+ * yet; they land as each is converted.
+ */
+export type { AccordionProps } from "./Accordion";
+export type { AccordionSetProps } from "./AccordionSet";
+export type { AlertProps } from "./Alert";
+export type { AnchoredDialogProps } from "./AnchoredDialog";
+export type { AutocompleteModalProps } from "./AutocompleteModal";
+export type {
+  AutoCompleteProps,
+  AutoCompleteItem,
+} from "./AutocompleteModal/AutoComplete";
+export type { AvatarProps } from "./Avatar";
+export type { ButtonProps, ButtonKind } from "./Button";
+export type { CheckboxProps } from "./Checkbox";
+export type { ChipProps } from "./Chip";
+export type { ContentCardProps } from "./ContentCard";
+export type { ContextMenuProps } from "./ContextMenu";
+export type { ContextMenuItemProps } from "./ContextMenu/ContextMenuItem";
+export type { CountProps } from "./Count";
+export type { DialogProps } from "./Dialog";
+export type { DisabledShimProps } from "./DisabledShim";
+export type { DropdownTriggerProps } from "./DropdownTrigger";
+export type { ErrorProps } from "./Error";
+export type { FieldProps } from "./Field/types";
+export type { FieldTextProps } from "./Field/Text";
+export type { FieldMaskName } from "./Field/masks";
+export type { FieldTokenProps } from "./FieldToken";
+export type { FormSectionProps } from "./FormSection";
+export type { IconButtonProps, IconButtonKind } from "./IconButton";
+export type { LoadingShimProps } from "./LoadingShim";
+export type { LoadingSkeletonProps } from "./LoadingSkeleton";
+export type { PaginationProps } from "./Pagination";
+export type { ProgressBarProps } from "./ProgressBar";
+export type { RadioProps, RadioKind } from "./Radio";
+export type {
+  RadioButtonsProps,
+  RadioButtonsKind,
+  RadioButtonsLayouts,
+} from "./RadioButtons";
+export type {
+  ResponsiveFlexProps,
+  ResponsiveFlexSize,
+  ResponsiveFlexGap,
+  ResponsiveFlexDirection,
+} from "./ResponsiveFlex";
+export type { RowProps } from "./Row";
+export type { RowItemProps } from "./Row/RowItem";
+export type { SeparatorListProps } from "./SeparatorList";
+export type { SliderProps } from "./Slider";
+export type { SnackbarProps } from "./Snackbar";
+export type { SpinnerProps } from "./Spinner";
+export type { SplitButtonMenuProps } from "./SplitButton/SplitButtonMenu";
+export type { SplitButtonPopoverProps } from "./SplitButton/SplitButtonPopover";
+export type { TableProps, ColLayoutConfig } from "./Table";
+export type { CellProps as TableCellProps } from "./Table/Cell";
+export type { HeaderCellProps as TableHeaderCellProps } from "./Table/HeaderCell";
+export type { TableRowProps } from "./Table/Row";
+export type {
+  TableAutocompleteProps,
+  TableAutocompleteItem,
+} from "./TableAutocomplete";
+export type { TableAutocompleteItemProps } from "./TableAutocomplete/Item";
+export type { TableDateInputProps } from "./TableDateInput";
+export type { TableInputProps } from "./TableInput";
+export type { TableSelectProps, TableSelectItem } from "./TableSelect";
+export type { TableSelectItemProps } from "./TableSelect/Item";
+export type { TabsKind } from "./Tabs/context";
+export type { TabsListProps } from "./Tabs/TabsList";
+export type { TabsPanelProps } from "./Tabs/TabsPanel";
+export type { TabsTabProps } from "./Tabs/TabsTab";
+export type { TimelineEventProps, TimelineEventKind } from "./TimelineEvent";
+export type { TooltipProps } from "./Tooltip";
+export type { TruncatedAccountProps } from "./TruncatedAccount";
+export type { UseBreakpointsResult } from "./hooks/useBreakpoints";
+export type {
+  UseDropdownLayerResult,
+  UseDropdownLayerOptions,
+} from "./hooks/useDropdownLayer";
+export type { FormatDateStyle } from "./formatters/formatDate";
+export type {
+  FormatNumberStyle,
+  FormatNumberSignDisplay,
+} from "./formatters/formatNumber";
+
 export {
   Accordion,
   AccordionSet,

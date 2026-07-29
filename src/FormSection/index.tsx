@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Row from "../Row";
 
-interface FormSectionProps {
+export interface FormSectionProps {
   /** Title of form section */
   title?: string;
   /** Optional content rendered below the section heading */

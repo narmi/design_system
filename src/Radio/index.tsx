@@ -13,7 +13,7 @@ export type RadioKind =
   | "checkmark"
   | "rating";
 
-interface RadioProps {
+export interface RadioProps {
   /** The `name` attribute for radio input. Use this to group radio sets. */
   name: string;
   /** The `value attribute for the radio input */

@@ -5,7 +5,7 @@ import { usePagination } from "./usePagination";
 
 const noop = () => {};
 
-interface PaginationProps {
+export interface PaginationProps {
   /**
    * Total number of pages
    * If the number of pages is 1, pagination will not render

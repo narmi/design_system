@@ -3,7 +3,7 @@ import { useNumberFormatter, useSlider, VisuallyHidden } from "react-aria";
 import { useSliderState } from 'react-stately';
 import Thumbs from "./Thumbs";
 
-export interface Props {
+export interface SliderProps {
   /** Visually hidden label to describe the input */
   label: string;
   /** `name` attribute passed to the lower value input thumb */
@@ -30,7 +30,7 @@ export interface Props {
    */
   output?: string;
 }
-const Slider = (props: Props) => {
+const Slider = (props: SliderProps) => {
   const trackRef = useRef(null);
 
   const numberFormatter = useNumberFormatter(props.formatOptions);

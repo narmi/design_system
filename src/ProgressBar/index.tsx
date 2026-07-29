@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 import cc from "classcat";
 
-interface ProgressBarProps {
+export interface ProgressBarProps {
   /**
    * Int from 0 to 100
    */

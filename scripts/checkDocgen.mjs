@@ -44,8 +44,7 @@ const parseDocgenInfo = (code) =>
   });
 
 const main = async () => {
-  // `.storybook/main.ts` is CJS (the package is not `type: "module"`), so the
-  // default export may arrive wrapped depending on the interop path.
+  // Depending on module interop, the default export may arrive wrapped.
   const config = mainConfig.default ?? mainConfig;
   const { reactDocgen, reactDocgenTypescriptOptions } = config.typescript ?? {};
 

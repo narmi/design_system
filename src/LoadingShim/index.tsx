@@ -2,11 +2,27 @@ import React from "react";
 import PropTypes from "prop-types";
 import cc from "classcat";
 
+export interface LoadingShimProps {
+  /** Loadable content area - will render normally unless `isLoading` is true */
+  children?: React.ReactNode;
+  /** When `true`, the loading shim appears over child content */
+  isLoading?: boolean;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+  /** Size of the loading indicator */
+  size?: "s" | "l";
+}
+
 /**
  * Used to wrap a block of loadable content. When `isLoading` is set to true,
  * the content area will have an overlay and loading animation.
  */
-const LoadingShim = ({ isLoading = false, children, testId, size = "l" }) => (
+const LoadingShim = ({
+  isLoading = false,
+  children,
+  testId,
+  size = "l",
+}: LoadingShimProps) => (
   <div
     data-testid={testId || "nds-loadingshim"}
     aria-live="polite"
@@ -39,7 +55,7 @@ const LoadingShim = ({ isLoading = false, children, testId, size = "l" }) => (
 
 LoadingShim.propTypes = {
   /** Loadable content area - will render normally unless `isLoading` is true */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /** When `true`, the loading shim appears over child content */
   isLoading: PropTypes.bool,
   /** Optional value for `data-testid` attribute */

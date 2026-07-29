@@ -2,10 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import Row from "../Row";
 
+export interface FormSectionProps {
+  /** Title of form section */
+  title?: string;
+  /** Optional content rendered below the section heading */
+  children?: React.ReactNode;
+}
+
 /**
  * A sectioning element for forms that renders a label and line above the section
  */
-const FormSection = ({ title, children }) => (
+const FormSection = ({ title, children }: FormSectionProps) => (
   <div className="nds-formSection fontFamily--body">
     <Row alignItems="center" gapSize="xs">
       <Row.Item shrink>
@@ -40,8 +47,8 @@ const FormSection = ({ title, children }) => (
 
 FormSection.propTypes = {
   /** Title of form section */
-  title: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  title: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default FormSection;

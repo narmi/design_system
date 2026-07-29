@@ -7,21 +7,23 @@
  * formatDate(new Date('July 4, 2022'), 'short'); // '7/4/22'
  * formatDate(new Date('7/4/2022'), 'long');      // 'July 4, 2022'
  *
- * @param {Date} date native date object
- * @param {String} style formatting style (`short` or `long`)
- * @returns {String} date string formatted for display
+ * @param date native date object
+ * @param style formatting style (`short` or `long`)
+ * @returns date string formatted for display
  */
-const formatDate = (date, style = "short") => {
-  let formatterOpts = {
+export type FormatDateStyle = "short" | "long";
+
+const formatDate = (date: Date, style: FormatDateStyle = "short"): string => {
+  const formatterOpts: Intl.DateTimeFormatOptions = {
     dateStyle: style,
   };
 
-  const validStyles = ["short", "long"];
+  const validStyles: FormatDateStyle[] = ["short", "long"];
   if (!validStyles.includes(style)) {
     throw new Error(
       `formatDate: invalid style argument. Must be one of: ${JSON.stringify(
-        validStyles
-      )}`
+        validStyles,
+      )}`,
     );
   }
 

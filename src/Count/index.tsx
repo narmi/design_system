@@ -10,7 +10,7 @@ export const VALID_KINDS = [
   "neutral",
 ] as const;
 
-interface CountProps {
+export interface CountProps {
   /** Value to display in Count */
   value: number | string;
   /** Variant of Count */

@@ -1,6 +1,6 @@
 import React from "react";
 
-interface LoadingSkeletonProps {
+export interface LoadingSkeletonProps {
   /** Loadable content area - will render normally unless `isLoading` is true. */
   children?: React.ReactNode;
   /** When `true`, the child content is replaced by the skeleton imitation. */

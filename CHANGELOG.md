@@ -3,193 +3,249 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.18.1](https://github.com/narmi/design_system/compare/v6.18.0...v6.18.1) (2026-07-29)
+
+### fix
+
+- **types:** convert Toggle to TypeScript (#2193) ([84b6129](https://github.com/narmi/design_system/commit/84b6129949f1158872a784374b0be479066639a8)), closes [#2193](https://github.com/narmi/design_system/issues/2193)
+
+## [6.18.0](https://github.com/narmi/design_system/compare/v6.17.7...v6.18.0) (2026-07-29)
+
+### ci
+
+- **typecheck:** add dedicated type checking job (#2190) ([a69685d](https://github.com/narmi/design_system/commit/a69685de3b61a531a9c1dfca3de95bf623879db0)), closes [#2190](https://github.com/narmi/design_system/issues/2190)
+
+### feat
+
+- **types:** export prop types from the package root (#2191) ([310a3db](https://github.com/narmi/design_system/commit/310a3db95fd97cefd40566e01e9b9c538c4ce272)), closes [#2191](https://github.com/narmi/design_system/issues/2191)
+
+## [6.17.7](https://github.com/narmi/design_system/compare/v6.17.6...v6.17.7) (2026-07-29)
+
+### fix
+
+- **types:** export real types for 5 already-converted components (#2189) ([3cae43a](https://github.com/narmi/design_system/commit/3cae43a086fcf3432aa279082a699179f8e6a128)), closes [#2189](https://github.com/narmi/design_system/issues/2189)
+
+## [6.17.6](https://github.com/narmi/design_system/compare/v6.17.5...v6.17.6) (2026-07-29)
+
+### fix
+
+- **types:** make FormSection title and children optional (#2188) ([9208fb7](https://github.com/narmi/design_system/commit/9208fb7e60300e6ac95e023c5fce35d56d353328)), closes [#2188](https://github.com/narmi/design_system/issues/2188)
+
+### test
+
+- **Input:** add unit test coverage ahead of TS conversion (#2187) ([a6233f9](https://github.com/narmi/design_system/commit/a6233f94fdb3999893145c82afa986e950ad618e)), closes [#2187](https://github.com/narmi/design_system/issues/2187)
+
+## [6.17.5](https://github.com/narmi/design_system/compare/v6.17.4...v6.17.5) (2026-07-29)
+
+### fix
+
+- **types:** export real types for Error, and allow nullable error prop (#2178) ([66dbfa8](https://github.com/narmi/design_system/commit/66dbfa80416d2a070cc2be80129c3c1a288a48af)), closes [#2178](https://github.com/narmi/design_system/issues/2178)
+
+## [6.17.4](https://github.com/narmi/design_system/compare/v6.17.3...v6.17.4) (2026-07-29)
+
+### fix
+
+- **types:** export real types for DropdownTrigger (#2177) ([e91fdd4](https://github.com/narmi/design_system/commit/e91fdd4ee4daad21bc78d2e68561ebc2c8cca865)), closes [#2177](https://github.com/narmi/design_system/issues/2177)
+
+## [6.17.3](https://github.com/narmi/design_system/compare/v6.17.2...v6.17.3) (2026-07-29)
+
+### fix
+
+- **types:** export real types for formatDate (#2179) ([1c8b12a](https://github.com/narmi/design_system/commit/1c8b12aa2ac1333f48303a6f4ba728d01e86a990)), closes [#2179](https://github.com/narmi/design_system/issues/2179)
+
+## [6.17.2](https://github.com/narmi/design_system/compare/v6.17.1...v6.17.2) (2026-07-29)
+
+### fix
+
+- **types:** export real types for FormSection, useLockBodyScroll, formatNumber (#2176) ([aca6c9d](https://github.com/narmi/design_system/commit/aca6c9d65065517b07a415b1fde3aed569da0f8a)), closes [#2176](https://github.com/narmi/design_system/issues/2176)
+
 ## [6.17.1](https://github.com/narmi/design_system/compare/v6.17.0...v6.17.1) (2026-07-23)
 
 ### fix
 
-* **Pagination:** clamp selectedPage before computing arrow targets ([c820a9f](https://github.com/narmi/design_system/commit/c820a9f547f1395a7d6f2d24126bb24c46598511))
-* **Pagination:** don't emit out-of-range pages from arrows ([4477843](https://github.com/narmi/design_system/commit/44778439d884e52ab1dbbafb70026938dec847f6))
+- **Pagination:** clamp selectedPage before computing arrow targets ([c820a9f](https://github.com/narmi/design_system/commit/c820a9f547f1395a7d6f2d24126bb24c46598511))
+- **Pagination:** don't emit out-of-range pages from arrows ([4477843](https://github.com/narmi/design_system/commit/44778439d884e52ab1dbbafb70026938dec847f6))
 
 ### test
 
-* **Pagination:** cover arrow bounds at first/last page ([693179e](https://github.com/narmi/design_system/commit/693179e80d6d24c2d40799b8611f18631272f621))
+- **Pagination:** cover arrow bounds at first/last page ([693179e](https://github.com/narmi/design_system/commit/693179e80d6d24c2d40799b8611f18631272f621))
 
 ## [6.17.0](https://github.com/narmi/design_system/compare/v6.16.10...v6.17.0) (2026-07-17)
 
 ### feat
 
-* **Table:** add scroll behavior and pinning ([d50c41a](https://github.com/narmi/design_system/commit/d50c41a35c957181f1469c30b3b4def6e039617b))
+- **Table:** add scroll behavior and pinning ([d50c41a](https://github.com/narmi/design_system/commit/d50c41a35c957181f1469c30b3b4def6e039617b))
 
 ## [6.16.10](https://github.com/narmi/design_system/compare/v6.16.9...v6.16.10) (2026-07-14)
 
 ### fix
 
-* prevent immutable object mutation in release.config.js transform ([41c2931](https://github.com/narmi/design_system/commit/41c29317d5029d78b49d6f9aee2e7361476b334f))
-* **Select,Combobox:** restore forced maxedWidth on dropdowns without breaking mobile ([43d8b6f](https://github.com/narmi/design_system/commit/43d8b6fcb797a960d42ed97f827500426e59d7e1))
-* split comma-separated icon aliases into individual names ([7cf88de](https://github.com/narmi/design_system/commit/7cf88de712206494f4195c08241d812adaacc685))
-* update ignore script ([eb37803](https://github.com/narmi/design_system/commit/eb37803f691c79de892ea7edde44116067203ffc))
+- prevent immutable object mutation in release.config.js transform ([41c2931](https://github.com/narmi/design_system/commit/41c29317d5029d78b49d6f9aee2e7361476b334f))
+- **Select,Combobox:** restore forced maxedWidth on dropdowns without breaking mobile ([43d8b6f](https://github.com/narmi/design_system/commit/43d8b6fcb797a960d42ed97f827500426e59d7e1))
+- split comma-separated icon aliases into individual names ([7cf88de](https://github.com/narmi/design_system/commit/7cf88de712206494f4195c08241d812adaacc685))
+- update ignore script ([eb37803](https://github.com/narmi/design_system/commit/eb37803f691c79de892ea7edde44116067203ffc))
 
 ### perf
 
-* Do not bundle selection.json ([a851665](https://github.com/narmi/design_system/commit/a85166551077fa81be9526066856ff3eb2d9b573))
+- Do not bundle selection.json ([a851665](https://github.com/narmi/design_system/commit/a85166551077fa81be9526066856ff3eb2d9b573))
 
 ## [6.16.9](https://github.com/narmi/design_system/compare/v6.16.8...v6.16.9) (2026-07-09)
 
 ### fix
 
-* **Dialog:** only listen for Escape while open (#2148) ([](https://github.com/narmi/design_system/commit/1896b68e2f78bcd0e6a062341c44cbe1b8938916)), closes [#2148](https://github.com/narmi/design_system/issues/2148)
+- **Dialog:** only listen for Escape while open (#2148) ([](https://github.com/narmi/design_system/commit/1896b68e2f78bcd0e6a062341c44cbe1b8938916)), closes [#2148](https://github.com/narmi/design_system/issues/2148)
 
 ## [6.16.8](https://github.com/narmi/design_system/compare/v6.16.7...v6.16.8) (2026-07-09)
 
 ### fix
 
-* **Drawer:** give panel a stable id via useId ([](https://github.com/narmi/design_system/commit/cc1e5b793c290c02db269d25a304b32c3fa2f272))
+- **Drawer:** give panel a stable id via useId ([](https://github.com/narmi/design_system/commit/cc1e5b793c290c02db269d25a304b32c3fa2f272))
 
 ## [6.16.7](https://github.com/narmi/design_system/compare/v6.16.6...v6.16.7) (2026-07-09)
 
 ### fix
 
-* **Tooltip:** fix block axis tooltip arrow position ([](https://github.com/narmi/design_system/commit/99a318f6693aebbc34b3042f0226fa1454098bfd))
+- **Tooltip:** fix block axis tooltip arrow position ([](https://github.com/narmi/design_system/commit/99a318f6693aebbc34b3042f0226fa1454098bfd))
 
 ## [6.16.6](https://github.com/narmi/design_system/compare/v6.16.5...v6.16.6) (2026-07-08)
 
 ### ci
 
-* build dist explicitly before storybook in github-pages workflow ([](https://github.com/narmi/design_system/commit/ba1d661c6a3de13897606e259e4640fb431036fb))
-* install dependencies with --ignore-scripts in all workflows ([](https://github.com/narmi/design_system/commit/3c3f06dda740e85f1fab6432493aa9f5daacf990))
-* pin license-checker and ignore scripts in its npx install ([](https://github.com/narmi/design_system/commit/a06086422de44bc4a8cbba9d9b45390418bc9611))
+- build dist explicitly before storybook in github-pages workflow ([](https://github.com/narmi/design_system/commit/ba1d661c6a3de13897606e259e4640fb431036fb))
+- install dependencies with --ignore-scripts in all workflows ([](https://github.com/narmi/design_system/commit/3c3f06dda740e85f1fab6432493aa9f5daacf990))
+- pin license-checker and ignore scripts in its npx install ([](https://github.com/narmi/design_system/commit/a06086422de44bc4a8cbba9d9b45390418bc9611))
 
 ### fix
 
-* **Chip:** use theme primary border for secondary chip ([](https://github.com/narmi/design_system/commit/e85fdb131f054bc93305b6c9980b20a380ab60c0))
+- **Chip:** use theme primary border for secondary chip ([](https://github.com/narmi/design_system/commit/e85fdb131f054bc93305b6c9980b20a380ab60c0))
 
 ## [6.16.5](https://github.com/narmi/design_system/compare/v6.16.4...v6.16.5) (2026-07-07)
 
 ### ci
 
-* **npm:** Add min release age to npm ([](https://github.com/narmi/design_system/commit/5970fd837f23efd9c0928c3c564a0a79fbddc696))
-* read node version from .nvmrc in all workflows ([](https://github.com/narmi/design_system/commit/5eabdbe24854b70e44b3e46c01cee63c5580fa3c))
+- **npm:** Add min release age to npm ([](https://github.com/narmi/design_system/commit/5970fd837f23efd9c0928c3c564a0a79fbddc696))
+- read node version from .nvmrc in all workflows ([](https://github.com/narmi/design_system/commit/5eabdbe24854b70e44b3e46c01cee63c5580fa3c))
 
 ### docs
 
-* **TextInput:** correct required default in prop docs ([](https://github.com/narmi/design_system/commit/bf74b6371d7f10b4dada862b7d354c90a71b3d5c))
-* fix stale README peer deps; remove outdated deprecations.json ([](https://github.com/narmi/design_system/commit/c0b5b079ad88669c704957e2f545d225065acbeb))
+- **TextInput:** correct required default in prop docs ([](https://github.com/narmi/design_system/commit/bf74b6371d7f10b4dada862b7d354c90a71b3d5c))
+- fix stale README peer deps; remove outdated deprecations.json ([](https://github.com/narmi/design_system/commit/c0b5b079ad88669c704957e2f545d225065acbeb))
 
 ### fix
 
-* **deps:** move eslint-plugin-json to devDependencies ([](https://github.com/narmi/design_system/commit/5c6d69e72c1a7a4a6f16283ecaffa0d59d000f6f))
-* **TextInput,DateInput:** prevent required attr on optional inputs ([](https://github.com/narmi/design_system/commit/545ee6ecee6b4210de8dbf5f8df10ee4091547b7))
+- **deps:** move eslint-plugin-json to devDependencies ([](https://github.com/narmi/design_system/commit/5c6d69e72c1a7a4a6f16283ecaffa0d59d000f6f))
+- **TextInput,DateInput:** prevent required attr on optional inputs ([](https://github.com/narmi/design_system/commit/545ee6ecee6b4210de8dbf5f8df10ee4091547b7))
 
 ## [6.16.4](https://github.com/narmi/design_system/compare/v6.16.3...v6.16.4) (2026-06-26)
 
 ### fix
 
-* **AnchoredDialog:** remove problematic unsetting in placeholder ([](https://github.com/narmi/design_system/commit/7a71b3cb8ec2cbc85579ced213c1987c2805b95c))
+- **AnchoredDialog:** remove problematic unsetting in placeholder ([](https://github.com/narmi/design_system/commit/7a71b3cb8ec2cbc85579ced213c1987c2805b95c))
 
 ## [6.16.3](https://github.com/narmi/design_system/compare/v6.16.2...v6.16.3) (2026-06-21)
 
 ### fix
 
-* **TextInput:** only show char counter on focus or error ([](https://github.com/narmi/design_system/commit/5885ed1b557320093d1af6521615895d856a1204))
+- **TextInput:** only show char counter on focus or error ([](https://github.com/narmi/design_system/commit/5885ed1b557320093d1af6521615895d856a1204))
 
 ## [6.16.2](https://github.com/narmi/design_system/compare/v6.16.1...v6.16.2) (2026-06-18)
 
 ### fix
 
-* **Tooltip:** portal tooltip always ([](https://github.com/narmi/design_system/commit/5438e648cb87a90c6a9082236f9c1313e5d13984))
-* **Tooltip:** render dropdown layer in document.body portal ([](https://github.com/narmi/design_system/commit/b44018402a4d5d912deda2d152fc5f28c087ebb8))
+- **Tooltip:** portal tooltip always ([](https://github.com/narmi/design_system/commit/5438e648cb87a90c6a9082236f9c1313e5d13984))
+- **Tooltip:** render dropdown layer in document.body portal ([](https://github.com/narmi/design_system/commit/b44018402a4d5d912deda2d152fc5f28c087ebb8))
 
 ## [6.16.1](https://github.com/narmi/design_system/compare/v6.16.0...v6.16.1) (2026-06-18)
 
 ### docs
 
-* **issues:** add story with input in isolation ([](https://github.com/narmi/design_system/commit/22529346e882fa067f630c13619fdd1a651c4a4a))
-* add test cases dev-only dir ([](https://github.com/narmi/design_system/commit/3040aad0e21b520ae9243fa3b046741be2d6b192))
+- **issues:** add story with input in isolation ([](https://github.com/narmi/design_system/commit/22529346e882fa067f630c13619fdd1a651c4a4a))
+- add test cases dev-only dir ([](https://github.com/narmi/design_system/commit/3040aad0e21b520ae9243fa3b046741be2d6b192))
 
 ### fix
 
-* correct grammar in mock option string in Combobox util.js ([](https://github.com/narmi/design_system/commit/371420299e598998a159aa3188bda8d9ef11c3b0))
-* **Select,Combobox:** match width at mobile sizes ([](https://github.com/narmi/design_system/commit/424330b256000042687093af7abb4d422f110319))
-* **Combobox:** prevent input overflow issue in AO mobile web ([](https://github.com/narmi/design_system/commit/25c3d1d2575ea2ab05135db64205a3e02f72e03b))
+- correct grammar in mock option string in Combobox util.js ([](https://github.com/narmi/design_system/commit/371420299e598998a159aa3188bda8d9ef11c3b0))
+- **Select,Combobox:** match width at mobile sizes ([](https://github.com/narmi/design_system/commit/424330b256000042687093af7abb4d422f110319))
+- **Combobox:** prevent input overflow issue in AO mobile web ([](https://github.com/narmi/design_system/commit/25c3d1d2575ea2ab05135db64205a3e02f72e03b))
 
 ### test
 
-* globally mock matchMedia ([](https://github.com/narmi/design_system/commit/f8344d83d2cffba2f5b55d6f4d52feff2e1d4225))
-* revert combobox test data ([](https://github.com/narmi/design_system/commit/6ab5142a577b7bbccd951948b69a39c2313c3b5a))
+- globally mock matchMedia ([](https://github.com/narmi/design_system/commit/f8344d83d2cffba2f5b55d6f4d52feff2e1d4225))
+- revert combobox test data ([](https://github.com/narmi/design_system/commit/6ab5142a577b7bbccd951948b69a39c2313c3b5a))
 
 ## [6.16.0](https://github.com/narmi/design_system/compare/v6.15.0...v6.16.0) (2026-06-15)
 
 ### feat
 
-* **icons:** add new user admin icon to match nds icon style ([](https://github.com/narmi/design_system/commit/2f0f3fea2d8186e9f06d103187eadaae4eccc4b4))
+- **icons:** add new user admin icon to match nds icon style ([](https://github.com/narmi/design_system/commit/2f0f3fea2d8186e9f06d103187eadaae4eccc4b4))
 
 ## [6.15.0](https://github.com/narmi/design_system/compare/v6.14.0...v6.15.0) (2026-06-10)
 
 ### feat
 
-* **Button,SplitButton:** add isFullWidth option ([](https://github.com/narmi/design_system/commit/3fe1aa35ca53ed1fece8f38f750a15f84df627b0))
+- **Button,SplitButton:** add isFullWidth option ([](https://github.com/narmi/design_system/commit/3fe1aa35ca53ed1fece8f38f750a15f84df627b0))
 
 ### fix
 
-* **Select,Combobox:** force JS polyfill when in scroll containers ([](https://github.com/narmi/design_system/commit/f2544e6981a84028963509af80ea027868bb64d3))
+- **Select,Combobox:** force JS polyfill when in scroll containers ([](https://github.com/narmi/design_system/commit/f2544e6981a84028963509af80ea027868bb64d3))
 
 ## [6.14.0](https://github.com/narmi/design_system/compare/v6.13.3...v6.14.0) (2026-06-09)
 
 ### feat
 
-* **Button,SplitButton:** add isFullWidth option ([](https://github.com/narmi/design_system/commit/ea9aa5379e6767625e19df072829677098b2e4fa))
+- **Button,SplitButton:** add isFullWidth option ([](https://github.com/narmi/design_system/commit/ea9aa5379e6767625e19df072829677098b2e4fa))
 
 ## [6.13.3](https://github.com/narmi/design_system/compare/v6.13.2...v6.13.3) (2026-06-08)
 
 ### fix
 
-* **Select:** improve text wrapping on category labels ([](https://github.com/narmi/design_system/commit/bc5fb9eeb0836f8ac28525f17b55238dbace6673))
+- **Select:** improve text wrapping on category labels ([](https://github.com/narmi/design_system/commit/bc5fb9eeb0836f8ac28525f17b55238dbace6673))
 
 ## [6.13.2](https://github.com/narmi/design_system/compare/v6.13.1...v6.13.2) (2026-06-02)
 
 ### fix
 
-* **TabsList:** guard missing ref in right arrow handler ([](https://github.com/narmi/design_system/commit/aacf6fb04cae2c75743b07c3099a513ba8b29b83))
-* **Tabs:** update segmented controls for NDS-2808 patches ([](https://github.com/narmi/design_system/commit/737fd9b38f3ed4770fc48b85a3a1e9afbaec009b))
+- **TabsList:** guard missing ref in right arrow handler ([](https://github.com/narmi/design_system/commit/aacf6fb04cae2c75743b07c3099a513ba8b29b83))
+- **Tabs:** update segmented controls for NDS-2808 patches ([](https://github.com/narmi/design_system/commit/737fd9b38f3ed4770fc48b85a3a1e9afbaec009b))
 
 ## [6.13.1](https://github.com/narmi/design_system/compare/v6.13.0...v6.13.1) (2026-05-29)
 
 ### fix
 
-* **TableSelect:** correct font color (NDS-2699) ([](https://github.com/narmi/design_system/commit/9fabdc0d1a57b045c48805c704853e793d5399ae))
-* **TableAutocomplete:** make popover scrollable (NDS-2741) ([](https://github.com/narmi/design_system/commit/260791f18a9c8e9285b0099b651f99344e3c036b))
-* **MenuButton:** prevent popover from inheriting hostile styles ([](https://github.com/narmi/design_system/commit/abb1ef92eeb34dfa9ba5c0103535e0e90d2c575b))
+- **TableSelect:** correct font color (NDS-2699) ([](https://github.com/narmi/design_system/commit/9fabdc0d1a57b045c48805c704853e793d5399ae))
+- **TableAutocomplete:** make popover scrollable (NDS-2741) ([](https://github.com/narmi/design_system/commit/260791f18a9c8e9285b0099b651f99344e3c036b))
+- **MenuButton:** prevent popover from inheriting hostile styles ([](https://github.com/narmi/design_system/commit/abb1ef92eeb34dfa9ba5c0103535e0e90d2c575b))
 
 ## [6.13.0](https://github.com/narmi/design_system/compare/v6.12.5...v6.13.0) (2026-05-28)
 
 ### feat
 
-* **Tabs:** add 'segmented' kind; fade overflow edges ([](https://github.com/narmi/design_system/commit/9864f83c3a2c4ffd324456bdd368141d41dc8da6))
-* **Chip:** add isLabelVisible prop ([](https://github.com/narmi/design_system/commit/1d25f2b4083115595bff6c2c50a379d7cf3c6c7e))
-* **Tabs:** modernize scroll listeners for performance ([](https://github.com/narmi/design_system/commit/451c3d9b6886b4c3e37b8d699a699e0b954321c1))
+- **Tabs:** add 'segmented' kind; fade overflow edges ([](https://github.com/narmi/design_system/commit/9864f83c3a2c4ffd324456bdd368141d41dc8da6))
+- **Chip:** add isLabelVisible prop ([](https://github.com/narmi/design_system/commit/1d25f2b4083115595bff6c2c50a379d7cf3c6c7e))
+- **Tabs:** modernize scroll listeners for performance ([](https://github.com/narmi/design_system/commit/451c3d9b6886b4c3e37b8d699a699e0b954321c1))
 
 ### fix
 
-* add aria-label="new updates" to status indicator SVG ([](https://github.com/narmi/design_system/commit/99026ab294e51e54085beef85c8445037b221026))
-* **Tabs:** add fallback for older browsers ([](https://github.com/narmi/design_system/commit/e87c8615ba81924a4634dcf7ee5db22baf59a52f))
-* **AnchoredDialog:** alignment parity with react-laag ([](https://github.com/narmi/design_system/commit/a58dbd4c6a609dbfc5d0a443f868e333414694f7))
-* **typography:** all but h3 should use heading family ([](https://github.com/narmi/design_system/commit/128da04a5165fb5d52123ed1e332c1827ab196b5))
-* **Checkbox:** avoid sanitizing target attr in links ([](https://github.com/narmi/design_system/commit/e8dd279e1734abec1e33a2a97f2c6dd2a7118cb1))
-* **useDropdownLayer:** export for consumer use ([](https://github.com/narmi/design_system/commit/315f5319e2b10930f728bff5b84acfe520d7d32d))
-* **AnchoredDialog:** keep popup ARIA attributes on trigger element ([](https://github.com/narmi/design_system/commit/2d5a4df2bfcc7c44c52ec2de45ba722118f5cb83))
-* move example wrapper to decorators ([](https://github.com/narmi/design_system/commit/c61e1600fb7a52e38890cf89848e5358e1501897))
-* **tokens:** restore primary font color ([](https://github.com/narmi/design_system/commit/35f37f2fa09b891548b4227154b202a9f9ed6723))
-* restore selected tabs class for compatibility ([](https://github.com/narmi/design_system/commit/f45c940bcf40760c7f347427fe38d25b59f88a80))
-* **AnchoredDialog:** use dedicated element for hook ref ([](https://github.com/narmi/design_system/commit/e4b78fe8009ba247fac809c77dc1cabacc645f4e))
-* **Radio,Checkbox:** use higher contrast color for faux input ([](https://github.com/narmi/design_system/commit/b12976b38bc56e60499fb8b6b33ebeaec8b59a52))
+- add aria-label="new updates" to status indicator SVG ([](https://github.com/narmi/design_system/commit/99026ab294e51e54085beef85c8445037b221026))
+- **Tabs:** add fallback for older browsers ([](https://github.com/narmi/design_system/commit/e87c8615ba81924a4634dcf7ee5db22baf59a52f))
+- **AnchoredDialog:** alignment parity with react-laag ([](https://github.com/narmi/design_system/commit/a58dbd4c6a609dbfc5d0a443f868e333414694f7))
+- **typography:** all but h3 should use heading family ([](https://github.com/narmi/design_system/commit/128da04a5165fb5d52123ed1e332c1827ab196b5))
+- **Checkbox:** avoid sanitizing target attr in links ([](https://github.com/narmi/design_system/commit/e8dd279e1734abec1e33a2a97f2c6dd2a7118cb1))
+- **useDropdownLayer:** export for consumer use ([](https://github.com/narmi/design_system/commit/315f5319e2b10930f728bff5b84acfe520d7d32d))
+- **AnchoredDialog:** keep popup ARIA attributes on trigger element ([](https://github.com/narmi/design_system/commit/2d5a4df2bfcc7c44c52ec2de45ba722118f5cb83))
+- move example wrapper to decorators ([](https://github.com/narmi/design_system/commit/c61e1600fb7a52e38890cf89848e5358e1501897))
+- **tokens:** restore primary font color ([](https://github.com/narmi/design_system/commit/35f37f2fa09b891548b4227154b202a9f9ed6723))
+- restore selected tabs class for compatibility ([](https://github.com/narmi/design_system/commit/f45c940bcf40760c7f347427fe38d25b59f88a80))
+- **AnchoredDialog:** use dedicated element for hook ref ([](https://github.com/narmi/design_system/commit/e4b78fe8009ba247fac809c77dc1cabacc645f4e))
+- **Radio,Checkbox:** use higher contrast color for faux input ([](https://github.com/narmi/design_system/commit/b12976b38bc56e60499fb8b6b33ebeaec8b59a52))
 
 ### perf
 
-* **Tabs:** cache layout reads to avoid jank on scroll ([](https://github.com/narmi/design_system/commit/33677324435c0912d8dec7f7e6d58fa5e738dbf4))
+- **Tabs:** cache layout reads to avoid jank on scroll ([](https://github.com/narmi/design_system/commit/33677324435c0912d8dec7f7e6d58fa5e738dbf4))
 
 ### test
 
-* update tests for button attrs in tabs ([](https://github.com/narmi/design_system/commit/627f93e2c9c0fee5ae9667983e5b49453f9a5875))
+- update tests for button attrs in tabs ([](https://github.com/narmi/design_system/commit/627f93e2c9c0fee5ae9667983e5b49453f9a5875))
 
 ## [6.12.5](https://github.com/narmi/design_system/compare/v6.12.4...v6.12.5) (2026-05-26)
 

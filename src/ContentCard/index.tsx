@@ -1,10 +1,10 @@
 import cc from "classcat";
 import React from "react";
 
-import Error from "../Error";
+import ErrorMessage from "../Error";
 import DisabledShim from "../DisabledShim";
 
-interface ContentCardProps {
+export interface ContentCardProps {
   /** Accepts any content as children */
   children: React.ReactNode;
   /**
@@ -128,7 +128,7 @@ const ContentCard = ({
       ) : (
         cardContent
       )}
-      {error && <Error error={error} marginTop="s" />}
+      {error && <ErrorMessage error={error} marginTop="s" />}
     </>
   );
 };

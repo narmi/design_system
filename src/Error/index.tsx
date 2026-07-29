@@ -1,7 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ErrorLine = ({ errorLine, marginTop = "xxs" }) => {
+type MarginTop = "xxs" | "xs" | "s" | "m" | "l" | "xl" | "xxl" | "none";
+
+interface ErrorLineProps {
+  errorLine?: string | null;
+  marginTop?: MarginTop;
+}
+
+const ErrorLine = ({ errorLine, marginTop = "xxs" }: ErrorLineProps) => {
   if (!errorLine) return null;
   return (
     <div className={`nds-input-error margin--top--${marginTop}`}>
@@ -15,7 +22,16 @@ ErrorLine.propTypes = {
   marginTop: PropTypes.oneOf(["xxs", "xs", "s", "m", "l", "xl", "xxl", "none"]),
 };
 
-const Error = ({ error, marginTop = "xxs" }) => {
+export interface ErrorProps {
+  /**
+   * Error message(s) to display. Falsy values (including `null`) render
+   * nothing, which lets callers pass nullable state directly.
+   */
+  error?: string | string[] | null;
+  marginTop?: MarginTop;
+}
+
+const Error = ({ error, marginTop = "xxs" }: ErrorProps) => {
   if (!error) return null;
   if (Array.isArray(error)) {
     return (

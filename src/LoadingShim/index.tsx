@@ -26,7 +26,7 @@ const LoadingShim = ({
   <div
     data-testid={testId || "nds-loadingshim"}
     aria-live="polite"
-    aria-busy={isLoading.toString()}
+    aria-busy={isLoading}
     style={{ position: "relative" }}
   >
     {isLoading && (

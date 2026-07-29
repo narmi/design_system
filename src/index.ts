@@ -41,6 +41,7 @@ import TableInput from "./TableInput";
 import TableSelect from "./TableSelect";
 import Tabs from "./Tabs";
 import TimelineEvent from "./TimelineEvent";
+import Toggle from "./Toggle";
 import Tooltip from "./Tooltip";
 import TruncatedAccount from "./TruncatedAccount";
 import useSupportsAnchorPositioning from "./hooks/useSupportsAnchorPositioning";
@@ -65,7 +66,6 @@ declare const Select;
 declare const Sidebar;
 declare const Tag; // ⚠️ DEPRECATED - Will be removed in a future release. Use `Chip` instead.
 declare const TextInput;
-declare const Toggle;
 declare const TokenInput;
 
 export * from "./types/Icon.types";
@@ -148,6 +148,7 @@ export type { TabsListProps } from "./Tabs/TabsList";
 export type { TabsPanelProps } from "./Tabs/TabsPanel";
 export type { TabsTabProps } from "./Tabs/TabsTab";
 export type { TimelineEventProps, TimelineEventKind } from "./TimelineEvent";
+export type { ToggleProps } from "./Toggle";
 export type { TooltipProps } from "./Tooltip";
 export type { TruncatedAccountProps } from "./TruncatedAccount";
 export type { UseBreakpointsResult } from "./hooks/useBreakpoints";

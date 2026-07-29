@@ -16,7 +16,7 @@ export type RadioKind =
 export interface RadioProps {
   /** The `name` attribute for radio input. Use this to group radio sets. */
   name: string;
-  /** The `value attribute for the radio input */
+  /** The `value` attribute for the radio input */
   value: string;
   /** Custom label for the Radio input*/
   children: React.ReactNode | string;

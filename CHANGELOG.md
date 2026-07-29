@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.2](https://github.com/narmi/design_system/compare/v6.19.1...v6.19.2) (2026-07-29)
+
+### fix
+
+* **ContentCard:** use typeof to correctly check type of onClick ([d075909](https://github.com/narmi/design_system/commit/d07590923f022e8b4e62710ce68f5c29a02dad5e))
+
+### refactor
+
+* **components:** align component styles with 'ink' tokens ([94d2e3c](https://github.com/narmi/design_system/commit/94d2e3c2a47e7e30f9d2d1cb7aeb45f0aa535221))
+
 ## [6.19.1](https://github.com/narmi/design_system/compare/v6.19.0...v6.19.1) (2026-07-29)
 
 ### fix

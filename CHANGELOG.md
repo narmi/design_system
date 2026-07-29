@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.3](https://github.com/narmi/design_system/compare/v6.19.2...v6.19.3) (2026-07-29)
+
+### fix
+
+* **storybook:** restore docgen for TypeScript components (#2197) ([6e73668](https://github.com/narmi/design_system/commit/6e7366864fb5d572af3ed71d8b48a861d08b6e70)), closes [#2197](https://github.com/narmi/design_system/issues/2197)
+
 ## [6.19.2](https://github.com/narmi/design_system/compare/v6.19.1...v6.19.2) (2026-07-29)
 
 ### fix

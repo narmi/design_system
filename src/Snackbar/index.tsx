@@ -52,7 +52,7 @@ export interface SnackbarProps {
   /** Content of the snackbar */
   children?: React.ReactNode;
   /** When `true`, the snackbar is rendered */
-  isActive: boolean;
+  isActive?: boolean;
 }
 
 /**

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.17.2](https://github.com/narmi/design_system/compare/v6.17.1...v6.17.2) (2026-07-29)
+
+### fix
+
+* **types:** export real types for FormSection, useLockBodyScroll, formatNumber (#2176) ([aca6c9d](https://github.com/narmi/design_system/commit/aca6c9d65065517b07a415b1fde3aed569da0f8a)), closes [#2176](https://github.com/narmi/design_system/issues/2176)
+
 ## [6.17.1](https://github.com/narmi/design_system/compare/v6.17.0...v6.17.1) (2026-07-23)
 
 ### fix

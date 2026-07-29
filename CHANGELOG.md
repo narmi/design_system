@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.18.2](https://github.com/narmi/design_system/compare/v6.18.1...v6.18.2) (2026-07-29)
+
+### fix
+
+* **types:** convert Sidebar to TypeScript (#2192) ([ab19547](https://github.com/narmi/design_system/commit/ab19547ed35fc225455e699a859c173d58365bbb)), closes [#2192](https://github.com/narmi/design_system/issues/2192)
+
 ## [6.18.1](https://github.com/narmi/design_system/compare/v6.18.0...v6.18.1) (2026-07-29)
 
 ### fix

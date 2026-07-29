@@ -1,11 +1,54 @@
 import React from "react";
-import PropTypes from "prop-types";
 import cc from "classcat";
 import Row from "../Row";
 import IconButton from "../IconButton";
 import DisabledShim from "../DisabledShim";
 
 const noop = () => {};
+
+export type CollapsibleCardTrigger = "header" | "caret-start" | "caret-end";
+export type CollapsibleCardKind = "ai" | "default";
+export type CollapsibleCardRadiusSize = "s" | "m" | "l";
+
+export interface CollapsibleCardProps {
+  /** Accepts any content as children */
+  children: React.ReactNode;
+  /** Card title */
+  title?: string;
+  /** Card subtitle */
+  subtitle?: string;
+  /** Card status text, placed on the right side of the title container. Can be a JSX fragment. */
+  statusText?: React.ReactNode;
+  /** Controls whether card is opened */
+  isOpen: boolean;
+  /** Callback to handle user opening card */
+  onOpen?: () => void;
+  /** Callback to handle user closing card */
+  onClose?: () => void;
+  /** Disabled cards are greyed out and do not open */
+  isDisabled?: boolean;
+  /** Callback to handle user clicking on disabled card */
+  onDisabledClick?: () => void;
+  /** Displays a red border on the card. Does not interfere with user interactions */
+  hasError?: boolean;
+  /** Disable hover. Useful for cards that are always open */
+  disableHover?: boolean;
+  /** Controls which element is used as the open/close trigger */
+  trigger?: CollapsibleCardTrigger;
+  /**
+   * User-defined render prop that returns JSX.
+   * Called with `(isOpen)` arg you may use for conditional rendering in your custom title JSX.
+   */
+  renderTitle?: (isOpen: boolean) => React.ReactNode;
+  /**
+   * Amount of border radius to add on all sides of card.
+   */
+  radiusSize?: CollapsibleCardRadiusSize;
+  /**
+   * Visual variant of the Collapsible card.
+   */
+  kind?: CollapsibleCardKind;
+}
 
 const CollapsibleCard = ({
   title,
@@ -23,10 +66,13 @@ const CollapsibleCard = ({
   children,
   radiusSize = "l",
   kind = "default",
-}) => {
+}: CollapsibleCardProps) => {
   const [hover, setHover] = React.useState(false);
 
-  const onTitleContainerClick = (disabled = false, action) => {
+  const onTitleContainerClick = (
+    disabled = false,
+    action?: "open" | "close",
+  ) => {
     if (disabled) {
       onDisabledClick();
       return;
@@ -67,7 +113,7 @@ const CollapsibleCard = ({
         onClick={onCaretClick}
         name={`chevron-${isOpen ? "up" : "down"}`}
         textSize="l"
-        onKeyUp={({ key }) => {
+        onKeyUp={({ key }: React.KeyboardEvent) => {
           if (key === "Enter") onCaretClick();
         }}
       />
@@ -153,7 +199,7 @@ const CollapsibleCard = ({
     "bgColor--white",
   ]);
 
-  const headerTriggerProps =
+  const headerTriggerProps: React.HTMLAttributes<HTMLDivElement> =
     trigger === "header"
       ? {
           role: "button",
@@ -195,49 +241,6 @@ const CollapsibleCard = ({
       )}
     </div>
   );
-};
-
-CollapsibleCard.propTypes = {
-  /** Accepts any content as children */
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]).isRequired,
-  /** Card title */
-  title: PropTypes.string,
-  /** Card subtitle */
-  subtitle: PropTypes.string,
-  /** Card status text, placed on the right side of the title container. Can be a JSX fragment. */
-  statusText: PropTypes.node,
-  /** Controls whether card is opened */
-  isOpen: PropTypes.bool.isRequired,
-  /** Callback to handle user opening card */
-  onOpen: PropTypes.func,
-  /** Callback to handle user closing card */
-  onClose: PropTypes.func,
-  /** Disabled cards are greyed out and do not open */
-  isDisabled: PropTypes.bool,
-  /** Callback to handle user clicking on disabled card */
-  onDisabledClick: PropTypes.func,
-  /** Displays a red border on the card. Does not interfere with user interactions */
-  hasError: PropTypes.bool,
-  /** Disable hover. Useful for cards that are always open */
-  disableHover: PropTypes.bool,
-  /** Controls which element is used as the open/close trigger */
-  trigger: PropTypes.oneOf(["header", "caret-start", "caret-end"]),
-  /**
-   * User-defined render prop that returns JSX.
-   * Called with `(isOpen)` arg you may use for conditional rendering in your custom title JSX.
-   */
-  renderTitle: PropTypes.func,
-  /**
-   * Amount of border radius to add on all sides of card.
-   */
-  radiusSize: PropTypes.oneOf(["s", "m", "l"]),
-  /**
-   * Visual variant of the Collapsible card.
-   */
-  kind: PropTypes.oneOf(["ai", "default"]),
 };
 
 export default CollapsibleCard;

@@ -14,6 +14,7 @@ import Chip from "./Chip";
 import CollapsibleCard from "./CollapsibleCard";
 import ContextMenu from "./ContextMenu";
 import Count from "./Count";
+import DateInput from "./DateInput";
 import Dialog from "./Dialog";
 import DisabledShim from "./DisabledShim";
 import Error from "./Error";
@@ -59,7 +60,6 @@ import formatNumber from "./formatters/formatNumber";
  * Untyped Components
  */
 declare const Combobox;
-declare const DateInput;
 declare const Drawer;
 declare const MenuButton;
 declare const MultiSelect;
@@ -102,6 +102,7 @@ export type { ContentCardProps } from "./ContentCard";
 export type { ContextMenuProps } from "./ContextMenu";
 export type { ContextMenuItemProps } from "./ContextMenu/ContextMenuItem";
 export type { CountProps } from "./Count";
+export type { DateInputProps } from "./DateInput";
 export type { DialogProps } from "./Dialog";
 export type { DisabledShimProps } from "./DisabledShim";
 export type { DropdownTriggerProps } from "./DropdownTrigger";

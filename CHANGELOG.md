@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.4](https://github.com/narmi/design_system/compare/v6.19.3...v6.19.4) (2026-07-30)
+
+### fix
+
+* correct PropTypes declarations that raised warnings (#2146) ([cd805f6](https://github.com/narmi/design_system/commit/cd805f65267f108df87fcdf4c24a860e284e4064)), closes [#2146](https://github.com/narmi/design_system/issues/2146)
+
 ## [6.19.3](https://github.com/narmi/design_system/compare/v6.19.2...v6.19.3) (2026-07-29)
 
 ### fix

@@ -38,7 +38,6 @@ const Input = ({
   style,
   renderError = true,
   children,
-  ...props
 }) => {
   const className = [
     "nds-input",

@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
-import React from "react";
-import PropTypes from "prop-types";
+import React, { ReactNode } from "react";
 import Error from "../Error";
 import IconButton from "../IconButton";
 
@@ -12,6 +11,33 @@ If `icon` is provided, the value of the icon property must match an available ic
 By default, if neither `multiline` nor `icon` are provided, an overhanging label will be shown in the input.
 
 */
+
+export interface InputProps {
+  id?: string;
+  label?: string;
+  /** full `narmi-icon-<shape>` className for icon at start of input */
+  startIconClass?: string;
+  /** full `narmi-icon-<shape>` className for icon at end of input */
+  endIconClass?: string;
+  /** arbitrary JSX to place at the start of the input */
+  startContent?: ReactNode;
+  /** arbitrary JSX to place at the end of the input */
+  endContent?: ReactNode;
+  /** arbitrary JSX to place at the end of the subtitle/error */
+  tailContent?: ReactNode;
+  showClearButton?: boolean;
+  clearInput?: (event: React.MouseEvent) => void;
+  decoration?: ReactNode;
+  multiline?: boolean;
+  disabled?: boolean;
+  search?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
+  style?: React.CSSProperties;
+  error?: string | string[] | null;
+  /** Gives consumers control over where to render the error when `false` */
+  renderError?: boolean;
+  children?: ReactNode;
+}
 
 /**
  * PRIVATE
@@ -38,7 +64,7 @@ const Input = ({
   style,
   renderError = true,
   children,
-}) => {
+}: InputProps) => {
   const className = [
     "nds-input",
     disabled ? "disabled" : "",
@@ -89,36 +115,6 @@ const Input = ({
       </div>
     </div>
   );
-};
-
-Input.propTypes = {
-  id: PropTypes.string,
-  label: PropTypes.string,
-  /** full `narmi-icon-<shape>` className for icon at start of input */
-  startIconClass: PropTypes.string,
-  /** full `narmi-icon-<shape>` className for icon at end of input */
-  endIconClass: PropTypes.string,
-  /** arbitrary JSX to place at the start of the input */
-  startContent: PropTypes.node,
-  /** arbitrary JSX to place at the end of the input */
-  endContent: PropTypes.node,
-  /** arbitrary JSX to place at the end of the subtitle/error */
-  tailContent: PropTypes.node,
-  showClearButton: PropTypes.bool,
-  clearInput: PropTypes.func,
-  decoration: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
-  multiline: PropTypes.bool,
-  disabled: PropTypes.bool,
-  search: PropTypes.bool,
-  onClick: PropTypes.func,
-  style: PropTypes.object,
-  error: PropTypes.string,
-  /** Gives consumers control over where to render the error when `false` */
-  renderError: PropTypes.bool,
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
 };
 
 export default Input;

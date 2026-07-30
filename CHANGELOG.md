@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.6](https://github.com/narmi/design_system/compare/v6.19.5...v6.19.6) (2026-07-30)
+
+### fix
+
+* **TableInput:** apply border in high contrast mode ([36a0d53](https://github.com/narmi/design_system/commit/36a0d53b2202f96e1b7f9475b3a4cb6c44dcf01e))
+
 ## [6.19.5](https://github.com/narmi/design_system/compare/v6.19.4...v6.19.5) (2026-07-30)
 
 ### fix

@@ -40,6 +40,31 @@ $breakpoints: (
 }
 
 /**
+ * Conditionally apply styles if user prefers higher contrast
+ *
+ * @usage
+ * .nds-card {
+ *   border: 1px solid var(--border-color-default);
+ *
+ *   @include contrastMore {
+ *     border-color: #000;
+ *     background: #fff;
+ *   }
+ * }
+ */
+@mixin contrastMore {
+  @media (prefers-contrast: more) {
+    :root:not([data-prefers-contrast="less"]) & {
+      @content;
+    }
+  }
+
+  [data-prefers-contrast="more"] & {
+    @content;
+  }
+}
+
+/**
 * Placeholder: Visually hide the selected element
 *
 * selector {
@@ -163,6 +188,10 @@ $breakpoints: (
   // The 1px of border should always be present, so the
   // input doesn't "bounce" the layout 2px on focus
   border: 1px solid transparent !important;
+
+  @include contrastMore {
+    border-color: var(--border-color-light) !important;
+  }
 
   input {
     text-overflow: ellipsis;

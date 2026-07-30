@@ -47,6 +47,7 @@ import Tabs from "./Tabs";
 import TextInput from "./TextInput";
 import TimelineEvent from "./TimelineEvent";
 import Toggle from "./Toggle";
+import TokenInput from "./TokenInput";
 import Tooltip from "./Tooltip";
 import TruncatedAccount from "./TruncatedAccount";
 import useSupportsAnchorPositioning from "./hooks/useSupportsAnchorPositioning";
@@ -66,7 +67,6 @@ declare const MultiSelect;
 declare const Popover;
 declare const Select;
 declare const Tag; // ⚠️ DEPRECATED - Will be removed in a future release. Use `Chip` instead.
-declare const TokenInput;
 
 export * from "./types/Icon.types";
 
@@ -160,6 +160,7 @@ export type { TabsPanelProps } from "./Tabs/TabsPanel";
 export type { TabsTabProps } from "./Tabs/TabsTab";
 export type { TimelineEventProps, TimelineEventKind } from "./TimelineEvent";
 export type { ToggleProps } from "./Toggle";
+export type { TokenInputProps } from "./TokenInput";
 export type { TooltipProps } from "./Tooltip";
 export type { TruncatedAccountProps } from "./TruncatedAccount";
 export type { UseBreakpointsResult } from "./hooks/useBreakpoints";

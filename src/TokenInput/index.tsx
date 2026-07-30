@@ -4,19 +4,45 @@
 // Keyboard navigation tabs through the tokens and input as expected.
 
 import React, { useRef } from "react";
-import PropTypes from "prop-types";
 import FieldToken from "../FieldToken";
-import TextInput from "../TextInput";
+import TextInput, { type TextInputProps } from "../TextInput";
 
 const noop = () => {};
 const MIN_TOKEN_LENGTH = 1; // assume anything less than 2 is an accident
 const INPUT_RESET_EVENT = { target: { value: "" } };
 
 // take value of input with leading and trailing delimiters removed
-export const createToken = (inputValue, delimiter) =>
+export const createToken = (inputValue: string, delimiter: string) =>
   inputValue
     .trim()
     .replace(new RegExp(`^[${delimiter}]+|[${delimiter}]+$`, "g"), "");
+
+export interface TokenInputProps
+  extends Omit<TextInputProps, "onChange" | "value"> {
+  /**
+   * Name of input that holds the submission value.
+   * This should be the name of the field in the submitted form.
+   */
+  fieldName: string;
+  /**
+   * Value for the input with the given `name` prop.
+   * This should be the value of the field in the submitted form.
+   */
+  fieldValue: string;
+  /** Input change callback */
+  onInputChange?: (event: { target: { value: string } }) => void;
+  /** Value of input element */
+  inputValue?: string;
+  /**
+   * Called with the list of selected tokens
+   * as the argument when user updates tokens list
+   */
+  onTokensChange?: (tokens: string[]) => void;
+  /** List of selected tokens by name */
+  tokens?: string[];
+  /** Delimiter users can enter to tokenize text */
+  delimiter?: string;
+}
 
 /**
  * `TokenInput` is a **fully controlled** component used to show a list of "tokens"
@@ -33,10 +59,10 @@ const TokenInput = ({
   delimiter = ",",
   disabled = false,
   ...otherProps
-}) => {
-  const inputRef = useRef(null);
+}: TokenInputProps) => {
+  const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
-  const handleKeyUp = (e) => {
+  const handleKeyUp = (e: React.KeyboardEvent) => {
     const { key } = e;
     if ([delimiter, "Enter"].includes(key)) {
       e.stopPropagation();
@@ -49,7 +75,7 @@ const TokenInput = ({
     }
   };
 
-  const handleTokenDismiss = (token) => {
+  const handleTokenDismiss = (token: string) => {
     const newTokens = new Set(tokens);
     newTokens.delete(token);
     onTokensChange([...newTokens]);
@@ -63,7 +89,7 @@ const TokenInput = ({
   // The actual input element may wrap or shrink as tokens are added.
   // This handler allows users to click any whitespace in the visual input
   // box to focus the input element.
-  const handleBoxClick = (e) => {
+  const handleBoxClick = (e: React.MouseEvent) => {
     if (inputRef?.current) {
       e.stopPropagation();
       inputRef.current.focus();
@@ -101,38 +127,6 @@ const TokenInput = ({
       />
     </fieldset>
   );
-};
-
-TokenInput.propTypes = {
-  /** Label for input */
-  label: PropTypes.string.isRequired,
-  /**
-   * Name of input that holds the submission value.
-   * This should be the name of the field in the submitted form.
-   */
-  fieldName: PropTypes.string.isRequired,
-  /**
-   * Value for the input with the given `name` prop.
-   * This should be the value of the field in the submitted form.
-   */
-  fieldValue: PropTypes.string.isRequired,
-  /** Input change callback */
-  onInputChange: PropTypes.func,
-  /** Value of input element */
-  inputValue: PropTypes.string,
-  /** Is the input disabled? */
-  disabled: PropTypes.bool,
-  /**
-   * Called with the list of selected tokens
-   * as the argument when user updates tokens list
-   */
-  onTokensChange: PropTypes.func,
-  /** List of selected tokens by name */
-  tokens: PropTypes.arrayOf(PropTypes.string),
-  /** enables a multiline text input */
-  isMultiline: PropTypes.bool,
-  /** Delimiter users can enter to tokenize text */
-  delimiter: PropTypes.string,
 };
 
 export default TokenInput;

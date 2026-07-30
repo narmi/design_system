@@ -12,8 +12,12 @@ export interface TextInputProps
     React.InputHTMLAttributes<TextInputElement>,
     "onChange" | "onBlur" | "type" | "value" | "defaultValue"
   > {
-  /** Label used as input placeholder _and_ floating label */
-  label: string;
+  /**
+   * Label used as input placeholder _and_ floating label.
+   * Also wired to `aria-label` — when omitted, provide an accessible
+   * name some other way (e.g. `aria-label` or `aria-labelledby`).
+   */
+  label?: string;
   /**
    * Callback invoked with event object on input change.
    * Typed as a union of single-element handlers (rather than one handler

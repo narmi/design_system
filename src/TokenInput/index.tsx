@@ -18,7 +18,9 @@ export const createToken = (inputValue: string, delimiter: string) =>
     .replace(new RegExp(`^[${delimiter}]+|[${delimiter}]+$`, "g"), "");
 
 export interface TokenInputProps
-  extends Omit<TextInputProps, "onChange" | "value"> {
+  extends Omit<TextInputProps, "onChange" | "value" | "label"> {
+  /** Label for input; also rendered as the fieldset legend */
+  label: string;
   /**
    * Name of input that holds the submission value.
    * This should be the name of the field in the submitted form.

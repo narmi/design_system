@@ -49,6 +49,8 @@ export interface TextInputProps
   endContent?: ReactNode;
   /** Display an X at the end of label that clears input and calls onChange on click. */
   showClearButton?: boolean;
+  /** Applies search styling to the input box (forwarded to the base Input) */
+  search?: boolean;
   /** When false, the consumer can take full control over where the error renders */
   renderError?: boolean;
   /** Text of error message to display under the input */

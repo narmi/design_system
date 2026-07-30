@@ -14,14 +14,23 @@ export interface TextInputProps
   > {
   /** Label used as input placeholder _and_ floating label */
   label: string;
-  /** Callback invoked with event object on input change */
-  onChange?: (event: React.ChangeEvent<TextInputElement>) => void;
+  /**
+   * Callback invoked with event object on input change.
+   * Typed as a union of single-element handlers (rather than one handler
+   * taking `input | textarea`) so consumer handlers written against a
+   * plain `HTMLInputElement` event type-check under strictFunctionTypes.
+   */
+  onChange?:
+    | React.ChangeEventHandler<HTMLInputElement>
+    | React.ChangeEventHandler<HTMLTextAreaElement>;
   /** Callback invoked with event object on input blur */
-  onBlur?: (event: React.FocusEvent<TextInputElement>) => void;
+  onBlur?:
+    | React.FocusEventHandler<HTMLInputElement>
+    | React.FocusEventHandler<HTMLTextAreaElement>;
   /** Sets the controlled value of the input */
-  value?: string;
+  value?: string | number;
   /** Sets the [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) value of the input */
-  defaultValue?: string;
+  defaultValue?: string | number;
   /** When true, the input is displayed as an auto-growing textarea */
   multiline?: boolean;
   /** function that formats the input value on blur */
@@ -39,7 +48,7 @@ export interface TextInputProps
   /** When false, the consumer can take full control over where the error renders */
   renderError?: boolean;
   /** Text of error message to display under the input */
-  error?: string | string[];
+  error?: string | string[] | null;
   /** Maximum number of characters allowed in the input */
   maxLength?: number;
   /** Optional value for `data-testid` attribute */
@@ -84,18 +93,20 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
     } = props;
 
     const [inputValue, setInputValue] = useState(
-      defaultValue ? defaultValue : "",
+      defaultValue ? String(defaultValue) : "",
     );
 
     function _onBlur(e: React.FocusEvent<TextInputElement>) {
       if (onBlur) {
-        onBlur(e);
+        // union-of-handlers is only invocable with the event intersection;
+        // both members accept every event the element actually produces
+        (onBlur as (event: React.FocusEvent<TextInputElement>) => void)(e);
       }
       setInputValue(formatter(e.target.value));
     }
     function _onChange(e: React.ChangeEvent<TextInputElement>) {
       if (onChange) {
-        onChange(e);
+        (onChange as (event: React.ChangeEvent<TextInputElement>) => void)(e);
       }
       setInputValue(e.target.value);
     }
@@ -106,7 +117,7 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
       setInputValue("");
     }
 
-    const charCount = (nativeElementProps?.value || inputValue).length;
+    const charCount = String(nativeElementProps?.value || inputValue).length;
     const showCharacterCounter = maxLength;
     const characterCounter = showCharacterCounter ? (
       <div className="nds-input-character-counter">

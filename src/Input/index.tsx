@@ -31,7 +31,7 @@ export interface InputProps {
   multiline?: boolean;
   disabled?: boolean;
   search?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
+  onClick?: (event: React.MouseEvent) => void;
   style?: React.CSSProperties;
   error?: string | string[] | null;
   /** Gives consumers control over where to render the error when `false` */

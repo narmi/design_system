@@ -102,8 +102,8 @@ const CollapsibleCard = ({
         "collapsible-card-trigger",
         "alignChild--center--center",
         {
-          "padding--left": trigger == "caret-start",
-          "padding--right--l": trigger == "caret-end",
+          "padding--left": trigger === "caret-start",
+          "padding--right--l": trigger === "caret-end",
         },
       ])}
     >

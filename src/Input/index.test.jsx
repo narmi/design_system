@@ -53,19 +53,6 @@ describe("Input", () => {
     expect(getRoot(container)).toHaveClass(className);
   });
 
-  /**
-   * NOTE: documents a pre-existing bug rather than desired behavior.
-   *
-   * `Input` destructures `multiline` out of props, then checks
-   * `props.multiline` when building the root className. That is always
-   * `undefined`, so the "multiline" class has never actually been emitted.
-   * There is no bare `.multiline` CSS selector, so nothing depends on it.
-   */
-  it("does NOT apply a `multiline` class to the root (known dead code)", () => {
-    const { container } = render(<Input multiline />);
-    expect(getRoot(container)).not.toHaveClass("multiline");
-  });
-
   it("renders the error message by default", () => {
     render(<Input error="Something broke" />);
     expect(screen.getByText("Something broke")).toBeInTheDocument();

@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.5](https://github.com/narmi/design_system/compare/v6.19.4...v6.19.5) (2026-07-30)
+
+### fix
+
+* **Input:** apply multiline class from destructured prop (#2147) ([38c0b2a](https://github.com/narmi/design_system/commit/38c0b2a5dda0e9131a2d0e5b6423b8426f23c2a4)), closes [#2147](https://github.com/narmi/design_system/issues/2147)
+
+## [6.19.4](https://github.com/narmi/design_system/compare/v6.19.3...v6.19.4) (2026-07-30)
+
+### fix
+
+* correct PropTypes declarations that raised warnings (#2146) ([cd805f6](https://github.com/narmi/design_system/commit/cd805f65267f108df87fcdf4c24a860e284e4064)), closes [#2146](https://github.com/narmi/design_system/issues/2146)
+
+## [6.19.3](https://github.com/narmi/design_system/compare/v6.19.2...v6.19.3) (2026-07-29)
+
+### fix
+
+* **storybook:** restore docgen for TypeScript components (#2197) ([6e73668](https://github.com/narmi/design_system/commit/6e7366864fb5d572af3ed71d8b48a861d08b6e70)), closes [#2197](https://github.com/narmi/design_system/issues/2197)
+
+## [6.19.2](https://github.com/narmi/design_system/compare/v6.19.1...v6.19.2) (2026-07-29)
+
+### fix
+
+* **ContentCard:** use typeof to correctly check type of onClick ([d075909](https://github.com/narmi/design_system/commit/d07590923f022e8b4e62710ce68f5c29a02dad5e))
+
+### refactor
+
+* **components:** align component styles with 'ink' tokens ([94d2e3c](https://github.com/narmi/design_system/commit/94d2e3c2a47e7e30f9d2d1cb7aeb45f0aa535221))
+
 ## [6.19.1](https://github.com/narmi/design_system/compare/v6.19.0...v6.19.1) (2026-07-29)
 
 ### fix

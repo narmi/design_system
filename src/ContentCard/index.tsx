@@ -141,7 +141,7 @@ ContentCard.propTypes = {
       (kind) => kind === props.kind,
     );
     // must be a function
-    if (isInteractive && typeof props[propName] != "function") {
+    if (isInteractive && typeof props[propName] !== "function") {
       return new Error("ContentCard: `onClick` must be a function");
     }
     // onClick required for interactive types
@@ -151,7 +151,7 @@ ContentCard.propTypes = {
       );
     }
     // onClick invalid for non-interactive types
-    if (props[propName] == "function" && !isInteractive) {
+    if (typeof props[propName] === "function" && !isInteractive) {
       return new Error(
         "ContentCard: `onClick` is only valid for `toggle` and `button` types",
       );

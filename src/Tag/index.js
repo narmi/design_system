@@ -30,7 +30,7 @@ const Tag = ({
           tabIndex={0}
           onClick={onDismiss}
           onKeyUp={({ key }) => {
-            if (key === "Enter" || key == " ") {
+            if (key === "Enter" || key === " ") {
               onDismiss();
             }
           }}

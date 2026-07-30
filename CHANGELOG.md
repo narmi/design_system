@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.5](https://github.com/narmi/design_system/compare/v6.19.4...v6.19.5) (2026-07-30)
+
+### fix
+
+* **Input:** apply multiline class from destructured prop (#2147) ([38c0b2a](https://github.com/narmi/design_system/commit/38c0b2a5dda0e9131a2d0e5b6423b8426f23c2a4)), closes [#2147](https://github.com/narmi/design_system/issues/2147)
+
 ## [6.19.4](https://github.com/narmi/design_system/compare/v6.19.3...v6.19.4) (2026-07-30)
 
 ### fix

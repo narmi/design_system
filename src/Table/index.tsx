@@ -144,7 +144,7 @@ const Table = ({
           },
         ])}
         /**
-         * We apply a CSS value for grid-tempalte-columns on the root
+         * We apply a CSS value for grid-template-columns on the root
          * of this table component, so the grid column tracks may be
          * shared among all rows via `subgrid`.
          */

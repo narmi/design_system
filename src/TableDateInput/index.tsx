@@ -29,7 +29,7 @@ export interface TableDateInputProps {
   testId?: string;
   /** When true, appends the calendar popup to the parent of the input instead to document body */
   disablePortal?: boolean;
-  /** Whether the input has an errorj */
+  /** Whether the input has an error */
   hasError?: boolean;
 }
 

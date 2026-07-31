@@ -5,7 +5,15 @@
  * `semantic-release` runs with the following configuration via the `release.yml` github action.
  */
 const config = {
-  branches: ["main"],
+  branches: [
+    {
+      name: "maintenance/+([0-9]).+([0-9]).x",
+      channel: "${name.replace(/^maintenance\\//g, '')}",
+      range: "${name.replace(/^maintenance\\//g, '')}",
+    },
+    "main",
+    "maintenance/+([0-9]).+([0-9]).x",
+  ],
   plugins: [
     [
       "@semantic-release/commit-analyzer",

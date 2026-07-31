@@ -160,7 +160,7 @@ const TableSelect = React.forwardRef<HTMLInputElement, TableSelectProps>(
             isOpen={isOpen}
             hasError={hasError}
             disabled={isDisabled}
-            // The easist way to ensure consistent height is to always have one char rendering.
+            // The easiest way to ensure consistent height is to always have one char rendering.
             // We allow the text size to determine sizing for all table fields.
             renderDisplayValue={
               selectedItem

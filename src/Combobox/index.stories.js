@@ -419,7 +419,7 @@ export const ScrollingBehavior = () => {
   );
 };
 
-export const ClearingSelctionWithAction = () => {
+export const ClearingSelectionWithAction = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
   return (

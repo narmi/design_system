@@ -36,7 +36,7 @@ Props for event handlers should always include an `on` prefix:
 +onSelect
 ```
 
-Use auxillary verb prefixes for boolean props:
+Use auxiliary verb prefixes for boolean props:
 
 ```diff
 -selected

@@ -32,7 +32,7 @@ const Row = ({ children, onRowClick }: TableRowProps) => {
     >
       {/**
        * Render children in the order `Row` received them, but inject a
-       * `_colIndex` prop so `Cell` can access its visibilty configuration.
+       * `_colIndex` prop so `Cell` can access its visibility configuration.
        */}
       {React.Children.toArray(children).map((child, i) => {
         if (React.isValidElement(child)) {

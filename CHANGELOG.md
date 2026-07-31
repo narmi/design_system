@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.8](https://github.com/narmi/design_system/compare/v6.19.7...v6.19.8) (2026-07-31)
+
+### fix
+
+* **helper-classes:** emit real properties from directional --none spacing utilities (#2202) ([64c78de](https://github.com/narmi/design_system/commit/64c78de3db4c3028215d1e799b1a3fb20cb2e1f2)), closes [#2202](https://github.com/narmi/design_system/issues/2202)
+
+### refactor
+
+* **DropdownTrigger:** migrate to TypeScript (#2200) ([b8d46ba](https://github.com/narmi/design_system/commit/b8d46ba8af843468758961b677e5f97a21b9fd06)), closes [#2200](https://github.com/narmi/design_system/issues/2200)
+
 ## [6.19.7](https://github.com/narmi/design_system/compare/v6.19.6...v6.19.7) (2026-07-31)
 
 ### fix

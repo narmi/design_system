@@ -4,8 +4,8 @@
  * Detection strategy:
  * 1. CSS.supports() checks for property/value support (fast path).
  * 2. A separate exported constant `HAS_SCROLL_CONTAINER_BUG` runs a runtime
- *    test to detect Safari's broken anchor-size/position-try-fallbacks inside
- *    scroll containers. Components opt into this check via
+ *    test to detect Safari's broken anchor sizing and placement inside scroll
+ *    containers. Components opt into this check via
  *    `polyfillScrollBug: true` on useDropdownLayer.
  *
  * Both checks run once at module load and are cached.
@@ -29,11 +29,23 @@ const cssChecksPass = (): boolean => {
  * Runtime check for Safari's specific scroll container bug.
  *
  * Creates 3 hidden elements (scroll container + anchor + positioned layer),
- * measures the layer width, and cleans up. If the layer doesn't match the
- * anchor's 100px width, the browser has the bug.
+ * measures the anchor and layer, and cleans up. If the layer doesn't match the
+ * anchor's width and position, the browser has the bug.
  *
  * Only called when cssChecksPass() is true (browser claims support).
  */
+export const isAnchorLayoutValid = (
+  anchorRect: Pick<DOMRect, "width" | "left" | "bottom">,
+  layerRect: Pick<DOMRect, "width" | "left" | "top">,
+): boolean => {
+  const tolerance = 1;
+  return (
+    Math.abs(layerRect.width - anchorRect.width) <= tolerance &&
+    Math.abs(layerRect.left - anchorRect.left) <= tolerance &&
+    Math.abs(layerRect.top - anchorRect.bottom) <= tolerance
+  );
+};
+
 const detectScrollContainerBug = (): boolean => {
   if (typeof document === "undefined") return false;
 
@@ -50,10 +62,11 @@ const detectScrollContainerBug = (): boolean => {
 
   container.append(anchor, layer);
   document.body.appendChild(container);
-  const layerWidth = layer.getBoundingClientRect().width;
+  const anchorRect = anchor.getBoundingClientRect();
+  const layerRect = layer.getBoundingClientRect();
   document.body.removeChild(container);
 
-  return layerWidth !== 100;
+  return !isAnchorLayoutValid(anchorRect, layerRect);
 };
 
 /** Whether the browser supports CSS anchor positioning (CSS checks only). */

@@ -120,7 +120,7 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
       setInputValue(e.target.value);
     }
     // The clear button fires a MouseEvent, which is forwarded to the
-    // consumer's onChange as-is (pre-TS behavior, kept for compatibility)
+    // consumer's onChange as-is
     function _onClearInput(e: React.MouseEvent) {
       _onChange(e as unknown as React.ChangeEvent<TextInputElement>);
       setInputValue("");

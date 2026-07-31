@@ -10,7 +10,10 @@ type TextInputElement = HTMLInputElement | HTMLTextAreaElement;
 export interface TextInputProps
   extends Omit<
     React.InputHTMLAttributes<TextInputElement>,
-    "onChange" | "onBlur" | "type" | "value" | "defaultValue"
+    // children: TextInput renders its own input element; stray children
+    // would fall through the rest spread onto it (a React error on
+    // <textarea> with a value)
+    "onChange" | "onBlur" | "type" | "value" | "defaultValue" | "children"
   > {
   /**
    * Label used as input placeholder _and_ floating label.

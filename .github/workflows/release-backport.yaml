@@ -64,17 +64,18 @@ jobs:
 
       # The checkout-maintenance-branch action switches the working tree to
       # the maintenance branch, whose tree may predate .github/actions/*.
-      # Reference the actions repo-qualified so they resolve from main
-      # instead of the (switched) working tree.
+      # Reference the actions repo-qualified so they resolve from the pinned
+      # main commit instead of the (switched) working tree.
+      # NOTE: bump these pins when editing .github/actions/*.
       - name: Checkout maintenance branch
         id: branch
-        uses: narmi/design_system/.github/actions/checkout-maintenance-branch@main
+        uses: narmi/design_system/.github/actions/checkout-maintenance-branch@b8d46ba8af843468758961b677e5f97a21b9fd06 # main
         with:
           target_version: ${{ inputs.target_version }}
 
       - name: Cherry-pick
         id: cherry_pick
-        uses: narmi/design_system/.github/actions/cherry-pick@main
+        uses: narmi/design_system/.github/actions/cherry-pick@b8d46ba8af843468758961b677e5f97a21b9fd06 # main
         with:
           merge_sha: ${{ steps.resolve.outputs.merge_sha }}
           branch: ${{ steps.branch.outputs.branch }}
@@ -93,7 +94,7 @@ jobs:
 
       - name: Create conflict PR
         if: steps.cherry_pick.outputs.result == 'conflict'
-        uses: narmi/design_system/.github/actions/create-conflict-pr@main
+        uses: narmi/design_system/.github/actions/create-conflict-pr@b8d46ba8af843468758961b677e5f97a21b9fd06 # main
         with:
           merge_sha: ${{ steps.resolve.outputs.merge_sha }}
           branch: ${{ steps.branch.outputs.branch }}

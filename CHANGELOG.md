@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.9](https://github.com/narmi/design_system/compare/v6.19.8...v6.19.9) (2026-07-31)
+
+### fix
+
+* **ci:** resolve backport actions from main, not the switched working tree (#2204) ([04b7b58](https://github.com/narmi/design_system/commit/04b7b5811bc782c53eb8b85af8ed06c944abdb8e)), closes [#2204](https://github.com/narmi/design_system/issues/2204)
+
 ## [6.19.8](https://github.com/narmi/design_system/compare/v6.19.7...v6.19.8) (2026-07-31)
 
 ### fix

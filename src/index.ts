@@ -42,6 +42,7 @@ import TableDateInput from "./TableDateInput";
 import TableInput from "./TableInput";
 import TableSelect from "./TableSelect";
 import Tabs from "./Tabs";
+import Tag from "./Tag"; // ⚠️ DEPRECATED - Will be removed in a future release. Use `Chip` instead.
 import TimelineEvent from "./TimelineEvent";
 import Toggle from "./Toggle";
 import Tooltip from "./Tooltip";
@@ -64,7 +65,6 @@ declare const MenuButton;
 declare const MultiSelect;
 declare const Popover;
 declare const Select;
-declare const Tag; // ⚠️ DEPRECATED - Will be removed in a future release. Use `Chip` instead.
 declare const TextInput;
 declare const TokenInput;
 
@@ -155,6 +155,7 @@ export type { TabsKind } from "./Tabs/context";
 export type { TabsListProps } from "./Tabs/TabsList";
 export type { TabsPanelProps } from "./Tabs/TabsPanel";
 export type { TabsTabProps } from "./Tabs/TabsTab";
+export type { TagProps } from "./Tag";
 export type { TimelineEventProps, TimelineEventKind } from "./TimelineEvent";
 export type { ToggleProps } from "./Toggle";
 export type { TooltipProps } from "./Tooltip";

@@ -1,11 +1,59 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import React, { useState, useEffect, useCallback } from "react";
 import cc from "classcat";
-import PropTypes from "prop-types";
 import FocusLock from "react-focus-lock";
 import useDropdownLayer from "../hooks/useDropdownLayer";
+import type { Placement } from "../hooks/useDropdownLayer";
 
 const noop = () => {};
+
+export interface PopoverProps {
+  /** Content of popover */
+  content: React.ReactNode;
+  /**
+   * The root node of JSX passed into Tooltip as children will act as the tooltip trigger
+   *
+   * @deprecated use `renderTrigger` instead.
+   */
+  children?: React.ReactNode;
+  /**
+   * Render function for a custom trigger aware of the open state of the Popover.
+   * Called with `(isOpen) => {}`, the state of the Popover.
+   */
+  renderTrigger?: (isOpen?: boolean) => React.ReactNode;
+  /** Sets preferred side of the trigger the tooltip should appear */
+  side?: Placement;
+  /** CSS `display` value for the element that wraps the Tooltip children */
+  wrapperDisplay?: "inline-flex" | "inline-block" | "inline" | "block" | "flex";
+  /** When `true`, the Popover container will match the width of its triggering element */
+  matchTriggerWidth?: boolean;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+  /** Close the popover if the User clicks on the content */
+  closeOnContentClick?: boolean;
+  /** If isOpen is set the component becomes a controlled component. Use the `onUserDismiss` callback to update. */
+  isOpen?: boolean;
+  /**
+   * Callback to handle user taking an action to __dismiss__ the popover
+   * (click outside, Escape key)
+   */
+  onUserDismiss?: () => void;
+  /**
+   * Callback to handle user taking an action to __enable__ the popover
+   * (click or key interaction on the trigger button rendered in Popover)
+   */
+  onUserEnable?: () => void;
+  /**
+   * When set to `true`, the first focusable element will automatically receive focus
+   * whenever the popover opens
+   */
+  autoFocus?: boolean;
+  /**
+   * When set to `false` the popover positioned element will not have a box shadow.
+   * Useful for adding a custom box shadow.
+   */
+  hasShadow?: boolean;
+}
 
 /**
  * Generic Popover component. Renders a floating element that can contain any content,
@@ -32,38 +80,43 @@ const Popover = ({
   hasShadow = true,
   onUserDismiss = noop,
   onUserEnable = noop,
-}) => {
+}: PopoverProps) => {
   const isControlled = isOpen === true || isOpen === false;
   const hasChildren = React.Children.count(children) > 0;
   const [open, setOpen] = useState(false);
-  const shouldRenderPopover = isControlled ? isOpen : open;
-  const popoverContent = closeOnContentClick
-    ? React.cloneElement(content, {
-        onClick: () => {
-          if (content.onClick) {
-            content.onClick();
-          }
-          setOpen(false);
-          onUserDismiss();
-        },
-      })
-    : content;
+  const shouldRenderPopover = isControlled ? !!isOpen : open;
+  const popoverContent =
+    closeOnContentClick && React.isValidElement(content)
+      ? React.cloneElement(
+          content as React.ReactElement<{ onClick?: () => void }>,
+          {
+            onClick: () => {
+              setOpen(false);
+              onUserDismiss();
+            },
+          },
+        )
+      : content;
 
   const closePopover = useCallback(() => {
     setOpen(false);
     onUserDismiss();
   }, [onUserDismiss]);
 
-  const togglePopover = (event) => {
+  const togglePopover = (event: React.MouseEvent) => {
     event.stopPropagation();
     if (isControlled) {
-      isOpen ? onUserDismiss() : onUserEnable();
+      if (isOpen) {
+        onUserDismiss();
+      } else {
+        onUserEnable();
+      }
     } else {
       setOpen((open) => !open);
     }
   };
 
-  const handleKeyDown = ({ key }) => {
+  const handleKeyDown = ({ key }: React.KeyboardEvent) => {
     if (key === "Enter") {
       setOpen(true);
       onUserEnable();
@@ -85,20 +138,20 @@ const Popover = ({
   useEffect(() => {
     if (!shouldRenderPopover) return;
 
-    const handleOutsideClick = (event) => {
+    const handleOutsideClick = (event: MouseEvent) => {
       const anchor = typeof anchorRef === "object" ? anchorRef?.current : null;
       const layer = typeof layerRef === "object" ? layerRef?.current : null;
       if (
         anchor &&
-        !anchor.contains(event.target) &&
+        !anchor.contains(event.target as Node) &&
         layer &&
-        !layer.contains(event.target)
+        !layer.contains(event.target as Node)
       ) {
         closePopover();
       }
     };
 
-    const handleEscape = ({ key }) => {
+    const handleEscape = ({ key }: KeyboardEvent) => {
       if (key === "Escape") closePopover();
     };
 
@@ -113,23 +166,23 @@ const Popover = ({
   return (
     <>
       <div
-        ref={anchorRef}
+        ref={anchorRef as React.Ref<HTMLDivElement>}
         {...anchorRest}
         style={{ ...anchorStyle, display: wrapperDisplay }}
         onClick={togglePopover}
         onKeyDown={handleKeyDown}
         role="button"
-        tabIndex="0"
+        tabIndex={0}
         className="nds-popover-trigger"
         data-testid="nds-popover-trigger"
         aria-haspopup="true"
-        aria-expanded={shouldRenderPopover.toString()}
+        aria-expanded={shouldRenderPopover}
       >
         {/* Support both legacy (children) and standard (render prop) triggers */}
         {hasChildren ? children : renderTrigger(isOpen)}
       </div>
       <div
-        ref={layerRef}
+        ref={layerRef as React.Ref<HTMLDivElement>}
         {...layerRest}
         className={cc([
           "nds-typography nds-popover",
@@ -149,62 +202,6 @@ const Popover = ({
       </div>
     </>
   );
-};
-
-Popover.propTypes = {
-  /** Content of popover */
-  content: PropTypes.node.isRequired,
-  /**
-   * ⚠️ DEPRECATED - use `renderTrigger` instead.
-   * The root node of JSX passed into Tooltip as children will act as the tooltip trigger
-   */
-  children: PropTypes.node,
-  /**
-   * Render function for a custom trigger aware of the open state of the Popover.
-   * Called with `(isOpen) => {}`, the state of the Popover.
-   */
-  renderTrigger: PropTypes.func,
-  /** Sets preferred side of the trigger the tooltip should appear */
-  side: PropTypes.oneOf(["top", "right", "bottom", "left"]),
-
-  /** CSS `display` value for the element that wraps the Tooltip children */
-  wrapperDisplay: PropTypes.oneOf([
-    "inline-flex",
-    "inline-block",
-    "inline",
-    "block",
-    "flex",
-  ]),
-
-  /** When `true`, the Popover container will match the width of its triggering element */
-  matchTriggerWidth: PropTypes.bool,
-
-  /** Optional value for `data-testid` attribute */
-  testId: PropTypes.string,
-  /** Close the popover if the User clicks on the content */
-  closeOnContentClick: PropTypes.bool,
-  /** If isOpen is set the component becomes a controlled component. Use the `onUserDismiss` callback to update. */
-  isOpen: PropTypes.bool,
-  /**
-   * Callback to handle user taking an action to __dismiss__ the popover
-   * (click outside, Escape key)
-   */
-  onUserDismiss: PropTypes.func,
-  /**
-   * Callback to handle user taking an action to __enable__ the popover
-   * (click or key interaction on the trigger button rendered in Popover)
-   */
-  onUserEnable: PropTypes.func,
-  /**
-   * When set to `true`, the first focusable element will automatically receive focus
-   * whenever the popover opens
-   */
-  autoFocus: PropTypes.bool,
-  /**
-   * When set to `false` the popover positioned element will not have a box shadow.
-   * Useful for adding a custom box shadow.
-   */
-  hasShadow: PropTypes.bool,
 };
 
 export default Popover;

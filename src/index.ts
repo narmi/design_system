@@ -23,6 +23,7 @@ import FieldToken from "./FieldToken";
 import FormSection from "./FormSection";
 import IconButton from "./IconButton";
 import Pagination from "./Pagination";
+import Popover from "./Popover";
 import ProgressBar from "./ProgressBar";
 import Radio from "./Radio";
 import RadioButtons from "./RadioButtons";
@@ -62,7 +63,6 @@ declare const Drawer;
 declare const Input;
 declare const MenuButton;
 declare const MultiSelect;
-declare const Popover;
 declare const Select;
 declare const Tag; // ⚠️ DEPRECATED - Will be removed in a future release. Use `Chip` instead.
 declare const TextInput;
@@ -115,6 +115,7 @@ export type { IconButtonProps, IconButtonKind } from "./IconButton";
 export type { LoadingShimProps } from "./LoadingShim";
 export type { LoadingSkeletonProps } from "./LoadingSkeleton";
 export type { PaginationProps } from "./Pagination";
+export type { PopoverProps } from "./Popover";
 export type { ProgressBarProps } from "./ProgressBar";
 export type { RadioProps, RadioKind } from "./Radio";
 export type {

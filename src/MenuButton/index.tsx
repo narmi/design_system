@@ -1,16 +1,54 @@
 import React from "react";
-import PropTypes from "prop-types";
 import cc from "classcat";
 import { useSelect } from "downshift";
-import { VALID_ICON_NAMES } from "src/icons/iconNames";
-import MenuButtonItem from "./MenuButtonItem";
+import { VALID_ICON_NAMES } from "../icons/iconNames";
+import MenuButtonItem, { MenuButtonItemProps } from "./MenuButtonItem";
 import Row from "../Row";
 import useDropdownLayer from "../hooks/useDropdownLayer";
+import type { Placement } from "../hooks/useDropdownLayer";
+import type { IconName } from "../types/Icon.types";
 
 export { VALID_ICON_NAMES };
 
-export const labelToItemId = (label) =>
+export const labelToItemId = (label: string) =>
   label.replace(/\s+/g, "-").toLowerCase();
+
+type MenuItemElement = React.ReactElement<MenuButtonItemProps>;
+
+export interface MenuButtonProps {
+  /**
+   * Accessible label for the menu trigger (e.g. "Transaction Actions").
+   * Backs the trigger's `aria-label`; if omitted, it falls back to "Menu".
+   */
+  label?: string;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+  /** Name of NDS icon to use as a trigger */
+  triggerIcon?: IconName;
+  /**
+   * The root node of JSX passed in acts as the menu trigger.
+   *
+   * @deprecated use `renderTrigger` instead.
+   */
+  trigger?: React.ReactNode;
+  /**
+   * Render function for rendering a custom trigger element.
+   * Called with `(isOpen)`, the open state of the menu.
+   */
+  renderTrigger?: (isOpen: boolean) => React.ReactNode;
+  /** MenuButton.Item children */
+  children?: React.ReactNode;
+  /**
+   * If true, a caret indicator is rendered as the end icon
+   * within the trigger. The icon will change direction when
+   * the expanded state of the menulist changes.
+   */
+  showDropdownIndicator?: boolean;
+  /** Sets preferred side of the trigger the tooltip should appear */
+  side?: Placement;
+  /** Optional footer content to render below the menu items */
+  footerItem?: MenuItemElement;
+}
 
 /**
  * Keyboard navigable popover menu following the
@@ -24,12 +62,10 @@ const MenuButton = ({
   triggerIcon = "more-vertical",
   showDropdownIndicator = false,
   side = "bottom",
-  alignment = "start", // eslint-disable-line no-unused-vars
-  offset = 2, // eslint-disable-line no-unused-vars
   children,
   footerItem,
-}) => {
-  const menuItems = React.Children.toArray(children);
+}: MenuButtonProps) => {
+  const menuItems = React.Children.toArray(children) as MenuItemElement[];
   const allItems = footerItem ? menuItems.concat(footerItem) : menuItems;
 
   const {
@@ -39,7 +75,7 @@ const MenuButton = ({
     getItemProps,
     highlightedIndex,
     closeMenu,
-  } = useSelect({
+  } = useSelect<MenuItemElement>({
     items: allItems,
     itemToString: (item) => item?.props?.label ?? "",
     onSelectedItemChange: ({ selectedItem }) => {
@@ -65,7 +101,7 @@ const MenuButton = ({
     <div data-testid={testId} className="nds-menubutton">
       <button
         {...getToggleButtonProps({
-          ref: anchorRef,
+          ref: anchorRef as React.Ref<HTMLButtonElement>,
           style: anchorStyle,
           "aria-label": label,
           className: "button--reset nds-menubutton-ariaButton",
@@ -105,7 +141,9 @@ const MenuButton = ({
         )}
       </button>
       <ul
-        {...getMenuProps({ ...layerProps })}
+        {...getMenuProps({
+          ...layerProps,
+        } as Parameters<typeof getMenuProps>[0])}
         className={cc([
           "list--reset",
           "nds-menubutton-popover",
@@ -150,41 +188,6 @@ const MenuButton = ({
       </ul>
     </div>
   );
-};
-
-MenuButton.propTypes = {
-  /** Accessible label for the menu trigger (e.g. "Transaction Actions")*/
-  label: PropTypes.string.isRequired,
-  /** Optional value for `data-testid` attribute */
-  testId: PropTypes.string,
-  /** Name of NDS icon to use as a trigger */
-  triggerIcon: PropTypes.oneOf(VALID_ICON_NAMES),
-  /**
-   * ⚠️ DEPRECATED - will be removed in a future release.
-   * Use `renderTrigger` instead.
-   */
-  trigger: PropTypes.node,
-  /**
-   * Render function for rendering a custom trigger element.
-   * Called with `(isOpen)`, the open state of the menu.
-   */
-  renderTrigger: PropTypes.func,
-  /** MenuButton.Item children */
-  children: PropTypes.arrayOf(PropTypes.node),
-  /**
-   * If true, a caret indicator is rendered as the end icon
-   * within the trigger. The icon will change direction when
-   * the expanded state of the menulist changes.
-   */
-  showDropdownIndicator: PropTypes.bool,
-  /** Sets preferred side of the trigger the tooltip should appear */
-  side: PropTypes.oneOf(["top", "right", "bottom", "left"]),
-  /** Sets preferred alignment of the tooltip relative to the trigger */
-  alignment: PropTypes.oneOf(["start", "center", "end"]),
-  /** Distance of Popover from trigger element in number of pixels */
-  offset: PropTypes.number,
-  /** Optional footer content to render below the menu items */
-  footerItem: PropTypes.node,
 };
 
 MenuButton.Item = MenuButtonItem;

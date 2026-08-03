@@ -14,6 +14,7 @@ import Chip from "./Chip";
 import CollapsibleCard from "./CollapsibleCard";
 import ContextMenu from "./ContextMenu";
 import Count from "./Count";
+import DateInput from "./DateInput";
 import Dialog from "./Dialog";
 import DisabledShim from "./DisabledShim";
 import Error from "./Error";
@@ -22,6 +23,7 @@ import Field from "./Field";
 import FieldToken from "./FieldToken";
 import FormSection from "./FormSection";
 import IconButton from "./IconButton";
+import Input from "./Input";
 import Pagination from "./Pagination";
 import Popover from "./Popover";
 import ProgressBar from "./ProgressBar";
@@ -45,8 +47,10 @@ import TableInput from "./TableInput";
 import TableSelect from "./TableSelect";
 import Tabs from "./Tabs";
 import Tag from "./Tag"; // ⚠️ DEPRECATED - Will be removed in a future release. Use `Chip` instead.
+import TextInput from "./TextInput";
 import TimelineEvent from "./TimelineEvent";
 import Toggle from "./Toggle";
+import TokenInput from "./TokenInput";
 import Tooltip from "./Tooltip";
 import TruncatedAccount from "./TruncatedAccount";
 import useSupportsAnchorPositioning from "./hooks/useSupportsAnchorPositioning";
@@ -60,13 +64,9 @@ import formatNumber from "./formatters/formatNumber";
  * Untyped Components
  */
 declare const Combobox;
-declare const DateInput;
 declare const Drawer;
-declare const Input;
 declare const MultiSelect;
 declare const Select;
-declare const TextInput;
-declare const TokenInput;
 
 export * from "./types/Icon.types";
 
@@ -102,6 +102,7 @@ export type { ContentCardProps } from "./ContentCard";
 export type { ContextMenuProps } from "./ContextMenu";
 export type { ContextMenuItemProps } from "./ContextMenu/ContextMenuItem";
 export type { CountProps } from "./Count";
+export type { DateInputProps } from "./DateInput";
 export type { DialogProps } from "./Dialog";
 export type { DisabledShimProps } from "./DisabledShim";
 export type { DropdownTriggerProps } from "./DropdownTrigger";
@@ -112,6 +113,7 @@ export type { FieldMaskName } from "./Field/masks";
 export type { FieldTokenProps } from "./FieldToken";
 export type { FormSectionProps } from "./FormSection";
 export type { IconButtonProps, IconButtonKind } from "./IconButton";
+export type { InputProps } from "./Input";
 export type { LoadingShimProps } from "./LoadingShim";
 export type { LoadingSkeletonProps } from "./LoadingSkeleton";
 export type { MenuButtonProps } from "./MenuButton";
@@ -153,6 +155,11 @@ export type { TableAutocompleteItemProps } from "./TableAutocomplete/Item";
 export type { TableDateInputProps } from "./TableDateInput";
 export type { TableInputProps } from "./TableInput";
 export type { TableSelectProps, TableSelectItem } from "./TableSelect";
+export type {
+  TextInputProps,
+  SingleLineTextInputProps,
+  MultilineTextInputProps,
+} from "./TextInput";
 export type { TableSelectItemProps } from "./TableSelect/Item";
 export type { TabsKind } from "./Tabs/context";
 export type { TabsListProps } from "./Tabs/TabsList";
@@ -161,6 +168,7 @@ export type { TabsTabProps } from "./Tabs/TabsTab";
 export type { TagProps } from "./Tag";
 export type { TimelineEventProps, TimelineEventKind } from "./TimelineEvent";
 export type { ToggleProps } from "./Toggle";
+export type { TokenInputProps } from "./TokenInput";
 export type { TooltipProps } from "./Tooltip";
 export type { TruncatedAccountProps } from "./TruncatedAccount";
 export type { UseBreakpointsResult } from "./hooks/useBreakpoints";

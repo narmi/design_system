@@ -21,6 +21,15 @@ const noop = () => {};
 // changes the overflow decision.
 const ARROW_RESERVE_PX = 32 * 2;
 
+// Hysteresis for turning responsive mode back off. Flipping `isResponsive`
+// changes layout outside the wrapper (`.panel-responsive` adds 64px of
+// padding, page scrollbars may toggle), which can feed back into the wrapper
+// width. Without slack, a wrapper sitting exactly at the overflow threshold
+// oscillates between states indefinitely, remounting panel content on every
+// flip. Once responsive, we stay responsive until the content fits with room
+// to absorb the largest of those feedback effects.
+const RESPONSIVE_HYSTERESIS_PX = 64;
+
 export interface TabsListProps {
   /** Children must be of type `Tabs.Tab` */
   children: React.ReactNode;
@@ -40,6 +49,7 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
   // not on every scroll tick.
   const contentWidthRef = useRef(0);
   const availableRef = useRef(0);
+  const isOverflowingRef = useRef(false);
 
   const {
     tabIds,
@@ -82,7 +92,10 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
     const { scrollLeft } = tabsListRef.current;
     const contentWidth = contentWidthRef.current;
     const available = availableRef.current;
-    const isOverflowing = contentWidth > available;
+    const isOverflowing = isOverflowingRef.current
+      ? contentWidth > available - RESPONSIVE_HYSTERESIS_PX
+      : contentWidth > available;
+    isOverflowingRef.current = isOverflowing;
 
     // Use the same `available` width for arrow visibility, not the current
     // `ul.clientWidth`. Otherwise on the first overflowing frame the arrows
@@ -151,19 +164,19 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
     }
   };
 
-// When the next paged scroll would land near a scroll limit, snap exactly
-// to the limit. Otherwise the trailing/leading tab can come to rest under
-// the fade mask (`--mask-width`) and read as cut off mid-word.
-const getSnapBuffer = (el: HTMLElement) => {
-  // `--mask-width` is a custom property (often `var(--space-...)`) and won't
-  // resolve via `getPropertyValue("--mask-width")`. Read a real computed length
-  // that uses the variable instead.
-  const raw = getComputedStyle(el)
-    .getPropertyValue("scroll-padding-inline-start")
-    .trim();
-  const parsed = parseFloat(raw);
-  return Number.isFinite(parsed) ? parsed : 0;
-};
+  // When the next paged scroll would land near a scroll limit, snap exactly
+  // to the limit. Otherwise the trailing/leading tab can come to rest under
+  // the fade mask (`--mask-width`) and read as cut off mid-word.
+  const getSnapBuffer = (el: HTMLElement) => {
+    // `--mask-width` is a custom property (often `var(--space-...)`) and won't
+    // resolve via `getPropertyValue("--mask-width")`. Read a real computed length
+    // that uses the variable instead.
+    const raw = getComputedStyle(el)
+      .getPropertyValue("scroll-padding-inline-start")
+      .trim();
+    const parsed = parseFloat(raw);
+    return Number.isFinite(parsed) ? parsed : 0;
+  };
 
   const onLeftClick = () => {
     const el = tabsListRef.current;

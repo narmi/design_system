@@ -1,7 +1,6 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions,react/require-default-props */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useRef, useEffect, useId } from "react";
 import ReactDOM from "react-dom";
-import PropTypes from "prop-types";
 import cc from "classcat";
 import useBreakpoints from "../hooks/useBreakpoints";
 import useMountTransition from "./useMountTransition";
@@ -9,6 +8,56 @@ import useLockBodyScroll from "../hooks/useLockBodyScroll";
 import FocusLock from "react-focus-lock";
 
 const noop = () => {};
+
+export interface DrawerProps {
+  /** Scrollable contents of the Drawer */
+  children:
+    | React.ReactNode
+    | ((args: { isVisible: boolean }) => React.ReactNode);
+  /** Controls open/close state of the modal. Use the `onUserDismiss` callback to update. */
+  isOpen?: boolean;
+  /**
+   * Callback to handle user taking an action to dismiss the modal
+   * (click outside, Escape key, click close button)
+   */
+  onUserDismiss?: () => void;
+  /**
+   * Callback to handle user taking an action to go to the next element
+   * (click on the next arrow, right/down arrow key)
+   */
+  onNext?: (() => void) | null;
+  /**
+   * Callback to handle user taking an action to go to the previous element
+   * (click on the previous arrow, left/up arrow key)
+   */
+  onPrev?: (() => void) | null;
+  /**
+   * Sets how far the drawer opens out (width or height).
+   * Use the full CSS value with the percentage (e.g. `"400px"` or `"70%"`)
+   */
+  depth?: string;
+  /**
+   * Determines whether the close button shows.
+   */
+  showClose?: boolean;
+  /**
+   * Determines whether the next and prev buttons show.
+   */
+  showControls?: boolean;
+  /**
+   * Sets the position from which the drawers open.
+   * Valid values are `right`, `left`, `bottom`, `top`.
+   */
+  position?: "right" | "left" | "top" | "bottom";
+  /**
+   * Sets the padding amount, or disable padding by passing "none"
+   */
+  paddingSize?: "none" | "xs" | "s" | "m" | "l" | "xl" | "xxl";
+  /** Contents of Drawer footer, typically reserved for action buttons */
+  footer?: React.ReactNode;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+}
 
 /**
  * Renders an animated drawer dialog with an overlay that
@@ -30,10 +79,10 @@ const Drawer = ({
   paddingSize = "xxl",
   footer,
   testId,
-}) => {
+}: DrawerProps) => {
   const panelId = `content-panel-${useId()}`;
-  const shimRef = useRef(null);
-  const navRef = useRef(null);
+  const shimRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLDivElement>(null);
 
   const isTransitioning = useMountTransition(isOpen, 300);
   const { m } = useBreakpoints();
@@ -42,14 +91,16 @@ const Drawer = ({
 
   // The depth is how far the drawer opens out, but the CSS prop depends
   // on whether the Drawer is vertical or not
-  const depthStyle = isHorizontal ? { height: depth } : { width: depth };
+  const depthStyle: React.CSSProperties = isHorizontal
+    ? { height: depth }
+    : { width: depth };
   if (isVerticalMobileDrawer) {
     depthStyle.width = "100%";
   }
 
   useLockBodyScroll(isOpen);
 
-  const handleKeyDown = ({ key }) => {
+  const handleKeyDown = ({ key }: KeyboardEvent) => {
     if (key === "Escape") {
       onUserDismiss();
     }
@@ -63,7 +114,7 @@ const Drawer = ({
     };
   }, [handleKeyDown, isOpen]);
 
-  const handleShimClick = ({ target }) => {
+  const handleShimClick = ({ target }: React.MouseEvent) => {
     if (
       (navRef.current && target === navRef.current) ||
       (shimRef.current && target === shimRef.current)
@@ -114,7 +165,7 @@ const Drawer = ({
                     : onPrev == null,
                 },
               ])}
-              onClick={isHorizontal ? onNext : onPrev}
+              onClick={(isHorizontal ? onNext : onPrev) ?? undefined}
               aria-controls={panelId}
               aria-label={isHorizontal ? "Next" : "Previous"}
             >
@@ -133,7 +184,7 @@ const Drawer = ({
                     : onNext == null,
                 },
               ])}
-              onClick={isHorizontal ? onPrev : onNext}
+              onClick={(isHorizontal ? onPrev : onNext) ?? undefined}
               aria-controls={panelId}
               aria-label={isHorizontal ? "Previous" : "Next"}
             >
@@ -170,7 +221,7 @@ const Drawer = ({
               <>
                 <button
                   className="button--reset mobile-navigation-button mobile-navigation-button--prev"
-                  onClick={onPrev}
+                  onClick={onPrev ?? undefined}
                   aria-controls={panelId}
                   aria-label="Previous"
                 >
@@ -178,7 +229,7 @@ const Drawer = ({
                 </button>
                 <button
                   className="button--reset mobile-navigation-button mobile-navigation-button--next"
-                  onClick={onNext}
+                  onClick={onNext ?? undefined}
                   aria-controls={panelId}
                   aria-label="Next"
                 >
@@ -240,68 +291,21 @@ const Drawer = ({
 
   function renderDrawerInOutlet() {
     // create a single outlet
-    if (!document.getElementById("outlet")) {
-      const outlet = document.createElement("div");
+    let outlet = document.getElementById("outlet");
+    if (!outlet) {
+      outlet = document.createElement("div");
       outlet.setAttribute("id", "outlet");
       outlet.setAttribute("class", "outlet");
       document.body.appendChild(outlet);
     }
-    return ReactDOM.createPortal(drawerJSX, document.getElementById("outlet"));
+    return ReactDOM.createPortal(drawerJSX, outlet);
   }
 
   if (!isTransitioning && !isOpen) {
     return null;
   }
 
-  return <>{document && renderDrawerInOutlet()}</>;
-};
-
-Drawer.propTypes = {
-  /** Scrollable contents of the Drawer */
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
-  /** Controls open/close state of the modal. Use the `onUserDismiss` callback to update. */
-  isOpen: PropTypes.bool,
-  /**
-   * Callback to handle user taking an action to dismiss the modal
-   * (click outside, Escape key, click close button)
-   */
-  onUserDismiss: PropTypes.func,
-  /**
-   * Callback to handle user taking an action to go to the next element
-   * (click on the next arrow, right/down arrow key)
-   */
-  onNext: PropTypes.func,
-  /**
-   * Callback to handle user taking an action to go to the previous element
-   * (click on the previous arrow, left/up arrow key)
-   */
-  onPrev: PropTypes.func,
-  /**
-   * Sets how far the drawer opens out (width or height).
-   * Use the full CSS value with the percentage (e.g. `"400px"` or `"70%"`)
-   */
-  depth: PropTypes.string,
-  /**
-   * Determines whether the close button shows.
-   */
-  showClose: PropTypes.bool,
-  /**
-   * Determines whether the next and prev buttons show.
-   */
-  showControls: PropTypes.bool,
-  /**
-   * Sets the position from which the drawers open.
-   * Valid values are `right`, `left`, `bottom`, `top`.
-   */
-  position: PropTypes.oneOf(["right", "left", "top", "bottom"]),
-  /**
-   * Sets the padding amount, or disable padding by passing "none"
-   */
-  paddingSize: PropTypes.oneOf(["none", "xs", "s", "m", "l", "xl", "xxl"]),
-  /** Contents of Drawer footer, typically reserved for action buttons */
-  footer: PropTypes.node,
-  /** Optional value for `data-testid` attribute */
-  testId: PropTypes.string,
+  return <>{document ? renderDrawerInOutlet() : null}</>;
 };
 
 export default Drawer;

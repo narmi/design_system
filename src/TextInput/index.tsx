@@ -7,13 +7,7 @@ export { VALID_ICON_NAMES };
 
 type TextInputElement = HTMLInputElement | HTMLTextAreaElement;
 
-interface TextInputBaseProps extends Omit<
-  React.InputHTMLAttributes<TextInputElement>,
-  // children: TextInput renders its own input element; stray children
-  // would fall through the rest spread onto it (a React error on
-  // <textarea> with a value)
-  "onChange" | "onBlur" | "type" | "value" | "defaultValue" | "children"
-> {
+interface TextInputBaseProps {
   /**
    * Label used as input placeholder _and_ floating label.
    * Also wired to `aria-label` — when omitted, provide an accessible
@@ -46,6 +40,7 @@ interface TextInputBaseProps extends Omit<
   maxLength?: number;
   /** Optional value for `data-testid` attribute */
   testId?: string;
+  /** Native `type` of the input element; ignored when `multiline` is set */
   type?:
     | "text"
     | "tel"
@@ -60,7 +55,23 @@ interface TextInputBaseProps extends Omit<
   required?: boolean;
 }
 
-export interface SingleLineTextInputProps extends TextInputBaseProps {
+// children: TextInput renders its own input element; stray children
+// would fall through the rest spread onto it (a React error on
+// <textarea> with a value)
+type OverriddenNativeKeys =
+  | "onChange"
+  | "onBlur"
+  | "type"
+  | "value"
+  | "defaultValue"
+  | "children"
+  | "maxLength"
+  | "required";
+
+export interface SingleLineTextInputProps
+  extends
+    TextInputBaseProps,
+    Omit<React.InputHTMLAttributes<HTMLInputElement>, OverriddenNativeKeys> {
   /** When true, the input is displayed as an auto-growing textarea */
   multiline?: false;
   /** Callback invoked with event object on input change */
@@ -69,7 +80,13 @@ export interface SingleLineTextInputProps extends TextInputBaseProps {
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
 }
 
-export interface MultilineTextInputProps extends TextInputBaseProps {
+export interface MultilineTextInputProps
+  extends
+    TextInputBaseProps,
+    Omit<
+      React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+      OverriddenNativeKeys
+    > {
   /** When true, the input is displayed as an auto-growing textarea */
   multiline: true;
   /** Callback invoked with event object on textarea change */
@@ -79,6 +96,28 @@ export interface MultilineTextInputProps extends TextInputBaseProps {
 }
 
 export type TextInputProps = SingleLineTextInputProps | MultilineTextInputProps;
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+const nativeProps = <P extends TextInputProps>({
+  startIcon,
+  endIcon,
+  startContent,
+  endContent,
+  showClearButton,
+  formatter,
+  multiline,
+  defaultValue,
+  onChange,
+  onBlur,
+  maxLength,
+  testId,
+  type,
+  error,
+  renderError,
+  required,
+  ...rest
+}: P) => rest;
+/* eslint-enable @typescript-eslint/no-unused-vars */
 
 /**
  * Narmi flavored text input with floating label
@@ -92,17 +131,13 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
       endContent,
       showClearButton,
       formatter = (x) => x,
-      multiline,
       defaultValue,
       onChange,
-      onBlur,
       maxLength,
       testId,
-      type = "text",
       error,
       renderError = true,
       required = false,
-      ...nativeElementProps
     } = props;
 
     const [inputValue, setInputValue] = useState(
@@ -120,7 +155,7 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
       setInputValue("");
     }
 
-    const charCount = String(nativeElementProps?.value || inputValue).length;
+    const charCount = String(props.value || inputValue).length;
     const showCharacterCounter = maxLength;
     const characterCounter = showCharacterCounter ? (
       <div className="nds-input-character-counter">
@@ -147,7 +182,7 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
         clearInput={_onClearInput}
         tailContent={characterCounter}
       >
-        {multiline === true ? (
+        {props.multiline === true ? (
           <div
             className="nds-input-multiline-grid"
             data-textarea-value={inputValue}
@@ -158,11 +193,11 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
               ref={forwardedRef as React.Ref<HTMLTextAreaElement>}
               value={inputValue}
               onChange={(e) => {
-                onChange?.(e);
+                props.onChange?.(e);
                 setInputValue(e.target.value);
               }}
               onBlur={(e) => {
-                onBlur?.(e);
+                props.onBlur?.(e);
                 setInputValue(formatter(e.target.value));
               }}
               required={required}
@@ -170,7 +205,7 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
               aria-label={props.label}
               data-testid={testId}
               data-error={inputError}
-              {...nativeElementProps}
+              {...nativeProps(props)}
             />
           </div>
         ) : (
@@ -178,21 +213,21 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
             key={"nds-text"}
             value={inputValue}
             onChange={(e) => {
-              onChange?.(e);
+              props.onChange?.(e);
               setInputValue(e.target.value);
             }}
             onBlur={(e) => {
-              onBlur?.(e);
+              props.onBlur?.(e);
               setInputValue(formatter(e.target.value));
             }}
             ref={forwardedRef as React.Ref<HTMLInputElement>}
-            type={type}
+            type={props.type ?? "text"}
             required={required}
             aria-label={props.label}
             placeholder={props.label}
             data-testid={testId}
             data-error={inputError}
-            {...nativeElementProps}
+            {...nativeProps(props)}
           />
         )}
       </Input>

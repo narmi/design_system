@@ -168,7 +168,7 @@ ScrollingContent.parameters = {
   docs: {
     description: {
       story:
-        "The `Dialog` will grow in height to fit content until it reaches edges of the viewport, at which point, the content area will become scrollable and a gradient border appears betwen the footer and content area.",
+        "The `Dialog` will grow in height to fit content until it reaches edges of the viewport, at which point, the content area will become scrollable and a gradient border appears between the footer and content area.",
     },
   },
 };

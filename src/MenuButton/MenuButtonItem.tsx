@@ -5,7 +5,7 @@ import { VALID_ICON_NAMES } from "../icons/iconNames";
 
 export { VALID_ICON_NAMES };
 
-interface MenuButtonItemProps {
+export interface MenuButtonItemProps {
   /** Display label for menu item */
   label: string;
   /** Selection handler */

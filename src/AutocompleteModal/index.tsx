@@ -60,7 +60,6 @@ const AutocompleteModal = ({
       isOpen={isOpen}
       onUserDismiss={closePopover}
       onUserEnable={togglePopover}
-      alignment="center"
       side="top"
       autoFocus={true}
       hasShadow={false}

@@ -89,7 +89,7 @@ import { Dropdown } from "@narmi/design_system";
 
 ```jsx
 import { Select } from "@narmi/design_system";
-// Choose from: Select, MultiSelect, Combobox, or AutocompleteModa
+// Choose from: Select, MultiSelect, Combobox, or AutocompleteModal
 
 <Select
   label="Select an option"

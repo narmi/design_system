@@ -25,6 +25,7 @@ import FormSection from "./FormSection";
 import IconButton from "./IconButton";
 import Input from "./Input";
 import Pagination from "./Pagination";
+import Popover from "./Popover";
 import ProgressBar from "./ProgressBar";
 import Radio from "./Radio";
 import RadioButtons from "./RadioButtons";
@@ -38,12 +39,14 @@ import Spinner from "./Spinner";
 import SplitButton from "./SplitButton";
 import LoadingSkeleton from "./LoadingSkeleton";
 import LoadingShim from "./LoadingShim";
+import MenuButton from "./MenuButton";
 import Table from "./Table";
 import TableAutocomplete from "./TableAutocomplete";
 import TableDateInput from "./TableDateInput";
 import TableInput from "./TableInput";
 import TableSelect from "./TableSelect";
 import Tabs from "./Tabs";
+import Tag from "./Tag"; // ⚠️ DEPRECATED - Will be removed in a future release. Use `Chip` instead.
 import TextInput from "./TextInput";
 import TimelineEvent from "./TimelineEvent";
 import Toggle from "./Toggle";
@@ -62,11 +65,8 @@ import formatNumber from "./formatters/formatNumber";
  */
 declare const Combobox;
 declare const Drawer;
-declare const MenuButton;
 declare const MultiSelect;
-declare const Popover;
 declare const Select;
-declare const Tag; // ⚠️ DEPRECATED - Will be removed in a future release. Use `Chip` instead.
 
 export * from "./types/Icon.types";
 
@@ -116,7 +116,10 @@ export type { IconButtonProps, IconButtonKind } from "./IconButton";
 export type { InputProps } from "./Input";
 export type { LoadingShimProps } from "./LoadingShim";
 export type { LoadingSkeletonProps } from "./LoadingSkeleton";
+export type { MenuButtonProps } from "./MenuButton";
+export type { MenuButtonItemProps } from "./MenuButton/MenuButtonItem";
 export type { PaginationProps } from "./Pagination";
+export type { PopoverProps } from "./Popover";
 export type { ProgressBarProps } from "./ProgressBar";
 export type { RadioProps, RadioKind } from "./Radio";
 export type {
@@ -162,6 +165,7 @@ export type { TabsKind } from "./Tabs/context";
 export type { TabsListProps } from "./Tabs/TabsList";
 export type { TabsPanelProps } from "./Tabs/TabsPanel";
 export type { TabsTabProps } from "./Tabs/TabsTab";
+export type { TagProps } from "./Tag";
 export type { TimelineEventProps, TimelineEventKind } from "./TimelineEvent";
 export type { ToggleProps } from "./Toggle";
 export type { TokenInputProps } from "./TokenInput";

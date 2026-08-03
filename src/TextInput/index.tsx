@@ -7,39 +7,23 @@ export { VALID_ICON_NAMES };
 
 type TextInputElement = HTMLInputElement | HTMLTextAreaElement;
 
-export interface TextInputProps
-  extends Omit<
-    React.InputHTMLAttributes<TextInputElement>,
-    // children: TextInput renders its own input element; stray children
-    // would fall through the rest spread onto it (a React error on
-    // <textarea> with a value)
-    "onChange" | "onBlur" | "type" | "value" | "defaultValue" | "children"
-  > {
+interface TextInputBaseProps extends Omit<
+  React.InputHTMLAttributes<TextInputElement>,
+  // children: TextInput renders its own input element; stray children
+  // would fall through the rest spread onto it (a React error on
+  // <textarea> with a value)
+  "onChange" | "onBlur" | "type" | "value" | "defaultValue" | "children"
+> {
   /**
    * Label used as input placeholder _and_ floating label.
    * Also wired to `aria-label` — when omitted, provide an accessible
    * name some other way (e.g. `aria-label` or `aria-labelledby`).
    */
   label?: string;
-  /**
-   * Callback invoked with event object on input change.
-   * Typed as a union of single-element handlers (rather than one handler
-   * taking `input | textarea`) so consumer handlers written against a
-   * plain `HTMLInputElement` event type-check under strictFunctionTypes.
-   */
-  onChange?:
-    | React.ChangeEventHandler<HTMLInputElement>
-    | React.ChangeEventHandler<HTMLTextAreaElement>;
-  /** Callback invoked with event object on input blur */
-  onBlur?:
-    | React.FocusEventHandler<HTMLInputElement>
-    | React.FocusEventHandler<HTMLTextAreaElement>;
   /** Sets the controlled value of the input */
   value?: string | number;
   /** Sets the [uncontrolled](https://reactjs.org/docs/uncontrolled-components.html) value of the input */
   defaultValue?: string | number;
-  /** When true, the input is displayed as an auto-growing textarea */
-  multiline?: boolean;
   /** function that formats the input value on blur */
   formatter?: (value: string) => string;
   /** Name of Narmi icon to place at the start of the input box */
@@ -76,6 +60,26 @@ export interface TextInputProps
   required?: boolean;
 }
 
+export interface SingleLineTextInputProps extends TextInputBaseProps {
+  /** When true, the input is displayed as an auto-growing textarea */
+  multiline?: false;
+  /** Callback invoked with event object on input change */
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  /** Callback invoked with event object on input blur */
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
+}
+
+export interface MultilineTextInputProps extends TextInputBaseProps {
+  /** When true, the input is displayed as an auto-growing textarea */
+  multiline: true;
+  /** Callback invoked with event object on textarea change */
+  onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
+  /** Callback invoked with event object on textarea blur */
+  onBlur?: React.FocusEventHandler<HTMLTextAreaElement>;
+}
+
+export type TextInputProps = SingleLineTextInputProps | MultilineTextInputProps;
+
 /**
  * Narmi flavored text input with floating label
  */
@@ -88,7 +92,7 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
       endContent,
       showClearButton,
       formatter = (x) => x,
-      multiline = false,
+      multiline,
       defaultValue,
       onChange,
       onBlur,
@@ -105,24 +109,14 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
       defaultValue ? String(defaultValue) : "",
     );
 
-    function _onBlur(e: React.FocusEvent<TextInputElement>) {
-      if (onBlur) {
-        // union-of-handlers is only invocable with the event intersection;
-        // both members accept every event the element actually produces
-        (onBlur as (event: React.FocusEvent<TextInputElement>) => void)(e);
-      }
-      setInputValue(formatter(e.target.value));
-    }
-    function _onChange(e: React.ChangeEvent<TextInputElement>) {
-      if (onChange) {
-        (onChange as (event: React.ChangeEvent<TextInputElement>) => void)(e);
-      }
-      setInputValue(e.target.value);
-    }
     // The clear button fires a MouseEvent, which is forwarded to the
     // consumer's onChange as-is
     function _onClearInput(e: React.MouseEvent) {
-      _onChange(e as unknown as React.ChangeEvent<TextInputElement>);
+      onChange?.(
+        e as unknown as React.ChangeEvent<
+          HTMLInputElement & HTMLTextAreaElement
+        >,
+      );
       setInputValue("");
     }
 
@@ -153,7 +147,7 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
         clearInput={_onClearInput}
         tailContent={characterCounter}
       >
-        {multiline ? (
+        {multiline === true ? (
           <div
             className="nds-input-multiline-grid"
             data-textarea-value={inputValue}
@@ -163,8 +157,14 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
               wrap="soft"
               ref={forwardedRef as React.Ref<HTMLTextAreaElement>}
               value={inputValue}
-              onChange={_onChange}
-              onBlur={_onBlur}
+              onChange={(e) => {
+                onChange?.(e);
+                setInputValue(e.target.value);
+              }}
+              onBlur={(e) => {
+                onBlur?.(e);
+                setInputValue(formatter(e.target.value));
+              }}
               required={required}
               placeholder={props.label}
               aria-label={props.label}
@@ -177,8 +177,14 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
           <input
             key={"nds-text"}
             value={inputValue}
-            onChange={_onChange}
-            onBlur={_onBlur}
+            onChange={(e) => {
+              onChange?.(e);
+              setInputValue(e.target.value);
+            }}
+            onBlur={(e) => {
+              onBlur?.(e);
+              setInputValue(formatter(e.target.value));
+            }}
             ref={forwardedRef as React.Ref<HTMLInputElement>}
             type={type}
             required={required}

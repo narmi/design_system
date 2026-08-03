@@ -152,7 +152,11 @@ export type { TableAutocompleteItemProps } from "./TableAutocomplete/Item";
 export type { TableDateInputProps } from "./TableDateInput";
 export type { TableInputProps } from "./TableInput";
 export type { TableSelectProps, TableSelectItem } from "./TableSelect";
-export type { TextInputProps } from "./TextInput";
+export type {
+  TextInputProps,
+  SingleLineTextInputProps,
+  MultilineTextInputProps,
+} from "./TextInput";
 export type { TableSelectItemProps } from "./TableSelect/Item";
 export type { TabsKind } from "./Tabs/context";
 export type { TabsListProps } from "./Tabs/TabsList";

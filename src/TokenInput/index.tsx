@@ -5,7 +5,7 @@
 
 import React, { useRef } from "react";
 import FieldToken from "../FieldToken";
-import TextInput, { type TextInputProps } from "../TextInput";
+import TextInput, { type SingleLineTextInputProps } from "../TextInput";
 
 const noop = () => {};
 const MIN_TOKEN_LENGTH = 1; // assume anything less than 2 is an accident
@@ -17,8 +17,10 @@ export const createToken = (inputValue: string, delimiter: string) =>
     .trim()
     .replace(new RegExp(`^[${delimiter}]+|[${delimiter}]+$`, "g"), "");
 
-export interface TokenInputProps
-  extends Omit<TextInputProps, "onChange" | "value" | "label"> {
+export interface TokenInputProps extends Omit<
+  SingleLineTextInputProps,
+  "onChange" | "value" | "label"
+> {
   /** Label for input; also rendered as the fieldset legend */
   label: string;
   /**

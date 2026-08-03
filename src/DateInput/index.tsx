@@ -1,13 +1,15 @@
 import React, { ReactNode, useEffect, useRef } from "react";
-import TextInput, { type TextInputProps } from "../TextInput";
+import TextInput, { type SingleLineTextInputProps } from "../TextInput";
 import { english } from "flatpickr/dist/l10n/default";
 import flatpickr from "flatpickr";
 import type { Options } from "flatpickr/dist/types/options";
 
 const noop = () => {};
 
-export interface DateInputProps
-  extends Omit<TextInputProps, "onChange" | "defaultValue"> {
+export interface DateInputProps extends Omit<
+  SingleLineTextInputProps,
+  "onChange" | "defaultValue"
+> {
   /** Fired with 'YYYY-MM-DD' selected date string when selected date changes */
   onChange?: (date: string) => void;
   /** Disables dates. See [flatpickr docs](https://flatpickr.js.org/examples/#disabling-dates) for usage instructions */
@@ -35,7 +37,7 @@ export interface DateInputProps
   disablePortal?: boolean;
   /** Custom render function for the input element (props, input, testId) => <TextInput {...props} /> */
   renderInput?: (
-    props: Omit<TextInputProps, "onChange" | "defaultValue">,
+    props: Omit<SingleLineTextInputProps, "onChange" | "defaultValue">,
     input: React.MutableRefObject<HTMLInputElement | undefined>,
     testId?: string,
   ) => ReactNode;

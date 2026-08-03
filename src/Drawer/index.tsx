@@ -23,12 +23,14 @@ export interface DrawerProps {
   onUserDismiss?: () => void;
   /**
    * Callback to handle user taking an action to go to the next element
-   * (click on the next arrow, right/down arrow key)
+   * (click on the next arrow, right/down arrow key).
+   * Pass `null` to render the next arrow disabled.
    */
   onNext?: (() => void) | null;
   /**
    * Callback to handle user taking an action to go to the previous element
-   * (click on the previous arrow, left/up arrow key)
+   * (click on the previous arrow, left/up arrow key).
+   * Pass `null` to render the previous arrow disabled.
    */
   onPrev?: (() => void) | null;
   /**
@@ -83,6 +85,9 @@ const Drawer = ({
   const panelId = `content-panel-${useId()}`;
   const shimRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
+
+  const nextHandler = onNext ?? undefined;
+  const prevHandler = onPrev ?? undefined;
 
   const isTransitioning = useMountTransition(isOpen, 300);
   const { m } = useBreakpoints();
@@ -165,7 +170,7 @@ const Drawer = ({
                     : onPrev == null,
                 },
               ])}
-              onClick={(isHorizontal ? onNext : onPrev) ?? undefined}
+              onClick={isHorizontal ? nextHandler : prevHandler}
               aria-controls={panelId}
               aria-label={isHorizontal ? "Next" : "Previous"}
             >
@@ -184,7 +189,7 @@ const Drawer = ({
                     : onNext == null,
                 },
               ])}
-              onClick={(isHorizontal ? onPrev : onNext) ?? undefined}
+              onClick={isHorizontal ? prevHandler : nextHandler}
               aria-controls={panelId}
               aria-label={isHorizontal ? "Previous" : "Next"}
             >
@@ -221,7 +226,7 @@ const Drawer = ({
               <>
                 <button
                   className="button--reset mobile-navigation-button mobile-navigation-button--prev"
-                  onClick={onPrev ?? undefined}
+                  onClick={prevHandler}
                   aria-controls={panelId}
                   aria-label="Previous"
                 >
@@ -229,7 +234,7 @@ const Drawer = ({
                 </button>
                 <button
                   className="button--reset mobile-navigation-button mobile-navigation-button--next"
-                  onClick={onNext ?? undefined}
+                  onClick={nextHandler}
                   aria-controls={panelId}
                   aria-label="Next"
                 >

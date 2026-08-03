@@ -1,6 +1,7 @@
 .github/**/*.md
 .github/**/*.yml
 .github/**/*.yaml
+CHANGELOG.md
 
 dist/
 storybook-static/

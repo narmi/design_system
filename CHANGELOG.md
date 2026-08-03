@@ -7,85 +7,85 @@ All notable changes to this project will be documented in this file. See
 
 ### fix
 
-- **ci:** resolve backport actions from main, not the switched working tree (#2204) ([04b7b58](https://github.com/narmi/design_system/commit/04b7b5811bc782c53eb8b85af8ed06c944abdb8e)), closes [#2204](https://github.com/narmi/design_system/issues/2204)
+* **ci:** resolve backport actions from main, not the switched working tree (#2204) ([04b7b58](https://github.com/narmi/design_system/commit/04b7b5811bc782c53eb8b85af8ed06c944abdb8e)), closes [#2204](https://github.com/narmi/design_system/issues/2204)
 
 ## [6.19.8](https://github.com/narmi/design_system/compare/v6.19.7...v6.19.8) (2026-07-31)
 
 ### fix
 
-- **helper-classes:** emit real properties from directional --none spacing utilities (#2202) ([64c78de](https://github.com/narmi/design_system/commit/64c78de3db4c3028215d1e799b1a3fb20cb2e1f2)), closes [#2202](https://github.com/narmi/design_system/issues/2202)
+* **helper-classes:** emit real properties from directional --none spacing utilities (#2202) ([64c78de](https://github.com/narmi/design_system/commit/64c78de3db4c3028215d1e799b1a3fb20cb2e1f2)), closes [#2202](https://github.com/narmi/design_system/issues/2202)
 
 ### refactor
 
-- **DropdownTrigger:** migrate to TypeScript (#2200) ([b8d46ba](https://github.com/narmi/design_system/commit/b8d46ba8af843468758961b677e5f97a21b9fd06)), closes [#2200](https://github.com/narmi/design_system/issues/2200)
+* **DropdownTrigger:** migrate to TypeScript (#2200) ([b8d46ba](https://github.com/narmi/design_system/commit/b8d46ba8af843468758961b677e5f97a21b9fd06)), closes [#2200](https://github.com/narmi/design_system/issues/2200)
 
 ## [6.19.7](https://github.com/narmi/design_system/compare/v6.19.6...v6.19.7) (2026-07-31)
 
 ### fix
 
-- **Combobox:** detect broken Safari anchor placement ([ae60ce6](https://github.com/narmi/design_system/commit/ae60ce61924ff966a1d26fcf2f10ebdf3d7d7c44))
+* **Combobox:** detect broken Safari anchor placement ([ae60ce6](https://github.com/narmi/design_system/commit/ae60ce61924ff966a1d26fcf2f10ebdf3d7d7c44))
 
 ## [6.19.6](https://github.com/narmi/design_system/compare/v6.19.5...v6.19.6) (2026-07-30)
 
 ### fix
 
-- **TableInput:** apply border in high contrast mode ([36a0d53](https://github.com/narmi/design_system/commit/36a0d53b2202f96e1b7f9475b3a4cb6c44dcf01e))
+* **TableInput:** apply border in high contrast mode ([36a0d53](https://github.com/narmi/design_system/commit/36a0d53b2202f96e1b7f9475b3a4cb6c44dcf01e))
 
 ## [6.19.5](https://github.com/narmi/design_system/compare/v6.19.4...v6.19.5) (2026-07-30)
 
 ### fix
 
-- **Input:** apply multiline class from destructured prop (#2147) ([38c0b2a](https://github.com/narmi/design_system/commit/38c0b2a5dda0e9131a2d0e5b6423b8426f23c2a4)), closes [#2147](https://github.com/narmi/design_system/issues/2147)
+* **Input:** apply multiline class from destructured prop (#2147) ([38c0b2a](https://github.com/narmi/design_system/commit/38c0b2a5dda0e9131a2d0e5b6423b8426f23c2a4)), closes [#2147](https://github.com/narmi/design_system/issues/2147)
 
 ## [6.19.4](https://github.com/narmi/design_system/compare/v6.19.3...v6.19.4) (2026-07-30)
 
 ### fix
 
-- correct PropTypes declarations that raised warnings (#2146) ([cd805f6](https://github.com/narmi/design_system/commit/cd805f65267f108df87fcdf4c24a860e284e4064)), closes [#2146](https://github.com/narmi/design_system/issues/2146)
+* correct PropTypes declarations that raised warnings (#2146) ([cd805f6](https://github.com/narmi/design_system/commit/cd805f65267f108df87fcdf4c24a860e284e4064)), closes [#2146](https://github.com/narmi/design_system/issues/2146)
 
 ## [6.19.3](https://github.com/narmi/design_system/compare/v6.19.2...v6.19.3) (2026-07-29)
 
 ### fix
 
-- **storybook:** restore docgen for TypeScript components (#2197) ([6e73668](https://github.com/narmi/design_system/commit/6e7366864fb5d572af3ed71d8b48a861d08b6e70)), closes [#2197](https://github.com/narmi/design_system/issues/2197)
+* **storybook:** restore docgen for TypeScript components (#2197) ([6e73668](https://github.com/narmi/design_system/commit/6e7366864fb5d572af3ed71d8b48a861d08b6e70)), closes [#2197](https://github.com/narmi/design_system/issues/2197)
 
 ## [6.19.2](https://github.com/narmi/design_system/compare/v6.19.1...v6.19.2) (2026-07-29)
 
 ### fix
 
-- **ContentCard:** use typeof to correctly check type of onClick ([d075909](https://github.com/narmi/design_system/commit/d07590923f022e8b4e62710ce68f5c29a02dad5e))
+* **ContentCard:** use typeof to correctly check type of onClick ([d075909](https://github.com/narmi/design_system/commit/d07590923f022e8b4e62710ce68f5c29a02dad5e))
 
 ### refactor
 
-- **components:** align component styles with 'ink' tokens ([94d2e3c](https://github.com/narmi/design_system/commit/94d2e3c2a47e7e30f9d2d1cb7aeb45f0aa535221))
+* **components:** align component styles with 'ink' tokens ([94d2e3c](https://github.com/narmi/design_system/commit/94d2e3c2a47e7e30f9d2d1cb7aeb45f0aa535221))
 
 ## [6.19.1](https://github.com/narmi/design_system/compare/v6.19.0...v6.19.1) (2026-07-29)
 
 ### fix
 
-- **types:** convert CollapsibleCard to TypeScript (#2194) ([6de0f2f](https://github.com/narmi/design_system/commit/6de0f2fc454c733209c2cfebfc38473f3c4a482c)), closes [#2194](https://github.com/narmi/design_system/issues/2194)
+* **types:** convert CollapsibleCard to TypeScript (#2194) ([6de0f2f](https://github.com/narmi/design_system/commit/6de0f2fc454c733209c2cfebfc38473f3c4a482c)), closes [#2194](https://github.com/narmi/design_system/issues/2194)
 
 ## [6.19.0](https://github.com/narmi/design_system/compare/v6.18.2...v6.19.0) (2026-07-29)
 
 ### feat
 
-- **tokens:** enable color schemes and modes ([d1d6969](https://github.com/narmi/design_system/commit/d1d69691b44386a0d8aba79421516f3a9e86d12f))
-- **tokens:** enable color schemes and modes ([380a426](https://github.com/narmi/design_system/commit/380a426a5869ed0c8bbac326f16eb30ec7216c11))
+* **tokens:** enable color schemes and modes ([d1d6969](https://github.com/narmi/design_system/commit/d1d69691b44386a0d8aba79421516f3a9e86d12f))
+* **tokens:** enable color schemes and modes ([380a426](https://github.com/narmi/design_system/commit/380a426a5869ed0c8bbac326f16eb30ec7216c11))
 
 ### fix
 
-- **Pagination:** clamp selectedPage before computing arrow targets ([73e635c](https://github.com/narmi/design_system/commit/73e635c671e5222342844a917b021315739e85c1))
-- **Pagination:** don't emit out-of-range pages from arrows ([0fde2df](https://github.com/narmi/design_system/commit/0fde2dfc66022e9d712de2267e78820d649d32be))
+* **Pagination:** clamp selectedPage before computing arrow targets ([73e635c](https://github.com/narmi/design_system/commit/73e635c671e5222342844a917b021315739e85c1))
+* **Pagination:** don't emit out-of-range pages from arrows ([0fde2df](https://github.com/narmi/design_system/commit/0fde2dfc66022e9d712de2267e78820d649d32be))
 
 ### test
 
-- **Pagination:** cover arrow bounds at first/last page ([9fe6e7d](https://github.com/narmi/design_system/commit/9fe6e7d6317304916118da61ca798b9deaf382fb))
+* **Pagination:** cover arrow bounds at first/last page ([9fe6e7d](https://github.com/narmi/design_system/commit/9fe6e7d6317304916118da61ca798b9deaf382fb))
 
 ## [6.18.2](https://github.com/narmi/design_system/compare/v6.18.1...v6.18.2) (2026-07-29)
 
 ### fix
 
-- **types:** convert Sidebar to TypeScript (#2192) ([ab19547](https://github.com/narmi/design_system/commit/ab19547ed35fc225455e699a859c173d58365bbb)), closes [#2192](https://github.com/narmi/design_system/issues/2192)
+* **types:** convert Sidebar to TypeScript (#2192) ([ab19547](https://github.com/narmi/design_system/commit/ab19547ed35fc225455e699a859c173d58365bbb)), closes [#2192](https://github.com/narmi/design_system/issues/2192)
 
 ## [6.18.1](https://github.com/narmi/design_system/compare/v6.18.0...v6.18.1) (2026-07-29)
 

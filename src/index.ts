@@ -17,6 +17,7 @@ import Count from "./Count";
 import DateInput from "./DateInput";
 import Dialog from "./Dialog";
 import DisabledShim from "./DisabledShim";
+import Drawer from "./Drawer";
 import Error from "./Error";
 import DropdownTrigger from "./DropdownTrigger";
 import Field from "./Field";
@@ -64,7 +65,6 @@ import formatNumber from "./formatters/formatNumber";
  * Untyped Components
  */
 declare const Combobox;
-declare const Drawer;
 declare const MultiSelect;
 declare const Select;
 
@@ -105,6 +105,7 @@ export type { CountProps } from "./Count";
 export type { DateInputProps } from "./DateInput";
 export type { DialogProps } from "./Dialog";
 export type { DisabledShimProps } from "./DisabledShim";
+export type { DrawerProps } from "./Drawer";
 export type { DropdownTriggerProps } from "./DropdownTrigger";
 export type { ErrorProps } from "./Error";
 export type { FieldProps } from "./Field/types";

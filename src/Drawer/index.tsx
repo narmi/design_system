@@ -24,15 +24,15 @@ export interface DrawerProps {
   /**
    * Callback to handle user taking an action to go to the next element
    * (click on the next arrow, right/down arrow key).
-   * Pass `null` to render the next arrow disabled.
+   * When omitted, the next arrow renders disabled.
    */
-  onNext?: (() => void) | null;
+  onNext?: () => void;
   /**
    * Callback to handle user taking an action to go to the previous element
    * (click on the previous arrow, left/up arrow key).
-   * Pass `null` to render the previous arrow disabled.
+   * When omitted, the previous arrow renders disabled.
    */
-  onPrev?: (() => void) | null;
+  onPrev?: () => void;
   /**
    * Sets how far the drawer opens out (width or height).
    * Use the full CSS value with the percentage (e.g. `"400px"` or `"70%"`)
@@ -71,8 +71,8 @@ export interface DrawerProps {
 const Drawer = ({
   isOpen = false,
   onUserDismiss = noop,
-  onNext = null,
-  onPrev = null,
+  onNext,
+  onPrev,
   showClose = true,
   showControls = true,
   children,
@@ -85,9 +85,6 @@ const Drawer = ({
   const panelId = `content-panel-${useId()}`;
   const shimRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
-
-  const nextHandler = onNext ?? undefined;
-  const prevHandler = onPrev ?? undefined;
 
   const isTransitioning = useMountTransition(isOpen, 300);
   const { m } = useBreakpoints();
@@ -166,11 +163,11 @@ const Drawer = ({
                   // horizontal ones due to the order of navigation buttons being the opposite
                   // (rows are reversed in parent divs for horizontal drawers)
                   "navigation-button--disabled": isHorizontal
-                    ? onNext == null
-                    : onPrev == null,
+                    ? onNext === undefined
+                    : onPrev === undefined,
                 },
               ])}
-              onClick={isHorizontal ? nextHandler : prevHandler}
+              onClick={isHorizontal ? onNext : onPrev}
               aria-controls={panelId}
               aria-label={isHorizontal ? "Next" : "Previous"}
             >
@@ -185,11 +182,11 @@ const Drawer = ({
                 `button--reset navigation-button navigation-button--${position} alignChild--center--center`,
                 {
                   "navigation-button--disabled": isHorizontal
-                    ? onPrev == null
-                    : onNext == null,
+                    ? onPrev === undefined
+                    : onNext === undefined,
                 },
               ])}
-              onClick={isHorizontal ? prevHandler : nextHandler}
+              onClick={isHorizontal ? onPrev : onNext}
               aria-controls={panelId}
               aria-label={isHorizontal ? "Previous" : "Next"}
             >
@@ -226,7 +223,7 @@ const Drawer = ({
               <>
                 <button
                   className="button--reset mobile-navigation-button mobile-navigation-button--prev"
-                  onClick={prevHandler}
+                  onClick={onPrev}
                   aria-controls={panelId}
                   aria-label="Previous"
                 >
@@ -234,7 +231,7 @@ const Drawer = ({
                 </button>
                 <button
                   className="button--reset mobile-navigation-button mobile-navigation-button--next"
-                  onClick={nextHandler}
+                  onClick={onNext}
                   aria-controls={panelId}
                   aria-label="Next"
                 >

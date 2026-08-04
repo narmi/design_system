@@ -1,26 +1,32 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React, { useState, useMemo } from "react";
-import PropTypes from "prop-types";
-import { useSelect } from "downshift";
+import { useSelect, UseSelectProps } from "downshift";
 import useDropdownLayer from "../hooks/useDropdownLayer";
 
 import cc from "classcat";
 import Row from "../Row";
 import DropdownTrigger from "../DropdownTrigger";
 import Error from "../Error";
-import SelectItem from "./SelectItem";
-import SelectAction from "./SelectAction";
-import SelectCategory from "./SelectCategory";
+import SelectItem, { SelectItemProps } from "./SelectItem";
+import SelectAction, { SelectActionProps } from "./SelectAction";
+import SelectCategory, { SelectCategoryProps } from "./SelectCategory";
 
 const noop = () => {};
 
+type SelectItemElement = React.ReactElement<SelectItemProps>;
+type SelectActionElement = React.ReactElement<SelectActionProps>;
+type SelectCategoryElement = React.ReactElement<SelectCategoryProps>;
+type SelectChild = SelectItemElement | SelectActionElement;
+
 /**
- * @param {Object} item a Select.Item or Select.Action component
- * @returns {Boolean} true if the item is a Select.Action
+ * @param item a Select.Item or Select.Action component
+ * @returns true if the item is a Select.Action
  */
-export const isAction = (item) => {
+export const isAction = (
+  item: React.ReactNode,
+): item is SelectActionElement => {
   let result = false;
-  if (item && item.props) {
+  if (item && typeof item === "object" && "props" in item) {
     result = "onSelect" in item.props;
   }
   return result;
@@ -30,11 +36,13 @@ export const isAction = (item) => {
  * Sets the selected value in the DropdownTrigger.
  * A Select.Action should _not_ display as selected in the button.
  *
- * @param {Object} item the currently selected Select.Item or Select.Action
- * @returns {String|Node} The value to display in the trigger button
+ * @param item the currently selected Select.Item or Select.Action
+ * @returns The value to display in the trigger button
  */
-export const getSelectedItemDisplay = (item) => {
-  let result = "";
+export const getSelectedItemDisplay = (
+  item: SelectChild | "" | null | undefined,
+): React.ReactNode => {
+  let result: React.ReactNode = "";
   if (item && !isAction(item)) {
     result = item.props.children;
   }
@@ -42,13 +50,16 @@ export const getSelectedItemDisplay = (item) => {
 };
 
 /**
- * @param {String} value `value` of the Select.Item to get
- * @param {Array} items Select.Item nodes
- * @returns {ReactElement|String} the Select.Item element found or an empty string
+ * @param value `value` of the Select.Item to get
+ * @param items Select.Item nodes
+ * @returns the Select.Item element found or an empty string
  */
-export const getItemByValue = (value, items) => {
+export const getItemByValue = (
+  value: string,
+  items: SelectChild[],
+): SelectItemElement | "" => {
   const foundItem = items
-    .filter((item) => !isAction(item)) // action items are not selectable
+    .filter((item): item is SelectItemElement => !isAction(item)) // action items are not selectable
     .filter(({ props }) => props.value === value)
     .pop();
 
@@ -56,11 +67,11 @@ export const getItemByValue = (value, items) => {
 };
 
 /**
- * @param {Object} item an item from `items`
- * @param {array} items downshift index `items`
- * @returns {Number} index of item
+ * @param item an item from `items`
+ * @param items downshift index `items`
+ * @returns index of item
  */
-export const getItemIndex = (item, items) => {
+export const getItemIndex = (item: SelectChild, items: SelectChild[]) => {
   let result = 0;
   if (isAction(item)) {
     result = items
@@ -73,28 +84,33 @@ export const getItemIndex = (item, items) => {
 };
 
 /**
- * @param {Object} highlightedIndex index of currently highlight item
- * @param {Array} categoryChildren child items in a given category
- * @param {Array} items downshift `items`
- * @returns {Boolean} if the provided item is in the category
+ * @param highlightedIndex index of currently highlight item
+ * @param categoryChildren child items in a given category
+ * @param items downshift `items`
+ * @returns if the provided item is in the category
  */
 export const isHighlightedInCategory = (
-  highlightedIndex,
-  categoryChildren,
-  items,
+  highlightedIndex: number,
+  categoryChildren: SelectItemElement[],
+  items: SelectChild[],
 ) => {
   if (highlightedIndex < 0) return false;
   const highlightedValue = items[highlightedIndex].props.value;
-  const categoryValues = categoryChildren.map((child) => child.props.value);
+  const categoryValues: (string | undefined)[] = categoryChildren.map(
+    (child) => child.props.value,
+  );
   return categoryValues.includes(highlightedValue);
 };
 
 /**
- * @param {Object} selectedItem
- * @param {Array} categoryChildren child items in a given category
- * @returns {Boolean} if the selected item is in the given category children
+ * @param selectedItem
+ * @param categoryChildren child items in a given category
+ * @returns if the selected item is in the given category children
  */
-export const isSelectedItemInCategory = (selectedItem, categoryChildren) => {
+export const isSelectedItemInCategory = (
+  selectedItem: SelectChild | "" | null,
+  categoryChildren: SelectItemElement[],
+) => {
   if (!selectedItem || isAction(selectedItem)) return false;
   const selectedValue = selectedItem.props.value;
   const categoryValues = categoryChildren.map((child) => child.props.value);
@@ -102,15 +118,77 @@ export const isSelectedItemInCategory = (selectedItem, categoryChildren) => {
 };
 
 /**
- * @param {Node} selectItem full react element of a select item
- * @param {String} userInput most recent thing a user typed while focused on input
- * @returns {String} the string to use for typeahead for each given `selectItem`
+ * @param selectItem full react element of a select item
+ * @param userInput most recent thing a user typed while focused on input
+ * @returns the string to use for typeahead for each given `selectItem`
  */
-// eslint-disable-next-line no-unused-vars
-const defaultGetTypeAheadString = (userInput = "", selectItem) => {
+const defaultGetTypeAheadString = (
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  userInput = "",
+  selectItem: SelectItemElement,
+) => {
   if (isAction(selectItem)) return "";
   return selectItem.props.searchValue || selectItem.props.value;
 };
+
+interface SelectCategoryConfig {
+  label?: string;
+  categoryChildren: SelectItemElement[];
+  kind?: SelectCategoryProps["kind"];
+  isFlat?: boolean;
+}
+
+export interface SelectProps {
+  /**
+   * unique id attribute of the input (used for `htmlFor`).
+   * Defaults to a value derived from `label`.
+   */
+  id?: string;
+  /** Label for the select control */
+  label?: string;
+  /** Change callback. Called with value string from the selected item */
+  onChange?: (value: string) => void;
+  /**
+   * Sets selected item by value and makes the Select **fully controlled**.
+   *
+   * When passing a `value`, you must provide an `onChange` handler to update it
+   */
+  value?: string;
+  /**
+   * Function with signature `(userInputValue, selectItemNode) => {}`,
+   * used to customize typeahead filtering behavior.
+   * See "Changing Typeahead Behavior" story for example.
+   */
+  getTypeaheadString?: (
+    userInput: string,
+    selectItem: SelectItemElement,
+  ) => string;
+  /**
+   * When `true`, selecting an action will clear any existing selection.
+   */
+  clearSelectionOnAction?: boolean;
+  /**
+   * Use to set a default selection by passing the `value` prop
+   * of one of the `<Select.Item>` children.
+   * The Select will remain uncontrolled.
+   */
+  defaultValue?: string;
+  /** Open the dropdown on render if `true` */
+  defaultOpen?: boolean;
+  /**
+   * Error message.
+   * When passed, this will cause the trigger to render in error state.
+   */
+  errorText?: string;
+  children?: React.ReactNode;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+  /**
+   * When true, Select renders a disabled button with the appearance
+   * of a disabled input. User interaction is disabled.
+   */
+  disabled?: boolean;
+}
 
 /**
  * Accessible custom select control for giving users the ability to select one option from a list of options.
@@ -130,42 +208,59 @@ const Select = ({
   clearSelectionOnAction = false,
   errorText,
   testId,
-}) => {
-  let items = []; // List of all item types to pass to downshift state management
-  let categories = []; // Categories extracted from Select.Category children
+}: SelectProps) => {
+  let items: SelectChild[] = []; // List of all item types to pass to downshift state management
+  let categories: SelectCategoryConfig[] = []; // Categories extracted from Select.Category children
   const options = useMemo(
     // All Select.Item options
-    () => React.Children.toArray(children).filter((item) => !isAction(item)),
+    () =>
+      React.Children.toArray(children).filter((item) => !isAction(item)) as (
+        | SelectItemElement
+        | SelectCategoryElement
+      )[],
     [children],
   );
   const actions = React.Children.toArray(children).filter(isAction); // All Select.Action items
   const [userInput, setUserInput] = useState(""); // most recent val the user typed while focused on this input
 
   // If categories are being used, extract items from categories
-  if (options.some(({ type }) => type.displayName === "Select.Category")) {
+  if (
+    options.some(
+      ({ type }) =>
+        typeof type !== "string" &&
+        "displayName" in type &&
+        type.displayName === "Select.Category",
+    )
+  ) {
+    const categoryElements = options as SelectCategoryElement[];
     items = [
-      ...options.flatMap(({ props }) => React.Children.toArray(props.children)),
+      ...categoryElements.flatMap(
+        ({ props }) =>
+          React.Children.toArray(props.children) as SelectItemElement[],
+      ),
       ...actions,
     ];
-    categories = options.map(({ props }) => ({
+    categories = categoryElements.map(({ props }) => ({
       label: props.label,
-      categoryChildren: React.Children.toArray(props.children),
+      categoryChildren: React.Children.toArray(
+        props.children,
+      ) as SelectItemElement[],
       // eslint-disable-next-line react/prop-types
       kind: props.kind,
       // eslint-disable-next-line react/prop-types
       isFlat: props.isFlat,
     }));
   } else {
-    items = [...options, ...actions];
+    items = [...(options as SelectItemElement[]), ...actions];
   }
 
-  const downshiftOpts = {
+  const downshiftOpts: UseSelectProps<SelectChild | ""> = {
     id: id || `nds-select-${label}`,
     items,
-    disabled,
     initialSelectedItem: defaultValue && getItemByValue(defaultValue, items),
     initialIsOpen: defaultOpen,
-    itemToString: (item) => getTypeaheadString(userInput, item),
+    itemToString: (item) =>
+      getTypeaheadString(userInput, item as SelectItemElement),
     onSelectedItemChange: ({ selectedItem }) => {
       // Actions are handled in the state reducer, so this only handles regular items
       if (selectedItem && !isAction(selectedItem)) {
@@ -184,7 +279,7 @@ const Select = ({
 
       if (type === useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter) {
         const { inputValue } = changes;
-        setUserInput(inputValue);
+        setUserInput(inputValue ?? "");
         isOpen = true;
       } else {
         setUserInput(""); // reset input after any other event
@@ -237,10 +332,13 @@ const Select = ({
   });
 
   const hasCategories = categories.length > 0;
-  const hasSelectedItem = selectedItem !== null && selectedItem.props;
+  const selectedItemValue =
+    selectedItem !== null && selectedItem !== ""
+      ? selectedItem.props.value
+      : undefined;
   const showMenu = isOpen && items.length > 0;
 
-  const renderItem = (item, items) => {
+  const renderItem = (item: SelectChild, items: SelectChild[]) => {
     const index = getItemIndex(item, items);
     return (
       <li
@@ -259,18 +357,19 @@ const Select = ({
       >
         <Row as="span">
           <Row.Item as="span">{item}</Row.Item>
-          {hasSelectedItem && selectedItem.props.value === item.props.value && (
-            <Row.Item as="span" shrink>
-              <span className="narmi-icon-check fontSize--xl fontWeight--bold" />
-            </Row.Item>
-          )}
+          {selectedItemValue !== undefined &&
+            selectedItemValue === item.props.value && (
+              <Row.Item as="span" shrink>
+                <span className="narmi-icon-check fontSize--xl fontWeight--bold" />
+              </Row.Item>
+            )}
         </Row>
       </li>
     );
   };
 
-  const getDetailsProps = (categoryChildren) => {
-    let detailsExtraProps = {};
+  const getDetailsProps = (categoryChildren: SelectItemElement[]) => {
+    const detailsExtraProps: { open?: boolean } = {};
     if (
       isHighlightedInCategory(highlightedIndex, categoryChildren, items) ||
       isSelectedItemInCategory(selectedItem, categoryChildren)
@@ -282,7 +381,10 @@ const Select = ({
 
   return (
     <div className="nds-select" data-testid={testId}>
-      <div {...anchorProps}>
+      <div
+        {...(anchorProps as React.HTMLAttributes<HTMLDivElement>)}
+        ref={anchorProps.ref as React.Ref<HTMLDivElement>}
+      >
         <DropdownTrigger
           isOpen={showMenu}
           labelText={label}
@@ -295,7 +397,7 @@ const Select = ({
       </div>
       <Error error={errorText} />
 
-      <div {...layerProps}>
+      <div {...layerProps} ref={layerProps.ref as React.Ref<HTMLDivElement>}>
         <div
           className={cc([
             "nds-select-list",
@@ -371,7 +473,9 @@ const Select = ({
           )}
           {showMenu && !hasCategories && (
             <ul className="list--reset">
-              {options.map((option) => renderItem(option, items))}
+              {(options as SelectItemElement[]).map((option) =>
+                renderItem(option, items),
+              )}
               {actions.map((action) => renderItem(action, items))}
             </ul>
           )}
@@ -379,55 +483,6 @@ const Select = ({
       </div>
     </div>
   );
-};
-
-Select.propTypes = {
-  /** unique id attribute of the input (used for `htmlFor`) */
-  id: PropTypes.string.isRequired,
-  /** Label for the select control */
-  label: PropTypes.string.isRequired,
-  /** Change callback. Called with value string from the selected item */
-  onChange: PropTypes.func,
-  /**
-   * Sets selected item by value and makes the Select **fully controlled**.
-   *
-   * When passing a `value`, you must provide an `onChange` handler to update it
-   */
-  value: PropTypes.string,
-  /**
-   * Function with signature `(userInputValue, selectItemNode) => {}`,
-   * used to customize typeahead filtering behavior.
-   * See "Changing Typeahead Behavior" story for example.
-   */
-  getTypeaheadString: PropTypes.func,
-  /**
-   * When `true`, selecting an action will clear any existing selection.
-   */
-  clearSelectionOnAction: PropTypes.bool,
-  /**
-   * Use to set a default selection by passing the `value` prop
-   * of one of the `<Select.Item>` children.
-   * The Select will remain uncontrolled.
-   */
-  defaultValue: PropTypes.string,
-  /** Open the dropdown on render if `true` */
-  defaultOpen: PropTypes.bool,
-  /**
-   * Error message.
-   * When passed, this will cause the trigger to render in error state.
-   */
-  errorText: PropTypes.string,
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
-  /** Optional value for `data-testid` attribute */
-  testId: PropTypes.string,
-  /**
-   * When true, Select renders a disabled button with the appearance
-   * of a disabled input. User interaction is disabled.
-   */
-  disabled: PropTypes.bool,
 };
 
 Select.Item = SelectItem;

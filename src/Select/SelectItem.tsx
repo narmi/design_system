@@ -17,6 +17,8 @@ export interface SelectItemProps {
    */
   searchValue?: string;
   children?: React.ReactNode;
+  /** Never set on Select.Item; `onSelect` is what identifies a Select.Action */
+  onSelect?: never;
 }
 
 const SelectItem = ({ children }: SelectItemProps) => <>{children}</>;

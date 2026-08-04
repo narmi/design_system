@@ -32,6 +32,7 @@ import Radio from "./Radio";
 import RadioButtons from "./RadioButtons";
 import ResponsiveFlex from "./ResponsiveFlex";
 import Row from "./Row";
+import Select from "./Select";
 import SeparatorList from "./SeparatorList";
 import Sidebar from "./Sidebar";
 import Slider from "./Slider";
@@ -66,7 +67,6 @@ import formatNumber from "./formatters/formatNumber";
  */
 declare const Combobox;
 declare const MultiSelect;
-declare const Select;
 
 export * from "./types/Icon.types";
 
@@ -136,6 +136,10 @@ export type {
 } from "./ResponsiveFlex";
 export type { RowProps } from "./Row";
 export type { RowItemProps } from "./Row/RowItem";
+export type { SelectProps } from "./Select";
+export type { SelectItemProps } from "./Select/SelectItem";
+export type { SelectActionProps } from "./Select/SelectAction";
+export type { SelectCategoryProps } from "./Select/SelectCategory";
 export type { SeparatorListProps } from "./SeparatorList";
 export type { SidebarProps, SidebarItemElement } from "./Sidebar";
 export type { SidebarItemProps } from "./Sidebar/SidebarItem";

@@ -31,11 +31,9 @@ const TabsPanel = ({ children, tabId, testId }: TabsPanelProps) => {
       hidden={tabId !== selectedId ? true : undefined}
       data-testid={testId}
     >
-      {isResponsive ? (
-        <div className="panel-responsive">{children}</div>
-      ) : (
-        <>{children}</>
-      )}
+      <div className={isResponsive ? "panel-responsive" : undefined}>
+        {children}
+      </div>
     </div>
   );
 };

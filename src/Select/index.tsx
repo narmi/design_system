@@ -27,7 +27,7 @@ export const isAction = (
 ): item is SelectActionElement => {
   let result = false;
   if (item && typeof item === "object" && "props" in item) {
-    result = "onSelect" in (item.props as object);
+    result = "onSelect" in item.props;
   }
   return result;
 };

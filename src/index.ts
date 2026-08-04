@@ -42,6 +42,7 @@ import SplitButton from "./SplitButton";
 import LoadingSkeleton from "./LoadingSkeleton";
 import LoadingShim from "./LoadingShim";
 import MenuButton from "./MenuButton";
+import MultiSelect from "./MultiSelect";
 import Table from "./Table";
 import TableAutocomplete from "./TableAutocomplete";
 import TableDateInput from "./TableDateInput";
@@ -66,7 +67,6 @@ import formatNumber from "./formatters/formatNumber";
  * Untyped Components
  */
 declare const Combobox;
-declare const MultiSelect;
 
 export * from "./types/Icon.types";
 
@@ -118,6 +118,11 @@ export type { InputProps } from "./Input";
 export type { LoadingShimProps } from "./LoadingShim";
 export type { LoadingSkeletonProps } from "./LoadingSkeleton";
 export type { MenuButtonProps } from "./MenuButton";
+export type {
+  MultiSelectProps,
+  MultiSelectSummaryFormatterArgs,
+} from "./MultiSelect";
+export type { MultiSelectItemProps } from "./MultiSelect/MultiSelectItem";
 export type { MenuButtonItemProps } from "./MenuButton/MenuButtonItem";
 export type { PaginationProps } from "./Pagination";
 export type { PopoverProps } from "./Popover";

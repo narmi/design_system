@@ -235,7 +235,10 @@ const Combobox = ({
       type.displayName === ComboboxCategory.displayName,
   );
   let categories: ComboboxCategoryConfig[] = [];
-  let items: ComboboxChild[] = [];
+  let items: ComboboxChild[] =
+    allChildren.length < 1
+      ? []
+      : allChildren.filter(({ props }) => "value" in props || "text" in props);
 
   // If categories are being used, `items` is populated by the children of each category
   if (hasCategories) {
@@ -356,7 +359,6 @@ const Combobox = ({
   }, [items, inputValue]);
 
   const hasSelectedItem = !!selectedItem;
-  const selectedItemValue = selectedItem ? selectedItem.props.value : undefined;
 
   // renders a single combobox item
   const renderItem = (item: ComboboxChild, index: number) => {
@@ -397,11 +399,12 @@ const Combobox = ({
           {!isActionItem && (
             <Row as="span">
               <Row.Item as="span">{item}</Row.Item>
-              {hasSelectedItem && selectedItemValue === item.props.value && (
-                <Row.Item as="span" shrink>
-                  <span className="narmi-icon-check fontSize--xl fontWeight--bold" />
-                </Row.Item>
-              )}
+              {hasSelectedItem &&
+                selectedItem.props.value === item.props.value && (
+                  <Row.Item as="span" shrink>
+                    <span className="narmi-icon-check fontSize--xl fontWeight--bold" />
+                  </Row.Item>
+                )}
             </Row>
           )}
         </li>
@@ -516,6 +519,7 @@ const Combobox = ({
             error={errorText}
             renderError={false}
             label={label}
+            value={inputValue}
             startIcon={icon}
             endContent={renderEndContent(isOpen)}
             {...getInputProps({

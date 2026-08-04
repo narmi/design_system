@@ -1,10 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-interface SelectActionProps {
+export interface SelectActionProps {
   /** Side effect to run on selection */
-  onSelect?: () => void;
+  onSelect: () => void;
   children?: React.ReactNode;
+  /** Never set on Select.Action; `value` belongs to selectable Select.Items */
+  value?: never;
+  searchValue?: never;
 }
 
 const SelectAction = ({ children }: SelectActionProps) => <>{children}</>;

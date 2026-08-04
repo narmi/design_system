@@ -2,7 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-interface SelectCategoryProps {
+export interface SelectCategoryProps {
   label?: string;
   /**
    * heading: default bold heading

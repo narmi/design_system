@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.20.0](https://github.com/narmi/design_system/compare/v6.19.10...v6.20.0) (2026-08-04)
+
+### feat
+
+* **TextInput:** accept form-integration `field` prop in types ([d0133e4](https://github.com/narmi/design_system/commit/d0133e4d5aba76583e4855d43a31a24e4241d5ab)), closes [#2201](https://github.com/narmi/design_system/issues/2201)
+
 ## [6.19.10](https://github.com/narmi/design_system/compare/v6.19.9...v6.19.10) (2026-08-04)
 
 ### fix

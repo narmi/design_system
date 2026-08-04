@@ -53,6 +53,12 @@ interface TextInputBaseProps {
     | "datetime-local";
   /** Native element prop passed to the underlying input/textarea element. Defaults to false. */
   required?: boolean;
+  /**
+   * Form-integration key read by parent form wrappers (e.g. cerulean
+   * `ContextForm.Field`) via element props. Not used by this component
+   * and not forwarded to the DOM.
+   */
+  field?: string;
 }
 
 // children: TextInput renders its own input element; stray children
@@ -115,6 +121,7 @@ const nativeProps = <P extends TextInputProps>({
   error,
   renderError,
   required,
+  field,
   ...rest
 }: P) => rest;
 /* eslint-enable @typescript-eslint/no-unused-vars */

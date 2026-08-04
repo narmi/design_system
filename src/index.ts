@@ -12,6 +12,7 @@ import ContentCard from "./ContentCard";
 import Checkbox from "./Checkbox";
 import Chip from "./Chip";
 import CollapsibleCard from "./CollapsibleCard";
+import Combobox from "./Combobox";
 import ContextMenu from "./ContextMenu";
 import Count from "./Count";
 import DateInput from "./DateInput";
@@ -63,11 +64,6 @@ import formatDate from "./formatters/formatDate";
 import useLockBodyScroll from "./hooks/useLockBodyScroll";
 import formatNumber from "./formatters/formatNumber";
 
-/**
- * Untyped Components
- */
-declare const Combobox;
-
 export * from "./types/Icon.types";
 
 /**
@@ -98,6 +94,11 @@ export type {
   CollapsibleCardKind,
   CollapsibleCardRadiusSize,
 } from "./CollapsibleCard";
+export type { ComboboxProps } from "./Combobox";
+export type { ComboboxItemProps } from "./Combobox/ComboboxItem";
+export type { ComboboxActionProps } from "./Combobox/ComboboxAction";
+export type { ComboboxHeadingProps } from "./Combobox/ComboboxHeading";
+export type { ComboboxCategoryProps } from "./Combobox/ComboboxCategory";
 export type { ContentCardProps } from "./ContentCard";
 export type { ContextMenuProps } from "./ContextMenu";
 export type { ContextMenuItemProps } from "./ContextMenu/ContextMenuItem";

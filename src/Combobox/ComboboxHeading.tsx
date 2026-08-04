@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-interface ComboboxHeadingProps {
+export interface ComboboxHeadingProps {
   /**
    * Text of the heading
    */
@@ -12,6 +12,10 @@ interface ComboboxHeadingProps {
    * `hint` - Light, small headings
    */
   kind?: "bold" | "hint";
+  /** Never set on Combobox.Heading; headings are not selectable */
+  value?: never;
+  searchValue?: never;
+  label?: never;
 }
 
 const ComboboxHeading = ({ text, kind = "bold" }: ComboboxHeadingProps) => (

@@ -1,39 +1,55 @@
 import React, { useState, useRef, useMemo, useEffect } from "react";
-import PropTypes from "prop-types";
 import cc from "classcat";
-import { VALID_ICON_NAMES } from "src/icons/iconNames";
+import { VALID_ICON_NAMES } from "../icons/iconNames";
 import { useCombobox } from "downshift";
-import ComboboxItem from "./ComboboxItem";
-import ComboboxHeading from "./ComboboxHeading";
-import ComboboxCategory from "./ComboboxCategory";
-import ComboboxAction from "./ComboboxAction";
+import ComboboxItem, { ComboboxItemProps } from "./ComboboxItem";
+import ComboboxHeading, { ComboboxHeadingProps } from "./ComboboxHeading";
+import ComboboxCategory, { ComboboxCategoryProps } from "./ComboboxCategory";
+import ComboboxAction, { ComboboxActionProps } from "./ComboboxAction";
 import Error from "../Error";
 import TextInput from "../TextInput";
 import Row from "../Row";
 import { getItemIndex } from "../Select";
 import useDropdownLayer from "../hooks/useDropdownLayer";
+import type { IconName } from "../types/Icon.types";
 
 const noop = () => {};
 
 export { VALID_ICON_NAMES };
 
+type ComboboxItemElement = React.ReactElement<ComboboxItemProps>;
+type ComboboxActionElement = React.ReactElement<ComboboxActionProps>;
+type ComboboxHeadingElement = React.ReactElement<ComboboxHeadingProps>;
+type ComboboxCategoryElement = React.ReactElement<ComboboxCategoryProps>;
+type ComboboxChild =
+  | ComboboxItemElement
+  | ComboboxActionElement
+  | ComboboxHeadingElement;
+
+interface ComboboxCategoryConfig {
+  label: string;
+  categoryChildren: ComboboxChild[];
+}
+
 /**
- * @param {Object} item Combobox.{Action|Item|Heading} component
- * @returns {Boolean} true if the item is a Combobox.Action
+ * @param item Combobox.{Action|Item|Heading} component
+ * @returns true if the item is a Combobox.Action
  */
-export const isAction = (item) => {
+export const isAction = (
+  item: React.ReactNode,
+): item is ComboboxActionElement => {
   let result = false;
-  if (item && item.props) {
-    result = "label" in item.props;
+  if (item && typeof item === "object" && "props" in item) {
+    result = "label" in (item.props as object);
   }
   return result;
 };
 
 /**
- * @param {Object} component a Combobox.Item or Combobox.Heading component
- * @returns {Boolean} true if the item is a selectable Combobox.Item or Action
+ * @param component a Combobox.Item or Combobox.Heading component
+ * @returns true if the item is a selectable Combobox.Item or Action
  */
-export const isSelectable = (component) => {
+export const isSelectable = (component: ComboboxChild | null | undefined) => {
   let result = false;
   if (component) {
     result = isAction(component) || "value" in component.props;
@@ -42,25 +58,28 @@ export const isSelectable = (component) => {
 };
 
 /**
- * @param {String} inputValue current value of the combobox input
- * @param {Number} highlightedIndex index of highlighted item from downshift
- * @param {Array} displayedItems list of all items currently displayed
- * @param {Array} categoryChildren list of items in category
- * @returns {Boolean} if the category should be forced open
+ * @param inputValue current value of the combobox input
+ * @param highlightedIndex index of highlighted item from downshift
+ * @param displayedItems list of all items currently displayed
+ * @param categoryChildren list of items in category
+ * @param selectedItem the currently selected item
+ * @returns if the category should be forced open
  */
 export const shouldOpenCategory = (
-  inputValue,
-  highlightedIndex,
-  displayedItems,
-  categoryChildren,
-  selectedItem,
+  inputValue: string | undefined,
+  highlightedIndex: number,
+  displayedItems: ComboboxChild[],
+  categoryChildren: ComboboxChild[],
+  selectedItem: ComboboxChild | null | undefined,
 ) => {
   let result = false;
 
   // an item in the category is currently highlighted
   if (highlightedIndex > -1 && displayedItems.length > 0) {
     const highlightedValue = displayedItems[highlightedIndex].props.value;
-    const categoryValues = categoryChildren.map((child) => child.props.value);
+    const categoryValues: (string | undefined)[] = categoryChildren.map(
+      (child) => child.props.value,
+    );
     result = categoryValues.includes(highlightedValue);
   }
 
@@ -81,16 +100,16 @@ export const shouldOpenCategory = (
 };
 
 /**
- * @param {Array} displayedItems currently displayed combobox items
- * @param {Array} categoryChildren items in category
- * @returns {Array} [] containing which category items should be visible
+ * @param displayedItems currently displayed combobox items
+ * @param categoryChildren items in category
+ * @returns [] containing which category items should be visible
  */
 export const getVisibleChildrenByCategory = (
-  displayedItems,
-  categoryChildren,
+  displayedItems: ComboboxChild[],
+  categoryChildren: ComboboxChild[],
 ) => {
   const categoryValues = categoryChildren.map((child) => child.props.value);
-  return categoryValues.reduce((visibleItems, value) => {
+  return categoryValues.reduce((visibleItems: ComboboxChild[], value) => {
     const visibleItem = displayedItems.find(
       (displayedItem) => value === displayedItem.props.value,
     );
@@ -102,11 +121,14 @@ export const getVisibleChildrenByCategory = (
 };
 
 /**
- * @param {Array} items all selectable Combobox.Item children
- * @param {String} inputValue lowercase value of input
- * @returns {Array} Combobox.Item children, filtered by the input value
+ * @param items all selectable Combobox.Item children
+ * @param inputValue lowercase value of input
+ * @returns Combobox.Item children, filtered by the input value
  */
-export const defaultFilterItemsByInput = (items, inputValue) =>
+export const defaultFilterItemsByInput = (
+  items: ComboboxItemElement[],
+  inputValue: string,
+) =>
   items.filter((item) => {
     const query = item.props.searchValue || item.props.value;
     return query.toLowerCase().startsWith(inputValue);
@@ -114,16 +136,69 @@ export const defaultFilterItemsByInput = (items, inputValue) =>
 
 /**
  *
- * @param {Boolean} isOpen whether the combobox is open
- * @returns {React.ReactNode} chevron icon that toggles based on the open state of the combobox
+ * @param isOpen whether the combobox is open
+ * @returns chevron icon that toggles based on the open state of the combobox
  */
-export const defaultRenderEndContent = (isOpen) => (
+export const defaultRenderEndContent = (isOpen: boolean) => (
   <span
     className={`fontSize--xl fontColor--primary narmi-icon-${
       isOpen ? "chevron-up" : "chevron-down"
     }`}
   />
 );
+
+export interface ComboboxProps {
+  /** Combobox.Item, Combobox.Action, Combobox.Heading, or Combobox.Category children */
+  children: React.ReactNode;
+  /** Label for the input */
+  label: string;
+  /** Change callback.
+   * Called when an item is selected, with the `value` of the selected item.
+   * Called with empty string when the user clears the input.
+   */
+  onChange?: (value: string) => void;
+  /**
+   * Sets value of the input in a controlled manner.
+   * When using the `inputValue` prop, you **must** update it via the
+   * `onInputChange` handler.
+   */
+  inputValue?: string;
+  /** Input change callback. Called whenever the user updates the value of the input. */
+  onInputChange?: (inputValue: string) => void;
+  /**
+   * Set to `true` to disable the default behavior of filtering the list
+   * as the user types.
+   */
+  disableFiltering?: boolean;
+  /**
+   * When `true`, selecting an action will clear any existing selection.
+   */
+  clearSelectionOnAction?: boolean;
+  /**
+   * Optionally pass a function to customize filtering behavior
+   *
+   * Signature: `(items, inputValue) => [...filteredItems]`
+   */
+  filterItemsByInput?: (
+    items: ComboboxItemElement[],
+    inputValue: string,
+  ) => ComboboxItemElement[];
+  /**
+   * Error message.
+   * When passed, this will cause the input to render in error state.
+   */
+  errorText?: string;
+  /** Name of icon to place at the start of the input */
+  icon?: IconName;
+  /** Optional value for `data-testid` attribute */
+  testId?: string;
+  /** Function to render content at the end of the input.
+   * Defaults to a function that renders a chevron icon that toggles based on the open state of the combobox.
+   *
+   * Signature: `(isOpen) => React.ReactNode`
+   */
+  renderEndContent?: (isOpen: boolean) => React.ReactNode;
+}
 
 /**
  * Autocomplete input component following the accessible
@@ -148,38 +223,42 @@ const Combobox = ({
   icon,
   testId,
   renderEndContent = defaultRenderEndContent,
-}) => {
+}: ComboboxProps) => {
   const allChildren = useMemo(
-    () => React.Children.toArray(children),
+    () => React.Children.toArray(children) as ComboboxChild[],
     [children],
   );
   const hasCategories = allChildren.some(
-    ({ type }) => type.displayName === ComboboxCategory.displayName,
+    ({ type }) =>
+      typeof type !== "string" &&
+      "displayName" in type &&
+      type.displayName === ComboboxCategory.displayName,
   );
-  let categories = [];
-  let items =
-    allChildren.length < 1
-      ? []
-      : allChildren.filter(({ props }) => "value" in props || "text" in props);
+  let categories: ComboboxCategoryConfig[] = [];
+  let items: ComboboxChild[] = [];
 
   // If categories are being used, `items` is populated by the children of each category
   if (hasCategories) {
-    items = allChildren.flatMap(({ props }) =>
-      React.Children.toArray(props.children),
+    const categoryElements =
+      allChildren as unknown as ComboboxCategoryElement[];
+    items = categoryElements.flatMap(
+      ({ props }) => React.Children.toArray(props.children) as ComboboxChild[],
     );
-    categories = allChildren.map(({ props }) => ({
+    categories = categoryElements.map(({ props }) => ({
       label: props.label,
-      categoryChildren: React.Children.toArray(props.children),
+      categoryChildren: React.Children.toArray(
+        props.children,
+      ) as ComboboxChild[],
     }));
   } else {
     items = allChildren;
   }
 
   const [displayedItems, setDisplayedItems] = useState(items);
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const isInternalFocusChange = useRef(false);
 
-  const itemToString = (item) =>
+  const itemToString = (item: ComboboxChild | null | undefined) =>
     item?.props?.searchValue || item?.props?.value || "";
 
   const {
@@ -199,7 +278,7 @@ const Combobox = ({
     itemToString,
 
     // typeahead behavior is managed by this event callback
-    onInputValueChange: ({ inputValue }) => {
+    onInputValueChange: ({ inputValue = "" }) => {
       // If the user has cleared the input reset selection and state.
       if (inputValue.length === 0) {
         setDisplayedItems(items);
@@ -212,7 +291,10 @@ const Combobox = ({
       if (!disableFiltering) {
         const actionItems = items.filter(isAction);
         const filteredItems = filterItemsByInput(
-          items.filter((item) => !isAction(item) && isSelectable(item)),
+          items.filter(
+            (item): item is ComboboxItemElement =>
+              !isAction(item) && isSelectable(item),
+          ),
           inputValue.toLowerCase(),
         );
         setDisplayedItems([...filteredItems, ...actionItems]);
@@ -227,7 +309,7 @@ const Combobox = ({
       // then we restore focus without scrolling.
       isInternalFocusChange.current = true;
       inputRef.current?.blur();
-      onChange(selectedItem ? selectedItem.props.value : "");
+      onChange(selectedItem ? (selectedItem.props.value ?? "") : "");
       closeMenu();
       inputRef.current?.focus({ preventScroll: true });
       isInternalFocusChange.current = false;
@@ -274,9 +356,10 @@ const Combobox = ({
   }, [items, inputValue]);
 
   const hasSelectedItem = !!selectedItem;
+  const selectedItemValue = selectedItem ? selectedItem.props.value : undefined;
 
   // renders a single combobox item
-  const renderItem = (item, index) => {
+  const renderItem = (item: ComboboxChild, index: number) => {
     const isActionItem = isAction(item);
     let itemJsx = (
       <li key={`${item}-${index}`} className="alignChild--left--center">
@@ -314,12 +397,11 @@ const Combobox = ({
           {!isActionItem && (
             <Row as="span">
               <Row.Item as="span">{item}</Row.Item>
-              {hasSelectedItem &&
-                selectedItem.props.value === item.props.value && (
-                  <Row.Item as="span" shrink>
-                    <span className="narmi-icon-check fontSize--xl fontWeight--bold" />
-                  </Row.Item>
-                )}
+              {hasSelectedItem && selectedItemValue === item.props.value && (
+                <Row.Item as="span" shrink>
+                  <span className="narmi-icon-check fontSize--xl fontWeight--bold" />
+                </Row.Item>
+              )}
             </Row>
           )}
         </li>
@@ -330,8 +412,11 @@ const Combobox = ({
   };
 
   // renders category including all child items
-  const renderCategory = ({ label, categoryChildren }) => {
-    const detailsProps = {};
+  const renderCategory = ({
+    label,
+    categoryChildren,
+  }: ComboboxCategoryConfig) => {
+    const detailsProps: { open?: boolean } = {};
     const visibleChildren = getVisibleChildrenByCategory(
       displayedItems,
       categoryChildren,
@@ -409,7 +494,9 @@ const Combobox = ({
         error={errorText}
         label={label}
         startIcon={icon}
-        onChange={onInputChange}
+        onChange={
+          onInputChange as unknown as React.ChangeEventHandler<HTMLInputElement>
+        }
         value={inputValue}
       />
     );
@@ -421,12 +508,14 @@ const Combobox = ({
         className={cc(["nds-combobox", { "nds-combobox--active": isOpen }])}
         data-testid={testId}
       >
-        <div {...anchorProps}>
+        <div
+          {...(anchorProps as React.HTMLAttributes<HTMLDivElement>)}
+          ref={anchorProps.ref as React.Ref<HTMLDivElement>}
+        >
           <TextInput
             error={errorText}
             renderError={false}
             label={label}
-            value={inputValue}
             startIcon={icon}
             endContent={renderEndContent(isOpen)}
             {...getInputProps({
@@ -438,8 +527,8 @@ const Combobox = ({
             onClick={handleMenuToggle}
           />
         </div>
-        <Error error={errorText} className="margin--top--xs" />
-        <div {...layerProps}>
+        <Error error={errorText} />
+        <div {...layerProps} ref={layerProps.ref as React.Ref<HTMLDivElement>}>
           <ul
             className={cc([
               "nds-combobox-list",
@@ -460,60 +549,6 @@ const Combobox = ({
       </div>
     </>
   );
-};
-
-Combobox.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]).isRequired,
-  /** Label for the input */
-  label: PropTypes.string.isRequired,
-  /** Change callback.
-   * Called when an item is selected, with the `value` of the selected item.
-   * Called with empty string when the user clears the input.
-   */
-  onChange: PropTypes.func,
-  /**
-   * Sets value of the input in a controlled manner.
-   * When using the `inputValue` prop, you **must** update it via the
-   * `onInputChange` handler.
-   */
-  inputValue: PropTypes.string,
-  /** Input change callback. Called whenever the user updates the value of the input. */
-  onInputChange: PropTypes.func,
-  /**
-   * Set to `true` to disable the default behavior of filtering the list
-   * as the user types.
-   */
-  disableFiltering: PropTypes.bool,
-  /**
-   * When `true`, selecting an action will clear any existing selection.
-   */
-  clearSelectionOnAction: PropTypes.bool,
-  /**
-   * Optionally pass a function to customize filtering behavior
-   *
-   * Signature: `(items, inputValue) => [...filteredItems]`
-   */
-  filterItemsByInput: PropTypes.func,
-  /**
-   * Error message.
-   * When passed, this will cause the input to render in error state.
-   */
-  errorText: PropTypes.string,
-  /** Name of icon to place at the start of the input */
-  icon: PropTypes.oneOf(VALID_ICON_NAMES),
-  /** Optional value for `data-testid` attribute */
-  testId: PropTypes.string,
-  /** Function to render content at the end of the input.
-   * Defaults to a function that renders a chevron icon that toggles based on the open state of the combobox.
-   *
-   * Signature: `(isOpen) => React.ReactNode`
-   */
-  renderEndContent: PropTypes.func,
-  /** Optional override to set CSS value for max height of menu */
-  maxMenuHeight: PropTypes.string,
 };
 
 Combobox.Item = ComboboxItem;

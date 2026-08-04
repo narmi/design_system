@@ -2,16 +2,15 @@ import React, { ReactNode, forwardRef } from "react";
 import cc from "classcat";
 import Error from "../Error";
 
-export interface DropdownTriggerProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface DropdownTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Set this to `true` when the associated popup is open */
   isOpen?: boolean;
   /** Set to `false` to hide the chevron icon indicating open state */
   showOpenIndicator?: boolean;
   /** Variant of the trigger. Use "table" when used inside table cells */
   kind?: "default" | "table";
-  /** Text of `label` element */
-  labelText?: string;
+  /** Content of the `label` element */
+  labelText?: ReactNode;
   /** Props to spread onto the `label` element */
   labelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
   /**

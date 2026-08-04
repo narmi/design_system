@@ -244,6 +244,8 @@ const MultiSelect = ({
     stateReducer: (state, actionAndChanges) => {
       const { changes: newChanges, type } = actionAndChanges;
       switch (type) {
+        case useSelect.stateChangeTypes.ToggleButtonKeyDownEnter:
+        case useSelect.stateChangeTypes.ToggleButtonKeyDownSpaceButton:
         case useSelect.stateChangeTypes.ItemClick:
           return {
             ...newChanges,
@@ -259,6 +261,7 @@ const MultiSelect = ({
       switch (type) {
         case useSelect.stateChangeTypes.ItemClick:
         case useSelect.stateChangeTypes.ToggleButtonKeyDownEnter:
+        case useSelect.stateChangeTypes.ToggleButtonKeyDownSpaceButton:
           if (isSelected(selectedItems, newSelectedItem)) {
             removeSelectedItem(newSelectedItem as MultiSelectItemElement);
           } else if (newSelectedItem) {

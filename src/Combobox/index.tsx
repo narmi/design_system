@@ -225,7 +225,11 @@ const Combobox = ({
   renderEndContent = defaultRenderEndContent,
 }: ComboboxProps) => {
   const allChildren = useMemo(
-    () => React.Children.toArray(children) as ComboboxChild[],
+    () =>
+      React.Children.toArray(children) as (
+        | ComboboxChild
+        | ComboboxCategoryElement
+      )[],
     [children],
   );
   const hasCategories = allChildren.some(
@@ -238,12 +242,13 @@ const Combobox = ({
   let items: ComboboxChild[] =
     allChildren.length < 1
       ? []
-      : allChildren.filter(({ props }) => "value" in props || "text" in props);
+      : (allChildren.filter(
+          ({ props }) => "value" in props || "text" in props,
+        ) as ComboboxChild[]);
 
   // If categories are being used, `items` is populated by the children of each category
   if (hasCategories) {
-    const categoryElements =
-      allChildren as unknown as ComboboxCategoryElement[];
+    const categoryElements = allChildren as ComboboxCategoryElement[];
     items = categoryElements.flatMap(
       ({ props }) => React.Children.toArray(props.children) as ComboboxChild[],
     );
@@ -254,7 +259,7 @@ const Combobox = ({
       ) as ComboboxChild[],
     }));
   } else {
-    items = allChildren;
+    items = allChildren as ComboboxChild[];
   }
 
   const [displayedItems, setDisplayedItems] = useState(items);

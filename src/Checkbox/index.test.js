@@ -95,4 +95,30 @@ describe("Checkbox", () => {
     const a = screen.getByText("Google");
     expect(a.tagName).toBe("A");
   });
+
+  it("renders a custom label element when `renderLabel` prop is set", () => {
+    render(
+      <Checkbox
+        renderLabel={() => <button type="button">Button in a checkbox</button>}
+      />,
+    );
+    const customElement = screen.getByRole("button");
+    expect(customElement.innerHTML).toEqual("Button in a checkbox");
+  });
+
+  it("`renderLabel` provides the `isChecked` state to its custom element", () => {
+    render(
+      <Checkbox
+        defaultChecked={false}
+        renderLabel={(isChecked) => <p>{`checkbox state: ${isChecked}`}</p>}
+      />,
+    );
+    const customElement = screen.getByRole("paragraph");
+    expect(customElement.innerHTML).toEqual("checkbox state: false");
+
+    const input = screen.getByRole("checkbox");
+    fireEvent.click(input);
+
+    expect(customElement.innerHTML).toEqual("checkbox state: true");
+  });
 });

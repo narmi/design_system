@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.10](https://github.com/narmi/design_system/compare/v6.19.9...v6.19.10) (2026-08-04)
+
+### fix
+
+* **Tabs:** stop responsive threshold from remounting panel content ([dfb8c92](https://github.com/narmi/design_system/commit/dfb8c9222379e44c8e7525696ca9bf1638661122))
+
+### refactor
+
+* **Input chain:** migrate Input, TextInput, DateInput, TokenInput to TypeScript (#2201) ([5f51980](https://github.com/narmi/design_system/commit/5f519800224590ac7ddb1020108089bce0f4d8cb)), closes [#2201](https://github.com/narmi/design_system/issues/2201)
+* **Tag:** migrate to TypeScript (#2206) ([1765bd5](https://github.com/narmi/design_system/commit/1765bd51909509d936cb10359f543e84dc0b8e28)), closes [#2206](https://github.com/narmi/design_system/issues/2206)
+* **Popover:** migrate to TypeScript (#2207) ([3b719b1](https://github.com/narmi/design_system/commit/3b719b1e7a720b03eb6032e1f2c2fc5dbf4d9e2d)), closes [#2207](https://github.com/narmi/design_system/issues/2207)
+* **Drawer:** migrate to TypeScript (#2212) ([bc78725](https://github.com/narmi/design_system/commit/bc787251680f0b75c5383e5bd9acc34a5183c487)), closes [#2212](https://github.com/narmi/design_system/issues/2212)
+
 ## [6.19.9](https://github.com/narmi/design_system/compare/v6.19.8...v6.19.9) (2026-07-31)
 
 ### fix

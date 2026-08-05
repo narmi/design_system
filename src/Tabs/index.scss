@@ -177,6 +177,12 @@
         border-radius: var(--border-radius-m);
         background-color: var(--selected-bg);
         box-shadow: var(--elevation-middle);
+
+        // add a border to the pill in high contrast mode
+        @include contrastMore {
+          border: 1px solid var(--border-color-default);
+          background-color: white;
+        }
       }
     }
   }

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.20.1](https://github.com/narmi/design_system/compare/v6.20.0...v6.20.1) (2026-08-05)
+
+### fix
+
+* **Combobox:** migrate to TypeScript; unify on a single entry point (#2218) ([caeb3a5](https://github.com/narmi/design_system/commit/caeb3a58fec38970b399b0f3b41c8fd70b540720)), closes [#2218](https://github.com/narmi/design_system/issues/2218)
+
+### refactor
+
+* **Select:** migrate to TypeScript (#2216) ([f31d246](https://github.com/narmi/design_system/commit/f31d2461b113fd8fcbbf4027ac457b9c00eb5622)), closes [#2216](https://github.com/narmi/design_system/issues/2216)
+* **MultiSelect:** migrate to TypeScript (#2217) ([e74cbf4](https://github.com/narmi/design_system/commit/e74cbf4e296fdf404d92cbbcdc46bac2f8b37a19)), closes [#2217](https://github.com/narmi/design_system/issues/2217)
+
 ## [6.20.0](https://github.com/narmi/design_system/compare/v6.19.10...v6.20.0) (2026-08-04)
 
 ### feat

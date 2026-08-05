@@ -66,12 +66,21 @@ export const getItemByValue = (
   return foundItem || "";
 };
 
+type IndexableItemElement = React.ReactElement<{
+  value?: string;
+  searchValue?: string;
+  onSelect?: () => void;
+}>;
+
 /**
  * @param item an item from `items`
  * @param items downshift index `items`
  * @returns index of item
  */
-export const getItemIndex = (item: SelectChild, items: SelectChild[]) => {
+export const getItemIndex = (
+  item: IndexableItemElement,
+  items: IndexableItemElement[],
+) => {
   let result = 0;
   if (isAction(item)) {
     result = items

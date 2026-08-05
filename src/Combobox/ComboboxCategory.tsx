@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-interface ComboboxCategoryProps {
+export interface ComboboxCategoryProps {
   label: string;
   children?: React.ReactNode;
 }

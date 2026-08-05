@@ -17,6 +17,8 @@ export interface ComboboxItemProps {
    */
   searchValue?: string;
   children?: React.ReactNode;
+  /** Never set on Combobox.Item; `label` is what identifies a Combobox.Action */
+  label?: never;
 }
 
 const ComboboxItem = ({ children, value }: ComboboxItemProps) => (

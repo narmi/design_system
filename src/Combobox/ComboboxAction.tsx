@@ -2,11 +2,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-interface ComboboxActionProps {
+export interface ComboboxActionProps {
   /** Side effect to run on selection */
-  onSelect?: () => void;
+  onSelect: () => void;
   /** Label for action */
   label: string;
+  /** Never set on Combobox.Action; `value` belongs to selectable Combobox.Items */
+  value?: never;
+  searchValue?: never;
 }
 
 const noop = () => {};

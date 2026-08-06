@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import { FieldText } from "./Text";
-import { FIELD_MASKS } from "./masks";
-import { VALID_ICON_NAMES } from "../icons/iconNames";
+import { FieldText } from "./index";
+import { FIELD_MASKS } from "../masks";
+import iconSelection from "../../icons/selection.json";
+
+const VALID_ICON_NAMES = iconSelection.icons
+  .map((icon) => icon.properties.name)
+  .filter(Boolean);
 
 export default {
   title: "Components/Field/Field.Text",
@@ -161,6 +165,30 @@ WithEndContent.parameters = {
     description: {
       story:
         "Use `endContent` to display decorative content at the end of the input.",
+    },
+  },
+};
+
+export const WithHelperText = () => {
+  const [value, setValue] = useState("");
+  return (
+    <FieldText
+      id="username-helper"
+      label="Username"
+      value={value}
+      onChange={setValue}
+      placeholder="Enter your username"
+      renderHelperText={() => (
+        <span>Must be 3-20 characters, letters and numbers only</span>
+      )}
+    />
+  );
+};
+WithHelperText.parameters = {
+  docs: {
+    description: {
+      story:
+        "`renderHelperText` accepts a function returning a ReactNode. The node is rendered at the end of the label row.",
     },
   },
 };

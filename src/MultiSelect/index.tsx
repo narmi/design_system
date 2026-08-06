@@ -99,7 +99,7 @@ const defaultSummaryFormatter = ({
   );
 };
 
-export interface MultiSelectProps {
+export interface MultiSelectProps<Value extends string = string> {
   /**
    * unique name attribute for the input (used for `id` and `name`).
    * The trigger id falls back to a value derived from `label`.
@@ -113,12 +113,12 @@ export interface MultiSelectProps {
    * When passed, the MultiSelect becomes fully controlled.
    * Use `onSelectedItemsChange` to manage this value.
    */
-  selectedItems?: string[];
+  selectedItems?: Value[];
   /**
    * Change callback for user actions that select or deselect items.
    * Called with an array of selected item values.
    */
-  onSelectedItemsChange?: (values: string[]) => void;
+  onSelectedItemsChange?: (values: Value[]) => void;
   /**
    * Disables the input and all user interaction.
    * You may still pass in `selectedItems` if items need to be selected
@@ -170,7 +170,10 @@ export interface MultiSelectProps {
  * - summaryFormatter: an optional function that receives the number of selected items and an array of labels,
  *         and returns a string summary.
  */
-const MultiSelect = ({
+function MultiSelect<Value extends string = string>(
+  props: MultiSelectProps<Value>,
+): React.JSX.Element;
+function MultiSelect({
   name,
   label,
   children,
@@ -185,7 +188,7 @@ const MultiSelect = ({
   isClearable = false,
   summaryFormatter = defaultSummaryFormatter,
   getTypeaheadString = defaultGetTypeAheadString,
-}: MultiSelectProps) => {
+}: MultiSelectProps): React.JSX.Element {
   // Convert children to an array for easier processing.
   const items = useMemo(
     () => Children.toArray(children) as MultiSelectItemElement[],
@@ -413,7 +416,7 @@ const MultiSelect = ({
       </div>
     </div>
   );
-};
+}
 
 MultiSelect.Item = MultiSelectItem;
 export default MultiSelect;

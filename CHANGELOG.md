@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.21.0](https://github.com/narmi/design_system/compare/v6.20.1...v6.21.0) (2026-08-06)
+
+### feat
+
+* **Select:** infer onChange value types generically in Select, MultiSelect, and Combobox (#2220) ([e6fbe9f](https://github.com/narmi/design_system/commit/e6fbe9f3d72ac8186a6d503d8a56c51eb6b2b79f)), closes [#2220](https://github.com/narmi/design_system/issues/2220)
+
 ## [6.20.1](https://github.com/narmi/design_system/compare/v6.20.0...v6.20.1) (2026-08-05)
 
 ### fix

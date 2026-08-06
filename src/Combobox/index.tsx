@@ -147,7 +147,7 @@ export const defaultRenderEndContent = (isOpen: boolean) => (
   />
 );
 
-export interface ComboboxProps {
+export interface ComboboxProps<Value extends string = string> {
   /** Combobox.Item, Combobox.Action, Combobox.Heading, or Combobox.Category children */
   children: React.ReactNode;
   /** Label for the input */
@@ -156,7 +156,7 @@ export interface ComboboxProps {
    * Called when an item is selected, with the `value` of the selected item.
    * Called with empty string when the user clears the input.
    */
-  onChange?: (value: string) => void;
+  onChange?: (value: Value) => void;
   /**
    * Sets value of the input in a controlled manner.
    * When using the `inputValue` prop, you **must** update it via the
@@ -210,7 +210,10 @@ export interface ComboboxProps {
  * By default options will be filtered down as the user types in the input. This
  * behavior can be disabled via the `disableFiltering` prop.
  */
-const Combobox = ({
+function Combobox<Value extends string = string>(
+  props: ComboboxProps<Value>,
+): React.JSX.Element;
+function Combobox({
   label,
   onChange = noop,
   onInputChange = noop,
@@ -223,7 +226,7 @@ const Combobox = ({
   icon,
   testId,
   renderEndContent = defaultRenderEndContent,
-}: ComboboxProps) => {
+}: ComboboxProps): React.JSX.Element {
   const allChildren = useMemo(
     () =>
       React.Children.toArray(children) as (
@@ -558,7 +561,7 @@ const Combobox = ({
       </div>
     </>
   );
-};
+}
 
 Combobox.Item = ComboboxItem;
 Combobox.Heading = ComboboxHeading;

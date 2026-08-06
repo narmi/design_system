@@ -46,6 +46,7 @@ export const FieldText = forwardRef<HTMLInputElement, FieldTextProps>(
       startContent,
       endContent,
       showClearButton = false,
+      renderHelperText,
       className,
       ...rest
     },
@@ -71,9 +72,18 @@ export const FieldText = forwardRef<HTMLInputElement, FieldTextProps>(
           className,
         ])}
       >
-        <label className="nds-field-label" htmlFor={controlProps.id}>
-          {label}
-        </label>
+        <Row alignItems="center">
+          <Row.Item>
+            <label className="nds-field-label" htmlFor={controlProps.id}>
+              {label}
+            </label>
+          </Row.Item>
+          <Row.Item shrink>
+            <div className="fontColor--secondary fontSize--s">
+              {renderHelperText?.()}
+            </div>
+          </Row.Item>
+        </Row>
 
         <div className="nds-field-input-box">
           <Row alignItems="center" gapSize="xs">

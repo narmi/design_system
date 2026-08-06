@@ -53,6 +53,35 @@ Disabled.args = {
   isDisabled: true,
 };
 
+export const WithHelperText = () => {
+  const [value, setValue] = useState("");
+  return (
+    <FieldSelect
+      label="Country"
+      value={value}
+      onChange={setValue}
+      placeholder="Select a country"
+      renderHelperText={() => (
+        <span>Choose the country where you currently reside</span>
+      )}
+    >
+      {COUNTRIES.map(({ value, label }) => (
+        <FieldSelect.Item key={value} value={value}>
+          {label}
+        </FieldSelect.Item>
+      ))}
+    </FieldSelect>
+  );
+};
+WithHelperText.parameters = {
+  docs: {
+    description: {
+      story:
+        "`renderHelperText` accepts a function returning a ReactNode. The node is rendered at the end of the label row.",
+    },
+  },
+};
+
 export const SideBySideWithText = () => {
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");

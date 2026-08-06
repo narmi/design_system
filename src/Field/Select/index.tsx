@@ -5,15 +5,13 @@ import { useField } from "../useField";
 import useDropdownLayer from "../../hooks/useDropdownLayer";
 import { FauxInput } from "../FauxInput/index";
 import Error from "../../Error";
+import Row from "../../Row";
 import FieldSelectItem from "./SelectItem";
 
-import type { FieldProps } from "../types";
+import type { FieldBaseProps } from "../types";
 import type { FieldSelectItemProps } from "./SelectItem";
 
-export interface FieldSelectProps extends Pick<
-  FieldProps,
-  "id" | "label" | "errors" | "isDisabled"
-> {
+export interface FieldSelectProps extends FieldBaseProps {
   /** Currently selected value (controlled) */
   value: string;
   /** Called with the new value when selection changes */
@@ -44,6 +42,7 @@ export const FieldSelect = ({
   placeholder,
   errors = [],
   isDisabled = false,
+  renderHelperText,
   children,
 }: FieldSelectProps) => {
   const { errorId, controlProps } = useField({ id, errors, isDisabled });
@@ -93,9 +92,18 @@ export const FieldSelect = ({
         },
       ])}
     >
-      <label className="nds-field-label" {...getLabelProps()}>
-        {label}
-      </label>
+      <Row alignItems="center">
+        <Row.Item>
+          <label className="nds-field-label" {...getLabelProps()}>
+            {label}
+          </label>
+        </Row.Item>
+        <Row.Item shrink>
+          <div className="fontColor--secondary fontSize--s">
+            {renderHelperText?.()}
+          </div>
+        </Row.Item>
+      </Row>
 
       <div
         ref={anchorProps.ref as React.Ref<HTMLDivElement>}

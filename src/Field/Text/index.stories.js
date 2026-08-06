@@ -169,6 +169,30 @@ WithEndContent.parameters = {
   },
 };
 
+export const WithHelperText = () => {
+  const [value, setValue] = useState("");
+  return (
+    <FieldText
+      id="username-helper"
+      label="Username"
+      value={value}
+      onChange={setValue}
+      placeholder="Enter your username"
+      renderHelperText={() => (
+        <span>Must be 3-20 characters, letters and numbers only</span>
+      )}
+    />
+  );
+};
+WithHelperText.parameters = {
+  docs: {
+    description: {
+      story:
+        "`renderHelperText` accepts a function returning a ReactNode. The node is rendered at the end of the label row.",
+    },
+  },
+};
+
 export const FullyDecorated = () => {
   const [value, setValue] = useState("(555) 123-4567");
   return (

@@ -147,7 +147,7 @@ interface SelectCategoryConfig {
   isFlat?: boolean;
 }
 
-export interface SelectProps {
+export interface SelectProps<Value extends string = string> {
   /**
    * unique id attribute of the input (used for `htmlFor`).
    * Defaults to a value derived from `label`.
@@ -156,13 +156,13 @@ export interface SelectProps {
   /** Label for the select control */
   label?: string;
   /** Change callback. Called with value string from the selected item */
-  onChange?: (value: string) => void;
+  onChange?: (value: Value) => void;
   /**
    * Sets selected item by value and makes the Select **fully controlled**.
    *
    * When passing a `value`, you must provide an `onChange` handler to update it
    */
-  value?: string;
+  value?: Value;
   /**
    * Function with signature `(userInputValue, selectItemNode) => {}`,
    * used to customize typeahead filtering behavior.
@@ -181,7 +181,7 @@ export interface SelectProps {
    * of one of the `<Select.Item>` children.
    * The Select will remain uncontrolled.
    */
-  defaultValue?: string;
+  defaultValue?: Value;
   /** Open the dropdown on render if `true` */
   defaultOpen?: boolean;
   /**
@@ -204,7 +204,10 @@ export interface SelectProps {
  * `Select` also supports the ability to pass in a `<Select.Action>` that acts as an option that only triggers a side effect.
  * Typeahead is enabled based on the `value` prop of `<Select.Item>` elements passed in.
  */
-const Select = ({
+function Select<Value extends string = string>(
+  props: SelectProps<Value>,
+): React.JSX.Element;
+function Select({
   id,
   label,
   children,
@@ -217,7 +220,7 @@ const Select = ({
   clearSelectionOnAction = false,
   errorText,
   testId,
-}: SelectProps) => {
+}: SelectProps): React.JSX.Element {
   let items: SelectChild[] = []; // List of all item types to pass to downshift state management
   let categories: SelectCategoryConfig[] = []; // Categories extracted from Select.Category children
   const options = useMemo(
@@ -492,7 +495,7 @@ const Select = ({
       </div>
     </div>
   );
-};
+}
 
 Select.Item = SelectItem;
 Select.Action = SelectAction;

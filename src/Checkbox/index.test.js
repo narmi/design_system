@@ -113,12 +113,12 @@ describe("Checkbox", () => {
         renderLabel={(isChecked) => <p>{`checkbox state: ${isChecked}`}</p>}
       />,
     );
-    const customElement = screen.getByRole("paragraph");
-    expect(customElement.innerHTML).toEqual("checkbox state: false");
+    const customElement = screen.getByText(/checkbox state:/);
+    expect(customElement).toHaveTextContent("checkbox state: false");
 
     const input = screen.getByRole("checkbox");
     fireEvent.click(input);
 
-    expect(customElement.innerHTML).toEqual("checkbox state: true");
+    expect(customElement).toHaveTextContent("checkbox state: true");
   });
 });

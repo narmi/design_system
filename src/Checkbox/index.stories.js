@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Checkbox from "./";
+import Alert from "../Alert";
 
 const Template = (args) => <Checkbox {...args} />;
 
@@ -76,6 +77,28 @@ Markdown.parameters = {
   docs: {
     description: {
       story: "Renders markdown when markdownLabel prop is set",
+    },
+  },
+};
+
+export const CustomLabelElements = Template.bind({});
+CustomLabelElements.args = {
+  name: "Custom display with stuff",
+  defaultChecked: false,
+  renderLabel: (isChecked) => {
+    const alertKind = isChecked ? "primary" : "warn";
+    return (
+      <Alert kind={alertKind} isActive isDismissable={false}>
+        I will turn green if you check the box!
+      </Alert>
+    );
+  },
+};
+CustomLabelElements.parameters = {
+  docs: {
+    description: {
+      story:
+        "Renders a custom label element when `renderLabel` prop is set. Will provide the `isChecked` state to the custom element.",
     },
   },
 };

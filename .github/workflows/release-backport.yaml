@@ -45,7 +45,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   backport:
@@ -93,7 +92,6 @@ jobs:
             exit 1
           fi
 
-          PR_TITLE=$(echo "$PR_JSON" | jq -r '.title')
           PR_URL=$(echo "$PR_JSON" | jq -r '.url')
 
           # Newline-separated list of the PR's original commits, oldest first
@@ -103,14 +101,6 @@ jobs:
           {
             echo "merge_sha=$MERGE_SHA"
             echo "pr_url=$PR_URL"
-          } >> "$GITHUB_OUTPUT"
-
-          # pr_title uses the delimiter form so titles containing '=',
-          # backticks, or unusual chars can't corrupt $GITHUB_OUTPUT.
-          {
-            echo "pr_title<<PR_TITLE_EOF"
-            echo "$PR_TITLE"
-            echo "PR_TITLE_EOF"
           } >> "$GITHUB_OUTPUT"
 
           # Multi-line output for the commits list.
@@ -226,55 +216,43 @@ jobs:
           echo "Picks:"
           echo "$PICKS"
 
-      - name: Preemptive range warning
-        env:
-          PICKS: ${{ steps.picks.outputs.picks }}
-          TARGET_VERSION: ${{ inputs.target_version }}
-        run: |
-          set -euo pipefail
-          # Not a gate -- just a heads-up. `release.yaml` will still hit
-          # EINVALIDNEXTVERSION and fail loudly, which is the correct signal.
-          RISKY=0
-          while IFS= read -r sha; do
-            [ -z "$sha" ] && continue
-            SUBJECT=$(git log -1 --format=%s "$sha")
-            BODY=$(git log -1 --format=%B "$sha")
-            if [[ "$SUBJECT" =~ ^(feat|feature)(\(.+\))?!?: ]] \
-               || [[ "$SUBJECT" =~ ^[a-z]+(\(.+\))?!: ]] \
-               || echo "$BODY" | grep -qE '^BREAKING( CHANGE)?:'; then
-              RISKY=1
-              echo "::warning::${sha:0:7} '$SUBJECT' looks like a feat or breaking change; ${TARGET_VERSION}.x is patch-only"
-            fi
-          done <<EOF
-          $PICKS
-          EOF
-          if [ "$RISKY" = "1" ]; then
-            {
-              echo "### Warning: potential range violation"
-              echo ""
-              echo "One or more picked commits look like a \`feat:\` or breaking change."
-              echo "Line \`${TARGET_VERSION}.x\` is patch-only, so \`release.yaml\` will refuse the release with \`EINVALIDNEXTVERSION\`."
-              echo "That's the correct signal -- please backport to a line whose range allows the bump, or open the change against \`main\` only."
-            } >> "$GITHUB_STEP_SUMMARY"
-          fi
-
       - name: Cherry-pick
         id: pick
         env:
           PICKS: ${{ steps.picks.outputs.picks }}
+          BRANCH: ${{ steps.branch.outputs.branch }}
         run: |
           set -euo pipefail
           # `git cherry-pick` preserves the original author, subject and body
           # by default. We deliberately pass no `-m "..."` so the Conventional
           # Commit metadata survives the port verbatim.
+          #
+          # We distinguish three per-commit outcomes:
+          #   - clean: the pick succeeded, HEAD advanced.
+          #   - empty: the pick failed but there are no unmerged paths, which
+          #            means the change is already present on ${BRANCH}
+          #            (git cherry-pick exits non-zero on "nothing to commit"
+          #            unless --allow-empty is passed). Skip it and continue.
+          #   - conflict: the pick failed and unmerged paths exist. Abort,
+          #               record the sha/subject, and let the report step
+          #               fail the job with resume instructions.
           FAILED_SHA=""
+          FAILED_SUBJECT=""
           while IFS= read -r sha; do
             [ -z "$sha" ] && continue
             echo "Cherry-picking $sha"
-            if ! git cherry-pick "$sha"; then
-              FAILED_SHA="$sha"
-              break
+            if git cherry-pick "$sha"; then
+              continue
             fi
+            if [ -z "$(git ls-files --unmerged)" ]; then
+              echo "::notice::$sha is already applied to $BRANCH, skipping"
+              git cherry-pick --abort || true
+              continue
+            fi
+            FAILED_SHA="$sha"
+            FAILED_SUBJECT=$(git log -1 --format=%s "$sha")
+            git cherry-pick --abort || true
+            break
           done <<EOF
           $PICKS
           EOF
@@ -282,7 +260,11 @@ jobs:
           if [ -n "$FAILED_SHA" ]; then
             echo "result=conflict" >> "$GITHUB_OUTPUT"
             echo "failed_sha=$FAILED_SHA" >> "$GITHUB_OUTPUT"
-            git cherry-pick --abort || true
+            {
+              echo "failed_subject<<SUBJECT_EOF"
+              echo "$FAILED_SUBJECT"
+              echo "SUBJECT_EOF"
+            } >> "$GITHUB_OUTPUT"
           else
             echo "result=clean" >> "$GITHUB_OUTPUT"
           fi
@@ -296,6 +278,21 @@ jobs:
           PICKS: ${{ steps.picks.outputs.picks }}
         run: |
           set -euo pipefail
+          # If every picked commit was already present on $BRANCH (all picks
+          # collapsed to empty), HEAD hasn't moved past origin/$BRANCH and
+          # there's nothing to push. Report the no-op and exit clean.
+          if [ "$(git rev-parse HEAD)" = "$(git rev-parse "origin/$BRANCH")" ]; then
+            {
+              echo "### Backport was a no-op"
+              echo ""
+              echo "PR: [#${PR_NUMBER}](${PR_URL})"
+              echo "Target: \`${BRANCH}\`"
+              echo ""
+              echo "Every picked commit was already present on \`${BRANCH}\`. Nothing to push, no release triggered."
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
           git push origin "$BRANCH"
 
           {
@@ -317,73 +314,37 @@ jobs:
             echo "The push to \`${BRANCH}\` will trigger the release workflow and publish a new patch on \`@release-${BRANCH}\`."
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Open conflict PR
+      - name: Report conflict and fail
         if: steps.pick.outputs.result == 'conflict'
         env:
-          GH_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
           BRANCH: ${{ steps.branch.outputs.branch }}
           PR_NUMBER: ${{ inputs.pr_number }}
-          PR_TITLE: ${{ steps.pr.outputs.pr_title }}
           PR_URL: ${{ steps.pr.outputs.pr_url }}
-          PICKS: ${{ steps.picks.outputs.picks }}
           FAILED_SHA: ${{ steps.pick.outputs.failed_sha }}
+          FAILED_SUBJECT: ${{ steps.pick.outputs.failed_subject }}
         run: |
           set -euo pipefail
-          # The cherry-pick failed, so we open a draft PR the human can
-          # resume in. GitHub refuses PRs with zero commits between base
-          # and head, so we add a single empty sentinel commit. `chore:`
-          # is release: false in release.config.js, so it doesn't affect
-          # the eventual patch version -- semantic-release will only see
-          # the real cherry-picked commits the human adds when they resume.
-          CONFLICT_BRANCH="backport/${BRANCH}/pr-${PR_NUMBER}"
-          git switch -c "$CONFLICT_BRANCH"
-          git commit --allow-empty -m "chore(backport): resume PR #${PR_NUMBER} onto ${BRANCH}"
-          git push -u origin "$CONFLICT_BRANCH"
-
-          PICKS_LINE=$(echo "$PICKS" | tr '\n' ' ' | sed 's/  */ /g' | sed 's/ *$//')
-
-          BODY=$(cat <<BODY_EOF
-          Automated backport of #${PR_NUMBER} to \`${BRANCH}\` hit a conflict on \`${FAILED_SHA}\`.
-
-          Original PR: ${PR_URL}
-
-          ### Resume locally
-
-          \`\`\`
-          git fetch origin
-          git switch ${CONFLICT_BRANCH}
-          git cherry-pick ${PICKS_LINE}
-          # resolve conflicts, then:
-          git cherry-pick --continue
-          git push
-          \`\`\`
-
-          ### Do not
-
-          - Do not squash-merge this PR.
-          - Do not re-word the cherry-picked commit messages. \`semantic-release\` uses their Conventional Commit prefixes to derive the next \`${BRANCH}\` patch version and changelog entry.
-          - Do not merge \`main\` into \`${BRANCH}\` to resolve conflicts -- that would drag newer changes onto the older line. Resolve the conflicts by editing the cherry-picked diff only.
-
-          When merged into \`${BRANCH}\`, the release workflow will publish a new patch on \`@release-${BRANCH}\`.
-          BODY_EOF
-          )
-
-          PR_LINK=$(gh pr create \
-            --base "$BRANCH" \
-            --head "$CONFLICT_BRANCH" \
-            --title "[backport ${BRANCH}] ${PR_TITLE}" \
-            --body "$BODY" \
-            --draft)
-
+          # No scratch branch, no draft PR. The maintenance branch is not
+          # protected, so the human resumes directly on ${BRANCH}. We fail
+          # the job so the conflict shows up red in the Actions UI.
           {
-            echo "### Backport needs manual resolution"
+            echo "### Backport conflict on \`${BRANCH}\`"
             echo ""
             echo "Original PR: [#${PR_NUMBER}](${PR_URL})"
-            echo "Target: \`${BRANCH}\`"
-            echo "Failed on: \`${FAILED_SHA}\`"
+            echo "Failed on:  \`${FAILED_SHA}\` -- ${FAILED_SUBJECT}"
             echo ""
-            echo "Draft conflict PR: ${PR_LINK}"
+            echo "#### Resume locally"
+            echo ""
+            echo '```'
+            echo "git fetch origin"
+            echo "git switch ${BRANCH}"
+            echo "git cherry-pick ${FAILED_SHA}"
+            echo "# resolve conflicts, then:"
+            echo "git cherry-pick --continue"
+            echo "git push"
+            echo '```'
+            echo ""
+            echo "Do not re-word the cherry-picked commit message -- \`semantic-release\` uses its Conventional Commit prefix to derive the next \`${BRANCH}\` patch version and changelog entry."
           } >> "$GITHUB_STEP_SUMMARY"
 
-          # Fail the job so the operator notices in the Actions UI.
           exit 1

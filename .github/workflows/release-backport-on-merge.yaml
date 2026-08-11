@@ -60,4 +60,5 @@ jobs:
     with:
       pr_number: ${{ github.event.pull_request.number }}
       target_version: ${{ matrix.target_version }}
-    secrets: inherit
+    secrets:
+      SEMANTIC_RELEASE_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}

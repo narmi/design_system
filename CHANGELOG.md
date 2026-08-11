@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.22.0](https://github.com/narmi/design_system/compare/v6.21.0...v6.22.0) (2026-08-11)
+
+### feat
+
+* **Fields:** add helper text ([feb9eba](https://github.com/narmi/design_system/commit/feb9eba2c9efb3cc2db823fbe8d8a39413d34ead))
+* **Field.Select:** add Select component to Fields ([2d36c4c](https://github.com/narmi/design_system/commit/2d36c4ceefbe5d259cbb5f6a70f3dd34e009ddf5))
+
+### fix
+
+* **checkbox:** copilot feedback on test file ([216e177](https://github.com/narmi/design_system/commit/216e177e649a7f7a65431690c6609b20cbba0705))
+* **checkbox:** create renderLabel prop ([5cd5621](https://github.com/narmi/design_system/commit/5cd56211b8192bd401ae09835f31ff49a9cc4328))
+* **FauxInput:** remove any typing ([71272ff](https://github.com/narmi/design_system/commit/71272ffbabeba6a2f05265fc37a3696b6fa4bd91))
+* **color-modes:** set component-level overrides for high contrast ([3680c08](https://github.com/narmi/design_system/commit/3680c08427ee1c822fe2fb3ac5a36152b83bf75b))
+
 ## [6.21.0](https://github.com/narmi/design_system/compare/v6.20.1...v6.21.0) (2026-08-06)
 
 ### feat

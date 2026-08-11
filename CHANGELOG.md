@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.22.2](https://github.com/narmi/design_system/compare/v6.22.1...v6.22.2) (2026-08-11)
+
+### fix
+
+* **build:** remove inherited secrets ([ae56b63](https://github.com/narmi/design_system/commit/ae56b6328f3e161d5b8e41dba1d97755ed90723e))
+
 ## [6.22.1](https://github.com/narmi/design_system/compare/v6.22.0...v6.22.1) (2026-08-11)
 
 ### fix

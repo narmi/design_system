@@ -123,8 +123,8 @@ Branches containing breaking change commits should follow the naming convention 
   always contains every fix.
 - Older minor versions receive patches **only on demand** — not every published
   version is maintained.
-- Backports target a single Major.Minor (e.g. `6.12`). They are **not**
-  forwarded to other minor versions. If `6.13` and `6.14` also need the fix,
+- Backports target a single Major.Minor (e.g. `6.15`). They are **not**
+  forwarded to other minor versions. If `6.16` and `6.18` also need the fix,
   each must be backported separately.
 - Fixes always land on `main` first and are selectively applied to older
   versions — never the reverse.
@@ -134,29 +134,58 @@ Branches containing breaking change commits should follow the naming convention 
 
 **For consumers:**
 
-| Goal                            | Version specifier             | Example                                     |
-| ------------------------------- | ----------------------------- | ------------------------------------------- |
-| Track latest within your major  | `^6`                          | Always resolves to the newest `6.x`         |
-| Stay pinned to a specific minor | `~6.12` or `6.12.x` dist-tag | Only receive patch-level updates for `6.12` |
+Most consumers should pin a semver range in `package.json` and let `npm install`
+resolve to the newest patch on that line. The `release-*` dist-tags are a
+convenience for installing the current patch of a line by name.
+
+| Goal                                        | How                            | Example                                                  |
+| ------------------------------------------- | ------------------------------ | -------------------------------------------------------- |
+| Track latest within your major              | Semver range in `package.json` | `"@narmi/design_system": "^6"` — newest `6.x.x`          |
+| Stay pinned to a specific minor             | Semver range in `package.json` | `"@narmi/design_system": "~6.15.0"` — patches for `6.15` |
+| Install the current patch of a line by name | npm dist-tag                   | `npm install @narmi/design_system@release-6.15.x`        |
 
 #### Releasing backports (maintainers)
 
-When a fix merged to `main` needs to be applied to an older Major.Minor version
-still in production:
+When a fix that lands on `main` needs to be applied to older Major.Minor lines
+still in production, backports are triggered by PR labels.
 
-1. Merge the fix PR to `main` as usual (this releases the fix on the `@latest` release channel)
-2. Go to **Actions → Release Backport → Run workflow**
-3. Enter the **PR number** of the fix you'd like to backport. Enter the **target major.minor** (e.g. `6.12`).
-4. The workflow will:
-   - Create `maintenance/6.12.x` from the latest `v6.12.*` tag (if it doesn't exist yet)
-   - Cherry-pick the fix onto that branch
-   - Trigger an automated release to the `6.12.x` npm dist-tag
-5. If the cherry-pick has conflicts, a draft PR is opened for manual resolution
+**Primary flow: label the PR before merging.**
 
-Consumers on the older version install the patch via:
+1. On the fix PR against `main`, add a label of the form
+   `backport-<MAJOR>.<MINOR>` for every line that needs the fix
+   (e.g. `backport-6.15`, `backport-6.16`). Multiple labels are supported.
+2. Merge the PR. The normal release runs against `main` and publishes on
+   `@latest`. In parallel, the "Release Backport (on merge)" workflow reads
+   the labels and, for each one:
+   - Ensures the maintenance branch `<MAJOR>.<MINOR>.x` exists (creates it
+     from the highest existing `v<MAJOR>.<MINOR>.z` tag if not).
+   - Cherry-picks the PR's commits onto the branch, preserving Conventional
+     Commit messages so `semantic-release` derives the correct patch bump.
+   - Pushes; the resulting push triggers a release on the maintenance
+     branch and publishes a new patch on the `release-<MAJOR>.<MINOR>.x`
+     npm dist-tag.
+
+**Fallback: manual dispatch.**
+
+If a label was forgotten, or a port needs to be re-run after a conflict was
+resolved:
+
+1. Go to **Actions → Release Backport → Run workflow**.
+2. Enter the merged **PR number** and the **target Major.Minor** (e.g. `6.15`).
+3. The workflow does exactly what the label-driven path would have done.
+
+**Conflicts.** If a cherry-pick can't apply cleanly, the workflow opens a
+draft PR against the maintenance branch with resume instructions. Resolve
+the conflicts locally — do not squash-merge and do not re-word the
+cherry-picked commit messages, because `semantic-release` derives the next
+patch version from those messages.
+
+Consumers pinned to that Major.Minor via a semver range (e.g. `"~6.15.0"`)
+will pick up the patch automatically on the next install. To install the
+current patch of that line explicitly by tag:
 
 ```
-npm install @narmi/design_system@6.12.x
+npm install @narmi/design_system@release-6.15.x
 ```
 
 ### Commit Guidelines

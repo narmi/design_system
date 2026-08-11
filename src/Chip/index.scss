@@ -24,6 +24,15 @@
     }
   }
 
+  // color modes
+  @include contrastMore {
+    border: 1px solid var(--border-color-light);
+
+    // using the filter here preserves the original color intent
+    // of each `kind` while darkening each text color enough for contrastMore
+    filter: contrast(1.09);
+  }
+
   // `kind` variants
   &--info {
     background-color: var(--color-infoLight);

@@ -6,11 +6,14 @@
  */
 const config = {
   branches: [
-    {
-      name: "maintenance/+([0-9]).+([0-9]).x",
-      channel: "${name.replace(/^maintenance\\//g, '')}",
-      range: "${name.replace(/^maintenance\\//g, '')}",
-    },
+    // Maintenance branches shaped `N.N.x` (e.g. `6.18.x`). `range` and
+    // `channel` are inferred by semantic-release from the branch name:
+    //   - range   -> `6.18.x` (patch-only, enforced via EINVALIDNEXTVERSION)
+    //   - channel -> `6.18.x` internally; @semantic-release/npm's
+    //                get-channel.js auto-prefixes valid semver-range
+    //                channels, so the npm dist-tag becomes
+    //                `@release-6.18.x`.
+    "+([0-9]).+([0-9]).x",
     "main",
   ],
   plugins: [

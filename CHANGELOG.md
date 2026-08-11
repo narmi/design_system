@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.22.1](https://github.com/narmi/design_system/compare/v6.22.0...v6.22.1) (2026-08-11)
+
+### fix
+
+* test commit for backport labelling ([f7216d6](https://github.com/narmi/design_system/commit/f7216d666f507ab7e4a43d1bea7bc7278ec738fb))
+
 ## [6.22.0](https://github.com/narmi/design_system/compare/v6.21.0...v6.22.0) (2026-08-11)
 
 ### feat

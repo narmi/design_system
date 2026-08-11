@@ -154,6 +154,28 @@ jobs:
             fi
             echo "Creating $BRANCH from $LATEST_TAG"
             git switch -c "$BRANCH" "$LATEST_TAG"
+
+            # The tag we just branched from predates the maintenance-branch
+            # patterns in `release.yaml` and `release.config.js` on `main`,
+            # so without this sync the new branch would ship an old
+            # `release.yaml` that only triggers on `main` and an old
+            # `release.config.js` that doesn't know about N.N.x branches.
+            # Net effect: pushes to this branch would never fire
+            # `release.yaml` and semantic-release wouldn't recognize the
+            # branch as a release channel. Sync once at creation; if
+            # `main` later evolves these files in a way this line needs,
+            # open a separate sync PR against this branch.
+            #
+            # `[skip ci]` on the sync commit prevents the initial
+            # `git push -u origin "$BRANCH"` below from firing the release
+            # workflow before any cherry-picks have landed. Subsequent
+            # pushes (from the "Push clean backport" step) have the
+            # cherry-picked commits at HEAD, so they trigger normally.
+            git checkout main -- .github/workflows/release.yaml release.config.js
+            if ! git diff --cached --quiet; then
+              git commit -m "ci: sync release workflow and config from main [skip ci]"
+            fi
+
             git push -u origin "$BRANCH"
           fi
 

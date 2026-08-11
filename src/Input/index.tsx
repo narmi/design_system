@@ -68,7 +68,6 @@ const Input = ({
   const className = [
     "nds-input",
     disabled ? "disabled" : "",
-    multiline ? "multiline" : "",
     error ? "error" : "",
     search ? "search" : "",
   ].join(" ");

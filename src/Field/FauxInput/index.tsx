@@ -19,10 +19,7 @@ export interface FauxInputProps {
  * Accepts arbitrary props (e.g. from downshift's getToggleButtonProps)
  * which are spread onto the underlying `<button>`.
  */
-export const FauxInput = forwardRef<
-  HTMLButtonElement,
-  FauxInputProps & Record<string, any>
->(
+export const FauxInput = forwardRef<HTMLButtonElement, FauxInputProps>(
   (
     {
       children,

@@ -11,3 +11,4 @@
   - [Styling Customization](//github.com/narmi/design_system/tree/main/contributing/component-apis.md#styling-customization)
   - [Component Variants](//github.com/narmi/design_system/tree/main/contributing/component-apis.md#component-variants)
 - [Visual Regression Tests](//github.com/narmi/design_system/tree/main/contributing/visual-regression-tests.md)
+- [Backporting fixes](//github.com/narmi/design_system/tree/main/README.md#releasing-backports-maintainers) — label a fix PR with `backport-<MAJOR>.<MINOR>` to publish it on an older maintenance line

@@ -1,4 +1,23 @@
 name: Release Backport
+
+# Cherry-picks a merged PR from `main` onto a patch-line maintenance branch
+# (e.g. `6.12.x`) and lets the normal `release.yaml` publish a new patch on
+# `@release-6.12.x`.
+#
+# Design invariants (see release.config.js and the release recipe):
+#   - Direction is main -> older N.N.x, so this is ALWAYS a cherry-pick,
+#     never a merge. Merging main into an older line would drag breaking
+#     changes down and violate the range constraint.
+#   - Original Conventional Commit messages must survive the port verbatim,
+#     otherwise semantic-release derives the wrong bump / changelog. We never
+#     pass `-m "..."` to `git commit` and never rewrite subjects.
+#   - Maintenance lines are patch-only (`N.N.x`). If a `feat:` or breaking
+#     change gets picked, we let `release.yaml` fail with
+#     EINVALIDNEXTVERSION rather than silence it -- that error is the
+#     correct "wrong branch" signal.
+#   - Squash / rebase / merge-commit PRs are all supported by dispatching on
+#     the merge shape (see "Determine picks" below).
+
 on:
   workflow_dispatch:
     inputs:
@@ -7,33 +26,38 @@ on:
         required: true
         type: string
       target_version:
-        description: "Target Major.Minor to patch (e.g., 6.12)"
+        description: "Target Major.Minor to patch (e.g. 6.12)"
         required: true
         type: string
+  # Reusable form so release-backport-on-merge.yaml can invoke this once
+  # per `backport-<MAJOR>.<MINOR>` label on a merged PR.
+  workflow_call:
+    inputs:
+      pr_number:
+        required: true
+        type: string
+      target_version:
+        required: true
+        type: string
+    secrets:
+      SEMANTIC_RELEASE_TOKEN:
+        required: true
 
 permissions:
   contents: write
   pull-requests: write
 
-# Backports are cut from the latest patch of the given Major.Minor:
-# the tip of maintenance/X.Y.x, or the highest vX.Y.* tag when the
-# branch is first created (see actions/checkout-maintenance-branch).
-#
-# Maintenance branches are created on demand, so we only support the
-# Major.Minor lines that banking releases actually pin to.
-#
-# See "Version support policy" in the README for the full rationale.
 jobs:
   backport:
-    name: Backport to maintenance/${{ inputs.target_version }}.x
+    name: Backport PR #${{ inputs.pr_number }} to ${{ inputs.target_version }}.x
     runs-on: ubuntu-latest
     steps:
-      - name: Validate inputs
+      - name: Validate target_version
         env:
           TARGET_VERSION: ${{ inputs.target_version }}
         run: |
-          if ! echo "$TARGET_VERSION" | grep -qE '^[0-9]+\.[0-9]+$'; then
-            echo "::error::target_version must be in Major.Minor format (e.g., 6.12)"
+          if ! [[ "$TARGET_VERSION" =~ ^[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::target_version must be Major.Minor (e.g. 6.12); got '$TARGET_VERSION'"
             exit 1
           fi
 
@@ -48,56 +72,296 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Resolve merge commit from PR
-        id: resolve
+      - name: Resolve PR
+        id: pr
         env:
           GH_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
           PR_NUMBER: ${{ inputs.pr_number }}
         run: |
-          MERGE_SHA=$(gh pr view "$PR_NUMBER" --json mergeCommit --jq '.mergeCommit.oid')
-          if [ -z "$MERGE_SHA" ]; then
-            echo "::error::Could not resolve merge commit for PR #${PR_NUMBER}. Is it merged?"
+          set -euo pipefail
+          PR_JSON=$(gh pr view "$PR_NUMBER" --json state,mergeCommit,title,commits,url)
+
+          STATE=$(echo "$PR_JSON" | jq -r '.state')
+          if [ "$STATE" != "MERGED" ]; then
+            echo "::error::PR #${PR_NUMBER} is '$STATE', not MERGED"
             exit 1
           fi
-          echo "merge_sha=$MERGE_SHA" >> "$GITHUB_OUTPUT"
-          echo "Resolved PR #${PR_NUMBER} to merge commit $MERGE_SHA"
 
-      # The checkout-maintenance-branch action switches the working tree to
-      # the maintenance branch, whose tree may predate .github/actions/*.
-      # Reference the actions repo-qualified so they resolve from the pinned
-      # main commit instead of the (switched) working tree.
-      # NOTE: bump these pins when editing .github/actions/*.
-      - name: Checkout maintenance branch
+          MERGE_SHA=$(echo "$PR_JSON" | jq -r '.mergeCommit.oid // empty')
+          if [ -z "$MERGE_SHA" ]; then
+            echo "::error::PR #${PR_NUMBER} has no merge commit"
+            exit 1
+          fi
+
+          PR_TITLE=$(echo "$PR_JSON" | jq -r '.title')
+          PR_URL=$(echo "$PR_JSON" | jq -r '.url')
+
+          # Newline-separated list of the PR's original commits, oldest first
+          # so cherry-pick order matches the PR's own history.
+          COMMITS=$(echo "$PR_JSON" | jq -r '.commits[].oid')
+
+          {
+            echo "merge_sha=$MERGE_SHA"
+            echo "pr_url=$PR_URL"
+          } >> "$GITHUB_OUTPUT"
+
+          # pr_title uses the delimiter form so titles containing '=',
+          # backticks, or unusual chars can't corrupt $GITHUB_OUTPUT.
+          {
+            echo "pr_title<<PR_TITLE_EOF"
+            echo "$PR_TITLE"
+            echo "PR_TITLE_EOF"
+          } >> "$GITHUB_OUTPUT"
+
+          # Multi-line output for the commits list.
+          {
+            echo "commits<<EOF"
+            echo "$COMMITS"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+          echo "Resolved PR #${PR_NUMBER}: merge=$MERGE_SHA, commits=$(echo "$COMMITS" | wc -l | tr -d ' ')"
+
+      - name: Ensure maintenance branch exists
         id: branch
-        uses: narmi/design_system/.github/actions/checkout-maintenance-branch@b8d46ba8af843468758961b677e5f97a21b9fd06 # main
-        with:
-          target_version: ${{ inputs.target_version }}
+        env:
+          TARGET_VERSION: ${{ inputs.target_version }}
+        run: |
+          set -euo pipefail
+          BRANCH="${TARGET_VERSION}.x"
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+
+          git fetch --tags --prune origin
+
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+            echo "Branch $BRANCH exists on origin, checking out"
+            git switch "$BRANCH"
+            git reset --hard "origin/$BRANCH"
+          else
+            # Highest existing patch tag on this Major.Minor line, ignoring
+            # pre-release tags (v6.15.0-rc.1 etc.). Rooting the branch at
+            # the highest patch means we start from the most recent released
+            # state of this line.
+            # `awk '!/-/'` filters out pre-release tags (v6.15.0-rc.1 etc.)
+            # while still exiting 0 on an empty result, so `set -euo pipefail`
+            # doesn't kill the script before the [ -z ... ] guard below runs.
+            LATEST_TAG=$(git tag --sort=-v:refname --list "v${TARGET_VERSION}.[0-9]*" \
+              | awk '!/-/' \
+              | head -n 1)
+            if [ -z "$LATEST_TAG" ]; then
+              echo "::error::No released tag matches v${TARGET_VERSION}.* -- cannot create ${BRANCH}"
+              exit 1
+            fi
+            echo "Creating $BRANCH from $LATEST_TAG"
+            git switch -c "$BRANCH" "$LATEST_TAG"
+            git push -u origin "$BRANCH"
+          fi
+
+      - name: Determine picks
+        id: picks
+        env:
+          MERGE_SHA: ${{ steps.pr.outputs.merge_sha }}
+          COMMITS: ${{ steps.pr.outputs.commits }}
+        run: |
+          set -euo pipefail
+          # Dispatch on the PR's merge shape:
+          #   - 2-parent merge commit  -> replay every PR commit (preserves
+          #                               the granular Conventional history
+          #                               the team keeps merge commits for).
+          #   - 1-parent, MERGE_SHA in $COMMITS -> rebase-merge; same replay.
+          #   - 1-parent, MERGE_SHA NOT in $COMMITS -> squash-merge; pick the
+          #                               single squash commit (its message
+          #                               is the Conventional PR title).
+          PARENT_COUNT=$(git rev-list --parents -n 1 "$MERGE_SHA" | awk '{print NF - 1}')
+
+          IN_PR_COMMITS=no
+          while IFS= read -r sha; do
+            [ -z "$sha" ] && continue
+            if [ "$sha" = "$MERGE_SHA" ]; then
+              IN_PR_COMMITS=yes
+              break
+            fi
+          done <<EOF
+          $COMMITS
+          EOF
+
+          if [ "$PARENT_COUNT" -ge 2 ] || [ "$IN_PR_COMMITS" = "yes" ]; then
+            STRATEGY=replay
+            PICKS="$COMMITS"
+          else
+            STRATEGY=squash
+            PICKS="$MERGE_SHA"
+          fi
+
+          echo "strategy=$STRATEGY" >> "$GITHUB_OUTPUT"
+          {
+            echo "picks<<EOF"
+            echo "$PICKS"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+          echo "Merge parents: $PARENT_COUNT; strategy: $STRATEGY"
+          echo "Picks:"
+          echo "$PICKS"
+
+      - name: Preemptive range warning
+        env:
+          PICKS: ${{ steps.picks.outputs.picks }}
+          TARGET_VERSION: ${{ inputs.target_version }}
+        run: |
+          set -euo pipefail
+          # Not a gate -- just a heads-up. `release.yaml` will still hit
+          # EINVALIDNEXTVERSION and fail loudly, which is the correct signal.
+          RISKY=0
+          while IFS= read -r sha; do
+            [ -z "$sha" ] && continue
+            SUBJECT=$(git log -1 --format=%s "$sha")
+            BODY=$(git log -1 --format=%B "$sha")
+            if [[ "$SUBJECT" =~ ^(feat|feature)(\(.+\))?!?: ]] \
+               || [[ "$SUBJECT" =~ ^[a-z]+(\(.+\))?!: ]] \
+               || echo "$BODY" | grep -qE '^BREAKING( CHANGE)?:'; then
+              RISKY=1
+              echo "::warning::${sha:0:7} '$SUBJECT' looks like a feat or breaking change; ${TARGET_VERSION}.x is patch-only"
+            fi
+          done <<EOF
+          $PICKS
+          EOF
+          if [ "$RISKY" = "1" ]; then
+            {
+              echo "### Warning: potential range violation"
+              echo ""
+              echo "One or more picked commits look like a \`feat:\` or breaking change."
+              echo "Line \`${TARGET_VERSION}.x\` is patch-only, so \`release.yaml\` will refuse the release with \`EINVALIDNEXTVERSION\`."
+              echo "That's the correct signal -- please backport to a line whose range allows the bump, or open the change against \`main\` only."
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
 
       - name: Cherry-pick
-        id: cherry_pick
-        uses: narmi/design_system/.github/actions/cherry-pick@b8d46ba8af843468758961b677e5f97a21b9fd06 # main
-        with:
-          merge_sha: ${{ steps.resolve.outputs.merge_sha }}
-          branch: ${{ steps.branch.outputs.branch }}
-
-      - name: Report clean backport
-        if: steps.cherry_pick.outputs.result == 'clean'
+        id: pick
         env:
-          MERGE_SHA: ${{ steps.resolve.outputs.merge_sha }}
+          PICKS: ${{ steps.picks.outputs.picks }}
+        run: |
+          set -euo pipefail
+          # `git cherry-pick` preserves the original author, subject and body
+          # by default. We deliberately pass no `-m "..."` so the Conventional
+          # Commit metadata survives the port verbatim.
+          FAILED_SHA=""
+          while IFS= read -r sha; do
+            [ -z "$sha" ] && continue
+            echo "Cherry-picking $sha"
+            if ! git cherry-pick "$sha"; then
+              FAILED_SHA="$sha"
+              break
+            fi
+          done <<EOF
+          $PICKS
+          EOF
+
+          if [ -n "$FAILED_SHA" ]; then
+            echo "result=conflict" >> "$GITHUB_OUTPUT"
+            echo "failed_sha=$FAILED_SHA" >> "$GITHUB_OUTPUT"
+            git cherry-pick --abort || true
+          else
+            echo "result=clean" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Push clean backport
+        if: steps.pick.outputs.result == 'clean'
+        env:
           BRANCH: ${{ steps.branch.outputs.branch }}
           PR_NUMBER: ${{ inputs.pr_number }}
+          PR_URL: ${{ steps.pr.outputs.pr_url }}
+          PICKS: ${{ steps.picks.outputs.picks }}
         run: |
-          SHORT_SHA="${MERGE_SHA:0:7}"
-          echo "### Backport successful" >> "$GITHUB_STEP_SUMMARY"
-          echo "Cherry-picked PR #${PR_NUMBER} (${SHORT_SHA}) onto \`${BRANCH}\`." >> "$GITHUB_STEP_SUMMARY"
-          echo "A release will be published automatically." >> "$GITHUB_STEP_SUMMARY"
+          set -euo pipefail
+          git push origin "$BRANCH"
 
-      - name: Create conflict PR
-        if: steps.cherry_pick.outputs.result == 'conflict'
-        uses: narmi/design_system/.github/actions/create-conflict-pr@b8d46ba8af843468758961b677e5f97a21b9fd06 # main
-        with:
-          merge_sha: ${{ steps.resolve.outputs.merge_sha }}
-          branch: ${{ steps.branch.outputs.branch }}
-          target_version: ${{ inputs.target_version }}
-          pr_number: ${{ inputs.pr_number }}
-          token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+          {
+            echo "### Backport applied cleanly"
+            echo ""
+            echo "PR: [#${PR_NUMBER}](${PR_URL})"
+            echo "Target: \`${BRANCH}\`"
+            echo ""
+            echo "Picked commits:"
+            echo '```'
+            while IFS= read -r sha; do
+              [ -z "$sha" ] && continue
+              git log -1 --format='%h %s' "$sha"
+            done <<EOF
+          $PICKS
+          EOF
+            echo '```'
+            echo ""
+            echo "The push to \`${BRANCH}\` will trigger the release workflow and publish a new patch on \`@release-${BRANCH}\`."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open conflict PR
+        if: steps.pick.outputs.result == 'conflict'
+        env:
+          GH_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+          BRANCH: ${{ steps.branch.outputs.branch }}
+          PR_NUMBER: ${{ inputs.pr_number }}
+          PR_TITLE: ${{ steps.pr.outputs.pr_title }}
+          PR_URL: ${{ steps.pr.outputs.pr_url }}
+          PICKS: ${{ steps.picks.outputs.picks }}
+          FAILED_SHA: ${{ steps.pick.outputs.failed_sha }}
+        run: |
+          set -euo pipefail
+          # The cherry-pick failed, so we open a draft PR the human can
+          # resume in. GitHub refuses PRs with zero commits between base
+          # and head, so we add a single empty sentinel commit. `chore:`
+          # is release: false in release.config.js, so it doesn't affect
+          # the eventual patch version -- semantic-release will only see
+          # the real cherry-picked commits the human adds when they resume.
+          CONFLICT_BRANCH="backport/${BRANCH}/pr-${PR_NUMBER}"
+          git switch -c "$CONFLICT_BRANCH"
+          git commit --allow-empty -m "chore(backport): resume PR #${PR_NUMBER} onto ${BRANCH}"
+          git push -u origin "$CONFLICT_BRANCH"
+
+          PICKS_LINE=$(echo "$PICKS" | tr '\n' ' ' | sed 's/  */ /g' | sed 's/ *$//')
+
+          BODY=$(cat <<BODY_EOF
+          Automated backport of #${PR_NUMBER} to \`${BRANCH}\` hit a conflict on \`${FAILED_SHA}\`.
+
+          Original PR: ${PR_URL}
+
+          ### Resume locally
+
+          \`\`\`
+          git fetch origin
+          git switch ${CONFLICT_BRANCH}
+          git cherry-pick ${PICKS_LINE}
+          # resolve conflicts, then:
+          git cherry-pick --continue
+          git push
+          \`\`\`
+
+          ### Do not
+
+          - Do not squash-merge this PR.
+          - Do not re-word the cherry-picked commit messages. \`semantic-release\` uses their Conventional Commit prefixes to derive the next \`${BRANCH}\` patch version and changelog entry.
+          - Do not merge \`main\` into \`${BRANCH}\` to resolve conflicts -- that would drag newer changes onto the older line. Resolve the conflicts by editing the cherry-picked diff only.
+
+          When merged into \`${BRANCH}\`, the release workflow will publish a new patch on \`@release-${BRANCH}\`.
+          BODY_EOF
+          )
+
+          PR_LINK=$(gh pr create \
+            --base "$BRANCH" \
+            --head "$CONFLICT_BRANCH" \
+            --title "[backport ${BRANCH}] ${PR_TITLE}" \
+            --body "$BODY" \
+            --draft)
+
+          {
+            echo "### Backport needs manual resolution"
+            echo ""
+            echo "Original PR: [#${PR_NUMBER}](${PR_URL})"
+            echo "Target: \`${BRANCH}\`"
+            echo "Failed on: \`${FAILED_SHA}\`"
+            echo ""
+            echo "Draft conflict PR: ${PR_LINK}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          # Fail the job so the operator notices in the Actions UI.
+          exit 1

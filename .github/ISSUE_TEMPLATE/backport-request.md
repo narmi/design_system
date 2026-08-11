@@ -7,11 +7,15 @@ labels: backport
 
 ### PR or fix to backport
 
-<!-- Link to the merged PR on main, or describe the fix -->
+<!-- Link to the merged PR on main, or describe the fix. If the fix is
+     already merged, a maintainer will trigger the backport manually via
+     Actions → Release Backport → Run workflow. -->
 
 ### Target version
 
-<!-- The Major.Minor you are pinned to (e.g. 6.11) -->
+<!-- The Major.Minor you are pinned to (e.g. 6.15). This becomes the
+     `backport-<MAJOR>.<MINOR>` label a maintainer applies to the fix PR
+     (or the target_version input on the manual dispatch). -->
 
 ### Upgrade to @latest
 

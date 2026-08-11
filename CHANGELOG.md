@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.22.3](https://github.com/narmi/design_system/compare/v6.22.2...v6.22.3) (2026-08-11)
+
+### fix
+
+* **Input:** remove misleading multiline class ([69bf156](https://github.com/narmi/design_system/commit/69bf156970b0da28a6c65e5bdd7f92cd960a1223))
+
 ## [6.22.2](https://github.com/narmi/design_system/compare/v6.22.1...v6.22.2) (2026-08-11)
 
 ### fix

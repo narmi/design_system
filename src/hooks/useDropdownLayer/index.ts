@@ -172,11 +172,10 @@ const useDropdownLayer = ({
     const positionArea = alignment
       ? `${config.positionArea} ${alignment}`
       : config.positionArea;
-    const positionTryFallbacks = alignment
-      ? placement === "left" || placement === "right"
+    const positionTryFallbacks =
+      alignment && (placement === "left" || placement === "right")
         ? "flip-inline"
-        : "flip-block"
-      : config.positionTryFallbacks;
+        : config.positionTryFallbacks;
 
     const anchorPositionStyles = {
       position: "fixed" as const,

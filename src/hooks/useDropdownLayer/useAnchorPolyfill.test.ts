@@ -168,7 +168,7 @@ describe("calculatePosition", () => {
       calculatePosition(anchor, layer, false);
 
       expect(layer.style.getPropertyValue("--js-dropdown-max-height")).toBe(
-        "calc(100vh - var(--js-dropdown-bottom, 0px) - var(--space-l))",
+        "max(0px, calc(100vh - var(--js-dropdown-bottom, 0px) - var(--space-l)))",
       );
     });
   });

@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-**Versions cut from backports are omitted and [documented in Tags/Releases](https://github.com/narmi/design_system/releases)**
+**Versions cut from backports are omitted and are [documented in Tags/Releases](https://github.com/narmi/design_system/releases)**
 
 ## [6.22.4](https://github.com/narmi/design_system/compare/v6.22.3...v6.22.4) (2026-08-12)
 

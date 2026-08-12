@@ -1,6 +1,5 @@
 import { useId, useRef, useMemo } from "react";
 import useAnchorPolyfill from "./useAnchorPolyfill";
-import useDropdownMaxHeight from "./useDropdownMaxHeight";
 
 export type UseDropdownLayerResult = {
   /** Props to spread onto the anchor/trigger element */
@@ -151,15 +150,6 @@ const useDropdownLayer = ({
     matchWidth,
     isOpen,
     polyfillScrollBug,
-  });
-
-  useDropdownMaxHeight({
-    anchorRef,
-    layerRef,
-    isOpen,
-    // Only run on the polyfill path. Native path uses pure CSS
-    // (`calc(100dvh - anchor(bottom) - ...)`) for max-height.
-    enabled: !isAnchorPositionSupported,
   });
 
   // Memoized props to spread onto the anchor (positioning reference) element

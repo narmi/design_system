@@ -1,2 +1,0 @@
-import{o as e}from"./preload-helper-CHxnduP2.js";import{f as t,o as n,s as r,w as i}from"./blocks-D0oiKn6I.js";import{s as a}from"./chunk-LITCR56V-s4kOrXjZ.js";import{t as o}from"./mdx-react-shim-sxxkSqP2.js";var s=e((()=>{}));function c(e){return(0,u.jsxs)(u.Fragment,{children:[(0,u.jsx)(r,{title:`Utilities/Formatters`}),`
-`,(0,u.jsx)(n,{children:``})]})}function l(e={}){let{wrapper:t}={...i(),...e.components};return t?(0,u.jsx)(t,{...e,children:(0,u.jsx)(c,{...e})}):c(e)}var u;e((()=>{u=a(),o(),t(),s()}))();export{l as default};

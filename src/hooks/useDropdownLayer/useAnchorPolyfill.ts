@@ -12,8 +12,6 @@ interface UseAnchorPolyfillParams {
   matchWidth?: boolean;
   /** Whether the dropdown is currently open */
   isOpen: boolean;
-  /** Function to close the dropdown */
-  setIsOpen: (isOpen: boolean) => void;
   /**
    * When true, forces the polyfill path if the browser has the Safari
    * scroll-container bug (anchor-size/position-try-fallbacks fail inside
@@ -106,7 +104,6 @@ const useAnchorPolyfill = ({
   layerRef,
   matchWidth = false,
   isOpen,
-  setIsOpen,
   polyfillScrollBug = false,
 }: UseAnchorPolyfillParams) => {
   const isAnchorPositionSupported = useSupportsAnchorPositioning();
@@ -167,34 +164,11 @@ const useAnchorPolyfill = ({
     layerEl.style.visibility = "";
     armObserver();
 
-    // Allow the keyboard animation to settle before recalculating.
-    // This solves for animated virtual keyboards.
-    const handleViewportResize = () => {
-      layerEl.style.visibility = "hidden";
-      requestAnimationFrame(() => {
-        if (disposed) return;
-        calculatePosition(...calculateArgs);
-        layerEl.style.visibility = "";
-        armObserver();
-      });
-    };
-
-    window.visualViewport?.addEventListener("resize", handleViewportResize);
-
-    // close on resize or orientation change
-    const handleWindowResize = () => setIsOpen(false);
-    window.addEventListener("resize", handleWindowResize);
-
     return () => {
       disposed = true;
       currentObserver?.disconnect();
-      window.visualViewport?.removeEventListener(
-        "resize",
-        handleViewportResize,
-      );
-      window.removeEventListener("resize", handleWindowResize);
     };
-  }, [effectiveSupport, anchorRef, layerRef, matchWidth, isOpen, setIsOpen]);
+  }, [effectiveSupport, anchorRef, layerRef, matchWidth, isOpen]);
 
   return {
     isAnchorPositionSupported: effectiveSupport,

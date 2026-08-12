@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.21.1](https://github.com/narmi/design_system/compare/v6.21.0...v6.21.1) (2026-08-12)
+
+### ci
+
+* publish maintenance releases under 'patch' dist-tag with NPM_TOKEN fallback ([24f6a39](https://github.com/narmi/design_system/commit/24f6a3967a20cc95f35e93e948939b81225caaad))
+* sync release workflow and config from main [skip ci] ([f153ff3](https://github.com/narmi/design_system/commit/f153ff33abea39291e0fa1d653cf6f230e1b00a4))
+
+### fix
+
+* **Input:** remove misleading multiline class ([a177f4f](https://github.com/narmi/design_system/commit/a177f4ffdb459c55e16afb743eab4ee34617937e))
+
 ## [6.21.0](https://github.com/narmi/design_system/compare/v6.20.1...v6.21.0) (2026-08-06)
 
 ### feat

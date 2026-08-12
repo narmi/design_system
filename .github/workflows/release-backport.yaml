@@ -179,9 +179,11 @@ jobs:
             # "patch" must match the `channel` set for maintenance branches
             # in release.config.js. If that ever changes, update here too.
             NOTE_REF="semantic-release-${LATEST_TAG}"
-            git fetch origin "+refs/notes/${NOTE_REF}:refs/notes/${NOTE_REF}" 2>/dev/null || true
+            if git ls-remote --exit-code origin "refs/notes/${NOTE_REF}" >/dev/null 2>&1; then
+              git fetch origin "+refs/notes/${NOTE_REF}:refs/notes/${NOTE_REF}"
+            fi
             EXISTING=$(git notes --ref="${NOTE_REF}" show "${LATEST_TAG}" 2>/dev/null || echo '{"channels":[null]}')
-            UPDATED=$(echo "${EXISTING}" | jq -c '.channels |= (. + ["patch"] | unique)')
+            UPDATED=$(printf '%s' "${EXISTING}" | jq -c '.channels = ((.channels // []) + ["patch"] | unique)')
             git notes --ref="${NOTE_REF}" add -f -m "${UPDATED}" "${LATEST_TAG}"
 
             git push -u origin "$BRANCH"

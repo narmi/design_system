@@ -1,0 +1,27 @@
+{
+  "font": {
+    "color": {
+      "heading": { "value": "#000000" },
+      "primary": { "value": "#1a1a1a" },
+      "secondary": { "value": "#3d3d3d" },
+      "hint": { "value": "#5c5c5c" }
+    }
+  },
+  "border": {
+    "color": {
+      "default": { "value": "#5c5c5c" },
+      "light": { "value": "#5c5c5c" }
+    }
+  },
+  "color": {
+    "background": {
+      "snowGrey": { "value": "#FFFFFF" },
+      "neutralGrey": { "value": "oklch(0.9893 0 0)" },
+      "smokeGrey": { "value": "oklch(0.9635 0 0)" },
+      "blueGrey": { "value": "oklch(0.9920 0.0023 264.5)" },
+      "cloudGrey": { "value": "oklch(0.9454 0 0)" },
+      "scrimLight": { "value": "rgba(255, 255, 255, 0.95)" },
+      "scrimDark": { "value": "rgba(0, 0, 0, 0.75)" }
+    }
+  }
+}

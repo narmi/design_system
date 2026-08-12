@@ -1,0 +1,64 @@
+name: Release Backport (on merge)
+
+# Fires when a PR is closed. If it was merged into `main` and carries any
+# `backport-<MAJOR>.<MINOR>` labels (e.g. `backport-6.18`), invokes the
+# reusable release-backport workflow once per label via a matrix.
+#
+# The manual `workflow_dispatch` on release-backport.yaml remains available
+# for the cases where a label was forgotten or a port needs to be re-run.
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: write
+
+jobs:
+  compute-targets:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-latest
+    outputs:
+      targets: ${{ steps.parse.outputs.targets }}
+      has_targets: ${{ steps.parse.outputs.has_targets }}
+    steps:
+      - name: Parse backport labels
+        id: parse
+        env:
+          LABELS_JSON: ${{ toJSON(github.event.pull_request.labels.*.name) }}
+        run: |
+          set -euo pipefail
+          # Extract labels shaped `backport-<MAJOR>.<MINOR>` into a JSON
+          # array of bare `MAJOR.MINOR` strings. Anything else is silently
+          # ignored so labels can serve other purposes without triggering
+          # phantom backports.
+          TARGETS=$(echo "$LABELS_JSON" | jq -c '
+            [ .[]
+              | select(startswith("backport-"))
+              | ltrimstr("backport-")
+              | select(test("^[0-9]+\\.[0-9]+$"))
+            ]')
+          COUNT=$(echo "$TARGETS" | jq 'length')
+          echo "targets=$TARGETS" >> "$GITHUB_OUTPUT"
+          if [ "$COUNT" -gt 0 ]; then
+            echo "has_targets=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_targets=false" >> "$GITHUB_OUTPUT"
+          fi
+          echo "Detected backport targets: $TARGETS"
+
+  backport:
+    needs: compute-targets
+    if: needs.compute-targets.outputs.has_targets == 'true'
+    strategy:
+      # One bad port shouldn't cancel the others -- each maintenance line
+      # is an independent release.
+      fail-fast: false
+      matrix:
+        target_version: ${{ fromJSON(needs.compute-targets.outputs.targets) }}
+    uses: ./.github/workflows/release-backport.yaml
+    with:
+      pr_number: ${{ github.event.pull_request.number }}
+      target_version: ${{ matrix.target_version }}
+    secrets:
+      SEMANTIC_RELEASE_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}

@@ -32,7 +32,7 @@ export interface ChipProps {
   endIcon?: IconName;
   /** Displays a Count after the `label` */
   count?: string | number;
-  /** Adds a border to the badege when `true` */
+  /** Adds a border to the badge when `true` */
   hasBorder?: boolean;
   /** Defines if the label is visible */
   isLabelVisible?: boolean;

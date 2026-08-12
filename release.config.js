@@ -6,11 +6,13 @@
  */
 const config = {
   branches: [
-    {
-      name: "maintenance/+([0-9]).+([0-9]).x",
-      channel: "${name.replace(/^maintenance\\//g, '')}",
-      range: "${name.replace(/^maintenance\\//g, '')}",
-    },
+    // Maintenance branches shaped `N.N.x` (e.g. `6.21.x`). semantic-release
+    // infers `range` from the branch name (`N.N.x`, patch-only enforced via
+    // `EINVALIDNEXTVERSION`). We pin `channel: "patch"` so every maintenance
+    // line publishes under the shared `patch` npm dist-tag; the latest patch
+    // release across any active line owns the tag. Git tags remain
+    // `v${version}` per `tagFormat` default.
+    { name: "+([0-9]).+([0-9]).x", channel: "patch" },
     "main",
   ],
   plugins: [

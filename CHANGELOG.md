@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.22.4](https://github.com/narmi/design_system/compare/v6.22.3...v6.22.4) (2026-08-12)
+
+### ci
+
+* drop obsolete npm auth fallback; automate note-backfill on new maint branches ([3e4e66a](https://github.com/narmi/design_system/commit/3e4e66a677332ba29164ad987aa75da7a8915380)), closes [#2234](https://github.com/narmi/design_system/issues/2234) [#2235](https://github.com/narmi/design_system/issues/2235)
+* publish maintenance releases under 'patch' dist-tag with NPM_TOKEN fallback ([46f1636](https://github.com/narmi/design_system/commit/46f16362013326670203263bc7584b837903d0e3))
+* write npm auth fallback to project-level .npmrc ([c008e23](https://github.com/narmi/design_system/commit/c008e231dbba2fd1ccd040615e9255790935c76c))
+
+### fix
+
+* **test:** trigger release backport workflow ([f3c9314](https://github.com/narmi/design_system/commit/f3c9314b6e2f43d42013da589efb28bd5db1a659))
+
 ## [6.22.3](https://github.com/narmi/design_system/compare/v6.22.2...v6.22.3) (2026-08-11)
 
 ### fix

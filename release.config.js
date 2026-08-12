@@ -6,14 +6,13 @@
  */
 const config = {
   branches: [
-    // Maintenance branches shaped `N.N.x` (e.g. `6.18.x`). `range` and
-    // `channel` are inferred by semantic-release from the branch name:
-    //   - range   -> `6.18.x` (patch-only, enforced via EINVALIDNEXTVERSION)
-    //   - channel -> `6.18.x` internally; @semantic-release/npm's
-    //                get-channel.js auto-prefixes valid semver-range
-    //                channels, so the npm dist-tag becomes
-    //                `@release-6.18.x`.
-    "+([0-9]).+([0-9]).x",
+    // Maintenance branches shaped `N.N.x` (e.g. `6.21.x`). semantic-release
+    // infers `range` from the branch name (`N.N.x`, patch-only enforced via
+    // `EINVALIDNEXTVERSION`). We pin `channel: "patch"` so every maintenance
+    // line publishes under the shared `patch` npm dist-tag; the latest patch
+    // release across any active line owns the tag. Git tags remain
+    // `v${version}` per `tagFormat` default.
+    { name: "+([0-9]).+([0-9]).x", channel: "patch" },
     "main",
   ],
   plugins: [

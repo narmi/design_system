@@ -35,8 +35,17 @@ jobs:
       - name: Build Dist
         run: npm run build
 
+      # OIDC covers `npm publish` (via the npm CLI's built-in exchange) but not
+      # `npm dist-tag add`. On maintenance branches semantic-release calls
+      # `addChannel` before `publish`, which shells to `npm dist-tag add`.
+      # Write an `_authToken` fallback so that call is authorized; `npm
+      # publish` still prefers its OIDC-issued token and preserves provenance.
+      - name: Write npm auth fallback for dist-tag operations
+        run: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> ~/.npmrc
+
       - name: Release
         if: success()
         env:
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release --verbose

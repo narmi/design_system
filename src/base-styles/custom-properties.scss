@@ -14,11 +14,18 @@
 * When the dropdown overflows below the anchor, the browser tries this
 * ruleset to flip the layer above the anchor.
 *
-* Max-height is handled separately via `--js-dropdown-max-height`, set by
-* the `useDropdownMaxHeight` hook on both the native and polyfill paths.
+* On the native anchor-positioning path, max-height for the primary
+* placement and this fallback is handled directly in CSS via
+* `calc(100dvh - anchor(...))` and `calc(anchor(top) - ...)`. `dvh`
+* shrinks when the virtual keyboard opens on Chromium/Android, giving
+* keyboard-aware sizing without JS. On the polyfill path,
+* `--js-dropdown-max-height` is still set by `useDropdownMaxHeight`.
 */
 @position-try --nds-dropdown-above {
   position-area: top;
+  max-height: calc(
+    anchor(top) - var(--space-l) - var(--nds-layer-gap, var(--space-xxs))
+  );
   margin-top: 0;
   margin-bottom: var(--nds-layer-gap, var(--space-xxs));
 }
@@ -27,9 +34,19 @@
 * Position-try fallbacks for anchor-positioned layers.
 * These allow the browser to flip the layer to the opposite side
 * when there isn't enough space in the preferred direction.
+*
+* `--nds-try-below` includes a `dvh`-based max-height so the flipped
+* layer stays clipped to the visible area above the virtual keyboard
+* on mobile.
 */
 @position-try --nds-try-below {
   position-area: bottom;
+  max-height: calc(
+    100dvh - anchor(bottom) - var(--space-l) - var(
+        --nds-layer-gap,
+        var(--space-xxs)
+      )
+  );
   margin-top: var(--nds-layer-gap, var(--space-xxs));
   margin-bottom: 0;
 }

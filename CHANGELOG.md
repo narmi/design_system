@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.21.2](https://github.com/narmi/design_system/compare/v6.21.1...v6.21.2) (2026-08-12)
+
+### ci
+
+* sync release.yaml from main (drop obsolete npm auth fallback) ([60a4f66](https://github.com/narmi/design_system/commit/60a4f66f25583cd3be4cafdd3371386f6558f540)), closes [#2236](https://github.com/narmi/design_system/issues/2236)
+
+### fix
+
+* **test:** trigger release backport workflow ([cfe3dda](https://github.com/narmi/design_system/commit/cfe3dda86ccac449f57eb824a9084aa951ae2640))
+
 ## [6.21.1](https://github.com/narmi/design_system/compare/v6.21.0...v6.21.1) (2026-08-12)
 
 ### ci

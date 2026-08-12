@@ -48,7 +48,7 @@ permissions:
 
 jobs:
   backport:
-    name: Backport PR #${{ inputs.pr_number }} to ${{ inputs.target_version }}.x
+    name: Backport to maintenance branch #${{ inputs.pr_number }} to ${{ inputs.target_version }}.x
     runs-on: ubuntu-latest
     steps:
       - name: Validate target_version

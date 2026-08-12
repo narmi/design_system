@@ -2,7 +2,7 @@ name: Release Backport
 
 # Cherry-picks a merged PR from `main` onto a patch-line maintenance branch
 # (e.g. `6.12.x`) and lets the normal `release.yaml` publish a new patch on
-# `@release-6.12.x`.
+# the shared `@patch` npm dist-tag.
 #
 # Design invariants (see release.config.js and the release recipe):
 #   - Direction is main -> older N.N.x, so this is ALWAYS a cherry-pick,
@@ -166,7 +166,26 @@ jobs:
               git commit -m "ci: sync release workflow and config from main [skip ci]"
             fi
 
+            # On the branch's first release, semantic-release calls
+            # `addChannel` on `$LATEST_TAG` because its `channels` git note
+            # doesn't include this branch's channel yet. `addChannel` shells
+            # to `npm dist-tag add`, and npm's OIDC-provisioned token does
+            # NOT authenticate that call -- it 401s. Preempt the whole
+            # roundtrip by declaring `$LATEST_TAG` is already on the "patch"
+            # channel; `get-release-to-add.js` filters it out and
+            # semantic-release goes straight to publish (which OIDC handles
+            # fine, with provenance).
+            #
+            # "patch" must match the `channel` set for maintenance branches
+            # in release.config.js. If that ever changes, update here too.
+            NOTE_REF="semantic-release-${LATEST_TAG}"
+            git fetch origin "+refs/notes/${NOTE_REF}:refs/notes/${NOTE_REF}" 2>/dev/null || true
+            EXISTING=$(git notes --ref="${NOTE_REF}" show "${LATEST_TAG}" 2>/dev/null || echo '{"channels":[null]}')
+            UPDATED=$(echo "${EXISTING}" | jq -c '.channels |= (. + ["patch"] | unique)')
+            git notes --ref="${NOTE_REF}" add -f -m "${UPDATED}" "${LATEST_TAG}"
+
             git push -u origin "$BRANCH"
+            git push origin "refs/notes/${NOTE_REF}"
           fi
 
       - name: Determine picks
@@ -311,7 +330,7 @@ jobs:
           EOF
             echo '```'
             echo ""
-            echo "The push to \`${BRANCH}\` will trigger the release workflow and publish a new patch on \`@release-${BRANCH}\`."
+            echo "The push to \`${BRANCH}\` will trigger the release workflow and publish a new patch on the \`@patch\` npm dist-tag."
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Report conflict and fail

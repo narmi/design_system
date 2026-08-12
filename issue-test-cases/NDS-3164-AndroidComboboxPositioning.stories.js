@@ -7,7 +7,7 @@ const storyDescription =
   "Must be tested on a real Android device (e.g. BrowserStack Local). " +
   "Two anchor positions probe different failure modes. " +
   "`ComboboxLowInViewport` targets the flip-above coordinate-mixup " +
-  "bug (useAnchorPolyfill.ts:54-58) — expected failure: menu " +
+  "bug in `useAnchorPolyfill.calculatePosition` — expected failure: menu " +
   "positioned off-screen below the keyboard. " +
   "`ComboboxMiddleInViewport` targets the reactive flip decision and " +
   "the `window.resize` close bug (useAnchorPolyfill.ts:185-186) — the " +

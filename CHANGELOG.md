@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.22.5](https://github.com/narmi/design_system/compare/v6.22.4...v6.22.5) (2026-08-12)
+
+### ci
+
+* **release:** split build and release jobs; scope id-token to release; use --ignore-scripts ([e188c42](https://github.com/narmi/design_system/commit/e188c42e4e17b0da246316eb45cc96ddcbfa51d1))
+
+### fix
+
+* Set consistent node pin ([507afc4](https://github.com/narmi/design_system/commit/507afc43435ece38b21405b86950dc5df5b2c3f3))
+
 **Versions cut from backports are omitted and are [documented in Tags/Releases](https://github.com/narmi/design_system/releases)**
 
 ## [6.22.4](https://github.com/narmi/design_system/compare/v6.22.3...v6.22.4) (2026-08-12)

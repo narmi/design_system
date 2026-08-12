@@ -81,7 +81,7 @@ export const calculatePosition = (
     layerEl.style.removeProperty("--js-dropdown-top");
     layerEl.style.setProperty(
       "--js-dropdown-max-height",
-      "calc(100vh - var(--js-dropdown-bottom, 0px) - var(--space-l))",
+      "max(0px, calc(100vh - var(--js-dropdown-bottom, 0px) - var(--space-l)))",
     );
   } else {
     layerEl.style.setProperty(

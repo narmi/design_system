@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.22.6](https://github.com/narmi/design_system/compare/v6.22.5...v6.22.6) (2026-08-13)
+
+### fix
+
+* **dropdowns:** use dvh to account for soft keyboards ([1db7031](https://github.com/narmi/design_system/commit/1db70310e2a299d5b65b1b048b6b5a3ea484d520))
+
+### refactor
+
+* **useDropdownLayer:** rely on dvh values for dd max height ([b159d22](https://github.com/narmi/design_system/commit/b159d222e224ca1a5048430d28be245c3d785612))
+
+### test
+
+* update unit for dropdown ([2322e23](https://github.com/narmi/design_system/commit/2322e23348172565f6d61a83108c93f4c5a8d184))
+
 ## [6.22.5](https://github.com/narmi/design_system/compare/v6.22.4...v6.22.5) (2026-08-12)
 
 ### ci

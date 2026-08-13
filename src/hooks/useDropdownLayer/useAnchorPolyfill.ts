@@ -1,7 +1,6 @@
 import { useLayoutEffect } from "react";
 import useSupportsAnchorPositioning from "../useSupportsAnchorPositioning";
 import { HAS_SCROLL_CONTAINER_BUG } from "../useSupportsAnchorPositioning";
-import { resolveSpaceToken } from "./useDropdownMaxHeight";
 
 interface UseAnchorPolyfillParams {
   /** Reference to the element that the dropdown should be anchored to */
@@ -12,8 +11,6 @@ interface UseAnchorPolyfillParams {
   matchWidth?: boolean;
   /** Whether the dropdown is currently open */
   isOpen: boolean;
-  /** Function to close the dropdown */
-  setIsOpen: (isOpen: boolean) => void;
   /**
    * When true, forces the polyfill path if the browser has the Safari
    * scroll-container bug (anchor-size/position-try-fallbacks fail inside
@@ -23,8 +20,34 @@ interface UseAnchorPolyfillParams {
 }
 
 /**
+ * Resolves a CSS custom property (e.g. `--space-xs`) to a pixel number.
+ * Falls back to `fallback` if the property is not set or cannot be parsed.
+ */
+const resolveSpaceToken = (property: string, fallback: number): number => {
+  if (typeof document === "undefined") return fallback;
+  const raw = getComputedStyle(document.documentElement)
+    .getPropertyValue(property)
+    .trim();
+  const parsed = parseFloat(raw);
+  return isNaN(parsed) ? fallback : parsed;
+};
+
+/**
  * Calculates and applies CSS custom properties for dropdown positioning.
  * Exported for unit testing.
+ *
+ * All measurements are in layout-viewport coordinates (`window.innerHeight`
+ * compared against `getBoundingClientRect()`). This avoids the visual-vs-
+ * layout viewport mixup that caused off-screen placement on Android when
+ * the soft keyboard was open at the time `calculatePosition` ran.
+ *
+ * Also writes `--js-dropdown-max-height` as a direction-aware CSS calc
+ * string:
+ *   - Below-anchor placement uses `100dvh` so the layer clips inside the
+ *     visible area above the virtual keyboard (dvh shrinks with the
+ *     keyboard on Chromium/Android).
+ *   - Above-anchor placement uses `100vh` because keyboards open from the
+ *     bottom and don't affect the space above the anchor.
  */
 export const calculatePosition = (
   anchorEl: HTMLElement,
@@ -39,30 +62,37 @@ export const calculatePosition = (
   const anchorGap = resolveSpaceToken("--space-xxs", 4);
   const edgeClearance = resolveSpaceToken("--space-l", 20);
 
-  const vvHeight = window.visualViewport?.height ?? window.innerHeight;
-
   // Reset to a known baseline before measuring layer position.
   layerEl.style.setProperty("--js-dropdown-top", "0px");
   layerEl.style.removeProperty("--js-dropdown-bottom");
   layerEl.style.setProperty("--js-dropdown-left", "0px");
 
   const layerRect = layerEl.getBoundingClientRect();
-  const spaceBelow = vvHeight - anchorRect.bottom - anchorGap - edgeClearance;
+  const spaceBelow =
+    window.innerHeight - anchorRect.bottom - anchorGap - edgeClearance;
   const spaceAbove = anchorRect.top - anchorGap - edgeClearance;
   const shouldFlip = spaceAbove > spaceBelow;
 
   if (shouldFlip) {
     layerEl.style.setProperty(
       "--js-dropdown-bottom",
-      `${vvHeight - anchorRect.top + anchorGap}px`,
+      `${window.innerHeight - anchorRect.top + anchorGap}px`,
     );
     layerEl.style.removeProperty("--js-dropdown-top");
+    layerEl.style.setProperty(
+      "--js-dropdown-max-height",
+      "max(0px, calc(100vh - var(--js-dropdown-bottom, 0px) - var(--space-l)))",
+    );
   } else {
     layerEl.style.setProperty(
       "--js-dropdown-top",
       `${anchorRect.bottom - layerRect.top + anchorGap}px`,
     );
     layerEl.style.removeProperty("--js-dropdown-bottom");
+    layerEl.style.setProperty(
+      "--js-dropdown-max-height",
+      "calc(100dvh - var(--js-dropdown-top, 0px) - var(--space-l))",
+    );
   }
 
   layerEl.style.setProperty(
@@ -106,7 +136,6 @@ const useAnchorPolyfill = ({
   layerRef,
   matchWidth = false,
   isOpen,
-  setIsOpen,
   polyfillScrollBug = false,
 }: UseAnchorPolyfillParams) => {
   const isAnchorPositionSupported = useSupportsAnchorPositioning();
@@ -167,34 +196,11 @@ const useAnchorPolyfill = ({
     layerEl.style.visibility = "";
     armObserver();
 
-    // Allow the keyboard animation to settle before recalculating.
-    // This solves for animated virtual keyboards.
-    const handleViewportResize = () => {
-      layerEl.style.visibility = "hidden";
-      requestAnimationFrame(() => {
-        if (disposed) return;
-        calculatePosition(...calculateArgs);
-        layerEl.style.visibility = "";
-        armObserver();
-      });
-    };
-
-    window.visualViewport?.addEventListener("resize", handleViewportResize);
-
-    // close on resize or orientation change
-    const handleWindowResize = () => setIsOpen(false);
-    window.addEventListener("resize", handleWindowResize);
-
     return () => {
       disposed = true;
       currentObserver?.disconnect();
-      window.visualViewport?.removeEventListener(
-        "resize",
-        handleViewportResize,
-      );
-      window.removeEventListener("resize", handleWindowResize);
     };
-  }, [effectiveSupport, anchorRef, layerRef, matchWidth, isOpen, setIsOpen]);
+  }, [effectiveSupport, anchorRef, layerRef, matchWidth, isOpen]);
 
   return {
     isAnchorPositionSupported: effectiveSupport,

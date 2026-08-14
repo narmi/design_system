@@ -146,6 +146,14 @@ const config = {
       },
     ],
   ],
+  // Skip the `addChannel` step entirely. semantic-release invokes it when it
+  // finds an in-range tag whose git-note channels don't include the current
+  // branch's channel; `@semantic-release/npm`'s implementation shells to
+  // `npm dist-tag add`, which the OIDC-provisioned publish token cannot
+  // authorize (401). We don't rely on dist-tag re-targeting for older tags
+  // -- the fresh `publish` for the next release still lands under the
+  // branch's channel via the normal `--tag` argument, which is all we need.
+  addChannel: [],
 };
 
 module.exports = config;

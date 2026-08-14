@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.13](https://github.com/narmi/design_system/compare/v6.16.12...v6.16.13) (2026-08-14)
+
+### ci
+
+* skip addChannel to avoid npm dist-tag 401 on maintenance releases ([314fd4a](https://github.com/narmi/design_system/commit/314fd4a657a760ec3383ccf8a0bf58ec750d1314))
+
+### fix
+
+* **dropdowns:** use dvh to account for soft keyboards (#2239) ([488ad38](https://github.com/narmi/design_system/commit/488ad38ca8102da50e9d90b40835a752df88efac)), closes [#2239](https://github.com/narmi/design_system/issues/2239) [#2239](https://github.com/narmi/design_system/issues/2239)
+
 ## [6.16.10](https://github.com/narmi/design_system/compare/v6.16.9...v6.16.10) (2026-07-14)
 
 ### fix

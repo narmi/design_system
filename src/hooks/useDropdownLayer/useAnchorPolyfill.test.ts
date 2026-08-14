@@ -37,6 +37,13 @@ beforeEach(() => {
     configurable: true,
     value: { width: VIEWPORT_WIDTH, height: VIEWPORT_HEIGHT },
   });
+  // `calculatePosition` uses `window.innerHeight` for layout-viewport-
+  // consistent math. jsdom's default innerHeight isn't guaranteed to match
+  // VIEWPORT_HEIGHT, so set it explicitly.
+  Object.defineProperty(window, "innerHeight", {
+    configurable: true,
+    value: VIEWPORT_HEIGHT,
+  });
 });
 
 describe("calculatePosition", () => {
@@ -81,7 +88,9 @@ describe("calculatePosition", () => {
       expect(props["--js-dropdown-bottom"]).toBeNull();
     });
 
-    it("does not set max-height properties (owned by useDropdownMaxHeight)", () => {
+    it("sets --js-dropdown-max-height using 100dvh for below placement", () => {
+      // Below-placement max-height uses `100dvh` so the layer clips to the
+      // visible area above the virtual keyboard on mobile.
       const anchor = makeEl({
         top: 100,
         bottom: 150,
@@ -101,12 +110,9 @@ describe("calculatePosition", () => {
 
       calculatePosition(anchor, layer, false);
 
-      expect(
-        layer.style.getPropertyValue("--js-dropdown-maxHeight"),
-      ).toBeFalsy();
-      expect(
-        layer.style.getPropertyValue("--nds-layer-max-height"),
-      ).toBeFalsy();
+      expect(layer.style.getPropertyValue("--js-dropdown-max-height")).toBe(
+        "calc(100dvh - var(--js-dropdown-top, 0px) - var(--space-l))",
+      );
     });
   });
 
@@ -114,7 +120,7 @@ describe("calculatePosition", () => {
     it("sets --js-dropdown-bottom and clears --js-dropdown-top", () => {
       // Anchor near the bottom → more space above.
       // anchorGap falls back to 4px in jsdom (CSS token unresolvable).
-      // --js-dropdown-bottom = vvHeight - anchorRect.top + anchorGap = 768 - 568 + 4 = 204px
+      // --js-dropdown-bottom = window.innerHeight - anchorRect.top + anchorGap = 768 - 568 + 4 = 204px
       const anchor = makeEl({
         top: 568,
         bottom: 608,
@@ -137,6 +143,33 @@ describe("calculatePosition", () => {
       const props = getProps(layer);
       expect(props["--js-dropdown-bottom"]).toBe("204px");
       expect(props["--js-dropdown-top"]).toBeNull();
+    });
+
+    it("sets --js-dropdown-max-height using 100vh for above placement", () => {
+      // Above-placement max-height uses `100vh` (not dvh) because keyboards
+      // open from the bottom and don't affect the space above the anchor.
+      const anchor = makeEl({
+        top: 568,
+        bottom: 608,
+        left: 0,
+        right: 200,
+        width: 200,
+        height: 40,
+      });
+      const layer = makeEl({
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 200,
+        width: 200,
+        height: 0,
+      });
+
+      calculatePosition(anchor, layer, false);
+
+      expect(layer.style.getPropertyValue("--js-dropdown-max-height")).toBe(
+        "max(0px, calc(100vh - var(--js-dropdown-bottom, 0px) - var(--space-l)))",
+      );
     });
   });
 

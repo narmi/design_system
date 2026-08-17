@@ -10,7 +10,8 @@
 }
 
 /**
-* brand/base background colors
+* @deprecated brand/base background colors — not part of the public API;
+* prefer theme background colors (.bgColor--theme--*). Retained for backwards compatibility.
 */
 @each $color in (moss, pine, cove, azul, pistachio, cactus, sand) {
   .bgColor--#{$color} {

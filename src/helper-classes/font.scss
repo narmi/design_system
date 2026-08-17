@@ -11,7 +11,8 @@
 }
 
 /**
-* brand/base text colors
+* @deprecated brand/base text colors — not part of the public API;
+* prefer theme colors (.fontColor--theme--*). Retained for backwards compatibility.
 */
 @each $color in (moss, pine, cove, azul, pistachio, cactus, sand, "white") {
   .fontColor--#{$color} {

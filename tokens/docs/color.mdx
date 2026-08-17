@@ -6,10 +6,6 @@ import * as ColorStories from "./color.stories.js";
 
 # Color Tokens
 
-## Narmi Base Colors
-
-<Canvas of={ColorStories.Base} name="Base" style={{ height: "auto" }} />
-
 ## Theme Colors
 
 Tokens with the prefix `--theme` are dedicated to theming. These CSS custom
@@ -52,14 +48,14 @@ Colors used for system messages and indicators.
 
 ## Transparency
 
-All [Base Colors](#narmi-base-colors), [System Colors](#system-colors),
+All [System Colors](#system-colors),
 [Theme Colors](#theme-colors), and [Background Colors](#background-colors) are available as partial RGB values
 that can be composed with the following alpha values to lighten or darken a color.
 
 These values are prefixed with `--rgb` instead of `--color`.
 Theme RGB values are prefixed with `--theme-rgb`.
 
-The value `rgb(var(--rgb-pine))` is equivalent to `var(--color-pine)`.
+The value `rgb(var(--theme-rgb-primary))` is equivalent to `var(--theme-primary)`.
 
 ### Alpha Values
 
@@ -68,6 +64,6 @@ The value `rgb(var(--rgb-pine))` is equivalent to `var(--color-pine)`.
 ### Usage
 
 ```
-background-color: rgba(var(--rgb-pine), var(--alpha-10));
+background-color: rgba(var(--rgb-errorDark), var(--alpha-10));
 color: rgba(var(--theme-rgb-primary), var(--alpha-20));
 ```

@@ -10,7 +10,7 @@ are used internally in NDS and are also available to use directly in consuming a
 ```
 tokens/
 ├── primitives/           # Raw values, mode-agnostic (grey scale, brand palette, hue scales, spacing, etc.)
-│   ├── color.json        # color.grey.*, color.narmi.*, raw hue primitives (red/green/amber/blue.dark|light)
+│   ├── color.json        # color.grey.*, color.narmi.* (⚠️ deprecated brand palette), raw hue primitives (red/green/amber/blue.dark|light)
 │   ├── border.json
 │   ├── space.json
 │   ├── font.json
@@ -36,6 +36,15 @@ which emits `--color-errorDark: var(--color-red-dark)`.
 This keeps every semantic token one indirection away from a raw value, so a mode can
 **reset the primitives themselves** (e.g. a colorblind mode that overrides `--color-red-dark`)
 and have all referencing semantic tokens cascade automatically.
+
+### Deprecated: brand (`color.narmi.*`) primitives
+
+The `color.narmi.*` brand palette (moss, pine, cove, azul, pistachio, cactus, sand,
+amethyst, etc.) is **deprecated** and no longer documented in the public Storybook color
+docs. These tokens remain generated and functional for backwards compatibility, but new
+usage should prefer semantic **theme** tokens (`--theme-*`). The deprecation is annotated
+via a `comment` on each token, which surfaces as a `/* @deprecated ... */` note next to the
+emitted CSS custom properties.
 
 ## Modes
 

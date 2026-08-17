@@ -9,15 +9,15 @@ are used internally in NDS and are also available to use directly in consuming a
 
 ```
 tokens/
-├── primitives/           # Raw values, mode-agnostic (grey scale, brand palette, spacing, etc.)
-│   ├── color.json
+├── primitives/           # Raw values, mode-agnostic (grey scale, brand palette, hue scales, spacing, etc.)
+│   ├── color.json        # color.grey.*, color.narmi.*, raw hue primitives (red/green/amber/blue.dark|light)
 │   ├── border.json
 │   ├── space.json
 │   ├── font.json
 │   └── shadow.json
 ├── semantic/             # Role tokens, one folder per mode
 │   ├── light/            # Base mode (scheme=light, contrast=normal)
-│   │   └── color.json    # text/*, background/*, border/*, theme/*
+│   │   └── color.json    # text/*, background/*, border/*, theme/*, system/* — all reference primitives
 │   ├── light-contrast-more/  # High contrast light mode overrides
 │   │   └── color.json    # Only tokens that differ from light/
 │   ├── *.stories.js      # Storybook stories
@@ -25,6 +25,17 @@ tokens/
 ├── config.js             # style-dictionary v4 build configuration
 └── README.md
 ```
+
+## Primitives vs. semantic tokens
+
+Primitives (`primitives/`) are the **only** place a specific color value is defined.
+Semantic role tokens (`semantic/`) must **reference** a primitive rather than declaring a
+literal value — e.g. `color.system.errorDark` references the `color.red.dark` primitive,
+which emits `--color-errorDark: var(--color-red-dark)`.
+
+This keeps every semantic token one indirection away from a raw value, so a mode can
+**reset the primitives themselves** (e.g. a colorblind mode that overrides `--color-red-dark`)
+and have all referencing semantic tokens cascade automatically.
 
 ## Modes
 

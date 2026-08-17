@@ -91,15 +91,21 @@
       "lightGrey": { "value": "{color.grey.lightGrey}" },
       "white": { "value": "{color.grey.white}" }
     },
-    "system": {
-      "successDark": { "value": "#027A48" },
-      "successLight": { "value": "#ECFDF3" },
-      "warnDark": { "value": "#B54708" },
-      "warnLight": { "value": "#FEF8E3" },
-      "infoDark": { "value": "#195274" },
-      "infoLight": { "value": "#E8EEF1" },
-      "errorDark": { "value": "#b42318" },
-      "errorLight": { "value": "#FEF3F2" }
+    "red": {
+      "dark": { "value": "#b42318" },
+      "light": { "value": "#FEF3F2" }
+    },
+    "green": {
+      "dark": { "value": "#027A48" },
+      "light": { "value": "#ECFDF3" }
+    },
+    "amber": {
+      "dark": { "value": "#B54708" },
+      "light": { "value": "#FEF8E3" }
+    },
+    "blue": {
+      "dark": { "value": "#195274" },
+      "light": { "value": "#E8EEF1" }
     },
     "alpha": {
       "5": { "value": "0.05" },

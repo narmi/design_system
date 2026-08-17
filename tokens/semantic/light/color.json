@@ -7,14 +7,24 @@
       "link": { "value": "{color.theme.secondary}" }
     },
     "background": {
-      "blueGrey": { "value": "#F4F6FA" },
-      "cloudGrey": { "value": "#E9E9E9" },
-      "neutralGrey": { "value": "#F9F9F9" },
-      "smokeGrey": { "value": "#F3F3F3" },
-      "snowGrey": { "value": "#FBFBFB" },
+      "blueGrey": { "value": "{color.grey.blueGrey}" },
+      "cloudGrey": { "value": "{color.grey.cloudGrey}" },
+      "neutralGrey": { "value": "{color.grey.neutralGrey}" },
+      "smokeGrey": { "value": "{color.grey.smokeGrey}" },
+      "snowGrey": { "value": "{color.grey.snowGrey}" },
       "white": { "value": "{color.narmi.white}" },
       "scrimLight": { "value": "rgba(255, 255, 255, 0.85)" },
       "scrimDark": { "value": "rgba(80, 80, 80, 0.7)" }
+    },
+    "system": {
+      "successDark": { "value": "{color.green.dark}" },
+      "successLight": { "value": "{color.green.light}" },
+      "warnDark": { "value": "{color.amber.dark}" },
+      "warnLight": { "value": "{color.amber.light}" },
+      "infoDark": { "value": "{color.blue.dark}" },
+      "infoLight": { "value": "{color.blue.light}" },
+      "errorDark": { "value": "{color.red.dark}" },
+      "errorLight": { "value": "{color.red.light}" }
     }
   },
   "font": {

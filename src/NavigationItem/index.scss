@@ -24,10 +24,23 @@
 
   .nds-navigationItem-control {
     grid-area: control;
+    display: flex;
+    flex-direction: column;
     min-height: rem(38px);
     text-align: start;
     padding-inline: var(--space-m);
     color: var(--font-color-heading);
+    // Reset so a `<button>`, `<a>`, or custom link component all look identical.
+    appearance: none;
+    background: none;
+    border: none;
+    font: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .nds-navigationItem-detail {
+    color: var(--font-color-secondary);
   }
 
   &::before {

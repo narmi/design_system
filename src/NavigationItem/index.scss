@@ -1,0 +1,50 @@
+.nds-navigationItem {
+  position: relative;
+  display: grid;
+  grid-template-areas: "indicator startContent control endContent";
+  grid-template-columns: 4px auto 1fr auto;
+
+  .nds-navigationItem-start,
+  .nds-navigationItem-end,
+  .nds-navigationItem-control {
+    padding-block: var(--space-l);
+    align-self: center;
+  }
+
+  .nds-navigationItem-start {
+    grid-area: startContent;
+    padding-inline: var(--space-s);
+  }
+
+  .nds-navigationItem-end {
+    grid-area: endContent;
+    padding-inline-start: var(--space-s);
+    padding-inline-end: var(--space-m);
+  }
+
+  .nds-navigationItem-control {
+    grid-area: control;
+    min-height: rem(38px);
+    text-align: start;
+    padding-inline: var(--space-m);
+    color: var(--font-color-heading);
+  }
+
+  &::before {
+    content: "";
+    grid-area: indicator;
+    height: 100%;
+  }
+
+  &:hover {
+    background: rgba(var(--theme-rgb-primary), var(--alpha-5));
+  }
+
+  &:has(.nds-navigationItem-control[aria-current="page"]) {
+    background: rgba(var(--theme-rgb-primary), var(--alpha-10));
+
+    &::before {
+      background: var(--theme-primary);
+    }
+  }
+}

@@ -15,9 +15,9 @@ attribute on the \`<html>\` element:
   the two red–green deficiencies share one setting; meaning moves onto the intact
   blue–amber axis (Okabe-Ito CVD-safe values). The clinical names
   \`"protanopia"\` / \`"deuteranopia"\` are also accepted as aliases.
-- \`data-color-vision-deficiency="tritanopia"\` → blue–yellow deficiency;
-  success/error keep green/red while info & warn are re-based and separated by
-  lightness
+- \`data-color-vision-deficiency="tritanopia"\` → blue–yellow deficiency:
+  status colors are re-based to stay distinguishable under tritanopia, with success/error
+  pushed toward lightness extremes and info/warn separated by hue + lightness
 
 Because these override the primitive \`--color-*Dark\` / \`--color-*Light\` custom
 properties, any consumer using them picks up the CVD-safe value automatically.

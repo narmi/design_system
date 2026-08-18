@@ -14,7 +14,11 @@ import {
 import { transforms } from "./hooks/transforms.mjs";
 import { filters } from "./hooks/filters.mjs";
 import { formats } from "./hooks/formats.mjs";
-import { COLOR_MODES } from "./constants.js";
+import {
+  COLOR_MODES,
+  COLOR_VISION_DEFICIENCIES,
+  cvdSelectors,
+} from "./constants.js";
 import { buildModeCSS } from "./modes.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -171,6 +175,33 @@ const modeConfig: Config = {
   },
 };
 
+// ─── Color-vision-deficiency mode overrides ──────────────────────────────────
+
+/**
+ * Appends the color-vision-deficiency palettes to the already-built CSS/SCSS.
+ *
+ * Unlike contrast, CVD palettes are defined inline (see `COLOR_VISION_DEFICIENCIES`)
+ * rather than as style-dictionary sources: they only override existing primitive
+ * `--color-*` properties and never feed any other distribution, so a full SD pass
+ * would be ceremony. Each palette emits one attribute-only block (no media query),
+ * with its collapsed value plus clinical-name aliases as selectors.
+ */
+function appendColorVisionDeficiencies(): void {
+  const cssDir = getBuildPath("css");
+  for (const cvd of COLOR_VISION_DEFICIENCIES) {
+    const tokens = Object.entries(cvd.overrides).map(([name, value]) => ({
+      name,
+      value,
+    }));
+    const modeBlock = buildModeCSS({
+      selector: cvdSelectors(cvd),
+      tokens,
+    });
+    fs.appendFileSync(`${cssDir}tokens.css`, modeBlock);
+    fs.appendFileSync(`${cssDir}tokens.scss`, modeBlock);
+  }
+}
+
 // ─── Build ───────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -179,6 +210,8 @@ async function main() {
 
   const sdMode = new StyleDictionary(modeConfig);
   await sdMode.buildAllPlatforms();
+
+  appendColorVisionDeficiencies();
 }
 main().catch((error) => {
   console.error(error);

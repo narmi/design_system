@@ -102,4 +102,7 @@ export const cvdSelectors = ({
   value,
   aliases,
 }: ColorVisionDeficiency): string[] =>
-  [value, ...aliases].map((v) => `[${CVD_ATTRIBUTE}="${v}"]`);
+  [value, ...aliases].flatMap((v) => [
+    `:root[${CVD_ATTRIBUTE}="${v}"]`,
+    `[${CVD_ATTRIBUTE}="${v}"]`,
+  ]);

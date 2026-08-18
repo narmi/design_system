@@ -365,6 +365,8 @@ The associated brand color helper classes (`.bgColor--<brand>` and `.fontColor--
 }
 ```
 
+### Removed webpack builds
+
 NDS v6 no longer uses webpack for builds. Vite is now the only build tool used by this project.
 
 #### What Changed

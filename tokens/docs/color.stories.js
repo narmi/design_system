@@ -6,18 +6,6 @@ export default {
   title: "Design Tokens/Color",
 };
 
-const Template = (args) => <TokenTable {...args} />;
-
-export const Base = Template.bind({});
-Base.args = {
-  previewType: "color",
-  rows: toTokenRows(color, "narmi", "color").filter(({ name }) => {
-    // filter out offset brand colors (e.g. `moss100`) from documentation for now
-    const isOffsetColor = new RegExp(/[0-9]/).test(name);
-    return !isOffsetColor;
-  }),
-};
-
 export const Theme = () => (
   <>
     <h2>Theme Colors</h2>

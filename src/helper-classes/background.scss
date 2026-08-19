@@ -11,12 +11,10 @@
 
 /**
 * brand/base background colors
+* ⚠️ DEPRECATED — brand color helper classes are emitted from
+* `base-styles/deprecated-brand-helpers` for backwards compatibility only.
+* Prefer theme background helpers (`.bgColor--theme--*`).
 */
-@each $color in (moss, pine, cove, azul, pistachio, cactus, sand) {
-  .bgColor--#{$color} {
-    background-color: var(--color-#{$color}) !important;
-  }
-}
 
 /**
 * system background colors

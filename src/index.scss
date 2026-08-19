@@ -46,6 +46,10 @@
 @import "helper-classes/scroll";
 @import "helper-classes/lists";
 
+// ⚠️ DEPRECATED brand color helper classes (emitted for backwards
+// compatibility only; intentionally excluded from helper class docs).
+@import "base-styles/deprecated-brand-helpers";
+
 // Components
 @import "Accordion/";
 @import "Alert/";

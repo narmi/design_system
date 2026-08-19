@@ -1,0 +1,69 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import TokenTable, { toTokenRows } from "helpers/TokenTable";
+import * as ColorStories from "./color.stories.js";
+
+<Meta title="Design Tokens/Color" />
+
+# Color Tokens
+
+## Theme Colors
+
+Tokens with the prefix `--theme` are dedicated to theming. These CSS custom
+properties are intended to be overridden by institution settings.
+
+<Canvas of={ColorStories.Theme} style={{ height: "auto" }} />
+
+### Enabling theming in your application
+
+To set the value of these theming variables, redeclare theme custom properties
+in your application _after_ the design system stylesheet link.
+
+You will need to declare both full values and RGB list values, which are used by
+this design system for composing transparent colors:
+
+```html
+<link rel="stylesheet" href="<design system style.css url>" />
+<style type="text/css">
+  /* your theming overrides */
+  :root {
+    --theme-primary: red;
+    --theme-secondary: yellow;
+    --theme-rgb-primary: 255, 0, 0;
+    --theme-rgb-secondary: 255, 255, 0;
+  }
+</style>
+```
+
+## Background Colors
+
+Colors reserved for element backgrounds.
+
+<Canvas of={ColorStories.Background} style={{ height: "auto" }} />
+
+## System Colors
+
+Colors used for system messages and indicators.
+
+<Canvas of={ColorStories.System} style={{ height: "auto" }} />
+
+## Transparency
+
+All [System Colors](#system-colors),
+[Theme Colors](#theme-colors), and [Background Colors](#background-colors) are available as partial RGB values
+that can be composed with the following alpha values to lighten or darken a color.
+
+These values are prefixed with `--rgb` instead of `--color`.
+Theme RGB values are prefixed with `--theme-rgb`.
+
+The value `rgb(var(--theme-rgb-primary))` is equivalent to `var(--theme-primary)`.
+
+### Alpha Values
+
+<Canvas of={ColorStories.Transparency} style={{ height: "auto" }} />
+
+### Usage
+
+```
+background-color: rgba(var(--theme-rgb-primary), var(--alpha-10));
+color: rgba(var(--theme-rgb-secondary), var(--alpha-20));
+```

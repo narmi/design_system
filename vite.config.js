@@ -66,9 +66,10 @@ export default defineConfig({
   ],
 
   build: {
+    target: "es2020",
     emptyOutDir: false, // Don't clear dist directory - use build:clean for that
     lib: {
-      entry: resolve(__dirname, "src/index.js"),
+      entry: resolve(__dirname, "src/index.ts"),
       name: "NarmiDesignSystem",
       formats: ["umd"],
       fileName: () => "index.js",

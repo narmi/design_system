@@ -133,7 +133,7 @@ const Button = ({
         {isLoading && (
           <div className="nds-button-spinner">
             <Spinner
-              color={kind !== "primary" ? "var(--color-lightGrey)" : undefined}
+              color={kind !== "primary" ? "var(--font-color-hint)" : undefined}
             />
           </div>
         )}

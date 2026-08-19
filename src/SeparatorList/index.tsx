@@ -1,7 +1,7 @@
 import React from "react";
 import cc from "classcat";
 
-interface SeparatorListProps {
+export interface SeparatorListProps {
   items: React.ReactNode[];
   separator?: string;
   noWrap?: boolean;

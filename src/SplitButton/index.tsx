@@ -10,7 +10,7 @@ const POPOVER_POSITION_PROPS = {
   side: "top",
   alignment: "start",
   offset: 6,
-};
+} as const;
 
 import SplitButtonPopover, {
   SplitButtonPopoverProps,

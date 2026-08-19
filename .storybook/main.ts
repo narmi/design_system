@@ -6,6 +6,25 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default {
   typescript: {
     reactDocgen: "react-docgen-typescript",
+    // `@joshwooding/vite-plugin-react-docgen-typescript` (used by
+    // `@storybook/react-vite` for the `react-docgen-typescript` option) skips
+    // any file that is not a root file of the resolved TypeScript project.
+    //
+    // It defaults to the root `tsconfig.json`, which is a build-only config
+    // (`files: ["src/index.ts", "src/json.d.ts"]`). Under that config no `.tsx`
+    // file qualifies, so every TypeScript component silently loses its docgen:
+    // no controls and no prop descriptions in Storybook. Point it at
+    // `tsconfig.check.json` instead, which covers all of `src/`.
+    //
+    // `scripts/checkDocgen.mjs` guards this in CI. Do not remove these options
+    // without running `npm run check:docgen`.
+    reactDocgenTypescriptOptions: {
+      tsconfigPath: "tsconfig.check.json",
+      // Explicit `include` avoids the plugin's default `**/*.tsx` glob, which
+      // walks `node_modules` on every cold start.
+      include: ["src/**/*.tsx"],
+      exclude: ["**/*.stories.tsx", "**/*.test.tsx", "**/*.figma.tsx"],
+    },
   },
 
   stories: [

@@ -41,7 +41,7 @@ figma.connect(
         label={label}
       >
         {/**
-         * SplitButton also provides a SplitButton.Poppover
+         * SplitButton also provides a SplitButton.Popover
          * if the popover contains arbitrary content instead of a menu.
          */}
         <SplitButton.Menu>

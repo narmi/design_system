@@ -2,9 +2,8 @@ import type { TransformedToken } from "style-dictionary/types";
 
 /**
  * The subset of a token this module needs. Structurally compatible with
- * style-dictionary's `TransformedToken` (so `dictionary.allTokens` works), while
- * also accepting plain override maps that never pass through the SD pipeline
- * (e.g. the inline color-vision-deficiency palettes).
+ * style-dictionary's `TransformedToken`, so `dictionary.allTokens` from any
+ * mode's source build can be passed straight through.
  */
 type ModeToken = Pick<TransformedToken, "name"> & { value: string | number };
 

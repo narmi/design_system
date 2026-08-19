@@ -34,20 +34,27 @@ export interface ColorVisionDeficiency {
   aliases: string[];
   /** Human-readable label (used in Storybook / docs). */
   label: string;
-  /**
-   * Primitive overrides for this palette: CSS custom-property name (without the
-   * leading `--`) → value. These override the primitive `--color-*` properties
-   * directly, so any consumer using them picks up the CVD-safe value.
-   */
-  overrides: Record<string, string>;
 }
 
 /** Attribute on the `<html>` element that opts into a CVD palette. */
 export const CVD_ATTRIBUTE = "data-color-vision-deficiency";
 
 /**
+ * Style-dictionary source directory (under `tokens/semantic/`) holding a CVD
+ * palette's primitive overrides. Derived from `value` by convention, mirroring
+ * how `light-contrast-more/` ties to `COLOR_MODES.highContrast`.
+ */
+export const cvdSourceDir = ({ value }: ColorVisionDeficiency): string =>
+  `cvd-${value}`;
+
+/**
  * Color-vision-deficiency palettes. Unlike contrast, there is no OS media query
  * for CVD, so these are attribute-only modes driven by `CVD_ATTRIBUTE`.
+ *
+ * The override values live as style-dictionary sources in `tokens/semantic/cvd-*`
+ * (one folder per `value`); they re-base the primitive `color.system.*` status
+ * tokens so any consumer of `--color-*` picks up the CVD-safe value. This entry
+ * only carries the selector/label metadata that has no home in a token JSON.
  *
  * Status colors are re-based per deficiency so meaning rides the axis that
  * survives. Non-color cues (icon/label) must still accompany every status —
@@ -62,38 +69,20 @@ export const COLOR_VISION_DEFICIENCIES: ColorVisionDeficiency[] = [
     // separated). A grayscale floor keeps every status distinct by lightness too.
     // Verified: worst-case sim ΔE ≈ 26–29 (standard ≈ 11); all AA on their tint.
     // Meaning is carried by icon/label — color never carries the load alone.
+    // Values: tokens/semantic/cvd-red-green/color.json
     value: "red-green",
     aliases: ["protanopia", "deuteranopia"],
     label: "Protanopia / Deuteranopia (red–green)",
-    overrides: {
-      "color-successDark": "#6F6BAD",
-      "color-successLight": "#F7F8FF",
-      "color-infoDark": "#1A56B0",
-      "color-infoLight": "#E9EFFB",
-      "color-warnDark": "#6F004F",
-      "color-warnLight": "#FFE9F4",
-      "color-errorDark": "#4B0200",
-      "color-errorLight": "#FFEBE7",
-    },
   },
   {
     // Blue–yellow deficiency. ALTERNATE colors chosen to be maximally
     // distinguishable *under tritanopia simulation*; success (lightest) and error
     // (darkest) at the lightness extremes, with a grayscale floor.
     // Verified: worst-case sim ΔE ≈ 32 (standard ≈ 4); all AA on their tint.
+    // Values: tokens/semantic/cvd-tritanopia/color.json
     value: "tritanopia",
     aliases: [],
     label: "Tritanopia (blue–yellow)",
-    overrides: {
-      "color-successDark": "#E2004C",
-      "color-successLight": "#FFF6F6",
-      "color-infoDark": "#007654",
-      "color-infoLight": "#D2FBE8",
-      "color-warnDark": "#2200C3",
-      "color-warnLight": "#EAF0FF",
-      "color-errorDark": "#52001C",
-      "color-errorLight": "#FFEAED",
-    },
   },
 ];
 

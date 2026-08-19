@@ -71,12 +71,12 @@ export const NavigationItem = forwardRef<
           <span className="nds-navigationItem-start">{startContent}</span>
         )}
         <button
+          {...rest}
           ref={ref as Ref<HTMLButtonElement>}
           type="button"
           className="nds-navigationItem-control button--reset"
           aria-current={isSelected ? "page" : undefined}
           onClick={onClick}
-          {...rest}
         >
           {children}
         </button>

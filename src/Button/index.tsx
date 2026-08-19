@@ -36,6 +36,8 @@ export interface ButtonProps {
   type?: "submit" | "button" | "reset";
   /** size variant of button */
   size?: "xs" | "s" | "m";
+  /** horizontal alignment of button label content */
+  labelAlign?: "start" | "center" | "end";
   /** Name of Narmi icon to place at the start of the label */
   startIcon?: IconName | null;
   /** Name of Narmi icon to place at the end of the label */
@@ -53,7 +55,7 @@ export interface ButtonProps {
   children?: React.ReactNode | string | undefined;
   /**
    * Will take up full width of its parent container when `true`.
-   * The label will align start with flex grow.
+   * Label alignment is controlled by `labelAlign`.
    */
   isFullWidth?: boolean;
   [x: string]: unknown; // spread props
@@ -74,6 +76,7 @@ const Button = ({
   kind = "primary",
   type,
   size = "m",
+  labelAlign,
   startIcon = null,
   endIcon = null,
   testId,
@@ -129,7 +132,16 @@ const Button = ({
       aria-label={ariaLabel || buttonLabel}
       data-testid={testId || "nds-button"}
     >
-      <div className="nds-button-content">
+      <div
+        className={cc([
+          "nds-button-content",
+          {
+            "nds-button-content--center": labelAlign === "center",
+            "nds-button-content--start": labelAlign === "start",
+            "nds-button-content--end": labelAlign === "end",
+          },
+        ])}
+      >
         {isLoading && (
           <div className="nds-button-spinner">
             <Spinner

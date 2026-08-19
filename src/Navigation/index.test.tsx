@@ -10,9 +10,9 @@ describe("Navigation", () => {
         <NavigationItem itemId="admin" label="Admin" />
       </Navigation>,
     );
-    expect(
-      screen.getByRole("navigation", { name: "Roles" }),
-    ).toBeInTheDocument();
+    const nav = screen.getByRole("navigation", { name: "Roles" });
+    expect(nav).toBeInTheDocument();
+    expect(nav).toHaveAttribute("aria-label", "Roles");
   });
 
   it("marks the item whose itemId matches selectedId as current (controlled)", () => {

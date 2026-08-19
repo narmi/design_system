@@ -34,11 +34,11 @@ const Navigation = forwardRef<HTMLElement, NavigationProps>(function Navigation(
 ) {
   return (
     <nav
+      {...rest}
       ref={ref}
       aria-label={label}
-      className="navigation"
+      className="nds-navigation"
       data-testid={testId}
-      {...rest}
     >
       {children}
     </nav>

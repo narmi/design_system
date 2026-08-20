@@ -55,7 +55,8 @@ export interface ButtonProps {
   children?: React.ReactNode | string | undefined;
   /**
    * Will take up full width of its parent container when `true`.
-   * Label alignment is controlled by `labelAlign`.
+   * Full-width buttons align label content to `start` by default; use `labelAlign`
+   * to override that alignment.
    */
   isFullWidth?: boolean;
   [x: string]: unknown; // spread props

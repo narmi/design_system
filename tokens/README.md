@@ -20,8 +20,14 @@ tokens/
 │   │   └── color.json    # text/*, background/*, border/*, theme/*
 │   ├── light-contrast-more/  # High contrast light mode overrides
 │   │   └── color.json    # Only tokens that differ from light/
+│   ├── cvd-red-green/    # Protanopia/deuteranopia palette overrides
+│   │   └── color.json    # Re-based color.system.* status tokens
+│   ├── cvd-tritanopia/   # Tritanopia palette overrides
+│   │   └── color.json    # Re-based color.system.* status tokens
 │   ├── *.stories.js      # Storybook stories
 │   └── *.mdx             # Storybook docs
+├── constants.ts          # Mode definitions (contrast + color-vision deficiency)
+├── modes.ts              # buildModeCSS: emits mode override blocks
 ├── config.js             # style-dictionary v4 build configuration
 └── README.md
 ```
@@ -43,6 +49,24 @@ Modes are managed as additive CSS overrides appended to `tokens.css`:
 To activate a specific contrast mode programmatically, set `data-prefers-contrast` on the
 `<html>` element (or any ancestor, for the `"more"` case). Consumer apps typically wire this
 to a stored user preference.
+
+- **Color vision deficiency (CVD)**: status colors are re-based per deficiency so meaning
+  rides the axis that survives. There is no OS media query for CVD, so these are
+  attribute-only modes driven by `data-color-vision-deficiency` on the `<html>` element:
+  - `data-color-vision-deficiency="red-green"` → shared **Protanopia / Deuteranopia**
+    palette. The clinical names `"protanopia"` / `"deuteranopia"` are also accepted as
+    aliases (emitted as extra selectors).
+  - `data-color-vision-deficiency="tritanopia"` → blue–yellow deficiency palette.
+
+  Unlike contrast, there is no OS media query for CVD, so these are attribute-only
+  modes (no `@media` block). The palettes live as style-dictionary sources in
+  `semantic/cvd-red-green/` and `semantic/cvd-tritanopia/` — one folder per `value`,
+  linked to its `COLOR_VISION_DEFICIENCIES` entry by the `cvd-<value>` convention.
+  They re-base the primitive `color.system.*` status tokens (`--color-*Dark` /
+  `--color-*Light`), so any consumer using those primitives picks up the CVD-safe
+  value. The `constants.ts` entry carries only the selector/alias/label metadata,
+  which has no home in a token JSON. Non-color cues (icon/label) must still
+  accompany every status — color never carries the load alone.
 
 ## Usage
 
@@ -75,9 +99,29 @@ for a full list of CSS custom properties.
 
 ### Adding a new mode
 
+All modes are style-dictionary sources emitted as additive CSS blocks appended to
+`tokens.css`/`tokens.scss`. There are two shapes:
+
+**OS-preference modes** (e.g. contrast) pair a media query with an opt-in/opt-out attribute:
+
 1. Create a new folder under `tokens/semantic/` (e.g. `dark/`, `dark-contrast-more/`)
 2. Add only the tokens that differ from the base `light/` mode
-3. Update `config.js` to add the new mode source and format output
+3. Add an entry to `COLOR_MODES` in `tokens/constants.ts` (media query + selector)
+4. Add a build pass in `tokens/build.ts` that calls `buildModeCSS` with the media query
+
+**Attribute-only modes** (e.g. color vision deficiency) have no OS signal, so they emit
+only an attribute-selector block (no `@media`):
+
+1. Create a source folder under `tokens/semantic/` named `cvd-<value>` (e.g.
+   `cvd-red-green/`) and add only the tokens that differ from base — for CVD these
+   re-base `color.system.*` status tokens
+2. Add an entry to `COLOR_VISION_DEFICIENCIES` in `tokens/constants.ts` with its
+   collapsed `value` (must match the folder suffix), any `aliases` (rendered as extra
+   selectors), and a `label`
+3. `tokens/build.ts` compiles each palette's source and appends its block
+   automatically — no per-mode wiring
+4. Wire the toolbar toggle in `.storybook/preview.js` + `.storybook/decorators.js` to
+   preview it
 
 ### Adding a new distribution
 

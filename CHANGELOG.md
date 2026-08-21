@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.24.0](https://github.com/narmi/design_system/compare/v6.23.0...v6.24.0) (2026-08-21)
+
+### feat
+
+* **Navigation:** add Navigation and NavigationItem ([ccc6d2a](https://github.com/narmi/design_system/commit/ccc6d2a83609cd4902e604520b58b4f4066a51f6))
+* **Navigation:** add Navigation and NavigationItem ([aa39f25](https://github.com/narmi/design_system/commit/aa39f25272bf19336c734d005167e81afcdc684f))
+
+### test
+
+* add NavigationItem unit coverage ([02d046a](https://github.com/narmi/design_system/commit/02d046a649bbc9a08fa126f868ce97007cb24758))
+* assert Navigation aria-label on nav landmark ([1b19a28](https://github.com/narmi/design_system/commit/1b19a28bfc7c12996ef9f0a67c5f3af3b835bbcd))
+
 ## [6.23.0](https://github.com/narmi/design_system/compare/v6.22.6...v6.23.0) (2026-08-20)
 
 ### docs

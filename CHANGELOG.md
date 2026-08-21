@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.23.0](https://github.com/narmi/design_system/compare/v6.22.6...v6.23.0) (2026-08-20)
+
+### docs
+
+* **Button:** clarify full-width label alignment ([811bd85](https://github.com/narmi/design_system/commit/811bd85e366456056a326673978a063fdd92c50d))
+* move brand-color deprecation notes to next-major migration guide ([68cc9e0](https://github.com/narmi/design_system/commit/68cc9e05f4273e7e0d32916c8557d6d1e436f15e))
+
+### feat
+
+* **Button:** add labelAlign prop ([96c9eee](https://github.com/narmi/design_system/commit/96c9eee4e9b2d89a035064a379a172a6da1c54ec))
+
+### refactor
+
+* **tokens:** deprecate brand colors ([9585bce](https://github.com/narmi/design_system/commit/9585bcee48c5606256f8e370b30f25f3c9a4bc87))
+
+### test
+
+* **Button:** cover labelAlign full-width behavior ([306efb6](https://github.com/narmi/design_system/commit/306efb63904fbb494c231f895b14debb849c49ee))
+
 ## [6.22.6](https://github.com/narmi/design_system/compare/v6.22.5...v6.22.6) (2026-08-13)
 
 ### fix

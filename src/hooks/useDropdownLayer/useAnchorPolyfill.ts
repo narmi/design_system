@@ -1,6 +1,6 @@
 import { useLayoutEffect } from "react";
 import useSupportsAnchorPositioning from "../useSupportsAnchorPositioning";
-import { HAS_SCROLL_CONTAINER_BUG } from "../useSupportsAnchorPositioning";
+import { hasScrollContainerBug } from "../useSupportsAnchorPositioning";
 
 interface UseAnchorPolyfillParams {
   /** Reference to the element that the dropdown should be anchored to */
@@ -143,7 +143,7 @@ const useAnchorPolyfill = ({
   // When polyfillScrollBug is opted-in AND the browser has the bug,
   // force the polyfill path even though CSS.supports reports support.
   const effectiveSupport =
-    polyfillScrollBug && HAS_SCROLL_CONTAINER_BUG
+    polyfillScrollBug && hasScrollContainerBug()
       ? false
       : isAnchorPositionSupported;
 

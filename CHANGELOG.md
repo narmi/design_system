@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.11](https://github.com/narmi/design_system/compare/v6.19.10...v6.19.11) (2026-08-24)
+
+### ci
+
+* sync release workflow and config from main [skip ci] ([28b7739](https://github.com/narmi/design_system/commit/28b7739961c34a8b2e5643eff88b741d4e699362))
+
+### fix
+
+* **dropdowns:** use dvh to account for soft keyboards ([98f791d](https://github.com/narmi/design_system/commit/98f791d1552f949041888d873bfee113d4ab95cc))
+
 ## [6.19.10](https://github.com/narmi/design_system/compare/v6.19.9...v6.19.10) (2026-08-04)
 
 ### fix

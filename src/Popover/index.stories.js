@@ -47,9 +47,7 @@ export const Open = {
     />
   ),
   play: async ({ canvas, userEvent }) => {
-    await userEvent.click(
-      canvas.getByRole("button", { name: /open popover/i }),
-    );
+    await userEvent.click(canvas.getByTestId("nds-popover-trigger"));
     await waitFor(() => expect(screen.getByText(/any content/i)).toBeVisible());
   },
 };

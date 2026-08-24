@@ -10,7 +10,7 @@
 
   li[data-separator]::after {
     content: attr(data-separator);
-    color: var(--font-color-hint);
+    color: var(--nds-separatorList-separator-color, var(--font-color-hint));
     padding: 0 var(--space-xs);
   }
 }

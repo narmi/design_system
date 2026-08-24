@@ -38,6 +38,42 @@ export const StackingTimelineEvents = () => (
   </>
 );
 
+export const DividedVariant = () => (
+  <>
+    <TimelineEvent kind="divided">Account opened</TimelineEvent>
+    <TimelineEvent kind="divided">
+      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
+      praesentium voluptatum deleniti atque corrupti quos dolores et quas
+      molestias excepturi sint occaecati cupiditate non provident, similique
+      sunt in culpa qui officia deserunt mollitia animi, id est laborum et
+      dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
+      Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
+      impedit quo minus id quod maxime placeat facere possimus, omnis voluptas
+      assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut
+      officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates
+      repudiandae sint et molestiae non recusandae.
+    </TimelineEvent>
+    <TimelineEvent kind="divided">Debit card mailed</TimelineEvent>
+    <TimelineEvent kind="divided">
+      Online banking enrollment completed
+    </TimelineEvent>
+  </>
+);
+
+export const EventWithDetailsBlock = () => (
+  <TimelineEvent
+    kind="plain"
+    detailList={[
+      { label: "Amount", description: "$1,250.00" },
+      { label: "Account", description: "Checking 1234" },
+      { label: "Confirmation", description: "A1B2C3D4" },
+    ]}
+  >
+    <h4>Payment processed</h4>
+  </TimelineEvent>
+);
+EventWithDetailsBlock.storyName = "Event with details block";
+
 export const CustomNode = () => (
   <>
     <TimelineEvent kind="pending">

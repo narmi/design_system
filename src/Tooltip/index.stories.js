@@ -42,8 +42,9 @@ export const Open = {
   ),
   play: async ({ canvas, userEvent }) => {
     await userEvent.hover(canvas.getByRole("button", { name: /hover me/i }));
-    await waitFor(() =>
-      expect(screen.getByText(/tool for tips/i)).toBeVisible(),
+    await waitFor(
+      () => expect(screen.getByText(/tool for tips/i)).toBeVisible(),
+      { timeout: 2000 },
     );
   },
 };

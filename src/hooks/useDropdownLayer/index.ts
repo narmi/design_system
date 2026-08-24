@@ -204,9 +204,8 @@ const useDropdownLayer = ({
         ? anchorPositionStyles
         : polyFillLayerStyles),
 
-      // Always include display and z-index.
+      // Always include display
       display: isOpen ? "block" : "none",
-      zIndex: isPortalled ? 9 : 4,
     };
 
     return {

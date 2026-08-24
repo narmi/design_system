@@ -31,9 +31,7 @@ export const Open = {
   name: "Interaction: Opens on click",
   render: () => <Combobox label="Select your state">{children}</Combobox>,
   play: async ({ canvas, userEvent }) => {
-    await userEvent.click(
-      canvas.getByRole("combobox", { name: /select your state/i }),
-    );
+    await userEvent.click(canvas.getByRole("combobox"));
     await waitFor(() =>
       expect(screen.getByRole("option", { name: /alabama/i })).toBeVisible(),
     );

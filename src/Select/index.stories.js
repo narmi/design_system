@@ -44,7 +44,9 @@ export const Open = {
     </Select>
   ),
   play: async ({ canvas, userEvent }) => {
-    await userEvent.click(canvas.getByLabelText(/favorite icon/i));
+    await userEvent.click(
+      canvas.getByRole("combobox", { name: /favorite icon/i }),
+    );
     await waitFor(() =>
       expect(screen.getByRole("option", { name: /coffee/i })).toBeVisible(),
     );

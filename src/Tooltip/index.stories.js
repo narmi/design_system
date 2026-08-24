@@ -4,6 +4,9 @@ import Button from "../Button";
 import TextInput from "../TextInput";
 import MenuButton from "../MenuButton";
 import IconButton from "../IconButton";
+import Dialog from "../Dialog";
+import Popover from "../Popover";
+import Drawer from "../Drawer";
 
 const Template = (args) => (
   <div
@@ -43,6 +46,75 @@ WithTextInput.parameters = {
         "Tooltip can be used in a TextInput by passing it as the endContent prop.",
     },
   },
+};
+
+/**
+ * Tooltip rendered as `endContent` of a `TextInput` inside a `Dialog`.
+ */
+export const InADialog = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Dialog</Button>
+      <Dialog
+        title="Tooltip in a Dialog"
+        isOpen={isOpen}
+        onUserDismiss={() => setIsOpen(false)}
+      >
+        <TextInput
+          label="Account Number"
+          endContent={
+            <Tooltip text="If you don't have an account number, enter your customer ID">
+              <span className="narmi-icon-info"></span>
+            </Tooltip>
+          }
+        />
+      </Dialog>
+    </>
+  );
+};
+
+/**
+ * Tooltip rendered as `endContent` of a `TextInput` inside a `Popover`.
+ */
+export const InAPopover = () => (
+  <Popover
+    renderTrigger={() => <Button>Open Popover</Button>}
+    content={
+      <div className="padding--all--m" style={{ width: "300px" }}>
+        <TextInput
+          label="Account Number"
+          endContent={
+            <Tooltip text="If you don't have an account number, enter your customer ID">
+              <span className="narmi-icon-info"></span>
+            </Tooltip>
+          }
+        />
+      </div>
+    }
+  />
+);
+
+/**
+ * Tooltip rendered as `endContent` of a `TextInput` inside a `Drawer`.
+ */
+export const InADrawer = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Drawer</Button>
+      <Drawer isOpen={isOpen} onUserDismiss={() => setIsOpen(false)}>
+        <TextInput
+          label="Account Number"
+          endContent={
+            <Tooltip text="If you don't have an account number, enter your customer ID">
+              <span className="narmi-icon-info"></span>
+            </Tooltip>
+          }
+        />
+      </Drawer>
+    </>
+  );
 };
 
 export const WithTooltipAsMenuButtonTrigger = () => {

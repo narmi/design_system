@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { expect, screen, waitFor } from "storybook/test";
 import Tooltip from "./";
 import Button from "../Button";
 import TextInput from "../TextInput";
@@ -26,6 +27,25 @@ export const Overview = Template.bind({});
 Overview.args = {
   text: "I am a tooltip, which is a tool for tips",
   children: <Button>Button with a tooltip</Button>,
+};
+
+/**
+ * Interaction test that hovers the trigger so Chromatic can snapshot
+ * the tooltip's placement.
+ */
+export const Open = {
+  name: "Interaction: Opens on hover",
+  render: () => (
+    <Tooltip text="I am a tooltip, which is a tool for tips">
+      <Button>Hover me</Button>
+    </Tooltip>
+  ),
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.hover(canvas.getByRole("button", { name: /hover me/i }));
+    await waitFor(() =>
+      expect(screen.getByText(/tool for tips/i)).toBeVisible(),
+    );
+  },
 };
 
 export const WithTextInput = () => (

@@ -15,6 +15,13 @@ import useDropdownLayer from "../hooks/useDropdownLayer";
 
 const noop = () => {};
 
+/**
+ * @returns {Boolean} true when the primary pointer is coarse (touch device)
+ */
+const isTouchDevice = () =>
+  typeof window !== "undefined" &&
+  !!window.matchMedia?.("(pointer: coarse)").matches;
+
 export { VALID_ICON_NAMES };
 
 /**
@@ -229,7 +236,11 @@ const Combobox = ({
       inputRef.current?.blur();
       onChange(selectedItem ? selectedItem.props.value : "");
       closeMenu();
-      inputRef.current?.focus({ preventScroll: true });
+      // On touch devices, leave the input blurred so the on-screen keyboard
+      // dismisses after a selection is made.
+      if (!isTouchDevice()) {
+        inputRef.current?.focus({ preventScroll: true });
+      }
       isInternalFocusChange.current = false;
     },
 

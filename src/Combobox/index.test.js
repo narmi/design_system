@@ -266,4 +266,39 @@ describe("Combobox", () => {
     // onChange should be called with empty string
     expect(handleChange).toHaveBeenLastCalledWith("");
   });
+
+  it("restores focus to the input after selection on non-touch devices", () => {
+    render(<Combobox label={LABEL}>{STATE_ITEMS}</Combobox>);
+
+    const input = screen.getByPlaceholderText(LABEL);
+    input.focus();
+    fireEvent.focus(input);
+    fireEvent.click(screen.getByText("New York"));
+
+    expect(input).toHaveFocus();
+  });
+
+  it("leaves the input blurred after selection on touch devices, dismissing the on-screen keyboard", () => {
+    window.matchMedia.mockImplementation((query) => ({
+      matches: query === "(pointer: coarse)",
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }));
+
+    render(<Combobox label={LABEL}>{STATE_ITEMS}</Combobox>);
+
+    const input = screen.getByPlaceholderText(LABEL);
+    input.focus();
+    fireEvent.focus(input);
+    fireEvent.click(screen.getByText("New York"));
+
+    expect(input).not.toHaveFocus();
+    // the selection itself should still be applied
+    expect(input.value).toBe("New York");
+  });
 });

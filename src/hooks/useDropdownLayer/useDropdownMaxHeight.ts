@@ -1,4 +1,5 @@
 import { useLayoutEffect } from "react";
+import { getAvailableSpace } from "./viewport";
 
 interface UseDropdownMaxHeightParams {
   anchorRef: React.RefObject<HTMLElement>;
@@ -51,20 +52,35 @@ const useDropdownMaxHeight = ({
     const layerEl = layerRef.current;
     if (!anchorEl || !layerEl) return;
 
-    const anchorRect = anchorEl.getBoundingClientRect();
-    if (anchorRect.width === 0) return;
+    // Clamp to the space on the larger side of the anchor, measured against
+    // the *visual* viewport (shrunken by the soft keyboard) via the same
+    // helper `calculatePosition` uses for its flip decision — so the clamp
+    // always matches the side the layer is actually placed on.
+    const applyMaxHeight = () => {
+      const anchorRect = anchorEl.getBoundingClientRect();
+      if (anchorRect.width === 0) return;
 
-    const anchorGap = resolveSpaceToken("--space-xxs", 4);
-    const edgeClearance = resolveSpaceToken("--space-l", 20);
-    const vvHeight = window.visualViewport?.height ?? window.innerHeight;
+      const anchorGap = resolveSpaceToken("--space-xxs", 4);
+      const edgeClearance = resolveSpaceToken("--space-l", 20);
+      const { spaceAbove, spaceBelow } = getAvailableSpace(
+        anchorRect,
+        anchorGap,
+        edgeClearance,
+      );
+      const maxHeight = Math.max(spaceAbove, spaceBelow, 0);
 
-    const spaceBelow = vvHeight - anchorRect.bottom - anchorGap - edgeClearance;
-    const spaceAbove = anchorRect.top - anchorGap - edgeClearance;
-    const maxHeight = Math.max(spaceAbove, spaceBelow, 0);
+      layerEl.style.setProperty("--js-dropdown-max-height", `${maxHeight}px`);
+    };
 
-    layerEl.style.setProperty("--js-dropdown-max-height", `${maxHeight}px`);
+    applyMaxHeight();
+
+    // Re-clamp when the soft keyboard opens/closes (visual viewport resize);
+    // the keyboard often finishes opening after the initial measurement.
+    const vv = typeof window !== "undefined" ? window.visualViewport : null;
+    vv?.addEventListener?.("resize", applyMaxHeight);
 
     return () => {
+      vv?.removeEventListener?.("resize", applyMaxHeight);
       layerEl.style.removeProperty("--js-dropdown-max-height");
     };
   }, [isOpen, enabled, anchorRef, layerRef]);

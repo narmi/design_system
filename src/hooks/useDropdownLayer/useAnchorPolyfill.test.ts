@@ -214,6 +214,91 @@ describe("calculatePosition", () => {
     });
   });
 
+  describe("soft keyboard open (visual viewport smaller than layout viewport)", () => {
+    it("emits a layout-viewport `bottom` when flipping above, not a visual-viewport one", () => {
+      // Simulates Android Chrome with the soft keyboard already open when
+      // the dropdown opens (focus moved directly from another input):
+      // layout viewport stays 768px tall, visual viewport shrinks to 400px.
+      Object.defineProperty(window, "innerHeight", {
+        configurable: true,
+        value: VIEWPORT_HEIGHT,
+      });
+      Object.defineProperty(window, "visualViewport", {
+        configurable: true,
+        value: { width: VIEWPORT_WIDTH, height: 400, offsetTop: 0 },
+      });
+
+      // Anchor sits below the visible region's bottom edge (400) in layout
+      // coordinates → no space below, plenty above → flip.
+      const anchor = makeEl({
+        top: 568,
+        bottom: 608,
+        left: 0,
+        right: 200,
+        width: 200,
+        height: 40,
+      });
+      const layer = makeEl({
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 200,
+        width: 200,
+        height: 0,
+      });
+
+      calculatePosition(anchor, layer, false);
+
+      const props = getProps(layer);
+      // bottom = layoutHeight - anchorRect.top + anchorGap = 768 - 568 + 4.
+      // The old visual-viewport math produced 400 - 568 + 4 = -164px,
+      // pinning the layer below the bottom of the screen.
+      expect(props["--js-dropdown-bottom"]).toBe("204px");
+      expect(props["--js-dropdown-top"]).toBeNull();
+    });
+
+    it("measures available space against the panned visual viewport", () => {
+      // Visual viewport panned down (offsetTop=200) over a 768px layout
+      // viewport; visible region is 200..600 in layout coordinates.
+      Object.defineProperty(window, "innerHeight", {
+        configurable: true,
+        value: VIEWPORT_HEIGHT,
+      });
+      Object.defineProperty(window, "visualViewport", {
+        configurable: true,
+        value: { width: VIEWPORT_WIDTH, height: 400, offsetTop: 200 },
+      });
+
+      // Anchor is above the visible region → no visible space above it,
+      // ample below → must NOT flip even though anchorRect.top is large
+      // relative to a naive 0-based measurement.
+      const anchor = makeEl({
+        top: 250,
+        bottom: 290,
+        left: 0,
+        right: 200,
+        width: 200,
+        height: 40,
+      });
+      const layer = makeEl({
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 200,
+        width: 200,
+        height: 0,
+      });
+
+      calculatePosition(anchor, layer, false);
+
+      const props = getProps(layer);
+      // spaceAbove = 250 - 200 - 24 = 26; spaceBelow = 600 - 290 - 24 = 286
+      // → place below: top = anchorRect.bottom - layerRect.top + gap
+      expect(props["--js-dropdown-top"]).toBe("294px");
+      expect(props["--js-dropdown-bottom"]).toBeNull();
+    });
+  });
+
   describe("available space floor", () => {
     it("clamps availableSpace to 0 when anchor spans the full viewport", () => {
       // Anchor spans the full viewport — spaceAbove and spaceBelow are both negative.

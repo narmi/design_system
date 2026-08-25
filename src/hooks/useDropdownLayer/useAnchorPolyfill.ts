@@ -2,6 +2,7 @@ import { useLayoutEffect } from "react";
 import useSupportsAnchorPositioning from "../useSupportsAnchorPositioning";
 import { HAS_SCROLL_CONTAINER_BUG } from "../useSupportsAnchorPositioning";
 import { resolveSpaceToken } from "./useDropdownMaxHeight";
+import { getAvailableSpace, getVisibleBounds } from "./viewport";
 
 interface UseAnchorPolyfillParams {
   /** Reference to the element that the dropdown should be anchored to */
@@ -23,6 +24,14 @@ interface UseAnchorPolyfillParams {
 /**
  * Calculates and applies CSS custom properties for dropdown positioning.
  * Exported for unit testing.
+ *
+ * Available space is measured against the *visual* viewport (which the
+ * soft keyboard and pinch-zoom shrink), while the emitted `top`/`bottom`
+ * insets are layout-viewport values, since that is what `position: fixed`
+ * resolves against. See `./viewport.ts` for the distinction. This keeps
+ * the layer inside the user-visible area when the keyboard is already open
+ * at the time the dropdown opens — e.g. focus moving directly from one
+ * combobox to another.
  */
 export const calculatePosition = (
   anchorEl: HTMLElement,
@@ -37,7 +46,7 @@ export const calculatePosition = (
   const anchorGap = resolveSpaceToken("--space-xxs", 4);
   const edgeClearance = resolveSpaceToken("--space-l", 20);
 
-  const vvHeight = window.visualViewport?.height ?? window.innerHeight;
+  const { layoutHeight } = getVisibleBounds();
 
   // Reset to a known baseline before measuring layer position.
   layerEl.style.setProperty("--js-dropdown-top", "0px");
@@ -45,14 +54,21 @@ export const calculatePosition = (
   layerEl.style.setProperty("--js-dropdown-left", "0px");
 
   const layerRect = layerEl.getBoundingClientRect();
-  const spaceBelow = vvHeight - anchorRect.bottom - anchorGap - edgeClearance;
-  const spaceAbove = anchorRect.top - anchorGap - edgeClearance;
+  const { spaceAbove, spaceBelow } = getAvailableSpace(
+    anchorRect,
+    anchorGap,
+    edgeClearance,
+  );
   const shouldFlip = spaceAbove > spaceBelow;
 
   if (shouldFlip) {
+    // `bottom` on a fixed-position element is measured from the bottom of
+    // the layout viewport — NOT the visual viewport. Using the (possibly
+    // keyboard-shrunken) visual viewport height here pushed the layer
+    // below the screen by the keyboard-height delta.
     layerEl.style.setProperty(
       "--js-dropdown-bottom",
-      `${vvHeight - anchorRect.top + anchorGap}px`,
+      `${layoutHeight - anchorRect.top + anchorGap}px`,
     );
     layerEl.style.removeProperty("--js-dropdown-top");
   } else {
@@ -75,18 +91,27 @@ export const calculatePosition = (
 
 /**
  * Computes an IntersectionObserver rootMargin flush with the element's bounding
- * rect. Uses visualViewport dimensions to account for virtual keyboard adjustments.
+ * rect.
+ *
+ * Must use *layout*-viewport dimensions: with a null root, the IO root is the
+ * layout viewport, and `getBoundingClientRect()` is layout-viewport based too.
+ * Using the visual viewport here meant that with the soft keyboard open, an
+ * anchor sitting below `visualViewport.height` in layout coordinates could
+ * never reach full intersection, leaving the layer stuck `visibility: hidden`
+ * or flickering through hide/re-arm cycles.
  */
 export const computeRootMargin = (rect: DOMRect): string => {
-  // Use visual viewport dimensions — getBoundingClientRect() returns coords
-  // relative to the visual viewport, so the IO root margin must match.
   const vw =
     (typeof window !== "undefined" &&
-      (window.visualViewport?.width ?? window.innerWidth)) ||
+      ((typeof document !== "undefined" &&
+        document.documentElement?.clientWidth) ||
+        window.innerWidth)) ||
     0;
   const vh =
     (typeof window !== "undefined" &&
-      (window.visualViewport?.height ?? window.innerHeight)) ||
+      ((typeof document !== "undefined" &&
+        document.documentElement?.clientHeight) ||
+        window.innerHeight)) ||
     0;
   const top = Math.floor(rect.top);
   const left = Math.floor(rect.left);
@@ -164,8 +189,32 @@ const useAnchorPolyfill = ({
     layerEl.style.visibility = "";
     armObserver();
 
+    // Reposition when the visual viewport resizes — on mobile this fires
+    // when the soft keyboard opens/closes (or on pinch-zoom). The keyboard
+    // often finishes opening *after* the initial calculate (the tap that
+    // opens the dropdown is the same tap that summons the keyboard), so
+    // without this the layer keeps a placement chosen for the pre-keyboard
+    // viewport. Unlike the `window.resize` close handler removed in
+    // NDS-3164, this only recalculates — a spurious fire is harmless.
+    // rAF-throttled: some devices emit a burst of resize events while the
+    // keyboard animates.
+    let rafId = 0;
+    const handleViewportResize = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        if (disposed) return;
+        calculatePosition(...calculateArgs);
+        layerEl.style.visibility = "";
+        armObserver();
+      });
+    };
+    const vv = window.visualViewport;
+    vv?.addEventListener?.("resize", handleViewportResize);
+
     return () => {
       disposed = true;
+      cancelAnimationFrame(rafId);
+      vv?.removeEventListener?.("resize", handleViewportResize);
       currentObserver?.disconnect();
     };
   }, [effectiveSupport, anchorRef, layerRef, matchWidth, isOpen]);

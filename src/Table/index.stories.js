@@ -570,6 +570,165 @@ ScrollableWithPinnedColumns.parameters = {
   },
 };
 
+export const AnimatedColumns = () => (
+  <Table
+    colVisibility={["*", "*", "m", "m", "*"]}
+    colLayout={{
+      s: ["1fr", "1fr", "1fr", "1fr", "min-content"],
+      m: ["1fr", "1fr", "1fr", "1fr", "min-content"],
+      l: ["1fr", "1fr", "1fr", "1fr", "min-content"],
+    }}
+  >
+    <Table.Header>
+      <Table.Row>
+        <Table.HeaderCell>Name</Table.HeaderCell>
+        <Table.HeaderCell>Email</Table.HeaderCell>
+        <Table.HeaderCell>Role</Table.HeaderCell>
+        <Table.HeaderCell>Department</Table.HeaderCell>
+        <Table.HeaderCell>Actions</Table.HeaderCell>
+      </Table.Row>
+    </Table.Header>
+    <Table.Body>
+      <Table.Row>
+        <Table.Cell>John Doe</Table.Cell>
+        <Table.Cell>john@example.com</Table.Cell>
+        <Table.Cell>Admin</Table.Cell>
+        <Table.Cell>Engineering</Table.Cell>
+        <Table.Cell>
+          <button>Edit</button>
+        </Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>Jane Smith</Table.Cell>
+        <Table.Cell>jane@example.com</Table.Cell>
+        <Table.Cell>User</Table.Cell>
+        <Table.Cell>Marketing</Table.Cell>
+        <Table.Cell>
+          <button>Edit</button>
+        </Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>Bob Johnson</Table.Cell>
+        <Table.Cell>bob@example.com</Table.Cell>
+        <Table.Cell>Manager</Table.Cell>
+        <Table.Cell>Sales</Table.Cell>
+        <Table.Cell>
+          <button>Edit</button>
+        </Table.Cell>
+      </Table.Row>
+    </Table.Body>
+  </Table>
+);
+AnimatedColumns.parameters = {
+  docs: {
+    description: {
+      story:
+        "Provide `colLayout` as a **track array** per breakpoint (parallel to " +
+        "`colVisibility`) to opt into animated column show/hide. `fr` widths are " +
+        "wrapped in `minmax(0, …)` internally so hidden columns can collapse to " +
+        "`minmax(0, 0fr)` and interpolate. Resize the viewport across the `m` " +
+        "breakpoint: the Role and Department columns animate open/closed while " +
+        "the track count stays constant. The trailing `min-content` Actions " +
+        "column stays visible and does not interpolate. Honors " +
+        "`prefers-reduced-motion: reduce`.",
+    },
+  },
+};
+
+/**
+ * Toggle a column's visibility at runtime by flipping its `colVisibility` entry
+ * to/from `"none"`. This only animates when `colLayout` is supplied as track
+ * arrays (see the story description).
+ */
+export const ProgrammaticallyHidingAColumn = () => {
+  const [departmentHidden, setDepartmentHidden] = useState(false);
+
+  // "Department" is column index 3. Toggling it between "none" (hidden) and
+  // "*" (always visible) animates the column open/closed.
+  const colVisibility = ["*", "*", "*", departmentHidden ? "none" : "*", "*"];
+
+  return (
+    <div>
+      <button
+        className="button button--primary"
+        onClick={() => setDepartmentHidden((hidden) => !hidden)}
+        style={{ marginBottom: 16 }}
+      >
+        {departmentHidden ? "Show" : "Hide"} Department column
+      </button>
+      <Table
+        colVisibility={colVisibility}
+        colLayout={{
+          s: ["1fr", "1fr", "1fr", "1fr", "min-content"],
+          m: ["1fr", "1fr", "1fr", "1fr", "min-content"],
+          l: ["1fr", "1fr", "1fr", "1fr", "min-content"],
+        }}
+      >
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Name</Table.HeaderCell>
+            <Table.HeaderCell>Email</Table.HeaderCell>
+            <Table.HeaderCell>Role</Table.HeaderCell>
+            <Table.HeaderCell>Department</Table.HeaderCell>
+            <Table.HeaderCell>Actions</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>John Doe</Table.Cell>
+            <Table.Cell>john@example.com</Table.Cell>
+            <Table.Cell>Admin</Table.Cell>
+            <Table.Cell>Engineering</Table.Cell>
+            <Table.Cell>
+              <button>Edit</button>
+            </Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>Jane Smith</Table.Cell>
+            <Table.Cell>jane@example.com</Table.Cell>
+            <Table.Cell>User</Table.Cell>
+            <Table.Cell>Marketing</Table.Cell>
+            <Table.Cell>
+              <button>Edit</button>
+            </Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>Bob Johnson</Table.Cell>
+            <Table.Cell>bob@example.com</Table.Cell>
+            <Table.Cell>Manager</Table.Cell>
+            <Table.Cell>Sales</Table.Cell>
+            <Table.Cell>
+              <button>Edit</button>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+    </div>
+  );
+};
+ProgrammaticallyHidingAColumn.storyName = "Programmatically hiding a column";
+ProgrammaticallyHidingAColumn.parameters = {
+  layout: "centered",
+  docs: {
+    description: {
+      story:
+        'Set a column\'s `colVisibility` entry to `"none"` to hide it ' +
+        'programmatically (e.g. from React state), and back to `"*"` or a ' +
+        'breakpoint (`"m"`) to reveal it. The column animates open/closed.\n\n' +
+        '**`"none"` requires the array form of `colLayout`.** You must provide ' +
+        "each breakpoint's layout as a track array parallel to `colVisibility` " +
+        '(e.g. `["1fr", "1fr", "1fr", "1fr", "min-content"]`) rather ' +
+        'than a CSS string (`"repeat(4, 1fr) min-content"`). Only the array ' +
+        "form exposes each column's width individually, which is what lets a " +
+        "single track collapse to `minmax(0, 0fr)` while the total track count " +
+        "stays constant so the grid can interpolate.\n\n" +
+        'If `colLayout` is a string at the current breakpoint, `"none"` falls ' +
+        'back to `"*"` (the column stays visible) and a `console.error` is ' +
+        "logged.",
+    },
+  },
+};
+
 export default {
   title: "Components/Table",
   component: Table,

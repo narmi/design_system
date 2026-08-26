@@ -46,6 +46,26 @@ export interface TableProps {
    * Each function is provided with a `cols` argument.
    */
   colLayout?: ColLayoutConfig;
+  /**
+   * Per-column base track size, parallel to `colVisibility`.
+   * Used only when `transitionColumns` is true. Defaults to `"1fr"` per column.
+   *
+   * In animated mode `colWidths` supersedes `colLayout`: an opaque per-breakpoint
+   * layout string cannot be safely collapsed track-by-track, so animated tables
+   * describe each column's width individually here.
+   */
+  colWidths?: CSSValue[];
+  /**
+   * Opt in to animated column show/hide.
+   *
+   * When `true`, columns animate open/closed across breakpoint changes via a CSS
+   * `transition` on `grid-template-columns` (respecting `prefers-reduced-motion`).
+   * The track count stays constant (`colVisibility.length`) at every breakpoint and
+   * hidden columns collapse to `minmax(0, 0fr)` rather than being removed.
+   *
+   * Default `false` → existing (track-dropping) behavior, unchanged.
+   */
+  transitionColumns?: boolean;
   rowDensity?: "default" | "compact";
   kind?: "default" | "editable";
   /**
@@ -78,6 +98,8 @@ const Table = ({
   children,
   colVisibility = defaultColVisibility,
   colLayout = { s: "auto", m: "auto", l: "auto" },
+  colWidths,
+  transitionColumns = false,
   rowDensity = "default",
   kind = "default",
   pinColumns = "none",
@@ -115,11 +137,35 @@ const Table = ({
   );
 
   const finalLayout = { ...defaultLayout, ...validLayoutsFromProps };
-  const gridTemplateColumns = columnTemplateFromBreakpoints(
-    currentBreakpoint as ViewportBreakpoint,
-    finalLayout,
-    visibleCols,
-  );
+
+  /**
+   * In animated mode we build the template directly from `colVisibility` so the
+   * track count is always `colVisibility.length` (a prerequisite for grid tracks
+   * to interpolate). Visible columns use their `colWidths` size; hidden columns
+   * collapse to `minmax(0, 0fr)`.
+   *
+   * `<flex>` widths are wrapped in `minmax(0, …)` so a track can actually reach
+   * zero even when its cell content has an intrinsic min-size, and so both
+   * endpoints share a type (`<flex>` ↔ `<flex>`) and therefore interpolate.
+   */
+  const toTrack = (w: CSSValue) =>
+    /^\s*\d*\.?\d+fr\s*$/.test(w) ? `minmax(0, ${w.trim()})` : w;
+
+  const animatedTemplate = colVisibility
+    .map((min, i) =>
+      isBreakpointSatisfied(min, currentBreakpoint as ViewportBreakpoint)
+        ? toTrack(colWidths?.[i] ?? "1fr")
+        : "minmax(0, 0fr)",
+    )
+    .join(" ");
+
+  const gridTemplateColumns = transitionColumns
+    ? animatedTemplate
+    : columnTemplateFromBreakpoints(
+        currentBreakpoint as ViewportBreakpoint,
+        finalLayout,
+        visibleCols,
+      );
 
   const isPinnedStart = pinColumns === "start" || pinColumns === "both";
   const isPinnedEnd = pinColumns === "end" || pinColumns === "both";
@@ -130,6 +176,7 @@ const Table = ({
       value={{
         colVisibility,
         currentBreakpoint: currentBreakpoint as ViewportBreakpoint,
+        transitionColumns,
       }}
     >
       <div

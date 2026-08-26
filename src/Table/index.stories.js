@@ -570,6 +570,138 @@ ScrollableWithPinnedColumns.parameters = {
   },
 };
 
+export const AnimatedColumns = () => (
+  <Table
+    transitionColumns
+    colVisibility={["*", "*", "m", "m", "*"]}
+    colWidths={["1fr", "1fr", "1fr", "1fr", "min-content"]}
+    colWidths={["1fr", "1fr", "0px", "1fr", "1fr", "min-content"]}
+  >
+    <Table.Header>
+      <Table.Row>
+        <Table.HeaderCell>Name</Table.HeaderCell>
+        <Table.HeaderCell>Email</Table.HeaderCell>
+        <Table.HeaderCell>Role</Table.HeaderCell>
+        <Table.HeaderCell>Department</Table.HeaderCell>
+        <Table.HeaderCell>Actions</Table.HeaderCell>
+      </Table.Row>
+    </Table.Header>
+    <Table.Body>
+      <Table.Row>
+        <Table.Cell>John Doe</Table.Cell>
+        <Table.Cell>john@example.com</Table.Cell>
+        <Table.Cell>Admin</Table.Cell>
+        <Table.Cell>Engineering</Table.Cell>
+        <Table.Cell>
+          <button>Edit</button>
+        </Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>Jane Smith</Table.Cell>
+        <Table.Cell>jane@example.com</Table.Cell>
+        <Table.Cell>User</Table.Cell>
+        <Table.Cell>Marketing</Table.Cell>
+        <Table.Cell>
+          <button>Edit</button>
+        </Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>Bob Johnson</Table.Cell>
+        <Table.Cell>bob@example.com</Table.Cell>
+        <Table.Cell>Manager</Table.Cell>
+        <Table.Cell>Sales</Table.Cell>
+        <Table.Cell>
+          <button>Edit</button>
+        </Table.Cell>
+      </Table.Row>
+    </Table.Body>
+  </Table>
+);
+AnimatedColumns.parameters = {
+  docs: {
+    description: {
+      story:
+        "Opt in to animated column show/hide with `transitionColumns`. Provide a " +
+        "per-column `colWidths` array (parallel to `colVisibility`); `fr` widths " +
+        "are wrapped in `minmax(0, …)` so hidden columns can collapse to " +
+        "`minmax(0, 0fr)` and interpolate. Resize the viewport across the `m` " +
+        "breakpoint: the Role and Department columns animate open/closed while " +
+        "the track count stays constant. The trailing `min-content` Actions " +
+        "column stays visible and does not interpolate. Honors " +
+        "`prefers-reduced-motion: reduce`.",
+    },
+  },
+};
+
+/**
+ * STEP 0 SPIKE — THROWAWAY, DELETE BEFORE MERGE.
+ *
+ * Verifies that a `transition: grid-template-columns` on the parent `.nds-table`
+ * propagates the interpolation down through `subgrid` rows in the target
+ * browsers. Toggles between a 5-track template and the same template with one
+ * track collapsed to `minmax(0, 0fr)` (constant track count). The rows should
+ * animate smoothly rather than snap.
+ *
+ * - Rows animate smoothly → subgrid carries the interpolation → ship Step 1+.
+ * - Rows snap → stop; the collapse must move per-row (structural change).
+ */
+export const SpikeSubgridTransition = () => {
+  const [collapsed, setCollapsed] = useState(false);
+  const expandedTemplate = "1fr 1fr 1fr 1fr 1fr";
+  const collapsedTemplate = "1fr 1fr 0px 1fr 1fr";
+
+  const rows = [
+    ["John Doe", "john@example.com", "Admin", "Engineering", "Edit"],
+    ["Jane Smith", "jane@example.com", "User", "Marketing", "Edit"],
+    ["Bob Johnson", "bob@example.com", "Manager", "Sales", "Edit"],
+  ];
+
+  return (
+    <div>
+      <button
+        onClick={() => setCollapsed((c) => !c)}
+        style={{ marginBottom: 16 }}
+      >
+        Toggle middle column (currently {collapsed ? "collapsed" : "expanded"})
+      </button>
+      <div
+        role="table"
+        className="nds-table nds-table--default nds-table--default"
+        style={{
+          gridTemplateColumns: collapsed ? collapsedTemplate : expandedTemplate,
+          transition: "grid-template-columns 800ms ease",
+        }}
+      >
+        <div className="nds-table-body" role="rowgroup">
+          {rows.map((cells, r) => (
+            <div className="nds-table-row" role="row" key={r}>
+              {cells.map((cell, c) => (
+                <div
+                  className="nds-table-cell"
+                  role="cell"
+                  key={c}
+                  style={{ overflow: "hidden" }}
+                >
+                  {cell}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+SpikeSubgridTransition.parameters = {
+  docs: {
+    description: {
+      story:
+        "THROWAWAY spike for Step 0. Confirms `transition: grid-template-columns` " +
+        "on the `.nds-table` root propagates through `subgrid` rows. Delete before merge.",
+    },
+  },
+};
+
 export default {
   title: "Components/Table",
   component: Table,

@@ -1,8 +1,15 @@
 .nds-table {
   --pinned-column-border: oklch(0% 0 0 / 0.06);
+  transition: grid-template-columns 300ms cubic-bezier(0.4, 0, 0.2, 1);
   display: grid;
   grid-auto-rows: auto;
   row-gap: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nds-table--animate-cols {
+    transition: none;
+  }
 }
 
 .nds-table-scroll-container {
@@ -67,6 +74,7 @@
   align-items: center;
   padding: var(--space-xxs) var(--space-xs);
   overflow: hidden;
+  background: rgba(255, 0, 0, 0.2);
 
   // default wrapping behavior
   white-space: nowrap;
@@ -95,6 +103,14 @@
     color: var(--font-color-primary);
     text-overflow: unset;
   }
+}
+
+// Collapsed cells in animated mode stay mounted at `minmax(0, 0fr)`.
+// Force `overflow: hidden` so their content is clipped as the track reaches
+// zero — this must win over the `:has([class^="nds-tableField"])` exception
+// above (equal specificity, later source order).
+.nds-table-cell.nds-table-cell--collapsed {
+  overflow: hidden;
 }
 
 // Pinned start column

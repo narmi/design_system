@@ -7,6 +7,14 @@
 
 .nds-combobox-list {
   @extend %nds-dropdown-layer;
+
+  // give touch devices a shorter layer to account
+  // for virtual keyboards that open with the paired input el
+  @media (pointer: coarse) {
+    & {
+      max-height: 24dvh !important;
+    }
+  }
 }
 
 .nds-combobox-item,

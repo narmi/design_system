@@ -87,33 +87,6 @@ describe("calculatePosition", () => {
       expect(props["--js-dropdown-top"]).toBe("154px");
       expect(props["--js-dropdown-bottom"]).toBeNull();
     });
-
-    it("sets --js-dropdown-max-height using 100dvh for below placement", () => {
-      // Below-placement max-height uses `100dvh` so the layer clips to the
-      // visible area above the virtual keyboard on mobile.
-      const anchor = makeEl({
-        top: 100,
-        bottom: 150,
-        left: 0,
-        right: 200,
-        width: 200,
-        height: 50,
-      });
-      const layer = makeEl({
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 200,
-        width: 200,
-        height: 0,
-      });
-
-      calculatePosition(anchor, layer, false);
-
-      expect(layer.style.getPropertyValue("--js-dropdown-max-height")).toBe(
-        "calc(100dvh - var(--js-dropdown-top, 0px) - var(--space-l))",
-      );
-    });
   });
 
   describe("positioning above anchor (more space above)", () => {
@@ -143,33 +116,6 @@ describe("calculatePosition", () => {
       const props = getProps(layer);
       expect(props["--js-dropdown-bottom"]).toBe("204px");
       expect(props["--js-dropdown-top"]).toBeNull();
-    });
-
-    it("sets --js-dropdown-max-height using 100vh for above placement", () => {
-      // Above-placement max-height uses `100vh` (not dvh) because keyboards
-      // open from the bottom and don't affect the space above the anchor.
-      const anchor = makeEl({
-        top: 568,
-        bottom: 608,
-        left: 0,
-        right: 200,
-        width: 200,
-        height: 40,
-      });
-      const layer = makeEl({
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 200,
-        width: 200,
-        height: 0,
-      });
-
-      calculatePosition(anchor, layer, false);
-
-      expect(layer.style.getPropertyValue("--js-dropdown-max-height")).toBe(
-        "max(0px, calc(100vh - var(--js-dropdown-bottom, 0px) - var(--space-l)))",
-      );
     });
   });
 
@@ -250,8 +196,8 @@ describe("calculatePosition", () => {
   describe("available space floor", () => {
     it("clamps availableSpace to 0 when anchor spans the full viewport", () => {
       // Anchor spans the full viewport — spaceAbove and spaceBelow are both negative.
-      // calculatePosition should still run without errors; max-height is handled
-      // by useDropdownMaxHeight which clamps to 0.
+      // calculatePosition should still run without errors; max-height is no longer
+      // set here — the layer's fixed CSS max-height (%nds-dropdown-layer) handles it.
       const anchor = makeEl({
         top: -50,
         bottom: 820,

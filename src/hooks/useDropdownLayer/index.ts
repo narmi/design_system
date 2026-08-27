@@ -67,14 +67,8 @@ export interface UseDropdownLayerOptions {
   polyfillScrollBug?: boolean;
 }
 
-/** Maps placement to CSS anchor positioning values.
- *
- * `positionTryOrder` and `primaryMaxHeight` are populated for the vertical
- * placements only. Together they let CSS handle both the flip decision and
- * the max-height clip natively in a keyboard-aware way (`dvh` shrinks with
- * the virtual keyboard on Chromium/Android). Horizontal placements
- * (left/right) don't have a keyboard concern, so they keep the original
- * fallback-order-driven behaviour.
+/**
+ * Maps placement to CSS anchor positioning values.
  */
 const PLACEMENT_CONFIG: Record<
   Placement,
@@ -83,7 +77,6 @@ const PLACEMENT_CONFIG: Record<
     positionTryFallbacks: string;
     margin: string;
     positionTryOrder?: string;
-    primaryMaxHeight?: string;
   }
 > = {
   bottom: {
@@ -91,16 +84,12 @@ const PLACEMENT_CONFIG: Record<
     positionTryFallbacks: "--nds-dropdown-above, flip-inline",
     positionTryOrder: "most-height",
     margin: "marginTop",
-    primaryMaxHeight:
-      "calc(100dvh - anchor(bottom) - var(--space-l) - var(--nds-layer-gap, var(--space-xxs)))",
   },
   top: {
     positionArea: "top",
     positionTryFallbacks: "--nds-try-below, flip-inline",
     positionTryOrder: "most-height",
     margin: "marginBottom",
-    primaryMaxHeight:
-      "calc(anchor(top) - var(--space-l) - var(--nds-layer-gap, var(--space-xxs)))",
   },
   left: {
     positionArea: "left",
@@ -186,7 +175,6 @@ const useDropdownLayer = ({
       ...(config.positionTryOrder && {
         positionTryOrder: config.positionTryOrder,
       }),
-      ...(config.primaryMaxHeight && { maxHeight: config.primaryMaxHeight }),
       marginTop: 0,
       marginBottom: 0,
       marginLeft: 0,

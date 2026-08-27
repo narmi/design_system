@@ -1,4 +1,12 @@
 /**
+ * Side effects
+ *
+ * Ensures the required viewport meta tag is present in every consumer.
+ * Internal only — nothing from this module is part of the public API.
+ */
+import "./util/viewport";
+
+/**
  * Typed Components
  */
 import Accordion from "./Accordion";

@@ -60,12 +60,11 @@ const BottomAnchoredLayout = (Story) => (
 /**
  * Centers the Combobox vertically so both `spaceBelow` and `spaceAbove`
  * start out ample. When the Android soft keyboard opens, `spaceBelow`
- * (useAnchorPolyfill.ts:50) can go negative and the flip decision
- * swaps mid-interaction — exercising `handleViewportResize` and the
- * max-height calc (useDropdownMaxHeight.ts:51-52). The position calc
- * may not produce a negative value here, so if the menu still
- * disappears the `window.resize` close handler (line 185) is
- * implicated rather than the coordinate mixup.
+ * (useAnchorPolyfill.ts) can go negative and the flip decision swaps
+ * mid-interaction. Max-height is no longer computed in JS — the layer
+ * uses a fixed CSS max-height (%nds-dropdown-layer), so if the menu
+ * still disappears the flip/coordinate math in `calculatePosition` is
+ * implicated rather than a max-height calc.
  */
 const CenterAnchoredLayout = (Story) => (
   <div

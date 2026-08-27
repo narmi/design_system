@@ -1,7 +1,19 @@
 import { useLayoutEffect } from "react";
 import useSupportsAnchorPositioning from "../useSupportsAnchorPositioning";
 import { HAS_SCROLL_CONTAINER_BUG } from "../useSupportsAnchorPositioning";
-import { resolveSpaceToken } from "./useDropdownMaxHeight";
+
+/**
+ * Resolves a CSS custom property (e.g. `--space-xs`) to a pixel number.
+ * Falls back to `fallback` if the property is not set or cannot be parsed.
+ */
+const resolveSpaceToken = (property: string, fallback: number): number => {
+  if (typeof document === "undefined") return fallback;
+  const raw = getComputedStyle(document.documentElement)
+    .getPropertyValue(property)
+    .trim();
+  const parsed = parseFloat(raw);
+  return isNaN(parsed) ? fallback : parsed;
+};
 
 interface UseAnchorPolyfillParams {
   /** Reference to the element that the dropdown should be anchored to */

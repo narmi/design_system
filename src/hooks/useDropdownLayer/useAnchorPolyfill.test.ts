@@ -81,7 +81,7 @@ describe("calculatePosition", () => {
       expect(props["--js-dropdown-bottom"]).toBeNull();
     });
 
-    it("does not set max-height properties (owned by useDropdownMaxHeight)", () => {
+    it("does not set max-height properties (handled by CSS %nds-dropdown-layer)", () => {
       const anchor = makeEl({
         top: 100,
         bottom: 150,
@@ -217,8 +217,8 @@ describe("calculatePosition", () => {
   describe("available space floor", () => {
     it("clamps availableSpace to 0 when anchor spans the full viewport", () => {
       // Anchor spans the full viewport — spaceAbove and spaceBelow are both negative.
-      // calculatePosition should still run without errors; max-height is handled
-      // by useDropdownMaxHeight which clamps to 0.
+      // calculatePosition should still run without errors; max-height is no longer
+      // set here — the layer's fixed CSS max-height (%nds-dropdown-layer) handles it.
       const anchor = makeEl({
         top: -50,
         bottom: 820,

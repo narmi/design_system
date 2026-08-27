@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.25.0](https://github.com/narmi/design_system/compare/v6.24.0...v6.25.0) (2026-08-27)
+
+### feat
+
+* **tokens:** add colorblind forced color modes ([bbaca1c](https://github.com/narmi/design_system/commit/bbaca1cb1b5cd4abbb3b215b38a2c8677739a3e1))
+
 ## [6.24.0](https://github.com/narmi/design_system/compare/v6.23.0...v6.24.0) (2026-08-21)
 
 ### feat

@@ -5,6 +5,8 @@ import Button from "./";
 const LABEL = "Submit";
 
 const getButton = () => screen.getByTestId("nds-button");
+const getButtonContent = () =>
+  getButton().querySelector(".nds-button-content");
 
 describe("Button", () => {
   it("has correct attributes for default props", () => {
@@ -96,4 +98,26 @@ describe("Button", () => {
     const button = getButton();
     expect(button).toHaveAttribute("href", "/safe-path");
   });
+
+  it("uses full-width default alignment without a labelAlign modifier", () => {
+    render(<Button label={LABEL} isFullWidth={true} />);
+    const button = getButton();
+    const buttonContent = getButtonContent();
+
+    expect(button).toHaveClass("nds-button--fullWidth");
+    expect(buttonContent).toHaveClass("nds-button-content");
+    expect(buttonContent).not.toHaveClass("nds-button-content--start");
+    expect(buttonContent).not.toHaveClass("nds-button-content--center");
+    expect(buttonContent).not.toHaveClass("nds-button-content--end");
+  });
+
+  it.each(["start", "center", "end"])(
+    "applies the %s label alignment modifier",
+    (labelAlign) => {
+      render(<Button label={LABEL} isFullWidth={true} labelAlign={labelAlign} />);
+      const buttonContent = getButtonContent();
+
+      expect(buttonContent).toHaveClass(`nds-button-content--${labelAlign}`);
+    },
+  );
 });

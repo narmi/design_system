@@ -44,6 +44,8 @@ import LoadingSkeleton from "./LoadingSkeleton";
 import LoadingShim from "./LoadingShim";
 import MenuButton from "./MenuButton";
 import MultiSelect from "./MultiSelect";
+import Navigation from "./Navigation";
+import { NavigationItem } from "./NavigationItem";
 import Table from "./Table";
 import TableAutocomplete from "./TableAutocomplete";
 import TableDateInput from "./TableDateInput";
@@ -125,6 +127,8 @@ export type {
 } from "./MultiSelect";
 export type { MultiSelectItemProps } from "./MultiSelect/MultiSelectItem";
 export type { MenuButtonItemProps } from "./MenuButton/MenuButtonItem";
+export type { NavigationProps } from "./Navigation";
+export type { NavigationItemProps } from "./NavigationItem";
 export type { PaginationProps } from "./Pagination";
 export type { PopoverProps } from "./Popover";
 export type { ProgressBarProps } from "./ProgressBar";
@@ -229,6 +233,8 @@ export {
   LoadingSkeleton,
   MenuButton,
   MultiSelect,
+  Navigation,
+  NavigationItem,
   Pagination,
   ProgressBar,
   Popover,

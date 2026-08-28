@@ -39,11 +39,16 @@ describe("TimelineEvent", () => {
   });
 
   it("renders the correct node modifier classes for kind", () => {
-    const { container } = render(
+    const { container, rerender } = render(
       <TimelineEvent kind="pending">Pending</TimelineEvent>,
     );
     expect(
       container.querySelector(".nds-timeline-event--pending"),
+    ).toBeInTheDocument();
+
+    rerender(<TimelineEvent kind="divided">Divided</TimelineEvent>);
+    expect(
+      container.querySelector(".nds-timeline-event--divided"),
     ).toBeInTheDocument();
   });
 });

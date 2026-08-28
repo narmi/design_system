@@ -62,7 +62,6 @@ export const DividedVariant = () => (
 
 export const EventWithDetailsBlock = () => (
   <TimelineEvent
-    kind="plain"
     detailList={[
       { label: "Amount", description: "$1,250.00" },
       { label: "Account", description: "Checking 1234" },

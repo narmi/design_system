@@ -1,0 +1,20 @@
+name: Workflow security audit
+
+on:
+  pull_request:
+    paths:
+      - ".github/**"
+
+permissions:
+  contents: read
+
+jobs:
+  zizmor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v5
+        with:
+          persist-credentials: false
+      - name: Run zizmor
+        run: pipx run zizmor==1.29.0 --config .github/zizmor.yml --min-severity high --no-online-audits .github/workflows/

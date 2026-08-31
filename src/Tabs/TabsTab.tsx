@@ -59,9 +59,9 @@ const TabsTab = ({
       >
         <Row as="span" gapSize="xs" alignItems="center">
           {renderStartContent && (
-            <Row.Item as="span" shrink className="nds-tabs-startContent">
-              {renderStartContent(isSelected)}
-            </Row.Item>
+<Row.Item as="span" shrink>
+  {renderStartContent(isSelected)}
+</Row.Item>
           )}
           {hasStatusIndicator && (
             <Row.Item as="span" shrink>

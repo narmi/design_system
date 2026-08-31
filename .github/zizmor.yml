@@ -1,10 +1,11 @@
 # Configuration for zizmor, the GitHub Actions security auditor.
 # https://docs.zizmor.sh/configuration/
-#
-# CI runs with --min-severity high, so this ignore only covers the existing
-# high-severity finding present when the check was introduced.
 
 rules:
-  excessive-permissions:
+  artipacked:
     ignore:
-      - release-backport-on-merge.yaml
+      - release-backport.yaml:63
+  obfuscation:
+    ignore:
+      - chromatic-pr.yaml:104
+      - chromatic-pr.yaml:106

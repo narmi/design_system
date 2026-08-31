@@ -17,4 +17,4 @@ jobs:
         with:
           persist-credentials: false
       - name: Run zizmor
-        run: pipx run zizmor==1.29.0 --config .github/zizmor.yml --min-severity high --no-online-audits .github/workflows/
+        run: pipx run zizmor==1.29.0 --config .github/zizmor.yml --no-online-audits .github/workflows/

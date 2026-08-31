@@ -14,7 +14,7 @@ function getViewportMetas() {
   ) as HTMLMetaElement[];
 }
 
-function setViewportMeta(content) {
+function setViewportMeta(content: string) {
   const meta = document.createElement("meta");
   meta.setAttribute("name", "viewport");
   meta.setAttribute("content", content);

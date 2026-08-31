@@ -3,6 +3,7 @@ import Tabs from "./";
 import TabsList from "./TabsList";
 import TabsPanel from "./TabsPanel";
 import TabsTab from "./TabsTab";
+import Count from "../Count";
 
 const Template = (args) => (
   <Tabs {...args}>
@@ -343,6 +344,88 @@ MultipleSegmentedTabs.parameters = {
     description: {
       story:
         "Renders multiple `segmented` Tabs on the same page to verify that each instance's sliding pill resolves to its own selected tab. Since `anchor-name: --active` is declared at document scope, this story exists to confirm there is no cross-instance interference in practice (try changing the selected tab in each set and observe the pill).",
+    },
+  },
+};
+
+export const WithCustomLabelContent = () => (
+  <div style={{ display: "grid", gap: "1.5rem" }}>
+    <Tabs>
+      <Tabs.List>
+        <Tabs.Tab
+          label="Inbox"
+          tabId="inbox"
+          renderStartContent={() => <span className="narmi-icon-mail" />}
+          renderEndContent={(isSelected) => (
+            <Count value={8} kind={isSelected ? "theme" : "neutral"} />
+          )}
+        />
+        <Tabs.Tab
+          label="Starred"
+          tabId="starred"
+          renderStartContent={() => <span className="narmi-icon-star" />}
+          renderEndContent={(isSelected) => (
+            <Count value={2} kind={isSelected ? "theme" : "neutral"} />
+          )}
+        />
+        <Tabs.Tab
+          label="Sent"
+          tabId="sent"
+          renderStartContent={() => <span className="narmi-icon-send" />}
+        />
+      </Tabs.List>
+      <Tabs.Panel tabId="inbox">
+        <div className="padding--all--s">Inbox</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="starred">
+        <div className="padding--all--s">Starred</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="sent">
+        <div className="padding--all--s">Sent</div>
+      </Tabs.Panel>
+    </Tabs>
+
+    <Tabs kind="segmented">
+      <Tabs.List>
+        <Tabs.Tab
+          label="Inbox"
+          tabId="inbox"
+          renderStartContent={() => <span className="narmi-icon-mail" />}
+          renderEndContent={(isSelected) => (
+            <Count value={8} kind={isSelected ? "theme" : "neutral"} />
+          )}
+        />
+        <Tabs.Tab
+          label="Starred"
+          tabId="starred"
+          renderStartContent={() => <span className="narmi-icon-star" />}
+          renderEndContent={(isSelected) => (
+            <Count value={2} kind={isSelected ? "theme" : "neutral"} />
+          )}
+        />
+        <Tabs.Tab
+          label="Sent"
+          tabId="sent"
+          renderStartContent={() => <span className="narmi-icon-send" />}
+        />
+      </Tabs.List>
+      <Tabs.Panel tabId="inbox">
+        <div className="padding--all--s">Inbox</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="starred">
+        <div className="padding--all--s">Starred</div>
+      </Tabs.Panel>
+      <Tabs.Panel tabId="sent">
+        <div className="padding--all--s">Sent</div>
+      </Tabs.Panel>
+    </Tabs>
+  </div>
+);
+WithCustomLabelContent.parameters = {
+  docs: {
+    description: {
+      story:
+        "Use `renderStartContent` and `renderEndContent` on `Tabs.Tab` to render arbitrary inline-start / inline-end content such as an icon or a `Count`. Each render prop receives the tab's `isSelected` state, so content can respond to selection. Shown here with both the `default` and `segmented` kinds.",
     },
   },
 };

@@ -14,8 +14,14 @@ import {
 import { transforms } from "./hooks/transforms.mjs";
 import { filters } from "./hooks/filters.mjs";
 import { formats } from "./hooks/formats.mjs";
-import { COLOR_MODES } from "./constants.js";
+import {
+  COLOR_MODES,
+  COLOR_VISION_DEFICIENCIES,
+  cvdSelectors,
+  cvdSourceDir,
+} from "./constants.js";
 import { buildModeCSS } from "./modes.js";
+import type { ColorVisionDeficiency } from "./constants.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -171,6 +177,50 @@ const modeConfig: Config = {
   },
 };
 
+// ─── Color-vision-deficiency mode config ─────────────────────────────────────
+
+/**
+ * Builds a style-dictionary config for one CVD palette, mirroring the high
+ * contrast setup: the palette's `semantic/cvd-*` source is compiled and its
+ * tokens appended to the CSS/SCSS as an attribute-only override block (no media
+ * query — there is no OS signal for CVD). Clinical-name aliases render as extra
+ * selectors sharing the block.
+ */
+function cvdConfig(cvd: ColorVisionDeficiency): Config {
+  return {
+    source: [
+      path.resolve(__dirname, `semantic/${cvdSourceDir(cvd)}/**/*.json`),
+    ],
+    hooks: {
+      transforms,
+      filters,
+      actions: {
+        "append-cvd": {
+          do: (dictionary) => {
+            const modeBlock = buildModeCSS({
+              selector: cvdSelectors(cvd),
+              tokens: dictionary.allTokens,
+            });
+            const cssDir = getBuildPath("css");
+            fs.appendFileSync(`${cssDir}tokens.css`, modeBlock);
+            fs.appendFileSync(`${cssDir}tokens.scss`, modeBlock);
+          },
+          undo: () => {},
+        },
+      },
+    },
+    platforms: {
+      cssMode: {
+        basePxFontSize: 16,
+        transforms: [...CSS_TRANSFORMS, "custom/value/pxToRem"],
+        buildPath: getBuildPath("css"),
+        actions: ["append-cvd"],
+        files: [],
+      },
+    },
+  };
+}
+
 // ─── Build ───────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -179,6 +229,11 @@ async function main() {
 
   const sdMode = new StyleDictionary(modeConfig);
   await sdMode.buildAllPlatforms();
+
+  for (const cvd of COLOR_VISION_DEFICIENCIES) {
+    const sdCvd = new StyleDictionary(cvdConfig(cvd));
+    await sdCvd.buildAllPlatforms();
+  }
 }
 main().catch((error) => {
   console.error(error);

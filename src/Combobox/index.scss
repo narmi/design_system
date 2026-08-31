@@ -10,9 +10,10 @@
 
   // give touch devices a shorter layer to account
   // for virtual keyboards that open with the paired input el
-  @media (pointer: coarse) {
+  @media (any-pointer: coarse) {
     & {
-      max-height: 24dvh !important;
+      max-height: 24vh !important; // fallback for browsers without dvh (e.g. iOS 14 Safari)
+      max-height: 24dvh !important; // keyboard-aware where supported
     }
   }
 }

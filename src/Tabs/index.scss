@@ -76,7 +76,7 @@
 * Status dot
 */
 .nds-tabs-statusIndicator {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -109,6 +109,28 @@
     font-size: var(--font-size-default);
     font-family: var(--font-family-default);
     white-space: nowrap;
+
+    display: grid;
+    grid-template-columns: min(0px, min-content) 1fr min(0px, min-content);
+    grid-template-areas: "startContent label endContent";
+    align-items: center;
+    grid-gap: var(--space-xs);
+
+    .nds-tabs-startContent {
+      grid-area: startContent;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .nds-tabs-label {
+      grid-area: label;
+    }
+
+    .nds-tabs-endContent {
+      grid-area: endContent;
+      display: inline-flex;
+      align-items: center;
+    }
 
     &:hover {
       color: var(--theme-primary);
@@ -194,6 +216,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: var(--space-xs);
       min-height: 2.5rem; // scale with user font settings
       padding-inline: var(--space-s);
       border-radius: var(--border-radius-m);

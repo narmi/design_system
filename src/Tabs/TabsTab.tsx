@@ -1,5 +1,4 @@
 import React, { useContext, useRef } from "react";
-import Row from "../Row";
 import TabsContext from "./context";
 
 export interface TabsTabProps {
@@ -57,14 +56,10 @@ const TabsTab = ({
         onClick={onTabClick}
         data-testid={testId}
       >
-        <Row as="span" gapSize="xs" alignItems="center">
-          {renderStartContent && (
-<Row.Item as="span" shrink>
-  {renderStartContent(isSelected)}
-</Row.Item>
-          )}
-          {hasStatusIndicator && (
-            <Row.Item as="span" shrink>
+        {(renderStartContent || hasStatusIndicator) && (
+          <span className="nds-tabs-startContent">
+            {renderStartContent && renderStartContent(isSelected)}
+            {hasStatusIndicator && (
               <span className="nds-tabs-statusIndicator">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -78,17 +73,15 @@ const TabsTab = ({
                   <circle cx="3" cy="3" r="3" fill="var(--color-successDark)" />
                 </svg>
               </span>
-            </Row.Item>
-          )}
-<Row.Item as="span" shrink>
-  {label}
-</Row.Item>
-          {renderEndContent && (
-            <Row.Item as="span" shrink className="nds-tabs-endContent">
-              {renderEndContent(isSelected)}
-            </Row.Item>
-          )}
-        </Row>
+            )}
+          </span>
+        )}
+        <span className="nds-tabs-label">{label}</span>
+        {renderEndContent && (
+          <span className="nds-tabs-endContent">
+            {renderEndContent(isSelected)}
+          </span>
+        )}
       </button>
     </li>
   );

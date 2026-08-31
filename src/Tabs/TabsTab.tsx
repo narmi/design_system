@@ -80,9 +80,9 @@ const TabsTab = ({
               </span>
             </Row.Item>
           )}
-          <Row.Item as="span" shrink>
-            <span>{label}</span>
-          </Row.Item>
+<Row.Item as="span" shrink>
+  {label}
+</Row.Item>
           {renderEndContent && (
             <Row.Item as="span" shrink className="nds-tabs-endContent">
               {renderEndContent(isSelected)}

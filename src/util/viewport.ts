@@ -89,8 +89,10 @@ export function ensureViewportMeta(
     : null,
 ): void {
   if (!doc) return;
+  const head = doc.head;
+  if (!head) return;
 
-  const existingMeta = doc.head.querySelector<HTMLMetaElement>(
+  const existingMeta = head.querySelector<HTMLMetaElement>(
     'meta[name="viewport"]',
   );
 
@@ -98,7 +100,7 @@ export function ensureViewportMeta(
     const meta = doc.createElement("meta");
     meta.setAttribute("name", "viewport");
     meta.setAttribute("content", mergeViewportContent(null));
-    doc.head.appendChild(meta);
+    head.appendChild(meta);
     return;
   }
 

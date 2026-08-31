@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.27.0](https://github.com/narmi/design_system/compare/v6.26.0...v6.27.0) (2026-08-31)
+
+### feat
+
+* **Tabs:** allow start and end inline tab content ([8ec0f16](https://github.com/narmi/design_system/commit/8ec0f1641dc480c75819bd7b0645185c5362cdcb))
+
+### fix
+
+* **Tabs:** adjust custom content placement ([baf18b7](https://github.com/narmi/design_system/commit/baf18b757e9096fab7fea4bacdf564c59355e380))
+* extra space at startContent ([46d7574](https://github.com/narmi/design_system/commit/46d7574327b0e0d41898ba6ad20d83716a7fdfbc))
+
 ## [6.26.0](https://github.com/narmi/design_system/compare/v6.25.0...v6.26.0) (2026-08-31)
 
 ### ci

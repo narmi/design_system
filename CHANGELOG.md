@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.26.0](https://github.com/narmi/design_system/compare/v6.25.0...v6.26.0) (2026-08-31)
+
+### ci
+
+* adjust zizmor rules and fixes ([1436428](https://github.com/narmi/design_system/commit/1436428f3710e05fcfd8e49efda20102f1433cc7))
+
+### feat
+
+* **ci:** add zizmor workflow security audit ([9796d7d](https://github.com/narmi/design_system/commit/9796d7d68363b1e6c1901ba761056e1857e3c93d))
+
+## [6.25.0](https://github.com/narmi/design_system/compare/v6.24.0...v6.25.0) (2026-08-27)
+
+### feat
+
+* **tokens:** add colorblind forced color modes ([bbaca1c](https://github.com/narmi/design_system/commit/bbaca1cb1b5cd4abbb3b215b38a2c8677739a3e1))
+
 ## [6.24.0](https://github.com/narmi/design_system/compare/v6.23.0...v6.24.0) (2026-08-21)
 
 ### feat

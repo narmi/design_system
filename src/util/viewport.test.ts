@@ -60,9 +60,9 @@ describe("mergeViewportContent", () => {
     expect(mergeViewportContent(CANONICAL)).toBe(CANONICAL);
   });
 
-  it("normalizes a consumer's managed directive values", () => {
+  it("preserves a consumer's width while normalizing owned directives", () => {
     expect(mergeViewportContent("width=1024, initial-scale=0.5")).toBe(
-      "width=device-width, initial-scale=1, interactive-widget=resizes-content",
+      "width=1024, initial-scale=1, interactive-widget=resizes-content",
     );
   });
 
@@ -76,7 +76,13 @@ describe("mergeViewportContent", () => {
 
   it("preserves unrelated directives in place while upserting", () => {
     expect(mergeViewportContent("width=1024, viewport-fit=cover")).toBe(
-      "width=device-width, viewport-fit=cover, initial-scale=1, interactive-widget=resizes-content",
+      "width=1024, viewport-fit=cover, initial-scale=1, interactive-widget=resizes-content",
+    );
+  });
+
+  it("adds the default width when an existing tag does not set one", () => {
+    expect(mergeViewportContent("viewport-fit=cover")).toBe(
+      "viewport-fit=cover, width=device-width, initial-scale=1, interactive-widget=resizes-content",
     );
   });
 
@@ -105,7 +111,7 @@ describe("ensureViewportMeta", () => {
     const metas = getViewportMetas();
     expect(metas).toHaveLength(1);
     expect(metas[0].getAttribute("content")).toBe(
-      "width=device-width, viewport-fit=cover, initial-scale=1, interactive-widget=resizes-content",
+      "width=1024, viewport-fit=cover, initial-scale=1, interactive-widget=resizes-content",
     );
   });
 

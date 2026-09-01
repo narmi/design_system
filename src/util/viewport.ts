@@ -9,7 +9,9 @@
  * gets the tag without any setup. It is intentionally NOT part of the public
  * API — none of these functions are re-exported from `src/index.ts`.
  *
- * Behavior: the design system owns the directives listed in
+ * Behavior: the design system always ensures a default `width=device-width`
+ * when creating a brand-new tag. On existing tags, it preserves any consumer-
+ * provided `width` value. It still owns the directives listed in
  * `ENSURE_META_CONTENT` and upserts each one — adds it if missing, corrects it
  * if the value differs, leaves it if already right. Any other directive a
  * consumer has set (e.g. `viewport-fit=cover`) is preserved in place.
@@ -20,8 +22,10 @@
 
 // The directives the design system manages. Also used verbatim as the content
 // for a brand-new tag. Keep this to zoom-safe directives only (see above).
-const ENSURE_META_CONTENT =
+const DEFAULT_META_CONTENT =
   "width=device-width, initial-scale=1, interactive-widget=resizes-content";
+
+const ENSURE_META_CONTENT = "initial-scale=1, interactive-widget=resizes-content";
 
 /**
  * Parse a viewport `content` string into an ordered map of directives.
@@ -60,17 +64,22 @@ export function serializeViewport(map: Map<string, string>): string {
  * Given the current viewport `content` (or null/empty when no tag exists),
  * return the content string that should be applied.
  *
- * Pure. Upserts every directive from `ENSURE_META_CONTENT`: adds it when
- * missing (appended in order), corrects it when the value differs, keeps it
- * when already correct. Directives the consumer set that we don't manage are
+ * Pure. Returns `DEFAULT_META_CONTENT` when no tag exists. Otherwise preserves
+ * any consumer-provided `width`, inserts the default width when missing, and
+ * upserts every directive from `ENSURE_META_CONTENT`: adds it when missing
+ * (appended in order), corrects it when the value differs, keeps it when
+ * already correct. Directives the consumer set that we don't manage are
  * preserved in their original position (`Map.set` keeps insertion order on
  * update).
  */
 export function mergeViewportContent(existing: string | null): string {
   if (!existing || !existing.trim()) {
-    return ENSURE_META_CONTENT;
+    return DEFAULT_META_CONTENT;
   }
   const map = parseViewport(existing);
+  if (!map.has("width")) {
+    map.set("width", "device-width");
+  }
   for (const [key, value] of parseViewport(ENSURE_META_CONTENT)) {
     map.set(key, value);
   }

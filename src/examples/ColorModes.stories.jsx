@@ -15,6 +15,10 @@ Contrast is a three-state user preference stored on the \`<html>\` element as a
   when the OS reports increased contrast
 - \`data-prefers-contrast="more"\` → **High Contrast**: force the high-contrast palette
 
+Status colors additionally support **color-vision-deficiency** palettes via a
+\`data-color-vision-deficiency\` attribute (\`red-green\` (aliases: \`protanopia\`, \`deuteranopia\`),
+\`tritanopia\`). See the **Examples/Color Vision** story for details.
+
 ### Authoring high-contrast overrides in components
 
 Use the \`contrastMore\` Sass mixin (from \`src/base-styles/scss-utils.scss\`,

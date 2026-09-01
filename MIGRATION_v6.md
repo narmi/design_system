@@ -321,6 +321,8 @@ No action required for consumers. This change only affects the NDS build process
 
 ### Removed webpack builds
 
+### Removed webpack builds
+
 NDS v6 no longer uses webpack for builds. Vite is now the only build tool used by this project.
 
 #### What Changed

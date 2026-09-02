@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.28.1](https://github.com/narmi/design_system/compare/v6.28.0...v6.28.1) (2026-09-02)
+
+### fix
+
+* **Tooltip:** remove zindex responsibility from hook ([1adc387](https://github.com/narmi/design_system/commit/1adc3873103cca6ece30630a8fda39a908748a37))
+
+### test
+
+* add sb interaction tests for dd hook ([3d91716](https://github.com/narmi/design_system/commit/3d917161efa3379f1b5b570cdab3b4c5f8f4e73c))
+
 ## [6.28.0](https://github.com/narmi/design_system/compare/v6.27.1...v6.28.0) (2026-09-02)
 
 ### feat

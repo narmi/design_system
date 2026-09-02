@@ -13,6 +13,8 @@ const BREAKPOINT_ORDER = {
  * Determines if a current viewport breakpoint satisfies a minimum required breakpoint.
  * Uses "mobile-first" logic where a larger viewport satisfies smaller breakpoint requirements.
  * For example: `l` viewport satisfies `m` minimum requirement.
+ *
+ * `"*"` is always satisfied; `"none"` is never satisfied.
  */
 export const isBreakpointSatisfied = (
   minRequired: ColMinBreakpoint,
@@ -20,4 +22,6 @@ export const isBreakpointSatisfied = (
 ): boolean =>
   minRequired === "*"
     ? true
-    : BREAKPOINT_ORDER[current] >= BREAKPOINT_ORDER[minRequired];
+    : minRequired === "none"
+      ? false
+      : BREAKPOINT_ORDER[current] >= BREAKPOINT_ORDER[minRequired];

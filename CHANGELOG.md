@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.29.0](https://github.com/narmi/design_system/compare/v6.28.1...v6.29.0) (2026-09-02)
+
+### feat
+
+* **Table:** add programmatic col removal ([b1f6fbe](https://github.com/narmi/design_system/commit/b1f6fbe800f2ba999cb92b1673ffb87131546004))
+
+### test
+
+* **Table:** query collapsed aria-hidden header by role ([9b5ec65](https://github.com/narmi/design_system/commit/9b5ec6521bbc60223f8ff87f33f68c9a0a9bae72))
+
 ## [6.28.1](https://github.com/narmi/design_system/compare/v6.28.0...v6.28.1) (2026-09-02)
 
 ### fix

@@ -50,6 +50,8 @@ jobs:
   backport:
     needs: compute-targets
     if: needs.compute-targets.outputs.has_targets == 'true'
+    permissions:
+      contents: write
     strategy:
       # One bad port shouldn't cancel the others -- each maintenance line
       # is an independent release.

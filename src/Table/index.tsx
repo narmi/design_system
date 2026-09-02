@@ -31,18 +31,27 @@ export type ViewportBreakpoint = "s" | "m" | "l";
 export type CSSValue = string;
 
 /**
- * For each breakpoint key, either:
- * - a `grid-template-columns` CSS string (e.g. `"repeat(2, 1fr) min-content"`), or
- * - a per-column track array parallel to `colVisibility`
- *   (e.g. `["1fr", "1fr", "min-content"]`).
- *
- * The array form is required to animate columns open/closed and to use
- * `"none"` in `colVisibility`: individual tracks can only be collapsed to
- * `minmax(0, 0fr)` (keeping a constant track count) when each column's width is
- * known individually.
+ * A per-column track array parallel to `colVisibility`
+ * (e.g. `["1fr", "1fr", "min-content"]`). The recommended layout form: only
+ * arrays keep a constant track count, so hidden columns can animate and
+ * `colVisibility: "none"` works.
  */
 export type ColTrackList = CSSValue[];
-export type ColLayoutValue = CSSValue | ColTrackList;
+
+/**
+ * A raw `grid-template-columns` CSS string (e.g. `"repeat(2, 1fr) min-content"`).
+ *
+ * @deprecated Use a per-column track array instead (see {@link ColTrackList}).
+ * String layouts can't animate or support `colVisibility: "none"`, and are
+ * removed in the next major version.
+ */
+export type LegacyColLayoutString = CSSValue;
+
+/**
+ * For each breakpoint key, either a {@link ColTrackList} (recommended) or a
+ * {@link LegacyColLayoutString} (deprecated).
+ */
+export type ColLayoutValue = ColTrackList | LegacyColLayoutString;
 export type ColLayoutConfig = {
   s: ColLayoutValue;
   m: ColLayoutValue;
@@ -61,18 +70,15 @@ export interface TableProps {
    */
   colVisibility: ColMinBreakpoint[];
   /**
-   * Column layout per breakpoint. These are "mobile-first", so "m" means "the
-   * browser is at m or larger".
+   * Column layout per breakpoint (mobile-first: "m" means "m or larger").
    *
-   * Each breakpoint value may be either:
-   * - a `grid-template-columns` CSS string — `"repeat(2, 1fr) min-content"`
-   *   (legacy: hidden columns drop their track and unmount), or
-   * - a per-column track array parallel to `colVisibility` —
-   *   `["1fr", "1fr", "min-content"]` (animated: the track count stays constant
-   *   and hidden columns collapse to `minmax(0, 0fr)` so they can transition).
+   * Provide each value as a per-column track array parallel to `colVisibility`,
+   * e.g. `["1fr", "1fr", "min-content"]`. This keeps the track count constant so
+   * hidden columns can animate open/closed and `colVisibility: "none"` works.
    *
-   * The array form is what enables animated show/hide and the `"none"`
-   * `colVisibility` keyword.
+   * @deprecated Passing a `grid-template-columns` string (e.g.
+   * `"repeat(4, 1fr) min-content"`) is deprecated and removed in the next major.
+   * Use an array instead: `["1fr", "1fr", "1fr", "1fr", "min-content"]`.
    */
   colLayout?: ColLayoutConfig;
   rowDensity?: "default" | "compact";
@@ -125,6 +131,11 @@ const Table = ({
    *   collapse to `minmax(0, 0fr)` and transition; `"none"` is honored).
    * - a **string** → legacy mode (variable track count, hidden columns drop
    *   their track and unmount; `"none"` falls back to `"*"`).
+   *
+   * NOTE: `isAnimated` and the legacy (string) branch exist only to keep the
+   * deprecated string `colLayout` form working. Once string layouts are removed
+   * in the next major version, every table is array-based/animated, this flag is
+   * always `true`, and both the flag and the legacy branch can be deleted.
    */
   const layoutForBreakpoint =
     colLayout[currentBreakpoint as ViewportBreakpoint];

@@ -6,6 +6,9 @@ import type { ColLayoutConfig, CSSValue, ViewportBreakpoint } from "..";
  *
  * Only string (legacy) layouts are consumed here; array layouts are handled by
  * the animated code path in the `Table` component.
+ *
+ * @deprecated Supports the deprecated string `colLayout` form only. Removed with
+ * string layouts in the next major version.
  */
 export const columnTemplateFromBreakpoints = (
   currentBreakpoint: ViewportBreakpoint,

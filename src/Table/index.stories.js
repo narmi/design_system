@@ -158,6 +158,16 @@ ColumnLayout.parameters = {
   docs: {
     description: {
       story:
+        "> **Deprecated interface.** Passing `colLayout` values as " +
+        "`grid-template-columns` **strings** (shown here) is deprecated and will " +
+        "be removed in the next major version. Provide a per-column **track " +
+        "array** parallel to `colVisibility` instead — e.g. " +
+        '`"repeat(4, 1fr) min-content"` becomes ' +
+        '`["1fr", "1fr", "1fr", "1fr", "min-content"]` (list hidden ' +
+        "columns too; their width is used when shown and collapses to `0fr` when " +
+        "hidden). Only the array form animates and supports `colVisibility: " +
+        '"none"`. See the "Animated columns" and "Programmatically hiding a ' +
+        'column" stories.\n\n' +
         "Grid layouts configured per breakpoint using `colLayout`:\n\n" +
         "- **Small**: `2fr 1fr 1fr max-content`\n" +
         "- **Medium**: `minmax(200px, 1fr) max-content 1fr min-content`\n" +

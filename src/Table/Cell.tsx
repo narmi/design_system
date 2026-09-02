@@ -27,9 +27,11 @@ const Cell = ({ children, textAlign = "start", _colIndex = 0 }: CellProps) => {
       ? !isAnimated
       : isBreakpointSatisfied(minBreakpoint, currentBreakpoint);
 
-  // Default behavior: hidden columns are removed from the DOM entirely.
-  // In animated mode hidden cells must stay in flow (collapsed) so their
-  // tracks can interpolate and auto-placement stays aligned to the tracks.
+  // Legacy (deprecated string colLayout): hidden columns are removed from the
+  // DOM entirely. In animated mode (array colLayout) hidden cells must stay in
+  // flow (collapsed) so their tracks can interpolate and auto-placement stays
+  // aligned to the tracks. This `return null` branch goes away when string
+  // layouts are removed in the next major version.
   if (!isVisible && !isAnimated) return null;
 
   const isCollapsed = !isVisible;

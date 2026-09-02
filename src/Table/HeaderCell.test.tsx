@@ -28,7 +28,11 @@ describe("HeaderCell", () => {
 
     renderHeaderCell({ isAnimated: true, colVisibility: ["none"], onClick });
 
-    const header = screen.getByRole("columnheader", { name: "Actions" });
+    // Collapsed cells stay in the DOM but are `aria-hidden`, which both
+    // excludes them from the default accessibility tree and empties their
+    // accessible name. Query with `hidden: true` (and no name) to reach the
+    // intentionally inaccessible header button.
+    const header = screen.getByRole("columnheader", { hidden: true });
     expect(header).toBeDisabled();
 
     fireEvent.click(header);

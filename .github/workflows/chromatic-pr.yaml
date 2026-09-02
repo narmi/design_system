@@ -74,7 +74,7 @@ jobs:
 
       - name: Chromatic
         id: chromatic_step
-        uses: chromaui/action@94713c544284a14195de3b50ef24301579f1877e # v13
+        uses: chromaui/action@14cfaef73576e69f95f47f60058063f46ca38719 # v13
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitZeroOnChanges: false # fail workflow if changes detected

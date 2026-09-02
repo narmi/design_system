@@ -42,6 +42,19 @@ export const WithBorder = () => (
   </>
 );
 
+export const SelectableLabel = () => (
+  <>
+    <p>
+      By default a Chip&apos;s label is not selectable, since Chips are
+      typically short filter/status tags. When the{" "}
+      <code>isLabelSelectable</code> prop is set to true, the label text can be
+      selected/copied — useful when a Chip surfaces content like an error
+      message.
+    </p>
+    <Chip kind="error" label="Selectable error text" isLabelSelectable={true} />
+  </>
+);
+
 export const CustomIcon = () => (
   <>
     <p>

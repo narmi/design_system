@@ -1,0 +1,33 @@
+.nds-callout {
+  display: grid;
+  grid-template-columns: 2px 1fr;
+  grid-template-areas: "line content";
+  grid-gap: var(--space-m);
+  padding-top: var(--space-m);
+
+  &::before {
+    content: "";
+    align-self: stretch;
+    grid-area: line;
+    background-color: var(--theme-primary);
+  }
+}
+
+.nds-callout-content {
+  grid-area: content;
+  background-color: rgba(var(--theme-rgb-primary), var(--alpha-5));
+  border-radius: var(--border-radius-default);
+  padding: var(--space-l);
+}
+
+.nds-callout-list {
+  strong {
+    font-weight: var(--font-weight-semibold);
+  }
+  span {
+    color: var(--font-color-secondary);
+  }
+  & > li + li {
+    padding-top: var(--space-s);
+  }
+}

@@ -49,9 +49,21 @@ export const globalTypes = {
       dynamicTitle: true,
     },
   },
+  colorVision: {
+    description: "Color vision deficiency simulation palette",
+    toolbar: {
+      title: "Color Vision",
+      items: [
+        { value: "none", title: "Typical Vision" },
+        { value: "red-green", title: "Protanopia / Deuteranopia" },
+        { value: "tritanopia", title: "Tritanopia" },
+      ],
+      dynamicTitle: true,
+    },
+  },
 };
 
-export const initialGlobals = { contrast: "system" };
+export const initialGlobals = { contrast: "system", colorVision: "none" };
 
 export const decorators = [NdsStyles, ExamplesBackground];
 export const tags = ["autodocs"];

@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 import { VALID_ICON_NAMES } from "../icons/iconNames";
 import cc from "classcat";
 import ToolTip from "../Tooltip";
+import { Callout } from "../Callout";
+import type { Detail } from "../Callout";
 import type { IconName } from "../types/Icon.types";
 
 export { VALID_ICON_NAMES };
 
-export type TimelineEventKind = "node" | "start" | "pending";
+export type TimelineEventKind = "node" | "start" | "pending" | "divided";
 
 export interface TimelineEventProps {
   /**
@@ -35,6 +37,11 @@ export interface TimelineEventProps {
    */
   children?: React.ReactNode;
   /**
+   * Detail list rendered in a composed `Callout`
+   * below the event content
+   */
+  detailList?: Detail[];
+  /**
    * Hover tooltip content for the icon
    */
   tooltip?: string;
@@ -49,6 +56,7 @@ const TimelineEvent = ({
   initial,
   tooltip,
   children,
+  detailList,
   renderNode,
 }: TimelineEventProps) => {
   const useInitial = !icon && !imgUrl && initial;
@@ -58,6 +66,7 @@ const TimelineEvent = ({
         "nds-timeline-event",
         {
           "nds-timeline-event--pending": kind === "pending",
+          "nds-timeline-event--divided": kind === "divided",
         },
       ])}
     >
@@ -111,7 +120,10 @@ const TimelineEvent = ({
           </svg>
         )}
       </div>
-      <div className="nds-timeline-content">{children}</div>
+      <div className="nds-timeline-content">
+        {children}
+        {detailList?.length ? <Callout detailList={detailList} /> : null}
+      </div>
     </div>
   );
 };
@@ -120,7 +132,7 @@ TimelineEvent.propTypes = {
   /**
    * Timeline node variant.
    */
-  kind: PropTypes.oneOf(["node", "start", "pending"]),
+  kind: PropTypes.oneOf(["node", "start", "pending", "divided"]),
   /**
    * Name of NDS icon to render inside the timeline node
    */
@@ -144,6 +156,16 @@ TimelineEvent.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  /**
+   * Detail list rendered in a composed `Callout`
+   * below the event content
+   */
+  detailList: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      description: PropTypes.string,
+    }),
+  ),
   /**
    * Hover tooltip content for the icon
    */

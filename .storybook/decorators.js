@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { COLOR_MODES } from "../tokens/constants";
+import { COLOR_MODES, CVD_ATTRIBUTE } from "../tokens/constants";
 
 const ndsStyleTag = (
   <style>
@@ -14,6 +14,7 @@ const ndsStyleTag = (
 
 export const NdsStyles = (Story, context) => {
   const contrast = context.globals?.contrast;
+  const colorVision = context.globals?.colorVision;
 
   useEffect(() => {
     const root = document.documentElement;
@@ -28,6 +29,16 @@ export const NdsStyles = (Story, context) => {
       root.removeAttribute(attribute);
     }
   }, [contrast]);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    // All CVD palettes share a single attribute; the global holds the value.
+    if (colorVision && colorVision !== "none") {
+      root.setAttribute(CVD_ATTRIBUTE, colorVision);
+    } else {
+      root.removeAttribute(CVD_ATTRIBUTE);
+    }
+  }, [colorVision]);
 
   if (context.title?.startsWith("Issue Test Cases/")) {
     return (

@@ -36,6 +36,12 @@ export interface ChipProps {
   hasBorder?: boolean;
   /** Defines if the label is visible */
   isLabelVisible?: boolean;
+  /**
+   * Allows the label text to be selected/copied when `true`. Off by default since Chips are
+   * typically short filter/status tags where accidental text selection is undesirable, but
+   * some Chips (e.g. surfacing an error message) carry content a user may want to copy.
+   */
+  isLabelSelectable?: boolean;
 }
 
 /**
@@ -54,6 +60,7 @@ const Chip = ({
   endIcon,
   hasBorder = false,
   isLabelVisible = true,
+  isLabelSelectable = false,
 }: ChipProps) => {
   const isButton = typeof onClick === "function";
   const isDismissable = !isButton && typeof onDismiss === "function";
@@ -88,7 +95,15 @@ const Chip = ({
         )}
         {isLabelVisible && (
           <Row.Item shrink>
-            <div className="nds-chip-label whiteSpace--truncate">{label}</div>
+            <div
+              className={cc([
+                "nds-chip-label",
+                "whiteSpace--truncate",
+                { "nds-chip-label--selectable": isLabelSelectable },
+              ])}
+            >
+              {label}
+            </div>
           </Row.Item>
         )}
         {count && (

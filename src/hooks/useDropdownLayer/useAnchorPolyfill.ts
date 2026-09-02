@@ -40,14 +40,6 @@ const resolveSpaceToken = (property: string, fallback: number): number => {
  * compared against `getBoundingClientRect()`). This avoids the visual-vs-
  * layout viewport mixup that caused off-screen placement on Android when
  * the soft keyboard was open at the time `calculatePosition` ran.
- *
- * Also writes `--js-dropdown-max-height` as a direction-aware CSS calc
- * string:
- *   - Below-anchor placement uses `100dvh` so the layer clips inside the
- *     visible area above the virtual keyboard (dvh shrinks with the
- *     keyboard on Chromium/Android).
- *   - Above-anchor placement uses `100vh` because keyboards open from the
- *     bottom and don't affect the space above the anchor.
  */
 export const calculatePosition = (
   anchorEl: HTMLElement,
@@ -79,20 +71,12 @@ export const calculatePosition = (
       `${window.innerHeight - anchorRect.top + anchorGap}px`,
     );
     layerEl.style.removeProperty("--js-dropdown-top");
-    layerEl.style.setProperty(
-      "--js-dropdown-max-height",
-      "max(0px, calc(100vh - var(--js-dropdown-bottom, 0px) - var(--space-l)))",
-    );
   } else {
     layerEl.style.setProperty(
       "--js-dropdown-top",
       `${anchorRect.bottom - layerRect.top + anchorGap}px`,
     );
     layerEl.style.removeProperty("--js-dropdown-bottom");
-    layerEl.style.setProperty(
-      "--js-dropdown-max-height",
-      "calc(100dvh - var(--js-dropdown-top, 0px) - var(--space-l))",
-    );
   }
 
   layerEl.style.setProperty(

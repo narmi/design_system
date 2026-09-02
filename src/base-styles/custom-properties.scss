@@ -18,14 +18,10 @@
 * placement and this fallback is handled directly in CSS via
 * `calc(100dvh - anchor(...))` and `calc(anchor(top) - ...)`. `dvh`
 * shrinks when the virtual keyboard opens on Chromium/Android, giving
-* keyboard-aware sizing without JS. On the JS polyfill path,
-* `--js-dropdown-max-height` is set by `calculatePosition` in `useAnchorPolyfill`.
+* keyboard-aware sizing without JS.
 */
 @position-try --nds-dropdown-above {
   position-area: top;
-  max-height: calc(
-    anchor(top) - var(--space-l) - var(--nds-layer-gap, var(--space-xxs))
-  );
   margin-top: 0;
   margin-bottom: var(--nds-layer-gap, var(--space-xxs));
 }
@@ -41,12 +37,6 @@
 */
 @position-try --nds-try-below {
   position-area: bottom;
-  max-height: calc(
-    100dvh - anchor(bottom) - var(--space-l) - var(
-        --nds-layer-gap,
-        var(--space-xxs)
-      )
-  );
   margin-top: var(--nds-layer-gap, var(--space-xxs));
   margin-bottom: 0;
 }

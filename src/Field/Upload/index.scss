@@ -1,0 +1,214 @@
+// Larger than a _narrow_ phone single col layout.
+// or a folded one for that matter.
+//
+// Please tweak this value as the device landscape changes.
+$upload-container-bp-s: 340px;
+
+.nds-field-upload {
+  --upload-duration: 375ms;
+  --upload-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Component root is a queryable container. We query against
+  // the element itself instead of the size of the viewport.
+  container-type: inline-size;
+  container-name: nds-field-upload;
+  min-width: rem(160px);
+
+  label {
+    font-size: var(--font-size-l);
+    color: var(--font-color-primary);
+  }
+
+  em {
+    font-style: unset;
+    font-weight: var(--font-weight-bold);
+    color: var(--theme-primary);
+  }
+
+  &-input {
+    @extend %a11y-visually-hide;
+  }
+
+  &-dropzone {
+    position: relative;
+    display: grid;
+    margin-top: var(--space-m);
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, min-content);
+    grid-gap: var(--space-default);
+    place-items: center center;
+    text-align: center;
+    border-radius: var(--border-radius-default);
+    border: 2px dashed var(--theme-primary);
+    background-color: var(--bgColor-snowGrey);
+    padding: var(--space-l);
+
+    &:hover {
+      background-color: rgba(var(--theme-rgb-primary), var(--alpha-5));
+    }
+  }
+
+  &-icon {
+    border-radius: var(--border-radius-default);
+    background-color: rgba(var(--theme-rgb-primary), var(--alpha-10));
+    color: var(--theme-primary);
+    padding: var(--space-l);
+    user-select: none;
+    transition: all var(--upload-duration) var(--upload-easing);
+  }
+
+  &-prompt {
+    font-weight: var(--font-weight-default);
+  }
+
+  /**
+  * Selected files
+  *
+  * One container wraps the whole list plus the progress bar, so a single-file
+  * selection reads as one card and a multi-file selection stacks rows inside
+  * that same card rather than fragmenting into one card per file.
+  */
+  &-files {
+    margin-top: var(--space-m);
+    border: 1px solid var(--border-color-default);
+    border-radius: var(--border-radius-default);
+    padding: var(--space-default);
+    background-color: var(--color-white);
+
+    // `idle` and `error` are intentionally unstyled: plain semantic markup,
+    // with failures announced by the `.nds-field-errors` region instead.
+    &--uploading {
+      background-color: var(--bgColor-snowGrey);
+    }
+  }
+
+  &-list > li + li {
+    margin-top: var(--space-default);
+  }
+
+  &-file-icon {
+    color: var(--font-color-secondary);
+  }
+
+  &-file-name {
+    // Filenames are user-supplied and frequently long; wrap mid-token rather
+    // than letting one push the remove button out of the container.
+    overflow-wrap: anywhere;
+  }
+
+  // Filled disc rather than `narmi-icon-check-circle`, which is an outline
+  // glyph and cannot render as a white check on a solid green field.
+  &-file-check {
+    display: inline-flex;
+    width: rem(24px);
+    height: rem(24px);
+    border-radius: 50%;
+    background-color: var(--color-successDark);
+    color: var(--color-white);
+    font-size: var(--font-size-s);
+  }
+
+  &-uploadProgress {
+    margin-top: var(--space-default);
+  }
+
+  &-file-icon {
+    font-size: rem(24px);
+  }
+
+  /**
+  * State Styles
+  * State will be one of:
+  * `dragActive | disabled`
+  */
+  &[data-state="dragActive"] {
+    .nds-field-upload-dropzone {
+      background-color: rgba(var(--theme-rgb-primary), var(--alpha-10));
+    }
+
+    .nds-field-upload-icon {
+      font-weight: var(--font-weight-bold);
+      background: var(--theme-primary);
+      color: var(--color-white);
+
+      span {
+        transform: scale(1.25);
+      }
+    }
+  }
+
+  &[data-state="disabled"] .nds-field-upload-dropzone {
+    border-color: var(--font-color-hint);
+    user-select: none;
+    pointer-events: none;
+    cursor: not-allowed;
+
+    &::before {
+      content: "";
+      display: block;
+      border-radius: var(--border-radius-default);
+      position: absolute;
+      inset: 0;
+      background-color: var(--bgColor-scrimLight);
+      opacity: 0.8;
+    }
+  }
+
+  /**
+  * Upload failure
+  *
+  * Driven by `uploadState === "error"`, not by the `errors` prop, so this is
+  * deliberately separate from `.nds-field--hasError`. In this state the file
+  * list is replaced by the drop zone, which doubles as the retry affordance.
+  *
+  * Borrows the border treatment `.nds-field--hasError` uses on the other
+  * fields, so a failed upload reads the same as any other errored field.
+  */
+  &--uploadError .nds-field-upload-dropzone {
+    border-color: var(--color-errorDark);
+  }
+
+  /**
+  * Variants
+  */
+  &--compact {
+    .nds-field-upload-dropzone {
+      margin: unset;
+      text-align: start;
+      justify-items: start;
+      align-items: start;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+    }
+
+    .nds-field-upload-icon {
+      display: none;
+      padding: var(--space-s);
+    }
+
+    label {
+      font-size: var(--font-size-default);
+    }
+  }
+
+  @include atContainerUp($upload-container-bp-s, nds-field-upload) {
+    &--compact .nds-field-upload-dropzone {
+      grid-template-columns: min-content 1fr;
+      grid-template-rows: 1fr;
+    }
+
+    &-icon {
+      display: block !important;
+    }
+  }
+
+  // disable all motion if preferred by user
+  @media (prefers-reduced-motion: reduce) {
+    --upload-duration: 0ms;
+
+    &-dropzone {
+      transition: none;
+      animation: none;
+    }
+  }
+}

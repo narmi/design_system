@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid,react/jsx-key */
 import React, { useState } from "react";
+import { expect, screen, waitFor } from "storybook/test";
 import Combobox, { VALID_ICON_NAMES } from "./";
 import ComboboxItem from "./ComboboxItem";
 import ComboboxHeading from "./ComboboxHeading";
@@ -20,6 +21,21 @@ export const Overview = Template.bind({});
 Overview.args = {
   label: "Select your state",
   children,
+};
+
+/**
+ * Interaction test that opens the Combobox so Chromatic can snapshot
+ * the dropdown's placement.
+ */
+export const Open = {
+  name: "Interaction: Opens on click",
+  render: () => <Combobox label="Select your state">{children}</Combobox>,
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("combobox"));
+    await waitFor(() =>
+      expect(screen.getByRole("option", { name: /alabama/i })).toBeVisible(),
+    );
+  },
 };
 
 export const WithIcon = Template.bind({});

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.29.1](https://github.com/narmi/design_system/compare/v6.29.0...v6.29.1) (2026-09-02)
+
+### fix
+
+* **useDropdownLayer,Combobox:** cap height via css ([f93b2eb](https://github.com/narmi/design_system/commit/f93b2eb22a851fba68bb9cde78a6378771a25992))
+* fallback to vh for older mobile devices ([6ece19f](https://github.com/narmi/design_system/commit/6ece19ffd5a6f6fceb36a29117b6178468c62b6f))
+* preserve consumer viewport width ([f2b296b](https://github.com/narmi/design_system/commit/f2b296bdb290fbd10bf6c4b39310acaff8f60ec3))
+
 ## [6.29.0](https://github.com/narmi/design_system/compare/v6.28.1...v6.29.0) (2026-09-02)
 
 ### feat

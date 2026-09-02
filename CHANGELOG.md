@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.27.1](https://github.com/narmi/design_system/compare/v6.27.0...v6.27.1) (2026-09-02)
+
+### fix
+
+* **Chip:** add isLabelSelectable prop to allow selecting label text ([2b2682c](https://github.com/narmi/design_system/commit/2b2682c75983f083d0f84f0f0aaceaf1441e7b27))
+
 ## [6.27.0](https://github.com/narmi/design_system/compare/v6.26.0...v6.27.0) (2026-08-31)
 
 ### feat

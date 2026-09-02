@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.28.0](https://github.com/narmi/design_system/compare/v6.27.1...v6.28.0) (2026-09-02)
+
+### feat
+
+* **Callout,TimelineEvent:** add divided event; introduce callout ([d2d48e1](https://github.com/narmi/design_system/commit/d2d48e12a999876236a76962833b33f957c73f5a))
+
 ## [6.27.1](https://github.com/narmi/design_system/compare/v6.27.0...v6.27.1) (2026-09-02)
 
 ### fix

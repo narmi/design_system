@@ -8,6 +8,7 @@ import AnchoredDialog from "./AnchoredDialog";
 import AutocompleteModal from "./AutocompleteModal";
 import Avatar from "./Avatar";
 import Button from "./Button";
+import { Callout } from "./Callout";
 import ContentCard from "./ContentCard";
 import Checkbox from "./Checkbox";
 import Chip from "./Chip";
@@ -88,6 +89,7 @@ export type {
 } from "./AutocompleteModal/AutoComplete";
 export type { AvatarProps } from "./Avatar";
 export type { ButtonProps, ButtonKind } from "./Button";
+export type { CalloutProps, Detail } from "./Callout";
 export type { CheckboxProps } from "./Checkbox";
 export type { ChipProps } from "./Chip";
 export type {
@@ -203,6 +205,7 @@ export {
   AutocompleteModal,
   Avatar,
   Button,
+  Callout,
   Checkbox,
   Chip,
   ContentCard,

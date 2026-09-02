@@ -1,8 +1,22 @@
 .nds-table {
   --pinned-column-border: oklch(0% 0 0 / 0.06);
+  --animation-duration: 400ms;
   display: grid;
   grid-auto-rows: auto;
   row-gap: 0;
+}
+
+// Only animated (array-layout) tables transition their column tracks. Legacy
+// string layouts change track counts, which cannot interpolate.
+.nds-table--animated {
+  transition: grid-template-columns var(--animation-duration)
+    cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nds-table--animated {
+    transition: none;
+  }
 }
 
 .nds-table-scroll-container {
@@ -67,6 +81,8 @@
   align-items: center;
   padding: var(--space-xxs) var(--space-xs);
   overflow: hidden;
+  opacity: 1;
+  transition: opacity var(--animation-duration) cubic-bezier(0.4, 0, 0.2, 1);
 
   // default wrapping behavior
   white-space: nowrap;
@@ -95,6 +111,15 @@
     color: var(--font-color-primary);
     text-overflow: unset;
   }
+}
+
+// Collapsed cells in animated mode stay mounted at `minmax(0, 0fr)`.
+// Force `overflow: hidden` so their content is clipped as the track reaches
+// zero — this must win over the `:has([class^="nds-tableField"])` exception
+// above (equal specificity, later source order).
+.nds-table-cell.nds-table-cell--collapsed {
+  overflow: hidden;
+  opacity: 0;
 }
 
 // Pinned start column

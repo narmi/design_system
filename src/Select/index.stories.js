@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key,react/no-unescaped-entities */
 import React, { useState } from "react";
+import { expect, screen, waitFor } from "storybook/test";
 import Select from "./";
 import SelectItem from "./SelectItem";
 import SelectAction from "./SelectAction";
@@ -29,6 +30,27 @@ Overview.args = {
   id: "overviewStory",
   label: "Favorite icon",
   children,
+};
+
+/**
+ * Interaction test that opens the Select so Chromatic can snapshot
+ * the dropdown's placement.
+ */
+export const Open = {
+  name: "Interaction: Opens on click",
+  render: () => (
+    <Select id="chromaticOpen" label="Favorite icon">
+      {children}
+    </Select>
+  ),
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(
+      canvas.getByRole("combobox", { name: /favorite icon/i }),
+    );
+    await waitFor(() =>
+      expect(screen.getByRole("option", { name: /coffee/i })).toBeVisible(),
+    );
+  },
 };
 
 export const DefaultSelection = Template.bind({});

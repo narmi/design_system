@@ -67,6 +67,10 @@
 
 .nds-chip-label {
   user-select: none;
+
+  &--selectable {
+    user-select: text;
+  }
 }
 
 .nds-chip-icon {

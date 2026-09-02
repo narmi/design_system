@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.28.1](https://github.com/narmi/design_system/compare/v6.28.0...v6.28.1) (2026-09-02)
+
+### fix
+
+* **Tooltip:** remove zindex responsibility from hook ([1adc387](https://github.com/narmi/design_system/commit/1adc3873103cca6ece30630a8fda39a908748a37))
+
+### test
+
+* add sb interaction tests for dd hook ([3d91716](https://github.com/narmi/design_system/commit/3d917161efa3379f1b5b570cdab3b4c5f8f4e73c))
+
+## [6.28.0](https://github.com/narmi/design_system/compare/v6.27.1...v6.28.0) (2026-09-02)
+
+### feat
+
+* **Callout,TimelineEvent:** add divided event; introduce callout ([d2d48e1](https://github.com/narmi/design_system/commit/d2d48e12a999876236a76962833b33f957c73f5a))
+
+## [6.27.1](https://github.com/narmi/design_system/compare/v6.27.0...v6.27.1) (2026-09-02)
+
+### fix
+
+* **Chip:** add isLabelSelectable prop to allow selecting label text ([2b2682c](https://github.com/narmi/design_system/commit/2b2682c75983f083d0f84f0f0aaceaf1441e7b27))
+
 ## [6.27.0](https://github.com/narmi/design_system/compare/v6.26.0...v6.27.0) (2026-08-31)
 
 ### feat

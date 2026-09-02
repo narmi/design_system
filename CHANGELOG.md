@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.13](https://github.com/narmi/design_system/compare/v6.19.12...v6.19.13) (2026-09-02)
+
+### fix
+
+* **useDropdownLayer,Combobox:** cap height via css ([cf19ab1](https://github.com/narmi/design_system/commit/cf19ab107151fc5e8af95fe86b87946847213e5d))
+
 ## [6.19.12](https://github.com/narmi/design_system/compare/v6.19.11...v6.19.12) (2026-09-02)
 
 ### fix

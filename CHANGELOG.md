@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.14](https://github.com/narmi/design_system/compare/v6.19.13...v6.19.14) (2026-09-03)
+
+### fix
+
+* **useDropdownLayer:** add default zindex to be more defensive ([94394a9](https://github.com/narmi/design_system/commit/94394a96c8f0925f8bb96e07d1836d5b30b6339c))
+* **useDropdownLayer:** guard for SSR in CSS support checks ([771ecd8](https://github.com/narmi/design_system/commit/771ecd83210c5b47344ab2691d599bda8c4cfde7))
+
 ## [6.19.13](https://github.com/narmi/design_system/compare/v6.19.12...v6.19.13) (2026-09-02)
 
 ### fix

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.29.3](https://github.com/narmi/design_system/compare/v6.29.2...v6.29.3) (2026-09-03)
+
+### fix
+
+* **useDropdownLayer:** guard for SSR in CSS support checks ([c68ac79](https://github.com/narmi/design_system/commit/c68ac794dd5ff1c4e84543583ab313929973e3cd))
+
 ## [6.29.2](https://github.com/narmi/design_system/compare/v6.29.1...v6.29.2) (2026-09-03)
 
 ### fix

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.29.2](https://github.com/narmi/design_system/compare/v6.29.1...v6.29.2) (2026-09-03)
+
+### fix
+
+* **useDropdownLayer:** add default zindex to be more defensive ([f34bd89](https://github.com/narmi/design_system/commit/f34bd89736a054ee2faa47e089c4c308a1772c63))
+
 ## [6.29.1](https://github.com/narmi/design_system/compare/v6.29.0...v6.29.1) (2026-09-02)
 
 ### fix

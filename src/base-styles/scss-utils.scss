@@ -82,6 +82,7 @@ $breakpoints: (
   border-radius: var(--border-radius-default);
   max-height: 46vh;
   max-height: 46dvh;
+  z-index: 1; // default, but may be overriden by individual components.
 
   // Defend against broad consumer selectors like `.parent * { display: flex; }`
   // !important wins regardless of specificity or source order.

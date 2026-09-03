@@ -9,7 +9,14 @@
  *    `polyfillScrollBug: true` on useDropdownLayer.
  *
  * Both checks run once at module load and are cached.
+ *
+ * SSR safety: the CSS-support value is browser-only, so the hook starts as
+ * `false` and flips to the real value in an effect after the first client
+ * commit. This keeps the server HTML and first client render in agreement
+ * (no hydration mismatch).
  */
+
+import { useState, useEffect } from "react";
 
 /** CSS.supports checks for all anchor positioning features we use. */
 const cssChecksPass = (): boolean => {
@@ -84,7 +91,16 @@ export const HAS_SCROLL_CONTAINER_BUG: boolean =
 /**
  * Returns whether the browser supports CSS anchor positioning
  * (based on CSS.supports checks).
+ *
+ * Starts as `false` so SSR and the first client render agree, then flips to
+ * the real value in an effect after commit.
  */
-const useSupportsAnchorPositioning = (): boolean => SUPPORTS_ANCHOR_POSITIONING;
+const useSupportsAnchorPositioning = (): boolean => {
+  const [supported, setSupported] = useState(false);
+  useEffect(() => {
+    setSupported(cssChecksPass());
+  }, []);
+  return supported;
+};
 
 export default useSupportsAnchorPositioning;

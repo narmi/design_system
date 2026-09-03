@@ -53,6 +53,43 @@ export const Open = {
   },
 };
 
+/**
+ * Interaction test for the full selection flow: open the dropdown, pick an
+ * option, and verify the trigger updates and the menu closes.
+ */
+export const SelectOption = {
+  name: "Interaction: Selects an option",
+  render: () => (
+    <Select id="chromaticSelect" label="Favorite icon">
+      {children}
+    </Select>
+  ),
+  play: async ({ canvas, userEvent }) => {
+    // open the dropdown
+    await userEvent.click(
+      canvas.getByRole("combobox", { name: /favorite icon/i }),
+    );
+    await waitFor(() =>
+      expect(screen.getByRole("option", { name: /film/i })).toBeVisible(),
+    );
+
+    // select the "Film" option
+    await userEvent.click(screen.getByRole("option", { name: /film/i }));
+
+    // menu closes and options unmount
+    await waitFor(() =>
+      expect(
+        screen.queryByRole("option", { name: /film/i }),
+      ).not.toBeInTheDocument(),
+    );
+
+    // trigger now reflects the selection
+    expect(
+      canvas.getByRole("combobox", { name: /favorite icon/i }),
+    ).toHaveTextContent("Film");
+  },
+};
+
 export const DefaultSelection = Template.bind({});
 DefaultSelection.args = {
   id: "defaultSelection",
@@ -756,6 +793,39 @@ export const InADrawer = (args) => {
       </Drawer>
     </>
   );
+};
+
+const ACCOUNT_TYPES = [
+  "Checking",
+  "Savings",
+  "Money Market",
+  "Certificate of Deposit",
+  "IRA",
+];
+
+export const ManyItems = Template.bind({});
+ManyItems.args = {
+  id: "manyItems",
+  label: "Account",
+  children: Array.from({ length: 60 }, (_, index) => {
+    const type = ACCOUNT_TYPES[index % ACCOUNT_TYPES.length];
+    const accountNumber = String(1000 + index * 7).slice(-4);
+    const value = `account-${index}`;
+    const label = `${type} (${accountNumber})`;
+    return (
+      <Select.Item key={value} value={value} searchValue={label}>
+        {label}
+      </Select.Item>
+    );
+  }),
+};
+ManyItems.parameters = {
+  docs: {
+    description: {
+      story:
+        "A dropdown with a large number of items, useful for testing scrolling, typeahead, and dropdown positioning with long lists.",
+    },
+  },
 };
 
 export const WithLongOptionLabels = Template.bind({});

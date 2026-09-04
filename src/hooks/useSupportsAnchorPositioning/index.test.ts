@@ -1,37 +1,50 @@
-import { isAnchorLayoutValid } from ".";
+import { renderHook } from "@testing-library/react";
+import { createElement } from "react";
+import { renderToString } from "react-dom/server";
 
-const anchorRect = {
-  width: 100,
-  left: 20,
-  bottom: 70,
+const setCSSSupports = (supports: typeof CSS.supports) => {
+  Object.defineProperty(globalThis, "CSS", {
+    configurable: true,
+    value: { supports },
+  });
 };
 
-describe("isAnchorLayoutValid", () => {
-  it("accepts a layer aligned below the anchor", () => {
-    expect(
-      isAnchorLayoutValid(anchorRect, {
-        width: 100,
-        left: 20,
-        top: 70,
-      }),
-    ).toBe(true);
+describe("useSupportsAnchorPositioning", () => {
+  const originalCSS = globalThis.CSS;
+
+  beforeEach(() => {
+    vi.resetModules();
+  });
+
+  afterEach(() => {
+    Object.defineProperty(globalThis, "CSS", {
+      configurable: true,
+      value: originalCSS,
+    });
+  });
+
+  it("uses a false server snapshot", async () => {
+    setCSSSupports(vi.fn().mockReturnValue(true));
+    const { default: useSupportsAnchorPositioning } = await import(".");
+
+    const TestComponent = () =>
+      createElement("div", null, String(useSupportsAnchorPositioning()));
+
+    expect(renderToString(createElement(TestComponent))).toContain("false");
   });
 
   it.each([
-    ["width", { width: 0, left: 20, top: 70 }],
-    ["horizontal position", { width: 100, left: 0, top: 70 }],
-    ["vertical position", { width: 100, left: 20, top: 0 }],
-  ])("rejects an incorrect %s", (_description, layerRect) => {
-    expect(isAnchorLayoutValid(anchorRect, layerRect)).toBe(false);
-  });
+    [true, true],
+    [false, false],
+  ])(
+    "uses the CSS.supports result for client snapshots (%s)",
+    async (supportsResult, expected) => {
+      setCSSSupports(vi.fn().mockReturnValue(supportsResult));
+      const { default: useSupportsAnchorPositioning } = await import(".");
 
-  it("allows subpixel layout differences", () => {
-    expect(
-      isAnchorLayoutValid(anchorRect, {
-        width: 99.5,
-        left: 20.5,
-        top: 70.5,
-      }),
-    ).toBe(true);
-  });
+      const { result } = renderHook(() => useSupportsAnchorPositioning());
+
+      expect(result.current).toBe(expected);
+    },
+  );
 });

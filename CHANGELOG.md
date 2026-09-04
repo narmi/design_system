@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.29.5](https://github.com/narmi/design_system/compare/v6.29.4...v6.29.5) (2026-09-04)
+
+### fix
+
+* **Select:** ensure layer el receives select list class ([681bc83](https://github.com/narmi/design_system/commit/681bc834b81f8f111a304de9b0cc3c32b2af6a5c))
+
 ## [6.29.4](https://github.com/narmi/design_system/compare/v6.29.3...v6.29.4) (2026-09-04)
 
 ### fix

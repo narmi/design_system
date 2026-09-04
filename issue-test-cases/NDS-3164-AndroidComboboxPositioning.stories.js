@@ -1,6 +1,5 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import Combobox from "src/Combobox";
-import { HAS_SCROLL_CONTAINER_BUG } from "src/hooks/useSupportsAnchorPositioning";
 
 const storyDescription =
   "Regression test for Android soft-keyboard dropdown positioning. " +
@@ -665,10 +664,9 @@ export const DetectionProbe = () => {
     };
 
     const allCssChecksPass = Object.values(checks).every(Boolean);
-    // Combobox opts into polyfillScrollBug: true, so the polyfill path
-    // runs when either (a) native anchor-positioning is unavailable, or
-    // (b) the scroll-container bug is detected.
-    const polyfillPathActive = !allCssChecksPass || HAS_SCROLL_CONTAINER_BUG;
+    // The JS polyfill path runs only when native anchor-positioning is
+    // unavailable (one or more CSS.supports checks fail).
+    const polyfillPathActive = !allCssChecksPass;
 
     // Measure 100dvh and 100vh via hidden elements so we can see if dvh
     // reacts to virtual keyboard on this device (dvh should shrink with
@@ -684,7 +682,6 @@ export const DetectionProbe = () => {
 
     return {
       ...checks,
-      HAS_SCROLL_CONTAINER_BUG,
       "window.visualViewport?.height": window.visualViewport?.height ?? "n/a",
       "window.innerHeight": window.innerHeight,
       "100dvh (px)": measureViewportUnit("100dvh"),

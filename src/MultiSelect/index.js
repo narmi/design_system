@@ -208,7 +208,6 @@ const MultiSelect = ({
     setIsOpen: (open) => {
       if (!open) closeMenu();
     },
-    polyfillScrollBug: true,
   });
 
   /**

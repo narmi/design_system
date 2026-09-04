@@ -1,6 +1,5 @@
 import { useLayoutEffect } from "react";
 import useSupportsAnchorPositioning from "../useSupportsAnchorPositioning";
-import { HAS_SCROLL_CONTAINER_BUG } from "../useSupportsAnchorPositioning";
 
 /**
  * Resolves a CSS custom property (e.g. `--space-xs`) to a pixel number.
@@ -24,12 +23,6 @@ interface UseAnchorPolyfillParams {
   matchWidth?: boolean;
   /** Whether the dropdown is currently open */
   isOpen: boolean;
-  /**
-   * When true, forces the polyfill path if the browser has the Safari
-   * scroll-container bug (anchor-size/position-try-fallbacks fail inside
-   * overflow:auto ancestors). Defaults to false.
-   */
-  polyfillScrollBug?: boolean;
 }
 
 /**
@@ -116,19 +109,11 @@ const useAnchorPolyfill = ({
   layerRef,
   matchWidth = false,
   isOpen,
-  polyfillScrollBug = false,
 }: UseAnchorPolyfillParams) => {
   const isAnchorPositionSupported = useSupportsAnchorPositioning();
 
-  // When polyfillScrollBug is opted-in AND the browser has the bug,
-  // force the polyfill path even though CSS.supports reports support.
-  const effectiveSupport =
-    polyfillScrollBug && HAS_SCROLL_CONTAINER_BUG
-      ? false
-      : isAnchorPositionSupported;
-
   useLayoutEffect(() => {
-    if (effectiveSupport || !isOpen) return;
+    if (isAnchorPositionSupported || !isOpen) return;
 
     let disposed = false;
     let currentObserver: IntersectionObserver | undefined;
@@ -180,11 +165,11 @@ const useAnchorPolyfill = ({
       disposed = true;
       currentObserver?.disconnect();
     };
-  }, [effectiveSupport, anchorRef, layerRef, matchWidth, isOpen]);
+  }, [isAnchorPositionSupported, anchorRef, layerRef, matchWidth, isOpen]);
 
   return {
-    isAnchorPositionSupported: effectiveSupport,
-    polyFillLayerStyles: effectiveSupport
+    isAnchorPositionSupported,
+    polyFillLayerStyles: isAnchorPositionSupported
       ? {}
       : {
           zIndex: "1",

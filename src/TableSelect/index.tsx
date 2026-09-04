@@ -94,7 +94,6 @@ const TableSelect = React.forwardRef<HTMLInputElement, TableSelectProps>(
       setIsOpen: () => {},
       matchWidth: true,
       isPortalled: true,
-      polyfillScrollBug: true,
     });
 
     const hasSelectedItem = selectedItem !== null && selectedItem.props;

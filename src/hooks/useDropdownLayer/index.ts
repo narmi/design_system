@@ -57,14 +57,6 @@ export interface UseDropdownLayerOptions {
    * back to start alignment.
    */
   alignment?: Alignment;
-  /**
-   * When true, forces the JS polyfill if the browser has the Safari
-   * scroll-container bug (anchor-size/position-try-fallbacks fail inside
-   * overflow:auto ancestors). Opt-in only for components that render inside
-   * scroll containers (e.g. Select, Combobox inside Dialog).
-   * @default false
-   */
-  polyfillScrollBug?: boolean;
 }
 
 /**
@@ -122,7 +114,6 @@ const useDropdownLayer = ({
   ariaPopupType = "menu",
   placement = "bottom",
   alignment,
-  polyfillScrollBug = false,
 }: UseDropdownLayerOptions): UseDropdownLayerResult => {
   const anchorRef = useRef<HTMLElement>(null);
   const layerRef = useRef<HTMLElement>(null);
@@ -138,7 +129,6 @@ const useDropdownLayer = ({
     layerRef,
     matchWidth,
     isOpen,
-    polyfillScrollBug,
   });
 
   // Memoized props to spread onto the anchor (positioning reference) element

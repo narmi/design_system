@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.29.4](https://github.com/narmi/design_system/compare/v6.29.3...v6.29.4) (2026-09-04)
+
+### fix
+
+* add default zindex for JS path of dropdown layer ([626c3a8](https://github.com/narmi/design_system/commit/626c3a8168f8a39d68610631b62dbe9a4e9a8a34))
+* **useDropdownLayer:** remove stale safari sniffing ([01215ae](https://github.com/narmi/design_system/commit/01215aebb1265134400b8dfac7d1f39d93350146))
+
+### test
+
+* restore hook SSR/client snapshot coverage ([809b27a](https://github.com/narmi/design_system/commit/809b27a80eb2af58aa5ae99d26d6f0526374b95b))
+
 ## [6.29.3](https://github.com/narmi/design_system/compare/v6.29.2...v6.29.3) (2026-09-03)
 
 ### fix

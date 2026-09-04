@@ -191,6 +191,7 @@ const useAnchorPolyfill = ({
     polyFillLayerStyles: effectiveSupport
       ? {}
       : {
+          zIndex: "1",
           position: "fixed" as const,
           top: "var(--js-dropdown-top, auto)",
           bottom: "var(--js-dropdown-bottom, auto)",

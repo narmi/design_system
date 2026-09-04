@@ -408,10 +408,13 @@ function Select({
       </div>
       <Error error={errorText} />
 
-      <div {...layerProps} ref={layerProps.ref as React.Ref<HTMLDivElement>}>
+      <div
+        className="nds-select-list"
+        {...layerProps}
+        ref={layerProps.ref as React.Ref<HTMLDivElement>}
+      >
         <div
           className={cc([
-            "nds-select-list",
             "bgColor--white",
             {
               "nds-select-list--error": !!errorText,

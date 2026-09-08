@@ -428,10 +428,9 @@ const Combobox = ({
           />
         </div>
         <Error error={errorText} className="margin--top--xs" />
-        <div {...layerProps}>
+        <div className="nds-combobox-list" {...layerProps} ref={layerProps.ref}>
           <ul
             className={cc([
-              "nds-combobox-list",
               "list--reset",
               "bgColor--white",
               {

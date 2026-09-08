@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.29.6](https://github.com/narmi/design_system/compare/v6.29.5...v6.29.6) (2026-09-08)
+
+### fix
+
+* **Combobox:** apply layerProps to styled dropdown el ([d9ff9b5](https://github.com/narmi/design_system/commit/d9ff9b529f5c506e8cf24ae38c9bfe7de9cb6570))
+* **Combobox,Select:** fix error borders in dropdowns ([e53b0db](https://github.com/narmi/design_system/commit/e53b0db7d67ac21a2e55940b4548f47f38b122a6))
+
+### test
+
+* **NDS-3176:** repro story for pinned table column painting over dropdown layer (#2267) ([3fa0087](https://github.com/narmi/design_system/commit/3fa008723f08b414595db3b3ee550f74ee5fadce)), closes [#2267](https://github.com/narmi/design_system/issues/2267)
+
 ## [6.29.5](https://github.com/narmi/design_system/compare/v6.29.4...v6.29.5) (2026-09-04)
 
 ### fix

@@ -409,19 +409,16 @@ function Select({
       <Error error={errorText} />
 
       <div
-        className="nds-select-list"
+        className={cc([
+          "nds-select-list",
+          {
+            "nds-select-list--error": !!errorText,
+          },
+        ])}
         {...layerProps}
         ref={layerProps.ref as React.Ref<HTMLDivElement>}
       >
-        <div
-          className={cc([
-            "bgColor--white",
-            {
-              "nds-select-list--error": !!errorText,
-            },
-          ])}
-          {...getMenuProps()}
-        >
+        <div className="bgColor--white" {...getMenuProps()}>
           {showMenu &&
             hasCategories &&
             categories.map(({ label, kind, categoryChildren, isFlat }) => {

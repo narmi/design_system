@@ -1,6 +1,3 @@
-.nds-combobox {
-}
-
 .nds-combobox--active .nds-input-box {
   border-color: var(--theme-primary);
 }
@@ -14,6 +11,10 @@
     & {
       max-height: 24dvh !important;
     }
+  }
+
+  &--error {
+    border-color: var(--color-errorDark);
   }
 }
 

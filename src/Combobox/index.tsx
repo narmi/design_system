@@ -529,18 +529,17 @@ function Combobox({
         </div>
         <Error error={errorText} />
         <div
-          className="nds-combobox-list"
+          className={cc([
+            "nds-combobox-list",
+            {
+              "nds-combobox-list--error": !!errorText,
+            },
+          ])}
           {...layerProps}
           ref={layerProps.ref as React.Ref<HTMLDivElement>}
         >
           <ul
-            className={cc([
-              "list--reset",
-              "bgColor--white",
-              {
-                "nds-combobox-list--error": !!errorText,
-              },
-            ])}
+            className={cc(["list--reset", "bgColor--white"])}
             {...getMenuProps()}
           >
             {isOpen &&

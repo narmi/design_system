@@ -1,6 +1,3 @@
-.nds-combobox {
-}
-
 .nds-combobox--active .nds-input-box {
   border-color: var(--theme-primary);
 }
@@ -15,6 +12,10 @@
       max-height: 24vh !important; // fallback for browsers without dvh (e.g. iOS 14 Safari)
       max-height: 24dvh !important; // keyboard-aware where supported
     }
+  }
+
+  &--error {
+    border-color: var(--color-errorDark);
   }
 }
 

@@ -528,10 +528,13 @@ function Combobox({
           />
         </div>
         <Error error={errorText} />
-        <div {...layerProps} ref={layerProps.ref as React.Ref<HTMLDivElement>}>
+        <div
+          className="nds-combobox-list"
+          {...layerProps}
+          ref={layerProps.ref as React.Ref<HTMLDivElement>}
+        >
           <ul
             className={cc([
-              "nds-combobox-list",
               "list--reset",
               "bgColor--white",
               {

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.16](https://github.com/narmi/design_system/compare/v6.19.15...v6.19.16) (2026-09-08)
+
+### fix
+
+* **Combobox:** apply layerProps to styled dropdown el ([da9794a](https://github.com/narmi/design_system/commit/da9794aa04976195c296233c52fd5c6fbf960319))
+
 ## [6.19.15](https://github.com/narmi/design_system/compare/v6.19.14...v6.19.15) (2026-09-04)
 
 ### fix

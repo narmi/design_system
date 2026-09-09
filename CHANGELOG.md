@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.18](https://github.com/narmi/design_system/compare/v6.16.17...v6.16.18) (2026-09-09)
+
+### fix
+
+* **Select,Combobox:** apply main patch as JS instead of TSX ([ba38b34](https://github.com/narmi/design_system/commit/ba38b341f6603803a4982773cc251fc69f35b53b))
+
 ## [6.16.17](https://github.com/narmi/design_system/compare/v6.16.16...v6.16.17) (2026-09-08)
 
 ### fix

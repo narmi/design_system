@@ -23,7 +23,7 @@ export { VALID_ICON_NAMES };
  */
 export const isAction = (item) => {
   let result = false;
-  if (item && item.props) {
+  if (item && typeof item === "object" && "props" in item) {
     result = "label" in item.props;
   }
   return result;
@@ -176,7 +176,7 @@ const Combobox = ({
   }
 
   const [displayedItems, setDisplayedItems] = useState(items);
-  const inputRef = useRef < HTMLInputElement > null;
+  const inputRef = useRef(null);
 
   const itemToString = (item) =>
     item?.props?.searchValue || item?.props?.value || "";
@@ -198,7 +198,7 @@ const Combobox = ({
     itemToString,
 
     // typeahead behavior is managed by this event callback
-    onInputValueChange: ({ inputValue }) => {
+    onInputValueChange: ({ inputValue = "" }) => {
       // If the user has cleared the input reset selection and state.
       if (inputValue.length === 0) {
         setDisplayedItems(items);
@@ -253,7 +253,6 @@ const Combobox = ({
     setIsOpen: (open) => {
       if (!open) closeMenu();
     },
-    polyfillScrollBug: true,
   });
 
   // Update displayed items passed to `useCombobox` when `items` change
@@ -427,16 +426,19 @@ const Combobox = ({
             onClick={handleMenuToggle}
           />
         </div>
-        <Error error={errorText} className="margin--top--xs" />
-        <div className="nds-combobox-list" {...layerProps} ref={layerProps.ref}>
+        <Error error={errorText} />
+        <div
+          className={cc([
+            "nds-combobox-list",
+            {
+              "nds-combobox-list--error": !!errorText,
+            },
+          ])}
+          {...layerProps}
+          ref={layerProps.ref}
+        >
           <ul
-            className={cc([
-              "list--reset",
-              "bgColor--white",
-              {
-                "nds-combobox-list--error": !!errorText,
-              },
-            ])}
+            className={cc(["list--reset", "bgColor--white"])}
             {...getMenuProps()}
           >
             {isOpen &&

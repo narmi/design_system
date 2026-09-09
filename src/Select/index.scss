@@ -1,5 +1,9 @@
 .nds-select-list {
   @extend %nds-dropdown-layer;
+
+  &--error {
+    border-color: var(--color-errorDark) !important;
+  }
 }
 
 .nds-select-item {
@@ -62,5 +66,5 @@
 .select-category-title--label {
   font-weight: var(--font-weight-normal) !important;
   font-size: var(--font-size-xs) !important;
-  color: var(--color-mediumGrey) !important;
+  color: var(--font-color-secondary) !important;
 }

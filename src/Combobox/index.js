@@ -23,7 +23,7 @@ export { VALID_ICON_NAMES };
  */
 export const isAction = (item) => {
   let result = false;
-  if (item && item.props) {
+  if (item && typeof item === "object" && "props" in item) {
     result = "label" in item.props;
   }
   return result;
@@ -198,7 +198,7 @@ const Combobox = ({
     itemToString,
 
     // typeahead behavior is managed by this event callback
-    onInputValueChange: ({ inputValue }) => {
+    onInputValueChange: ({ inputValue = "" }) => {
       // If the user has cleared the input reset selection and state.
       if (inputValue.length === 0) {
         setDisplayedItems(items);
@@ -426,16 +426,19 @@ const Combobox = ({
             onClick={handleMenuToggle}
           />
         </div>
-        <Error error={errorText} className="margin--top--xs" />
-        <div className="nds-combobox-list" {...layerProps} ref={layerProps.ref}>
+        <Error error={errorText} />
+        <div
+          className={cc([
+            "nds-combobox-list",
+            {
+              "nds-combobox-list--error": !!errorText,
+            },
+          ])}
+          {...layerProps}
+          ref={layerProps.ref}
+        >
           <ul
-            className={cc([
-              "list--reset",
-              "bgColor--white",
-              {
-                "nds-combobox-list--error": !!errorText,
-              },
-            ])}
+            className={cc(["list--reset", "bgColor--white"])}
             {...getMenuProps()}
           >
             {isOpen &&

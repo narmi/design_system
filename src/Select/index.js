@@ -20,7 +20,7 @@ const noop = () => {};
  */
 export const isAction = (item) => {
   let result = false;
-  if (item && item.props) {
+  if (item && typeof item === "object" && "props" in item) {
     result = "onSelect" in item.props;
   }
   return result;
@@ -162,7 +162,6 @@ const Select = ({
   const downshiftOpts = {
     id: id || `nds-select-${label}`,
     items,
-    disabled,
     initialSelectedItem: defaultValue && getItemByValue(defaultValue, items),
     initialIsOpen: defaultOpen,
     itemToString: (item) => getTypeaheadString(userInput, item),
@@ -184,7 +183,7 @@ const Select = ({
 
       if (type === useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter) {
         const { inputValue } = changes;
-        setUserInput(inputValue);
+        setUserInput(inputValue ?? "");
         isOpen = true;
       } else {
         setUserInput(""); // reset input after any other event
@@ -236,7 +235,10 @@ const Select = ({
   });
 
   const hasCategories = categories.length > 0;
-  const hasSelectedItem = selectedItem !== null && selectedItem.props;
+  const selectedItemValue =
+    selectedItem !== null && selectedItem !== ""
+      ? selectedItem.props.value
+      : undefined;
   const showMenu = isOpen && items.length > 0;
 
   const renderItem = (item, items) => {
@@ -258,18 +260,19 @@ const Select = ({
       >
         <Row as="span">
           <Row.Item as="span">{item}</Row.Item>
-          {hasSelectedItem && selectedItem.props.value === item.props.value && (
-            <Row.Item as="span" shrink>
-              <span className="narmi-icon-check fontSize--xl fontWeight--bold" />
-            </Row.Item>
-          )}
+          {selectedItemValue !== undefined &&
+            selectedItemValue === item.props.value && (
+              <Row.Item as="span" shrink>
+                <span className="narmi-icon-check fontSize--xl fontWeight--bold" />
+              </Row.Item>
+            )}
         </Row>
       </li>
     );
   };
 
   const getDetailsProps = (categoryChildren) => {
-    let detailsExtraProps = {};
+    const detailsExtraProps = {};
     if (
       isHighlightedInCategory(highlightedIndex, categoryChildren, items) ||
       isSelectedItemInCategory(selectedItem, categoryChildren)
@@ -294,17 +297,17 @@ const Select = ({
       </div>
       <Error error={errorText} />
 
-      <div {...layerProps}>
-        <div
-          className={cc([
-            "nds-select-list",
-            "bgColor--white",
-            {
-              "nds-select-list--error": !!errorText,
-            },
-          ])}
-          {...getMenuProps()}
-        >
+      <div
+        className={cc([
+          "nds-select-list",
+          {
+            "nds-select-list--error": !!errorText,
+          },
+        ])}
+        {...layerProps}
+        ref={layerProps.ref}
+      >
+        <div className="bgColor--white" {...getMenuProps()}>
           {showMenu &&
             hasCategories &&
             categories.map(({ label, kind, categoryChildren, isFlat }) => {

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.17](https://github.com/narmi/design_system/compare/v6.19.16...v6.19.17) (2026-09-09)
+
+### fix
+
+* **Combobox,Select:** backport zindex patch from main ([95eeaf9](https://github.com/narmi/design_system/commit/95eeaf9d7b810c3f5fecddbeac87332ed28c0d06))
+
 ## [6.19.16](https://github.com/narmi/design_system/compare/v6.19.15...v6.19.16) (2026-09-08)
 
 ### fix

@@ -61,7 +61,7 @@ export const SelectsDate = {
     return <Wrapper />;
   },
   play: async ({ canvas, userEvent }) => {
-    await userEvent.click(canvas.getByRole("textbox"));
+    await userEvent.click(canvas.getByRole("textbox", { name: /select a date/i }));
     const day = await screen.findByLabelText("January 10, 2024");
     await userEvent.click(day);
     await waitFor(() =>

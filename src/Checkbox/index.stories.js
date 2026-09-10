@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { expect, waitFor } from "storybook/test";
 import Checkbox from "./";
 import Alert from "../Alert";
 
@@ -8,6 +9,42 @@ export const Overview = Template.bind({});
 Overview.args = {
   label: "I agree to receive spam",
   name: "spam",
+};
+
+/**
+ * Interaction test verifying that clicking the checkbox toggles its
+ * checked state on and back off.
+ */
+export const Toggles = {
+  name: "Interaction: Toggles on click",
+  render: () => <Checkbox label="I agree to receive spam" name="spam" />,
+  play: async ({ canvas, userEvent }) => {
+    const checkbox = canvas.getByRole("checkbox", {
+      name: /i agree to receive spam/i,
+    });
+    expect(checkbox).not.toBeChecked();
+
+    // check
+    await userEvent.click(checkbox);
+    await waitFor(() => expect(checkbox).toBeChecked());
+
+    // uncheck
+    await userEvent.click(checkbox);
+    await waitFor(() => expect(checkbox).not.toBeChecked());
+  },
+};
+
+/**
+ * Interaction test verifying the indeterminate state renders as a
+ * partially checked checkbox.
+ */
+export const Indeterminate = {
+  name: "Interaction: Renders indeterminate state",
+  render: () => <Checkbox label="Select all" name="select-all" indeterminate />,
+  play: async ({ canvas }) => {
+    const checkbox = canvas.getByRole("checkbox", { name: /select all/i });
+    await waitFor(() => expect(checkbox).toBePartiallyChecked());
+  },
 };
 
 export const FullyControlled = () => {

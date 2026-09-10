@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid,react/jsx-key */
 import React, { useState } from "react";
+import { expect, waitFor } from "storybook/test";
 import Radio from "./";
 import Row from "../Row";
 
@@ -15,6 +16,55 @@ Overview.args = {
       <code className="fontColor--azul">JSX</code> labels
     </>
   ),
+};
+
+/**
+ * Interaction test verifying that clicking a radio selects it and that
+ * selecting another radio in the same group moves the selection.
+ */
+export const Selects = {
+  name: "Interaction: Selects on click",
+  render: () => {
+    const RadioGroup = () => {
+      const [selected, setSelected] = useState("");
+      return (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--space-default)",
+          }}
+        >
+          {["daily", "weekly"].map((value) => (
+            <Radio
+              key={value}
+              name="frequency"
+              value={value}
+              onCheck={setSelected}
+              checked={selected === value}
+            >
+              Repeats {value}
+            </Radio>
+          ))}
+        </div>
+      );
+    };
+    return <RadioGroup />;
+  },
+  play: async ({ canvas, userEvent }) => {
+    const daily = canvas.getByRole("radio", { name: /repeats daily/i });
+    const weekly = canvas.getByRole("radio", { name: /repeats weekly/i });
+    expect(daily).not.toBeChecked();
+
+    // select the first radio
+    await userEvent.click(daily);
+    await waitFor(() => expect(daily).toBeChecked());
+
+    // selecting the second radio moves the selection
+    await userEvent.click(weekly);
+    await waitFor(() => expect(weekly).toBeChecked());
+    expect(daily).not.toBeChecked();
+  },
 };
 
 export const RadioGroups = () => (

@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key,react/no-unescaped-entities */
 import React, { useState } from "react";
+import { expect, screen, waitFor } from "storybook/test";
 import MultiSelect from ".";
 import MultiSelectItem from "./MultiSelectItem";
 
@@ -34,6 +35,90 @@ Overview.args = {
   children,
   // Default behavior uses the defaultSummaryFormatter which renders tokens using tokenLabel.
   isClearable: true,
+};
+
+/**
+ * Interaction test that opens the MultiSelect so Chromatic can snapshot
+ * the dropdown's placement.
+ */
+export const Open = {
+  name: "Interaction: Opens on click",
+  render: () => (
+    <MultiSelect name="chromaticOpen" label="Favorite icons">
+      {children}
+    </MultiSelect>
+  ),
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("combobox"));
+    await waitFor(() =>
+      expect(screen.getByRole("option", { name: /coffee/i })).toBeVisible(),
+    );
+  },
+};
+
+/**
+ * Interaction test for the multi-selection flow: select two options
+ * (the menu stays open by design) and verify both are marked selected.
+ */
+export const SelectMultiple = {
+  name: "Interaction: Selects multiple options",
+  render: () => (
+    <MultiSelect name="chromaticSelectMultiple" label="Favorite icons">
+      {children}
+    </MultiSelect>
+  ),
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("combobox"));
+    await waitFor(() =>
+      expect(screen.getByRole("option", { name: /coffee/i })).toBeVisible(),
+    );
+
+    // select two options; the menu stays open for further selections
+    await userEvent.click(screen.getByRole("option", { name: /coffee/i }));
+    await userEvent.click(screen.getByRole("option", { name: /film/i }));
+
+    await waitFor(() =>
+      expect(screen.getByRole("option", { name: /coffee/i })).toHaveAttribute(
+        "aria-selected",
+        "true",
+      ),
+    );
+    expect(screen.getByRole("option", { name: /film/i })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
+  },
+};
+
+/**
+ * Interaction test verifying the "Clear all" button deselects all items.
+ */
+export const ClearsAll = {
+  name: "Interaction: Clears all selections",
+  render: () => (
+    <MultiSelect name="chromaticClearAll" label="Favorite icons" isClearable>
+      {children}
+    </MultiSelect>
+  ),
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("combobox"));
+    await userEvent.click(screen.getByRole("option", { name: /coffee/i }));
+    await waitFor(() =>
+      expect(screen.getByRole("option", { name: /coffee/i })).toHaveAttribute(
+        "aria-selected",
+        "true",
+      ),
+    );
+
+    // clear all selections
+    await userEvent.click(canvas.getByRole("button", { name: /clear all/i }));
+    await waitFor(() =>
+      expect(screen.getByRole("option", { name: /coffee/i })).toHaveAttribute(
+        "aria-selected",
+        "false",
+      ),
+    );
+  },
 };
 
 export const OverviewSummary = Template.bind({});

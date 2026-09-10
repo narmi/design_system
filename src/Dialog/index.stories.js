@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { expect, screen, waitFor } from "storybook/test";
 import Dialog from "./";
 import Button from "../Button";
 import Popover from "../Popover";
@@ -56,6 +57,71 @@ Overview.args = {
 };
 Overview.argTypes = {
   footer: { control: false }, // hide control for `footer` prop
+};
+
+/**
+ * Stateful wrapper used by interaction stories, since `Dialog` is a
+ * portaled component controlled by the `isOpen` prop.
+ */
+const InteractiveDialog = (args) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Dialog</Button>
+      <Dialog {...args} isOpen={isOpen} onUserDismiss={() => setIsOpen(false)}>
+        <div>Dialog content</div>
+      </Dialog>
+    </>
+  );
+};
+
+/**
+ * Interaction test that opens the Dialog so Chromatic can snapshot the
+ * open modal. The Dialog renders in a portal, so its content is queried
+ * from the document via `screen`.
+ */
+export const Opens = {
+  name: "Interaction: Opens on click",
+  render: () => <InteractiveDialog title="Confirm action" />,
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: /open dialog/i }));
+    await waitFor(() => expect(screen.getByRole("dialog")).toBeVisible());
+    expect(screen.getByText("Confirm action")).toBeVisible();
+  },
+};
+
+/**
+ * Interaction test verifying the close (X) button dismisses the Dialog.
+ */
+export const ClosesViaButton = {
+  name: "Interaction: Closes via close button",
+  render: () => <InteractiveDialog title="Confirm action" />,
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: /open dialog/i }));
+    await waitFor(() => expect(screen.getByRole("dialog")).toBeVisible());
+
+    await userEvent.click(screen.getByRole("button", { name: /^close$/i }));
+    await waitFor(() =>
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+    );
+  },
+};
+
+/**
+ * Interaction test verifying the Escape key dismisses the Dialog.
+ */
+export const ClosesViaEscape = {
+  name: "Interaction: Closes on Escape key",
+  render: () => <InteractiveDialog title="Confirm action" />,
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: /open dialog/i }));
+    await waitFor(() => expect(screen.getByRole("dialog")).toBeVisible());
+
+    await userEvent.keyboard("{Escape}");
+    await waitFor(() =>
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+    );
+  },
 };
 
 export const UsingWithState = InteractiveTemplate.bind({});

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { expect, waitFor } from "storybook/test";
 import TextInput, { VALID_ICON_NAMES } from "./";
 import Button from "../Button";
 
@@ -7,6 +8,64 @@ const Template = (args) => <TextInput {...args} />;
 export const Overview = Template.bind({});
 Overview.args = {
   label: "TextInput Label",
+};
+
+/**
+ * Interaction test verifying that typing updates the input value.
+ */
+export const TypesValue = {
+  name: "Interaction: Accepts typed input",
+  render: () => <TextInput label="Full name" />,
+  play: async ({ canvas, userEvent }) => {
+    const input = canvas.getByRole("textbox", { name: /full name/i });
+    await userEvent.type(input, "Ada Lovelace");
+    await waitFor(() => expect(input).toHaveValue("Ada Lovelace"));
+  },
+};
+
+/**
+ * Interaction test verifying that the clear button empties the input.
+ */
+export const ClearsValue = {
+  name: "Interaction: Clears input on button click",
+  render: () => {
+    const ClearableInput = () => {
+      const [value, setValue] = useState("");
+      return (
+        <TextInput
+          label="Search"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          showClearButton
+        />
+      );
+    };
+    return <ClearableInput />;
+  },
+  play: async ({ canvas, userEvent }) => {
+    const input = canvas.getByRole("textbox", { name: /search/i });
+    await userEvent.type(input, "hello");
+    await waitFor(() => expect(input).toHaveValue("hello"));
+
+    // the clear button only renders once there is a value
+    await userEvent.click(canvas.getByRole("button", { name: /clear/i }));
+    await waitFor(() => expect(input).toHaveValue(""));
+  },
+};
+
+/**
+ * Interaction test verifying the character counter updates as the user types.
+ */
+export const CharacterCounter = {
+  name: "Interaction: Updates character counter",
+  render: () => <TextInput label="Bio" maxLength={20} />,
+  play: async ({ canvas, userEvent }) => {
+    const input = canvas.getByRole("textbox", { name: /bio/i });
+    expect(canvas.getByText("0/20")).toBeInTheDocument();
+
+    await userEvent.type(input, "hello");
+    await waitFor(() => expect(canvas.getByText("5/20")).toBeInTheDocument());
+  },
 };
 
 export const Example = () => {

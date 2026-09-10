@@ -1,10 +1,72 @@
 /* eslint-disable react/jsx-key */
 import React, { useState } from "react";
+import { expect, screen, waitFor } from "storybook/test";
 import AutocompleteModal from "./";
 import Button from "../Button";
 
 // FIXME: code and story for `footerContent`
 // FIXME: code and story for render prop trigger
+
+/**
+ * Reusable picker used by interaction stories.
+ */
+const AssigneePicker = () => {
+  const [selectedValue, setSelectedValue] = useState("Unassigned");
+  return (
+    <div style={{ margin: "8rem" }}>
+      <AutocompleteModal
+        inputLabel="Assignee"
+        trigger={<span>{selectedValue}</span>}
+        onChange={(val) => setSelectedValue(val)}
+      >
+        <AutocompleteModal.Item value="Unassigned" />
+        <AutocompleteModal.Item value="Chris" />
+        <AutocompleteModal.Item value="Nikhil" />
+        <AutocompleteModal.Item value="James" />
+        <AutocompleteModal.Item value="Phil" />
+      </AutocompleteModal>
+    </div>
+  );
+};
+
+/**
+ * Interaction test that opens the AutocompleteModal so Chromatic can
+ * snapshot the popup. Popup content is queried via `screen`.
+ */
+export const Open = {
+  name: "Interaction: Opens on click",
+  render: () => <AssigneePicker />,
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByTestId("nds-popover-trigger"));
+    await waitFor(() => expect(screen.getByRole("combobox")).toBeVisible());
+  },
+};
+
+/**
+ * Interaction test for the full flow: open, type to filter, select an
+ * item, and verify the trigger reflects the selection.
+ */
+export const FiltersAndSelects = {
+  name: "Interaction: Filters and selects an item",
+  render: () => <AssigneePicker />,
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByTestId("nds-popover-trigger"));
+
+    const input = await screen.findByRole("combobox");
+    await userEvent.type(input, "Chris");
+
+    await userEvent.click(
+      await screen.findByRole("option", { name: /chris/i }),
+    );
+
+    // popup closes and the trigger reflects the selection
+    await waitFor(() =>
+      expect(canvas.getByTestId("nds-popover-trigger")).toHaveTextContent(
+        "Chris",
+      ),
+    );
+  },
+};
 
 export const Overview = () => {
   const [selectedValue, setSelectedValue] = useState("Unassigned");

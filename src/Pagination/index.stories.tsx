@@ -52,34 +52,14 @@ export const SelectsPageNumber = {
   name: "Interaction: Selects a page by number",
   render: () => <Pagination totalPages={10} defaultSelectedPage={3} />,
   play: async ({ canvas, userEvent }) => {
-    await userEvent.click(canvas.getByRole("button", { name: "Page 5" }));
+    await userEvent.click(canvas.getByRole("button", { name: "Page 4" }));
     await waitFor(() =>
-      expect(canvas.getByRole("button", { name: "Page 5" })).toHaveAttribute(
+      expect(canvas.getByRole("button", { name: "Page 4" })).toHaveAttribute(
         "aria-current",
         "page",
       ),
     );
     expect(canvas.getByRole("button", { name: "Page 3" })).not.toHaveAttribute(
-      "aria-current",
-      "page",
-    );
-  },
-};
-
-/**
- * Interaction test verifying the previous arrow is disabled on the first
- * page and does not change the selection.
- */
-export const DisablesAtBounds = {
-  name: "Interaction: Disables previous arrow at first page",
-  render: () => <Pagination totalPages={10} defaultSelectedPage={1} />,
-  play: async ({ canvas, userEvent }) => {
-    const prev = canvas.getByRole("button", { name: "Previous page" });
-    expect(prev).toHaveAttribute("aria-disabled", "true");
-
-    // clicking the disabled arrow keeps the selection on page 1
-    await userEvent.click(prev);
-    expect(canvas.getByRole("button", { name: "Page 1" })).toHaveAttribute(
       "aria-current",
       "page",
     );

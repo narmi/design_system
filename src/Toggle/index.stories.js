@@ -1,10 +1,34 @@
 import React, { useState } from "react";
+import { expect, waitFor } from "storybook/test";
 import Toggle from "./";
 import Row from "../Row";
 
 const Template = (args) => <Toggle {...args} />;
 
 export const Overview = Template.bind({});
+
+/**
+ * Interaction test verifying that clicking the toggle flips its active
+ * (`aria-checked`) state on and back off.
+ */
+export const Switches = {
+  name: "Interaction: Switches on click",
+  render: () => <Toggle label="Include hidden accounts" />,
+  play: async ({ canvas, userEvent }) => {
+    const toggle = canvas.getByRole("switch");
+    expect(toggle).toHaveAttribute("aria-checked", "false");
+
+    // switch on
+    await userEvent.click(toggle);
+    await waitFor(() => expect(toggle).toHaveAttribute("aria-checked", "true"));
+
+    // switch off
+    await userEvent.click(toggle);
+    await waitFor(() =>
+      expect(toggle).toHaveAttribute("aria-checked", "false"),
+    );
+  },
+};
 
 export const WithLabel = () => (
   <Toggle defaultActive={true} label="Include hidden accounts" />

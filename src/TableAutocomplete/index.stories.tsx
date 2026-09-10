@@ -1,5 +1,6 @@
 import React from "react";
 import { action } from "storybook/actions";
+import { expect, screen, waitFor } from "storybook/test";
 import TableAutocomplete from ".";
 import Button from "../Button";
 
@@ -44,6 +45,57 @@ Basic.args = {
   placeholder: "Type to search...",
   isDisabled: false,
   hasError: false,
+};
+
+/**
+ * Interaction test that opens the TableAutocomplete by typing so Chromatic
+ * can snapshot the dropdown. Options are queried via `screen`.
+ */
+export const Opens = {
+  name: "Interaction: Opens on typing",
+  render: () => (
+    <TableAutocomplete label="Select a fruit" placeholder="Type to search...">
+      {mockItems.map((item) => (
+        <TableAutocomplete.Item key={item} value={item}>
+          {item}
+        </TableAutocomplete.Item>
+      ))}
+    </TableAutocomplete>
+  ),
+  play: async ({ canvas, userEvent }) => {
+    const input = canvas.getByRole("combobox", { name: /select a fruit/i });
+    await userEvent.type(input, "A");
+    await waitFor(() =>
+      expect(screen.getByRole("option", { name: "Apple" })).toBeVisible(),
+    );
+  },
+};
+
+/**
+ * Interaction test for the full flow: type to filter, select an item, and
+ * verify the input reflects the selection.
+ */
+export const FiltersAndSelects = {
+  name: "Interaction: Filters and selects an item",
+  render: () => (
+    <TableAutocomplete label="Select a fruit" placeholder="Type to search...">
+      {mockItems.map((item) => (
+        <TableAutocomplete.Item key={item} value={item}>
+          {item}
+        </TableAutocomplete.Item>
+      ))}
+    </TableAutocomplete>
+  ),
+  play: async ({ canvas, userEvent }) => {
+    const input = canvas.getByRole("combobox", { name: /select a fruit/i });
+    await userEvent.type(input, "Ban");
+    await waitFor(() =>
+      expect(screen.getByRole("option", { name: "Banana" })).toBeVisible(),
+    );
+
+    await userEvent.click(screen.getByRole("option", { name: "Banana" }));
+    await waitFor(() => expect(input).toHaveValue("Banana"));
+  },
 };
 
 export const WithCustomContent = () => {

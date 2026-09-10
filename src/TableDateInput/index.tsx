@@ -49,6 +49,7 @@ const TableDateInput = ({
   return (
     <DateInput
       {...otherProps}
+      label={label}
       altInput={true}
       altFormat="m/d/Y"
       renderInput={(

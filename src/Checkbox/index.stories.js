@@ -76,6 +76,21 @@ export const MultipleCheckboxes = (args) => (
   </>
 );
 
+export const CheckedDisabled = Template.bind({});
+CheckedDisabled.args = {
+  label: "Checked and disabled",
+  name: "checked_disabled",
+  checked: true,
+  isDisabled: true,
+};
+CheckedDisabled.parameters = {
+  docs: {
+    description: {
+      story: "A checkbox that is both checked and disabled.",
+    },
+  },
+};
+
 export const AsCard = Template.bind({});
 AsCard.args = {
   label: "Checkbox of 'card' kind",
@@ -143,4 +158,30 @@ CustomLabelElements.parameters = {
 export default {
   title: "Components/Checkbox",
   component: Checkbox,
+  // Declare controls explicitly so every prop is editable regardless of whether
+  // react-docgen output is available. Relying on docgen alone is fragile (see
+  // `.storybook/main.ts` and `scripts/checkDocgen.mjs`); when it is missing,
+  // Storybook infers controls only from each story's `args`, which previously
+  // left most props (e.g. `checked`, `isDisabled`, `kind`) without controls.
+  argTypes: {
+    label: { control: "text" },
+    markdownLabel: { control: "text" },
+    name: { control: "text" },
+    id: { control: "text" },
+    value: { control: "text" },
+    error: { control: "text" },
+    testId: { control: "text" },
+    checked: { control: "boolean" },
+    defaultChecked: { control: "boolean" },
+    isDisabled: { control: "boolean" },
+    disabled: { control: "boolean" },
+    indeterminate: { control: "boolean" },
+    hasError: { control: "boolean" },
+    kind: {
+      control: "select",
+      options: ["normal", "condensed", "card", "table"],
+    },
+    onChange: { action: "changed" },
+    renderLabel: { control: false },
+  },
 };

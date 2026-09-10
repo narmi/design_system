@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { expect, waitFor } from "storybook/test";
 import AnchoredDialog from "./";
 import Button from "../Button";
 import Checkbox from "../Checkbox";
@@ -37,6 +38,47 @@ export const Interactive = InteractiveTemplate.bind({});
 Interactive.args = {
   renderHeader: () => <div>Custom JSX Header</div>,
   children: <div>Dialog content goes here</div>,
+};
+
+/**
+ * Interaction test that opens the AnchoredDialog on trigger click so
+ * Chromatic can snapshot the anchored placement.
+ */
+export const Opens = {
+  name: "Interaction: Opens on trigger click",
+  render: () => <InteractiveTemplate {...Interactive.args} />,
+  play: async ({ canvas, userEvent }) => {
+    // content is not rendered until the dialog opens
+    expect(
+      canvas.queryByText("Dialog content goes here"),
+    ).not.toBeInTheDocument();
+
+    await userEvent.click(canvas.getByRole("button", { name: /open dialog/i }));
+    await waitFor(() =>
+      expect(canvas.getByText("Dialog content goes here")).toBeVisible(),
+    );
+  },
+};
+
+/**
+ * Interaction test verifying the dialog closes via its footer button.
+ */
+export const Closes = {
+  name: "Interaction: Closes via footer button",
+  render: () => <InteractiveTemplate {...Interactive.args} />,
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: /open dialog/i }));
+    await waitFor(() =>
+      expect(canvas.getByText("Dialog content goes here")).toBeVisible(),
+    );
+
+    await userEvent.click(canvas.getByRole("button", { name: /^close$/i }));
+    await waitFor(() =>
+      expect(
+        canvas.queryByText("Dialog content goes here"),
+      ).not.toBeInTheDocument(),
+    );
+  },
 };
 
 const ChecklistTemplate = (args) => {

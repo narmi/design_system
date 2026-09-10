@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { expect, waitFor } from "storybook/test";
 import { FieldText } from "./index";
 import { FIELD_MASKS } from "../masks";
 import iconSelection from "../../icons/selection.json";
@@ -26,6 +27,62 @@ Overview.args = {
   id: "email",
   label: "Email Address",
   value: "",
+};
+
+/**
+ * Interaction test verifying that typing updates the field value.
+ */
+export const TypesValue = {
+  name: "Interaction: Accepts typed input",
+  render: () => {
+    const ControlledField = () => {
+      const [value, setValue] = useState("");
+      return (
+        <FieldText
+          id="full-name"
+          label="Full Name"
+          value={value}
+          onChange={setValue}
+        />
+      );
+    };
+    return <ControlledField />;
+  },
+  play: async ({ canvas, userEvent }) => {
+    const input = canvas.getByRole("textbox", { name: /full name/i });
+    await userEvent.type(input, "Ada Lovelace");
+    await waitFor(() => expect(input).toHaveValue("Ada Lovelace"));
+  },
+};
+
+/**
+ * Interaction test verifying the clear button empties the field.
+ */
+export const ClearsValue = {
+  name: "Interaction: Clears input on button click",
+  render: () => {
+    const ClearableField = () => {
+      const [value, setValue] = useState("");
+      return (
+        <FieldText
+          id="searchable"
+          label="Searchable Text"
+          value={value}
+          onChange={setValue}
+          showClearButton
+        />
+      );
+    };
+    return <ClearableField />;
+  },
+  play: async ({ canvas, userEvent }) => {
+    const input = canvas.getByRole("textbox", { name: /searchable text/i });
+    await userEvent.type(input, "hello");
+    await waitFor(() => expect(input).toHaveValue("hello"));
+
+    await userEvent.click(canvas.getByRole("button", { name: /clear input/i }));
+    await waitFor(() => expect(input).toHaveValue(""));
+  },
 };
 
 export const WithPlaceholder = Template.bind({});

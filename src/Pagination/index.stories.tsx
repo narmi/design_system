@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { expect, waitFor } from "storybook/test";
 import Pagination from "./";
 
 const Template = (args) => <Pagination {...args} />;
@@ -7,6 +8,62 @@ export const Overview = Template.bind({});
 Overview.args = {
   totalPages: 40,
   defaultSelectedPage: 3,
+};
+
+/**
+ * Interaction test verifying the next/previous arrows move the selected
+ * page (tracked via `aria-current`).
+ */
+export const NavigatesWithArrows = {
+  name: "Interaction: Navigates with next/previous arrows",
+  render: () => <Pagination totalPages={10} defaultSelectedPage={3} />,
+  play: async ({ canvas, userEvent }) => {
+    expect(canvas.getByRole("button", { name: "Page 3" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
+
+    // advance to the next page
+    await userEvent.click(canvas.getByRole("button", { name: "Next page" }));
+    await waitFor(() =>
+      expect(canvas.getByRole("button", { name: "Page 4" })).toHaveAttribute(
+        "aria-current",
+        "page",
+      ),
+    );
+
+    // go back to the previous page
+    await userEvent.click(
+      canvas.getByRole("button", { name: "Previous page" }),
+    );
+    await waitFor(() =>
+      expect(canvas.getByRole("button", { name: "Page 3" })).toHaveAttribute(
+        "aria-current",
+        "page",
+      ),
+    );
+  },
+};
+
+/**
+ * Interaction test verifying clicking a page number selects that page.
+ */
+export const SelectsPageNumber = {
+  name: "Interaction: Selects a page by number",
+  render: () => <Pagination totalPages={10} defaultSelectedPage={3} />,
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: "Page 4" }));
+    await waitFor(() =>
+      expect(canvas.getByRole("button", { name: "Page 4" })).toHaveAttribute(
+        "aria-current",
+        "page",
+      ),
+    );
+    expect(canvas.getByRole("button", { name: "Page 3" })).not.toHaveAttribute(
+      "aria-current",
+      "page",
+    );
+  },
 };
 
 export const FullyControlled = () => {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { expect, waitFor } from "storybook/test";
 import TableInput from "./";
 import Table from "../Table";
 import type { TableInputProps } from "./";
@@ -38,6 +39,60 @@ WithMaxLength.args = {
   placeholder: "Enter text here...",
   isDisabled: false,
   maxLength: 12,
+};
+
+/**
+ * Interaction test verifying that typing updates the cell value.
+ */
+export const TypesValue = {
+  name: "Interaction: Accepts typed input",
+  render: () => {
+    const ControlledInput = () => {
+      const [value, setValue] = useState("");
+      return (
+        <TableInput
+          label="Edit name"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="Enter name"
+        />
+      );
+    };
+    return <ControlledInput />;
+  },
+  play: async ({ canvas, userEvent }) => {
+    const input = canvas.getByRole("textbox", { name: /edit name/i });
+    await userEvent.type(input, "Jane Smith");
+    await waitFor(() => expect(input).toHaveValue("Jane Smith"));
+  },
+};
+
+/**
+ * Interaction test verifying the character counter updates as the user types.
+ */
+export const CharacterCounter = {
+  name: "Interaction: Updates character counter",
+  render: () => {
+    const ControlledInput = () => {
+      const [value, setValue] = useState("");
+      return (
+        <TableInput
+          label="Edit code"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          maxLength={12}
+        />
+      );
+    };
+    return <ControlledInput />;
+  },
+  play: async ({ canvas, userEvent }) => {
+    const input = canvas.getByRole("textbox", { name: /edit code/i });
+    expect(canvas.getByText("0/12")).toBeInTheDocument();
+
+    await userEvent.type(input, "abc");
+    await waitFor(() => expect(canvas.getByText("3/12")).toBeInTheDocument());
+  },
 };
 
 export const InATable = () => {

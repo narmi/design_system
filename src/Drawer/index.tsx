@@ -126,6 +126,19 @@ const Drawer = ({
     }
   };
 
+  // Navigation buttons on vertical drawers are the opposite compared to
+  // horizontal ones due to the order of navigation buttons being the opposite
+  // (rows are reversed in parent divs for horizontal drawers)
+  const [firstButton, secondButton] = isHorizontal
+    ? [
+        { onClick: onNext, label: "Next", chevron: "right" as const },
+        { onClick: onPrev, label: "Previous", chevron: "left" as const },
+      ]
+    : [
+        { onClick: onPrev, label: "Previous", chevron: "up" as const },
+        { onClick: onNext, label: "Next", chevron: "down" as const },
+      ];
+
   /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
   const navigationContainerJSX = isVerticalMobileDrawer ? null : (
     <div
@@ -156,47 +169,16 @@ const Drawer = ({
         )}
         {showControls && (
           <>
-            <button
-              className={cc([
-                `button--reset navigation-button navigation-button--${position} alignChild--center--center`,
-                {
-                  // Navigation buttons on vertical drawers are the opposite compared to
-                  // horizontal ones due to the order of navigation buttons being the opposite
-                  // (rows are reversed in parent divs for horizontal drawers)
-                  "navigation-button--disabled": isHorizontal
-                    ? onNext === undefined
-                    : onPrev === undefined,
-                },
-              ])}
-              onClick={isHorizontal ? onNext : onPrev}
-              aria-controls={panelId}
-              aria-label={isHorizontal ? "Next" : "Previous"}
-            >
-              <span
-                className={`narmi-icon-chevron-${
-                  isHorizontal ? "right" : "up"
-                } fontSize--heading3`}
-              />
-            </button>
-            <button
-              className={cc([
-                `button--reset navigation-button navigation-button--${position} alignChild--center--center`,
-                {
-                  "navigation-button--disabled": isHorizontal
-                    ? onPrev === undefined
-                    : onNext === undefined,
-                },
-              ])}
-              onClick={isHorizontal ? onPrev : onNext}
-              aria-controls={panelId}
-              aria-label={isHorizontal ? "Previous" : "Next"}
-            >
-              <span
-                className={`narmi-icon-chevron-${
-                  isHorizontal ? "left" : "down"
-                } fontSize--heading3`}
-              />
-            </button>
+            <NavigationButton
+              position={position}
+              panelId={panelId}
+              {...firstButton}
+            />
+            <NavigationButton
+              position={position}
+              panelId={panelId}
+              {...secondButton}
+            />
           </>
         )}
       </div>
@@ -307,5 +289,36 @@ const Drawer = ({
 
   return <>{document ? renderDrawerInOutlet() : null}</>;
 };
+
+type Position = NonNullable<DrawerProps["position"]>;
+type ChevronDirection = "up" | "down" | "left" | "right";
+
+interface NavigationButtonProps {
+  position: Position;
+  onClick?: () => void;
+  label: string;
+  chevron: ChevronDirection;
+  panelId: string;
+}
+
+const NavigationButton = ({
+  position,
+  onClick,
+  label,
+  chevron,
+  panelId,
+}: NavigationButtonProps) => (
+  <button
+    className={cc([
+      `button--reset navigation-button navigation-button--${position} alignChild--center--center`,
+      { "navigation-button--disabled": onClick === undefined },
+    ])}
+    onClick={onClick}
+    aria-controls={panelId}
+    aria-label={label}
+  >
+    <span className={`narmi-icon-chevron-${chevron} fontSize--heading3`} />
+  </button>
+);
 
 export default Drawer;

@@ -53,6 +53,7 @@ Overview.args = {
   headerStyle: "bordered",
   onUserDismiss: () => {},
   width: "500px",
+  maxHeight: "80vh",
 };
 Overview.argTypes = {
   footer: { control: false }, // hide control for `footer` prop

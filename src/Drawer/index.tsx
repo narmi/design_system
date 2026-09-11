@@ -201,34 +201,13 @@ const Drawer = ({
     >
       <div className={cc(["drawer-content", `padding--all--${paddingSize}`])}>
         {isVerticalMobileDrawer && (
-          <>
-            {showControls && (
-              <>
-                <button
-                  className="button--reset mobile-navigation-button mobile-navigation-button--prev"
-                  onClick={onPrev}
-                  aria-controls={panelId}
-                  aria-label="Previous"
-                >
-                  <span className="narmi-icon-chevron-left fontSize--heading3" />
-                </button>
-                <button
-                  className="button--reset mobile-navigation-button mobile-navigation-button--next"
-                  onClick={onNext}
-                  aria-controls={panelId}
-                  aria-label="Next"
-                >
-                  <span className="narmi-icon-chevron-right fontSize--heading3" />
-                </button>
-              </>
-            )}
-            <button
-              className="button--reset mobile-navigation-button mobile-navigation-button--close"
-              onClick={onUserDismiss}
-            >
-              <span className="narmi-icon-x clickable fontSize--heading3" />
-            </button>
-          </>
+          <MobileNavigation
+            showControls={showControls}
+            onUserDismiss={onUserDismiss}
+            onNext={onNext}
+            onPrev={onPrev}
+            panelId={panelId}
+          />
         )}
         {typeof children === "function"
           ? children({ isVisible: isTransitioning })
@@ -319,6 +298,51 @@ const NavigationButton = ({
   >
     <span className={`narmi-icon-chevron-${chevron} fontSize--heading3`} />
   </button>
+);
+
+interface MobileNavigationProps {
+  showControls: boolean;
+  onUserDismiss: () => void;
+  onNext?: () => void;
+  onPrev?: () => void;
+  panelId: string;
+}
+
+const MobileNavigation = ({
+  showControls,
+  onUserDismiss,
+  onNext,
+  onPrev,
+  panelId,
+}: MobileNavigationProps) => (
+  <>
+    {showControls && (
+      <>
+        <button
+          className="button--reset mobile-navigation-button mobile-navigation-button--prev"
+          onClick={onPrev}
+          aria-controls={panelId}
+          aria-label="Previous"
+        >
+          <span className="narmi-icon-chevron-left fontSize--heading3" />
+        </button>
+        <button
+          className="button--reset mobile-navigation-button mobile-navigation-button--next"
+          onClick={onNext}
+          aria-controls={panelId}
+          aria-label="Next"
+        >
+          <span className="narmi-icon-chevron-right fontSize--heading3" />
+        </button>
+      </>
+    )}
+    <button
+      className="button--reset mobile-navigation-button mobile-navigation-button--close"
+      onClick={onUserDismiss}
+    >
+      <span className="narmi-icon-x clickable fontSize--heading3" />
+    </button>
+  </>
 );
 
 export default Drawer;

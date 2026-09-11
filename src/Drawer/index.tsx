@@ -126,65 +126,6 @@ const Drawer = ({
     }
   };
 
-  // Navigation buttons on vertical drawers are the opposite compared to
-  // horizontal ones due to the order of navigation buttons being the opposite
-  // (rows are reversed in parent divs for horizontal drawers)
-  const [firstButton, secondButton] = isHorizontal
-    ? [
-        { onClick: onNext, label: "Next", chevron: "right" as const },
-        { onClick: onPrev, label: "Previous", chevron: "left" as const },
-      ]
-    : [
-        { onClick: onPrev, label: "Previous", chevron: "up" as const },
-        { onClick: onNext, label: "Next", chevron: "down" as const },
-      ];
-
-  /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
-  const navigationContainerJSX = isVerticalMobileDrawer ? null : (
-    <div
-      ref={navRef}
-      onClick={handleShimClick}
-      style={depthStyle}
-      className={`drawer padding--all--xxl drawer--${position} navigation  ${
-        isShown ? `navigation--open--${position}` : ""
-      }`}
-      data-testid={testId}
-    >
-      <div className={`navigation-container--${position}`}>
-        {showClose && (
-          <button
-            className={`button--reset navigation-button navigation-button--${position} alignChild--center--center`}
-            onClick={onUserDismiss}
-            aria-label="Close"
-          >
-            <span className="narmi-icon-x clickable fontSize--heading3" />
-          </button>
-        )}
-        {showClose && showControls && (
-          <div
-            className={
-              isHorizontal ? "margin--right--xl" : "margin--bottom--xl"
-            }
-          />
-        )}
-        {showControls && (
-          <>
-            <NavigationButton
-              position={position}
-              panelId={panelId}
-              {...firstButton}
-            />
-            <NavigationButton
-              position={position}
-              panelId={panelId}
-              {...secondButton}
-            />
-          </>
-        )}
-      </div>
-    </div>
-  );
-
   const childrenJSX = (
     <div
       style={depthStyle}
@@ -238,7 +179,23 @@ const Drawer = ({
           className={cc(["backdrop", { "backdrop--open": isShown }])}
           onClick={handleShimClick}
         />
-        {navigationContainerJSX}
+        {!isVerticalMobileDrawer && (
+          <DrawerNavigation
+            navRef={navRef}
+            onClick={handleShimClick}
+            depthStyle={depthStyle}
+            position={position}
+            isHorizontal={isHorizontal}
+            isShown={isShown}
+            showClose={showClose}
+            showControls={showControls}
+            onUserDismiss={onUserDismiss}
+            onNext={onNext}
+            onPrev={onPrev}
+            panelId={panelId}
+            testId={testId}
+          />
+        )}
         {!showControls ? (
           childrenJSX
         ) : (
@@ -299,6 +256,97 @@ const NavigationButton = ({
     <span className={`narmi-icon-chevron-${chevron} fontSize--heading3`} />
   </button>
 );
+
+interface DrawerNavigationProps {
+  navRef: React.RefObject<HTMLDivElement>;
+  onClick: (event: React.MouseEvent) => void;
+  depthStyle: React.CSSProperties;
+  position: Position;
+  isHorizontal: boolean;
+  isShown: boolean;
+  showClose: boolean;
+  showControls: boolean;
+  onUserDismiss: () => void;
+  onNext?: () => void;
+  onPrev?: () => void;
+  panelId: string;
+  testId?: string;
+}
+
+/* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
+const DrawerNavigation = ({
+  navRef,
+  onClick,
+  depthStyle,
+  position,
+  isHorizontal,
+  isShown,
+  showClose,
+  showControls,
+  onUserDismiss,
+  onNext,
+  onPrev,
+  panelId,
+  testId,
+}: DrawerNavigationProps) => {
+  // Navigation buttons on vertical drawers are the opposite compared to
+  // horizontal ones due to the order of navigation buttons being the opposite
+  // (rows are reversed in parent divs for horizontal drawers)
+  const [firstButton, secondButton] = isHorizontal
+    ? [
+        { onClick: onNext, label: "Next", chevron: "right" as const },
+        { onClick: onPrev, label: "Previous", chevron: "left" as const },
+      ]
+    : [
+        { onClick: onPrev, label: "Previous", chevron: "up" as const },
+        { onClick: onNext, label: "Next", chevron: "down" as const },
+      ];
+
+  return (
+    <div
+      ref={navRef}
+      onClick={onClick}
+      style={depthStyle}
+      className={`drawer padding--all--xxl drawer--${position} navigation  ${
+        isShown ? `navigation--open--${position}` : ""
+      }`}
+      data-testid={testId}
+    >
+      <div className={`navigation-container--${position}`}>
+        {showClose && (
+          <button
+            className={`button--reset navigation-button navigation-button--${position} alignChild--center--center`}
+            onClick={onUserDismiss}
+            aria-label="Close"
+          >
+            <span className="narmi-icon-x clickable fontSize--heading3" />
+          </button>
+        )}
+        {showClose && showControls && (
+          <div
+            className={
+              isHorizontal ? "margin--right--xl" : "margin--bottom--xl"
+            }
+          />
+        )}
+        {showControls && (
+          <>
+            <NavigationButton
+              position={position}
+              panelId={panelId}
+              {...firstButton}
+            />
+            <NavigationButton
+              position={position}
+              panelId={panelId}
+              {...secondButton}
+            />
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
 
 interface MobileNavigationProps {
   showControls: boolean;

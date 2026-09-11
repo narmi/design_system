@@ -24,7 +24,7 @@ module.exports = {
       plugins: ["@typescript-eslint"],
       extends: ["plugin:@typescript-eslint/recommended"],
       rules: {
-        complexity: ["error", 31],
+        complexity: ["error", 17],
       },
     },
     {

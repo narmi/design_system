@@ -87,6 +87,7 @@ const Drawer = ({
   const navRef = useRef<HTMLDivElement>(null);
 
   const isTransitioning = useMountTransition(isOpen, 300);
+  const isShown = isOpen && isTransitioning;
   const { m } = useBreakpoints();
   const isHorizontal = position === "bottom" || position === "top";
   const isVerticalMobileDrawer = !m && !isHorizontal;
@@ -132,7 +133,7 @@ const Drawer = ({
       onClick={handleShimClick}
       style={depthStyle}
       className={`drawer padding--all--xxl drawer--${position} navigation  ${
-        isOpen && isTransitioning ? `navigation--open--${position}` : ""
+        isShown ? `navigation--open--${position}` : ""
       }`}
       data-testid={testId}
     >
@@ -209,7 +210,7 @@ const Drawer = ({
         "drawer",
         `drawer--${position}`,
         {
-          [`drawer--open--${position}`]: isOpen && isTransitioning,
+          [`drawer--open--${position}`]: isShown,
           "drawer--vertical--mobile": isVerticalMobileDrawer,
         },
       ])}
@@ -273,10 +274,7 @@ const Drawer = ({
       <FocusLock>
         <div
           ref={shimRef}
-          className={cc([
-            "backdrop",
-            { "backdrop--open": isOpen && isTransitioning },
-          ])}
+          className={cc(["backdrop", { "backdrop--open": isShown }])}
           onClick={handleShimClick}
         />
         {navigationContainerJSX}

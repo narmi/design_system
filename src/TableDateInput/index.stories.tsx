@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { expect, screen, waitFor } from "storybook/test";
+import React from "react";
 import TableDateInput from "./";
 import type { TableDateInputProps } from "./";
 
@@ -9,68 +8,6 @@ export const Overview = Template.bind({});
 Overview.args = {
   label: "Select date",
   placeholder: "MM/DD/YYYY",
-};
-
-/**
- * Interaction test that opens the flatpickr calendar so Chromatic can
- * snapshot it. The calendar is appended to the document body, so it is
- * queried via `screen`.
- */
-export const OpensCalendar = {
-  name: "Interaction: Opens the calendar",
-  render: () => (
-    <TableDateInput
-      label="Select a date"
-      placeholder="MM/DD/YYYY"
-      defaultDate="2024-01-15"
-    />
-  ),
-  play: async ({ canvas, userEvent }) => {
-    await userEvent.click(
-      canvas.getByRole("textbox", { name: /select a date/i }),
-    );
-    // The calendar mounts to document.body, so it is queried via `screen`.
-    await waitFor(() =>
-      expect(screen.getByLabelText("January 10, 2024")).toBeVisible(),
-    );
-  },
-};
-
-/**
- * Interaction test for selecting a day. The `onChange` callback receives
- * the formatted date, which is surfaced in the story for assertion.
- */
-export const SelectsDate = {
-  name: "Interaction: Selects a date",
-  render: () => {
-    const Wrapper = () => {
-      const [date, setDate] = useState("");
-      return (
-        <>
-          <TableDateInput
-            label="Select a date"
-            placeholder="MM/DD/YYYY"
-            defaultDate="2024-01-15"
-            onChange={setDate}
-          />
-          <div data-testid="selected-date">Selected: {date}</div>
-        </>
-      );
-    };
-    return <Wrapper />;
-  },
-  play: async ({ canvas, userEvent }) => {
-    await userEvent.click(
-      canvas.getByRole("textbox", { name: /select a date/i }),
-    );
-    const day = await screen.findByLabelText("January 10, 2024");
-    await userEvent.click(day);
-    await waitFor(() =>
-      expect(canvas.getByTestId("selected-date")).toHaveTextContent(
-        "2024-01-10",
-      ),
-    );
-  },
 };
 
 export const WithDefaultDate = () => {

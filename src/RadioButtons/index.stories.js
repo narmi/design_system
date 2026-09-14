@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { expect, waitFor } from "storybook/test";
 import RadioButtons from "./";
 
 const Template = (args) => <RadioButtons {...args} />;
@@ -11,6 +12,60 @@ Overview.args = {
     OptionC: "C",
   },
   name: "options",
+};
+
+/**
+ * Interaction test verifying that selecting an option checks its radio
+ * and moves the selection away from any previously selected option.
+ */
+export const Selects = {
+  name: "Interaction: Selects an option",
+  render: () => (
+    <RadioButtons
+      options={{ OptionA: "A", OptionB: "B", OptionC: "C" }}
+      name="interaction-options"
+    />
+  ),
+  play: async ({ canvas, userEvent }) => {
+    const optionB = canvas.getByRole("radio", { name: /optionb/i });
+    expect(optionB).not.toBeChecked();
+
+    await userEvent.click(optionB);
+    await waitFor(() => expect(optionB).toBeChecked());
+
+    // selecting another option moves the selection
+    const optionC = canvas.getByRole("radio", { name: /optionc/i });
+    await userEvent.click(optionC);
+    await waitFor(() => expect(optionC).toBeChecked());
+    expect(optionB).not.toBeChecked();
+  },
+};
+
+/**
+ * Interaction test verifying that an option's details are revealed only
+ * once that option is selected.
+ */
+export const RevealsDetails = {
+  name: "Interaction: Reveals details on selection",
+  render: () => (
+    <RadioButtons
+      options={{
+        OptionA: { value: "A", details: "Details for option A" },
+        OptionB: { value: "B", details: "Details for option B" },
+      }}
+      name="interaction-details"
+      kind="card"
+    />
+  ),
+  play: async ({ canvas, userEvent }) => {
+    // details are hidden until an option is selected
+    expect(canvas.queryByText("Details for option A")).not.toBeInTheDocument();
+
+    await userEvent.click(canvas.getByRole("radio", { name: /optiona/i }));
+    await waitFor(() =>
+      expect(canvas.getByText("Details for option A")).toBeVisible(),
+    );
+  },
 };
 
 export const Example = () => {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { expect, screen, waitFor } from "storybook/test";
 import { FieldSelect } from "./index";
 
 export default {
@@ -31,6 +32,48 @@ export const Overview = Template.bind({});
 Overview.args = {
   label: "Country",
   placeholder: "Select a country",
+};
+
+/**
+ * Interaction test that opens the Field.Select so Chromatic can snapshot
+ * the dropdown. Options render in a dropdown layer, queried via `screen`.
+ */
+export const Opens = {
+  name: "Interaction: Opens on click",
+  render: () => <Template label="Country" placeholder="Select a country" />,
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("combobox", { name: /country/i }));
+    await waitFor(() =>
+      expect(
+        screen.getByRole("option", { name: /united states/i }),
+      ).toBeVisible(),
+    );
+  },
+};
+
+/**
+ * Interaction test for the selection flow: open, pick an option, and
+ * verify the trigger reflects the choice and the menu closes.
+ */
+export const SelectsOption = {
+  name: "Interaction: Selects an option",
+  render: () => <Template label="Country" placeholder="Select a country" />,
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("combobox", { name: /country/i }));
+    await waitFor(() =>
+      expect(screen.getByRole("option", { name: /canada/i })).toBeVisible(),
+    );
+
+    await userEvent.click(screen.getByRole("option", { name: /canada/i }));
+    await waitFor(() =>
+      expect(
+        screen.queryByRole("option", { name: /canada/i }),
+      ).not.toBeInTheDocument(),
+    );
+    expect(
+      canvas.getByRole("combobox", { name: /country/i }),
+    ).toHaveTextContent("Canada");
+  },
 };
 
 export const WithValue = Template.bind({});

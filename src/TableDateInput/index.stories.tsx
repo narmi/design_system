@@ -26,13 +26,12 @@ export const OpensCalendar = {
     />
   ),
   play: async ({ canvas, userEvent }) => {
-    await userEvent.click(canvas.getByRole("textbox"));
-    // flatpickr fades the calendar in via a CSS opacity animation. Chromatic
-    // freezes animations during the play phase, leaving the calendar at
-    // opacity:0 — which trips `toBeVisible`. Assert the calendar is open
-    // instead, which reflects the interaction without the animation flake.
+    await userEvent.click(
+      canvas.getByRole("textbox", { name: /select a date/i }),
+    );
+    // The calendar mounts to document.body, so it is queried via `screen`.
     await waitFor(() =>
-      expect(document.querySelector(".flatpickr-calendar")).toHaveClass("open"),
+      expect(screen.getByLabelText("January 10, 2024")).toBeVisible(),
     );
   },
 };
@@ -61,7 +60,9 @@ export const SelectsDate = {
     return <Wrapper />;
   },
   play: async ({ canvas, userEvent }) => {
-    await userEvent.click(canvas.getByRole("textbox", { name: /select a date/i }));
+    await userEvent.click(
+      canvas.getByRole("textbox", { name: /select a date/i }),
+    );
     const day = await screen.findByLabelText("January 10, 2024");
     await userEvent.click(day);
     await waitFor(() =>

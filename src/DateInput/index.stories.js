@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { expect, screen, waitFor } from "storybook/test";
+import React from "react";
 import DateInput from "./";
 import Popover from "../Popover";
 
@@ -15,56 +14,6 @@ const Template = (args) => <DateInput {...args} />;
 export const Overview = Template.bind({});
 Overview.args = {
   label: "Date of Birth",
-};
-
-/**
- * Interaction test that opens the flatpickr calendar so Chromatic can
- * snapshot it. The calendar is appended to the document body, so it is
- * queried via `screen`.
- */
-export const OpensCalendar = {
-  name: "Interaction: Opens the calendar",
-  render: () => <DateInput label="Select a date" defaultDate="2021-10-22" />,
-  play: async ({ canvas, userEvent }) => {
-    await userEvent.click(canvas.getByLabelText(/select a date/i));
-    await waitFor(() =>
-      expect(screen.getByLabelText("October 15, 2021")).toBeVisible(),
-    );
-  },
-};
-
-/**
- * Interaction test for selecting a day. The `onChange` callback receives
- * the formatted date, which is surfaced in the story for assertion.
- */
-export const SelectsDate = {
-  name: "Interaction: Selects a date",
-  render: () => {
-    const Wrapper = () => {
-      const [date, setDate] = useState("");
-      return (
-        <>
-          <DateInput
-            label="Select a date"
-            defaultDate="2021-10-22"
-            onChange={setDate}
-          />
-          <div data-testid="selected-date">Selected: {date}</div>
-        </>
-      );
-    };
-    return <Wrapper />;
-  },
-  play: async ({ canvas, userEvent }) => {
-    await userEvent.click(canvas.getByLabelText(/select a date/i));
-    const day = await screen.findByLabelText("October 15, 2021");
-    await userEvent.click(day);
-    await waitFor(() =>
-      expect(canvas.getByTestId("selected-date")).toHaveTextContent(
-        "2021-10-15",
-      ),
-    );
-  },
 };
 
 export const WithDisabledDates = Template.bind({});

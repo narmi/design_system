@@ -20,7 +20,10 @@ import { fileURLToPath } from "node:url";
 import reactDocgenTypescript from "@joshwooding/vite-plugin-react-docgen-typescript";
 import mainConfig from "../.storybook/main.ts";
 
-const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const ROOT_DIR = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+);
 
 /**
  * Representative components covering the shapes we care about: a plain

@@ -7,193 +7,193 @@ All notable changes to this project will be documented in this file. See
 
 ### fix
 
-* forward label in table date input ([b71e45e](https://github.com/narmi/design_system/commit/b71e45e322496e702db0cad01e5e9aa08365ce3c))
-* **Tabs:** use CSS snap scrolling to prevent overflow ([eecdb4e](https://github.com/narmi/design_system/commit/eecdb4ea214f706ae26b4e31a2e1525a96b60e3e))
+- forward label in table date input ([b71e45e](https://github.com/narmi/design_system/commit/b71e45e322496e702db0cad01e5e9aa08365ce3c))
+- **Tabs:** use CSS snap scrolling to prevent overflow ([eecdb4e](https://github.com/narmi/design_system/commit/eecdb4ea214f706ae26b4e31a2e1525a96b60e3e))
 
 ### test
 
-* add interaction tests for chromatic ([b13978b](https://github.com/narmi/design_system/commit/b13978bfecf91f64bf1bd3913259cc22353d614e))
-* update dateinput interaction assertion ([737787f](https://github.com/narmi/design_system/commit/737787fd28af778df96336527e149cc79b23d7ee))
-* update incorrect assertion ([018bbd7](https://github.com/narmi/design_system/commit/018bbd7cbccf9475f1f166b661d885cdc4f987cf))
-* update interaction assertion ([0116b47](https://github.com/narmi/design_system/commit/0116b4772cd7dfccf572763db570e0dad7ad6a12))
+- add interaction tests for chromatic ([b13978b](https://github.com/narmi/design_system/commit/b13978bfecf91f64bf1bd3913259cc22353d614e))
+- update dateinput interaction assertion ([737787f](https://github.com/narmi/design_system/commit/737787fd28af778df96336527e149cc79b23d7ee))
+- update incorrect assertion ([018bbd7](https://github.com/narmi/design_system/commit/018bbd7cbccf9475f1f166b661d885cdc4f987cf))
+- update interaction assertion ([0116b47](https://github.com/narmi/design_system/commit/0116b4772cd7dfccf572763db570e0dad7ad6a12))
 
 ## [6.29.7](https://github.com/narmi/design_system/compare/v6.29.6...v6.29.7) (2026-09-14)
 
 ### docs
 
-* fix checkbox controls ([9d2ef52](https://github.com/narmi/design_system/commit/9d2ef52f74d2d38018df974b40e88467a5a55873))
+- fix checkbox controls ([9d2ef52](https://github.com/narmi/design_system/commit/9d2ef52f74d2d38018df974b40e88467a5a55873))
 
 ### fix
 
-* forward label in table date input ([d847b7a](https://github.com/narmi/design_system/commit/d847b7ad2d731390867547204e04d048de78371f))
+- forward label in table date input ([d847b7a](https://github.com/narmi/design_system/commit/d847b7ad2d731390867547204e04d048de78371f))
 
 ### test
 
-* add interaction tests for chromatic ([d8db6ee](https://github.com/narmi/design_system/commit/d8db6eeeb5aa9e4e4c60dea085cf2f0fa3665876))
-* update dateinput interaction assertion ([41539d4](https://github.com/narmi/design_system/commit/41539d4d7f279c4cf5b6d8dc20be1035aaf0078f))
-* update incorrect assertion ([cae6fd1](https://github.com/narmi/design_system/commit/cae6fd1bc988c392aaddaff87ec73087bb6a062f))
+- add interaction tests for chromatic ([d8db6ee](https://github.com/narmi/design_system/commit/d8db6eeeb5aa9e4e4c60dea085cf2f0fa3665876))
+- update dateinput interaction assertion ([41539d4](https://github.com/narmi/design_system/commit/41539d4d7f279c4cf5b6d8dc20be1035aaf0078f))
+- update incorrect assertion ([cae6fd1](https://github.com/narmi/design_system/commit/cae6fd1bc988c392aaddaff87ec73087bb6a062f))
 
 ## [6.29.6](https://github.com/narmi/design_system/compare/v6.29.5...v6.29.6) (2026-09-08)
 
 ### fix
 
-* **Combobox:** apply layerProps to styled dropdown el ([d9ff9b5](https://github.com/narmi/design_system/commit/d9ff9b529f5c506e8cf24ae38c9bfe7de9cb6570))
-* **Combobox,Select:** fix error borders in dropdowns ([e53b0db](https://github.com/narmi/design_system/commit/e53b0db7d67ac21a2e55940b4548f47f38b122a6))
+- **Combobox:** apply layerProps to styled dropdown el ([d9ff9b5](https://github.com/narmi/design_system/commit/d9ff9b529f5c506e8cf24ae38c9bfe7de9cb6570))
+- **Combobox,Select:** fix error borders in dropdowns ([e53b0db](https://github.com/narmi/design_system/commit/e53b0db7d67ac21a2e55940b4548f47f38b122a6))
 
 ### test
 
-* **NDS-3176:** repro story for pinned table column painting over dropdown layer (#2267) ([3fa0087](https://github.com/narmi/design_system/commit/3fa008723f08b414595db3b3ee550f74ee5fadce)), closes [#2267](https://github.com/narmi/design_system/issues/2267)
+- **NDS-3176:** repro story for pinned table column painting over dropdown layer (#2267) ([3fa0087](https://github.com/narmi/design_system/commit/3fa008723f08b414595db3b3ee550f74ee5fadce)), closes [#2267](https://github.com/narmi/design_system/issues/2267)
 
 ## [6.29.5](https://github.com/narmi/design_system/compare/v6.29.4...v6.29.5) (2026-09-04)
 
 ### fix
 
-* **Select:** ensure layer el receives select list class ([681bc83](https://github.com/narmi/design_system/commit/681bc834b81f8f111a304de9b0cc3c32b2af6a5c))
+- **Select:** ensure layer el receives select list class ([681bc83](https://github.com/narmi/design_system/commit/681bc834b81f8f111a304de9b0cc3c32b2af6a5c))
 
 ## [6.29.4](https://github.com/narmi/design_system/compare/v6.29.3...v6.29.4) (2026-09-04)
 
 ### fix
 
-* add default zindex for JS path of dropdown layer ([626c3a8](https://github.com/narmi/design_system/commit/626c3a8168f8a39d68610631b62dbe9a4e9a8a34))
-* **useDropdownLayer:** remove stale safari sniffing ([01215ae](https://github.com/narmi/design_system/commit/01215aebb1265134400b8dfac7d1f39d93350146))
+- add default zindex for JS path of dropdown layer ([626c3a8](https://github.com/narmi/design_system/commit/626c3a8168f8a39d68610631b62dbe9a4e9a8a34))
+- **useDropdownLayer:** remove stale safari sniffing ([01215ae](https://github.com/narmi/design_system/commit/01215aebb1265134400b8dfac7d1f39d93350146))
 
 ### test
 
-* restore hook SSR/client snapshot coverage ([809b27a](https://github.com/narmi/design_system/commit/809b27a80eb2af58aa5ae99d26d6f0526374b95b))
+- restore hook SSR/client snapshot coverage ([809b27a](https://github.com/narmi/design_system/commit/809b27a80eb2af58aa5ae99d26d6f0526374b95b))
 
 ## [6.29.3](https://github.com/narmi/design_system/compare/v6.29.2...v6.29.3) (2026-09-03)
 
 ### fix
 
-* **useDropdownLayer:** guard for SSR in CSS support checks ([c68ac79](https://github.com/narmi/design_system/commit/c68ac794dd5ff1c4e84543583ab313929973e3cd))
+- **useDropdownLayer:** guard for SSR in CSS support checks ([c68ac79](https://github.com/narmi/design_system/commit/c68ac794dd5ff1c4e84543583ab313929973e3cd))
 
 ## [6.29.2](https://github.com/narmi/design_system/compare/v6.29.1...v6.29.2) (2026-09-03)
 
 ### fix
 
-* **useDropdownLayer:** add default zindex to be more defensive ([f34bd89](https://github.com/narmi/design_system/commit/f34bd89736a054ee2faa47e089c4c308a1772c63))
+- **useDropdownLayer:** add default zindex to be more defensive ([f34bd89](https://github.com/narmi/design_system/commit/f34bd89736a054ee2faa47e089c4c308a1772c63))
 
 ## [6.29.1](https://github.com/narmi/design_system/compare/v6.29.0...v6.29.1) (2026-09-02)
 
 ### fix
 
-* **useDropdownLayer,Combobox:** cap height via css ([f93b2eb](https://github.com/narmi/design_system/commit/f93b2eb22a851fba68bb9cde78a6378771a25992))
-* fallback to vh for older mobile devices ([6ece19f](https://github.com/narmi/design_system/commit/6ece19ffd5a6f6fceb36a29117b6178468c62b6f))
-* preserve consumer viewport width ([f2b296b](https://github.com/narmi/design_system/commit/f2b296bdb290fbd10bf6c4b39310acaff8f60ec3))
+- **useDropdownLayer,Combobox:** cap height via css ([f93b2eb](https://github.com/narmi/design_system/commit/f93b2eb22a851fba68bb9cde78a6378771a25992))
+- fallback to vh for older mobile devices ([6ece19f](https://github.com/narmi/design_system/commit/6ece19ffd5a6f6fceb36a29117b6178468c62b6f))
+- preserve consumer viewport width ([f2b296b](https://github.com/narmi/design_system/commit/f2b296bdb290fbd10bf6c4b39310acaff8f60ec3))
 
 ## [6.29.0](https://github.com/narmi/design_system/compare/v6.28.1...v6.29.0) (2026-09-02)
 
 ### feat
 
-* **Table:** add programmatic col removal ([b1f6fbe](https://github.com/narmi/design_system/commit/b1f6fbe800f2ba999cb92b1673ffb87131546004))
+- **Table:** add programmatic col removal ([b1f6fbe](https://github.com/narmi/design_system/commit/b1f6fbe800f2ba999cb92b1673ffb87131546004))
 
 ### test
 
-* **Table:** query collapsed aria-hidden header by role ([9b5ec65](https://github.com/narmi/design_system/commit/9b5ec6521bbc60223f8ff87f33f68c9a0a9bae72))
+- **Table:** query collapsed aria-hidden header by role ([9b5ec65](https://github.com/narmi/design_system/commit/9b5ec6521bbc60223f8ff87f33f68c9a0a9bae72))
 
 ## [6.28.1](https://github.com/narmi/design_system/compare/v6.28.0...v6.28.1) (2026-09-02)
 
 ### fix
 
-* **Tooltip:** remove zindex responsibility from hook ([1adc387](https://github.com/narmi/design_system/commit/1adc3873103cca6ece30630a8fda39a908748a37))
+- **Tooltip:** remove zindex responsibility from hook ([1adc387](https://github.com/narmi/design_system/commit/1adc3873103cca6ece30630a8fda39a908748a37))
 
 ### test
 
-* add sb interaction tests for dd hook ([3d91716](https://github.com/narmi/design_system/commit/3d917161efa3379f1b5b570cdab3b4c5f8f4e73c))
+- add sb interaction tests for dd hook ([3d91716](https://github.com/narmi/design_system/commit/3d917161efa3379f1b5b570cdab3b4c5f8f4e73c))
 
 ## [6.28.0](https://github.com/narmi/design_system/compare/v6.27.1...v6.28.0) (2026-09-02)
 
 ### feat
 
-* **Callout,TimelineEvent:** add divided event; introduce callout ([d2d48e1](https://github.com/narmi/design_system/commit/d2d48e12a999876236a76962833b33f957c73f5a))
+- **Callout,TimelineEvent:** add divided event; introduce callout ([d2d48e1](https://github.com/narmi/design_system/commit/d2d48e12a999876236a76962833b33f957c73f5a))
 
 ## [6.27.1](https://github.com/narmi/design_system/compare/v6.27.0...v6.27.1) (2026-09-02)
 
 ### fix
 
-* **Chip:** add isLabelSelectable prop to allow selecting label text ([2b2682c](https://github.com/narmi/design_system/commit/2b2682c75983f083d0f84f0f0aaceaf1441e7b27))
+- **Chip:** add isLabelSelectable prop to allow selecting label text ([2b2682c](https://github.com/narmi/design_system/commit/2b2682c75983f083d0f84f0f0aaceaf1441e7b27))
 
 ## [6.27.0](https://github.com/narmi/design_system/compare/v6.26.0...v6.27.0) (2026-08-31)
 
 ### feat
 
-* **Tabs:** allow start and end inline tab content ([8ec0f16](https://github.com/narmi/design_system/commit/8ec0f1641dc480c75819bd7b0645185c5362cdcb))
+- **Tabs:** allow start and end inline tab content ([8ec0f16](https://github.com/narmi/design_system/commit/8ec0f1641dc480c75819bd7b0645185c5362cdcb))
 
 ### fix
 
-* **Tabs:** adjust custom content placement ([baf18b7](https://github.com/narmi/design_system/commit/baf18b757e9096fab7fea4bacdf564c59355e380))
-* extra space at startContent ([46d7574](https://github.com/narmi/design_system/commit/46d7574327b0e0d41898ba6ad20d83716a7fdfbc))
+- **Tabs:** adjust custom content placement ([baf18b7](https://github.com/narmi/design_system/commit/baf18b757e9096fab7fea4bacdf564c59355e380))
+- extra space at startContent ([46d7574](https://github.com/narmi/design_system/commit/46d7574327b0e0d41898ba6ad20d83716a7fdfbc))
 
 ## [6.26.0](https://github.com/narmi/design_system/compare/v6.25.0...v6.26.0) (2026-08-31)
 
 ### ci
 
-* adjust zizmor rules and fixes ([1436428](https://github.com/narmi/design_system/commit/1436428f3710e05fcfd8e49efda20102f1433cc7))
+- adjust zizmor rules and fixes ([1436428](https://github.com/narmi/design_system/commit/1436428f3710e05fcfd8e49efda20102f1433cc7))
 
 ### feat
 
-* **ci:** add zizmor workflow security audit ([9796d7d](https://github.com/narmi/design_system/commit/9796d7d68363b1e6c1901ba761056e1857e3c93d))
+- **ci:** add zizmor workflow security audit ([9796d7d](https://github.com/narmi/design_system/commit/9796d7d68363b1e6c1901ba761056e1857e3c93d))
 
 ## [6.25.0](https://github.com/narmi/design_system/compare/v6.24.0...v6.25.0) (2026-08-27)
 
 ### feat
 
-* **tokens:** add colorblind forced color modes ([bbaca1c](https://github.com/narmi/design_system/commit/bbaca1cb1b5cd4abbb3b215b38a2c8677739a3e1))
+- **tokens:** add colorblind forced color modes ([bbaca1c](https://github.com/narmi/design_system/commit/bbaca1cb1b5cd4abbb3b215b38a2c8677739a3e1))
 
 ## [6.24.0](https://github.com/narmi/design_system/compare/v6.23.0...v6.24.0) (2026-08-21)
 
 ### feat
 
-* **Navigation:** add Navigation and NavigationItem ([ccc6d2a](https://github.com/narmi/design_system/commit/ccc6d2a83609cd4902e604520b58b4f4066a51f6))
-* **Navigation:** add Navigation and NavigationItem ([aa39f25](https://github.com/narmi/design_system/commit/aa39f25272bf19336c734d005167e81afcdc684f))
+- **Navigation:** add Navigation and NavigationItem ([ccc6d2a](https://github.com/narmi/design_system/commit/ccc6d2a83609cd4902e604520b58b4f4066a51f6))
+- **Navigation:** add Navigation and NavigationItem ([aa39f25](https://github.com/narmi/design_system/commit/aa39f25272bf19336c734d005167e81afcdc684f))
 
 ### test
 
-* add NavigationItem unit coverage ([02d046a](https://github.com/narmi/design_system/commit/02d046a649bbc9a08fa126f868ce97007cb24758))
-* assert Navigation aria-label on nav landmark ([1b19a28](https://github.com/narmi/design_system/commit/1b19a28bfc7c12996ef9f0a67c5f3af3b835bbcd))
+- add NavigationItem unit coverage ([02d046a](https://github.com/narmi/design_system/commit/02d046a649bbc9a08fa126f868ce97007cb24758))
+- assert Navigation aria-label on nav landmark ([1b19a28](https://github.com/narmi/design_system/commit/1b19a28bfc7c12996ef9f0a67c5f3af3b835bbcd))
 
 ## [6.23.0](https://github.com/narmi/design_system/compare/v6.22.6...v6.23.0) (2026-08-20)
 
 ### docs
 
-* **Button:** clarify full-width label alignment ([811bd85](https://github.com/narmi/design_system/commit/811bd85e366456056a326673978a063fdd92c50d))
-* move brand-color deprecation notes to next-major migration guide ([68cc9e0](https://github.com/narmi/design_system/commit/68cc9e05f4273e7e0d32916c8557d6d1e436f15e))
+- **Button:** clarify full-width label alignment ([811bd85](https://github.com/narmi/design_system/commit/811bd85e366456056a326673978a063fdd92c50d))
+- move brand-color deprecation notes to next-major migration guide ([68cc9e0](https://github.com/narmi/design_system/commit/68cc9e05f4273e7e0d32916c8557d6d1e436f15e))
 
 ### feat
 
-* **Button:** add labelAlign prop ([96c9eee](https://github.com/narmi/design_system/commit/96c9eee4e9b2d89a035064a379a172a6da1c54ec))
+- **Button:** add labelAlign prop ([96c9eee](https://github.com/narmi/design_system/commit/96c9eee4e9b2d89a035064a379a172a6da1c54ec))
 
 ### refactor
 
-* **tokens:** deprecate brand colors ([9585bce](https://github.com/narmi/design_system/commit/9585bcee48c5606256f8e370b30f25f3c9a4bc87))
+- **tokens:** deprecate brand colors ([9585bce](https://github.com/narmi/design_system/commit/9585bcee48c5606256f8e370b30f25f3c9a4bc87))
 
 ### test
 
-* **Button:** cover labelAlign full-width behavior ([306efb6](https://github.com/narmi/design_system/commit/306efb63904fbb494c231f895b14debb849c49ee))
+- **Button:** cover labelAlign full-width behavior ([306efb6](https://github.com/narmi/design_system/commit/306efb63904fbb494c231f895b14debb849c49ee))
 
 ## [6.22.6](https://github.com/narmi/design_system/compare/v6.22.5...v6.22.6) (2026-08-13)
 
 ### fix
 
-* **dropdowns:** use dvh to account for soft keyboards ([1db7031](https://github.com/narmi/design_system/commit/1db70310e2a299d5b65b1b048b6b5a3ea484d520))
+- **dropdowns:** use dvh to account for soft keyboards ([1db7031](https://github.com/narmi/design_system/commit/1db70310e2a299d5b65b1b048b6b5a3ea484d520))
 
 ### refactor
 
-* **useDropdownLayer:** rely on dvh values for dd max height ([b159d22](https://github.com/narmi/design_system/commit/b159d222e224ca1a5048430d28be245c3d785612))
+- **useDropdownLayer:** rely on dvh values for dd max height ([b159d22](https://github.com/narmi/design_system/commit/b159d222e224ca1a5048430d28be245c3d785612))
 
 ### test
 
-* update unit for dropdown ([2322e23](https://github.com/narmi/design_system/commit/2322e23348172565f6d61a83108c93f4c5a8d184))
+- update unit for dropdown ([2322e23](https://github.com/narmi/design_system/commit/2322e23348172565f6d61a83108c93f4c5a8d184))
 
 ## [6.22.5](https://github.com/narmi/design_system/compare/v6.22.4...v6.22.5) (2026-08-12)
 
 ### ci
 
-* **release:** split build and release jobs; scope id-token to release; use --ignore-scripts ([e188c42](https://github.com/narmi/design_system/commit/e188c42e4e17b0da246316eb45cc96ddcbfa51d1))
+- **release:** split build and release jobs; scope id-token to release; use --ignore-scripts ([e188c42](https://github.com/narmi/design_system/commit/e188c42e4e17b0da246316eb45cc96ddcbfa51d1))
 
 ### fix
 
-* Set consistent node pin ([507afc4](https://github.com/narmi/design_system/commit/507afc43435ece38b21405b86950dc5df5b2c3f3))
+- Set consistent node pin ([507afc4](https://github.com/narmi/design_system/commit/507afc43435ece38b21405b86950dc5df5b2c3f3))
 
 **Versions cut from backports are omitted and are [documented in Tags/Releases](https://github.com/narmi/design_system/releases)**
 
@@ -201,165 +201,165 @@ All notable changes to this project will be documented in this file. See
 
 ### ci
 
-* drop obsolete npm auth fallback; automate note-backfill on new maint branches ([3e4e66a](https://github.com/narmi/design_system/commit/3e4e66a677332ba29164ad987aa75da7a8915380)), closes [#2234](https://github.com/narmi/design_system/issues/2234) [#2235](https://github.com/narmi/design_system/issues/2235)
-* publish maintenance releases under 'patch' dist-tag with NPM_TOKEN fallback ([46f1636](https://github.com/narmi/design_system/commit/46f16362013326670203263bc7584b837903d0e3))
-* write npm auth fallback to project-level .npmrc ([c008e23](https://github.com/narmi/design_system/commit/c008e231dbba2fd1ccd040615e9255790935c76c))
+- drop obsolete npm auth fallback; automate note-backfill on new maint branches ([3e4e66a](https://github.com/narmi/design_system/commit/3e4e66a677332ba29164ad987aa75da7a8915380)), closes [#2234](https://github.com/narmi/design_system/issues/2234) [#2235](https://github.com/narmi/design_system/issues/2235)
+- publish maintenance releases under 'patch' dist-tag with NPM_TOKEN fallback ([46f1636](https://github.com/narmi/design_system/commit/46f16362013326670203263bc7584b837903d0e3))
+- write npm auth fallback to project-level .npmrc ([c008e23](https://github.com/narmi/design_system/commit/c008e231dbba2fd1ccd040615e9255790935c76c))
 
 ### fix
 
-* **test:** trigger release backport workflow ([f3c9314](https://github.com/narmi/design_system/commit/f3c9314b6e2f43d42013da589efb28bd5db1a659))
+- **test:** trigger release backport workflow ([f3c9314](https://github.com/narmi/design_system/commit/f3c9314b6e2f43d42013da589efb28bd5db1a659))
 
 ## [6.22.3](https://github.com/narmi/design_system/compare/v6.22.2...v6.22.3) (2026-08-11)
 
 ### fix
 
-* **Input:** remove misleading multiline class ([69bf156](https://github.com/narmi/design_system/commit/69bf156970b0da28a6c65e5bdd7f92cd960a1223))
+- **Input:** remove misleading multiline class ([69bf156](https://github.com/narmi/design_system/commit/69bf156970b0da28a6c65e5bdd7f92cd960a1223))
 
 ## [6.22.2](https://github.com/narmi/design_system/compare/v6.22.1...v6.22.2) (2026-08-11)
 
 ### fix
 
-* **build:** remove inherited secrets ([ae56b63](https://github.com/narmi/design_system/commit/ae56b6328f3e161d5b8e41dba1d97755ed90723e))
+- **build:** remove inherited secrets ([ae56b63](https://github.com/narmi/design_system/commit/ae56b6328f3e161d5b8e41dba1d97755ed90723e))
 
 ## [6.22.1](https://github.com/narmi/design_system/compare/v6.22.0...v6.22.1) (2026-08-11)
 
 ### fix
 
-* test commit for backport labelling ([f7216d6](https://github.com/narmi/design_system/commit/f7216d666f507ab7e4a43d1bea7bc7278ec738fb))
+- test commit for backport labelling ([f7216d6](https://github.com/narmi/design_system/commit/f7216d666f507ab7e4a43d1bea7bc7278ec738fb))
 
 ## [6.22.0](https://github.com/narmi/design_system/compare/v6.21.0...v6.22.0) (2026-08-11)
 
 ### feat
 
-* **Fields:** add helper text ([feb9eba](https://github.com/narmi/design_system/commit/feb9eba2c9efb3cc2db823fbe8d8a39413d34ead))
-* **Field.Select:** add Select component to Fields ([2d36c4c](https://github.com/narmi/design_system/commit/2d36c4ceefbe5d259cbb5f6a70f3dd34e009ddf5))
+- **Fields:** add helper text ([feb9eba](https://github.com/narmi/design_system/commit/feb9eba2c9efb3cc2db823fbe8d8a39413d34ead))
+- **Field.Select:** add Select component to Fields ([2d36c4c](https://github.com/narmi/design_system/commit/2d36c4ceefbe5d259cbb5f6a70f3dd34e009ddf5))
 
 ### fix
 
-* **checkbox:** copilot feedback on test file ([216e177](https://github.com/narmi/design_system/commit/216e177e649a7f7a65431690c6609b20cbba0705))
-* **checkbox:** create renderLabel prop ([5cd5621](https://github.com/narmi/design_system/commit/5cd56211b8192bd401ae09835f31ff49a9cc4328))
-* **FauxInput:** remove any typing ([71272ff](https://github.com/narmi/design_system/commit/71272ffbabeba6a2f05265fc37a3696b6fa4bd91))
-* **color-modes:** set component-level overrides for high contrast ([3680c08](https://github.com/narmi/design_system/commit/3680c08427ee1c822fe2fb3ac5a36152b83bf75b))
+- **checkbox:** copilot feedback on test file ([216e177](https://github.com/narmi/design_system/commit/216e177e649a7f7a65431690c6609b20cbba0705))
+- **checkbox:** create renderLabel prop ([5cd5621](https://github.com/narmi/design_system/commit/5cd56211b8192bd401ae09835f31ff49a9cc4328))
+- **FauxInput:** remove any typing ([71272ff](https://github.com/narmi/design_system/commit/71272ffbabeba6a2f05265fc37a3696b6fa4bd91))
+- **color-modes:** set component-level overrides for high contrast ([3680c08](https://github.com/narmi/design_system/commit/3680c08427ee1c822fe2fb3ac5a36152b83bf75b))
 
 ## [6.21.0](https://github.com/narmi/design_system/compare/v6.20.1...v6.21.0) (2026-08-06)
 
 ### feat
 
-* **Select:** infer onChange value types generically in Select, MultiSelect, and Combobox (#2220) ([e6fbe9f](https://github.com/narmi/design_system/commit/e6fbe9f3d72ac8186a6d503d8a56c51eb6b2b79f)), closes [#2220](https://github.com/narmi/design_system/issues/2220)
+- **Select:** infer onChange value types generically in Select, MultiSelect, and Combobox (#2220) ([e6fbe9f](https://github.com/narmi/design_system/commit/e6fbe9f3d72ac8186a6d503d8a56c51eb6b2b79f)), closes [#2220](https://github.com/narmi/design_system/issues/2220)
 
 ## [6.20.1](https://github.com/narmi/design_system/compare/v6.20.0...v6.20.1) (2026-08-05)
 
 ### fix
 
-* **Combobox:** migrate to TypeScript; unify on a single entry point (#2218) ([caeb3a5](https://github.com/narmi/design_system/commit/caeb3a58fec38970b399b0f3b41c8fd70b540720)), closes [#2218](https://github.com/narmi/design_system/issues/2218)
+- **Combobox:** migrate to TypeScript; unify on a single entry point (#2218) ([caeb3a5](https://github.com/narmi/design_system/commit/caeb3a58fec38970b399b0f3b41c8fd70b540720)), closes [#2218](https://github.com/narmi/design_system/issues/2218)
 
 ### refactor
 
-* **Select:** migrate to TypeScript (#2216) ([f31d246](https://github.com/narmi/design_system/commit/f31d2461b113fd8fcbbf4027ac457b9c00eb5622)), closes [#2216](https://github.com/narmi/design_system/issues/2216)
-* **MultiSelect:** migrate to TypeScript (#2217) ([e74cbf4](https://github.com/narmi/design_system/commit/e74cbf4e296fdf404d92cbbcdc46bac2f8b37a19)), closes [#2217](https://github.com/narmi/design_system/issues/2217)
+- **Select:** migrate to TypeScript (#2216) ([f31d246](https://github.com/narmi/design_system/commit/f31d2461b113fd8fcbbf4027ac457b9c00eb5622)), closes [#2216](https://github.com/narmi/design_system/issues/2216)
+- **MultiSelect:** migrate to TypeScript (#2217) ([e74cbf4](https://github.com/narmi/design_system/commit/e74cbf4e296fdf404d92cbbcdc46bac2f8b37a19)), closes [#2217](https://github.com/narmi/design_system/issues/2217)
 
 ## [6.20.0](https://github.com/narmi/design_system/compare/v6.19.10...v6.20.0) (2026-08-04)
 
 ### feat
 
-* **TextInput:** accept form-integration `field` prop in types ([d0133e4](https://github.com/narmi/design_system/commit/d0133e4d5aba76583e4855d43a31a24e4241d5ab)), closes [#2201](https://github.com/narmi/design_system/issues/2201)
+- **TextInput:** accept form-integration `field` prop in types ([d0133e4](https://github.com/narmi/design_system/commit/d0133e4d5aba76583e4855d43a31a24e4241d5ab)), closes [#2201](https://github.com/narmi/design_system/issues/2201)
 
 ## [6.19.10](https://github.com/narmi/design_system/compare/v6.19.9...v6.19.10) (2026-08-04)
 
 ### fix
 
-* **Tabs:** stop responsive threshold from remounting panel content ([dfb8c92](https://github.com/narmi/design_system/commit/dfb8c9222379e44c8e7525696ca9bf1638661122))
+- **Tabs:** stop responsive threshold from remounting panel content ([dfb8c92](https://github.com/narmi/design_system/commit/dfb8c9222379e44c8e7525696ca9bf1638661122))
 
 ### refactor
 
-* **Input chain:** migrate Input, TextInput, DateInput, TokenInput to TypeScript (#2201) ([5f51980](https://github.com/narmi/design_system/commit/5f519800224590ac7ddb1020108089bce0f4d8cb)), closes [#2201](https://github.com/narmi/design_system/issues/2201)
-* **Tag:** migrate to TypeScript (#2206) ([1765bd5](https://github.com/narmi/design_system/commit/1765bd51909509d936cb10359f543e84dc0b8e28)), closes [#2206](https://github.com/narmi/design_system/issues/2206)
-* **Popover:** migrate to TypeScript (#2207) ([3b719b1](https://github.com/narmi/design_system/commit/3b719b1e7a720b03eb6032e1f2c2fc5dbf4d9e2d)), closes [#2207](https://github.com/narmi/design_system/issues/2207)
-* **Drawer:** migrate to TypeScript (#2212) ([bc78725](https://github.com/narmi/design_system/commit/bc787251680f0b75c5383e5bd9acc34a5183c487)), closes [#2212](https://github.com/narmi/design_system/issues/2212)
+- **Input chain:** migrate Input, TextInput, DateInput, TokenInput to TypeScript (#2201) ([5f51980](https://github.com/narmi/design_system/commit/5f519800224590ac7ddb1020108089bce0f4d8cb)), closes [#2201](https://github.com/narmi/design_system/issues/2201)
+- **Tag:** migrate to TypeScript (#2206) ([1765bd5](https://github.com/narmi/design_system/commit/1765bd51909509d936cb10359f543e84dc0b8e28)), closes [#2206](https://github.com/narmi/design_system/issues/2206)
+- **Popover:** migrate to TypeScript (#2207) ([3b719b1](https://github.com/narmi/design_system/commit/3b719b1e7a720b03eb6032e1f2c2fc5dbf4d9e2d)), closes [#2207](https://github.com/narmi/design_system/issues/2207)
+- **Drawer:** migrate to TypeScript (#2212) ([bc78725](https://github.com/narmi/design_system/commit/bc787251680f0b75c5383e5bd9acc34a5183c487)), closes [#2212](https://github.com/narmi/design_system/issues/2212)
 
 ## [6.19.9](https://github.com/narmi/design_system/compare/v6.19.8...v6.19.9) (2026-07-31)
 
 ### fix
 
-* **ci:** resolve backport actions from main, not the switched working tree (#2204) ([04b7b58](https://github.com/narmi/design_system/commit/04b7b5811bc782c53eb8b85af8ed06c944abdb8e)), closes [#2204](https://github.com/narmi/design_system/issues/2204)
+- **ci:** resolve backport actions from main, not the switched working tree (#2204) ([04b7b58](https://github.com/narmi/design_system/commit/04b7b5811bc782c53eb8b85af8ed06c944abdb8e)), closes [#2204](https://github.com/narmi/design_system/issues/2204)
 
 ## [6.19.8](https://github.com/narmi/design_system/compare/v6.19.7...v6.19.8) (2026-07-31)
 
 ### fix
 
-* **helper-classes:** emit real properties from directional --none spacing utilities (#2202) ([64c78de](https://github.com/narmi/design_system/commit/64c78de3db4c3028215d1e799b1a3fb20cb2e1f2)), closes [#2202](https://github.com/narmi/design_system/issues/2202)
+- **helper-classes:** emit real properties from directional --none spacing utilities (#2202) ([64c78de](https://github.com/narmi/design_system/commit/64c78de3db4c3028215d1e799b1a3fb20cb2e1f2)), closes [#2202](https://github.com/narmi/design_system/issues/2202)
 
 ### refactor
 
-* **DropdownTrigger:** migrate to TypeScript (#2200) ([b8d46ba](https://github.com/narmi/design_system/commit/b8d46ba8af843468758961b677e5f97a21b9fd06)), closes [#2200](https://github.com/narmi/design_system/issues/2200)
+- **DropdownTrigger:** migrate to TypeScript (#2200) ([b8d46ba](https://github.com/narmi/design_system/commit/b8d46ba8af843468758961b677e5f97a21b9fd06)), closes [#2200](https://github.com/narmi/design_system/issues/2200)
 
 ## [6.19.7](https://github.com/narmi/design_system/compare/v6.19.6...v6.19.7) (2026-07-31)
 
 ### fix
 
-* **Combobox:** detect broken Safari anchor placement ([ae60ce6](https://github.com/narmi/design_system/commit/ae60ce61924ff966a1d26fcf2f10ebdf3d7d7c44))
+- **Combobox:** detect broken Safari anchor placement ([ae60ce6](https://github.com/narmi/design_system/commit/ae60ce61924ff966a1d26fcf2f10ebdf3d7d7c44))
 
 ## [6.19.6](https://github.com/narmi/design_system/compare/v6.19.5...v6.19.6) (2026-07-30)
 
 ### fix
 
-* **TableInput:** apply border in high contrast mode ([36a0d53](https://github.com/narmi/design_system/commit/36a0d53b2202f96e1b7f9475b3a4cb6c44dcf01e))
+- **TableInput:** apply border in high contrast mode ([36a0d53](https://github.com/narmi/design_system/commit/36a0d53b2202f96e1b7f9475b3a4cb6c44dcf01e))
 
 ## [6.19.5](https://github.com/narmi/design_system/compare/v6.19.4...v6.19.5) (2026-07-30)
 
 ### fix
 
-* **Input:** apply multiline class from destructured prop (#2147) ([38c0b2a](https://github.com/narmi/design_system/commit/38c0b2a5dda0e9131a2d0e5b6423b8426f23c2a4)), closes [#2147](https://github.com/narmi/design_system/issues/2147)
+- **Input:** apply multiline class from destructured prop (#2147) ([38c0b2a](https://github.com/narmi/design_system/commit/38c0b2a5dda0e9131a2d0e5b6423b8426f23c2a4)), closes [#2147](https://github.com/narmi/design_system/issues/2147)
 
 ## [6.19.4](https://github.com/narmi/design_system/compare/v6.19.3...v6.19.4) (2026-07-30)
 
 ### fix
 
-* correct PropTypes declarations that raised warnings (#2146) ([cd805f6](https://github.com/narmi/design_system/commit/cd805f65267f108df87fcdf4c24a860e284e4064)), closes [#2146](https://github.com/narmi/design_system/issues/2146)
+- correct PropTypes declarations that raised warnings (#2146) ([cd805f6](https://github.com/narmi/design_system/commit/cd805f65267f108df87fcdf4c24a860e284e4064)), closes [#2146](https://github.com/narmi/design_system/issues/2146)
 
 ## [6.19.3](https://github.com/narmi/design_system/compare/v6.19.2...v6.19.3) (2026-07-29)
 
 ### fix
 
-* **storybook:** restore docgen for TypeScript components (#2197) ([6e73668](https://github.com/narmi/design_system/commit/6e7366864fb5d572af3ed71d8b48a861d08b6e70)), closes [#2197](https://github.com/narmi/design_system/issues/2197)
+- **storybook:** restore docgen for TypeScript components (#2197) ([6e73668](https://github.com/narmi/design_system/commit/6e7366864fb5d572af3ed71d8b48a861d08b6e70)), closes [#2197](https://github.com/narmi/design_system/issues/2197)
 
 ## [6.19.2](https://github.com/narmi/design_system/compare/v6.19.1...v6.19.2) (2026-07-29)
 
 ### fix
 
-* **ContentCard:** use typeof to correctly check type of onClick ([d075909](https://github.com/narmi/design_system/commit/d07590923f022e8b4e62710ce68f5c29a02dad5e))
+- **ContentCard:** use typeof to correctly check type of onClick ([d075909](https://github.com/narmi/design_system/commit/d07590923f022e8b4e62710ce68f5c29a02dad5e))
 
 ### refactor
 
-* **components:** align component styles with 'ink' tokens ([94d2e3c](https://github.com/narmi/design_system/commit/94d2e3c2a47e7e30f9d2d1cb7aeb45f0aa535221))
+- **components:** align component styles with 'ink' tokens ([94d2e3c](https://github.com/narmi/design_system/commit/94d2e3c2a47e7e30f9d2d1cb7aeb45f0aa535221))
 
 ## [6.19.1](https://github.com/narmi/design_system/compare/v6.19.0...v6.19.1) (2026-07-29)
 
 ### fix
 
-* **types:** convert CollapsibleCard to TypeScript (#2194) ([6de0f2f](https://github.com/narmi/design_system/commit/6de0f2fc454c733209c2cfebfc38473f3c4a482c)), closes [#2194](https://github.com/narmi/design_system/issues/2194)
+- **types:** convert CollapsibleCard to TypeScript (#2194) ([6de0f2f](https://github.com/narmi/design_system/commit/6de0f2fc454c733209c2cfebfc38473f3c4a482c)), closes [#2194](https://github.com/narmi/design_system/issues/2194)
 
 ## [6.19.0](https://github.com/narmi/design_system/compare/v6.18.2...v6.19.0) (2026-07-29)
 
 ### feat
 
-* **tokens:** enable color schemes and modes ([d1d6969](https://github.com/narmi/design_system/commit/d1d69691b44386a0d8aba79421516f3a9e86d12f))
-* **tokens:** enable color schemes and modes ([380a426](https://github.com/narmi/design_system/commit/380a426a5869ed0c8bbac326f16eb30ec7216c11))
+- **tokens:** enable color schemes and modes ([d1d6969](https://github.com/narmi/design_system/commit/d1d69691b44386a0d8aba79421516f3a9e86d12f))
+- **tokens:** enable color schemes and modes ([380a426](https://github.com/narmi/design_system/commit/380a426a5869ed0c8bbac326f16eb30ec7216c11))
 
 ### fix
 
-* **Pagination:** clamp selectedPage before computing arrow targets ([73e635c](https://github.com/narmi/design_system/commit/73e635c671e5222342844a917b021315739e85c1))
-* **Pagination:** don't emit out-of-range pages from arrows ([0fde2df](https://github.com/narmi/design_system/commit/0fde2dfc66022e9d712de2267e78820d649d32be))
+- **Pagination:** clamp selectedPage before computing arrow targets ([73e635c](https://github.com/narmi/design_system/commit/73e635c671e5222342844a917b021315739e85c1))
+- **Pagination:** don't emit out-of-range pages from arrows ([0fde2df](https://github.com/narmi/design_system/commit/0fde2dfc66022e9d712de2267e78820d649d32be))
 
 ### test
 
-* **Pagination:** cover arrow bounds at first/last page ([9fe6e7d](https://github.com/narmi/design_system/commit/9fe6e7d6317304916118da61ca798b9deaf382fb))
+- **Pagination:** cover arrow bounds at first/last page ([9fe6e7d](https://github.com/narmi/design_system/commit/9fe6e7d6317304916118da61ca798b9deaf382fb))
 
 ## [6.18.2](https://github.com/narmi/design_system/compare/v6.18.1...v6.18.2) (2026-07-29)
 
 ### fix
 
-* **types:** convert Sidebar to TypeScript (#2192) ([ab19547](https://github.com/narmi/design_system/commit/ab19547ed35fc225455e699a859c173d58365bbb)), closes [#2192](https://github.com/narmi/design_system/issues/2192)
+- **types:** convert Sidebar to TypeScript (#2192) ([ab19547](https://github.com/narmi/design_system/commit/ab19547ed35fc225455e699a859c173d58365bbb)), closes [#2192](https://github.com/narmi/design_system/issues/2192)
 
 ## [6.18.1](https://github.com/narmi/design_system/compare/v6.18.0...v6.18.1) (2026-07-29)
 

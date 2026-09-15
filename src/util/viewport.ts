@@ -25,7 +25,8 @@
 const DEFAULT_META_CONTENT =
   "width=device-width, initial-scale=1, interactive-widget=resizes-content";
 
-const ENSURE_META_CONTENT = "initial-scale=1, interactive-widget=resizes-content";
+const ENSURE_META_CONTENT =
+  "initial-scale=1, interactive-widget=resizes-content";
 
 /**
  * Parse a viewport `content` string into an ordered map of directives.

@@ -17,6 +17,13 @@ export interface TooltipProps {
   isOpen?: boolean;
   /** Optional value for `data-testid` attribute */
   testId?: string;
+  /**
+   * When `false`, the wrapper element around the tooltip trigger is removed
+   * from the tab order. Use this when the child is already focusable (e.g. a
+   * `Button`) to avoid an extra tab stop. Focus events still bubble from the
+   * child, so the tooltip continues to open on keyboard focus.
+   */
+  focusable?: boolean;
 }
 
 /**
@@ -33,6 +40,7 @@ const Tooltip = ({
   maxWidth = "400px",
   testId,
   isOpen,
+  focusable = true,
 }: TooltipProps) => {
   const isControlled = isOpen === true || isOpen === false;
   const [open, setOpen] = useState(false);
@@ -105,7 +113,7 @@ const Tooltip = ({
         onMouseLeave={closePopover}
         // Giving this element a "button" role is misleading in practice.
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-        tabIndex={0}
+        tabIndex={focusable ? 0 : undefined}
         data-testid="nds-tooltip-trigger"
       >
         {children}

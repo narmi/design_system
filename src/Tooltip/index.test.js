@@ -9,7 +9,7 @@ const renderTooltip = () => {
   render(
     <Tooltip text={TIP_TEXT}>
       <p>{CHILD_TEXT}</p>
-    </Tooltip>
+    </Tooltip>,
   );
 };
 
@@ -42,7 +42,7 @@ describe("Tooltip", () => {
     render(
       <Tooltip text={TIP_TEXT} isOpen={true}>
         <p>{CHILD_TEXT}</p>
-      </Tooltip>
+      </Tooltip>,
     );
 
     const tip = screen.getByText(TIP_TEXT);
@@ -53,12 +53,37 @@ describe("Tooltip", () => {
     render(
       <Tooltip text={TIP_TEXT} isOpen={false}>
         <p>{CHILD_TEXT}</p>
-      </Tooltip>
+      </Tooltip>,
     );
     const trigger = getTrigger();
     fireEvent.focus(trigger);
     const tip = await screen.queryByText(TIP_TEXT);
 
     expect(tip).toBeNull();
+  });
+
+  it("makes the trigger focusable by default", () => {
+    renderTooltip();
+    expect(getTrigger()).toHaveAttribute("tabindex", "0");
+  });
+
+  it("removes the trigger from the tab order when focusable is false", () => {
+    render(
+      <Tooltip text={TIP_TEXT} focusable={false}>
+        <button>{CHILD_TEXT}</button>
+      </Tooltip>,
+    );
+    expect(getTrigger()).not.toHaveAttribute("tabindex");
+  });
+
+  it("still shows tooltip on focus of a child when focusable is false", async () => {
+    render(
+      <Tooltip text={TIP_TEXT} focusable={false}>
+        <button>{CHILD_TEXT}</button>
+      </Tooltip>,
+    );
+    fireEvent.focus(screen.getByRole("button", { name: CHILD_TEXT }));
+    const tip = await screen.findByText(TIP_TEXT);
+    expect(tip).toBeInTheDocument();
   });
 });

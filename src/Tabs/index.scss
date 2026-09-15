@@ -28,6 +28,10 @@
   // Left edge of item to left edge of scroll port
   .nds-tabs-tabItem {
     scroll-snap-align: start;
+
+    &:last-child {
+      scroll-snap-align: end;
+    }
   }
 
   // fade the left side when overflowing left

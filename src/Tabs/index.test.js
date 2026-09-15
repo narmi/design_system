@@ -244,7 +244,7 @@ describe("Tabs", () => {
       setScrollMetrics(el, scrollLeft);
       await act(async () => {
         fireEvent.scroll(el);
-        await new Promise((resolve) => requestAnimationFrame(resolve));
+        await (typeof requestAnimationFrame === "function" ? new Promise((resolve) => requestAnimationFrame(resolve)) : Promise.resolve());
       });
     };
 

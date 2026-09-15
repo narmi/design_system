@@ -11,15 +11,27 @@
   overflow-x: auto;
   min-width: 0;
   scroll-behavior: smooth;
-  // keep focused tabs clear of the fade mask when the browser
-  // auto-scrolls them into view
+
+  // Match the snap positions to the edge of the overflow gradient mask.
   scroll-padding-inline: var(--mask-width);
+
+  // Snapping for all devices, including touch. Prevent a tab from getting cut off during scroll end
+  scroll-snap-type: x proximity;
 
   // by default, the edges of the scroll container are not masked
   mask-image: none;
 
   &::-webkit-scrollbar {
     display: none; // Safari + Chrome
+  }
+
+  // Left edge of item to left edge of scroll port
+  .nds-tabs-tabItem {
+    scroll-snap-align: start;
+
+    &:last-child {
+      scroll-snap-align: end;
+    }
   }
 
   // fade the left side when overflowing left
@@ -48,18 +60,19 @@
 /**
 * Shared styles for responsive behavior
 */
+// The arrow column holds a constant width for as long as the tabs are
+// responsive, and only fades its contents. Prevents the arrows themselves from triggering overflow.
 .nds-tabs-arrow {
   padding-top: 6px;
-  max-width: 0;
+  width: rem(32px);
   opacity: 0;
+  pointer-events: none;
   overflow: hidden;
-  transition:
-    max-width 300ms,
-    opacity 300ms;
+  transition: opacity 300ms;
 
   &--visible {
-    max-width: 32px;
     opacity: 1;
+    pointer-events: auto;
   }
 }
 
@@ -154,16 +167,6 @@
   --selected-bg: rgba(var(--theme-rgb-primary), var(--alpha-20));
   --transition-duration-width: 0.2s;
   --transition-duration-x: 0.3s;
-
-  // When the user uses the arrow to scroll to the last tab,
-  // the mask covers a bit too much, so we use this padding to
-  // push the text at least 3 characters away from the fade.
-  //
-  // This is a workaround for an issue where the arrow scroll behavior
-  // will not unclip the last item when scrolled to the end.
-  &.nds-tabs--isResponsive .nds-tabs-tabItem:last-child button {
-    padding-right: calc(var(--mask-width) + 3ch);
-  }
 
   .nds-tabs-tabsList {
     position: relative;

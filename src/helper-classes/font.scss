@@ -12,12 +12,10 @@
 
 /**
 * brand/base text colors
+* ⚠️ DEPRECATED — brand color helper classes are emitted from
+* `base-styles/deprecated-brand-helpers` for backwards compatibility only.
+* Prefer theme font helpers (`.fontColor--theme--*`).
 */
-@each $color in (moss, pine, cove, azul, pistachio, cactus, sand, "white") {
-  .fontColor--#{$color} {
-    color: var(--color-#{$color}) !important;
-  }
-}
 
 /**
 * theme colors

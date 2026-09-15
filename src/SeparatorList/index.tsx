@@ -1,9 +1,11 @@
 import React from "react";
 import cc from "classcat";
 
-interface SeparatorListProps {
+export interface SeparatorListProps {
   items: React.ReactNode[];
   separator?: string;
+  /** CSS color value applied to the separator character */
+  separatorColor?: string;
   noWrap?: boolean;
   testId?: string;
 }
@@ -13,6 +15,7 @@ interface SeparatorListProps {
  */
 const SeparatorList: React.FC<SeparatorListProps> = ({
   separator = "|",
+  separatorColor = "var(--font-color-secondary)",
   noWrap = false,
   items = [],
   testId,
@@ -22,6 +25,8 @@ const SeparatorList: React.FC<SeparatorListProps> = ({
       "list--reset nds-typography nds-separatorList",
       { "nds-separatorList--noWrap": noWrap },
     ])}
+    // @ts-expect-error CSSProperties does not include custom CSS properties
+    style={{ "--nds-separatorList-separator-color": separatorColor }}
     data-testid={testId}
   >
     {items

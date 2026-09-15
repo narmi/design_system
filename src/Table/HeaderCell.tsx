@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import cc from "classcat";
 import { isBreakpointSatisfied } from "./util/breakpoint";
 import ColVisibilityContext from "./util/colVisibilityContext";
 
@@ -21,8 +22,8 @@ export interface HeaderCellProps {
  * A cell unique to the table header.
  * This component renders as a button when an `onClick` handler is passed.
  *
- * This component is wrapped in an ARIA live region so the header cell content
- * is re-announced if it changes as the result of user interaction.
+ * This component is an ARIA live region so the header cell content is
+ * re-announced if it changes as the result of user interaction.
  */
 const HeaderCell = ({
   children,
@@ -30,33 +31,53 @@ const HeaderCell = ({
   onClick,
   _colIndex = 0,
 }: HeaderCellProps) => {
-  const { currentBreakpoint, colVisibility } = useContext(ColVisibilityContext);
+  const { currentBreakpoint, colVisibility, isAnimated } =
+    useContext(ColVisibilityContext);
   const minBreakpoint = colVisibility[_colIndex];
-  const isVisible = isBreakpointSatisfied(minBreakpoint, currentBreakpoint);
+  // `"none"` is only hidden in animated mode; in legacy mode it falls back to
+  // always-visible (matching the parent Table's `console.error` warning).
+  const isVisible =
+    minBreakpoint === "none"
+      ? !isAnimated
+      : isBreakpointSatisfied(minBreakpoint, currentBreakpoint);
   const isButton = typeof onClick === "function";
 
-  if (!isVisible) return null;
+  // Legacy (deprecated string colLayout): hidden columns are removed from the
+  // DOM entirely. In animated mode (array colLayout) hidden cells must stay in
+  // flow (collapsed) so their tracks can interpolate and auto-placement stays
+  // aligned to the tracks. This `return null` branch goes away when string
+  // layouts are removed in the next major version.
+  if (!isVisible && !isAnimated) return null;
 
-  return (
-    <div aria-live="polite">
-      {isButton ? (
-        <button
-          onClick={onClick}
-          className="nds-table-cell button--reset"
-          role="columnheader"
-          style={{ textAlign }}
-        >
-          {children}
-        </button>
-      ) : (
-        <div
-          className="nds-table-cell"
-          role="columnheader"
-          style={{ textAlign }}
-        >
-          {children}
-        </div>
-      )}
+  const isCollapsed = !isVisible;
+
+  return isButton ? (
+    <button
+      aria-live="polite"
+      aria-hidden={isCollapsed || undefined}
+      disabled={isCollapsed}
+      onClick={isCollapsed ? undefined : onClick}
+      className={cc([
+        "nds-table-cell button--reset",
+        { "nds-table-cell--collapsed": isCollapsed },
+      ])}
+      role="columnheader"
+      style={{ textAlign }}
+    >
+      {children}
+    </button>
+  ) : (
+    <div
+      aria-live="polite"
+      aria-hidden={isCollapsed || undefined}
+      className={cc([
+        "nds-table-cell",
+        { "nds-table-cell--collapsed": isCollapsed },
+      ])}
+      role="columnheader"
+      style={{ textAlign }}
+    >
+      {children}
     </div>
   );
 };

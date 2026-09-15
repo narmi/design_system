@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { expect, screen, waitFor } from "storybook/test";
 import Popover from "./";
 import Button from "../Button";
 
@@ -27,6 +28,28 @@ Overview.args = {
 };
 Overview.argTypes = {
   content: { control: false },
+};
+
+/**
+ * Interaction test that opens the Popover so Chromatic can snapshot
+ * the layer's placement.
+ */
+export const Open = {
+  name: "Interaction: Opens on click",
+  render: () => (
+    <Popover
+      renderTrigger={() => (
+        <Button type="button" kind="secondary">
+          Open Popover
+        </Button>
+      )}
+      content={<div className="padding--all--m">📦 Any content</div>}
+    />
+  ),
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByTestId("nds-popover-trigger"));
+    await waitFor(() => expect(screen.getByText(/any content/i)).toBeVisible());
+  },
 };
 
 export const LegacyTrigger = () => {

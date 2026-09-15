@@ -1,0 +1,35 @@
+/**
+ * ⚠️ DEPRECATED brand/base color helper classes.
+ *
+ * These utility classes reference deprecated `narmi` brand color tokens
+ * (e.g. `--color-pine`, `--color-moss`) and are no longer part of the
+ * documented public API. They are emitted here for backwards compatibility
+ * only and will be removed in a future major release.
+ *
+ * Prefer semantic theme helpers instead:
+ *   - `.bgColor--theme--*`
+ *   - `.fontColor--theme--*`
+ *
+ * This file intentionally lives outside `src/helper-classes/` so the helper
+ * class documentation scanner (`scripts/util/getHelperClassNames.mjs`) does
+ * not surface these deprecated classes, while `src/index.scss` still imports
+ * it so the classes continue to be emitted into the published stylesheet.
+ */
+
+/**
+* brand/base background colors (deprecated)
+*/
+@each $color in (moss, pine, cove, azul, pistachio, cactus, sand) {
+  .bgColor--#{$color} {
+    background-color: var(--color-#{$color}) !important;
+  }
+}
+
+/**
+* brand/base text colors (deprecated)
+*/
+@each $color in (moss, pine, cove, azul, pistachio, cactus, sand, "white") {
+  .fontColor--#{$color} {
+    color: var(--color-#{$color}) !important;
+  }
+}

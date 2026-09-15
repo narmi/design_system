@@ -135,7 +135,7 @@ const RadioButtons = ({
                 <div>
                   {label}
                   {/*
-                  The `Radio` component knows nothing about "details", but does accept arbittary JSX.
+                  The `Radio` component knows nothing about "details", but does accept arbitrary JSX.
                   Here, we compose in the expected details behavior of RadioButtons.
                   */}
                   {details &&

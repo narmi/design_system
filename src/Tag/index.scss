@@ -7,12 +7,18 @@
   font-size: var(--font-size-xs);
   height: 23px;
   max-width: 100%;
+
+  @include contrastMore {
+    border: 1px solid var(--border-color-light);
+  }
+
   .narmi-icon-x {
     cursor: pointer;
     display: inline-block;
     transform: translateY(1px);
   }
 }
+
 .nds-tag--dismissible {
   height: 25px;
   padding-right: var(--space-xs);

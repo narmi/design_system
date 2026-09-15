@@ -117,6 +117,77 @@ For example, if NDS is on major version `1`, breaking changes should target the 
 
 Branches containing breaking change commits should follow the naming convention `breaking/<branch name>`.
 
+#### Version support policy
+
+- The latest minor release (`@latest`) is the actively developed version and
+  always contains every fix.
+- Older minor versions receive patches **only on demand** — not every published
+  version is maintained.
+- Backports target a single Major.Minor (e.g. `6.15`). They are **not**
+  forwarded to other minor versions. If `6.16` and `6.18` also need the fix,
+  each must be backported separately.
+- Fixes always land on `main` first and are selectively applied to older
+  versions — never the reverse.
+- If you are on an intermediate minor that does not have the fix,
+  [request a backport](../../issues/new?template=backport-request.md) or
+  upgrade to `@latest`.
+
+**For consumers:**
+
+Most consumers should pin a semver range in `package.json` and let `npm install`
+resolve to the newest patch on that line. The `release-*` dist-tags are a
+convenience for installing the current patch of a line by name.
+
+| Goal                                        | How                            | Example                                                  |
+| ------------------------------------------- | ------------------------------ | -------------------------------------------------------- |
+| Track latest within your major              | Semver range in `package.json` | `"@narmi/design_system": "^6"` — newest `6.x.x`          |
+| Stay pinned to a specific minor             | Semver range in `package.json` | `"@narmi/design_system": "~6.15.0"` — patches for `6.15` |
+| Install the current patch of a line by name | npm dist-tag                   | `npm install @narmi/design_system@release-6.15.x`        |
+
+#### Releasing backports (maintainers)
+
+When a fix that lands on `main` needs to be applied to older Major.Minor lines
+still in production, backports are triggered by PR labels.
+
+**Primary flow: label the PR before merging.**
+
+1. On the fix PR against `main`, add a label of the form
+   `backport-<MAJOR>.<MINOR>` for every line that needs the fix
+   (e.g. `backport-6.15`, `backport-6.16`). Multiple labels are supported.
+2. Merge the PR. The normal release runs against `main` and publishes on
+   `@latest`. In parallel, the "Release Backport (on merge)" workflow reads
+   the labels and, for each one:
+   - Ensures the maintenance branch `<MAJOR>.<MINOR>.x` exists (creates it
+     from the highest existing `v<MAJOR>.<MINOR>.z` tag if not).
+   - Cherry-picks the PR's commits onto the branch, preserving Conventional
+     Commit messages so `semantic-release` derives the correct patch bump.
+   - Pushes; the resulting push triggers a release on the maintenance
+     branch and publishes a new patch on the `release-<MAJOR>.<MINOR>.x`
+     npm dist-tag.
+
+**Fallback: manual dispatch.**
+
+If a label was forgotten, or a port needs to be re-run after a conflict was
+resolved:
+
+1. Go to **Actions → Release Backport → Run workflow**.
+2. Enter the merged **PR number** and the **target Major.Minor** (e.g. `6.15`).
+3. The workflow does exactly what the label-driven path would have done.
+
+**Conflicts.** If a cherry-pick can't apply cleanly, the workflow opens a
+draft PR against the maintenance branch with resume instructions. Resolve
+the conflicts locally — do not squash-merge and do not re-word the
+cherry-picked commit messages, because `semantic-release` derives the next
+patch version from those messages.
+
+Consumers pinned to that Major.Minor via a semver range (e.g. `"~6.15.0"`)
+will pick up the patch automatically on the next install. To install the
+current patch of that line explicitly by tag:
+
+```
+npm install @narmi/design_system@release-6.15.x
+```
+
 ### Commit Guidelines
 
 This project requires structured commit messages in the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format:
@@ -189,16 +260,6 @@ If you need to make additional changes after the beta is published...
 1. Rebuild NDS (`npm run build`)
 2. Bump the beta version number in package.json (`2.36.0-beta.0` -> `2.36.0-beta.1`)
 3. Install the new beta version in your consuming application.
-
-#### Publishing a patch over a previous version
-
-In rare cases, you may need to publish a patch over a previous version (e.g., patching `2.35.2` when the current version is `2.36.0`).
-
-Follow the same steps as [publishing a beta version](#publishing-a-beta-version), but without the `--tag beta` flag:
-
-1. Rebuild NDS (`npm run build`)
-2. Update the `version` field of package.json to the desired patch version (e.g., `2.35.3`). DO NOT COMMIT THIS CHANGE.
-3. Publish the package (`npm publish`)
 
 ### Testing unpublished changes in a consumer
 

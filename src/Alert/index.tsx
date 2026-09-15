@@ -5,7 +5,7 @@ import type { IconName } from "../types/Icon.types";
 
 const noop = () => {};
 
-interface AlertProps {
+export interface AlertProps {
   /** The alert is only visible when this prop is set to `true` */
   isActive?: boolean;
   /** Renders a dismiss button when `true` */

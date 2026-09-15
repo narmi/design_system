@@ -15,6 +15,10 @@
       left 200ms ease,
       width 200ms ease;
 
+    @include contrastMore {
+      border: 1px solid var(--border-color-default);
+    }
+
     &--loading {
       width: 24px;
       border-radius: 50%;

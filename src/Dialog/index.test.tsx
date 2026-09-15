@@ -12,9 +12,6 @@ vi.mock("react-dom", async () => ({
 // Mock useLockBodyScroll hook
 vi.mock("../hooks/useLockBodyScroll", () => ({ default: vi.fn() }));
 
-// Mock rafSchd
-vi.mock("raf-schd", () => ({ default: (fn) => fn }));
-
 const defaultProps = {
   isOpen: true,
   title: "Test Dialog",

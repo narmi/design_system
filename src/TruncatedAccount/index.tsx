@@ -1,7 +1,7 @@
 import React from "react";
 import cc from "classcat";
 
-interface TruncatedAccountProps {
+export interface TruncatedAccountProps {
   /** Name of account */
   name: string;
   /** Last four digits of account number */

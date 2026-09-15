@@ -89,7 +89,7 @@ import { Dropdown } from "@narmi/design_system";
 
 ```jsx
 import { Select } from "@narmi/design_system";
-// Choose from: Select, MultiSelect, Combobox, or AutocompleteModa
+// Choose from: Select, MultiSelect, Combobox, or AutocompleteModal
 
 <Select
   label="Select an option"
@@ -318,6 +318,8 @@ Storybook has been upgraded to v9. This upgrade includes improved performance, u
 No action required for consumers. This change only affects the NDS build process and does not impact how you import or use NDS components.
 
 ---
+
+### Removed webpack builds
 
 ### Removed webpack builds
 

@@ -7,15 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v5
         with:
           persist-credentials: false
       - name: Setup Node.js
-        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v4
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v4
         with:
           node-version-file: ".nvmrc"
           registry-url: https://registry.npmjs.org
       - run: |
-          npm ci
+          npm ci --ignore-scripts
           npm run build
-          npx license-checker --onlyAllow "MIT;0BSD;Apache 2.0;Apache-2.0;Artistic-2.0;BSD*;BSD-2-Clause;BSD-3-Clause;CC-BY-3.0;CC-BY-4.0;CC0-1.0;ISC;MIT*;MPL-2.0;ODC-By-1.0;Python-2.0;Unlicense;WTFPL;BlueOak-1.0.0" --excludePackages "taffydb@2.6.2"
+          npm_config_ignore_scripts=true npx --yes license-checker@25.0.1 --onlyAllow "MIT;0BSD;Apache 2.0;Apache-2.0;Artistic-2.0;BSD*;BSD-2-Clause;BSD-3-Clause;CC-BY-3.0;CC-BY-4.0;CC0-1.0;ISC;MIT*;MPL-2.0;ODC-By-1.0;Python-2.0;Unlicense;WTFPL;BlueOak-1.0.0" --excludePackages "taffydb@2.6.2"

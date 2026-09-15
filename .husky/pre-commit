@@ -1,2 +1,7 @@
 #!/bin/sh
+set -e
+if git diff --cached --name-only | grep -q "^src/icons/selection.json$"; then
+  node scripts/buildIconNames.mjs
+  git add src/icons/iconNames.ts
+fi
 npx pretty-quick --staged

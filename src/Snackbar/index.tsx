@@ -48,16 +48,18 @@ const SnackbarButtonGroup = ({ children }: React.PropsWithChildren) => (
   </ul>
 );
 
+export interface SnackbarProps {
+  /** Content of the snackbar */
+  children?: React.ReactNode;
+  /** When `true`, the snackbar is rendered */
+  isActive?: boolean;
+}
+
 /**
  * A status toolbar for multiple selection in a table.
  * Intended to be rendered in fixed position over a table.
  */
-const Snackbar = ({
-  children,
-  isActive = false,
-}: React.PropsWithChildren<{
-  isActive: boolean;
-}>) => {
+const Snackbar = ({ children, isActive = false }: SnackbarProps) => {
   return (
     <div aria-live="polite" role="status">
       {isActive && (

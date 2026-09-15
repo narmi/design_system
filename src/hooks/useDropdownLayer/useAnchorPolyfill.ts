@@ -1,7 +1,5 @@
 import { useLayoutEffect } from "react";
 import useSupportsAnchorPositioning from "../useSupportsAnchorPositioning";
-import { HAS_SCROLL_CONTAINER_BUG } from "../useSupportsAnchorPositioning";
-import { resolveSpaceToken } from "./useDropdownMaxHeight";
 
 interface UseAnchorPolyfillParams {
   /** Reference to the element that the dropdown should be anchored to */
@@ -12,19 +10,29 @@ interface UseAnchorPolyfillParams {
   matchWidth?: boolean;
   /** Whether the dropdown is currently open */
   isOpen: boolean;
-  /** Function to close the dropdown */
-  setIsOpen: (isOpen: boolean) => void;
-  /**
-   * When true, forces the polyfill path if the browser has the Safari
-   * scroll-container bug (anchor-size/position-try-fallbacks fail inside
-   * overflow:auto ancestors). Defaults to false.
-   */
-  polyfillScrollBug?: boolean;
 }
+
+/**
+ * Resolves a CSS custom property (e.g. `--space-xs`) to a pixel number.
+ * Falls back to `fallback` if the property is not set or cannot be parsed.
+ */
+const resolveSpaceToken = (property: string, fallback: number): number => {
+  if (typeof document === "undefined") return fallback;
+  const raw = getComputedStyle(document.documentElement)
+    .getPropertyValue(property)
+    .trim();
+  const parsed = parseFloat(raw);
+  return isNaN(parsed) ? fallback : parsed;
+};
 
 /**
  * Calculates and applies CSS custom properties for dropdown positioning.
  * Exported for unit testing.
+ *
+ * All measurements are in layout-viewport coordinates (`window.innerHeight`
+ * compared against `getBoundingClientRect()`). This avoids the visual-vs-
+ * layout viewport mixup that caused off-screen placement on Android when
+ * the soft keyboard was open at the time `calculatePosition` ran.
  */
 export const calculatePosition = (
   anchorEl: HTMLElement,
@@ -39,22 +47,21 @@ export const calculatePosition = (
   const anchorGap = resolveSpaceToken("--space-xxs", 4);
   const edgeClearance = resolveSpaceToken("--space-l", 20);
 
-  const vvHeight = window.visualViewport?.height ?? window.innerHeight;
-
   // Reset to a known baseline before measuring layer position.
   layerEl.style.setProperty("--js-dropdown-top", "0px");
   layerEl.style.removeProperty("--js-dropdown-bottom");
   layerEl.style.setProperty("--js-dropdown-left", "0px");
 
   const layerRect = layerEl.getBoundingClientRect();
-  const spaceBelow = vvHeight - anchorRect.bottom - anchorGap - edgeClearance;
+  const spaceBelow =
+    window.innerHeight - anchorRect.bottom - anchorGap - edgeClearance;
   const spaceAbove = anchorRect.top - anchorGap - edgeClearance;
   const shouldFlip = spaceAbove > spaceBelow;
 
   if (shouldFlip) {
     layerEl.style.setProperty(
       "--js-dropdown-bottom",
-      `${vvHeight - anchorRect.top + anchorGap}px`,
+      `${window.innerHeight - anchorRect.top + anchorGap}px`,
     );
     layerEl.style.removeProperty("--js-dropdown-top");
   } else {
@@ -106,20 +113,11 @@ const useAnchorPolyfill = ({
   layerRef,
   matchWidth = false,
   isOpen,
-  setIsOpen,
-  polyfillScrollBug = false,
 }: UseAnchorPolyfillParams) => {
   const isAnchorPositionSupported = useSupportsAnchorPositioning();
 
-  // When polyfillScrollBug is opted-in AND the browser has the bug,
-  // force the polyfill path even though CSS.supports reports support.
-  const effectiveSupport =
-    polyfillScrollBug && HAS_SCROLL_CONTAINER_BUG
-      ? false
-      : isAnchorPositionSupported;
-
   useLayoutEffect(() => {
-    if (effectiveSupport || !isOpen) return;
+    if (isAnchorPositionSupported || !isOpen) return;
 
     let disposed = false;
     let currentObserver: IntersectionObserver | undefined;
@@ -167,40 +165,18 @@ const useAnchorPolyfill = ({
     layerEl.style.visibility = "";
     armObserver();
 
-    // Allow the keyboard animation to settle before recalculating.
-    // This solves for animated virtual keyboards.
-    const handleViewportResize = () => {
-      layerEl.style.visibility = "hidden";
-      requestAnimationFrame(() => {
-        if (disposed) return;
-        calculatePosition(...calculateArgs);
-        layerEl.style.visibility = "";
-        armObserver();
-      });
-    };
-
-    window.visualViewport?.addEventListener("resize", handleViewportResize);
-
-    // close on resize or orientation change
-    const handleWindowResize = () => setIsOpen(false);
-    window.addEventListener("resize", handleWindowResize);
-
     return () => {
       disposed = true;
       currentObserver?.disconnect();
-      window.visualViewport?.removeEventListener(
-        "resize",
-        handleViewportResize,
-      );
-      window.removeEventListener("resize", handleWindowResize);
     };
-  }, [effectiveSupport, anchorRef, layerRef, matchWidth, isOpen, setIsOpen]);
+  }, [isAnchorPositionSupported, anchorRef, layerRef, matchWidth, isOpen]);
 
   return {
-    isAnchorPositionSupported: effectiveSupport,
-    polyFillLayerStyles: effectiveSupport
+    isAnchorPositionSupported,
+    polyFillLayerStyles: isAnchorPositionSupported
       ? {}
       : {
+          zIndex: "1",
           position: "fixed" as const,
           top: "var(--js-dropdown-top, auto)",
           bottom: "var(--js-dropdown-bottom, auto)",

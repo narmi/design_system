@@ -42,7 +42,7 @@ $sizes: xxs, xs, s, m, l, xl, xxl;
 
     // negate spacing by direction (`<margin|padding>--top--none`)
     .#{$property}--#{$direction}--none {
-      #{$property}-#{direction}: 0 !important;
+      #{$property}-#{$direction}: 0 !important;
     }
 
     @each $size in ($sizes) {

@@ -26,14 +26,14 @@
   &--disabled {
     user-select: none;
     pointer-events: none;
-    color: var(--color-mediumGrey);
+    color: var(--font-color-secondary);
     background-color: var(--bgColor-smokeGrey);
   }
 }
 
 .nds-dropdownTrigger-label {
   pointer-events: none;
-  color: var(--color-mediumGrey);
+  color: var(--font-color-secondary);
   font-weight: var(--font-weight-default);
   text-rendering: geometricPrecision; // match input placeholder weight
 }

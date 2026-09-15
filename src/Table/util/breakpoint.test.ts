@@ -20,4 +20,10 @@ describe("isBreakpointSatisfied", () => {
     expect(isBreakpointSatisfied("s", "l")).toBe(true);
     expect(isBreakpointSatisfied("m", "l")).toBe(true);
   });
+
+  it('should always return false when minRequired is "none"', () => {
+    expect(isBreakpointSatisfied("none", "s")).toBe(false);
+    expect(isBreakpointSatisfied("none", "m")).toBe(false);
+    expect(isBreakpointSatisfied("none", "l")).toBe(false);
+  });
 });

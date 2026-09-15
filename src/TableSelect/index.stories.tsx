@@ -1,5 +1,6 @@
 import React from "react";
 import { action } from "storybook/actions";
+import { expect, screen, waitFor } from "storybook/test";
 import TableSelect from ".";
 
 export default {
@@ -39,6 +40,63 @@ Basic.args = {
   label: "Select a fruit",
   isDisabled: false,
   hasError: false,
+};
+
+/**
+ * Interaction test that opens the TableSelect so Chromatic can snapshot
+ * the dropdown. The menu is portalled to the body, so options are queried
+ * via `screen`.
+ */
+export const Opens = {
+  name: "Interaction: Opens on click",
+  render: () => (
+    <TableSelect id="fruit-open" label="Select a fruit" onChange={() => {}}>
+      {mockItems.map((item) => (
+        <TableSelect.Item key={item} value={item}>
+          {item}
+        </TableSelect.Item>
+      ))}
+    </TableSelect>
+  ),
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(
+      canvas.getByRole("combobox", { name: /select a fruit/i }),
+    );
+    await waitFor(() =>
+      expect(screen.getByRole("option", { name: "Apple" })).toBeVisible(),
+    );
+  },
+};
+
+/**
+ * Interaction test for the selection flow: open, pick an option, and
+ * verify the trigger reflects the choice.
+ */
+export const SelectsOption = {
+  name: "Interaction: Selects an option",
+  render: () => (
+    <TableSelect
+      id="fruit-select-story"
+      label="Select a fruit"
+      onChange={() => {}}
+    >
+      {mockItems.map((item) => (
+        <TableSelect.Item key={item} value={item}>
+          {item}
+        </TableSelect.Item>
+      ))}
+    </TableSelect>
+  ),
+  play: async ({ canvas, userEvent }) => {
+    const trigger = canvas.getByRole("combobox", { name: /select a fruit/i });
+    await userEvent.click(trigger);
+    await waitFor(() =>
+      expect(screen.getByRole("option", { name: "Banana" })).toBeVisible(),
+    );
+
+    await userEvent.click(screen.getByRole("option", { name: "Banana" }));
+    await waitFor(() => expect(trigger).toHaveTextContent("Banana"));
+  },
 };
 
 export const WithCustomContent = () => {

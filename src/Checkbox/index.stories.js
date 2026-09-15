@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { expect, waitFor } from "storybook/test";
 import Checkbox from "./";
+import Alert from "../Alert";
 
 const Template = (args) => <Checkbox {...args} />;
 
@@ -7,6 +9,42 @@ export const Overview = Template.bind({});
 Overview.args = {
   label: "I agree to receive spam",
   name: "spam",
+};
+
+/**
+ * Interaction test verifying that clicking the checkbox toggles its
+ * checked state on and back off.
+ */
+export const Toggles = {
+  name: "Interaction: Toggles on click",
+  render: () => <Checkbox label="I agree to receive spam" name="spam" />,
+  play: async ({ canvas, userEvent }) => {
+    const checkbox = canvas.getByRole("checkbox", {
+      name: /i agree to receive spam/i,
+    });
+    expect(checkbox).not.toBeChecked();
+
+    // check
+    await userEvent.click(checkbox);
+    await waitFor(() => expect(checkbox).toBeChecked());
+
+    // uncheck
+    await userEvent.click(checkbox);
+    await waitFor(() => expect(checkbox).not.toBeChecked());
+  },
+};
+
+/**
+ * Interaction test verifying the indeterminate state renders as a
+ * partially checked checkbox.
+ */
+export const Indeterminate = {
+  name: "Interaction: Renders indeterminate state",
+  render: () => <Checkbox label="Select all" name="select-all" indeterminate />,
+  play: async ({ canvas }) => {
+    const checkbox = canvas.getByRole("checkbox", { name: /select all/i });
+    await waitFor(() => expect(checkbox).toBePartiallyChecked());
+  },
 };
 
 export const FullyControlled = () => {
@@ -37,6 +75,21 @@ export const MultipleCheckboxes = (args) => (
     <Checkbox label="Make withdrawals" name="withdrawal" {...args} />
   </>
 );
+
+export const CheckedDisabled = Template.bind({});
+CheckedDisabled.args = {
+  label: "Checked and disabled",
+  name: "checked_disabled",
+  checked: true,
+  isDisabled: true,
+};
+CheckedDisabled.parameters = {
+  docs: {
+    description: {
+      story: "A checkbox that is both checked and disabled.",
+    },
+  },
+};
 
 export const AsCard = Template.bind({});
 AsCard.args = {
@@ -80,7 +133,55 @@ Markdown.parameters = {
   },
 };
 
+export const CustomLabelElements = Template.bind({});
+CustomLabelElements.args = {
+  name: "Custom display with stuff",
+  defaultChecked: false,
+  renderLabel: (isChecked) => {
+    const alertKind = isChecked ? "primary" : "warn";
+    return (
+      <Alert kind={alertKind} isActive isDismissable={false}>
+        I will turn green if you check the box!
+      </Alert>
+    );
+  },
+};
+CustomLabelElements.parameters = {
+  docs: {
+    description: {
+      story:
+        "Renders a custom label element when `renderLabel` prop is set. Will provide the `isChecked` state to the custom element.",
+    },
+  },
+};
+
 export default {
   title: "Components/Checkbox",
   component: Checkbox,
+  // Declare controls explicitly so every prop is editable regardless of whether
+  // react-docgen output is available. Relying on docgen alone is fragile (see
+  // `.storybook/main.ts` and `scripts/checkDocgen.mjs`); when it is missing,
+  // Storybook infers controls only from each story's `args`, which previously
+  // left most props (e.g. `checked`, `isDisabled`, `kind`) without controls.
+  argTypes: {
+    label: { control: "text" },
+    markdownLabel: { control: "text" },
+    name: { control: "text" },
+    id: { control: "text" },
+    value: { control: "text" },
+    error: { control: "text" },
+    testId: { control: "text" },
+    checked: { control: "boolean" },
+    defaultChecked: { control: "boolean" },
+    isDisabled: { control: "boolean" },
+    disabled: { control: "boolean" },
+    indeterminate: { control: "boolean" },
+    hasError: { control: "boolean" },
+    kind: {
+      control: "select",
+      options: ["normal", "condensed", "card", "table"],
+    },
+    onChange: { action: "changed" },
+    renderLabel: { control: false },
+  },
 };

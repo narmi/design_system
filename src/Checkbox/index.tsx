@@ -1,5 +1,5 @@
 // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_checkbox
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useMemo } from "react";
 import cc from "classcat";
 import DOMPurify from "dompurify";
 import { marked, Renderer } from "marked";
@@ -10,9 +10,11 @@ markdownRenderer.link = ({ href, text }) =>
 import Error from "../Error";
 import DisabledShim from "../DisabledShim";
 
-interface CheckboxProps {
+export interface CheckboxProps {
   /** Content of `label` element */
   label?: string;
+  /** Optionally renders a `ReactNode` in place of the `label` */
+  renderLabel?: (isChecked: boolean) => React.ReactNode;
   /** Markdown to use in place of the `label` field */
   markdownLabel?: string;
   /** Change callback invoked when the value of the `input` changes */
@@ -65,6 +67,7 @@ interface CheckboxProps {
  */
 const Checkbox = ({
   label,
+  renderLabel,
   markdownLabel, // DEPRECATED
   onChange = () => {},
   id,
@@ -115,6 +118,29 @@ const Checkbox = ({
     setIsFocused(false);
   };
 
+  const labelDisplay = useMemo(() => {
+    if (renderLabel) {
+      return renderLabel(isChecked);
+    }
+    if (markdownLabel) {
+      return (
+        <div
+          dangerouslySetInnerHTML={{
+            // nosemgrep: react-dangerouslysetinnerhtml -- sanitized by DOMPurify
+            __html: DOMPurify.sanitize(
+              marked.parse(markdownLabel, {
+                renderer: markdownRenderer,
+              }) as string,
+              { ADD_ATTR: ["target"] },
+            ),
+          }}
+        />
+      );
+    }
+
+    return <>{label}</>;
+  }, [isChecked, renderLabel, markdownLabel, label]);
+
   return (
     <div className={`nds-checkbox-container nds-checkbox-container--${kind}`}>
       <DisabledShim isDisabled={resolvedIsDisabled && kind === "card"}>
@@ -139,22 +165,7 @@ const Checkbox = ({
               },
             ])}
           ></span>
-          <div className="nds-checkbox-label">
-            {markdownLabel && (
-              <div
-                dangerouslySetInnerHTML={{
-                  // nosemgrep: react-dangerouslysetinnerhtml -- sanitized by DOMPurify
-                  __html: DOMPurify.sanitize(
-                    marked.parse(markdownLabel, {
-                      renderer: markdownRenderer,
-                    }) as string,
-                    { ADD_ATTR: ["target"] },
-                  ),
-                }}
-              />
-            )}
-            {!markdownLabel && <>{label}</>}
-          </div>
+          <div className="nds-checkbox-label">{labelDisplay}</div>
           <input
             ref={inputRef}
             onFocus={handleFocus}

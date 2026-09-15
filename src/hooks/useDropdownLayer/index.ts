@@ -1,6 +1,5 @@
 import { useId, useRef, useMemo } from "react";
 import useAnchorPolyfill from "./useAnchorPolyfill";
-import useDropdownMaxHeight from "./useDropdownMaxHeight";
 
 export type UseDropdownLayerResult = {
   /** Props to spread onto the anchor/trigger element */
@@ -58,29 +57,30 @@ export interface UseDropdownLayerOptions {
    * back to start alignment.
    */
   alignment?: Alignment;
-  /**
-   * When true, forces the JS polyfill if the browser has the Safari
-   * scroll-container bug (anchor-size/position-try-fallbacks fail inside
-   * overflow:auto ancestors). Opt-in only for components that render inside
-   * scroll containers (e.g. Select, Combobox inside Dialog).
-   * @default false
-   */
-  polyfillScrollBug?: boolean;
 }
 
-/** Maps placement to CSS anchor positioning values */
+/**
+ * Maps placement to CSS anchor positioning values.
+ */
 const PLACEMENT_CONFIG: Record<
   Placement,
-  { positionArea: string; positionTryFallbacks: string; margin: string }
+  {
+    positionArea: string;
+    positionTryFallbacks: string;
+    margin: string;
+    positionTryOrder?: string;
+  }
 > = {
   bottom: {
     positionArea: "bottom",
     positionTryFallbacks: "--nds-dropdown-above, flip-inline",
+    positionTryOrder: "most-height",
     margin: "marginTop",
   },
   top: {
     positionArea: "top",
     positionTryFallbacks: "--nds-try-below, flip-inline",
+    positionTryOrder: "most-height",
     margin: "marginBottom",
   },
   left: {
@@ -102,13 +102,18 @@ const PLACEMENT_CONFIG: Record<
  */
 const useDropdownLayer = ({
   isOpen,
-  setIsOpen,
+  // `setIsOpen` remains part of the public options for API stability but
+  // is no longer read internally. `useAnchorPolyfill` previously used it
+  // to close the menu on `window.resize`; that handler was removed as
+  // part of NDS-3164 because it fired spuriously on Android soft-keyboard
+  // open. Keyboard-aware sizing is now handled in pure CSS via `dvh`
+  // + `position-try-order: most-height` on the native anchor-positioning
+  // path. Blur handling in the consuming component closes the menu.
   matchWidth = true,
   isPortalled = false,
   ariaPopupType = "menu",
   placement = "bottom",
   alignment,
-  polyfillScrollBug = false,
 }: UseDropdownLayerOptions): UseDropdownLayerResult => {
   const anchorRef = useRef<HTMLElement>(null);
   const layerRef = useRef<HTMLElement>(null);
@@ -124,11 +129,7 @@ const useDropdownLayer = ({
     layerRef,
     matchWidth,
     isOpen,
-    setIsOpen,
-    polyfillScrollBug,
   });
-
-  useDropdownMaxHeight({ anchorRef, layerRef, isOpen });
 
   // Memoized props to spread onto the anchor (positioning reference) element
   const anchorProps = useMemo(
@@ -161,6 +162,9 @@ const useDropdownLayer = ({
       positionAnchor: anchorName,
       positionArea,
       positionTryFallbacks,
+      ...(config.positionTryOrder && {
+        positionTryOrder: config.positionTryOrder,
+      }),
       marginTop: 0,
       marginBottom: 0,
       marginLeft: 0,
@@ -178,9 +182,8 @@ const useDropdownLayer = ({
         ? anchorPositionStyles
         : polyFillLayerStyles),
 
-      // Always include display and z-index.
+      // Always include display
       display: isOpen ? "block" : "none",
-      zIndex: isPortalled ? 9 : 4,
     };
 
     return {

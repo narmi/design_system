@@ -54,7 +54,7 @@
   border-radius: 50%;
   overflow: hidden;
   background-color: var(--theme-primary);
-  border: 1px solid var(--color-lightGrey);
+  border: 1px solid var(--border-color-light);
 
   // support for icons
   color: var(--color-white);
@@ -75,5 +75,16 @@
   }
   svg line {
     stroke-dasharray: 2;
+  }
+}
+
+.nds-timeline-event--divided {
+  & + & {
+    border-top: 1px solid var(--border-color-light);
+    padding-top: var(--space-s);
+  }
+
+  svg line {
+    display: none;
   }
 }

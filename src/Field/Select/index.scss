@@ -1,0 +1,34 @@
+.nds-field-select-listbox {
+  @extend %nds-dropdown-layer;
+  background: var(--color-white);
+  list-style: none;
+  margin: 0;
+}
+
+.nds-field-select-item {
+  box-sizing: border-box;
+  cursor: pointer;
+  padding: var(--space-xs) var(--space-s);
+  min-height: var(--space-xl);
+  display: flex;
+  align-items: center;
+
+  &:hover,
+  &--highlighted {
+    background: RGBA(var(--theme-rgb-primary), var(--alpha-5));
+  }
+}
+
+.nds-field-select-value {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-size-s);
+  color: var(--font-color-primary);
+
+  &:empty::before {
+    content: attr(data-placeholder);
+    color: var(--font-color-secondary);
+  }
+}

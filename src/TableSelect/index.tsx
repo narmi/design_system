@@ -94,7 +94,6 @@ const TableSelect = React.forwardRef<HTMLInputElement, TableSelectProps>(
       setIsOpen: () => {},
       matchWidth: true,
       isPortalled: true,
-      polyfillScrollBug: true,
     });
 
     const hasSelectedItem = selectedItem !== null && selectedItem.props;
@@ -160,7 +159,7 @@ const TableSelect = React.forwardRef<HTMLInputElement, TableSelectProps>(
             isOpen={isOpen}
             hasError={hasError}
             disabled={isDisabled}
-            // The easist way to ensure consistent height is to always have one char rendering.
+            // The easiest way to ensure consistent height is to always have one char rendering.
             // We allow the text size to determine sizing for all table fields.
             renderDisplayValue={
               selectedItem

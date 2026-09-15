@@ -66,7 +66,7 @@ export default {
       description: {
         component: `
 Most content in the Narmi UI is contained within a "card" of some kind. Some are toggles,
-some are buttons, some expand, and some are just rounded rectagles that simply hold content.
+some are buttons, some expand, and some are just rounded rectangles that simply hold content.
 
 It's important to know which card to use, and when.
 `,

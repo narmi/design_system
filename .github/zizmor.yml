@@ -1,0 +1,11 @@
+# Configuration for zizmor, the GitHub Actions security auditor.
+# https://docs.zizmor.sh/configuration/
+
+rules:
+  artipacked:
+    ignore:
+      - release-backport.yaml:63
+  obfuscation:
+    ignore:
+      - chromatic-pr.yaml:104
+      - chromatic-pr.yaml:106

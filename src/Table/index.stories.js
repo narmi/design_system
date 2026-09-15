@@ -158,6 +158,16 @@ ColumnLayout.parameters = {
   docs: {
     description: {
       story:
+        "> **Deprecated interface.** Passing `colLayout` values as " +
+        "`grid-template-columns` **strings** (shown here) is deprecated and will " +
+        "be removed in the next major version. Provide a per-column **track " +
+        "array** parallel to `colVisibility` instead — e.g. " +
+        '`"repeat(4, 1fr) min-content"` becomes ' +
+        '`["1fr", "1fr", "1fr", "1fr", "min-content"]` (list hidden ' +
+        "columns too; their width is used when shown and collapses to `0fr` when " +
+        "hidden). Only the array form animates and supports `colVisibility: " +
+        '"none"`. See the "Animated columns" and "Programmatically hiding a ' +
+        'column" stories.\n\n' +
         "Grid layouts configured per breakpoint using `colLayout`:\n\n" +
         "- **Small**: `2fr 1fr 1fr max-content`\n" +
         "- **Medium**: `minmax(200px, 1fr) max-content 1fr min-content`\n" +
@@ -467,6 +477,264 @@ TableWithOverflow.parameters = {
     description: {
       story:
         "This table is wrapped in an `overflow: scroll` container to test that dropdowns (like `TableSelect`) escape the overflow boundary and remain visible. This is important when tables are horizontally scrollable or constrained.",
+    },
+  },
+};
+
+// eslint-disable-next-line react/prop-types
+export const ScrollableWithPinnedColumns = ({ pinColumns }) => (
+  <div
+    style={{
+      background: "var(--bgColor-blueGrey)",
+      padding: "16px",
+    }}
+  >
+    <Table
+      colVisibility={["*", "*", "*", "*", "*", "*", "*", "*", "*", "*"]}
+      colLayout={{
+        s: "max-content 200px 180px 180px 150px max-content 180px 150px 180px max-content",
+        m: "max-content 220px 200px 200px 180px max-content 200px 180px 200px max-content",
+        l: "max-content 240px 220px 220px 200px max-content 220px 200px 220px max-content",
+      }}
+      pinColumns={pinColumns}
+      kind="editable"
+    >
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell>Name</Table.HeaderCell>
+          <Table.HeaderCell>Email</Table.HeaderCell>
+          <Table.HeaderCell>Phone</Table.HeaderCell>
+          <Table.HeaderCell>Department</Table.HeaderCell>
+          <Table.HeaderCell>Location</Table.HeaderCell>
+          <Table.HeaderCell>Status</Table.HeaderCell>
+          <Table.HeaderCell>Start Date</Table.HeaderCell>
+          <Table.HeaderCell>Salary</Table.HeaderCell>
+          <Table.HeaderCell>Manager</Table.HeaderCell>
+          <Table.HeaderCell>Actions</Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        <Table.Row>
+          <Table.Cell>John Doe</Table.Cell>
+          <Table.Cell>john@example.com</Table.Cell>
+          <Table.Cell>(555) 123-4567</Table.Cell>
+          <Table.Cell>Engineering</Table.Cell>
+          <Table.Cell>New York</Table.Cell>
+          <Table.Cell>Active</Table.Cell>
+          <Table.Cell>Jan 15, 2022</Table.Cell>
+          <Table.Cell>$120,000</Table.Cell>
+          <Table.Cell>Sarah Connor</Table.Cell>
+          <Table.Cell>
+            <button>Edit</button>
+          </Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>Jane Smith</Table.Cell>
+          <Table.Cell>jane@example.com</Table.Cell>
+          <Table.Cell>(555) 987-6543</Table.Cell>
+          <Table.Cell>Marketing</Table.Cell>
+          <Table.Cell>San Francisco</Table.Cell>
+          <Table.Cell>Active</Table.Cell>
+          <Table.Cell>Mar 3, 2021</Table.Cell>
+          <Table.Cell>$105,000</Table.Cell>
+          <Table.Cell>Tom Bradley</Table.Cell>
+          <Table.Cell>
+            <button>Edit</button>
+          </Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>Bob Johnson</Table.Cell>
+          <Table.Cell>bob@example.com</Table.Cell>
+          <Table.Cell>(555) 456-7890</Table.Cell>
+          <Table.Cell>Sales</Table.Cell>
+          <Table.Cell>Chicago</Table.Cell>
+          <Table.Cell>On Leave</Table.Cell>
+          <Table.Cell>Nov 20, 2023</Table.Cell>
+          <Table.Cell>$95,000</Table.Cell>
+          <Table.Cell>Lisa Park</Table.Cell>
+          <Table.Cell>
+            <button>Edit</button>
+          </Table.Cell>
+        </Table.Row>
+      </Table.Body>
+    </Table>
+  </div>
+);
+ScrollableWithPinnedColumns.args = {
+  pinColumns: "both",
+};
+ScrollableWithPinnedColumns.argTypes = {
+  pinColumns: {
+    control: { type: "inline-radio" },
+    options: ["none", "start", "end", "both"],
+  },
+};
+ScrollableWithPinnedColumns.parameters = {
+  docs: {
+    description: {
+      story:
+        "A scrollable table with the first column (Name) pinned to the start and the last column (Actions) pinned to the end. " +
+        'Middle columns scroll horizontally. Use `columnOverflow="scroll"` with `pinnedStart` and `pinnedEnd` to configure. ' +
+        "Pinned columns require fixed widths in `colLayout` (not `fr` units).",
+    },
+  },
+};
+
+export const AnimatedColumns = () => (
+  <Table
+    colVisibility={["*", "*", "m", "m", "*"]}
+    colLayout={{
+      s: ["1fr", "1fr", "1fr", "1fr", "min-content"],
+      m: ["1fr", "1fr", "1fr", "1fr", "min-content"],
+      l: ["1fr", "1fr", "1fr", "1fr", "min-content"],
+    }}
+  >
+    <Table.Header>
+      <Table.Row>
+        <Table.HeaderCell>Name</Table.HeaderCell>
+        <Table.HeaderCell>Email</Table.HeaderCell>
+        <Table.HeaderCell>Role</Table.HeaderCell>
+        <Table.HeaderCell>Department</Table.HeaderCell>
+        <Table.HeaderCell>Actions</Table.HeaderCell>
+      </Table.Row>
+    </Table.Header>
+    <Table.Body>
+      <Table.Row>
+        <Table.Cell>John Doe</Table.Cell>
+        <Table.Cell>john@example.com</Table.Cell>
+        <Table.Cell>Admin</Table.Cell>
+        <Table.Cell>Engineering</Table.Cell>
+        <Table.Cell>
+          <button>Edit</button>
+        </Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>Jane Smith</Table.Cell>
+        <Table.Cell>jane@example.com</Table.Cell>
+        <Table.Cell>User</Table.Cell>
+        <Table.Cell>Marketing</Table.Cell>
+        <Table.Cell>
+          <button>Edit</button>
+        </Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>Bob Johnson</Table.Cell>
+        <Table.Cell>bob@example.com</Table.Cell>
+        <Table.Cell>Manager</Table.Cell>
+        <Table.Cell>Sales</Table.Cell>
+        <Table.Cell>
+          <button>Edit</button>
+        </Table.Cell>
+      </Table.Row>
+    </Table.Body>
+  </Table>
+);
+AnimatedColumns.parameters = {
+  docs: {
+    description: {
+      story:
+        "Provide `colLayout` as a **track array** per breakpoint (parallel to " +
+        "`colVisibility`) to opt into animated column show/hide. `fr` widths are " +
+        "wrapped in `minmax(0, …)` internally so hidden columns can collapse to " +
+        "`minmax(0, 0fr)` and interpolate. Resize the viewport across the `m` " +
+        "breakpoint: the Role and Department columns animate open/closed while " +
+        "the track count stays constant. The trailing `min-content` Actions " +
+        "column stays visible and does not interpolate. Honors " +
+        "`prefers-reduced-motion: reduce`.",
+    },
+  },
+};
+
+/**
+ * Toggle a column's visibility at runtime by flipping its `colVisibility` entry
+ * to/from `"none"`. This only animates when `colLayout` is supplied as track
+ * arrays (see the story description).
+ */
+export const ProgrammaticallyHidingAColumn = () => {
+  const [departmentHidden, setDepartmentHidden] = useState(false);
+
+  // "Department" is column index 3. Toggling it between "none" (hidden) and
+  // "*" (always visible) animates the column open/closed.
+  const colVisibility = ["*", "*", "*", departmentHidden ? "none" : "*", "*"];
+
+  return (
+    <div>
+      <button
+        className="button button--primary"
+        onClick={() => setDepartmentHidden((hidden) => !hidden)}
+        style={{ marginBottom: 16 }}
+      >
+        {departmentHidden ? "Show" : "Hide"} Department column
+      </button>
+      <Table
+        colVisibility={colVisibility}
+        colLayout={{
+          s: ["1fr", "1fr", "1fr", "1fr", "min-content"],
+          m: ["1fr", "1fr", "1fr", "1fr", "min-content"],
+          l: ["1fr", "1fr", "1fr", "1fr", "min-content"],
+        }}
+      >
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Name</Table.HeaderCell>
+            <Table.HeaderCell>Email</Table.HeaderCell>
+            <Table.HeaderCell>Role</Table.HeaderCell>
+            <Table.HeaderCell>Department</Table.HeaderCell>
+            <Table.HeaderCell>Actions</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>John Doe</Table.Cell>
+            <Table.Cell>john@example.com</Table.Cell>
+            <Table.Cell>Admin</Table.Cell>
+            <Table.Cell>Engineering</Table.Cell>
+            <Table.Cell>
+              <button>Edit</button>
+            </Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>Jane Smith</Table.Cell>
+            <Table.Cell>jane@example.com</Table.Cell>
+            <Table.Cell>User</Table.Cell>
+            <Table.Cell>Marketing</Table.Cell>
+            <Table.Cell>
+              <button>Edit</button>
+            </Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>Bob Johnson</Table.Cell>
+            <Table.Cell>bob@example.com</Table.Cell>
+            <Table.Cell>Manager</Table.Cell>
+            <Table.Cell>Sales</Table.Cell>
+            <Table.Cell>
+              <button>Edit</button>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+    </div>
+  );
+};
+ProgrammaticallyHidingAColumn.storyName = "Programmatically hiding a column";
+ProgrammaticallyHidingAColumn.parameters = {
+  layout: "centered",
+  docs: {
+    description: {
+      story:
+        'Set a column\'s `colVisibility` entry to `"none"` to hide it ' +
+        'programmatically (e.g. from React state), and back to `"*"` or a ' +
+        'breakpoint (`"m"`) to reveal it. The column animates open/closed.\n\n' +
+        '**`"none"` requires the array form of `colLayout`.** You must provide ' +
+        "each breakpoint's layout as a track array parallel to `colVisibility` " +
+        '(e.g. `["1fr", "1fr", "1fr", "1fr", "min-content"]`) rather ' +
+        'than a CSS string (`"repeat(4, 1fr) min-content"`). Only the array ' +
+        "form exposes each column's width individually, which is what lets a " +
+        "single track collapse to `minmax(0, 0fr)` while the total track count " +
+        "stays constant so the grid can interpolate.\n\n" +
+        'If `colLayout` is a string at the current breakpoint, `"none"` falls ' +
+        'back to `"*"` (the column stays visible) and a `console.error` is ' +
+        "logged.",
     },
   },
 };

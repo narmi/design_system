@@ -1,0 +1,14 @@
+{
+  "color": {
+    "system": {
+      "successDark": { "value": "#6F6BAD" },
+      "successLight": { "value": "#F7F8FF" },
+      "infoDark": { "value": "#1A56B0" },
+      "infoLight": { "value": "#E9EFFB" },
+      "warnDark": { "value": "#6F004F" },
+      "warnLight": { "value": "#FFE9F4" },
+      "errorDark": { "value": "#4B0200" },
+      "errorLight": { "value": "#FFEBE7" }
+    }
+  }
+}

@@ -37,6 +37,13 @@ beforeEach(() => {
     configurable: true,
     value: { width: VIEWPORT_WIDTH, height: VIEWPORT_HEIGHT },
   });
+  // `calculatePosition` uses `window.innerHeight` for layout-viewport-
+  // consistent math. jsdom's default innerHeight isn't guaranteed to match
+  // VIEWPORT_HEIGHT, so set it explicitly.
+  Object.defineProperty(window, "innerHeight", {
+    configurable: true,
+    value: VIEWPORT_HEIGHT,
+  });
 });
 
 describe("calculatePosition", () => {
@@ -80,41 +87,13 @@ describe("calculatePosition", () => {
       expect(props["--js-dropdown-top"]).toBe("154px");
       expect(props["--js-dropdown-bottom"]).toBeNull();
     });
-
-    it("does not set max-height properties (owned by useDropdownMaxHeight)", () => {
-      const anchor = makeEl({
-        top: 100,
-        bottom: 150,
-        left: 0,
-        right: 200,
-        width: 200,
-        height: 50,
-      });
-      const layer = makeEl({
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 200,
-        width: 200,
-        height: 0,
-      });
-
-      calculatePosition(anchor, layer, false);
-
-      expect(
-        layer.style.getPropertyValue("--js-dropdown-maxHeight"),
-      ).toBeFalsy();
-      expect(
-        layer.style.getPropertyValue("--nds-layer-max-height"),
-      ).toBeFalsy();
-    });
   });
 
   describe("positioning above anchor (more space above)", () => {
     it("sets --js-dropdown-bottom and clears --js-dropdown-top", () => {
       // Anchor near the bottom → more space above.
       // anchorGap falls back to 4px in jsdom (CSS token unresolvable).
-      // --js-dropdown-bottom = vvHeight - anchorRect.top + anchorGap = 768 - 568 + 4 = 204px
+      // --js-dropdown-bottom = window.innerHeight - anchorRect.top + anchorGap = 768 - 568 + 4 = 204px
       const anchor = makeEl({
         top: 568,
         bottom: 608,
@@ -217,8 +196,8 @@ describe("calculatePosition", () => {
   describe("available space floor", () => {
     it("clamps availableSpace to 0 when anchor spans the full viewport", () => {
       // Anchor spans the full viewport — spaceAbove and spaceBelow are both negative.
-      // calculatePosition should still run without errors; max-height is handled
-      // by useDropdownMaxHeight which clamps to 0.
+      // calculatePosition should still run without errors; max-height is no longer
+      // set here — the layer's fixed CSS max-height (%nds-dropdown-layer) handles it.
       const anchor = makeEl({
         top: -50,
         bottom: 820,

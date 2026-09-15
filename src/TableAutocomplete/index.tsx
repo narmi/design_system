@@ -142,7 +142,6 @@ const TableAutocomplete = ({
     },
     matchWidth: true,
     placement: "bottom",
-    polyfillScrollBug: true,
   });
 
   const { ref: anchorRef, ...anchorRest } = anchorProps;
@@ -160,7 +159,7 @@ const TableAutocomplete = ({
           isDisabled={isDisabled}
           hasError={hasError}
           {...getInputProps({
-            "aria-labelledby": undefined, // use underlying aria-label
+            "aria-label": label, // downshift emits aria-label + omits aria-labelledby
           })}
         />
       </div>

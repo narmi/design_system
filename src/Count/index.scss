@@ -10,6 +10,10 @@
   font-size: var(--font-size-s);
   line-height: 1;
 
+  @include contrastMore {
+    border: 1px solid var(--border-color-default);
+  }
+
   &--theme {
     background-color: RGBA(var(--theme-rgb-primary), var(--alpha-10));
     color: var(--theme-primary);
@@ -31,7 +35,7 @@
     color: var(--color-errorDark);
   }
   &--neutral {
-    background-color: var(--font-color-hint);
+    background-color: var(--bgColor-neutralGrey);
     color: var(--font-color-primary);
   }
 }

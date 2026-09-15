@@ -24,6 +24,15 @@
     }
   }
 
+  // color modes
+  @include contrastMore {
+    border: 1px solid var(--border-color-light);
+
+    // using the filter here preserves the original color intent
+    // of each `kind` while darkening each text color enough for contrastMore
+    filter: contrast(1.09);
+  }
+
   // `kind` variants
   &--info {
     background-color: var(--color-infoLight);
@@ -43,7 +52,7 @@
   }
   &--secondary {
     background-color: var(--color-white);
-    border: 1px solid var(--font-color-primary);
+    border: 1px solid var(--theme-primary);
   }
   &--primary {
     background-color: RGBA(var(--theme-rgb-primary), var(--alpha-10));
@@ -58,6 +67,10 @@
 
 .nds-chip-label {
   user-select: none;
+
+  &--selectable {
+    user-select: text;
+  }
 }
 
 .nds-chip-icon {

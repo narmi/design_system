@@ -5,7 +5,16 @@
  * `semantic-release` runs with the following configuration via the `release.yml` github action.
  */
 const config = {
-  branches: ["main"],
+  branches: [
+    // Maintenance branches shaped `N.N.x` (e.g. `6.21.x`). semantic-release
+    // infers `range` from the branch name (`N.N.x`, patch-only enforced via
+    // `EINVALIDNEXTVERSION`). We pin `channel: "patch"` so every maintenance
+    // line publishes under the shared `patch` npm dist-tag; the latest patch
+    // release across any active line owns the tag. Git tags remain
+    // `v${version}` per `tagFormat` default.
+    { name: "+([0-9]).+([0-9]).x", channel: "patch" },
+    "main",
+  ],
   plugins: [
     [
       "@semantic-release/commit-analyzer",
@@ -63,6 +72,10 @@ const config = {
             if (["chore", "build"].includes(commit.type)) {
               return null;
             }
+            // Set shortHash for commit link text in changelog
+            if (commit.hash) {
+              return { ...commit, shortHash: commit.hash.substring(0, 7) };
+            }
             return commit;
           },
         },
@@ -104,6 +117,11 @@ const config = {
             const validTypes = ["feat", "feature", "fix", "perf", "revert"];
             if (!validTypes.includes(commit.type)) {
               return null;
+            }
+
+            // Set shortHash for commit link text in changelog
+            if (commit.hash) {
+              return { ...commit, shortHash: commit.hash.substring(0, 7) };
             }
 
             return commit;

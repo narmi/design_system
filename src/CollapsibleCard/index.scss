@@ -6,7 +6,7 @@
   width: 100%;
   text-align: left;
   background-color: var(--color-white);
-  border: 1px solid var(--color-lightGrey);
+  border: 1px solid var(--border-color-light);
 }
 
 .collapsible-card-trigger {
@@ -14,7 +14,7 @@
 }
 
 .collapsible-card--content-card.content-card--disabled {
-  border: 1px solid var(--color-lightGrey) !important;
+  border: 1px solid var(--border-color-light) !important;
   overflow: hidden;
 }
 
@@ -36,7 +36,7 @@
   cursor: pointer;
 }
 .collapsible-card--content-card.content-card--hasCaretTrigger.content-card--closed:hover {
-  border: 1px solid var(--color-lightGrey) !important;
+  border: 1px solid var(--border-color-light) !important;
   cursor: unset !important;
 }
 .collapsible-card-titleBar {
@@ -56,11 +56,11 @@
 }
 
 .collapsible-card--content-card .subtitle {
-  color: var(--color-grey) !important;
+  color: var(--font-color-secondary) !important;
 }
 
 .collapsible-card--statusText {
-  color: var(--color-mediumGrey);
+  color: var(--font-color-secondary);
   height: 100%;
 }
 

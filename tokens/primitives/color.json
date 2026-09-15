@@ -1,0 +1,317 @@
+{
+  "color": {
+    "grey": {
+      "snowGrey": { "value": "#fbfbfb" },
+      "neutralGrey": { "value": "#f9f9f9" },
+      "blueGrey": { "value": "#F4F6FA" },
+      "smokeGrey": { "value": "#f3f3f3" },
+      "cloudGrey": { "value": "#e9e9e9" },
+      "lightGrey": { "value": "#d9d9d9" },
+      "mediumGrey": { "value": "#6c6c6c" },
+      "darkGrey": { "value": "#4c4c4c" },
+      "black": { "value": "#333333" },
+      "white": { "value": "#ffffff" }
+    },
+    "narmi": {
+      "moss100": {
+        "value": "#002921",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "moss200": {
+        "value": "#0F3C32",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "moss300": {
+        "value": "#005242",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "moss400": {
+        "value": "#006553",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "moss500": {
+        "value": "#3E8373",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "moss600": {
+        "value": "#6EA193",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "moss700": {
+        "value": "#9DC0B6",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "moss800": {
+        "value": "#CDDED9",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "moss": {
+        "value": "{color.narmi.moss400}",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+
+      "pine100": {
+        "value": "#041A14",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "pine200": {
+        "value": "#062821",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "pine300": {
+        "value": "#16362C",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "pine400": {
+        "value": "#1A4338",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "pine500": {
+        "value": "#44655B",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "pine600": {
+        "value": "#708981",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "pine700": {
+        "value": "#708981",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "pine800": {
+        "value": "#CDD6D3",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "pine": {
+        "value": "{color.narmi.pine400}",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+
+      "cove100": {
+        "value": "#002547",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "cove200": {
+        "value": "#00376A",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "cove300": {
+        "value": "#094895",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "cove400": {
+        "value": "#005CB2",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "cove500": {
+        "value": "#237CC3",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "cove600": {
+        "value": "#66A2D6",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "cove700": {
+        "value": "#A6CFF0",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "cove800": {
+        "value": "#D4EDFF",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "cove": {
+        "value": "{color.narmi.cove400}",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+
+      "azul100": {
+        "value": "#001340",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "azul200": {
+        "value": "#00205E",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "azul300": {
+        "value": "#002C82",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "azul400": {
+        "value": "#003EA0",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "azul500": {
+        "value": "#3664B5",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "azul600": {
+        "value": "#6B89C7",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "azul700": {
+        "value": "#9CB1DE",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "azul800": {
+        "value": "#C9D8F2",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "azul": {
+        "value": "{color.narmi.azul400}",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+
+      "pistachio100": {
+        "value": "#485E3D",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "pistachio200": {
+        "value": "#6B8C5A",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "pistachio300": {
+        "value": "#90BB78",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "pistachio400": {
+        "value": "#B5E995",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "pistachio500": {
+        "value": "#CCF0B4",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "pistachio600": {
+        "value": "#DAF4C8",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "pistachio700": {
+        "value": "#E9F8DE",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "pistachio800": {
+        "value": "#F7FCF3",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "pistachio": {
+        "value": "{color.narmi.pistachio400}",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+
+      "cactus100": {
+        "value": "#324C23",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "cactus200": {
+        "value": "#4B7137",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "cactus300": {
+        "value": "#63964B",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "cactus400": {
+        "value": "#7FBC5B",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "cactus500": {
+        "value": "#99CA7A",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "cactus600": {
+        "value": "#B3D79A",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "cactus700": {
+        "value": "#CCE4BA",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "cactus800": {
+        "value": "#E5F1DC",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "cactus": {
+        "value": "{color.narmi.cactus400}",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+
+      "sand100": {
+        "value": "#423329",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "sand200": {
+        "value": "#684D41",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "sand300": {
+        "value": "#947564",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "sand400": {
+        "value": "#C4A08A",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "sand500": {
+        "value": "#DCC1A3",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "sand600": {
+        "value": "#EED6C3",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "sand700": {
+        "value": "#F4E3D6",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "sand800": {
+        "value": "#FCF0E9",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "sand": {
+        "value": "{color.narmi.sand500}",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+
+      "amethyst": {
+        "value": "#5514B8",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+
+      "black": {
+        "value": "{color.grey.black}",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "grey": {
+        "value": "{color.grey.mediumGrey}",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "mediumGrey": {
+        "value": "{color.grey.mediumGrey}",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "lightGrey": {
+        "value": "{color.grey.lightGrey}",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      },
+      "white": {
+        "value": "{color.grey.white}",
+        "comment": "@deprecated brand color — not part of the public token API; prefer semantic theme tokens (--theme-*)."
+      }
+    },
+    "system": {
+      "successDark": { "value": "#027A48" },
+      "successLight": { "value": "#ECFDF3" },
+      "warnDark": { "value": "#B54708" },
+      "warnLight": { "value": "#FEF8E3" },
+      "infoDark": { "value": "#195274" },
+      "infoLight": { "value": "#E8EEF1" },
+      "errorDark": { "value": "#b42318" },
+      "errorLight": { "value": "#FEF3F2" }
+    },
+    "alpha": {
+      "5": { "value": "0.05" },
+      "10": { "value": "0.1" },
+      "20": { "value": "0.2" }
+    }
+  }
+}

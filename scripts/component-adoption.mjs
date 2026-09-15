@@ -27,6 +27,7 @@ const printResults = (componentCounts, unusedComponents) => {
   const ansi = { bold: "\x1b[1m", reset: "\x1b[0m" };
   const totalImports = Object.values(componentCounts).reduce(
     (acc, curr) => acc + curr,
+    0,
   );
   const countTable = new Table({
     head: ["#", "Component Name"],
@@ -120,7 +121,9 @@ const findFiles = (dir, extensions) => {
     })
     .reduce((acc, curr) => {
       // tally imports into our totals obj and return the resulting count map
-      acc[curr] = acc[curr] + 1;
+      // ignore names that aren't NDS value exports (e.g. type imports)
+      if (!(curr in acc)) return acc;
+      acc[curr] = (acc[curr] ?? 0) + 1;
       return acc;
     }, totals);
 

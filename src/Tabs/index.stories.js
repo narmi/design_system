@@ -189,7 +189,10 @@ const waitForScrollEnd = (el) =>
     requestAnimationFrame(check);
   });
 
-const getTabList = (canvas) => canvas.getByRole("tablist");
+// `role="tablist"` is applied only once `Tabs` knows it has panels, which it
+// learns from an effect in `Tabs.Panel`. Querying synchronously on the first
+// commit therefore races that effect, so this always resolves asynchronously.
+const getTabList = (canvas) => canvas.findByRole("tablist");
 const getLeftArrow = (canvas) =>
   canvas.getByRole("button", { name: "Scroll tabs left" });
 const getRightArrow = (canvas) =>
@@ -316,7 +319,7 @@ export const InteractionNoArrowsWhenContentFits = {
   name: "Interaction: Non-overflowing tabs render no arrows",
   render: () => <LimitsTabs width={900} />,
   play: async ({ canvas }) => {
-    const tabList = getTabList(canvas);
+    const tabList = await getTabList(canvas);
 
     await waitFor(() =>
       expect(

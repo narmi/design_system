@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.29.8](https://github.com/narmi/design_system/compare/v6.29.7...v6.29.8) (2026-09-15)
+
+### fix
+
+* forward label in table date input ([b71e45e](https://github.com/narmi/design_system/commit/b71e45e322496e702db0cad01e5e9aa08365ce3c))
+* **Tabs:** use CSS snap scrolling to prevent overflow ([eecdb4e](https://github.com/narmi/design_system/commit/eecdb4ea214f706ae26b4e31a2e1525a96b60e3e))
+
+### test
+
+* add interaction tests for chromatic ([b13978b](https://github.com/narmi/design_system/commit/b13978bfecf91f64bf1bd3913259cc22353d614e))
+* update dateinput interaction assertion ([737787f](https://github.com/narmi/design_system/commit/737787fd28af778df96336527e149cc79b23d7ee))
+* update incorrect assertion ([018bbd7](https://github.com/narmi/design_system/commit/018bbd7cbccf9475f1f166b661d885cdc4f987cf))
+* update interaction assertion ([0116b47](https://github.com/narmi/design_system/commit/0116b4772cd7dfccf572763db570e0dad7ad6a12))
+
+## [6.29.7](https://github.com/narmi/design_system/compare/v6.29.6...v6.29.7) (2026-09-14)
+
+### docs
+
+* fix checkbox controls ([9d2ef52](https://github.com/narmi/design_system/commit/9d2ef52f74d2d38018df974b40e88467a5a55873))
+
+### fix
+
+* forward label in table date input ([d847b7a](https://github.com/narmi/design_system/commit/d847b7ad2d731390867547204e04d048de78371f))
+
+### test
+
+* add interaction tests for chromatic ([d8db6ee](https://github.com/narmi/design_system/commit/d8db6eeeb5aa9e4e4c60dea085cf2f0fa3665876))
+* update dateinput interaction assertion ([41539d4](https://github.com/narmi/design_system/commit/41539d4d7f279c4cf5b6d8dc20be1035aaf0078f))
+* update incorrect assertion ([cae6fd1](https://github.com/narmi/design_system/commit/cae6fd1bc988c392aaddaff87ec73087bb6a062f))
+
 ## [6.29.6](https://github.com/narmi/design_system/compare/v6.29.5...v6.29.6) (2026-09-08)
 
 ### fix

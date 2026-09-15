@@ -11,14 +11,14 @@ interface ArrowProps {
 
 const Arrow = ({ direction, onClick, show }: ArrowProps) => {
   const { isResponsive, kind } = useContext(TabsContext);
-  const iconName =
-    direction === "left"
-      ? kind === "segmented"
-        ? "chevron-left"
-        : "arrow-left"
-      : kind === "segmented"
-        ? "chevron-right"
-        : "arrow-right";
+  const isLeft = direction === "left";
+  const iconName = isLeft
+    ? kind === "segmented"
+      ? "chevron-left"
+      : "arrow-left"
+    : kind === "segmented"
+      ? "chevron-right"
+      : "arrow-right";
 
   return (
     isResponsive && (
@@ -29,7 +29,13 @@ const Arrow = ({ direction, onClick, show }: ArrowProps) => {
             { "nds-tabs-arrow--visible": show },
           ])}
         >
-          <IconButton onClick={onClick} name={iconName} kind="action" />
+          <IconButton
+            onClick={onClick}
+            name={iconName}
+            kind="action"
+            disabled={!show}
+            label={isLeft ? "Scroll tabs left" : "Scroll tabs right"}
+          />
         </div>
       </div>
     )

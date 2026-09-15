@@ -30,6 +30,11 @@ const ARROW_RESERVE_PX = 32 * 2;
 // to absorb the largest of those feedback effects.
 const RESPONSIVE_HYSTERESIS_PX = 64;
 
+// Tolerance when comparing `scrollLeft` against the scroll limits. Fractional
+// device pixel ratios and browser zoom make these values non-integral, so an
+// exact `=== 0` / `=== maxScroll` comparison can never be satisfied.
+const SCROLL_EPSILON_PX = 1;
+
 export interface TabsListProps {
   /** Children must be of type `Tabs.Tab` */
   children: React.ReactNode;
@@ -51,6 +56,9 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
   const availableRef = useRef(0);
   const isOverflowingRef = useRef(false);
 
+  // Coalesces scroll-driven arrow-state updates to one per animation frame.
+  const scrollRafRef = useRef<number | null>(null);
+
   const {
     tabIds,
     setTabIds,
@@ -58,6 +66,7 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
     currentIndex,
     hasPanels,
     tabsListRef,
+    isResponsive,
     setIsResponsive,
     kind,
   } = useContext(TabsContext);
@@ -86,10 +95,11 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
     updateScrollButtonState();
   };
 
-  // Uses cached layout measurements — only reads `scrollLeft` from the DOM.
+  // Check content overflow
   const updateScrollButtonState = () => {
-    if (!tabsListRef.current) return;
-    const { scrollLeft } = tabsListRef.current;
+    const el = tabsListRef.current;
+    if (!el) return;
+
     const contentWidth = contentWidthRef.current;
     const available = availableRef.current;
     const isOverflowing = isOverflowingRef.current
@@ -97,34 +107,54 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
       : contentWidth > available;
     isOverflowingRef.current = isOverflowing;
 
-    // Use the same `available` width for arrow visibility, not the current
-    // `ul.clientWidth`. Otherwise on the first overflowing frame the arrows
-    // aren't shown yet, the `ul` has full wrapper width, isn't actually
-    // overflowing, and we'd never flip the arrows on.
-    const nextShowLeftArrow = isOverflowing && scrollLeft > 1;
-    const nextShowRightArrow =
-      isOverflowing && scrollLeft < contentWidth - available - 1;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    const atStart = el.scrollLeft <= SCROLL_EPSILON_PX;
+    const atEnd = el.scrollLeft >= maxScroll - SCROLL_EPSILON_PX;
 
-    setShowLeftArrow(nextShowLeftArrow);
-    setShowRightArrow(nextShowRightArrow);
+    setShowLeftArrow(isOverflowing && !atStart);
+    setShowRightArrow(isOverflowing && !atEnd);
     setIsResponsive(isOverflowing);
   };
 
-  // ResizeObserver to detect when container size changes
+  // Runs on every scroll event (touch, wheel, or the smooth arrow scroll).
+  // Coalesces recomputation to once per frame.
+  const handleScroll = () => {
+    if (typeof requestAnimationFrame !== "function") {
+      updateScrollButtonState();
+      return;
+    }
+    if (scrollRafRef.current !== null) return;
+    scrollRafRef.current = requestAnimationFrame(() => {
+      scrollRafRef.current = null;
+      updateScrollButtonState();
+    });
+  };
+
+  // ResizeObserver to detect when container size changes.
+  // The `ul` is observed alongside the wrapper because the arrow columns
+  // appearing at the responsive threshold shrink the `ul` without changing the
+  // wrapper. That shrink is what creates the scroll range, so `atEnd` has to be
+  // recomputed once it lands.
   useEffect(() => {
     if (!wrapperRef.current) return;
     const observer = new ResizeObserver(updateLayoutCache);
     observer.observe(wrapperRef.current);
+    if (tabsListRef.current) observer.observe(tabsListRef.current);
     updateLayoutCache();
     return () => observer.disconnect();
   }, []);
 
-  // Scroll listener for touch/programmatic scroll updates — only reads scrollLeft.
+  // Scroll listener for touch/programmatic scroll updates.
   useEffect(() => {
     const el = tabsListRef.current;
     if (!el) return;
-    el.addEventListener("scroll", updateScrollButtonState);
-    return () => el.removeEventListener("scroll", updateScrollButtonState);
+    el.addEventListener("scroll", handleScroll);
+    return () => {
+      el.removeEventListener("scroll", handleScroll);
+      if (scrollRafRef.current !== null) {
+        cancelAnimationFrame(scrollRafRef.current);
+      }
+    };
   }, []);
 
   // Initial check
@@ -164,46 +194,25 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
     }
   };
 
-  // When the next paged scroll would land near a scroll limit, snap exactly
-  // to the limit. Otherwise the trailing/leading tab can come to rest under
-  // the fade mask (`--mask-width`) and read as cut off mid-word.
-  const getSnapBuffer = (el: HTMLElement) => {
-    // `--mask-width` is a custom property (often `var(--space-...)`) and won't
-    // resolve via `getPropertyValue("--mask-width")`. Read a real computed length
-    // that uses the variable instead.
-    const raw = getComputedStyle(el)
-      .getPropertyValue("scroll-padding-inline-start")
-      .trim();
-    const parsed = parseFloat(raw);
-    return Number.isFinite(parsed) ? parsed : 0;
-  };
-
+  // Arrow clicks page by one container width. Where the list comes to rest is
+  // CSS's job: `scroll-snap-type` on the list aligns the resting position to a
+  // tab boundary, so there is no target math to do here.
   const onLeftClick = () => {
     const el = tabsListRef.current;
-    const naive = el.scrollLeft - el.clientWidth;
-    const buffer = getSnapBuffer(el);
-    el.scroll({
-      left: naive <= buffer ? 0 : naive,
-      behavior: "smooth",
-    });
+    if (!el) return;
+    el.scrollBy({ left: -el.clientWidth, behavior: "smooth" });
   };
 
   const onRightClick = () => {
     const el = tabsListRef.current;
     if (!el) return;
-    const maxScroll = el.scrollWidth - el.clientWidth;
-    const naive = el.scrollLeft + el.clientWidth;
-    const buffer = getSnapBuffer(el);
-    el.scroll({
-      left: naive >= maxScroll - buffer ? maxScroll : naive,
-      behavior: "smooth",
-    });
+    el.scrollBy({ left: el.clientWidth, behavior: "smooth" });
   };
 
   return (
     <div ref={wrapperRef}>
       <Row gapSize="none" alignItems="center">
-        {showLeftArrow && (
+        {isResponsive && (
           <Row.Item shrink>
             <Arrow
               direction="left"
@@ -233,7 +242,7 @@ const TabsList = ({ children, xPadding = "none" }: TabsListProps) => {
             {children}
           </ul>
         </Row.Item>
-        {showRightArrow && (
+        {isResponsive && (
           <Row.Item shrink>
             <Arrow
               direction="right"

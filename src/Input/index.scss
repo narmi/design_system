@@ -186,7 +186,8 @@ textarea::autofill {
 
   &,
   & > textarea {
-    max-height: 80vh; // avoid growing larger than viewport height
+    // cap growth to `maxLines` lines of text using the font-relative line height
+    max-height: calc(var(--nds-input-max-lines) * 1lh);
     overflow-wrap: anywhere; // always break line if it exceeds available width
   }
 

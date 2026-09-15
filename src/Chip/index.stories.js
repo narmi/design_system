@@ -55,6 +55,23 @@ export const SelectableLabel = () => (
   </>
 );
 
+export const RadiusSize = () => (
+  <>
+    <p>
+      The <code>radiusSize</code> prop controls the border radius of the Chip.
+      Accepts <code>&quot;s&quot;</code>, <code>&quot;m&quot;</code> (default),
+      or <code>&quot;l&quot;</code>.
+    </p>
+    <Row alignItems="center" gapSize="s">
+      {["s", "m", "l"].map((size) => (
+        <Row.Item key={size} shrink>
+          <Chip label={`radiusSize "${size}"`} radiusSize={size} />
+        </Row.Item>
+      ))}
+    </Row>
+  </>
+);
+
 export const CustomIcon = () => (
   <>
     <p>

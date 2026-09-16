@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.30.0](https://github.com/narmi/design_system/compare/v6.29.8...v6.30.0) (2026-09-16)
+
+### feat
+
+* **Chip:** add radiusSize prop ([562ba5a](https://github.com/narmi/design_system/commit/562ba5a4d9b42b808f365d447e99d89515777209))
+
+### refactor
+
+* **Drawer:** dedupe desktop navigation buttons ([3ee6e2b](https://github.com/narmi/design_system/commit/3ee6e2bee380fce8a3f1f584e3f2c51cb1de96eb))
+* **Drawer:** extract DrawerNavigation ([516a988](https://github.com/narmi/design_system/commit/516a988bab58f0233cc6ef9a5c9cc82a9de37787))
+* **Drawer:** extract MobileNavigation ([e6c19ac](https://github.com/narmi/design_system/commit/e6c19aca73377f51933e40518d4c0bdbe69dddd6))
+* **Drawer:** hoist repeated isOpen && isTransitioning check ([238f2d6](https://github.com/narmi/design_system/commit/238f2d6385a71c8eb93ec9d5a56c4ef61ee960f4))
+
+### test
+
+* **Drawer:** add tests ([69a6331](https://github.com/narmi/design_system/commit/69a633164131da58592e8c52720e03dd31380998))
+
 ## [6.29.8](https://github.com/narmi/design_system/compare/v6.29.7...v6.29.8) (2026-09-15)
 
 ### fix

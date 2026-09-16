@@ -313,6 +313,34 @@ MultipleTooltips.parameters = {
   },
 };
 
+export const NotFocusable = () => (
+  <div
+    style={{
+      height: "200px",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      gap: "var(--space-xl)",
+    }}
+  >
+    <Tooltip text="The wrapper adds an extra tab stop">
+      <Button>focusable (default)</Button>
+    </Tooltip>
+    <Tooltip text="The button is the only tab stop" focusable={false}>
+      <Button>focusable={"{false}"}</Button>
+    </Tooltip>
+  </div>
+);
+
+NotFocusable.parameters = {
+  docs: {
+    description: {
+      story:
+        "By default the Tooltip trigger wrapper receives `tabIndex={0}`, which adds a tab stop in addition to any focusable child. Pass `focusable={false}` when the child is already focusable (like a `Button`) so keyboard users only tab once. The tooltip still opens on focus because focus events bubble from the child.",
+    },
+  },
+};
+
 export default {
   title: "Components/Tooltip",
   component: Tooltip,

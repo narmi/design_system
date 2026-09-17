@@ -99,7 +99,10 @@ const TableSelect = React.forwardRef<HTMLInputElement, TableSelectProps>(
     const hasSelectedItem = selectedItem !== null && selectedItem.props;
 
     const layerContent = (
-      <div {...(layerProps as React.HTMLAttributes<HTMLDivElement>)}>
+      <div
+        {...(layerProps as React.HTMLAttributes<HTMLDivElement>)}
+        style={{ ...layerProps.style, zIndex: 4 }}
+      >
         <ul
           {...getMenuProps()}
           className={cc([

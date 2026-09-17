@@ -34,6 +34,8 @@ export interface ChipProps {
   count?: string | number;
   /** Adds a border to the badge when `true` */
   hasBorder?: boolean;
+  /** Defines the border radius size of the chip */
+  radiusSize?: "s" | "m" | "l";
   /** Defines if the label is visible */
   isLabelVisible?: boolean;
   /**
@@ -59,6 +61,7 @@ const Chip = ({
   startIcon,
   endIcon,
   hasBorder = false,
+  radiusSize = "m",
   isLabelVisible = true,
   isLabelSelectable = false,
 }: ChipProps) => {
@@ -83,6 +86,7 @@ const Chip = ({
           "nds-chip--hasBorder": hasBorder,
           "padding--x--xxs": !isLabelVisible,
         },
+        `rounded--all--${radiusSize}`,
       ])}
     >
       <Row alignItems="center" gapSize="xs">

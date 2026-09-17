@@ -167,6 +167,7 @@ const TableAutocomplete = ({
         className={cc(["nds-tableAutocomplete-dropdown", "rounded--all"])}
         ref={layerRef as React.Ref<HTMLDivElement>}
         {...(layerRest as React.HTMLAttributes<HTMLDivElement>)}
+        style={{ ...layerRest.style, zIndex: 4 }}
       >
         {isOpen && (
           <>

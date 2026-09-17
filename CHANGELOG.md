@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.31.1](https://github.com/narmi/design_system/compare/v6.31.0...v6.31.1) (2026-09-17)
+
+### fix
+
+* **TableSelect, TableAutocomplete:** set high zindex for pinned cols ([19e6a10](https://github.com/narmi/design_system/commit/19e6a1034738eb4c488e487a830ee6115d6b7e90))
+
 ## [6.31.0](https://github.com/narmi/design_system/compare/v6.30.0...v6.31.0) (2026-09-16)
 
 ### feat

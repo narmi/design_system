@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import React, { useEffect } from "react";
-import { useOnClickOutside } from "usehooks-ts";
+import useOnClickOutside from "../hooks/useOnClickOutside";
 import FocusLock from "react-focus-lock";
 import useDropdownLayer from "../hooks/useDropdownLayer";
 

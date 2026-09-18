@@ -29,13 +29,13 @@ export interface ButtonProps {
   /**
    * Style of button to render:
    *
-   * - `primary`: filled with the theme color; the main action of a view
-   * - `secondary`: outlined in the theme color; an alternative action
-   * - `tertiary`: neutral outline; a low emphasis action that should not carry theme color
-   * - `tonal`: tinted theme fill; less emphasis than `primary`, more than `tertiary`
-   * - `negative`: styled as a link; the negating half of a confirm/cancel pair
-   * - `plain`: styled as a link; for inline actions within content
-   * - `ai`: for AI related actions; amethyst label with an animated gradient border
+   * - `primary`: filled with the theme color
+   * - `secondary`: white, with a border and label in the theme color
+   * - `tertiary`: white, with a neutral border and label
+   * - `tonal`: tinted theme fill, with a label in the theme color
+   * - `negative`: styled as a link, in the theme's primary color
+   * - `plain`: styled as a link, in the theme's secondary color
+   * - `ai`: amethyst label with an animated gradient border
    */
   kind?: ButtonKind;
   /** Click callback, with event object passed as argument */

@@ -5,19 +5,38 @@ import Row from "../Row";
 import Spinner from "../Spinner";
 import type { IconName } from "../types/Icon.types";
 
-export type ButtonKind =
-  | "primary"
-  | "secondary"
-  | "tertiary"
-  | "tonal"
-  | "negative"
-  | "plain"
-  | "ai";
+/**
+ * Every `kind` `Button` supports, in the order they are presented in docs.
+ *
+ * Exported as a value so stories can enumerate the kinds without restating
+ * them; `ButtonKind` derives from it, so the two cannot drift apart.
+ */
+export const BUTTON_KINDS = [
+  "primary",
+  "secondary",
+  "tertiary",
+  "tonal",
+  "negative",
+  "plain",
+  "ai",
+] as const;
+
+export type ButtonKind = (typeof BUTTON_KINDS)[number];
 
 export interface ButtonProps {
   /** Renders the button label */
   label?: string; // must be optional until `children` is removed
-  /** style of button to render */
+  /**
+   * Style of button to render:
+   *
+   * - `primary`: filled with the theme color; the main action of a view
+   * - `secondary`: outlined in the theme color; an alternative action
+   * - `tertiary`: neutral outline; a low emphasis action that should not carry theme color
+   * - `tonal`: tinted theme fill; less emphasis than `primary`, more than `tertiary`
+   * - `negative`: styled as a link; the negating half of a confirm/cancel pair
+   * - `plain`: styled as a link; for inline actions within content
+   * - `ai`: for AI related actions; amethyst label with an animated gradient border
+   */
   kind?: ButtonKind;
   /** Click callback, with event object passed as argument */
   onClick?: (e) => void;

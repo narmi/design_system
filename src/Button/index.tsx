@@ -5,12 +5,6 @@ import Row from "../Row";
 import Spinner from "../Spinner";
 import type { IconName } from "../types/Icon.types";
 
-/**
- * Every `kind` `Button` supports, in the order they are presented in docs.
- *
- * Exported as a value so stories can enumerate the kinds without restating
- * them; `ButtonKind` derives from it, so the two cannot drift apart.
- */
 export const BUTTON_KINDS = [
   "primary",
   "secondary",

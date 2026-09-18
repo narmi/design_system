@@ -172,11 +172,6 @@ export default {
   title: "Components/Button",
   component: Button,
   argTypes: {
-    // Storybook can only infer a select for `kind` while docgen reports the
-    // union behind it. When `ButtonKind` was a standalone type alias, docgen
-    // reported the opaque alias name instead and the control degraded to a
-    // free text input (NDS-3274). Listing the options explicitly keeps the
-    // control correct however the type is expressed.
     kind: { options: BUTTON_KINDS, control: { type: "select" } },
     startIcon: { options: ["", ...(VALID_ICON_NAMES as IconName)] },
     endIcon: { options: ["", ...(VALID_ICON_NAMES as IconName)] },

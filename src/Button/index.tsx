@@ -5,19 +5,32 @@ import Row from "../Row";
 import Spinner from "../Spinner";
 import type { IconName } from "../types/Icon.types";
 
-export type ButtonKind =
-  | "primary"
-  | "secondary"
-  | "tertiary"
-  | "tonal"
-  | "negative"
-  | "plain"
-  | "ai";
+export const BUTTON_KINDS = [
+  "primary",
+  "secondary",
+  "tertiary",
+  "tonal",
+  "negative",
+  "plain",
+  "ai",
+] as const;
+
+export type ButtonKind = (typeof BUTTON_KINDS)[number];
 
 export interface ButtonProps {
   /** Renders the button label */
   label?: string; // must be optional until `children` is removed
-  /** style of button to render */
+  /**
+   * Style of button to render:
+   *
+   * - `primary`: filled with the theme color
+   * - `secondary`: white, with a border and label in the theme color
+   * - `tertiary`: white, with a neutral border and label
+   * - `tonal`: tinted theme fill, with a label in the theme color
+   * - `negative`: styled as a link, in the theme's primary color
+   * - `plain`: styled as a link, in the theme's secondary color
+   * - `ai`: amethyst label with an animated gradient border
+   */
   kind?: ButtonKind;
   /** Click callback, with event object passed as argument */
   onClick?: (e) => void;

@@ -21,9 +21,7 @@ export interface SidebarProps {
  * Narmi Sidebar component
  */
 const Sidebar = ({ kind = "nav", children }: SidebarProps) => {
-  const sidebarItems = React.Children.toArray(
-    children,
-  ) as SidebarItemElement[];
+  const sidebarItems = React.Children.toArray(children) as SidebarItemElement[];
   const mappedSidebarItems = sidebarItems.map((item) => (
     <li className="margin--bottom--s" key={item.props.label}>
       <button

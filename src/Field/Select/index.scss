@@ -1,8 +1,6 @@
 .nds-field-select-listbox {
   @extend %nds-dropdown-layer;
   background: var(--color-white);
-  list-style: none;
-  margin: 0;
 }
 
 .nds-field-select-item {

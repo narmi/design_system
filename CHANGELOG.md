@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.31.1](https://github.com/narmi/design_system/compare/v6.31.0...v6.31.1) (2026-09-17)
+
+### fix
+
+* **TableSelect, TableAutocomplete:** set high zindex for pinned cols ([19e6a10](https://github.com/narmi/design_system/commit/19e6a1034738eb4c488e487a830ee6115d6b7e90))
+
+## [6.31.0](https://github.com/narmi/design_system/compare/v6.30.0...v6.31.0) (2026-09-16)
+
+### feat
+
+* **Tooltip:** add focusable prop ([023af0a](https://github.com/narmi/design_system/commit/023af0ada6fb436e3f9b44d45fcd2fb3caa5add7))
+
+## [6.30.0](https://github.com/narmi/design_system/compare/v6.29.8...v6.30.0) (2026-09-16)
+
+### feat
+
+* **Chip:** add radiusSize prop ([562ba5a](https://github.com/narmi/design_system/commit/562ba5a4d9b42b808f365d447e99d89515777209))
+
+### refactor
+
+* **Drawer:** dedupe desktop navigation buttons ([3ee6e2b](https://github.com/narmi/design_system/commit/3ee6e2bee380fce8a3f1f584e3f2c51cb1de96eb))
+* **Drawer:** extract DrawerNavigation ([516a988](https://github.com/narmi/design_system/commit/516a988bab58f0233cc6ef9a5c9cc82a9de37787))
+* **Drawer:** extract MobileNavigation ([e6c19ac](https://github.com/narmi/design_system/commit/e6c19aca73377f51933e40518d4c0bdbe69dddd6))
+* **Drawer:** hoist repeated isOpen && isTransitioning check ([238f2d6](https://github.com/narmi/design_system/commit/238f2d6385a71c8eb93ec9d5a56c4ef61ee960f4))
+
+### test
+
+* **Drawer:** add tests ([69a6331](https://github.com/narmi/design_system/commit/69a633164131da58592e8c52720e03dd31380998))
+
+## [6.29.8](https://github.com/narmi/design_system/compare/v6.29.7...v6.29.8) (2026-09-15)
+
+### fix
+
+* forward label in table date input ([b71e45e](https://github.com/narmi/design_system/commit/b71e45e322496e702db0cad01e5e9aa08365ce3c))
+* **Tabs:** use CSS snap scrolling to prevent overflow ([eecdb4e](https://github.com/narmi/design_system/commit/eecdb4ea214f706ae26b4e31a2e1525a96b60e3e))
+
+### test
+
+* add interaction tests for chromatic ([b13978b](https://github.com/narmi/design_system/commit/b13978bfecf91f64bf1bd3913259cc22353d614e))
+* update dateinput interaction assertion ([737787f](https://github.com/narmi/design_system/commit/737787fd28af778df96336527e149cc79b23d7ee))
+* update incorrect assertion ([018bbd7](https://github.com/narmi/design_system/commit/018bbd7cbccf9475f1f166b661d885cdc4f987cf))
+* update interaction assertion ([0116b47](https://github.com/narmi/design_system/commit/0116b4772cd7dfccf572763db570e0dad7ad6a12))
+
+## [6.29.7](https://github.com/narmi/design_system/compare/v6.29.6...v6.29.7) (2026-09-14)
+
+### docs
+
+* fix checkbox controls ([9d2ef52](https://github.com/narmi/design_system/commit/9d2ef52f74d2d38018df974b40e88467a5a55873))
+
+### fix
+
+* forward label in table date input ([d847b7a](https://github.com/narmi/design_system/commit/d847b7ad2d731390867547204e04d048de78371f))
+
+### test
+
+* add interaction tests for chromatic ([d8db6ee](https://github.com/narmi/design_system/commit/d8db6eeeb5aa9e4e4c60dea085cf2f0fa3665876))
+* update dateinput interaction assertion ([41539d4](https://github.com/narmi/design_system/commit/41539d4d7f279c4cf5b6d8dc20be1035aaf0078f))
+* update incorrect assertion ([cae6fd1](https://github.com/narmi/design_system/commit/cae6fd1bc988c392aaddaff87ec73087bb6a062f))
+
 ## [6.29.6](https://github.com/narmi/design_system/compare/v6.29.5...v6.29.6) (2026-09-08)
 
 ### fix

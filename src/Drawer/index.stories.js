@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { expect, screen, waitFor } from "storybook/test";
 import Drawer from "./";
 import Button from "../Button";
 import Popover from "../Popover";
@@ -90,6 +91,78 @@ const InteractiveTemplate = (args) => {
 };
 
 export const Overview = InteractiveTemplate.bind({});
+
+/**
+ * Interaction test that opens the Drawer so Chromatic can snapshot the
+ * open panel. The Drawer renders in a portal, so its content is queried
+ * from the document via `screen`.
+ */
+export const Opens = {
+  name: "Interaction: Opens on click",
+  render: () => <InteractiveTemplate />,
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: /open drawer/i }));
+    await waitFor(() => expect(screen.getByRole("dialog")).toBeVisible());
+    expect(screen.getByText("Title #1")).toBeVisible();
+  },
+};
+
+/**
+ * Interaction test verifying the next/previous controls page through the
+ * Drawer's contents.
+ */
+export const NavigatesContent = {
+  name: "Interaction: Navigates content with controls",
+  render: () => <InteractiveTemplate />,
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: /open drawer/i }));
+    await waitFor(() => expect(screen.getByText("Title #1")).toBeVisible());
+
+    // advance to the next content
+    await userEvent.click(screen.getByRole("button", { name: "Next" }));
+    await waitFor(() => expect(screen.getByText("Title #2")).toBeVisible());
+
+    // go back to the previous content
+    await userEvent.click(screen.getByRole("button", { name: "Previous" }));
+    await waitFor(() => expect(screen.getByText("Title #1")).toBeVisible());
+  },
+};
+
+/**
+ * Interaction test verifying the close button dismisses the Drawer.
+ */
+export const ClosesViaButton = {
+  name: "Interaction: Closes via close button",
+  render: () => <InteractiveTemplate />,
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: /open drawer/i }));
+    await waitFor(() => expect(screen.getByRole("dialog")).toBeVisible());
+
+    await userEvent.click(screen.getByRole("button", { name: "Close" }));
+    await waitFor(
+      () => expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+      { timeout: 2000 },
+    );
+  },
+};
+
+/**
+ * Interaction test verifying the Escape key dismisses the Drawer.
+ */
+export const ClosesViaEscape = {
+  name: "Interaction: Closes on Escape key",
+  render: () => <InteractiveTemplate />,
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: /open drawer/i }));
+    await waitFor(() => expect(screen.getByRole("dialog")).toBeVisible());
+
+    await userEvent.keyboard("{Escape}");
+    await waitFor(
+      () => expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+      { timeout: 2000 },
+    );
+  },
+};
 
 export const WithNavigation = InteractiveTemplate.bind({});
 

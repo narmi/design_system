@@ -9,6 +9,7 @@ class MockResizeObserver {
 window.ResizeObserver = MockResizeObserver;
 
 window.HTMLElement.prototype.scroll = function () {};
+window.HTMLElement.prototype.scrollBy = function () {};
 
 Object.defineProperty(window, "matchMedia", {
   writable: true,

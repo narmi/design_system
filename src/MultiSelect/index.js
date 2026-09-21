@@ -293,17 +293,16 @@ const MultiSelect = ({
           {...getToggleButtonProps()}
         />
       </div>
-      <div {...layerProps}>
-        <div
-          className={cc([
-            "nds-multiselect-list",
-            "bgColor--white",
-            {
-              "nds-multiselect-list--error": !!errorText,
-            },
-          ])}
-          {...getMenuProps()}
-        >
+      <div
+        className={cc([
+          "nds-multiselect-list",
+          {
+            "nds-multiselect-list--error": !!errorText,
+          },
+        ])}
+        {...layerProps}
+      >
+        <div className="bgColor--white" {...getMenuProps()}>
           {isOpen && (
             <ul className="list--reset">
               {items.map((item, index) => (

@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./";
+import Button, { BUTTON_KINDS } from "./";
 import { VALID_ICON_NAMES } from "../icons/iconNames";
 import Row from "../Row";
 import Select from "../Select";
@@ -63,6 +63,33 @@ ConfirmAndCancel.parameters = {
     description: {
       story:
         "When presenting the user with positive/negative options, use the `negative` button for the negating action and `primary` for confirm. The confirming action should always be on the right.",
+    },
+  },
+};
+
+export const ButtonKinds = () => (
+  <>
+    {BUTTON_KINDS.map((kind) => (
+      <div className="margin--bottom--m" key={kind}>
+        <Button kind={kind} label={kind} />
+      </div>
+    ))}
+  </>
+);
+ButtonKinds.parameters = {
+  docs: {
+    description: {
+      story: [
+        "`Button` supports the following kinds:",
+        "",
+        "- `primary`: filled with the theme color",
+        "- `secondary`: white, with a border and label in the theme color",
+        "- `tertiary`: white, with a neutral border and label",
+        "- `tonal`: tinted theme fill, with a label in the theme color",
+        "- `negative`: styled as a link, in the theme's primary color",
+        "- `plain`: styled as a link, in the theme's secondary color",
+        "- `ai`: amethyst label with an animated gradient border",
+      ].join("\n"),
     },
   },
 };
@@ -145,6 +172,7 @@ export default {
   title: "Components/Button",
   component: Button,
   argTypes: {
+    kind: { options: BUTTON_KINDS, control: { type: "select" } },
     startIcon: { options: ["", ...(VALID_ICON_NAMES as IconName)] },
     endIcon: { options: ["", ...(VALID_ICON_NAMES as IconName)] },
   },

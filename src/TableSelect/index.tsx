@@ -100,16 +100,13 @@ const TableSelect = React.forwardRef<HTMLInputElement, TableSelectProps>(
 
     const layerContent = (
       <div
+        className="nds-tableField-select-list"
         {...(layerProps as React.HTMLAttributes<HTMLDivElement>)}
         style={{ ...layerProps.style, zIndex: 4 }}
       >
         <ul
           {...getMenuProps()}
-          className={cc([
-            "nds-tableField-select-list",
-            "list--reset",
-            "bgColor--white",
-          ])}
+          className={cc(["list--reset", "bgColor--white"])}
         >
           {items.map((item, index) => (
             <li

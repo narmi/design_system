@@ -131,10 +131,11 @@ export const FieldSelect = ({
       </div>
 
       <div
+        className="nds-field-select-listbox"
         ref={layerProps.ref as React.Ref<HTMLDivElement>}
         style={layerProps.style as React.CSSProperties}
       >
-        <ul {...getMenuProps()} className="nds-field-select-listbox">
+        <ul {...getMenuProps()} className="list--reset">
           {isOpen &&
             items.map((item, index) => (
               <li

@@ -1,8 +1,4 @@
-# pnpm settings. pnpm fails on unrecognized keys here, so a typo in a
-# security setting can't silently disable it.
-
-# Only install versions that have been published for at least 7 days (in
-# minutes), giving the registry time to catch compromised releases.
+# Only install versions >=7 days old (in minutes) to catch compromised releases
 minimumReleaseAge: 10080
 
 # Refuse a version published with weaker provenance/trust evidence than an
@@ -17,8 +13,7 @@ trustPolicyExclude:
 # Transitive dependencies may only come from the registry, not git/tarball URLs.
 blockExoticSubdeps: true
 
-# Dependency lifecycle scripts are denied by default, and any unreviewed
-# package with a build script fails the install. Add new entries with
+# Dependency lifecycle scripts are denied by default. Add new entries with
 # `pnpm approve-builds`.
 strictDepBuilds: true
 allowBuilds:

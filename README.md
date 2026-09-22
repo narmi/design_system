@@ -79,9 +79,7 @@ This project does not support any version of Internet Explorer.
 
 ### Local development
 
-This project uses [pnpm](https://pnpm.io). The version is pinned by the
-`packageManager` field in `package.json`; with [Corepack](https://nodejs.org/api/corepack.html)
-enabled (`corepack enable`), the pinned version is used automatically.
+This project uses [pnpm](https://pnpm.io). With [Corepack](https://nodejs.org/api/corepack.html) enabled (`corepack enable`), the pinned version is used automatically.
 
 To run project locally:
 
@@ -92,11 +90,7 @@ pnpm install
 pnpm run dev
 ```
 
-Install settings, including supply-chain protections (minimum release age,
-trust policy, and the dependency build-script allowlist), live in
-[`pnpm-workspace.yaml`](./pnpm-workspace.yaml). If an install fails because a
-new dependency wants to run a build script, review it and record the decision
-with `pnpm approve-builds`.
+Install settings are in [`pnpm-workspace.yaml`](./pnpm-workspace.yaml). If an install fails because a new dependency wants to run a build script, review it and configure it with `pnpm approve-builds`.
 
 ### Package scripts
 

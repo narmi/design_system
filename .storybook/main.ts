@@ -17,7 +17,7 @@ export default {
     // `tsconfig.check.json` instead, which covers all of `src/`.
     //
     // `scripts/checkDocgen.mjs` guards this in CI. Do not remove these options
-    // without running `npm run check:docgen`.
+    // without running `pnpm run check:docgen`.
     reactDocgenTypescriptOptions: {
       tsconfigPath: "tsconfig.check.json",
       // Explicit `include` avoids the plugin's default `**/*.tsx` glob, which

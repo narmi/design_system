@@ -12,7 +12,7 @@
  * with the real options from `.storybook/main.ts` over a few representative
  * components and fails if the docgen output is missing or has no props.
  *
- * Run with `npm run check:docgen`.
+ * Run with `pnpm run check:docgen`.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -20,7 +20,10 @@ import { fileURLToPath } from "node:url";
 import reactDocgenTypescript from "@joshwooding/vite-plugin-react-docgen-typescript";
 import mainConfig from "../.storybook/main.ts";
 
-const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const ROOT_DIR = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+);
 
 /**
  * Representative components covering the shapes we care about: a plain

@@ -7,5 +7,5 @@ rules:
       - release-backport.yaml:63
   obfuscation:
     ignore:
-      - chromatic-pr.yaml:104
-      - chromatic-pr.yaml:106
+      - chromatic-pr.yaml:107
+      - chromatic-pr.yaml:109

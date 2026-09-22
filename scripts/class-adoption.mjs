@@ -6,7 +6,7 @@ import getHelperClassNames from "./util/getHelperClassNames.mjs";
 
 if (!process.argv[2]) {
   throw new Error(
-    "Missing target path. Example: `npm run stats:classes <TARGET_DIR>`",
+    "Missing target path. Example: `pnpm run stats:classes <TARGET_DIR>`",
   );
 }
 

@@ -9,8 +9,8 @@ pulls ~550K of SVG path data into the published bundle, so this script
 extracts the names into a small generated module instead.
 
 The generated file is checked in so tests and storybook work without a
-build step. It is regenerated on every `npm run build`; rerun manually
-via `npm run build:icon-names` after changing `selection.json`.
+build step. It is regenerated on every `pnpm run build`; rerun manually
+via `pnpm run build:icon-names` after changing `selection.json`.
 */
 
 import { readFileSync, writeFileSync } from "fs";
@@ -38,7 +38,7 @@ const names = [
 
 const output = `// AUTO-GENERATED FILE — do not edit.
 // Generated from src/icons/selection.json by scripts/buildIconNames.mjs
-// Regenerate with: npm run build:icon-names
+// Regenerate with: pnpm run build:icon-names
 
 export const VALID_ICON_NAMES: string[] = ${JSON.stringify(names, null, 2)};
 

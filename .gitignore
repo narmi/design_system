@@ -11,3 +11,6 @@ build-storybook.log
 .env
 
 *.swp
+
+# pnpm is the package manager; see pnpm-lock.yaml
+package-lock.json

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.19](https://github.com/narmi/design_system/compare/v6.19.18...v6.19.19) (2026-09-22)
+
+### fix
+
+* **MultiSelect,TableSelect:** ensure layer style is on layer el ([f23c33f](https://github.com/narmi/design_system/commit/f23c33f4af16fc85394d354ae66943bfd62c6c68))
+
 ## [6.19.18](https://github.com/narmi/design_system/compare/v6.19.17...v6.19.18) (2026-09-22)
 
 ### fix

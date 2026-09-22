@@ -1,0 +1,176 @@
+name: Dependabot PR Analysis
+
+on:
+  pull_request_target:
+    types: [opened]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: "PR number of the Dependabot PR to analyze"
+        required: true
+        type: number
+
+jobs:
+  resolve-pr:
+    name: Resolve PR number
+    if: >-
+      github.event_name == 'workflow_dispatch'
+      || (github.actor == 'dependabot[bot]'
+          && github.event.pull_request.user.login == 'dependabot[bot]')
+    runs-on: ubuntu-latest
+    outputs:
+      pr_number: ${{ steps.resolve.outputs.pr_number }}
+      base_ref: ${{ steps.resolve.outputs.base_ref }}
+    steps:
+      - name: Resolve PR metadata
+        id: resolve
+        env:
+          GH_TOKEN: ${{ secrets.NARMIBOT2_PAT }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            PR_NUMBER="${{ inputs.pr_number }}"
+            BASE_REF=$(gh pr view "$PR_NUMBER" \
+              --repo "${{ github.repository }}" \
+              --json baseRefName --jq '.baseRefName')
+          else
+            PR_NUMBER="${{ github.event.pull_request.number }}"
+            BASE_REF="${{ github.event.pull_request.base.ref }}"
+          fi
+          echo "pr_number=${PR_NUMBER}" >> "$GITHUB_OUTPUT"
+          echo "base_ref=${BASE_REF}" >> "$GITHUB_OUTPUT"
+
+  analyze:
+    name: "Analyze Dependabot PR #${{ needs.resolve-pr.outputs.pr_number }}"
+    needs: resolve-pr
+    if: >-
+      github.event_name == 'workflow_dispatch'
+      || (github.actor == 'dependabot[bot]'
+          && github.event.pull_request.user.login == 'dependabot[bot]')
+    runs-on: [self-hosted, linux, x64, ubuntu-2404, large]
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: write
+      issues: read
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.resolve-pr.outputs.base_ref }}
+          token: ${{ secrets.NARMIBOT2_PAT }}
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+
+      - name: Install opencode
+        run: npm install -g opencode-ai
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@cbe3b392738ccf3f987d68400dafcf4b0624a56c # v6.2.4
+        with:
+          role-to-assume: arn:aws:iam::848180528913:role/GitHubActionsBankingInvokeBedrock
+          aws-region: us-east-1
+
+      - name: Run dependency analysis
+        env:
+          GITHUB_TOKEN: ${{ secrets.NARMIBOT2_PAT }}
+          GH_TOKEN: ${{ secrets.NARMIBOT2_PAT }}
+          PR_NUMBER: ${{ needs.resolve-pr.outputs.pr_number }}
+        run: |
+          opencode run \
+            --model amazon-bedrock/anthropic.claude-opus-4-6-v1 \
+            "$(cat <<'PROMPT'
+          Analyze Dependabot pull request #'"${PR_NUMBER}"' in ${{ github.repository }}.
+
+          ## Your Task
+          Analyze this dependency update and post a comment on the PR with your findings.
+
+          ## Step 1: Gather PR Context
+          Run these commands to understand what is being updated:
+
+              gh pr view '"${PR_NUMBER}"' --repo "${{ github.repository }}" --json title,body,files
+              gh pr diff '"${PR_NUMBER}"' --repo "${{ github.repository }}"
+
+          From the PR title and body, identify:
+          - The dependency name(s) being updated
+          - The old and new version(s)
+          - The ecosystem (npm, Python/uv, GitHub Actions)
+          - Whether this is a single dependency or a grouped update
+
+          ## Step 2: Research the Update
+          Based on the ecosystem, research what changed between the old and new versions:
+          - For npm packages: run `npm view <package> repository.url` to find the source repo,
+            then fetch recent releases with `gh api repos/<owner>/<repo>/releases`
+          - For Python packages: check PyPI at https://pypi.org/project/<package>/#history
+          - For GitHub Actions: check the action's repository for release notes
+          - Review the Dependabot PR body which typically includes release notes and changelog
+
+          Determine if this is a patch, minor, or major version bump and whether it
+          includes security fixes, breaking changes, or deprecations.
+
+          ## Step 3: Analyze Usage in the Codebase
+          This is the most important step. Thoroughly search the codebase to understand
+          how this dependency is actually used:
+
+          - Search for all imports, requires, and references to the dependency
+          - Identify which files and modules depend on it
+          - Check if any of the specific APIs or features that changed between versions
+            are used in this codebase
+          - Note how heavily the dependency is used (a few files vs. widespread)
+
+          Be thorough - use grep, find, and read the relevant source files to understand
+          the actual usage patterns. Do not just report surface-level import counts.
+
+          ## Step 4: Post Your Analysis
+          Post a comment on the PR with your analysis. IMPORTANT: Do NOT write the
+          comment body to a file (e.g. /tmp). Instead, pass the comment body inline using --body:
+
+              gh pr comment '"${PR_NUMBER}"' --repo "${{ github.repository }}" --body "<your comment>"
+
+          If the comment is too long for a single --body argument, use the GitHub API
+          directly with a heredoc piped to gh:
+
+              gh api repos/${{ github.repository }}/issues/'"${PR_NUMBER}"'/comments \
+                -f body="<your comment>"
+
+          Your comment MUST follow this exact format:
+
+          ## Dependabot Dependency Analysis
+
+          ### Summary
+          <1-3 sentence summary of the update>
+
+          ### Key Changes (old version → new version)
+          <bullet list of the most important changes: breaking changes, security fixes,
+          new features, deprecations, bug fixes>
+
+          ### Usage in This Repository
+          <Detailed analysis of how the dependency is used in the codebase.
+          List specific files and patterns. Note which changed APIs are used here.>
+
+          ### Risk Assessment
+          **Risk Level:** LOW | MEDIUM | HIGH
+
+          <Justification considering: version bump type, breaking changes affecting our
+          usage, security implications, breadth of usage in codebase>
+
+          ### Recommendation
+          One of:
+          - **Safe to merge** — <reason>
+          - **Review recommended** — <reason>
+          - **Manual testing required** — <reason>
+
+          IMPORTANT: You MUST post the comment. Do not skip this step.
+
+          IMPORTANT: Your comment MUST NOT contain any "#<number>" patterns (e.g. #123, #456).
+          GitHub automatically converts these into links to PRs/issues in THIS repository,
+          which is incorrect since those numbers refer to a different upstream repository.
+          Instead, reference upstream issues/PRs using their full URL or descriptive text
+          (e.g. "issue 123 in <repo>" or the full GitHub URL).
+          PROMPT
+          )"

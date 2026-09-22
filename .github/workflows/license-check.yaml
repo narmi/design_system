@@ -20,4 +20,10 @@ jobs:
       - run: |
           pnpm install --frozen-lockfile --ignore-scripts
           pnpm run build
-          pnpm run check:licenses
+      # Each license string pnpm reports must appear verbatim in the allowlist,
+      # including compound expressions like `(MIT OR Apache-2.0)`.
+      - name: Check licenses against allowlist
+        run: |
+          licenses=$(pnpm licenses list --json | jq -re 'keys[]')
+          bad=$(grep -vxF -f .github/allowed-licenses.txt <<< "$licenses") || true
+          [ -z "$bad" ] || { echo "Disallowed licenses:"; echo "$bad"; exit 1; }

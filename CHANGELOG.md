@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.21.4](https://github.com/narmi/design_system/compare/v6.21.3...v6.21.4) (2026-09-22)
+
+### ci
+
+* skip addChannel to avoid npm dist-tag 401 on maintenance releases ([455c25c](https://github.com/narmi/design_system/commit/455c25c87bca88d1d1f1290e0e111a24a9502a9c))
+
+### fix
+
+* **Tooltip:** add focusable prop ([65d7f97](https://github.com/narmi/design_system/commit/65d7f97220f67d01907bf817b37efcab3306d980))
+* **MultiSelect,TableSelect:** ensure layer style is on layer el ([584e24b](https://github.com/narmi/design_system/commit/584e24b4da116e24a438de47921e45f3b4b1ce56))
+
 ## [6.21.3](https://github.com/narmi/design_system/compare/v6.21.2...v6.21.3) (2026-08-13)
 
 ### fix

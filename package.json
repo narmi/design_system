@@ -33,7 +33,6 @@
     "lint": "eslint \"./src/**\" \"./scripts/**\" \"./tokens/**\" --no-error-on-unmatched-pattern",
     "typecheck": "tsc -p tsconfig.check.json",
     "check:docgen": "tsx ./scripts/checkDocgen.mjs",
-    "check:licenses": "node ./scripts/checkLicenses.mjs",
     "release": "semantic-release",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build --stats-json",

@@ -1,6 +1,6 @@
 // AUTO-GENERATED FILE — do not edit.
 // Generated from src/icons/selection.json by scripts/buildIconNames.mjs
-// Regenerate with: npm run build:icon-names
+// Regenerate with: pnpm run build:icon-names
 
 export const VALID_ICON_NAMES: string[] = [
   "bank",

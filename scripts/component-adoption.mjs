@@ -11,7 +11,7 @@ import getComponentNames from "./util/getComponentNames.mjs";
 
 if (!process.argv[2]) {
   throw new Error(
-    "Missing target path. Example: `npm run stats:components <TARGET_DIR>`",
+    "Missing target path. Example: `pnpm run stats:components <TARGET_DIR>`",
   );
 }
 

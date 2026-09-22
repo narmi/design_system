@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.19](https://github.com/narmi/design_system/compare/v6.16.18...v6.16.19) (2026-09-22)
+
+### fix
+
+* preserve consumer viewport width ([14adcc8](https://github.com/narmi/design_system/commit/14adcc82285c1b375f26aadbe7b806ba71530b55))
+
 ## [6.16.18](https://github.com/narmi/design_system/compare/v6.16.17...v6.16.18) (2026-09-09)
 
 ### fix

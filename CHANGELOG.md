@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.29.9](https://github.com/narmi/design_system/compare/v6.29.8...v6.29.9) (2026-09-22)
+
+### fix
+
+* **Tooltip:** add focusable prop ([f3e46a5](https://github.com/narmi/design_system/commit/f3e46a5fb047594009f643e2663ae42c8562a552))
+* **MultiSelect,TableSelect:** ensure layer style is on layer el ([e167d82](https://github.com/narmi/design_system/commit/e167d8218a28dc824f4901cea4a32cd7f9d1da4c))
+
 ## [6.29.8](https://github.com/narmi/design_system/compare/v6.29.7...v6.29.8) (2026-09-15)
 
 ### fix

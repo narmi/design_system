@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.18](https://github.com/narmi/design_system/compare/v6.19.17...v6.19.18) (2026-09-22)
+
+### fix
+
+* **Tooltip:** add focusable prop ([bb49ebb](https://github.com/narmi/design_system/commit/bb49ebbee2112d3e2b04acd9191bd1557502caf1))
+
 ## [6.19.17](https://github.com/narmi/design_system/compare/v6.19.16...v6.19.17) (2026-09-09)
 
 ### fix

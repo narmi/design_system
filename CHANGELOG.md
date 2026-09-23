@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.32.0](https://github.com/narmi/design_system/compare/v6.31.2...v6.32.0) (2026-09-23)
+
+### feat
+
+* **ShimmerText:** add component ([00ff6a0](https://github.com/narmi/design_system/commit/00ff6a0e85016c46662c9d4b18e7220435761ccc))
+
+## [6.31.2](https://github.com/narmi/design_system/compare/v6.31.1...v6.31.2) (2026-09-21)
+
+### docs
+
+* **Button:** describe kinds visually rather than prescriptively ([9fc2b46](https://github.com/narmi/design_system/commit/9fc2b467baa2f1edd62ea677afb629071bf6ea56))
+* **Button:** drop explanatory comments ([8e6bbca](https://github.com/narmi/design_system/commit/8e6bbca4b557a339c2310967b717c3f1b7ab7528))
+* **Button:** restore kind control and document every kind ([599e901](https://github.com/narmi/design_system/commit/599e901b828a10098d7a7b8172b5d345d4810318))
+
+### fix
+
+* **MultiSelect,TableSelect:** ensure layer style is on layer el ([2e1e20d](https://github.com/narmi/design_system/commit/2e1e20d702368cde1ff04ff8ee1bd7a736c9ef24))
+
 ## [6.31.1](https://github.com/narmi/design_system/compare/v6.31.0...v6.31.1) (2026-09-17)
 
 ### fix

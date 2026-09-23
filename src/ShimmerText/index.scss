@@ -1,0 +1,40 @@
+@keyframes nds-shimmer-text {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+// The gradient is clipped to the glyphs. Because the element is inline,
+// its background box hugs the text, so the sweep covers exactly the text
+// regardless of length and there is no pause between sweeps.
+.nds-shimmer-text {
+  color: var(--font-color-secondary);
+  // 100px highlight band, centered in the gradient.
+  // The gradient is twice the text width plus one band width, so the band
+  // begins fully outside the left edge and ends fully outside the right.
+  background-image: linear-gradient(
+    110deg,
+    var(--font-color-secondary) calc(50% - 50px),
+    #f0f0f0 50%,
+    var(--font-color-secondary) calc(50% + 50px)
+  );
+  background-size: calc(200% + 100px) 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: nds-shimmer-text 2s linear infinite;
+
+  // sweep follows reading direction
+  [dir="rtl"] & {
+    animation-direction: reverse;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    background-image: none;
+    -webkit-text-fill-color: currentColor;
+  }
+}

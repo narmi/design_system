@@ -8,6 +8,10 @@
 
 .nds-multiselect-list {
   @extend %nds-dropdown-layer;
+
+  &--error {
+    border-color: var(--color-errorDark) !important;
+  }
 }
 
 .nds-multiselect-item {

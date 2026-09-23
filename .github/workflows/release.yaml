@@ -21,9 +21,9 @@ jobs:
         with:
           persist-credentials: false
 
-      # Maintenance branches cut from tags before the pnpm migration still
-      # carry `package-lock.json`, but release-backport.yaml syncs this file
-      # onto them from `main`, so it must be able to release with either.
+      # When release-backport.yaml creates a maintenance branch, it copies
+      # this file from `main` onto a tag that may predate the pnpm migration
+      # and only have `package-lock.json`, so detect which lockfile is present.
       - name: Detect package manager
         id: pm
         run: |
@@ -73,9 +73,9 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      # Maintenance branches cut from tags before the pnpm migration still
-      # carry `package-lock.json`, but release-backport.yaml syncs this file
-      # onto them from `main`, so it must be able to release with either.
+      # When release-backport.yaml creates a maintenance branch, it copies
+      # this file from `main` onto a tag that may predate the pnpm migration
+      # and only have `package-lock.json`, so detect which lockfile is present.
       - name: Detect package manager
         id: pm
         run: |

@@ -49,4 +49,26 @@ describe("TextInput", () => {
     const multilineInput = screen.getByPlaceholderText("Label");
     expect(multilineInput).toBeInTheDocument();
   });
+
+  it("uses the default multiline maxLines value", () => {
+    render(<TextInput label={"Label"} multiline />);
+    const multilineInput = screen.getByLabelText("Label");
+    const multilineGrid = multilineInput.closest(".nds-input-multiline-grid");
+
+    expect(multilineGrid).not.toBeNull();
+    expect(multilineGrid.style.getPropertyValue("--nds-input-max-lines")).toBe(
+      "8",
+    );
+  });
+
+  it("uses a custom multiline maxLines value", () => {
+    render(<TextInput label={"Label"} multiline maxLines={4} />);
+    const multilineInput = screen.getByLabelText("Label");
+    const multilineGrid = multilineInput.closest(".nds-input-multiline-grid");
+
+    expect(multilineGrid).not.toBeNull();
+    expect(multilineGrid.style.getPropertyValue("--nds-input-max-lines")).toBe(
+      "4",
+    );
+  });
 });

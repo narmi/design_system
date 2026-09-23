@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.32.0](https://github.com/narmi/design_system/compare/v6.31.2...v6.32.0) (2026-09-23)
+
+### feat
+
+* **ShimmerText:** add component ([00ff6a0](https://github.com/narmi/design_system/commit/00ff6a0e85016c46662c9d4b18e7220435761ccc))
+
 ## [6.31.2](https://github.com/narmi/design_system/compare/v6.31.1...v6.31.2) (2026-09-21)
 
 ### docs

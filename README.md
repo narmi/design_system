@@ -71,7 +71,7 @@ Refer to the [**Changelog**](https://github.com/narmi/design_system/blob/main/CH
 ### Browser Support
 
 See [`.browserslistrc`](https://github.com/narmi/design_system/blob/main/.editorconfig) for officially supported browsers or
-run `npx browserslist` in this project locally to see a full list of targeted browsers.
+run `pnpm exec browserslist` in this project locally to see a full list of targeted browsers.
 
 This project does not support any version of Internet Explorer.
 
@@ -79,17 +79,22 @@ This project does not support any version of Internet Explorer.
 
 ### Local development
 
+This project uses [pnpm](https://pnpm.io). With [Corepack](https://nodejs.org/api/corepack.html) enabled (`corepack enable`), the pinned version is used automatically.
+
 To run project locally:
 
 ```
 git clone git@github.com:narmi/design_system.git
 cd design_system
-npm run dev
+pnpm install
+pnpm run dev
 ```
 
-### NPM scripts
+Install settings are in [`pnpm-workspace.yaml`](./pnpm-workspace.yaml). If an install fails because a new dependency wants to run a build script, review it and configure it with `pnpm approve-builds`.
 
-| `npm run` command  | Description                                          |
+### Package scripts
+
+| `pnpm run` command | Description                                          |
 | ------------------ | ---------------------------------------------------- |
 | `build:jsdoc`      | builds jsDoc documentation to `dist/`                |
 | `build:tokens`     | builds all distributions of design tokens to `dist/` |
@@ -248,7 +253,7 @@ In rare circumstances, you may need to manually publish a version of NDS outside
 
 #### Publishing a beta version
 
-1. Rebuild NDS (`npm run build`)
+1. Rebuild NDS (`pnpm run build`)
 2. Update the `version` field of package.json to be a beta of the next minor.
    For example, you would change `2.35.2` to `2.36.0-beta.0`.
    DO NOT COMMIT THIS CHANGE.
@@ -257,7 +262,7 @@ In rare circumstances, you may need to manually publish a version of NDS outside
 
 If you need to make additional changes after the beta is published...
 
-1. Rebuild NDS (`npm run build`)
+1. Rebuild NDS (`pnpm run build`)
 2. Bump the beta version number in package.json (`2.36.0-beta.0` -> `2.36.0-beta.1`)
 3. Install the new beta version in your consuming application.
 

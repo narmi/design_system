@@ -1,0 +1,31 @@
+# Only install versions >=7 days old (in minutes) to catch compromised releases
+minimumReleaseAge: 10080
+
+# Refuse a version published with weaker provenance/trust evidence than an
+# earlier version of the same package (a common sign of account takeover).
+trustPolicy: no-downgrade
+trustPolicyExclude:
+  # Legitimate maintenance backports of the ReDoS fix (CVE-2022-25883),
+  # published without provenance after 7.x started publishing with it.
+  - semver@5.7.2
+  - semver@6.3.1
+
+# Transitive dependencies may only come from the registry, not git/tarball URLs.
+blockExoticSubdeps: true
+
+# Dependency lifecycle scripts are denied by default. Add new entries with
+# `pnpm approve-builds`.
+strictDepBuilds: true
+allowBuilds:
+  # Prebuilt binaries come from platform-specific optional dependencies;
+  # the install scripts are only fallbacks.
+  "@parcel/watcher": false
+  esbuild: false
+  # Install script only prints a funding message.
+  core-js: false
+
+overrides:
+  tar: 7.5.10
+  handlebars: ^4.7.9
+  lodash: ^4.18.0
+  undici: ">=6.27.0"

@@ -10,12 +10,20 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v5
         with:
           persist-credentials: false
+      - name: Install pnpm
+        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
       - name: Setup Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v4
         with:
           node-version-file: ".nvmrc"
           registry-url: https://registry.npmjs.org
       - run: |
-          npm ci --ignore-scripts
-          npm run build
-          npm_config_ignore_scripts=true npx --yes license-checker@25.0.1 --onlyAllow "MIT;0BSD;Apache 2.0;Apache-2.0;Artistic-2.0;BSD*;BSD-2-Clause;BSD-3-Clause;CC-BY-3.0;CC-BY-4.0;CC0-1.0;ISC;MIT*;MPL-2.0;ODC-By-1.0;Python-2.0;Unlicense;WTFPL;BlueOak-1.0.0" --excludePackages "taffydb@2.6.2"
+          pnpm install --frozen-lockfile --ignore-scripts
+          pnpm run build
+      # Each license string pnpm reports must appear verbatim in the allowlist,
+      # including compound expressions like `(MIT OR Apache-2.0)`.
+      - name: Check licenses against allowlist
+        run: |
+          licenses=$(pnpm licenses list --json | jq -re 'keys[]')
+          bad=$(grep -vxF -f .github/allowed-licenses.txt <<< "$licenses") || true
+          [ -z "$bad" ] || { echo "Disallowed licenses:"; echo "$bad"; exit 1; }

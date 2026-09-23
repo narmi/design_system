@@ -44,6 +44,7 @@ import ResponsiveFlex from "./ResponsiveFlex";
 import Row from "./Row";
 import Select from "./Select";
 import SeparatorList from "./SeparatorList";
+import ShimmerText from "./ShimmerText";
 import Sidebar from "./Sidebar";
 import Slider from "./Slider";
 import Snackbar from "./Snackbar";
@@ -163,6 +164,7 @@ export type { SelectCategoryProps } from "./Select/SelectCategory";
 export type { SeparatorListProps } from "./SeparatorList";
 export type { SidebarProps, SidebarItemElement } from "./Sidebar";
 export type { SidebarItemProps } from "./Sidebar/SidebarItem";
+export type { ShimmerTextProps } from "./ShimmerText";
 export type { SliderProps } from "./Slider";
 export type { SnackbarProps } from "./Snackbar";
 export type { SpinnerProps } from "./Spinner";
@@ -251,6 +253,7 @@ export {
   Popover,
   ResponsiveFlex,
   Select,
+  ShimmerText,
   Sidebar,
   Spinner,
   SplitButton,

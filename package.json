@@ -80,6 +80,7 @@
     "@vitejs/plugin-react": "^5.0.4",
     "@vitest/coverage-v8": "^4.1.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "browserslist": "^4.28.9",
     "chromatic": "^6",
     "cli-table": "^0.3.11",
     "conventional-changelog-conventionalcommits": "^9.3.0",

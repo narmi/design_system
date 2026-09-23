@@ -88,13 +88,13 @@ for a full list of CSS custom properties.
 ### Adding or updating a token
 
 1. Modify a JSON file in `tokens/primitives/` or `tokens/semantic/light/`.
-2. Run `npm run build:tokens` in repo root
+2. Run `pnpm run build:tokens` in repo root
 3. Check `dist/tokens/` output to verify your change
 
 ### Adding a high contrast override
 
 1. Add the token override to `tokens/semantic/light-contrast-more/color.json`
-2. Run `npm run build:tokens`
+2. Run `pnpm run build:tokens`
 3. Verify the override appears in the `@media (prefers-contrast: more)` block in `dist/tokens/css/tokens.css`
 
 ### Adding a new mode

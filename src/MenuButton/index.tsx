@@ -105,6 +105,11 @@ const MenuButton = ({
           style: anchorStyle,
           "aria-label": label,
           className: "button--reset nds-menubutton-ariaButton",
+          // Prevent the trigger click from bubbling to ancestors
+          // (e.g. a clickable table row or card wrapping the menu)
+          onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
+            event.stopPropagation();
+          },
         })}
       >
         {typeof renderTrigger === "function" ? (

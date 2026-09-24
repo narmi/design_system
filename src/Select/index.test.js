@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import Select, {
   isAction,
   getSelectedItemDisplay,
@@ -7,6 +7,7 @@ import Select, {
   getItemIndex,
   isHighlightedInCategory,
   isSelectedItemInCategory,
+  getTypeaheadMatch,
 } from "./";
 
 const MOCK_ITEMS = [
@@ -211,5 +212,175 @@ describe("Select", () => {
     // dropdown should be closed at this point, so the text "Action"
     // should no longer be in the DOM (including in the trigger label)
     expect(screen.queryByText("Action")).not.toBeInTheDocument();
+  });
+
+  describe("typeahead", () => {
+    const STATES = [
+      <Select.Item key=".0" value="Mississippi">
+        Mississippi
+      </Select.Item>,
+      <Select.Item key=".1" value="Missouri">
+        Missouri
+      </Select.Item>,
+      <Select.Item key=".2" value="Alabama">
+        Alabama
+      </Select.Item>,
+    ];
+
+    /** Types `str` at the (focused) trigger, one character event per letter */
+    const typeahead = (trigger, str) => {
+      for (const key of str) fireEvent.keyDown(trigger, { key });
+    };
+
+    const renderStates = (props = {}, children = STATES) => {
+      const onChange = vi.fn();
+      render(
+        <Select label="State" onChange={onChange} {...props}>
+          {children}
+        </Select>,
+      );
+      return { onChange, trigger: screen.getByRole("combobox") };
+    };
+
+    it("previews the matched item in the trigger while typing", () => {
+      const { trigger, onChange } = renderStates();
+      typeahead(trigger, "mis");
+
+      // the trigger shows the match, not the raw keystrokes
+      expect(trigger).toHaveTextContent("Mississippi");
+      expect(trigger).not.toHaveTextContent("mis");
+      // previewing is not committing
+      expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it("keeps the preview after downshift's typeahead buffer expires", () => {
+      vi.useFakeTimers();
+      try {
+        const { trigger, onChange } = renderStates();
+        typeahead(trigger, "mis");
+        expect(trigger).toHaveTextContent("Mississippi");
+
+        // downshift clears its typeahead buffer 500ms after the last
+        // keystroke. That resets `inputValue` but leaves the highlight — and
+        // so the item a blur would commit — in place, so the trigger must
+        // keep showing it.
+        act(() => vi.advanceTimersByTime(1000));
+        expect(trigger).toHaveTextContent("Mississippi");
+
+        fireEvent.blur(trigger);
+        expect(onChange).toHaveBeenCalledWith("Mississippi");
+      } finally {
+        vi.useRealTimers();
+      }
+    });
+
+    it("commits the matched item on blur, and it persists", () => {
+      const { trigger, onChange } = renderStates();
+      typeahead(trigger, "mis");
+      fireEvent.blur(trigger);
+
+      expect(onChange).toHaveBeenCalledWith("Mississippi");
+      expect(trigger).toHaveTextContent("Mississippi");
+    });
+
+    it("does not select when nothing matches", () => {
+      const { trigger, onChange } = renderStates();
+      typeahead(trigger, "zz");
+      fireEvent.blur(trigger);
+
+      expect(onChange).not.toHaveBeenCalled();
+      expect(trigger).not.toHaveTextContent("Mississippi");
+    });
+
+    it("does not commit a stale highlight after a non-matching keystroke", () => {
+      const { trigger, onChange } = renderStates();
+      typeahead(trigger, "mis"); // Mississippi is highlighted
+      typeahead(trigger, "zz"); // ...matches nothing
+      fireEvent.blur(trigger);
+
+      expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it("leaves an existing selection untouched when nothing matches", () => {
+      const { trigger, onChange } = renderStates({ defaultValue: "Alabama" });
+      typeahead(trigger, "zz");
+      fireEvent.blur(trigger);
+
+      expect(onChange).not.toHaveBeenCalled();
+      expect(trigger).toHaveTextContent("Alabama");
+    });
+
+    it("discards the typeahead on Escape", () => {
+      const { trigger, onChange } = renderStates();
+      typeahead(trigger, "mis");
+      fireEvent.keyDown(trigger, { key: "Escape" });
+
+      expect(trigger).not.toHaveTextContent("Mississippi");
+      fireEvent.blur(trigger);
+      expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it("matches on searchValue when provided", () => {
+      const { trigger } = renderStates({}, [
+        <Select.Item key=".0" value="MO" searchValue="Missouri">
+          Missouri (MO)
+        </Select.Item>,
+      ]);
+      typeahead(trigger, "miss");
+      expect(trigger).toHaveTextContent("Missouri (MO)");
+    });
+
+    it("never typeahead-selects a Select.Action", () => {
+      const onSelect = vi.fn();
+      const { trigger, onChange } = renderStates({}, [
+        ...STATES,
+        <Select.Action key=".a" onSelect={onSelect}>
+          Add a state
+        </Select.Action>,
+      ]);
+      typeahead(trigger, "add");
+      fireEvent.blur(trigger);
+
+      expect(onSelect).not.toHaveBeenCalled();
+      expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it("commits through the controlled `value` path", () => {
+      const onChange = vi.fn();
+      const Controlled = () => {
+        const [value, setValue] = React.useState("");
+        return (
+          <Select
+            label="State"
+            value={value}
+            onChange={(next) => {
+              onChange(next);
+              setValue(next);
+            }}
+          >
+            {STATES}
+          </Select>
+        );
+      };
+      render(<Controlled />);
+      const trigger = screen.getByRole("combobox");
+
+      typeahead(trigger, "mis");
+      fireEvent.blur(trigger);
+
+      expect(onChange).toHaveBeenCalledWith("Mississippi");
+      expect(trigger).toHaveTextContent("Mississippi");
+    });
+
+    it("getTypeaheadMatch: rejects a candidate that does not match", () => {
+      const [mississippi] = STATES;
+      expect(getTypeaheadMatch("mis", mississippi)).toBe(mississippi);
+      expect(getTypeaheadMatch("zz", mississippi)).toBe(null);
+      expect(getTypeaheadMatch("", mississippi)).toBe(null);
+      expect(getTypeaheadMatch("mis", undefined)).toBe(null);
+      expect(
+        getTypeaheadMatch("add", <Select.Action onSelect={() => {}} />),
+      ).toBe(null);
+    });
   });
 });

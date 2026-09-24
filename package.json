@@ -12,7 +12,7 @@
   "engines": {
     "node": ">=22"
   },
-  "packageManager": "pnpm@12.4.2",
+  "packageManager": "pnpm@12.4.2+sha512.08adc6613180275c7c9edada39dcf08c9c61ad4e7eaf330a4f3461f102b0f907423454d117f98e72d47fef0616070644d7bffc973a6a57f5090a6d7c368b07c9",
   "publishConfig": {
     "access": "public"
   },
@@ -101,8 +101,10 @@
     "pretty-quick": "^4",
     "prop-types": "^15.7.2",
     "react": "^18.3.1",
+    "react-aria": "3.49.0",
     "react-docgen-typescript-plugin": "^1.0.5",
     "react-dom": "^18.3.1",
+    "react-stately": "3.47.0",
     "sass": "^1.45.0",
     "semantic-release": "^25.0.3",
     "storybook": "^10.4.5",
@@ -127,10 +129,8 @@
     "downshift": "^9",
     "flatpickr": "^4.6.12",
     "marked": "^15.0.12",
-    "react-aria": "3.49.0",
     "react-aria-components": "^1.0.0",
     "react-focus-lock": "^2.9.4",
-    "react-stately": "3.47.0",
     "react-transition-group": "^4.4.5",
     "usehooks-ts": "^3.1.1"
   },

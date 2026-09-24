@@ -238,18 +238,12 @@ importers:
       marked:
         specifier: ^15.0.12
         version: 15.0.12
-      react-aria:
-        specifier: 3.49.0
-        version: 3.49.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-aria-components:
         specifier: ^1.0.0
         version: 1.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-focus-lock:
         specifier: ^2.9.4
         version: 2.13.7(@types/react@18.3.31)(react@18.3.1)
-      react-stately:
-        specifier: 3.47.0
-        version: 3.47.0(react@18.3.1)
       react-transition-group:
         specifier: ^4.4.5
         version: 4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -422,12 +416,18 @@ importers:
       react:
         specifier: ^18.3.1
         version: 18.3.1
+      react-aria:
+        specifier: 3.49.0
+        version: 3.49.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-docgen-typescript-plugin:
         specifier: ^1.0.5
         version: 1.0.8(supports-color@10.2.2)(typescript@5.9.3)(webpack@5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.23)(uglify-js@3.19.3))
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+      react-stately:
+        specifier: 3.47.0
+        version: 3.47.0(react@18.3.1)
       sass:
         specifier: ^1.45.0
         version: 1.101.0

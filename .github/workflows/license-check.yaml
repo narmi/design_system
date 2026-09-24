@@ -17,13 +17,18 @@ jobs:
         with:
           node-version-file: ".nvmrc"
           registry-url: https://registry.npmjs.org
-      - run: |
-          pnpm install --frozen-lockfile --ignore-scripts
-          pnpm run build
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
       # Each license string pnpm reports must appear verbatim in the allowlist,
       # including compound expressions like `(MIT OR Apache-2.0)`.
       - name: Check licenses against allowlist
+        shell: bash
         run: |
           licenses=$(pnpm licenses list --json | jq -re 'keys[]')
-          bad=$(grep -vxF -f .github/allowed-licenses.txt <<< "$licenses") || true
-          [ -z "$bad" ] || { echo "Disallowed licenses:"; echo "$bad"; exit 1; }
+          # grep exits 0 if any license is not allowlisted, 1 if all are,
+          # and 2 on error (e.g. a missing allowlist), which must also fail.
+          status=0
+          bad=$(grep -vxF -f .github/allowed-licenses.txt <<< "$licenses") || status=$?
+          [ "$status" -le 1 ] || exit "$status"
+          [ "$status" -eq 1 ] || { echo "Disallowed licenses:"; echo "$bad"; exit 1; }

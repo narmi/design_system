@@ -95,6 +95,8 @@ export interface MultilineTextInputProps
     > {
   /** When true, the input is displayed as an auto-growing textarea */
   multiline: true;
+  /** Maximum number of text lines the textarea grows to before scrolling */
+  maxLines?: number;
   /** Callback invoked with event object on textarea change */
   onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
   /** Callback invoked with event object on textarea blur */
@@ -112,6 +114,7 @@ const nativeProps = <P extends TextInputProps>({
   showClearButton,
   formatter,
   multiline,
+  maxLines,
   defaultValue,
   onChange,
   onBlur,
@@ -123,7 +126,7 @@ const nativeProps = <P extends TextInputProps>({
   required,
   field,
   ...rest
-}: P) => rest;
+}: P & { maxLines?: number }) => rest;
 /* eslint-enable @typescript-eslint/no-unused-vars */
 
 /**
@@ -145,7 +148,8 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
       error,
       renderError = true,
       required = false,
-    } = props;
+      maxLines = 8,
+    } = props as TextInputProps & { maxLines?: number };
 
     const [inputValue, setInputValue] = useState(
       defaultValue ? String(defaultValue) : "",
@@ -193,6 +197,7 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
           <div
             className="nds-input-multiline-grid"
             data-textarea-value={inputValue}
+            style={{ "--nds-input-max-lines": maxLines } as React.CSSProperties}
           >
             <textarea
               key={"nds-text"}

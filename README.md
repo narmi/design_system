@@ -70,7 +70,7 @@ Refer to the [**Changelog**](https://github.com/narmi/design_system/blob/main/CH
 
 ### Browser Support
 
-See [`.browserslistrc`](https://github.com/narmi/design_system/blob/main/.editorconfig) for officially supported browsers or
+See [`.browserslistrc`](https://github.com/narmi/design_system/blob/main/.browserslistrc) for officially supported browsers or
 run `pnpm exec browserslist` in this project locally to see a full list of targeted browsers.
 
 This project does not support any version of Internet Explorer.

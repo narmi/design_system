@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { expect, waitFor } from "storybook/test";
 import MenuButton, { VALID_ICON_NAMES } from "./";
 import Dialog from "../Dialog";
 import IconButton from "../IconButton";
@@ -33,6 +34,28 @@ Overview.args = {
       }}
     />,
   ],
+};
+
+/**
+ * Interaction test verifying the menu opens when the trigger is clicked.
+ */
+export const OpensOnClick = {
+  name: "Interaction: Opens on click",
+  args: { ...Overview.args },
+  play: async ({ canvas, userEvent }) => {
+    const trigger = canvas.getByRole("combobox", { name: "Overview example" });
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+    expect(canvas.queryByRole("option", { name: "Edit" })).toBeNull();
+
+    await userEvent.click(trigger);
+
+    await waitFor(() => {
+      expect(trigger).toHaveAttribute("aria-expanded", "true");
+      expect(canvas.getByRole("option", { name: "Edit" })).toBeVisible();
+    });
+    expect(canvas.getByRole("option", { name: "Screenshot" })).toBeVisible();
+    expect(canvas.getByRole("option", { name: "Deposit" })).toBeVisible();
+  },
 };
 
 export const CustomTrigger = Template.bind({});

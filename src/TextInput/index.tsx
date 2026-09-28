@@ -95,8 +95,7 @@ export interface MultilineTextInputProps
     > {
   /** When true, the input is displayed as an auto-growing textarea */
   multiline: true;
-  /** Maximum number of text lines the textarea grows to before scrolling */
-  maxLines?: number;
+/** Maximum number of text lines the textarea grows to before scrolling. Defaults to 8. */
   /** Callback invoked with event object on textarea change */
   onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
   /** Callback invoked with event object on textarea blur */

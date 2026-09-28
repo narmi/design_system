@@ -11,3 +11,5 @@ build-storybook.log
 .env
 
 *.swp
+
+package-lock.json

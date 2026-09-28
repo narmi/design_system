@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.32.1](https://github.com/narmi/design_system/compare/v6.32.0...v6.32.1) (2026-09-24)
+
+### fix
+
+* **MenuButton:** prevent event bubbling to popover; add cov ([668b4c6](https://github.com/narmi/design_system/commit/668b4c658834414b5775043fa5fec89097e802f1))
+
 ## [6.32.0](https://github.com/narmi/design_system/compare/v6.31.2...v6.32.0) (2026-09-23)
 
 ### feat

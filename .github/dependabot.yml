@@ -13,6 +13,14 @@ updates:
     cooldown:
       default-days: 7
       semver-major-days: 30
+    groups:
+      # react-aria-components pins exact versions of react-aria and
+      # react-stately. Bumping them separately would bundle two copies.
+      react-aria:
+        patterns:
+          - "react-aria"
+          - "react-aria-components"
+          - "react-stately"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:

@@ -1,0 +1,4 @@
+import{o as e}from"./preload-helper-CHxnduP2.js";import{f as t,n,s as r,w as i}from"./blocks-CAmq1MOV.js";import{s as a}from"./chunk-LITCR56V-BJx-kVR4.js";import{t as o}from"./mdx-react-shim-DD4jxrRR.js";import{d as s,n as c}from"./ClassExample-DbX1H56e.js";import{ButtonReset as l,n as u,t as d}from"./forms.stories-FFG11dwt.js";function f(e){let t={code:`code`,h1:`h1`,p:`p`,...i(),...e.components};return(0,m.jsxs)(m.Fragment,{children:[(0,m.jsx)(r,{of:d}),`
+`,(0,m.jsx)(t.h1,{id:`button-reset`,children:`Button reset`}),`
+`,(0,m.jsxs)(t.p,{children:[`Resets browser defaults on `,(0,m.jsx)(t.code,{children:`button`}),` element.`]}),`
+`,(0,m.jsx)(n,{of:l})]})}function p(e={}){let{wrapper:t}={...i(),...e.components};return t?(0,m.jsx)(t,{...e,children:(0,m.jsx)(f,{...e})}):f(e)}var m;e((()=>{m=a(),o(),t(),s(),c(),u()}))();export{p as default};

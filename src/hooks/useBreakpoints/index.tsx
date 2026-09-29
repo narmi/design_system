@@ -1,4 +1,4 @@
-import { useMediaQuery } from "usehooks-ts";
+import useMediaQuery from "../useMediaQuery";
 
 // standard Narmi breakpoints
 type BreakpointName = "s" | "m" | "l" | "xl";

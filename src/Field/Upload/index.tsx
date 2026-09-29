@@ -325,7 +325,14 @@ export const FieldUpload = forwardRef<HTMLInputElement, FieldUploadProps>(
             </ul>
 
             {uploadState === "uploading" && (
-              <div className="nds-field-upload-uploadProgress">
+              <div
+                className="nds-field-upload-uploadProgress"
+                role="progressbar"
+                aria-label={labelUploading}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-valuenow={progress}
+              >
                 <ProgressBar percentComplete={progress} />
               </div>
             )}

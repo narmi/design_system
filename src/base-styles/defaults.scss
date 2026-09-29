@@ -44,7 +44,7 @@ p {
 
 a {
   color: var(--theme-link);
-  text-decoration: none;
+  text-decoration: underline;
 
   &:hover {
     color: var(--theme-link);

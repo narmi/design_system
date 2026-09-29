@@ -304,10 +304,6 @@ export const FieldUpload = forwardRef<HTMLInputElement, FieldUploadProps>(
         )}
 
         {showFiles && (
-          // Wraps the list *and* the progress bar so the bar sits inside the
-          // same bordered container as the rows it describes. `progress` is a
-          // single component-level value the parent owns, so one bar covers
-          // the whole selection rather than being duplicated per row.
           <div
             className={cc([
               "nds-field-upload-files",

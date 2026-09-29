@@ -286,7 +286,7 @@ export const FieldUpload = forwardRef<HTMLInputElement, FieldUploadProps>(
             {...dropZoneProps}
           >
             <div className="nds-field-upload-icon alignChild--center--center">
-              <span className="narmi-icon-upload" />
+              <span className="narmi-icon-upload" aria-hidden="true" />
             </div>
             {renderDropPrompt ? (
               renderDropPrompt()

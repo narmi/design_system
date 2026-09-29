@@ -159,13 +159,12 @@ export const FieldUpload = forwardRef<HTMLInputElement, FieldUploadProps>(
 
       return (
         <Row alignItems="center" gapSize="s">
+          <span className="nds-field-upload-file-status" role="status">
+            {isSuccess ? labelSuccess(file) : ""}
+          </span>
           <Row.Item shrink>
             {isSuccess ? (
-              <span
-                className="nds-field-upload-file-check alignChild--center--center"
-                role="status"
-                aria-label={labelSuccess(file)}
-              >
+              <span className="nds-field-upload-file-check alignChild--center--center">
                 <span
                   className="narmi-icon-check fontSize--l"
                   aria-hidden="true"

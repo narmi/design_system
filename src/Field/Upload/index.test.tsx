@@ -251,16 +251,9 @@ describe("Field.Upload", () => {
         />,
       );
 
-      expect(
-        screen.getByRole("status", {
-          name: "a.pdf se subió correctamente",
-        }),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByRole("status", {
-          name: "b.pdf se subió correctamente",
-        }),
-      ).toBeInTheDocument();
+      const statuses = screen.getAllByRole("status");
+      expect(statuses[0]).toHaveTextContent("a.pdf se subió correctamente");
+      expect(statuses[1]).toHaveTextContent("b.pdf se subió correctamente");
     });
 
     it("overrides the remove button name, per file", () => {
@@ -590,13 +583,19 @@ describe("Field.Upload", () => {
     });
 
     it("announces success for each file", () => {
-      seeded({ uploadState: "success" });
+      const { rerender } = seeded({ uploadState: "uploading" });
+      expect(screen.getByRole("status")).toBeEmptyDOMElement();
 
-      expect(
-        screen.getByRole("status", {
-          name: "statement.pdf uploaded successfully",
-        }),
-      ).toBeInTheDocument();
+      rerender(
+        <Harness
+          initialFiles={[makeFile("statement.pdf")]}
+          uploadState="success"
+        />,
+      );
+
+      expect(screen.getByRole("status")).toHaveTextContent(
+        "statement.pdf uploaded successfully",
+      );
     });
 
     it.each(["idle", "success"] as const)(

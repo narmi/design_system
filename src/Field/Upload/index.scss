@@ -103,6 +103,10 @@ $upload-container-bp-s: 340px;
     overflow-wrap: anywhere;
   }
 
+  &-file-status {
+    @extend %a11y-visually-hide;
+  }
+
   // Filled disc rather than `narmi-icon-check-circle`, which is an outline
   // glyph and cannot render as a white check on a solid green field.
   &-file-check {

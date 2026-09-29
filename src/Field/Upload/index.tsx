@@ -143,7 +143,12 @@ export const FieldUpload = forwardRef<HTMLInputElement, FieldUploadProps>(
       showLabel,
     });
     const { inputRef, isDragActive, dropZoneProps, removeFile, handleChange } =
-      useUpload({ files, onFilesChange, multiple, isDisabled });
+      useUpload({
+        files: uploadState === "error" ? [] : files,
+        onFilesChange,
+        multiple,
+        isDisabled,
+      });
     const mergedRefs = useMergeRefs(
       forwardedRef,
       inputRef,

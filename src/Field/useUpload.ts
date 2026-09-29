@@ -62,28 +62,29 @@ export const useUpload = ({
     setIsDragActive(false);
   }, []);
 
-  const dropZoneProps = isDisabled
-    ? {}
-    : {
-        onDragEnter: (event: React.DragEvent) => {
-          event.preventDefault();
-          dragDepth.current += 1;
-          setIsDragActive(true);
-        },
-        onDragOver: (event: React.DragEvent) => {
-          event.preventDefault();
-        },
-        onDragLeave: (event: React.DragEvent) => {
-          event.preventDefault();
-          dragDepth.current -= 1;
-          if (dragDepth.current <= 0) resetDrag();
-        },
-        onDrop: (event: React.DragEvent) => {
-          event.preventDefault();
-          resetDrag();
-          addFiles(event.dataTransfer?.files ?? null);
-        },
-      };
+  const dropZoneProps = {
+    onDragEnter: (event: React.DragEvent) => {
+      event.preventDefault();
+      if (isDisabled) return;
+      dragDepth.current += 1;
+      setIsDragActive(true);
+    },
+    onDragOver: (event: React.DragEvent) => {
+      event.preventDefault();
+    },
+    onDragLeave: (event: React.DragEvent) => {
+      event.preventDefault();
+      if (isDisabled) return;
+      dragDepth.current -= 1;
+      if (dragDepth.current <= 0) resetDrag();
+    },
+    onDrop: (event: React.DragEvent) => {
+      event.preventDefault();
+      if (isDisabled) return;
+      resetDrag();
+      addFiles(event.dataTransfer?.files ?? null);
+    },
+  };
 
   return {
     inputRef,

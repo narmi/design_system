@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, createEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { FieldUpload, type FieldUploadProps } from "./index";
 
@@ -412,12 +412,19 @@ describe("Field.Upload", () => {
     it("ignores drops when disabled", () => {
       const zone = renderZone({ isDisabled: true });
       const root = rootOf(zone);
+      const dragOverEvent = createEvent.dragOver(zone);
+      const dropEvent = createEvent.drop(zone, {
+        dataTransfer: { files: [makeFile("d.pdf")] },
+      });
 
       fireEvent.dragEnter(zone);
-      fireEvent.drop(zone, { dataTransfer: { files: [makeFile("d.pdf")] } });
+      fireEvent(zone, dragOverEvent);
+      fireEvent(zone, dropEvent);
 
       expect(screen.queryByText("d.pdf")).not.toBeInTheDocument();
       expect(root).toHaveAttribute("data-state", "disabled");
+      expect(dragOverEvent.defaultPrevented).toBe(true);
+      expect(dropEvent.defaultPrevented).toBe(true);
     });
   });
 

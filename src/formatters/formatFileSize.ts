@@ -10,7 +10,7 @@
  * competing with it.
  *
  * @example
- * import { formatFileSize } from '@narmi/design_system';
+ * import { formatFileSize } from '@narmi/design-system';
  *
  * formatFileSize(0);       // '0B'
  * formatFileSize(5120);    // '5KB'

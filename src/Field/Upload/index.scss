@@ -146,11 +146,10 @@ $upload-container-bp-s: 340px;
     }
   }
 
-  &[data-state="disabled"] .nds-field-upload-dropzone {
-    border-color: var(--font-color-hint);
-    user-select: none;
-    pointer-events: none;
-    cursor: not-allowed;
+&[data-state="disabled"] .nds-field-upload-dropzone {
+  border-color: var(--font-color-hint);
+  user-select: none;
+  cursor: not-allowed;
 
     &::before {
       content: "";

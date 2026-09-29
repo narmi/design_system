@@ -172,8 +172,6 @@ $upload-container-bp-s: 340px;
   * deliberately separate from `.nds-field--hasError`. In this state the file
   * list is replaced by the drop zone, which doubles as the retry affordance.
   *
-  * Borrows the border treatment `.nds-field--hasError` uses on the other
-  * fields, so a failed upload reads the same as any other errored field.
   */
   &--uploadError .nds-field-upload-dropzone {
     border-color: var(--color-errorDark);

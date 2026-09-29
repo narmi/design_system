@@ -35,6 +35,7 @@ const Avatar = ({
     <AsElement
       elementType={linkurl ? "a" : "div"}
       href={linkurl}
+      role={linkurl ? undefined : "img"}
       className={cc([
         "nds-avatar",
         `nds-avatar--${size}`,

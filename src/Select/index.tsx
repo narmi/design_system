@@ -140,6 +140,30 @@ const defaultGetTypeAheadString = (
   return selectItem.props.searchValue || selectItem.props.value;
 };
 
+/**
+ * Resolves the item a typeahead keystroke actually matched.
+ *
+ * downshift returns the _previous_ `highlightedIndex` when a keystroke
+ * matches nothing, so the highlight alone cannot be trusted. This re-checks
+ * the candidate against the same typeahead string downshift matched on.
+ *
+ * @param userInput the accumulated typeahead string
+ * @param candidate the item downshift highlighted, if any
+ * @param getTypeaheadString the typeahead accessor in use
+ * @returns the matched Select.Item, or `null` when nothing matched
+ */
+export const getTypeaheadMatch = (
+  userInput: string,
+  candidate: SelectChild | undefined,
+  getTypeaheadString: SelectProps["getTypeaheadString"] = defaultGetTypeAheadString,
+): SelectItemElement | null => {
+  if (!userInput || !candidate || isAction(candidate)) return null;
+  const matches = getTypeaheadString(userInput, candidate)
+    .toLowerCase()
+    .startsWith(userInput.toLowerCase());
+  return matches ? candidate : null;
+};
+
 interface SelectCategoryConfig {
   label?: string;
   categoryChildren: SelectItemElement[];
@@ -234,6 +258,12 @@ function Select({
   );
   const actions = React.Children.toArray(children).filter(isAction); // All Select.Action items
   const [userInput, setUserInput] = useState(""); // most recent val the user typed while focused on this input
+  // Item the in-progress typeahead resolved to. Previewed in the trigger so
+  // it survives downshift's 500ms typeahead-buffer expiry, which clears
+  // `userInput` but leaves the highlight (and so the pending selection) intact.
+  const [typeaheadItem, setTypeaheadItem] = useState<SelectItemElement | null>(
+    null,
+  );
 
   // If categories are being used, extract items from categories
   if (
@@ -290,11 +320,27 @@ function Select({
       let isOpen = changes.isOpen;
 
       if (type === useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter) {
-        const { inputValue } = changes;
-        setUserInput(inputValue ?? "");
+        const { inputValue = "", highlightedIndex = -1 } = changes;
+        const match = getTypeaheadMatch(
+          inputValue,
+          highlightedIndex >= 0 ? items[highlightedIndex] : undefined,
+          getTypeaheadString,
+        );
+        setUserInput(inputValue);
+        setTypeaheadItem(match);
         isOpen = true;
+
+        if (!match) {
+          // Drop the stale highlight downshift falls back to, so blurring
+          // cannot commit an item the user never typed toward.
+          return { ...changes, isOpen, highlightedIndex: -1 };
+        }
       } else {
         setUserInput(""); // reset input after any other event
+        // The buffer expiry is not a user action; it must not clear the preview
+        if (type !== useSelect.stateChangeTypes.FunctionSetInputValue) {
+          setTypeaheadItem(null);
+        }
       }
 
       // When an action is selected, execute it and handle clearing if needed
@@ -400,7 +446,13 @@ function Select({
           isOpen={showMenu}
           labelText={label}
           disabled={disabled}
-          displayValue={getSelectedItemDisplay(selectedItem) || userInput}
+          displayValue={
+            // Preview the pending typeahead match ahead of the committed
+            // selection, so the trigger shows what blurring will select
+            getSelectedItemDisplay(typeaheadItem) ||
+            getSelectedItemDisplay(selectedItem) ||
+            userInput
+          }
           labelProps={{ ...getLabelProps() }}
           hasError={Boolean(errorText)}
           {...getToggleButtonProps()}

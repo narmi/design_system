@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.33.0](https://github.com/narmi/design_system/compare/v6.32.1...v6.33.0) (2026-09-29)
+
+### ci
+
+* replace license check script with allowlist file ([f88207e](https://github.com/narmi/design_system/commit/f88207e27d21d025703df1406503f05944a6b8db))
+
+### feat
+
+* **TextInput:** add maxLines cap for multiline input ([c324ec5](https://github.com/narmi/design_system/commit/c324ec550220fc54dd8d9795275062bbece77375))
+
 ## [6.32.1](https://github.com/narmi/design_system/compare/v6.32.0...v6.32.1) (2026-09-24)
 
 ### fix

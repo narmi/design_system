@@ -41,9 +41,10 @@ export const useUpload = ({
 
   const removeFile = useCallback(
     (target: File) => {
+      if (isDisabled) return;
       onFilesChange(files.filter((file) => file !== target));
     },
-    [files, onFilesChange],
+    [files, isDisabled, onFilesChange],
   );
 
   const handleChange = useCallback(

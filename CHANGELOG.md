@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.33.2](https://github.com/narmi/design_system/compare/v6.33.1...v6.33.2) (2026-09-29)
+
+### fix
+
+* **Tag:** name the dismiss control ([f258479](https://github.com/narmi/design_system/commit/f2584797d7ec69307213b5b08b76d78629bd716b))
+
+## [6.33.1](https://github.com/narmi/design_system/compare/v6.33.0...v6.33.1) (2026-09-29)
+
+### fix
+
+* **AnchoredDialog:** expose the trigger expanded state ([c8f9a6c](https://github.com/narmi/design_system/commit/c8f9a6c81200078729bf7d487cfef64aa076b785))
+
 ## [6.33.0](https://github.com/narmi/design_system/compare/v6.32.1...v6.33.0) (2026-09-29)
 
 ### ci

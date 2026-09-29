@@ -51,6 +51,7 @@ const Tag = ({
         <div
           className="narmi-icon-x margin--left--xs"
           role="button"
+          aria-label="Remove tag"
           tabIndex={0}
           onClick={onDismiss}
           onKeyUp={({ key }) => {

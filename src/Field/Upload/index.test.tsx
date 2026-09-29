@@ -241,6 +241,28 @@ describe("Field.Upload", () => {
       expect(screen.queryByText("Uploading...")).not.toBeInTheDocument();
     });
 
+    it("overrides the success status, per file", () => {
+      render(
+        <Harness
+          multiple
+          uploadState="success"
+          initialFiles={[makeFile("a.pdf"), makeFile("b.pdf")]}
+          labelSuccess={(file) => `${file.name} se subió correctamente`}
+        />,
+      );
+
+      expect(
+        screen.getByRole("status", {
+          name: "a.pdf se subió correctamente",
+        }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("status", {
+          name: "b.pdf se subió correctamente",
+        }),
+      ).toBeInTheDocument();
+    });
+
     it("overrides the remove button name, per file", () => {
       render(
         <Harness
@@ -565,6 +587,16 @@ describe("Field.Upload", () => {
         />,
       );
       expect(screen.getByText("13B")).toBeInTheDocument();
+    });
+
+    it("announces success for each file", () => {
+      seeded({ uploadState: "success" });
+
+      expect(
+        screen.getByRole("status", {
+          name: "statement.pdf uploaded successfully",
+        }),
+      ).toBeInTheDocument();
     });
 
     it.each(["idle", "success"] as const)(

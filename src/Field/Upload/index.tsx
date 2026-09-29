@@ -87,6 +87,8 @@ export interface FieldUploadProps extends FieldBaseProps {
   labelAcceptHint?: string;
   /** Status line on each file row while `uploadState` is `"uploading"`. */
   labelUploading?: string;
+  /** Accessible status for each file when `uploadState` is `"success"`. */
+  labelSuccess?: (file: File) => string;
   /**
    * Accessible name for a file's remove button. Takes the file so the name
    * can stay unique per row in a multi-file list.
@@ -128,6 +130,7 @@ export const FieldUpload = forwardRef<HTMLInputElement, FieldUploadProps>(
       ),
       labelAcceptHint,
       labelUploading = "Uploading...",
+      labelSuccess = (file: File) => `${file.name} uploaded successfully`,
       labelRemoveFile = (file: File) => `Remove ${file.name}`,
     },
     forwardedRef,
@@ -158,7 +161,11 @@ export const FieldUpload = forwardRef<HTMLInputElement, FieldUploadProps>(
         <Row alignItems="center" gapSize="s">
           <Row.Item shrink>
             {isSuccess ? (
-              <span className="nds-field-upload-file-check alignChild--center--center">
+              <span
+                className="nds-field-upload-file-check alignChild--center--center"
+                role="status"
+                aria-label={labelSuccess(file)}
+              >
                 <span
                   className="narmi-icon-check fontSize--l"
                   aria-hidden="true"

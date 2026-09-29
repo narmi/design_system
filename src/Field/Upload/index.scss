@@ -27,6 +27,13 @@ $upload-container-bp-s: 340px;
 
   &-input {
     @extend %a11y-visually-hide;
+
+    &:focus-visible {
+      ~ .nds-field-upload-dropzone,
+      ~ .nds-field-upload-files {
+        outline: revert;
+      }
+    }
   }
 
   &-dropzone {

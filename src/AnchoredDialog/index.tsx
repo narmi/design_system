@@ -75,7 +75,7 @@ const AnchoredDialog = ({
     trigger &&
     React.cloneElement(trigger, {
       "aria-haspopup": anchorProps["aria-haspopup"],
-      "aria-expanded": anchorProps["aria-expanded"],
+      "aria-expanded": isOpen,
     });
 
   return (

@@ -5,7 +5,7 @@ import { useField } from "../useField";
 import { useMergeRefs } from "../../hooks/useMergeRefs";
 import { FIELD_MASKS } from "../masks";
 import Row from "../../Row";
-import Error from "../../Error";
+import { FieldErrors } from "../Errors/index";
 
 import type { MaskitoOptions } from "@maskito/core";
 import type { FieldProps } from "../types";
@@ -139,11 +139,7 @@ export const FieldText = forwardRef<HTMLInputElement, FieldTextProps>(
           </Row>
         </div>
 
-        <div className="nds-field-errors" id={errorId} aria-live="polite">
-          {errors.map((error: string, i: number) => (
-            <Error key={`${i}-${error}`} error={error} marginTop="none" />
-          ))}
-        </div>
+        <FieldErrors id={errorId} errors={errors} />
       </div>
     );
   },

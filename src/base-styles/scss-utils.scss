@@ -40,6 +40,43 @@ $breakpoints: (
 }
 
 /**
+* Mobile first style *container* query helper.
+* Styles wrapped in this mixin apply when the queried container is at least
+* the given inline size.
+*
+* Prefer this over `atMediaUp` when a component's layout depends on the space
+* it has been given rather than on the size of the viewport — a field in a
+* narrow sidebar should lay out as "small" even on a wide screen.
+*
+* `$size` accepts either a key from `$breakpoints` or a raw length. Container
+* widths are not viewport widths, so the shared breakpoint scale is usually
+* the wrong ruler; reach for a content-derived length when the component
+* should reflow at the point its own content stops fitting.
+*
+* ⚠️ An element cannot query its own container. Apply `container-type` to an
+* ancestor and use this mixin on a descendant.
+*
+* @include atContainerUp(340px, nds-field-upload) { styles at 340px or wider }
+* @include atContainerUp("s") { anonymous query against the nearest container }
+*/
+@mixin atContainerUp($size, $containerName: null) {
+  $minWidth: if(
+    map.has-key($breakpoints, $size),
+    map.get($breakpoints, $size),
+    $size
+  );
+  @if $containerName {
+    @container #{$containerName} (min-width: #{$minWidth}) {
+      @content;
+    }
+  } @else {
+    @container (min-width: #{$minWidth}) {
+      @content;
+    }
+  }
+}
+
+/**
  * Conditionally apply styles if user prefers higher contrast
  *
  * @usage

@@ -170,9 +170,11 @@ const Button = ({
                 <Icon name={startIcon} />
               </Row.Item>
             )}
-            <Row.Item>
-              <span className="nds-button-label">{buttonLabel}</span>
-            </Row.Item>
+            {buttonLabel && (
+              <Row.Item>
+                <span className="nds-button-label">{buttonLabel}</span>
+              </Row.Item>
+            )}
             {endIcon && (
               <Row.Item shrink>
                 <Icon name={endIcon} />

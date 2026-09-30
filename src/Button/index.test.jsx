@@ -5,8 +5,7 @@ import Button from "./";
 const LABEL = "Submit";
 
 const getButton = () => screen.getByTestId("nds-button");
-const getButtonContent = () =>
-  getButton().querySelector(".nds-button-content");
+const getButtonContent = () => getButton().querySelector(".nds-button-content");
 
 describe("Button", () => {
   it("has correct attributes for default props", () => {
@@ -114,7 +113,9 @@ describe("Button", () => {
   it.each(["start", "center", "end"])(
     "applies the %s label alignment modifier",
     (labelAlign) => {
-      render(<Button label={LABEL} isFullWidth={true} labelAlign={labelAlign} />);
+      render(
+        <Button label={LABEL} isFullWidth={true} labelAlign={labelAlign} />,
+      );
       const buttonContent = getButtonContent();
 
       expect(buttonContent).toHaveClass(`nds-button-content--${labelAlign}`);

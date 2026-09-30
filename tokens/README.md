@@ -24,7 +24,7 @@ tokens/
 │   │   └── color.json    # Re-based color.system.* status tokens
 │   ├── cvd-tritanopia/   # Tritanopia palette overrides
 │   │   └── color.json    # Re-based color.system.* status tokens
-│   ├── *.stories.js      # Storybook stories
+│   ├── *.stories.jsx     # Storybook stories
 │   └── *.mdx             # Storybook docs
 ├── constants.ts          # Mode definitions (contrast + color-vision deficiency)
 ├── modes.ts              # buildModeCSS: emits mode override blocks
@@ -120,7 +120,7 @@ only an attribute-selector block (no `@media`):
    selectors), and a `label`
 3. `tokens/build.ts` compiles each palette's source and appends its block
    automatically — no per-mode wiring
-4. Wire the toolbar toggle in `.storybook/preview.js` + `.storybook/decorators.js` to
+4. Wire the toolbar toggle in `.storybook/preview.js` + `.storybook/decorators.jsx` to
    preview it
 
 ### Adding a new distribution

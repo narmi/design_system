@@ -5,6 +5,7 @@ module.exports = {
     react: { version: "detect" },
   },
   extends: [
+    "./.eslintrc-jsx.cjs",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",

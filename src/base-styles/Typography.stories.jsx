@@ -34,11 +34,12 @@ export const HelperClassesList = () => (
   <>
     <div className="nds-typography">
       <h3 className="fontColor--azul">
-        Heading level 3 inside context with "azul" color override
+        Heading level 3 inside context with &quot;azul&quot; color override
       </h3>
 
       <p className="fontSize--xs fontWeight--semibold">
-        Paragraph with "xs" size override and "semibold" weight override
+        Paragraph with &quot;xs&quot; size override and &quot;semibold&quot;
+        weight override
       </p>
     </div>
 

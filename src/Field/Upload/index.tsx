@@ -203,8 +203,6 @@ export const FieldUpload = forwardRef<HTMLInputElement, FieldUploadProps>(
       );
     };
 
-    // Already resolved: a completed outcome that has outlived its selection
-    // is reported as `idle`, so nothing below needs to re-check staleness.
     const upload = useUploadState(uploadState, files);
 
     const messages =

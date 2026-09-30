@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.33.4](https://github.com/narmi/design_system/compare/v6.33.3...v6.33.4) (2026-09-30)
+
+### fix
+
+* **Avatar:** expose accessible image semantics ([ef68de3](https://github.com/narmi/design_system/commit/ef68de3e31b8155ca4c0b5608dee4c76101983de))
+
 ## [6.33.3](https://github.com/narmi/design_system/compare/v6.33.2...v6.33.3) (2026-09-30)
 
 ### fix

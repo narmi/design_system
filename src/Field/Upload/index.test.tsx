@@ -747,6 +747,20 @@ describe("Field.Upload", () => {
       ).toHaveTextContent("Upload failed");
     });
 
+    it("marks the field as errored when the upload fails without a message", () => {
+      const { container } = seeded({ uploadState: "error" });
+      const root = container.querySelector(".nds-field-upload") as HTMLElement;
+      const input = getInput(container);
+
+      expect(root).toHaveClass("nds-field--hasError");
+      expect(input).toHaveAttribute("aria-invalid", "true");
+      expect(
+        container.querySelector(
+          `#${CSS.escape(input.getAttribute("aria-describedby") as string)}`,
+        ),
+      ).toHaveTextContent("Upload failed");
+    });
+
     it("keeps the file list visible for validation errors", () => {
       // Validation lives in `errors`, not `uploadState`. Hiding the row here
       // would take away the file the message is asking the user to fix.

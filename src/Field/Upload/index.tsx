@@ -206,8 +206,8 @@ export const FieldUpload = forwardRef<HTMLInputElement, FieldUploadProps>(
     const upload = useUploadState(uploadState, files);
 
     const messages =
-      upload.status === "error" && upload.message
-        ? [...errors, upload.message]
+      upload.status === "error"
+        ? [...errors, upload.message || "Upload failed"]
         : errors;
 
     const { errorId, labelId, controlProps, labelProps } = useField({

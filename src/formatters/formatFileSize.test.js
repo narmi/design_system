@@ -29,9 +29,9 @@ describe("formatFileSize", () => {
   });
 
   it("clamps sizes beyond the largest known unit", () => {
-    // Petabyte-scale input keeps formatting in terabytes rather than running
+    // Petabyte-scale input keeps formatting in gigabytes rather than running
     // off the end of the unit list.
-    expect(formatFileSize(Math.pow(1024, 6))).toEqual("1048576TB");
+    expect(formatFileSize(Math.pow(1024, 6))).toEqual("1073741824GB");
   });
 
   it("returns a zero size for zero, negative and non-finite input", () => {

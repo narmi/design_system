@@ -21,7 +21,7 @@
  * @returns size string formatted for display
  */
 
-const UNITS = ["B", "KB", "MB", "GB", "TB"] as const;
+const UNITS = ["B", "KB", "MB", "GB"] as const;
 const STEP = 1024;
 
 // Below a megabyte a fractional part is noise: the difference between "1.5KB"

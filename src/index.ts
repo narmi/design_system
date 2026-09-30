@@ -128,6 +128,7 @@ export type { FieldTextProps } from "./Field/Text";
 export type {
   FieldUploadProps,
   FieldUploadState,
+  FieldUploadStateObject,
   FieldUploadStatus,
 } from "./Field/Upload";
 export type { FieldMaskName } from "./Field/masks";

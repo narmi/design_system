@@ -12,6 +12,10 @@ xxs, xs, s, m, l, xl
 
 Use `PascalCase` for component names.
 
+Use `.jsx` for JavaScript files containing JSX and `.tsx` for TypeScript files
+containing JSX. This includes stories, tests, and Storybook decorators. Keep
+`.js` for JavaScript files without JSX.
+
 ```diff
 -<CheckBox>
 -<Separatorlist>

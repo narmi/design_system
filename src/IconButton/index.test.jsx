@@ -53,9 +53,7 @@ describe("IconButton", () => {
   });
 
   it("preserves safe href when rendered as anchor", () => {
-    render(
-      <IconButton as="a" name="info" label="Help" href="/safe-path" />,
-    );
+    render(<IconButton as="a" name="info" label="Help" href="/safe-path" />);
     const iconButton = getIconButton();
     expect(iconButton).toHaveAttribute("href", "/safe-path");
   });

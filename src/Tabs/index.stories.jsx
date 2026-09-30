@@ -140,7 +140,7 @@ ResponsiveTabsWithArrowScroll.parameters = {
 /* -------------------------------------------------------------------------
  * Interaction tests
  *
- * These deliberately cover only what the jsdom suite in `index.test.js`
+ * These deliberately cover only what the jsdom suite in `index.test.jsx`
  * structurally cannot: real text metrics, real scroll ranges, and real
  * element geometry. jsdom reports 0 for every layout property and implements
  * neither scrolling nor scroll-snap, so the assertions below are the only

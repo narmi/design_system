@@ -1,6 +1,6 @@
 /**
  * TO VIEW THIS STORY LOCALLY:
- * change the file name from `.stories-hidden.js` to `.stories.js`.
+ * change the file name from `.stories-hidden.jsx` to `.stories.jsx`.
  *
  * This component is still in development, so we can't publish the docs publicly yet.
  */

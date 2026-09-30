@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.33.5](https://github.com/narmi/design_system/compare/v6.33.4...v6.33.5) (2026-09-30)
+
+### fix
+
+* **Drawer:** label the mobile close button ([e30d2a9](https://github.com/narmi/design_system/commit/e30d2a92c2489d819a6fc53868478b2a47fc5287))
+
 ## [6.33.4](https://github.com/narmi/design_system/compare/v6.33.3...v6.33.4) (2026-09-30)
 
 ### fix

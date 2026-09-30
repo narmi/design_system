@@ -220,7 +220,7 @@ export const FieldUpload = forwardRef<HTMLInputElement, FieldUploadProps>(
 
     const { inputRef, isDragActive, dropZoneProps, removeFile, handleChange } =
       useUpload({
-        files: upload.status === "error" ? [] : files,
+        files,
         onFilesChange,
         multiple,
         isDisabled,

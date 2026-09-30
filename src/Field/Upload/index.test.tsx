@@ -415,6 +415,22 @@ describe("Field.Upload", () => {
         expect(input()).not.toHaveAttribute("aria-describedby");
       }
     });
+
+    it("preserves the current selection when retrying after an upload error", async () => {
+      const { container } = render(
+        <Harness
+          multiple
+          uploadState={{ status: "error", message: "Upload failed" }}
+          initialFiles={[makeFile("a.pdf"), makeFile("b.pdf")]}
+        />,
+      );
+
+      await userEvent.upload(getInput(container), makeFile("c.pdf"));
+
+      expect(screen.getByText("a.pdf")).toBeInTheDocument();
+      expect(screen.getByText("b.pdf")).toBeInTheDocument();
+      expect(screen.getByText("c.pdf")).toBeInTheDocument();
+    });
   });
 
   describe("drag and drop", () => {

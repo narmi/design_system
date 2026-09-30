@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.33.3](https://github.com/narmi/design_system/compare/v6.33.2...v6.33.3) (2026-09-30)
+
+### fix
+
+* **TruncatedAccount:** hide the decorative separator ([deda9ea](https://github.com/narmi/design_system/commit/deda9ea6f5bb45471983b43192027cd1f3725b67))
+
 ## [6.33.2](https://github.com/narmi/design_system/compare/v6.33.1...v6.33.2) (2026-09-29)
 
 ### fix

@@ -178,8 +178,11 @@ $upload-container-bp-s: 340px;
   /**
   * Error
   */
-  &.nds-field--hasError .nds-field-upload-dropzone {
-    border-color: var(--color-errorDark);
+  &.nds-field--hasError {
+    .nds-field-upload-dropzone,
+    .nds-field-upload-files {
+      border-color: var(--color-errorDark);
+    }
   }
 
   /**

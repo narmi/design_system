@@ -33,7 +33,7 @@ const TruncatedAccount = ({
   >
     <span className="whiteSpace--truncate">{name}</span>
     {lastFour && (
-      <span role="img" className="padding--x--xxs">
+      <span aria-hidden="true" className="padding--x--xxs">
         -
       </span>
     )}

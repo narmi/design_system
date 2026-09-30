@@ -213,10 +213,6 @@ $upload-container-bp-s: 340px;
         grid-template-rows: 1fr;
       }
 
-      // Re-shows the icon that the compact variant hides on narrow
-      // containers. `flex`, not `block`, so `alignChild--center--center` still
-      // centres the glyph and the glyph stays a flex item: `transform` does
-      // not apply to inline elements.
       .nds-field-upload-icon {
         display: flex;
       }

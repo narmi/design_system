@@ -386,6 +386,7 @@ const MobileNavigation = ({
     )}
     <button
       className="button--reset mobile-navigation-button mobile-navigation-button--close"
+      aria-label="Close"
       onClick={onUserDismiss}
     >
       <span className="narmi-icon-x clickable fontSize--heading3" />

@@ -26,9 +26,18 @@ export type FieldUploadState =
   | "error"
   | FieldUploadStateObject;
 
-/** Identifies a file by content rather than by object identity. */
-export const fileKey = (file: File) =>
-  `${file.name}-${file.lastModified}-${file.size}`;
+const fileKeys = new WeakMap<File, string>();
+let nextFileKey = 0;
+
+/** Identifies a file independently of the array holding it. */
+export const fileKey = (file: File) => {
+  const existingKey = fileKeys.get(file);
+  if (existingKey) return existingKey;
+
+  const key = `file-${nextFileKey++}`;
+  fileKeys.set(file, key);
+  return key;
+};
 
 /**
  * Resolves the consumer's `uploadState` against the current selection.

@@ -28,9 +28,17 @@ describe("formatFileSize", () => {
     expect(formatFileSize(1024)).toEqual("1KB");
   });
 
+  it("switches units when rounding carries the value to the next unit", () => {
+    // One byte under a megabyte rounds to 1024KB, which should read as 1MB
+    // rather than naming a unit count the unit itself replaces.
+    expect(formatFileSize(1024 * 1024 - 1)).toEqual("1MB");
+    expect(formatFileSize(1024 * 1024 * 1024 - 1)).toEqual("1GB");
+  });
+
   it("clamps sizes beyond the largest known unit", () => {
     // Petabyte-scale input keeps formatting in gigabytes rather than running
-    // off the end of the unit list.
+    // off the end of the unit list. The result is deliberately absurd: a file
+    // size this large is a bug upstream, and it should look like one.
     expect(formatFileSize(Math.pow(1024, 6))).toEqual("1073741824GB");
   });
 

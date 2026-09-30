@@ -21,29 +21,38 @@
  * @returns size string formatted for display
  */
 
-const UNITS = ["B", "KB", "MB", "GB"] as const;
 const STEP = 1024;
 
-// Below a megabyte a fractional part is noise: the difference between "1.5KB"
-// and "2KB" is not something a user acts on. At megabytes and above one
-// decimal starts carrying real information, so it is kept.
-const DECIMALS_FROM = UNITS.indexOf("MB");
+// Rounded to one decimal, then back through `Number` so a value such as 2.0
+// renders as "2MB" rather than "2.0MB".
+const round1 = (n: number): number => Number(n.toFixed(1));
 
 const formatFileSize = (bytes: number): string => {
   if (!Number.isFinite(bytes) || bytes <= 0) return "0B";
 
-  // Clamped so sizes beyond the largest known unit keep formatting in that
-  // unit rather than running off the end of `UNITS` and returning undefined.
-  const exponent = Math.min(
-    Math.floor(Math.log(bytes) / Math.log(STEP)),
-    UNITS.length - 1,
-  );
-  const value = bytes / Math.pow(STEP, exponent);
-  const decimals = exponent >= DECIMALS_FROM ? 1 : 0;
+  // Each rung rounds *before* comparing against the threshold. Rounding after
+  // the unit is chosen is what produces "1024KB" for a size that should read
+  // as "1MB": the value only reaches 1024 by being rounded up, at which point
+  // the decision to display it in kilobytes has already been made.
+  //
+  // Below a megabyte a fractional part is noise — the difference between
+  // "1.5KB" and "2KB" is not something a user acts on — so those rungs round
+  // to whole units. At megabytes and above one decimal starts carrying real
+  // information, so it is kept.
+  const b = Math.round(bytes);
+  if (b < STEP) return `${b}B`;
 
-  // `toFixed` then `Number` so a rounded value such as 2.0 renders as "2MB"
-  // instead of "2.0MB".
-  return `${Number(value.toFixed(decimals))}${UNITS[exponent]}`;
+  const kb = Math.round(bytes / STEP);
+  if (kb < STEP) return `${kb}KB`;
+
+  const mb = round1(bytes / STEP ** 2);
+  if (mb < STEP) return `${mb}MB`;
+
+  // Gigabytes are the last rung, so anything larger keeps formatting here
+  // rather than growing a unit list past any size a file input will see. A
+  // nonsensical input is left looking nonsensical ("1073741824GB") instead of
+  // being capped into something that reads as plausible.
+  return `${round1(bytes / STEP ** 3)}GB`;
 };
 
 export default formatFileSize;

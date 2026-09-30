@@ -17,7 +17,7 @@ describe("DropdownTrigger", () => {
   it("Moves label into floating position when a displayValue is passed", () => {
     render(<DropdownTrigger labelText="Account" displayValue="Value" />);
     expect(screen.getByTestId("dropdownTriggerButton")).toHaveClass(
-      "nds-dropdownTrigger-button--hasValue"
+      "nds-dropdownTrigger-button--hasValue",
     );
   });
 
@@ -48,7 +48,7 @@ describe("DropdownTrigger", () => {
         labelProps={{
           htmlFor: "somefield",
         }}
-      />
+      />,
     );
     expect(screen.getByText("Account")).toHaveAttribute("for", "somefield");
   });
@@ -57,7 +57,7 @@ describe("DropdownTrigger", () => {
     render(<DropdownTrigger labelText="Account" aria-haspopup="true" />);
     expect(screen.getByTestId("dropdownTriggerButton")).toHaveAttribute(
       "aria-haspopup",
-      "true"
+      "true",
     );
   });
 });

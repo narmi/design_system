@@ -4,9 +4,6 @@ dist/
 storybook-static/
 selection.json
 
-# dirs without any JS source
-src/base-styles/
-
 # ignored file types
 *.md
 *.css

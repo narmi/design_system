@@ -2,9 +2,7 @@ import React from "react";
 import Sidebar from "./";
 import SidebarItem from "./SidebarItem";
 
-const Template = (args) => (
-  <Sidebar {...args} />
-);
+const Template = (args) => <Sidebar {...args} />;
 
 const children = [
   <SidebarItem
@@ -81,7 +79,6 @@ const childrenWithIcons = [
   />,
 ];
 
-
 export const Overview = Template.bind({});
 Overview.args = {
   children,
@@ -95,5 +92,5 @@ WithIcons.args = {
 export default {
   title: "Components/Sidebar",
   component: Sidebar,
-  subcomponents: { "Sidebar.Item": SidebarItem }
+  subcomponents: { "Sidebar.Item": SidebarItem },
 };

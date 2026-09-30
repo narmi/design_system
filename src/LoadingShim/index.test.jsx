@@ -7,7 +7,7 @@ describe("LoadingShim", () => {
     render(
       <LoadingShim>
         <p>child</p>
-      </LoadingShim>
+      </LoadingShim>,
     );
     const child = screen.getByText("child");
     const wrapper = screen.getByTestId("nds-loadingshim");
@@ -20,7 +20,7 @@ describe("LoadingShim", () => {
     render(
       <LoadingShim isLoading={true}>
         <p>child</p>
-      </LoadingShim>
+      </LoadingShim>,
     );
     const child = screen.getByText("child");
     const wrapper = screen.getByTestId("nds-loadingshim");

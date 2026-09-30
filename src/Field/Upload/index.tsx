@@ -308,7 +308,15 @@ export const FieldUpload = forwardRef<HTMLInputElement, FieldUploadProps>(
         )}
 
         {showFiles && (
-          <div className="nds-field-upload-files">
+<div
+  className={cc([
+    "nds-field-upload-files",
+    {
+      "nds-field-upload-files--uploading":
+        upload.status === "uploading",
+    },
+  ])}
+>
             <ul className="nds-field-upload-list list--reset">
               {files.map((file, index) => (
                 // `fileKey` identifies a file by content, so selecting the

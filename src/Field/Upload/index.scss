@@ -12,7 +12,7 @@ $upload-container-bp-s: 340px;
   // the element itself instead of the size of the viewport.
   container-type: inline-size;
   container-name: nds-field-upload;
-  min-width: rem(160px);
+  min-width: 0;
 
   label {
     font-size: var(--font-size-l);

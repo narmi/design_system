@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.33.6](https://github.com/narmi/design_system/compare/v6.33.5...v6.33.6) (2026-10-01)
+
+### fix
+
+* **Button:** remove gap on icon-only buttons ([7d34e12](https://github.com/narmi/design_system/commit/7d34e123adb4c54de4332304d06a8bd496f3be10))
+
 ## [6.33.5](https://github.com/narmi/design_system/compare/v6.33.4...v6.33.5) (2026-09-30)
 
 ### fix

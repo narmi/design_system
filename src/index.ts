@@ -125,12 +125,7 @@ export type { DropdownTriggerProps } from "./DropdownTrigger";
 export type { ErrorProps } from "./Error";
 export type { FieldProps } from "./Field/types";
 export type { FieldTextProps } from "./Field/Text";
-export type {
-  FieldUploadProps,
-  FieldUploadState,
-  FieldUploadStateObject,
-  FieldUploadStatus,
-} from "./Field/Upload";
+export type { FieldUploadProps, FieldUploadState } from "./Field/Upload";
 export type { FieldMaskName } from "./Field/masks";
 export type { FieldTokenProps } from "./FieldToken";
 export type { FormSectionProps } from "./FormSection";

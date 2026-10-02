@@ -115,16 +115,14 @@ export const UploadStates = () => {
     {
       slug: "uploading",
       label: "uploading",
-      uploadState: { status: "uploading", progress: 45 },
+      uploadState: "uploading",
+      uploadProgress: 45,
     },
     { slug: "success", label: "success", uploadState: "success" },
     {
       slug: "error",
-      label: "error",
-      uploadState: {
-        status: "error",
-        message: "Upload failed. Please try again.",
-      },
+      label: "failed (via errors)",
+      errors: ["Upload failed. Please try again."],
     },
   ];
   return (
@@ -147,7 +145,7 @@ UploadStates.parameters = {
   docs: {
     description: {
       story:
-        '`uploadState` is parent-owned; Field.Upload makes no requests and only reflects what you pass. States without a payload can be a bare string (`uploadState="success"`); `uploading` requires `progress`, so it takes object form.\n\n```jsx\nconst [files, setFiles] = useState([]);\nconst [uploadState, setUploadState] = useState("idle");\n\nconst submit = async () => {\n  setUploadState({ status: "uploading", progress: 0 });\n  try {\n    await upload(files, (progress) =>\n      setUploadState({ status: "uploading", progress }),\n    );\n    setUploadState("success");\n  } catch {\n    setUploadState({\n      status: "error",\n      message: "Upload failed. Please try again.",\n    });\n  }\n};\n```\n\n- `idle` — file icon, name, remove button\n- `uploading` — adds a status line and progress bar; hides remove, since the request cannot be cancelled\n- `success` — check icon plus file size\n- `error` — no rows; the drop zone returns so the selection can be retried, and `message` announces the failure',
+        '`uploadState` is parent-owned; Field.Upload makes no requests and only reflects what you pass. It is one of `"idle"`, `"uploading"` or `"success"`, with `uploadProgress` (0-100) read while uploading.\n\nThere is no `"error"` state. A failed upload is reported through `errors`, the same channel as validation, so the message is always yours — NDS ships no copy of its own.\n\nWhat you pass is what renders, including across a selection change — reset it from `onFilesChange` so a newly added file does not inherit the previous file\'s outcome.\n\n```jsx\nconst [files, setFiles] = useState([]);\nconst [uploadState, setUploadState] = useState("idle");\nconst [uploadProgress, setUploadProgress] = useState(0);\nconst [errors, setErrors] = useState([]);\n\nconst onFilesChange = (next) => {\n  setFiles(next);\n  setUploadState("idle"); // the previous outcome no longer describes the selection\n  setErrors([]);\n};\n\n// `fetch` reports no upload progress; XHR is what gives you a percentage.\nconst submit = () => {\n  const xhr = new XMLHttpRequest();\n  xhr.upload.onprogress = (e) => {\n    if (e.lengthComputable) {\n      setUploadProgress(Math.round((e.loaded / e.total) * 100));\n    }\n  };\n  xhr.onload = () => setUploadState("success");\n  xhr.onerror = () => {\n    setUploadState("idle");\n    setErrors(["Upload failed. Please try again."]);\n  };\n\n  setUploadState("uploading");\n  setUploadProgress(0);\n  xhr.open("POST", url);\n  xhr.send(body);\n};\n```\n\n- `idle` — file icon, name, remove button\n- `uploading` — adds a status line and progress bar; hides remove, since the request cannot be cancelled\n- `success` — check icon plus file size\n\nThe last field below shows a failure, which is just `errors` on an otherwise idle field.',
     },
   },
 };
@@ -163,7 +161,7 @@ WithErrors.parameters = {
   docs: {
     description: {
       story:
-        '`errors` is validation; `uploadState: "error"` is a failed request. Both are the same error state — one live region, one `aria-invalid`, one `.nds-field--hasError` on the root — so both red-border the drop zone.\n\nWhat differs is layout. A validation error **keeps the file list**, because the message is asking the user to act on the file they can see. An `error` upload state **replaces the list with the drop zone**, because there is nothing to fix and the zone is the retry affordance. Compare this story against `error` in **Upload states**.\n\nWhen both apply, the upload `message` comes last.',
+        "`errors` carries every failure, whether it came from validation or from a failed request. There is one error state — one live region, one `aria-invalid`, one `.nds-field--hasError` on the root — and it never changes the layout, so the file the message refers to stays on screen.\n\nMessages render in the order given.",
     },
   },
 };
@@ -256,7 +254,7 @@ WithCustomRendering.parameters = {
   docs: {
     description: {
       story:
-        '`renderFile` receives the resolved upload status, which can differ from what the parent passed.\n\n**An override replaces the row wholesale, including its accessibility.** The default row has a visually hidden `role="status"` announcing `labelSuccess`; a custom row must announce success itself from `status`.',
+        '`renderFile` receives the current `uploadState` status alongside the file.\n\n**An override replaces the row wholesale, including its accessibility.** The default row has a visually hidden `role="status"` announcing `labelSuccess`; a custom row must announce success itself from `status`.',
     },
   },
 };

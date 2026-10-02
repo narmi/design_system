@@ -3,7 +3,6 @@ import cc from "classcat";
 import { useField } from "../useField";
 import { useUpload } from "./useUpload";
 import { useMergeRefs } from "../../hooks/useMergeRefs";
-import { useUploadState, fileKey } from "./useUploadState";
 import { FieldErrors } from "../Errors/index";
 import formatFileSize from "../../formatters/formatFileSize";
 import Row from "../../Row";
@@ -11,15 +10,14 @@ import IconButton from "../../IconButton";
 import ProgressBar from "../../ProgressBar";
 
 import type { FieldBaseProps } from "../types";
-import type { FieldUploadState, FieldUploadStatus } from "./useUploadState";
 
-// Re-exported so the state types stay part of Field.Upload's public surface
-// while living next to the hook that resolves them.
-export type {
-  FieldUploadState,
-  FieldUploadStateObject,
-  FieldUploadStatus,
-} from "./useUploadState";
+/**
+ * Upload lifecycle, owned by the parent.
+ *
+ * There is no `"error"` state: a failed upload is reported through `errors`,
+ * the same channel as validation, so the message is always the parent's.
+ */
+export type FieldUploadState = "idle" | "uploading" | "success";
 
 export interface FieldUploadProps extends FieldBaseProps {
   /** Size of the drop zone: `"default"` (larger) or `"compact"`. */
@@ -44,32 +42,28 @@ export interface FieldUploadProps extends FieldBaseProps {
   multiple?: boolean;
   /**
    * Upload lifecycle, owned by the parent; `Field.Upload` performs no network
-   * requests. States without a payload may be written as a bare string
-   * (`uploadState="success"`); `"uploading"` requires `progress`.
+   * requests. Applies to the selection as a whole, not to individual files.
    *
-   * Applies to the selection as a whole, not to individual files.
+   * What you pass is what renders, including across a selection change: reset
+   * this from `onFilesChange` so a newly added file does not inherit the
+   * previous file's `"success"` row.
    *
-   * A completed outcome is anchored to the selection it was reported for, so
-   * a new file does not inherit the previous `"success"` row. That covers this
-   * field's rendering only — anything else deriving from `"success"` still
-   * needs resetting from `onFilesChange`.
-   *
-   * `"error"` renders no rows: the list is replaced by the drop zone so the
-   * selection can be retried.
+   * A failed upload is not a state here — pass the message through `errors`.
    */
   uploadState?: FieldUploadState;
   /**
+   * Completion percentage, 0-100, read only while `uploadState` is
+   * `"uploading"`. Defaults to 0, which renders an empty bar.
+   */
+  uploadProgress?: number;
+  /**
    * Replaces the default file row. Use for structure only; for wording, use
    * the `label*` props.
-   *
-   * The resolved `status` is passed because it cannot be derived from outside:
-   * a completed outcome may have been cleared as stale, so it is not
-   * necessarily what the parent passed as `uploadState`.
    */
   renderFile?: (
     file: File,
     remove: () => void,
-    status: FieldUploadStatus,
+    status: FieldUploadState,
   ) => ReactNode;
   /**
    * Replaces the drop zone prompt entirely, including `labelDropPrompt` and
@@ -103,6 +97,81 @@ export interface FieldUploadProps extends FieldBaseProps {
   labelRemoveFile?: (file: File) => string;
 }
 
+interface UploadFileRowProps {
+  file: File;
+  remove: () => void;
+  status: FieldUploadState;
+  isDisabled: boolean;
+  labelUploading: string;
+  labelSuccess: (file: File) => string;
+  labelRemoveFile: (file: File) => string;
+}
+
+/** The row rendered for each file unless `renderFile` replaces it. */
+const UploadFileRow = ({
+  file,
+  remove,
+  status,
+  isDisabled,
+  labelUploading,
+  labelSuccess,
+  labelRemoveFile,
+}: UploadFileRowProps) => {
+  const isSuccess = status === "success";
+
+  // Hidden only while uploading: the request is in flight and NDS has no
+  // way to cancel it.
+  const canRemove = status !== "uploading";
+
+  return (
+    <Row alignItems="center" gapSize="s">
+      {/*
+       * Visually hidden live region. Kept mounted and emptied rather than
+       * conditionally rendered, so the message is announced when it arrives.
+       */}
+      <span className="nds-field-upload-file-status" role="status">
+        {isSuccess ? labelSuccess(file) : ""}
+      </span>
+      <Row.Item shrink>
+        {isSuccess ? (
+          <span className="nds-field-upload-file-check alignChild--center--center">
+            <span className="narmi-icon-check fontSize--l" aria-hidden="true" />
+          </span>
+        ) : (
+          <span
+            className="nds-field-upload-file-icon narmi-icon-file-text1 fontSize--heading3"
+            aria-hidden="true"
+          />
+        )}
+      </Row.Item>
+      <Row.Item>
+        <div className="nds-field-upload-file-name">{file.name}</div>
+        {status === "uploading" && (
+          <div className="fontSize--s fontColor--secondary">
+            {labelUploading}
+          </div>
+        )}
+        {isSuccess && (
+          <div className="fontSize--s fontColor--secondary">
+            {formatFileSize(file.size)}
+          </div>
+        )}
+      </Row.Item>
+      {canRemove && (
+        <Row.Item shrink>
+          <IconButton
+            name="x"
+            type="button"
+            onClick={remove}
+            disabled={isDisabled}
+            label={labelRemoveFile(file)}
+          />
+        </Row.Item>
+      )}
+    </Row>
+  );
+};
+
 /**
  * Field.Upload renders a controlled file input with a drop zone.
  *
@@ -120,6 +189,7 @@ export const FieldUpload = forwardRef<HTMLInputElement, FieldUploadProps>(
       accept,
       multiple = false,
       uploadState = "idle",
+      uploadProgress = 0,
       renderFile,
       renderDropPrompt,
       errors = [],
@@ -138,81 +208,9 @@ export const FieldUpload = forwardRef<HTMLInputElement, FieldUploadProps>(
     },
     forwardedRef,
   ) => {
-    // Defined here, not at module scope, because the default row needs
-    // isDisabled and the label* props, which only exist inside the component.
-    const defaultRenderFile: FieldUploadProps["renderFile"] = (
-      file,
-      remove,
-      status,
-    ) => {
-      const isSuccess = status === "success";
-
-      // Hidden only while uploading: the request is in flight and NDS has no
-      // way to cancel it.
-      const canRemove = status !== "uploading";
-
-      return (
-        <Row alignItems="center" gapSize="s">
-          {/*
-           * Visually hidden live region. Kept mounted and emptied rather than
-           * conditionally rendered, so the message is announced when it arrives.
-           */}
-          <span className="nds-field-upload-file-status" role="status">
-            {isSuccess ? labelSuccess(file) : ""}
-          </span>
-          <Row.Item shrink>
-            {isSuccess ? (
-              <span className="nds-field-upload-file-check alignChild--center--center">
-                <span
-                  className="narmi-icon-check fontSize--l"
-                  aria-hidden="true"
-                />
-              </span>
-            ) : (
-              <span
-                className="nds-field-upload-file-icon narmi-icon-file-text1 fontSize--heading3"
-                aria-hidden="true"
-              />
-            )}
-          </Row.Item>
-          <Row.Item>
-            <div className="nds-field-upload-file-name">{file.name}</div>
-            {status === "uploading" && (
-              <div className="fontSize--s fontColor--secondary">
-                {labelUploading}
-              </div>
-            )}
-            {isSuccess && (
-              <div className="fontSize--s fontColor--secondary">
-                {formatFileSize(file.size)}
-              </div>
-            )}
-          </Row.Item>
-          {canRemove && (
-            <Row.Item shrink>
-              <IconButton
-                name="x"
-                type="button"
-                onClick={remove}
-                disabled={isDisabled}
-                label={labelRemoveFile(file)}
-              />
-            </Row.Item>
-          )}
-        </Row>
-      );
-    };
-
-    const upload = useUploadState(uploadState, files);
-
-    const messages =
-      upload.status === "error"
-        ? [...errors, upload.message || "Upload failed"]
-        : errors;
-
     const { errorId, labelId, controlProps, labelProps } = useField({
       id,
-      errors: messages,
+      errors,
       isDisabled,
       label,
       showLabel,
@@ -230,13 +228,9 @@ export const FieldUpload = forwardRef<HTMLInputElement, FieldUploadProps>(
       inputRef,
     ) as React.Ref<HTMLInputElement>;
 
-    const renderRow = renderFile ?? defaultRenderFile;
-
-    const hasUploadError = upload.status === "error";
-
     // when multiple files are allowed, the drop zone remains visible.
-    const showDropZone = files.length === 0 || multiple || hasUploadError;
-    const showFiles = files.length > 0 && !hasUploadError;
+    const showDropZone = files.length === 0 || multiple;
+    const showFiles = files.length > 0;
     const dropZoneState = isDragActive ? "dragActive" : undefined;
 
     return (
@@ -247,11 +241,11 @@ export const FieldUpload = forwardRef<HTMLInputElement, FieldUploadProps>(
           `nds-field-upload--${kind}`,
           {
             "nds-field--isDisabled": isDisabled,
-            "nds-field--hasError": messages.length > 0,
+            "nds-field--hasError": errors.length > 0,
           },
         ])}
         data-state={dropZoneState}
-        aria-busy={upload.status === "uploading" || undefined}
+        aria-busy={uploadState === "uploading" || undefined}
       >
         <Row alignItems="center">
           {showLabel && (
@@ -308,42 +302,56 @@ export const FieldUpload = forwardRef<HTMLInputElement, FieldUploadProps>(
         )}
 
         {showFiles && (
-<div
-  className={cc([
-    "nds-field-upload-files",
-    {
-      "nds-field-upload-files--uploading":
-        upload.status === "uploading",
-    },
-  ])}
->
+          <div
+            className={cc([
+              "nds-field-upload-files",
+              {
+                "nds-field-upload-files--uploading":
+                  uploadState === "uploading",
+              },
+            ])}
+          >
             <ul className="nds-field-upload-list list--reset">
               {files.map((file, index) => (
-                // `fileKey` identifies a file by content, so selecting the
-                // same file twice in `multiple` mode yields two identical
-                // keys. The index disambiguates them.
-                <li key={`${fileKey(file)}-${index}`}>
-                  {renderRow(file, () => removeFile(file), upload.status)}
+                // Files carry no id, so the key is derived from their fields.
+                // Selecting the same file twice in `multiple` mode yields two
+                // identical derivations; the index disambiguates them.
+                <li
+                  key={`${file.name}-${file.size}-${file.lastModified}-${index}`}
+                >
+                  {renderFile ? (
+                    renderFile(file, () => removeFile(file), uploadState)
+                  ) : (
+                    <UploadFileRow
+                      file={file}
+                      remove={() => removeFile(file)}
+                      status={uploadState}
+                      isDisabled={isDisabled}
+                      labelUploading={labelUploading}
+                      labelSuccess={labelSuccess}
+                      labelRemoveFile={labelRemoveFile}
+                    />
+                  )}
                 </li>
               ))}
             </ul>
 
-            {upload.status === "uploading" && (
+            {uploadState === "uploading" && (
               <div
                 className="nds-field-upload-uploadProgress"
                 role="progressbar"
                 aria-label={labelUploading}
                 aria-valuemin={0}
                 aria-valuemax={100}
-                aria-valuenow={upload.progress}
+                aria-valuenow={uploadProgress}
               >
-                <ProgressBar percentComplete={upload.progress} />
+                <ProgressBar percentComplete={uploadProgress} />
               </div>
             )}
           </div>
         )}
 
-        <FieldErrors id={errorId} errors={messages} />
+        <FieldErrors id={errorId} errors={errors} />
       </div>
     );
   },

@@ -3,10 +3,8 @@ import { render, screen, fireEvent, createEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { FieldUpload, type FieldUploadProps } from "./index";
 
-// `lastModified` is pinned because the component identifies a selection by
-// `name-lastModified-size`. Left to default it would be `Date.now()`, so two
-// files built from the same name in one test could differ by a millisecond
-// and read as a different selection.
+// `lastModified` is pinned so repeated renders of the same name produce the
+// same React key, and so row assertions stay deterministic.
 const makeFile = (name: string, type = "application/pdf") =>
   new File(["file-contents"], name, { type, lastModified: 0 });
 
@@ -67,8 +65,9 @@ describe("Field.Upload", () => {
   });
 
   it("keeps the same file added twice as two distinct rows", async () => {
-    // `fileKey` identifies by content, so two selections of an identical file
-    // share one key. React would warn and reconcile them as a single row.
+    // The row key is derived from the file's fields, so two selections of an
+    // identical file derive the same string. Without the index disambiguating
+    // them React would warn and reconcile the rows into one.
     const warn = vi.spyOn(console, "error").mockImplementation(() => {});
     const { container } = render(<Harness multiple />);
     const input = getInput(container);
@@ -261,7 +260,8 @@ describe("Field.Upload", () => {
     it("overrides the uploading status line", () => {
       render(
         <Harness
-          uploadState={{ status: "uploading", progress: 0 }}
+          uploadState="uploading"
+          uploadProgress={0}
           initialFiles={[makeFile("statement.pdf")]}
           labelUploading="Subiendo..."
         />,
@@ -391,24 +391,20 @@ describe("Field.Upload", () => {
       expect(getInput(container)).not.toHaveAttribute("aria-invalid");
     });
 
-    it("stays clean through the non-error upload lifecycle", () => {
-      // `aria-invalid` is driven by the merged message list, not the `errors`
-      // prop, so the upload states that are not failures have to be proven
-      // not to trip it.
+    it("stays clean through the upload lifecycle", () => {
+      // `aria-invalid` is driven by `errors` alone, so the lifecycle states
+      // have to be proven not to trip it on their own.
       const { container, rerender } = render(
         <Harness initialFiles={[makeFile("statement.pdf")]} />,
       );
       const input = () => getInput(container);
 
-      for (const uploadState of [
-        "idle",
-        { status: "uploading", progress: 45 },
-        "success",
-      ] as const) {
+      for (const uploadState of ["idle", "uploading", "success"] as const) {
         rerender(
           <Harness
             initialFiles={[makeFile("statement.pdf")]}
             uploadState={uploadState}
+            uploadProgress={45}
           />,
         );
         expect(input()).not.toHaveAttribute("aria-invalid");
@@ -417,10 +413,12 @@ describe("Field.Upload", () => {
     });
 
     it("preserves the current selection when retrying after an upload error", async () => {
+      // The list is driven by the selection alone, so a failure never takes
+      // rows away and added files join the ones already there.
       const { container } = render(
         <Harness
           multiple
-          uploadState={{ status: "error", message: "Upload failed" }}
+          errors={["Upload failed"]}
           initialFiles={[makeFile("a.pdf"), makeFile("b.pdf")]}
         />,
       );
@@ -514,7 +512,7 @@ describe("Field.Upload", () => {
     it("is unaffected by upload lifecycle or errors", () => {
       const { container, rerender } = render(<Harness uploadState="idle" />);
 
-      rerender(<Harness uploadState={{ status: "uploading", progress: 45 }} />);
+      rerender(<Harness uploadState="uploading" uploadProgress={45} />);
       expect(rootOf(container)).not.toHaveAttribute("data-state");
 
       rerender(<Harness errors={["Upload failed"]} />);
@@ -525,13 +523,15 @@ describe("Field.Upload", () => {
       const { container, rerender } = render(<Harness uploadState="idle" />);
       expect(rootOf(container)).not.toHaveAttribute("aria-busy");
 
-      rerender(<Harness uploadState={{ status: "uploading", progress: 45 }} />);
+      rerender(<Harness uploadState="uploading" uploadProgress={45} />);
       expect(rootOf(container)).toHaveAttribute("aria-busy", "true");
     });
   });
 
   describe("render props", () => {
-    it("renderFile is told the status is idle once the outcome goes stale", async () => {
+    it("renderFile receives the status the parent passed, for every row", async () => {
+      // The status is passed straight through: the component keeps no memory
+      // of which selection the outcome was reported for.
       const { container } = render(
         <Harness
           multiple
@@ -546,8 +546,8 @@ describe("Field.Upload", () => {
 
       await userEvent.upload(getInput(container), makeFile("receipt.pdf"));
 
-      expect(screen.getByText("statement.pdf: idle")).toBeInTheDocument();
-      expect(screen.getByText("receipt.pdf: idle")).toBeInTheDocument();
+      expect(screen.getByText("statement.pdf: success")).toBeInTheDocument();
+      expect(screen.getByText("receipt.pdf: success")).toBeInTheDocument();
     });
 
     it("renderDropPrompt receives the live drag state", () => {
@@ -653,7 +653,8 @@ describe("Field.Upload", () => {
       rerender(
         <Harness
           initialFiles={[makeFile("statement.pdf")]}
-          uploadState={{ status: "uploading", progress: 45 }}
+          uploadState="uploading"
+          uploadProgress={45}
         />,
       );
       expect(container.querySelector(".nds-progressbar")).not.toBeNull();
@@ -666,14 +667,15 @@ describe("Field.Upload", () => {
 
     it("renders no progress bar when nothing is selected", () => {
       const { container } = render(
-        <Harness uploadState={{ status: "uploading", progress: 45 }} />,
+        <Harness uploadState="uploading" uploadProgress={45} />,
       );
       expect(container.querySelector(".nds-progressbar")).toBeNull();
     });
 
     it("shows the uploading status only while uploading", () => {
       const { rerender } = seeded({
-        uploadState: { status: "uploading", progress: 45 },
+        uploadState: "uploading",
+        uploadProgress: 45,
       });
       expect(screen.getByText("Uploading...")).toBeInTheDocument();
 
@@ -701,7 +703,8 @@ describe("Field.Upload", () => {
 
     it("announces success for each file", () => {
       const { rerender } = seeded({
-        uploadState: { status: "uploading", progress: 45 },
+        uploadState: "uploading",
+        uploadProgress: 45,
       });
       expect(screen.getByRole("status")).toBeEmptyDOMElement();
 
@@ -725,70 +728,19 @@ describe("Field.Upload", () => {
       },
     );
 
-    it("renders no file rows when the upload failed", () => {
-      // `error` replaces the list with the drop zone, so there is no row and
-      // therefore no remove button; the failure is left to the errors region.
-      seeded({ uploadState: "error" });
-
-      expect(screen.queryByText("statement.pdf")).not.toBeInTheDocument();
-      expect(removeButton()).not.toBeInTheDocument();
-    });
-
-    it("shows the drop zone when the upload failed, even in single-file mode", () => {
-      // Without this the failed selection would be a dead end: no row to
-      // remove and no drop zone to retry from.
-      const { container } = seeded({ uploadState: "error" });
-
-      expect(
-        container.querySelector(".nds-field-upload-dropzone"),
-      ).not.toBeNull();
-      expect(container.querySelector(".nds-field-upload-files")).toBeNull();
-    });
-
-    it("marks the field as errored when the upload fails", () => {
-      // Resolving `aria-describedby` proves the message is announced, not
-      // just present.
-      const { container } = seeded({
-        uploadState: { status: "error", message: "Upload failed" },
-      });
-      const root = container.querySelector(".nds-field-upload") as HTMLElement;
-      const input = getInput(container);
-
-      expect(root).toHaveClass("nds-field--hasError");
-      expect(input).toHaveAttribute("aria-invalid", "true");
-      expect(
-        container.querySelector(
-          `#${CSS.escape(input.getAttribute("aria-describedby") as string)}`,
-        ),
-      ).toHaveTextContent("Upload failed");
-    });
-
-    it("marks the field as errored when the upload fails without a message", () => {
-      const { container } = seeded({ uploadState: "error" });
-      const root = container.querySelector(".nds-field-upload") as HTMLElement;
-      const input = getInput(container);
-
-      expect(root).toHaveClass("nds-field--hasError");
-      expect(input).toHaveAttribute("aria-invalid", "true");
-      expect(
-        container.querySelector(
-          `#${CSS.escape(input.getAttribute("aria-describedby") as string)}`,
-        ),
-      ).toHaveTextContent("Upload failed");
-    });
-
-    it("keeps the file list visible for validation errors", () => {
-      // Validation lives in `errors`, not `uploadState`. Hiding the row here
-      // would take away the file the message is asking the user to fix.
+    it("keeps the file list visible for errors", () => {
+      // Errors never change the layout, so the file the message is asking the
+      // user to fix stays on screen. This covers upload failures too: they
+      // arrive through `errors`, not through `uploadState`.
       const { container } = seeded({ errors: ["File is too large"] });
-
       expect(screen.getByText("statement.pdf")).toBeInTheDocument();
       expect(container.querySelector(".nds-field-upload-files")).not.toBeNull();
+      expect(removeButton()).toBeInTheDocument();
     });
 
     it("hides the remove button while uploading", () => {
       // The request is already in flight and NDS cannot cancel it.
-      seeded({ uploadState: { status: "uploading", progress: 45 } });
+      seeded({ uploadState: "uploading", uploadProgress: 45 });
       expect(removeButton()).not.toBeInTheDocument();
     });
 
@@ -807,183 +759,18 @@ describe("Field.Upload", () => {
       expect(screen.queryByText("statement.pdf")).not.toBeInTheDocument();
     });
 
-    describe("shorthand", () => {
-      it("treats a bare string the same as its object form", () => {
-        // Ids are generated per render, so they are normalized out before
-        // the two markups are compared.
-        const markup = (container: HTMLElement) =>
-          container.innerHTML.replace(/:r[0-9a-z]+:/g, "ID");
-
-        const { container: shorthand } = seeded({ uploadState: "success" });
-        const { container: object } = seeded({
-          uploadState: { status: "success" },
-        });
-
-        expect(markup(object)).toBe(markup(shorthand));
-      });
-    });
-
-    it("renders the upload message alongside validation errors, last", () => {
-      // Both sources feed one live region. Order is a documented contract:
-      // validation first, the upload failure after it.
+    it("renders every error in order", () => {
+      // One source, one live region: validation and upload failures are the
+      // same list, rendered in the order given.
       const { container } = seeded({
-        uploadState: { status: "error", message: "Upload failed" },
-        errors: ["File is too large"],
+        errors: ["File is too large", "Upload failed"],
       });
 
-      expect(screen.getByText("File is too large")).toBeInTheDocument();
-      expect(screen.getByText("Upload failed")).toBeInTheDocument();
       expect(
         Array.from(container.querySelectorAll(".nds-field-errors > *")).map(
           (node) => node.textContent,
         ),
       ).toEqual(["File is too large", "Upload failed"]);
-    });
-
-    describe("stale outcomes", () => {
-      const successIcon = (container: HTMLElement) =>
-        container.querySelector(".nds-field-upload-file-check");
-
-      it("clears a completed outcome when the selection changes", async () => {
-        // A success describes the selection it succeeded for. Adding a file
-        // must not hand the newcomer someone else's green check.
-        const { container } = render(
-          <Harness
-            multiple
-            uploadState="success"
-            initialFiles={[makeFile("statement.pdf")]}
-          />,
-        );
-        expect(successIcon(container)).not.toBeNull();
-
-        await userEvent.upload(getInput(container), makeFile("receipt.pdf"));
-
-        expect(successIcon(container)).toBeNull();
-        expect(screen.getByText("receipt.pdf")).toBeInTheDocument();
-      });
-
-      it("clears a failure message when the selection changes", async () => {
-        const { container } = render(
-          <Harness
-            uploadState={{ status: "error", message: "Upload failed" }}
-          />,
-        );
-
-        await userEvent.upload(getInput(container), makeFile("retry.pdf"));
-
-        expect(screen.queryByText("Upload failed")).not.toBeInTheDocument();
-        expect(screen.getByText("retry.pdf")).toBeInTheDocument();
-        expect(container.querySelector(".nds-field--hasError")).toBeNull();
-      });
-
-      it("restores the outcome when the selection reverts to the one that succeeded", async () => {
-        // Staleness is anchored to the selection the status was reported for,
-        // not latched until the parent moves on. Undoing the change that made
-        // the outcome stale makes it current again: this is the same file
-        // that did in fact succeed.
-        const { container } = render(
-          <Harness
-            multiple
-            uploadState="success"
-            initialFiles={[makeFile("statement.pdf")]}
-          />,
-        );
-        expect(successIcon(container)).not.toBeNull();
-
-        await userEvent.upload(getInput(container), makeFile("receipt.pdf"));
-        expect(successIcon(container)).toBeNull();
-
-        await userEvent.click(
-          screen.getByRole("button", { name: "Remove receipt.pdf" }),
-        );
-
-        expect(successIcon(container)).not.toBeNull();
-        expect(screen.getByText("statement.pdf")).toBeInTheDocument();
-      });
-
-      it("keeps the outcome when the same selection re-renders", () => {
-        // Guards against a parent that rebuilds `files` every render: the
-        // signature is content-based, so identity churn is not a new
-        // selection.
-        const file = makeFile("statement.pdf");
-        const { container, rerender } = render(
-          <FieldUpload
-            label="Upload a document"
-            uploadState="success"
-            files={[file]}
-            onFilesChange={() => {}}
-          />,
-        );
-        expect(successIcon(container)).not.toBeNull();
-
-        rerender(
-          <FieldUpload
-            label="Upload a document"
-            uploadState="success"
-            files={[file]}
-            onFilesChange={() => {}}
-          />,
-        );
-
-        expect(successIcon(container)).not.toBeNull();
-      });
-
-      it("leaves an in-flight upload alone when the selection changes", async () => {
-        // Only terminal outcomes go stale; tearing down a live progress bar
-        // mid-request would be worse than a stale one.
-        const { container } = render(
-          <Harness
-            multiple
-            uploadState={{ status: "uploading", progress: 45 }}
-            initialFiles={[makeFile("statement.pdf")]}
-          />,
-        );
-
-        await userEvent.upload(getInput(container), makeFile("receipt.pdf"));
-
-        expect(container.querySelector(".nds-progressbar")).not.toBeNull();
-        // One status line per row; the state applies to the whole selection.
-        expect(screen.getAllByText("Uploading...")).toHaveLength(2);
-      });
-
-      it("restores the outcome when the parent advances the state", () => {
-        const file = makeFile("statement.pdf");
-        const props = {
-          label: "Upload a document",
-          files: [file],
-          onFilesChange: () => {},
-        };
-        const { container, rerender } = render(
-          <FieldUpload {...props} uploadState="success" />,
-        );
-
-        // New selection -> stale -> idle.
-        rerender(
-          <FieldUpload
-            {...props}
-            files={[makeFile("receipt.pdf")]}
-            uploadState="success"
-          />,
-        );
-        expect(successIcon(container)).toBeNull();
-
-        // Parent finishes the new upload -> outcome is live again.
-        rerender(
-          <FieldUpload
-            {...props}
-            files={[makeFile("receipt.pdf")]}
-            uploadState={{ status: "uploading", progress: 10 }}
-          />,
-        );
-        rerender(
-          <FieldUpload
-            {...props}
-            files={[makeFile("receipt.pdf")]}
-            uploadState="success"
-          />,
-        );
-        expect(successIcon(container)).not.toBeNull();
-      });
     });
   });
 });

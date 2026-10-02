@@ -1,5 +1,6 @@
 import { FieldText } from "./Text/index";
 import { FieldSelect } from "./Select/index";
+import { FieldUpload } from "./Upload/index";
 import { FIELD_MASKS } from "./masks";
 
 /**
@@ -20,6 +21,7 @@ import { FIELD_MASKS } from "./masks";
 const Field = {
   Text: FieldText,
   Select: FieldSelect,
+  Upload: FieldUpload,
   MASKS: FIELD_MASKS,
 };
 

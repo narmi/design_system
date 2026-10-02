@@ -85,3 +85,40 @@ describe("useField", () => {
     expect(result.current.controlProps["aria-invalid"]).toBe(true);
   });
 });
+
+describe("useField label orchestration", () => {
+  it("derives labelId from the field id", () => {
+    const { result } = renderHook(() => useField({ id: "test-field" }));
+    expect(result.current.labelId).toBe("test-field-label");
+  });
+
+  it("points at the visible label by default", () => {
+    const { result } = renderHook(() =>
+      useField({ id: "test", label: "Upload a document" }),
+    );
+
+    expect(result.current.showLabel).toBe(true);
+    expect(result.current.labelProps).toEqual({
+      "aria-labelledby": "test-label",
+    });
+  });
+
+  it("names the control directly when showLabel is false", () => {
+    const { result } = renderHook(() =>
+      useField({ id: "test", label: "Upload a document", showLabel: false }),
+    );
+
+    expect(result.current.showLabel).toBe(false);
+    expect(result.current.labelProps).toEqual({
+      "aria-label": "Upload a document",
+    });
+    expect(result.current.labelProps["aria-labelledby"]).toBeUndefined();
+  });
+
+  it("still exposes labelId when showLabel is false", () => {
+    const { result } = renderHook(() =>
+      useField({ id: "test", label: "Upload", showLabel: false }),
+    );
+    expect(result.current.labelId).toBe("test-label");
+  });
+});

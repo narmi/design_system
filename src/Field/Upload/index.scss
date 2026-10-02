@@ -1,0 +1,240 @@
+// Larger than a _narrow_ phone single col layout.
+// or a folded one for that matter.
+//
+// Please tweak this value as the device landscape changes.
+$upload-container-bp-s: 340px;
+
+.nds-field-upload {
+  --upload-duration: 375ms;
+  --upload-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Component root is a queryable container. We query against
+  // the element itself instead of the size of the viewport.
+  container-type: inline-size;
+  container-name: nds-field-upload;
+  min-width: 0;
+
+  label {
+    font-size: var(--font-size-l);
+    color: var(--font-color-primary);
+  }
+
+  em {
+    font-style: unset;
+    font-weight: var(--font-weight-bold);
+    color: var(--theme-primary);
+  }
+
+  &-input {
+    @extend %a11y-visually-hide;
+
+    &:focus-visible {
+      ~ .nds-field-upload-dropzone,
+      ~ .nds-field-upload-files {
+        outline: revert;
+      }
+    }
+  }
+
+  &-dropzone {
+    position: relative;
+    display: grid;
+    margin-top: var(--space-m);
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, min-content);
+    grid-gap: var(--space-default);
+    place-items: center center;
+    text-align: center;
+    border-radius: var(--border-radius-default);
+    border: 2px dashed var(--theme-primary);
+    background-color: var(--bgColor-snowGrey);
+    padding: var(--space-l);
+
+    &:hover {
+      background-color: rgba(var(--theme-rgb-primary), var(--alpha-5));
+    }
+  }
+
+  &-icon {
+    // Pinned rather than derived: the tile used to size itself from icomoon's
+    // glyph metrics plus padding, so it resized when the icon font loaded and
+    // shifted the drop zone's grid row with it.
+    min-inline-size: rem(62px);
+    min-block-size: rem(62px);
+
+    border-radius: var(--border-radius-default);
+    background-color: rgba(var(--theme-rgb-primary), var(--alpha-10));
+    color: var(--theme-primary);
+    user-select: none;
+    transition: all var(--upload-duration) var(--upload-easing);
+
+    // The glyph scales on drag, not the tile. `transform` is paint-time and
+    // does not affect layout, so the pinned box is unaffected — the child just
+    // needs its own transition, since the parent's does not cascade to it.
+    span {
+      transition: transform var(--upload-duration) var(--upload-easing);
+    }
+  }
+
+  &-prompt {
+    font-weight: var(--font-weight-default);
+  }
+
+  /**
+  * Selected files
+  *
+  * One container wraps the whole list plus the progress bar, so a single-file
+  * selection reads as one card and a multi-file selection stacks rows inside
+  * that same card rather than fragmenting into one card per file.
+  */
+  &-files {
+    margin-top: var(--space-m);
+    border: 1px solid var(--border-color-default);
+    border-radius: var(--border-radius-default);
+    padding: var(--space-default);
+    background-color: var(--color-white);
+
+    // `idle` and `error` are intentionally unstyled: plain semantic markup,
+    // with failures announced by the `.nds-field-errors` region instead.
+    &--uploading {
+      background-color: var(--bgColor-snowGrey);
+    }
+  }
+
+  &-list > li + li {
+    margin-top: var(--space-default);
+  }
+
+  &-file-icon {
+    color: var(--font-color-secondary);
+  }
+
+  &-file-name {
+    // Filenames are user-supplied and frequently long; wrap mid-token rather
+    // than letting one push the remove button out of the container.
+    overflow-wrap: anywhere;
+  }
+
+  &-file-status {
+    @extend %a11y-visually-hide;
+  }
+
+  &-file-check {
+    display: inline-flex;
+    width: rem(24px);
+    height: rem(24px);
+    border-radius: 50%;
+    background-color: var(--color-successDark);
+    color: var(--color-white);
+    font-size: var(--font-size-s);
+  }
+
+  &-uploadProgress {
+    margin-top: var(--space-default);
+  }
+
+  &-file-icon {
+    font-size: rem(24px);
+  }
+
+  /**
+  * State Styles
+  *
+  * `data-state` tracks drag alone. Disabled styling keys off the shared
+  * `.nds-field--isDisabled` class already on this element.
+  */
+  &[data-state="dragActive"] {
+    .nds-field-upload-dropzone {
+      background-color: rgba(var(--theme-rgb-primary), var(--alpha-10));
+    }
+
+    .nds-field-upload-icon {
+      font-weight: var(--font-weight-bold);
+      background: var(--theme-primary);
+      color: var(--color-white);
+
+      span {
+        transform: scale(1.25);
+      }
+    }
+  }
+
+  &.nds-field--isDisabled .nds-field-upload-dropzone {
+    border-color: var(--font-color-hint);
+    user-select: none;
+    cursor: not-allowed;
+
+    &::before {
+      content: "";
+      display: block;
+      border-radius: var(--border-radius-default);
+      position: absolute;
+      inset: 0;
+      background-color: var(--bgColor-scrimLight);
+      opacity: 0.8;
+    }
+  }
+
+  /**
+  * Error
+  */
+  &.nds-field--hasError {
+    .nds-field-upload-dropzone,
+    .nds-field-upload-files {
+      border-color: var(--color-errorDark);
+    }
+  }
+
+  /**
+  * Variants
+  */
+  &--compact {
+    .nds-field-upload-dropzone {
+      margin: unset;
+      text-align: start;
+      justify-items: start;
+      align-items: start;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+    }
+
+    .nds-field-upload-icon {
+      display: none;
+      min-inline-size: rem(46px);
+      min-block-size: rem(46px);
+    }
+
+    label {
+      font-size: var(--font-size-default);
+    }
+  }
+
+  @include atContainerUp($upload-container-bp-s, nds-field-upload) {
+    &--compact {
+      .nds-field-upload-dropzone {
+        grid-template-columns: min-content 1fr;
+        grid-template-rows: 1fr;
+      }
+
+      .nds-field-upload-icon {
+        display: flex;
+      }
+    }
+  }
+
+  // disable all motion if preferred by user
+  @media (prefers-reduced-motion: reduce) {
+    --upload-duration: 0ms;
+
+    &-dropzone {
+      transition: none;
+      animation: none;
+    }
+
+    // The drop zone's tint change already signals drag state, so the glyph
+    // need not move at all.
+    &[data-state="dragActive"] .nds-field-upload-icon span {
+      transform: none;
+    }
+  }
+}

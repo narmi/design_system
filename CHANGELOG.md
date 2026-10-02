@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.34.0](https://github.com/narmi/design_system/compare/v6.33.6...v6.34.0) (2026-10-02)
+
+### feat
+
+* **FieldUpload:** add Upload field component ([f516a8b](https://github.com/narmi/design_system/commit/f516a8b76b890fc818c350d174c33f160f829531))
+
+### fix
+
+* keep file sizes in GB ([0f97d20](https://github.com/narmi/design_system/commit/0f97d201494afefeb0ccc83c11fd7ef5fef7a0d9))
+* **Field.Upload:** preserve selection on upload error ([047c820](https://github.com/narmi/design_system/commit/047c82070afe878a267162ea40f5d188c1294adf))
+
 ## [6.33.6](https://github.com/narmi/design_system/compare/v6.33.5...v6.33.6) (2026-10-01)
 
 ### fix

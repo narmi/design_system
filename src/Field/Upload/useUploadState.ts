@@ -66,9 +66,6 @@ export const useUploadState = (
   // completed outcome.
   const signature = files.map(fileKey).join("|");
 
-  // The selection the current status was reported for. Compared by `status`
-  // rather than object identity, since consumers pass a fresh object literal
-  // on every render.
   const [anchor, setAnchor] = useState({ status: upload.status, signature });
   if (anchor.status !== upload.status) {
     setAnchor({ status: upload.status, signature });

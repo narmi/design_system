@@ -6,7 +6,14 @@
 
   label {
     cursor: pointer;
+    font-size: var(--font-size-s);
     font-weight: var(--font-weight-semibold);
+  }
+
+  // Block so the label's row height follows its own font size, not the parent's
+  .nds-field-label {
+    display: block;
+    width: fit-content;
   }
 }
 

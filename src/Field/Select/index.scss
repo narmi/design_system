@@ -3,11 +3,13 @@
   background: var(--color-white);
 }
 
-.nds-field-select-item {
+// Scoped to the listbox so the padding beats `.list--reset li { padding: 0 }`
+.nds-field-select-listbox .nds-field-select-item {
   box-sizing: border-box;
   cursor: pointer;
   padding: var(--space-xs) var(--space-s) !important; // override list--reset
   min-height: var(--space-xl);
+  font-size: var(--font-size-s);
   display: flex;
   align-items: center;
 

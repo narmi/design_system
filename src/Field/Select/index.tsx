@@ -138,7 +138,7 @@ export const FieldSelect = ({
       <div
         // The menu element is the one that scrolls, so downshift keeps the highlight in view
         {...getMenuProps({ ref: layerProps.ref as React.Ref<HTMLDivElement> })}
-        className="nds-field-select-listbox"
+        className="nds-field-listbox"
         style={layerProps.style as React.CSSProperties}
       >
         <ul className="list--reset" role="presentation">
@@ -147,10 +147,9 @@ export const FieldSelect = ({
               <li
                 key={item.props.value}
                 className={cc([
-                  "nds-field-select-item",
+                  "nds-field-option",
                   {
-                    "nds-field-select-item--highlighted":
-                      highlightedIndex === index,
+                    "nds-field-option--highlighted": highlightedIndex === index,
                   },
                 ])}
                 {...getItemProps({ item, index })}

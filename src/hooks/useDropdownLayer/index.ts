@@ -32,8 +32,8 @@ export type Alignment = "start" | "center" | "end";
 export interface UseDropdownLayerOptions {
   /** Whether the dropdown is currently open (required) */
   isOpen: boolean;
-  /** Function to update the dropdown open state */
-  setIsOpen: (isOpen: boolean) => void;
+  /** No longer read by the hook; kept so existing callers still type-check */
+  setIsOpen?: (isOpen: boolean) => void;
   /** Whether the dropdown should match the width of the anchor element */
   matchWidth?: boolean;
   /** * Whether the dropdown is rendered in a Portal.

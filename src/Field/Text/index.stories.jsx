@@ -11,6 +11,8 @@ const VALID_ICON_NAMES = iconSelection.icons
 export default {
   title: "Components/Field/Field.Text",
   component: FieldText,
+  // Storybook's object control starts at `{}`, which `errors` can't render
+  args: { errors: [] },
   argTypes: {
     startIcon: { control: "select", options: [null, ...VALID_ICON_NAMES] },
     endIcon: { control: "select", options: [null, ...VALID_ICON_NAMES] },

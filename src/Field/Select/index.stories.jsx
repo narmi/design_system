@@ -5,6 +5,8 @@ import { FieldSelect } from "./index";
 export default {
   title: "Components/Field/Field.Select",
   component: FieldSelect,
+  // Storybook's object control starts at `{}`, which `errors` can't render
+  args: { errors: [] },
 };
 
 const COUNTRIES = [

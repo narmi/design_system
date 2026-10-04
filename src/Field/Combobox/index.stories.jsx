@@ -73,6 +73,29 @@ export const SelectsOnTab = {
   },
 };
 
+/**
+ * Interaction test that arrows past the visible options, checking the
+ * dropdown scrolls to keep the highlighted option in view.
+ */
+export const ScrollsToHighlight = {
+  name: "Interaction: Keeps the highlighted option in view",
+  render: () => <Template label="State" placeholder="Select a state" />,
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("combobox", { name: /state/i }));
+    await userEvent.keyboard("{ArrowDown>20/}");
+    await waitFor(() => {
+      const option = screen.getByRole("option", { name: "Maryland" });
+      // Measure against the visible dropdown, not the full height of the list
+      const layer = option
+        .closest(".nds-field-listbox")
+        .getBoundingClientRect();
+      const { top, bottom } = option.getBoundingClientRect();
+      expect(top).toBeGreaterThanOrEqual(layer.top);
+      expect(bottom).toBeLessThanOrEqual(layer.bottom);
+    });
+  },
+};
+
 export const WithValue = Template.bind({});
 WithValue.args = {
   label: "State",

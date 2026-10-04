@@ -94,6 +94,7 @@ export const FieldCombobox = ({
     highlightedIndex,
     setHighlightedIndex,
     setInputValue,
+    closeMenu,
     getLabelProps,
     getInputProps,
     getToggleButtonProps,
@@ -163,6 +164,11 @@ export const FieldCombobox = ({
     return () => clearTimeout(timer);
   }, [isOpen, inputValue, selectedText]);
 
+  // Disabling the field while it's open closes the menu, so its options can't be picked
+  useEffect(() => {
+    if (isDisabled) closeMenu();
+  }, [isDisabled]);
+
   // Hide the layer when nothing matches, rather than showing an empty box
   const isMenuVisible = isOpen && displayedValues.length > 0;
 
@@ -217,6 +223,8 @@ export const FieldCombobox = ({
                 placeholder,
                 // Filter in the same render as downshift's own input change
                 onChange: (e) => setFilterText(e.currentTarget.value),
+                // Tell screen readers the menu is closed when nothing matches
+                "aria-expanded": isMenuVisible,
               })}
             />
           </Row.Item>
@@ -243,11 +251,12 @@ export const FieldCombobox = ({
       </div>
 
       <div
+        // The menu element is the one that scrolls, so downshift keeps the highlight in view
+        {...getMenuProps({ ref: layerProps.ref as React.Ref<HTMLDivElement> })}
         className="nds-field-listbox nds-field-combobox-listbox"
-        ref={layerProps.ref as React.Ref<HTMLDivElement>}
         style={layerProps.style as React.CSSProperties}
       >
-        <ul {...getMenuProps()} className="list--reset">
+        <ul className="list--reset" role="presentation">
           {isOpen &&
             displayedValues.map((itemValue, index) => (
               <li

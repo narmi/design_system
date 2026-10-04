@@ -260,4 +260,21 @@ describe("Field.Combobox", () => {
     const { input } = renderField({ isDisabled: true });
     expect(input).toBeDisabled();
   });
+
+  it("closes the menu when the field is disabled while open", async () => {
+    const { input, rerender } = renderField();
+
+    await userEvent.click(input);
+    rerender(<ControlledField isDisabled />);
+
+    expect(screen.queryAllByRole("option")).toHaveLength(0);
+  });
+
+  it("tells screen readers the menu is closed when nothing matches", async () => {
+    const { input } = renderField();
+
+    await userEvent.type(input, "zz");
+
+    expect(input).toHaveAttribute("aria-expanded", "false");
+  });
 });

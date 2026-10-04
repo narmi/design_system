@@ -118,7 +118,7 @@ describe("Field.Combobox", () => {
       expect(input).toHaveValue("California");
     });
 
-    it("selects the first match after the mouse leaves the list", async () => {
+    it("selects the last hovered option after the mouse leaves the list", async () => {
       const { input, onChange } = renderField();
 
       await userEvent.type(input, "a");
@@ -126,7 +126,7 @@ describe("Field.Combobox", () => {
       await userEvent.unhover(screen.getByRole("listbox"));
       await userEvent.tab();
 
-      expect(onChange).toHaveBeenCalledWith("AL");
+      expect(onChange).toHaveBeenCalledWith("AK");
     });
 
     it("puts back the selection when nothing matches", async () => {

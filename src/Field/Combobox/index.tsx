@@ -90,8 +90,10 @@ export const FieldCombobox = ({
 
   const {
     isOpen,
+    inputValue,
     highlightedIndex,
     setHighlightedIndex,
+    setInputValue,
     getLabelProps,
     getInputProps,
     getToggleButtonProps,
@@ -104,13 +106,9 @@ export const FieldCombobox = ({
     inputId: controlProps.id,
     labelId,
     onSelectedItemChange: ({ selectedItem: next }) => onChange(next ?? ""),
-    onStateChange: ({ type, inputValue, isOpen: nextIsOpen }) => {
-      // Filter only on what the user types, and show everything again on close
-      if (type === stateChangeTypes.InputChange) {
-        setFilterText(inputValue ?? "");
-      } else if (nextIsOpen === false) {
-        setFilterText("");
-      }
+    // Show every option again the next time the menu opens
+    onIsOpenChange: ({ isOpen: nextIsOpen }) => {
+      if (!nextIsOpen) setFilterText("");
     },
     stateReducer: (state, { type, changes }) => {
       let next = changes;
@@ -149,12 +147,21 @@ export const FieldCombobox = ({
     },
   });
 
-  // Options changing under an open menu would leave the highlight on a
-  // different option, so highlight the first match again
-  const valuesKey = [...itemsByValue.keys()].join("\n");
+  // The highlight is an index into the shown options, so when they change under
+  // an open menu (added, removed or renamed), highlight the first match again
+  const displayedKey = displayedValues.join("\n");
   useEffect(() => {
     if (isOpen) setHighlightedIndex(getFirstMatchIndex(filterText));
-  }, [valuesKey]);
+  }, [displayedKey]);
+
+  // While closed, show the selected item, even if the parent rejected a change
+  // or renamed it. Waits a tick so an accepted change doesn't flash the old text.
+  const selectedText = itemToString(selectedItem);
+  useEffect(() => {
+    if (isOpen || inputValue === selectedText) return;
+    const timer = setTimeout(() => setInputValue(selectedText));
+    return () => clearTimeout(timer);
+  }, [isOpen, inputValue, selectedText]);
 
   // Hide the layer when nothing matches, rather than showing an empty box
   const isMenuVisible = isOpen && displayedValues.length > 0;
@@ -204,7 +211,14 @@ export const FieldCombobox = ({
           )}
 
           <Row.Item>
-            <input {...getInputProps({ ...controlProps, placeholder })} />
+            <input
+              {...getInputProps({
+                ...controlProps,
+                placeholder,
+                // Filter in the same render as downshift's own input change
+                onChange: (e) => setFilterText(e.currentTarget.value),
+              })}
+            />
           </Row.Item>
 
           <Row.Item shrink>

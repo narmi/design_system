@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { FieldCombobox } from "./index";
 import FieldComboboxItem from "./ComboboxItem";
@@ -202,6 +202,44 @@ describe("Field.Combobox", () => {
 
       expect(onChange).not.toHaveBeenCalled();
       expect(input).toHaveValue("Colorado");
+    });
+
+    it("doesn't select a different option when an option is renamed", async () => {
+      const alStates = [
+        { value: "AL", label: "Alabama" },
+        { value: "AK", label: "Alaska" },
+        { value: "AB", label: "Alberta" },
+      ];
+      const { input, onChange, rerender } = renderWithProps("", alStates);
+
+      await userEvent.type(input, "al{ArrowDown}");
+      rerender("", [{ value: "AL", label: "Florida" }, ...alStates.slice(1)]);
+      await userEvent.tab();
+
+      expect(onChange).toHaveBeenCalledWith("AK");
+    });
+
+    it("shows the selection again when the parent rejects a change", async () => {
+      const { input, onChange } = renderWithProps("CA");
+
+      await userEvent.click(input);
+      await userEvent.click(screen.getByRole("option", { name: "Alabama" }));
+
+      expect(onChange).toHaveBeenCalledWith("AL");
+      expect(input).toHaveValue("California");
+    });
+
+    it("shows the new text when the selected option is renamed", async () => {
+      const { input, rerender } = renderWithProps("CA");
+
+      rerender(
+        "CA",
+        STATES.map((state) =>
+          state.value === "CA" ? { ...state, label: "Calif." } : state,
+        ),
+      );
+
+      await waitFor(() => expect(input).toHaveValue("Calif."));
     });
   });
 

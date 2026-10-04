@@ -120,6 +120,13 @@ export const FieldCombobox = ({
             ...changes,
             highlightedIndex: getFirstMatchIndex(changes.inputValue),
           };
+        // Moving the mouse off the list while typing goes back to the first match,
+        // so the highlight still shows what Enter, Tab or clicking away selects
+        case stateChangeTypes.MenuMouseLeave:
+          return {
+            ...changes,
+            highlightedIndex: getFirstMatchIndex(filterText),
+          };
         // Clicking back into the input (e.g. to move the caret) keeps the menu open
         case stateChangeTypes.InputClick:
           return state.isOpen ? state : changes;

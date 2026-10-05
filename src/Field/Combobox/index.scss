@@ -1,0 +1,11 @@
+.nds-field-combobox-toggle {
+  color: inherit;
+}
+
+// The on-screen keyboard opens with the input, so leave room for it on touch devices
+@media (any-pointer: coarse) {
+  .nds-field-combobox-listbox {
+    max-height: 24vh;
+    max-height: 24dvh;
+  }
+}

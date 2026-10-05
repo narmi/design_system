@@ -1,22 +1,3 @@
-.nds-field-select-listbox {
-  @extend %nds-dropdown-layer;
-  background: var(--color-white);
-}
-
-.nds-field-select-item {
-  box-sizing: border-box;
-  cursor: pointer;
-  padding: var(--space-xs) var(--space-s) !important; // override list--reset
-  min-height: var(--space-xl);
-  display: flex;
-  align-items: center;
-
-  &:hover,
-  &--highlighted {
-    background: RGBA(var(--theme-rgb-primary), var(--alpha-5));
-  }
-}
-
 .nds-field-select-value {
   flex: 1;
   overflow: hidden;

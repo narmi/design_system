@@ -4,7 +4,7 @@ import cc from "classcat";
 import { useField } from "../useField";
 import useDropdownLayer from "../../hooks/useDropdownLayer";
 import { FauxInput } from "../FauxInput/index";
-import Error from "../../Error";
+import { FieldErrors } from "../Errors/index";
 import Row from "../../Row";
 import FieldSelectItem from "./SelectItem";
 
@@ -155,11 +155,7 @@ export const FieldSelect = ({
         </ul>
       </div>
 
-      <div className="nds-field-errors" id={errorId} aria-live="polite">
-        {errors.map((error, i) => (
-          <Error key={`${i}-${error}`} error={error} marginTop="none" />
-        ))}
-      </div>
+      <FieldErrors id={errorId} errors={errors} />
     </div>
   );
 };

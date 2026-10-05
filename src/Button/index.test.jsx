@@ -52,6 +52,20 @@ describe("Button", () => {
     expect(button).toHaveClass("nds-button--s");
   });
 
+  it("renders only the icon, with no empty label item, when no label is passed", () => {
+    render(<Button startIcon="settings" size="s" ariaLabel="Settings" />);
+    const content = getButtonContent();
+    expect(content.querySelector(".nds-button-label")).not.toBeInTheDocument();
+    expect(content.querySelectorAll(".nds-row-item")).toHaveLength(1);
+  });
+
+  it("renders icon and label items when a label is passed", () => {
+    render(<Button startIcon="settings" label={LABEL} />);
+    const content = getButtonContent();
+    expect(content.querySelector(".nds-button-label")).toHaveTextContent(LABEL);
+    expect(content.querySelectorAll(".nds-row-item")).toHaveLength(2);
+  });
+
   it("has expected classes for `m` size", () => {
     render(<Button label={LABEL} size="m" />);
     const button = getButton();

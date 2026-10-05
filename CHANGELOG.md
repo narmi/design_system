@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.34.1](https://github.com/narmi/design_system/compare/v6.34.0...v6.34.1) (2026-10-05)
+
+### fix
+
+* patch dependency vulnerabilities with aged releases ([31535e4](https://github.com/narmi/design_system/commit/31535e4053bff8e24ec5e37c718f0526463461e5))
+
 ## [6.34.0](https://github.com/narmi/design_system/compare/v6.33.6...v6.34.0) (2026-10-02)
 
 ### feat

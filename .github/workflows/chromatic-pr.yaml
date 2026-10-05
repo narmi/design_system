@@ -9,6 +9,10 @@ on:
 
 jobs:
   check_changes:
+    # The `branches` filter above doesn't stop stacked PRs (GitHub Stacks) from
+    # triggering this workflow, so also guard on the PR's actual base branch.
+    # Upstack PRs are skipped until they are retargeted to `main`.
+    if: github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
     outputs:
       has_relevant_changes: ${{ steps.changes.outputs.has_changes }}

@@ -94,7 +94,6 @@
   text-overflow: ellipsis;
 
   // clip only the x axis so descenders aren't cut off;
-  // `overflow-x: hidden` would force `overflow-y` to compute to `auto`
   @supports (overflow: clip) {
     overflow-x: clip;
     overflow-y: visible;

@@ -47,6 +47,7 @@
     "react-dom": "^18 || ^19"
   },
   "devDependencies": {
+    "@adobe/css-tools": "^4.5.0",
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.13.14",
     "@babel/eslint-parser": "^7.17.0",
@@ -86,7 +87,6 @@
     "cli-table": "^0.3.11",
     "conventional-changelog-conventionalcommits": "^9.3.0",
     "core-js": "^3.15.2",
-    "css": "^3.0.0",
     "eslint": "^8.57.1",
     "eslint-plugin-compat": "^6.0.1",
     "eslint-plugin-json": "^3.1.0",
@@ -126,7 +126,7 @@
     "@maskito/kit": "^5.1.0",
     "@maskito/react": "^5.1.0",
     "classcat": "^5.0.3",
-    "dompurify": "^3.4.1",
+    "dompurify": "^3.4.16",
     "downshift": "^9",
     "flatpickr": "^4.6.12",
     "marked": "^18.0.11",

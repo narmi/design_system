@@ -6,7 +6,7 @@
 .nds-field-select-item {
   box-sizing: border-box;
   cursor: pointer;
-  padding: var(--space-xs) var(--space-s);
+  padding: var(--space-xs) var(--space-s) !important; // override list--reset
   min-height: var(--space-xl);
   display: flex;
   align-items: center;

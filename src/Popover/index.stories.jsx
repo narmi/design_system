@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { expect, screen, waitFor } from "storybook/test";
 import Popover from "./";
 import Button from "../Button";
@@ -114,8 +115,19 @@ FocusManagement.args = {
   ),
 };
 
-export const ScrollableCheckboxList = Template.bind({});
+export const ScrollableCheckboxList = ({ hasContentTabIndex, ...args }) => (
+  <Template
+    {...args}
+    content={React.cloneElement(args.content, {
+      tabIndex: hasContentTabIndex ? -1 : undefined,
+    })}
+  />
+);
+ScrollableCheckboxList.propTypes = {
+  hasContentTabIndex: PropTypes.bool,
+};
 ScrollableCheckboxList.args = {
+  hasContentTabIndex: false,
   content: (
     <div
       style={{ maxHeight: "200px", overflowY: "auto" }}
@@ -163,12 +175,13 @@ ScrollableCheckboxList.args = {
 };
 ScrollableCheckboxList.argTypes = {
   content: { control: false },
+  hasContentTabIndex: { control: "boolean" },
 };
 ScrollableCheckboxList.parameters = {
   docs: {
     description: {
       story:
-        "A Popover containing a scrollable list of condensed checkboxes. The content area is constrained by `maxHeight` to enable scrolling when the list overflows.",
+        "A Popover containing a scrollable list of condensed checkboxes. The content area is constrained by `maxHeight` to enable scrolling when the list overflows. Toggle `hasContentTabIndex` to apply `tabIndex={-1}` to the content div.",
     },
   },
 };

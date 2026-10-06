@@ -40,7 +40,9 @@ on:
         required: true
         type: string
     secrets:
-      SEMANTIC_RELEASE_TOKEN:
+      RELEASE_APP_CLIENT_ID:
+        required: true
+      RELEASE_APP_PRIVATE_KEY:
         required: true
 
 permissions:
@@ -51,6 +53,16 @@ jobs:
     name: Backport to maintenance branch #${{ inputs.pr_number }} to ${{ inputs.target_version }}.x
     runs-on: ubuntu-latest
     steps:
+      - name: Create release app token
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ secrets.RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: read
+          permission-workflows: write
+
       - name: Validate target_version
         env:
           TARGET_VERSION: ${{ inputs.target_version }}
@@ -64,7 +76,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v5
         with:
           fetch-depth: 0
-          token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+          token: ${{ steps.app-token.outputs.token }}
 
       - name: Configure git
         run: |
@@ -74,7 +86,7 @@ jobs:
       - name: Resolve PR
         id: pr
         env:
-          GH_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
           PR_NUMBER: ${{ inputs.pr_number }}
         run: |
           set -euo pipefail

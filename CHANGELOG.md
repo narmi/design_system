@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.35.0](https://github.com/narmi/design_system/compare/v6.34.1...v6.35.0) (2026-10-06)
+
+### ci
+
+* grant workflows write and narrow other scopes for backport app token ([9c33d09](https://github.com/narmi/design_system/commit/9c33d09209ee15eea02bf37fe825277724269e97))
+* mint release token from a GitHub App instead of SEMANTIC_RELEASE_TOKEN ([d7aad8a](https://github.com/narmi/design_system/commit/d7aad8a8abfbdf2f229070aaa4b3137218fb70d4))
+* update zizmor artipacked ignore for shifted checkout line ([805f7f9](https://github.com/narmi/design_system/commit/805f7f98fe3cf1cbd366cdfd8ea9232eefb92cd6))
+
+### feat
+
+* **Field.Combobox:** add Combobox field ([a346588](https://github.com/narmi/design_system/commit/a346588fee6645b842b18820ad3c88834a42d87b))
+
+### fix
+
+* **Field:** export Field.Select and Field.Combobox prop types ([60e55bf](https://github.com/narmi/design_system/commit/60e55bfb89ef25f1cd2ca8219946cab5338424f0))
+* **Field.Combobox:** go back to the first match when the mouse leaves the list ([2d64849](https://github.com/narmi/design_system/commit/2d648492d3722f8a3c5093a86f83bc2b5201af23))
+* **Field.Combobox:** keep the hovered option when the mouse leaves the list ([4f6e404](https://github.com/narmi/design_system/commit/4f6e404049f8696b5ca3984ad0013b37abe6e6e8))
+* **Field.Combobox:** keep the input in sync with value and options ([8bd3f8a](https://github.com/narmi/design_system/commit/8bd3f8a3b9d8cf052bfaaeac65381b723077f140))
+* **Field.Select:** preserve item padding ([a46bbc7](https://github.com/narmi/design_system/commit/a46bbc77fb3aa455424252e08d1234594897db4b))
+* **Field.Select:** restore item padding and match trigger font size ([095d5e9](https://github.com/narmi/design_system/commit/095d5e9f312ffa3868a7d13026e9f80f47b74a5d))
+* **Field.Select:** scroll to the highlighted option and close when disabled ([407185e](https://github.com/narmi/design_system/commit/407185e15ae9ab460cd5463cd8ebe70a3a9a4be4))
+* **Field.Combobox:** scroll to the highlighted option ([6b8cbde](https://github.com/narmi/design_system/commit/6b8cbde131f349fb8b4b7bc95b007cf076a5f419))
+* **Field:** use small font size for field labels ([a69dc94](https://github.com/narmi/design_system/commit/a69dc941851a13b121638c279a732b1feb415f80))
+
 ## [6.34.1](https://github.com/narmi/design_system/compare/v6.34.0...v6.34.1) (2026-10-05)
 
 ### fix

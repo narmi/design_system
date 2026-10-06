@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.35.1](https://github.com/narmi/design_system/compare/v6.35.0...v6.35.1) (2026-10-06)
+
+### ci
+
+* avoid persisting backport checkout credentials ([cc5b17a](https://github.com/narmi/design_system/commit/cc5b17a1c7537f7c2bfc2c1989cddada6390a826))
+
+### fix
+
+* remove zizmor obfuscation ignores ([549c676](https://github.com/narmi/design_system/commit/549c676c8d6d21c09eafd7e57ba73bcd358aee23))
+
 ## [6.35.0](https://github.com/narmi/design_system/compare/v6.34.1...v6.35.0) (2026-10-06)
 
 ### ci

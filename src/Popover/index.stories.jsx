@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { expect, screen, waitFor } from "storybook/test";
 import Popover from "./";
 import Button from "../Button";
+import Checkbox from "../Checkbox";
 
 const Template = (args) => (
   <div
@@ -111,6 +112,65 @@ FocusManagement.args = {
       within the Popover while it is open.
     </div>
   ),
+};
+
+export const ScrollableCheckboxList = Template.bind({});
+ScrollableCheckboxList.args = {
+  content: (
+    <div
+      style={{ maxHeight: "200px", overflowY: "auto" }}
+      className="padding--all--s"
+    >
+      <Checkbox
+        label="See statements and documents"
+        name="statements"
+        kind="condensed"
+      />
+      <Checkbox label="Make deposits" name="deposits" kind="condensed" />
+      <Checkbox label="Make withdrawals" name="withdrawals" kind="condensed" />
+      <Checkbox label="Transfer funds" name="transfers" kind="condensed" />
+      <Checkbox label="Pay bills" name="bills" kind="condensed" />
+      <Checkbox
+        label="Manage beneficiaries"
+        name="beneficiaries"
+        kind="condensed"
+      />
+      <Checkbox
+        label="View transaction history"
+        name="history"
+        kind="condensed"
+      />
+      <Checkbox label="Download statements" name="download" kind="condensed" />
+      <Checkbox label="Set up alerts" name="alerts" kind="condensed" />
+      <Checkbox label="Manage cards" name="cards" kind="condensed" />
+      <Checkbox
+        label="Update profile information"
+        name="profile"
+        kind="condensed"
+      />
+      <Checkbox
+        label="Enable notifications"
+        name="notifications"
+        kind="condensed"
+      />
+    </div>
+  ),
+  renderTrigger: () => (
+    <Button type="button" kind="secondary">
+      Select Permissions
+    </Button>
+  ),
+};
+ScrollableCheckboxList.argTypes = {
+  content: { control: false },
+};
+ScrollableCheckboxList.parameters = {
+  docs: {
+    description: {
+      story:
+        "A Popover containing a scrollable list of condensed checkboxes. The content area is constrained by `maxHeight` to enable scrolling when the list overflows.",
+    },
+  },
 };
 
 export const Controlled = () => {

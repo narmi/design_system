@@ -1,8 +1,4 @@
 # Configuration for zizmor, the GitHub Actions security auditor.
 # https://docs.zizmor.sh/configuration/
 
-rules:
-  obfuscation:
-    ignore:
-      - chromatic-pr.yaml:111
-      - chromatic-pr.yaml:113
+rules: {}

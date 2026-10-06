@@ -77,11 +77,15 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ steps.app-token.outputs.token }}
+          persist-credentials: false
 
       - name: Configure git
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          gh auth setup-git --hostname github.com
 
       - name: Resolve PR
         id: pr
@@ -127,6 +131,7 @@ jobs:
       - name: Ensure maintenance branch exists
         id: branch
         env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
           TARGET_VERSION: ${{ inputs.target_version }}
         run: |
           set -euo pipefail
@@ -305,6 +310,7 @@ jobs:
       - name: Push clean backport
         if: steps.pick.outputs.result == 'clean'
         env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
           BRANCH: ${{ steps.branch.outputs.branch }}
           PR_NUMBER: ${{ inputs.pr_number }}
           PR_URL: ${{ steps.pr.outputs.pr_url }}

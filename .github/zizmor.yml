@@ -4,7 +4,7 @@
 rules:
   artipacked:
     ignore:
-      - release-backport.yaml:63
+      - release-backport.yaml:75
   obfuscation:
     ignore:
       - chromatic-pr.yaml:111

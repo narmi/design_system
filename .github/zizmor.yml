@@ -2,9 +2,6 @@
 # https://docs.zizmor.sh/configuration/
 
 rules:
-  artipacked:
-    ignore:
-      - release-backport.yaml:75
   obfuscation:
     ignore:
       - chromatic-pr.yaml:111

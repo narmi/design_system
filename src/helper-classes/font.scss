@@ -92,6 +92,12 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  // clip only the x axis so descenders aren't cut off;
+  @supports (overflow: clip) {
+    overflow-x: clip;
+    overflow-y: visible;
+  }
 }
 %whiteSpace--truncate--multiLine {
   // uses experimental, but widely supported

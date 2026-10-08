@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.29.10](https://github.com/narmi/design_system/compare/v6.29.9...v6.29.10) (2026-10-08)
+
+### ci
+
+* sync release workflow and config from main ([c896a63](https://github.com/narmi/design_system/commit/c896a63f46155239e498bfd813a4c07b1958663a))
+
+### fix
+
+* **TextInput:** add maxLines cap for multiline input ([d8d29eb](https://github.com/narmi/design_system/commit/d8d29ebd09a12c0d2d1a30e273259c1b29b2816d))
+
 ## [6.29.9](https://github.com/narmi/design_system/compare/v6.29.8...v6.29.9) (2026-09-22)
 
 ### fix

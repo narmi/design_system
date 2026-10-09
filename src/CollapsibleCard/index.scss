@@ -44,9 +44,6 @@
   justify-content: space-between;
   background-clip: border-box;
 }
-.collapsible-card--no-user-select {
-  user-select: none;
-}
 .collapsible-card--content-card .title {
   color: var(--theme-primary) !important;
 }

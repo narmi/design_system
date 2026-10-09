@@ -191,7 +191,6 @@ const CollapsibleCard = ({
       "content-card--error": hasError,
       "content-card--disabled": isDisabled,
       "content-card--hover": trigger === "header" && !disableHover && hover,
-      "collapsible-card--no-user-select": !disableHover || trigger === "header",
       "collapsible-card--customTitle": typeof renderTitle === "function",
     },
     isOpen && !isDisabled ? undefined : "content-card--closed",

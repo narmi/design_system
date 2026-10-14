@@ -1,6 +1,10 @@
 name: Dependabot PR Analysis
 
-on:
+# pull_request_target is required so Dependabot-opened PRs can get an OIDC
+# token for Bedrock and a token that can comment. It is safe here because the
+# workflow never checks out or executes PR code: it checks out the PR's *base*
+# branch and only reads the PR through the GitHub API.
+on: # zizmor: ignore[dangerous-triggers]
   pull_request_target:
     types: [opened]
   workflow_dispatch:
@@ -10,14 +14,17 @@ on:
         required: true
         type: number
 
+permissions: {}
+
 jobs:
   resolve-pr:
     name: Resolve PR number
     if: >-
       github.event_name == 'workflow_dispatch'
-      || (github.actor == 'dependabot[bot]'
-          && github.event.pull_request.user.login == 'dependabot[bot]')
+      || github.event.pull_request.user.login == 'dependabot[bot]'
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
     outputs:
       pr_number: ${{ steps.resolve.outputs.pr_number }}
       base_ref: ${{ steps.resolve.outputs.base_ref }}
@@ -25,16 +32,24 @@ jobs:
       - name: Resolve PR metadata
         id: resolve
         env:
-          GH_TOKEN: ${{ secrets.NARMIBOT2_PAT }}
+          GH_TOKEN: ${{ github.token }}
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_PR_NUMBER: ${{ inputs.pr_number }}
+          EVENT_PR_NUMBER: ${{ github.event.pull_request.number }}
+          EVENT_BASE_REF: ${{ github.event.pull_request.base.ref }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            PR_NUMBER="${{ inputs.pr_number }}"
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            PR_NUMBER="$INPUT_PR_NUMBER"
             BASE_REF=$(gh pr view "$PR_NUMBER" \
-              --repo "${{ github.repository }}" \
+              --repo "$GITHUB_REPOSITORY" \
               --json baseRefName --jq '.baseRefName')
           else
-            PR_NUMBER="${{ github.event.pull_request.number }}"
-            BASE_REF="${{ github.event.pull_request.base.ref }}"
+            PR_NUMBER="$EVENT_PR_NUMBER"
+            BASE_REF="$EVENT_BASE_REF"
+          fi
+          if ! [[ "$PR_NUMBER" =~ ^[0-9]+$ ]]; then
+            echo "::error::Invalid PR number: $PR_NUMBER"
+            exit 1
           fi
           echo "pr_number=${PR_NUMBER}" >> "$GITHUB_OUTPUT"
           echo "base_ref=${BASE_REF}" >> "$GITHUB_OUTPUT"
@@ -44,9 +59,8 @@ jobs:
     needs: resolve-pr
     if: >-
       github.event_name == 'workflow_dispatch'
-      || (github.actor == 'dependabot[bot]'
-          && github.event.pull_request.user.login == 'dependabot[bot]')
-    runs-on: [self-hosted, linux, x64, ubuntu-2404, large]
+      || github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-latest
     permissions:
       id-token: write
       contents: read
@@ -59,7 +73,6 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ needs.resolve-pr.outputs.base_ref }}
-          token: ${{ secrets.NARMIBOT2_PAT }}
           persist-credentials: false
 
       - name: Set up Node.js
@@ -67,25 +80,25 @@ jobs:
         with:
           node-version-file: .nvmrc
 
+      # Pinned because this tool runs with AWS credentials and a write token.
+      # Bump deliberately; Dependabot cannot update versions in run: steps.
       - name: Install opencode
-        run: npm install -g opencode-ai
+        run: npm install -g opencode-ai@1.18.35 # zizmor: ignore[adhoc-packages] -- pinned version of a global CLI; no lockfile applies.
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@cbe3b392738ccf3f987d68400dafcf4b0624a56c # v6.2.4
+        uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
         with:
           role-to-assume: arn:aws:iam::848180528913:role/GitHubActionsBankingInvokeBedrock
           aws-region: us-east-1
 
       - name: Run dependency analysis
         env:
-          GITHUB_TOKEN: ${{ secrets.NARMIBOT2_PAT }}
-          GH_TOKEN: ${{ secrets.NARMIBOT2_PAT }}
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ needs.resolve-pr.outputs.pr_number }}
         run: |
-          opencode run \
-            --model amazon-bedrock/anthropic.claude-opus-4-6-v1 \
-            "$(cat <<'PROMPT'
-          Analyze Dependabot pull request #'"${PR_NUMBER}"' in ${{ github.repository }}.
+          PROMPT=$(cat <<'PROMPT'
+          Analyze Dependabot pull request #__PR_NUMBER__ in __REPO__.
 
           ## Your Task
           Analyze this dependency update and post a comment on the PR with your findings.
@@ -93,8 +106,8 @@ jobs:
           ## Step 1: Gather PR Context
           Run these commands to understand what is being updated:
 
-              gh pr view '"${PR_NUMBER}"' --repo "${{ github.repository }}" --json title,body,files
-              gh pr diff '"${PR_NUMBER}"' --repo "${{ github.repository }}"
+              gh pr view __PR_NUMBER__ --repo "__REPO__" --json title,body,files
+              gh pr diff __PR_NUMBER__ --repo "__REPO__"
 
           From the PR title and body, identify:
           - The dependency name(s) being updated
@@ -130,12 +143,12 @@ jobs:
           Post a comment on the PR with your analysis. IMPORTANT: Do NOT write the
           comment body to a file (e.g. /tmp). Instead, pass the comment body inline using --body:
 
-              gh pr comment '"${PR_NUMBER}"' --repo "${{ github.repository }}" --body "<your comment>"
+              gh pr comment __PR_NUMBER__ --repo "__REPO__" --body "<your comment>"
 
           If the comment is too long for a single --body argument, use the GitHub API
           directly with a heredoc piped to gh:
 
-              gh api repos/${{ github.repository }}/issues/'"${PR_NUMBER}"'/comments \
+              gh api repos/__REPO__/issues/__PR_NUMBER__/comments \
                 -f body="<your comment>"
 
           Your comment MUST follow this exact format:
@@ -173,4 +186,10 @@ jobs:
           Instead, reference upstream issues/PRs using their full URL or descriptive text
           (e.g. "issue 123 in <repo>" or the full GitHub URL).
           PROMPT
-          )"
+          )
+          PROMPT="${PROMPT//__PR_NUMBER__/$PR_NUMBER}"
+          PROMPT="${PROMPT//__REPO__/$GITHUB_REPOSITORY}"
+
+          opencode run \
+            --model amazon-bedrock/anthropic.claude-opus-5-5 \
+            "$PROMPT"

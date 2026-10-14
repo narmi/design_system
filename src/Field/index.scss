@@ -6,7 +6,14 @@
 
   label {
     cursor: pointer;
+    font-size: var(--font-size-s);
     font-weight: var(--font-weight-semibold);
+  }
+
+  // Block so the label's row height follows its own font size, not the parent's
+  .nds-field-label {
+    display: block;
+    width: fit-content;
   }
 }
 
@@ -67,6 +74,29 @@
   }
 }
 
+// Dropdown list shared by Field.Select and Field.Combobox
+.nds-field-listbox {
+  @extend %nds-dropdown-layer;
+  background: var(--color-white);
+}
+
+// Scoped to the listbox so the padding beats `.list--reset li { padding: 0 }`
+.nds-field-listbox .nds-field-option {
+  box-sizing: border-box;
+  cursor: pointer;
+  padding: var(--space-xs) var(--space-s) !important; // override list--reset
+  min-height: var(--space-xl);
+  font-size: var(--font-size-s);
+  display: flex;
+  align-items: center;
+
+  &:hover,
+  &--highlighted {
+    background: RGBA(var(--theme-rgb-primary), var(--alpha-5));
+  }
+}
+
 @import "FauxInput/index";
 @import "Select/index";
+@import "Combobox/index";
 @import "Upload/index";

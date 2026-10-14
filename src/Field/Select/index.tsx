@@ -1,4 +1,4 @@
-import React, { useState, useMemo, type ReactElement } from "react";
+import React, { useState, useMemo, useEffect, type ReactElement } from "react";
 import { useSelect } from "downshift";
 import cc from "classcat";
 import { useField } from "../useField";
@@ -47,6 +47,11 @@ export const FieldSelect = ({
 }: FieldSelectProps) => {
   const { errorId, controlProps } = useField({ id, errors, isDisabled });
   const [isOpen, setIsOpen] = useState(false);
+
+  // Disabling the field while it's open closes the menu, so its options can't be picked
+  useEffect(() => {
+    if (isDisabled) setIsOpen(false);
+  }, [isDisabled]);
 
   const items = useMemo(
     () =>
@@ -131,20 +136,20 @@ export const FieldSelect = ({
       </div>
 
       <div
-        className="nds-field-select-listbox"
-        ref={layerProps.ref as React.Ref<HTMLDivElement>}
+        // The menu element is the one that scrolls, so downshift keeps the highlight in view
+        {...getMenuProps({ ref: layerProps.ref as React.Ref<HTMLDivElement> })}
+        className="nds-field-listbox"
         style={layerProps.style as React.CSSProperties}
       >
-        <ul {...getMenuProps()} className="list--reset">
+        <ul className="list--reset" role="presentation">
           {isOpen &&
             items.map((item, index) => (
               <li
                 key={item.props.value}
                 className={cc([
-                  "nds-field-select-item",
+                  "nds-field-option",
                   {
-                    "nds-field-select-item--highlighted":
-                      highlightedIndex === index,
+                    "nds-field-option--highlighted": highlightedIndex === index,
                   },
                 ])}
                 {...getItemProps({ item, index })}

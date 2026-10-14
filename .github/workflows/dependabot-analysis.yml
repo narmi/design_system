@@ -141,15 +141,19 @@ jobs:
 
           ## Step 4: Post Your Analysis
           Post a comment on the PR with your analysis. IMPORTANT: Do NOT write the
-          comment body to a file (e.g. /tmp). Instead, pass the comment body inline using --body:
+          comment body to a file (e.g. /tmp), and do NOT pass it with --body "...":
+          inside double quotes the shell runs backticks and $(...) in your Markdown
+          as commands. Instead, send the body on stdin with a quoted heredoc, which
+          the shell passes through verbatim and which has no length limit:
 
-              gh pr comment __PR_NUMBER__ --repo "__REPO__" --body "<your comment>"
+          ```
+          gh pr comment __PR_NUMBER__ --repo "__REPO__" --body-file - <<'COMMENT_EOF'
+          <your comment>
+          COMMENT_EOF
+          ```
 
-          If the comment is too long for a single --body argument, use the GitHub API
-          directly with a heredoc piped to gh:
-
-              gh api repos/__REPO__/issues/__PR_NUMBER__/comments \
-                -f body="<your comment>"
+          Keep the quotes around 'COMMENT_EOF' and put the closing COMMENT_EOF on its
+          own line with no leading whitespace.
 
           Your comment MUST follow this exact format:
 

@@ -97,6 +97,9 @@
   @supports (overflow: clip) {
     overflow-x: clip;
     overflow-y: visible;
+    // `clip` does not create a scroll container, so flex/grid items
+    // would otherwise keep `min-width: auto` and refuse to shrink
+    min-width: 0;
   }
 }
 %whiteSpace--truncate--multiLine {

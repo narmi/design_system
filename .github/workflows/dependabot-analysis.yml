@@ -76,32 +76,15 @@ jobs:
           ref: ${{ needs.resolve-pr.outputs.base_ref }}
           persist-credentials: false
 
-      # The tool lockfile comes from the commit this workflow runs from, not
-      # the analyzed PR's base branch, which may predate it.
-      - name: Checkout pinned tools
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          path: .dependabot-tools
-          sparse-checkout: .github/dependabot-analysis
-          persist-credentials: false
-
       - name: Set up Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .nvmrc
 
-      # Installs the exact, integrity-checked tarballs from the lockfile without
-      # running install scripts, then uses the platform binary directly.
+      # Pinned because this tool runs with AWS credentials. Bump deliberately;
+      # Dependabot cannot update versions in run: steps.
       - name: Install opencode
-        run: |
-          TOOLS_DIR="$RUNNER_TEMP/opencode"
-          mkdir -p "$TOOLS_DIR"
-          cp .dependabot-tools/.github/dependabot-analysis/package.json \
-            .dependabot-tools/.github/dependabot-analysis/package-lock.json \
-            "$TOOLS_DIR/"
-          rm -rf .dependabot-tools
-          npm ci --prefix "$TOOLS_DIR" --ignore-scripts --no-audit --no-fund
-          "$TOOLS_DIR/node_modules/opencode-linux-x64/bin/opencode" --version
+        run: npm install -g opencode-ai@1.18.35 # zizmor: ignore[adhoc-packages]
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
@@ -214,7 +197,7 @@ jobs:
           PROMPT="${PROMPT//__REPO__/$GITHUB_REPOSITORY}"
           PROMPT="${PROMPT//__COMMENT_FILE__/$COMMENT_FILE}"
 
-          "$RUNNER_TEMP/opencode/node_modules/opencode-linux-x64/bin/opencode" run \
+          opencode run \
             --model amazon-bedrock/anthropic.claude-opus-5-5 \
             "$PROMPT"
 

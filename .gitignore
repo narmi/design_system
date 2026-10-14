@@ -13,6 +13,3 @@ build-storybook.log
 *.swp
 
 package-lock.json
-
-# Lockfile for the pinned tools in .github/workflows/dependabot-analysis.yml
-!.github/dependabot-analysis/package-lock.json

@@ -21,15 +21,6 @@ updates:
           - "react-aria"
           - "react-aria-components"
           - "react-stately"
-  # Pinned opencode CLI for .github/workflows/dependabot-analysis.yml
-  - package-ecosystem: "npm"
-    directory: "/.github/dependabot-analysis"
-    schedule:
-      interval: "weekly"
-      day: "sunday"
-    cooldown:
-      default-days: 7
-      semver-major-days: 30
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:

@@ -99,7 +99,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ needs.resolve-pr.outputs.pr_number }}
         run: |
-          # Keep the agent from minting new OIDC tokens for other AWS roles.
+          # Defense in depth only: keeps these out of opencode's environment, but
+          # anything running in this job can still recover them (e.g. via
+          # /proc/$PPID/environ or sudo). The real limit on a minted OIDC token
+          # is which AWS roles trust this repo, so keep those trust policies
+          # scoped to this workflow.
           unset ACTIONS_ID_TOKEN_REQUEST_TOKEN ACTIONS_ID_TOKEN_REQUEST_URL ACTIONS_RUNTIME_TOKEN
 
           COMMENT_FILE="$GITHUB_WORKSPACE/dependabot-analysis-comment.md"

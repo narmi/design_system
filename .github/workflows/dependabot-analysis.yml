@@ -1,13 +1,7 @@
 name: Dependabot PR Analysis
 
-# pull_request_target is required so Dependabot-opened PRs can get an OIDC
-# token for Bedrock and a token that can comment. It is safe here because the
-# workflow never checks out or executes PR code: it checks out the PR's *base*
-# branch and only reads the PR through the GitHub API.
-#
-# The agent reads untrusted input (the PR body, upstream release notes), so it
-# runs with a read-only GitHub token and only writes its analysis to a file.
-# A separate job with no agent posts that file as the PR comment.
+# pull_request_target is needed for secrets on Dependabot PRs; PR code is never checked out.
+# The agent gets a read-only token; a separate job posts its analysis.
 on: # zizmor: ignore[dangerous-triggers]
   pull_request_target:
     types: [opened]
@@ -81,8 +75,7 @@ jobs:
         with:
           node-version-file: .nvmrc
 
-      # Pinned because this tool runs with AWS credentials. Bump deliberately;
-      # Dependabot cannot update versions in run: steps.
+      # Pinned since it runs with AWS credentials; Dependabot won't bump it.
       - name: Install opencode
         run: npm install -g opencode-ai@1.18.35 # zizmor: ignore[adhoc-packages]
 
@@ -99,11 +92,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ needs.resolve-pr.outputs.pr_number }}
         run: |
-          # Defense in depth only: keeps these out of opencode's environment, but
-          # anything running in this job can still recover them (e.g. via
-          # /proc/$PPID/environ or sudo). The real limit on a minted OIDC token
-          # is which AWS roles trust this repo, so keep those trust policies
-          # scoped to this workflow.
+          # Defense in depth only; still recoverable via /proc or sudo.
           unset ACTIONS_ID_TOKEN_REQUEST_TOKEN ACTIONS_ID_TOKEN_REQUEST_URL ACTIONS_RUNTIME_TOKEN
 
           COMMENT_FILE="$GITHUB_WORKSPACE/dependabot-analysis-comment.md"
@@ -209,7 +198,6 @@ jobs:
             echo "::error::The agent did not write $COMMENT_FILE"
             exit 1
           fi
-          # GitHub rejects comments over 65536 characters.
           if [ "$(wc -m < "$COMMENT_FILE")" -gt 65536 ]; then
             echo "::error::The analysis is longer than GitHub's comment limit"
             exit 1

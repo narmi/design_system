@@ -231,7 +231,7 @@ importers:
         version: 3.4.16
       downshift:
         specifier: ^9
-        version: 9.3.6(react@18.3.1)
+        version: 9.4.0(react@18.3.1)
       flatpickr:
         specifier: ^4.6.12
         version: 4.6.13
@@ -3556,8 +3556,8 @@ packages:
     resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
     engines: {node: '>=12'}
 
-  downshift@9.3.6:
-    resolution: {integrity: sha512-xEKP1vbt/k7Siu481TKibmj8EyL6iyBwaRJgb6gCsFyLeiyZ1KEJnApS9R1U71hTdK5ym0R99AOYRROcTz1PeQ==}
+  downshift@9.4.0:
+    resolution: {integrity: sha512-yIwyzRYzycKwMZhvOahsn4BmRr4Ffi0JymdWOtTDhR+LGDEXCZHTcwgUbNBC/oZLT6YrR46iwJe/BrQUS5ClQQ==}
     peerDependencies:
       react: '>=16.12.0'
 
@@ -10199,7 +10199,7 @@ snapshots:
 
   dotenv@16.6.1: {}
 
-  downshift@9.3.6(react@18.3.1):
+  downshift@9.4.0(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.29.7
       compute-scroll-into-view: 3.1.1

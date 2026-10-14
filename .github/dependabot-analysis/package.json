@@ -1,0 +1,8 @@
+{
+  "name": "dependabot-analysis-tools",
+  "private": true,
+  "description": "Pinned CLI tools for .github/workflows/dependabot-analysis.yml",
+  "dependencies": {
+    "opencode-ai": "1.18.35"
+  }
+}

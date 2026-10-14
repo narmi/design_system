@@ -4,6 +4,10 @@ name: Dependabot PR Analysis
 # token for Bedrock and a token that can comment. It is safe here because the
 # workflow never checks out or executes PR code: it checks out the PR's *base*
 # branch and only reads the PR through the GitHub API.
+#
+# The agent reads untrusted input (the PR body, upstream release notes), so it
+# runs with a read-only GitHub token and only writes its analysis to a file.
+# A separate job with no agent posts that file as the PR comment.
 on: # zizmor: ignore[dangerous-triggers]
   pull_request_target:
     types: [opened]
@@ -57,14 +61,11 @@ jobs:
   analyze:
     name: "Analyze Dependabot PR #${{ needs.resolve-pr.outputs.pr_number }}"
     needs: resolve-pr
-    if: >-
-      github.event_name == 'workflow_dispatch'
-      || github.event.pull_request.user.login == 'dependabot[bot]'
     runs-on: ubuntu-latest
     permissions:
       id-token: write
       contents: read
-      pull-requests: write
+      pull-requests: read
       issues: read
     timeout-minutes: 30
 
@@ -75,21 +76,39 @@ jobs:
           ref: ${{ needs.resolve-pr.outputs.base_ref }}
           persist-credentials: false
 
+      # The tool lockfile comes from the commit this workflow runs from, not
+      # the analyzed PR's base branch, which may predate it.
+      - name: Checkout pinned tools
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: .dependabot-tools
+          sparse-checkout: .github/dependabot-analysis
+          persist-credentials: false
+
       - name: Set up Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .nvmrc
 
-      # Pinned because this tool runs with AWS credentials and a write token.
-      # Bump deliberately; Dependabot cannot update versions in run: steps.
+      # Installs the exact, integrity-checked tarballs from the lockfile without
+      # running install scripts, then uses the platform binary directly.
       - name: Install opencode
-        run: npm install -g opencode-ai@1.18.35 # zizmor: ignore[adhoc-packages] -- pinned version of a global CLI; no lockfile applies.
+        run: |
+          TOOLS_DIR="$RUNNER_TEMP/opencode"
+          mkdir -p "$TOOLS_DIR"
+          cp .dependabot-tools/.github/dependabot-analysis/package.json \
+            .dependabot-tools/.github/dependabot-analysis/package-lock.json \
+            "$TOOLS_DIR/"
+          rm -rf .dependabot-tools
+          npm ci --prefix "$TOOLS_DIR" --ignore-scripts --no-audit --no-fund
+          "$TOOLS_DIR/node_modules/opencode-linux-x64/bin/opencode" --version
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
         with:
           role-to-assume: arn:aws:iam::848180528913:role/GitHubActionsBankingInvokeBedrock
           aws-region: us-east-1
+          role-duration-seconds: 1800
 
       - name: Run dependency analysis
         env:
@@ -97,11 +116,16 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ needs.resolve-pr.outputs.pr_number }}
         run: |
+          # Keep the agent from minting new OIDC tokens for other AWS roles.
+          unset ACTIONS_ID_TOKEN_REQUEST_TOKEN ACTIONS_ID_TOKEN_REQUEST_URL ACTIONS_RUNTIME_TOKEN
+
+          COMMENT_FILE="$GITHUB_WORKSPACE/dependabot-analysis-comment.md"
+
           PROMPT=$(cat <<'PROMPT'
           Analyze Dependabot pull request #__PR_NUMBER__ in __REPO__.
 
           ## Your Task
-          Analyze this dependency update and post a comment on the PR with your findings.
+          Analyze this dependency update and write up your findings as a comment for the PR.
 
           ## Step 1: Gather PR Context
           Run these commands to understand what is being updated:
@@ -139,21 +163,16 @@ jobs:
           Be thorough - use grep, find, and read the relevant source files to understand
           the actual usage patterns. Do not just report surface-level import counts.
 
-          ## Step 4: Post Your Analysis
-          Post a comment on the PR with your analysis. IMPORTANT: Do NOT write the
-          comment body to a file (e.g. /tmp), and do NOT pass it with --body "...":
-          inside double quotes the shell runs backticks and $(...) in your Markdown
-          as commands. Instead, send the body on stdin with a quoted heredoc, which
-          the shell passes through verbatim and which has no length limit:
+          ## Step 4: Write Your Analysis
+          Write your comment as Markdown to this file, and nowhere else:
 
-          ```
-          gh pr comment __PR_NUMBER__ --repo "__REPO__" --body-file - <<'COMMENT_EOF'
-          <your comment>
-          COMMENT_EOF
-          ```
+              __COMMENT_FILE__
 
-          Keep the quotes around 'COMMENT_EOF' and put the closing COMMENT_EOF on its
-          own line with no leading whitespace.
+          Use your file-writing tool. Do NOT post the comment yourself: you only have
+          read access to GitHub, and a separate step posts this file to the PR after
+          you finish. If you write the file from the shell instead, use a quoted
+          heredoc (cat > FILE <<'COMMENT_EOF') so backticks and $(...) in your
+          Markdown are not run as commands.
 
           Your comment MUST follow this exact format:
 
@@ -182,7 +201,7 @@ jobs:
           - **Review recommended** — <reason>
           - **Manual testing required** — <reason>
 
-          IMPORTANT: You MUST post the comment. Do not skip this step.
+          IMPORTANT: You MUST write the file. Do not skip this step.
 
           IMPORTANT: Your comment MUST NOT contain any "#<number>" patterns (e.g. #123, #456).
           GitHub automatically converts these into links to PRs/issues in THIS repository,
@@ -193,7 +212,50 @@ jobs:
           )
           PROMPT="${PROMPT//__PR_NUMBER__/$PR_NUMBER}"
           PROMPT="${PROMPT//__REPO__/$GITHUB_REPOSITORY}"
+          PROMPT="${PROMPT//__COMMENT_FILE__/$COMMENT_FILE}"
 
-          opencode run \
+          "$RUNNER_TEMP/opencode/node_modules/opencode-linux-x64/bin/opencode" run \
             --model amazon-bedrock/anthropic.claude-opus-5-5 \
             "$PROMPT"
+
+          if [ ! -s "$COMMENT_FILE" ]; then
+            echo "::error::The agent did not write $COMMENT_FILE"
+            exit 1
+          fi
+          # GitHub rejects comments over 65536 characters.
+          if [ "$(wc -m < "$COMMENT_FILE")" -gt 65536 ]; then
+            echo "::error::The analysis is longer than GitHub's comment limit"
+            exit 1
+          fi
+
+      - name: Upload analysis
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: dependabot-analysis-comment
+          path: dependabot-analysis-comment.md
+          if-no-files-found: error
+          retention-days: 1
+
+  post-comment:
+    name: Post analysis comment
+    needs: [resolve-pr, analyze]
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    timeout-minutes: 5
+
+    steps:
+      - name: Download analysis
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: dependabot-analysis-comment
+          path: ${{ runner.temp }}/analysis
+
+      - name: Post comment
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ needs.resolve-pr.outputs.pr_number }}
+        run: |
+          gh pr comment "$PR_NUMBER" \
+            --repo "$GITHUB_REPOSITORY" \
+            --body-file "$RUNNER_TEMP/analysis/dependabot-analysis-comment.md"

@@ -7,6 +7,8 @@ name: Dependabot PR Analysis
 on: # zizmor: ignore[dangerous-triggers]
   pull_request_target:
     types: [opened]
+  push: # TEMP: test run against PR 2326, revert before merge
+    branches: [dependabot_analysis]
   workflow_dispatch:
     inputs:
       pr_number:
@@ -21,6 +23,7 @@ jobs:
     name: Resolve PR number
     if: >-
       github.event_name == 'workflow_dispatch'
+      || github.event_name == 'push'
       || github.event.pull_request.user.login == 'dependabot[bot]'
     runs-on: ubuntu-latest
     permissions:
@@ -38,8 +41,8 @@ jobs:
           EVENT_PR_NUMBER: ${{ github.event.pull_request.number }}
           EVENT_BASE_REF: ${{ github.event.pull_request.base.ref }}
         run: |
-          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
-            PR_NUMBER="$INPUT_PR_NUMBER"
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] || [ "$EVENT_NAME" = "push" ]; then
+            PR_NUMBER="${INPUT_PR_NUMBER:-2326}"
             BASE_REF=$(gh pr view "$PR_NUMBER" \
               --repo "$GITHUB_REPOSITORY" \
               --json baseRefName --jq '.baseRefName')
@@ -59,6 +62,7 @@ jobs:
     needs: resolve-pr
     if: >-
       github.event_name == 'workflow_dispatch'
+      || github.event_name == 'push'
       || github.event.pull_request.user.login == 'dependabot[bot]'
     runs-on: ubuntu-latest
     permissions:

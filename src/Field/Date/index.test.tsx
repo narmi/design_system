@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { act, render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { FieldDate } from "./index";
 import { TOUCH_DEVICE_QUERY } from "./useFieldDate";
@@ -56,10 +56,9 @@ describe("Field.Date", () => {
       onChange,
       user: userEvent.setup({ advanceTimers: vi.advanceTimersByTime }),
       input: screen.getByLabelText("Start date") as HTMLInputElement,
-      trigger: () =>
-        screen.getByRole("button", { name: /choose|change date/i }),
       dialog: () =>
         screen.queryByRole("dialog", { name: "Start date calendar" }),
+      day: (name: RegExp) => screen.getByRole("button", { name }),
     };
   };
 
@@ -83,19 +82,21 @@ describe("Field.Date", () => {
       );
     });
 
-    it("disables the input and the trigger", () => {
-      const { input, trigger, container } = renderField({ isDisabled: true });
+    it("disables the input", () => {
+      const { input, container } = renderField({ isDisabled: true });
 
       expect(input).toBeDisabled();
-      expect(trigger()).toBeDisabled();
       expect(container.querySelector(".nds-field")).toHaveClass(
         "nds-field--isDisabled",
       );
     });
 
-    it("shows the value as MM/DD/YYYY", () => {
-      const { input } = renderField({ value: "2026-10-14" });
+    it("shows the value as MM/DD/YYYY beside a calendar icon", () => {
+      const { input, container } = renderField({ value: "2026-10-14" });
       expect(input).toHaveValue("10/14/2026");
+      expect(
+        container.querySelector(".narmi-icon-calendar"),
+      ).toBeInTheDocument();
     });
   });
 
@@ -165,133 +166,148 @@ describe("Field.Date", () => {
   });
 
   describe("calendar", () => {
-    it("is closed until the trigger is clicked, then focuses today", async () => {
-      const { user, trigger, dialog } = renderField();
+    it("opens when the input is focused, on today's month", async () => {
+      const { input, dialog } = renderField();
 
       expect(dialog()).not.toBeInTheDocument();
-      expect(trigger()).toHaveAttribute("aria-haspopup", "dialog");
-      expect(trigger()).toHaveAttribute("aria-expanded", "false");
+      expect(input).toHaveAttribute("role", "combobox");
+      expect(input).toHaveAttribute("aria-haspopup", "dialog");
+      expect(input).toHaveAttribute("aria-expanded", "false");
 
-      await user.click(trigger());
+      act(() => input.focus());
 
       expect(dialog()).toBeInTheDocument();
-      expect(trigger()).toHaveAttribute("aria-expanded", "true");
+      expect(input).toHaveAttribute("aria-expanded", "true");
+      expect(input).toHaveAttribute("aria-controls", dialog()!.id);
+      expect(input).toHaveFocus();
       expect(
         screen.getByRole("grid", { name: /october 2026/i }),
       ).toBeInTheDocument();
-      await waitFor(() =>
-        expect(screen.getByRole("button", { name: /today/i })).toHaveFocus(),
-      );
     });
 
-    it("opens with Alt+ArrowDown from the input", async () => {
-      const { input, user, dialog } = renderField();
+    it("opens on the selected date's month and follows a typed date", async () => {
+      const { input, user } = renderField({ value: "2025-03-05" });
 
-      input.focus();
-      await user.keyboard("{Alt>}{ArrowDown}{/Alt}");
-
-      expect(dialog()).toBeInTheDocument();
-    });
-
-    it("names the trigger after the selection and opens on its month", async () => {
-      const { user, trigger } = renderField({ value: "2025-03-05" });
-
-      expect(trigger()).toHaveAccessibleName("Change date, March 5, 2025");
-      await user.click(trigger());
-
+      act(() => input.focus());
       expect(
         screen.getByRole("grid", { name: /march 2025/i }),
       ).toBeInTheDocument();
-      await waitFor(() =>
-        expect(screen.getByRole("button", { name: /selected/i })).toHaveFocus(),
-      );
+
+      await user.clear(input);
+      await user.type(input, "06/10/2026");
+      expect(
+        screen.getByRole("grid", { name: /june 2026/i }),
+      ).toBeInTheDocument();
     });
 
-    it("selects a day, closes and returns focus to the trigger", async () => {
-      const { user, trigger, dialog, onChange, input } = renderField();
+    it("selects a day with the mouse, closes and keeps focus in the input", async () => {
+      const { user, day, dialog, onChange, input } = renderField();
 
-      await user.click(trigger());
-      await user.click(
-        screen.getByRole("button", {
-          name: /^(Monday|monday), October 19th, 2026/i,
-        }),
-      );
+      await user.click(input);
+      await user.click(day(/^(Monday|monday), October 19th, 2026/i));
 
       expect(onChange).toHaveBeenLastCalledWith("2026-10-19");
       expect(input).toHaveValue("10/19/2026");
       expect(dialog()).not.toBeInTheDocument();
-      expect(trigger()).toHaveFocus();
+      expect(input).toHaveFocus();
     });
 
-    it("selects with the keyboard", async () => {
-      const { user, trigger, onChange } = renderField({ value: "2026-10-14" });
+    it("selects with the keyboard and returns focus to the input", async () => {
+      const { user, day, dialog, onChange, input } = renderField({
+        value: "2026-10-14",
+      });
 
-      await user.click(trigger());
-      await waitFor(() =>
-        expect(screen.getByRole("button", { name: /selected/i })).toHaveFocus(),
-      );
+      await user.click(input);
+      await user.keyboard("{ArrowDown}");
+      expect(day(/selected/i)).toHaveFocus();
+      expect(dialog()).toBeInTheDocument();
+
       await user.keyboard("{ArrowRight}{ArrowDown}{Enter}");
 
       expect(onChange).toHaveBeenLastCalledWith("2026-10-22");
-      expect(trigger()).toHaveFocus();
+      expect(dialog()).not.toBeInTheDocument();
+      expect(input).toHaveFocus();
     });
 
-    it("closes on Escape and returns focus to the trigger", async () => {
-      const { user, trigger, dialog, onChange } = renderField();
+    it("closes on Escape and reopens on click or ArrowDown", async () => {
+      const { user, day, dialog, onChange, input } = renderField();
 
-      await user.click(trigger());
+      await user.click(input);
+      await user.tab();
       await user.keyboard("{Escape}");
-
       expect(dialog()).not.toBeInTheDocument();
-      expect(trigger()).toHaveFocus();
+      expect(input).toHaveFocus();
+
+      await user.click(input);
+      expect(dialog()).toBeInTheDocument();
+
+      await user.keyboard("{Escape}");
+      expect(dialog()).not.toBeInTheDocument();
+
+      await user.keyboard("{ArrowDown}");
+      expect(dialog()).toBeInTheDocument();
+      expect(input).toHaveFocus();
+
+      await user.keyboard("{ArrowDown}");
+      expect(day(/today/i)).toHaveFocus();
       expect(onChange).not.toHaveBeenCalled();
     });
 
-    it("closes on an outside click without stealing focus", async () => {
-      const { user, trigger, dialog } = renderField();
+    it("keeps the grid tabbable from the input", async () => {
+      const { user, day, input } = renderField();
+
+      await user.click(input);
+      await user.tab();
+      expect(screen.getByRole("button", { name: /previous/i })).toHaveFocus();
+      await user.tab();
+      await user.tab();
+      expect(day(/today/i)).toHaveFocus();
+    });
+
+    it("closes when focus leaves the field", async () => {
+      const { user, dialog, input } = renderField();
       render(<button type="button">Elsewhere</button>);
 
-      await user.click(trigger());
-      const elsewhere = screen.getByRole("button", { name: "Elsewhere" });
-      await user.click(elsewhere);
-
+      await user.click(input);
+      await user.click(screen.getByRole("button", { name: "Elsewhere" }));
       expect(dialog()).not.toBeInTheDocument();
-      expect(trigger()).not.toHaveFocus();
+
+      await user.click(input);
+      await user.tab({ shift: true });
+      expect(dialog()).not.toBeInTheDocument();
     });
 
     it("disables days outside the range and unavailable days", async () => {
-      const { user, trigger, onChange } = renderField({
+      const { user, day, onChange, input } = renderField({
         minDate: "2026-10-05",
         maxDate: "2026-10-25",
         isDateUnavailable: (iso) => iso === "2026-10-20",
       });
 
-      await user.click(trigger());
+      await user.click(input);
 
-      const day = (n: number) =>
-        screen.getByRole("button", {
-          name: new RegExp(`October ${n}(st|nd|rd|th), 2026`),
-        });
-      expect(day(4)).toBeDisabled();
-      expect(day(26)).toBeDisabled();
-      expect(day(20)).toBeDisabled();
-      expect(day(21)).toBeEnabled();
+      const dayOfMonth = (n: number) =>
+        day(new RegExp(`October ${n}(st|nd|rd|th), 2026`));
+      expect(dayOfMonth(4)).toBeDisabled();
+      expect(dayOfMonth(26)).toBeDisabled();
+      expect(dayOfMonth(20)).toBeDisabled();
+      expect(dayOfMonth(21)).toBeEnabled();
       expect(
         screen.getByRole("button", { name: /previous month/i }),
       ).toHaveAttribute("aria-disabled", "true");
 
-      await user.click(day(20));
+      await user.click(dayOfMonth(20));
       expect(onChange).not.toHaveBeenCalled();
     });
 
     it("renders month and year selects for the dropdown caption", async () => {
-      const { user, trigger } = renderField({
+      const { user, input } = renderField({
         calendarCaption: "dropdown",
         minDate: "1900-01-01",
         maxDate: "2026-12-31",
       });
 
-      await user.click(trigger());
+      await user.click(input);
 
       expect(screen.getByRole("combobox", { name: /month/i })).toHaveValue("9");
       expect(screen.getByRole("combobox", { name: /year/i })).toHaveValue(
@@ -300,9 +316,9 @@ describe("Field.Date", () => {
     });
 
     it("closes when the field becomes disabled", async () => {
-      const { user, trigger, dialog, rerender } = renderField();
+      const { user, dialog, input, rerender } = renderField();
 
-      await user.click(trigger());
+      await user.click(input);
       expect(dialog()).toBeInTheDocument();
 
       rerender(<ControlledField isDisabled />);
@@ -313,8 +329,8 @@ describe("Field.Date", () => {
   describe("on touch devices", () => {
     beforeEach(() => mockTouchDevice(true));
 
-    it("renders a native date input and no calendar trigger", () => {
-      const { input } = renderField({
+    it("renders a native date input and no calendar", () => {
+      const { input, container } = renderField({
         value: "2026-10-14",
         minDate: "2026-10-01",
         maxDate: "2026-10-31",
@@ -324,7 +340,8 @@ describe("Field.Date", () => {
       expect(input).toHaveValue("2026-10-14");
       expect(input).toHaveAttribute("min", "2026-10-01");
       expect(input).toHaveAttribute("max", "2026-10-31");
-      expect(screen.queryByRole("button")).not.toBeInTheDocument();
+      expect(container.querySelector(".narmi-icon-calendar")).toBeNull();
+      act(() => input.focus());
       expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     });
 
@@ -354,10 +371,11 @@ describe("Field.Date", () => {
     });
 
     it("keeps the custom calendar when opted out", () => {
-      const { input, trigger } = renderField({ shouldUseNativeOnTouch: false });
+      const { input, dialog } = renderField({ shouldUseNativeOnTouch: false });
 
       expect(input).toHaveAttribute("type", "text");
-      expect(trigger()).toBeInTheDocument();
+      act(() => input.focus());
+      expect(dialog()).toBeInTheDocument();
     });
   });
 });

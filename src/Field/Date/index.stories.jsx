@@ -34,7 +34,7 @@ Overview.parameters = {
   docs: {
     description: {
       story:
-        "Type a date as `MM/DD/YYYY` or pick one from the calendar. `value` and `onChange` always use `YYYY-MM-DD`; `onChange` is called with `\"\"` while the field is empty, incomplete or holds a date it can't accept. On phones and tablets the browser's native date picker is used instead (see **Native on touch devices**).",
+        "Type a date as `MM/DD/YYYY`, or pick one from the calendar that opens while the field is focused. `value` and `onChange` always use `YYYY-MM-DD`; `onChange` is called with `\"\"` while the field is empty, incomplete or holds a date it can't accept. On phones and tablets the browser's native date picker is used instead (see **Native on touch devices**).",
     },
   },
 };
@@ -202,17 +202,17 @@ export const KeyboardSelection = {
     return <Controlled />;
   },
   play: async ({ canvas, userEvent }) => {
-    const trigger = canvas.getByRole("button", { name: /change date/i });
-    await userEvent.click(trigger);
+    const input = canvas.getByLabelText("Start date");
+    await userEvent.click(input);
+    await userEvent.keyboard("{ArrowDown}");
     await waitFor(() =>
       expect(canvas.getByRole("button", { name: /selected/i })).toHaveFocus(),
     );
 
     await userEvent.keyboard("{ArrowRight}{ArrowDown}{Enter}");
 
-    const input = canvas.getByLabelText("Start date");
     await waitFor(() => expect(input).toHaveValue("10/22/2026"));
-    await waitFor(() => expect(trigger).toHaveFocus());
+    await waitFor(() => expect(input).toHaveFocus());
   },
 };
 

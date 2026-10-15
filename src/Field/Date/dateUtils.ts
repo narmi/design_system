@@ -62,13 +62,3 @@ export const isSelectable = (
   if (maxDate && iso > maxDate) return false;
   return !isDateUnavailable?.(iso);
 };
-
-/** Clamps a `YYYY-MM-DD` string into the `[minDate, maxDate]` range */
-export const clampIso = (
-  iso: string,
-  { minDate, maxDate }: Pick<DateConstraints, "minDate" | "maxDate">,
-): string => {
-  if (minDate && iso < minDate) return minDate;
-  if (maxDate && iso > maxDate) return maxDate;
-  return iso;
-};

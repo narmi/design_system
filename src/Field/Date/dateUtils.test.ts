@@ -1,5 +1,4 @@
 import {
-  clampIso,
   isSelectable,
   parseDisplay,
   toDate,
@@ -76,13 +75,5 @@ describe("Field.Date dateUtils", () => {
       expect(isSelectable("2026-07-05", { isDateUnavailable })).toBe(true);
       expect(isSelectable("2026-02-30", {})).toBe(false);
     });
-  });
-
-  it("clamps into the range", () => {
-    const range = { minDate: "2026-03-01", maxDate: "2026-03-31" };
-    expect(clampIso("2026-01-15", range)).toBe("2026-03-01");
-    expect(clampIso("2026-03-15", range)).toBe("2026-03-15");
-    expect(clampIso("2026-06-15", range)).toBe("2026-03-31");
-    expect(clampIso("2026-06-15", {})).toBe("2026-06-15");
   });
 });

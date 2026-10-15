@@ -1,13 +1,6 @@
-/* eslint-disable jsx-a11y/no-autofocus */
 import React from "react";
-import cc from "classcat";
-import FocusLock from "react-focus-lock";
 import { DayPicker } from "react-day-picker";
-import { useMaskito } from "@maskito/react";
 import { useFieldDate } from "./useFieldDate";
-import { useMergeRefs } from "../../hooks/useMergeRefs";
-import useOnClickOutside from "../../hooks/useOnClickOutside";
-import { FIELD_MASKS } from "../masks";
 import { FieldErrors } from "../Errors/index";
 import Row from "../../Row";
 
@@ -72,6 +65,10 @@ const Chevron = ({ orientation = "right" }: ChevronProps) => (
  * Field.Date renders a masked `MM/DD/YYYY` text input with a calendar
  * popover for picking a single day. Values are always `YYYY-MM-DD` strings.
  *
+ * The calendar opens when the input is focused and closes when focus
+ * leaves the field, on Escape, or once a day is picked. ArrowDown moves
+ * from the input into the calendar grid.
+ *
  * On touch devices it renders the browser's native date picker instead
  * (see `shouldUseNativeOnTouch`). The calendar is
  * [react-day-picker](https://daypicker.dev), left unstyled apart from
@@ -94,61 +91,24 @@ export const FieldDate = ({
   className,
   ...rest
 }: FieldDateProps) => {
-  const {
-    errorId,
-    isNative,
-    isOpen,
-    close,
-    anchorProps,
-    inputProps,
-    triggerProps,
-    popoverProps,
-    calendarProps,
-  } = useFieldDate({
-    id,
-    label,
-    value,
-    onChange,
-    minDate,
-    maxDate,
-    isDateUnavailable,
-    errors,
-    isDisabled,
-    isPortalled,
-    shouldUseNativeOnTouch,
-  });
-
-  // No mask on the native input: the browser owns its format
-  const maskitoRef = useMaskito({
-    options: isNative ? null : FIELD_MASKS.Date,
-  });
-  const inputRef = useMergeRefs(
-    inputProps.ref,
-    maskitoRef,
-  ) as React.Ref<HTMLInputElement>;
-
-  // Clicking elsewhere closes the calendar without pulling focus back
-  useOnClickOutside(
-    popoverProps.ref as React.RefObject<HTMLDivElement>,
-    (e) => {
-      if (isOpen && !triggerProps.ref.current?.contains(e.target as Node)) {
-        close({ returnFocus: false });
-      }
-    },
-  );
+  const { errorId, rootProps, anchorProps, inputProps, calendar } =
+    useFieldDate({
+      id,
+      label,
+      value,
+      onChange,
+      minDate,
+      maxDate,
+      isDateUnavailable,
+      errors,
+      isDisabled,
+      isPortalled,
+      shouldUseNativeOnTouch,
+      className,
+    });
 
   return (
-    <div
-      className={cc([
-        "nds-field",
-        "nds-field-date",
-        {
-          "nds-field--isDisabled": isDisabled,
-          "nds-field--hasError": errors.length > 0,
-        },
-        className,
-      ])}
-    >
+    <div {...rootProps}>
       <Row alignItems="center">
         <Row.Item>
           <label className="nds-field-label" htmlFor={inputProps.id}>
@@ -163,41 +123,25 @@ export const FieldDate = ({
       </Row>
 
       <div className="nds-field-input-box" {...anchorProps}>
-        <Row alignItems="center" gapSize="xs">
-          <Row.Item>
-            <input {...rest} {...inputProps} ref={inputRef} />
-          </Row.Item>
-
-          {!isNative && (
-            <Row.Item shrink>
-              <button
-                className="nds-field-date-trigger button--reset"
-                {...triggerProps}
-              >
-                <i className="narmi-icon-calendar" aria-hidden="true" />
-              </button>
-            </Row.Item>
-          )}
-        </Row>
+        <input {...rest} {...inputProps} />
+        {calendar && (
+          <i role="img" className="narmi-icon-calendar" aria-hidden="true" />
+        )}
       </div>
 
-      {!isNative && (
-        <div className="nds-field-date-popover" {...popoverProps}>
-          {isOpen && (
-            // The day picker focuses the selected day on open (the APG date
-            // picker dialog pattern). The lock only keeps Tab inside, and
-            // `close` decides where focus goes afterwards.
-            <FocusLock autoFocus={false} returnFocus={false}>
-              <DayPicker
-                className="nds-calendar"
-                navLayout="around"
-                captionLayout={calendarCaption}
-                fixedWeeks
-                showOutsideDays={false}
-                components={{ Chevron }}
-                {...calendarProps}
-              />
-            </FocusLock>
+      {calendar && (
+        <div className="nds-field-date-popover" {...calendar.popoverProps}>
+          {calendar.isOpen && (
+            <DayPicker
+              key={calendar.dayPickerKey}
+              className="nds-calendar"
+              navLayout="around"
+              captionLayout={calendarCaption}
+              fixedWeeks
+              showOutsideDays={false}
+              components={{ Chevron }}
+              {...calendar.dayPickerProps}
+            />
           )}
         </div>
       )}

@@ -5,14 +5,22 @@
 // its stylesheet. Only layout and theme-token colors are added here, keyed off
 // elements and the `data-*` state attributes the library sets.
 
-.nds-field-date-trigger {
-  color: inherit;
-  outline: 0;
-  transition: color 100ms ease-out;
+// The box is already a grid, so the input and icon are its direct children.
+// The input spans the whole box, under the decorative icon, and stretches to
+// its height, so a click anywhere in the box focuses the field.
+.nds-field-date .nds-field-input-box {
+  grid-template-columns: 1fr auto;
+  align-items: center;
 
-  &:hover,
-  &:focus-visible {
-    color: var(--theme-primary);
+  input {
+    grid-area: 1 / 1 / 2 / -1;
+    align-self: stretch;
+    padding-right: var(--space-l);
+  }
+
+  .narmi-icon-calendar {
+    grid-area: 1 / 2;
+    pointer-events: none;
   }
 }
 

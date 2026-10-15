@@ -46,7 +46,14 @@
 
 .nds-dropdownTrigger-value {
   color: var(--font-color-primary);
-  max-width: 100%;
+  display: block;
+  // Let the value shrink and clip instead of widening the trigger (and any
+  // content-sized ancestor, e.g. a mobile Dialog) when the display value is
+  // nowrap content such as `TruncatedAccount`. 80dvw is the fallback cap for
+  // when nothing upstream constrains the width.
+  min-width: 0;
+  max-width: 80dvw;
+  overflow: hidden;
   padding-right: rem(24px);
 }
 

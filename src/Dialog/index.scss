@@ -76,6 +76,9 @@
 
   max-height: 96%; // relative to parent, .nds-dialog-focuslock
   min-width: 100dvw;
+  // Never let content-sized children (e.g. a Select showing a long nowrap
+  // value) push the sheet wider than the viewport.
+  max-width: 100dvw;
 
   // for tablet or larger, display the modal dialog as a floating box.
   @include atMediaUp("s", $includeHeight: true) {

@@ -63,4 +63,5 @@ jobs:
       pr_number: ${{ github.event.pull_request.number }}
       target_version: ${{ matrix.target_version }}
     secrets:
-      SEMANTIC_RELEASE_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+      RELEASE_APP_CLIENT_ID: ${{ secrets.RELEASE_APP_CLIENT_ID }}
+      RELEASE_APP_PRIVATE_KEY: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}

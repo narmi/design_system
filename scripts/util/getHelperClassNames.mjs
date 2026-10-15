@@ -2,7 +2,7 @@ import { readFileSync } from "fs";
 import { resolve } from "path";
 import glob from "glob";
 import sass from "sass";
-import { parse } from "css";
+import { parse } from "@adobe/css-tools";
 
 /**
  * @returns {Array} full list of helper class strings from NDS

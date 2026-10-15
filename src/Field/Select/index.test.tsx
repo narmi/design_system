@@ -81,4 +81,18 @@ describe("Field.Select", () => {
       "nds-field--isDisabled",
     );
   });
+
+  it("closes the menu when the field is disabled while open", async () => {
+    const { rerender } = renderField();
+
+    await userEvent.click(screen.getByRole("combobox"));
+    rerender(
+      <FieldSelect label="Country" value="" onChange={() => {}} isDisabled>
+        <FieldSelectItem value="us">United States</FieldSelectItem>
+        <FieldSelectItem value="ca">Canada</FieldSelectItem>
+      </FieldSelect>,
+    );
+
+    expect(screen.queryAllByRole("option")).toHaveLength(0);
+  });
 });

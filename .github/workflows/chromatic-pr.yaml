@@ -9,6 +9,10 @@ on:
 
 jobs:
   check_changes:
+    # The `branches` filter above doesn't stop stacked PRs (GitHub Stacks) from
+    # triggering this workflow, so also guard on the PR's actual base branch.
+    # Upstack PRs are skipped until they are retargeted to `main`.
+    if: github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
     outputs:
       has_relevant_changes: ${{ steps.changes.outputs.has_changes }}
@@ -77,7 +81,7 @@ jobs:
 
       - name: Chromatic
         id: chromatic_step
-        uses: chromaui/action@259eda5f0e44c0c1eab38b672f1c4c967cc969b7 # 18.8.1
+        uses: chromaui/action@db3ceb5efb0cd7447d63c2d8cce7da732ce89322 # 18.10.1
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitZeroOnChanges: false # fail workflow if changes detected
@@ -104,9 +108,9 @@ jobs:
           comment_tag: chromatic-results
           message: |
             ${{ needs.run_chromatic.outputs.changeCount > '0' && format('## 🚨 Found {0} visual changes that require your attention!', needs.run_chromatic.outputs.changeCount) || '' }}
-            ${{ needs.run_chromatic.outputs.changeCount <= '0' && format('## ✅ No visual changes detected') || ''}}
+            ${{ needs.run_chromatic.outputs.changeCount <= '0' && '## ✅ No visual changes detected' || '' }}
             ${{ format('[View Chromatic Build]({0})', needs.run_chromatic.outputs.buildUrl || needs.run_chromatic.outputs.chromatic_url) || '' }}
-            ${{ needs.run_chromatic.outputs.changeCount > '0' && format('📖 [How to resolve failing Chromatic checks](https://github.com/narmi/design_system/blob/main/contributing/visual-regression-tests.md)') || '' }}
+            ${{ needs.run_chromatic.outputs.changeCount > '0' && '📖 [How to resolve failing Chromatic checks](https://github.com/narmi/design_system/blob/main/contributing/visual-regression-tests.md)' || '' }}
 
             ## 📘 Storybook preview
             [View Storybook preview](<${{ needs.run_chromatic.outputs.storybookUrl }}>)

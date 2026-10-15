@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.35.2](https://github.com/narmi/design_system/compare/v6.35.1...v6.35.2) (2026-10-15)
+
+### ci
+
+* **dependabot:** add dependabot PR analysis (#2286) ([9c01d57](https://github.com/narmi/design_system/commit/9c01d57f7e8a385993c9f9c5314cb06e6e2288e1)), closes [#2286](https://github.com/narmi/design_system/issues/2286)
+
+### fix
+
+* **whiteSpace--truncate:** prevent clipping text descenders ([397fa1b](https://github.com/narmi/design_system/commit/397fa1b8e94474fcf65a440a439d12dfd8455665))
+* **CollapsibleCard,ContentCard:** remove user-select disabling ([3924c18](https://github.com/narmi/design_system/commit/3924c180a8c25735071f71c985781c7d98a2a354))
+
 ## [6.35.1](https://github.com/narmi/design_system/compare/v6.35.0...v6.35.1) (2026-10-06)
 
 ### ci

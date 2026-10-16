@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.29.12](https://github.com/narmi/design_system/compare/v6.29.11...v6.29.12) (2026-10-16)
+
+### fix
+
+* **Dialog,Select,DropdownTrigger:** prevent rendered values from extending beyond visible bounds ([382c355](https://github.com/narmi/design_system/commit/382c355f7c7618f76068d7b0756a853455b38016))
+
 ## [6.29.11](https://github.com/narmi/design_system/compare/v6.29.10...v6.29.11) (2026-10-16)
 
 ### fix

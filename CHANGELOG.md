@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.35.3](https://github.com/narmi/design_system/compare/v6.35.2...v6.35.3) (2026-10-16)
+
+### docs
+
+* **Field:** start the errors control as an empty array ([f73a398](https://github.com/narmi/design_system/commit/f73a398bf61967e063c9b46abb794b3363f53a7f))
+
+### fix
+
+* **Dialog,Select,DropdownTrigger:** prevent rendered values from extending beyond visible bounds ([4d46eee](https://github.com/narmi/design_system/commit/4d46eeee860daaf3fd529a57f5b721afed3657ec))
+
 ## [6.35.2](https://github.com/narmi/design_system/compare/v6.35.1...v6.35.2) (2026-10-15)
 
 ### ci

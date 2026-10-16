@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.35.4](https://github.com/narmi/design_system/compare/v6.35.3...v6.35.4) (2026-10-16)
+
+### fix
+
+* **TextInput:** match error font size to other inputs ([a08d956](https://github.com/narmi/design_system/commit/a08d956f533573fb0a57aab72498e2bf2e88bc38))
+
 ## [6.35.3](https://github.com/narmi/design_system/compare/v6.35.2...v6.35.3) (2026-10-16)
 
 ### docs

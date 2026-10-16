@@ -1,0 +1,178 @@
+// Field.Date
+//
+// The calendar is react-day-picker's own markup (a <nav>, a <table role="grid">,
+// <button>s for days, native <select>s for the dropdown caption) with none of
+// its stylesheet. Only layout and theme-token colors are added here, keyed off
+// elements and the `data-*` state attributes the library sets.
+
+// The box is already a grid, so the input and icon are its direct children.
+// The input spans the whole box, under the decorative icon, and stretches to
+// its height, so a click anywhere in the box focuses the field.
+.nds-field-date .nds-field-input-box {
+  grid-template-columns: 1fr auto;
+  align-items: center;
+
+  input {
+    grid-area: 1 / 1 / 2 / -1;
+    align-self: stretch;
+    padding-right: var(--space-l);
+  }
+
+  .narmi-icon-calendar {
+    grid-area: 1 / 2;
+    pointer-events: none;
+  }
+}
+
+.nds-field-date-popover {
+  --nds-layer-gap: var(--space-xs);
+  @extend %nds-dropdown-layer;
+  background: var(--color-white);
+  box-shadow: var(--elevation-middle);
+  // A month is a fixed size; show it whole rather than scrolling it
+  max-height: none;
+  overflow: visible;
+}
+
+.nds-calendar {
+  --nds-calendar-cell: #{rem(36px)};
+
+  padding: var(--space-s);
+  font-size: var(--font-size-s);
+
+  // With `navLayout="around"` the previous/next buttons are siblings of
+  // the caption, so the month lays them out: [prev] [caption] [next] / [grid]
+  .rdp-month {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "previous caption next"
+      "grid grid grid";
+    align-items: center;
+    row-gap: var(--space-xs);
+  }
+
+  .rdp-button_previous {
+    grid-area: previous;
+  }
+  .rdp-button_next {
+    grid-area: next;
+  }
+  .rdp-month_grid {
+    grid-area: grid;
+  }
+
+  .rdp-month_caption {
+    grid-area: caption;
+    text-align: center;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .rdp-dropdowns {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-xxs);
+  }
+
+  // The library pairs each <select> with a decorative label it would
+  // normally overlay with a transparent select; here the select is the
+  // visible control, so the duplicate label is dropped
+  .rdp-dropdown_root .rdp-caption_label {
+    display: none;
+  }
+
+  // Native selects for the dropdown caption, lightly dressed
+  select {
+    font: inherit;
+    color: inherit;
+    padding: var(--space-xxs) var(--space-xs);
+    border: 1px solid var(--border-color-default);
+    border-radius: var(--border-radius-default);
+    background: var(--color-white);
+  }
+
+  .rdp-button_previous,
+  .rdp-button_next {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--nds-calendar-cell);
+    height: var(--nds-calendar-cell);
+    border: 0;
+    border-radius: var(--border-radius-default);
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+
+    &:hover {
+      background: RGBA(var(--theme-rgb-primary), var(--alpha-5));
+    }
+
+    &[aria-disabled="true"] {
+      color: var(--font-color-secondary);
+      cursor: default;
+      background: transparent;
+    }
+  }
+
+  table {
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  th {
+    width: var(--nds-calendar-cell);
+    height: var(--nds-calendar-cell);
+    font-weight: var(--font-weight-normal);
+    color: var(--font-color-secondary);
+  }
+
+  td {
+    padding: 0;
+    text-align: center;
+  }
+
+  // Day buttons
+  .rdp-day_button {
+    width: var(--nds-calendar-cell);
+    height: var(--nds-calendar-cell);
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+
+    &:hover {
+      background: RGBA(var(--theme-rgb-primary), var(--alpha-10));
+    }
+
+    &:disabled {
+      color: var(--font-color-secondary);
+      text-decoration: line-through;
+      background: transparent;
+      cursor: default;
+    }
+  }
+
+  // Today is marked by weight and an underline, never a fill, so it can't
+  // be mistaken for the selection
+  [data-today] .rdp-day_button {
+    font-weight: var(--font-weight-semibold);
+    text-decoration: underline;
+    text-underline-offset: rem(3px);
+  }
+
+  [data-selected] .rdp-day_button {
+    background: var(--theme-primary);
+    color: var(--color-white);
+  }
+
+  .rdp-day_button:focus-visible,
+  .rdp-button_previous:focus-visible,
+  .rdp-button_next:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--theme-primary);
+    outline-offset: 2px;
+  }
+}

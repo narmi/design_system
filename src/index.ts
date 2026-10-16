@@ -130,6 +130,7 @@ export type { FieldSelectItemProps } from "./Field/Select/SelectItem";
 export type { FieldComboboxProps } from "./Field/Combobox";
 export type { FieldComboboxItemProps } from "./Field/Combobox/ComboboxItem";
 export type { FieldUploadProps, FieldUploadState } from "./Field/Upload";
+export type { FieldDateProps } from "./Field/Date";
 export type { FieldMaskName } from "./Field/masks";
 export type { FieldTokenProps } from "./FieldToken";
 export type { FormSectionProps } from "./FormSection";

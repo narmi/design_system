@@ -61,7 +61,6 @@ jobs:
           private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
           permission-contents: write
           permission-pull-requests: read
-          permission-workflows: write
 
       - name: Validate target_version
         env:
@@ -159,29 +158,23 @@ jobs:
               echo "::error::No released tag matches v${TARGET_VERSION}.* -- cannot create ${BRANCH}"
               exit 1
             fi
+            # Tags older than this predate a self-sufficient release setup:
+            # their `release.yaml` / `release.config.js` either don't know
+            # about N.N.x branches or authenticate with the
+            # SEMANTIC_RELEASE_TOKEN PAT that the release app replaced
+            # (v6.35.0). Fixing that means committing a newer
+            # `release.yaml` onto the branch, which needs the `workflows`
+            # app permission we deliberately don't grant. Those lines are
+            # bootstrapped by hand instead (see README, "Creating a
+            # maintenance branch for an older line").
+            MIN_AUTO_TAG="v6.35.0"
+            if [ "$(printf '%s\n%s\n' "$MIN_AUTO_TAG" "$LATEST_TAG" | sort -V | head -n 1)" != "$MIN_AUTO_TAG" ]; then
+              echo "::error::${BRANCH} does not exist and ${LATEST_TAG} predates ${MIN_AUTO_TAG}, so it can't be created automatically. Create it by hand (see README, \"Creating a maintenance branch for an older line\"), then re-run this workflow."
+              exit 1
+            fi
+
             echo "Creating $BRANCH from $LATEST_TAG"
             git switch -c "$BRANCH" "$LATEST_TAG"
-
-            # The tag we just branched from predates the maintenance-branch
-            # patterns in `release.yaml` and `release.config.js` on `main`,
-            # so without this sync the new branch would ship an old
-            # `release.yaml` that only triggers on `main` and an old
-            # `release.config.js` that doesn't know about N.N.x branches.
-            # Net effect: pushes to this branch would never fire
-            # `release.yaml` and semantic-release wouldn't recognize the
-            # branch as a release channel. Sync once at creation; if
-            # `main` later evolves these files in a way this line needs,
-            # open a separate sync PR against this branch.
-            #
-            # `[skip ci]` on the sync commit prevents the initial
-            # `git push -u origin "$BRANCH"` below from firing the release
-            # workflow before any cherry-picks have landed. Subsequent
-            # pushes (from the "Push clean backport" step) have the
-            # cherry-picked commits at HEAD, so they trigger normally.
-            git checkout main -- .github/workflows/release.yaml release.config.js
-            if ! git diff --cached --quiet; then
-              git commit -m "ci: sync release workflow and config from main [skip ci]"
-            fi
 
             # On the branch's first release, semantic-release calls
             # `addChannel` on `$LATEST_TAG` because its `channels` git note
@@ -203,8 +196,12 @@ jobs:
             UPDATED=$(printf '%s' "${EXISTING}" | jq -c '.channels = ((.channels // []) + ["patch"] | unique)')
             git notes --ref="${NOTE_REF}" add -f -m "${UPDATED}" "${LATEST_TAG}"
 
-            git push -u origin "$BRANCH"
+            # Note first, so it is in place before any release run on the
+            # new branch can look for it. The branch itself points at the
+            # tag's `chore(release): ... [skip ci]` commit, so creating it
+            # doesn't fire `release.yaml`; the cherry-pick push below does.
             git push origin "refs/notes/${NOTE_REF}"
+            git push -u origin "$BRANCH"
           fi
 
       - name: Determine picks

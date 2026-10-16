@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.32.2](https://github.com/narmi/design_system/compare/v6.32.1...v6.32.2) (2026-10-16)
+
+### ci
+
+* sync release workflow and config from main [skip ci] ([38dfcd5](https://github.com/narmi/design_system/commit/38dfcd50002282bd4719e629f8f928865d1e2d25))
+
+### fix
+
+* **CollapsibleCard,ContentCard:** remove user-select disabling ([cf5ef38](https://github.com/narmi/design_system/commit/cf5ef382a716747b81fc09b004127a31f07d3102))
+
 ## [6.32.1](https://github.com/narmi/design_system/compare/v6.32.0...v6.32.1) (2026-09-24)
 
 ### fix

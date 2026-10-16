@@ -21,8 +21,8 @@ jobs:
         with:
           persist-credentials: false
 
-      # When release-backport.yaml creates a maintenance branch, it copies
-      # this file from `main` onto a tag that may predate the pnpm migration
+      # Maintenance branches for lines older than v6.35 carry a copy of this
+      # file from `main` on top of a tag that may predate the pnpm migration
       # and only have `package-lock.json`, so detect which lockfile is present.
       - name: Detect package manager
         id: pm
@@ -73,8 +73,8 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      # When release-backport.yaml creates a maintenance branch, it copies
-      # this file from `main` onto a tag that may predate the pnpm migration
+      # Maintenance branches for lines older than v6.35 carry a copy of this
+      # file from `main` on top of a tag that may predate the pnpm migration
       # and only have `package-lock.json`, so detect which lockfile is present.
       - name: Detect package manager
         id: pm

@@ -6,6 +6,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'src/**'
+      - 'tokens/**'
 
 jobs:
   chromatic_update_baseline:

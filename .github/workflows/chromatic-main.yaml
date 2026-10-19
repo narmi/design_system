@@ -6,6 +6,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'src/**'
+      - 'tokens/**'
 
 jobs:
   chromatic_update_baseline:
@@ -37,6 +40,9 @@ jobs:
         uses: chromaui/action@a18e9f57b71eb05f941848c0b927aab2ee644e3e # 18.10.2
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          onlyChanged: true
+          # Token sources compile into ignored dist/tokens assets used by Storybook.
+          externals: 'tokens/**'
           autoAcceptChanges: true
           exitZeroOnChanges: false
           buildScriptName: ''

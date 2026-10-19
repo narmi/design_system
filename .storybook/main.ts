@@ -45,10 +45,20 @@ export default {
 
   addons: [
     "@storybook/addon-a11y",
-    {
-      name: "@storybook/addon-docs",
-      options: { transcludeMarkdown: true },
-    },
+    "@storybook/addon-vitest",
+    // addon-docs only feeds the Docs tab and its "Show code" panel, neither of
+    // which exists in the Vitest story run. Its jsxDecorator also throws
+    // "Rendered more hooks than during the previous render" under
+    // @storybook/addon-vitest for the first story in a file that opens a
+    // dropdown layer (Storybook 10.4 and 10.6), so leave it out there.
+    ...(process.env.VITEST
+      ? []
+      : [
+          {
+            name: "@storybook/addon-docs",
+            options: { transcludeMarkdown: true },
+          },
+        ]),
     "@chromatic-com/storybook",
   ],
 
@@ -64,12 +74,16 @@ export default {
   },
 
   async viteFinal(config, { configType }) {
-    // Add aliases for imports to resolve correctly in Vite
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      helpers: path.resolve(__dirname, "helpers"),
-      dist: path.resolve(__dirname, "../dist"),
-      src: path.resolve(__dirname, "../src"),
+    // Add aliases for imports to resolve correctly in Vite. `config.resolve`
+    // is undefined when the Vitest addon applies this config.
+    config.resolve = {
+      ...config.resolve,
+      alias: {
+        ...config.resolve?.alias,
+        helpers: path.resolve(__dirname, "helpers"),
+        dist: path.resolve(__dirname, "../dist"),
+        src: path.resolve(__dirname, "../src"),
+      },
     };
 
     // Vite 8 uses LightningCSS for CSS minification. Enable error

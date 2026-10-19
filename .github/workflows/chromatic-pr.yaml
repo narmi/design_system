@@ -88,6 +88,8 @@ jobs:
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           onlyChanged: true
+          # Token sources compile into ignored dist/tokens assets used by Storybook.
+          externals: 'tokens/**'
           exitZeroOnChanges: false # fail workflow if changes detected
           autoAcceptChanges: false
           buildScriptName: ''

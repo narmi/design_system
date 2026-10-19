@@ -163,7 +163,9 @@ still in production, backports are triggered by PR labels.
    `@latest`. In parallel, the "Release Backport (on merge)" workflow reads
    the labels and, for each one:
    - Ensures the maintenance branch `<MAJOR>.<MINOR>.x` exists (creates it
-     from the highest existing `v<MAJOR>.<MINOR>.z` tag if not).
+     from the highest existing `v<MAJOR>.<MINOR>.z` tag if not, for lines
+     `6.35` and newer; older lines must be
+     [created by hand](#creating-a-maintenance-branch-for-an-older-line)).
    - Cherry-picks the PR's commits onto the branch, preserving Conventional
      Commit messages so `semantic-release` derives the correct patch bump.
    - Pushes; the resulting push triggers a release on the maintenance
@@ -184,6 +186,35 @@ draft PR against the maintenance branch with resume instructions. Resolve
 the conflicts locally — do not squash-merge and do not re-word the
 cherry-picked commit messages, because `semantic-release` derives the next
 patch version from those messages.
+
+##### Creating a maintenance branch for an older line
+
+Tags before `v6.35.0` ship a `release.yaml` / `release.config.js` that can't
+release a maintenance branch on their own, so the branch needs a newer copy
+of both files from `main`. The backport workflow's app token deliberately
+can't change workflow files, so a maintainer creates these branches once,
+by hand, before the first backport to that line:
+
+```sh
+LINE=6.32   # Major.Minor to create
+git fetch origin --tags
+TAG=$(git tag --sort=-v:refname --list "v${LINE}.[0-9]*" | awk '!/-/' | head -n 1)
+git switch -c "${LINE}.x" "$TAG"
+git checkout origin/main -- .github/workflows/release.yaml release.config.js
+git commit -m "ci: sync release workflow and config from main [skip ci]"
+
+# Mark the tag as already on the "patch" channel, so the first release on
+# this branch doesn't try `npm dist-tag add` (which OIDC can't authenticate).
+NOTE_REF="semantic-release-${TAG}"
+git fetch origin "+refs/notes/${NOTE_REF}:refs/notes/${NOTE_REF}" 2>/dev/null || true
+EXISTING=$(git notes --ref="$NOTE_REF" show "$TAG" 2>/dev/null || echo '{"channels":[null]}')
+git notes --ref="$NOTE_REF" add -f -m "$(printf '%s' "$EXISTING" | jq -c '.channels = ((.channels // []) + ["patch"] | unique)')" "$TAG"
+
+git push origin "refs/notes/${NOTE_REF}"
+git push -u origin "${LINE}.x"
+```
+
+Then re-run the backport (Actions → Release Backport → Run workflow).
 
 Consumers pinned to that Major.Minor via a semver range (e.g. `"~6.15.0"`)
 will pick up the patch automatically on the next install. To install the

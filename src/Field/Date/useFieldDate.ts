@@ -212,7 +212,6 @@ export const useFieldDate = ({
           // Clicks inside the calendar keep focus (and so the calendar) in place
           onMouseDown: (e: React.MouseEvent) => e.preventDefault(),
         },
-        // Remounting on a typed date shows that date's month
         dayPickerKey: value,
         dayPickerProps: {
           className: "nds-calendar",

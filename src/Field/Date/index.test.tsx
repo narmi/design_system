@@ -160,6 +160,19 @@ describe("Field.Date", () => {
       expect(onChange).toHaveBeenLastCalledWith("2026-10-21");
     });
 
+    it("snaps back when the parent rejects a change", async () => {
+      render(
+        <FieldDate label="Start date" value="2026-10-14" onChange={vi.fn()} />,
+      );
+      const input = screen.getByLabelText("Start date");
+      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+
+      await user.clear(input);
+      await user.type(input, "10152026");
+
+      expect(input).toHaveValue("10/14/2026");
+    });
+
     it("follows a value set by the parent", () => {
       const { rerender } = render(
         <FieldDate label="Start date" value="" onChange={() => {}} />,

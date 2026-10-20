@@ -14,21 +14,10 @@ export type { FieldDateFooterSetters };
 
 export interface FieldDateProps
   extends
-    Omit<
-      React.InputHTMLAttributes<HTMLInputElement>,
-      | "onChange"
-      | "value"
-      | "id"
-      | "type"
-      | "min"
-      | "max"
-      | "disabled"
-      | "placeholder" // always the display format, `MM/DD/YYYY`
-      | "aria-invalid"
-      | "aria-describedby"
-    >,
     FieldBaseProps,
-    DateConstraints {
+    DateConstraints,
+    // The only native attributes forwarded to the input, for form libraries
+    Pick<React.InputHTMLAttributes<HTMLInputElement>, "name" | "onBlur"> {
   /** Selected date as `YYYY-MM-DD`, or `""` when no valid date is set (controlled) */
   value: string;
   /**
@@ -101,8 +90,8 @@ export const FieldDate = forwardRef<HTMLInputElement, FieldDateProps>(
       errors = [],
       isDisabled = false,
       renderHelperText,
-      className,
-      ...rest
+      name,
+      onBlur,
     },
     forwardedRef,
   ) => {
@@ -120,7 +109,6 @@ export const FieldDate = forwardRef<HTMLInputElement, FieldDateProps>(
         isDisabled,
         isPortalled,
         shouldUseNativeOnTouch,
-        className,
       });
 
     return (
@@ -139,7 +127,7 @@ export const FieldDate = forwardRef<HTMLInputElement, FieldDateProps>(
         </Row>
 
         <div className="nds-field-input-box" {...anchorProps}>
-          <input {...rest} {...inputProps} />
+          <input name={name} onBlur={onBlur} {...inputProps} />
           {calendar && (
             <i role="img" className="narmi-icon-calendar" aria-hidden="true" />
           )}

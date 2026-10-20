@@ -33,7 +33,6 @@ export interface UseFieldDateOptions extends DateConstraints {
   isPortalled?: boolean;
   /** Render a native `<input type="date">` on coarse-pointer devices */
   shouldUseNativeOnTouch?: boolean;
-  className?: string;
 }
 
 /** What a `renderFooter` function receives to act on the field */
@@ -73,7 +72,6 @@ export const useFieldDate = ({
   isDisabled = false,
   isPortalled = false,
   shouldUseNativeOnTouch = true,
-  className,
 }: UseFieldDateOptions) => {
   const { errorId, hasError, controlProps } = useField({
     id,
@@ -152,7 +150,6 @@ export const useFieldDate = ({
         "nds-field--isDisabled": isDisabled,
         "nds-field--hasError": hasError,
       },
-      className,
     ]),
     onFocus: (e: React.FocusEvent<HTMLDivElement>) => {
       if (!isFocusWithin(e)) open();

@@ -160,7 +160,11 @@ export const useFieldDate = ({
         // Only the calendar closes, not a surrounding Dialog
         e.stopPropagation();
         closeAndFocusInput();
-      } else if (e.key === "ArrowDown" && e.target === inputRef.current) {
+      } else if (
+        !isNative &&
+        e.key === "ArrowDown" &&
+        e.target === inputRef.current
+      ) {
         e.preventDefault();
         if (!isOpen) return open();
         e.currentTarget

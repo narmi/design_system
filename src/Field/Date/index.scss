@@ -21,10 +21,6 @@
   @extend %nds-dropdown-layer;
   background: var(--color-white);
   box-shadow: var(--elevation-middle);
-
-  // never overflow the calendar popover
-  max-height: none;
-  overflow: visible;
 }
 
 .nds-calendar {

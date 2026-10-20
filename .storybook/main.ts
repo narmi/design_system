@@ -46,11 +46,6 @@ export default {
   addons: [
     "@storybook/addon-a11y",
     "@storybook/addon-vitest",
-    // addon-docs only feeds the Docs tab and its "Show code" panel, neither of
-    // which exists in the Vitest story run. Its jsxDecorator also throws
-    // "Rendered more hooks than during the previous render" under
-    // @storybook/addon-vitest for the first story in a file that opens a
-    // dropdown layer (Storybook 10.4 and 10.6), so leave it out there.
     ...(process.env.VITEST
       ? []
       : [

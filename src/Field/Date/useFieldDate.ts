@@ -92,7 +92,11 @@ export const useFieldDate = ({
   // What was last typed is shown while it still agrees with `value`; the
   // moment the parent sets something else (a reset, a rejected change), `value` wins
   const [typed, setTyped] = useState("");
-  const text = toValue(typed) === value ? typed : toText(value);
+  const isTypedCurrent = toValue(typed) === value;
+  if (!isTypedCurrent && typed !== "") {
+    setTyped("");
+  }
+  const text = isTypedCurrent ? typed : toText(value);
 
   const handleInput = (nextText: string) => {
     setTyped(nextText);

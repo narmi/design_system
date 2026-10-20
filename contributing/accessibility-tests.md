@@ -49,13 +49,6 @@ https://dequeuniversity.com/rules/axe/4.12/label
 
 The fastest way to debug is to open the story in Storybook (`pnpm run storybook`) and look at the **Accessibility** panel, which highlights the failing element.
 
-## Fixing it
-
-Prefer fixing the component or the story over suppressing the check:
-
-- If the violation is in the component, fix the component. That is the point of the check.
-- If the violation is only in the story's scaffolding (an unlabeled demo `<select>`, a table built for layout), fix the story.
-
 ## Existing violations: the baseline
 
 When this check was introduced, a number of stories already had violations. Rather than fix them all at once, they are listed in `.storybook/a11y-baseline.json`, keyed by story, with the axe rules each one fails. Stories in the baseline are tolerated. The baseline is a ratchet, so it can only shrink:

@@ -58,9 +58,10 @@ const run = spawnSync(
 );
 
 if (!existsSync(outFile)) {
-  console.error(run.stderr);
+  if (run.error) console.error(`Failed to start Vitest: ${run.error.message}`);
+  if (run.stderr) console.error(run.stderr);
   console.error("Vitest did not produce a results file; see output above.");
-  process.exit(run.status ?? 1);
+  process.exit(run.status || 1);
 }
 
 const results = JSON.parse(readFileSync(outFile, "utf8"));
@@ -83,8 +84,15 @@ const fileErrors = [];
 for (const file of results.testResults) {
   const rel = path.relative(ROOT, file.name);
   ranFiles.add(rel);
-  if (file.status === "failed" && file.assertionResults.length === 0) {
-    fileErrors.push({ rel, message: stripAnsi(file.message || "") });
+  const assertionFailures = file.assertionResults.filter(
+    (test) => test.status === "failed",
+  );
+  const message = stripAnsi(file.message || "").trim();
+  if (
+    file.status === "failed" &&
+    (message || assertionFailures.length === 0)
+  ) {
+    fileErrors.push({ rel, message });
   }
   for (const test of file.assertionResults) {
     const messages = (test.failureMessages || []).map(stripAnsi);
@@ -143,6 +151,39 @@ const stale = Object.keys(current).filter(
     !stories.has(key) &&
     (ranFiles.has(fileOf(key)) || !baselineFileExists(key)),
 );
+const failedAssertions = [...stories].filter(
+  ([, story]) => story.status === "failed",
+);
+const onlyToleratedA11yFailures =
+  results.success === false &&
+  failedAssertions.length > 0 &&
+  failedAssertions.every(
+    ([key, story]) =>
+      story.a11y &&
+      key in current &&
+      story.rules.length > 0 &&
+      story.rules.every((rule) => current[key].includes(rule)),
+  ) &&
+  fileErrors.length === 0;
+const runnerErrors = [];
+if (run.error) runnerErrors.push(`Failed to start Vitest: ${run.error.message}`);
+if (
+  (run.status !== 0 || results.success === false) &&
+  !onlyToleratedA11yFailures
+) {
+  const status =
+    run.status === null
+      ? `terminated by ${run.signal || "an unknown signal"}`
+      : `exited with status ${run.status}`;
+  runnerErrors.push(
+    [
+      `Vitest ${status}${results.success === false ? " and reported unsuccessful results" : ""}.`,
+      run.stderr?.trim(),
+    ]
+      .filter(Boolean)
+      .join("\n"),
+  );
+}
 const known = [...stories].filter(
   ([key, s]) => s.a11y && key in current,
 ).length;
@@ -180,6 +221,7 @@ section(
   ({ rel, message }) =>
     `\n✖ ${rel}\n\n${trimMessage(message).replace(/^/gm, "    ")}\n`,
 );
+section("Vitest runner errors", runnerErrors, (message) => `\n✖ ${message}\n`);
 section(
   `Baseline stories that now pass (remove them from ${BASELINE_REL}, or run with --update)`,
   fixed,
@@ -195,6 +237,7 @@ const problems =
   newViolations.length +
   otherFailures.length +
   fileErrors.length +
+  runnerErrors.length +
   fixed.length +
   stale.length;
 

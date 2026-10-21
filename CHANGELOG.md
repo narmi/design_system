@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.35.5](https://github.com/narmi/design_system/compare/v6.35.4...v6.35.5) (2026-10-21)
+
+### ci
+
+* cancel superseded Chromatic PR runs (#2341) ([07bfffb](https://github.com/narmi/design_system/commit/07bfffb819cf70916672f1766f9186311ccc3776)), closes [#2341](https://github.com/narmi/design_system/issues/2341)
+* **backport:** drop workflows permission from backport app token ([1f93cf3](https://github.com/narmi/design_system/commit/1f93cf358583c92641b65748153aec62fd88ff33))
+* enable Chromatic TurboSnap in main and PR workflows (#2339) ([2517a5f](https://github.com/narmi/design_system/commit/2517a5f6f99c95298d4dc880810405e85c16a153)), closes [#2339](https://github.com/narmi/design_system/issues/2339)
+* limit main Chromatic builds to source and token changes (#2340) ([8a2cf32](https://github.com/narmi/design_system/commit/8a2cf32c45d1f86399fd91efb04444e61de97668)), closes [#2340](https://github.com/narmi/design_system/issues/2340)
+
+### fix
+
+* **hooks:** correct Button import depth in relocated layout stories ([70b511b](https://github.com/narmi/design_system/commit/70b511b6bdbd5fb3297c80415a2b367a200a87fd))
+
 ## [6.35.4](https://github.com/narmi/design_system/compare/v6.35.3...v6.35.4) (2026-10-16)
 
 ### fix

@@ -74,6 +74,7 @@ const isA11yMessage = (m) => /toHaveNoViolations/.test(m);
 const rulesIn = (m) =>
   [...new Set([...m.matchAll(/\(([a-z0-9-]+)\)"/g)].map((x) => x[1]))].sort();
 const fileOf = (key) => key.slice(0, key.indexOf(" > "));
+const baselineFileExists = (key) => existsSync(path.join(ROOT, fileOf(key)));
 
 const ranFiles = new Set();
 const stories = new Map(); // "file > story" -> { status, a11y, rules, message }
@@ -103,7 +104,9 @@ for (const file of results.testResults) {
 // ---------------------------------------------------------------------------
 if (update) {
   const next = Object.fromEntries(
-    Object.entries(baseline).filter(([key]) => !ranFiles.has(fileOf(key))),
+    Object.entries(baseline).filter(
+      ([key]) => !ranFiles.has(fileOf(key)) && baselineFileExists(key),
+    ),
   );
   for (const [key, story] of stories) {
     if (story.a11y) next[key] = story.rules;
@@ -136,7 +139,9 @@ const fixed = Object.keys(current).filter(
   (key) => stories.get(key)?.status === "passed",
 );
 const stale = Object.keys(current).filter(
-  (key) => !stories.has(key) && ranFiles.has(fileOf(key)),
+  (key) =>
+    !stories.has(key) &&
+    (ranFiles.has(fileOf(key)) || !baselineFileExists(key)),
 );
 const known = [...stories].filter(
   ([key, s]) => s.a11y && key in current,

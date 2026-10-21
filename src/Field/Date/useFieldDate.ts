@@ -115,6 +115,9 @@ export const useFieldDate = ({
   ) as React.Ref<HTMLInputElement>;
 
   const [wantsOpen, setWantsOpen] = useState(false);
+  if (wantsOpen && (isDisabled || isNative)) {
+    setWantsOpen(false);
+  }
   const isOpen = wantsOpen && !isDisabled && !isNative;
   const open = () => setWantsOpen(true);
   const close = () => setWantsOpen(false);

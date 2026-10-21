@@ -69,11 +69,13 @@ import Toggle from "./Toggle";
 import TokenInput from "./TokenInput";
 import Tooltip from "./Tooltip";
 import TruncatedAccount from "./TruncatedAccount";
-import useSupportsAnchorPositioning from "./hooks/useSupportsAnchorPositioning";
-import useBreakpoints from "./hooks/useBreakpoints";
-import useDropdownLayer from "./hooks/useDropdownLayer";
+import {
+  useBreakpoints,
+  useDropdownLayer,
+  useLockBodyScroll,
+  useSupportsAnchorPositioning,
+} from "./hooks";
 import formatDate from "./formatters/formatDate";
-import useLockBodyScroll from "./hooks/useLockBodyScroll";
 import formatNumber from "./formatters/formatNumber";
 import formatFileSize from "./formatters/formatFileSize";
 
@@ -204,11 +206,11 @@ export type { ToggleProps } from "./Toggle";
 export type { TokenInputProps } from "./TokenInput";
 export type { TooltipProps } from "./Tooltip";
 export type { TruncatedAccountProps } from "./TruncatedAccount";
-export type { UseBreakpointsResult } from "./hooks/useBreakpoints";
 export type {
+  UseBreakpointsResult,
   UseDropdownLayerResult,
   UseDropdownLayerOptions,
-} from "./hooks/useDropdownLayer";
+} from "./hooks";
 export type { FormatDateStyle } from "./formatters/formatDate";
 export type {
   FormatNumberStyle,

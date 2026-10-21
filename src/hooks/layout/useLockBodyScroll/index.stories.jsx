@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useLockBodyScroll from ".";
-import Button from "../../Button";
+import Button from "../../../Button";
 
 export const Overview = () => {
   const [isLocked, setIsLocked] = useState(false);
@@ -21,6 +21,6 @@ export const Overview = () => {
 };
 
 export default {
-  title: "Hooks/useLockBodyScroll", // Show doc page not individual stories
+  title: "Hooks/Layout/useLockBodyScroll", // Show doc page not individual stories
   tags: ["autodocs", "!dev"],
 };

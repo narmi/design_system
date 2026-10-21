@@ -2,9 +2,9 @@
 import React, { useRef, useEffect, useId } from "react";
 import ReactDOM from "react-dom";
 import cc from "classcat";
-import useBreakpoints from "../hooks/useBreakpoints";
+import useBreakpoints from "../hooks/env/useBreakpoints";
 import useMountTransition from "./useMountTransition";
-import useLockBodyScroll from "../hooks/useLockBodyScroll";
+import useLockBodyScroll from "../hooks/layout/useLockBodyScroll";
 import FocusLock from "react-focus-lock";
 
 const noop = () => {};

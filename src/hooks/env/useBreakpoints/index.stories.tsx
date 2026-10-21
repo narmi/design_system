@@ -48,7 +48,7 @@ export const Overview: React.FC = () => {
 };
 
 const meta: Meta = {
-  title: "Hooks/useBreakpoints", // Show doc page not individual stories
+  title: "Hooks/Env/useBreakpoints", // Show doc page not individual stories
   tags: ["autodocs", "!dev"],
   component: Overview,
 };

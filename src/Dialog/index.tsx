@@ -2,7 +2,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import cc from "classcat";
-import useLockBodyScroll from "../hooks/useLockBodyScroll";
+import useLockBodyScroll from "../hooks/layout/useLockBodyScroll";
 import { CSSTransition } from "react-transition-group";
 import FocusLock from "react-focus-lock";
 

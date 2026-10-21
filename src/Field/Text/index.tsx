@@ -2,7 +2,7 @@ import React, { forwardRef, useRef } from "react";
 import cc from "classcat";
 import { useMaskito } from "@maskito/react";
 import { useField } from "../useField";
-import { useMergeRefs } from "../../hooks/useMergeRefs";
+import { useMergeRefs } from "../../hooks/util/useMergeRefs";
 import { FIELD_MASKS } from "../masks";
 import Row from "../../Row";
 import { FieldErrors } from "../Errors/index";

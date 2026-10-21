@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useBreakpoints from "../hooks/useBreakpoints";
+import useBreakpoints from "../hooks/env/useBreakpoints";
 
 const VALID_GAPS = ["xs", "s", "m", "l", "xl"];
 const VALID_SIZES = ["s", "m", "l", "xl"];

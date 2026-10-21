@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React, { useState, useMemo } from "react";
 import { useSelect, UseSelectProps } from "downshift";
-import useDropdownLayer from "../hooks/useDropdownLayer";
+import useDropdownLayer from "../hooks/layout/useDropdownLayer";
 
 import cc from "classcat";
 import Row from "../Row";

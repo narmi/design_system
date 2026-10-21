@@ -1,5 +1,5 @@
 import { useLayoutEffect } from "react";
-import useSupportsAnchorPositioning from "../useSupportsAnchorPositioning";
+import useSupportsAnchorPositioning from "../../env/useSupportsAnchorPositioning";
 
 interface UseAnchorPolyfillParams {
   /** Reference to the element that the dropdown should be anchored to */

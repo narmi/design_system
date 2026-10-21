@@ -2,7 +2,7 @@ import React, { forwardRef, type ReactNode } from "react";
 import cc from "classcat";
 import { useField } from "../useField";
 import { useUpload } from "./useUpload";
-import { useMergeRefs } from "../../hooks/useMergeRefs";
+import { useMergeRefs } from "../../hooks/util/useMergeRefs";
 import { FieldErrors } from "../Errors/index";
 import formatFileSize from "../../formatters/formatFileSize";
 import Row from "../../Row";

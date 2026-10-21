@@ -21,6 +21,18 @@ export { default as useSupportsAnchoredContainerQueries } from "./env/useSupport
 export { default as useSupportsAnchorPositioning } from "./env/useSupportsAnchorPositioning";
 
 // interaction
+export { default as useDismiss } from "./interaction/useDismiss";
+export type {
+  UseDismissOptions,
+  UseDismissResult,
+  DismissReason,
+  DismissEvent,
+} from "./interaction/useDismiss";
+export { default as useFocusTrap } from "./interaction/useFocusTrap";
+export type {
+  UseFocusTrapOptions,
+  UseFocusTrapResult,
+} from "./interaction/useFocusTrap";
 export { default as useOnClickOutside } from "./interaction/useOnClickOutside";
 
 // layout

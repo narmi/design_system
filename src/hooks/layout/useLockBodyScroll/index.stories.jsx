@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useLockBodyScroll from ".";
-import Button from "../../Button";
+import Button from "../../../Button";
 
 export const Overview = () => {
   const [isLocked, setIsLocked] = useState(false);

@@ -4,8 +4,8 @@ import { useSelect } from "downshift";
 import { VALID_ICON_NAMES } from "../icons/iconNames";
 import MenuButtonItem, { MenuButtonItemProps } from "./MenuButtonItem";
 import Row from "../Row";
-import useDropdownLayer from "../hooks/useDropdownLayer";
-import type { Placement } from "../hooks/useDropdownLayer";
+import useDropdownLayer from "../hooks/layout/useDropdownLayer";
+import type { Placement } from "../hooks/layout/useDropdownLayer";
 import type { IconName } from "../types/Icon.types";
 
 export { VALID_ICON_NAMES };

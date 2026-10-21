@@ -10,7 +10,7 @@ import Error from "../Error";
 import TextInput from "../TextInput";
 import Row from "../Row";
 import { getItemIndex } from "../Select";
-import useDropdownLayer from "../hooks/useDropdownLayer";
+import useDropdownLayer from "../hooks/layout/useDropdownLayer";
 import type { IconName } from "../types/Icon.types";
 
 const noop = () => {};

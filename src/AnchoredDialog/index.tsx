@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import React, { useEffect } from "react";
-import useOnClickOutside from "../hooks/useOnClickOutside";
+import useOnClickOutside from "../hooks/interaction/useOnClickOutside";
 import FocusLock from "react-focus-lock";
-import useDropdownLayer from "../hooks/useDropdownLayer";
+import useDropdownLayer from "../hooks/layout/useDropdownLayer";
 
 export interface AnchoredDialogProps {
   /** Renders the dialog content */

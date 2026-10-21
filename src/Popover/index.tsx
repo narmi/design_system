@@ -2,8 +2,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import cc from "classcat";
 import FocusLock from "react-focus-lock";
-import useDropdownLayer from "../hooks/useDropdownLayer";
-import type { Placement } from "../hooks/useDropdownLayer";
+import useDropdownLayer from "../hooks/layout/useDropdownLayer";
+import type { Placement } from "../hooks/layout/useDropdownLayer";
 
 const noop = () => {};
 

@@ -200,9 +200,7 @@ describe("Dialog", () => {
       renderDialog();
 
       await waitFor(() => {
-        expect(
-          document.querySelector(".nds-dialog-focuslock"),
-        ).toBeInTheDocument();
+        expect(screen.getByRole("dialog")).toHaveFocus();
       });
     });
   });

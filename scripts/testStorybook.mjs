@@ -125,7 +125,9 @@ const current = update
   : baseline;
 
 const newViolations = [...stories].filter(
-  ([key, s]) => s.a11y && !(key in current),
+  ([key, s]) =>
+    s.a11y &&
+    (!(key in current) || s.rules.some((rule) => !current[key].includes(rule))),
 );
 const otherFailures = [...stories].filter(
   ([, s]) => s.status === "failed" && !s.a11y,

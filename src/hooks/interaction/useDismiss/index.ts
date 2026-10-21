@@ -44,12 +44,6 @@ export interface UseDismissResult {
  * Wires up the ways a user can dismiss a floating layer: the Escape key,
  * a click on a backdrop, or a click outside the layer. Reports every
  * dismissal through a single `onDismiss(reason)` callback.
- *
- * Escape is handled as a React `onKeyDown` on the layer, so it only
- * fires while focus is inside the layer. Pair with `useFocusTrap` for
- * modal layers. An Escape keydown that a descendant already handled
- * (`event.defaultPrevented`) is ignored, so nested widgets like a
- * Combobox can close their own listbox first.
  */
 const useDismiss = ({
   isOpen,

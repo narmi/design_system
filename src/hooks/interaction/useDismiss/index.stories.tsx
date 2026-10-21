@@ -3,14 +3,12 @@ import { Meta } from "@storybook/react-vite";
 import useDismiss, { DismissReason } from ".";
 import Button from "../../../Button";
 
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-
 export const Overview = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [lastReason, setLastReason] = useState<DismissReason | null>(null);
   const ref = useRef<HTMLDivElement>(null);
 
-  const { layerProps, backdropProps } = useDismiss({
+  const { backdropProps } = useDismiss({
     isOpen,
     ref,
     onDismiss: (reason) => {
@@ -42,7 +40,6 @@ export const Overview = () => {
             role="dialog"
             aria-label="Example layer"
             ref={ref}
-            {...layerProps}
             className="bgColor--white padding--all--l rounded--all"
           >
             <p>Press Escape or click the backdrop.</p>

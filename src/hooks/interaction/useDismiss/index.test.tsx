@@ -9,7 +9,7 @@ type HarnessProps = Partial<UseDismissOptions> & {
 
 const Harness = ({ isOpen = true, onDismiss, ...rest }: HarnessProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const { layerProps, backdropProps } = useDismiss({
+  const { backdropProps } = useDismiss({
     isOpen,
     onDismiss,
     ref,
@@ -19,8 +19,7 @@ const Harness = ({ isOpen = true, onDismiss, ...rest }: HarnessProps) => {
     <>
       <button>outside</button>
       <div data-testid="backdrop" {...backdropProps}>
-        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-        <div role="dialog" ref={ref} {...layerProps}>
+        <div role="dialog" ref={ref}>
           <button>inside</button>
         </div>
       </div>
@@ -29,10 +28,10 @@ const Harness = ({ isOpen = true, onDismiss, ...rest }: HarnessProps) => {
 };
 
 describe("useDismiss", () => {
-  it("dismisses with reason 'escape' on Escape inside the layer", async () => {
+  it("dismisses with reason 'escape' on Escape wherever focus is", async () => {
     const onDismiss = vi.fn();
     render(<Harness onDismiss={onDismiss} />);
-    screen.getByText("inside").focus();
+    screen.getByText("outside").focus();
     await userEvent.keyboard("{Escape}");
     expect(onDismiss).toHaveBeenCalledTimes(1);
     expect(onDismiss.mock.calls[0][0]).toBe("escape");
@@ -50,9 +49,9 @@ describe("useDismiss", () => {
     const onDismiss = vi.fn();
     const Nested = () => {
       const ref = useRef<HTMLDivElement>(null);
-      const { layerProps } = useDismiss({ isOpen: true, onDismiss, ref });
+      useDismiss({ isOpen: true, onDismiss, ref });
       return (
-        <div ref={ref} {...layerProps}>
+        <div ref={ref}>
           <input
             aria-label="inner"
             onKeyDown={(e) => e.key === "Escape" && e.preventDefault()}
@@ -86,6 +85,14 @@ describe("useDismiss", () => {
     expect(onDismiss.mock.calls[0][0]).toBe("outside");
   });
 
+  it("removes the Escape listener on unmount", async () => {
+    const onDismiss = vi.fn();
+    const { unmount } = render(<Harness onDismiss={onDismiss} />);
+    unmount();
+    await userEvent.keyboard("{Escape}");
+    expect(onDismiss).not.toHaveBeenCalled();
+  });
+
   it("does not dismiss on outside clicks by default", async () => {
     const onDismiss = vi.fn();
     render(<Harness onDismiss={onDismiss} />);
@@ -96,7 +103,6 @@ describe("useDismiss", () => {
   it("does nothing while closed", async () => {
     const onDismiss = vi.fn();
     render(<Harness onDismiss={onDismiss} isOpen={false} outsideClick />);
-    screen.getByText("inside").focus();
     await userEvent.keyboard("{Escape}");
     await userEvent.click(screen.getByTestId("backdrop"));
     await userEvent.click(screen.getByText("outside"));

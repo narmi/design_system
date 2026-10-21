@@ -1,4 +1,14 @@
 import { useEffect, useRef } from "react";
+import {
+  captureFocusRestore,
+  focusFirstElement,
+  focusLastElement,
+  focusNextElement,
+  focusPrevElement,
+  moveFocusInside,
+} from "focus-lock";
+
+export type FocusTrapInitialFocus = "first" | "container" | "none";
 
 export interface UseFocusTrapOptions {
   /** Ref to the element that bounds focus */
@@ -6,10 +16,12 @@ export interface UseFocusTrapOptions {
   /** Whether the trap is active */
   isActive: boolean;
   /**
-   * Move focus into the element when the trap activates (default `true`).
-   * Focuses the first tabbable descendant, or the element itself.
+   * Where focus goes when the trap activates (default `"first"`).
+   * - `"first"`: the first tabbable descendant (or one marked `data-autofocus`)
+   * - `"container"`: the bounding element itself
+   * - `"none"`: focus is left where it is until the user tabs into the element
    */
-  autoFocus?: boolean;
+  initialFocus?: FocusTrapInitialFocus;
   /** Restore focus to the previously focused element when the trap deactivates (default `true`) */
   returnFocus?: boolean;
 }
@@ -17,41 +29,11 @@ export interface UseFocusTrapOptions {
 export interface UseFocusTrapResult {
   /** Props to spread onto the bounding element */
   trapProps: {
-    /** Lets the element itself take focus when it has no tabbable descendants */
+    /** Lets the element itself take focus */
     tabIndex: -1;
     onKeyDown: (event: React.KeyboardEvent) => void;
   };
 }
-
-const TABBABLE_SELECTOR = [
-  "a[href]",
-  "area[href]",
-  "button",
-  "input",
-  "select",
-  "textarea",
-  "iframe",
-  "summary",
-  "audio[controls]",
-  "video[controls]",
-  "[contenteditable]",
-  "[tabindex]",
-].join(",");
-
-const isTabbable = (el: HTMLElement) => {
-  if (el.tabIndex < 0) return false;
-  if (el.hasAttribute("disabled") || el.hasAttribute("hidden")) return false;
-  if (el.getAttribute("contenteditable") === "false") return false;
-  if (el instanceof HTMLInputElement && el.type === "hidden") return false;
-  // jsdom and older browsers lack checkVisibility; treat as visible there
-  return el.checkVisibility?.() ?? true;
-};
-
-/** Tabbable descendants of `container`, in DOM order */
-export const getTabbables = (container: HTMLElement): HTMLElement[] =>
-  Array.from(container.querySelectorAll<HTMLElement>(TABBABLE_SELECTOR)).filter(
-    isTabbable,
-  );
 
 /**
  * Keeps keyboard focus inside an element while active.
@@ -59,6 +41,7 @@ export const getTabbables = (container: HTMLElement): HTMLElement[] =>
  * Tab and Shift+Tab wrap around the element's tabbable descendants via a
  * React `onKeyDown` on the element. On activation, focus moves into the
  * element; on deactivation, it returns to wherever it was before.
+ * Tab order and focusability come from `focus-lock`.
  *
  * This traps the keyboard only. Pointer and assistive-technology focus
  * changes are left to a backdrop and `aria-modal`, which is enough for
@@ -67,48 +50,44 @@ export const getTabbables = (container: HTMLElement): HTMLElement[] =>
 const useFocusTrap = ({
   ref,
   isActive,
-  autoFocus = true,
+  initialFocus = "first",
   returnFocus = true,
 }: UseFocusTrapOptions): UseFocusTrapResult => {
   // read the latest option values inside the effect without re-running it
-  const optionsRef = useRef({ autoFocus, returnFocus });
-  optionsRef.current = { autoFocus, returnFocus };
+  const optionsRef = useRef({ initialFocus, returnFocus });
+  optionsRef.current = { initialFocus, returnFocus };
 
   useEffect(() => {
     if (!isActive) return undefined;
     const container = ref.current;
     if (!container) return undefined;
 
-    const previous = document.activeElement as HTMLElement | null;
+    const previous = document.activeElement;
+    const restore = captureFocusRestore(previous);
+    const { initialFocus } = optionsRef.current;
 
-    if (optionsRef.current.autoFocus && !container.contains(previous)) {
-      (getTabbables(container)[0] ?? container).focus();
+    if (!container.contains(previous)) {
+      if (initialFocus === "first") moveFocusInside(container, previous);
+      if (initialFocus === "container") container.focus();
     }
 
     return () => {
-      if (optionsRef.current.returnFocus && previous?.isConnected) {
-        previous.focus();
-      }
+      if (optionsRef.current.returnFocus)
+        (restore() as HTMLElement | undefined)?.focus();
     };
   }, [isActive, ref]);
 
   const onKeyDown = (event: React.KeyboardEvent) => {
     if (!isActive || event.key !== "Tab" || event.defaultPrevented) return;
-    const container = event.currentTarget as HTMLElement;
-    const tabbables = getTabbables(container);
-    const first = tabbables[0];
-    const last = tabbables[tabbables.length - 1];
+    event.preventDefault();
+    const scope = event.currentTarget as HTMLElement;
     const active = document.activeElement;
+    const options = { scope, cycle: true, onlyTabbable: true };
 
-    if (!first) {
-      event.preventDefault();
-      container.focus();
-    } else if (event.shiftKey && (active === first || active === container)) {
-      event.preventDefault();
-      last.focus();
-    } else if (!event.shiftKey && active === last) {
-      event.preventDefault();
-      first.focus();
+    if (active && active !== scope && scope.contains(active)) {
+      (event.shiftKey ? focusPrevElement : focusNextElement)(active, options);
+    } else {
+      (event.shiftKey ? focusLastElement : focusFirstElement)(scope, options);
     }
   };
 

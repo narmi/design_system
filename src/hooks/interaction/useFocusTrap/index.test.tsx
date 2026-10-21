@@ -1,8 +1,7 @@
-/* eslint-disable jsx-a11y/no-autofocus, jsx-a11y/anchor-is-valid, jsx-a11y/no-noninteractive-tabindex */
 import React, { useRef } from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import useFocusTrap, { UseFocusTrapOptions, getTabbables } from ".";
+import useFocusTrap, { UseFocusTrapOptions } from ".";
 
 type HarnessProps = Partial<Omit<UseFocusTrapOptions, "ref">> & {
   children?: React.ReactNode;
@@ -47,9 +46,47 @@ describe("useFocusTrap", () => {
     expect(screen.getByRole("dialog")).toHaveFocus();
   });
 
-  it("skips autoFocus when disabled", () => {
-    render(<Harness autoFocus={false}>{threeButtons}</Harness>);
+  it("focuses the container when initialFocus is 'container'", () => {
+    render(<Harness initialFocus="container">{threeButtons}</Harness>);
+    expect(screen.getByRole("dialog")).toHaveFocus();
+  });
+
+  it("leaves focus alone when initialFocus is 'none'", () => {
+    render(<Harness initialFocus="none">{threeButtons}</Harness>);
     expect(screen.getByText("one")).not.toHaveFocus();
+  });
+
+  it("prefers a data-autofocus descendant", () => {
+    render(
+      <Harness>
+        <button>one</button>
+        <button data-autofocus>two</button>
+      </Harness>,
+    );
+    expect(screen.getByText("two")).toHaveFocus();
+  });
+
+  it("moves from the container to the first tabbable on Tab", async () => {
+    render(<Harness initialFocus="container">{threeButtons}</Harness>);
+    await userEvent.tab();
+    expect(screen.getByText("one")).toHaveFocus();
+    screen.getByRole("dialog").focus();
+    await userEvent.tab({ shift: true });
+    expect(screen.getByText("three")).toHaveFocus();
+  });
+
+  it("skips disabled and hidden descendants", async () => {
+    render(
+      <Harness>
+        <button>one</button>
+        <button disabled>no</button>
+        <button style={{ display: "none" }}>hidden</button>
+        <button>two</button>
+      </Harness>,
+    );
+    screen.getByText("one").focus();
+    await userEvent.tab();
+    expect(screen.getByText("two")).toHaveFocus();
   });
 
   it("wraps Tab from the last tabbable to the first", async () => {
@@ -113,26 +150,5 @@ describe("useFocusTrap", () => {
     screen.getByText("three").focus();
     await userEvent.tab();
     expect(screen.getByText("after")).toHaveFocus();
-  });
-
-  describe("getTabbables", () => {
-    it("excludes disabled, hidden, and negative-tabindex elements", () => {
-      render(
-        <Harness autoFocus={false}>
-          <button>yes</button>
-          <button disabled>no</button>
-          <input type="hidden" />
-          <a href="#x">link</a>
-          <a>no href</a>
-          <div tabIndex={-1}>neg</div>
-          <div tabIndex={0}>zero</div>
-          <button hidden>hidden</button>
-        </Harness>,
-      );
-      const names = getTabbables(screen.getByRole("dialog")).map(
-        (el) => el.textContent,
-      );
-      expect(names).toEqual(["yes", "link", "zero"]);
-    });
   });
 });

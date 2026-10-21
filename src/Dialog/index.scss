@@ -43,6 +43,11 @@
   transition: opacity 200ms;
 }
 
+// the dialog itself takes focus on open; its edge is the visual boundary already
+.nds-dialog:focus {
+  outline: none;
+}
+
 .nds-dialog-focuslock {
   position: absolute;
   top: env(safe-area-inset-top, 0px);

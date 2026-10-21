@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import useOnClickOutside from "../hooks/interaction/useOnClickOutside";
-import FocusLock from "react-focus-lock";
+import useFocusTrap from "../hooks/interaction/useFocusTrap";
 import useDropdownLayer from "../hooks/layout/useDropdownLayer";
 
 export interface AnchoredDialogProps {
@@ -45,6 +45,8 @@ const AnchoredDialog = ({
     ariaPopupType: "dialog",
     alignment: "start",
   });
+  const trapRef = useRef<HTMLDivElement>(null);
+  const { trapProps } = useFocusTrap({ ref: trapRef, isActive: isOpen });
 
   useOnClickOutside(layerProps.ref as React.RefObject<HTMLDivElement>, () => {
     onUserDismiss();
@@ -95,10 +97,10 @@ const AnchoredDialog = ({
           data-testid={testId}
           style={layerProps.style as React.CSSProperties}
         >
-          <FocusLock
-            returnFocus={true}
-            autoFocus={true}
+          <div
             className="nds-anchoredDialog-inner"
+            ref={trapRef}
+            {...trapProps}
           >
             {renderHeader && (
               <div className="nds-anchoredDialog-header border--bottom">
@@ -111,7 +113,7 @@ const AnchoredDialog = ({
                 {renderFooter()}
               </div>
             )}
-          </FocusLock>
+          </div>
         </div>
       )}
     </>

@@ -2,9 +2,9 @@ import { useRef, useState } from "react";
 import cc from "classcat";
 import { useMaskito } from "@maskito/react";
 import { useField } from "../useField";
-import { useMergeRefs } from "../../hooks/useMergeRefs";
-import useDropdownLayer from "../../hooks/useDropdownLayer";
-import useMediaQuery from "../../hooks/useMediaQuery";
+import { useMergeRefs } from "../../hooks/util/useMergeRefs";
+import useDropdownLayer from "../../hooks/layout/useDropdownLayer";
+import useMediaQuery from "../../hooks/env/useMediaQuery";
 import { FIELD_MASKS } from "../masks";
 import {
   isSelectable,

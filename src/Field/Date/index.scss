@@ -71,7 +71,7 @@
     cursor: pointer;
 
     &:hover {
-      background: var(--color-lightGrey);
+      background: rgba(var(--theme-rgb-primary), var(--alpha-10));
     }
 
     &[aria-disabled="true"] {
@@ -109,7 +109,7 @@
     cursor: pointer;
 
     &:hover {
-      background: var(--color-lightGrey);
+      background: rgba(var(--theme-rgb-primary), var(--alpha-10));
     }
 
     &:disabled {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { expect, screen, waitFor } from "storybook/test";
 import Popover from "./";
 import Button from "../Button";
+import Checkbox from "../Checkbox";
 
 const Template = (args) => (
   <div
@@ -111,6 +112,70 @@ FocusManagement.args = {
       within the Popover while it is open.
     </div>
   ),
+};
+
+const PERMISSIONS = [
+  "See statements and documents",
+  "Make deposits",
+  "Make withdrawals",
+  "Transfer funds",
+  "Pay bills",
+  "Manage beneficiaries",
+  "View transaction history",
+  "Download statements",
+  "Set up alerts",
+  "Manage cards",
+  "Update profile information",
+  "Enable notifications",
+];
+
+/**
+ * Regression test for NDS-3122: clicking an item after scrolling the
+ * popover content must register the click and keep the scroll position.
+ */
+export const ScrollableCheckboxList = {
+  name: "Interaction: Scrollable content",
+  render: () => (
+    <Template
+      renderTrigger={() => (
+        <Button type="button" kind="secondary">
+          Select Permissions
+        </Button>
+      )}
+      content={
+        <div
+          data-testid="scroll-container"
+          style={{ maxHeight: "200px", overflowY: "auto" }}
+          className="padding--all--s"
+        >
+          {PERMISSIONS.map((label) => (
+            <Checkbox key={label} label={label} kind="condensed" />
+          ))}
+        </div>
+      }
+    />
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "A Popover containing a scrollable list of condensed checkboxes. Items that are only reachable by scrolling the content remain clickable, and the scroll position is preserved after interacting with them.",
+      },
+    },
+  },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByTestId("nds-popover-trigger"));
+    const scroller = await screen.findByTestId("scroll-container");
+    scroller.scrollTop = scroller.scrollHeight;
+    const scrolledTo = scroller.scrollTop;
+    await expect(scrolledTo).toBeGreaterThan(0);
+
+    const lastCheckbox = screen.getByLabelText("Enable notifications");
+    await userEvent.click(lastCheckbox);
+
+    await expect(lastCheckbox).toBeChecked();
+    await expect(scroller.scrollTop).toBe(scrolledTo);
+  },
 };
 
 export const Controlled = () => {

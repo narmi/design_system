@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.37.0](https://github.com/narmi/design_system/compare/v6.36.0...v6.37.0) (2026-10-22)
+
+### ci
+
+* include tokens/** in shared build cache key ([ccffdf9](https://github.com/narmi/design_system/commit/ccffdf9df38cf6a79a691313b414ff0c73e93c8e))
+
+### feat
+
+* **Field:** add Field.Date ([8db0db3](https://github.com/narmi/design_system/commit/8db0db3aa6e8520e7d1a3efaff00576fc34ab7ab))
+
+### fix
+
+* **Field.Date:** preserve dropdown viewport constraints ([8f8a8e0](https://github.com/narmi/design_system/commit/8f8a8e005c477b406ac69e84bce64103db184ef4))
+* rm className pass through ([fe380fd](https://github.com/narmi/design_system/commit/fe380fd7da78c3d1514086266bf8a0e5a634f186))
+* **Field.Date:** update hook imports after reorg, use theme alpha hover ([22354fd](https://github.com/narmi/design_system/commit/22354fd36030b490ec09badf8d7be205d8997fd7))
+
+### test
+
+* **vitest:** add vitest playwright plugin for storybook a11y coverage ([02cb473](https://github.com/narmi/design_system/commit/02cb47398ebfd83899440aada740befeee3af2d6))
+
 ## [6.36.0](https://github.com/narmi/design_system/compare/v6.35.5...v6.36.0) (2026-10-22)
 
 ### feat

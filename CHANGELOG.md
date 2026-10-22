@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.36.0](https://github.com/narmi/design_system/compare/v6.35.5...v6.36.0) (2026-10-22)
+
+### feat
+
+* **hooks:** add useDismiss and useFocusTrap interaction hooks ([6cf79fd](https://github.com/narmi/design_system/commit/6cf79fd440eb467f147c35e345d4417ff68f0aab))
+
+### fix
+
+* **useDismiss:** observe Escape on document instead of the layer ([38b2c3b](https://github.com/narmi/design_system/commit/38b2c3b5b5af63da4fbc0d24b47648ca1f730ead))
+
+### refactor
+
+* **hooks:** build useFocusTrap on focus-lock and drop react-focus-lock ([d868472](https://github.com/narmi/design_system/commit/d868472e384e5c326455844d5ac190c4fbefe4c5))
+
+### test
+
+* **Dialog:** assert the dialog element receives focus on open ([09db438](https://github.com/narmi/design_system/commit/09db4384b804c6fc54604dcce3e202afa854b019))
+
 ## [6.35.5](https://github.com/narmi/design_system/compare/v6.35.4...v6.35.5) (2026-10-21)
 
 ### ci

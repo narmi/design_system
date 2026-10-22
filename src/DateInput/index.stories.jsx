@@ -86,6 +86,26 @@ DisablePortal.parameters = {
   },
 };
 
+export const DisablePortalInline = () => (
+  <div style={{ display: "flex", gap: "16px" }}>
+    <DateInput label="Start date" type="text" disablePortal={true} />
+    <DateInput
+      label="End date"
+      type="text"
+      disablePortal={true}
+      defaultDate="2021-10-22"
+    />
+  </div>
+);
+DisablePortalInline.parameters = {
+  docs: {
+    description: {
+      story:
+        "With `disablePortal`, flatpickr wraps the input in a `.flatpickr-wrapper` div. An empty field and a filled field must render at the same height, with the label collapsing into the placeholder while the field is empty.",
+    },
+  },
+};
+
 export default {
   title: "Components/DateInput",
   component: DateInput,

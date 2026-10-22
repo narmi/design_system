@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import cc from "classcat";
 import useLockBodyScroll from "../hooks/layout/useLockBodyScroll";
 import { CSSTransition } from "react-transition-group";
-import FocusLock from "react-focus-lock";
+import useFocusTrap from "../hooks/interaction/useFocusTrap";
 
 const noop = () => {};
 
@@ -73,8 +73,14 @@ const Dialog = ({
   const contentRef = useRef(null);
   const shimRef = useRef(null);
   const dialogRef = useRef(null);
+  const trapRef = useRef<HTMLDivElement>(null);
   const isBanner = headerStyle === "banner";
   useLockBodyScroll(isOpen);
+  const { trapProps } = useFocusTrap({
+    ref: trapRef,
+    isActive: isOpen,
+    initialFocus: "container",
+  });
 
   const checkContentOverflow = () => {
     setIsContentOverflowing(getIsContentTooLong(contentRef));
@@ -118,7 +124,7 @@ const Dialog = ({
   );
 
   // the shim has events for mouse users only; does not require a role
-  /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
+  /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */
   const dialogJSX = (
     <CSSTransition
       timeout={1}
@@ -129,8 +135,10 @@ const Dialog = ({
     >
       <div className="nds-dialog-root" ref={dialogRef}>
         <div className="nds-shim--dark" ref={shimRef} onClick={handleShimClick}>
-          <FocusLock autoFocus={false} className="nds-dialog-focuslock">
+          <div className="nds-dialog-focuslock">
             <div
+              ref={trapRef}
+              {...trapProps}
               role="dialog"
               aria-labelledby="aria-dialog-label"
               aria-modal="true"
@@ -186,12 +194,12 @@ const Dialog = ({
                 </div>
               )}
             </div>
-          </FocusLock>
+          </div>
         </div>
       </div>
     </CSSTransition>
   );
-  /* eslint-enable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
+  /* eslint-enable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */
 
   function renderDialogInOutlet() {
     // create a single outlet

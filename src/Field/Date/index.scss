@@ -1,0 +1,154 @@
+// Field.Date
+
+.nds-field-date .nds-field-input-box {
+  grid-template-columns: 1fr auto;
+  align-items: center;
+
+  input {
+    grid-area: 1 / 1 / 2 / -1;
+    align-self: stretch;
+    padding-right: var(--space-l);
+  }
+
+  .narmi-icon-calendar {
+    grid-area: 1 / 2;
+    pointer-events: none;
+  }
+}
+
+.nds-field-date-popover {
+  --nds-layer-gap: var(--space-xs);
+  @extend %nds-dropdown-layer;
+  background: var(--color-white);
+  box-shadow: var(--elevation-middle);
+}
+
+.nds-calendar {
+  --nds-calendar-cell: #{rem(36px)};
+
+  padding: var(--space-s);
+  font-size: var(--font-size-s);
+
+  .rdp-month {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "previous caption next"
+      "calGrid calGrid calGrid";
+    align-items: center;
+    row-gap: var(--space-xs);
+  }
+
+  .rdp-button_previous {
+    grid-area: previous;
+  }
+
+  .rdp-button_next {
+    grid-area: next;
+  }
+
+  .rdp-month_grid {
+    grid-area: calGrid;
+  }
+
+  .rdp-month_caption {
+    grid-area: caption;
+    text-align: center;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .rdp-button_previous,
+  .rdp-button_next {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--nds-calendar-cell);
+    height: var(--nds-calendar-cell);
+    border: 0;
+    border-radius: var(--border-radius-default);
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(var(--theme-rgb-primary), var(--alpha-10));
+    }
+
+    &[aria-disabled="true"] {
+      color: var(--font-color-hint);
+      cursor: default;
+      background: transparent;
+    }
+  }
+
+  table {
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  th {
+    width: var(--nds-calendar-cell);
+    height: var(--nds-calendar-cell);
+    font-weight: var(--font-weight-normal);
+    color: var(--font-color-secondary);
+  }
+
+  td {
+    padding: 0;
+    text-align: center;
+  }
+
+  .rdp-day_button {
+    width: var(--nds-calendar-cell);
+    height: var(--nds-calendar-cell);
+    border: 0;
+    border-radius: var(--border-radius-s);
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(var(--theme-rgb-primary), var(--alpha-10));
+    }
+
+    &:disabled {
+      color: var(--font-color-hint);
+      background: transparent;
+      cursor: default;
+    }
+  }
+
+  [data-today] .rdp-day_button {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  [data-selected] .rdp-day_button {
+    background: var(--theme-primary);
+    color: var(--color-white);
+
+    &:hover {
+      background: var(--theme-primary);
+    }
+  }
+
+  // Footer buttons split the width evenly
+  .rdp-footer {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: var(--space-xs);
+    margin-top: var(--space-s);
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  .rdp-day_button:focus-visible,
+  .rdp-button_previous:focus-visible,
+  .rdp-button_next:focus-visible {
+    outline: 2px solid var(--theme-primary);
+    outline-offset: 2px;
+  }
+}

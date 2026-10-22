@@ -53,7 +53,8 @@ const useFocusTrap = ({
   initialFocus = "first",
   returnFocus = true,
 }: UseFocusTrapOptions): UseFocusTrapResult => {
-  // read the latest option values inside the effect without re-running it
+  // read the option values current at activation inside the effect without
+  // re-running it; the same snapshot is used when the trap deactivates
   const optionsRef = useRef({ initialFocus, returnFocus });
   optionsRef.current = { initialFocus, returnFocus };
 
@@ -64,7 +65,8 @@ const useFocusTrap = ({
 
     const previous = document.activeElement;
     const restore = captureFocusRestore(previous);
-    const { initialFocus } = optionsRef.current;
+    const options = optionsRef.current;
+    const { initialFocus } = options;
 
     if (!container.contains(previous)) {
       if (initialFocus === "first") moveFocusInside(container, previous);
@@ -72,8 +74,7 @@ const useFocusTrap = ({
     }
 
     return () => {
-      if (optionsRef.current.returnFocus)
-        (restore() as HTMLElement | undefined)?.focus();
+      if (options.returnFocus) (restore() as HTMLElement | undefined)?.focus();
     };
   }, [isActive, ref]);
 

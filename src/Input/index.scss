@@ -166,6 +166,17 @@
       display: none;
     }
   }
+
+  // `DateInput` with `disablePortal` wraps the input in `.flatpickr-wrapper`,
+  // which breaks the `input ~ label` rules above. Reapply them to the wrapper.
+  .flatpickr-wrapper {
+    display: flex;
+  }
+
+  .flatpickr-wrapper:has(input:placeholder-shown) ~ label,
+  .no-label .flatpickr-wrapper ~ label {
+    display: none;
+  }
 }
 
 input::placeholder,

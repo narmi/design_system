@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.29.13](https://github.com/narmi/design_system/compare/v6.29.12...v6.29.13) (2026-10-22)
+
+### fix
+
+* **DateInput:** redefine dropped styles on native ([a2d17c2](https://github.com/narmi/design_system/commit/a2d17c268e43f215180c500da90ab80144a5cffd))
+
 ## [6.29.12](https://github.com/narmi/design_system/compare/v6.29.11...v6.29.12) (2026-10-16)
 
 ### fix

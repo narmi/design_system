@@ -148,6 +148,9 @@
   "src/Popover/index.stories.jsx > Interaction: Opens on click": [
     "nested-interactive"
   ],
+  "src/Popover/index.stories.jsx > Interaction: Scrollable content": [
+    "nested-interactive"
+  ],
   "src/Popover/index.stories.jsx > Overview": [
     "nested-interactive"
   ],

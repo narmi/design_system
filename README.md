@@ -100,7 +100,8 @@ Install settings are in [`pnpm-workspace.yaml`](./pnpm-workspace.yaml). If an in
 | `build:tokens`     | builds all distributions of design tokens to `dist/` |
 | `build:components` | builds all components and base stylesheet to `dist/` |
 | `build`            | builds everything                                    |
-| `test`             | runs all jest tests                                  |
+| `test`             | runs all unit tests (Vitest, jsdom)                  |
+| `test:storybook`   | renders every story in Chromium and runs axe a11y    |
 | `storybook`        | starts storybook in dev server mode on `:6006`       |
 | `watch`            | watches `src` dir, triggering `build` on changes     |
 | `dev`              | **Start storybook and watch for all `src` changes**  |
@@ -277,6 +278,12 @@ For a detailed step-by-step guide on resolving failing Chromatic checks, see the
 
 **🔑 Authentication Required:**
 While the Storybook preview is public, you must log into [Chromatic](chromatic.com/start) with Narmi engineering credentials to view details on the build and approve or deny snapshot changes.
+
+#### ♿ Working with accessibility tests
+
+The workflow that runs accessibility testing is "Storybook Accessibility"/`run-storybook-a11y`. It renders every story in headless Chromium and fails on any axe violation reported by the Storybook a11y addon. All pull requests will block merging until this workflow passes.
+
+Run it locally with `pnpm run test:storybook` (after a one-time `pnpm exec playwright install chromium`). Violations that predate the check are tolerated through `.storybook/a11y-baseline.json`, which can only shrink. For how to read a failure, fix it, and update the baseline, see the [Accessibility Tests](//github.com/narmi/design_system/tree/main/contributing/accessibility-tests.md) contributing guide.
 
 ### Manual publishing (Narmi only)
 

@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Dialog from "./";
+import Popover from "../Popover";
 
 // Mock ReactDOM.createPortal since Dialog uses portals
 vi.mock("react-dom", async () => ({
@@ -110,7 +111,7 @@ describe("Dialog", () => {
       const onUserDismiss = vi.fn();
       renderDialog({ onUserDismiss });
 
-      fireEvent.keyDown(window, { key: "Escape" });
+      fireEvent.keyDown(document.body, { key: "Escape" });
 
       expect(onUserDismiss).toHaveBeenCalledTimes(1);
     });
@@ -277,23 +278,94 @@ describe("Dialog", () => {
     });
   });
 
+  describe("Nested overlays", () => {
+    it("closes only the Popover on the first Escape, then the Dialog", async () => {
+      const onDialogDismiss = vi.fn();
+      const onPopoverDismiss = vi.fn();
+      const NestedPopover = ({ popoverOpen }: { popoverOpen: boolean }) => (
+        <Dialog isOpen title="Parent" onUserDismiss={onDialogDismiss}>
+          <Popover
+            isOpen={popoverOpen}
+            onUserDismiss={onPopoverDismiss}
+            content={<p>Popover content</p>}
+            renderTrigger={() => <button>Open popover</button>}
+          />
+        </Dialog>
+      );
+      const { rerender } = render(<NestedPopover popoverOpen />);
+      expect(screen.getByText("Popover content")).toBeInTheDocument();
+
+      fireEvent.keyDown(document.body, { key: "Escape" });
+      expect(onPopoverDismiss).toHaveBeenCalledTimes(1);
+      expect(onDialogDismiss).not.toHaveBeenCalled();
+
+      rerender(<NestedPopover popoverOpen={false} />);
+      fireEvent.keyDown(document.body, { key: "Escape" });
+      expect(onPopoverDismiss).toHaveBeenCalledTimes(1);
+      expect(onDialogDismiss).toHaveBeenCalledTimes(1);
+    });
+
+    it("closes only the inner Dialog on the first Escape, then the outer", () => {
+      const onOuterDismiss = vi.fn();
+      const onInnerDismiss = vi.fn();
+      const NestedDialogs = ({ innerOpen }: { innerOpen: boolean }) => (
+        <Dialog isOpen title="Outer" onUserDismiss={onOuterDismiss}>
+          <Dialog
+            isOpen={innerOpen}
+            title="Inner"
+            onUserDismiss={onInnerDismiss}
+          >
+            <p>Inner content</p>
+          </Dialog>
+        </Dialog>
+      );
+      const { rerender } = render(<NestedDialogs innerOpen />);
+
+      fireEvent.keyDown(document.body, { key: "Escape" });
+      expect(onInnerDismiss).toHaveBeenCalledTimes(1);
+      expect(onOuterDismiss).not.toHaveBeenCalled();
+
+      rerender(<NestedDialogs innerOpen={false} />);
+      fireEvent.keyDown(document.body, { key: "Escape" });
+      expect(onInnerDismiss).toHaveBeenCalledTimes(1);
+      expect(onOuterDismiss).toHaveBeenCalledTimes(1);
+    });
+
+    it("hands Escape back to the outer Dialog when the inner one unmounts", () => {
+      const onOuterDismiss = vi.fn();
+      const onInnerDismiss = vi.fn();
+      const { rerender } = render(
+        <Dialog isOpen title="Outer" onUserDismiss={onOuterDismiss}>
+          <Dialog isOpen title="Inner" onUserDismiss={onInnerDismiss}>
+            <p>Inner content</p>
+          </Dialog>
+        </Dialog>,
+      );
+      rerender(
+        <Dialog isOpen title="Outer" onUserDismiss={onOuterDismiss}>
+          <p>Outer content</p>
+        </Dialog>,
+      );
+
+      fireEvent.keyDown(document.body, { key: "Escape" });
+      expect(onInnerDismiss).not.toHaveBeenCalled();
+      expect(onOuterDismiss).toHaveBeenCalledTimes(1);
+    });
+  });
+
   describe("Event cleanup", () => {
     it("removes event listeners when unmounted", () => {
-      const removeEventListenerSpy = vi.spyOn(window, "removeEventListener");
+      const windowSpy = vi.spyOn(window, "removeEventListener");
+      const documentSpy = vi.spyOn(document, "removeEventListener");
       const { unmount } = renderDialog();
 
       unmount();
 
-      expect(removeEventListenerSpy).toHaveBeenCalledWith(
-        "keydown",
-        expect.any(Function),
-      );
-      expect(removeEventListenerSpy).toHaveBeenCalledWith(
-        "resize",
-        expect.any(Function),
-      );
+      expect(documentSpy).toHaveBeenCalledWith("keydown", expect.any(Function));
+      expect(windowSpy).toHaveBeenCalledWith("resize", expect.any(Function));
 
-      removeEventListenerSpy.mockRestore();
+      windowSpy.mockRestore();
+      documentSpy.mockRestore();
     });
   });
 

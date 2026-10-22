@@ -9,6 +9,12 @@ import { docs } from "./theme/narmi";
 
 export const parameters = {
   viewMode: "docs",
+  a11y: {
+    // Fail `pnpm run test:storybook` (and the Storybook a11y CI job) on any
+    // axe violation. Pre-existing violations are tolerated through
+    // `.storybook/a11y-baseline.json`; see scripts/testStorybook.mjs.
+    test: "error",
+  },
   previewTabs: {
     "storybook/docs/panel": { index: -1 },
   },

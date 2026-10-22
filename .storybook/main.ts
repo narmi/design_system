@@ -45,10 +45,15 @@ export default {
 
   addons: [
     "@storybook/addon-a11y",
-    {
-      name: "@storybook/addon-docs",
-      options: { transcludeMarkdown: true },
-    },
+    "@storybook/addon-vitest",
+    ...(process.env.VITEST
+      ? []
+      : [
+          {
+            name: "@storybook/addon-docs",
+            options: { transcludeMarkdown: true },
+          },
+        ]),
     "@chromatic-com/storybook",
   ],
 
@@ -64,12 +69,16 @@ export default {
   },
 
   async viteFinal(config, { configType }) {
-    // Add aliases for imports to resolve correctly in Vite
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      helpers: path.resolve(__dirname, "helpers"),
-      dist: path.resolve(__dirname, "../dist"),
-      src: path.resolve(__dirname, "../src"),
+    // Add aliases for imports to resolve correctly in Vite. `config.resolve`
+    // is undefined when the Vitest addon applies this config.
+    config.resolve = {
+      ...config.resolve,
+      alias: {
+        ...config.resolve?.alias,
+        helpers: path.resolve(__dirname, "helpers"),
+        dist: path.resolve(__dirname, "../dist"),
+        src: path.resolve(__dirname, "../src"),
+      },
     };
 
     // Vite 8 uses LightningCSS for CSS minification. Enable error

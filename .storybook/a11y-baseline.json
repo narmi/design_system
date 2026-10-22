@@ -1,0 +1,290 @@
+{
+  "src/Accordion/index.stories.tsx > With Focusable Content": [
+    "aria-hidden-focus"
+  ],
+  "src/AccordionSet/index.stories.tsx > With Custom Styling": [
+    "aria-hidden-focus"
+  ],
+  "src/AutocompleteModal/index.stories.jsx > With Search Value": [
+    "nested-interactive"
+  ],
+  "src/Checkbox/index.stories.jsx > Markdown": [
+    "link-in-text-block"
+  ],
+  "src/Chip/index.stories.jsx > Icon Only": [
+    "button-name"
+  ],
+  "src/CollapsibleCard/index.stories.jsx > Caret As Trigger": [
+    "aria-allowed-attr"
+  ],
+  "src/Combobox/index.stories.jsx > Interaction: Opens on click": [
+    "scrollable-region-focusable"
+  ],
+  "src/DateInput/index.stories.jsx > Disable Portal": [
+    "nested-interactive"
+  ],
+  "src/Dialog/index.stories.jsx > Popover Dialog": [
+    "aria-command-name"
+  ],
+  "src/Drawer/index.stories.jsx > Interaction: Navigates content with controls": [
+    "aria-dialog-name"
+  ],
+  "src/Drawer/index.stories.jsx > Interaction: Opens on click": [
+    "aria-dialog-name"
+  ],
+  "src/DropdownTrigger/index.stories.jsx > Composing With Popover": [
+    "nested-interactive"
+  ],
+  "src/DropdownTrigger/index.stories.jsx > With Tokens As Start Content": [
+    "aria-required-parent",
+    "nested-interactive"
+  ],
+  "src/examples/Cards.stories.jsx > Product Card": [
+    "label"
+  ],
+  "src/examples/ColorModes.stories.jsx > Color Modes": [
+    "color-contrast"
+  ],
+  "src/FieldToken/index.stories.jsx > Overview": [
+    "aria-required-parent"
+  ],
+  "src/helper-classes/background.stories.jsx > Background Color": [
+    "select-name"
+  ],
+  "src/helper-classes/background.stories.jsx > Background Scrim": [
+    "select-name"
+  ],
+  "src/helper-classes/border.stories.jsx > Border": [
+    "select-name"
+  ],
+  "src/helper-classes/border.stories.jsx > Border Radius": [
+    "select-name"
+  ],
+  "src/helper-classes/font.stories.jsx > Font Color": [
+    "select-name"
+  ],
+  "src/helper-classes/font.stories.jsx > Font Family": [
+    "select-name"
+  ],
+  "src/helper-classes/font.stories.jsx > Font Size": [
+    "select-name"
+  ],
+  "src/helper-classes/font.stories.jsx > Font Weight": [
+    "select-name"
+  ],
+  "src/helper-classes/font.stories.jsx > Whitespace Control": [
+    "select-name"
+  ],
+  "src/helper-classes/forms.stories.jsx > Button Reset": [
+    "select-name"
+  ],
+  "src/helper-classes/list.stories.jsx > List Reset": [
+    "select-name"
+  ],
+  "src/helper-classes/position.stories.jsx > Child Alignment": [
+    "color-contrast",
+    "select-name"
+  ],
+  "src/helper-classes/position.stories.jsx > Rotation": [
+    "select-name"
+  ],
+  "src/helper-classes/scroll.stories.jsx > Controlling Overflow": [
+    "select-name"
+  ],
+  "src/helper-classes/spacing.stories.jsx > Margin": [
+    "select-name"
+  ],
+  "src/helper-classes/spacing.stories.jsx > Padding": [
+    "select-name"
+  ],
+  "src/MultiSelect/index.stories.jsx > Controlled Selected Items": [
+    "aria-required-parent"
+  ],
+  "src/MultiSelect/index.stories.jsx > Custom Token Values": [
+    "aria-required-parent"
+  ],
+  "src/MultiSelect/index.stories.jsx > Disabled": [
+    "aria-required-parent"
+  ],
+  "src/MultiSelect/index.stories.jsx > Interaction: Clears all selections": [
+    "aria-required-children",
+    "aria-required-parent",
+    "list"
+  ],
+  "src/MultiSelect/index.stories.jsx > Interaction: Opens on click": [
+    "aria-required-children",
+    "aria-required-parent",
+    "list"
+  ],
+  "src/MultiSelect/index.stories.jsx > Interaction: Selects multiple options": [
+    "aria-required-children",
+    "aria-required-parent",
+    "list"
+  ],
+  "src/Navigation/index.stories.tsx > With Item Content": [
+    "color-contrast"
+  ],
+  "src/NavigationItem/index.stories.tsx > With Detail": [
+    "color-contrast"
+  ],
+  "src/NavigationItem/index.stories.tsx > With End Content": [
+    "color-contrast"
+  ],
+  "src/Pagination/index.stories.tsx > Fully Controlled": [
+    "role-img-alt"
+  ],
+  "src/Pagination/index.stories.tsx > Interaction: Navigates with next/previous arrows": [
+    "role-img-alt"
+  ],
+  "src/Pagination/index.stories.tsx > Interaction: Selects a page by number": [
+    "role-img-alt"
+  ],
+  "src/Pagination/index.stories.tsx > Overview": [
+    "role-img-alt"
+  ],
+  "src/Popover/index.stories.jsx > Focus Management": [
+    "nested-interactive"
+  ],
+  "src/Popover/index.stories.jsx > Interaction: Opens on click": [
+    "nested-interactive"
+  ],
+  "src/Popover/index.stories.jsx > Overview": [
+    "nested-interactive"
+  ],
+  "src/Popover/index.stories.jsx > Positioning": [
+    "nested-interactive"
+  ],
+  "src/Select/index.stories.jsx > In A Form": [
+    "label"
+  ],
+  "src/Select/index.stories.jsx > Interaction: Opens on click": [
+    "aria-required-children",
+    "aria-required-parent",
+    "list"
+  ],
+  "src/Table/index.stories.jsx > Clickable Headers": [
+    "aria-allowed-role"
+  ],
+  "src/TableSelect/index.stories.tsx > Interaction: Opens on click": [
+    "scrollable-region-focusable"
+  ],
+  "src/Tabs/index.stories.jsx > Default Selected Tab": [
+    "nested-interactive"
+  ],
+  "src/Tabs/index.stories.jsx > Fully Controlled Tabs": [
+    "nested-interactive"
+  ],
+  "src/Tabs/index.stories.jsx > Interaction: Arrow state tracks scroll limits": [
+    "nested-interactive"
+  ],
+  "src/Tabs/index.stories.jsx > Interaction: Last tab is fully visible at the end": [
+    "nested-interactive"
+  ],
+  "src/Tabs/index.stories.jsx > Interaction: Non-overflowing tabs render no arrows": [
+    "nested-interactive"
+  ],
+  "src/Tabs/index.stories.jsx > Interaction: Tab list width is stable while paging": [
+    "nested-interactive"
+  ],
+  "src/Tabs/index.stories.jsx > Multiple Segmented Tabs": [
+    "nested-interactive"
+  ],
+  "src/Tabs/index.stories.jsx > Overview": [
+    "nested-interactive"
+  ],
+  "src/Tabs/index.stories.jsx > Responsive Segmented Tabs": [
+    "nested-interactive"
+  ],
+  "src/Tabs/index.stories.jsx > Responsive Tabs": [
+    "nested-interactive"
+  ],
+  "src/Tabs/index.stories.jsx > Responsive Tabs With Arrow Scroll": [
+    "nested-interactive"
+  ],
+  "src/Tabs/index.stories.jsx > Segmented": [
+    "nested-interactive"
+  ],
+  "src/Tabs/index.stories.jsx > Segmented With Status Indicator": [
+    "nested-interactive"
+  ],
+  "src/Tabs/index.stories.jsx > With Custom Label Content": [
+    "nested-interactive"
+  ],
+  "src/TextInput/index.stories.jsx > Custom Start And End Content": [
+    "button-name"
+  ],
+  "src/TextInput/index.stories.jsx > Example": [
+    "label"
+  ],
+  "src/TextInput/index.stories.jsx > Multi Line": [
+    "label"
+  ],
+  "src/TextInput/index.stories.jsx > Search": [
+    "label"
+  ],
+  "src/TextInput/index.stories.jsx > With Clear Input Icon": [
+    "label"
+  ],
+  "src/TextInput/index.stories.jsx > With Clear Input Icon And On Change": [
+    "label"
+  ],
+  "src/Tooltip/index.stories.jsx > In A Popover": [
+    "nested-interactive"
+  ],
+  "tokens/docs/border.stories.jsx > Border Color": [
+    "color-contrast",
+    "scope-attr-valid"
+  ],
+  "tokens/docs/border.stories.jsx > Border Radius": [
+    "color-contrast",
+    "scope-attr-valid"
+  ],
+  "tokens/docs/border.stories.jsx > Border Size": [
+    "color-contrast",
+    "scope-attr-valid"
+  ],
+  "tokens/docs/color.stories.jsx > Background": [
+    "color-contrast",
+    "scope-attr-valid"
+  ],
+  "tokens/docs/color.stories.jsx > System": [
+    "color-contrast",
+    "scope-attr-valid"
+  ],
+  "tokens/docs/color.stories.jsx > Theme": [
+    "color-contrast",
+    "scope-attr-valid"
+  ],
+  "tokens/docs/color.stories.jsx > Transparency": [
+    "color-contrast",
+    "scope-attr-valid"
+  ],
+  "tokens/docs/font.stories.jsx > Color": [
+    "color-contrast",
+    "scope-attr-valid"
+  ],
+  "tokens/docs/font.stories.jsx > Family": [
+    "color-contrast",
+    "scope-attr-valid"
+  ],
+  "tokens/docs/font.stories.jsx > Line Height": [
+    "color-contrast",
+    "scope-attr-valid"
+  ],
+  "tokens/docs/font.stories.jsx > Size": [
+    "color-contrast",
+    "scope-attr-valid"
+  ],
+  "tokens/docs/font.stories.jsx > Weight": [
+    "color-contrast",
+    "scope-attr-valid"
+  ],
+  "tokens/docs/layout.stories.jsx > Spacing": [
+    "color-contrast",
+    "scope-attr-valid"
+  ],
+  "tokens/docs/shadow.stories.jsx > Elevation": [
+    "color-contrast",
+    "scope-attr-valid"
+  ]
+}

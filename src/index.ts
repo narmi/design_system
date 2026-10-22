@@ -71,7 +71,9 @@ import Tooltip from "./Tooltip";
 import TruncatedAccount from "./TruncatedAccount";
 import {
   useBreakpoints,
+  useDismiss,
   useDropdownLayer,
+  useFocusTrap,
   useLockBodyScroll,
   useSupportsAnchorPositioning,
 } from "./hooks";
@@ -209,8 +211,14 @@ export type { TooltipProps } from "./Tooltip";
 export type { TruncatedAccountProps } from "./TruncatedAccount";
 export type {
   UseBreakpointsResult,
+  UseDismissOptions,
+  UseDismissResult,
+  DismissReason,
+  DismissEvent,
   UseDropdownLayerResult,
   UseDropdownLayerOptions,
+  UseFocusTrapOptions,
+  UseFocusTrapResult,
 } from "./hooks";
 export type { FormatDateStyle } from "./formatters/formatDate";
 export type {
@@ -280,7 +288,9 @@ export {
   Tooltip,
   TruncatedAccount,
   useBreakpoints,
+  useDismiss,
   useDropdownLayer,
+  useFocusTrap,
   useLockBodyScroll,
   useSupportsAnchorPositioning,
   formatNumber,

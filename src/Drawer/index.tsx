@@ -2,10 +2,10 @@
 import React, { useRef, useEffect, useId } from "react";
 import ReactDOM from "react-dom";
 import cc from "classcat";
-import useBreakpoints from "../hooks/useBreakpoints";
+import useBreakpoints from "../hooks/env/useBreakpoints";
 import useMountTransition from "./useMountTransition";
-import useLockBodyScroll from "../hooks/useLockBodyScroll";
-import FocusLock from "react-focus-lock";
+import useLockBodyScroll from "../hooks/layout/useLockBodyScroll";
+import useFocusTrap from "../hooks/interaction/useFocusTrap";
 
 const noop = () => {};
 
@@ -85,6 +85,7 @@ const Drawer = ({
   const panelId = `content-panel-${useId()}`;
   const shimRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
+  const trapRef = useRef<HTMLDivElement>(null);
 
   const isTransitioning = useMountTransition(isOpen, 300);
   const isShown = isOpen && isTransitioning;
@@ -102,6 +103,7 @@ const Drawer = ({
   }
 
   useLockBodyScroll(isOpen);
+  const { trapProps } = useFocusTrap({ ref: trapRef, isActive: isOpen });
 
   const handleKeyDown = ({ key }: KeyboardEvent) => {
     if (key === "Escape") {
@@ -173,7 +175,7 @@ const Drawer = ({
   /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
   const drawerJSX = (
     <div className="drawerContainer">
-      <FocusLock>
+      <div ref={trapRef} {...trapProps}>
         <div
           ref={shimRef}
           className={cc(["backdrop", { "backdrop--open": isShown }])}
@@ -203,7 +205,7 @@ const Drawer = ({
             {childrenJSX}
           </div>
         )}
-      </FocusLock>
+      </div>
     </div>
   );
 

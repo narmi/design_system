@@ -3,7 +3,7 @@ import { MenuTrigger, Menu, MenuItem } from "react-aria-components";
 import cc from "classcat";
 import ContextMenuItem from "./ContextMenuItem";
 import Row from "../Row";
-import useDropdownLayer from "../hooks/useDropdownLayer";
+import useDropdownLayer from "../hooks/layout/useDropdownLayer";
 
 export interface ContextMenuProps {
   /** Optional value for `data-testid` attribute */

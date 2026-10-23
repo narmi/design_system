@@ -10,7 +10,7 @@ vi.mock("react-dom", async () => ({
 }));
 
 // Mock useLockBodyScroll hook
-vi.mock("../hooks/useLockBodyScroll", () => ({ default: vi.fn() }));
+vi.mock("../hooks/layout/useLockBodyScroll", () => ({ default: vi.fn() }));
 
 const defaultProps = {
   isOpen: true,
@@ -200,9 +200,7 @@ describe("Dialog", () => {
       renderDialog();
 
       await waitFor(() => {
-        expect(
-          document.querySelector(".nds-dialog-focuslock"),
-        ).toBeInTheDocument();
+        expect(screen.getByRole("dialog")).toHaveFocus();
       });
     });
   });

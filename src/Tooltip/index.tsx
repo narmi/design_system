@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useId, useRef } from "react";
 import ReactDOM from "react-dom";
-import useDropdownLayer from "../hooks/useDropdownLayer";
+import useDropdownLayer from "../hooks/layout/useDropdownLayer";
 
 export interface TooltipProps {
   /** The root node of JSX passed into Tooltip as children will act as the tooltip trigger */

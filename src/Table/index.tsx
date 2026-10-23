@@ -1,7 +1,7 @@
 import React from "react";
 import cc from "classcat";
 
-import useBreakpoints from "../hooks/useBreakpoints";
+import useBreakpoints from "../hooks/env/useBreakpoints";
 import Header from "./Header";
 import Body from "./Body";
 import Cell from "./Cell";

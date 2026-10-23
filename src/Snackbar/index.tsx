@@ -1,5 +1,5 @@
 import React from "react";
-import useBreakpoints from "../hooks/useBreakpoints";
+import useBreakpoints from "../hooks/env/useBreakpoints";
 
 /**
  * SVG line that defaults to horizontal and changes

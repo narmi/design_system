@@ -3,7 +3,7 @@ import { render, screen, fireEvent, act } from "@testing-library/react";
 import Drawer, { type DrawerProps } from "./";
 
 let isDesktop = true;
-vi.mock("../hooks/useBreakpoints", () => ({
+vi.mock("../hooks/env/useBreakpoints", () => ({
   default: () => ({
     s: isDesktop,
     m: isDesktop,
@@ -12,7 +12,7 @@ vi.mock("../hooks/useBreakpoints", () => ({
     largestSatisfiedBreakpoint: "m",
   }),
 }));
-vi.mock("../hooks/useLockBodyScroll", () => ({ default: vi.fn() }));
+vi.mock("../hooks/layout/useLockBodyScroll", () => ({ default: vi.fn() }));
 
 const renderDrawer = (props: Partial<DrawerProps> = {}) => {
   const result = render(

@@ -5,7 +5,7 @@ import {
   useMultipleSelection,
   UseMultipleSelectionReturnValue,
 } from "downshift";
-import useDropdownLayer from "../hooks/useDropdownLayer";
+import useDropdownLayer from "../hooks/layout/useDropdownLayer";
 import cc from "classcat";
 import DropdownTrigger from "../DropdownTrigger";
 import Button from "../Button";

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useDropdownLayer from ".";
-import Button from "../../Button";
+import Button from "../../../Button";
 
 export const Overview = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,6 +20,6 @@ export const Overview = () => {
 };
 
 export default {
-  title: "Hooks/useDropdownLayer",
+  title: "Hooks/Layout/useDropdownLayer",
   tags: ["autodocs", "!dev"],
 };

@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import cc from "classcat";
-import FocusLock from "react-focus-lock";
-import useDropdownLayer from "../hooks/useDropdownLayer";
-import type { Placement } from "../hooks/useDropdownLayer";
+import useFocusTrap from "../hooks/interaction/useFocusTrap";
+import useDropdownLayer from "../hooks/layout/useDropdownLayer";
+import type { Placement } from "../hooks/layout/useDropdownLayer";
 
 const noop = () => {};
 
@@ -134,6 +134,14 @@ const Popover = ({
 
   const { ref: anchorRef, style: anchorStyle, ...anchorRest } = anchorProps;
   const { ref: layerRef, ...layerRest } = layerProps;
+  const trapRef = useRef<HTMLDivElement>(null);
+  const { trapProps } = useFocusTrap({
+    ref: trapRef,
+    isActive: shouldRenderPopover,
+    initialFocus: autoFocus ? "first" : "none",
+    // a popover may close because the user clicked elsewhere; don't yank focus back
+    returnFocus: false,
+  });
 
   useEffect(() => {
     if (!shouldRenderPopover) return;
@@ -195,8 +203,8 @@ const Popover = ({
         data-testid={testId}
       >
         {shouldRenderPopover && (
-          <div tabIndex={-1}>
-            <FocusLock autoFocus={autoFocus}>{popoverContent}</FocusLock>
+          <div ref={trapRef} {...trapProps}>
+            {popoverContent}
           </div>
         )}
       </div>

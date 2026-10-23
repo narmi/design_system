@@ -69,11 +69,15 @@ import Toggle from "./Toggle";
 import TokenInput from "./TokenInput";
 import Tooltip from "./Tooltip";
 import TruncatedAccount from "./TruncatedAccount";
-import useSupportsAnchorPositioning from "./hooks/useSupportsAnchorPositioning";
-import useBreakpoints from "./hooks/useBreakpoints";
-import useDropdownLayer from "./hooks/useDropdownLayer";
+import {
+  useBreakpoints,
+  useDismiss,
+  useDropdownLayer,
+  useFocusTrap,
+  useLockBodyScroll,
+  useSupportsAnchorPositioning,
+} from "./hooks";
 import formatDate from "./formatters/formatDate";
-import useLockBodyScroll from "./hooks/useLockBodyScroll";
 import formatNumber from "./formatters/formatNumber";
 import formatFileSize from "./formatters/formatFileSize";
 
@@ -130,6 +134,7 @@ export type { FieldSelectItemProps } from "./Field/Select/SelectItem";
 export type { FieldComboboxProps } from "./Field/Combobox";
 export type { FieldComboboxItemProps } from "./Field/Combobox/ComboboxItem";
 export type { FieldUploadProps, FieldUploadState } from "./Field/Upload";
+export type { FieldDateProps } from "./Field/Date";
 export type { FieldMaskName } from "./Field/masks";
 export type { FieldTokenProps } from "./FieldToken";
 export type { FormSectionProps } from "./FormSection";
@@ -204,11 +209,17 @@ export type { ToggleProps } from "./Toggle";
 export type { TokenInputProps } from "./TokenInput";
 export type { TooltipProps } from "./Tooltip";
 export type { TruncatedAccountProps } from "./TruncatedAccount";
-export type { UseBreakpointsResult } from "./hooks/useBreakpoints";
 export type {
+  UseBreakpointsResult,
+  UseDismissOptions,
+  UseDismissResult,
+  DismissReason,
+  DismissEvent,
   UseDropdownLayerResult,
   UseDropdownLayerOptions,
-} from "./hooks/useDropdownLayer";
+  UseFocusTrapOptions,
+  UseFocusTrapResult,
+} from "./hooks";
 export type { FormatDateStyle } from "./formatters/formatDate";
 export type {
   FormatNumberStyle,
@@ -277,7 +288,9 @@ export {
   Tooltip,
   TruncatedAccount,
   useBreakpoints,
+  useDismiss,
   useDropdownLayer,
+  useFocusTrap,
   useLockBodyScroll,
   useSupportsAnchorPositioning,
   formatNumber,

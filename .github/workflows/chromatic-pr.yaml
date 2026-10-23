@@ -2,6 +2,9 @@
 name: 'Chromatic PR Checks'
 permissions:
   contents: read
+concurrency:
+  group: chromatic-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 on:
   pull_request:
     branches:
@@ -70,7 +73,7 @@ jobs:
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
           path: dist
-          key: build-${{ hashFiles('src/**', 'pnpm-lock.yaml') }}
+          key: build-${{ hashFiles('src/**', 'tokens/**', 'pnpm-lock.yaml') }}
 
       - name: Build
         if: steps.build-cache.outputs.cache-hit != 'true'
@@ -84,6 +87,9 @@ jobs:
         uses: chromaui/action@a18e9f57b71eb05f941848c0b927aab2ee644e3e # 18.10.2
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          onlyChanged: true
+          # Token sources compile into ignored dist/tokens assets used by Storybook.
+          externals: 'tokens/**'
           exitZeroOnChanges: false # fail workflow if changes detected
           autoAcceptChanges: false
           buildScriptName: ''

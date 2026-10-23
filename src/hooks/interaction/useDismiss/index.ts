@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import useOnClickOutside from "../useOnClickOutside";
 
 /** Why the user dismissed the layer */
@@ -37,36 +37,21 @@ export interface UseDismissResult {
 }
 
 interface EscapeLayer {
-  /** Render order of the owning component */
-  order: number;
-  /** Registration burst the layer arrived in */
-  batch: number;
+  /** Render that opened the layer */
+  stamp: number;
 }
 
 /** Open layers, bottom to top. Only the top layer handles Escape. */
 const escapeLayers: EscapeLayer[] = [];
 
-let nextOrder = 0;
-let currentBatch = 0;
-let isBatchOpen = false;
+let nextStamp = 0;
 
 const registerEscapeLayer = (layer: EscapeLayer) => {
-  // Layers stack in the order they open. Layers opened by the same commit
-  // register child-first, so sort each synchronous burst by render order.
-  if (!isBatchOpen) {
-    isBatchOpen = true;
-    queueMicrotask(() => {
-      isBatchOpen = false;
-      currentBatch += 1;
-    });
-  }
-  layer.batch = currentBatch;
+  // Layers stack in the order they open. A later commit renders after an
+  // earlier one, and within a commit a parent renders before its children
+  // even though children register first, so stack by render stamp.
   let index = escapeLayers.length;
-  while (
-    index > 0 &&
-    escapeLayers[index - 1].batch === layer.batch &&
-    escapeLayers[index - 1].order > layer.order
-  ) {
+  while (index > 0 && escapeLayers[index - 1].stamp > layer.stamp) {
     index -= 1;
   }
   escapeLayers.splice(index, 0, layer);
@@ -99,11 +84,10 @@ const useDismiss = ({
   outsideClick = false,
 }: UseDismissOptions): UseDismissResult => {
   const fallbackRef = useRef<HTMLElement | null>(null);
-  // a parent renders before its children
-  const [order] = useState(() => {
-    nextOrder += 1;
-    return nextOrder;
-  });
+  // stamp every render; the Escape effect keeps the stamp of the render
+  // that opened the layer
+  nextStamp += 1;
+  const renderStamp = nextStamp;
 
   // keep the latest handler without resubscribing the listener every render
   const onDismissRef = useRef(onDismiss);
@@ -115,7 +99,7 @@ const useDismiss = ({
 
   useEffect(() => {
     if (!isOpen || !escapeKey) return undefined;
-    const layer: EscapeLayer = { order, batch: 0 };
+    const layer: EscapeLayer = { stamp: renderStamp };
     registerEscapeLayer(layer);
     const listener = (event: KeyboardEvent) => {
       if (event.key !== "Escape" || event.defaultPrevented) return;
@@ -128,7 +112,8 @@ const useDismiss = ({
       document.removeEventListener("keydown", listener);
       unregisterEscapeLayer(layer);
     };
-  }, [isOpen, escapeKey, order]);
+    // renderStamp is omitted so later renders don't restack an open layer
+  }, [isOpen, escapeKey]);
 
   const onMouseDown = (event: React.MouseEvent) => {
     if (!isOpen || event.target !== event.currentTarget) return;

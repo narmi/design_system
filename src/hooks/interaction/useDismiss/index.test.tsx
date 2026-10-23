@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
-import { render, screen } from "@testing-library/react";
+import React, { useRef, useState } from "react";
+import { flushSync } from "react-dom";
+import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import useDismiss, { UseDismissOptions } from ".";
 
@@ -185,6 +186,34 @@ describe("useDismiss", () => {
       await userEvent.keyboard("{Escape}");
       expect(onSecond).toHaveBeenCalledTimes(1);
       expect(onFirst).not.toHaveBeenCalled();
+    });
+
+    it("stacks an earlier-mounted sibling on top when it opens in a later commit", async () => {
+      const onFirst = vi.fn();
+      const onSecond = vi.fn();
+      let openFirst = () => {};
+      let openSecond = () => {};
+      const Siblings = () => {
+        const [isFirstOpen, setIsFirstOpen] = useState(false);
+        const [isSecondOpen, setIsSecondOpen] = useState(false);
+        openFirst = () => setIsFirstOpen(true);
+        openSecond = () => setIsSecondOpen(true);
+        return (
+          <>
+            <Layer isOpen={isFirstOpen} onDismiss={onFirst} label="first" />
+            <Layer isOpen={isSecondOpen} onDismiss={onSecond} label="second" />
+          </>
+        );
+      };
+      render(<Siblings />);
+      // two separate commits with no microtask between them
+      act(() => {
+        flushSync(openSecond);
+        flushSync(openFirst);
+      });
+      await userEvent.keyboard("{Escape}");
+      expect(onFirst).toHaveBeenCalledTimes(1);
+      expect(onSecond).not.toHaveBeenCalled();
     });
 
     it("marks the handled Escape as defaultPrevented", async () => {

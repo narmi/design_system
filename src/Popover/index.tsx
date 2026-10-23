@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import cc from "classcat";
 import useFocusTrap from "../hooks/interaction/useFocusTrap";
+import useDismiss from "../hooks/interaction/useDismiss";
 import useDropdownLayer from "../hooks/layout/useDropdownLayer";
 import type { Placement } from "../hooks/layout/useDropdownLayer";
 
@@ -142,6 +143,7 @@ const Popover = ({
     // a popover may close because the user clicked elsewhere; don't yank focus back
     returnFocus: false,
   });
+  useDismiss({ isOpen: shouldRenderPopover, onDismiss: closePopover });
 
   useEffect(() => {
     if (!shouldRenderPopover) return;
@@ -159,15 +161,9 @@ const Popover = ({
       }
     };
 
-    const handleEscape = ({ key }: KeyboardEvent) => {
-      if (key === "Escape") closePopover();
-    };
-
     document.addEventListener("mousedown", handleOutsideClick);
-    window.addEventListener("keydown", handleEscape);
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
-      window.removeEventListener("keydown", handleEscape);
     };
   }, [shouldRenderPopover, closePopover, anchorRef, layerRef]);
 

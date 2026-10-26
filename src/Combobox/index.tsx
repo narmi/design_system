@@ -362,7 +362,7 @@ function Combobox({
   const renderItem = (item: ComboboxChild, index: number) => {
     const isActionItem = isAction(item);
     let itemJsx = (
-      <li key={`${item}-${index}`} className="alignChild--left--center">
+      <li key={item.key ?? index} className="alignChild--left--center">
         {item}
       </li>
     );
@@ -370,7 +370,9 @@ function Combobox({
     if (isSelectable(item)) {
       itemJsx = (
         <li
-          key={`${item}-${index}`}
+          // Keyed by item, not position: when filtering, a reused row would swap
+          // its text node, and browser translation makes React crash doing that
+          key={item.key ?? index}
           className={cc([
             "nds-combobox-item",
             "alignChild--left--center padding--x--s",

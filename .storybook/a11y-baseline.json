@@ -1,10 +1,4 @@
 {
-  "src/Accordion/index.stories.tsx > With Focusable Content": [
-    "aria-hidden-focus"
-  ],
-  "src/AccordionSet/index.stories.tsx > With Custom Styling": [
-    "aria-hidden-focus"
-  ],
   "src/AutocompleteModal/index.stories.jsx > With Search Value": [
     "nested-interactive"
   ],

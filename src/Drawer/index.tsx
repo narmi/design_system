@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, { useRef, useEffect, useId } from "react";
+import React, { useRef, useId } from "react";
 import ReactDOM from "react-dom";
 import cc from "classcat";
 import useBreakpoints from "../hooks/env/useBreakpoints";
 import useMountTransition from "./useMountTransition";
 import useLockBodyScroll from "../hooks/layout/useLockBodyScroll";
 import useFocusTrap from "../hooks/interaction/useFocusTrap";
+import useDismiss from "../hooks/interaction/useDismiss";
 
 const noop = () => {};
 
@@ -104,20 +105,7 @@ const Drawer = ({
 
   useLockBodyScroll(isOpen);
   const { trapProps } = useFocusTrap({ ref: trapRef, isActive: isOpen });
-
-  const handleKeyDown = ({ key }: KeyboardEvent) => {
-    if (key === "Escape") {
-      onUserDismiss();
-    }
-  };
-
-  useEffect(() => {
-    if (!isOpen) return;
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [handleKeyDown, isOpen]);
+  useDismiss({ isOpen, onDismiss: () => onUserDismiss() });
 
   const handleShimClick = ({ target }: React.MouseEvent) => {
     if (

@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import useOnClickOutside from "../hooks/interaction/useOnClickOutside";
+import useDismiss from "../hooks/interaction/useDismiss";
 import useFocusTrap from "../hooks/interaction/useFocusTrap";
 import useDropdownLayer from "../hooks/layout/useDropdownLayer";
 
@@ -47,27 +48,11 @@ const AnchoredDialog = ({
   });
   const trapRef = useRef<HTMLDivElement>(null);
   const { trapProps } = useFocusTrap({ ref: trapRef, isActive: isOpen });
+  useDismiss({ isOpen, onDismiss: () => onUserDismiss() });
 
   useOnClickOutside(layerProps.ref as React.RefObject<HTMLDivElement>, () => {
     onUserDismiss();
   });
-
-  const handleKey = (e: KeyboardEvent) => {
-    if (e.key === "Escape") {
-      onUserDismiss();
-    }
-  };
-
-  // Key listener for Escape
-  useEffect(() => {
-    if (!isOpen) return;
-
-    document.addEventListener("keydown", handleKey);
-
-    return () => {
-      document.removeEventListener("keydown", handleKey);
-    };
-  }, [isOpen, onUserDismiss]);
 
   if (!isOpen && !trigger) {
     return null;

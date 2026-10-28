@@ -5,6 +5,7 @@ import cc from "classcat";
 import useLockBodyScroll from "../hooks/layout/useLockBodyScroll";
 import { CSSTransition } from "react-transition-group";
 import useFocusTrap from "../hooks/interaction/useFocusTrap";
+import useDismiss from "../hooks/interaction/useDismiss";
 
 const noop = () => {};
 
@@ -81,27 +82,20 @@ const Dialog = ({
     isActive: isOpen,
     initialFocus: "container",
   });
+  useDismiss({ isOpen, onDismiss: () => onUserDismiss() });
 
   const checkContentOverflow = () => {
     setIsContentOverflowing(getIsContentTooLong(contentRef));
   };
 
-  const handleKeyDown = ({ key }) => {
-    if (key === "Escape") {
-      onUserDismiss();
-    }
-  };
-
   useEffect(() => {
     if (!isOpen) return undefined;
     checkContentOverflow(); // run when the dialog initially opens
-    window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("resize", checkContentOverflow);
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("resize", checkContentOverflow);
     };
-  }, [handleKeyDown, checkContentOverflow, isOpen]);
+  }, [checkContentOverflow, isOpen]);
 
   const handleShimClick = ({ target }) => {
     if (shimRef.current && target === shimRef.current) {

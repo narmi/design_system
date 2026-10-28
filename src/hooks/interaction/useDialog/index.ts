@@ -182,7 +182,11 @@ const useDialog = ({
 
   return {
     dialogProps,
-    backdropProps,
+    backdropProps: {
+      onMouseDown: (event) => {
+        if (isModal && !outsideClick) backdropProps.onMouseDown(event);
+      },
+    },
     titleProps: { id: titleId, ref: setTitleRef },
     descriptionProps: { id: descriptionId, ref: setDescriptionRef },
     closeButtonProps: {

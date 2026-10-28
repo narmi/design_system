@@ -91,7 +91,11 @@ export const NonModal = () => {
 
   return (
     <div style={{ position: "relative", display: "inline-block" }}>
-      <Button kind="secondary" onClick={() => setIsOpen(!isOpen)}>
+      <Button
+        kind="secondary"
+        onMouseDown={(event: React.MouseEvent) => event.stopPropagation()}
+        onClick={() => setIsOpen(!isOpen)}
+      >
         Toggle filters
       </Button>
       {isOpen && (

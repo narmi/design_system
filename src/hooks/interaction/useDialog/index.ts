@@ -171,6 +171,9 @@ const useDialog = ({
     ref: setDialogRef,
     role: "dialog",
     ...trapProps,
+    onKeyDown: (event) => {
+      if (isModal) trapProps.onKeyDown(event);
+    },
   };
   if (isModal) dialogProps["aria-modal"] = true;
   if (label) dialogProps["aria-label"] = label;

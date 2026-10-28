@@ -3,8 +3,10 @@ import TextInput, { type SingleLineTextInputProps } from "../TextInput";
 import { english } from "flatpickr/dist/l10n/default";
 import flatpickr from "flatpickr";
 import type { Options } from "flatpickr/dist/types/options";
+import type { Instance } from "flatpickr/dist/types/instance";
 
 const noop = () => {};
+const NO_DISABLED_DATES: Options["disable"] = [];
 
 export interface DateInputProps extends Omit<
   SingleLineTextInputProps,
@@ -54,7 +56,7 @@ const defaultRenderInput: DateInputProps["renderInput"] = (
  * Composes NDS input with a [flatpickr](http://flatpickrjs.org) calendar UI.
  */
 const DateInput = ({
-  disableDates = [],
+  disableDates = NO_DISABLED_DATES,
   minDate,
   dateFormat = "Y-m-d",
   altInput,
@@ -69,54 +71,96 @@ const DateInput = ({
   ...props
 }: DateInputProps) => {
   const input = useRef<HTMLInputElement>();
+  // Read through a ref so a new callback identity doesn't re-init flatpickr
+  const onChangeRef = useRef(onChangeProp);
+  onChangeRef.current = onChangeProp;
 
   // Shorten "Sun" to "Su", "Mon" to "Mo", etc.
   english.weekdays.shorthand = english.weekdays.shorthand.map((abbrev) =>
     abbrev.substr(0, 2),
   ) as typeof english.weekdays.shorthand;
-  const flatpickrOptions: Options = {
-    monthSelectorType: "static",
-    locale: english,
-    allowInput: true,
+
+  const label = props.label;
+
+  useEffect(() => {
+    if (!input.current) return;
+
+    const flatpickrOptions: Options = {
+      monthSelectorType: "static",
+      locale: english,
+      allowInput: true,
+      dateFormat,
+      minDate,
+      altInput,
+      altFormat,
+      disableMobile,
+      disable: disableDates,
+      defaultDate,
+      static: disablePortal,
+      onChange: (flatpickrVal) => {
+        // 🇨🇦 Our neighbors to the north have adopted ISO 8601.
+        // localizing to en-CA produces the expected result of YYYY-MM-DD
+        const locale = useIsoOnChange ? "en-CA" : "en-US";
+        const selectedDate = new Date(flatpickrVal as unknown as string);
+        if (isNaN(selectedDate.getTime())) {
+          return;
+        }
+        const formattedDate = new Intl.DateTimeFormat(locale).format(
+          selectedDate,
+        );
+        onChangeRef.current(formattedDate);
+      },
+      // With `altInput`, flatpickr hides `input` and renders its own visible
+      // input, which needs the label applied once it exists.
+      onReady: (dates, dateStr, instance) => {
+        if (altInput && instance.altInput) {
+          instance.altInput.setAttribute("aria-label", label || "Select date");
+        }
+      },
+    };
+
+    const instance: Instance = flatpickr(input.current, flatpickrOptions);
+
+    // flatpickr only commits typed text on blur or Enter. Commit as soon as
+    // the text is a complete, valid date so `onChange` fires while typing.
+    const handleInput = (event: Event) => {
+      const target = event.target as HTMLInputElement;
+      const value = target.value;
+      const format =
+        target === instance.altInput
+          ? instance.config.altFormat
+          : instance.config.dateFormat;
+      const parsed = instance.parseDate(value, format);
+      // Round-trip check rejects partial input flatpickr would parse leniently
+      if (!parsed || instance.formatDate(parsed, format) !== value) {
+        return;
+      }
+      const selected = instance.selectedDates[0];
+      if (selected && instance.formatDate(selected, format) === value) {
+        return;
+      }
+      instance.setDate(value, true, format);
+    };
+    // `_input` is whichever element the user types into
+    const typedInput = instance._input;
+    typedInput.addEventListener("input", handleInput);
+
+    return () => {
+      typedInput.removeEventListener("input", handleInput);
+      instance.destroy();
+    };
+  }, [
     dateFormat,
     minDate,
     altInput,
     altFormat,
     disableMobile,
-    disable: disableDates,
+    disableDates,
     defaultDate,
-    onChange: (flatpickrVal) => {
-      // 🇨🇦 Our neighbors to the north have adopted ISO 8601.
-      // localizing to en-CA produces the expected result of YYYY-MM-DD
-      const locale = useIsoOnChange ? "en-CA" : "en-US";
-      const selectedDate = new Date(flatpickrVal as unknown as string);
-      if (isNaN(selectedDate.getTime())) {
-        return;
-      }
-      const formattedDate = new Intl.DateTimeFormat(locale).format(
-        selectedDate,
-      );
-      onChangeProp(formattedDate);
-    },
-    // When `altInput` is passed, flatpickr makes the `input` element `type="hidden"`
-    // and creates a separate input to display the alternate date format (altFormat).
-    // When this is the case, we need to hook into the flatpickr ready event to add the attribute.
-    onReady: (dates, dateStr, instance) => {
-      if (altInput && instance.altInput) {
-        instance.altInput.setAttribute(
-          "aria-label",
-          props.label || "Select date",
-        );
-      }
-    },
-  };
-
-  useEffect(() => {
-    if (disablePortal) {
-      flatpickrOptions.static = true;
-    }
-    flatpickr(input.current, flatpickrOptions);
-  }, [flatpickrOptions, input, disablePortal]);
+    disablePortal,
+    useIsoOnChange,
+    label,
+  ]);
 
   return <>{renderInput(props, input, testId)}</>;
 };

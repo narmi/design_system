@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useInsertionEffect, useLayoutEffect, useRef } from "react";
 
 export interface UseInertOptions {
   /** Ref to the element to make inert */
@@ -32,12 +32,28 @@ const useInert = ({ ref, isInert, onRelocateFocus }: UseInertOptions) => {
   // read the latest callback inside the effect without re-running it
   const onRelocateFocusRef = useRef(onRelocateFocus);
   onRelocateFocusRef.current = onRelocateFocus;
+  const focusedElementRef = useRef<HTMLElement | null>(null);
+
+  useInsertionEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const activeElement = document.activeElement;
+    focusedElementRef.current =
+      isInert && activeElement instanceof HTMLElement && el.contains(activeElement)
+        ? activeElement
+        : null;
+
+    el.toggleAttribute("inert", isInert);
+  });
 
   useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
 
-    if (isInert && el.contains(document.activeElement)) {
+    const focusedElement = focusedElementRef.current;
+    focusedElementRef.current = null;
+    if (isInert && focusedElement && el.contains(focusedElement)) {
       onRelocateFocusRef.current?.();
       const active = document.activeElement;
       if (active instanceof HTMLElement && el.contains(active)) {

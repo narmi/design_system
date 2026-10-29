@@ -838,6 +838,52 @@ export const RelocatesFocusFromCollapsedSortableHeader = {
   },
 };
 
+export const RelocatesFocusWhenVisibilitySwaps = {
+  name: "Interaction: Focus moves when visible and hidden cells swap",
+  render: () => {
+    const [isSwapped, setIsSwapped] = useState(false);
+
+    return (
+      <Table
+        colVisibility={isSwapped ? ["none", "*"] : ["*", "none"]}
+        colLayout={{
+          s: ["1fr", "1fr"],
+          m: ["1fr", "1fr"],
+          l: ["1fr", "1fr"],
+        }}
+      >
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>
+              <button type="button" onClick={() => setIsSwapped(true)}>
+                Hide focused cell
+              </button>
+            </Table.Cell>
+            <Table.Cell>
+              <button type="button">Newly visible action</button>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+    );
+  },
+  play: async ({ canvas }) => {
+    const keyboard = await getRealKeyboard();
+    if (!keyboard) return;
+
+    const hidingButton = canvas.getByRole("button", {
+      name: "Hide focused cell",
+    });
+    await keyboard.tab();
+    await expect(hidingButton).toHaveFocus();
+    await keyboard.keyboard("{Enter}");
+    const visibleButton = canvas.getByRole("button", {
+      name: "Newly visible action",
+    });
+    await expect(visibleButton).toHaveFocus();
+  },
+};
+
 export default {
   title: "Components/Table",
   component: Table,

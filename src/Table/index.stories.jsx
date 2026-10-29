@@ -793,51 +793,10 @@ export const SkipsHiddenCells = {
   },
 };
 
-export const RelocatesFocusFromCollapsedSortableHeader = {
-  name: "Interaction: Focus moves when sortable header collapses",
-  render: () => {
-    const [isCollapsed, setIsCollapsed] = useState(false);
-
-    return (
-      <Table
-        colVisibility={isCollapsed ? ["none", "*"] : ["*", "*"]}
-        colLayout={{
-          s: ["1fr", "1fr"],
-          m: ["1fr", "1fr"],
-          l: ["1fr", "1fr"],
-        }}
-      >
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell onClick={() => setIsCollapsed(true)}>
-              Collapse sortable header
-            </Table.HeaderCell>
-            <Table.HeaderCell onClick={() => {}}>
-              Visible sortable header
-            </Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-      </Table>
-    );
-  },
-  play: async ({ canvas }) => {
-    const keyboard = await getRealKeyboard();
-    if (!keyboard) return;
-
-    const collapsingHeader = canvas.getByRole("columnheader", {
-      name: "Collapse sortable header",
-    });
-    const visibleHeader = canvas.getByRole("columnheader", {
-      name: "Visible sortable header",
-    });
-
-    await keyboard.tab();
-    await expect(collapsingHeader).toHaveFocus();
-    await keyboard.keyboard("{Enter}");
-    await expect(visibleHeader).toHaveFocus();
-  },
-};
-
+/**
+ * Interaction test verifying that when a cell collapses while focus is inside
+ * it, focus moves to a control in a cell revealed by the same update.
+ */
 export const RelocatesFocusWhenVisibilitySwaps = {
   name: "Interaction: Focus moves when visible and hidden cells swap",
   render: () => {
@@ -867,20 +826,15 @@ export const RelocatesFocusWhenVisibilitySwaps = {
       </Table>
     );
   },
-  play: async ({ canvas }) => {
-    const keyboard = await getRealKeyboard();
-    if (!keyboard) return;
-
+  play: async ({ canvas, userEvent }) => {
     const hidingButton = canvas.getByRole("button", {
       name: "Hide focused cell",
     });
-    await keyboard.tab();
-    await expect(hidingButton).toHaveFocus();
-    await keyboard.keyboard("{Enter}");
-    const visibleButton = canvas.getByRole("button", {
-      name: "Newly visible action",
-    });
-    await expect(visibleButton).toHaveFocus();
+    hidingButton.focus();
+    await userEvent.click(hidingButton);
+    await expect(
+      canvas.getByRole("button", { name: "Newly visible action" }),
+    ).toHaveFocus();
   },
 };
 

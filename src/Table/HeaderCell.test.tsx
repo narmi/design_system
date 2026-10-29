@@ -23,7 +23,7 @@ const renderHeaderCell = ({
   );
 
 describe("HeaderCell", () => {
-  it("disables collapsed header buttons in animated mode", () => {
+  it("makes collapsed header buttons inert and suppresses clicks", () => {
     const onClick = vi.fn();
 
     renderHeaderCell({ isAnimated: true, colVisibility: ["none"], onClick });
@@ -33,7 +33,8 @@ describe("HeaderCell", () => {
     // accessible name. Query with `hidden: true` (and no name) to reach the
     // intentionally inaccessible header button.
     const header = screen.getByRole("columnheader", { hidden: true });
-    expect(header).toBeDisabled();
+    expect(header).toHaveAttribute("inert");
+    expect(header).not.toBeDisabled();
 
     fireEvent.click(header);
     expect(onClick).not.toHaveBeenCalled();

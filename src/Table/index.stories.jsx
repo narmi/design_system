@@ -793,6 +793,51 @@ export const SkipsHiddenCells = {
   },
 };
 
+export const RelocatesFocusFromCollapsedSortableHeader = {
+  name: "Interaction: Focus moves when sortable header collapses",
+  render: () => {
+    const [isCollapsed, setIsCollapsed] = useState(false);
+
+    return (
+      <Table
+        colVisibility={isCollapsed ? ["none", "*"] : ["*", "*"]}
+        colLayout={{
+          s: ["1fr", "1fr"],
+          m: ["1fr", "1fr"],
+          l: ["1fr", "1fr"],
+        }}
+      >
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell onClick={() => setIsCollapsed(true)}>
+              Collapse sortable header
+            </Table.HeaderCell>
+            <Table.HeaderCell onClick={() => {}}>
+              Visible sortable header
+            </Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+      </Table>
+    );
+  },
+  play: async ({ canvas }) => {
+    const keyboard = await getRealKeyboard();
+    if (!keyboard) return;
+
+    const collapsingHeader = canvas.getByRole("columnheader", {
+      name: "Collapse sortable header",
+    });
+    const visibleHeader = canvas.getByRole("columnheader", {
+      name: "Visible sortable header",
+    });
+
+    await keyboard.tab();
+    await expect(collapsingHeader).toHaveFocus();
+    await keyboard.keyboard("{Enter}");
+    await expect(visibleHeader).toHaveFocus();
+  },
+};
+
 export default {
   title: "Components/Table",
   component: Table,

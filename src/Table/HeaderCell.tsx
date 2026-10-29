@@ -68,7 +68,6 @@ const HeaderCell = ({
       ref={cellRef}
       aria-live="polite"
       aria-hidden={isCollapsed || undefined}
-      disabled={isCollapsed}
       onClick={isCollapsed ? undefined : onClick}
       className={cc([
         "nds-table-cell button--reset",

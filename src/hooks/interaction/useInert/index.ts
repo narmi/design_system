@@ -46,7 +46,7 @@ const useInert = ({ ref, isInert, onRelocateFocus }: UseInertOptions) => {
     }
 
     el.toggleAttribute("inert", isInert);
-  }, [ref, isInert]);
+  });
 };
 
 export default useInert;

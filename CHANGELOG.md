@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.37.3](https://github.com/narmi/design_system/compare/v6.37.2...v6.37.3) (2026-10-28)
+
+### fix
+
+* **useDismiss:** let only the top open layer handle Escape ([5c5fe8e](https://github.com/narmi/design_system/commit/5c5fe8e786d453203fe43d960b1370457ab5cebc))
+* **useDismiss:** stack Escape layers by render stamp instead of microtask batches ([4ecd68b](https://github.com/narmi/design_system/commit/4ecd68bb2134095f1559b7e4b4eb38e0230eec90))
+
+## [6.37.2](https://github.com/narmi/design_system/compare/v6.37.1...v6.37.2) (2026-10-27)
+
+### fix
+
+* **Combobox:** key rows by item so translated pages don't crash ([c55e174](https://github.com/narmi/design_system/commit/c55e1746bf395779801f36eea8f66fb5929abf58))
+
+### refactor
+
+* **Combobox:** drop the index fallback on row keys ([59ca7ba](https://github.com/narmi/design_system/commit/59ca7bacb4f3779bc7cbf5742e87414f47803759))
+
 ## [6.37.1](https://github.com/narmi/design_system/compare/v6.37.0...v6.37.1) (2026-10-22)
 
 ### fix

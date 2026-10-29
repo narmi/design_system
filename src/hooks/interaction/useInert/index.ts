@@ -25,8 +25,22 @@ export interface UseInertOptions {
  *
  * The attribute is set imperatively rather than rendered as a prop because
  * React 18 does not recognize `inert` (the `""` workaround it needs is in turn
- * treated as `false` by React 19). Setting it in a layout effect behaves the
- * same under both.
+ * treated as `false` by React 19). Setting it in effects behaves the same
+ * under both.
+ *
+ * The work is split across two effect phases so that several elements
+ * changing in the same commit (e.g. one table cell collapsing while its
+ * neighbor is revealed) are handled correctly:
+ *
+ * 1. `useInsertionEffect` runs for every element before any layout effect.
+ *    It records whether this element contains focus, then toggles `inert`.
+ *    By the time any layout effect runs, every element's `inert` state is
+ *    already settled, so a relocation target revealed in this commit can take
+ *    focus. Recording focus first matters because the browser drops focus as
+ *    soon as an ancestor becomes inert. On the initial mount the ref is not
+ *    attached yet, so this phase does nothing and step 2 sets the attribute.
+ * 2. `useLayoutEffect` relocates focus if step 1 found it inside, and sets
+ *    `inert` again (a no-op except on the initial mount).
  */
 const useInert = ({ ref, isInert, onRelocateFocus }: UseInertOptions) => {
   // read the latest callback inside the effect without re-running it
@@ -40,7 +54,9 @@ const useInert = ({ ref, isInert, onRelocateFocus }: UseInertOptions) => {
 
     const activeElement = document.activeElement;
     focusedElementRef.current =
-      isInert && activeElement instanceof HTMLElement && el.contains(activeElement)
+      isInert &&
+      activeElement instanceof HTMLElement &&
+      el.contains(activeElement)
         ? activeElement
         : null;
 
@@ -51,6 +67,7 @@ const useInert = ({ ref, isInert, onRelocateFocus }: UseInertOptions) => {
     const el = ref.current;
     if (!el) return;
 
+    // consume the focus recorded by the insertion effect for this commit
     const focusedElement = focusedElementRef.current;
     focusedElementRef.current = null;
     if (isInert && focusedElement && el.contains(focusedElement)) {

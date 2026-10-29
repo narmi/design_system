@@ -162,6 +162,9 @@
   "src/Table/index.stories.jsx > Clickable Headers": [
     "aria-allowed-role"
   ],
+  "src/Table/index.stories.jsx > Interaction: Focus moves when sortable header collapses": [
+    "aria-allowed-role"
+  ],
   "src/TableSelect/index.stories.tsx > Interaction: Opens on click": [
     "scrollable-region-focusable"
   ],

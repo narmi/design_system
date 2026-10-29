@@ -1,4 +1,5 @@
-import React, { useState, useId } from "react";
+import React, { useState, useId, useRef } from "react";
+import useInert from "../hooks/interaction/useInert";
 
 export interface AccordionProps {
   /**
@@ -31,6 +32,11 @@ export interface AccordionProps {
  * `onUserToggle` callback is required to manage state externally.
  *
  * Applies standard transitions and accessibility attributes.
+ *
+ * Collapsed content stays mounted (so it can animate closed) but is `inert`,
+ * so nothing inside it can be focused, clicked, or read by assistive
+ * technology. If the accordion collapses while focus is inside its content,
+ * focus moves to the summary button.
  */
 const Accordion = ({
   isOpen: isOpenProp,
@@ -44,6 +50,14 @@ const Accordion = ({
   const id = useId();
   const buttonId = `${id}-button`;
   const contentId = `${id}-content`;
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const detailsRef = useRef<HTMLDivElement>(null);
+
+  useInert({
+    ref: detailsRef,
+    isInert: !isOpen,
+    onRelocateFocus: () => buttonRef.current?.focus(),
+  });
 
   const handleClick = () => {
     const newIsOpen = !isOpen;
@@ -56,6 +70,7 @@ const Accordion = ({
   return (
     <div className="nds-accordion" data-testid={testId}>
       <button
+        ref={buttonRef}
         id={buttonId}
         className="nds-accordion-summary-button button--reset"
         onClick={handleClick}
@@ -66,6 +81,7 @@ const Accordion = ({
         {renderSummary(isOpen)}
       </button>
       <div
+        ref={detailsRef}
         id={contentId}
         className="nds-accordion-details"
         role="region"

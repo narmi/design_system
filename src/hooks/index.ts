@@ -21,6 +21,13 @@ export { default as useSupportsAnchoredContainerQueries } from "./env/useSupport
 export { default as useSupportsAnchorPositioning } from "./env/useSupportsAnchorPositioning";
 
 // interaction
+export { default as useDialog } from "./interaction/useDialog";
+export type {
+  UseDialogOptions,
+  UseDialogResult,
+  DialogDismissReason,
+  DialogDismissEvent,
+} from "./interaction/useDialog";
 export { default as useDismiss } from "./interaction/useDismiss";
 export type {
   UseDismissOptions,

@@ -111,9 +111,22 @@ describe("Dialog", () => {
       const onUserDismiss = vi.fn();
       renderDialog({ onUserDismiss });
 
-      fireEvent.keyDown(document.body, { key: "Escape" });
+      fireEvent.keyDown(screen.getByRole("dialog"), { key: "Escape" });
 
       expect(onUserDismiss).toHaveBeenCalledTimes(1);
+    });
+
+    it("passes the click event to onUserDismiss only for the close button", async () => {
+      const onUserDismiss = vi.fn();
+      renderDialog({ onUserDismiss });
+
+      await userEvent.click(screen.getByRole("button", { name: "close" }));
+      expect(onUserDismiss).toHaveBeenLastCalledWith(
+        expect.objectContaining({ type: "click" }),
+      );
+
+      fireEvent.keyDown(screen.getByRole("dialog"), { key: "Escape" });
+      expect(onUserDismiss).toHaveBeenLastCalledWith(undefined);
     });
 
     it("calls onUserDismiss when clicking on backdrop", async () => {
@@ -185,16 +198,39 @@ describe("Dialog", () => {
       renderDialog();
       const dialog = screen.getByRole("dialog");
 
-      expect(dialog).toHaveAttribute("aria-labelledby", "aria-dialog-label");
       expect(dialog).toHaveAttribute("aria-modal", "true");
+      expect(dialog).toHaveAccessibleName("Test Dialog");
     });
 
     it("has title linked to dialog via aria-labelledby", () => {
       renderDialog();
-      const titleElement = document.getElementById("aria-dialog-label");
+      const dialog = screen.getByRole("dialog");
+      const titleElement = document.getElementById(
+        dialog.getAttribute("aria-labelledby"),
+      );
 
       expect(titleElement).toBeInTheDocument();
       expect(titleElement).toHaveTextContent("Test Dialog");
+    });
+
+    it("labels a banner dialog by its title", () => {
+      renderDialog({ headerStyle: "banner" });
+      expect(screen.getByRole("dialog")).toHaveAccessibleName("Test Dialog");
+    });
+
+    it("gives each open dialog its own title id", () => {
+      render(
+        <>
+          <Dialog {...defaultProps} title="First" />
+          <Dialog {...defaultProps} title="Second" />
+        </>,
+      );
+      const [first, second] = screen.getAllByRole("dialog");
+      expect(first.getAttribute("aria-labelledby")).not.toBe(
+        second.getAttribute("aria-labelledby"),
+      );
+      expect(first).toHaveAccessibleName("First");
+      expect(second).toHaveAccessibleName("Second");
     });
 
     it("focuses the dialog when opened", async () => {
@@ -380,7 +416,10 @@ describe("Dialog", () => {
     it("handles empty title", () => {
       renderDialog({ title: "" });
 
-      const titleElement = document.getElementById("aria-dialog-label");
+      const dialog = screen.getByRole("dialog");
+      const titleElement = document.getElementById(
+        dialog.getAttribute("aria-labelledby"),
+      );
       expect(titleElement).toHaveTextContent("");
     });
 

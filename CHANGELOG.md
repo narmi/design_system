@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.38.0](https://github.com/narmi/design_system/compare/v6.37.3...v6.38.0) (2026-10-30)
+
+### feat
+
+* **useDialog:** add useDialog hook; use it in Dialog ([62165fc](https://github.com/narmi/design_system/commit/62165fcbd4f2c02513aeef750dc756fe3671682f))
+
 ## [6.37.3](https://github.com/narmi/design_system/compare/v6.37.2...v6.37.3) (2026-10-28)
 
 ### fix

@@ -160,6 +160,7 @@ const DateInput = ({
     disablePortal,
     useIsoOnChange,
     label,
+    props.disabled,
   ]);
 
   return <>{renderInput(props, input, testId)}</>;

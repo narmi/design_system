@@ -74,6 +74,7 @@ const DateInput = ({
   // Read through a ref so a new callback identity doesn't re-init flatpickr
   const onChangeRef = useRef(onChangeProp);
   onChangeRef.current = onChangeProp;
+  const instanceRef = useRef<Instance>();
 
   // Shorten "Sun" to "Su", "Mon" to "Mo", etc.
   english.weekdays.shorthand = english.weekdays.shorthand.map((abbrev) =>
@@ -81,6 +82,7 @@ const DateInput = ({
   ) as typeof english.weekdays.shorthand;
 
   const label = props.label;
+  const value = props.value;
 
   useEffect(() => {
     if (!input.current) return;
@@ -120,6 +122,7 @@ const DateInput = ({
     };
 
     const instance: Instance = flatpickr(input.current, flatpickrOptions);
+    instanceRef.current = instance;
 
     // flatpickr only commits typed text on blur or Enter. Commit as soon as
     // the text is a complete, valid date so `onChange` fires while typing.
@@ -148,6 +151,7 @@ const DateInput = ({
     return () => {
       typedInput.removeEventListener("input", handleInput);
       instance.destroy();
+      instanceRef.current = undefined;
     };
   }, [
     dateFormat,
@@ -162,6 +166,26 @@ const DateInput = ({
     label,
     props.disabled,
   ]);
+
+  // Keep flatpickr's selection in step with a controlled `value`. React only
+  // updates the original input; with `altInput` the visible input and the
+  // calendar would otherwise keep the old selection.
+  useEffect(() => {
+    const instance = instanceRef.current;
+    if (!instance || value === undefined) return;
+    const next =
+      value === ""
+        ? undefined
+        : instance.parseDate(String(value), instance.config.dateFormat);
+    if (value !== "" && !next) return;
+    const selected = instance.selectedDates[0];
+    if (next?.getTime() === selected?.getTime()) return;
+    if (next) {
+      instance.setDate(next, false);
+    } else {
+      instance.clear(false);
+    }
+  }, [value]);
 
   return <>{renderInput(props, input, testId)}</>;
 };

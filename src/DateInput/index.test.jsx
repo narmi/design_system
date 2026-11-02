@@ -89,4 +89,50 @@ describe("DateInput", () => {
     expect(first).not.toHaveBeenCalled();
     expect(second).toHaveBeenCalledWith("2024-01-15");
   });
+
+  describe("controlled value", () => {
+    const getAltInput = () =>
+      screen
+        .getAllByLabelText(LABEL)
+        .find((el) => el.getAttribute("type") === "text");
+    const renderControlled = (value) => (
+      <DateInput
+        label={LABEL}
+        altInput
+        altFormat="m/d/Y"
+        value={value}
+        onChange={vi.fn()}
+      />
+    );
+
+    it("updates the alt input when the value prop changes", () => {
+      const { rerender } = render(renderControlled("2024-01-15"));
+      expect(getAltInput()).toHaveValue("01/15/2024");
+
+      rerender(renderControlled("2024-02-20"));
+
+      expect(getAltInput()).toHaveValue("02/20/2024");
+    });
+
+    it("clears the alt input when the value prop is cleared", () => {
+      const { rerender } = render(renderControlled("2024-01-15"));
+
+      rerender(renderControlled(""));
+
+      expect(getAltInput()).toHaveValue("");
+    });
+
+    it("does not fire onChange when the value prop changes", () => {
+      const onChange = vi.fn();
+      const { rerender } = render(
+        <DateInput label={LABEL} value="2024-01-15" onChange={onChange} />,
+      );
+
+      rerender(
+        <DateInput label={LABEL} value="2024-02-20" onChange={onChange} />,
+      );
+
+      expect(onChange).not.toHaveBeenCalled();
+    });
+  });
 });

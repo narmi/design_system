@@ -146,5 +146,19 @@ describe("TextInput", () => {
         "first-error",
       );
     });
+
+    it("keeps consumer-supplied aria attributes when there is no error", () => {
+      render(
+        <TextInput
+          id="first"
+          label="First name"
+          aria-invalid
+          aria-describedby="hint"
+        />,
+      );
+      const input = screen.getByLabelText("First name");
+      expect(input).toHaveAttribute("aria-invalid", "true");
+      expect(input).toHaveAttribute("aria-describedby", "hint");
+    });
   });
 });

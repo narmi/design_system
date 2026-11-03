@@ -1,5 +1,6 @@
 .nds-slider {
   position: relative;
+  isolation: isolate;
   width: auto;
   touch-action: none;
 
@@ -35,8 +36,9 @@
     box-sizing: border-box;
     background-color: var(--theme-primary);
 
-    &:hover::before, &.focus::before {
-      z-index:3;
+    &:hover::before,
+    &.focus::before {
+      z-index: 3;
       content: " ";
       position: absolute;
       top: -2px;
@@ -47,8 +49,9 @@
       border-radius: 50%;
     }
 
-    &:hover::after, &.focus::after {
-      z-index:3;
+    &:hover::after,
+    &.focus::after {
+      z-index: 3;
       content: " ";
       position: absolute;
       background-color: var(--theme-primary);

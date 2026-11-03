@@ -184,6 +184,7 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
     // Keeps a consumer-supplied `aria-describedby` alongside the error id
     const withDescribedBy = (controlProps: InputControlProps) => ({
       ...controlProps,
+      "aria-invalid": controlProps["aria-invalid"] ?? props["aria-invalid"],
       "aria-describedby":
         [props["aria-describedby"], controlProps["aria-describedby"]]
           .filter(Boolean)

@@ -1,6 +1,5 @@
 import React, { ReactNode, useState } from "react";
 import Input from "../Input";
-import type { InputControlProps } from "../Input";
 import type { ErrorMessages } from "../Error";
 import { VALID_ICON_NAMES } from "../icons/iconNames";
 import type { IconName } from "../types/Icon.types";
@@ -181,15 +180,6 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
         ? "Exceeds character limits."
         : undefined);
 
-    // Keeps a consumer-supplied `aria-describedby` alongside the error id
-    const withDescribedBy = (controlProps: InputControlProps) => ({
-      ...controlProps,
-      "aria-describedby":
-        [props["aria-describedby"], controlProps["aria-describedby"]]
-          .filter(Boolean)
-          .join(" ") || undefined,
-    });
-
     return (
       <Input
         {...props}
@@ -231,7 +221,7 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
                 data-testid={testId}
                 data-error={inputError}
                 {...nativeProps(props)}
-                {...withDescribedBy(controlProps)}
+                {...controlProps}
               />
             </div>
           ) : (
@@ -254,7 +244,7 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
               data-testid={testId}
               data-error={inputError}
               {...nativeProps(props)}
-              {...withDescribedBy(controlProps)}
+              {...controlProps}
             />
           )
         }

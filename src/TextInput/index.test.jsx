@@ -132,21 +132,18 @@ describe("TextInput", () => {
       expect(input).not.toHaveAttribute("aria-describedby");
     });
 
-    it("appends the error id to a consumer-supplied aria-describedby", () => {
+    it("points aria-describedby at the error over a consumer-supplied value", () => {
       render(
-        <>
-          <p id="hint">Legal name</p>
-          <TextInput
-            id="first"
-            label="First name"
-            error="Required"
-            aria-describedby="hint"
-          />
-        </>,
+        <TextInput
+          id="first"
+          label="First name"
+          error="Required"
+          aria-describedby="hint"
+        />,
       );
       expect(screen.getByLabelText("First name")).toHaveAttribute(
         "aria-describedby",
-        "hint first-error",
+        "first-error",
       );
     });
   });

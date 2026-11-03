@@ -1,5 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import Input from "../Input";
+import type { InputControlProps } from "../Input";
 import { VALID_ICON_NAMES } from "../icons/iconNames";
 import type { IconName } from "../types/Icon.types";
 
@@ -95,7 +96,7 @@ export interface MultilineTextInputProps
     > {
   /** When true, the input is displayed as an auto-growing textarea */
   multiline: true;
-/** Maximum number of text lines the textarea grows to before scrolling. Defaults to 8. */
+  /** Maximum number of text lines the textarea grows to before scrolling. Defaults to 8. */
   /** Callback invoked with event object on textarea change */
   onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
   /** Callback invoked with event object on textarea blur */
@@ -179,6 +180,15 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
         ? "Exceeds character limits."
         : undefined);
 
+    // Keeps a consumer-supplied `aria-describedby` alongside the error id
+    const withDescribedBy = (controlProps: InputControlProps) => ({
+      ...controlProps,
+      "aria-describedby":
+        [props["aria-describedby"], controlProps["aria-describedby"]]
+          .filter(Boolean)
+          .join(" ") || undefined,
+    });
+
     return (
       <Input
         {...props}
@@ -192,16 +202,40 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
         clearInput={_onClearInput}
         tailContent={characterCounter}
       >
-        {props.multiline === true ? (
-          <div
-            className="nds-input-multiline-grid"
-            data-textarea-value={inputValue}
-            style={{ "--nds-input-max-lines": maxLines } as React.CSSProperties}
-          >
-            <textarea
+        {(controlProps) =>
+          props.multiline === true ? (
+            <div
+              className="nds-input-multiline-grid"
+              data-textarea-value={inputValue}
+              style={
+                { "--nds-input-max-lines": maxLines } as React.CSSProperties
+              }
+            >
+              <textarea
+                key={"nds-text"}
+                wrap="soft"
+                ref={forwardedRef as React.Ref<HTMLTextAreaElement>}
+                value={inputValue}
+                onChange={(e) => {
+                  props.onChange?.(e);
+                  setInputValue(e.target.value);
+                }}
+                onBlur={(e) => {
+                  props.onBlur?.(e);
+                  setInputValue(formatter(e.target.value));
+                }}
+                required={required}
+                placeholder={props.label}
+                aria-label={props.label}
+                data-testid={testId}
+                data-error={inputError}
+                {...nativeProps(props)}
+                {...withDescribedBy(controlProps)}
+              />
+            </div>
+          ) : (
+            <input
               key={"nds-text"}
-              wrap="soft"
-              ref={forwardedRef as React.Ref<HTMLTextAreaElement>}
               value={inputValue}
               onChange={(e) => {
                 props.onChange?.(e);
@@ -211,36 +245,18 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
                 props.onBlur?.(e);
                 setInputValue(formatter(e.target.value));
               }}
+              ref={forwardedRef as React.Ref<HTMLInputElement>}
+              type={props.type ?? "text"}
               required={required}
-              placeholder={props.label}
               aria-label={props.label}
+              placeholder={props.label}
               data-testid={testId}
               data-error={inputError}
               {...nativeProps(props)}
+              {...withDescribedBy(controlProps)}
             />
-          </div>
-        ) : (
-          <input
-            key={"nds-text"}
-            value={inputValue}
-            onChange={(e) => {
-              props.onChange?.(e);
-              setInputValue(e.target.value);
-            }}
-            onBlur={(e) => {
-              props.onBlur?.(e);
-              setInputValue(formatter(e.target.value));
-            }}
-            ref={forwardedRef as React.Ref<HTMLInputElement>}
-            type={props.type ?? "text"}
-            required={required}
-            aria-label={props.label}
-            placeholder={props.label}
-            data-testid={testId}
-            data-error={inputError}
-            {...nativeProps(props)}
-          />
-        )}
+          )
+        }
       </Input>
     );
   },

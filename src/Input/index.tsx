@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
 import React, { ReactNode } from "react";
 import Error from "../Error";
+import { useField } from "../Field/useField";
 import IconButton from "../IconButton";
 
 /*
@@ -36,8 +37,26 @@ export interface InputProps {
   error?: string | string[] | null;
   /** Gives consumers control over where to render the error when `false` */
   renderError?: boolean;
-  children?: ReactNode;
+  /**
+   * The control element. Pass a function to receive `controlProps`, which
+   * must be spread onto the native input so the label and error message
+   * are associated with it.
+   */
+  children?: ReactNode | ((controlProps: InputControlProps) => ReactNode);
 }
+
+/** Accessibility attributes `Input` derives for its control element */
+export interface InputControlProps {
+  id: string;
+  "aria-invalid"?: boolean;
+  "aria-describedby"?: string;
+}
+
+/** Normalises the legacy `error` prop to the list `useField` expects */
+const toErrorList = (error: InputProps["error"]): string[] => {
+  if (!error) return [];
+  return Array.isArray(error) ? error : [error];
+};
 
 /**
  * PRIVATE
@@ -72,6 +91,24 @@ const Input = ({
     search ? "search" : "",
   ].join(" ");
 
+  // Same orchestration as `Field`: the control and its error message share
+  // an id root so assistive tech reads the message as the control's
+  // description. When the consumer renders the error themselves
+  // (`renderError={false}`) there is nothing to point at, but the control
+  // is still invalid.
+  const { errorId, controlProps: fieldControlProps } = useField({
+    id,
+    errors: toErrorList(error),
+  });
+  const controlProps: InputControlProps = {
+    id: fieldControlProps.id,
+    "aria-invalid": fieldControlProps["aria-invalid"],
+    "aria-describedby": renderError
+      ? fieldControlProps["aria-describedby"]
+      : undefined,
+  };
+  const controlId = controlProps.id;
+
   return (
     <div className={className} onClick={onClick} style={style}>
       <div className="nds-input-box">
@@ -86,9 +123,9 @@ const Input = ({
             !label || (startIconClass && !multiline) ? "no-label" : ""
           }`}
         >
-          {children}
+          {typeof children === "function" ? children(controlProps) : children}
           {decoration}
-          {!multiline ? <label htmlFor={id}>{label}</label> : ""}
+          {!multiline ? <label htmlFor={controlId}>{label}</label> : ""}
         </div>
         {endIconClass && (
           <div
@@ -110,7 +147,7 @@ const Input = ({
         {tailContent && (
           <div className="nds-input-tail margin--top--xxs">{tailContent}</div>
         )}
-        {renderError && <Error error={error} />}
+        {renderError && <Error id={errorId} error={error} />}
       </div>
     </div>
   );

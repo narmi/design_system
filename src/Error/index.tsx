@@ -4,25 +4,33 @@ import PropTypes from "prop-types";
 type MarginTop = "xxs" | "xs" | "s" | "m" | "l" | "xl" | "xxl" | "none";
 
 interface ErrorLineProps {
+  id?: string;
   errorLine?: string | null;
   marginTop?: MarginTop;
 }
 
-const ErrorLine = ({ errorLine, marginTop = "xxs" }: ErrorLineProps) => {
+const ErrorLine = ({ id, errorLine, marginTop = "xxs" }: ErrorLineProps) => {
   if (!errorLine) return null;
   return (
-    <div className={`nds-input-error margin--top--${marginTop}`}>
+    <div id={id} className={`nds-input-error margin--top--${marginTop}`}>
       <div className="fontSize--s margin--right--xxs narmi-icon-x-circle" />
       {errorLine}
     </div>
   );
 };
 ErrorLine.propTypes = {
+  id: PropTypes.string,
   errorLine: PropTypes.string,
   marginTop: PropTypes.oneOf(["xxs", "xs", "s", "m", "l", "xl", "xxl", "none"]),
 };
 
 export interface ErrorProps {
+  /**
+   * Id for the rendered error element, so a control can reference it via
+   * `aria-describedby`. Nothing is rendered (and no id exists) when there
+   * is no error.
+   */
+  id?: string;
   /**
    * Error message(s) to display. Falsy values (including `null`) render
    * nothing, which lets callers pass nullable state directly.
@@ -31,11 +39,11 @@ export interface ErrorProps {
   marginTop?: MarginTop;
 }
 
-const Error = ({ error, marginTop = "xxs" }: ErrorProps) => {
+const Error = ({ id, error, marginTop = "xxs" }: ErrorProps) => {
   if (!error) return null;
   if (Array.isArray(error)) {
     return (
-      <div className="nds-input-errorlist" aria-live="polite">
+      <div id={id} className="nds-input-errorlist" aria-live="polite">
         {error.map((errorLine, index) => (
           <ErrorLine
             key={errorLine}
@@ -46,9 +54,10 @@ const Error = ({ error, marginTop = "xxs" }: ErrorProps) => {
       </div>
     );
   }
-  return <ErrorLine errorLine={error} marginTop={marginTop} />;
+  return <ErrorLine id={id} errorLine={error} marginTop={marginTop} />;
 };
 Error.propTypes = {
+  id: PropTypes.string,
   error: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),

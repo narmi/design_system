@@ -85,11 +85,6 @@ const Input = ({
     search ? "search" : "",
   ].join(" ");
 
-  // Same orchestration as `Field`: the control and its error message share
-  // an id root so assistive tech reads the message as the control's
-  // description. When the consumer renders the error themselves
-  // (`renderError={false}`) there is nothing to point at, but the control
-  // is still invalid.
   const { errorId, controlProps: fieldControlProps } = useField({
     id,
     errors: error,
@@ -97,6 +92,7 @@ const Input = ({
   const controlProps: InputControlProps = {
     id: fieldControlProps.id,
     "aria-invalid": fieldControlProps["aria-invalid"],
+    // the consumer owns the error element when renderError is false
     "aria-describedby": renderError
       ? fieldControlProps["aria-describedby"]
       : undefined,

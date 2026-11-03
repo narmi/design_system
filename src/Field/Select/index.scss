@@ -1,9 +1,9 @@
 .nds-field-select-value {
+  @extend %nds-field-value;
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: var(--font-size-s);
   color: var(--font-color-primary);
 
   &:empty::before {

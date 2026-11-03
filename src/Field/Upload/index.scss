@@ -14,11 +14,6 @@ $upload-container-bp-s: 340px;
   container-name: nds-field-upload;
   min-width: 0;
 
-  label {
-    font-size: var(--font-size-l);
-    color: var(--font-color-primary);
-  }
-
   em {
     font-style: unset;
     font-weight: var(--font-weight-bold);
@@ -37,6 +32,10 @@ $upload-container-bp-s: 340px;
   }
 
   &-dropzone {
+    // The drop prompt is the field's content, so it is value sized, not label sized
+    @extend %nds-field-value;
+    color: var(--font-color-primary);
+    cursor: pointer;
     position: relative;
     display: grid;
     margin-top: var(--space-m);
@@ -202,10 +201,6 @@ $upload-container-bp-s: 340px;
       display: none;
       min-inline-size: rem(46px);
       min-block-size: rem(46px);
-    }
-
-    label {
-      font-size: var(--font-size-default);
     }
   }
 

@@ -4,16 +4,15 @@
   gap: rem(6px);
   color: var(--font-color-secondary);
 
-  label {
-    cursor: pointer;
-    font-size: var(--font-size-s);
-    font-weight: var(--font-weight-semibold);
-  }
-
+  // Scoped to the field label's class rather than `label`, so other labels a
+  // variant renders (the Upload drop zone) are free to be value sized.
   // Block so the label's row height follows its own font size, not the parent's
   .nds-field-label {
+    @extend %nds-field-label;
     display: block;
     width: fit-content;
+    cursor: pointer;
+    font-weight: var(--font-weight-semibold);
   }
 }
 
@@ -27,12 +26,12 @@
 
   input,
   textarea {
+    @extend %nds-field-value;
     width: 100%;
     resize: none;
     border: none;
     outline: 0;
     padding: 0;
-    font-size: var(--font-size-s);
     vertical-align: text-top; // visually align with icons
     line-height: 1;
   }
@@ -82,11 +81,11 @@
 
 // Scoped to the listbox so the padding beats `.list--reset li { padding: 0 }`
 .nds-field-listbox .nds-field-option {
+  @extend %nds-field-value;
   box-sizing: border-box;
   cursor: pointer;
   padding: var(--space-xs) var(--space-s) !important; // override list--reset
   min-height: var(--space-xl);
-  font-size: var(--font-size-s);
   display: flex;
   align-items: center;
 

@@ -31,6 +31,10 @@ $upload-container-bp-s: 340px;
     }
   }
 
+  &-file-name {
+    @extend %nds-field-value;
+  }
+
   &-dropzone {
     // The drop prompt is the field's content, so it is value sized, not label sized
     @extend %nds-field-value;

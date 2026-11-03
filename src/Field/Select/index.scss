@@ -4,7 +4,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: var(--font-color-primary);
 
   &:empty::before {
     content: attr(data-placeholder);

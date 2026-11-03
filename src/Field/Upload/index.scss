@@ -36,7 +36,6 @@ $upload-container-bp-s: 340px;
   }
 
   &-dropzone {
-    // The drop prompt is the field's content, so it is value sized, not label sized
     @extend %nds-field-value;
     color: var(--font-color-primary);
     cursor: pointer;

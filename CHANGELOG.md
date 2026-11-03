@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.38.1](https://github.com/narmi/design_system/compare/v6.38.0...v6.38.1) (2026-11-03)
+
+### fix
+
+* **Slider:** isolate stacking context ([13588bc](https://github.com/narmi/design_system/commit/13588bcdb0d6bc020c9b0fccb3a9422ff7292ba2))
+
 ## [6.38.0](https://github.com/narmi/design_system/compare/v6.37.3...v6.38.0) (2026-10-30)
 
 ### feat

@@ -16,7 +16,7 @@ describe("Input", () => {
   it("renders children inside the input column", () => {
     const { container } = render(
       <Input>
-        <input type="text" />
+        {(controlProps) => <input type="text" {...controlProps} />}
       </Input>,
     );
     expect(getColumn(container).querySelector("input")).toBeInTheDocument();

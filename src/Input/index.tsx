@@ -38,14 +38,13 @@ export interface InputProps {
   /** Gives consumers control over where to render the error when `false` */
   renderError?: boolean;
   /**
-   * The control element. Pass a function to receive `controlProps`, which
-   * must be spread onto the native input so the label and error message
-   * are associated with it.
+   * Renders the native input. Spread `controlProps` onto it so the label
+   * and error message are associated with it.
    */
-  children?: ReactNode | ((controlProps: InputControlProps) => ReactNode);
+  children?: (controlProps: InputControlProps) => ReactNode;
 }
 
-/** Accessibility attributes `Input` derives for its control element */
+/** Attributes `Input` derives for the native input it wraps */
 export interface InputControlProps {
   id: string;
   "aria-invalid"?: boolean;
@@ -123,7 +122,7 @@ const Input = ({
             !label || (startIconClass && !multiline) ? "no-label" : ""
           }`}
         >
-          {typeof children === "function" ? children(controlProps) : children}
+          {children?.(controlProps)}
           {decoration}
           {!multiline ? <label htmlFor={controlId}>{label}</label> : ""}
         </div>

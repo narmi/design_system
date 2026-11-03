@@ -26,8 +26,8 @@
 .nds-calendar {
   --nds-calendar-cell: #{rem(36px)};
 
+  @extend %nds-field-value;
   padding: var(--space-s);
-  font-size: var(--font-size-s);
 
   .rdp-month {
     display: grid;

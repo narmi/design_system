@@ -212,4 +212,86 @@ describe("Select", () => {
     // should no longer be in the DOM (including in the trigger label)
     expect(screen.queryByText("Action")).not.toBeInTheDocument();
   });
+
+  describe("Select.Action in StrictMode", () => {
+    // StrictMode replays reducers; an action invoked inside downshift's
+    // `stateReducer` would run twice for a single user activation.
+    const renderStrict = (props = {}) => {
+      const onChange = vi.fn();
+      const onSelect = vi.fn();
+      render(
+        <React.StrictMode>
+          <Select label="Account Type" onChange={onChange} {...props}>
+            <Select.Item value="checking" searchValue="checking">
+              Checking
+            </Select.Item>
+            <Select.Item value="savings" searchValue="savings">
+              Savings
+            </Select.Item>
+            <Select.Action onSelect={onSelect}>Create</Select.Action>
+          </Select>
+        </React.StrictMode>,
+      );
+      return { onChange, onSelect, trigger: screen.getByRole("combobox") };
+    };
+
+    it("invokes the action exactly once on click", () => {
+      const { onChange, onSelect, trigger } = renderStrict();
+
+      fireEvent.click(trigger);
+      fireEvent.click(screen.getByText("Create"));
+
+      expect(onSelect).toHaveBeenCalledTimes(1);
+      expect(onChange).not.toHaveBeenCalled();
+      expect(screen.queryByText("Create")).not.toBeInTheDocument();
+    });
+
+    it("invokes the action exactly once on Enter", () => {
+      const { onChange, onSelect, trigger } = renderStrict();
+
+      fireEvent.click(trigger);
+      fireEvent.keyDown(trigger, { key: "ArrowDown" });
+      fireEvent.keyDown(trigger, { key: "ArrowDown" });
+      fireEvent.keyDown(trigger, { key: "ArrowDown" });
+      fireEvent.keyDown(trigger, { key: "Enter" });
+
+      expect(onSelect).toHaveBeenCalledTimes(1);
+      expect(onChange).not.toHaveBeenCalled();
+      expect(screen.queryByText("Create")).not.toBeInTheDocument();
+    });
+
+    it("preserves the previous selection after an action", () => {
+      const { onChange, onSelect, trigger } = renderStrict();
+
+      fireEvent.click(trigger);
+      fireEvent.click(screen.getByText("Checking"));
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenLastCalledWith("checking");
+
+      fireEvent.click(trigger);
+      fireEvent.click(screen.getByText("Create"));
+
+      expect(onSelect).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(trigger).toHaveTextContent("Checking");
+    });
+
+    it("clears the selection exactly once with `clearSelectionOnAction`", () => {
+      const { onChange, onSelect, trigger } = renderStrict({
+        clearSelectionOnAction: true,
+      });
+
+      fireEvent.click(trigger);
+      fireEvent.click(screen.getByText("Checking"));
+      expect(onChange).toHaveBeenLastCalledWith("checking");
+
+      fireEvent.click(trigger);
+      fireEvent.click(screen.getByText("Create"));
+
+      expect(onSelect).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledTimes(2);
+      expect(onChange).toHaveBeenLastCalledWith("");
+      expect(trigger).not.toHaveTextContent("Checking");
+    });
+  });
 });

@@ -51,7 +51,14 @@
   pointer-events: none;
   user-select: none;
   background-color: var(--bgColor-smokeGrey);
-  color: var(--font-color-secondary);
+
+  &,
+  input,
+  textarea,
+  .nds-field-select-value {
+    color: var(--font-color-secondary);
+  }
+
   &:hover {
     border-color: var(--border-color-default);
   }

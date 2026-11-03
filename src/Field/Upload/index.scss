@@ -37,7 +37,6 @@ $upload-container-bp-s: 340px;
 
   &-dropzone {
     @extend %nds-field-value;
-    color: var(--font-color-primary);
     cursor: pointer;
     position: relative;
     display: grid;

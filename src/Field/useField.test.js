@@ -25,6 +25,22 @@ describe("useField", () => {
     expect(result.current.hasError).toBe(true);
   });
 
+  it("should accept a single error message", () => {
+    const { result } = renderHook(() =>
+      useField({ id: "test", errors: "Field is required" }),
+    );
+    expect(result.current.hasError).toBe(true);
+    expect(result.current.controlProps["aria-describedby"]).toBe("test-error");
+  });
+
+  it.each([null, undefined, ""])(
+    "should set hasError to false when errors is %s",
+    (errors) => {
+      const { result } = renderHook(() => useField({ errors }));
+      expect(result.current.hasError).toBe(false);
+    },
+  );
+
   it("should set hasError to false when errors are empty", () => {
     const { result } = renderHook(() => useField({ errors: [] }));
     expect(result.current.hasError).toBe(false);

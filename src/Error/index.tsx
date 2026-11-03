@@ -24,6 +24,13 @@ ErrorLine.propTypes = {
   marginTop: PropTypes.oneOf(["xxs", "xs", "s", "m", "l", "xl", "xxl", "none"]),
 };
 
+/**
+ * Error message(s) accepted by `Error` and the components that render it
+ * (`TextInput`, `Select`, …). `Field` takes a plain `string[]`; `useField`
+ * accepts either shape.
+ */
+export type ErrorMessages = string | string[] | null;
+
 export interface ErrorProps {
   /**
    * Id for the rendered error element, so a control can reference it via
@@ -35,7 +42,7 @@ export interface ErrorProps {
    * Error message(s) to display. Falsy values (including `null`) render
    * nothing, which lets callers pass nullable state directly.
    */
-  error?: string | string[] | null;
+  error?: ErrorMessages;
   marginTop?: MarginTop;
 }
 

@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
 import React, { ReactNode } from "react";
 import Error from "../Error";
+import type { ErrorMessages } from "../Error";
 import { useField } from "../Field/useField";
 import IconButton from "../IconButton";
 
@@ -34,7 +35,7 @@ export interface InputProps {
   search?: boolean;
   onClick?: (event: React.MouseEvent) => void;
   style?: React.CSSProperties;
-  error?: string | string[] | null;
+  error?: ErrorMessages;
   /** Gives consumers control over where to render the error when `false` */
   renderError?: boolean;
   /**
@@ -50,12 +51,6 @@ export interface InputControlProps {
   "aria-invalid"?: boolean;
   "aria-describedby"?: string;
 }
-
-/** Normalises the legacy `error` prop to the list `useField` expects */
-const toErrorList = (error: InputProps["error"]): string[] => {
-  if (!error) return [];
-  return Array.isArray(error) ? error : [error];
-};
 
 /**
  * PRIVATE
@@ -97,7 +92,7 @@ const Input = ({
   // is still invalid.
   const { errorId, controlProps: fieldControlProps } = useField({
     id,
-    errors: toErrorList(error),
+    errors: error,
   });
   const controlProps: InputControlProps = {
     id: fieldControlProps.id,

@@ -1,6 +1,7 @@
 import React, { ReactNode, useState } from "react";
 import Input from "../Input";
 import type { InputControlProps } from "../Input";
+import type { ErrorMessages } from "../Error";
 import { VALID_ICON_NAMES } from "../icons/iconNames";
 import type { IconName } from "../types/Icon.types";
 
@@ -36,7 +37,7 @@ interface TextInputBaseProps {
   /** When false, the consumer can take full control over where the error renders */
   renderError?: boolean;
   /** Text of error message to display under the input */
-  error?: string | string[] | null;
+  error?: ErrorMessages;
   /** Maximum number of characters allowed in the input */
   maxLength?: number;
   /** Optional value for `data-testid` attribute */

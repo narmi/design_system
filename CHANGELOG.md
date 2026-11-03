@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.38.2](https://github.com/narmi/design_system/compare/v6.38.1...v6.38.2) (2026-11-03)
+
+### fix
+
+* **Radio:** center dot with layout instead of percentage transform ([456220c](https://github.com/narmi/design_system/commit/456220c2017d7b644db33dbdaa95869f91bed360))
+* **Radio:** use inset for centering dot ([d67e803](https://github.com/narmi/design_system/commit/d67e80357ea4034fe3631002f5172c5d48ec2622))
+
+## [6.38.1](https://github.com/narmi/design_system/compare/v6.38.0...v6.38.1) (2026-11-03)
+
+### fix
+
+* **Slider:** isolate stacking context ([13588bc](https://github.com/narmi/design_system/commit/13588bcdb0d6bc020c9b0fccb3a9422ff7292ba2))
+
 ## [6.38.0](https://github.com/narmi/design_system/compare/v6.37.3...v6.38.0) (2026-10-30)
 
 ### feat

@@ -35,9 +35,6 @@
     position: absolute;
     display: none;
     content: "";
-    // Center with layout (inset + auto margins) rather than a percentage
-    // transform; transforms are resolved in device pixels and can land the
-    // dot off-center at some zoom levels / root font sizes.
     inset: 0;
     margin: auto;
     width: rem(12px);

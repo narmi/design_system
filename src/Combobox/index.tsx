@@ -267,6 +267,20 @@ function Combobox({
 
   const [displayedItems, setDisplayedItems] = useState(items);
   const inputRef = useRef<HTMLInputElement>(null);
+  // Combobox.Action activated by the last state change (see `stateReducer`)
+  const pendingActionRef = useRef<ComboboxActionElement | null>(null);
+
+  // Invoke the activated action once its state change has been committed.
+  // Consumer callbacks run here rather than in `stateReducer`, which React
+  // may replay (e.g. in StrictMode). This effect is declared before
+  // `useCombobox` so the action runs before downshift's change callbacks,
+  // i.e. `onSelect` precedes `onChange("")` when `clearSelectionOnAction` is set.
+  useEffect(() => {
+    const action = pendingActionRef.current;
+    if (!action) return;
+    pendingActionRef.current = null;
+    action.props.onSelect();
+  });
 
   const itemToString = (item: ComboboxChild | null | undefined) =>
     item?.props?.searchValue || item?.props?.value || "";
@@ -318,7 +332,7 @@ function Combobox({
       closeMenu();
     },
 
-    // <https://www.downshift-js.com/use-select#state-reducer>
+    // <https://www.downshift-js.com/use-combobox#state-reducer>
     stateReducer: (state, actionAndChanges) => {
       const { changes } = actionAndChanges;
       const { selectedItem: previousSelectedItem } = state;
@@ -326,8 +340,9 @@ function Combobox({
 
       // When users select an action, the selectedItem should not update.
       // The dropdown should close and any existing selection should be preserved.
+      // The action itself is recorded here and invoked after commit.
       if (isAction(newSelectedItem)) {
-        newSelectedItem.props.onSelect();
+        pendingActionRef.current = newSelectedItem;
         return {
           ...changes,
           selectedItem: clearSelectionOnAction ? null : previousSelectedItem,

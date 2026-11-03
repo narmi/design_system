@@ -207,16 +207,17 @@ function MultiSelect({
     setSelectedItems,
   } = useMultipleSelection<MultiSelectItemElement>({
     initialSelectedItems: getSelectedItems(selectedItemsProp || [], items),
-    stateReducer: (state, actionAndChanges) => {
-      const { type, changes } = actionAndChanges;
-
-      switch (type) {
-        case useMultipleSelection.stateChangeTypes.FunctionRemoveSelectedItem:
-        case useMultipleSelection.stateChangeTypes.FunctionAddSelectedItem:
-          onChangeProp((changes.selectedItems ?? []).map(itemToString));
-          return changes;
-        default:
-          return changes;
+    // Runs once per committed change, after React has rendered it. Notifying
+    // from a `stateReducer` instead would fire twice when React replays the
+    // reducer (e.g. in StrictMode). `setSelectedItems` is only used to sync
+    // controlled state and to clear, so it does not notify.
+    onSelectedItemsChange: ({ type, selectedItems: newSelectedItems }) => {
+      if (
+        type ===
+          useMultipleSelection.stateChangeTypes.FunctionRemoveSelectedItem ||
+        type === useMultipleSelection.stateChangeTypes.FunctionAddSelectedItem
+      ) {
+        onChangeProp((newSelectedItems ?? []).map(itemToString));
       }
     },
   });

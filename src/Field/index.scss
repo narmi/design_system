@@ -4,9 +4,6 @@
   gap: rem(6px);
   color: var(--font-color-secondary);
 
-  // Scoped to the field label's class rather than `label`, so other labels a
-  // variant renders (the Upload drop zone) are free to be value sized.
-  // Block so the label's row height follows its own font size, not the parent's
   .nds-field-label {
     @extend %nds-field-label;
     display: block;

@@ -53,25 +53,6 @@ export interface InputControlProps {
 }
 
 /**
- * Only defined keys, so spreading these after the consumer's props never
- * clobbers an `aria-*` value they supplied when there is no error.
- */
-const toControlProps = (
-  fieldControlProps: ReturnType<typeof useField>["controlProps"],
-  renderError: boolean,
-): InputControlProps => {
-  const controlProps: InputControlProps = { id: fieldControlProps.id };
-  if (fieldControlProps["aria-invalid"]) {
-    controlProps["aria-invalid"] = true;
-  }
-  // the consumer owns the error element when renderError is false
-  if (renderError && fieldControlProps["aria-describedby"]) {
-    controlProps["aria-describedby"] = fieldControlProps["aria-describedby"];
-  }
-  return controlProps;
-};
-
-/**
  * PRIVATE
  *
  * This component has no stories because it is only used internally by NDS.
@@ -108,7 +89,14 @@ const Input = ({
     id,
     errors: error,
   });
-  const controlProps = toControlProps(fieldControlProps, renderError);
+  const controlProps: InputControlProps = {
+    id: fieldControlProps.id,
+    "aria-invalid": fieldControlProps["aria-invalid"],
+    // the consumer owns the error element when renderError is false
+    "aria-describedby": renderError
+      ? fieldControlProps["aria-describedby"]
+      : undefined,
+  };
   const controlId = controlProps.id;
 
   return (

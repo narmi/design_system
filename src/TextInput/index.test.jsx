@@ -132,7 +132,7 @@ describe("TextInput", () => {
       expect(input).not.toHaveAttribute("aria-describedby");
     });
 
-    it("points aria-describedby at the error over a consumer-supplied value", () => {
+    it("lets a consumer-supplied aria-describedby win, as Field does", () => {
       render(
         <TextInput
           id="first"
@@ -143,7 +143,7 @@ describe("TextInput", () => {
       );
       expect(screen.getByLabelText("First name")).toHaveAttribute(
         "aria-describedby",
-        "first-error",
+        "hint",
       );
     });
 

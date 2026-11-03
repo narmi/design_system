@@ -170,14 +170,6 @@ $breakpoints: (
   }
 }
 
-/**
- * Field typography
- *
- * Every `Field.*` variant takes its font sizes from these two placeholders so
- * the family reads as one system. A label is small; anything the user reads as
- * the field's content (typed text, placeholder, selected value, option, day)
- * is body sized. Extend these rather than setting `font-size` directly.
- */
 %nds-field-label {
   font-size: var(--font-size-s);
 }

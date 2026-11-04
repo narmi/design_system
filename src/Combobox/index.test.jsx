@@ -163,6 +163,28 @@ describe("Combobox", () => {
     expect(screen.getAllByRole("option")).toHaveLength(50);
   });
 
+  it("keeps filtering after the browser translates the page", () => {
+    render(<Combobox label={LABEL}>{STATE_ITEMS}</Combobox>);
+    const input = screen.getByPlaceholderText(LABEL);
+    fireEvent.focus(input);
+
+    // Chrome Translate swaps each text node for a <font> element
+    const walker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT,
+    );
+    const textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    textNodes.forEach((node) => {
+      const font = document.createElement("font");
+      font.textContent = node.data;
+      node.replaceWith(font);
+    });
+
+    fireEvent.change(input, { target: { value: "new" } });
+    expect(screen.getAllByRole("option")).toHaveLength(4);
+  });
+
   it("input should auto-fill last selection on blur", async () => {
     const user = userEvent.setup();
 

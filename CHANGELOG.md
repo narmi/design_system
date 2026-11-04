@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.38.2](https://github.com/narmi/design_system/compare/v6.38.1...v6.38.2) (2026-11-03)
+
+### fix
+
+* **Radio:** center dot with layout instead of percentage transform ([456220c](https://github.com/narmi/design_system/commit/456220c2017d7b644db33dbdaa95869f91bed360))
+* **Radio:** use inset for centering dot ([d67e803](https://github.com/narmi/design_system/commit/d67e80357ea4034fe3631002f5172c5d48ec2622))
+
+## [6.38.1](https://github.com/narmi/design_system/compare/v6.38.0...v6.38.1) (2026-11-03)
+
+### fix
+
+* **Slider:** isolate stacking context ([13588bc](https://github.com/narmi/design_system/commit/13588bcdb0d6bc020c9b0fccb3a9422ff7292ba2))
+
+## [6.38.0](https://github.com/narmi/design_system/compare/v6.37.3...v6.38.0) (2026-10-30)
+
+### feat
+
+* **useDialog:** add useDialog hook; use it in Dialog ([62165fc](https://github.com/narmi/design_system/commit/62165fcbd4f2c02513aeef750dc756fe3671682f))
+
+## [6.37.3](https://github.com/narmi/design_system/compare/v6.37.2...v6.37.3) (2026-10-28)
+
+### fix
+
+* **useDismiss:** let only the top open layer handle Escape ([5c5fe8e](https://github.com/narmi/design_system/commit/5c5fe8e786d453203fe43d960b1370457ab5cebc))
+* **useDismiss:** stack Escape layers by render stamp instead of microtask batches ([4ecd68b](https://github.com/narmi/design_system/commit/4ecd68bb2134095f1559b7e4b4eb38e0230eec90))
+
+## [6.37.2](https://github.com/narmi/design_system/compare/v6.37.1...v6.37.2) (2026-10-27)
+
+### fix
+
+* **Combobox:** key rows by item so translated pages don't crash ([c55e174](https://github.com/narmi/design_system/commit/c55e1746bf395779801f36eea8f66fb5929abf58))
+
+### refactor
+
+* **Combobox:** drop the index fallback on row keys ([59ca7ba](https://github.com/narmi/design_system/commit/59ca7bacb4f3779bc7cbf5742e87414f47803759))
+
 ## [6.37.1](https://github.com/narmi/design_system/compare/v6.37.0...v6.37.1) (2026-10-22)
 
 ### fix

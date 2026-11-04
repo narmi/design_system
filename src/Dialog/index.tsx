@@ -2,9 +2,8 @@
 import React, { useRef, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import cc from "classcat";
-import useLockBodyScroll from "../hooks/layout/useLockBodyScroll";
 import { CSSTransition } from "react-transition-group";
-import useFocusTrap from "../hooks/interaction/useFocusTrap";
+import useDialog from "../hooks/interaction/useDialog";
 
 const noop = () => {};
 
@@ -71,77 +70,64 @@ const Dialog = ({
 }: DialogProps) => {
   const [isContentOverflowing, setIsContentOverflowing] = useState(false);
   const contentRef = useRef(null);
-  const shimRef = useRef(null);
-  const dialogRef = useRef(null);
-  const trapRef = useRef<HTMLDivElement>(null);
+  const transitionRef = useRef(null);
   const isBanner = headerStyle === "banner";
-  useLockBodyScroll(isOpen);
-  const { trapProps } = useFocusTrap({
-    ref: trapRef,
-    isActive: isOpen,
-    initialFocus: "container",
-  });
+  const { dialogProps, backdropProps, titleProps, closeButtonProps } =
+    useDialog({
+      isOpen,
+      initialFocus: "container",
+      // `onUserDismiss` only ever received the close button's click event
+      onDismiss: (reason, event) => {
+        onUserDismiss(
+          reason === "close"
+            ? (event as React.MouseEvent<HTMLButtonElement>)
+            : undefined,
+        );
+      },
+    });
 
   const checkContentOverflow = () => {
     setIsContentOverflowing(getIsContentTooLong(contentRef));
   };
 
-  const handleKeyDown = ({ key }) => {
-    if (key === "Escape") {
-      onUserDismiss();
-    }
-  };
-
   useEffect(() => {
     if (!isOpen) return undefined;
     checkContentOverflow(); // run when the dialog initially opens
-    window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("resize", checkContentOverflow);
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("resize", checkContentOverflow);
     };
-  }, [handleKeyDown, checkContentOverflow, isOpen]);
-
-  const handleShimClick = ({ target }) => {
-    if (shimRef.current && target === shimRef.current) {
-      onUserDismiss();
-    }
-  };
+  }, [checkContentOverflow, isOpen]);
 
   const closeButtonJSX = (
     <button
+      {...closeButtonProps}
       className={cc([
         "resetButton",
         "nds-dialog-closeButton",
         { "nds-dialog-closeButton--banner": isBanner },
       ])}
       aria-label="close"
-      onClick={onUserDismiss}
     >
       <span className="narmi-icon-x"></span>
     </button>
   );
 
   // the shim has events for mouse users only; does not require a role
-  /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */
+  /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/no-noninteractive-element-interactions */
   const dialogJSX = (
     <CSSTransition
       timeout={1}
       classNames="nds-dialog-transition"
       appear
       in
-      nodeRef={dialogRef}
+      nodeRef={transitionRef}
     >
-      <div className="nds-dialog-root" ref={dialogRef}>
-        <div className="nds-shim--dark" ref={shimRef} onClick={handleShimClick}>
+      <div className="nds-dialog-root" ref={transitionRef}>
+        <div className="nds-shim--dark" {...backdropProps}>
           <div className="nds-dialog-focuslock">
             <div
-              ref={trapRef}
-              {...trapProps}
-              role="dialog"
-              aria-labelledby="aria-dialog-label"
-              aria-modal="true"
+              {...dialogProps}
               className="nds-dialog"
               // @ts-expect-error DetailedHTMLProps does not specify arbitrary custom properties
               style={{ "--dialog-preferred-width": width }}
@@ -153,8 +139,8 @@ const Dialog = ({
                 {isBanner ? (
                   <div className="margin--y--s">
                     <div
+                      {...titleProps}
                       className="padding--y--xxs"
-                      id="aria-dialog-label"
                       style={{ textAlign: "center" }}
                     >
                       {title}
@@ -163,7 +149,7 @@ const Dialog = ({
                   </div>
                 ) : (
                   <>
-                    <h4 id="aria-dialog-label">{title}</h4>
+                    <h4 {...titleProps}>{title}</h4>
                     {closeButtonJSX}
                   </>
                 )}
@@ -199,7 +185,7 @@ const Dialog = ({
       </div>
     </CSSTransition>
   );
-  /* eslint-enable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */
+  /* eslint-enable jsx-a11y/no-static-element-interactions,jsx-a11y/no-noninteractive-element-interactions */
 
   function renderDialogInOutlet() {
     // create a single outlet

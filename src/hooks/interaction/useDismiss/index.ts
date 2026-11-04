@@ -36,15 +36,45 @@ export interface UseDismissResult {
   };
 }
 
+interface EscapeLayer {
+  /** Render that opened the layer */
+  stamp: number;
+}
+
+/** Open layers, bottom to top. Only the top layer handles Escape. */
+const escapeLayers: EscapeLayer[] = [];
+
+let nextStamp = 0;
+
+const registerEscapeLayer = (layer: EscapeLayer) => {
+  // Layers stack in the order they open. A later commit renders after an
+  // earlier one, and within a commit a parent renders before its children
+  // even though children register first, so stack by render stamp.
+  let index = escapeLayers.length;
+  while (index > 0 && escapeLayers[index - 1].stamp > layer.stamp) {
+    index -= 1;
+  }
+  escapeLayers.splice(index, 0, layer);
+};
+
+const unregisterEscapeLayer = (layer: EscapeLayer) => {
+  const index = escapeLayers.indexOf(layer);
+  if (index !== -1) escapeLayers.splice(index, 1);
+};
+
+const isTopEscapeLayer = (layer: EscapeLayer) =>
+  escapeLayers[escapeLayers.length - 1] === layer;
+
 /**
  * Wires up the ways a user can dismiss a floating layer: the Escape key,
  * a click on a backdrop, or a click outside the layer. Reports every
  * dismissal through a single `onDismiss(reason)` callback.
  *
  * Escape is observed on `document` while the layer is open, so it works
- * wherever focus is. An Escape keydown that something else already
- * handled (`event.defaultPrevented`) is ignored, so nested widgets like
- * a Combobox can close their own listbox first.
+ * wherever focus is. Only the topmost open layer handles a press, so a
+ * nested layer closes before its parent. A handled press is marked
+ * `defaultPrevented`, and an already-handled Escape is ignored, so nested
+ * widgets like a Combobox can close their own listbox first.
  */
 const useDismiss = ({
   isOpen,
@@ -54,6 +84,10 @@ const useDismiss = ({
   outsideClick = false,
 }: UseDismissOptions): UseDismissResult => {
   const fallbackRef = useRef<HTMLElement | null>(null);
+  // stamp every render; the Escape effect keeps the stamp of the render
+  // that opened the layer
+  nextStamp += 1;
+  const renderStamp = nextStamp;
 
   // keep the latest handler without resubscribing the listener every render
   const onDismissRef = useRef(onDismiss);
@@ -65,12 +99,20 @@ const useDismiss = ({
 
   useEffect(() => {
     if (!isOpen || !escapeKey) return undefined;
+    const layer: EscapeLayer = { stamp: renderStamp };
+    registerEscapeLayer(layer);
     const listener = (event: KeyboardEvent) => {
       if (event.key !== "Escape" || event.defaultPrevented) return;
+      if (!isTopEscapeLayer(layer)) return;
+      event.preventDefault();
       onDismissRef.current("escape", event);
     };
     document.addEventListener("keydown", listener);
-    return () => document.removeEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+      unregisterEscapeLayer(layer);
+    };
+    // renderStamp is omitted so later renders don't restack an open layer
   }, [isOpen, escapeKey]);
 
   const onMouseDown = (event: React.MouseEvent) => {

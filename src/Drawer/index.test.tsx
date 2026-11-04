@@ -121,10 +121,10 @@ describe("Drawer", () => {
         const onUserDismiss = vi.fn();
         renderDrawer({ position, onUserDismiss });
 
-        fireEvent.keyDown(window, { key: "a" });
+        fireEvent.keyDown(document.body, { key: "a" });
         expect(onUserDismiss).not.toHaveBeenCalled();
 
-        fireEvent.keyDown(window, { key: "Escape" });
+        fireEvent.keyDown(document.body, { key: "Escape" });
         fireEvent.click(document.querySelector(".backdrop")!);
         fireEvent.click(document.querySelector(".navigation")!);
         expect(onUserDismiss).toHaveBeenCalledTimes(3);
@@ -140,7 +140,7 @@ describe("Drawer", () => {
     it("does not listen for Escape when closed", () => {
       const onUserDismiss = vi.fn();
       renderDrawer({ isOpen: false, onUserDismiss });
-      fireEvent.keyDown(window, { key: "Escape" });
+      fireEvent.keyDown(document.body, { key: "Escape" });
       expect(onUserDismiss).not.toHaveBeenCalled();
     });
 

@@ -71,6 +71,7 @@ import Tooltip from "./Tooltip";
 import TruncatedAccount from "./TruncatedAccount";
 import {
   useBreakpoints,
+  useDialog,
   useDismiss,
   useDropdownLayer,
   useFocusTrap,
@@ -211,6 +212,10 @@ export type { TooltipProps } from "./Tooltip";
 export type { TruncatedAccountProps } from "./TruncatedAccount";
 export type {
   UseBreakpointsResult,
+  UseDialogOptions,
+  UseDialogResult,
+  DialogDismissReason,
+  DialogDismissEvent,
   UseDismissOptions,
   UseDismissResult,
   DismissReason,
@@ -288,6 +293,7 @@ export {
   Tooltip,
   TruncatedAccount,
   useBreakpoints,
+  useDialog,
   useDismiss,
   useDropdownLayer,
   useFocusTrap,

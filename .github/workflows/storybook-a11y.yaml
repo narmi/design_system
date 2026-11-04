@@ -7,7 +7,9 @@ permissions:
 concurrency:
   group: storybook-a11y-${{ github.event.pull_request.number }}
   cancel-in-progress: true
-on: [pull_request]
+on:
+  pull_request:
+    branches: [main]
 jobs:
   run-storybook-a11y:
     name: Storybook a11y

@@ -121,7 +121,9 @@
 
   [data-today] .rdp-day_button {
     font-weight: var(--font-weight-semibold);
-    color: var(--font-color-heading);
+    &:where(:not(:disabled)) {
+      color: var(--font-color-heading);
+    }
   }
 
   [data-selected] .rdp-day_button {

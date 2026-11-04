@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.37.5](https://github.com/narmi/design_system/compare/v6.37.4...v6.37.5) (2026-11-04)
+
+### fix
+
+* **Field.Date:** render today's date in the heading color ([a389b92](https://github.com/narmi/design_system/commit/a389b9252aa713967adfd44d3eec3f93029bdd60))
+* **Field:** set label and value color from the shared placeholders ([0561298](https://github.com/narmi/design_system/commit/0561298e485bc8f4ab03682313891dc35c309962))
+* **Field:** standardize label and value font sizes ([2cdcd1e](https://github.com/narmi/design_system/commit/2cdcd1eaab1366d6c88c69cf3fa63d02c0b109e7))
+
 ## [6.37.4](https://github.com/narmi/design_system/compare/v6.37.3...v6.37.4) (2026-11-03)
 
 ### fix

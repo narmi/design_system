@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.38.3](https://github.com/narmi/design_system/compare/v6.38.2...v6.38.3) (2026-11-04)
+
+### ci
+
+* run Storybook a11y only on PRs targeting main ([3510e9b](https://github.com/narmi/design_system/commit/3510e9be9cfc3f4bd515d52990ad1211ccaf8832))
+
+### fix
+
+* **Field.Date:** render today's date in the heading color ([7c91031](https://github.com/narmi/design_system/commit/7c91031e89ca134e96b331e86396f69bf49496f3))
+* **Field:** set label and value color from the shared placeholders ([aa1cd86](https://github.com/narmi/design_system/commit/aa1cd865dabc6f3d58d8d726e473e1b2357b8981))
+* **Field:** standardize label and value font sizes ([a16247a](https://github.com/narmi/design_system/commit/a16247a6967021f14d9b9c7f4121f7265430571a))
+
 ## [6.38.2](https://github.com/narmi/design_system/compare/v6.38.1...v6.38.2) (2026-11-03)
 
 ### fix

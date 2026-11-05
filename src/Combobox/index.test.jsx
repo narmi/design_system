@@ -363,6 +363,19 @@ describe("Combobox", () => {
       expect(screen.getAllByRole("option")).toHaveLength(STATE_ITEMS.length);
     });
 
+    it("shows every option when the selection changes without changing the input text", () => {
+      render(<ControlledCombobox />);
+      const input = screen.getByPlaceholderText(LABEL);
+      fireEvent.focus(input);
+      fireEvent.change(input, { target: { value: "New York" } });
+      expect(screen.getAllByRole("option")).toHaveLength(1);
+
+      fireEvent.click(screen.getByText("pick from outside"));
+
+      expect(input.value).toBe("New York");
+      expect(screen.getAllByRole("option")).toHaveLength(STATE_ITEMS.length);
+    });
+
     it("calls onChange with empty string when the input is cleared", async () => {
       const user = userEvent.setup();
       const handleChange = vi.fn();

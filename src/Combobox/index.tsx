@@ -275,6 +275,7 @@ function Combobox({
   }
 
   const [displayedItems, setDisplayedItems] = useState(items);
+  const previousValue = useRef(value);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const itemToString = (item: ComboboxChild | null | undefined) =>
@@ -394,6 +395,13 @@ function Combobox({
       setDisplayedItems(items);
     }
   }, [items, inputValue]);
+
+  useEffect(() => {
+    if (previousValue.current !== value) {
+      previousValue.current = value;
+      setDisplayedItems(items);
+    }
+  }, [value, items]);
 
   const hasSelectedItem = !!selectedItem;
 

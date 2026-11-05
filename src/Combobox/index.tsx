@@ -291,9 +291,11 @@ function Combobox({
       ? {}
       : {
           selectedItem:
-            items.find(
-              (item) => !isAction(item) && item.props.value === value,
-            ) ?? null,
+            value === ""
+              ? null
+              : (items.find(
+                  (item) => !isAction(item) && item.props.value === value,
+                ) ?? null),
         };
 
   const {

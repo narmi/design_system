@@ -288,4 +288,64 @@ describe("Combobox", () => {
     // onChange should be called with empty string
     expect(handleChange).toHaveBeenLastCalledWith("");
   });
+
+  describe("input filled from outside the dropdown", () => {
+    // Mirrors a consumer that controls the input text and sets it from outside
+    // the dropdown, e.g. after creating a new recipient in a drawer.
+    /* eslint-disable react/prop-types */
+    const PrefilledCombobox = ({
+      onChange = () => {},
+      prefill = "New York",
+    }) => {
+      const [inputValue, setInputValue] = React.useState("");
+      return (
+        <>
+          <Combobox
+            label={LABEL}
+            onChange={onChange}
+            inputValue={inputValue}
+            onInputChange={setInputValue}
+          >
+            {STATE_ITEMS}
+          </Combobox>
+          <button type="button" onClick={() => setInputValue(prefill)}>
+            fill from outside
+          </button>
+        </>
+      );
+    };
+    /* eslint-enable react/prop-types */
+
+    it("keeps the input and selects the matching item on blur", () => {
+      const handleChange = vi.fn();
+      render(<PrefilledCombobox onChange={handleChange} />);
+      fireEvent.click(screen.getByText("fill from outside"));
+
+      const input = screen.getByPlaceholderText(LABEL);
+      fireEvent.focus(input);
+      fireEvent.blur(input);
+
+      expect(input.value).toBe("New York");
+      expect(handleChange).toHaveBeenLastCalledWith("New York");
+
+      // On reopening, the matching item is marked as selected
+      fireEvent.focus(input);
+      expect(screen.getByRole("option", { selected: true })).toHaveTextContent(
+        "New York",
+      );
+    });
+
+    it("still clears the input on blur when the text matches no item", () => {
+      const handleChange = vi.fn();
+      render(<PrefilledCombobox onChange={handleChange} prefill="Nowhere" />);
+      fireEvent.click(screen.getByText("fill from outside"));
+
+      const input = screen.getByPlaceholderText(LABEL);
+      fireEvent.focus(input);
+      fireEvent.blur(input);
+
+      expect(input.value).toBe("");
+      expect(handleChange).not.toHaveBeenCalled();
+    });
+  });
 });

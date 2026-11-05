@@ -288,4 +288,86 @@ describe("Combobox", () => {
     // onChange should be called with empty string
     expect(handleChange).toHaveBeenLastCalledWith("");
   });
+
+  describe("controlled `value`", () => {
+    // Mirrors a consumer that controls both the selection and the input text,
+    // and can also set the selection from outside the dropdown.
+    const ControlledCombobox = ({ onChange = () => {} }) => {
+      const [value, setValue] = React.useState("");
+      const [inputValue, setInputValue] = React.useState("");
+      return (
+        <>
+          <Combobox
+            label={LABEL}
+            value={value}
+            onChange={(newValue) => {
+              setValue(newValue);
+              onChange(newValue);
+            }}
+            inputValue={inputValue}
+            onInputChange={setInputValue}
+          >
+            {STATE_ITEMS}
+          </Combobox>
+          <button
+            type="button"
+            onClick={() => {
+              setValue("New York");
+              setInputValue("New York");
+            }}
+          >
+            pick from outside
+          </button>
+        </>
+      );
+    };
+
+    it("keeps a selection made outside the dropdown when the input blurs", () => {
+      render(<ControlledCombobox />);
+      fireEvent.click(screen.getByText("pick from outside"));
+
+      const input = screen.getByPlaceholderText(LABEL);
+      fireEvent.focus(input);
+      fireEvent.blur(input);
+
+      expect(input.value).toBe("New York");
+    });
+
+    it("marks the selection made outside the dropdown as selected", () => {
+      render(<ControlledCombobox />);
+      fireEvent.click(screen.getByText("pick from outside"));
+
+      fireEvent.focus(screen.getByPlaceholderText(LABEL));
+
+      const selected = screen.getByRole("option", { selected: true });
+      expect(selected).toHaveTextContent("New York");
+    });
+
+    it("lets the user edit the input of a controlled selection", async () => {
+      const user = userEvent.setup();
+      render(<ControlledCombobox />);
+      fireEvent.click(screen.getByText("pick from outside"));
+
+      const input = screen.getByPlaceholderText(LABEL);
+      await user.type(input, "{Backspace>4}");
+      expect(input.value).toBe("New ");
+
+      fireEvent.blur(input);
+      expect(input.value).toBe("New York");
+    });
+
+    it("calls onChange with empty string when the input is cleared", async () => {
+      const user = userEvent.setup();
+      const handleChange = vi.fn();
+      render(<ControlledCombobox onChange={handleChange} />);
+      fireEvent.click(screen.getByText("pick from outside"));
+
+      const input = screen.getByPlaceholderText(LABEL);
+      await user.clear(input);
+      fireEvent.blur(input);
+
+      expect(handleChange).toHaveBeenLastCalledWith("");
+      expect(input.value).toBe("");
+    });
+  });
 });

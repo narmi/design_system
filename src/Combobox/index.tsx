@@ -158,6 +158,14 @@ export interface ComboboxProps<Value extends string = string> {
    */
   onChange?: (value: Value) => void;
   /**
+   * Sets the selected item in a controlled manner, by its `value`.
+   * Pass an empty string for no selection. When omitted, selection is
+   * managed internally.
+   * When using the `value` prop, you **must** update it via the
+   * `onChange` handler.
+   */
+  value?: Value;
+  /**
    * Sets value of the input in a controlled manner.
    * When using the `inputValue` prop, you **must** update it via the
    * `onInputChange` handler.
@@ -216,6 +224,7 @@ function Combobox<Value extends string = string>(
 function Combobox({
   label,
   onChange = noop,
+  value,
   onInputChange = noop,
   inputValue: inputValueProp,
   filterItemsByInput = defaultFilterItemsByInput,
@@ -271,6 +280,22 @@ function Combobox({
   const itemToString = (item: ComboboxChild | null | undefined) =>
     item?.props?.searchValue || item?.props?.value || "";
 
+  // Children are new elements on every render, so compare items by `value`
+  // instead of identity when downshift checks if the selection changed.
+  const itemToKey = (item: ComboboxChild | null | undefined) =>
+    item ? (item.props.value ?? item.key) : null;
+
+  // When `value` is passed, the selection is controlled by the consumer
+  const controlledSelection =
+    value === undefined
+      ? {}
+      : {
+          selectedItem:
+            items.find(
+              (item) => !isAction(item) && item.props.value === value,
+            ) ?? null,
+        };
+
   const {
     isOpen,
     selectedItem,
@@ -286,6 +311,8 @@ function Combobox({
     items: displayedItems,
     inputValue: inputValueProp,
     itemToString,
+    itemToKey,
+    ...controlledSelection,
 
     // typeahead behavior is managed by this event callback
     onInputValueChange: ({ inputValue = "" }) => {

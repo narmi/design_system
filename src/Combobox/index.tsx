@@ -315,7 +315,17 @@ function Combobox({
     ...controlledSelection,
 
     // typeahead behavior is managed by this event callback
-    onInputValueChange: ({ inputValue = "" }) => {
+    onInputValueChange: ({ inputValue = "", type }) => {
+      // A new `value` from the consumer fills the input with the item's name.
+      // That is not the user typing, so keep every item in the list.
+      if (
+        type === useCombobox.stateChangeTypes.ControlledPropUpdatedSelectedItem
+      ) {
+        setDisplayedItems(items);
+        onInputChange(inputValue);
+        return;
+      }
+
       // If the user has cleared the input reset selection and state.
       if (inputValue.length === 0) {
         setDisplayedItems(items);

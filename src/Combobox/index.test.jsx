@@ -309,13 +309,7 @@ describe("Combobox", () => {
           >
             {STATE_ITEMS}
           </Combobox>
-          <button
-            type="button"
-            onClick={() => {
-              setValue("New York");
-              setInputValue("New York");
-            }}
-          >
+          <button type="button" onClick={() => setValue("New York")}>
             pick from outside
           </button>
         </>
@@ -354,6 +348,19 @@ describe("Combobox", () => {
 
       fireEvent.blur(input);
       expect(input.value).toBe("New York");
+    });
+
+    it("shows every option when the selection changes while the menu is open", () => {
+      render(<ControlledCombobox />);
+      const input = screen.getByPlaceholderText(LABEL);
+      fireEvent.focus(input);
+      expect(screen.getAllByRole("option")).toHaveLength(STATE_ITEMS.length);
+
+      // the selection changes from outside while focus stays on the input
+      fireEvent.click(screen.getByText("pick from outside"));
+
+      expect(input.value).toBe("New York");
+      expect(screen.getAllByRole("option")).toHaveLength(STATE_ITEMS.length);
     });
 
     it("calls onChange with empty string when the input is cleared", async () => {

@@ -486,13 +486,15 @@ function Combobox({
       // creating a new recipient) without downshift knowing about it. If the
       // text names an item, adopt that item as the selection instead of
       // clearing the input.
-      const matchingItem = items.find(
+      const matchingItems = items.filter(
         (item) =>
           !isAction(item) &&
           isSelectable(item) &&
           (item.props.value === inputValue ||
             itemToString(item) === inputValue),
       );
+      const matchingItem =
+        matchingItems.length === 1 ? matchingItems[0] : undefined;
       if (matchingItem) {
         selectItem(matchingItem);
       } else {

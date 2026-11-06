@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */
 import React, { ReactNode } from "react";
 import Error from "../Error";
+import type { ErrorMessages } from "../Error";
+import { useField } from "../Field/useField";
 import IconButton from "../IconButton";
 
 /*
@@ -33,10 +35,21 @@ export interface InputProps {
   search?: boolean;
   onClick?: (event: React.MouseEvent) => void;
   style?: React.CSSProperties;
-  error?: string | string[] | null;
+  error?: ErrorMessages;
   /** Gives consumers control over where to render the error when `false` */
   renderError?: boolean;
-  children?: ReactNode;
+  /**
+   * Renders the native input. Spread `controlProps` onto it so the label
+   * and error message are associated with it.
+   */
+  children?: (controlProps: InputControlProps) => ReactNode;
+}
+
+/** Attributes `Input` derives for the native input it wraps */
+export interface InputControlProps {
+  id: string;
+  "aria-invalid"?: boolean;
+  "aria-describedby"?: string;
 }
 
 /**
@@ -72,6 +85,20 @@ const Input = ({
     search ? "search" : "",
   ].join(" ");
 
+  const { errorId, controlProps: fieldControlProps } = useField({
+    id,
+    errors: error,
+  });
+  const controlProps: InputControlProps = {
+    id: fieldControlProps.id,
+    "aria-invalid": fieldControlProps["aria-invalid"],
+    // the consumer owns the error element when renderError is false
+    "aria-describedby": renderError
+      ? fieldControlProps["aria-describedby"]
+      : undefined,
+  };
+  const controlId = controlProps.id;
+
   return (
     <div className={className} onClick={onClick} style={style}>
       <div className="nds-input-box">
@@ -86,9 +113,9 @@ const Input = ({
             !label || (startIconClass && !multiline) ? "no-label" : ""
           }`}
         >
-          {children}
+          {children?.(controlProps)}
           {decoration}
-          {!multiline ? <label htmlFor={id}>{label}</label> : ""}
+          {!multiline ? <label htmlFor={controlId}>{label}</label> : ""}
         </div>
         {endIconClass && (
           <div
@@ -110,7 +137,7 @@ const Input = ({
         {tailContent && (
           <div className="nds-input-tail margin--top--xxs">{tailContent}</div>
         )}
-        {renderError && <Error error={error} />}
+        {renderError && <Error id={errorId} error={error} />}
       </div>
     </div>
   );

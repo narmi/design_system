@@ -16,7 +16,7 @@ describe("Input", () => {
   it("renders children inside the input column", () => {
     const { container } = render(
       <Input>
-        <input type="text" />
+        {(controlProps) => <input type="text" {...controlProps} />}
       </Input>,
     );
     expect(getColumn(container).querySelector("input")).toBeInTheDocument();
@@ -27,6 +27,46 @@ describe("Input", () => {
     const label = container.querySelector("label");
     expect(label).toHaveTextContent("My Label");
     expect(label).toHaveAttribute("for", "my-input");
+  });
+
+  it("passes an id, aria-invalid and aria-describedby to a function child", () => {
+    const { container } = render(
+      <Input id="my-input" label="My Label" error="Something broke">
+        {(controlProps) => <input type="text" {...controlProps} />}
+      </Input>,
+    );
+    const input = container.querySelector("input");
+    expect(input).toHaveAttribute("id", "my-input");
+    expect(input).toHaveAttribute("aria-invalid", "true");
+    expect(input).toHaveAttribute("aria-describedby", "my-input-error");
+    expect(container.querySelector("#my-input-error")).toHaveTextContent(
+      "Something broke",
+    );
+    expect(input).toHaveAccessibleDescription("Something broke");
+  });
+
+  it("generates an id that binds the label to a function child", () => {
+    const { container } = render(
+      <Input label="My Label">
+        {(controlProps) => <input type="text" {...controlProps} />}
+      </Input>,
+    );
+    const input = container.querySelector("input");
+    expect(input.id).toBeTruthy();
+    expect(container.querySelector("label")).toHaveAttribute("for", input.id);
+    expect(input).not.toHaveAttribute("aria-invalid");
+    expect(input).not.toHaveAttribute("aria-describedby");
+  });
+
+  it("omits aria-describedby but keeps aria-invalid when renderError is false", () => {
+    const { container } = render(
+      <Input id="my-input" error="Something broke" renderError={false}>
+        {(controlProps) => <input type="text" {...controlProps} />}
+      </Input>,
+    );
+    const input = container.querySelector("input");
+    expect(input).toHaveAttribute("aria-invalid", "true");
+    expect(input).not.toHaveAttribute("aria-describedby");
   });
 
   it("does not render a label when multiline is true", () => {

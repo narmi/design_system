@@ -71,4 +71,94 @@ describe("TextInput", () => {
       "4",
     );
   });
+
+  describe("error accessibility", () => {
+    it("links the error message to the input via aria-describedby", () => {
+      render(<TextInput id="first" label="First name" error="Required" />);
+      const input = screen.getByLabelText("First name");
+      expect(input).toHaveAttribute("aria-invalid", "true");
+      expect(input).toHaveAttribute("aria-describedby", "first-error");
+      expect(input).toHaveAttribute("data-error", "Required");
+      expect(input).toHaveAccessibleDescription("Required");
+    });
+
+    it("links the error message to the textarea via aria-describedby", () => {
+      render(<TextInput id="notes" label="Notes" error="Required" multiline />);
+      const textarea = screen.getByLabelText("Notes");
+      expect(textarea).toHaveAttribute("aria-invalid", "true");
+      expect(textarea).toHaveAttribute("aria-describedby", "notes-error");
+      expect(textarea).toHaveAccessibleDescription("Required");
+    });
+
+    it("generates an error id when the input has no id", () => {
+      render(<TextInput label="First name" error="Required" />);
+      const input = screen.getByLabelText("First name");
+      const errorId = input.getAttribute("aria-describedby");
+      expect(errorId).toBeTruthy();
+      expect(document.getElementById(errorId)).toHaveTextContent("Required");
+    });
+
+    it("describes the input with every error in a list", () => {
+      render(
+        <TextInput
+          id="first"
+          label="First name"
+          error={["Required", "Too short"]}
+        />,
+      );
+      expect(screen.getByLabelText("First name")).toHaveAccessibleDescription(
+        "Required Too short",
+      );
+    });
+
+    it("omits aria-invalid and aria-describedby when there is no error", () => {
+      render(<TextInput id="first" label="First name" />);
+      const input = screen.getByLabelText("First name");
+      expect(input).not.toHaveAttribute("aria-invalid");
+      expect(input).not.toHaveAttribute("aria-describedby");
+    });
+
+    it("keeps aria-invalid but drops aria-describedby when renderError is false", () => {
+      render(
+        <TextInput
+          id="first"
+          label="First name"
+          error="Required"
+          renderError={false}
+        />,
+      );
+      const input = screen.getByLabelText("First name");
+      expect(input).toHaveAttribute("aria-invalid", "true");
+      expect(input).not.toHaveAttribute("aria-describedby");
+    });
+
+    it("lets a consumer-supplied aria-describedby win, as Field does", () => {
+      render(
+        <TextInput
+          id="first"
+          label="First name"
+          error="Required"
+          aria-describedby="hint"
+        />,
+      );
+      expect(screen.getByLabelText("First name")).toHaveAttribute(
+        "aria-describedby",
+        "hint",
+      );
+    });
+
+    it("keeps consumer-supplied aria attributes when there is no error", () => {
+      render(
+        <TextInput
+          id="first"
+          label="First name"
+          aria-invalid
+          aria-describedby="hint"
+        />,
+      );
+      const input = screen.getByLabelText("First name");
+      expect(input).toHaveAttribute("aria-invalid", "true");
+      expect(input).toHaveAttribute("aria-describedby", "hint");
+    });
+  });
 });

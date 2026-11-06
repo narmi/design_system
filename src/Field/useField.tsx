@@ -1,4 +1,10 @@
 import { useId } from "react";
+import type { ErrorMessages } from "../Error";
+
+const toErrorList = (errors: ErrorMessages | undefined): string[] => {
+  if (!errors) return [];
+  return Array.isArray(errors) ? errors : [errors];
+};
 
 /**
  * Hook to handle common field logic and
@@ -6,13 +12,14 @@ import { useId } from "react";
  */
 export const useField = ({
   id: customId,
-  errors = [],
+  errors,
   isDisabled,
   label,
   showLabel = true,
 }: {
   id?: string;
-  errors?: string[];
+  /** A list of messages, or the single-message/nullable shape `Error` accepts */
+  errors?: ErrorMessages;
   isDisabled?: boolean;
   /** Required to derive `labelProps` when the label is visually removed. */
   label?: string;
@@ -26,7 +33,7 @@ export const useField = ({
   const id = customId || generatedId;
   const errorId = `${id}-error`;
   const labelId = `${id}-label`;
-  const hasError = errors.length > 0;
+  const hasError = toErrorList(errors).length > 0;
 
   return {
     id,

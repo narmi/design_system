@@ -1,0 +1,11 @@
+import{n as e}from"./rolldown-runtime-DaJ6WEGw.js";import{i as t}from"./react-BnCtKaSV.js";import{s as n}from"./chunk-LITCR56V-AcCrkDPM.js";import{f as r,n as i,s as a}from"./blocks-Bot_7bIW.js";import{t as o}from"./mdx-react-shim-9RzcSRdq.js";import{d as s,n as c}from"./ClassExample-Cuc5BJmj.js";import{Margin as l,Padding as u,n as d,t as f}from"./spacing.stories-fbnC9QsG.js";function p(e){let n={code:`code`,h1:`h1`,p:`p`,...t(),...e.components};return(0,h.jsxs)(h.Fragment,{children:[(0,h.jsx)(a,{of:d}),`
+`,(0,h.jsx)(n.h1,{id:`margin`,children:`Margin`}),`
+`,(0,h.jsx)(n.p,{children:`Adds standard margin amount for a given side or axis.`}),`
+`,(0,h.jsxs)(n.p,{children:[`Valid sides/axes are (`,(0,h.jsx)(n.code,{children:`all`}),`, `,(0,h.jsx)(n.code,{children:`top`}),`, `,(0,h.jsx)(n.code,{children:`right`}),`, `,(0,h.jsx)(n.code,{children:`bottom`}),`, `,(0,h.jsx)(n.code,{children:`left`}),`, `,(0,h.jsx)(n.code,{children:`x`}),`, `,(0,h.jsx)(n.code,{children:`y`}),`)`]}),`
+`,(0,h.jsxs)(n.p,{children:[`Valid amounts are (`,(0,h.jsx)(n.code,{children:`xxs`}),`, `,(0,h.jsx)(n.code,{children:`xs`}),`, `,(0,h.jsx)(n.code,{children:`s`}),`, `,(0,h.jsx)(n.code,{children:`m`}),`, `,(0,h.jsx)(n.code,{children:`l`}),`, `,(0,h.jsx)(n.code,{children:`xl`}),`, `,(0,h.jsx)(n.code,{children:`xxl`}),`).`]}),`
+`,(0,h.jsx)(i,{of:l}),`
+`,(0,h.jsx)(n.h1,{id:`padding`,children:`Padding`}),`
+`,(0,h.jsx)(n.p,{children:`Adds standard padding amount for a given side or axis.`}),`
+`,(0,h.jsxs)(n.p,{children:[`Valid sides/axes are (`,(0,h.jsx)(n.code,{children:`all`}),`, `,(0,h.jsx)(n.code,{children:`top`}),`, `,(0,h.jsx)(n.code,{children:`right`}),`, `,(0,h.jsx)(n.code,{children:`bottom`}),`, `,(0,h.jsx)(n.code,{children:`left`}),`, `,(0,h.jsx)(n.code,{children:`x`}),`, `,(0,h.jsx)(n.code,{children:`y`}),`)`]}),`
+`,(0,h.jsxs)(n.p,{children:[`Valid amounts are (`,(0,h.jsx)(n.code,{children:`xxs`}),`, `,(0,h.jsx)(n.code,{children:`xs`}),`, `,(0,h.jsx)(n.code,{children:`s`}),`, `,(0,h.jsx)(n.code,{children:`m`}),`, `,(0,h.jsx)(n.code,{children:`l`}),`, `,(0,h.jsx)(n.code,{children:`xl`}),`, `,(0,h.jsx)(n.code,{children:`xxl`}),`).`]}),`
+`,(0,h.jsx)(i,{of:u})]})}function m(e={}){let{wrapper:n}={...t(),...e.components};return n?(0,h.jsx)(n,{...e,children:(0,h.jsx)(p,{...e})}):p(e)}var h;e((()=>{h=n(),o(),r(),s(),c(),f()}))();export{m as default};

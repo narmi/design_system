@@ -1,0 +1,6 @@
+import{n as e}from"./rolldown-runtime-DaJ6WEGw.js";import{i as t}from"./react-BnCtKaSV.js";import{s as n}from"./chunk-LITCR56V-AcCrkDPM.js";import{f as r,n as i,s as a}from"./blocks-Bot_7bIW.js";import{t as o}from"./mdx-react-shim-9RzcSRdq.js";import{d as s,n as c}from"./ClassExample-Cuc5BJmj.js";import{ControllingOverflow as l,n as u,t as d}from"./scroll.stories-DZSXyF8t.js";function f(e){let n={code:`code`,h1:`h1`,p:`p`,...t(),...e.components};return(0,m.jsxs)(m.Fragment,{children:[(0,m.jsx)(a,{of:u}),`
+`,(0,m.jsx)(n.h1,{id:`controlling-overflow`,children:`Controlling Overflow`}),`
+`,(0,m.jsxs)(n.p,{children:[`Disable scrolling with `,(0,m.jsx)(n.code,{children:`overflow--hidden`}),`.
+Enable scrolling with `,(0,m.jsx)(n.code,{children:`overflow--scroll`}),`.`]}),`
+`,(0,m.jsx)(n.p,{children:`Useful for locking body scroll when modals are open.`}),`
+`,(0,m.jsx)(i,{of:l})]})}function p(e={}){let{wrapper:n}={...t(),...e.components};return n?(0,m.jsx)(n,{...e,children:(0,m.jsx)(f,{...e})}):f(e)}var m;e((()=>{m=n(),o(),r(),s(),c(),d()}))();export{p as default};

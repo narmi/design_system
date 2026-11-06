@@ -1,0 +1,4 @@
+import{n as e}from"./rolldown-runtime-DaJ6WEGw.js";import{i as t}from"./react-BnCtKaSV.js";import{s as n}from"./chunk-LITCR56V-AcCrkDPM.js";import{f as r,n as i,s as a}from"./blocks-Bot_7bIW.js";import{t as o}from"./mdx-react-shim-9RzcSRdq.js";import{d as s,n as c}from"./ClassExample-Cuc5BJmj.js";import{ButtonReset as l,n as u,t as d}from"./forms.stories-Ngm0uzTp.js";function f(e){let n={code:`code`,h1:`h1`,p:`p`,...t(),...e.components};return(0,m.jsxs)(m.Fragment,{children:[(0,m.jsx)(a,{of:d}),`
+`,(0,m.jsx)(n.h1,{id:`button-reset`,children:`Button reset`}),`
+`,(0,m.jsxs)(n.p,{children:[`Resets browser defaults on `,(0,m.jsx)(n.code,{children:`button`}),` element.`]}),`
+`,(0,m.jsx)(i,{of:l})]})}function p(e={}){let{wrapper:n}={...t(),...e.components};return n?(0,m.jsx)(n,{...e,children:(0,m.jsx)(f,{...e})}):f(e)}var m;e((()=>{m=n(),o(),r(),s(),c(),u()}))();export{p as default};

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.38.4](https://github.com/narmi/design_system/compare/v6.38.3...v6.38.4) (2026-11-05)
+
+### fix
+
+* **deps:** pin @napi-rs/wasm-runtime to 1.2.6 to satisfy minimumReleaseAge ([f2cc46c](https://github.com/narmi/design_system/commit/f2cc46ce90b6476d68862845eb0f414b0034a38e))
+
 ## [6.38.3](https://github.com/narmi/design_system/compare/v6.38.2...v6.38.3) (2026-11-04)
 
 ### ci

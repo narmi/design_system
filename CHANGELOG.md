@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.37.6](https://github.com/narmi/design_system/compare/v6.37.5...v6.37.6) (2026-11-06)
+
+### fix
+
+* **Combobox:** keep a prefilled input on blur when it names an item ([5c28270](https://github.com/narmi/design_system/commit/5c2827039b17be568b41e7b4a3ce19ac5b5bbf30))
+
 ## [6.37.5](https://github.com/narmi/design_system/compare/v6.37.4...v6.37.5) (2026-11-04)
 
 ### fix

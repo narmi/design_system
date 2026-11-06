@@ -88,7 +88,7 @@
     "browserslist": "^4.28.9",
     "chromatic": "^6",
     "cli-table": "^0.3.11",
-    "conventional-changelog-conventionalcommits": "^9.3.0",
+    "conventional-changelog-conventionalcommits": "^10.4.1",
     "core-js": "^3.15.2",
     "eslint": "^8.57.1",
     "eslint-plugin-compat": "^6.0.1",

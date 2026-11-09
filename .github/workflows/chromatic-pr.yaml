@@ -89,8 +89,14 @@ jobs:
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           onlyChanged: true
-          # Token sources compile into ignored dist/tokens assets used by Storybook.
-          externals: 'tokens/**'
+          # Changes to these force a full snapshot run, because TurboSnap cannot
+          # trace them to stories: token sources compile into ignored dist/tokens
+          # assets, and shared Sass belongs to no single component. Component
+          # Sass is traced by .storybook/sassTracePlugin.js.
+          externals: |
+            tokens/**
+            src/base-styles/**
+            src/helper-classes/**
           exitZeroOnChanges: false # fail workflow if changes detected
           autoAcceptChanges: false
           buildScriptName: ''

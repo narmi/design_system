@@ -95,10 +95,7 @@ export default {
 
     config.plugins = [
       ...(config.plugins ?? []),
-      sassTracePlugin({
-        srcDir: path.resolve(__dirname, "../src"),
-        sharedOwner: path.resolve(__dirname, "preview.js"),
-      }),
+      sassTracePlugin({ srcDir: path.resolve(__dirname, "../src") }),
     ];
 
     return config;

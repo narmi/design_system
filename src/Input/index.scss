@@ -1,6 +1,7 @@
 // Sass placeholder for styles shared between
 // `textarea` and the pseudo-element that enables CSS auto growing
 %shared-multiline-styles {
+  line-height: 1.2;
   vertical-align: middle;
   font-weight: var(--font-weight-default);
   line-height: normal;

@@ -31,9 +31,9 @@ jobs:
         id: changes
         run: |
           # Get the base branch (main) and check for changes in src/, tokens/,
-          # or the Chromatic workflows themselves (which change what is captured)
+          # or the Storybook and Chromatic config that decide what is captured
           git fetch origin main:main
-          if git diff --name-only main...HEAD | grep -E '^(src/|tokens/|\.github/workflows/chromatic-)'; then
+          if git diff --name-only main...HEAD | grep -E '^(src/|tokens/|\.storybook/|\.github/workflows/chromatic-)'; then
             echo "has_changes=true" >> $GITHUB_OUTPUT
             echo "Found relevant changes"
           else
@@ -89,14 +89,8 @@ jobs:
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           onlyChanged: true
-          # Changes to these files force a full snapshot run, because TurboSnap
-          # cannot trace them to stories:
-          # - token sources compile into ignored dist/tokens assets
-          # - Sass partials are inlined into src/index.scss by the compiler, so
-          #   only that entry file appears in Storybook's module graph
-          externals: |
-            tokens/**
-            src/**/*.scss
+          # Token sources compile into ignored dist/tokens assets used by Storybook.
+          externals: 'tokens/**'
           exitZeroOnChanges: false # fail workflow if changes detected
           autoAcceptChanges: false
           buildScriptName: ''

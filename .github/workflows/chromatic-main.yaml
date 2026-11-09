@@ -41,8 +41,14 @@ jobs:
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           onlyChanged: true
-          # Token sources compile into ignored dist/tokens assets used by Storybook.
-          externals: 'tokens/**'
+          # Changes to these files force a full snapshot run, because TurboSnap
+          # cannot trace them to stories:
+          # - token sources compile into ignored dist/tokens assets
+          # - Sass partials are inlined into src/index.scss by the compiler, so
+          #   only that entry file appears in Storybook's module graph
+          externals: |
+            tokens/**
+            src/**/*.scss
           autoAcceptChanges: true
           exitZeroOnChanges: false
           buildScriptName: ''

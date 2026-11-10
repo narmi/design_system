@@ -34,6 +34,8 @@ export interface InputProps {
   onClick?: (event: React.MouseEvent) => void;
   style?: React.CSSProperties;
   error?: string | string[] | null;
+  /** Id for the rendered error, for the control's `aria-describedby` */
+  errorId?: string;
   /** Gives consumers control over where to render the error when `false` */
   renderError?: boolean;
   children?: ReactNode;
@@ -59,6 +61,7 @@ const Input = ({
   multiline = false,
   decoration,
   error,
+  errorId,
   search,
   onClick,
   style,
@@ -110,7 +113,7 @@ const Input = ({
         {tailContent && (
           <div className="nds-input-tail margin--top--xxs">{tailContent}</div>
         )}
-        {renderError && <Error error={error} />}
+        {renderError && <Error id={errorId} error={error} />}
       </div>
     </div>
   );

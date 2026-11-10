@@ -71,4 +71,79 @@ describe("TextInput", () => {
       "4",
     );
   });
+
+  describe("error accessibility", () => {
+    it("describes the input with its error message", () => {
+      render(<TextInput id="first" label="First name" error="Required" />);
+      const input = screen.getByLabelText("First name");
+      expect(input).toHaveAttribute("aria-invalid", "true");
+      expect(input).toHaveAttribute("aria-describedby", "first-error");
+      expect(input).toHaveAccessibleDescription("Required");
+      // e2e tests rely on data-error (NDS-839)
+      expect(input).toHaveAttribute("data-error", "Required");
+    });
+
+    it("describes the textarea with its error message", () => {
+      render(<TextInput label="Notes" error="Required" multiline />);
+      const textarea = screen.getByLabelText("Notes");
+      expect(textarea).toHaveAttribute("aria-invalid", "true");
+      expect(textarea).toHaveAccessibleDescription("Required");
+    });
+
+    it("links the error when the input has no id", () => {
+      render(<TextInput label="First name" error="Required" />);
+      expect(screen.getByLabelText("First name")).toHaveAccessibleDescription(
+        "Required",
+      );
+    });
+
+    it("describes the input with every error in a list", () => {
+      render(
+        <TextInput label="First name" error={["Required", "Too short"]} />,
+      );
+      expect(screen.getByLabelText("First name")).toHaveAccessibleDescription(
+        "Required Too short",
+      );
+    });
+
+    it("describes the input with the character limit error", () => {
+      render(<TextInput label="Code" maxLength={3} defaultValue="12345" />);
+      const input = screen.getByLabelText("Code");
+      expect(input).toHaveAttribute("aria-invalid", "true");
+      expect(input).toHaveAccessibleDescription("Exceeds character limits.");
+    });
+
+    it("keeps a consumer-supplied description alongside the error", () => {
+      render(
+        <>
+          <TextInput
+            id="first"
+            label="First name"
+            error="Required"
+            aria-describedby="hint"
+          />
+          <p id="hint">As shown on your ID</p>
+        </>,
+      );
+      expect(screen.getByLabelText("First name")).toHaveAccessibleDescription(
+        "As shown on your ID Required",
+      );
+    });
+
+    it("adds nothing when there is no error", () => {
+      render(<TextInput label="First name" aria-describedby="hint" />);
+      const input = screen.getByLabelText("First name");
+      expect(input).not.toHaveAttribute("aria-invalid");
+      expect(input).toHaveAttribute("aria-describedby", "hint");
+    });
+
+    it("marks the input invalid without a description when renderError is false", () => {
+      render(
+        <TextInput label="First name" error="Required" renderError={false} />,
+      );
+      const input = screen.getByLabelText("First name");
+      expect(input).toHaveAttribute("aria-invalid", "true");
+      expect(input).not.toHaveAttribute("aria-describedby");
+    });
+  });
 });

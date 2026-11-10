@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.32.9](https://github.com/narmi/design_system/compare/v6.32.8...v6.32.9) (2026-11-10)
+
+### fix
+
+* **Field.Select:** restore item padding and match trigger font size ([228df09](https://github.com/narmi/design_system/commit/228df09f0482e6a2082e53672300a4c53059e3b9))
+* **Field.Select:** scroll to the highlighted option and close when disabled ([3871f12](https://github.com/narmi/design_system/commit/3871f122e200ae1d41cd058a9dc67788c02adf7e))
+
 ## [6.32.8](https://github.com/narmi/design_system/compare/v6.32.7...v6.32.8) (2026-11-10)
 
 ### fix

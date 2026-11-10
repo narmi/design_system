@@ -375,8 +375,8 @@ importers:
         specifier: ^0.3.11
         version: 0.3.11
       conventional-changelog-conventionalcommits:
-        specifier: ^9.3.0
-        version: 9.3.1
+        specifier: ^10.4.1
+        version: 10.4.1
       core-js:
         specifier: ^3.15.2
         version: 3.49.0
@@ -1225,6 +1225,10 @@ packages:
 
   '@conventional-changelog/template@1.2.1':
     resolution: {integrity: sha512-TzlTVpKPjaqW6qOYjQcYUDuGsLCNsvFHVBXkYGTAnf5V37jCWrE5haKNXzz0WZUtVHjrpV76L1buANjwXMfT8w==}
+    engines: {node: '>=22'}
+
+  '@conventional-changelog/template@1.4.1':
+    resolution: {integrity: sha512-mHyyEL0eIEqJ6+aF24+AdZRo4bu4W5GdUiCiCx5X7kfDY51ye8GQJ264uOINObrRSKxtSRCOWPpl9hbOy4UzxQ==}
     engines: {node: '>=22'}
 
   '@csstools/color-helpers@5.1.0':
@@ -3440,6 +3444,10 @@ packages:
 
   conventional-changelog-angular@9.2.1:
     resolution: {integrity: sha512-oWSL6ZhnXbYraOFTK3PgRAQJ8fADDAEv5K6AdeyQPLvjFmhG8+ejL0jZZp/R7vTmGJaBvZEE+sE7dB4bCv7sAw==}
+    engines: {node: '>=22'}
+
+  conventional-changelog-conventionalcommits@10.4.1:
+    resolution: {integrity: sha512-jS1LRFSbRoAr6JbhhRy1JYfNNUj5LM3+v49hRE03CgccsiYqgdVj/RTmrw4J1rylrqijHwdOlJWiJa61JHOgHg==}
     engines: {node: '>=22'}
 
   conventional-changelog-conventionalcommits@9.3.1:
@@ -7963,6 +7971,8 @@ snapshots:
 
   '@conventional-changelog/template@1.2.1': {}
 
+  '@conventional-changelog/template@1.4.1': {}
+
   '@csstools/color-helpers@5.1.0': {}
 
   '@csstools/color-helpers@6.1.1': {}
@@ -10211,6 +10221,10 @@ snapshots:
   conventional-changelog-angular@9.2.1:
     dependencies:
       '@conventional-changelog/template': 1.2.1
+
+  conventional-changelog-conventionalcommits@10.4.1:
+    dependencies:
+      '@conventional-changelog/template': 1.4.1
 
   conventional-changelog-conventionalcommits@9.3.1:
     dependencies:

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.38.7](https://github.com/narmi/design_system/compare/v6.38.6...v6.38.7) (2026-11-10)
+
+### fix
+
+* **DateInput:** listen for complete valid date in input ([31465a3](https://github.com/narmi/design_system/commit/31465a353737daa3923e5ce70cb0aa0476d802bc))
+
 ## [6.38.6](https://github.com/narmi/design_system/compare/v6.38.5...v6.38.6) (2026-11-10)
 
 ### fix

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.38.7](https://github.com/narmi/design_system/compare/v6.38.6...v6.38.7) (2026-11-10)
+
+### fix
+
+* **DateInput:** listen for complete valid date in input ([31465a3](https://github.com/narmi/design_system/commit/31465a353737daa3923e5ce70cb0aa0476d802bc))
+
+## [6.38.6](https://github.com/narmi/design_system/compare/v6.38.5...v6.38.6) (2026-11-10)
+
+### fix
+
+* **TextInput:** link error message to the input for assistive tech ([da31fe2](https://github.com/narmi/design_system/commit/da31fe22ab81e08cb0cf2d964f47e067bbb43846))
+
 ## [6.38.5](https://github.com/narmi/design_system/compare/v6.38.4...v6.38.5) (2026-11-06)
 
 ### fix

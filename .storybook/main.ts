@@ -1,5 +1,6 @@
 import path from "path";
 import { fileURLToPath } from "url";
+import { sassTracePlugin } from "./sassTracePlugin.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -91,6 +92,11 @@ export default {
         errorRecovery: true,
       },
     };
+
+    config.plugins = [
+      ...(config.plugins ?? []),
+      sassTracePlugin({ srcDir: path.resolve(__dirname, "../src") }),
+    ];
 
     return config;
   },

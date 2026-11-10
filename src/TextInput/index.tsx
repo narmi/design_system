@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useId, useState } from "react";
 import Input from "../Input";
 import { VALID_ICON_NAMES } from "../icons/iconNames";
 import type { IconName } from "../types/Icon.types";
@@ -95,7 +95,7 @@ export interface MultilineTextInputProps
     > {
   /** When true, the input is displayed as an auto-growing textarea */
   multiline: true;
-/** Maximum number of text lines the textarea grows to before scrolling. Defaults to 8. */
+  /** Maximum number of text lines the textarea grows to before scrolling. Defaults to 8. */
   /** Callback invoked with event object on textarea change */
   onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
   /** Callback invoked with event object on textarea blur */
@@ -179,10 +179,27 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
         ? "Exceeds character limits."
         : undefined);
 
+    // Link the rendered error to the control for assistive tech. When
+    // `renderError` is false the consumer owns the error element, so there
+    // is nothing of ours to point at.
+    const generatedId = useId();
+    const errorId = `${props.id || generatedId}-error`;
+    const errorA11yProps = inputError
+      ? {
+          "aria-invalid": true,
+          ...(renderError && {
+            "aria-describedby": [props["aria-describedby"], errorId]
+              .filter(Boolean)
+              .join(" "),
+          }),
+        }
+      : {};
+
     return (
       <Input
         {...props}
         error={inputError}
+        errorId={errorId}
         renderError={renderError}
         startIconClass={startIcon ? `narmi-icon-${startIcon}` : undefined}
         endIconClass={endIcon ? `narmi-icon-${endIcon}` : undefined}
@@ -217,6 +234,7 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
               data-testid={testId}
               data-error={inputError}
               {...nativeProps(props)}
+              {...errorA11yProps}
             />
           </div>
         ) : (
@@ -239,6 +257,7 @@ const TextInput = React.forwardRef<TextInputElement, TextInputProps>(
             data-testid={testId}
             data-error={inputError}
             {...nativeProps(props)}
+            {...errorA11yProps}
           />
         )}
       </Input>

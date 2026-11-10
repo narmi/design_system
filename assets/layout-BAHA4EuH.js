@@ -1,0 +1,4 @@
+import{n as e}from"./rolldown-runtime-DaJ6WEGw.js";import{i as t}from"./react-BnCtKaSV.js";import{s as n}from"./chunk-LITCR56V-AcCrkDPM.js";import{f as r,n as i,s as a}from"./blocks-CuaAcGjk.js";import{t as o}from"./mdx-react-shim-9RzcSRdq.js";import{Spacing as s,n as c,t as l}from"./layout.stories-Dg3mPkfN.js";function u(e){let n={h1:`h1`,h2:`h2`,...t(),...e.components};return(0,f.jsxs)(f.Fragment,{children:[(0,f.jsx)(a,{title:`Design Tokens/Layout`,of:c}),`
+`,(0,f.jsx)(n.h1,{id:`layout-tokens`,children:`Layout Tokens`}),`
+`,(0,f.jsx)(n.h2,{id:`spacing`,children:`Spacing`}),`
+`,(0,f.jsx)(i,{of:s,style:{height:`auto`}})]})}function d(e={}){let{wrapper:n}={...t(),...e.components};return n?(0,f.jsx)(n,{...e,children:(0,f.jsx)(u,{...e})}):u(e)}var f;e((()=>{f=n(),o(),r(),l()}))();export{d as default};

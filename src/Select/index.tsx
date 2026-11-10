@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef } from "react";
 import { useSelect, UseSelectProps } from "downshift";
 import useDropdownLayer from "../hooks/layout/useDropdownLayer";
 
@@ -234,6 +234,8 @@ function Select({
   );
   const actions = React.Children.toArray(children).filter(isAction); // All Select.Action items
   const [userInput, setUserInput] = useState(""); // most recent val the user typed while focused on this input
+  // Select.Action activated by the last state change, invoked in `onStateChange`
+  const pendingActionRef = useRef<SelectActionElement | null>(null);
 
   // If categories are being used, extract items from categories
   if (
@@ -274,9 +276,23 @@ function Select({
     itemToString: (item) =>
       getTypeaheadString(userInput, item as SelectItemElement),
     onSelectedItemChange: ({ selectedItem }) => {
-      // Actions are handled in the state reducer, so this only handles regular items
+      // Actions never become the selected item (see `stateReducer`),
+      // so this only handles regular items
       if (selectedItem && !isAction(selectedItem)) {
         onChange(selectedItem.props ? selectedItem.props.value : "");
+      }
+    },
+
+    // Runs once per committed state change, after React has rendered it.
+    // Consumer callbacks run here rather than in `stateReducer`, which React
+    // may replay (e.g. in StrictMode).
+    onStateChange: () => {
+      const action = pendingActionRef.current;
+      if (!action) return;
+      pendingActionRef.current = null;
+      action.props.onSelect();
+      if (clearSelectionOnAction) {
+        onChange(""); // allows controlled 'value' to be cleared
       }
     },
 
@@ -297,12 +313,10 @@ function Select({
         setUserInput(""); // reset input after any other event
       }
 
-      // When an action is selected, execute it and handle clearing if needed
+      // When an action is selected, record it for `onStateChange` and keep
+      // (or clear) the existing selection instead of selecting the action
       if (isAction(newSelectedItem)) {
-        newSelectedItem.props.onSelect();
-        if (clearSelectionOnAction) {
-          onChange(""); // allows controlled 'value' to be cleared
-        }
+        pendingActionRef.current = newSelectedItem;
         return {
           ...changes,
           selectedItem: clearSelectionOnAction ? null : previousSelectedItem,

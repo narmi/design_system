@@ -1,3 +1,0 @@
-import{a as e,n as t}from"./rolldown-runtime-DaJ6WEGw.js";import{t as n}from"./react-BDsysHVl.js";import{n as r,t as i}from"./Error-w47tb659.js";var a,o,s,c,l;t((()=>{a=e(n()),r(),o=e=>a.createElement(`div`,{className:`border--top alignChild--left--top`},a.createElement(i,e)),s=o.bind({}),s.args={error:`Required.`},c={title:`Components/Error`,component:i},s.parameters={...s.parameters,docs:{...s.parameters?.docs,source:{originalSource:`args => <div className="border--top alignChild--left--top">
-    <Error {...args} />
-  </div>`,...s.parameters?.docs?.source}}},l=[`Overview`]}))();export{s as Overview,l as __namedExportsOrder,c as default};

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.32.8](https://github.com/narmi/design_system/compare/v6.32.7...v6.32.8) (2026-11-10)
+
+### fix
+
+* **Field.Select:** preserve item padding ([b2cca48](https://github.com/narmi/design_system/commit/b2cca481b1930613065a014f0788a3bccd89311f))
+
 ## [6.32.7](https://github.com/narmi/design_system/compare/v6.32.6...v6.32.7) (2026-11-06)
 
 ### fix

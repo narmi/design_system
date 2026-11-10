@@ -1,3 +1,0 @@
-import{n as e}from"./rolldown-runtime-DaJ6WEGw.js";import{i as t}from"./react-BnCtKaSV.js";import{s as n}from"./chunk-LITCR56V-AcCrkDPM.js";import{f as r,n as i,s as a}from"./blocks-DnRNAEnT.js";import{t as o}from"./mdx-react-shim-9RzcSRdq.js";import{Elevation as s,n as c,t as l}from"./shadow.stories-BzRXMt48.js";function u(e){let n={h2:`h2`,...t(),...e.components};return(0,f.jsxs)(f.Fragment,{children:[(0,f.jsx)(a,{title:`Design Tokens/Shadow`,of:c}),`
-`,(0,f.jsx)(n.h2,{id:`elevation`,children:`Elevation`}),`
-`,(0,f.jsx)(i,{of:s,style:{height:`auto`}})]})}function d(e={}){let{wrapper:n}={...t(),...e.components};return n?(0,f.jsx)(n,{...e,children:(0,f.jsx)(u,{...e})}):u(e)}var f;e((()=>{f=n(),o(),r(),l()}))();export{d as default};

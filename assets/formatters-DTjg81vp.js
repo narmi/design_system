@@ -1,2 +1,0 @@
-import{n as e}from"./rolldown-runtime-DaJ6WEGw.js";import{i as t}from"./react-BnCtKaSV.js";import{s as n}from"./chunk-LITCR56V-AcCrkDPM.js";import{f as r,o as i,s as a}from"./blocks-DnRNAEnT.js";import{t as o}from"./mdx-react-shim-9RzcSRdq.js";var s=e((()=>{}));function c(e){return(0,u.jsxs)(u.Fragment,{children:[(0,u.jsx)(a,{title:`Utilities/Formatters`}),`
-`,(0,u.jsx)(i,{children:``})]})}function l(e={}){let{wrapper:n}={...t(),...e.components};return n?(0,u.jsx)(n,{...e,children:(0,u.jsx)(c,{...e})}):c(e)}var u;e((()=>{u=n(),o(),r(),s()}))();export{l as default};

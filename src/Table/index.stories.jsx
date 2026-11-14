@@ -7,6 +7,8 @@
 
 /* eslint-disable jsx-a11y/anchor-is-valid,react/jsx-key */
 import React, { useState } from "react";
+import { expect } from "storybook/test";
+import { getRealKeyboard } from "../../.storybook/helpers/realKeyboard";
 import Table from "./";
 import TableInput from "../TableInput";
 import TableAutocomplete from "../TableAutocomplete";
@@ -736,6 +738,103 @@ ProgrammaticallyHidingAColumn.parameters = {
         'back to `"*"` (the column stays visible) and a `console.error` is ' +
         "logged.",
     },
+  },
+};
+
+/**
+ * Interaction test verifying that content inside a hidden (`"none"`) column in
+ * animated mode is skipped by the browser's sequential focus navigation.
+ * Uses real key presses, so it only runs under `pnpm run test:storybook`.
+ */
+export const SkipsHiddenCells = {
+  name: "Interaction: Tab skips hidden column content",
+  render: () => (
+    <div>
+      <button type="button" style={{ marginBottom: 16 }}>
+        Before table
+      </button>
+      <Table
+        colVisibility={["*", "none", "*"]}
+        colLayout={{
+          s: ["1fr", "1fr", "min-content"],
+          m: ["1fr", "1fr", "min-content"],
+          l: ["1fr", "1fr", "min-content"],
+        }}
+      >
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Name</Table.HeaderCell>
+            <Table.HeaderCell onClick={() => {}}>Hidden sort</Table.HeaderCell>
+            <Table.HeaderCell>Actions</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>John Doe</Table.Cell>
+            <Table.Cell>
+              <button type="button">Hidden edit</button>
+            </Table.Cell>
+            <Table.Cell>
+              <button type="button">Edit</button>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+    </div>
+  ),
+  play: async ({ canvas }) => {
+    const keyboard = await getRealKeyboard();
+    if (!keyboard) return;
+
+    // Tab skips the hidden sort header and the hidden cell's button
+    canvas.getByRole("button", { name: "Before table" }).focus();
+    await keyboard.tab();
+    await expect(canvas.getByRole("button", { name: "Edit" })).toHaveFocus();
+  },
+};
+
+/**
+ * Interaction test verifying that when a cell collapses while focus is inside
+ * it, focus moves to a control in a cell revealed by the same update.
+ */
+export const RelocatesFocusWhenVisibilitySwaps = {
+  name: "Interaction: Focus moves when visible and hidden cells swap",
+  render: () => {
+    const [isSwapped, setIsSwapped] = useState(false);
+
+    return (
+      <Table
+        colVisibility={isSwapped ? ["none", "*"] : ["*", "none"]}
+        colLayout={{
+          s: ["1fr", "1fr"],
+          m: ["1fr", "1fr"],
+          l: ["1fr", "1fr"],
+        }}
+      >
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>
+              <button type="button" onClick={() => setIsSwapped(true)}>
+                Hide focused cell
+              </button>
+            </Table.Cell>
+            <Table.Cell>
+              <button type="button">Newly visible action</button>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+    );
+  },
+  play: async ({ canvas, userEvent }) => {
+    const hidingButton = canvas.getByRole("button", {
+      name: "Hide focused cell",
+    });
+    hidingButton.focus();
+    await userEvent.click(hidingButton);
+    await expect(
+      canvas.getByRole("button", { name: "Newly visible action" }),
+    ).toHaveFocus();
   },
 };
 

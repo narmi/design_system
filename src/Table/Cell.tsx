@@ -1,7 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import cc from "classcat";
 import { isBreakpointSatisfied } from "./util/breakpoint";
 import ColVisibilityContext from "./util/colVisibilityContext";
+import { focusFirstVisibleInRow } from "./util/focusRow";
+import useInert from "../hooks/interaction/useInert";
 
 export interface CellProps {
   children: React.ReactNode;
@@ -26,6 +28,18 @@ const Cell = ({ children, textAlign = "start", _colIndex = 0 }: CellProps) => {
     minBreakpoint === "none"
       ? !isAnimated
       : isBreakpointSatisfied(minBreakpoint, currentBreakpoint);
+  const isCollapsed = !isVisible && isAnimated;
+  const cellRef = useRef<HTMLDivElement>(null);
+
+  // Collapsed cells are visually hidden but stay mounted, so make them inert
+  // to keep their content out of the tab order and the accessibility tree.
+  useInert({
+    ref: cellRef,
+    isInert: isCollapsed,
+    onRelocateFocus: () => {
+      if (cellRef.current) focusFirstVisibleInRow(cellRef.current);
+    },
+  });
 
   // Legacy (deprecated string colLayout): hidden columns are removed from the
   // DOM entirely. In animated mode (array colLayout) hidden cells must stay in
@@ -34,10 +48,9 @@ const Cell = ({ children, textAlign = "start", _colIndex = 0 }: CellProps) => {
   // layouts are removed in the next major version.
   if (!isVisible && !isAnimated) return null;
 
-  const isCollapsed = !isVisible;
-
   return (
     <div
+      ref={cellRef}
       className={cc([
         "nds-table-cell",
         { "nds-table-cell--collapsed": isCollapsed },

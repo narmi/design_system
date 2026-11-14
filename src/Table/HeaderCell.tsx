@@ -1,7 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import cc from "classcat";
 import { isBreakpointSatisfied } from "./util/breakpoint";
 import ColVisibilityContext from "./util/colVisibilityContext";
+import { focusFirstVisibleInRow } from "./util/focusRow";
+import useInert from "../hooks/interaction/useInert";
 
 export interface HeaderCellProps {
   children: React.ReactNode;
@@ -41,6 +43,18 @@ const HeaderCell = ({
       ? !isAnimated
       : isBreakpointSatisfied(minBreakpoint, currentBreakpoint);
   const isButton = typeof onClick === "function";
+  const isCollapsed = !isVisible && isAnimated;
+  const cellRef = useRef<HTMLButtonElement & HTMLDivElement>(null);
+
+  // Collapsed cells are visually hidden but stay mounted, so make them inert
+  // to keep them out of the tab order and the accessibility tree.
+  useInert({
+    ref: cellRef,
+    isInert: isCollapsed,
+    onRelocateFocus: () => {
+      if (cellRef.current) focusFirstVisibleInRow(cellRef.current);
+    },
+  });
 
   // Legacy (deprecated string colLayout): hidden columns are removed from the
   // DOM entirely. In animated mode (array colLayout) hidden cells must stay in
@@ -49,14 +63,12 @@ const HeaderCell = ({
   // layouts are removed in the next major version.
   if (!isVisible && !isAnimated) return null;
 
-  const isCollapsed = !isVisible;
-
   return isButton ? (
     <button
+      ref={cellRef}
       aria-live="polite"
       aria-hidden={isCollapsed || undefined}
-      disabled={isCollapsed}
-      onClick={isCollapsed ? undefined : onClick}
+      onClick={onClick}
       className={cc([
         "nds-table-cell button--reset",
         { "nds-table-cell--collapsed": isCollapsed },
@@ -68,6 +80,7 @@ const HeaderCell = ({
     </button>
   ) : (
     <div
+      ref={cellRef}
       aria-live="polite"
       aria-hidden={isCollapsed || undefined}
       className={cc([

@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
+import { expect } from "storybook/test";
+import { getRealKeyboard } from "../../.storybook/helpers/realKeyboard";
 import Accordion from "./";
 import Row from "../Row";
 
@@ -157,6 +159,83 @@ InitiallyOpen.parameters = {
       story:
         "Example of an accordion that starts in the open state. Since onUserToggle is empty, it remains open.",
     },
+  },
+};
+
+/**
+ * Interaction test verifying collapsed content is skipped by the browser's
+ * sequential focus navigation and becomes reachable again once expanded.
+ * Uses real key presses, so it only runs under `pnpm run test:storybook`.
+ */
+export const SkipsHiddenContent = {
+  name: "Interaction: Tab skips collapsed content",
+  render: () => (
+    <div>
+      <Accordion renderSummary={() => <span>Summary</span>}>
+        <div className="padding--all">
+          <button type="button">Hidden action</button>
+        </div>
+      </Accordion>
+      <button type="button" className="margin--top">
+        After accordion
+      </button>
+    </div>
+  ),
+  play: async ({ canvas, userEvent }) => {
+    const keyboard = await getRealKeyboard();
+    if (!keyboard) return;
+
+    const summary = canvas.getByRole("button", { name: "Summary" });
+    const hidden = canvas.getByRole("button", {
+      name: "Hidden action",
+      hidden: true,
+    });
+    const after = canvas.getByRole("button", { name: "After accordion" });
+
+    // collapsed: Tab from the summary lands on the control after the accordion
+    summary.focus();
+    await keyboard.tab();
+    await expect(after).toHaveFocus();
+
+    // expanded: the content is back in the tab order
+    await userEvent.click(summary);
+    await keyboard.tab();
+    await expect(hidden).toHaveFocus();
+
+    // collapse again so axe checks the hidden state
+    await userEvent.click(summary);
+    await expect(summary).toHaveFocus();
+  },
+};
+
+const ClosesFromWithinTemplate = () => {
+  const [isOpen, setIsOpen] = useState(true);
+  return (
+    <Accordion
+      isOpen={isOpen}
+      onUserToggle={setIsOpen}
+      renderSummary={() => <span>Summary</span>}
+    >
+      <div className="padding--all">
+        <button type="button" onClick={() => setIsOpen(false)}>
+          Done
+        </button>
+      </div>
+    </Accordion>
+  );
+};
+
+/**
+ * Interaction test verifying that when the accordion is collapsed by a control
+ * inside its own content, focus moves to the summary instead of staying on the
+ * now-hidden control.
+ */
+export const ClosesFromWithin = {
+  name: "Interaction: Focus returns to summary when closed from within",
+  render: () => <ClosesFromWithinTemplate />,
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: "Done" }));
+    await expect(canvas.getByRole("button", { name: "Summary" })).toHaveFocus();
   },
 };
 

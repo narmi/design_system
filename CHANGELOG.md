@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.38.8](https://github.com/narmi/design_system/compare/v6.38.7...v6.38.8) (2026-11-16)
+
+### ci
+
+* **chromatic:** map component Sass by folder, shared Sass by externals ([7211b42](https://github.com/narmi/design_system/commit/7211b4286525ed8613ae4286056d86d2e70de292))
+* **chromatic:** run full snapshots when Sass sources change ([ea19f29](https://github.com/narmi/design_system/commit/ea19f29a0387316138646cf08726adced7a22348)), closes [#2369](https://github.com/narmi/design_system/issues/2369)
+* **chromatic:** trace Sass changes to the stories they style ([9c05a09](https://github.com/narmi/design_system/commit/9c05a098b6f1321e2a75a0aff28b1055dc7d00b9))
+
+### fix
+
+* **DateInput:** restore flatpickr's input type after each render ([8b45e9b](https://github.com/narmi/design_system/commit/8b45e9bfd3a6561f098b448b6650f6bb4765bdca))
+
+### refactor
+
+* **Input:** drop a line-height that was always overridden ([60af9b9](https://github.com/narmi/design_system/commit/60af9b90a8adfb4d1a2cc21b248ac65facbccc45))
+
+### test
+
+* **DateInput:** cover the input type surviving a rerender ([7b09793](https://github.com/narmi/design_system/commit/7b097934e18f9f66ab7a2b03d209329419dcea6b))
+
 ## [6.38.7](https://github.com/narmi/design_system/compare/v6.38.6...v6.38.7) (2026-11-10)
 
 ### fix

@@ -135,4 +135,30 @@ describe("DateInput", () => {
       expect(onChange).not.toHaveBeenCalled();
     });
   });
+
+  // React 19 re-applies the rendered `type="date"` on every update
+  describe("when a rerender resets the input type", () => {
+    it("keeps the original input hidden with altInput", () => {
+      const props = { label: LABEL, altInput: true, altFormat: "m/d/Y" };
+      const { container, rerender } = render(<DateInput {...props} />);
+      const original = container.querySelector("input.flatpickr-input");
+      expect(original).toHaveAttribute("type", "hidden");
+
+      original.type = "date";
+      rerender(<DateInput {...props} />);
+
+      expect(original).toHaveAttribute("type", "hidden");
+    });
+
+    it("keeps the input as text without altInput", () => {
+      const { rerender } = render(<DateInput label={LABEL} />);
+      const input = screen.getByLabelText(LABEL);
+      expect(input).toHaveAttribute("type", "text");
+
+      input.type = "date";
+      rerender(<DateInput label={LABEL} />);
+
+      expect(input).toHaveAttribute("type", "text");
+    });
+  });
 });

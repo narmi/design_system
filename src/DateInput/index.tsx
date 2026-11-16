@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useRef } from "react";
+import React, { ReactNode, useEffect, useLayoutEffect, useRef } from "react";
 import TextInput, { type SingleLineTextInputProps } from "../TextInput";
 import { english } from "flatpickr/dist/l10n/default";
 import flatpickr from "flatpickr";
@@ -186,6 +186,14 @@ const DateInput = ({
       instance.clear(false);
     }
   }, [value]);
+
+  // React 19 re-applies the rendered `type` on every update, undoing flatpickr's
+  useLayoutEffect(() => {
+    const instance = instanceRef.current;
+    if (!instance || !input.current) return;
+    input.current.type =
+      instance.altInput || instance.mobileInput ? "hidden" : "text";
+  });
 
   return <>{renderInput(props, input, testId)}</>;
 };

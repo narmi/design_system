@@ -37,12 +37,18 @@ jobs:
         run: pnpm run build && pnpm run build-storybook
 
       - name: Auto-accept chromatic snapshots from `main`
-        uses: chromaui/action@e50abd573c8a789526f165fec06137a7c21d7299 # 18.13.0
+        uses: chromaui/action@5bcadb5104b09e360e210c54f95a7437c2d82bab # 18.13.3
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           onlyChanged: true
-          # Token sources compile into ignored dist/tokens assets used by Storybook.
-          externals: 'tokens/**'
+          # Changes to these force a full snapshot run, because TurboSnap cannot
+          # trace them to stories: token sources compile into ignored dist/tokens
+          # assets, and shared Sass belongs to no single component. Component
+          # Sass is traced by .storybook/sassTracePlugin.js.
+          externals: |
+            tokens/**
+            src/base-styles/**
+            src/helper-classes/**
           autoAcceptChanges: true
           exitZeroOnChanges: false
           buildScriptName: ''

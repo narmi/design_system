@@ -170,6 +170,16 @@ $breakpoints: (
   }
 }
 
+%nds-field-label {
+  font-size: var(--font-size-s);
+  color: var(--font-color-primary);
+}
+
+%nds-field-value {
+  font-size: var(--font-size-default);
+  color: var(--font-color-primary);
+}
+
 @keyframes ai-border-rotate {
   to {
     --animatable-angle: 360deg;

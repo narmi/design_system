@@ -22,9 +22,7 @@ type ComboboxActionElement = React.ReactElement<ComboboxActionProps>;
 type ComboboxHeadingElement = React.ReactElement<ComboboxHeadingProps>;
 type ComboboxCategoryElement = React.ReactElement<ComboboxCategoryProps>;
 type ComboboxChild =
-  | ComboboxItemElement
-  | ComboboxActionElement
-  | ComboboxHeadingElement;
+  ComboboxItemElement | ComboboxActionElement | ComboboxHeadingElement;
 
 interface ComboboxCategoryConfig {
   label: string;
@@ -230,8 +228,7 @@ function Combobox({
   const allChildren = useMemo(
     () =>
       React.Children.toArray(children) as (
-        | ComboboxChild
-        | ComboboxCategoryElement
+        ComboboxChild | ComboboxCategoryElement
       )[],
     [children],
   );
@@ -282,6 +279,7 @@ function Combobox({
     openMenu,
     closeMenu,
     reset,
+    selectItem,
   } = useCombobox({
     items: displayedItems,
     inputValue: inputValueProp,
@@ -480,7 +478,28 @@ function Combobox({
   };
 
   const handleBlur = () => {
-    onInputChange(selectedItem ? itemToString(selectedItem) : "");
+    if (selectedItem) {
+      onInputChange(itemToString(selectedItem));
+    } else {
+      // A consumer can fill the input from outside the dropdown (e.g. after
+      // creating a new recipient) without downshift knowing about it. If the
+      // text names an item, adopt that item as the selection instead of
+      // clearing the input.
+      const matchingItems = items.filter(
+        (item) =>
+          !isAction(item) &&
+          isSelectable(item) &&
+          (item.props.value === inputValue ||
+            itemToString(item) === inputValue),
+      );
+      const matchingItem =
+        matchingItems.length === 1 ? matchingItems[0] : undefined;
+      if (matchingItem) {
+        selectItem(matchingItem);
+      } else {
+        onInputChange("");
+      }
+    }
     if (highlightedIndex !== -1) {
       closeMenu();
     }

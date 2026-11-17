@@ -14,11 +14,6 @@ $upload-container-bp-s: 340px;
   container-name: nds-field-upload;
   min-width: 0;
 
-  label {
-    font-size: var(--font-size-l);
-    color: var(--font-color-primary);
-  }
-
   em {
     font-style: unset;
     font-weight: var(--font-weight-bold);
@@ -36,7 +31,13 @@ $upload-container-bp-s: 340px;
     }
   }
 
+  &-file-name {
+    @extend %nds-field-value;
+  }
+
   &-dropzone {
+    @extend %nds-field-value;
+    cursor: pointer;
     position: relative;
     display: grid;
     margin-top: var(--space-m);
@@ -202,10 +203,6 @@ $upload-container-bp-s: 340px;
       display: none;
       min-inline-size: rem(46px);
       min-block-size: rem(46px);
-    }
-
-    label {
-      font-size: var(--font-size-default);
     }
   }
 

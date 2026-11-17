@@ -38,6 +38,59 @@ export const Open = {
   },
 };
 
+/**
+ * A consumer can fill the input from outside the dropdown (for example after
+ * creating a new recipient in a drawer). Blurring the input must keep that
+ * text and select the matching item, rather than clearing it.
+ */
+const PrefilledFromOutside = () => {
+  const [inputValue, setInputValue] = useState("");
+  const [value, setValue] = useState("");
+  return (
+    <Row>
+      <Row.Item>
+        <Combobox
+          label="Select your state"
+          inputValue={inputValue}
+          onInputChange={setInputValue}
+          onChange={setValue}
+        >
+          {children}
+        </Combobox>
+        <p className="margin--top--s">
+          Selected: <span data-testid="selected-value">{value}</span>
+        </p>
+      </Row.Item>
+      <Row.Item shrink>
+        <button type="button" onClick={() => setInputValue("New York")}>
+          Fill with New York
+        </button>
+      </Row.Item>
+    </Row>
+  );
+};
+
+export const KeepsPrefilledInputOnBlur = {
+  name: "Interaction: Keeps prefilled input on blur",
+  render: () => <PrefilledFromOutside />,
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(
+      canvas.getByRole("button", { name: "Fill with New York" }),
+    );
+    const input = canvas.getByRole("combobox");
+    await expect(input).toHaveValue("New York");
+
+    // focus then blur the input
+    await userEvent.click(input);
+    await userEvent.tab();
+
+    await waitFor(() => expect(input).toHaveValue("New York"));
+    await expect(canvas.getByTestId("selected-value")).toHaveTextContent(
+      "New York",
+    );
+  },
+};
+
 export const WithIcon = Template.bind({});
 WithIcon.args = {
   label: "Select your state",

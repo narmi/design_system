@@ -282,6 +282,7 @@ function Combobox({
     openMenu,
     closeMenu,
     reset,
+    selectItem,
   } = useCombobox({
     items: displayedItems,
     inputValue: inputValueProp,
@@ -480,7 +481,28 @@ function Combobox({
   };
 
   const handleBlur = () => {
-    onInputChange(selectedItem ? itemToString(selectedItem) : "");
+    if (selectedItem) {
+      onInputChange(itemToString(selectedItem));
+    } else {
+      // A consumer can fill the input from outside the dropdown (e.g. after
+      // creating a new recipient) without downshift knowing about it. If the
+      // text names an item, adopt that item as the selection instead of
+      // clearing the input.
+      const matchingItems = items.filter(
+        (item) =>
+          !isAction(item) &&
+          isSelectable(item) &&
+          (item.props.value === inputValue ||
+            itemToString(item) === inputValue),
+      );
+      const matchingItem =
+        matchingItems.length === 1 ? matchingItems[0] : undefined;
+      if (matchingItem) {
+        selectItem(matchingItem);
+      } else {
+        onInputChange("");
+      }
+    }
     if (highlightedIndex !== -1) {
       closeMenu();
     }

@@ -3,79 +3,123 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.38.8](https://github.com/narmi/design_system/compare/v6.38.7...v6.38.8) (2026-11-16)
+
+### ci
+
+- **chromatic:** map component Sass by folder, shared Sass by externals ([7211b42](https://github.com/narmi/design_system/commit/7211b4286525ed8613ae4286056d86d2e70de292))
+- **chromatic:** run full snapshots when Sass sources change ([ea19f29](https://github.com/narmi/design_system/commit/ea19f29a0387316138646cf08726adced7a22348)), closes [#2369](https://github.com/narmi/design_system/issues/2369)
+- **chromatic:** trace Sass changes to the stories they style ([9c05a09](https://github.com/narmi/design_system/commit/9c05a098b6f1321e2a75a0aff28b1055dc7d00b9))
+
+### fix
+
+- **DateInput:** restore flatpickr's input type after each render ([8b45e9b](https://github.com/narmi/design_system/commit/8b45e9bfd3a6561f098b448b6650f6bb4765bdca))
+
+### refactor
+
+- **Input:** drop a line-height that was always overridden ([60af9b9](https://github.com/narmi/design_system/commit/60af9b90a8adfb4d1a2cc21b248ac65facbccc45))
+
+### test
+
+- **DateInput:** cover the input type surviving a rerender ([7b09793](https://github.com/narmi/design_system/commit/7b097934e18f9f66ab7a2b03d209329419dcea6b))
+
+## [6.38.7](https://github.com/narmi/design_system/compare/v6.38.6...v6.38.7) (2026-11-10)
+
+### fix
+
+- **DateInput:** listen for complete valid date in input ([31465a3](https://github.com/narmi/design_system/commit/31465a353737daa3923e5ce70cb0aa0476d802bc))
+
+## [6.38.6](https://github.com/narmi/design_system/compare/v6.38.5...v6.38.6) (2026-11-10)
+
+### fix
+
+- **TextInput:** link error message to the input for assistive tech ([da31fe2](https://github.com/narmi/design_system/commit/da31fe22ab81e08cb0cf2d964f47e067bbb43846))
+
+## [6.38.5](https://github.com/narmi/design_system/compare/v6.38.4...v6.38.5) (2026-11-06)
+
+### fix
+
+- **Combobox:** keep a prefilled input on blur when it names an item ([ae36f7d](https://github.com/narmi/design_system/commit/ae36f7d2eb9b4d68babf4b06ea53fbf126971c52))
+
+## [6.38.4](https://github.com/narmi/design_system/compare/v6.38.3...v6.38.4) (2026-11-05)
+
+### fix
+
+- **deps:** pin @napi-rs/wasm-runtime to 1.2.6 to satisfy minimumReleaseAge ([f2cc46c](https://github.com/narmi/design_system/commit/f2cc46ce90b6476d68862845eb0f414b0034a38e))
+
 ## [6.38.3](https://github.com/narmi/design_system/compare/v6.38.2...v6.38.3) (2026-11-04)
 
 ### ci
 
-* run Storybook a11y only on PRs targeting main ([3510e9b](https://github.com/narmi/design_system/commit/3510e9be9cfc3f4bd515d52990ad1211ccaf8832))
+- run Storybook a11y only on PRs targeting main ([3510e9b](https://github.com/narmi/design_system/commit/3510e9be9cfc3f4bd515d52990ad1211ccaf8832))
 
 ### fix
 
-* **Field.Date:** render today's date in the heading color ([7c91031](https://github.com/narmi/design_system/commit/7c91031e89ca134e96b331e86396f69bf49496f3))
-* **Field:** set label and value color from the shared placeholders ([aa1cd86](https://github.com/narmi/design_system/commit/aa1cd865dabc6f3d58d8d726e473e1b2357b8981))
-* **Field:** standardize label and value font sizes ([a16247a](https://github.com/narmi/design_system/commit/a16247a6967021f14d9b9c7f4121f7265430571a))
+- **Field.Date:** render today's date in the heading color ([7c91031](https://github.com/narmi/design_system/commit/7c91031e89ca134e96b331e86396f69bf49496f3))
+- **Field:** set label and value color from the shared placeholders ([aa1cd86](https://github.com/narmi/design_system/commit/aa1cd865dabc6f3d58d8d726e473e1b2357b8981))
+- **Field:** standardize label and value font sizes ([a16247a](https://github.com/narmi/design_system/commit/a16247a6967021f14d9b9c7f4121f7265430571a))
 
 ## [6.38.2](https://github.com/narmi/design_system/compare/v6.38.1...v6.38.2) (2026-11-03)
 
 ### fix
 
-* **Radio:** center dot with layout instead of percentage transform ([456220c](https://github.com/narmi/design_system/commit/456220c2017d7b644db33dbdaa95869f91bed360))
-* **Radio:** use inset for centering dot ([d67e803](https://github.com/narmi/design_system/commit/d67e80357ea4034fe3631002f5172c5d48ec2622))
+- **Radio:** center dot with layout instead of percentage transform ([456220c](https://github.com/narmi/design_system/commit/456220c2017d7b644db33dbdaa95869f91bed360))
+- **Radio:** use inset for centering dot ([d67e803](https://github.com/narmi/design_system/commit/d67e80357ea4034fe3631002f5172c5d48ec2622))
 
 ## [6.38.1](https://github.com/narmi/design_system/compare/v6.38.0...v6.38.1) (2026-11-03)
 
 ### fix
 
-* **Slider:** isolate stacking context ([13588bc](https://github.com/narmi/design_system/commit/13588bcdb0d6bc020c9b0fccb3a9422ff7292ba2))
+- **Slider:** isolate stacking context ([13588bc](https://github.com/narmi/design_system/commit/13588bcdb0d6bc020c9b0fccb3a9422ff7292ba2))
 
 ## [6.38.0](https://github.com/narmi/design_system/compare/v6.37.3...v6.38.0) (2026-10-30)
 
 ### feat
 
-* **useDialog:** add useDialog hook; use it in Dialog ([62165fc](https://github.com/narmi/design_system/commit/62165fcbd4f2c02513aeef750dc756fe3671682f))
+- **useDialog:** add useDialog hook; use it in Dialog ([62165fc](https://github.com/narmi/design_system/commit/62165fcbd4f2c02513aeef750dc756fe3671682f))
 
 ## [6.37.3](https://github.com/narmi/design_system/compare/v6.37.2...v6.37.3) (2026-10-28)
 
 ### fix
 
-* **useDismiss:** let only the top open layer handle Escape ([5c5fe8e](https://github.com/narmi/design_system/commit/5c5fe8e786d453203fe43d960b1370457ab5cebc))
-* **useDismiss:** stack Escape layers by render stamp instead of microtask batches ([4ecd68b](https://github.com/narmi/design_system/commit/4ecd68bb2134095f1559b7e4b4eb38e0230eec90))
+- **useDismiss:** let only the top open layer handle Escape ([5c5fe8e](https://github.com/narmi/design_system/commit/5c5fe8e786d453203fe43d960b1370457ab5cebc))
+- **useDismiss:** stack Escape layers by render stamp instead of microtask batches ([4ecd68b](https://github.com/narmi/design_system/commit/4ecd68bb2134095f1559b7e4b4eb38e0230eec90))
 
 ## [6.37.2](https://github.com/narmi/design_system/compare/v6.37.1...v6.37.2) (2026-10-27)
 
 ### fix
 
-* **Combobox:** key rows by item so translated pages don't crash ([c55e174](https://github.com/narmi/design_system/commit/c55e1746bf395779801f36eea8f66fb5929abf58))
+- **Combobox:** key rows by item so translated pages don't crash ([c55e174](https://github.com/narmi/design_system/commit/c55e1746bf395779801f36eea8f66fb5929abf58))
 
 ### refactor
 
-* **Combobox:** drop the index fallback on row keys ([59ca7ba](https://github.com/narmi/design_system/commit/59ca7bacb4f3779bc7cbf5742e87414f47803759))
+- **Combobox:** drop the index fallback on row keys ([59ca7ba](https://github.com/narmi/design_system/commit/59ca7bacb4f3779bc7cbf5742e87414f47803759))
 
 ## [6.37.1](https://github.com/narmi/design_system/compare/v6.37.0...v6.37.1) (2026-10-22)
 
 ### fix
 
-* **DateInput:** redefine dropped styles on native ([b454820](https://github.com/narmi/design_system/commit/b45482086ef535917d612170a8e7f883b19a661e))
+- **DateInput:** redefine dropped styles on native ([b454820](https://github.com/narmi/design_system/commit/b45482086ef535917d612170a8e7f883b19a661e))
 
 ## [6.37.0](https://github.com/narmi/design_system/compare/v6.36.0...v6.37.0) (2026-10-22)
 
 ### ci
 
-* include tokens/** in shared build cache key ([ccffdf9](https://github.com/narmi/design_system/commit/ccffdf9df38cf6a79a691313b414ff0c73e93c8e))
+- include tokens/\*\* in shared build cache key ([ccffdf9](https://github.com/narmi/design_system/commit/ccffdf9df38cf6a79a691313b414ff0c73e93c8e))
 
 ### feat
 
-* **Field:** add Field.Date ([8db0db3](https://github.com/narmi/design_system/commit/8db0db3aa6e8520e7d1a3efaff00576fc34ab7ab))
+- **Field:** add Field.Date ([8db0db3](https://github.com/narmi/design_system/commit/8db0db3aa6e8520e7d1a3efaff00576fc34ab7ab))
 
 ### fix
 
-* **Field.Date:** preserve dropdown viewport constraints ([8f8a8e0](https://github.com/narmi/design_system/commit/8f8a8e005c477b406ac69e84bce64103db184ef4))
-* rm className pass through ([fe380fd](https://github.com/narmi/design_system/commit/fe380fd7da78c3d1514086266bf8a0e5a634f186))
-* **Field.Date:** update hook imports after reorg, use theme alpha hover ([22354fd](https://github.com/narmi/design_system/commit/22354fd36030b490ec09badf8d7be205d8997fd7))
+- **Field.Date:** preserve dropdown viewport constraints ([8f8a8e0](https://github.com/narmi/design_system/commit/8f8a8e005c477b406ac69e84bce64103db184ef4))
+- rm className pass through ([fe380fd](https://github.com/narmi/design_system/commit/fe380fd7da78c3d1514086266bf8a0e5a634f186))
+- **Field.Date:** update hook imports after reorg, use theme alpha hover ([22354fd](https://github.com/narmi/design_system/commit/22354fd36030b490ec09badf8d7be205d8997fd7))
 
 ### test
 
-* **vitest:** add vitest playwright plugin for storybook a11y coverage ([02cb473](https://github.com/narmi/design_system/commit/02cb47398ebfd83899440aada740befeee3af2d6))
+- **vitest:** add vitest playwright plugin for storybook a11y coverage ([02cb473](https://github.com/narmi/design_system/commit/02cb47398ebfd83899440aada740befeee3af2d6))
 
 ## [6.36.0](https://github.com/narmi/design_system/compare/v6.35.5...v6.36.0) (2026-10-22)
 

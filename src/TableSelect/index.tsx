@@ -102,12 +102,7 @@ const TableSelect = React.forwardRef<HTMLInputElement, TableSelectProps>(
       <div
         className="nds-tableField-select-list"
         {...(layerProps as React.HTMLAttributes<HTMLDivElement>)}
-        style={{
-          ...layerProps.style,
-          zIndex: 4,
-          width: "max-content",
-          maxWidth: "80vw",
-        }}
+        style={{ ...layerProps.style, zIndex: 4 }}
       >
         <ul
           {...getMenuProps()}

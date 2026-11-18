@@ -108,14 +108,17 @@
       @extend %tableField-active;
     }
 
-    // hide chevron when inactive
+    // chevron keeps its own column; shown only while active
     .nds-dropdownTrigger-chevron {
-      display: none !important;
+      position: static;
+      transform: none;
+      visibility: hidden;
     }
 
     &:hover .nds-dropdownTrigger-chevron,
-    &:focus .nds-dropdownTrigger-chevron {
-      display: block !important;
+    &:focus .nds-dropdownTrigger-chevron,
+    &--isActive .nds-dropdownTrigger-chevron {
+      visibility: visible;
     }
 
     &--hasError {

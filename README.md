@@ -116,6 +116,11 @@ configured to use [Conventional Commits](https://www.conventionalcommits.org/en/
 Any time new commits are added to the `main` branch, the GitHub Action "release" will run `semantic-release`. The job will
 parse recent git tags and commit messages to determine the new version number, tag the release, publish to NPM, and update the changelog.
 
+### Release flow
+<img width="2720" height="1928" alt="nds_release_and_backport_flow_horizontal_v4" src="https://github.com/user-attachments/assets/85a840d6-181b-44e6-bd95-fc86644eb98a" />
+
+
+
 #### Major releases
 
 All PRs target `main` unless it contains breaking changes. Any branch containing breaking change commits should target the open major release branch.

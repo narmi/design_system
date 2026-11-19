@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.37.7](https://github.com/narmi/design_system/compare/v6.37.6...v6.37.7) (2026-11-19)
+
+### fix
+
+* **Select,Combobox,MultiSelect:** invoke action callbacks once in StrictMode ([33c5318](https://github.com/narmi/design_system/commit/33c5318eea4abec5db5456848cab0867d21f4cd6))
+
 ## [6.37.6](https://github.com/narmi/design_system/compare/v6.37.5...v6.37.6) (2026-11-06)
 
 ### fix

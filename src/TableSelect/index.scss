@@ -12,6 +12,9 @@
 .nds-tableField-select-list {
   @extend %nds-dropdown-layer;
   @extend %tableField-offset;
+  // Override the hook's inline width constraints while retaining its min-width.
+  width: max-content !important;
+  max-width: 80vw !important;
 }
 
 .nds-tableField-select-item {

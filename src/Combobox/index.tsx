@@ -22,9 +22,7 @@ type ComboboxActionElement = React.ReactElement<ComboboxActionProps>;
 type ComboboxHeadingElement = React.ReactElement<ComboboxHeadingProps>;
 type ComboboxCategoryElement = React.ReactElement<ComboboxCategoryProps>;
 type ComboboxChild =
-  | ComboboxItemElement
-  | ComboboxActionElement
-  | ComboboxHeadingElement;
+  ComboboxItemElement | ComboboxActionElement | ComboboxHeadingElement;
 
 interface ComboboxCategoryConfig {
   label: string;
@@ -230,8 +228,7 @@ function Combobox({
   const allChildren = useMemo(
     () =>
       React.Children.toArray(children) as (
-        | ComboboxChild
-        | ComboboxCategoryElement
+        ComboboxChild | ComboboxCategoryElement
       )[],
     [children],
   );

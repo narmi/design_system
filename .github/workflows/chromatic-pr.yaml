@@ -85,7 +85,7 @@ jobs:
 
       - name: Chromatic
         id: chromatic_step
-        uses: chromaui/action@f305ef908327aee3b80b0e6b3bbb60a742eaa049 # 18.13.6
+        uses: chromaui/action@6ac4c49524e1b1358b8c593c5eea877604228268 # 18.14.2
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           onlyChanged: true

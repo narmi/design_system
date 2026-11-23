@@ -68,6 +68,7 @@ const CollapsibleCard = ({
   kind = "default",
 }: CollapsibleCardProps) => {
   const [hover, setHover] = React.useState(false);
+  const contentId = React.useId();
 
   const onTitleContainerClick = (
     disabled = false,
@@ -86,6 +87,9 @@ const CollapsibleCard = ({
       setHover(false);
     }
   };
+
+  const isExpanded = isOpen && !isDisabled;
+  const hasHeaderTrigger = trigger === "header";
 
   const onCaretClick = () => {
     setHover(false);
@@ -113,9 +117,8 @@ const CollapsibleCard = ({
         onClick={onCaretClick}
         name={`chevron-${isOpen ? "up" : "down"}`}
         textSize="l"
-        onKeyUp={({ key }: React.KeyboardEvent) => {
-          if (key === "Enter") onCaretClick();
-        }}
+        aria-expanded={isExpanded}
+        aria-controls={contentId}
       />
     </div>
   );
@@ -198,11 +201,15 @@ const CollapsibleCard = ({
     "bgColor--white",
   ]);
 
+  // `aria-expanded` and `aria-controls` belong on the interactive trigger:
+  // the header when it is the trigger, otherwise the caret button.
   const headerTriggerProps: React.HTMLAttributes<HTMLDivElement> =
-    trigger === "header"
+    hasHeaderTrigger
       ? {
           role: "button",
           tabIndex: 0,
+          "aria-expanded": isExpanded,
+          "aria-controls": contentId,
           onKeyUp: ({ key }) => {
             if (key === "Enter") {
               const action = isOpen && !isDisabled ? "close" : "open";
@@ -224,19 +231,18 @@ const CollapsibleCard = ({
         <>
           <div
             className={`collapsible-card--title-expanded rounded--top--${radiusSize}`}
-            aria-expanded="true"
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
             {...headerTriggerProps}
           >
             {titleContainerJSX}
           </div>
-          <div className="padding--all--l">{children}</div>
+          <div id={contentId} className="padding--all--l">
+            {children}
+          </div>
         </>
       ) : (
-        <div aria-expanded="false" {...headerTriggerProps}>
-          {titleContainerJSX}
-        </div>
+        <div {...headerTriggerProps}>{titleContainerJSX}</div>
       )}
     </div>
   );

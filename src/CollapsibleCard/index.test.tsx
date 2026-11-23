@@ -77,6 +77,128 @@ describe("CollapsibleCard", () => {
     expect(onOpen).toHaveBeenCalledTimes(1);
   });
 
+  describe("toggling exactly once per activation", () => {
+    const setup = (trigger: "header" | "caret-start" | "caret-end") => {
+      const onOpen = vi.fn();
+      const onClose = vi.fn();
+      const Controlled = () => {
+        const [isOpen, setIsOpen] = React.useState(false);
+        return (
+          <CollapsibleCard
+            isOpen={isOpen}
+            trigger={trigger}
+            title="My title"
+            onOpen={() => {
+              onOpen();
+              setIsOpen(true);
+            }}
+            onClose={() => {
+              onClose();
+              setIsOpen(false);
+            }}
+          >
+            <p>card content</p>
+          </CollapsibleCard>
+        );
+      };
+      render(<Controlled />);
+      return { onOpen, onClose };
+    };
+
+    const activations: [string, (el: HTMLElement) => Promise<void>][] = [
+      [
+        "Enter",
+        async (el) => {
+          el.focus();
+          await userEvent.keyboard("{Enter}");
+        },
+      ],
+      [
+        "Space",
+        async (el) => {
+          el.focus();
+          await userEvent.keyboard(" ");
+        },
+      ],
+      ["click", (el) => userEvent.click(el)],
+    ];
+
+    describe.each(["caret-start", "caret-end"] as const)("%s", (trigger) => {
+      it.each(activations)("%s opens, then closes", async (_, activate) => {
+        const { onOpen, onClose } = setup(trigger);
+
+        await activate(screen.getByRole("button", { name: "Open" }));
+        expect(onOpen).toHaveBeenCalledTimes(1);
+        expect(onClose).not.toHaveBeenCalled();
+        expect(screen.getByText("card content")).toBeInTheDocument();
+
+        await activate(screen.getByRole("button", { name: "Close" }));
+        expect(onOpen).toHaveBeenCalledTimes(1);
+        expect(onClose).toHaveBeenCalledTimes(1);
+        expect(screen.queryByText("card content")).not.toBeInTheDocument();
+      });
+    });
+
+    it.each([activations[0], activations[2]])(
+      "header: %s opens, then closes",
+      async (_, activate) => {
+        const { onOpen, onClose } = setup("header");
+
+        await activate(screen.getByRole("button", { expanded: false }));
+        expect(onOpen).toHaveBeenCalledTimes(1);
+        expect(onClose).not.toHaveBeenCalled();
+        expect(screen.getByText("card content")).toBeInTheDocument();
+
+        await activate(screen.getByRole("button", { expanded: true }));
+        expect(onOpen).toHaveBeenCalledTimes(1);
+        expect(onClose).toHaveBeenCalledTimes(1);
+      },
+    );
+  });
+
+  describe.each(["caret-start", "caret-end"] as const)(
+    "%s trigger state",
+    (trigger) => {
+      it("exposes expanded state and the content relationship on the caret button only", () => {
+        const { container, rerender } = render(
+          <CollapsibleCard isOpen={false} trigger={trigger}>
+            <p>card content</p>
+          </CollapsibleCard>,
+        );
+        expect(screen.getByRole("button", { name: "Open" })).toHaveAttribute(
+          "aria-expanded",
+          "false",
+        );
+
+        rerender(
+          <CollapsibleCard isOpen={true} trigger={trigger}>
+            <p>card content</p>
+          </CollapsibleCard>,
+        );
+        const caret = screen.getByRole("button", { name: "Close" });
+        expect(caret).toHaveAttribute("aria-expanded", "true");
+        const content = document.getElementById(
+          caret.getAttribute("aria-controls") as string,
+        );
+        expect(content).toContainElement(screen.getByText("card content"));
+        expect(container.querySelectorAll("[aria-expanded]")).toHaveLength(1);
+      });
+    },
+  );
+
+  it("exposes expanded state and the content relationship on the header trigger", () => {
+    render(
+      <CollapsibleCard isOpen={true} title="My title">
+        <p>card content</p>
+      </CollapsibleCard>,
+    );
+    const header = screen.getByRole("button", { expanded: true });
+    const content = document.getElementById(
+      header.getAttribute("aria-controls") as string,
+    );
+    expect(content).toContainElement(screen.getByText("card content"));
+  });
+
   it("uses `renderTitle` in place of the default title, passing `isOpen`", () => {
     const renderTitle = vi.fn((isOpen: boolean) => (
       <span>{isOpen ? "custom open" : "custom closed"}</span>

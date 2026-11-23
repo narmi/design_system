@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.38.9](https://github.com/narmi/design_system/compare/v6.38.8...v6.38.9) (2026-11-23)
+
+### fix
+
+* **Select,Combobox,MultiSelect:** invoke action callbacks once in StrictMode ([0726b09](https://github.com/narmi/design_system/commit/0726b09a28feeb95688352f83188fc4ba6c9142d))
+* **TableSelect:** keep the chevron from covering the selected value ([1409fef](https://github.com/narmi/design_system/commit/1409fef52099c4c9b321f2179f682aba52cf4629))
+* **TableSelect:** let the option list grow past a narrow trigger ([280e380](https://github.com/narmi/design_system/commit/280e38078e4ba4883eba4828d747f82db4468a66))
+* **TableSelect:** reserve the chevron column instead of toggling visibility ([477f0fa](https://github.com/narmi/design_system/commit/477f0fab9f2932eca8c0f222d21d7c71926f2d9d))
+
+### refactor
+
+* **TableSelect:** move menu width constraints to Sass ([45cd527](https://github.com/narmi/design_system/commit/45cd527606bb1a84ce3fdae8b9ade5c25b45a63d))
+
 ## [6.38.8](https://github.com/narmi/design_system/compare/v6.38.7...v6.38.8) (2026-11-16)
 
 ### ci

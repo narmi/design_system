@@ -13,6 +13,13 @@ updates:
     cooldown:
       default-days: 7
       semver-major-days: 30
+    ignore:
+      # v10 of the preset needs conventional-changelog-writer@9, but
+      # @semantic-release/release-notes-generator still ships writer@8.
+      # The mismatch breaks the Release action at `generateNotes`. Drop this
+      # once release-notes-generator depends on writer@9 or newer.
+      - dependency-name: "conventional-changelog-conventionalcommits"
+        update-types: ["version-update:semver-major"]
     groups:
       # react-aria-components pins exact versions of react-aria and
       # react-stately. Bumping them separately would bundle two copies.

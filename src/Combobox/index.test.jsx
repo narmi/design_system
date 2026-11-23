@@ -348,4 +348,99 @@ describe("Combobox", () => {
       expect(handleChange).not.toHaveBeenCalled();
     });
   });
+
+  describe("Combobox.Action in StrictMode", () => {
+    // StrictMode replays reducers; an action invoked inside downshift's
+    // `stateReducer` would run twice for a single user activation.
+    const LABEL_ACTION = "Add a new state";
+    const renderStrict = (props = {}) => {
+      const onChange = vi.fn();
+      const onSelect = vi.fn();
+      render(
+        <React.StrictMode>
+          <Combobox label={LABEL} onChange={onChange} {...props}>
+            <Combobox.Item value="New York" searchValue="New York" />
+            <Combobox.Item value="California" searchValue="California" />
+            <Combobox.Action onSelect={onSelect} label={LABEL_ACTION} />
+          </Combobox>
+        </React.StrictMode>,
+      );
+      return { onChange, onSelect, input: screen.getByPlaceholderText(LABEL) };
+    };
+
+    it("invokes the action exactly once on click", () => {
+      const { onChange, onSelect, input } = renderStrict();
+
+      fireEvent.focus(input);
+      fireEvent.click(screen.getByText(LABEL_ACTION));
+
+      expect(onSelect).toHaveBeenCalledTimes(1);
+      expect(onChange).not.toHaveBeenCalled();
+      expect(screen.queryByText(LABEL_ACTION)).not.toBeInTheDocument();
+    });
+
+    it("invokes the action exactly once on Enter", () => {
+      const { onChange, onSelect, input } = renderStrict();
+
+      fireEvent.focus(input);
+      fireEvent.keyDown(input, { key: "ArrowDown" });
+      fireEvent.keyDown(input, { key: "ArrowDown" });
+      fireEvent.keyDown(input, { key: "ArrowDown" });
+      fireEvent.keyDown(input, { key: "Enter" });
+
+      expect(onSelect).toHaveBeenCalledTimes(1);
+      expect(onChange).not.toHaveBeenCalled();
+      expect(screen.queryByText(LABEL_ACTION)).not.toBeInTheDocument();
+    });
+
+    it("preserves the previous selection after an action", () => {
+      const { onChange, onSelect, input } = renderStrict();
+
+      fireEvent.focus(input);
+      fireEvent.click(screen.getByText("New York"));
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenLastCalledWith("New York");
+
+      fireEvent.focus(input);
+      fireEvent.click(screen.getByText(LABEL_ACTION));
+
+      expect(onSelect).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(input.value).toBe("New York");
+    });
+
+    it("clears the selection exactly once with `clearSelectionOnAction`", () => {
+      const { onChange, onSelect, input } = renderStrict({
+        clearSelectionOnAction: true,
+      });
+
+      fireEvent.focus(input);
+      fireEvent.click(screen.getByText("New York"));
+      expect(onChange).toHaveBeenLastCalledWith("New York");
+
+      fireEvent.focus(input);
+      fireEvent.click(screen.getByText(LABEL_ACTION));
+
+      expect(onSelect).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledTimes(2);
+      expect(onChange).toHaveBeenLastCalledWith("");
+      expect(input.value).toBe("");
+    });
+
+    it("invokes the action before notifying that the selection was cleared", () => {
+      const calls = [];
+      const { onChange, onSelect, input } = renderStrict({
+        clearSelectionOnAction: true,
+      });
+      onChange.mockImplementation((value) => calls.push(`onChange:${value}`));
+      onSelect.mockImplementation(() => calls.push("onSelect"));
+
+      fireEvent.focus(input);
+      fireEvent.click(screen.getByText("New York"));
+      fireEvent.focus(input);
+      fireEvent.click(screen.getByText(LABEL_ACTION));
+
+      expect(calls).toEqual(["onChange:New York", "onSelect", "onChange:"]);
+    });
+  });
 });

@@ -98,19 +98,19 @@ const Drawer = ({
   const navRef = useRef<HTMLDivElement>(null);
   const trapRef = useRef<HTMLDivElement>(null);
   const [contentEl, setContentEl] = useState<HTMLDivElement | null>(null);
-  const [headingText, setHeadingText] = useState<string>();
+  const [labelFromHeadingText, setLabelFromHeadingText] = useState<string>();
 
   // Name the dialog after the first heading in its content. The heading comes
   // from consumer `children`, so its text is read from the DOM. Content can
   // change without Drawer re-rendering, so observe it.
   useEffect(() => {
     if (!contentEl || label) {
-      setHeadingText(undefined);
+      setLabelFromHeadingText(undefined);
       return;
     }
     const syncHeading = () => {
       const heading = contentEl.querySelector(HEADING_SELECTOR);
-      setHeadingText(heading?.textContent?.trim() || undefined);
+      setLabelFromHeadingText(heading?.textContent?.trim() || undefined);
     };
     syncHeading();
     const observer = new MutationObserver(syncHeading);
@@ -162,7 +162,7 @@ const Drawer = ({
         },
       ])}
       role="dialog"
-      aria-label={label ?? headingText}
+      aria-label={label ?? labelFromHeadingText}
       data-testid={testId}
     >
       <div

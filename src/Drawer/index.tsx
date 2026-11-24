@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, { useRef, useId } from "react";
+import React, { useRef, useId, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import cc from "classcat";
 import useBreakpoints from "../hooks/env/useBreakpoints";
@@ -9,6 +9,7 @@ import useFocusTrap from "../hooks/interaction/useFocusTrap";
 import useDismiss from "../hooks/interaction/useDismiss";
 
 const noop = () => {};
+const HEADING_SELECTOR = "h1, h2, h3, h4, h5, h6, [role='heading']";
 
 export interface DrawerProps {
   /** Scrollable contents of the Drawer */
@@ -60,14 +61,12 @@ export interface DrawerProps {
   footer?: React.ReactNode;
   /**
    * Accessible name for the drawer dialog.
-   * Use when the drawer content has no visible heading to reference with `labelledBy`.
+   *
+   * By default the drawer is named by the first heading rendered in
+   * `children`. Pass `label` when the content has no heading, or to
+   * override the heading.
    */
   label?: string;
-  /**
-   * `id` of an element that names the drawer dialog, typically a
-   * heading rendered in `children`. Takes precedence over `label`.
-   */
-  labelledBy?: string;
   /** Optional value for `data-testid` attribute */
   testId?: string;
 }
@@ -92,13 +91,37 @@ const Drawer = ({
   paddingSize = "xxl",
   footer,
   label,
-  labelledBy,
   testId,
 }: DrawerProps) => {
   const panelId = `content-panel-${useId()}`;
   const shimRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
   const trapRef = useRef<HTMLDivElement>(null);
+  const headingId = `drawer-heading-${useId()}`;
+  const [contentEl, setContentEl] = useState<HTMLDivElement | null>(null);
+  const [labelledBy, setLabelledBy] = useState<string>();
+
+  // Name the dialog by the first heading in its content. The heading comes
+  // from consumer `children`, so it is found in the DOM and given an id if it
+  // has none. Content can change without Drawer re-rendering, so observe it.
+  useEffect(() => {
+    if (!contentEl || label) {
+      setLabelledBy(undefined);
+      return;
+    }
+    const syncHeading = () => {
+      const heading = contentEl.querySelector(HEADING_SELECTOR);
+      contentEl.querySelectorAll(`[id="${headingId}"]`).forEach((el) => {
+        if (el !== heading) el.removeAttribute("id");
+      });
+      if (heading && !heading.id) heading.id = headingId;
+      setLabelledBy(heading?.id);
+    };
+    syncHeading();
+    const observer = new MutationObserver(syncHeading);
+    observer.observe(contentEl, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, [contentEl, label, headingId]);
 
   const isTransitioning = useMountTransition(isOpen, 300);
   const isShown = isOpen && isTransitioning;
@@ -140,11 +163,14 @@ const Drawer = ({
         },
       ])}
       role="dialog"
-      aria-label={labelledBy ? undefined : label}
-      aria-labelledby={labelledBy}
+      aria-label={label}
+      aria-labelledby={label ? undefined : labelledBy}
       data-testid={testId}
     >
-      <div className={cc(["drawer-content", `padding--all--${paddingSize}`])}>
+      <div
+        ref={setContentEl}
+        className={cc(["drawer-content", `padding--all--${paddingSize}`])}
+      >
         {isVerticalMobileDrawer && (
           <MobileNavigation
             showControls={showControls}

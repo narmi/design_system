@@ -104,32 +104,51 @@ describe("Drawer", () => {
       isDesktop = desktop;
     });
 
-    it("names the dialog with `label`", () => {
-      renderDrawer({ label: "Account details" });
+    it("names the dialog by a heading supplied as children", () => {
+      renderDrawer({ children: <h2>Account details</h2> });
       expect(
         screen.getByRole("dialog", { name: "Account details" }),
       ).toBeInTheDocument();
       expect(screen.getByRole("button", { name: "Close" })).toBeInTheDocument();
     });
 
-    it("names the dialog from a heading in children with `labelledBy`", () => {
-      renderDrawer({
-        labelledBy: "drawer-heading",
-        children: <h2 id="drawer-heading">Account details</h2>,
-      });
-      const dialog = screen.getByRole("dialog", { name: "Account details" });
-      expect(dialog).toHaveAttribute("aria-labelledby", "drawer-heading");
+    it("reuses an existing heading id", () => {
+      renderDrawer({ children: <h2 id="my-heading">Account details</h2> });
+      expect(
+        screen.getByRole("dialog", { name: "Account details" }),
+      ).toHaveAttribute("aria-labelledby", "my-heading");
+    });
+
+    it("names the dialog with `label`, overriding any heading", () => {
+      renderDrawer({ label: "Account", children: <h2>Account details</h2> });
+      const dialog = screen.getByRole("dialog", { name: "Account" });
+      expect(dialog).not.toHaveAttribute("aria-labelledby");
       expect(screen.getByRole("button", { name: "Close" })).toBeInTheDocument();
     });
 
-    it("prefers `labelledBy` over `label`", () => {
-      renderDrawer({
-        label: "Ignored",
-        labelledBy: "drawer-heading",
-        children: <h2 id="drawer-heading">Account details</h2>,
-      });
-      const dialog = screen.getByRole("dialog", { name: "Account details" });
-      expect(dialog).not.toHaveAttribute("aria-label");
+    it("follows the heading when content changes", async () => {
+      const Content = () => {
+        const [step, setStep] = React.useState(1);
+        return (
+          <>
+            {step === 1 ? (
+              <h2 key="one">Step one</h2>
+            ) : (
+              <h3 key="two">Step two</h3>
+            )}
+            <button onClick={() => setStep(2)}>Advance</button>
+          </>
+        );
+      };
+      renderDrawer({ children: <Content /> });
+      expect(
+        screen.getByRole("dialog", { name: "Step one" }),
+      ).toBeInTheDocument();
+
+      fireEvent.click(screen.getByRole("button", { name: "Advance" }));
+      expect(
+        await screen.findByRole("dialog", { name: "Step two" }),
+      ).toBeInTheDocument();
     });
   });
 

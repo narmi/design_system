@@ -13,19 +13,19 @@ import Tooltip from "../Tooltip";
 
 const CONTENTS = [
   <>
-    <h2 id="drawer-story-title">Title #1</h2>
+    <h2>Title #1</h2>
     <div>Content #1 of 4</div>
   </>,
   <>
-    <h2 id="drawer-story-title">Title #2</h2>
+    <h2>Title #2</h2>
     <div>Content #2 of 4</div>
   </>,
   <>
-    <h2 id="drawer-story-title">Title #3</h2>
+    <h2>Title #3</h2>
     <div>Content #3 of 4</div>
   </>,
   <>
-    <h2 id="drawer-story-title">Title #4</h2>
+    <h2>Title #4</h2>
     <div>Content #4 of 4</div>
   </>,
 ];
@@ -43,7 +43,6 @@ const BaseTemplate = (args) => {
         Open Drawer
       </Button>
       <Drawer
-        label="Example drawer"
         {...args}
         isOpen={isDrawerOpen}
         onUserDismiss={() => setIsDrawerOpen(false)}
@@ -84,7 +83,6 @@ const InteractiveTemplate = (args) => {
         onUserDismiss={() => setIsDrawerOpen(false)}
         onNext={onNext()}
         onPrev={onPrev()}
-        labelledBy="drawer-story-title"
       >
         {CONTENTS[contentIdxToDisplay]}
       </Drawer>
@@ -167,8 +165,8 @@ export const ClosesViaEscape = {
 };
 
 /**
- * Every Drawer needs an accessible name. When the content has a visible
- * heading, pass the heading's `id` as `labelledBy`. Otherwise pass a `label`.
+ * The Drawer is named by the first heading in its content. Pass `label`
+ * when the content has no heading.
  */
 export const AccessibleName = {
   name: "Interaction: Dialog has an accessible name",
@@ -274,6 +272,7 @@ ScrollingContentWithoutNavigation.parameters = {
 export const WithoutClose = BaseTemplate.bind({});
 WithoutClose.args = {
   showClose: false,
+  label: "Example drawer",
 };
 WithoutClose.parameters = {
   docs: {
@@ -287,6 +286,7 @@ WithoutClose.parameters = {
 export const ContentWithPopover = BaseTemplate.bind({});
 ContentWithPopover.args = {
   showControls: false,
+  label: "Example drawer",
   children: (
     <div
       style={{
@@ -419,7 +419,6 @@ export const WithFooter = (args) => {
       <Drawer
         isOpen={isDrawerOpen}
         onUserDismiss={() => setIsDrawerOpen(false)}
-        label="Example drawer"
         footer={
           <Row alignItems="center" justifyContent="space-between">
             <Row.Item shrink>
@@ -507,7 +506,6 @@ export const LazyLoadedContent = () => {
       <Drawer
         isOpen={isDrawerOpen}
         onUserDismiss={() => setIsDrawerOpen(false)}
-        label="Example drawer"
       >
         {({ isVisible }) => {
           if (!isVisible) {

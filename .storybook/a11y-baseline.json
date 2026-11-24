@@ -26,12 +26,6 @@
   "src/Dialog/index.stories.jsx > Popover Dialog": [
     "aria-command-name"
   ],
-  "src/Drawer/index.stories.jsx > Interaction: Navigates content with controls": [
-    "aria-dialog-name"
-  ],
-  "src/Drawer/index.stories.jsx > Interaction: Opens on click": [
-    "aria-dialog-name"
-  ],
   "src/DropdownTrigger/index.stories.jsx > Composing With Popover": [
     "nested-interactive"
   ],

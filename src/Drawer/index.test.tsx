@@ -96,6 +96,43 @@ describe("Drawer", () => {
     });
   });
 
+  describe.each([
+    ["desktop", true],
+    ["mobile", false],
+  ])("accessible name (%s)", (_, desktop) => {
+    beforeEach(() => {
+      isDesktop = desktop;
+    });
+
+    it("names the dialog with `label`", () => {
+      renderDrawer({ label: "Account details" });
+      expect(
+        screen.getByRole("dialog", { name: "Account details" }),
+      ).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "Close" })).toBeInTheDocument();
+    });
+
+    it("names the dialog from a heading in children with `labelledBy`", () => {
+      renderDrawer({
+        labelledBy: "drawer-heading",
+        children: <h2 id="drawer-heading">Account details</h2>,
+      });
+      const dialog = screen.getByRole("dialog", { name: "Account details" });
+      expect(dialog).toHaveAttribute("aria-labelledby", "drawer-heading");
+      expect(screen.getByRole("button", { name: "Close" })).toBeInTheDocument();
+    });
+
+    it("prefers `labelledBy` over `label`", () => {
+      renderDrawer({
+        label: "Ignored",
+        labelledBy: "drawer-heading",
+        children: <h2 id="drawer-heading">Account details</h2>,
+      });
+      const dialog = screen.getByRole("dialog", { name: "Account details" });
+      expect(dialog).not.toHaveAttribute("aria-label");
+    });
+  });
+
   describe("depth", () => {
     it("sets width for vertical drawers and height for horizontal ones", () => {
       renderDrawer({ depth: "400px", position: "left" });

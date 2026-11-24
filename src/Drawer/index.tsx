@@ -58,6 +58,16 @@ export interface DrawerProps {
   paddingSize?: "none" | "xs" | "s" | "m" | "l" | "xl" | "xxl";
   /** Contents of Drawer footer, typically reserved for action buttons */
   footer?: React.ReactNode;
+  /**
+   * Accessible name for the drawer dialog.
+   * Use when the drawer content has no visible heading to reference with `labelledBy`.
+   */
+  label?: string;
+  /**
+   * `id` of an element that names the drawer dialog, typically a
+   * heading rendered in `children`. Takes precedence over `label`.
+   */
+  labelledBy?: string;
   /** Optional value for `data-testid` attribute */
   testId?: string;
 }
@@ -81,6 +91,8 @@ const Drawer = ({
   depth = "70%",
   paddingSize = "xxl",
   footer,
+  label,
+  labelledBy,
   testId,
 }: DrawerProps) => {
   const panelId = `content-panel-${useId()}`;
@@ -128,6 +140,8 @@ const Drawer = ({
         },
       ])}
       role="dialog"
+      aria-label={labelledBy ? undefined : label}
+      aria-labelledby={labelledBy}
       data-testid={testId}
     >
       <div className={cc(["drawer-content", `padding--all--${paddingSize}`])}>

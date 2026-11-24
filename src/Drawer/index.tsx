@@ -97,31 +97,30 @@ const Drawer = ({
   const shimRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
   const trapRef = useRef<HTMLDivElement>(null);
-  const headingId = `drawer-heading-${useId()}`;
   const [contentEl, setContentEl] = useState<HTMLDivElement | null>(null);
-  const [labelledBy, setLabelledBy] = useState<string>();
+  const [headingText, setHeadingText] = useState<string>();
 
-  // Name the dialog by the first heading in its content. The heading comes
-  // from consumer `children`, so it is found in the DOM and given an id if it
-  // has none. Content can change without Drawer re-rendering, so observe it.
+  // Name the dialog after the first heading in its content. The heading comes
+  // from consumer `children`, so its text is read from the DOM. Content can
+  // change without Drawer re-rendering, so observe it.
   useEffect(() => {
     if (!contentEl || label) {
-      setLabelledBy(undefined);
+      setHeadingText(undefined);
       return;
     }
     const syncHeading = () => {
       const heading = contentEl.querySelector(HEADING_SELECTOR);
-      contentEl.querySelectorAll(`[id="${headingId}"]`).forEach((el) => {
-        if (el !== heading) el.removeAttribute("id");
-      });
-      if (heading && !heading.id) heading.id = headingId;
-      setLabelledBy(heading?.id);
+      setHeadingText(heading?.textContent?.trim() || undefined);
     };
     syncHeading();
     const observer = new MutationObserver(syncHeading);
-    observer.observe(contentEl, { childList: true, subtree: true });
+    observer.observe(contentEl, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+    });
     return () => observer.disconnect();
-  }, [contentEl, label, headingId]);
+  }, [contentEl, label]);
 
   const isTransitioning = useMountTransition(isOpen, 300);
   const isShown = isOpen && isTransitioning;
@@ -163,8 +162,7 @@ const Drawer = ({
         },
       ])}
       role="dialog"
-      aria-label={label}
-      aria-labelledby={label ? undefined : labelledBy}
+      aria-label={label ?? headingText}
       data-testid={testId}
     >
       <div

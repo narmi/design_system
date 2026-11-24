@@ -112,17 +112,16 @@ describe("Drawer", () => {
       expect(screen.getByRole("button", { name: "Close" })).toBeInTheDocument();
     });
 
-    it("reuses an existing heading id", () => {
-      renderDrawer({ children: <h2 id="my-heading">Account details</h2> });
-      expect(
-        screen.getByRole("dialog", { name: "Account details" }),
-      ).toHaveAttribute("aria-labelledby", "my-heading");
+    it("does not modify the heading", () => {
+      renderDrawer({ children: <h2>Account details</h2> });
+      expect(screen.getByRole("heading")).not.toHaveAttribute("id");
     });
 
     it("names the dialog with `label`, overriding any heading", () => {
       renderDrawer({ label: "Account", children: <h2>Account details</h2> });
-      const dialog = screen.getByRole("dialog", { name: "Account" });
-      expect(dialog).not.toHaveAttribute("aria-labelledby");
+      expect(
+        screen.getByRole("dialog", { name: "Account" }),
+      ).toBeInTheDocument();
       expect(screen.getByRole("button", { name: "Close" })).toBeInTheDocument();
     });
 

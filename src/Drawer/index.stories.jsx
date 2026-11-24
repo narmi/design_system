@@ -164,6 +164,22 @@ export const ClosesViaEscape = {
   },
 };
 
+/**
+ * The Drawer is named by the first heading in its content. Pass `label`
+ * when the content has no heading.
+ */
+export const AccessibleName = {
+  name: "Interaction: Dialog has an accessible name",
+  render: () => <InteractiveTemplate />,
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: /open drawer/i }));
+    await waitFor(() =>
+      expect(screen.getByRole("dialog", { name: "Title #1" })).toBeVisible(),
+    );
+    expect(screen.getByRole("button", { name: "Close" })).toBeVisible();
+  },
+};
+
 export const WithNavigation = InteractiveTemplate.bind({});
 
 WithNavigation.parameters = {
@@ -256,6 +272,7 @@ ScrollingContentWithoutNavigation.parameters = {
 export const WithoutClose = BaseTemplate.bind({});
 WithoutClose.args = {
   showClose: false,
+  label: "Example drawer",
 };
 WithoutClose.parameters = {
   docs: {
@@ -269,6 +286,7 @@ WithoutClose.parameters = {
 export const ContentWithPopover = BaseTemplate.bind({});
 ContentWithPopover.args = {
   showControls: false,
+  label: "Example drawer",
   children: (
     <div
       style={{
@@ -303,6 +321,7 @@ export const ContentWithDialog = () => {
       <Drawer
         isOpen={isDrawerOpen}
         onUserDismiss={() => setIsDrawerOpen(false)}
+        label="Example drawer"
       >
         <div style={{ marginBottom: "var(--space-l)" }}>
           <Button

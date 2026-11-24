@@ -96,6 +96,61 @@ describe("Drawer", () => {
     });
   });
 
+  describe.each([
+    ["desktop", true],
+    ["mobile", false],
+  ])("accessible name (%s)", (_, desktop) => {
+    beforeEach(() => {
+      isDesktop = desktop;
+    });
+
+    it("names the dialog by a heading supplied as children", () => {
+      renderDrawer({ children: <h2>Account details</h2> });
+      expect(
+        screen.getByRole("dialog", { name: "Account details" }),
+      ).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "Close" })).toBeInTheDocument();
+    });
+
+    it("does not modify the heading", () => {
+      renderDrawer({ children: <h2>Account details</h2> });
+      expect(screen.getByRole("heading")).not.toHaveAttribute("id");
+    });
+
+    it("names the dialog with `label`, overriding any heading", () => {
+      renderDrawer({ label: "Account", children: <h2>Account details</h2> });
+      expect(
+        screen.getByRole("dialog", { name: "Account" }),
+      ).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "Close" })).toBeInTheDocument();
+    });
+
+    it("follows the heading when content changes", async () => {
+      const Content = () => {
+        const [step, setStep] = React.useState(1);
+        return (
+          <>
+            {step === 1 ? (
+              <h2 key="one">Step one</h2>
+            ) : (
+              <h3 key="two">Step two</h3>
+            )}
+            <button onClick={() => setStep(2)}>Advance</button>
+          </>
+        );
+      };
+      renderDrawer({ children: <Content /> });
+      expect(
+        screen.getByRole("dialog", { name: "Step one" }),
+      ).toBeInTheDocument();
+
+      fireEvent.click(screen.getByRole("button", { name: "Advance" }));
+      expect(
+        await screen.findByRole("dialog", { name: "Step two" }),
+      ).toBeInTheDocument();
+    });
+  });
+
   describe("depth", () => {
     it("sets width for vertical drawers and height for horizontal ones", () => {
       renderDrawer({ depth: "400px", position: "left" });

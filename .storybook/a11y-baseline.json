@@ -14,9 +14,6 @@
   "src/Chip/index.stories.jsx > Icon Only": [
     "button-name"
   ],
-  "src/CollapsibleCard/index.stories.jsx > Caret As Trigger": [
-    "aria-allowed-attr"
-  ],
   "src/Combobox/index.stories.jsx > Interaction: Opens on click": [
     "scrollable-region-focusable"
   ],
